@@ -1,0 +1,26 @@
+{
+  "name": "illa-design",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Illa Ui Component",
+  "repository": "git@github.com:illa-family/illa-design.git",
+  "author": "Illa Team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "lerna": "^4.0.0",
+    "@babel/core": "^7.15.8",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/react": "^6.3.12",
+    "babel-loader": "^8.2.3"
+  },
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  }
+}
