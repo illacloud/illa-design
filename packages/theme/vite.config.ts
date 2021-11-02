@@ -15,7 +15,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@illa-design/tag",
+      name: "@illa-design/theme",
       fileName: (format) => `${format}/index.js`,
     },
     rollupOptions: {

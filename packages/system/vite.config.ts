@@ -6,7 +6,12 @@ const path = require("path")
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({
+    // Exclude storybook stories
+    exclude: /\.stories\.([tj])sx?$/,
+    // Only .tsx files
+    include: "**/*.tsx",
+  })],
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
