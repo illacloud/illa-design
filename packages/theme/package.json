@@ -1,7 +1,7 @@
 {
   "name": "@illa-design/theme",
   "version": "0.0.0",
-  "description": "Illa Design base.",
+  "description": "Illa Design theme.",
   "keywords": [
     "theme",
     "react",
@@ -40,8 +40,5 @@
   },
   "dependencies": {
     "@illa-design/system": "^0.0.0"
-  },
-  "devDependencies": {
-    "sass": "^1.43.4"
   }
 }

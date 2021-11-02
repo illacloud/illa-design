@@ -12,6 +12,11 @@ export default defineConfig({
     // Only .tsx files
     include: "**/*.tsx",
   })],
+  css: {
+    preprocessorOptions :{
+
+    }
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),

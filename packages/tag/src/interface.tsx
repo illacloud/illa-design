@@ -21,10 +21,14 @@ export type ColorScheme =
   | "twitter"
   | "telegram"
 
+export type Variant = "outline" | "fill" | "light"
+
+export type Size = "small" | "middle" | "large"
+
 export interface TagProps extends HTMLAttributes<HTMLDivElement> {
   colorScheme?: ColorScheme
-  size?: "small" | "middle" | "large"
-  variant?: "outline" | "solid" | "subtle"
+  size?: Size
+  variant?: Variant
   visible?: boolean
   closable?: boolean
 }

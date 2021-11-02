@@ -1,1 +1,1 @@
-import "../style/color.scss"
+export * from "./illa-color";
