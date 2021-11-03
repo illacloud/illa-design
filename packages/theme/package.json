@@ -40,5 +40,8 @@
   },
   "dependencies": {
     "@illa-design/system": "^0.0.0"
+  },
+  "devDependencies": {
+    "sass": "^1.43.4"
   }
 }
