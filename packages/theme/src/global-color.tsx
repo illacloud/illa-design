@@ -1,0 +1,71 @@
+import { css } from "@emotion/react"
+
+export const illaPrefix = "illa"
+
+export const globalColor = css`
+  --illa-gray-01: #000;
+  --illa-gray-02: rgba(0, 0, 0, 0.88);
+  --illa-gray-03: rgba(0, 0, 0, 0.64);
+  --illa-gray-04: rgba(0, 0, 0, 0.4);
+  --illa-gray-05: rgba(0, 0, 0, 0.24);
+  --illa-gray-06: rgba(0, 0, 0, 0.16);
+  --illa-gray-07: rgba(0, 0, 0, 0.12);
+  --illa-gray-08: rgba(0, 0, 0, 0.08);
+  --illa-gray-09: rgba(0, 0, 0, 0.04);
+  --illa-grayblue-01: #454d5a;
+  --illa-grayblue-02: #81868f;
+  --illa-grayblue-03: #cbcdd1;
+  --illa-grayblue-04: #e2e4e6;
+  --illa-grayblue-05: #f3f5f7;
+  --illa-grayblue-06: #f9fafb;
+  --illa-blue-01: #2a3ed6;
+  --illa-blue-02: #3e53eb;
+  --illa-blue-03: #546dff;
+  --illa-blue-04: #7691ff;
+  --illa-blue-05: #aebeff;
+  --illa-blue-06: #d2dbff;
+  --illa-blue-07: #f1f4ff;
+  --illa-purple-01: #833fdf;
+  --illa-purple-02: #8e4be0;
+  --illa-purple-03: #a55bf5;
+  --illa-purple-04: #c87ffa;
+  --illa-purple-05: #dfb2fc;
+  --illa-purple-06: #f0d6fe;
+  --illa-purple-07: #fbf2fe;
+  --illa-white-01: #fff;
+  --illa-red-01: #e02424;
+  --illa-red-02: #eb3639;
+  --illa-red-03: #ff4747;
+  --illa-red-04: #ff7272;
+  --illa-red-05: #ffa3a3;
+  --illa-red-06: #fcc;
+  --illa-red-07: #fee;
+  --illa-green-01: #007a41;
+  --illa-green-02: #118f58;
+  --illa-green-03: #00aa5b;
+  --illa-green-04: #00d689;
+  --illa-green-05: #66dfb0;
+  --illa-green-06: #a3f0d4;
+  --illa-green-07: #ecfbf5;
+  --illa-yellow-01: #e07800;
+  --illa-yellow-02: #eb9000;
+  --illa-yellow-03: #ffab00;
+  --illa-yellow-04: #ffcd00;
+  --illa-yellow-05: #ffe266;
+  --illa-yellow-06: #fff2a3;
+  --illa-yellow-07: #fffceb;
+  --illa-orange-01: #e03118;
+  --illa-orange-02: #eb4825;
+  --illa-orange-03: #ff5e2f;
+  --illa-orange-04: #ff8246;
+  --illa-orange-05: #ffb490;
+  --illa-orange-06: #ffd7bf;
+  --illa-orange-07: #fff5f0;
+  --illa-cyan-01: #069fcc;
+  --illa-cyan-02: #08a7cc;
+  --illa-cyan-03: #0cc1e2;
+  --illa-cyan-04: #12ddf2;
+  --illa-cyan-05: #71ebf7;
+  --illa-cyan-06: #aaf7fc;
+  --illa-cyan-07: #effdfe;
+`

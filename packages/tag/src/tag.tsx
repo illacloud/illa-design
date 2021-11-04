@@ -1,40 +1,152 @@
-import { CSSProperties, forwardRef, useState } from "react"
-import { ColorScheme, TagProps } from "./interface"
-import "../style/tag.module.scss"
+/** @jsx jsx */
 import * as React from "react"
+import { forwardRef, useState } from "react"
+import { ColorScheme, TagProps } from "./interface"
+import { css } from "@emotion/react"
+import { SerializedStyles } from "@emotion/serialize"
+import { globalColor, illaPrefix } from "@illa-design/theme"
+
+// style
+const tagContainer = css`
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const tagSizeLarge = css`
+  font-size: 12px;
+  padding: 5px 8px;
+`
+
+const tagSizeMiddle = css`
+  font-size: 12px;
+  padding: 3px 8px;
+`
+
+const tagSizeSmall = css`
+  font-size: 12px;
+  padding: 1px 8px;
+`
 
 const colors: ColorScheme[] = [
-  "white", "blackAlpha", "black", "gray", "red", "orange", "yellow", "green", "teal", "blue", "cyan", "purple",
+  "black", "gray", "red", "orange", "yellow", "green", "blue", "cyan", "purple",
 ]
+
+function tagOutlinePrepare(color?: ColorScheme): SerializedStyles {
+  if (color == undefined || color == "gray") {
+    return css`
+      border-radius: 1px;
+      background-color: var(--${illaPrefix}-${color ?? "gray"}-08);
+      color: varvar(--${illaPrefix}-${color ?? "gray"}-02);
+    `
+  } else {
+    return css`
+      border-radius: 1px;
+      border: solid 1px var(--${illaPrefix}-${color}-01);
+      color: var(--${illaPrefix}-${color}-01);
+    `
+  }
+}
+
+function tagFillPrepare(color?: ColorScheme): SerializedStyles {
+  return css`
+    background-color: var(--${illaPrefix}-${color ?? "gray"}-01);
+    color: var(--illa-white-01);
+    border-radius: 1px;
+  `
+}
+
+function tagLightPrepare(color?: ColorScheme): SerializedStyles {
+  if (color == undefined || color == "gray") {
+    return css`
+      border-radius: 1px;
+      background-color: var(--${illaPrefix}-${color ?? "gray"}-08);
+      color: var(--${illaPrefix}-${color ?? "gray"}-02);
+    `
+  } else {
+    return css`
+      border-radius: 1px;
+      background-color: var(--${illaPrefix}-${color}-06);
+      color: var(--${illaPrefix}-${color}-01);
+    `
+  }
+}
+
+function tagFillNormal(color: ColorScheme): SerializedStyles {
+  return css`
+    border-radius: 1px;
+    color: var(--illa-white-w01);
+    background-color: ${color};
+  `
+}
+
+function tagOutlineNormal(color: ColorScheme): SerializedStyles {
+  return css`
+    border-radius: 1px;
+    color: ${color};
+    border: solid 1px ${color};
+  `
+}
 
 export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const [visible, setVisible] = useState(props.visible ?? true)
-  let variant: string
-  if (colors.includes(props.colorScheme ?? "gray")) {
-    variant = `tag-${props.variant ?? "light"}-${props.colorScheme ?? "gray"}`
-  } else {
-    let customSty = {} as CSSProperties
-    switch (props.variant) {
-      case "light":
+  let variant: SerializedStyles
+  if (props.colorScheme == undefined || colors.includes(props.colorScheme)) {
+    switch (props.variant ?? "light") {
+      case "light": {
+        variant = tagLightPrepare(props.colorScheme)
+        break
+      }
       case "fill": {
-        customSty.borderRadius = "1px"
-        customSty.color = `var(--illa-white-w01)`
-        customSty.backgroundColor = props.colorScheme
+        variant = tagFillPrepare(props.colorScheme)
         break
       }
       case "outline": {
-        customSty.borderRadius = "1px"
-        customSty.border = `solid 1px ${props.colorScheme}`
-        customSty.color = props.colorScheme
+        variant = tagOutlinePrepare(props.colorScheme)
         break
       }
     }
-    variant = `tag-${props.variant ?? "light"}-normal`
+  } else {
+    switch (props.variant ?? "light") {
+      case "light":
+      case "fill": {
+        variant = tagFillNormal(props.colorScheme)
+        break
+      }
+      case "outline": {
+        variant = tagOutlineNormal(props.colorScheme)
+        break
+      }
+    }
   }
-  const size = `tag-size-${props.size ?? "small"}`
+
+  console.log(`${variant.styles}`)
+
+  let size: SerializedStyles
+  switch (props.size ?? "small") {
+    case "small": {
+      size = tagSizeSmall
+      break
+    }
+    case "middle": {
+      size = tagSizeMiddle
+      break
+    }
+    case "large": {
+      size = tagSizeLarge
+      break
+    }
+  }
+
+  const finalStyle = css`
+    ${globalColor};
+    ${tagContainer};
+    ${variant};
+    ${size};
+  `
 
   return visible ? <div ref={ref} className={props.className} style={props.style}>
-    <div className={[variant, size, "tag-container"].join(" ")}>
+    <div css={finalStyle}>
       <div>{props.children}</div>
       {props.closable ?? false ? <div onClick={() => {
         if (props.onClose == undefined) {

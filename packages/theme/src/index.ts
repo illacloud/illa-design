@@ -1,1 +1,1 @@
-import "../style/color.css"
+export * from "./global-color"

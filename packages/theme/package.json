@@ -19,10 +19,6 @@
     ".": {
       "import": "./dist/es/index.js",
       "require": "./dist/umd/index.js"
-    },
-    "./dist/style.css": {
-      "import": "./dist/style.css",
-      "require": "./dist/style.css"
     }
   },
   "files": [
@@ -43,9 +39,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
+    "@emotion/react": "^11.5.0",
     "@illa-design/system": "^0.0.0"
-  },
-  "devDependencies": {
-    "sass": "^1.43.4"
   }
 }
