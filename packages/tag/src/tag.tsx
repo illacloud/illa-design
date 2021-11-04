@@ -36,22 +36,22 @@ function tagOutlinePrepare(color?: ColorScheme): SerializedStyles {
   if (color == undefined || color == "gray") {
     return css`
       border-radius: 1px;
-      background-color: var(--${illaPrefix}-${color ?? "gray"}-08);
-      color: varvar(--${illaPrefix}-${color ?? "gray"}-02);
+      background-color: ${globalColor[`--${illaPrefix}-${color ?? "gray"}-08`]};
+      color: ${globalColor[`--${illaPrefix}-${color ?? "gray"}-02`]};
     `
   } else {
     return css`
       border-radius: 1px;
-      border: solid 1px var(--${illaPrefix}-${color}-01);
-      color: var(--${illaPrefix}-${color}-01);
+      border: solid 1px ${globalColor[`--${illaPrefix}-${color}-01`]};
+      color: ${globalColor[`--${illaPrefix}-${color}-01`]};
     `
   }
 }
 
 function tagFillPrepare(color?: ColorScheme): SerializedStyles {
   return css`
-    background-color: var(--${illaPrefix}-${color ?? "gray"}-01);
-    color: var(--illa-white-01);
+    background-color: ${globalColor[`--${illaPrefix}-${color ?? "gray"}-01`]};
+    color: ${globalColor["--illa-white-01"]};
     border-radius: 1px;
   `
 }
@@ -60,19 +60,19 @@ function tagLightPrepare(color?: ColorScheme): SerializedStyles {
   if (color == undefined || color == "gray") {
     return css`
       border-radius: 1px;
-      background-color: var(--${illaPrefix}-${color ?? "gray"}-08);
-      color: var(--${illaPrefix}-${color ?? "gray"}-02);
+      background-color: ${globalColor[`--${illaPrefix}-${color ?? "gray"}-08`]};
+      color: ${globalColor[`--${illaPrefix}-${color ?? "gray"}-02`]};
     `
   } else {
     return css`
       border-radius: 1px;
-      background-color: var(--${illaPrefix}-${color}-06);
-      color: var(--${illaPrefix}-${color}-01);
+      background-color: ${globalColor[`--${illaPrefix}-${color}-06`]};
+      color: ${globalColor[`--${illaPrefix}-${color}-01`]};
     `
   }
 }
 
-function tagFillNormal(color: ColorScheme): SerializedStyles {
+function tagFillNormal(color: Extract<ColorScheme, string>): SerializedStyles {
   return css`
     border-radius: 1px;
     color: var(--illa-white-w01);
@@ -80,7 +80,7 @@ function tagFillNormal(color: ColorScheme): SerializedStyles {
   `
 }
 
-function tagOutlineNormal(color: ColorScheme): SerializedStyles {
+function tagOutlineNormal(color: Extract<ColorScheme, string>): SerializedStyles {
   return css`
     border-radius: 1px;
     color: ${color};
@@ -139,7 +139,6 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   }
 
   const finalStyle = css`
-    ${globalColor};
     ${tagContainer};
     ${variant};
     ${size};
