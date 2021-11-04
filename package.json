@@ -7,13 +7,14 @@
   "author": "Illa Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "lerna": "^4.0.0",
     "@babel/core": "^7.15.8",
     "@storybook/addon-actions": "^6.3.12",
     "@storybook/addon-essentials": "^6.3.12",
     "@storybook/addon-links": "^6.3.12",
     "@storybook/react": "^6.3.12",
-    "babel-loader": "^8.2.3"
+    "storybook-builder-vite": "^0.1.5",
+    "babel-loader": "^8.2.3",
+    "lerna": "^4.0.0"
   },
   "workspaces": [
     "packages/*",
@@ -22,5 +23,8 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
+  },
+  "devDependencies": {
+
   }
 }

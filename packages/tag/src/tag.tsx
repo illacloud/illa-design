@@ -1,100 +1,47 @@
-import { CSSProperties, FC } from "react"
+import { CSSProperties, FC, useState } from "react"
 import { ColorScheme, TagProps } from "./interface"
-import { IllaColor } from "@illa-design/theme"
+import "../style/tag.module.scss"
+
+const colors: ColorScheme[] = [
+  "white", "blackAlpha", "black", "gray", "red", "orange", "yellow", "green", "teal", "blue", "cyan", "purple",
+]
 
 export const Tag: FC<TagProps> = ((props, ref) => {
+  const [visible, setVisible] = useState(props.visible ?? true)
+  let variant: string
+  if (colors.includes(props.colorScheme ?? "gray")) {
+    variant = `tag-${props.variant ?? "light"}-${props.colorScheme ?? "gray"}`
+  } else {
+    let customSty = {} as CSSProperties
+    switch (props.variant) {
+      case "light":
+      case "fill": {
+        customSty.borderRadius = "1px"
+        customSty.color = `var(--illa-white-w01)`
+        customSty.backgroundColor = props.colorScheme
+        break
+      }
+      case "outline": {
+        customSty.borderRadius = "1px"
+        customSty.border = `solid 1px ${props.colorScheme}`
+        customSty.color = props.colorScheme
+        break
+      }
+    }
+    variant = `tag-${props.variant ?? "light"}-normal`
+  }
+  const size = `tag-size-${props.size ?? "small"}`
 
-  let sty = {
-    display: "inline-flex",
-    alignItems: "center",
-  } as CSSProperties
-
-  sty = applyVariant(sty, props)
-
-  sty = applySize(sty, props)
-
-  return props.visible ?? true ? <div className={props.className} style={props.style}>
-    <div ref={ref} style={sty}>
+  return visible ? <div className={props.className} style={props.style}>
+    <div ref={ref} className={`${variant} ${size}`}>
       <div>{props.children}</div>
-      {props.closable ?? false ? <div></div> : null}
+      {props.closable ?? false ? <div onClick={() => {
+        if (props.onClose == undefined) {
+          setVisible(false)
+        } else {
+          props.onClose()
+        }
+      }} /> : null}
     </div>
   </div> : null
 })
-
-function applyVariant(sty: CSSProperties, props: TagProps): CSSProperties {
-  const newSty = { ...sty }
-  switch (props.variant) {
-    default:
-    case "outline": {
-      newSty.borderRadius = "1px"
-      newSty.border = `solid 1px ${switchColor(props.colorScheme)}`
-      newSty.color = `${switchColor(props.colorScheme)}`
-      break
-    }
-    case "fill": {
-      newSty.backgroundColor = `${switchColor(props.colorScheme)}`
-      newSty.borderRadius = "1px"
-      newSty.color = `white`
-      break
-    }
-    case "light": {
-      newSty.backgroundColor = `${switchColor(props.colorScheme)}`
-      newSty.borderRadius = "1px"
-      newSty.color = `white`
-      break
-    }
-  }
-  return newSty
-}
-
-function applySize(sty: CSSProperties, props: TagProps): CSSProperties {
-  const newSty = {
-    fontSize: "12px",
-    ...sty,
-  }
-  switch (props.size) {
-    case "large": {
-      newSty.padding = "5px 8px"
-      break
-    }
-    default:
-    case "middle": {
-      newSty.padding = "3px 8px"
-      break
-    }
-    case "small": {
-      newSty.padding = "1px 8px"
-      break
-    }
-  }
-  return newSty
-}
-
-function switchColor(type?: ColorScheme): string {
-  if (type === undefined) {
-    type = "gray"
-  }
-  switch (type) {
-    case "white": {
-      return IllaColor.illa_white
-    }
-    case "black": {
-      return IllaColor.illa_gray_01
-    }
-    case "gray": {
-      return IllaColor.illa_gray_02
-    }
-    case "red":
-    case "orange":
-    case "yellow":
-    case "green":
-    case "teal":
-    case "blue":
-    case "cyan":
-    case "purple":
-    case "pink":
-    default: {
-      return type
-    }
-  }
-}

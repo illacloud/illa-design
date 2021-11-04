@@ -2,8 +2,9 @@ import { HTMLAttributes } from "react"
 
 export type ColorScheme =
   string
-  | "whiteAlpha"
+  | "white"
   | "blackAlpha"
+  | "black"
   | "gray"
   | "red"
   | "orange"
@@ -13,13 +14,6 @@ export type ColorScheme =
   | "blue"
   | "cyan"
   | "purple"
-  | "pink"
-  | "linkedin"
-  | "facebook"
-  | "messenger"
-  | "whatsapp"
-  | "twitter"
-  | "telegram"
 
 export type Variant = "outline" | "fill" | "light"
 
@@ -31,4 +25,6 @@ export interface TagProps extends HTMLAttributes<HTMLDivElement> {
   variant?: Variant
   visible?: boolean
   closable?: boolean
+  icon?: string
+  onClose?: () => void
 }
