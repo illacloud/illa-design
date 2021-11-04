@@ -1,6 +1,7 @@
 import { CSSProperties, forwardRef, useState } from "react"
 import { ColorScheme, TagProps } from "./interface"
 import "../style/tag.module.scss"
+import * as React from "react"
 
 const colors: ColorScheme[] = [
   "white", "blackAlpha", "black", "gray", "red", "orange", "yellow", "green", "teal", "blue", "cyan", "purple",
