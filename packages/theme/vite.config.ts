@@ -1,6 +1,5 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
-import typescript from "@rollup/plugin-typescript"
 
 const path = require("path")
 
@@ -19,17 +18,12 @@ export default defineConfig({
       fileName: (format) => `${format}/index.js`,
     },
     rollupOptions: {
-      plugins: [
-        typescript({
-          target: "es2020",
-          rootDir: path.resolve(__dirname, "src"),
-          declaration: true,
-          declarationDir: path.resolve(__dirname, "dist/types"),
-          exclude: path.resolve(__dirname, "node_modules/**"),
-          allowSyntheticDefaultImports: true,
-        }),
-      ],
       external: ["react", "react-dom"],
+      output: {
+        globals: {
+          react: "React",
+        },
+      },
     },
   },
 })

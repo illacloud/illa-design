@@ -12,6 +12,12 @@ export default defineConfig({
     // Only .tsx files
     include: "**/*.tsx",
   })],
+  resolve: {
+    alias: [
+      // solve vite not support scss ~
+      { find: /^~/, replacement: "" },
+    ],
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
@@ -19,17 +25,12 @@ export default defineConfig({
       fileName: (format) => `${format}/index.js`,
     },
     rollupOptions: {
-      plugins: [
-        typescript({
-          target: "es2020",
-          rootDir: path.resolve(__dirname, "src"),
-          declaration: true,
-          declarationDir: path.resolve(__dirname, "dist/types"),
-          exclude: path.resolve(__dirname, "node_modules/**"),
-          allowSyntheticDefaultImports: true,
-        }),
-      ],
       external: ["react", "react-dom"],
+      output: {
+        globals: {
+          react: "React",
+        },
+      },
     },
   },
 })

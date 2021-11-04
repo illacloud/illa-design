@@ -19,6 +19,10 @@
     ".": {
       "import": "./dist/es/index.js",
       "require": "./dist/umd/index.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "files": [

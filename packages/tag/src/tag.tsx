@@ -1,4 +1,4 @@
-import { CSSProperties, FC, useState } from "react"
+import { CSSProperties, forwardRef, useState } from "react"
 import { ColorScheme, TagProps } from "./interface"
 import "../style/tag.module.scss"
 
@@ -6,7 +6,7 @@ const colors: ColorScheme[] = [
   "white", "blackAlpha", "black", "gray", "red", "orange", "yellow", "green", "teal", "blue", "cyan", "purple",
 ]
 
-export const Tag: FC<TagProps> = ((props, ref) => {
+export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const [visible, setVisible] = useState(props.visible ?? true)
   let variant: string
   if (colors.includes(props.colorScheme ?? "gray")) {
@@ -32,8 +32,8 @@ export const Tag: FC<TagProps> = ((props, ref) => {
   }
   const size = `tag-size-${props.size ?? "small"}`
 
-  return visible ? <div className={props.className} style={props.style}>
-    <div ref={ref} className={`${variant} ${size}`}>
+  return visible ? <div ref={ref} className={props.className} style={props.style}>
+    <div className={[variant, size, "tag-container"].join(" ")}>
       <div>{props.children}</div>
       {props.closable ?? false ? <div onClick={() => {
         if (props.onClose == undefined) {
