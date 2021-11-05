@@ -46,7 +46,7 @@ function tagOutlinePrepare(color: ColorScheme): SerializedStyles {
   if (color == "gray") {
     return css`
       border-radius: 1px;
-      background-color: ${globalColor(`--${illaPrefix}-${color}-08`)};
+      border: solid 1px ${globalColor(`--${illaPrefix}-${color}-08`)};
       color: ${globalColor(`--${illaPrefix}-${color}-02`)};
     `
   } else {
@@ -85,7 +85,7 @@ function tagLightPrepare(color: ColorScheme): SerializedStyles {
 function tagFillNormal(color: Extract<ColorScheme, string>): SerializedStyles {
   return css`
     border-radius: 1px;
-    color: var(--illa-white-w01);
+    color: ${globalColor("--illa-white-01")};
     background-color: ${color};
   `
 }
@@ -159,34 +159,6 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     ${variant};
     ${size};
   `
-  // close icon color
-  let closeIconColor: string
-  if (colors.includes(currentColorScheme)) {
-    switch (currentVariant) {
-      case "light": {
-        if (currentColorScheme == "gray") {
-          closeIconColor = globalColor(`--${illaPrefix}-${currentColorScheme}-02`)
-        } else {
-          closeIconColor = globalColor(`--${illaPrefix}-${currentColorScheme}-01`)
-        }
-        break
-      }
-      case "fill": {
-        closeIconColor = globalColor("--illa-white-01")
-        break
-      }
-      case "outline": {
-        if (currentColorScheme == "gray") {
-          closeIconColor = globalColor(`--${illaPrefix}-${currentColorScheme}-02`)
-        } else {
-          closeIconColor = globalColor(`--${illaPrefix}-${currentColorScheme}-01`)
-        }
-        break
-      }
-    }
-  } else {
-    closeIconColor = currentColorScheme
-  }
 
   return currentVisible ? <div ref={ref} className={props.className} style={props.style}>
     <div css={finalStyle}>
@@ -196,7 +168,7 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
         if (props.onClose != undefined) {
           props.onClose()
         }
-      }} color={closeIconColor} /> : null}
+      }} /> : null}
     </div>
   </div> : null
 })

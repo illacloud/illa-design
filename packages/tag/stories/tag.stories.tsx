@@ -24,7 +24,7 @@ export default {
     },
     colorScheme: {
       control: {
-        type: "color",
+        type: "text",
       },
     },
     visible: {
