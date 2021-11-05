@@ -1,10 +1,9 @@
 {
-  "name": "@illa-design/tag",
+  "name": "@illa-design/icon",
   "version": "0.0.0",
-  "description": "This component displays as a tag with an optional link and/or button to remove the given tag.",
+  "description": "Illa Design Icon.",
   "keywords": [
-    "tag",
-    "tag group",
+    "icon",
     "react",
     "component"
   ],
@@ -31,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/tag"
+    "directory": "packages/icon"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
@@ -40,8 +39,8 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "^0.0.0",
     "@illa-design/system": "^0.0.0",
-    "@illa-design/theme": "^0.0.0"
+    "@illa-design/theme": "^0.0.0",
+    "react-icons": "^4.3.1"
   }
 }
