@@ -16,7 +16,7 @@ export type ColorScheme =
 
 export type Variant = "outline" | "fill" | "light"
 
-export type Size = "small" | "middle" | "large"
+export type Size = "small" | "medium" | "large"
 
 export interface TagProps extends HTMLAttributes<HTMLDivElement> {
   colorScheme?: ColorScheme

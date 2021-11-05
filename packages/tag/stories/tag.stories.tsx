@@ -11,7 +11,7 @@ export default {
   component: Tag,
   argTypes: {
     size: {
-      options: ["large", "small", "middle"],
+      options: ["large", "small", "medium"],
       control: {
         type: "select",
       },

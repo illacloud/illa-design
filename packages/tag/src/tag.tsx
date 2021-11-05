@@ -3,7 +3,7 @@ import * as React from "react"
 import { forwardRef, useState } from "react"
 import { ColorScheme, TagProps } from "./interface"
 import { css } from "@emotion/react"
-import { BsX } from "react-icons/bs"
+import { GrClose } from "react-icons/gr"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
@@ -19,7 +19,7 @@ const tagSizeLarge = css`
   padding: 5px 8px;
 `
 
-const tagSizeMiddle = css`
+const tagSizeMedium = css`
   font-size: 12px;
   padding: 3px 8px;
 `
@@ -36,6 +36,15 @@ const leftIcon = css`
   flex-direction: row;
   align-items: center;
   margin-right: 4px;
+`
+
+const rightIcon = css`
+  width: 7px;
+  height: 7px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 4px;
 `
 
 const colors: ColorScheme[] = [
@@ -144,8 +153,8 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
       size = tagSizeSmall
       break
     }
-    case "middle": {
-      size = tagSizeMiddle
+    case "medium": {
+      size = tagSizeMedium
       break
     }
     case "large": {
@@ -164,11 +173,11 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     <div css={finalStyle}>
       <span css={leftIcon}>{props.icon}</span>
       {props.children}
-      {props.closable ?? false ? <BsX onClick={() => {
+      {props.closable ?? false ? <span css={rightIcon}> <GrClose onClick={() => {
         if (props.onClose != undefined) {
           props.onClose()
         }
-      }} /> : null}
+      }} /> </span> : null}
     </div>
   </div> : null
 })
