@@ -3,6 +3,7 @@ import * as React from "react"
 import { forwardRef, useState } from "react"
 import { ColorScheme, TagProps } from "./interface"
 import { css } from "@emotion/react"
+import { BsX } from "react-icons/bs"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
@@ -28,16 +29,25 @@ const tagSizeSmall = css`
   padding: 1px 8px;
 `
 
+const leftIcon = css`
+  width: 12px;
+  height: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 4px;
+`
+
 const colors: ColorScheme[] = [
   "black", "gray", "red", "orange", "yellow", "green", "blue", "cyan", "purple",
 ]
 
-function tagOutlinePrepare(color?: ColorScheme): SerializedStyles {
-  if (color == undefined || color == "gray") {
+function tagOutlinePrepare(color: ColorScheme): SerializedStyles {
+  if (color == "gray") {
     return css`
       border-radius: 1px;
-      background-color: ${globalColor(`--${illaPrefix}-${color ?? "gray"}-08`)};
-      color: ${globalColor(`--${illaPrefix}-${color ?? "gray"}-02`)};
+      background-color: ${globalColor(`--${illaPrefix}-${color}-08`)};
+      color: ${globalColor(`--${illaPrefix}-${color}-02`)};
     `
   } else {
     return css`
@@ -48,20 +58,20 @@ function tagOutlinePrepare(color?: ColorScheme): SerializedStyles {
   }
 }
 
-function tagFillPrepare(color?: ColorScheme): SerializedStyles {
+function tagFillPrepare(color: ColorScheme): SerializedStyles {
   return css`
-    background-color: ${globalColor(`--${illaPrefix}-${color ?? "gray"}-01`)};
+    background-color: ${globalColor(`--${illaPrefix}-${color}-01`)};
     color: ${globalColor("--illa-white-01")};
     border-radius: 1px;
   `
 }
 
-function tagLightPrepare(color?: ColorScheme): SerializedStyles {
-  if (color == undefined || color == "gray") {
+function tagLightPrepare(color: ColorScheme): SerializedStyles {
+  if (color == "gray") {
     return css`
       border-radius: 1px;
-      background-color: ${globalColor(`--${illaPrefix}-${color ?? "gray"}-08`)};
-      color: ${globalColor(`--${illaPrefix}-${color ?? "gray"}-02`)};
+      background-color: ${globalColor(`--${illaPrefix}-${color}-08`)};
+      color: ${globalColor(`--${illaPrefix}-${color}-02`)};
     `
   } else {
     return css`
@@ -89,41 +99,47 @@ function tagOutlineNormal(color: Extract<ColorScheme, string>): SerializedStyles
 }
 
 export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
-  const [visible, setVisible] = useState(props.visible ?? true)
+
+  const currentVisible = props.visible ?? true
+  const currentColorScheme = props.colorScheme ?? "gray"
+  const currentSize = props.size ?? "small"
+  const currentVariant = props.variant ?? "light"
+
   let variant: SerializedStyles
-  if (props.colorScheme == undefined || colors.includes(props.colorScheme)) {
-    switch (props.variant ?? "light") {
+
+  // variant
+  if (colors.includes(currentColorScheme)) {
+    switch (currentVariant) {
       case "light": {
-        variant = tagLightPrepare(props.colorScheme)
+        variant = tagLightPrepare(currentColorScheme)
         break
       }
       case "fill": {
-        variant = tagFillPrepare(props.colorScheme)
+        variant = tagFillPrepare(currentColorScheme)
         break
       }
       case "outline": {
-        variant = tagOutlinePrepare(props.colorScheme)
+        variant = tagOutlinePrepare(currentColorScheme)
         break
       }
     }
   } else {
-    switch (props.variant ?? "light") {
+    switch (currentVariant) {
       case "light":
       case "fill": {
-        variant = tagFillNormal(props.colorScheme)
+        variant = tagFillNormal(currentColorScheme)
         break
       }
       case "outline": {
-        variant = tagOutlineNormal(props.colorScheme)
+        variant = tagOutlineNormal(currentColorScheme)
         break
       }
     }
   }
 
-  console.log(`${variant.styles}`)
-
+  // size
   let size: SerializedStyles
-  switch (props.size ?? "small") {
+  switch (currentSize) {
     case "small": {
       size = tagSizeSmall
       break
@@ -143,17 +159,44 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     ${variant};
     ${size};
   `
-
-  return visible ? <div ref={ref} className={props.className} style={props.style}>
-    <div css={finalStyle}>
-      <div>{props.children}</div>
-      {props.closable ?? false ? <div onClick={() => {
-        if (props.onClose == undefined) {
-          setVisible(false)
+  // close icon color
+  let closeIconColor: string
+  if (colors.includes(currentColorScheme)) {
+    switch (currentVariant) {
+      case "light": {
+        if (currentColorScheme == "gray") {
+          closeIconColor = globalColor(`--${illaPrefix}-${currentColorScheme}-02`)
         } else {
+          closeIconColor = globalColor(`--${illaPrefix}-${currentColorScheme}-01`)
+        }
+        break
+      }
+      case "fill": {
+        closeIconColor = globalColor("--illa-white-01")
+        break
+      }
+      case "outline": {
+        if (currentColorScheme == "gray") {
+          closeIconColor = globalColor(`--${illaPrefix}-${currentColorScheme}-02`)
+        } else {
+          closeIconColor = globalColor(`--${illaPrefix}-${currentColorScheme}-01`)
+        }
+        break
+      }
+    }
+  } else {
+    closeIconColor = currentColorScheme
+  }
+
+  return currentVisible ? <div ref={ref} className={props.className} style={props.style}>
+    <div css={finalStyle}>
+      <span css={leftIcon}>{props.icon}</span>
+      {props.children}
+      {props.closable ?? false ? <BsX onClick={() => {
+        if (props.onClose != undefined) {
           props.onClose()
         }
-      }} /> : null}
+      }} color={closeIconColor} /> : null}
     </div>
   </div> : null
 })

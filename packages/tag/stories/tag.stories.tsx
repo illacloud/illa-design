@@ -1,9 +1,49 @@
 import * as React from "react"
+import { Meta, Story } from "@storybook/react"
 import { Tag } from "@illa-design/tag"
+import { BsGithub } from "react-icons/bs"
+import { TagProps } from "../dist/types/interface"
 
+
+//👇 This default export determines where your story goes in the story list
 export default {
   title: "Tag",
-  decorators: [(story: Function) => <div>{story()}</div>],
-}
+  component: Tag,
+  argTypes: {
+    size: {
+      options: ["large", "small", "middle"],
+      control: {
+        type: "select",
+      },
+    },
+    variant: {
+      options: ["light", "fill", "outline"],
+      control: {
+        type: "select",
+      },
+    },
+    colorScheme: {
+      control: {
+        type: "color",
+      },
+    },
+    visible: {
+      control: {
+        type: "boolean",
+      },
+    },
+    closable: {
+      control: {
+        type: "boolean",
+      },
+    },
+  },
+} as Meta
 
-export const basic = () => <Tag size="large" colorScheme="green">123456</Tag>
+const Template: Story<TagProps> = (args) => <Tag {...args}>Hello</Tag>
+
+export const Basic = Template.bind({})
+
+Basic.args = {
+  icon: <BsGithub />,
+}

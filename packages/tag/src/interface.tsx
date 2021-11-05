@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 
 export type ColorScheme =
   string
@@ -25,6 +25,6 @@ export interface TagProps extends HTMLAttributes<HTMLDivElement> {
   variant?: Variant
   visible?: boolean
   closable?: boolean
-  icon?: string
+  icon?: ReactNode
   onClose?: () => void
 }
