@@ -36,22 +36,22 @@ function tagOutlinePrepare(color?: ColorScheme): SerializedStyles {
   if (color == undefined || color == "gray") {
     return css`
       border-radius: 1px;
-      background-color: ${globalColor[`--${illaPrefix}-${color ?? "gray"}-08`]};
-      color: ${globalColor[`--${illaPrefix}-${color ?? "gray"}-02`]};
+      background-color: ${globalColor(`--${illaPrefix}-${color ?? "gray"}-08`)};
+      color: ${globalColor(`--${illaPrefix}-${color ?? "gray"}-02`)};
     `
   } else {
     return css`
       border-radius: 1px;
-      border: solid 1px ${globalColor[`--${illaPrefix}-${color}-01`]};
-      color: ${globalColor[`--${illaPrefix}-${color}-01`]};
+      border: solid 1px ${globalColor(`--${illaPrefix}-${color}-01`)};
+      color: ${globalColor(`--${illaPrefix}-${color}-01`)};
     `
   }
 }
 
 function tagFillPrepare(color?: ColorScheme): SerializedStyles {
   return css`
-    background-color: ${globalColor[`--${illaPrefix}-${color ?? "gray"}-01`]};
-    color: ${globalColor["--illa-white-01"]};
+    background-color: ${globalColor(`--${illaPrefix}-${color ?? "gray"}-01`)};
+    color: ${globalColor("--illa-white-01")};
     border-radius: 1px;
   `
 }
@@ -60,14 +60,14 @@ function tagLightPrepare(color?: ColorScheme): SerializedStyles {
   if (color == undefined || color == "gray") {
     return css`
       border-radius: 1px;
-      background-color: ${globalColor[`--${illaPrefix}-${color ?? "gray"}-08`]};
-      color: ${globalColor[`--${illaPrefix}-${color ?? "gray"}-02`]};
+      background-color: ${globalColor(`--${illaPrefix}-${color ?? "gray"}-08`)};
+      color: ${globalColor(`--${illaPrefix}-${color ?? "gray"}-02`)};
     `
   } else {
     return css`
       border-radius: 1px;
-      background-color: ${globalColor[`--${illaPrefix}-${color}-06`]};
-      color: ${globalColor[`--${illaPrefix}-${color}-01`]};
+      background-color: ${globalColor(`--${illaPrefix}-${color}-06`)};
+      color: ${globalColor(`--${illaPrefix}-${color}-01`)};
     `
   }
 }
