@@ -39,7 +39,7 @@ const leftIcon = css`
 `
 
 const colors: ColorScheme[] = [
-  "black", "gray", "red", "orange", "yellow", "green", "blue", "cyan", "purple",
+  "white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple",
 ]
 
 function tagOutlinePrepare(color: ColorScheme): SerializedStyles {
