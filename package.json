@@ -13,7 +13,8 @@
     "@storybook/addon-links": "^6.3.12",
     "@storybook/react": "^6.3.12",
     "babel-loader": "^8.2.3",
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "chromatic": "^6.0.5"
   },
   "workspaces": [
     "packages/*",
@@ -21,6 +22,7 @@
   ],
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token=ec9f2cfc3261"
   }
 }

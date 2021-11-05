@@ -12,30 +12,38 @@ export default {
   argTypes: {
     size: {
       options: ["large", "small", "medium"],
+      defaultValue: "small",
       control: {
         type: "select",
       },
     },
     variant: {
       options: ["light", "fill", "outline"],
+      defaultValue: "light",
       control: {
         type: "select",
       },
     },
     colorScheme: {
+      defaultValue: "gray",
       control: {
         type: "text",
       },
     },
     visible: {
+      defaultValue: true,
       control: {
         type: "boolean",
       },
     },
     closable: {
+      defaultValue: false,
       control: {
         type: "boolean",
       },
+    },
+    icon: {
+      defaultValue: <BsGithub />,
     },
   },
 } as Meta
@@ -43,7 +51,3 @@ export default {
 const Template: Story<TagProps> = (args) => <Tag {...args}>Hello</Tag>
 
 export const Basic = Template.bind({})
-
-Basic.args = {
-  icon: <BsGithub />,
-}
