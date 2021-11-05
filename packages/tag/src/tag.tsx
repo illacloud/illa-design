@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import * as React from "react"
-import { forwardRef, useState } from "react"
+import { forwardRef } from "react"
 import { ColorScheme, TagProps } from "./interface"
 import { css } from "@emotion/react"
-import { GrClose } from "react-icons/gr"
+import { BsX } from "react-icons/bs"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
@@ -36,15 +36,6 @@ const leftIcon = css`
   flex-direction: row;
   align-items: center;
   margin-right: 4px;
-`
-
-const rightIcon = css`
-  width: 7px;
-  height: 7px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: 4px;
 `
 
 const colors: ColorScheme[] = [
@@ -173,11 +164,11 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     <div css={finalStyle}>
       <span css={leftIcon}>{props.icon}</span>
       {props.children}
-      {props.closable ?? false ? <span css={rightIcon}> <GrClose onClick={() => {
+      {props.closable ?? false ? <BsX onClick={() => {
         if (props.onClose != undefined) {
           props.onClose()
         }
-      }} /> </span> : null}
+      }} /> : null}
     </div>
   </div> : null
 })
