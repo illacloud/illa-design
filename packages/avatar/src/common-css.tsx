@@ -55,6 +55,9 @@ export function applyAvatarContainer(colorScheme: ColorScheme) {
   return css`
     ${applyBgColor(colorScheme)};
     display: flex;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space:nowrap;
     color: ${globalColor("--illa-white-01")};
     flex-direction: row;
     align-items: center;
