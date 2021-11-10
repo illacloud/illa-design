@@ -4,7 +4,7 @@ import { FC } from "react"
 import { AvatarProps, Size } from "./interface"
 import { applyMergeCss } from "./common-css"
 import { css } from "@emotion/react"
-import { BsPerson } from "react-icons/bs"
+import { PersonIcon } from "@illa-design/icon"
 
 function applyIconSize(size: Size) {
   let width: number
@@ -40,7 +40,25 @@ export const IconAvatar: FC<AvatarProps> = (props) => {
   const currentColorScheme = props.colorScheme ?? "blue"
   const currentSize = props.size ?? "small"
   const currentShape = props.shape ?? "circle"
-  const currentIcon = props.icon ?? <BsPerson />
+
+  let iconSize: string
+  switch (currentSize) {
+    default:
+    case "large": {
+      iconSize = "28px"
+      break
+    }
+    case "medium": {
+      iconSize = "18px"
+      break
+    }
+    case "small": {
+      iconSize = "14px"
+      break
+    }
+  }
+
+  const currentIcon = props.icon ?? <PersonIcon size={iconSize} />
   const finalProps = {
     ...props,
     colorScheme: currentColorScheme,
@@ -49,8 +67,8 @@ export const IconAvatar: FC<AvatarProps> = (props) => {
     icon: currentIcon,
   } as AvatarProps
   return <div css={applyMergeCss(finalProps)}>
-    <span css={applyIconSize(finalProps.size!!)}>
-      {finalProps.icon}
-    </span>
+      <span css={applyIconSize(finalProps.size!!)}>
+        {finalProps.icon}
+      </span>
   </div>
 }

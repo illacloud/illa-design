@@ -3,7 +3,7 @@ import * as React from "react"
 import { forwardRef } from "react"
 import { ColorScheme, TagProps } from "./interface"
 import { css } from "@emotion/react"
-import { BsX } from "react-icons/bs"
+import { CloseIcon } from "@illa-design/icon"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
@@ -36,6 +36,10 @@ const leftIcon = css`
   flex-direction: row;
   align-items: center;
   margin-right: 4px;
+`
+
+const closeIcon = css`
+  margin-left: 4px;
 `
 
 const colors: ColorScheme[] = [
@@ -164,7 +168,7 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     <div css={finalStyle}>
       <span css={leftIcon}>{props.icon}</span>
       {props.children}
-      {props.closable ?? false ? <BsX onClick={() => {
+      {props.closable ?? false ? <CloseIcon size="7px" css={closeIcon} onClick={() => {
         if (props.onClose != undefined) {
           props.onClose()
         }

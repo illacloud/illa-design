@@ -40,7 +40,6 @@
   },
   "dependencies": {
     "@illa-design/system": "^0.0.0",
-    "@illa-design/theme": "^0.0.0",
-    "react-icons": "^4.3.1"
+    "@illa-design/theme": "^0.0.0"
   }
 }
