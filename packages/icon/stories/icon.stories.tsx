@@ -1,13 +1,21 @@
 import * as React from "react"
-import { Meta } from "@storybook/react"
-import { CloseIcon, PersonIcon } from "@illa-design/icon"
+import { Meta, Story } from "@storybook/react"
+import { CloseIcon, Icon, IconProps, PersonIcon } from "@illa-design/icon"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "Icon",
+  argTypes: {
+    spin: {
+      defaultValue: false,
+      control: {
+        type: "boolean",
+      },
+    },
+  },
 } as Meta
 
-export const Close: React.VFC = () => <CloseIcon spin={true} />
-export const Person: React.VFC = () => <PersonIcon />
+export const Close: Story<IconProps> = (props) => <CloseIcon {...props} />
+export const Person: Story<IconProps> = (props) => <PersonIcon {...props} />
 
 

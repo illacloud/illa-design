@@ -1,22 +1,18 @@
 import { forwardRef } from "react"
 import { IconProps } from "./interface"
-import { css } from "@emotion/react"
+import { css, keyframes } from "@emotion/react"
+
+const rotateKeyframe = keyframes`
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg)
+  }
+`
 
 const rotateAnimation = css`
-  svg {
-    animation: 2s linear infinite svg-animation;
-    max-width: 100px;
-  }
-
-  // SVG 动画.
-  @keyframes svg-animation {
-    0% {
-      transform: rotateZ(0deg);
-    }
-    100% {
-      transform: rotateZ(360deg)
-    }
-  }
+  animation: 2s linear infinite ${rotateKeyframe};
 `
 
 export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
