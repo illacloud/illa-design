@@ -31,7 +31,7 @@ export function createIcon(options: CreateIconOptions) {
     defaultProps = {},
   } = options
 
-  return forwardRef<SVGAElement, IconProps>((props, ref) => (
+  return forwardRef<SVGSVGElement, IconProps>((props, ref) => (
     <Icon ref={ref} viewBox={viewBox} {...defaultProps} {...props}>
       {path ?? <path fill="currentColor" d={pathDefinition} />}
     </Icon>

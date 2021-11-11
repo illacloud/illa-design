@@ -7,7 +7,7 @@ export default {
   title: "Icon",
 } as Meta
 
-export const Close: React.VFC = () => <CloseIcon />
+export const Close: React.VFC = () => <CloseIcon spin={true} />
 export const Person: React.VFC = () => <PersonIcon />
 
 
