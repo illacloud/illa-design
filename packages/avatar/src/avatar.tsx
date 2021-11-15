@@ -22,7 +22,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
     finalNode = <IconAvatar {...props} />
   }
 
-  return <div ref={ref} style={props.style} className={props.className} {...props}>
+  return <div ref={ref} style={props.style} className={props.className}>
     {finalNode}
   </div>
 })
