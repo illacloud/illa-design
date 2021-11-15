@@ -32,7 +32,7 @@ const tagSizeSmall = css`
 const leftIcon = css`
   width: 12px;
   height: 12px;
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
   margin-right: 4px;
@@ -166,13 +166,13 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
 
   return currentVisible ? <div ref={ref} className={props.className} style={props.style}>
     <div css={finalStyle}>
-      <span css={leftIcon}>{props.icon}</span>
+      {props.icon && <span css={leftIcon}>{props.icon}</span>}
       {props.children}
-      {props.closable ?? false ? <CloseIcon size="7px" css={closeIcon} onClick={() => {
+      {props.closable && <CloseIcon size="7px" css={closeIcon} onClick={() => {
         if (props.onClose != undefined) {
           props.onClose()
         }
-      }} /> : null}
+      }} />}
     </div>
   </div> : null
 })

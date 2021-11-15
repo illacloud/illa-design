@@ -54,7 +54,7 @@ export function applyAvatarShapeCircle(size: Size): SerializedStyles {
 export function applyAvatarContainer(colorScheme: ColorScheme) {
   return css`
     ${applyBgColor(colorScheme)};
-    display: flex;
+    display: inline-flex;
     overflow: hidden;
     word-wrap: break-word;
     white-space: nowrap;

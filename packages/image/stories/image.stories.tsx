@@ -1,68 +1,75 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Tag, TagProps } from "@illa-design/tag"
+import { Image, ImageProps } from "@illa-design/image"
 import { BsFacebook, BsTwitch, BsTwitter } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Tag",
-  component: Tag,
+  title: "Image",
+  component: Image,
   argTypes: {
-    size: {
-      options: ["large", "small", "medium"],
-      defaultValue: "small",
+    objectFit: {
+      options: ["fill", "container", "cover", "none", "scale-down"],
+      defaultValue: "cover",
       control: {
         type: "select",
       },
     },
-    variant: {
-      options: ["light", "fill", "outline"],
-      defaultValue: "light",
-      control: {
-        type: "select",
-      },
-    },
-    colorScheme: {
-      defaultValue: "gray",
+    alt: {
       control: {
         type: "text",
       },
     },
-    visible: {
-      defaultValue: true,
+    fallbackSrc: {
       control: {
-        type: "boolean",
+        type: "text",
       },
     },
-    closable: {
-      defaultValue: false,
+    src: {
       control: {
-        type: "boolean",
+        type: "text",
       },
     },
-    icon: {},
+    width: {
+      control: {
+        type: "text",
+      },
+    },
+    height: {
+      control: {
+        type: "text",
+      },
+    },
+    radius: {
+      control: {
+        type: "text",
+      },
+    },
+    fallbackIcon: {},
   },
 } as Meta
 
-const Template: Story<TagProps> = (args) => {
+const Template: Story<ImageProps> = (args) => {
   return <div>
-    <Tag style={{
+    <Image style={{
       display: "inline-block",
       marginLeft: "10px",
-    }} {...args}>Hello</Tag>
-    <Tag style={{
+    }} {...args} />
+    <Image style={{
       display: "inline-block",
       marginLeft: "10px",
-    }} icon={<BsFacebook />} {...args}>Hello</Tag>
-    <Tag style={{
+    }} fallback={<BsFacebook />} {...args} />
+    <Image style={{
       display: "inline-block",
       marginLeft: "10px",
-    }} icon={<BsTwitch />} {...args}>Hello</Tag>
-    <Tag style={{
+    }} fallback={<BsTwitter />} {...args} />
+    <Image style={{
       display: "inline-block",
       marginLeft: "10px",
-    }} icon={<BsTwitter />} {...args}>Hello</Tag>
+    }} fallback={<BsTwitch />} {...args} />
   </div>
 }
 
 export const Basic = Template.bind({})
+
+

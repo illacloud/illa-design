@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Avatar, AvatarProps } from "@illa-design/avatar"
-import { BsGithub } from "react-icons/bs"
+import { BsFacebook } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -39,7 +39,7 @@ export default {
 const Template: Story<AvatarProps> = (args) => <Avatar {...args} />
 
 export const Basic = Template.bind({
-  icon: <BsGithub />,
+  icon: <BsFacebook />,
 })
 
 

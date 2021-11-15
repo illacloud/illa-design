@@ -4,7 +4,7 @@ import { forwardRef, ReactNode } from "react"
 import { AvatarProps } from "./interface"
 import { IconAvatar } from "./icon-avatar"
 import { TextAvatar } from "./text-avatar"
-import { PathImgAvatar } from "./path-img-avatar"
+import { UrlImgAvatar } from "./url-img-avatar"
 import { NodeImgAvatar } from "./node-img-avatar"
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
@@ -12,7 +12,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
   let finalNode: ReactNode
   if (props.src != undefined) {
     if (typeof props.src === "string") {
-      finalNode = <PathImgAvatar {...props} />
+      finalNode = <UrlImgAvatar {...props} />
     } else {
       finalNode = <NodeImgAvatar {...props} />
     }
@@ -22,7 +22,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
     finalNode = <IconAvatar {...props} />
   }
 
-  return <div ref={ref} style={props.style} className={props.className}>
+  return <div ref={ref} style={props.style} className={props.className} {...props}>
     {finalNode}
   </div>
 })
