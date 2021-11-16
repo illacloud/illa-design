@@ -1,5 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { AvatarProps, ColorScheme, Size } from "./interface"
+import { AvatarProps, ColorScheme, Shape, Size } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 
@@ -117,4 +117,15 @@ export function applyMergeCss(props: AvatarProps): SerializedStyles {
     ${sizeCss};
     ${shapeCss};
   `
+}
+
+export function applyShape(shape: Shape): string {
+  switch (shape) {
+    case "circle": {
+      return "50%"
+    }
+    case "square": {
+      return "4px"
+    }
+  }
 }

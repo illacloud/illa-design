@@ -14,6 +14,11 @@ export default {
         type: "text",
       },
     },
+    src: {
+      control: {
+        type: "text",
+      },
+    },
     size: {
       options: ["small", "medium", "large"],
       defaultValue: "small",

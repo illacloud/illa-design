@@ -23,6 +23,6 @@ export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   size?: Size
   text?: string
   shape?: Shape
-  src?: string | ReactNode
+  src?: string
   icon?: ReactNode
 }
