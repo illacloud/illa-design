@@ -1,11 +1,12 @@
 module.exports = {
   "stories": [
     "../packages/**/stories/*.stories.mdx",
-    "../packages/**/stories/*.stories.tsx"
+    "../packages/**/stories/*.stories.tsx",
   ],
   "addons": [
     "@storybook/addon-links",
-    "@storybook/addon-essentials"
+    "@storybook/addon-essentials",
   ],
-  "framework": "@storybook/react"
+  "framework": "@storybook/react",
+  "core": { builder: "storybook-builder-vite" },
 }
