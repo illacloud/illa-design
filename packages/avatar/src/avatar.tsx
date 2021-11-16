@@ -5,8 +5,11 @@ import { AvatarProps } from "./interface"
 import { IconAvatar } from "./icon-avatar"
 import { TextAvatar } from "./text-avatar"
 import { ImgAvatar } from "./img-avatar"
+import { omit } from "@illa-design/system"
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
+
+  const otherProps = omit(props, ["icon", "colorScheme", "size", "text", "shape", "src"])
 
   let finalNode: ReactNode
   if (props.src != undefined) {
@@ -17,7 +20,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
     finalNode = <IconAvatar {...props} />
   }
 
-  return <div ref={ref} style={props.style} className={props.className}>
+  return <div ref={ref} {...otherProps}>
     {finalNode}
   </div>
 })
