@@ -45,21 +45,15 @@ export default {
 } as Meta
 
 const Template: Story<TagProps> = (args) => {
-  return <div>
+  return <div style={{ display: "flex", flexDirection: "row" }}>
+    <Tag {...args}>Hello</Tag>
     <Tag style={{
-      display: "inline-block",
-      marginLeft: "10px",
-    }} {...args}>Hello</Tag>
-    <Tag style={{
-      display: "inline-block",
       marginLeft: "10px",
     }} icon={<BsFacebook />} {...args}>Hello</Tag>
     <Tag style={{
-      display: "inline-block",
       marginLeft: "10px",
     }} icon={<BsTwitch />} {...args}>Hello</Tag>
     <Tag style={{
-      display: "inline-block",
       marginLeft: "10px",
     }} icon={<BsTwitter />} {...args}>Hello</Tag>
   </div>

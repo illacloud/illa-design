@@ -67,8 +67,8 @@ export const IconAvatar: FC<AvatarProps> = (props) => {
     icon: currentIcon,
   } as AvatarProps
   return <div css={applyMergeCss(finalProps)}>
-      <span css={applyIconSize(finalProps.size!!)}>
-        {finalProps.icon}
-      </span>
+    <div css={applyIconSize(finalProps.size!!)}>
+      {finalProps.icon}
+    </div>
   </div>
 }

@@ -38,6 +38,7 @@ export default {
         type: "select",
       },
     },
+    icon: {},
   },
 } as Meta
 

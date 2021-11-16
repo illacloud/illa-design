@@ -6,6 +6,7 @@ import { css } from "@emotion/react"
 import { CloseIcon } from "@illa-design/icon"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { omit } from "@illa-design/system"
 
 // style
 const tagContainer = css`
@@ -104,70 +105,76 @@ function tagOutlineNormal(color: Extract<ColorScheme, string>): SerializedStyles
 
 export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
 
-  const currentVisible = props.visible ?? true
-  const currentColorScheme = props.colorScheme ?? "gray"
-  const currentSize = props.size ?? "small"
-  const currentVariant = props.variant ?? "light"
+  const {
+    visible = true,
+    colorScheme = "gray",
+    size = "small",
+    variant = "light",
+    closable = false,
+    ...rest
+  } = props
 
-  let variant: SerializedStyles
+  const otherProps = omit(rest, ["onClose", "icon"])
+
+  let variantCss: SerializedStyles
 
   // variant
-  if (colors.includes(currentColorScheme)) {
-    switch (currentVariant) {
+  if (colors.includes(colorScheme)) {
+    switch (variant) {
       case "light": {
-        variant = tagLightPrepare(currentColorScheme)
+        variantCss = tagLightPrepare(colorScheme)
         break
       }
       case "fill": {
-        variant = tagFillPrepare(currentColorScheme)
+        variantCss = tagFillPrepare(colorScheme)
         break
       }
       case "outline": {
-        variant = tagOutlinePrepare(currentColorScheme)
+        variantCss = tagOutlinePrepare(colorScheme)
         break
       }
     }
   } else {
-    switch (currentVariant) {
+    switch (variant) {
       case "light":
       case "fill": {
-        variant = tagFillNormal(currentColorScheme)
+        variantCss = tagFillNormal(colorScheme)
         break
       }
       case "outline": {
-        variant = tagOutlineNormal(currentColorScheme)
+        variantCss = tagOutlineNormal(colorScheme)
         break
       }
     }
   }
 
   // size
-  let size: SerializedStyles
-  switch (currentSize) {
+  let sizeCss: SerializedStyles
+  switch (size) {
     case "small": {
-      size = tagSizeSmall
+      sizeCss = tagSizeSmall
       break
     }
     case "medium": {
-      size = tagSizeMedium
+      sizeCss = tagSizeMedium
       break
     }
     case "large": {
-      size = tagSizeLarge
+      sizeCss = tagSizeLarge
       break
     }
   }
 
   const finalStyle = css`
     ${tagContainer};
-    ${variant};
-    ${size};
+    ${variantCss};
+    ${sizeCss};
   `
 
-  return currentVisible ? <div ref={ref} className={props.className} style={props.style}>
+  return visible ? <div ref={ref} className={props.className} style={props.style} {...otherProps}>
     <div css={finalStyle}>
-      {props.icon && <span css={leftIcon}>{props.icon}</span>}
-      {props.children}
+      <span css={props.icon ? leftIcon : null}>{props.icon}</span>
+      <span>{props.children}</span>
       {props.closable && <CloseIcon size="7px" css={closeIcon} onClick={() => {
         if (props.onClose != undefined) {
           props.onClose()
