@@ -35,14 +35,24 @@ function applyDefaultFallback(width: string | number, height: string | number, r
 
 export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
   const {
+    // origin
     src = "",
     width = "100px",
     height = "100px",
-    objectFit = "cover",
     alt = "",
+    // custom
+    objectFit = "cover",
     fallback = <ImageDefaultIcon />,
     fallbackSrc = "",
     radius = "4px",
+    // img
+    crossOrigin,
+    decoding,
+    loading,
+    referrerPolicy,
+    sizes,
+    srcSet,
+    useMap,
     ...rest
   } = props
 
@@ -52,35 +62,49 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
     setImageState(ImageState.Loading)
   }, [src])
 
-  return <div className={props.className} ref={ref} style={props.style}>
+  return <div ref={ref} {...rest}>
     {(src && src.length != 0) && imageState != ImageState.Error ?
       <img css={applyImageCss(objectFit, radius)}
            alt={alt}
            src={src}
            width={width}
            height={height}
-           onError={(e) => {
-             setImageState(ImageState.Error)
-             if (props.onError != undefined) {
-               props.onError(e)
+           onError={
+             (e) => {
+               setImageState(ImageState.Error)
+               if (props.onError != undefined) {
+                 props.onError(e)
+               }
              }
            }
-           }
-           onLoad={(e) => {
-             setImageState(ImageState.Loaded)
-             if (props.onLoad != undefined) {
-               props.onLoad(e)
+           onLoad={
+             (e) => {
+               setImageState(ImageState.Loaded)
+               if (props.onLoad != undefined) {
+                 props.onLoad(e)
+               }
              }
            }
-           }
-           {...rest}
+           crossOrigin={crossOrigin}
+           decoding={decoding}
+           loading={loading}
+           referrerPolicy={referrerPolicy}
+           sizes={sizes}
+           srcSet={srcSet}
+           useMap={useMap}
       /> : fallbackSrc && fallbackSrc.length != 0 ?
         <img css={applyImageCss(objectFit, radius)}
              alt={alt}
              src={fallbackSrc}
              width={width}
              height={height}
-             {...rest}
+             crossOrigin={crossOrigin}
+             decoding={decoding}
+             loading={loading}
+             referrerPolicy={referrerPolicy}
+             sizes={sizes}
+             srcSet={srcSet}
+             useMap={useMap}
         /> : <div css={applyDefaultFallback(width, height, radius)}>
           {fallback}
         </div>

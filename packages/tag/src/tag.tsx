@@ -171,7 +171,7 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     ${sizeCss};
   `
 
-  return visible ? <div ref={ref} className={props.className} style={props.style} {...otherProps}>
+  return visible ? <div ref={ref} {...otherProps}>
     <div css={finalStyle}>
       <span css={props.icon ? leftIcon : null}>{props.icon}</span>
       <span>{props.children}</span>
