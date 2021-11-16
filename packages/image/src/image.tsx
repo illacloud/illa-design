@@ -22,7 +22,7 @@ function applyImageCss(objFit: "fill" | "container" | "cover" | "none" | "scale-
 
 function applyDefaultFallback(width: string | number, height: string | number, radius: string) {
   return css`
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;

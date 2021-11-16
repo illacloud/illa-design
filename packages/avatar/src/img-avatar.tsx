@@ -12,11 +12,5 @@ export const ImgAvatar: FC<AvatarProps> = (props) => {
   } = props
 
   const [width, height, _] = applyAvatarSize(size)
-
-  if (typeof props.src === "string") {
-
-  } else {
-    return null
-  }
   return <Image src={props.src} width={width} height={height} radius={applyShape(shape)} />
 }

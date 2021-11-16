@@ -15,7 +15,8 @@
     "babel-loader": "^8.2.3",
     "lerna": "^4.0.0",
     "chromatic": "^6.0.5",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "zx": "^4.2.0"
   },
   "workspaces": [
     "packages/*",
@@ -24,6 +25,7 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token=ec9f2cfc3261"
+    "chromatic": "npx chromatic --project-token=ec9f2cfc3261",
+    "build-all-components": "zx ./scripts/build-all-components.mjs"
   }
 }

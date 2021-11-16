@@ -26,27 +26,27 @@ export function applyBgColor(colorScheme: ColorScheme): SerializedStyles {
 }
 
 export function applyAvatarShapeSquare(size: Size): SerializedStyles {
-  let width: number
-  let height: number
-  let textSize: number
+  let width: string
+  let height: string
+  let textSize: string
   [width, height, textSize] = applyAvatarSize(size)
   return css`
-    width: ${width}px;
-    height: ${height}px;
-    font-size: ${textSize}px;
+    width: ${width};
+    height: ${height};
+    font-size: ${textSize};
     border-radius: 4px;
   `
 }
 
 export function applyAvatarShapeCircle(size: Size): SerializedStyles {
-  let width: number
-  let height: number
-  let textSize: number
+  let width: string
+  let height: string
+  let textSize: string
   [width, height, textSize] = applyAvatarSize(size)
   return css`
-    width: ${width}px;
-    height: ${height}px;
-    font-size: ${textSize}px;
+    width: ${width};
+    height: ${height};
+    font-size: ${textSize};
     border-radius: 50%;
   `
 }
@@ -66,27 +66,27 @@ export function applyAvatarContainer(colorScheme: ColorScheme) {
   `
 }
 
-export function applyAvatarSize(size: Size): number[] {
-  let width: number
-  let height: number
-  let textSize: number
+export function applyAvatarSize(size: Size): string[] {
+  let width: string
+  let height: string
+  let textSize: string
   switch (size) {
     case "large": {
-      width = 64
-      height = 64
-      textSize = 24
+      width = "64px"
+      height = "64px"
+      textSize = "24px"
       break
     }
     case "medium": {
-      width = 40
-      height = 40
-      textSize = 14
+      width = "40px"
+      height = "40px"
+      textSize = "14px"
       break
     }
     case "small": {
-      width = 32
-      height = 32
-      textSize = 14
+      width = "32px"
+      height = "32px"
+      textSize = "14px"
       break
     }
   }
