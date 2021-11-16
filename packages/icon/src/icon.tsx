@@ -1,6 +1,7 @@
 import { forwardRef } from "react"
 import { IconProps } from "./interface"
 import { css, keyframes } from "@emotion/react"
+import { omit } from "@illa-design/system"
 
 const rotateKeyframe = keyframes`
   0% {
@@ -18,14 +19,16 @@ const rotateAnimation = css`
 export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
 
   const {
-    width = "1em",
-    height = "1em",
+    width = props.size ?? "1em",
+    height = props.size ?? "1em",
     color = "currentColor",
     spin = false,
     ...rest
   } = props
 
+  const otherProps = omit(rest, ["size"])
+
   return <svg ref={ref} css={spin ? rotateAnimation : null} width={width} height={height}
-              color={color} {...rest}>{props.children}</svg>
+              color={color} {...otherProps}>{props.children}</svg>
 
 })

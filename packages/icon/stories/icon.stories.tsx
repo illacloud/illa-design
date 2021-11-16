@@ -12,6 +12,11 @@ export default {
         type: "boolean",
       },
     },
+    size: {
+      control: {
+        type: "text",
+      },
+    },
   },
 } as Meta
 
