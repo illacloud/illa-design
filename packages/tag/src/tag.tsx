@@ -16,17 +16,14 @@ const tagContainer = css`
 `
 
 const tagSizeLarge = css`
-  font-size: 12px;
   padding: 5px 8px;
 `
 
 const tagSizeMedium = css`
-  font-size: 12px;
   padding: 3px 8px;
 `
 
 const tagSizeSmall = css`
-  font-size: 12px;
   padding: 1px 8px;
 `
 
@@ -173,8 +170,11 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
 
   return visible ? <div ref={ref} {...otherProps}>
     <div css={finalStyle}>
-      <span css={props.icon ? leftIcon : null}>{props.icon}</span>
-      <span>{props.children}</span>
+      {props.icon && <span css={leftIcon}>{props.icon}</span>}
+      <span css={css`
+        font-size: 14px;
+        line-height: 1.57;
+      `}>{props.children}</span>
       {props.closable && <CloseIcon size="7px" css={closeIcon} onClick={() => {
         if (props.onClose != undefined) {
           props.onClose()

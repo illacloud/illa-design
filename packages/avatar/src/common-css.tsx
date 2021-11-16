@@ -34,6 +34,7 @@ export function applyAvatarShapeSquare(size: Size): SerializedStyles {
     width: ${width};
     height: ${height};
     font-size: ${textSize};
+    line-height: 1.33;
     border-radius: 4px;
   `
 }
@@ -47,6 +48,7 @@ export function applyAvatarShapeCircle(size: Size): SerializedStyles {
     width: ${width};
     height: ${height};
     font-size: ${textSize};
+    line-height: 1.33;
     border-radius: 50%;
   `
 }
