@@ -26,29 +26,23 @@ export function applyBgColor(colorScheme: ColorScheme): SerializedStyles {
 }
 
 export function applyAvatarShapeSquare(size: Size): SerializedStyles {
-  let width: string
-  let height: string
-  let textSize: string
-  [width, height, textSize] = applyAvatarSize(size)
+  const [width, height, textSize, lineHeight] = applyAvatarSize(size)
   return css`
     width: ${width};
     height: ${height};
     font-size: ${textSize};
-    line-height: 1.33;
+    line-height: ${lineHeight};
     border-radius: 4px;
   `
 }
 
 export function applyAvatarShapeCircle(size: Size): SerializedStyles {
-  let width: string
-  let height: string
-  let textSize: string
-  [width, height, textSize] = applyAvatarSize(size)
+  const [width, height, textSize, lineHeight] = applyAvatarSize(size)
   return css`
     width: ${width};
     height: ${height};
     font-size: ${textSize};
-    line-height: 1.33;
+    line-height: ${lineHeight};
     border-radius: 50%;
   `
 }
@@ -72,27 +66,31 @@ export function applyAvatarSize(size: Size): string[] {
   let width: string
   let height: string
   let textSize: string
+  let lineHeight: string
   switch (size) {
     case "large": {
       width = "64px"
       height = "64px"
       textSize = "24px"
+      lineHeight = "32px"
       break
     }
     case "medium": {
       width = "40px"
       height = "40px"
       textSize = "14px"
+      lineHeight = "22px"
       break
     }
     case "small": {
       width = "32px"
       height = "32px"
       textSize = "14px"
+      lineHeight = "22px"
       break
     }
   }
-  return [width, height, textSize]
+  return [width, height, textSize, lineHeight]
 }
 
 export function applyMergeCss(props: AvatarProps): SerializedStyles {
@@ -101,7 +99,6 @@ export function applyMergeCss(props: AvatarProps): SerializedStyles {
   const currentShape = props.shape ?? "circle"
 
   const containerCss = applyAvatarContainer(currentColorScheme)
-  const sizeCss = applyAvatarSize(currentSize)
   let shapeCss: SerializedStyles
   switch (currentShape) {
     case "circle": {
@@ -116,7 +113,6 @@ export function applyMergeCss(props: AvatarProps): SerializedStyles {
 
   return css`
     ${containerCss};
-    ${sizeCss};
     ${shapeCss};
   `
 }
