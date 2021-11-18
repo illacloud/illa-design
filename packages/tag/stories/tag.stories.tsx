@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Tag, TagProps } from "@illa-design/tag"
+import { Tag, TagProps } from "../src"
 import { BsFacebook, BsTwitch, BsTwitter } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list

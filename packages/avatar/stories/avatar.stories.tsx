@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Avatar, AvatarProps } from "@illa-design/avatar"
+import { Avatar, AvatarProps } from "../src"
 import { BsFacebook } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list

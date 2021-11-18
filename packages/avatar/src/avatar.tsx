@@ -1,4 +1,4 @@
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { forwardRef, ReactNode } from "react"
 import { AvatarProps } from "./interface"

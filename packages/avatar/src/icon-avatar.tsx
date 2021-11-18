@@ -1,4 +1,4 @@
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { FC } from "react"
 import { AvatarProps, Size } from "./interface"

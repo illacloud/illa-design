@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { CloseIcon, Icon, IconProps, PersonIcon } from "@illa-design/icon"
+import { CloseIcon, Icon, IconProps, PersonIcon } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {

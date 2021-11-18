@@ -6,7 +6,9 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
+    "@storybook/addon-jest",
+    "@storybook/addon-storysource",
+    "storybook-addon-designs",
   ],
-  "framework": "@storybook/react",
-  "core": { builder: "storybook-builder-vite" },
+  "framework": "@storybook/react"
 }
