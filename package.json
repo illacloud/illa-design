@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "description": "Illa Ui Component",
   "repository": "git@github.com:illa-family/illa-design.git",
-  "author": "Illa Team",
+  "author": "illa Family",
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/core": "^7.15.8",
