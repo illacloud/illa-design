@@ -13,7 +13,7 @@
     "@storybook/addon-links": "^6.3.12",
     "@storybook/addon-storysource": "^6.3.12",
     "@storybook/addon-jest": "^6.3.12",
-    "storybook-addon-designs": "^6.2.0",
+    "storybook-zeplin": "^1.5.1",
     "@storybook/react": "^6.3.12",
     "babel-loader": "^8.2.3",
     "chromatic": "^6.0.5",
@@ -22,8 +22,7 @@
     "zx": "^4.2.0"
   },
   "workspaces": [
-    "packages/*",
-    "examples/*"
+    "packages/*"
   ],
   "scripts": {
     "storybook": "start-storybook -p 6006",

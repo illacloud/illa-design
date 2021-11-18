@@ -8,7 +8,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-jest",
     "@storybook/addon-storysource",
-    "storybook-addon-designs",
+    "storybook-zeplin/register",
   ],
-  "framework": "@storybook/react"
+  "framework": "@storybook/react",
 }

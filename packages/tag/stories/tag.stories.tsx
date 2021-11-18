@@ -7,6 +7,9 @@ import { BsFacebook, BsTwitch, BsTwitter } from "react-icons/bs"
 export default {
   title: "Tag",
   component: Tag,
+  parameters: {
+    zeplinLink: "zpl://screen?sid=617f92d08bb52d043a5dc189&pid=617f7cd2526c70be1a3bf3ff",
+  },
   argTypes: {
     size: {
       options: ["large", "small", "medium"],
