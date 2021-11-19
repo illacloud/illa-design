@@ -36,7 +36,6 @@
     "bootstrap": "lerna bootstrap",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token=ec9f2cfc3261 --exit-zero-on-changes",
     "build-all-components": "zx ./scripts/build-all-components.mjs",
     "test": "jest"
   },
