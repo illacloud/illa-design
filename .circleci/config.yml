@@ -4,7 +4,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 orbs:
-  codecov: codecov/codecov@3.2.2
+  codecov: codecov/codecov@3.0.0
 jobs:
   build:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -13,21 +13,6 @@ jobs:
       - image: cimg/node:16.13.0
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    parameters:
-      file:
-        default: './coverage/*'
-        description: Path to the code coverage data file to upload.
-        type: string
-      token:
-        default: '9914679f-b148-4e01-a085-7daf00e9c77e'
-        description: >-
-          Set the private repository token as the value of the variable
-          CODECOV_TOKEN using CircleCI Environment Variables.
-        type: env_var_name
-      upload_name:
-        default: '${CIRCLE_BUILD_NUM}'
-        description: Custom defined name of the upload. Visible in Codecov UI
-        type: string
     steps:
       - checkout
       - restore_cache:
@@ -64,6 +49,8 @@ jobs:
       - run:
           name: Run test
           command: yarn test
+      - codecov/upload:
+          file: ./coverage/coverage-final.json
   chromatic:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -79,7 +66,7 @@ jobs:
             - yarn-packages-{{ checksum "yarn.lock" }}-
       - run:
           name: Run chromatic
-          command: npx chromatic --project-token=ec9f2cfc3261 --exit-zero-on-changes
+          command: npx chromatic --project-token=${CHROMATIC_TOKEN} --exit-zero-on-changes
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -90,9 +77,6 @@ workflows:
       - test:
           requires:
             - build
-      - codecov/upload:
-          requires:
-            - test
       - chromatic:
           requires:
             - test
