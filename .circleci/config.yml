@@ -45,7 +45,7 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}-
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Run test
           command: yarn test
@@ -63,7 +63,7 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}-
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Run chromatic
           command: npx chromatic --project-token=${CHROMATIC_TOKEN} --exit-zero-on-changes
