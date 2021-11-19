@@ -3,6 +3,8 @@
 version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+orbs:
+  codecov: codecov/codecov@3.2.2
 jobs:
   build:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -11,27 +13,32 @@ jobs:
       - image: cimg/node:16.13.0
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    parameters:
+      file:
+        default: './coverage/*'
+        description: Path to the code coverage data file to upload.
+        type: string
+      token:
+        default: '9914679f-b148-4e01-a085-7daf00e9c77e'
+        description: >-
+          Set the private repository token as the value of the variable
+          CODECOV_TOKEN using CircleCI Environment Variables.
+        type: env_var_name
+      upload_name:
+        default: '${CIRCLE_BUILD_NUM}'
+        description: Custom defined name of the upload. Visible in Codecov UI
+        type: string
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
-          command: yarn install --immutable
+          command: yarn install --check-cache
       - run:
           name: Lerna Init
           command: yarn bootstrap
       - run:
           name: Components Init
           command: yarn build-all-components
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - .yarn/cache
-            - .yarn/unplugged
   test:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -41,22 +48,9 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Run test
           command: yarn test
-      - run:
-          name: Codecov upload
-          command: yarn codecov
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - .yarn/cache
-            - .yarn/unplugged
   chromatic:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -66,10 +60,6 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Run chromatic
           command: yarn chromatic
@@ -83,6 +73,9 @@ workflows:
       - test:
           requires:
             - build
+      - codecov/upload:
+          requires:
+            - test
       - chromatic:
           requires:
             - test

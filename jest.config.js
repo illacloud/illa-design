@@ -1,6 +1,7 @@
 module.exports = {
   testEnvironment: "jsdom",
   coverageDirectory: "./coverage/",
+  coverageReporters: ["json"],
   collectCoverage: true,
   collectCoverageFrom: ["packages/**/*.{ts,tsx}"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
