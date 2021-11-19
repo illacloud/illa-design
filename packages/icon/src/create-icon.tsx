@@ -1,5 +1,5 @@
 // thx charkra ui
-import { forwardRef, ReactElement } from "react"
+import { forwardRef, ReactElement, ReactNode } from "react"
 import { Icon } from "./icon"
 import { IconProps } from "./interface"
 

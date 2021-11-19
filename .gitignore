@@ -101,3 +101,6 @@ yarn-error.log
 .yarn-integrity
 
 report.*
+
+# jest
+.jest-test-results.json

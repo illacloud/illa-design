@@ -1,12 +1,15 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Tag, TagProps } from "../src"
+import results from "../../../.jest-test-results.json"
 import { BsFacebook, BsTwitch, BsTwitter } from "react-icons/bs"
+import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "Tag",
   component: Tag,
+  decorators: [withTests({ results })],
   parameters: {
     zeplinLink: "zpl://screen?sid=617f92d08bb52d043a5dc189&pid=617f7cd2526c70be1a3bf3ff",
   },
