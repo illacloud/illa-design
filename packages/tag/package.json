@@ -37,7 +37,8 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "test": "jest"
   },
   "dependencies": {
     "@illa-design/icon": "^0.0.0",

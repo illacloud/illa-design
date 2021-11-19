@@ -36,7 +36,8 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "test": "jest"
   },
   "dependencies": {
     "react": "^17.0.0",
@@ -44,11 +45,12 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.0",
+    "@types/jest": "^27.0.2",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@types/jest": "^27.0.2",
     "@vitejs/plugin-react": "^1.0.0",
     "jest": "^27.3.1",
+    "react-test-renderer": "^17.0.2",
     "ts-jest": "^27.0.7",
     "typescript": "^4.5.2",
     "vite": "^2.6.14"
