@@ -74,5 +74,9 @@ workflows:
   orb-free-workflow:
     jobs:
       - build
-      - test
-      - chromatic
+      - test:
+          requires:
+            - build
+      - chromatic:
+          requires:
+            - test
