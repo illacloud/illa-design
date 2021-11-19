@@ -27,7 +27,8 @@
     "jest-watch-typeahead": "^1.0.0",
     "ts-jest": "^27.0.7",
     "@types/jest": "^27.0.2",
-    "zx": "^4.2.0"
+    "zx": "^4.2.0",
+    "codecov": "^3.8.3"
   },
   "workspaces": [
     "packages/*"
@@ -38,6 +39,7 @@
     "build-storybook": "build-storybook",
     "chromatic": "npx chromatic --project-token=ec9f2cfc3261 --exit-zero-on-changes",
     "build-all-components": "zx ./scripts/build-all-components.mjs",
-    "test": "jest --json --outputFile=.jest-test-results.json"
+    "test": "jest --json --outputFile=.jest-test-results.json",
+    "codecov": "codecov"
   }
 }
