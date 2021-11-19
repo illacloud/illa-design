@@ -77,7 +77,7 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  orb-free-workflow:
+  full-build:
     jobs:
       - build
       - test:
