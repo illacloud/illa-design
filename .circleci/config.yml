@@ -25,7 +25,7 @@ jobs:
           command: yarn bootstrap
       - run:
           name: Components Init
-          command: build-all-components
+          command: yarn build-all-components
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "yarn.lock" }}
