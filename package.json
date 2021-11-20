@@ -35,6 +35,6 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-all-components": "zx ./scripts/build-all-components.mjs",
-    "test": "jest"
+    "test": "yarn run jest"
   }
 }
