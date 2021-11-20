@@ -1,7 +1,7 @@
 <h1 align="center">ILLA Design</h1>
 
 <div align="center">
-  <p>Build system with beautiful and speed.</p>
+  <p>Build system with aesthetics and speed.</p>
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-design/graphs/contributors">contributors</a></p>
 </div>
 
