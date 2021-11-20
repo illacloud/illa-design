@@ -35,7 +35,7 @@ jobs:
 
       - name: Build
         run: |
-          yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+          yarn install --frozen-lockfile
           npx lerna bootstrap
 
   test:
