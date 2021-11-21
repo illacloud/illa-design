@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { FC } from "react"
-import { AvatarProps, Size } from "./interface"
+import { AvatarProps, AvatarSize } from "./interface"
 import { applyMergeCss } from "./common-css"
 import { css } from "@emotion/react"
 import { PersonIcon } from "@illa-design/icon"
 
-function applyIconSize(size: Size) {
+function applyIconSize(size: AvatarSize) {
   let width: number
   let height: number
   switch (size) {

@@ -1,0 +1,6 @@
+export * from "@illa-design/avatar"
+export * from "@illa-design/icon"
+export * from "@illa-design/image"
+export * from "@illa-design/system"
+export * from "@illa-design/tag"
+export * from "@illa-design/theme"

@@ -1,11 +1,11 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { AvatarProps, ColorScheme, Shape, Size } from "./interface"
+import { AvatarProps, AvatarColorScheme, AvatarShape, AvatarSize } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 
-export const colors: ColorScheme[] = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
+export const colors: AvatarColorScheme[] = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
 
-export function applyBgColor(colorScheme: ColorScheme): SerializedStyles {
+export function applyBgColor(colorScheme: AvatarColorScheme): SerializedStyles {
   let bgColor: SerializedStyles
   if (colors.includes(colorScheme)) {
     if (colorScheme == "gray") {
@@ -25,7 +25,7 @@ export function applyBgColor(colorScheme: ColorScheme): SerializedStyles {
   return bgColor
 }
 
-export function applyAvatarShapeSquare(size: Size): SerializedStyles {
+export function applyAvatarShapeSquare(size: AvatarSize): SerializedStyles {
   const [width, height, textSize, lineHeight] = applyAvatarSize(size)
   return css`
     width: ${width};
@@ -36,7 +36,7 @@ export function applyAvatarShapeSquare(size: Size): SerializedStyles {
   `
 }
 
-export function applyAvatarShapeCircle(size: Size): SerializedStyles {
+export function applyAvatarShapeCircle(size: AvatarSize): SerializedStyles {
   const [width, height, textSize, lineHeight] = applyAvatarSize(size)
   return css`
     width: ${width};
@@ -47,7 +47,7 @@ export function applyAvatarShapeCircle(size: Size): SerializedStyles {
   `
 }
 
-export function applyAvatarContainer(colorScheme: ColorScheme) {
+export function applyAvatarContainer(colorScheme: AvatarColorScheme) {
   return css`
     ${applyBgColor(colorScheme)};
     display: inline-flex;
@@ -62,7 +62,7 @@ export function applyAvatarContainer(colorScheme: ColorScheme) {
   `
 }
 
-export function applyAvatarSize(size: Size): string[] {
+export function applyAvatarSize(size: AvatarSize): string[] {
   let width: string
   let height: string
   let textSize: string
@@ -117,7 +117,7 @@ export function applyMergeCss(props: AvatarProps): SerializedStyles {
   `
 }
 
-export function applyShape(shape: Shape): string {
+export function applyShape(shape: AvatarShape): string {
   switch (shape) {
     case "circle": {
       return "50%"

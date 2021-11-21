@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react"
 
-export type ColorScheme =
+export type TagColorScheme =
   string
   | "white"
   | "blackAlpha"
@@ -14,14 +14,14 @@ export type ColorScheme =
   | "cyan"
   | "purple"
 
-export type Variant = "outline" | "fill" | "light"
+export type TagVariant = "outline" | "fill" | "light"
 
-export type Size = "small" | "medium" | "large"
+export type TagSize = "small" | "medium" | "large"
 
 export interface TagProps extends HTMLAttributes<HTMLDivElement> {
-  colorScheme?: ColorScheme
-  size?: Size
-  variant?: Variant
+  colorScheme?: TagColorScheme
+  size?: TagSize
+  variant?: TagVariant
   visible?: boolean
   closable?: boolean
   icon?: ReactNode

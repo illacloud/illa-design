@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react"
 
-export type ColorScheme =
+export type AvatarColorScheme =
   string
   | "white"
   | "blackAlpha"
@@ -14,15 +14,15 @@ export type ColorScheme =
   | "cyan"
   | "purple"
 
-export type Shape = "circle" | "square"
+export type AvatarShape = "circle" | "square"
 
-export type Size = "small" | "medium" | "large"
+export type AvatarSize = "small" | "medium" | "large"
 
 export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
-  colorScheme?: ColorScheme
-  size?: Size
+  colorScheme?: AvatarColorScheme
+  size?: AvatarSize
   text?: string
-  shape?: Shape
+  shape?: AvatarShape
   src?: string
   icon?: ReactNode
 }

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { forwardRef } from "react"
-import { ColorScheme, TagProps } from "./interface"
+import { TagColorScheme, TagProps } from "./interface"
 import { css } from "@emotion/react"
 import { CloseIcon } from "@illa-design/icon"
 import { SerializedStyles } from "@emotion/serialize"
@@ -40,11 +40,11 @@ const closeIcon = css`
   margin-left: 4px;
 `
 
-const colors: ColorScheme[] = [
+const colors: TagColorScheme[] = [
   "white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple",
 ]
 
-function tagOutlinePrepare(color: ColorScheme): SerializedStyles {
+function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {
   if (color == "gray") {
     return css`
       border-radius: 1px;
@@ -60,7 +60,7 @@ function tagOutlinePrepare(color: ColorScheme): SerializedStyles {
   }
 }
 
-function tagFillPrepare(color: ColorScheme): SerializedStyles {
+function tagFillPrepare(color: TagColorScheme): SerializedStyles {
   return css`
     background-color: ${globalColor(`--${illaPrefix}-${color}-01`)};
     color: ${globalColor("--illa-white-01")};
@@ -68,7 +68,7 @@ function tagFillPrepare(color: ColorScheme): SerializedStyles {
   `
 }
 
-function tagLightPrepare(color: ColorScheme): SerializedStyles {
+function tagLightPrepare(color: TagColorScheme): SerializedStyles {
   if (color == "gray") {
     return css`
       border-radius: 1px;
@@ -84,7 +84,7 @@ function tagLightPrepare(color: ColorScheme): SerializedStyles {
   }
 }
 
-function tagFillNormal(color: Extract<ColorScheme, string>): SerializedStyles {
+function tagFillNormal(color: Extract<TagColorScheme, string>): SerializedStyles {
   return css`
     border-radius: 1px;
     color: ${globalColor("--illa-white-01")};
@@ -92,7 +92,7 @@ function tagFillNormal(color: Extract<ColorScheme, string>): SerializedStyles {
   `
 }
 
-function tagOutlineNormal(color: Extract<ColorScheme, string>): SerializedStyles {
+function tagOutlineNormal(color: Extract<TagColorScheme, string>): SerializedStyles {
   return css`
     border-radius: 1px;
     color: ${color};
