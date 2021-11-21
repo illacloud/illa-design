@@ -58,7 +58,7 @@ export const IconAvatar: FC<AvatarProps> = (props) => {
     }
   }
 
-  const currentIcon = props.icon ?? <PersonIcon size={iconSize} />
+  const currentIcon = props.icon ?? <PersonIcon measure={iconSize} />
   const finalProps = {
     ...props,
     colorScheme: currentColorScheme,
