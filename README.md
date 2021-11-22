@@ -10,6 +10,11 @@
 </div>
 
 [![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
+[![illa Family Discord](https://badgen.net/discord/members/2tGBuJkgd6)](https://discord.gg/2tGBuJkgd6)
+
+## ✨ Feature
+
+Building
 
 ## ⌨️ Development
 
@@ -35,6 +40,10 @@ $ yarn storybook
 ```
 
 Then your can open storybook in your bowser.
+
+## ✨ Contributing
+
+Read our [contributing guide](./CONTRIBUTING.md) and let's build a better antd together.
 
 ## License
 
