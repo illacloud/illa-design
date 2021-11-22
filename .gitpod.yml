@@ -1,5 +1,5 @@
 # Commands to start on workspace startup
 tasks:
   - init: yarn
-    command: yarn prebuild
+    command: npx lerna bootstrap
 # Ports to expose on workspace startup

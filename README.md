@@ -25,11 +25,12 @@ Or clone locally:
 $ git clone https://github.com/illa-family/illa-design.git
 $ cd illa-design
 $ yarn
-$ yarn prebuild
+$ npx lerna bootstarp
 ```
 
 Step 2: Run.
 ```bash
+$ yarn prebuild
 $ yarn storybook
 ```
 
