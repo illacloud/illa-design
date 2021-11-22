@@ -41,7 +41,7 @@ $ yarn storybook
 
 Then your can open storybook in your bowser.
 
-## ✨ Contributing
+## 🌱 Contributing
 
 Read our [contributing guide](./CONTRIBUTING.md) and let's build a better illa Design together.
 
