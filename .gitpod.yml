@@ -1,0 +1,5 @@
+# Commands to start on workspace startup
+tasks:
+  - init: yarn
+    command: yarn prebuild
+# Ports to expose on workspace startup
