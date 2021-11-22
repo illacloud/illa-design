@@ -36,6 +36,6 @@
     "build-all-components": "npx zx ./scripts/build-all-components.mjs",
     "build-storybook": "npx build-storybook",
     "test": "npx jest",
-    "start": "npx zx ./scripts/start.mjs"
+    "prebuild": "npx zx ./scripts/prebuild.mjs"
   }
 }
