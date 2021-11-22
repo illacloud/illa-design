@@ -43,7 +43,7 @@ Then your can open storybook in your bowser.
 
 ## ✨ Contributing
 
-Read our [contributing guide](./CONTRIBUTING.md) and let's build a better antd together.
+Read our [contributing guide](./CONTRIBUTING.md) and let's build a better illa Design together.
 
 ## License
 
