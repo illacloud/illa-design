@@ -35,6 +35,7 @@
     "storybook": "npx start-storybook -p 6006",
     "build-all-components": "npx zx ./scripts/build-all-components.mjs",
     "build-storybook": "npx build-storybook",
-    "test": "npx jest"
+    "test": "npx jest",
+    "start": "npx zx ./scripts/start.mjs"
   }
 }
