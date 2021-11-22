@@ -11,6 +11,30 @@
 
 [![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
 
+## ⌨️ Development
+
+Step 1: Choose one workspace.
+
+Use Gitpod, a free online dev environment for GitHub.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/illa-family/illa-design)
+
+Or clone locally:
+
+```bash
+$ git clone https://github.com/illa-family/illa-design.git
+$ cd illa-design
+$ yarn
+$ yarn prebuild
+```
+
+Step 2: Run.
+```bash
+$ yarn storybook
+```
+
+Then your can open storybook in your bowser.
+
 ## License
 
 This project is [Apache License 2.0](./LICENSE).
