@@ -1,9 +1,7 @@
-name: "Build & Test"
+name: "Main Build"
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
 jobs:
