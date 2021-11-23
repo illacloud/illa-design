@@ -1,0 +1,438 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvatarGroup renders with max count 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-1 {
+  background-color: #2a3ed6;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: nowrap;
+  color: #fff;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  line-height: 22px;
+  border-radius: 50%;
+}
+
+.emotion-4 {
+  background-color: #c2c2c2;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: nowrap;
+  color: #fff;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  line-height: 22px;
+  border-radius: 50%;
+}
+
+<div>
+  <div
+    className="emotion-0"
+  >
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "0px",
+          "zIndex": 4,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          A
+        </span>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "-8px",
+          "zIndex": 3,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          B
+        </span>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "-8px",
+          "zIndex": 2,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          C
+        </span>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "-8px",
+          "zIndex": 1,
+        }
+      }
+    >
+      <div
+        className="emotion-4"
+      >
+        <span>
+          +2
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AvatarGroup renders with three props 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-1 {
+  background-color: #e07800;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: nowrap;
+  color: #fff;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  padding: 4px;
+  width: 64px;
+  height: 64px;
+  font-size: 24px;
+  line-height: 32px;
+  border-radius: 50%;
+}
+
+<div>
+  <div
+    className="emotion-0"
+  >
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "0px",
+          "zIndex": 5,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          A
+        </span>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "-20px",
+          "zIndex": 4,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          B
+        </span>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "-20px",
+          "zIndex": 3,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          C
+        </span>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "-20px",
+          "zIndex": 2,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          D
+        </span>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "-20px",
+          "zIndex": 1,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          E
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AvatarGroup renders with zIndexAscend 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-1 {
+  background-color: #2a3ed6;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: nowrap;
+  color: #fff;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  line-height: 22px;
+  border-radius: 50%;
+}
+
+<div>
+  <div
+    className="emotion-0"
+  >
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "0px",
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          A
+        </span>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "-8px",
+          "zIndex": 1,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          B
+        </span>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "-8px",
+          "zIndex": 2,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          C
+        </span>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "-8px",
+          "zIndex": 3,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          D
+        </span>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "border": "solid 2px #fff",
+          "borderRadius": "50%",
+          "marginLeft": "-8px",
+          "zIndex": 4,
+        }
+      }
+    >
+      <div
+        className="emotion-1"
+      >
+        <span>
+          E
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
