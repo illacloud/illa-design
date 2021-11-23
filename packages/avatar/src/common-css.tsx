@@ -54,7 +54,7 @@ export function applyAvatarContainer(colorScheme: AvatarColorScheme) {
     overflow: hidden;
     word-wrap: break-word;
     white-space: nowrap;
-    color: ${globalColor("--illa-white-01")};
+    color: ${globalColor(`--${illaPrefix}-white-01`)};
     flex-direction: row;
     align-items: center;
     justify-content: center;

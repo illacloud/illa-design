@@ -1,26 +1,36 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, ReactNode } from "react"
+import { forwardRef } from "react"
 import { AvatarProps } from "./interface"
 import { IconAvatar } from "./icon-avatar"
 import { TextAvatar } from "./text-avatar"
 import { ImgAvatar } from "./img-avatar"
 import { omit } from "@illa-design/system"
+import { AvatarGroupContext } from "./avatar-group"
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
 
   const otherProps = omit(props, ["icon", "colorScheme", "size", "text", "shape", "src"])
 
-  let finalNode: ReactNode
-  if (props.src != undefined) {
-    finalNode = <ImgAvatar {...props} />
-  } else if (props.text != undefined) {
-    finalNode = <TextAvatar {...props} />
-  } else {
-    finalNode = <IconAvatar {...props} />
-  }
-
   return <div ref={ref} {...otherProps}>
-    {finalNode}
+    <AvatarGroupContext.Consumer>
+      {value => {
+        let newValue = value
+        if (value != undefined) {
+          newValue = omit(value, ["zIndexAscend", "maxCount"])
+        }
+        const newProps = {
+          ...newValue,
+          ...props,
+        }
+        if (props.src != undefined) {
+          return <ImgAvatar {...newProps} />
+        } else if (props.text != undefined) {
+          return <TextAvatar {...newProps} />
+        } else {
+          return <IconAvatar {...newProps} />
+        }
+      }}
+    </AvatarGroupContext.Consumer>
   </div>
 })

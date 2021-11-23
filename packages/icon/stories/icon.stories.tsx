@@ -10,12 +10,11 @@ export default {
   decorators: [withTests({ results })],
   argTypes: {
     spin: {
-      defaultValue: false,
       control: {
         type: "boolean",
       },
     },
-    size: {
+    measure: {
       control: {
         type: "text",
       },

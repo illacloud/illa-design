@@ -16,32 +16,27 @@ export default {
   argTypes: {
     size: {
       options: ["large", "small", "medium"],
-      defaultValue: "small",
       control: {
         type: "select",
       },
     },
     variant: {
       options: ["light", "fill", "outline"],
-      defaultValue: "light",
       control: {
         type: "select",
       },
     },
     colorScheme: {
-      defaultValue: "gray",
       control: {
         type: "text",
       },
     },
     visible: {
-      defaultValue: true,
       control: {
         type: "boolean",
       },
     },
     closable: {
-      defaultValue: false,
       control: {
         type: "boolean",
       },

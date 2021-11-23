@@ -21,8 +21,16 @@ export type AvatarSize = "small" | "medium" | "large"
 export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   colorScheme?: AvatarColorScheme
   size?: AvatarSize
-  text?: string
   shape?: AvatarShape
+  text?: string
   src?: string
   icon?: ReactNode
+}
+
+export interface AvatarGroupProps extends Omit<AvatarProps, "text" | "src" | "icon" | "shape"> {
+  zIndexAscend?: boolean
+  maxCount?: number
+}
+
+export interface AvatarGroupContextProps extends Pick<AvatarGroupProps, "zIndexAscend" | "maxCount" | "colorScheme" | "size"> {
 }

@@ -13,7 +13,6 @@ export default {
   argTypes: {
     objectFit: {
       options: ["fill", "container", "cover", "none", "scale-down"],
-      defaultValue: "cover",
       control: {
         type: "select",
       },

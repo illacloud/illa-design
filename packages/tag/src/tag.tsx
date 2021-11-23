@@ -63,7 +63,7 @@ function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {
 function tagFillPrepare(color: TagColorScheme): SerializedStyles {
   return css`
     background-color: ${globalColor(`--${illaPrefix}-${color}-01`)};
-    color: ${globalColor("--illa-white-01")};
+    color: ${globalColor(`--${illaPrefix}-white-01`)};
     border-radius: 1px;
   `
 }
@@ -87,7 +87,7 @@ function tagLightPrepare(color: TagColorScheme): SerializedStyles {
 function tagFillNormal(color: Extract<TagColorScheme, string>): SerializedStyles {
   return css`
     border-radius: 1px;
-    color: ${globalColor("--illa-white-01")};
+    color: ${globalColor(`--${illaPrefix}-white-01`)};
     background-color: ${color};
   `
 }
