@@ -1,5 +1,5 @@
 import { globalColor } from "../src"
-import { illaPrefix } from "../dist/types"
+import { illaPrefix } from "../src"
 
 test("Theme get color", () => {
   expect(globalColor("null")).toBe("")
