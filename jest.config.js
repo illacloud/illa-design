@@ -4,7 +4,7 @@ module.exports = {
   coverageReporters: ["json"],
   collectCoverage: true,
   collectCoverageFrom: ["packages/**/src/*.{tsx}"],
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+  moduleFileExtensions: ["ts", "tsx"],
   extensionsToTreatAsEsm: [".ts"],
   modulePathIgnorePatterns: [
     "<rootDir>/examples",
