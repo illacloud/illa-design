@@ -8,7 +8,7 @@ import {
   applyShape,
 } from "../src/common-css"
 import { BsFacebook } from "react-icons/bs"
-import { omit } from "../../system/src"
+import { omit } from "@illa-design/system"
 
 test("Common css renders background color", () => {
   expect(omit(applyBgColor("green"), ["name"])).toMatchSnapshot()
