@@ -18,6 +18,7 @@
     "@types/jest": "^27.0.2",
     "@types/react-test-renderer": "^17.0.1",
     "babel-loader": "^8.2.3",
+    "@emotion/jest": "^11.6.0",
     "jest": "^27.3.1",
     "jest-environment-jsdom": "^27.3.1",
     "jest-watch-typeahead": "^1.0.0",

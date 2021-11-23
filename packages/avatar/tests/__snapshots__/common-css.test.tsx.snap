@@ -1,0 +1,310 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Common css renders background color 1`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+        background-color: #007a41
+      ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders background color 2`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+        background-color: #c2c2c2
+      ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders background color 3`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+      background-color: #123321;
+    ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders circle shape 1`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    line-height: 22px;
+    border-radius: 50%;
+  ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders circle shape 2`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    line-height: 22px;
+    border-radius: 50%;
+  ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders circle shape 3`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    width: 64px;
+    height: 64px;
+    font-size: 24px;
+    line-height: 32px;
+    border-radius: 50%;
+  ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders container 1`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    
+        background-color: #007a41
+      ;;
+    display: inline-flex;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    color: #fff;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders container 2`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    
+        background-color: #c2c2c2
+      ;;
+    display: inline-flex;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    color: #fff;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders container 3`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    
+      background-color: #123321;
+    ;;
+    display: inline-flex;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    color: #fff;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders merge 1`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    
+    
+        background-color: #c2c2c2
+      ;;
+    display: inline-flex;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    color: #fff;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  ;;
+    
+    width: 64px;
+    height: 64px;
+    font-size: 24px;
+    line-height: 32px;
+    border-radius: 4px;
+  ;;
+  ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders merge 2`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    
+    
+        background-color: #c2c2c2
+      ;;
+    display: inline-flex;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    color: #fff;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  ;;
+    
+    width: 64px;
+    height: 64px;
+    font-size: 24px;
+    line-height: 32px;
+    border-radius: 4px;
+  ;;
+  ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders merge 3`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    
+    
+        background-color: #c2c2c2
+      ;;
+    display: inline-flex;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    color: #fff;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  ;;
+    
+    width: 64px;
+    height: 64px;
+    font-size: 24px;
+    line-height: 32px;
+    border-radius: 4px;
+  ;;
+  ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders size 1`] = `
+Object {
+  "0": "32px",
+  "1": "32px",
+  "2": "14px",
+  "3": "22px",
+}
+`;
+
+exports[`Common css renders size 2`] = `
+Object {
+  "0": "40px",
+  "1": "40px",
+  "2": "14px",
+  "3": "22px",
+}
+`;
+
+exports[`Common css renders size 3`] = `
+Object {
+  "0": "64px",
+  "1": "64px",
+  "2": "24px",
+  "3": "32px",
+}
+`;
+
+exports[`Common css renders square shape 1`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    line-height: 22px;
+    border-radius: 4px;
+  ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders square shape 2`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    line-height: 22px;
+    border-radius: 4px;
+  ",
+  "toString": [Function],
+}
+`;
+
+exports[`Common css renders square shape 3`] = `
+Object {
+  "map": undefined,
+  "next": undefined,
+  "styles": "
+    width: 64px;
+    height: 64px;
+    font-size: 24px;
+    line-height: 32px;
+    border-radius: 4px;
+  ",
+  "toString": [Function],
+}
+`;
