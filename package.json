@@ -24,6 +24,8 @@
     "jest-watch-typeahead": "^1.0.0",
     "react-test-renderer": "^17.0.2",
     "@types/react-test-renderer": "^17.0.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/jest-dom": "^5.15.1",
     "lerna": "^4.0.0",
     "react-icons": "^4.3.1",
     "storybook-zeplin": "^1.5.1",

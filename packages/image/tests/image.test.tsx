@@ -30,3 +30,15 @@ test("Image renders with size", () => {
   ).toJSON()
   expect(node).toMatchSnapshot()
 })
+
+test("Image renders with event", () => {
+  const errorHandler = jest.fn()
+  const loadHandler = jest.fn()
+  const { root } = create(
+    <Image onError={errorHandler} onLoad={loadHandler} />,
+  )
+  root.findByType(Image).props.onError()
+  root.findByType(Image).props.onLoad()
+  expect(errorHandler).toBeCalled()
+  expect(loadHandler).toBeCalled()
+})
