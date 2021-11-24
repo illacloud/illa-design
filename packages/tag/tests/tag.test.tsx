@@ -2,6 +2,7 @@ import { Tag } from "../src"
 import { create } from "react-test-renderer"
 import { BsFacebook } from "react-icons/bs"
 import { TagColorScheme, TagVariant } from "../dist/types"
+import { fireEvent, getByTitle, render } from "@testing-library/react"
 
 test("Tag renders with text", () => {
   const { root } = create(<Tag className="test-with-text">Tag renders with text</Tag>)
@@ -39,9 +40,9 @@ test("Tag renders with close icon", () => {
 
 test("Tag renders close event", () => {
   const onClose = jest.fn()
-  const node = create(
+  const { getByTitle } = render(
     <Tag className="test-close-event" onClose={onClose} closable />,
   )
-  node.root.findByProps({ className: "test-close-event" }).props.onClose()
+  fireEvent.click(getByTitle("CloseIcon"))
   expect(onClose).toBeCalled()
 })
