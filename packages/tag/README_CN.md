@@ -53,10 +53,10 @@ import { Tag } from "@illa-dedign/tag"
 通过size这个接口可以调整tag的大小
   
 ```jsx
-<Tag  >Hello</Tag>
-<Tag  size="small" > Small </Tag>
-<Tag  size="medium" > Medium </Tag>
-<Tag  size="large" > Large </Tag>
+<Tag>Hello</Tag>
+<Tag size="small">Small</Tag>
+<Tag size="medium">Medium</Tag>
+<Tag size="large">Large</Tag>
 ``` 
   
 ### 设置标签样式和颜色
@@ -64,8 +64,8 @@ import { Tag } from "@illa-dedign/tag"
 通过variant这个接口可以调整tag的样式,通过colorSchema这个接口可以调整tag的背景颜色
 
 ```jsx
-<Tag  > Hello </Tag>
-<Tag  variant="fill" colorScheme="red" > Small </Tag>
+<Tag>Hello</Tag>
+<Tag variant="fill" colorScheme="red">Small</Tag>
 ```   
 
 ### 设置标签icon
@@ -73,8 +73,8 @@ import { Tag } from "@illa-dedign/tag"
 通过icon这个接口可以设置icon 左侧的icon
 
 ```jsx
-<Tag  > Hello </Tag>
-<Tag  variant="fill" colorScheme="red" icon={<BsFacebook />} > Small </Tag>
+<Tag> Hello </Tag>
+<Tag variant="fill" colorScheme="red" icon={<BsFacebook />}>Small</Tag>
 ```  
   
 ### 设置标签可被关闭
@@ -82,8 +82,8 @@ import { Tag } from "@illa-dedign/tag"
 通过closeable这个接口可以设置icon可被关闭
 
 ```jsx
-<Tag  > Hello </Tag>
-<Tag  variant="fill" colorScheme="red" icon={<BsFacebook />} closable> Small </Tag>
+<Tag>Hello</Tag>
+<Tag variant="fill" colorScheme="red" icon={<BsFacebook />} closable>Small</Tag>
 ```  
 
 
