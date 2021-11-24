@@ -13,7 +13,6 @@ body:
 
         If you want to discuss sth, please go to the [Discussion](https://github.com/illa-family/illa-design/discussions)
 
-
   - type: "input"
     id: "description"
     attributes:
