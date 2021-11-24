@@ -10,7 +10,11 @@
 </div>
 
 [![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
-[![illa Family Discord](https://badgen.net/discord/members/2tGBuJkgd6)](https://discord.gg/2tGBuJkgd6)
+[![discord](https://badgen.net/discord/members/2tGBuJkgd6?icon=discord)](https://discord.gg/2tGBuJkgd6)
+[![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](./LICENSE)
+[![license](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
+[![license](./badges/chromatic.svg)](https://chromatic.com/library?appId=618513c5ace06a003a5ed751&branch=main)
+[![license](./badges/storybook.svg)](https://main--618513c5ace06a003a5ed751.chromatic.com)
 
 ## ✨ Features
 
