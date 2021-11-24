@@ -10,7 +10,7 @@
 </div>
 
 [![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
-[![discord](https://badgen.net/discord/members/2tGBuJkgd6?icon=discord)](https://discord.gg/2tGBuJkgd6)
+[![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
 [![license](./badges/chromatic.svg)](https://chromatic.com/library?appId=618513c5ace06a003a5ed751&branch=main)
 [![license](./badges/storybook.svg)](https://main--618513c5ace06a003a5ed751.chromatic.com)
 [![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](./LICENSE)
