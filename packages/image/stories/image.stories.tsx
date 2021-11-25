@@ -53,20 +53,14 @@ export default {
 
 const Template: Story<ImageProps> = (args) => {
   return <div>
+    <Image {...args} />
     <Image style={{
-      display: "inline-block",
-      marginLeft: "10px",
-    }} {...args} />
-    <Image style={{
-      display: "inline-block",
       marginLeft: "10px",
     }} fallback={<BsFacebook />} {...args} />
     <Image style={{
-      display: "inline-block",
       marginLeft: "10px",
     }} fallback={<BsTwitter />} {...args} />
     <Image style={{
-      display: "inline-block",
       marginLeft: "10px",
     }} fallback={<BsTwitch />} {...args} />
   </div>
