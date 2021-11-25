@@ -65,7 +65,7 @@ import { Tag } from "@illa-dedign/tag"
 
 ```jsx
 <Tag>Hello</Tag>
-<Tag variant="fill" colorScheme="red">Small</Tag>
+<Tag variant="fill" colorScheme="red">Hello</Tag>
 ```   
 
 ### 设置标签icon
@@ -74,7 +74,7 @@ import { Tag } from "@illa-dedign/tag"
 
 ```jsx
 <Tag> Hello </Tag>
-<Tag variant="fill" colorScheme="red" icon={<BsFacebook />}>Small</Tag>
+<Tag variant="fill" colorScheme="red" icon={<BsFacebook />}>Hello</Tag>
 ```  
   
 ### 设置标签可被关闭
@@ -83,6 +83,6 @@ import { Tag } from "@illa-dedign/tag"
 
 ```jsx
 <Tag>Hello</Tag>
-<Tag variant="fill" colorScheme="red" icon={<BsFacebook />} closable>Small</Tag>
+<Tag variant="fill" colorScheme="red" icon={<BsFacebook />} closable>Hello</Tag>
 ```  
 
