@@ -7,6 +7,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 function applyDividerContainerHorizontal(variant: DividerVariant): SerializedStyles {
   return css`
+    display: inline-block;
     width: 100%;
     border-bottom: 1px ${variant} ${globalColor(`--${illaPrefix}-gray-08`)};
   `
@@ -14,9 +15,8 @@ function applyDividerContainerHorizontal(variant: DividerVariant): SerializedSty
 
 function applyDividerContainerVertical(variant: DividerVariant): SerializedStyles {
   return css`
+    display: inline-block;
     height: 1em;
-    min-width: 0;
-    max-width: 0;
     border-right: 1px ${variant} ${globalColor(`--${illaPrefix}-gray-08`)};
   `
 }
