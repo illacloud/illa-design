@@ -34,6 +34,7 @@ function applyDefaultFallback(width: string | number, height: string | number, r
 }
 
 const applyOuterCss = css`
+  vertical-align:middle;
   display: inline-flex;
 `
 
