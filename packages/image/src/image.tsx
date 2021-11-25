@@ -33,6 +33,10 @@ function applyDefaultFallback(width: string | number, height: string | number, r
   `
 }
 
+const applyOuterCss = css`
+  display: inline-flex;
+`
+
 export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
   const {
     // origin
@@ -62,7 +66,7 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
     setImageState(ImageState.Loading)
   }, [src])
 
-  return <div ref={ref} {...rest}>
+  return <div css={applyOuterCss} ref={ref} {...rest}>
     {(src && src.length != 0) && imageState != ImageState.Error ?
       <img css={applyImageCss(objectFit, radius)}
            alt={alt}

@@ -7,12 +7,17 @@ import { TextAvatar } from "./text-avatar"
 import { ImgAvatar } from "./img-avatar"
 import { omit } from "@illa-design/system"
 import { AvatarGroupContext } from "./avatar-group"
+import { css } from "@emotion/react"
+
+const applyOuterCss = css`
+  display: inline-flex;
+`
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
 
   const otherProps = omit(props, ["icon", "colorScheme", "size", "text", "shape", "src"])
 
-  return <div ref={ref} {...otherProps}>
+  return <div css={applyOuterCss} ref={ref} {...otherProps}>
     <AvatarGroupContext.Consumer>
       {value => {
         let newValue = value

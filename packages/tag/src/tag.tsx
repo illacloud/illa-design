@@ -168,18 +168,16 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     ${sizeCss};
   `
 
-  return visible ? <div ref={ref} {...otherProps}>
-    <div css={finalStyle}>
-      {props.icon && <span css={leftIcon}>{props.icon}</span>}
-      <span css={css`
-        font-size: 14px;
-        line-height: 22px;
-      `}>{props.children}</span>
-      {props.closable && <CloseIcon measure="7px" css={closeIcon} onClick={() => {
-        if (props.onClose != undefined) {
-          props.onClose()
-        }
-      }} />}
-    </div>
+  return visible ? <div css={finalStyle} ref={ref} {...otherProps}>
+    {props.icon && <span css={leftIcon}>{props.icon}</span>}
+    <span css={css`
+      font-size: 14px;
+      line-height: 22px;
+    `}>{props.children}</span>
+    {props.closable && <CloseIcon measure="7px" css={closeIcon} onClick={() => {
+      if (props.onClose != undefined) {
+        props.onClose()
+      }
+    }} />}
   </div> : null
 })
