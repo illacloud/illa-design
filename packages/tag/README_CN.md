@@ -61,7 +61,7 @@ import { Tag } from "@illa-dedign/tag"
   
 ### 设置标签样式和颜色
 
-通过variant这个接口可以调整tag的样式,通过colorSchema这个接口可以调整tag的背景颜色
+通过variant这个接口可以调整tag的样式,通过colorScheme这个接口可以调整tag的背景颜色
 
 ```jsx
 <Tag>Hello</Tag>
