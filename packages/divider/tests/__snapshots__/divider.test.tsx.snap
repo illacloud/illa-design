@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Divider renders horizontal 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  width: 100%;
+  border-bottom: 1px solid #ebebeb;
+}
+
+<div>
+    <div
+      class="emotion-0"
+    />
+  </div>
+</DocumentFragment>
+`;
