@@ -7,17 +7,22 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 function applyDividerContainerHorizontal(variant: DividerVariant): SerializedStyles {
   return css`
-    display: inline-block;
+    display: inline-flex;
+    border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-style: ${variant};
+    border-width: 0 0 1px 0;
     width: 100%;
-    border-bottom: 1px ${variant} ${globalColor(`--${illaPrefix}-gray-08`)};
   `
 }
 
 function applyDividerContainerVertical(variant: DividerVariant): SerializedStyles {
   return css`
-    display: inline-block;
+    display: inline-flex;
+    border-width: 0 0 0 1px;
+    border-image: initial;
+    border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-style: ${variant};
     height: 1em;
-    border-right: 1px ${variant} ${globalColor(`--${illaPrefix}-gray-08`)};
   `
 }
 
@@ -39,7 +44,5 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>((props, ref) => 
       break
   }
 
-  return <div ref={ref} {...otherProps}>
-    <div css={dividerCss} />
-  </div>
+  return <div css={dividerCss} ref={ref} {...otherProps} />
 })
