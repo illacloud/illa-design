@@ -10,6 +10,7 @@ import { AvatarGroupContext } from "./avatar-group"
 import { css } from "@emotion/react"
 
 const applyOuterCss = css`
+  vertical-align: middle;
   display: inline-flex;
 `
 
