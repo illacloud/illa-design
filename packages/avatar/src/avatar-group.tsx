@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Children, cloneElement, createContext, forwardRef, ReactNode, ReactElement } from "react"
+import { Children, createContext, CSSProperties, forwardRef, ReactNode } from "react"
 import { AvatarGroupContextProps, AvatarGroupProps } from "./interface"
 import { css } from "@emotion/react"
 import { Avatar } from "./avatar"
@@ -49,24 +49,24 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>((props, 
   const newNodeList = Children.map(nodeList, (child, index) => {
     const isFirstAvatar = index === 0
 
-    const childProps = {
-      style: {
-        marginLeft: isFirstAvatar ? "0px" : marginLeft,
-        border: `solid 2px ${globalColor(`--${illaPrefix}-white-01`)}`,
-        borderRadius: "50%",
-        zIndex: zIndexAscend ? index : nodeList.length - index,
-      },
-    }
+    const style = {
+      marginLeft: `${isFirstAvatar ? "0px" : "0px"}`,
+      border: `solid 2px ${globalColor(`--${illaPrefix}-white-01`)}`,
+      borderRadius: "50%",
+      zIndex: `${zIndexAscend ? index : nodeList.length - index}`,
+    } as CSSProperties
 
-    return cloneElement(child as ReactElement, childProps)
-  })
-  return <div ref={ref} {...otherProps}>
-    <AvatarGroupContext.Provider value={{
-      zIndexAscend, maxCount, colorScheme, size,
+    return <AvatarGroupContext.Provider value={{
+      zIndexAscend, maxCount, colorScheme, size, style,
     }}>
-      <div css={avatarGroupCss}>
-        {newNodeList}
-      </div>
+      {child}
     </AvatarGroupContext.Provider>
+  })
+  return <div css={css`
+    display: inline-block;
+  `} ref={ref} {...otherProps}>
+    <div css={avatarGroupCss}>
+      {newNodeList}
+    </div>
   </div>
 })

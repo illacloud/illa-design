@@ -30,7 +30,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
           ...props,
         }
         if (props.src != undefined) {
-          return <ImgAvatar {...newProps} />
+          return <ImgAvatar  {...newProps} />
         } else if (props.text != undefined) {
           return <TextAvatar {...newProps} />
         } else {
