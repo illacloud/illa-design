@@ -1,8 +1,8 @@
-name: "Main Build"
+name: "Dev Publish"
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
 
 jobs:
   install:
