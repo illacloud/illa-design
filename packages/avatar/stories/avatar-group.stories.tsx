@@ -40,7 +40,6 @@ export default {
 
 const Template: Story<AvatarProps> = (args) => {
   return <AvatarGroup {...args}>
-    <Avatar icon={<BsFacebook />} />
     <Avatar icon={<BsMailbox />} />
     <Avatar icon={<BsGithub />} />
     <Avatar icon={<BsTwitch />} />

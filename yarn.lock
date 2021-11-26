@@ -12626,7 +12626,7 @@ storybook-addon-outline@^1.4.1:
     "@storybook/core-events" "^6.3.0"
     ts-dedent "^2.1.1"
 
-storybook-zeplin@^1.5.1:
+storybook-zeplin@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/storybook-zeplin/-/storybook-zeplin-1.6.0.tgz#936faf86ba6c0bf998bada9be3fe1f7f7b249c6c"
   integrity sha512-RuLgQ5B8xUgbxHVWeam+9VX7NbfLG3MhI4tkSs+sNC1YtlAgiMi/Aaeqd9q5H3491be1a9ncYT4zD5mYkNU5LA==

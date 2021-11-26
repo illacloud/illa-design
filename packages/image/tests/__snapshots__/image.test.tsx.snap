@@ -2,15 +2,25 @@
 
 exports[`Image renders with size 1`] = `
 .emotion-0 {
+  vertical-align: middle;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-1 {
   object-fit: cover;
   background-color: rgba(0, 0, 0, 0.04);
   border-radius: 4px;
 }
 
-<div>
+<div
+  className="emotion-0"
+>
   <img
     alt=""
-    className="emotion-0"
+    className="emotion-1"
     height="200px"
     onError={[Function]}
     onLoad={[Function]}

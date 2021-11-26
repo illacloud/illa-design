@@ -28,7 +28,7 @@
     "@testing-library/jest-dom": "^5.15.1",
     "lerna": "^4.0.0",
     "react-icons": "^4.3.1",
-    "storybook-zeplin": "^1.5.1",
+    "storybook-zeplin": "^1.6.0",
     "zx": "^4.2.0"
   },
   "workspaces": [

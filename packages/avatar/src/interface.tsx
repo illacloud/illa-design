@@ -32,5 +32,5 @@ export interface AvatarGroupProps extends Omit<AvatarProps, "text" | "src" | "ic
   maxCount?: number
 }
 
-export interface AvatarGroupContextProps extends Pick<AvatarGroupProps, "zIndexAscend" | "maxCount" | "colorScheme" | "size"> {
+export interface AvatarGroupContextProps extends Pick<AvatarGroupProps, "zIndexAscend" | "maxCount" | "colorScheme" | "size" | "style"> {
 }

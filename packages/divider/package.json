@@ -1,11 +1,11 @@
 {
-  "name": "@illa-design/react",
+  "name": "@illa-design/divider",
   "version": "0.0.0",
-  "description": "Illa Design React.",
+  "description": "Illa Design divider.",
   "keywords": [
-    "ui",
-    "ui-components",
-    "react"
+    "divider",
+    "react",
+    "component"
   ],
   "sideEffects": false,
   "author": "illa Family <opensource@illasoft.com>",
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/react"
+    "directory": "packages/divider"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
@@ -39,13 +39,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@illa-design/avatar": "^0.0.0",
-    "@illa-design/divider": "^0.0.0",
-    "@illa-design/icon": "^0.0.0",
-    "@illa-design/image": "^0.0.0",
-    "@illa-design/space": "^0.0.0",
     "@illa-design/system": "^0.0.0",
-    "@illa-design/tag": "^0.0.0",
     "@illa-design/theme": "^0.0.0"
   }
 }

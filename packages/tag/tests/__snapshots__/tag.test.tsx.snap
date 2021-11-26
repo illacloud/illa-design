@@ -6,6 +6,7 @@ exports[`Tag renders with color and variant 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -24,16 +25,14 @@ exports[`Tag renders with color and variant 1`] = `
   line-height: 22px;
 }
 
-<div>
-  <div
-    className="emotion-0"
+<div
+  className="emotion-0"
+>
+  <span
+    className="emotion-1"
   >
-    <span
-      className="emotion-1"
-    >
-      Hello World
-    </span>
-  </div>
+    Hello World
+  </span>
 </div>
 `;
 
@@ -43,6 +42,7 @@ exports[`Tag renders with color and variant 2`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -61,16 +61,14 @@ exports[`Tag renders with color and variant 2`] = `
   line-height: 22px;
 }
 
-<div>
-  <div
-    className="emotion-0"
+<div
+  className="emotion-0"
+>
+  <span
+    className="emotion-1"
   >
-    <span
-      className="emotion-1"
-    >
-      Hello World
-    </span>
-  </div>
+    Hello World
+  </span>
 </div>
 `;
 
@@ -80,6 +78,7 @@ exports[`Tag renders with color and variant 3`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -98,16 +97,14 @@ exports[`Tag renders with color and variant 3`] = `
   line-height: 22px;
 }
 
-<div>
-  <div
-    className="emotion-0"
+<div
+  className="emotion-0"
+>
+  <span
+    className="emotion-1"
   >
-    <span
-      className="emotion-1"
-    >
-      Hello World
-    </span>
-  </div>
+    Hello World
+  </span>
 </div>
 `;
 
@@ -117,6 +114,7 @@ exports[`Tag renders with color and variant 4`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -135,16 +133,14 @@ exports[`Tag renders with color and variant 4`] = `
   line-height: 22px;
 }
 
-<div>
-  <div
-    className="emotion-0"
+<div
+  className="emotion-0"
+>
+  <span
+    className="emotion-1"
   >
-    <span
-      className="emotion-1"
-    >
-      Hello World
-    </span>
-  </div>
+    Hello World
+  </span>
 </div>
 `;
 
@@ -154,6 +150,7 @@ exports[`Tag renders with color and variant 5`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -172,16 +169,14 @@ exports[`Tag renders with color and variant 5`] = `
   line-height: 22px;
 }
 
-<div>
-  <div
-    className="emotion-0"
+<div
+  className="emotion-0"
+>
+  <span
+    className="emotion-1"
   >
-    <span
-      className="emotion-1"
-    >
-      Hello World
-    </span>
-  </div>
+    Hello World
+  </span>
 </div>
 `;
 
@@ -191,6 +186,7 @@ exports[`Tag renders with color and variant 6`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -209,16 +205,14 @@ exports[`Tag renders with color and variant 6`] = `
   line-height: 22px;
 }
 
-<div>
-  <div
-    className="emotion-0"
+<div
+  className="emotion-0"
+>
+  <span
+    className="emotion-1"
   >
-    <span
-      className="emotion-1"
-    >
-      Hello World
-    </span>
-  </div>
+    Hello World
+  </span>
 </div>
 `;
 
@@ -228,6 +222,7 @@ exports[`Tag renders with color and variant 7`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -246,16 +241,14 @@ exports[`Tag renders with color and variant 7`] = `
   line-height: 22px;
 }
 
-<div>
-  <div
-    className="emotion-0"
+<div
+  className="emotion-0"
+>
+  <span
+    className="emotion-1"
   >
-    <span
-      className="emotion-1"
-    >
-      Hello World
-    </span>
-  </div>
+    Hello World
+  </span>
 </div>
 `;
 
@@ -265,6 +258,7 @@ exports[`Tag renders with color and variant 8`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -283,16 +277,14 @@ exports[`Tag renders with color and variant 8`] = `
   line-height: 22px;
 }
 
-<div>
-  <div
-    className="emotion-0"
+<div
+  className="emotion-0"
+>
+  <span
+    className="emotion-1"
   >
-    <span
-      className="emotion-1"
-    >
-      Hello World
-    </span>
-  </div>
+    Hello World
+  </span>
 </div>
 `;
 
@@ -302,6 +294,7 @@ exports[`Tag renders with color and variant 9`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -320,15 +313,13 @@ exports[`Tag renders with color and variant 9`] = `
   line-height: 22px;
 }
 
-<div>
-  <div
-    className="emotion-0"
+<div
+  className="emotion-0"
+>
+  <span
+    className="emotion-1"
   >
-    <span
-      className="emotion-1"
-    >
-      Hello World
-    </span>
-  </div>
+    Hello World
+  </span>
 </div>
 `;

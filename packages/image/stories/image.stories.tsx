@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Image, ImageProps } from "../src"
-import { BsFacebook, BsTwitch, BsTwitter } from "react-icons/bs"
+import { BsTwitch } from "react-icons/bs"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 
@@ -53,22 +53,17 @@ export default {
 
 const Template: Story<ImageProps> = (args) => {
   return <div>
+    <Image {...args} />
     <Image style={{
-      display: "inline-block",
       marginLeft: "10px",
-    }} {...args} />
+    }} src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" {...args} />
     <Image style={{
-      display: "inline-block",
       marginLeft: "10px",
-    }} fallback={<BsFacebook />} {...args} />
+    }} src="empty"
+           fallbackSrc="https://media.istockphoto.com/photos/exclamation-point-picture-id1300306784?b=1&k=20&m=1300306784&s=170667a&w=0&h=zARxLkZL09BrdPnLT3xu4Ib6YLkJ8B5YlcGke7GqJ0g=" {...args} />
     <Image style={{
-      display: "inline-block",
       marginLeft: "10px",
-    }} fallback={<BsTwitter />} {...args} />
-    <Image style={{
-      display: "inline-block",
-      marginLeft: "10px",
-    }} fallback={<BsTwitch />} {...args} />
+    }} src="empty" fallback={<BsTwitch />} {...args} />
   </div>
 }
 
