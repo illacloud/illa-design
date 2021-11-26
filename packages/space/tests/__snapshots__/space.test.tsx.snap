@@ -29,24 +29,22 @@ exports[`Space renders with different align 1`] = `
   margin-left: 8px;
 }
 
-<div>
+<div
+    class="emotion-0"
+  >
     <div
-      class="emotion-0"
+      class="emotion-1"
     >
-      <div
-        class="emotion-1"
-      >
-        <span>
-          A
-        </span>
-      </div>
-      <div
-        class="emotion-2"
-      >
-        <span>
-          B
-        </span>
-      </div>
+      <span>
+        A
+      </span>
+    </div>
+    <div
+      class="emotion-2"
+    >
+      <span>
+        B
+      </span>
     </div>
   </div>
 </DocumentFragment>
