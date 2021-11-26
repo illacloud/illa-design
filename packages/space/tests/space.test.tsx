@@ -85,3 +85,31 @@ test("Space renders with different direction", () => {
   expect(getByTestId("test-space-mini").parentNode).toHaveStyle("margin-left:8px")
   expect(getByTestId("test-space-small").parentNode).toHaveStyle("margin-top:8px")
 })
+
+test("Space renders with different align", () => {
+  const { asFragment } = render(
+    <Space align="start">
+    <span>
+      A
+    </span>
+      <span>
+      B
+    </span>
+    </Space>,
+  )
+  expect(asFragment()).toMatchSnapshot()
+})
+
+test("Space renders with divider", () => {
+  const { asFragment } = render(
+    <Space divider={true}>
+    <span>
+      A
+    </span>
+      <span>
+      B
+    </span>
+    </Space>,
+  )
+  expect(asFragment()).toMatchSnapshot()
+})
