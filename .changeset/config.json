@@ -7,7 +7,7 @@
   "commit": false,
   "linked": [],
   "access": "public",
-  "baseBranch": "publish",
+  "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": []
 }
