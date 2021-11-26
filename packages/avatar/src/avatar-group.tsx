@@ -50,7 +50,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>((props, 
     const isFirstAvatar = index === 0
 
     const style = {
-      marginLeft: `${isFirstAvatar ? "0px" : "0px"}`,
+      marginLeft: `${isFirstAvatar ? "0px" : marginLeft}`,
       border: `solid 2px ${globalColor(`--${illaPrefix}-white-01`)}`,
       borderRadius: "50%",
       zIndex: `${zIndexAscend ? index : nodeList.length - index}`,

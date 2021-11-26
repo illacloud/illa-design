@@ -44,7 +44,6 @@ export default {
 const Template: Story<SpaceProps> = (props) => {
   return <Space {...props} style={{
     width: "100px",
-    backgroundColor: "yellow",
   }}>
     <Tag size="large">B</Tag>
     <Tag>我</Tag>

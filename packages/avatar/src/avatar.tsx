@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef } from "react"
-import { AvatarProps } from "./interface"
+import { forwardRef, ReactNode } from "react"
+import { AvatarGroupContextProps, AvatarProps } from "./interface"
 import { IconAvatar } from "./icon-avatar"
 import { TextAvatar } from "./text-avatar"
 import { ImgAvatar } from "./img-avatar"
@@ -16,27 +16,37 @@ const applyOuterCss = css`
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
 
-  const otherProps = omit(props, ["icon", "colorScheme", "size", "text", "shape", "src"])
+  const otherProps = omit(props, ["icon", "colorScheme", "size", "text", "shape", "src", "style"])
+  const propsWithoutStyle = omit(props, ["style"])
 
-  return <div css={applyOuterCss} ref={ref} {...otherProps}>
-    <AvatarGroupContext.Consumer>
-      {value => {
-        let newValue = value
-        if (value != undefined) {
-          newValue = omit(value, ["zIndexAscend", "maxCount"])
-        }
-        const newProps = {
-          ...newValue,
-          ...props,
-        }
-        if (props.src != undefined) {
-          return <ImgAvatar  {...newProps} />
-        } else if (props.text != undefined) {
-          return <TextAvatar {...newProps} />
-        } else {
-          return <IconAvatar {...newProps} />
-        }
-      }}
-    </AvatarGroupContext.Consumer>
-  </div>
+  return <AvatarGroupContext.Consumer>
+    {value => {
+      let newValue: AvatarGroupContextProps | undefined
+      if (value != undefined) {
+        newValue = omit(value, ["zIndexAscend", "maxCount", "style"])
+      }
+      const newProps = {
+        ...newValue,
+        ...propsWithoutStyle,
+      }
+
+      let finalStyle = {
+        ...value?.style,
+        ...props?.style,
+      }
+
+      let finalNode: ReactNode
+      if (props.src != undefined) {
+        finalNode = <ImgAvatar  {...newProps} />
+      } else if (props.text != undefined) {
+        finalNode = <TextAvatar {...newProps} />
+      } else {
+        finalNode = <IconAvatar {...newProps} />
+      }
+      return <div css={applyOuterCss} style={finalStyle} ref={ref} {...otherProps}>
+        {finalNode}
+      </div>
+    }}
+  </AvatarGroupContext.Consumer>
+
 })
