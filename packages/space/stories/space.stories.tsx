@@ -4,6 +4,7 @@ import { Space, SpaceProps } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { Tag } from "@illa-design/tag"
+import { Image } from "@illa-design/image"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -47,7 +48,9 @@ const Template: Story<SpaceProps> = (props) => {
   }}>
     <Tag size="large">B</Tag>
     <Tag>我</Tag>
-    <Tag>g</Tag>
+    <Image style={{
+      marginLeft: "10px",
+    }} src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />
     <Tag>English</Tag>
     <Tag>开</Tag>
   </Space>
