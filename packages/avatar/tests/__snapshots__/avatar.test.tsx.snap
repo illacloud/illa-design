@@ -2,13 +2,10 @@
 
 exports[`Avatar renders with colorScheme 1`] = `
 .emotion-0 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-0 {
   display: inline-flex;
 }
 
@@ -61,8 +58,13 @@ exports[`Avatar renders with colorScheme 1`] = `
   height: 14px;
 }
 
+.emotion-3 {
+  vertical-align: middle;
+}
+
 <div
   className="emotion-0"
+  style={Object {}}
 >
   <div
     className="emotion-1"
@@ -92,13 +94,10 @@ exports[`Avatar renders with colorScheme 1`] = `
 
 exports[`Avatar renders with colorScheme 2`] = `
 .emotion-0 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-0 {
   display: inline-flex;
 }
 
@@ -151,8 +150,13 @@ exports[`Avatar renders with colorScheme 2`] = `
   height: 14px;
 }
 
+.emotion-3 {
+  vertical-align: middle;
+}
+
 <div
   className="emotion-0"
+  style={Object {}}
 >
   <div
     className="emotion-1"
@@ -182,13 +186,10 @@ exports[`Avatar renders with colorScheme 2`] = `
 
 exports[`Avatar renders with colorScheme 3`] = `
 .emotion-0 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-0 {
   display: inline-flex;
 }
 
@@ -241,8 +242,13 @@ exports[`Avatar renders with colorScheme 3`] = `
   height: 14px;
 }
 
+.emotion-3 {
+  vertical-align: middle;
+}
+
 <div
   className="emotion-0"
+  style={Object {}}
 >
   <div
     className="emotion-1"
@@ -272,13 +278,10 @@ exports[`Avatar renders with colorScheme 3`] = `
 
 exports[`Avatar renders with icon 1`] = `
 .emotion-0 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-0 {
   display: inline-flex;
 }
 
@@ -333,6 +336,7 @@ exports[`Avatar renders with icon 1`] = `
 
 <div
   className="test-avatar-with-icon emotion-0"
+  style={Object {}}
 >
   <div
     className="emotion-1"
@@ -365,13 +369,10 @@ exports[`Avatar renders with icon 1`] = `
 
 exports[`Avatar renders with shape 1`] = `
 .emotion-0 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-0 {
   display: inline-flex;
 }
 
@@ -424,8 +425,13 @@ exports[`Avatar renders with shape 1`] = `
   height: 14px;
 }
 
+.emotion-3 {
+  vertical-align: middle;
+}
+
 <div
   className="emotion-0"
+  style={Object {}}
 >
   <div
     className="emotion-1"
@@ -455,13 +461,10 @@ exports[`Avatar renders with shape 1`] = `
 
 exports[`Avatar renders with shape 2`] = `
 .emotion-0 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-0 {
   display: inline-flex;
 }
 
@@ -514,8 +517,13 @@ exports[`Avatar renders with shape 2`] = `
   height: 14px;
 }
 
+.emotion-3 {
+  vertical-align: middle;
+}
+
 <div
   className="emotion-0"
+  style={Object {}}
 >
   <div
     className="emotion-1"
@@ -545,13 +553,10 @@ exports[`Avatar renders with shape 2`] = `
 
 exports[`Avatar renders with size 1`] = `
 .emotion-0 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-0 {
   display: inline-flex;
 }
 
@@ -604,8 +609,13 @@ exports[`Avatar renders with size 1`] = `
   height: 14px;
 }
 
+.emotion-3 {
+  vertical-align: middle;
+}
+
 <div
   className="emotion-0"
+  style={Object {}}
 >
   <div
     className="emotion-1"
@@ -635,13 +645,10 @@ exports[`Avatar renders with size 1`] = `
 
 exports[`Avatar renders with size 2`] = `
 .emotion-0 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-0 {
   display: inline-flex;
 }
 
@@ -694,8 +701,13 @@ exports[`Avatar renders with size 2`] = `
   height: 18px;
 }
 
+.emotion-3 {
+  vertical-align: middle;
+}
+
 <div
   className="emotion-0"
+  style={Object {}}
 >
   <div
     className="emotion-1"
@@ -725,13 +737,10 @@ exports[`Avatar renders with size 2`] = `
 
 exports[`Avatar renders with size 3`] = `
 .emotion-0 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-0 {
   display: inline-flex;
 }
 
@@ -784,8 +793,13 @@ exports[`Avatar renders with size 3`] = `
   height: 28px;
 }
 
+.emotion-3 {
+  vertical-align: middle;
+}
+
 <div
   className="emotion-0"
+  style={Object {}}
 >
   <div
     className="emotion-1"

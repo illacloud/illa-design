@@ -2,6 +2,10 @@
 
 exports[`AvatarGroup renders with max count 1`] = `
 .emotion-0 {
+  display: inline-block;
+}
+
+.emotion-1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -15,14 +19,15 @@ exports[`AvatarGroup renders with max count 1`] = `
   align-items: center;
 }
 
-.emotion-1 {
+.emotion-2 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-.emotion-2 {
+.emotion-3 {
   background-color: #2a3ed6;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -51,7 +56,7 @@ exports[`AvatarGroup renders with max count 1`] = `
   border-radius: 50%;
 }
 
-.emotion-8 {
+.emotion-9 {
   background-color: #c2c2c2;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -80,23 +85,25 @@ exports[`AvatarGroup renders with max count 1`] = `
   border-radius: 50%;
 }
 
-<div>
+<div
+  className="emotion-0"
+>
   <div
-    className="emotion-0"
+    className="emotion-1"
   >
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "0px",
-          "zIndex": 4,
+          "zIndex": "4",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           A
@@ -104,18 +111,18 @@ exports[`AvatarGroup renders with max count 1`] = `
       </div>
     </div>
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "-8px",
-          "zIndex": 3,
+          "zIndex": "3",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           B
@@ -123,18 +130,18 @@ exports[`AvatarGroup renders with max count 1`] = `
       </div>
     </div>
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "-8px",
-          "zIndex": 2,
+          "zIndex": "2",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           C
@@ -142,18 +149,18 @@ exports[`AvatarGroup renders with max count 1`] = `
       </div>
     </div>
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "-8px",
-          "zIndex": 1,
+          "zIndex": "1",
         }
       }
     >
       <div
-        className="emotion-8"
+        className="emotion-9"
       >
         <span>
           +2
@@ -166,6 +173,10 @@ exports[`AvatarGroup renders with max count 1`] = `
 
 exports[`AvatarGroup renders with three props 1`] = `
 .emotion-0 {
+  display: inline-block;
+}
+
+.emotion-1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -179,14 +190,15 @@ exports[`AvatarGroup renders with three props 1`] = `
   align-items: center;
 }
 
-.emotion-1 {
+.emotion-2 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-.emotion-2 {
+.emotion-3 {
   background-color: #e07800;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -215,23 +227,25 @@ exports[`AvatarGroup renders with three props 1`] = `
   border-radius: 50%;
 }
 
-<div>
+<div
+  className="emotion-0"
+>
   <div
-    className="emotion-0"
+    className="emotion-1"
   >
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "0px",
-          "zIndex": 5,
+          "zIndex": "5",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           A
@@ -239,18 +253,18 @@ exports[`AvatarGroup renders with three props 1`] = `
       </div>
     </div>
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "-20px",
-          "zIndex": 4,
+          "zIndex": "4",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           B
@@ -258,18 +272,18 @@ exports[`AvatarGroup renders with three props 1`] = `
       </div>
     </div>
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "-20px",
-          "zIndex": 3,
+          "zIndex": "3",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           C
@@ -277,18 +291,18 @@ exports[`AvatarGroup renders with three props 1`] = `
       </div>
     </div>
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "-20px",
-          "zIndex": 2,
+          "zIndex": "2",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           D
@@ -296,18 +310,18 @@ exports[`AvatarGroup renders with three props 1`] = `
       </div>
     </div>
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "-20px",
-          "zIndex": 1,
+          "zIndex": "1",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           E
@@ -320,6 +334,10 @@ exports[`AvatarGroup renders with three props 1`] = `
 
 exports[`AvatarGroup renders with zIndexAscend 1`] = `
 .emotion-0 {
+  display: inline-block;
+}
+
+.emotion-1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -333,14 +351,15 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
   align-items: center;
 }
 
-.emotion-1 {
+.emotion-2 {
+  vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-.emotion-2 {
+.emotion-3 {
   background-color: #2a3ed6;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -369,23 +388,25 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
   border-radius: 50%;
 }
 
-<div>
+<div
+  className="emotion-0"
+>
   <div
-    className="emotion-0"
+    className="emotion-1"
   >
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "0px",
-          "zIndex": 0,
+          "zIndex": "0",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           A
@@ -393,18 +414,18 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
       </div>
     </div>
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "-8px",
-          "zIndex": 1,
+          "zIndex": "1",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           B
@@ -412,18 +433,18 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
       </div>
     </div>
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "-8px",
-          "zIndex": 2,
+          "zIndex": "2",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           C
@@ -431,18 +452,18 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
       </div>
     </div>
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "-8px",
-          "zIndex": 3,
+          "zIndex": "3",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           D
@@ -450,18 +471,18 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
       </div>
     </div>
     <div
-      className="emotion-1"
+      className="emotion-2"
       style={
         Object {
           "border": "solid 2px #fff",
           "borderRadius": "50%",
           "marginLeft": "-8px",
-          "zIndex": 4,
+          "zIndex": "4",
         }
       }
     >
       <div
-        className="emotion-2"
+        className="emotion-3"
       >
         <span>
           E

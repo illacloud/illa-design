@@ -6,6 +6,7 @@ exports[`Tag renders with color and variant 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -41,6 +42,7 @@ exports[`Tag renders with color and variant 2`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -76,6 +78,7 @@ exports[`Tag renders with color and variant 3`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -111,6 +114,7 @@ exports[`Tag renders with color and variant 4`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -146,6 +150,7 @@ exports[`Tag renders with color and variant 5`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -181,6 +186,7 @@ exports[`Tag renders with color and variant 6`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -216,6 +222,7 @@ exports[`Tag renders with color and variant 7`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -251,6 +258,7 @@ exports[`Tag renders with color and variant 8`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -286,6 +294,7 @@ exports[`Tag renders with color and variant 9`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  vertical-align: middle;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
