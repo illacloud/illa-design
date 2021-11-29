@@ -6,8 +6,8 @@
   ],
   "commit": false,
   "linked": [],
-  "access": "public",
-  "baseBranch": "publish",
+  "access": "restricted",
+  "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": []
 }

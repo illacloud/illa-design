@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tag renders with color and variant 1`] = `
-.emotion-0 {
+<DocumentFragment>
+  .emotion-0 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -26,18 +27,20 @@ exports[`Tag renders with color and variant 1`] = `
 }
 
 <div
-  className="emotion-0"
->
-  <span
-    className="emotion-1"
+    class="emotion-0"
   >
-    Hello World
-  </span>
-</div>
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Tag renders with color and variant 2`] = `
-.emotion-0 {
+<DocumentFragment>
+  .emotion-0 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -62,18 +65,20 @@ exports[`Tag renders with color and variant 2`] = `
 }
 
 <div
-  className="emotion-0"
->
-  <span
-    className="emotion-1"
+    class="emotion-0"
   >
-    Hello World
-  </span>
-</div>
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Tag renders with color and variant 3`] = `
-.emotion-0 {
+<DocumentFragment>
+  .emotion-0 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -98,18 +103,20 @@ exports[`Tag renders with color and variant 3`] = `
 }
 
 <div
-  className="emotion-0"
->
-  <span
-    className="emotion-1"
+    class="emotion-0"
   >
-    Hello World
-  </span>
-</div>
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Tag renders with color and variant 4`] = `
-.emotion-0 {
+<DocumentFragment>
+  .emotion-0 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -134,18 +141,20 @@ exports[`Tag renders with color and variant 4`] = `
 }
 
 <div
-  className="emotion-0"
->
-  <span
-    className="emotion-1"
+    class="emotion-0"
   >
-    Hello World
-  </span>
-</div>
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Tag renders with color and variant 5`] = `
-.emotion-0 {
+<DocumentFragment>
+  .emotion-0 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -170,18 +179,20 @@ exports[`Tag renders with color and variant 5`] = `
 }
 
 <div
-  className="emotion-0"
->
-  <span
-    className="emotion-1"
+    class="emotion-0"
   >
-    Hello World
-  </span>
-</div>
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Tag renders with color and variant 6`] = `
-.emotion-0 {
+<DocumentFragment>
+  .emotion-0 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -206,18 +217,20 @@ exports[`Tag renders with color and variant 6`] = `
 }
 
 <div
-  className="emotion-0"
->
-  <span
-    className="emotion-1"
+    class="emotion-0"
   >
-    Hello World
-  </span>
-</div>
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Tag renders with color and variant 7`] = `
-.emotion-0 {
+<DocumentFragment>
+  .emotion-0 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -242,18 +255,20 @@ exports[`Tag renders with color and variant 7`] = `
 }
 
 <div
-  className="emotion-0"
->
-  <span
-    className="emotion-1"
+    class="emotion-0"
   >
-    Hello World
-  </span>
-</div>
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Tag renders with color and variant 8`] = `
-.emotion-0 {
+<DocumentFragment>
+  .emotion-0 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -278,18 +293,20 @@ exports[`Tag renders with color and variant 8`] = `
 }
 
 <div
-  className="emotion-0"
->
-  <span
-    className="emotion-1"
+    class="emotion-0"
   >
-    Hello World
-  </span>
-</div>
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Tag renders with color and variant 9`] = `
-.emotion-0 {
+<DocumentFragment>
+  .emotion-0 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -314,12 +331,127 @@ exports[`Tag renders with color and variant 9`] = `
 }
 
 <div
-  className="emotion-0"
->
-  <span
-    className="emotion-1"
+    class="emotion-0"
   >
-    Hello World
-  </span>
-</div>
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Tag renders with different size 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 1px;
+  background-color: #ebebeb;
+  color: #1f1f1f;
+  padding: 1px 8px;
+}
+
+.emotion-1 {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+<div
+    class="emotion-0"
+  >
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Tag renders with different size 2`] = `
+<DocumentFragment>
+  .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 1px;
+  background-color: #ebebeb;
+  color: #1f1f1f;
+  padding: 3px 8px;
+}
+
+.emotion-1 {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+<div
+    class="emotion-0"
+  >
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Tag renders with different size 3`] = `
+<DocumentFragment>
+  .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 1px;
+  background-color: #ebebeb;
+  color: #1f1f1f;
+  padding: 5px 8px;
+}
+
+.emotion-1 {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+<div
+    class="emotion-0"
+  >
+    <span
+      class="emotion-1"
+    >
+      Hello World
+    </span>
+  </div>
+</DocumentFragment>
 `;

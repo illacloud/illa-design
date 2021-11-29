@@ -1,35 +1,35 @@
-import { create } from "react-test-renderer"
 import { Image } from "../src"
 import { BsFacebook } from "react-icons/bs"
-import { fireEvent, getByRole, render } from "@testing-library/react"
+import { fireEvent, getByRole, render, screen } from "@testing-library/react"
+import "@testing-library/jest-dom"
 
 test("Image renders with default fallback", () => {
-  const node = create(<Image className="test-image-render-fallback-default" />)
-  expect(node.root.findByType(Image).props.className).toBe("test-image-render-fallback-default")
+  render(<Image data-testid="test-image-render-fallback-default" />)
+  expect(screen.getByTestId("test-image-render-fallback-default")).toBeInTheDocument()
 })
 
 test("Image renders with fallback src", () => {
-  const node = create(
-    <Image className="test-image-render-fallback-src"
+  render(
+    <Image data-testid="test-image-render-fallback-src"
            fallbackSrc={"https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"} />,
   )
-  expect(node.root.findByType(Image).props.className).toBe("test-image-render-fallback-src")
+  expect(screen.getByTestId("test-image-render-fallback-src")).toBeInTheDocument()
 })
 
 test("Image renders with fallback icon", () => {
-  const node = create(
-    <Image className="test-image-render-fallback-icon"
+  render(
+    <Image data-testid="test-image-render-fallback-icon"
            fallback={<BsFacebook />} />,
   )
-  expect(node.root.findByType(Image).props.className).toBe("test-image-render-fallback-icon")
+  expect(screen.getByTestId("test-image-render-fallback-icon")).toBeInTheDocument()
 })
 
 test("Image renders with size", () => {
-  const node = create(
+  render(
     <Image height="200px" width="200px"
            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />,
-  ).toJSON()
-  expect(node).toMatchSnapshot()
+  )
+  expect(screen.getByRole("img")).toHaveAttribute("src", "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
 })
 
 test("Image renders with event", () => {

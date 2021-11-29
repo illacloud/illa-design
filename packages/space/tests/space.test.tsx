@@ -1,10 +1,10 @@
 import * as React from "react"
-import { render } from "@testing-library/react"
+import { render,screen } from "@testing-library/react"
 import { Space } from "../src"
 import "@testing-library/jest-dom"
 
 test("Space renders with different size", () => {
-  const { getByTestId } = render(<div>
+  render(<div>
     <Space size="mini">
     <span>
       A
@@ -46,25 +46,25 @@ test("Space renders with different size", () => {
     </span>
     </Space>
   </div>)
-  expect(getByTestId("test-space-mini").parentNode).toHaveStyle({
+  expect(screen.getByTestId("test-space-mini").parentNode).toHaveStyle({
     "margin-left": "4px",
   })
-  expect(getByTestId("test-space-small").parentNode).toHaveStyle({
+  expect(screen.getByTestId("test-space-small").parentNode).toHaveStyle({
     "margin-left": "8px",
   })
-  expect(getByTestId("test-space-medium").parentNode).toHaveStyle({
+  expect(screen.getByTestId("test-space-medium").parentNode).toHaveStyle({
     "margin-left": "16px",
   })
-  expect(getByTestId("test-space-large").parentNode).toHaveStyle({
+  expect(screen.getByTestId("test-space-large").parentNode).toHaveStyle({
     "margin-left": "24px",
   })
-  expect(getByTestId("test-space-custom").parentNode).toHaveStyle({
+  expect(screen.getByTestId("test-space-custom").parentNode).toHaveStyle({
     "margin-left": "30px",
   })
 })
 
 test("Space renders with different direction", () => {
-  const { getByTestId } = render(<div>
+  render(<div>
     <Space direction="horizontal">
     <span>
       A
@@ -82,8 +82,8 @@ test("Space renders with different direction", () => {
     </span>
     </Space>
   </div>)
-  expect(getByTestId("test-space-mini").parentNode).toHaveStyle("margin-left:8px")
-  expect(getByTestId("test-space-small").parentNode).toHaveStyle("margin-top:8px")
+  expect(screen.getByTestId("test-space-mini").parentNode).toHaveStyle("margin-left:8px")
+  expect(screen.getByTestId("test-space-small").parentNode).toHaveStyle("margin-top:8px")
 })
 
 test("Space renders with different align", () => {
