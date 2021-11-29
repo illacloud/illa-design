@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Divider renders default 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  border-width: 0 0 0 1px;
+  border-image: initial;
+  border-color: #ebebeb;
+  border-style: solid;
+  height: 1em;
+}
+
+<div
+    class="emotion-0"
+  />
+</DocumentFragment>
+`;
+
 exports[`Divider renders horizontal 1`] = `
 <DocumentFragment>
   .emotion-0 {
