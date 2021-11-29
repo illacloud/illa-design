@@ -20,7 +20,7 @@
 
 Building
 
-## 🖥 Try it fast
+## 🖥 Fast Try
 
 You can quickly use ILLA Design on codesandbox
 
