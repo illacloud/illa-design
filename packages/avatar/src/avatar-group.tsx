@@ -64,9 +64,8 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>((props, 
   })
   return <div css={css`
     display: inline-block;
+    ${avatarGroupCss};
   `} ref={ref} {...otherProps}>
-    <div css={avatarGroupCss}>
-      {newNodeList}
-    </div>
+    {newNodeList}
   </div>
 })
