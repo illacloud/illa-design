@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { forwardRef } from "react"
 import { IconProps } from "./interface"
 import { css, keyframes } from "@emotion/react"
