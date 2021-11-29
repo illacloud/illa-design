@@ -20,7 +20,11 @@
 
 Building
 
-## 🖥 Codesandbox
+## 🖥 Fast Try
+
+You can quickly use ILLA Design on codesandbox
+
+[![Edit compassionate-tdd-rxcco](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/compassionate-tdd-rxcco?fontsize=14&hidenavigation=1&theme=dark)
 
 ## ⌨️ Development
 
