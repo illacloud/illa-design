@@ -1,6 +1,11 @@
 import { render } from "@testing-library/react"
 import { Divider } from "../src"
 
+test("Divider renders default", () => {
+  const { asFragment } = render(<Divider />)
+  expect(asFragment()).toMatchSnapshot()
+})
+
 test("Divider renders horizontal", () => {
   const { asFragment } = render(<Divider direction="horizontal" variant="solid" />)
   expect(asFragment()).toMatchSnapshot()

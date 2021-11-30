@@ -22,11 +22,169 @@ exports[`Space renders with different align 1`] = `
 }
 
 .emotion-1 {
-  margin-left: 0px;
+  margin-right: 8px;
+  margin-bottom: 0px;
 }
 
 .emotion-2 {
-  margin-left: 8px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+<div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-1"
+    >
+      <span>
+        A
+      </span>
+    </div>
+    <div
+      class="emotion-2"
+    >
+      <span>
+        B
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Space renders with different align 2`] = `
+<DocumentFragment>
+  .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.emotion-1 {
+  margin-right: 8px;
+  margin-bottom: 0px;
+}
+
+.emotion-2 {
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+<div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-1"
+    >
+      <span>
+        A
+      </span>
+    </div>
+    <div
+      class="emotion-2"
+    >
+      <span>
+        B
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Space renders with different align 3`] = `
+<DocumentFragment>
+  .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: end;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: end;
+  -webkit-box-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.emotion-1 {
+  margin-right: 8px;
+  margin-bottom: 0px;
+}
+
+.emotion-2 {
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+<div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-1"
+    >
+      <span>
+        A
+      </span>
+    </div>
+    <div
+      class="emotion-2"
+    >
+      <span>
+        B
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Space renders with different align 4`] = `
+<DocumentFragment>
+  .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: baseline;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  -webkit-box-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.emotion-1 {
+  margin-right: 8px;
+  margin-bottom: 0px;
+}
+
+.emotion-2 {
+  margin-right: 0px;
+  margin-bottom: 0px;
 }
 
 <div
@@ -72,11 +230,8 @@ exports[`Space renders with divider 1`] = `
 }
 
 .emotion-1 {
-  margin-left: 0px;
-}
-
-.emotion-2 {
-  margin-left: 8px;
+  margin-right: 8px;
+  margin-bottom: 0px;
 }
 
 .emotion-3 {
@@ -87,6 +242,11 @@ exports[`Space renders with divider 1`] = `
   border-color: #ebebeb;
   border-style: solid;
   height: 1em;
+}
+
+.emotion-4 {
+  margin-right: 0px;
+  margin-bottom: 0px;
 }
 
 <div
@@ -100,13 +260,93 @@ exports[`Space renders with divider 1`] = `
       </span>
     </div>
     <div
-      class="emotion-2 emotion-3"
+      class="emotion-1 emotion-3"
     />
     <div
-      class="emotion-2"
+      class="emotion-4"
     >
       <span>
         B
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Space renders with wrap 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.emotion-1 {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.emotion-6 {
+  margin-right: 0px;
+  margin-bottom: 8px;
+}
+
+<div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-1"
+    >
+      <span>
+        A
+      </span>
+    </div>
+    <div
+      class="emotion-1"
+    >
+      <span>
+        B
+      </span>
+    </div>
+    <div
+      class="emotion-1"
+    >
+      <span>
+        C
+      </span>
+    </div>
+    <div
+      class="emotion-1"
+    >
+      <span>
+        D
+      </span>
+    </div>
+    <div
+      class="emotion-1"
+    >
+      <span>
+        E
+      </span>
+    </div>
+    <div
+      class="emotion-6"
+    >
+      <span>
+        F
       </span>
     </div>
   </div>

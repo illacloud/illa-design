@@ -24,38 +24,78 @@ function applyContainer(direction: SpaceDirection, align: SpaceAlign, wrap: bool
   `
 }
 
-function applyDividerSize(size: SpaceSize, direction: SpaceDirection, isStart: boolean): SerializedStyles {
-  let cssSize: string
-  if (isStart) {
-    cssSize = "0px"
+function applyDividerSizeSingle(size: SpaceSize, direction: SpaceDirection, wrap: boolean, isLast: boolean): SerializedStyles {
+  let horSpace, verSpace: string
+  switch (direction) {
+    case "horizontal":
+      horSpace = direction == "horizontal" && !isLast ? getSpaceSize(size) : "0px"
+      verSpace = wrap ? getSpaceSize(size) : "0px"
+      break
+    case "vertical":
+      verSpace = direction == "vertical" && !isLast ? getSpaceSize(size) : "0px"
+      horSpace = wrap ? getSpaceSize(size) : "0px"
+      break
+  }
+  return css`
+    margin-right: ${horSpace};
+    margin-bottom: ${verSpace};
+  `
+}
+
+function applyDividerMultiSize(size: SpaceSize[], direction: SpaceDirection, isLast: boolean): SerializedStyles {
+  let horSpace, verSpace: string
+  switch (direction) {
+    case "horizontal":
+      horSpace = direction == "horizontal" && !isLast ? getSpaceSize(size[0]) : "0px"
+      verSpace = getSpaceSize(size[1])
+      break
+    case "vertical":
+      verSpace = direction == "vertical" && !isLast ? getSpaceSize(size[1]) : "0px"
+      horSpace = getSpaceSize(size[0])
+      break
+  }
+  return css`
+    margin-right: ${horSpace};
+    margin-bottom: ${verSpace};
+  `
+}
+
+function applyDividerSize(size: SpaceSize | SpaceSize[], direction: SpaceDirection, wrap: boolean, isLast: boolean): SerializedStyles {
+  if (typeof size == "string") {
+    return applyDividerSizeSingle(size, direction, wrap, isLast)
   } else {
-    switch (size) {
-      case "mini":
-        cssSize = "4px"
-        break
-      case "small":
-        cssSize = "8px"
-        break
-      case "medium":
-        cssSize = "16px"
-        break
-      case "large":
-        cssSize = "24px"
-        break
-      default:
-        cssSize = size
-        break
+    if (size.length == 1) {
+      return applyDividerSizeSingle(size[0], direction, wrap, isLast)
+    }
+    if (size.length >= 2) {
+      if (wrap) {
+        return applyDividerMultiSize(size, direction, isLast)
+      } else {
+        switch (direction) {
+          case "horizontal":
+            return applyDividerSizeSingle(size[0], direction, wrap, isLast)
+          case "vertical":
+            return applyDividerSizeSingle(size[1], direction, wrap, isLast)
+        }
+      }
+    } else {
+      return css``
     }
   }
-  switch (direction) {
-    case "vertical":
-      return css`
-        margin-top: ${cssSize};
-      `
-    case "horizontal":
-      return css`
-        margin-left: ${cssSize};
-      `
+}
+
+function getSpaceSize(size: SpaceSize): string {
+  switch (size) {
+    case "mini":
+      return "4px"
+    case "small":
+      return "8px"
+    case "medium":
+      return "16px"
+    case "large":
+      return "24px"
+    default:
+      return size
   }
 }
 
@@ -75,9 +115,9 @@ export const Space = forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
   return <div css={applyContainer(direction, align, wrap)} ref={ref} {...otherProps}>
     {childrenArray.map((child, index) => {
       return <Fragment key={index}>
-        {index != 0 && divider ? <Divider css={applyDividerSize(size, direction, index == 0)}
+        {index != 0 && divider ? <Divider css={applyDividerSize(size, direction, wrap, false)}
                                           direction={direction == "horizontal" ? "vertical" as DividerDirection : "horizontal" as DividerDirection} /> : null}
-        <div css={applyDividerSize(size, direction, index == 0)}>
+        <div css={applyDividerSize(size, direction, wrap, index == childrenArray.length - 1)}>
           {child}
         </div>
       </Fragment>

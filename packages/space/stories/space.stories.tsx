@@ -44,13 +44,10 @@ export default {
 
 const Template: Story<SpaceProps> = (props) => {
   return <Space {...props} style={{
-    width: "100px",
+    width: "300px",
   }}>
-    <Tag size="large">B</Tag>
+    <Tag>B</Tag>
     <Tag>我</Tag>
-    <Image style={{
-      marginLeft: "10px",
-    }} src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />
     <Tag>English</Tag>
     <Tag>开</Tag>
   </Space>

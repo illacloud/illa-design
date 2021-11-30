@@ -175,7 +175,7 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
       font-size: 14px;
       line-height: 22px;
     `}>{props.children}</span>
-    {props.closable && <CloseIcon measure="7px" css={closeIcon} onClick={() => {
+    {props.closable && <CloseIcon size="7px" css={closeIcon} onClick={() => {
       if (props.onClose != undefined) {
         props.onClose()
       }

@@ -3,7 +3,7 @@ import { Meta, Story } from "@storybook/react"
 import { Avatar, AvatarGroup, AvatarProps } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
-import { BsFacebook, BsGithub, BsMailbox, BsTwitch } from "react-icons/bs"
+import { BsGithub, BsMailbox, BsTwitch } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {
