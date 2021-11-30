@@ -1,13 +1,14 @@
 <div align="center">
-    <img alt="ILLA Design Logo" src="https://raw.githubusercontent.com/illa-family/illa-design/d1a15466dd0eaa7975669e0e479c605e455efb64/illa_logo.svg"/>
+    <img alt="ILLA Design Logo" width="120px" height="120px" src="./badges/logo.svg"/>
 </div>
 
 <h1 align="center">ILLA Design</h1>
 
 <div align="center">
-  <p>Build system with aesthetics and speed.</p>
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-design/graphs/contributors">contributors</a></p>
 </div>
+
+![cover](./badges/cover.png)
 
 [![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
 [![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
@@ -19,7 +20,7 @@
 ## ✨ Features
 
 1. 🛠 **Made for React & Vue3 & Svelte:** Ready-to-use component library for React, Vue 3(in progress) and Svelte JavaScript
-   complier(in progress).
+   Framework(in progress).
 2. 📝 **TypeScript Friendly:** Come with TypeScript typings out of the box and support with predictable static typings.
 3. 📦 **High Productivity:** Easy and fast, import in 5 seconds.
 4. 🎨 **Vibrant Design:** Beautifully designed components and powerful theming system supports custom themes to match your
