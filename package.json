@@ -36,7 +36,7 @@
   ],
   "resolutions": {
     "glob-parent": "^6.0.1",
-    "ansi-regex": "^6.0.1",
+    "wide-align": "^1.1.5",
     "json-schema": "^0.4.0",
     "immer": "^9.0.7",
     "browserslist": "^4.18.1",
