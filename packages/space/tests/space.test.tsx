@@ -61,6 +61,14 @@ test("Space renders with different size", () => {
       B
     </span>
     </Space>
+    <Space size={[]}>
+    <span>
+      A
+    </span>
+      <span data-testid="test-space-without-custom">
+      B
+    </span>
+    </Space>
   </div>)
   expect(screen.getByTestId("test-space-mini").parentNode).toHaveStyle({
     "margin-left": "4px",
@@ -93,6 +101,10 @@ test("Space renders with different size", () => {
   expect(screen.getByTestId("test-space-custom-2").parentNode).toHaveStyle({
     "margin-left": "8px",
     "margin-bottom": "30px",
+  })
+  expect(screen.getByTestId("test-space-without-custom").parentNode).toHaveStyle({
+    "margin-left": "0px",
+    "margin-bottom": "0px",
   })
 })
 
