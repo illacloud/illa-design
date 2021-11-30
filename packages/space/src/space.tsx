@@ -42,8 +42,25 @@ function applyDividerSizeSingle(size: SpaceSize, direction: SpaceDirection, wrap
   `
 }
 
-function applyDividerSize(size: SpaceSize | SpaceSize[], direction: SpaceDirection, wrap: boolean, isLast: boolean): SerializedStyles {
+function applyDividerMultiSize(size: SpaceSize[], direction: SpaceDirection, isLast: boolean): SerializedStyles {
   let horSpace, verSpace: string
+  switch (direction) {
+    case "horizontal":
+      horSpace = direction == "horizontal" && !isLast ? getSpaceSize(size[0]) : "0px"
+      verSpace = getSpaceSize(size[1])
+      break
+    case "vertical":
+      verSpace = direction == "vertical" && !isLast ? getSpaceSize(size[1]) : "0px"
+      horSpace = getSpaceSize(size[0])
+      break
+  }
+  return css`
+    margin-right: ${horSpace};
+    margin-bottom: ${verSpace};
+  `
+}
+
+function applyDividerSize(size: SpaceSize | SpaceSize[], direction: SpaceDirection, wrap: boolean, isLast: boolean): SerializedStyles {
   if (typeof size == "string") {
     return applyDividerSizeSingle(size, direction, wrap, isLast)
   } else {
@@ -51,17 +68,20 @@ function applyDividerSize(size: SpaceSize | SpaceSize[], direction: SpaceDirecti
       return applyDividerSizeSingle(size[0], direction, wrap, isLast)
     }
     if (size.length >= 2) {
-      horSpace = getSpaceSize(size[0])
-      verSpace = getSpaceSize(size[1])
+      if (wrap) {
+        return applyDividerMultiSize(size, direction, isLast)
+      } else {
+        switch (direction) {
+          case "horizontal":
+            return applyDividerSizeSingle(size[0], direction, wrap, isLast)
+          case "vertical":
+            return applyDividerSizeSingle(size[1], direction, wrap, isLast)
+        }
+      }
     } else {
-      horSpace = "0px"
-      verSpace = "0px"
+      return css``
     }
   }
-  return css`
-    margin-right: ${horSpace};
-    margin-bottom: ${verSpace};
-  `
 }
 
 function getSpaceSize(size: SpaceSize): string {
