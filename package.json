@@ -34,6 +34,14 @@
   "workspaces": [
     "packages/*"
   ],
+  "resolutions": {
+    "glob-parent": "^6.0.1",
+    "ansi-regex": "^5.1.0",
+    "json-schema": "^0.4.0",
+    "immer": "^9.0.6",
+    "browserslist": "^4.16.5",
+    "trim": "^0.0.3"
+  },
   "scripts": {
     "storybook": "npx start-storybook -p 6006",
     "build-all-components": "npx zx ./scripts/build-all-components.mjs",
