@@ -18,18 +18,20 @@
 
 ## ✨ Features
 
-1. Made for React & Vue3  & Svelte：Ready-to-use component library for React, Vue 3(in progress) and Svelte JavaScript complier(in progress).
-2. TypeScript Friendly: Come with TypeScript typings out of the box and support with predictable static typings.
-3. High Productivity: Easy and fast, import  in 5 seconds.
-4. Vibrant Design: Beautifully designed components and powerful theming system supports custom themes to match your brand, including light and dark mode.
-5. Internationalization: Each component was designed with i18n in mind and multiple languages are supported.
-6. Fully Responsive: Perfectly adaptable with all the devices, desktops to mobiles.
+1. 🛠 Made for React & Vue3  & Svelte：Ready-to-use component library for React, Vue 3(in progress) and Svelte JavaScript complier(in progress).
+2. 📝 TypeScript Friendly: Come with TypeScript typings out of the box and support with predictable static typings.
+3. 📦 High Productivity: Easy and fast, import  in 5 seconds.
+4. 🎨 Vibrant Design: Beautifully designed components and powerful theming system supports custom themes to match your brand, including light and dark mode.
+5. 🌍 Internationalization: Each component was designed with i18n in mind and multiple languages are supported.
+6. 📱 Fully Responsive: Perfectly adaptable with all the devices, desktops to mobiles.
 
 ## 🖥 Fast Try
 
 You can quickly use ILLA Design on codesandbox
 
 [![Edit compassionate-tdd-rxcco](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/compassionate-tdd-rxcco?fontsize=14&hidenavigation=1&theme=dark)
+
+## 
 
 ## ⌨️ Development
 
