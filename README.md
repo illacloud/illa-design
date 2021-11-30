@@ -5,9 +5,10 @@
 <h1 align="center">ILLA Design</h1>
 
 <div align="center">
-  <p>Build system with aesthetics and speed.</p>
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-design/graphs/contributors">contributors</a></p>
 </div>
+
+![cover](./badges/cover.png)
 
 [![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
 [![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
@@ -17,8 +18,6 @@
 [![license](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
 
 ## ✨ Features
-
-![cover](./badges/cover.png)
 
 1. 🛠 **Made for React & Vue3 & Svelte:** Ready-to-use component library for React, Vue 3(in progress) and Svelte JavaScript
    Framework(in progress).
