@@ -24,38 +24,43 @@ function applyContainer(direction: SpaceDirection, align: SpaceAlign, wrap: bool
   `
 }
 
-function applyDividerSize(size: SpaceSize, direction: SpaceDirection, isStart: boolean): SerializedStyles {
-  let cssSize: string
+function applyDividerSize(size: SpaceSize | SpaceSize[], isStart: boolean): SerializedStyles {
+  let horSpace, verSpace: string
+
+  if (typeof size == "string") {
+    horSpace = verSpace = getSpaceSize(size, isStart)
+  } else {
+    if (size.length == 1) {
+      horSpace = verSpace = getSpaceSize(size[0], isStart)
+    } else if (size.length >= 2) {
+      horSpace = getSpaceSize(size[0], isStart)
+      verSpace = getSpaceSize(size[1], isStart)
+    } else {
+      horSpace = verSpace = getSpaceSize(size[0], isStart)
+    }
+  }
+  return css`
+    margin-right: ${horSpace};
+    margin-bottom: ${verSpace};
+  `
+}
+
+function getSpaceSize(size: SpaceSize, isStart: boolean): string {
   if (isStart) {
-    cssSize = "0px"
+    return "0px"
   } else {
     switch (size) {
       case "mini":
-        cssSize = "4px"
-        break
+        return "4px"
       case "small":
-        cssSize = "8px"
-        break
+        return "8px"
       case "medium":
-        cssSize = "16px"
-        break
+        return "16px"
       case "large":
-        cssSize = "24px"
-        break
+        return "24px"
       default:
-        cssSize = size
-        break
+        return size
     }
-  }
-  switch (direction) {
-    case "vertical":
-      return css`
-        margin-top: ${cssSize};
-      `
-    case "horizontal":
-      return css`
-        margin-left: ${cssSize};
-      `
   }
 }
 
@@ -75,9 +80,9 @@ export const Space = forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
   return <div css={applyContainer(direction, align, wrap)} ref={ref} {...otherProps}>
     {childrenArray.map((child, index) => {
       return <Fragment key={index}>
-        {index != 0 && divider ? <Divider css={applyDividerSize(size, direction, index == 0)}
+        {index != 0 && divider ? <Divider css={applyDividerSize(size, index == 0)}
                                           direction={direction == "horizontal" ? "vertical" as DividerDirection : "horizontal" as DividerDirection} /> : null}
-        <div css={applyDividerSize(size, direction, index == 0)}>
+        <div css={applyDividerSize(size, index == 0)}>
           {child}
         </div>
       </Fragment>

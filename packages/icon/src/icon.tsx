@@ -20,14 +20,14 @@ const rotateAnimation = css`
 export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
 
   const {
-    width = props.measure ?? "1em",
-    height = props.measure ?? "1em",
+    width = props.size ?? "1em",
+    height = props.size ?? "1em",
     color = "currentColor",
     spin = false,
     ...rest
   } = props
 
-  const otherProps = omit(rest, ["measure"])
+  const otherProps = omit(rest, ["size"])
 
   const finalCss = spin ? css`
     ${rotateAnimation};

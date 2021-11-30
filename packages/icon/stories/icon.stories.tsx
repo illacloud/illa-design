@@ -17,7 +17,7 @@ export default {
         type: "boolean",
       },
     },
-    measure: {
+    size: {
       control: {
         type: "text",
       },

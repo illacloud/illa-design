@@ -47,19 +47,24 @@ test("Space renders with different size", () => {
     </Space>
   </div>)
   expect(screen.getByTestId("test-space-mini").parentNode).toHaveStyle({
-    "margin-left": "4px",
+    "margin-right": "4px",
+    "margin-bottom": "4px",
   })
   expect(screen.getByTestId("test-space-small").parentNode).toHaveStyle({
-    "margin-left": "8px",
+    "margin-right": "8px",
+    "margin-bottom": "8px",
   })
   expect(screen.getByTestId("test-space-medium").parentNode).toHaveStyle({
-    "margin-left": "16px",
+    "margin-right": "16px",
+    "margin-bottom": "16px",
   })
   expect(screen.getByTestId("test-space-large").parentNode).toHaveStyle({
-    "margin-left": "24px",
+    "margin-right": "24px",
+    "margin-bottom": "24px",
   })
   expect(screen.getByTestId("test-space-custom").parentNode).toHaveStyle({
-    "margin-left": "30px",
+    "margin-right": "30px",
+    "margin-bottom": "30px",
   })
 })
 
@@ -82,8 +87,8 @@ test("Space renders with different direction", () => {
     </span>
     </Space>
   </div>)
-  expect(screen.getByTestId("test-space-mini").parentNode).toHaveStyle("margin-left:8px")
-  expect(screen.getByTestId("test-space-small").parentNode).toHaveStyle("margin-top:8px")
+  expect(screen.getByTestId("test-space-mini").parentNode).toHaveStyle("margin-right:8px")
+  expect(screen.getByTestId("test-space-small").parentNode).toHaveStyle("margin-bottom:8px")
 })
 
 test("Space renders with different align", () => {

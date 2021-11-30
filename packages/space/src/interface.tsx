@@ -5,7 +5,7 @@ export type SpaceAlign = "start" | "center" | "end" | "baseline"
 export type SpaceDirection = "vertical" | "horizontal"
 
 export interface SpaceProps extends HTMLAttributes<HTMLDivElement> {
-  size?: SpaceSize
+  size?: SpaceSize | SpaceSize[]
   align?: SpaceAlign
   direction?: SpaceDirection
   divider?: boolean
