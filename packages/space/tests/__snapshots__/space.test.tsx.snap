@@ -22,12 +22,12 @@ exports[`Space renders with different align 1`] = `
 }
 
 .emotion-1 {
-  margin-right: 0px;
-  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-bottom: 8px;
 }
 
 .emotion-2 {
-  margin-right: 8px;
+  margin-left: 8px;
   margin-bottom: 8px;
 }
 
@@ -74,12 +74,12 @@ exports[`Space renders with divider 1`] = `
 }
 
 .emotion-1 {
-  margin-right: 0px;
-  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-bottom: 8px;
 }
 
 .emotion-2 {
-  margin-right: 8px;
+  margin-left: 8px;
   margin-bottom: 8px;
 }
 

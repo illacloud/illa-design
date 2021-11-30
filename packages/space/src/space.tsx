@@ -28,25 +28,28 @@ function applyDividerSize(size: SpaceSize | SpaceSize[], isStart: boolean): Seri
   let horSpace, verSpace: string
 
   if (typeof size == "string") {
-    horSpace = verSpace = getSpaceSize(size, isStart)
+    horSpace = getSpaceSize(size, false, isStart)
+    verSpace = getSpaceSize(size, true, isStart)
   } else {
     if (size.length == 1) {
-      horSpace = verSpace = getSpaceSize(size[0], isStart)
+      horSpace = getSpaceSize(size[0], false, isStart)
+      verSpace = getSpaceSize(size[0], true, isStart)
     } else if (size.length >= 2) {
-      horSpace = getSpaceSize(size[0], isStart)
-      verSpace = getSpaceSize(size[1], isStart)
+      horSpace = getSpaceSize(size[0], false, isStart)
+      verSpace = getSpaceSize(size[1], true, isStart)
     } else {
-      horSpace = verSpace = getSpaceSize(size[0], isStart)
+      horSpace = getSpaceSize("0px", false, isStart)
+      verSpace = getSpaceSize("0px", true, isStart)
     }
   }
   return css`
-    margin-right: ${horSpace};
+    margin-left: ${horSpace};
     margin-bottom: ${verSpace};
   `
 }
 
-function getSpaceSize(size: SpaceSize, isStart: boolean): string {
-  if (isStart) {
+function getSpaceSize(size: SpaceSize, isVertical: boolean, isStart: boolean): string {
+  if (isStart && !isVertical) {
     return "0px"
   } else {
     switch (size) {

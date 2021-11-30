@@ -1,12 +1,12 @@
 import * as React from "react"
-import { render,screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { Space } from "../src"
 import "@testing-library/jest-dom"
 
 test("Space renders with different size", () => {
   render(<div>
     <Space size="mini">
-    <span>
+    <span data-testid="test-space-mini-A">
       A
     </span>
       <span data-testid="test-space-mini">
@@ -45,25 +45,53 @@ test("Space renders with different size", () => {
       B
     </span>
     </Space>
+    <Space size={["30px"]}>
+    <span>
+      A
+    </span>
+      <span data-testid="test-space-custom-1">
+      B
+    </span>
+    </Space>
+    <Space size={["small", "30px"]}>
+    <span>
+      A
+    </span>
+      <span data-testid="test-space-custom-2">
+      B
+    </span>
+    </Space>
   </div>)
   expect(screen.getByTestId("test-space-mini").parentNode).toHaveStyle({
-    "margin-right": "4px",
+    "margin-left": "4px",
+    "margin-bottom": "4px",
+  })
+  expect(screen.getByTestId("test-space-mini-A").parentNode).toHaveStyle({
+    "margin-left": "0px",
     "margin-bottom": "4px",
   })
   expect(screen.getByTestId("test-space-small").parentNode).toHaveStyle({
-    "margin-right": "8px",
+    "margin-left": "8px",
     "margin-bottom": "8px",
   })
   expect(screen.getByTestId("test-space-medium").parentNode).toHaveStyle({
-    "margin-right": "16px",
+    "margin-left": "16px",
     "margin-bottom": "16px",
   })
   expect(screen.getByTestId("test-space-large").parentNode).toHaveStyle({
-    "margin-right": "24px",
+    "margin-left": "24px",
     "margin-bottom": "24px",
   })
   expect(screen.getByTestId("test-space-custom").parentNode).toHaveStyle({
-    "margin-right": "30px",
+    "margin-left": "30px",
+    "margin-bottom": "30px",
+  })
+  expect(screen.getByTestId("test-space-custom-1").parentNode).toHaveStyle({
+    "margin-left": "30px",
+    "margin-bottom": "30px",
+  })
+  expect(screen.getByTestId("test-space-custom-2").parentNode).toHaveStyle({
+    "margin-left": "8px",
     "margin-bottom": "30px",
   })
 })
@@ -87,7 +115,7 @@ test("Space renders with different direction", () => {
     </span>
     </Space>
   </div>)
-  expect(screen.getByTestId("test-space-mini").parentNode).toHaveStyle("margin-right:8px")
+  expect(screen.getByTestId("test-space-mini").parentNode).toHaveStyle("margin-left:8px")
   expect(screen.getByTestId("test-space-small").parentNode).toHaveStyle("margin-bottom:8px")
 })
 
