@@ -9,20 +9,6 @@ export default {
   title: "Divider",
   decorators: [withTests({ results })],
   component: Divider,
-  argTypes: {
-    direction: {
-      options: ["vertical", "horizontal"],
-      control: {
-        type: "select",
-      },
-    },
-    variant: {
-      options: ["solid", "dashed", "dotted", "double"],
-      control: {
-        type: "select",
-      },
-    },
-  },
 } as Meta
 
 const Template: Story<DividerProps> = (props) => <Divider {...props} />

@@ -11,35 +11,6 @@ export default {
   title: "Space",
   decorators: [withTests({ results })],
   component: Space,
-  argTypes: {
-    size: {
-      control: {
-        type: "text",
-      },
-    },
-    align: {
-      options: ["start", "center", "end", "baseline"],
-      control: {
-        type: "select",
-      },
-    },
-    direction: {
-      options: ["vertical", "horizontal"],
-      control: {
-        type: "select",
-      },
-    },
-    divider: {
-      control: {
-        type: "boolean",
-      },
-    },
-    wrap: {
-      control: {
-        type: "boolean",
-      },
-    },
-  },
 } as Meta
 
 const Template: Story<SpaceProps> = (props) => {

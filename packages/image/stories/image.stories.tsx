@@ -9,7 +9,6 @@ import { withTests } from "@storybook/addon-jest"
 export default {
   title: "Image",
   component: Image,
-  decorators: [withTests({ results })],
   argTypes: {
     objectFit: {
       options: ["fill", "container", "cover", "none", "scale-down"],
@@ -47,8 +46,11 @@ export default {
         type: "text",
       },
     },
-    fallbackIcon: {},
+    fallback: {
+      control: false,
+    },
   },
+  decorators: [withTests({ results })],
 } as Meta
 
 const Template: Story<ImageProps> = (args) => {

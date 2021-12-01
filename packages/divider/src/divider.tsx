@@ -11,7 +11,7 @@ function applyDividerContainerHorizontal(variant: DividerVariant): SerializedSty
     vertical-align: middle;
     border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
     border-style: ${variant};
-    border-width: 0 0 1px 0;
+    border-width: 0 0 ${variant == "double" ? "3px" : "1px"} 0;
     width: 100%;
   `
 }
@@ -20,7 +20,7 @@ function applyDividerContainerVertical(variant: DividerVariant): SerializedStyle
   return css`
     display: inline-flex;
     vertical-align: middle;
-    border-width: 0 0 0 1px;
+    border-width: 0 0 0 ${variant == "double" ? "3px" : "1px"};
     border-image: initial;
     border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
     border-style: ${variant};
@@ -31,7 +31,7 @@ function applyDividerContainerVertical(variant: DividerVariant): SerializedStyle
 export const Divider = forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
 
   const {
-    direction = "vertical",
+    direction = "horizontal",
     variant = "solid",
     ...otherProps
   } = props

@@ -15,35 +15,13 @@ export default {
     zeplinLink: "zpl://screen?sid=617f92d08bb52d043a5dc189&pid=617f7cd2526c70be1a3bf3ff",
   },
   argTypes: {
-    size: {
-      options: ["large", "small", "medium"],
-      control: {
-        type: "select",
-      },
+    icon: {
+      control: false,
     },
-    variant: {
-      options: ["light", "fill", "outline"],
-      control: {
-        type: "select",
-      },
-    },
-    colorScheme: {
-      control: {
-        type: "text",
-      },
-    },
-    visible: {
-      control: {
-        type: "boolean",
-      },
-    },
-    closable: {
-      control: {
-        type: "boolean",
-      },
-    },
-    icon: {},
-  },
+    onClose: {
+      control: false,
+    }
+  }
 } as Meta
 
 const Template: Story<TagProps> = (args) => {

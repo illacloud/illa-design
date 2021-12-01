@@ -3,6 +3,7 @@ import { Meta, Story } from "@storybook/react"
 import { CloseIcon, Icon, IconProps, PersonIcon } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
+import { LoadingIcon } from "../src/icons/loading"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -27,5 +28,6 @@ export default {
 
 export const Close: Story<IconProps> = (props) => <CloseIcon {...props} />
 export const Person: Story<IconProps> = (props) => <PersonIcon {...props} />
+export const Loading: Story<IconProps> = (props) => <LoadingIcon {...props} />
 
 

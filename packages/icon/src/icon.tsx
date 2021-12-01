@@ -14,7 +14,7 @@ const rotateKeyframe = keyframes`
 `
 
 const rotateAnimation = css`
-  animation: 2s linear infinite ${rotateKeyframe};
+  animation: 1s linear infinite ${rotateKeyframe};
 `
 
 export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
