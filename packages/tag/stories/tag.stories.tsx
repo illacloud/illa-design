@@ -20,8 +20,8 @@ export default {
     },
     onClose: {
       control: false,
-    }
-  }
+    },
+  },
 } as Meta
 
 const Template: Story<TagProps> = (args) => {
@@ -29,7 +29,7 @@ const Template: Story<TagProps> = (args) => {
     <Tag {...args}>Hello</Tag>
     <Tag icon={<BsFacebook />} variant="outline" {...args}>Hello</Tag>
     <Tag icon={<BsTwitch />} {...args}>e</Tag>
-    <Tag icon={<BsTwitter />} variant="light" {...args}>Hello</Tag>
+    <Tag icon={<BsTwitter />} variant="fill" {...args}>Hello</Tag>
   </Space>
 }
 

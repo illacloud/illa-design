@@ -18,19 +18,19 @@ const tagContainer = css`
 
 function applyTagSizeLarge(variant: TagVariant): SerializedStyles {
   return css`
-    padding: ${variant == "outline"?"4px 7px" : "5px 8px"};
+    padding: ${variant == "outline" ? "4px 7px" : "5px 8px"};
   `
 }
 
 function applyTagSizeMedium(variant: TagVariant): SerializedStyles {
   return css`
-    padding: ${variant == "outline"?"2px 7px" : "3px 8px"};
+    padding: ${variant == "outline" ? "2px 7px" : "3px 8px"};
   `
 }
 
 function applyTagSizeSmall(variant: TagVariant): SerializedStyles {
   return css`
-    padding: ${variant == "outline"?"0px 7px" : "1px 8px"};
+    padding: ${variant == "outline" ? "0px 7px" : "1px 8px"};
   `
 }
 
@@ -48,7 +48,7 @@ const closeIcon = css`
 `
 
 const colors: TagColorScheme[] = [
-  "white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple",
+  "white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple", "techBlue",
 ]
 
 function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {

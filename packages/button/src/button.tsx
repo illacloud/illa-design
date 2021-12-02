@@ -24,7 +24,7 @@ function applyTagContainer(fullWidth: boolean) {
 enum State {
   DEFAULT,
   HOVER,
-  FOCUSED,
+  ACTIVE,
   DISABLE
 }
 
@@ -64,9 +64,9 @@ function getDifferentStatusColor(colorScheme: ButtonColorScheme, variant: Button
             return [globalColor(`--${illaPrefix}-${colorScheme}-07`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
           }
         case "text":
-          return [globalColor("transparent"), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+          return [globalColor(`--${illaPrefix}-gray-09`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
       }
-    case State.FOCUSED:
+    case State.ACTIVE:
       switch (variant) {
         case "fill":
           if (colorScheme != "gray") {
@@ -82,7 +82,7 @@ function getDifferentStatusColor(colorScheme: ButtonColorScheme, variant: Button
             return [globalColor(`--${illaPrefix}-${colorScheme}-05`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
           }
         case "text":
-          return [globalColor("transparent"), globalColor(`--${illaPrefix}-${colorScheme}-n-01`)]
+          return [globalColor(`--${illaPrefix}-gray-08`), globalColor(`--${illaPrefix}-${colorScheme}-n-01`)]
       }
     case State.DISABLE:
       switch (variant) {
@@ -108,7 +108,15 @@ function getDifferentStatusColor(colorScheme: ButtonColorScheme, variant: Button
 function applyBg(variant: ButtonVariant, colorScheme: ButtonColorScheme): SerializedStyles {
   switch (variant) {
     case "text":
-      return css``
+      return css`
+        &:hover {
+          background-color: ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[0]};
+        }
+
+        &:active {
+          background-color: ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
+        }
+      `
     case "dashed":
       return css`
         border: dashed 1px ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
@@ -118,7 +126,7 @@ function applyBg(variant: ButtonVariant, colorScheme: ButtonColorScheme): Serial
         }
 
         &:active {
-          border: dashed 1px ${getDifferentStatusColor(colorScheme, variant, State.FOCUSED)[0]};
+          border: dashed 1px ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
         }
 
         &:disabled {
@@ -134,7 +142,7 @@ function applyBg(variant: ButtonVariant, colorScheme: ButtonColorScheme): Serial
         }
 
         &:active {
-          background-color: ${getDifferentStatusColor(colorScheme, variant, State.FOCUSED)[0]};
+          background-color: ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
         }
 
         &:disabled {
@@ -150,7 +158,7 @@ function applyBg(variant: ButtonVariant, colorScheme: ButtonColorScheme): Serial
         }
 
         &:active {
-          border: solid 1px ${getDifferentStatusColor(colorScheme, variant, State.FOCUSED)[0]};
+          border: solid 1px ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
         }
 
         &:disabled {
@@ -179,6 +187,13 @@ function applyCursor(loading: boolean, disabled: boolean): SerializedStyles {
 function applyElementColor(variant: ButtonVariant, colorScheme: ButtonColorScheme): SerializedStyles {
   switch (variant) {
     case "text":
+      return css`
+        color: ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[1]};
+
+        &:disabled {
+          color: ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[1]};
+        }
+      `
     case "outline":
     case "dashed":
       return css`
@@ -189,7 +204,7 @@ function applyElementColor(variant: ButtonVariant, colorScheme: ButtonColorSchem
         }
 
         &:active {
-          color: ${getDifferentStatusColor(colorScheme, variant, State.FOCUSED)[1]};
+          color: ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[1]};
         }
 
         &:disabled {
@@ -205,7 +220,7 @@ function applyElementColor(variant: ButtonVariant, colorScheme: ButtonColorSchem
         }
 
         &:active {
-          color: ${getDifferentStatusColor(colorScheme, variant, State.FOCUSED)[1]};
+          color: ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[1]};
         }
 
         &:disabled {
@@ -232,15 +247,15 @@ function applyPaddingStyle(size: ButtonSize, variant: ButtonVariant): Serialized
   switch (size) {
     case "small":
       return css`
-        padding: ${variant == "outline" || variant == "dashed" ?"1px 11px" : "2px 12px"};
+        padding: ${variant == "outline" || variant == "dashed" ? "1px 11px" : "2px 12px"};
       `
     case "medium":
       return css`
-        padding: ${variant == "outline" || variant == "dashed" ?"4px 15px" : "5px 16px"};
+        padding: ${variant == "outline" || variant == "dashed" ? "4px 15px" : "5px 16px"};
       `
     case "large":
       return css`
-        padding: ${variant == "outline" || variant == "dashed" ?"8px 15px" : "9px 16px"};
+        padding: ${variant == "outline" || variant == "dashed" ? "8px 15px" : "9px 16px"};
       `
   }
 }

@@ -35,5 +35,6 @@ export const Basic: Story<ButtonProps> = (args) => {
     <Button {...args} leftIcon={<BsFacebook />} />
     <Button {...args} loading />
     <Button {...args} disabled={true}>Disable</Button>
+    <Button {...args} variant="text">Text</Button>
   </Space>
 }
