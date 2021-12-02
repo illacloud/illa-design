@@ -5,16 +5,21 @@ import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { LoadingIcon } from "@illa-design/icon"
 
-const tagContainerCss = css`
-  vertical-align: middle;
-  outline: none;
-  margin: 0;
-  border: 0;
-  background-color: transparent;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-`
+function applyTagContainer(fullWidth: boolean) {
+  return css`
+    ${fullWidth ? css`
+      width: 100%;
+    ` : null};
+    vertical-align: middle;
+    outline: none;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+  `
+}
 
 enum State {
   DEFAULT,
@@ -381,7 +386,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
   if (hasChild || (hasLoadingText && loading)) {
 
     const finalContainer = css`
-      ${tagContainerCss};
+      ${applyTagContainer(fullWidth)};
       ${applyCursor(loading, disabled)}
       ${applyPaddingStyle(size)};
       ${applyShape(shape)};
@@ -403,7 +408,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
   } else {
 
     const finalContainer = css`
-      ${tagContainerCss};
+      ${applyTagContainer(fullWidth)};
       ${applyCursor(loading, disabled)}
       ${applyWithoutTextSize(size)};
       ${applyShape(shape)};

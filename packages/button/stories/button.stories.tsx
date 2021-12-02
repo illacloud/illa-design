@@ -25,7 +25,7 @@ export default {
 } as Meta
 
 export const Basic: Story<ButtonProps> = (args) => {
-  return <Space direction="vertical" align="start">
+  return <Space direction="horizontal" align="start" style={{width: "500px"}} wrap>
     <Button {...args}>Hello</Button>
     <Button {...args} leftIcon={<BsFacebook />}>Hello</Button>
     <Button {...args} rightIcon={<BsFacebook />}>Hello</Button>

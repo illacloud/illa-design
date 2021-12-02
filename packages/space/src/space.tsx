@@ -37,6 +37,13 @@ function applyDividerSizeSingle(size: SpaceSize, direction: SpaceDirection, wrap
       break
   }
   return css`
+    ${direction == "horizontal" ?
+            css`
+              height: 100%;
+            ` :
+            css`
+              width: 100%;
+            `};
     margin-right: ${horSpace};
     margin-bottom: ${verSpace};
   `
