@@ -246,7 +246,7 @@ exports[`Tag renders with color and variant 7`] = `
   border-radius: 1px;
   border: solid 1px #ebebeb;
   color: #1f1f1f;
-  padding: 1px 8px;
+  padding: 0px 7px;
 }
 
 .emotion-1 {
@@ -284,7 +284,7 @@ exports[`Tag renders with color and variant 8`] = `
   border-radius: 1px;
   border: solid 1px #007a41;
   color: #007a41;
-  padding: 1px 8px;
+  padding: 0px 7px;
 }
 
 .emotion-1 {
@@ -322,7 +322,7 @@ exports[`Tag renders with color and variant 9`] = `
   border-radius: 1px;
   color: #123321;
   border: solid 1px #123321;
-  padding: 1px 8px;
+  padding: 0px 7px;
 }
 
 .emotion-1 {
