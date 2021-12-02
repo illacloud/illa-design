@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { forwardRef } from "react"
+import { Children, forwardRef } from "react"
 import { ButtonColorScheme, ButtonProps, ButtonShape, ButtonSize, ButtonVariant } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
@@ -7,10 +7,98 @@ import { LoadingIcon } from "@illa-design/icon"
 
 const tagContainerCss = css`
   vertical-align: middle;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
   display: inline-flex;
   flex-direction: row;
   align-items: center;
 `
+
+enum State {
+  DEFAULT,
+  HOVER,
+  FOCUSED,
+  DISABLE
+}
+
+function getDifferentStatusColor(colorScheme: ButtonColorScheme, variant: ButtonVariant, state: State): string[] {
+  switch (state) {
+    case State.DEFAULT:
+      switch (variant) {
+        case "fill":
+          if (colorScheme != "gray") {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-01`), globalColor(`--${illaPrefix}-white-01`)]
+          } else {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-09`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+          }
+        case "dashed":
+        case "outline":
+          if (colorScheme != "gray") {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-01`), globalColor(`--${illaPrefix}-${colorScheme}-01`)]
+          } else {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-08`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+          }
+        case "text":
+          return [globalColor("transparent"), globalColor(`--${illaPrefix}-${colorScheme}-01`)]
+      }
+    case State.HOVER:
+      switch (variant) {
+        case "fill":
+          if (colorScheme != "gray") {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-02`), globalColor(`--${illaPrefix}-white-01`)]
+          } else {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-08`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+          }
+        case "dashed":
+        case "outline":
+          if (colorScheme != "gray") {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-02`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+          } else {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-07`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+          }
+        case "text":
+          return [globalColor("transparent"), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+      }
+    case State.FOCUSED:
+      switch (variant) {
+        case "fill":
+          if (colorScheme != "gray") {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-n-01`), globalColor(`--${illaPrefix}-white-01`)]
+          } else {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-06`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+          }
+        case "dashed":
+        case "outline":
+          if (colorScheme != "gray") {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-n-01`), globalColor(`--${illaPrefix}-${colorScheme}-n-01`)]
+          } else {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-05`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+          }
+        case "text":
+          return [globalColor("transparent"), globalColor(`--${illaPrefix}-${colorScheme}-n-01`)]
+      }
+    case State.DISABLE:
+      switch (variant) {
+        case "fill":
+          if (colorScheme != "gray") {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-05`), globalColor(`--${illaPrefix}-white-01`)]
+          } else {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-09`), globalColor(`--${illaPrefix}-${colorScheme}-05`)]
+          }
+        case "dashed":
+        case "outline":
+          if (colorScheme != "gray") {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-05`), globalColor(`--${illaPrefix}-${colorScheme}-05`)]
+          } else {
+            return [globalColor(`--${illaPrefix}-${colorScheme}-08`), globalColor(`--${illaPrefix}-${colorScheme}-05`)]
+          }
+        case "text":
+          return [globalColor("transparent"), globalColor(`--${illaPrefix}-${colorScheme}-05`)]
+      }
+  }
+}
 
 function applyBg(variant: ButtonVariant, colorScheme: ButtonColorScheme): SerializedStyles {
   switch (variant) {
@@ -18,20 +106,68 @@ function applyBg(variant: ButtonVariant, colorScheme: ButtonColorScheme): Serial
       return css``
     case "dashed":
       return css`
-        border: dashed 1px ${globalColor(`--${illaPrefix}-${colorScheme}-01`)};
+        border: dashed 1px ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
 
         &:hover {
+          border: dashed 1px ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[0]};
+        }
 
+        &:active {
+          border: dashed 1px ${getDifferentStatusColor(colorScheme, variant, State.FOCUSED)[0]};
+        }
+
+        &:disabled {
+          border: dashed 1px ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
         }
       `
     case "fill":
       return css`
-        background-color: ${globalColor(`--${illaPrefix}-${colorScheme}-01`)};
+        background-color: ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
+
+        &:hover {
+          background-color: ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[0]};
+        }
+
+        &:active {
+          background-color: ${getDifferentStatusColor(colorScheme, variant, State.FOCUSED)[0]};
+        }
+
+        &:disabled {
+          background-color: ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
+        }
       `
     case "outline":
       return css`
-        border: solid 1px ${globalColor(`--${illaPrefix}-${colorScheme}-01`)};
+        border: solid 1px ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
+
+        &:hover {
+          border: solid 1px ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[0]};
+        }
+
+        &:active {
+          border: solid 1px ${getDifferentStatusColor(colorScheme, variant, State.FOCUSED)[0]};
+        }
+
+        &:disabled {
+          border: solid 1px ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
+        }
       `
+  }
+}
+
+function applyCursor(loading: boolean, disabled: boolean): SerializedStyles {
+  if (loading) {
+    return css`
+      cursor: default;
+    `
+  } else if (disabled) {
+    return css`
+      cursor: not-allowed;
+    `
+  } else {
+    return css`
+      cursor: pointer;
+    `
   }
 }
 
@@ -41,11 +177,35 @@ function applyElementColor(variant: ButtonVariant, colorScheme: ButtonColorSchem
     case "outline":
     case "dashed":
       return css`
-        color: ${globalColor(`--${illaPrefix}-${colorScheme}-01`)};
+        color: ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[1]};
+
+        &:hover {
+          color: ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[1]};
+        }
+
+        &:active {
+          color: ${getDifferentStatusColor(colorScheme, variant, State.FOCUSED)[1]};
+        }
+
+        &:disabled {
+          color: ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[1]};
+        }
       `
     case "fill":
       return css`
-        color: ${globalColor(`--${illaPrefix}-white-01`)};
+        color: ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[1]};
+
+        &:hover {
+          color: ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[1]};
+        }
+
+        &:active {
+          color: ${getDifferentStatusColor(colorScheme, variant, State.FOCUSED)[1]};
+        }
+
+        &:disabled {
+          color: ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[1]};
+        }
       `
   }
 }
@@ -76,6 +236,29 @@ function applyPaddingStyle(size: ButtonSize): SerializedStyles {
     case "large":
       return css`
         padding: 9px 16px;
+      `
+  }
+}
+
+function applyWithoutTextSize(size: ButtonSize): SerializedStyles {
+  switch (size) {
+    case "small":
+      return css`
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+      `
+    case "medium":
+      return css`
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+      `
+    case "large":
+      return css`
+        justify-content: center;
+        width: 40px;
+        height: 40px;
       `
   }
 }
@@ -128,7 +311,7 @@ function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
   }
 }
 
-function applyRightIconStyle(size: ButtonSize): SerializedStyles {
+function applyIconWithoutText(size: ButtonSize): SerializedStyles {
   switch (size) {
     case "small":
       return css`
@@ -137,7 +320,7 @@ function applyRightIconStyle(size: ButtonSize): SerializedStyles {
         align-items: center;
         width: 12px;
         height: 12px;
-        margin-right: 6px;
+        justify-content: center;
       `
     case "medium":
     case "large":
@@ -147,45 +330,103 @@ function applyRightIconStyle(size: ButtonSize): SerializedStyles {
         align-items: center;
         width: 12px;
         height: 12px;
-        margin-right: 8px;
+        justify-content: center;
       `
   }
 }
 
-export const Button = forwardRef<HTMLDivElement, ButtonProps>((props, ref) => {
+function applyRightIconStyle(size: ButtonSize): SerializedStyles {
+  switch (size) {
+    case "small":
+      return css`
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        width: 12px;
+        height: 12px;
+        margin-left: 6px;
+      `
+    case "medium":
+    case "large":
+      return css`
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        width: 12px;
+        height: 12px;
+        margin-left: 8px;
+      `
+  }
+}
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 
   const {
     colorScheme = "blue",
     size = "small",
     variant = "fill",
     shape = "square",
-    isFullWidth = false,
-    isLoading = false,
+    fullWidth = false,
+    loading = false,
     loadingText = undefined,
-    isDisabled = false,
     leftIcon = undefined,
+    disabled = false,
     rightIcon = undefined,
     ...otherProps
   } = props
 
-  const finalContainer = css`
-    ${tagContainerCss};
-    ${applyPaddingStyle(size)};
-    ${applyShape(shape)};
-    ${applyElementColor(variant, colorScheme)};
-    ${applyBg(variant, colorScheme)};
-  `
+  const hasLoadingText = loadingText != undefined && loadingText.length > 0
+  const hasChild = Children.count(props.children) >= 1
 
-  return <div ref={ref} css={finalContainer} {...otherProps}>
-    <span css={applyLeftIconStyle(size)}>
-      {isLoading ? <LoadingIcon spin={true} /> : leftIcon}
+  if (hasChild || (hasLoadingText && loading)) {
+
+    const finalContainer = css`
+      ${tagContainerCss};
+      ${applyCursor(loading, disabled)}
+      ${applyPaddingStyle(size)};
+      ${applyShape(shape)};
+      ${applyElementColor(variant, colorScheme)};
+      ${applyBg(variant, colorScheme)};
+    `
+
+    return <button ref={ref} css={finalContainer} {...otherProps} disabled={disabled || loading}>
+      {(loading || leftIcon) && <span css={applyLeftIconStyle(size)}>
+      {loading ? <LoadingIcon spin={true} /> : leftIcon}
+    </span>}
+      <span css={applyFontStyle(size)}>
+      {loading && loadingText ? loadingText : props.children}
     </span>
-    <span css={applyFontStyle(size)}>
-      {isLoading ? loadingText : props.children}
-    </span>
-    <span css={applyRightIconStyle(size)}>
-      {isLoading ? null : rightIcon}
-    </span>
-  </div>
+      {rightIcon && <span css={applyRightIconStyle(size)}>
+      {rightIcon}
+    </span>}
+    </button>
+  } else {
+
+    const finalContainer = css`
+      ${tagContainerCss};
+      ${applyCursor(loading, disabled)}
+      ${applyWithoutTextSize(size)};
+      ${applyShape(shape)};
+      ${applyElementColor(variant, colorScheme)};
+      ${applyBg(variant, colorScheme)};
+    `
+
+    return <button ref={ref} css={finalContainer} {...otherProps} disabled={disabled || loading}>
+      {
+        (loading || leftIcon) &&
+        <span css={applyIconWithoutText(size)}>
+          {
+            loading ? <LoadingIcon spin={true} /> : leftIcon
+          }
+        </span>
+      }
+      {
+        rightIcon &&
+        <span css={applyIconWithoutText(size)}>
+          {rightIcon}
+        </span>
+      }
+    </button>
+  }
 
 })

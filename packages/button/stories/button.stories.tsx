@@ -3,7 +3,8 @@ import { Meta, Story } from "@storybook/react"
 import { Button, ButtonProps } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
-import { BsFacebook } from "react-icons/bs"
+import { Space } from "@illa-design/space"
+import { BsFacebook, BsTwitch } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -19,10 +20,21 @@ export default {
     },
     rightIcon: {
       control: false,
-    }
+    },
   },
 } as Meta
 
-const T: Story<ButtonProps> = (args) => <Button {...args} leftIcon={<BsFacebook />}>Hello</Button>
-
-export const Basic = T.bind({})
+export const Basic: Story<ButtonProps> = (args) => {
+  return <Space direction="vertical" align="start">
+    <Button {...args}>Hello</Button>
+    <Button {...args} leftIcon={<BsFacebook />}>Hello</Button>
+    <Button {...args} rightIcon={<BsFacebook />}>Hello</Button>
+    <Button {...args} leftIcon={<BsFacebook />} rightIcon={<BsTwitch />}>Hello</Button>
+    <Button {...args} loading loadingText="loading">Hello</Button>
+    <Button {...args} loading>Hello</Button>
+    <Button {...args} leftIcon={<BsFacebook />} />
+    <Button {...args} leftIcon={<BsFacebook />} rightIcon={<BsTwitch />}/>
+    <Button {...args} loading />
+    <Button {...args} disabled={true}>Disable</Button>
+  </Space>
+}

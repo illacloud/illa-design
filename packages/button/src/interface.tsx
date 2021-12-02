@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from "react"
+import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react"
 
 export type ButtonColorScheme =
   "white"
@@ -17,15 +17,14 @@ export type ButtonSize = "small" | "medium" | "large"
 export type ButtonVariant = "fill" | "dashed" | "outline" | "text"
 export type ButtonShape = "square" | "round"
 
-export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   colorScheme?: ButtonColorScheme
   size?: ButtonSize
   variant?: ButtonVariant
   shape?: ButtonShape
-  isFullWidth?: boolean
-  isLoading?: boolean
+  fullWidth?: boolean
+  loading?: boolean
   loadingText?: string
-  isDisabled?: boolean
   leftIcon?: ReactNode
   rightIcon?: ReactNode
 }
