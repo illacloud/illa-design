@@ -30,10 +30,9 @@ export const Basic: Story<ButtonProps> = (args) => {
     <Button {...args} leftIcon={<BsFacebook />}>Hello</Button>
     <Button {...args} rightIcon={<BsFacebook />}>Hello</Button>
     <Button {...args} leftIcon={<BsFacebook />} rightIcon={<BsTwitch />}>Hello</Button>
-    <Button {...args} loading loadingText="loading">Hello</Button>
+    <Button {...args} loading loadingText="loading text">Hello</Button>
     <Button {...args} loading>Hello</Button>
     <Button {...args} leftIcon={<BsFacebook />} />
-    <Button {...args} leftIcon={<BsFacebook />} rightIcon={<BsTwitch />}/>
     <Button {...args} loading />
     <Button {...args} disabled={true}>Disable</Button>
   </Space>
