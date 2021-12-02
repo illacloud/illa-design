@@ -228,19 +228,19 @@ function applyShape(shape: ButtonShape): SerializedStyles {
   }
 }
 
-function applyPaddingStyle(size: ButtonSize): SerializedStyles {
+function applyPaddingStyle(size: ButtonSize, variant: ButtonVariant): SerializedStyles {
   switch (size) {
     case "small":
       return css`
-        padding: 2px 12px;
+        padding: ${variant == "outline" || variant == "dashed" ?"1px 11px" : "2px 12px"};
       `
     case "medium":
       return css`
-        padding: 5px 16px;
+        padding: ${variant == "outline" || variant == "dashed" ?"4px 15px" : "5px 16px"};
       `
     case "large":
       return css`
-        padding: 9px 16px;
+        padding: ${variant == "outline" || variant == "dashed" ?"8px 15px" : "9px 16px"};
       `
   }
 }
@@ -388,7 +388,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
     const finalContainer = css`
       ${applyTagContainer(fullWidth)};
       ${applyCursor(loading, disabled)}
-      ${applyPaddingStyle(size)};
+      ${applyPaddingStyle(size, variant)};
       ${applyShape(shape)};
       ${applyElementColor(variant, colorScheme)};
       ${applyBg(variant, colorScheme)};

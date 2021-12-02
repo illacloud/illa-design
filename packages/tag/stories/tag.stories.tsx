@@ -27,9 +27,9 @@ export default {
 const Template: Story<TagProps> = (args) => {
   return <Space size="medium">
     <Tag {...args}>Hello</Tag>
-    <Tag icon={<BsFacebook />} {...args}>Hello</Tag>
+    <Tag icon={<BsFacebook />} variant="outline" {...args}>Hello</Tag>
     <Tag icon={<BsTwitch />} {...args}>e</Tag>
-    <Tag icon={<BsTwitter />} {...args}>Hello</Tag>
+    <Tag icon={<BsTwitter />} variant="light" {...args}>Hello</Tag>
   </Space>
 }
 

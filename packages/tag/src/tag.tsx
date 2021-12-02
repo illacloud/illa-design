@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { forwardRef } from "react"
-import { TagColorScheme, TagProps } from "./interface"
+import { TagColorScheme, TagProps, TagVariant } from "./interface"
 import { css } from "@emotion/react"
 import { CloseIcon } from "@illa-design/icon"
 import { SerializedStyles } from "@emotion/serialize"
@@ -16,17 +16,23 @@ const tagContainer = css`
   align-items: center;
 `
 
-const tagSizeLarge = css`
-  padding: 5px 8px;
-`
+function applyTagSizeLarge(variant: TagVariant): SerializedStyles {
+  return css`
+    padding: ${variant == "outline"?"4px 7px" : "5px 8px"};
+  `
+}
 
-const tagSizeMedium = css`
-  padding: 3px 8px;
-`
+function applyTagSizeMedium(variant: TagVariant): SerializedStyles {
+  return css`
+    padding: ${variant == "outline"?"2px 7px" : "3px 8px"};
+  `
+}
 
-const tagSizeSmall = css`
-  padding: 1px 8px;
-`
+function applyTagSizeSmall(variant: TagVariant): SerializedStyles {
+  return css`
+    padding: ${variant == "outline"?"0px 7px" : "1px 8px"};
+  `
+}
 
 const leftIcon = css`
   width: 12px;
@@ -150,15 +156,15 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   let sizeCss: SerializedStyles
   switch (size) {
     case "small": {
-      sizeCss = tagSizeSmall
+      sizeCss = applyTagSizeSmall(variant)
       break
     }
     case "medium": {
-      sizeCss = tagSizeMedium
+      sizeCss = applyTagSizeMedium(variant)
       break
     }
     case "large": {
-      sizeCss = tagSizeLarge
+      sizeCss = applyTagSizeLarge(variant)
       break
     }
   }
