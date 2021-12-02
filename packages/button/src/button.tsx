@@ -12,7 +12,7 @@ const tagContainerCss = css`
   align-items: center;
 `
 
-function applyBg(variant: ButtonVariant, colorScheme: ButtonColorScheme) {
+function applyBg(variant: ButtonVariant, colorScheme: ButtonColorScheme): SerializedStyles {
   switch (variant) {
     case "text":
       return css``
@@ -35,6 +35,21 @@ function applyBg(variant: ButtonVariant, colorScheme: ButtonColorScheme) {
   }
 }
 
+function applyElementColor(variant: ButtonVariant, colorScheme: ButtonColorScheme): SerializedStyles {
+  switch (variant) {
+    case "text":
+    case "outline":
+    case "dashed":
+      return css`
+        color: ${globalColor(`--${illaPrefix}-${colorScheme}-01`)};
+      `
+    case "fill":
+      return css`
+        color: ${globalColor(`--${illaPrefix}-white-01`)};
+      `
+  }
+}
+
 function applyShape(shape: ButtonShape): SerializedStyles {
   switch (shape) {
     case "square":
@@ -43,7 +58,7 @@ function applyShape(shape: ButtonShape): SerializedStyles {
       `
     case "round":
       return css`
-        border-radius: 50%;
+        border-radius: 999px;
       `
   }
 }
@@ -75,7 +90,6 @@ function applyFontStyle(size: ButtonSize): SerializedStyles {
         font-style: normal;
         line-height: 20px;
         letter-spacing: normal;
-        color: ${globalColor(`--${illaPrefix}-white-01`)};
       `
     case "medium":
     case "large":
@@ -86,7 +100,6 @@ function applyFontStyle(size: ButtonSize): SerializedStyles {
         font-style: normal;
         line-height: 22px;
         letter-spacing: normal;
-        color: ${globalColor(`--${illaPrefix}-white-01`)};
       `
   }
 }
@@ -95,6 +108,9 @@ function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
   switch (size) {
     case "small":
       return css`
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
         width: 12px;
         height: 12px;
         margin-right: 6px;
@@ -102,6 +118,9 @@ function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
     case "medium":
     case "large":
       return css`
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
         width: 12px;
         height: 12px;
         margin-right: 8px;
@@ -113,6 +132,9 @@ function applyRightIconStyle(size: ButtonSize): SerializedStyles {
   switch (size) {
     case "small":
       return css`
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
         width: 12px;
         height: 12px;
         margin-right: 6px;
@@ -120,6 +142,9 @@ function applyRightIconStyle(size: ButtonSize): SerializedStyles {
     case "medium":
     case "large":
       return css`
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
         width: 12px;
         height: 12px;
         margin-right: 8px;
@@ -146,8 +171,9 @@ export const Button = forwardRef<HTMLDivElement, ButtonProps>((props, ref) => {
   const finalContainer = css`
     ${tagContainerCss};
     ${applyPaddingStyle(size)};
-    ${applyShape(shape)}
-    ${applyBg(variant, colorScheme)}
+    ${applyShape(shape)};
+    ${applyElementColor(variant, colorScheme)};
+    ${applyBg(variant, colorScheme)};
   `
 
   return <div ref={ref} css={finalContainer} {...otherProps}>
@@ -158,7 +184,7 @@ export const Button = forwardRef<HTMLDivElement, ButtonProps>((props, ref) => {
       {isLoading ? loadingText : props.children}
     </span>
     <span css={applyRightIconStyle(size)}>
-      {rightIcon}
+      {isLoading ? null : rightIcon}
     </span>
   </div>
 

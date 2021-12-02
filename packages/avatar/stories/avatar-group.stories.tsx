@@ -7,7 +7,7 @@ import { BsGithub, BsMailbox, BsTwitch } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "AvatarGroup",
+  title: "Data Display/AvatarGroup",
   component: AvatarGroup,
   decorators: [withTests({ results })],
   parameters: {

@@ -7,7 +7,7 @@ import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Avatar",
+  title: "Data Display/Avatar",
   component: Avatar,
   decorators: [withTests({ results })],
   parameters: {

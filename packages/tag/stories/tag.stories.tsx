@@ -8,7 +8,7 @@ import { Space } from "@illa-design/space"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Tag",
+  title: "Data Display/Tag",
   component: Tag,
   decorators: [withTests({ results })],
   parameters: {

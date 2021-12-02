@@ -3,11 +3,11 @@ import { Meta, Story } from "@storybook/react"
 import { Button, ButtonProps } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
-import { BsAlarm } from "react-icons/all"
+import { BsFacebook } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Button",
+  title: "General/Button",
   component: Button,
   decorators: [withTests({ results })],
   parameters: {
@@ -23,6 +23,6 @@ export default {
   },
 } as Meta
 
-const T: Story<ButtonProps> = (args) => <Button {...args}>Hello</Button>
+const T: Story<ButtonProps> = (args) => <Button {...args} leftIcon={<BsFacebook />}>Hello</Button>
 
 export const Basic = T.bind({})

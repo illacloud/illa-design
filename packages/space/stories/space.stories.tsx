@@ -8,7 +8,7 @@ import { Image } from "@illa-design/image"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Space",
+  title: "Layout/Space",
   decorators: [withTests({ results })],
   component: Space,
 } as Meta

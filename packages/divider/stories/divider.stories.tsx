@@ -6,7 +6,7 @@ import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Divider",
+  title: "Layout/Divider",
   decorators: [withTests({ results })],
   component: Divider,
 } as Meta

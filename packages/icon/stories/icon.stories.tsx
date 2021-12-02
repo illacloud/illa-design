@@ -7,7 +7,7 @@ import { LoadingIcon } from "../src/icons/loading"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Icon",
+  title: "General/Icon",
   decorators: [withTests({ results })],
   parameters: {
     zeplinLink: "zpl://screen?pid=617f7cd2526c70be1a3bf3ff&sid=618baf3bcf5233aab8b8dfad",
