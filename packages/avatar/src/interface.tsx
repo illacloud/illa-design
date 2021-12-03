@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from "react"
+import { CSSProperties, HTMLAttributes, ReactNode } from "react"
 
 export type AvatarColorScheme =
   string
@@ -27,9 +27,13 @@ export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   icon?: ReactNode
 }
 
-export interface AvatarGroupProps extends HTMLAttributes<HTMLDivElement> {
+export interface AvatarGroupProps extends HTMLAttributes<HTMLDivElement>, AvatarGroupContextProps {
+}
+
+export interface AvatarGroupContextProps {
   zIndexAscend?: boolean
   maxCount?: number
   colorScheme?: AvatarColorScheme
   size?: AvatarSize
+  style?: CSSProperties
 }

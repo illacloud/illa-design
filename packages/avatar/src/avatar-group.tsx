@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { Children, createContext, CSSProperties, forwardRef, ReactNode } from "react"
-import { AvatarGroupProps } from "./interface"
+import { AvatarGroupContextProps, AvatarGroupProps } from "./interface"
 import { css } from "@emotion/react"
 import { Avatar } from "./avatar"
 import { globalColor, illaPrefix } from "@illa-design/theme"
@@ -11,7 +11,7 @@ const avatarGroupCss = css`
   align-items: center;
 `
 
-export const AvatarGroupContext = createContext<AvatarGroupProps | undefined>(undefined)
+export const AvatarGroupContext = createContext<AvatarGroupContextProps | undefined>(undefined)
 
 export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>((props, ref) => {
   const {
