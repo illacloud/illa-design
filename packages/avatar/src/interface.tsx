@@ -27,10 +27,9 @@ export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   icon?: ReactNode
 }
 
-export interface AvatarGroupProps extends Omit<AvatarProps, "text" | "src" | "icon" | "shape"> {
+export interface AvatarGroupProps extends HTMLAttributes<HTMLDivElement> {
   zIndexAscend?: boolean
   maxCount?: number
-}
-
-export interface AvatarGroupContextProps extends Pick<AvatarGroupProps, "zIndexAscend" | "maxCount" | "colorScheme" | "size" | "style"> {
+  colorScheme?: AvatarColorScheme
+  size?: AvatarSize
 }

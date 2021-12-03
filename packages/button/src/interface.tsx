@@ -29,3 +29,17 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   leftIcon?: ReactNode
   rightIcon?: ReactNode
 }
+
+export interface ButtonGroupProps extends HTMLAttributes<HTMLDivElement>, Omit<ButtonGroupContextProps, "first" | "last"> {
+}
+
+export interface ButtonGroupContextProps {
+  colorScheme?: ButtonColorScheme
+  size?: ButtonSize
+  variant?: ButtonVariant
+  shape?: ButtonShape
+  spacing?: string
+  attached?: boolean
+  first?: boolean
+  last?: boolean
+}

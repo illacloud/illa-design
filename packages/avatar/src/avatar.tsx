@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { forwardRef, ReactNode } from "react"
-import { AvatarGroupContextProps, AvatarProps } from "./interface"
+import { AvatarGroupProps, AvatarProps } from "./interface"
 import { IconAvatar } from "./icon-avatar"
 import { TextAvatar } from "./text-avatar"
 import { ImgAvatar } from "./img-avatar"
@@ -21,7 +21,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
 
   return <AvatarGroupContext.Consumer>
     {value => {
-      let newValue: AvatarGroupContextProps | undefined
+      let newValue: AvatarGroupProps | undefined
       if (value != undefined) {
         newValue = omit(value, ["zIndexAscend", "maxCount", "style"])
       }
