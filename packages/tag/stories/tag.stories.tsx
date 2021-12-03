@@ -4,6 +4,7 @@ import { Tag, TagProps } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { BsFacebook, BsTwitch, BsTwitter } from "react-icons/bs"
 import { withTests } from "@storybook/addon-jest"
+import { Space } from "@illa-design/space"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -46,18 +47,12 @@ export default {
 } as Meta
 
 const Template: Story<TagProps> = (args) => {
-  return <div style={{ display: "flex", flexDirection: "row" }}>
+  return <Space size="medium">
     <Tag {...args}>Hello</Tag>
-    <Tag style={{
-      marginLeft: "10px",
-    }} icon={<BsFacebook />} {...args}>Hello</Tag>
-    <Tag style={{
-      marginLeft: "10px",
-    }} icon={<BsTwitch />} {...args}>Hello</Tag>
-    <Tag style={{
-      marginLeft: "10px",
-    }} icon={<BsTwitter />} {...args}>Hello</Tag>
-  </div>
+    <Tag icon={<BsFacebook />} {...args}>Hello</Tag>
+    <Tag icon={<BsTwitch />} {...args}>e</Tag>
+    <Tag icon={<BsTwitter />} {...args}>Hello</Tag>
+  </Space>
 }
 
 export const Basic = Template.bind({})

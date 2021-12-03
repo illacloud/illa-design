@@ -1,7 +1,9 @@
 import { createIcon } from "../create-icon"
 
 export const ImageDefaultIcon = createIcon({
-  path: <g fillRule="evenodd">
+  title: "ImageDefaultIcon",
+  path:
+    <g fillRule="evenodd">
     <path fill="#FFF" d="M-78-142H922v842H-78z" />
     <path fillOpacity=".04" fill="#000" d="M-38-38H62V62H-38z" />
     <path fill="none" d="M0 0h24v24H0z" />

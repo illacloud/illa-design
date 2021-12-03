@@ -8,13 +8,16 @@ import { withTests } from "@storybook/addon-jest"
 export default {
   title: "Icon",
   decorators: [withTests({ results })],
+  parameters: {
+    zeplinLink: "zpl://screen?pid=617f7cd2526c70be1a3bf3ff&sid=618baf3bcf5233aab8b8dfad",
+  },
   argTypes: {
     spin: {
       control: {
         type: "boolean",
       },
     },
-    measure: {
+    size: {
       control: {
         type: "text",
       },

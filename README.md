@@ -1,24 +1,62 @@
 <div align="center">
-    <img alt="ILLA Design Logo" src="https://raw.githubusercontent.com/illa-family/illa-design/d1a15466dd0eaa7975669e0e479c605e455efb64/illa_logo.svg"/>
+    <img alt="ILLA Design Logo" width="120px" height="120px" src="https://devbo.cn/logo.svg"/>
 </div>
 
 <h1 align="center">ILLA Design</h1>
 
 <div align="center">
-  <p>Build system with aesthetics and speed.</p>
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-design/graphs/contributors">contributors</a></p>
 </div>
 
+![cover](https://devbo.cn/cover.png)
+
 [![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
-[![illa Family Discord](https://badgen.net/discord/members/2tGBuJkgd6)](https://discord.gg/2tGBuJkgd6)
+[![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
+[![license](https://devbo.cn/chromatic.svg)](https://chromatic.com/library?appId=618513c5ace06a003a5ed751&branch=main)
+[![license](https://devbo.cn/storybook.svg)](https://main--618513c5ace06a003a5ed751.chromatic.com)
+[![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](./LICENSE)
+[![license](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
 
 ## ✨ Features
 
-Building
+1. 🛠 **Made for React & Vue3 & Svelte:** Ready-to-use component library for React, Vue 3(in progress) and Svelte JavaScript
+   Framework(in progress).
+2. 📝 **TypeScript Friendly:** Come with TypeScript typings out of the box and support with predictable static typings.
+3. 📦 **High Productivity:** Easy and fast, import in 5 seconds.
+4. 🎨 **Vibrant Design:** Beautifully designed components and powerful theming system supports custom themes to match your
+   brand, including light and dark mode.
+5. 🌍 **Internationalization:** Each component was designed with i18n in mind and multiple languages are supported.
+6. 📱 **Fully Responsive:** Perfectly adaptable with all the devices, desktops to mobiles.
 
-## 🖥 Codesandbox
+## 🖥 Fast Try
 
+You can quickly use ILLA Design on codesandbox.
 
+[![Edit compassionate-tdd-rxcco](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/compassionate-tdd-rxcco?fontsize=14&hidenavigation=1&theme=dark)
+
+## 🚀 Get Started
+
+Step 1: Install
+
+```bash
+$ yarn add @illa-design/react
+
+# or
+
+$ npm i @illa-design/react
+```
+
+Step 2: Use
+
+```tsx
+import { Tag } from '@illa-design/react';
+
+const App = () => (
+  <div>
+    <Tag>Hello ILLA</Tag>
+  </div>
+);
+```
 
 ## ⌨️ Development
 
@@ -38,12 +76,13 @@ $ npx lerna bootstarp
 ```
 
 Step 2: Run.
+
 ```bash
 $ yarn prebuild
 $ yarn storybook
 ```
 
-Then your can open storybook in your bowser.
+Then your can open storybook in your browser.
 
 ## 🌱 Contributing
 

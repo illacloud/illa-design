@@ -1,5 +1,5 @@
 // thx charkra ui
-import { forwardRef, ReactElement, ReactNode } from "react"
+import { forwardRef, ReactElement } from "react"
 import { Icon } from "./icon"
 import { IconProps } from "./interface"
 
@@ -9,6 +9,10 @@ interface CreateIconOptions {
    * @default "0 0 24 24"
    */
   viewBox?: string
+  /**
+   * The svg title
+   */
+  title: string
   /**
    * The `svg` path or group element
    * @type React.ReactElement | React.ReactElement[]
@@ -29,11 +33,13 @@ export function createIcon(options: CreateIconOptions) {
     viewBox = "0 0 24 24",
     d: pathDefinition,
     path,
+    title,
     defaultProps = {},
   } = options
 
   return forwardRef<SVGSVGElement, IconProps>((props, ref) => (
     <Icon ref={ref} viewBox={viewBox} {...defaultProps} {...props}>
+      <title>{title}</title>
       {path ?? <path fill="currentColor" d={pathDefinition} />}
     </Icon>
   ))
