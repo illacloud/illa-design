@@ -290,7 +290,7 @@ exports[`Avatar renders with icon 1`] = `
 }
 
 .emotion-1 {
-  background-color: #2a3ed6;
+  background-color: #c2c2c2;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -377,7 +377,7 @@ exports[`Avatar renders with shape 1`] = `
 }
 
 .emotion-1 {
-  background-color: #2a3ed6;
+  background-color: #c2c2c2;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -470,7 +470,7 @@ exports[`Avatar renders with shape 2`] = `
 }
 
 .emotion-1 {
-  background-color: #2a3ed6;
+  background-color: #c2c2c2;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -563,7 +563,7 @@ exports[`Avatar renders with size 1`] = `
 }
 
 .emotion-1 {
-  background-color: #2a3ed6;
+  background-color: #c2c2c2;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -656,7 +656,7 @@ exports[`Avatar renders with size 2`] = `
 }
 
 .emotion-1 {
-  background-color: #2a3ed6;
+  background-color: #c2c2c2;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -749,7 +749,7 @@ exports[`Avatar renders with size 3`] = `
 }
 
 .emotion-1 {
-  background-color: #2a3ed6;
+  background-color: #c2c2c2;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
