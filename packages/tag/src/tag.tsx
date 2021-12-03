@@ -1,112 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { forwardRef } from "react"
-import { TagColorScheme, TagProps, TagVariant } from "./interface"
+import { TagProps } from "./interface"
 import { css } from "@emotion/react"
 import { CloseIcon } from "@illa-design/icon"
 import { SerializedStyles } from "@emotion/serialize"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { omit } from "@illa-design/system"
-
-// style
-const tagContainer = css`
-  display: inline-flex;
-  vertical-align: middle;
-  white-space: nowrap;
-  flex-direction: row;
-  align-items: center;
-`
-
-function applyTagSizeLarge(variant: TagVariant): SerializedStyles {
-  return css`
-    padding: ${variant == "outline" ? "4px 7px" : "5px 8px"};
-  `
-}
-
-function applyTagSizeMedium(variant: TagVariant): SerializedStyles {
-  return css`
-    padding: ${variant == "outline" ? "2px 7px" : "3px 8px"};
-  `
-}
-
-function applyTagSizeSmall(variant: TagVariant): SerializedStyles {
-  return css`
-    padding: ${variant == "outline" ? "0px 7px" : "1px 8px"};
-  `
-}
-
-const leftIcon = css`
-  width: 12px;
-  height: 12px;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  margin-right: 4px;
-`
-
-const closeIcon = css`
-  margin-left: 4px;
-`
-
-const colors: TagColorScheme[] = [
-  "white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple", "techBlue",
-]
-
-function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {
-  if (color == "gray") {
-    return css`
-      border-radius: 1px;
-      border: solid 1px ${globalColor(`--${illaPrefix}-${color}-08`)};
-      color: ${globalColor(`--${illaPrefix}-${color}-02`)};
-    `
-  } else {
-    return css`
-      border-radius: 1px;
-      border: solid 1px ${globalColor(`--${illaPrefix}-${color}-01`)};
-      color: ${globalColor(`--${illaPrefix}-${color}-01`)};
-    `
-  }
-}
-
-function tagFillPrepare(color: TagColorScheme): SerializedStyles {
-  return css`
-    background-color: ${globalColor(`--${illaPrefix}-${color}-01`)};
-    color: ${globalColor(`--${illaPrefix}-white-01`)};
-    border-radius: 1px;
-  `
-}
-
-function tagLightPrepare(color: TagColorScheme): SerializedStyles {
-  if (color == "gray") {
-    return css`
-      border-radius: 1px;
-      background-color: ${globalColor(`--${illaPrefix}-${color}-08`)};
-      color: ${globalColor(`--${illaPrefix}-${color}-02`)};
-    `
-  } else {
-    return css`
-      border-radius: 1px;
-      background-color: ${globalColor(`--${illaPrefix}-${color}-06`)};
-      color: ${globalColor(`--${illaPrefix}-${color}-01`)};
-    `
-  }
-}
-
-function tagFillNormal(color: Extract<TagColorScheme, string>): SerializedStyles {
-  return css`
-    border-radius: 1px;
-    color: ${globalColor(`--${illaPrefix}-white-01`)};
-    background-color: ${color};
-  `
-}
-
-function tagOutlineNormal(color: Extract<TagColorScheme, string>): SerializedStyles {
-  return css`
-    border-radius: 1px;
-    color: ${color};
-    border: solid 1px ${color};
-  `
-}
+import {
+  applyTagSizeLarge,
+  applyTagSizeMedium,
+  applyTagSizeSmall,
+  closeIcon,
+  colors,
+  leftIcon,
+  tagContainer,
+  tagFillNormal,
+  tagFillPrepare,
+  tagLightPrepare,
+  tagOutlineNormal,
+  tagOutlinePrepare,
+} from "./style"
 
 export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
 

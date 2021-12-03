@@ -1,21 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef } from "react"
 import { IconProps } from "./interface"
-import { css, keyframes } from "@emotion/react"
+import { css } from "@emotion/react"
 import { omit } from "@illa-design/system"
-
-const rotateKeyframe = keyframes`
-  0% {
-    transform: rotateZ(0deg);
-  }
-  100% {
-    transform: rotateZ(360deg)
-  }
-`
-
-const rotateAnimation = css`
-  animation: 1s linear infinite ${rotateKeyframe};
-`
+import { rotateAnimation } from "./style"
 
 export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
 
