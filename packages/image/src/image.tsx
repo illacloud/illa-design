@@ -3,40 +3,13 @@ import * as React from "react"
 import { forwardRef, useEffect, useState } from "react"
 import { ImageProps } from "./interface"
 import { ImageDefaultIcon } from "@illa-design/icon"
-import { css } from "@emotion/core"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { applyDefaultFallback, applyImageCss, applyOuterCss } from "./style"
 
 enum ImageState {
   Loading,
   Loaded,
   Error
 }
-
-function applyImageCss(objFit: "fill" | "container" | "cover" | "none" | "scale-down", radius: string) {
-  return css`
-    object-fit: ${objFit};
-    background-color: ${globalColor(`--${illaPrefix}-blackAlpha-09`)};
-    border-radius: ${radius};
-  `
-}
-
-function applyDefaultFallback(width: string | number, height: string | number, radius: string) {
-  return css`
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: ${globalColor(`--${illaPrefix}-blackAlpha-09`)};
-    border-radius: ${radius};
-    width: ${width};
-    height: ${height};
-  `
-}
-
-const applyOuterCss = css`
-  vertical-align:middle;
-  display: inline-flex;
-`
 
 export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
   const {

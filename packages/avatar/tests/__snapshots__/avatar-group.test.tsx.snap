@@ -288,7 +288,7 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
 }
 
 .emotion-2 {
-  background-color: #2a3ed6;
+  background-color: #c2c2c2;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;

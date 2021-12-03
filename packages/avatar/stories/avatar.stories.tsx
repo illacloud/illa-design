@@ -7,42 +7,17 @@ import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Avatar",
+  title: "Data Display/Avatar",
   component: Avatar,
   decorators: [withTests({ results })],
-  argTypes: {
-    colorScheme: {
-      control: {
-        type: "text",
-      },
-    },
-    src: {
-      control: {
-        type: "text",
-      },
-    },
-    size: {
-      options: ["small", "medium", "large"],
-      control: {
-        type: "select",
-      },
-    },
-    text: {
-      control: {
-        type: "text",
-      },
-    },
-    shape: {
-      options: ["circle", "square"],
-      control: {
-        type: "select",
-      },
-    },
-    icon: {},
-  },
   parameters: {
     zeplinLink: "zpl://screen?sid=6183c5489b28c93340ca98c5&pid=617f7cd2526c70be1a3bf3ff",
   },
+  argTypes: {
+    icon: {
+      control: false,
+    }
+  }
 } as Meta
 
 const Template: Story<AvatarProps> = (args) => <Avatar {...args} />

@@ -7,9 +7,8 @@ import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Image",
+  title: "General/Image",
   component: Image,
-  decorators: [withTests({ results })],
   argTypes: {
     objectFit: {
       options: ["fill", "container", "cover", "none", "scale-down"],
@@ -47,8 +46,11 @@ export default {
         type: "text",
       },
     },
-    fallbackIcon: {},
+    fallback: {
+      control: false,
+    },
   },
+  decorators: [withTests({ results })],
 } as Meta
 
 const Template: Story<ImageProps> = (args) => {

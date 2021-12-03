@@ -1,37 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { forwardRef } from "react"
-import { css, SerializedStyles } from "@emotion/react"
-import { DividerProps, DividerVariant } from "./interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-
-function applyDividerContainerHorizontal(variant: DividerVariant): SerializedStyles {
-  return css`
-    display: inline-flex;
-    vertical-align: middle;
-    border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-    border-style: ${variant};
-    border-width: 0 0 1px 0;
-    width: 100%;
-  `
-}
-
-function applyDividerContainerVertical(variant: DividerVariant): SerializedStyles {
-  return css`
-    display: inline-flex;
-    vertical-align: middle;
-    border-width: 0 0 0 1px;
-    border-image: initial;
-    border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-    border-style: ${variant};
-    height: 1em;
-  `
-}
+import { SerializedStyles } from "@emotion/react"
+import { DividerProps } from "./interface"
+import { applyDividerContainerHorizontal, applyDividerContainerVertical } from "./style"
 
 export const Divider = forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
 
   const {
-    direction = "vertical",
+    direction = "horizontal",
     variant = "solid",
     ...otherProps
   } = props

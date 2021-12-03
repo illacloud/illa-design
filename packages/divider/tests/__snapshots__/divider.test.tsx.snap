@@ -8,11 +8,10 @@ exports[`Divider renders default 1`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
-  border-width: 0 0 0 1px;
-  border-image: initial;
   border-color: #ebebeb;
   border-style: solid;
-  height: 1em;
+  border-width: 0 0 1px 0;
+  width: 100%;
 }
 
 <div

@@ -1,0 +1,1753 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Group renders attached with round shape 1`] = `
+@keyframes animation-0 {
+  0% {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+.emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-1 {
+  margin-left: 0px;
+}
+
+.emotion-1:hover {
+  z-index: 2;
+}
+
+.emotion-2 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px 12px;
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-2:hover {
+  color: #fff;
+}
+
+.emotion-2:active {
+  color: #fff;
+}
+
+.emotion-2:disabled {
+  color: #fff;
+}
+
+.emotion-2:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-2:active {
+  background-color: #1e29bd;
+}
+
+.emotion-2:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-3 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.emotion-4 {
+  margin-left: -1px;
+}
+
+.emotion-4:hover {
+  z-index: 2;
+}
+
+.emotion-5 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px 12px;
+  border-radius: 0;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-5:hover {
+  color: #fff;
+}
+
+.emotion-5:active {
+  color: #fff;
+}
+
+.emotion-5:disabled {
+  color: #fff;
+}
+
+.emotion-5:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-5:active {
+  background-color: #1e29bd;
+}
+
+.emotion-5:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-6 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+}
+
+.emotion-12 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 1px 11px;
+  border-radius: 0;
+  color: #2a3ed6;
+  border: solid 1px #2a3ed6;
+}
+
+.emotion-12:hover {
+  color: #3e53eb;
+}
+
+.emotion-12:active {
+  color: #1e29bd;
+}
+
+.emotion-12:disabled {
+  color: #aebeff;
+}
+
+.emotion-12:hover {
+  border: solid 1px #3e53eb;
+}
+
+.emotion-12:active {
+  border: solid 1px #1e29bd;
+}
+
+.emotion-12:disabled {
+  border: solid 1px #aebeff;
+}
+
+.emotion-16 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: default;
+  padding: 2px 12px;
+  border-radius: 0;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-16:hover {
+  color: #fff;
+}
+
+.emotion-16:active {
+  color: #fff;
+}
+
+.emotion-16:disabled {
+  color: #fff;
+}
+
+.emotion-16:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-16:active {
+  background-color: #1e29bd;
+}
+
+.emotion-16:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-18 {
+  -webkit-animation: 1s linear infinite animation-0;
+  animation: 1s linear infinite animation-0;
+  vertical-align: middle;
+}
+
+.emotion-26 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: default;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 0;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-26:hover {
+  color: #fff;
+}
+
+.emotion-26:active {
+  color: #fff;
+}
+
+.emotion-26:disabled {
+  color: #fff;
+}
+
+.emotion-26:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-26:active {
+  background-color: #1e29bd;
+}
+
+.emotion-26:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-27 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 12px;
+  height: 12px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-30 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: not-allowed;
+  padding: 2px 12px;
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-30:hover {
+  color: #fff;
+}
+
+.emotion-30:active {
+  color: #fff;
+}
+
+.emotion-30:disabled {
+  color: #fff;
+}
+
+.emotion-30:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-30:active {
+  background-color: #1e29bd;
+}
+
+.emotion-30:disabled {
+  background-color: #aebeff;
+}
+
+<div
+  class="emotion-0"
+  data-testid="test-button-group"
+>
+  <span
+    class="emotion-1"
+  >
+    <button
+      class="emotion-2"
+    >
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-5"
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-5"
+    >
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-12"
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-16"
+      disabled=""
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          class="emotion-18"
+          color="currentColor"
+          height="1em"
+          viewBox="0 0 12 12"
+          width="1em"
+        >
+          <title>
+            LoadingIcon
+          </title>
+          <path
+            d="M5.25.75A.75.75 0 0 1 6 0a6 6 0 1 1-6 6 .75.75 0 0 1 1.5 0A4.5 4.5 0 1 0 6 1.5a.75.75 0 0 1-.75-.75z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-16"
+      disabled=""
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          class="emotion-18"
+          color="currentColor"
+          height="1em"
+          viewBox="0 0 12 12"
+          width="1em"
+        >
+          <title>
+            LoadingIcon
+          </title>
+          <path
+            d="M5.25.75A.75.75 0 0 1 6 0a6 6 0 1 1-6 6 .75.75 0 0 1 1.5 0A4.5 4.5 0 1 0 6 1.5a.75.75 0 0 1-.75-.75z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Loading
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-26"
+      disabled=""
+    >
+      <span
+        class="emotion-27"
+      >
+        <svg
+          class="emotion-18"
+          color="currentColor"
+          height="1em"
+          viewBox="0 0 12 12"
+          width="1em"
+        >
+          <title>
+            LoadingIcon
+          </title>
+          <path
+            d="M5.25.75A.75.75 0 0 1 6 0a6 6 0 1 1-6 6 .75.75 0 0 1 1.5 0A4.5 4.5 0 1 0 6 1.5a.75.75 0 0 1-.75-.75z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-30"
+      disabled=""
+    >
+      <span
+        class="emotion-3"
+      >
+        Text
+      </span>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Button Group renders attached with square shape 1`] = `
+@keyframes animation-0 {
+  0% {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+.emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-1 {
+  margin-left: 0px;
+}
+
+.emotion-1:hover {
+  z-index: 2;
+}
+
+.emotion-2 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px 12px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-2:hover {
+  color: #fff;
+}
+
+.emotion-2:active {
+  color: #fff;
+}
+
+.emotion-2:disabled {
+  color: #fff;
+}
+
+.emotion-2:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-2:active {
+  background-color: #1e29bd;
+}
+
+.emotion-2:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-3 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.emotion-4 {
+  margin-left: -1px;
+}
+
+.emotion-4:hover {
+  z-index: 2;
+}
+
+.emotion-5 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px 12px;
+  border-radius: 0;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-5:hover {
+  color: #fff;
+}
+
+.emotion-5:active {
+  color: #fff;
+}
+
+.emotion-5:disabled {
+  color: #fff;
+}
+
+.emotion-5:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-5:active {
+  background-color: #1e29bd;
+}
+
+.emotion-5:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-6 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+}
+
+.emotion-12 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 1px 11px;
+  border-radius: 0;
+  color: #2a3ed6;
+  border: solid 1px #2a3ed6;
+}
+
+.emotion-12:hover {
+  color: #3e53eb;
+}
+
+.emotion-12:active {
+  color: #1e29bd;
+}
+
+.emotion-12:disabled {
+  color: #aebeff;
+}
+
+.emotion-12:hover {
+  border: solid 1px #3e53eb;
+}
+
+.emotion-12:active {
+  border: solid 1px #1e29bd;
+}
+
+.emotion-12:disabled {
+  border: solid 1px #aebeff;
+}
+
+.emotion-16 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: default;
+  padding: 2px 12px;
+  border-radius: 0;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-16:hover {
+  color: #fff;
+}
+
+.emotion-16:active {
+  color: #fff;
+}
+
+.emotion-16:disabled {
+  color: #fff;
+}
+
+.emotion-16:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-16:active {
+  background-color: #1e29bd;
+}
+
+.emotion-16:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-18 {
+  -webkit-animation: 1s linear infinite animation-0;
+  animation: 1s linear infinite animation-0;
+  vertical-align: middle;
+}
+
+.emotion-26 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: default;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 0;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-26:hover {
+  color: #fff;
+}
+
+.emotion-26:active {
+  color: #fff;
+}
+
+.emotion-26:disabled {
+  color: #fff;
+}
+
+.emotion-26:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-26:active {
+  background-color: #1e29bd;
+}
+
+.emotion-26:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-27 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 12px;
+  height: 12px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-30 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: not-allowed;
+  padding: 2px 12px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-30:hover {
+  color: #fff;
+}
+
+.emotion-30:active {
+  color: #fff;
+}
+
+.emotion-30:disabled {
+  color: #fff;
+}
+
+.emotion-30:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-30:active {
+  background-color: #1e29bd;
+}
+
+.emotion-30:disabled {
+  background-color: #aebeff;
+}
+
+<div
+  class="emotion-0"
+  data-testid="test-button-group"
+>
+  <span
+    class="emotion-1"
+  >
+    <button
+      class="emotion-2"
+    >
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-5"
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-5"
+    >
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-12"
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-16"
+      disabled=""
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          class="emotion-18"
+          color="currentColor"
+          height="1em"
+          viewBox="0 0 12 12"
+          width="1em"
+        >
+          <title>
+            LoadingIcon
+          </title>
+          <path
+            d="M5.25.75A.75.75 0 0 1 6 0a6 6 0 1 1-6 6 .75.75 0 0 1 1.5 0A4.5 4.5 0 1 0 6 1.5a.75.75 0 0 1-.75-.75z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-16"
+      disabled=""
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          class="emotion-18"
+          color="currentColor"
+          height="1em"
+          viewBox="0 0 12 12"
+          width="1em"
+        >
+          <title>
+            LoadingIcon
+          </title>
+          <path
+            d="M5.25.75A.75.75 0 0 1 6 0a6 6 0 1 1-6 6 .75.75 0 0 1 1.5 0A4.5 4.5 0 1 0 6 1.5a.75.75 0 0 1-.75-.75z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Loading
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-26"
+      disabled=""
+    >
+      <span
+        class="emotion-27"
+      >
+        <svg
+          class="emotion-18"
+          color="currentColor"
+          height="1em"
+          viewBox="0 0 12 12"
+          width="1em"
+        >
+          <title>
+            LoadingIcon
+          </title>
+          <path
+            d="M5.25.75A.75.75 0 0 1 6 0a6 6 0 1 1-6 6 .75.75 0 0 1 1.5 0A4.5 4.5 0 1 0 6 1.5a.75.75 0 0 1-.75-.75z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-30"
+      disabled=""
+    >
+      <span
+        class="emotion-3"
+      >
+        Text
+      </span>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Button Group renders with spacing 1`] = `
+@keyframes animation-0 {
+  0% {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+.emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-1 {
+  margin-left: 0px;
+}
+
+.emotion-1:hover {
+  z-index: 2;
+}
+
+.emotion-2 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px 12px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-2:hover {
+  color: #fff;
+}
+
+.emotion-2:active {
+  color: #fff;
+}
+
+.emotion-2:disabled {
+  color: #fff;
+}
+
+.emotion-2:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-2:active {
+  background-color: #1e29bd;
+}
+
+.emotion-2:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-3 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.emotion-4 {
+  margin-left: 4px;
+}
+
+.emotion-4:hover {
+  z-index: 2;
+}
+
+.emotion-6 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+}
+
+.emotion-12 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 1px 11px;
+  border-radius: 4px;
+  color: #2a3ed6;
+  border: solid 1px #2a3ed6;
+}
+
+.emotion-12:hover {
+  color: #3e53eb;
+}
+
+.emotion-12:active {
+  color: #1e29bd;
+}
+
+.emotion-12:disabled {
+  color: #aebeff;
+}
+
+.emotion-12:hover {
+  border: solid 1px #3e53eb;
+}
+
+.emotion-12:active {
+  border: solid 1px #1e29bd;
+}
+
+.emotion-12:disabled {
+  border: solid 1px #aebeff;
+}
+
+.emotion-16 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: default;
+  padding: 2px 12px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-16:hover {
+  color: #fff;
+}
+
+.emotion-16:active {
+  color: #fff;
+}
+
+.emotion-16:disabled {
+  color: #fff;
+}
+
+.emotion-16:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-16:active {
+  background-color: #1e29bd;
+}
+
+.emotion-16:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-18 {
+  -webkit-animation: 1s linear infinite animation-0;
+  animation: 1s linear infinite animation-0;
+  vertical-align: middle;
+}
+
+.emotion-26 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: default;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-26:hover {
+  color: #fff;
+}
+
+.emotion-26:active {
+  color: #fff;
+}
+
+.emotion-26:disabled {
+  color: #fff;
+}
+
+.emotion-26:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-26:active {
+  background-color: #1e29bd;
+}
+
+.emotion-26:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-27 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 12px;
+  height: 12px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-30 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: not-allowed;
+  padding: 2px 12px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-30:hover {
+  color: #fff;
+}
+
+.emotion-30:active {
+  color: #fff;
+}
+
+.emotion-30:disabled {
+  color: #fff;
+}
+
+.emotion-30:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-30:active {
+  background-color: #1e29bd;
+}
+
+.emotion-30:disabled {
+  background-color: #aebeff;
+}
+
+<div
+  class="emotion-0"
+  data-testid="test-button-group"
+>
+  <span
+    class="emotion-1"
+  >
+    <button
+      class="emotion-2"
+    >
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-2"
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-2"
+    >
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-12"
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-16"
+      disabled=""
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          class="emotion-18"
+          color="currentColor"
+          height="1em"
+          viewBox="0 0 12 12"
+          width="1em"
+        >
+          <title>
+            LoadingIcon
+          </title>
+          <path
+            d="M5.25.75A.75.75 0 0 1 6 0a6 6 0 1 1-6 6 .75.75 0 0 1 1.5 0A4.5 4.5 0 1 0 6 1.5a.75.75 0 0 1-.75-.75z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Hello
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-16"
+      disabled=""
+    >
+      <span
+        class="emotion-6"
+      >
+        <svg
+          class="emotion-18"
+          color="currentColor"
+          height="1em"
+          viewBox="0 0 12 12"
+          width="1em"
+        >
+          <title>
+            LoadingIcon
+          </title>
+          <path
+            d="M5.25.75A.75.75 0 0 1 6 0a6 6 0 1 1-6 6 .75.75 0 0 1 1.5 0A4.5 4.5 0 1 0 6 1.5a.75.75 0 0 1-.75-.75z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        class="emotion-3"
+      >
+        Loading
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-26"
+      disabled=""
+    >
+      <span
+        class="emotion-27"
+      >
+        <svg
+          class="emotion-18"
+          color="currentColor"
+          height="1em"
+          viewBox="0 0 12 12"
+          width="1em"
+        >
+          <title>
+            LoadingIcon
+          </title>
+          <path
+            d="M5.25.75A.75.75 0 0 1 6 0a6 6 0 1 1-6 6 .75.75 0 0 1 1.5 0A4.5 4.5 0 1 0 6 1.5a.75.75 0 0 1-.75-.75z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+  </span>
+  <span
+    class="emotion-4"
+  >
+    <button
+      class="emotion-30"
+      disabled=""
+    >
+      <span
+        class="emotion-3"
+      >
+        Text
+      </span>
+    </button>
+  </span>
+</div>
+`;
