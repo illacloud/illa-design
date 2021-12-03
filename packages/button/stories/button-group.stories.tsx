@@ -25,7 +25,8 @@ export const Basic: Story<ButtonGroupProps> = (args) => {
     <Button loading>Hello</Button>
     <Button leftIcon={<BsFacebook />} />
     <Button loading />
-    <Button disabled={true}>Disable</Button>
+    <Button variant="fill">Text</Button>
     <Button variant="text">Text</Button>
+    <Button disabled={true}>Disable</Button>
   </ButtonGroup>
 }
