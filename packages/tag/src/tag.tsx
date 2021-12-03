@@ -12,6 +12,7 @@ import { omit } from "@illa-design/system"
 const tagContainer = css`
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   flex-direction: row;
   align-items: center;
 `

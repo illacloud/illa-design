@@ -9,6 +9,7 @@ export function applyTagContainer(fullWidth: boolean) {
       width: 100%;
     ` : null};
     vertical-align: middle;
+    white-space: nowrap;
     outline: none;
     margin: 0;
     border: 0;
