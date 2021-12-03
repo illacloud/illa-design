@@ -423,10 +423,16 @@ export function applySpacing(spacing: string, index: number, attached: boolean):
   if (attached) {
     return css`
       margin-left: ${index != 0 ? "-1px" : "0px"};
+      &:hover {
+        z-index: 2;
+      }
     `
   } else {
     return css`
       margin-left: ${index == 0 ? "0px" : spacing};
+      &:hover {
+        z-index: 2;
+      }
     `
   }
 }
