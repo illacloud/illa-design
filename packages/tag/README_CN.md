@@ -61,7 +61,7 @@ import { Tag } from "@illa-dedign/tag"
   
 ### 设置标签样式和颜色
 
-通过variant这个接口可以调整tag的样式,通过colorSchema这个接口可以调整tag的背景颜色
+通过variant这个接口可以调整tag的样式,通过colorScheme这个接口可以调整tag的背景颜色
 
 ```jsx
 <Tag>Hello</Tag>
@@ -73,13 +73,13 @@ import { Tag } from "@illa-dedign/tag"
 通过icon这个接口可以设置icon 左侧的icon
 
 ```jsx
-<Tag> Hello </Tag>
+<Tag>Hello</Tag>
 <Tag variant="fill" colorScheme="red" icon={<BsFacebook />}>Small</Tag>
 ```  
   
 ### 设置标签可被关闭
 
-通过closeable这个接口可以设置icon可被关闭
+通过closable这个接口可以设置icon可被关闭
 
 ```jsx
 <Tag>Hello</Tag>
