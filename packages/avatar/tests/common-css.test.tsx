@@ -6,7 +6,7 @@ import {
   applyBgColor,
   applyMergeCss,
   applyShape,
-} from "../src/common-css"
+} from "../src/style"
 import { BsFacebook } from "react-icons/bs"
 import { omit } from "@illa-design/system"
 
