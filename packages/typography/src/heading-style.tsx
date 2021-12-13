@@ -1,8 +1,7 @@
 import * as React from "react"
-import { HeadingLevel, TypographyColorScheme } from "./interface"
+import { TypographyColorScheme } from "./interface"
 import { css, SerializedStyles } from "@storybook/theming"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { getHeadingSize } from "./typograph-style"
 
 export function applyFontColor(colorScheme: TypographyColorScheme): SerializedStyles {
   return css`
@@ -76,12 +75,10 @@ export function applyExpandLabelCss(): SerializedStyles {
   `
 }
 
-export function applyCopyableContainerSize(level: HeadingLevel): SerializedStyles {
+export function applyCopyableContainerSize(): SerializedStyles {
   return css`
     cursor: pointer;
     color: ${globalColor(`--${illaPrefix}--gray-02`)};
-    line-height: ${getHeadingSize(level)[1]};
-    height: ${getHeadingSize(level)[1]};
     display: inline-block;
     margin-left: 8px;
     text-align: center;

@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 export class EllipsisConfig {
   expandable: boolean = false
   rows: number = -1
-  suffix: string = ""
+  suffix: string | null = null
   expandLabel: string | ReactNode = "Expand"
   tooltip: boolean = true
 }
