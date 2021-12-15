@@ -16,7 +16,6 @@ export type TypographyColorScheme =
   | "purple"
 
 export type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
-export type ParagraphSpacing = "normal" | "mini"
 
 export interface TextProps extends BaseProps, HTMLAttributes<HTMLSpanElement> {
   fontSize?: string
@@ -24,7 +23,6 @@ export interface TextProps extends BaseProps, HTMLAttributes<HTMLSpanElement> {
 
 export interface ParagraphProps extends BaseProps, HTMLAttributes<HTMLParagraphElement> {
   fontSize?: string
-  spacing?: ParagraphSpacing
   indent?: boolean
 }
 
