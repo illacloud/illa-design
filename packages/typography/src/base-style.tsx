@@ -34,6 +34,7 @@ export function applyFontContentStyle(bold: boolean, mark: boolean | TypographyC
   if (code) {
     finalCss = css`
       ${finalCss};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     `
   }
 
@@ -76,16 +77,16 @@ export function applyFontContentStyle(bold: boolean, mark: boolean | TypographyC
 export function applyExpandLabelCss(): SerializedStyles {
   return css`
     cursor: pointer;
-    color: ${globalColor(`--${illaPrefix}--techBlue-03`)};
+    color: ${globalColor(`--${illaPrefix}-techBlue-03`)};
   `
 }
 
 export function applyCopyableContainerSize(): SerializedStyles {
   return css`
     cursor: pointer;
-    color: ${globalColor(`--${illaPrefix}--gray-02`)};
     display: inline-block;
     margin-left: 8px;
     text-align: center;
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
 }

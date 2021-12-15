@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { Ellipsis, EllipsisBuilder } from "./ellipsis-config"
 import * as React from "react"
-import { FC, Fragment, MutableRefObject, useEffect, useRef, useState } from "react"
+import { FC, Fragment, MutableRefObject, useRef, useState, useEffect } from "react"
 import {
   applyContainer,
   applyCopyableContainerSize,
@@ -10,7 +10,7 @@ import {
   applyFontContentStyle,
 } from "./base-style"
 import { css } from "@storybook/theming"
-import { measureElement, needMeasure } from "./measure-element"
+import { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
 
@@ -21,7 +21,7 @@ function getEllipsis(ellipsis?: boolean | Ellipsis): Ellipsis {
   } else if (typeof ellipsis == "boolean" && !ellipsis || ellipsis == undefined) {
     originEllipsis = new EllipsisBuilder().expandable(false).create()
   } else {
-    originEllipsis = ellipsis as Ellipsis
+    originEllipsis = ellipsis
   }
   return originEllipsis
 }
@@ -32,11 +32,16 @@ function getCopyable(copyable?: boolean | Copyable): Copyable {
   if (typeof copyable == "boolean" && copyable) {
     originCopyable = new CopyableBuilder().create()
   } else if (typeof copyable == "boolean" && !copyable || copyable == undefined) {
-    originCopyable = new CopyableBuilder().icon(null).create()
+    originCopyable = new CopyableBuilder().copyIcon(null).copiedIcon(null).create()
   } else {
     originCopyable = copyable
   }
   return originCopyable
+}
+
+function copyToClipboard(text: string) {
+  console.log(text)
+  navigator.clipboard.writeText(text).then()
 }
 
 export const Base: FC<BaseProps> = (props) => {
@@ -60,24 +65,11 @@ export const Base: FC<BaseProps> = (props) => {
   // set expandable state
   const [showExpand, setShowExpand] = useState<boolean>(originEllipsis.expandable)
   const [clipShowText, setClipShowText] = useState("")
+  const [copied, setCopied] = useState(false)
 
   // get ref
   const contentRef = useRef<HTMLSpanElement>() as MutableRefObject<HTMLSpanElement>
   const operationRef = useRef<HTMLSpanElement>() as MutableRefObject<HTMLSpanElement>
-
-  // apply operation
-  const operation = <>
-    {(showExpand || copyable) && <span ref={operationRef}>
-      {showExpand && <Fragment>
-        ...
-        {originEllipsis.suffix && <span>{originEllipsis.suffix}</span>}
-        {<span css={applyExpandLabelCss()} onClick={() => {
-          setShowExpand(false)
-        }}>{originEllipsis.expandLabel}</span>}
-      </Fragment>}
-      {originCopyable.icon != null && <span css={applyCopyableContainerSize()}>{originCopyable.icon}</span>}
-    </span>}
-  </>
 
   // apply content
   const contentCss = css`
@@ -89,16 +81,42 @@ export const Base: FC<BaseProps> = (props) => {
     {showExpand && clipShowText != "" ? clipShowText : props.children}
   </span>
 
+  // apply operation
+  const operation = <span ref={operationRef}>
+    {showExpand && <Fragment>
+      <span css={contentCss}>
+        ...
+        {originEllipsis.suffix && <span>{originEllipsis.suffix}</span>}
+      </span>
+      {<span css={applyExpandLabelCss()} onClick={() => {
+        setShowExpand(false)
+      }}>{originEllipsis.expandLabel}</span>}
+    </Fragment>}
+    {copyable && originCopyable.copyIcon &&
+      <span onClick={() => {
+        setCopied(true)
+        if (originCopyable.onCopy != undefined) {
+          originCopyable.onCopy()
+        }
+      }} css={applyCopyableContainerSize()}>{!copied ? originCopyable.copyIcon : originCopyable.copiedIcon}</span>
+    }
+  </span>
+
   // update clip text
   useEffect(() => {
     if (showExpand) {
-      if (needMeasure(contentRef.current, operationRef.current, originEllipsis.rows)) {
-        setClipShowText(measureElement(contentRef.current, operationRef.current, originEllipsis.rows))
-      } else {
-        setShowExpand(false)
-      }
+      const [finalString, needExpand] = measureElement(contentRef.current, operationRef.current, originEllipsis.rows)
+      setClipShowText(finalString)
+      setShowExpand(needExpand)
     }
-  }, [props.children, props])
+  }, [ellipsis,
+    bold,
+    disabled,
+    mark,
+    underline,
+    deleted,
+    code,
+    copyable])
 
   return <>
     {content}

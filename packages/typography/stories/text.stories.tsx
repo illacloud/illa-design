@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Text, TextProps } from "../src"
+import { Text, TextProps, Typography } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 
@@ -11,4 +11,4 @@ export default {
   decorators: [withTests({ results })],
 } as Meta
 
-export const Basic: Story<TextProps> = (args) => <Text {...args}>Hello Text</Text>
+export const Basic: Story<TextProps> = (args) => <Typography><Text {...args}>Hello Text</Text></Typography>

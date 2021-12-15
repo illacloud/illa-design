@@ -1,5 +1,6 @@
 import * as React from "react"
 import { unmountComponentAtNode } from "react-dom"
+import { leftIcon } from "@illa-design/tag/dist/types/style"
 
 let computeElement: HTMLElement
 
@@ -36,6 +37,14 @@ function getContentHeight(contentRef: HTMLSpanElement): number {
   return height
 }
 
+function getContentWidth(contentRef: HTMLSpanElement): number {
+  let width = 0
+  for (let c of contentRef.getClientRects()) {
+    width += c.width
+  }
+  return width
+}
+
 function getMaxLineWidth(contentRef: HTMLSpanElement): number {
   let maxWidth = 0
   for (let c of contentRef.getClientRects()) {
@@ -44,24 +53,13 @@ function getMaxLineWidth(contentRef: HTMLSpanElement): number {
   return maxWidth
 }
 
-export function needMeasure(
-  contentRef: HTMLSpanElement,
-  operationRef: HTMLSpanElement,
-  rows: number,
-): boolean {
-  const contentHeight = getContentHeight(contentRef)
-  const lineHeight = contentRef.getClientRects().item(0)?.height ?? 0
-  const maxHeight = lineHeight * rows
-  return maxHeight <= contentHeight
-}
-
 export function measureElement(
-  contentRef: HTMLSpanElement,
+  contentRef: HTMLElement,
   operationRef: HTMLSpanElement,
   rows: number,
-): string {
+): [string, boolean] {
   const lineHeight = contentRef.getClientRects().item(0)?.height ?? 0
-  const operationWidth = operationRef.getBoundingClientRect().width
+  const operationWidth = getContentWidth(operationRef)
   const lastLineMaxWidth = getMaxLineWidth(contentRef) - operationWidth
 
   if (computeElement == undefined) {
@@ -85,10 +83,16 @@ export function measureElement(
 
   const maxHeight = lineHeight * rows
 
+  if (getContentHeight(contentRef) <= maxHeight) {
+    unmountComponentAtNode(computeElement)
+    computeElement.innerText = ""
+    return [fullText, false]
+  }
+
   measureText(textNode, fullText, maxHeight, lastLineMaxWidth, rows)
   const finalString = computeElement.textContent ?? ""
   unmountComponentAtNode(computeElement)
   computeElement.innerText = ""
 
-  return finalString
+  return [finalString, true]
 }
