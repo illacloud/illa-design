@@ -1,5 +1,6 @@
 import * as React from "react"
-import { unmountComponentAtNode } from "react-dom"
+import { unmountComponentAtNode, render } from "react-dom"
+import { ReactNode } from "react"
 
 let computeElement: HTMLElement
 
@@ -58,6 +59,7 @@ export function measureElement(
   contentRef: HTMLElement,
   operationRef: HTMLSpanElement,
   rows: number,
+  children: ReactNode,
 ): MeasureResult {
   const lineHeight = contentRef.getClientRects().item(0)?.height ?? 0
   const operationWidth = getContentWidth(operationRef)
@@ -68,7 +70,7 @@ export function measureElement(
   }
 
   // create text node
-  const fullText = contentRef.textContent ?? ""
+  const fullText = mergedToString(React.Children.toArray(children))
   const textNode = document.createTextNode(fullText)
 
   // deal css
@@ -83,7 +85,7 @@ export function measureElement(
 
   const maxHeight = lineHeight * rows
 
-  if (getContentHeight(contentRef) <= maxHeight) {
+  if (getContentHeight(computeElement) <= maxHeight) {
     unmountComponentAtNode(computeElement)
     computeElement.innerHTML = ""
     return {
@@ -93,7 +95,7 @@ export function measureElement(
     } as MeasureResult
   }
 
-  const lastLineMaxWidth = getMaxLineWidth(contentRef) - operationWidth
+  const lastLineMaxWidth = getMaxLineWidth(computeElement) - operationWidth
   measureText(textNode, fullText, maxHeight, lastLineMaxWidth, rows)
   const finalString = computeElement.textContent ?? ""
   unmountComponentAtNode(computeElement)
@@ -104,4 +106,33 @@ export function measureElement(
     screenString: finalString,
     isClip: true,
   } as MeasureResult
+}
+
+/** merge multiple children to a string node */
+const isSingleNode = (child: React.ReactNode) => {
+  return isString(child) || isNumber(child);
+};
+
+export function isString(obj: any): obj is string {
+  return Object.prototype.toString.call(obj) === '[object String]';
+}
+
+export function isNumber(obj: any): obj is number {
+  return Object.prototype.toString.call(obj) === '[object Number]' && obj === obj; // eslint-disable-line
+}
+
+export default function mergedToString(children: any): string {
+  const mergedResult = [''];
+  React.Children.forEach(children, (child) => {
+    const prevIndex = mergedResult.length - 1;
+    const prevChild = mergedResult[prevIndex];
+
+    if (isSingleNode(child) && isSingleNode(prevChild)) {
+      mergedResult[prevIndex] = `${prevChild}${child}`;
+    } else if (child && child.props && child.props.children) {
+      mergedResult.push(mergedToString(child.props.children));
+    }
+  });
+
+  return mergedResult.join('');
 }

@@ -2,16 +2,12 @@
 import { Ellipsis, EllipsisBuilder } from "./ellipsis-config"
 import * as React from "react"
 import { FC, Fragment, MutableRefObject, useEffect, useRef, useState } from "react"
-import {
-  applyCopyableContainerSize,
-  applyExpandLabelCss,
-  applyFontColor,
-  applyFontContentStyle,
-} from "./base-style"
+import { applyCopyableContainerSize, applyExpandLabelCss, applyFontColor, applyFontContentStyle } from "./base-style"
 import { css } from "@storybook/theming"
 import { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
+import {useWindowSize} from "react-use"
 
 function getEllipsis(ellipsis?: boolean | Ellipsis): Ellipsis {
   let originEllipsis: Ellipsis
@@ -39,7 +35,6 @@ function getCopyable(copyable?: boolean | Copyable): Copyable {
 }
 
 function copyToClipboard(text: string) {
-  console.log(text)
   navigator.clipboard.writeText(text).then()
 }
 
@@ -77,7 +72,7 @@ export const Base: FC<BaseProps> = (props) => {
     ${applyFontContentStyle(bold, mark, underline, deleted, disabled, code)};
   `
   const content = <span ref={contentRef} css={contentCss}>
-    {showExpand && clipShowText != "" ? clipShowText : props.children}
+    {showExpand ? clipShowText : props.children}
   </span>
 
   // apply operation
@@ -105,6 +100,8 @@ export const Base: FC<BaseProps> = (props) => {
     }
   </span>
 
+  const { width } = useWindowSize()
+
   // update clip text
   useEffect(() => {
     if (showExpand) {
@@ -112,12 +109,13 @@ export const Base: FC<BaseProps> = (props) => {
         fullText,
         screenString,
         isClip,
-      } = measureElement(contentRef.current, operationRef.current, originEllipsis.rows)
+      } = measureElement(contentRef.current, operationRef.current, originEllipsis.rows, props.children)
       setClipShowText(screenString)
       setFullText(fullText)
       setShowExpand(isClip)
     }
-  }, [])
+  }, [width])
+
 
   return <>
     {content}
