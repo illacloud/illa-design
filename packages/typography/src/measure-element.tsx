@@ -52,11 +52,17 @@ function getMaxLineWidth(contentRef: HTMLSpanElement): number {
   return maxWidth
 }
 
+export interface MeasureResult {
+  fullText: string
+  screenString: string
+  isClip: boolean
+}
+
 export function measureElement(
   contentRef: HTMLElement,
   operationRef: HTMLSpanElement,
   rows: number,
-): [string, boolean] {
+): MeasureResult {
   const lineHeight = contentRef.getClientRects().item(0)?.height ?? 0
   const operationWidth = getContentWidth(operationRef)
   const lastLineMaxWidth = getMaxLineWidth(contentRef) - operationWidth
@@ -85,7 +91,11 @@ export function measureElement(
   if (getContentHeight(contentRef) <= maxHeight) {
     unmountComponentAtNode(computeElement)
     computeElement.innerHTML = ""
-    return [fullText, false]
+    return {
+      fullText: fullText,
+      screenString: fullText,
+      isClip: false,
+    } as MeasureResult
   }
 
   measureText(textNode, fullText, maxHeight, lastLineMaxWidth, rows)
@@ -93,5 +103,9 @@ export function measureElement(
   unmountComponentAtNode(computeElement)
   computeElement.innerHTML = ""
 
-  return [finalString, true]
+  return {
+    fullText: fullText,
+    screenString: finalString,
+    isClip: true,
+  } as MeasureResult
 }

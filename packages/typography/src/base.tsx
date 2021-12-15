@@ -66,6 +66,7 @@ export const Base: FC<BaseProps> = (props) => {
   const [showExpand, setShowExpand] = useState<boolean>(originEllipsis.expandable)
   const [clipShowText, setClipShowText] = useState("")
   const [copied, setCopied] = useState(false)
+  const [currentFullText, setFullText] = useState("")
 
   // get ref
   const contentRef = useRef<HTMLSpanElement>() as MutableRefObject<HTMLSpanElement>
@@ -98,6 +99,7 @@ export const Base: FC<BaseProps> = (props) => {
     {copyable && originCopyable.copyIcon &&
       <span onClick={() => {
         setCopied(true)
+        copyToClipboard(currentFullText)
         if (originCopyable.onCopy != undefined) {
           originCopyable.onCopy()
         }
@@ -108,9 +110,14 @@ export const Base: FC<BaseProps> = (props) => {
   // update clip text
   useEffect(() => {
     if (showExpand) {
-      const [finalString, needExpand] = measureElement(contentRef.current, operationRef.current, originEllipsis.rows)
-      setClipShowText(finalString)
-      setShowExpand(needExpand)
+      const {
+        fullText,
+        screenString,
+        isClip,
+      } = measureElement(contentRef.current, operationRef.current, originEllipsis.rows)
+      setClipShowText(screenString)
+      setFullText(fullText)
+      setShowExpand(isClip)
     }
   }, [])
 
