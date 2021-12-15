@@ -27,7 +27,7 @@ export function applyDisable(disabled: boolean): SerializedStyles {
   }
 }
 
-export function applyFontContentStyle(bold: boolean, mark: boolean, underline: boolean, deleted: boolean, disabled: boolean, code: boolean): SerializedStyles {
+export function applyFontContentStyle(bold: boolean, mark: boolean | TypographyColorScheme, underline: boolean, deleted: boolean, disabled: boolean, code: boolean): SerializedStyles {
 
   let finalCss = css``
 
@@ -44,10 +44,15 @@ export function applyFontContentStyle(bold: boolean, mark: boolean, underline: b
     `
   }
 
-  if (mark) {
+  if (mark === true) {
     finalCss = css`
       ${finalCss};
       background-color: ${globalColor(`--${illaPrefix}-yellow-06`)};
+    `
+  } else {
+    finalCss = css`
+      ${finalCss};
+      background-color: ${globalColor(`--${illaPrefix}-${mark}-06`)};
     `
   }
 

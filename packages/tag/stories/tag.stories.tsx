@@ -11,9 +11,6 @@ export default {
   title: "Data Display/Tag",
   component: Tag,
   decorators: [withTests({ results })],
-  parameters: {
-    zeplinLink: "zpl://screen?sid=617f92d08bb52d043a5dc189&pid=617f7cd2526c70be1a3bf3ff",
-  },
   argTypes: {
     icon: {
       control: false,
