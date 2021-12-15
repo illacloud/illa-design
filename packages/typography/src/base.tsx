@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { Ellipsis, EllipsisBuilder } from "./ellipsis-config"
 import * as React from "react"
-import { FC, Fragment, MutableRefObject, useRef, useState, useEffect } from "react"
+import { FC, Fragment, MutableRefObject, useEffect, useRef, useState } from "react"
 import {
   applyContainer,
   applyCopyableContainerSize,
@@ -89,6 +89,9 @@ export const Base: FC<BaseProps> = (props) => {
         {originEllipsis.suffix && <span>{originEllipsis.suffix}</span>}
       </span>
       {<span css={applyExpandLabelCss()} onClick={() => {
+        if (originEllipsis.onExpand != undefined) {
+          originEllipsis.onExpand()
+        }
         setShowExpand(false)
       }}>{originEllipsis.expandLabel}</span>}
     </Fragment>}
@@ -109,14 +112,7 @@ export const Base: FC<BaseProps> = (props) => {
       setClipShowText(finalString)
       setShowExpand(needExpand)
     }
-  }, [ellipsis,
-    bold,
-    disabled,
-    mark,
-    underline,
-    deleted,
-    code,
-    copyable])
+  }, [])
 
   return <>
     {content}

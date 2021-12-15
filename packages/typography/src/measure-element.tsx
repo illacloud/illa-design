@@ -1,6 +1,5 @@
 import * as React from "react"
 import { unmountComponentAtNode } from "react-dom"
-import { leftIcon } from "@illa-design/tag/dist/types/style"
 
 let computeElement: HTMLElement
 
@@ -20,7 +19,7 @@ function measureText(textNode: Text, fullText: string, maxHeight: number, lastLi
   if (start >= end - 1 && inRange(maxHeight, lastLineMaxWidth, rows)) {
     return
   }
-  const mid = (start + end) / 2
+  const mid = Math.floor((start + end) / 2)
   textNode.textContent = fullText.slice(0, mid)
   if (inRange(maxHeight, lastLineMaxWidth, rows)) {
     measureText(textNode, fullText, maxHeight, lastLineMaxWidth, rows, mid, end)
@@ -85,14 +84,14 @@ export function measureElement(
 
   if (getContentHeight(contentRef) <= maxHeight) {
     unmountComponentAtNode(computeElement)
-    computeElement.innerText = ""
+    computeElement.innerHTML = ""
     return [fullText, false]
   }
 
   measureText(textNode, fullText, maxHeight, lastLineMaxWidth, rows)
   const finalString = computeElement.textContent ?? ""
   unmountComponentAtNode(computeElement)
-  computeElement.innerText = ""
+  computeElement.innerHTML = ""
 
   return [finalString, true]
 }

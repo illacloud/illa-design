@@ -6,6 +6,7 @@ export class Ellipsis {
   suffix: string | null = null
   expandLabel: string | ReactNode = "Expand"
   tooltip: boolean = true
+  onExpand?: () => void
 }
 
 export class EllipsisBuilder {
@@ -33,6 +34,11 @@ export class EllipsisBuilder {
 
   public tooltip(tooltip: boolean): EllipsisBuilder {
     this.config.tooltip = tooltip
+    return this
+  }
+
+  public onExpand(fun: () => void): EllipsisBuilder {
+    this.config.onExpand = fun
     return this
   }
 
