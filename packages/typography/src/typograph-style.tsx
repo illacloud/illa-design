@@ -22,6 +22,7 @@ export function getHeadingSize(level: HeadingLevel): string[] {
 export function applyTypoContainer(): SerializedStyles {
   return css`
     display: flex;
+    word-break: break-all;
     h1 {
       font-size: ${getHeadingSize("h1")[0]};
       line-height: ${getHeadingSize("h1")[1]};
@@ -50,10 +51,6 @@ export function applyTypoContainer(): SerializedStyles {
     h6 {
       font-size: ${getHeadingSize("h6")[0]};
       line-height: ${getHeadingSize("h6")[1]};
-    }
-
-    span {
-      white-space: pre-wrap;
     }
   `
 }

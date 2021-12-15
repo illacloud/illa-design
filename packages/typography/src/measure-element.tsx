@@ -20,7 +20,7 @@ function measureText(textNode: Text, fullText: string, maxHeight: number, lastLi
     return
   }
   const mid = Math.floor((start + end) / 2)
-  textNode.textContent = fullText.slice(0, mid)
+  textNode.textContent = fullText.slice(0, mid).trim()
   if (inRange(maxHeight, lastLineMaxWidth, rows)) {
     measureText(textNode, fullText, maxHeight, lastLineMaxWidth, rows, mid, end)
   } else {
@@ -45,11 +45,7 @@ function getContentWidth(contentRef: HTMLSpanElement): number {
 }
 
 function getMaxLineWidth(contentRef: HTMLSpanElement): number {
-  let maxWidth = 0
-  for (let c of contentRef.getClientRects()) {
-    maxWidth = Math.max(maxWidth, c.width)
-  }
-  return maxWidth
+  return contentRef.getBoundingClientRect().width
 }
 
 export interface MeasureResult {
@@ -65,7 +61,6 @@ export function measureElement(
 ): MeasureResult {
   const lineHeight = contentRef.getClientRects().item(0)?.height ?? 0
   const operationWidth = getContentWidth(operationRef)
-  const lastLineMaxWidth = getMaxLineWidth(contentRef) - operationWidth
 
   if (computeElement == undefined) {
     computeElement = document.createElement(contentRef.tagName)
@@ -98,6 +93,7 @@ export function measureElement(
     } as MeasureResult
   }
 
+  const lastLineMaxWidth = getMaxLineWidth(contentRef) - operationWidth
   measureText(textNode, fullText, maxHeight, lastLineMaxWidth, rows)
   const finalString = computeElement.textContent ?? ""
   unmountComponentAtNode(computeElement)

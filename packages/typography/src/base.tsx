@@ -3,7 +3,6 @@ import { Ellipsis, EllipsisBuilder } from "./ellipsis-config"
 import * as React from "react"
 import { FC, Fragment, MutableRefObject, useEffect, useRef, useState } from "react"
 import {
-  applyContainer,
   applyCopyableContainerSize,
   applyExpandLabelCss,
   applyFontColor,
@@ -74,7 +73,6 @@ export const Base: FC<BaseProps> = (props) => {
 
   // apply content
   const contentCss = css`
-    ${applyContainer()};
     ${applyFontColor(colorScheme)};
     ${applyFontContentStyle(bold, mark, underline, deleted, disabled, code)};
   `
@@ -89,12 +87,12 @@ export const Base: FC<BaseProps> = (props) => {
         ...
         {originEllipsis.suffix && <span>{originEllipsis.suffix}</span>}
       </span>
-      {<span css={applyExpandLabelCss()} onClick={() => {
+      {<a css={applyExpandLabelCss()} onClick={() => {
         if (originEllipsis.onExpand != undefined) {
           originEllipsis.onExpand()
         }
         setShowExpand(false)
-      }}>{originEllipsis.expandLabel}</span>}
+      }}>{originEllipsis.expandLabel}</a>}
     </Fragment>}
     {copyable && originCopyable.copyIcon &&
       <span onClick={() => {

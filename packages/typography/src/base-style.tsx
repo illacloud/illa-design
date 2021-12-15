@@ -9,12 +9,6 @@ export function applyFontColor(colorScheme: TypographyColorScheme): SerializedSt
   `
 }
 
-export function applyContainer(): SerializedStyles {
-  return css`
-    word-break: break-all;
-  `
-}
-
 export function applyDisable(disabled: boolean): SerializedStyles {
   if (disabled) {
     return css`
@@ -77,6 +71,8 @@ export function applyFontContentStyle(bold: boolean, mark: boolean | TypographyC
 export function applyExpandLabelCss(): SerializedStyles {
   return css`
     cursor: pointer;
+    margin: 0 4px;
+    text-decoration: none;
     color: ${globalColor(`--${illaPrefix}-techBlue-03`)};
   `
 }
@@ -85,7 +81,7 @@ export function applyCopyableContainerSize(): SerializedStyles {
   return css`
     cursor: pointer;
     display: inline-block;
-    margin-left: 8px;
+    margin-left: 4px;
     text-align: center;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
