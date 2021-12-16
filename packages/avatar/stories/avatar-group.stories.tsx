@@ -10,9 +10,6 @@ export default {
   title: "Data Display/AvatarGroup",
   component: AvatarGroup,
   decorators: [withTests({ results })],
-  parameters: {
-    zeplinLink: "zpl://screen?sid=6183c5489b28c93340ca98c5&pid=617f7cd2526c70be1a3bf3ff",
-  },
 } as Meta
 
 const Template: Story<AvatarProps> = (args) => {

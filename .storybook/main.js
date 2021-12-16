@@ -9,7 +9,6 @@ module.exports = {
     "@storybook/addon-jest",
     "@storybook/addon-storysource",
     "@storybook/addon-a11y",
-    "storybook-zeplin/register",
   ],
   "framework": "@storybook/react",
 }

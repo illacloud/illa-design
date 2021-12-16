@@ -1,26 +1,14 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Avatar, AvatarProps } from "../src"
-import { BsFacebook } from "react-icons/bs"
+import { Text, TextProps, Typography } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Data Display/Avatar",
-  component: Avatar,
+  title: "General/Typography/Text",
+  component: Text,
   decorators: [withTests({ results })],
-  argTypes: {
-    icon: {
-      control: false,
-    }
-  }
 } as Meta
 
-const Template: Story<AvatarProps> = (args) => <Avatar {...args} />
-
-export const Basic = Template.bind({
-  icon: <BsFacebook />,
-})
-
-
+export const Basic: Story<TextProps> = (args) => <Typography><Text {...args}>Hello Text</Text></Typography>

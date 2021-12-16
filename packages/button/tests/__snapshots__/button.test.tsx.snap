@@ -307,6 +307,77 @@ exports[`Button renders with different variant 3`] = `
   cursor: pointer;
   padding: 1px 11px;
   border-radius: 4px;
+  color: #1f1f1f;
+  border: dashed 1px #ebebeb;
+}
+
+.emotion-0:hover {
+  color: #1f1f1f;
+}
+
+.emotion-0:active {
+  color: #1f1f1f;
+}
+
+.emotion-0:disabled {
+  color: #c2c2c2;
+}
+
+.emotion-0:hover {
+  border: dashed 1px #e0e0e0;
+}
+
+.emotion-0:active {
+  border: dashed 1px #c2c2c2;
+}
+
+.emotion-0:disabled {
+  border: dashed 1px #ebebeb;
+}
+
+.emotion-1 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+<button
+  class="emotion-0"
+  data-testid="test-with-dashed-gray"
+>
+  <span
+    class="emotion-1"
+  >
+    Hello
+  </span>
+</button>
+`;
+
+exports[`Button renders with different variant 4`] = `
+.emotion-0 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 1px 11px;
+  border-radius: 4px;
   color: #2a3ed6;
   border: solid 1px #2a3ed6;
 }
@@ -356,7 +427,78 @@ exports[`Button renders with different variant 3`] = `
 </button>
 `;
 
-exports[`Button renders with different variant 4`] = `
+exports[`Button renders with different variant 5`] = `
+.emotion-0 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 1px 11px;
+  border-radius: 4px;
+  color: #1f1f1f;
+  border: solid 1px #ebebeb;
+}
+
+.emotion-0:hover {
+  color: #1f1f1f;
+}
+
+.emotion-0:active {
+  color: #1f1f1f;
+}
+
+.emotion-0:disabled {
+  color: #c2c2c2;
+}
+
+.emotion-0:hover {
+  border: solid 1px #e0e0e0;
+}
+
+.emotion-0:active {
+  border: solid 1px #c2c2c2;
+}
+
+.emotion-0:disabled {
+  border: solid 1px #ebebeb;
+}
+
+.emotion-1 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+<button
+  class="emotion-0"
+  data-testid="test-with-outline-gray"
+>
+  <span
+    class="emotion-1"
+  >
+    Hello
+  </span>
+</button>
+`;
+
+exports[`Button renders with different variant 6`] = `
 .emotion-0 {
   vertical-align: middle;
   white-space: nowrap;

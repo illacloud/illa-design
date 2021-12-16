@@ -11,9 +11,6 @@ export default {
   title: "General/Button",
   component: Button,
   decorators: [withTests({ results })],
-  parameters: {
-    zeplinLink: "zpl://screen?pid=617f7cd2526c70be1a3bf3ff&sid=61a096b8454c7f89bcaa83df",
-  },
   argTypes: {
     leftIcon: {
       control: false,
