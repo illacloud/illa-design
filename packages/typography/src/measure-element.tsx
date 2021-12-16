@@ -12,7 +12,7 @@ function inRange(maxHeight: number, lastLineMaxWidth: number, rows: number) {
   if (lines < rows) {
     return true
   }
-  const lastLineWidth = computeElement.getClientRects().item(rows - 1)?.width ?? 0
+  const lastLineWidth = computeElement.getClientRects()[rows - 1]?.width ?? 0
   return lastLineWidth <= lastLineMaxWidth
 }
 
@@ -39,10 +39,10 @@ function getContentHeight(contentRef: HTMLSpanElement): number {
 
 function getContentWidth(contentRef: HTMLSpanElement): number {
   let width = 0
-  for (let c of contentRef.getClientRects()) {
-    width += c.width
+  const list = contentRef.getClientRects()
+  for (let i = 0; i < list.length; i++) {
+    width += list[i].width
   }
-  console.log(width)
   return width
 }
 
@@ -62,10 +62,7 @@ export function measureElement(
   rows: number,
   children: ReactNode,
 ): MeasureResult {
-
-  console.log(contentRef.getClientRects())
-
-  const lineHeight = contentRef.getClientRects().item(0)?.height ?? 0
+  const lineHeight = contentRef.getClientRects()[0]?.height ?? 0
   const operationWidth = getContentWidth(operationRef)
 
   if (computeElement == undefined) {
