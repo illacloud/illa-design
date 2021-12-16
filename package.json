@@ -20,17 +20,20 @@
     "babel-loader": "^8.2.3",
     "@types/jest": "^27.0.2",
     "@emotion/jest": "^11.6.0",
+    "lerna": "^4.0.0",
+    "react-icons": "^4.3.1",
+    "zx": "^4.2.0",
+    "husky": "^7.0.4",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "@changesets/changelog-github": "^0.4.2",
+    "@changesets/cli": "^2.18.1",
     "jest": "^27.3.1",
     "ts-jest": "^27.0.7",
     "jest-environment-jsdom": "^27.3.1",
     "jest-watch-typeahead": "^1.0.0",
     "@testing-library/react": "^12.1.2",
-    "@testing-library/jest-dom": "^5.15.1",
-    "lerna": "^4.0.0",
-    "react-icons": "^4.3.1",
-    "zx": "^4.2.0",
-    "@changesets/changelog-github": "^0.4.2",
-    "@changesets/cli": "^2.18.1"
+    "@testing-library/jest-dom": "^5.15.1"
   },
   "workspaces": [
     "packages/*"
@@ -48,6 +51,7 @@
     "build-all-components": "npx zx ./scripts/build-all-components.mjs",
     "build-storybook": "npx build-storybook",
     "test": "npx jest",
-    "prebuild": "npx zx ./scripts/prebuild.mjs"
+    "prebuild": "npx zx ./scripts/prebuild.mjs",
+    "prepare": "husky install"
   }
 }

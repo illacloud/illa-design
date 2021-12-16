@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Avatar renders with colorScheme 1`] = `
+exports[`Avatar Avatar renders with colorScheme 1`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -93,7 +93,7 @@ exports[`Avatar renders with colorScheme 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Avatar renders with colorScheme 2`] = `
+exports[`Avatar Avatar renders with colorScheme 2`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -186,7 +186,7 @@ exports[`Avatar renders with colorScheme 2`] = `
 </DocumentFragment>
 `;
 
-exports[`Avatar renders with colorScheme 3`] = `
+exports[`Avatar Avatar renders with colorScheme 3`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -279,7 +279,7 @@ exports[`Avatar renders with colorScheme 3`] = `
 </DocumentFragment>
 `;
 
-exports[`Avatar renders with icon 1`] = `
+exports[`Avatar Avatar renders with icon 1`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -366,7 +366,7 @@ exports[`Avatar renders with icon 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Avatar renders with shape 1`] = `
+exports[`Avatar Avatar renders with shape 1`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -459,7 +459,7 @@ exports[`Avatar renders with shape 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Avatar renders with shape 2`] = `
+exports[`Avatar Avatar renders with shape 2`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -552,7 +552,7 @@ exports[`Avatar renders with shape 2`] = `
 </DocumentFragment>
 `;
 
-exports[`Avatar renders with size 1`] = `
+exports[`Avatar Avatar renders with size 1`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -645,7 +645,7 @@ exports[`Avatar renders with size 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Avatar renders with size 2`] = `
+exports[`Avatar Avatar renders with size 2`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -738,7 +738,7 @@ exports[`Avatar renders with size 2`] = `
 </DocumentFragment>
 `;
 
-exports[`Avatar renders with size 3`] = `
+exports[`Avatar Avatar renders with size 3`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
