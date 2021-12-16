@@ -9,18 +9,6 @@ export function applyFontColor(colorScheme: TypographyColorScheme): SerializedSt
   `
 }
 
-export function applyDisable(disabled: boolean): SerializedStyles {
-  if (disabled) {
-    return css`
-      cursor: not-allowed;
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
-      user-select: none;
-    `
-  } else {
-    return css``
-  }
-}
-
 export function applyFontContentStyle(bold: boolean, mark: boolean | TypographyColorScheme, underline: boolean, deleted: boolean, disabled: boolean, code: boolean): SerializedStyles {
 
   let finalCss = css``

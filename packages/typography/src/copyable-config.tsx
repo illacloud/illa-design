@@ -4,8 +4,8 @@ import { CopyIcon } from "@illa-design/icon"
 export class Copyable {
   copyIcon: ReactNode = <CopyIcon />
   copiedIcon: ReactNode = <CopyIcon />
-  tooltips: boolean | string = false
-  copyTooltip: boolean | string = false
+  copiedToolTip: boolean | string = "Copied"
+  copyTooltip: boolean | string = "Copy"
   onCopy?: () => void
 }
 
@@ -22,8 +22,8 @@ export class CopyableBuilder {
     return this
   }
 
-  public tooltips(tooltips: boolean | string): CopyableBuilder {
-    this.config.tooltips = tooltips
+  public copiedTooltip(copiedTooltip: boolean | string): CopyableBuilder {
+    this.config.copiedToolTip = copiedTooltip
     return this
   }
 

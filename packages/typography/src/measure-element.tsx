@@ -1,6 +1,6 @@
 import * as React from "react"
-import { unmountComponentAtNode, render } from "react-dom"
 import { ReactNode } from "react"
+import { unmountComponentAtNode } from "react-dom"
 
 let computeElement: HTMLElement
 
@@ -42,6 +42,7 @@ function getContentWidth(contentRef: HTMLSpanElement): number {
   for (let c of contentRef.getClientRects()) {
     width += c.width
   }
+  console.log(width)
   return width
 }
 
@@ -61,6 +62,9 @@ export function measureElement(
   rows: number,
   children: ReactNode,
 ): MeasureResult {
+
+  console.log(contentRef.getClientRects())
+
   const lineHeight = contentRef.getClientRects().item(0)?.height ?? 0
   const operationWidth = getContentWidth(operationRef)
 
@@ -110,29 +114,29 @@ export function measureElement(
 
 /** merge multiple children to a string node */
 const isSingleNode = (child: React.ReactNode) => {
-  return isString(child) || isNumber(child);
-};
+  return isString(child) || isNumber(child)
+}
 
 export function isString(obj: any): obj is string {
-  return Object.prototype.toString.call(obj) === '[object String]';
+  return Object.prototype.toString.call(obj) === "[object String]"
 }
 
 export function isNumber(obj: any): obj is number {
-  return Object.prototype.toString.call(obj) === '[object Number]' && obj === obj; // eslint-disable-line
+  return Object.prototype.toString.call(obj) === "[object Number]" && obj === obj // eslint-disable-line
 }
 
 export default function mergedToString(children: any): string {
-  const mergedResult = [''];
+  const mergedResult = [""]
   React.Children.forEach(children, (child) => {
-    const prevIndex = mergedResult.length - 1;
-    const prevChild = mergedResult[prevIndex];
+    const prevIndex = mergedResult.length - 1
+    const prevChild = mergedResult[prevIndex]
 
     if (isSingleNode(child) && isSingleNode(prevChild)) {
-      mergedResult[prevIndex] = `${prevChild}${child}`;
+      mergedResult[prevIndex] = `${prevChild}${child}`
     } else if (child && child.props && child.props.children) {
-      mergedResult.push(mergedToString(child.props.children));
+      mergedResult.push(mergedToString(child.props.children))
     }
-  });
+  })
 
-  return mergedResult.join('');
+  return mergedResult.join("")
 }

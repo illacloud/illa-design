@@ -1,8 +1,8 @@
 import { ReactNode } from "react"
 
 export class Ellipsis {
-  expandable: boolean = false
-  rows: number = -1
+  expandable: boolean = true
+  rows: number = 2
   suffix: string | null = null
   expandLabel: string | ReactNode = "Expand"
   tooltip: boolean = true

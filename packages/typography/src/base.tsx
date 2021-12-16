@@ -71,6 +71,7 @@ export const Base: FC<BaseProps> = (props) => {
     ${applyFontColor(colorScheme)};
     ${applyFontContentStyle(bold, mark, underline, deleted, disabled, code)};
   `
+
   const [content, { width }] = useSize(<span ref={contentRef} css={contentCss}>
     {showExpand ? clipShowText : props.children}
   </span>)

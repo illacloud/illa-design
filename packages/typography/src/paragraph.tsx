@@ -3,6 +3,7 @@ import { forwardRef } from "react"
 import { ParagraphProps } from "./interface"
 import { Base } from "./base"
 import { applyParagraphContainer } from "./paragraph-style"
+import * as React from "react"
 
 export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>((props, ref) => {
 
@@ -23,7 +24,10 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>((props
   } = props
 
   return <p css={applyParagraphContainer(indent)} ref={ref} {...otherProps}>
-    <Base>{props.children}</Base>
+    <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
+          underline={underline} deleted={deleted} code={code} copyable={copyable}>
+      {props.children}
+    </Base>
   </p>
 
 })
