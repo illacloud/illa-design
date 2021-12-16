@@ -7,7 +7,7 @@ import { css } from "@storybook/theming"
 import { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
-import {useWindowSize} from "react-use"
+import { useSize } from "react-use"
 
 function getEllipsis(ellipsis?: boolean | Ellipsis): Ellipsis {
   let originEllipsis: Ellipsis
@@ -71,9 +71,9 @@ export const Base: FC<BaseProps> = (props) => {
     ${applyFontColor(colorScheme)};
     ${applyFontContentStyle(bold, mark, underline, deleted, disabled, code)};
   `
-  const content = <span ref={contentRef} css={contentCss}>
+  const [content, { width }] = useSize(<span ref={contentRef} css={contentCss}>
     {showExpand ? clipShowText : props.children}
-  </span>
+  </span>)
 
   // apply operation
   const operation = <span ref={operationRef}>
@@ -100,8 +100,6 @@ export const Base: FC<BaseProps> = (props) => {
     }
   </span>
 
-  const { width } = useWindowSize()
-
   // update clip text
   useEffect(() => {
     if (showExpand) {
@@ -115,7 +113,6 @@ export const Base: FC<BaseProps> = (props) => {
       setShowExpand(isClip)
     }
   }, [width])
-
 
   return <>
     {content}
