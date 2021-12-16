@@ -7,7 +7,7 @@ import { css } from "@storybook/theming"
 import { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
-import { useSize } from "react-use"
+import useSize from "react-use/lib/useSize"
 
 function getEllipsis(ellipsis?: boolean | Ellipsis): Ellipsis {
   let originEllipsis: Ellipsis
