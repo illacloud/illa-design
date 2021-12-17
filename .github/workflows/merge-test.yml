@@ -6,7 +6,7 @@ on:
 
 jobs:
   install:
-    runs-on: macOS-latest
+    runs-on: macos-latest
 
     strategy:
       matrix:
