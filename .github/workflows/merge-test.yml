@@ -73,4 +73,5 @@ jobs:
 
       - name: Run jest
         run: |
+          export JEST_ELECTRON_STARTUP_ARGS='--disable-dev-shm-usage --no-sandbox'
           yarn test
