@@ -3,10 +3,16 @@
 exports[`Button Group renders attached with round shape 1`] = `
 @keyframes animation-0 {
   0% {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
     transform: rotateZ(0deg);
   }
 
   100% {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
     transform: rotateZ(360deg);
   }
 }
@@ -265,7 +271,8 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-18 {
-  animation: 1s linear 0s infinite normal none running animation-0;
+  -webkit-animation: 1s linear infinite animation-0;
+  animation: 1s linear infinite animation-0;
   vertical-align: middle;
 }
 
@@ -597,10 +604,16 @@ exports[`Button Group renders attached with round shape 1`] = `
 exports[`Button Group renders attached with square shape 1`] = `
 @keyframes animation-0 {
   0% {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
     transform: rotateZ(0deg);
   }
 
   100% {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
     transform: rotateZ(360deg);
   }
 }
@@ -859,7 +872,8 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-18 {
-  animation: 1s linear 0s infinite normal none running animation-0;
+  -webkit-animation: 1s linear infinite animation-0;
+  animation: 1s linear infinite animation-0;
   vertical-align: middle;
 }
 
@@ -1191,10 +1205,16 @@ exports[`Button Group renders attached with square shape 1`] = `
 exports[`Button Group renders with spacing 1`] = `
 @keyframes animation-0 {
   0% {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
     transform: rotateZ(0deg);
   }
 
   100% {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
     transform: rotateZ(360deg);
   }
 }
@@ -1403,7 +1423,8 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-18 {
-  animation: 1s linear 0s infinite normal none running animation-0;
+  -webkit-animation: 1s linear infinite animation-0;
+  animation: 1s linear infinite animation-0;
   vertical-align: middle;
 }
 

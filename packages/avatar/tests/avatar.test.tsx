@@ -4,7 +4,6 @@ import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 describe("Avatar", () => {
-
   test("Avatar renders with text", () => {
     render(<Avatar data-testid="test-avatar-with-text" text="Hello World" />)
     expect(screen.getByTestId("test-avatar-with-text")).toBeInTheDocument()
@@ -23,26 +22,28 @@ describe("Avatar", () => {
   })
 
   test("Avatar renders with shape", () => {
-    expect(render(<Avatar shape="circle" />).asFragment()).toMatchSnapshot()
-    expect(render(<Avatar shape="square" />).asFragment()).toMatchSnapshot()
+    const fragment = render(<div>
+      <Avatar shape="circle" />
+      <Avatar shape="square" />
+    </div>).asFragment()
+    expect(fragment).toMatchSnapshot()
   })
 
   test("Avatar renders with size", () => {
-    expect(render(<Avatar size="small" />).asFragment()).toMatchSnapshot()
-    expect(render(<Avatar size="medium" />).asFragment()).toMatchSnapshot()
-    expect(render(<Avatar size="large" />).asFragment()).toMatchSnapshot()
+    const fragment = render(<div>
+      <Avatar size="small" />
+      <Avatar size="medium" />
+      <Avatar size="large" />
+    </div>).asFragment()
+    expect(fragment).toMatchSnapshot()
   })
 
   test("Avatar renders with colorScheme", () => {
-    expect(render(<Avatar colorScheme="gray" />).asFragment()).toMatchSnapshot()
-    expect(render(<Avatar colorScheme="green" />).asFragment()).toMatchSnapshot()
-    expect(render(<Avatar colorScheme="#123321" />).asFragment()).toMatchSnapshot()
-  })
-
-  test("Avatar renders with long text", () => {
-    render(<Avatar text="long long text" />)
-    expect(screen.getByText("long long text")).toHaveStyle({
-      "transform": "matrix(0.408163, 0, 0, 0.408163, 0, 0)",
-    })
+    const fragment = render(<div>
+      <Avatar colorScheme="gray" />
+      <Avatar colorScheme="green" />
+      <Avatar colorScheme="#123321" />
+    </div>).asFragment()
+    expect(fragment).toMatchSnapshot()
   })
 })

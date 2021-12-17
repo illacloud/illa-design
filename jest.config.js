@@ -1,5 +1,5 @@
 module.exports = {
-  testEnvironment: "jest-electron/environment",
+  testEnvironment: "jsdom",
   coverageDirectory: "./coverage/",
   coverageReporters: ["json"],
   collectCoverage: true,
@@ -11,8 +11,8 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
-  transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
   runner: "jest-electron/runner",
+  transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
   globals: {
     "ts-jest": {
       tsconfig: "tsconfig.json",

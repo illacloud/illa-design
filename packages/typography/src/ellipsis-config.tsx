@@ -27,7 +27,7 @@ export class EllipsisBuilder {
     return this
   }
 
-  public expandLabel(expandLabel: string): EllipsisBuilder {
+  public expandLabel(expandLabel: string | ReactNode): EllipsisBuilder {
     this.config.expandLabel = expandLabel
     return this
   }

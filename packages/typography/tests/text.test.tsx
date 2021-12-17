@@ -1,8 +1,7 @@
 import * as React from "react"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { CopyableBuilder, Text, Typography } from "../src"
-import { ImageDefaultIcon, PersonIcon } from "@illa-design/icon"
+import { Text, Typography } from "../src"
 
 test("Text renders with different level", () => {
   render(<Typography>
@@ -11,26 +10,6 @@ test("Text renders with different level", () => {
   expect(screen.getByTestId("test-text")).toHaveStyle({
     fontSize: "20px",
   })
-})
-
-test("Text renders with copy event", () => {
-  const onCopy = jest.fn()
-  const { getByTitle } = render(<Typography>
-    <Text data-testid="test-text" fontSize="20px" copyable={new CopyableBuilder().onCopy(onCopy).create()}>Text</Text>
-  </Typography>)
-  fireEvent.click(getByTitle("CopyIcon"))
-  expect(onCopy).toBeCalled()
-})
-
-test("Text renders with different copy icon", () => {
-  const { getByTitle } = render(<Typography>
-    <Text data-testid="test-text" fontSize="20px"
-          copyable={new CopyableBuilder().copyIcon(<ImageDefaultIcon />).copiedIcon(
-            <PersonIcon />).create()}>Text</Text>
-  </Typography>)
-  expect(getByTitle("ImageDefaultIcon")).toBeInTheDocument()
-  fireEvent.click(getByTitle("ImageDefaultIcon"))
-  expect(getByTitle("PersonIcon")).toBeInTheDocument()
 })
 
 // test("Text renders with different copy tooltips", () => {
