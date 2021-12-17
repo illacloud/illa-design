@@ -4,15 +4,6 @@ import "@testing-library/jest-dom"
 import { CopyableBuilder, Text, Typography } from "../src"
 import { ImageDefaultIcon, PersonIcon } from "@illa-design/icon"
 
-beforeAll(() => {
-  Object.assign(navigator, {
-    clipboard: {
-      writeText: async () => {
-      },
-    },
-  })
-})
-
 test("Text renders with different level", () => {
   render(<Typography>
     <Text data-testid="test-text" fontSize="20px">Text</Text>

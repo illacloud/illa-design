@@ -1,11 +1,10 @@
 module.exports = {
-  testEnvironment: "jsdom",
+  testEnvironment: "jest-electron/environment",
   coverageDirectory: "./coverage/",
   coverageReporters: ["json"],
   collectCoverage: true,
   collectCoverageFrom: ["packages/**/src/*.tsx"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  extensionsToTreatAsEsm: [".ts"],
   modulePathIgnorePatterns: [
     "<rootDir>/examples",
   ],
@@ -13,6 +12,7 @@ module.exports = {
     "^.+\\.tsx?$": "ts-jest",
   },
   transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
+  runner: "jest-electron/runner",
   globals: {
     "ts-jest": {
       tsconfig: "tsconfig.json",

@@ -10,9 +10,13 @@ test("Button Group renders attached with square shape", () => {
       <Button>Hello</Button>
       <Button leftIcon={<BsFacebook />}>Hello</Button>
       <Button>Hello</Button>
-      <Button leftIcon={<BsFacebook />} variant="outline">Hello</Button>
+      <Button leftIcon={<BsFacebook />} variant="outline">
+        Hello
+      </Button>
       <Button loading>Hello</Button>
-      <Button loading loadingText="Loading">Hello</Button>
+      <Button loading loadingText="Loading">
+        Hello
+      </Button>
       <Button loading />
       <Button disabled>Text</Button>
     </ButtonGroup>,
@@ -26,9 +30,13 @@ test("Button Group renders attached with round shape", () => {
       <Button>Hello</Button>
       <Button leftIcon={<BsFacebook />}>Hello</Button>
       <Button>Hello</Button>
-      <Button leftIcon={<BsFacebook />} variant="outline">Hello</Button>
+      <Button leftIcon={<BsFacebook />} variant="outline">
+        Hello
+      </Button>
       <Button loading>Hello</Button>
-      <Button loading loadingText="Loading">Hello</Button>
+      <Button loading loadingText="Loading">
+        Hello
+      </Button>
       <Button loading />
       <Button disabled>Text</Button>
     </ButtonGroup>,
@@ -38,13 +46,17 @@ test("Button Group renders attached with round shape", () => {
 
 test("Button Group renders with spacing", () => {
   render(
-    <ButtonGroup data-testid="test-button-group">
+    <ButtonGroup data-testid="test-button-group" spacing="12px">
       <Button>Hello</Button>
       <Button leftIcon={<BsFacebook />}>Hello</Button>
       <Button>Hello</Button>
-      <Button leftIcon={<BsFacebook />} variant="outline">Hello</Button>
+      <Button leftIcon={<BsFacebook />} variant="outline">
+        Hello
+      </Button>
       <Button loading>Hello</Button>
-      <Button loading loadingText="Loading">Hello</Button>
+      <Button loading loadingText="Loading">
+        Hello
+      </Button>
       <Button loading />
       <Button disabled>Text</Button>
     </ButtonGroup>,

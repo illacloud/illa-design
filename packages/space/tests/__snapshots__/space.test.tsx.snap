@@ -246,9 +246,9 @@ exports[`Space renders with divider 1`] = `
 .emotion-3 {
   display: inline-flex;
   vertical-align: middle;
-  border-width: 0 0 0 1px;
+  border-width: 0px 0px 0px 1px;
   border-image: initial;
-  border-color: #ebebeb;
+  border-color: rgb(235, 235, 235);
   border-style: solid;
   height: 1em;
 }

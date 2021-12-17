@@ -28,7 +28,7 @@ test("Paragraph renders with indent", () => {
       graphic design) may also be considered to be a design activity.</Paragraph>
   </Typography>)
   expect(screen.getByTestId("test-paragraph")).toHaveStyle({
-    "text-indent": "2em",
+    "text-indent": "32px",
   })
 })
 
