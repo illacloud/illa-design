@@ -4,6 +4,25 @@ import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 describe("Avatar", () => {
+
+  beforeEach(() => {
+    Object.defineProperty(HTMLSpanElement.prototype, "clientWidth", {
+      configurable: true,
+      value: 192,
+    })
+    Object.defineProperty(HTMLDivElement.prototype, "offsetWidth", {
+      configurable: true,
+      value: 100,
+    })
+  })
+
+  test("Avatar renders with long text", () => {
+    render(<Avatar text="long long text" />)
+    expect(screen.getByText("long long text")).toHaveStyle({
+      "transform": "scale(0.5)",
+    })
+  })
+
   test("Avatar renders with text", () => {
     render(<Avatar data-testid="test-avatar-with-text" text="Hello World" />)
     expect(screen.getByTestId("test-avatar-with-text")).toBeInTheDocument()
