@@ -1,25 +1,37 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef } from "react"
 import { TooltipProps } from "./interface"
-import { css } from "@emotion/react"
-
-const applyOuterCss = css`
-  position: relative;
-  display: inline-flex;
-`
-
-const tipsContainer = css`
-  position: absolute;
-  visibility: hidden;
-
-  .css-${applyOuterCss.name}:hover & {
-    visibility: visible;
-  }
-`
+import { applyOuterCss, applyTipsContainer, applyTipsText, applyTriangleStyle } from "./style"
+import { Triangle } from "./triangle"
 
 export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
-  return <div ref={ref} css={applyOuterCss}>
+
+  const {
+    colorScheme = "blackAlpha",
+    content = "123123123",
+    position = "top",
+    showArrow = true,
+    closeDelay = 150,
+    openDelay = 150,
+    autoFitPosition = true,
+    closeOnClick = true,
+    defaultPopupVisible = false,
+    popupVisible = false,
+    disabled = false,
+    onVisibleChange,
+  } = props
+
+  return <div ref={ref} css={applyOuterCss}
+              onMouseEnter={() => {
+                if (onVisibleChange != undefined && !disabled) {
+                  onVisibleChange(true)
+                }
+              }}>
     {props.children}
-    <div css={tipsContainer}>优秀</div>
+    {!disabled && <div css={applyTipsContainer(position)}>
+      <span css={applyTipsText(colorScheme)}>{content}</span>
+      {showArrow && <Triangle css={applyTriangleStyle(colorScheme, position)} width="8px" height="4px" />}
+    </div>}
   </div>
+
 })
