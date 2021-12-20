@@ -2,6 +2,7 @@ import * as React from "react"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { Text, Typography } from "../src"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 test("Text renders with different level", () => {
   render(<Typography>
@@ -9,6 +10,19 @@ test("Text renders with different level", () => {
   </Typography>)
   expect(screen.getByTestId("test-text")).toHaveStyle({
     fontSize: "20px",
+  })
+})
+
+test("Text renders with different color schemes", () => {
+  render(<Typography>
+    <Text colorScheme="blackAlpha">Text Pre</Text>
+    <Text colorScheme="#123456">Text Test</Text>
+  </Typography>)
+  expect(screen.getByText("Text Pre")).toHaveStyle({
+    color: `${globalColor(`--${illaPrefix}-blackAlpha-02`)}`,
+  })
+  expect(screen.getByText("Text Test")).toHaveStyle({
+    color: "#123456",
   })
 })
 

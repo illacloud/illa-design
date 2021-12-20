@@ -3,7 +3,8 @@ import { Ellipsis } from "./ellipsis-config"
 import { Copyable } from "./copyable-config"
 
 export type TypographyColorScheme =
-  "white"
+  string
+  | "white"
   | "blackAlpha"
   | "gray"
   | "grayBlue"

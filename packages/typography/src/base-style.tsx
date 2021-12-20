@@ -3,9 +3,24 @@ import { TypographyColorScheme } from "./interface"
 import { css, SerializedStyles } from "@storybook/theming"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
+const colorSchemes = ["white",
+  "blackAlpha",
+  "gray",
+  "grayBlue",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple"]
+
 export function applyFontColor(colorScheme: TypographyColorScheme): SerializedStyles {
+
+  const color = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
+
   return css`
-    color: ${globalColor(`--${illaPrefix}-${colorScheme}-02`)};
+    color: ${color};
   `
 }
 
@@ -33,9 +48,10 @@ export function applyFontContentStyle(bold: boolean, mark: boolean | TypographyC
       background-color: ${globalColor(`--${illaPrefix}-yellow-06`)};
     `
   } else {
+    const bgColor = typeof mark == "string" && colorSchemes.includes(mark) ? globalColor(`--${illaPrefix}-${mark}-06`) : mark
     finalCss = css`
       ${finalCss};
-      background-color: ${globalColor(`--${illaPrefix}-${mark}-06`)};
+      background-color: ${bgColor};
     `
   }
 
