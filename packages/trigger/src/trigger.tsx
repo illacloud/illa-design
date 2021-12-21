@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { forwardRef, MutableRefObject, ReactNode, useEffect, useRef, useState } from "react"
+import { forwardRef, MutableRefObject, ReactNode, useRef, useState } from "react"
 import { TriggerPosition, TriggerProps } from "./interface"
 import { AnimatePresence, motion, Variants } from "framer-motion"
 import { applyOuterCss, applyTipsContainer, applyTipsText, applyTriangleStyle } from "./style"
@@ -54,6 +54,9 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
     disabled = false,
     popupVisible,
     onVisibleChange,
+    onMouseEnter,
+    onMouseLeave,
+    onClick,
     ...otherProps
   } = props
 
@@ -106,29 +109,32 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
   }
 
   return <div ref={ref} css={applyOuterCss} {...otherProps}
-              onMouseEnter={() => {
+              onMouseEnter={(event) => {
                 if (!disabled && popupVisible == undefined) {
                   setTipsVisible(true)
                   if (onVisibleChange != undefined) {
                     onVisibleChange(true)
                   }
                 }
+                onMouseEnter && onMouseEnter(event)
               }}
-              onMouseLeave={() => {
+              onMouseLeave={(event) => {
                 if (!disabled && popupVisible == undefined) {
                   setTipsVisible(false)
                   if (onVisibleChange != undefined) {
                     onVisibleChange(false)
                   }
                 }
+                onMouseLeave && onMouseLeave(event)
               }}
-              onClick={() => {
+              onClick={(event) => {
                 if (!disabled && closeOnClick && popupVisible == undefined) {
                   setTipsVisible(false)
                   if (onVisibleChange != undefined) {
                     onVisibleChange(false)
                   }
                 }
+                onClick && onClick(event)
               }}>
     <span ref={childrenRef}>{props.children}</span>
     <AnimatePresence>

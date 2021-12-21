@@ -16,7 +16,7 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@illa-design/tooltip",
+      name: "@illa-design/trigger",
       fileName: (format) => `${format}/index.js`,
     },
     rollupOptions: {

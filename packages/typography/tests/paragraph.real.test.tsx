@@ -13,7 +13,7 @@ test("Paragraph renders short text with ellipsis", () => {
       This is a paragraph
     </Paragraph>
   </Typography>)
-  expect(screen.queryByText("...")).not.toBeInTheDocument()
+  expect(screen.queryByText("...")).not.toBeTruthy()
 })
 
 test("Paragraph render with ellipsis", () => {

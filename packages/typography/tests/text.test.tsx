@@ -1,8 +1,8 @@
 import * as React from "react"
-import { render, screen } from "@testing-library/react"
-import "@testing-library/jest-dom"
-import { Text, Typography } from "../src"
+import { fireEvent, render, screen } from "@testing-library/react"
+import { CopyableBuilder, Text, Typography } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import "@testing-library/jest-dom"
 
 test("Text renders with different level", () => {
   render(<Typography>
@@ -25,20 +25,6 @@ test("Text renders with different color schemes", () => {
     color: "#123456",
   })
 })
-
-// test("Text renders with different copy tooltips", () => {
-//   const { getByTitle } = render(<Typography>
-//     <Text data-testid="test-text" fontSize="20px"
-//           copyable={new CopyableBuilder()
-//             .copyTooltip("CopyTooltip")
-//             .copiedTooltip("CopiedTooltip")
-//             .create()}>Text</Text>
-//   </Typography>)
-//   fireEvent.mouseOver(getByTitle("CopyIcon"))
-//   expect(screen.getByText("CopyTooltip")).toBeInTheDocument()
-//   fireEvent.click(getByTitle("CopyIcon"))
-//   expect(screen.getByText("CopiedTooltip")).toBeInTheDocument()
-// })
 
 test("Text renders with copy icon", () => {
   render(<Typography>

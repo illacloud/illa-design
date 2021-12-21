@@ -6,7 +6,7 @@ const colorSchemes = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange"
 
 export const applyOuterCss = css`
   position: relative;
-  display: inline-flex;
+  display: inline;
 `
 
 export function applyTipsContainer(position: TriggerPosition): SerializedStyles {

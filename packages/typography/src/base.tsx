@@ -8,6 +8,7 @@ import { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
 import useSize from "react-use/lib/useSize"
+import { Tooltip } from "@illa-design/tooltip"
 
 function getEllipsis(ellipsis?: boolean | Ellipsis): Ellipsis {
   let originEllipsis: Ellipsis
@@ -61,20 +62,21 @@ export const Base: FC<BaseProps> = (props) => {
   const [clipShowText, setClipShowText] = useState("")
   const [copied, setCopied] = useState(false)
   const [currentFullText, setFullText] = useState("")
+  const [showMainContentToolTip, setShowMainContentToolTip] = useState(true)
 
   // get ref
-  const contentRef = useRef<HTMLSpanElement>() as MutableRefObject<HTMLSpanElement>
-  const operationRef = useRef<HTMLSpanElement>() as MutableRefObject<HTMLSpanElement>
+  const contentRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
+  const operationRef = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
 
   // apply content
   const contentCss = css`
     ${applyFontColor(colorScheme)};
     ${applyFontContentStyle(bold, mark, underline, deleted, disabled, code)};
   `
-
-  const [content, { width }] = useSize(<span ref={contentRef} css={contentCss}>
-    {showExpand ? clipShowText : props.children}
-  </span>)
+  const [content, { width }] = useSize(<span
+    ref={contentRef}
+    css={contentCss}>
+    {showExpand ? clipShowText : props.children}</span>)
 
   // apply operation
   const operation = <span ref={operationRef}>
@@ -91,13 +93,24 @@ export const Base: FC<BaseProps> = (props) => {
       }}>{originEllipsis.expandLabel}</a>}
     </Fragment>}
     {copyable && originCopyable.copyIcon &&
-      <span onClick={() => {
-        setCopied(true)
-        copyToClipboard(currentFullText)
-        if (originCopyable.onCopy != undefined) {
-          originCopyable.onCopy()
-        }
-      }} css={applyCopyableContainerSize()}>{!copied ? originCopyable.copyIcon : originCopyable.copiedIcon}</span>
+      <Tooltip content={copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip}
+               ref={contentRef}
+               disabled={copied ? !originCopyable.copiedToolTip : !originCopyable.copiedIcon}
+               onMouseEnter={() => {
+                 setShowMainContentToolTip(false)
+               }}
+               onMouseLeave={() => {
+                 setShowMainContentToolTip(true)
+               }}
+      >
+        <span onClick={() => {
+          setCopied(true)
+          copyToClipboard(currentFullText)
+          if (originCopyable.onCopy != undefined) {
+            originCopyable.onCopy()
+          }
+        }} css={applyCopyableContainerSize()}>{!copied ? originCopyable.copyIcon : originCopyable.copiedIcon}</span>
+      </Tooltip>
     }
   </span>
 
@@ -115,8 +128,9 @@ export const Base: FC<BaseProps> = (props) => {
     }
   }, [width])
 
-  return <>
+  return <Tooltip content={currentFullText} ref={contentRef}
+                  disabled={!originEllipsis.tooltip || !showMainContentToolTip}>
     {content}
     {operation}
-  </>
+  </Tooltip>
 }
