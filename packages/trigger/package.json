@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/tooltip",
+  "name": "@illa-design/trigger",
   "version": "0.0.1-alpha.0",
   "description": "Illa Design base.",
   "keywords": [
-    "tooltip",
+    "trigger",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/tooltip"
+    "directory": "packages/trigger"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"

@@ -1,7 +1,6 @@
-import { css } from "@emotion/react"
-import { ToolTipColorScheme, ToolTipPosition } from "./interface"
+import { css, SerializedStyles } from "@emotion/react"
+import { TriggerColorScheme, TriggerPosition } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { SerializedStyles } from "@storybook/theming"
 
 const colorSchemes = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
 
@@ -10,7 +9,7 @@ export const applyOuterCss = css`
   display: inline-flex;
 `
 
-export function applyTipsContainer(position: ToolTipPosition): SerializedStyles {
+export function applyTipsContainer(position: TriggerPosition): SerializedStyles {
 
   const isColumn =
     position == "top" ||
@@ -24,29 +23,25 @@ export function applyTipsContainer(position: ToolTipPosition): SerializedStyles 
     display: flex;
     flex-direction: ${isColumn ? "column" : "row"};
     opacity: 90%;
+    z-index: 10;
     color: ${globalColor(`--${illaPrefix}-white-01`)};
-    position: absolute;
-    visibility: hidden;
-
-    .css-${applyOuterCss.name}:hover & {
-      visibility: visible;
-    }
   `
 }
 
-export function applyTipsText(colorScheme: ToolTipColorScheme): SerializedStyles {
+export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles {
   const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-03`) : colorScheme
   return css`
     align-self: center;
     background-color: ${bgColor};
     min-width: 32px;
+    min-height: 32px;
     border-radius: 2px;
     font-size: 14px;
     padding: 8px 12px;
   `
 }
 
-export function applyTriangleStyle(colorScheme: ToolTipColorScheme, position: ToolTipPosition): SerializedStyles {
+export function applyTriangleStyle(colorScheme: TriggerColorScheme, position: TriggerPosition): SerializedStyles {
   const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-03`) : colorScheme
   const mainStyle = css`
     color: ${bgColor};
@@ -54,6 +49,8 @@ export function applyTriangleStyle(colorScheme: ToolTipColorScheme, position: To
   switch (position) {
     case "top":
     case "bottom":
+    case "left":
+    case "right":
       return css`
         ${mainStyle};
         align-self: center;
@@ -85,12 +82,6 @@ export function applyTriangleStyle(colorScheme: ToolTipColorScheme, position: To
         ${mainStyle};
         align-self: end;
         margin-bottom: 12px;
-      `
-    case "left":
-    case "right":
-      return css`
-        ${mainStyle};
-        align-items: center;
       `
   }
 }

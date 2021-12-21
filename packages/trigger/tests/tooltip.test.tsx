@@ -1,4 +1,4 @@
-import { Tooltip } from "../src"
+import { Trigger } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 

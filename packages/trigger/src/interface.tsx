@@ -1,6 +1,6 @@
-import { HTMLAttributes } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 
-export type ToolTipColorScheme =
+export type TriggerColorScheme =
   string
   | "white"
   | "blackAlpha"
@@ -14,7 +14,7 @@ export type ToolTipColorScheme =
   | "cyan"
   | "purple"
 
-export type ToolTipPosition =
+export type TriggerPosition =
   "top"
   | "tl"
   | "tr"
@@ -28,10 +28,10 @@ export type ToolTipPosition =
   | "rt"
   | "rb"
 
-export interface TooltipProps extends HTMLAttributes<HTMLDivElement> {
-  colorScheme?: ToolTipColorScheme
-  content?: string
-  position?: ToolTipPosition
+export interface TriggerProps extends HTMLAttributes<HTMLDivElement> {
+  colorScheme?: TriggerColorScheme
+  content?: string | ReactNode
+  position?: TriggerPosition
   showArrow?: boolean
   closeDelay?: number
   openDelay?: number
