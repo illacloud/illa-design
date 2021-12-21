@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/trigger",
+  "name": "@illa-design/tooltip",
   "version": "0.0.1-alpha.0",
   "description": "Illa Design base.",
   "keywords": [
-    "trigger",
+    "tooltip",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/trigger"
+    "directory": "packages/tooltip"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
@@ -39,8 +39,6 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@illa-design/system": "^0.0.1-alpha.0",
-    "@illa-design/theme": "^0.0.1-alpha.0",
-    "@illa-design/icon": "^0.0.1-alpha.0"
+    "@illa-design/trigger": "^0.0.1-alpha.0"
   }
 }

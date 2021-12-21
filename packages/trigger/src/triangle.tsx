@@ -1,4 +1,4 @@
-import { createIcon } from "@illa-design/icon/src"
+import { createIcon } from "@illa-design/icon"
 
 export const TriangleTop = createIcon({
   title: "TriangleIcon",
