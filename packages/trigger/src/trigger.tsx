@@ -6,32 +6,32 @@ import { applyOuterCss, applyTipsContainer, applyTipsText, applyTriangleStyle } 
 import { TriangleBottom, TriangleLeft, TriangleRight, TriangleTop } from "./triangle"
 import { getTransform } from "./transform"
 
-function applyTransform(position: TriggerPosition): Variants {
+function applyTransform(position: TriggerPosition, closeDelay: number, openDelay: number): Variants {
   switch (position) {
     case "top":
-      return getTransform("50%", "100%")
+      return getTransform("50%", "100%", closeDelay, openDelay)
     case "tl":
-      return getTransform("12px", "100%")
+      return getTransform("12px", "100%", closeDelay, openDelay)
     case "tr":
-      return getTransform("calc(100% - 12px)", "100%")
+      return getTransform("calc(100% - 12px)", "100%", closeDelay, openDelay)
     case "bottom":
-      return getTransform("50%", "0")
+      return getTransform("50%", "0", closeDelay, openDelay)
     case "bl":
-      return getTransform("12px", "0")
+      return getTransform("12px", "0", closeDelay, openDelay)
     case "br":
-      return getTransform("calc(100% - 12px)", "0")
+      return getTransform("calc(100% - 12px)", "0", closeDelay, openDelay)
     case "left":
-      return getTransform("100%", "50%")
+      return getTransform("100%", "50%", closeDelay, openDelay)
     case "lt":
-      return getTransform("100%", "12px")
+      return getTransform("100%", "12px", closeDelay, openDelay)
     case "lb":
-      return getTransform("100%", "calc(100% - 12px)")
+      return getTransform("100%", "calc(100% - 12px)", closeDelay, openDelay)
     case "right":
-      return getTransform("0", "50%")
+      return getTransform("0", "50%", closeDelay, openDelay)
     case "rt":
-      return getTransform("0", "12px")
+      return getTransform("0", "12px", closeDelay, openDelay)
     case "rb":
-      return getTransform("0", "calc(100% - 12px)")
+      return getTransform("0", "calc(100% - 12px)", closeDelay, openDelay)
   }
 }
 
@@ -141,7 +141,7 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
       {!disabled && finalVisible && <motion.div
         ref={tipsRef}
         style={{ position: "absolute" }}
-        variants={applyTransform(position)}
+        variants={applyTransform(position, closeDelay, openDelay)}
         initial="initial"
         animate="animate"
         exit="exit"
