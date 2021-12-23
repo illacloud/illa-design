@@ -10,6 +10,10 @@ export const applyOuterCss = css`
   display: inline;
 `
 
+export const applyChildrenContainer = css`
+  display: inline-flex;
+`
+
 export function applyTipsContainer(position: TriggerPosition, tipsTransform?: AdjustResult): SerializedStyles {
 
   const isColumn =

@@ -1,7 +1,7 @@
 #!/usr/bin/env zx
 
 // note alignment
-const components = ["system", "theme", "icon", "image", "tag", "avatar", "divider", "space", "button", "typography"]
+const components = ["system", "theme", "icon", "image", "tag", "avatar", "divider", "space", "button", "typography", "trigger", "tooltip"]
 
 for (let i = 0; i < components.length; i++) {
   await $`npx lerna run build --scope=@illa-design/${components[i]}`

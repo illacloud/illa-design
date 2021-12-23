@@ -26,7 +26,7 @@ test("Text renders with different copy icon", () => {
   expect(getByTitle("PersonIcon")).toBeInTheDocument()
 })
 
-test("Text renders with different copy tooltips", () => {
+test("Text renders with different copy tooltips", async () => {
   const { getByTitle } = render(<Typography>
     <Text data-testid="test-text" fontSize="20px"
           copyable={new CopyableBuilder()
@@ -35,9 +35,11 @@ test("Text renders with different copy tooltips", () => {
             .create()}>Text</Text>
   </Typography>)
   fireEvent.mouseEnter(getByTitle("CopyIcon"))
+  await new Promise((r) => setTimeout(r, 150));
   expect(screen.getByText("CopyTooltip")).toBeInTheDocument()
   fireEvent.click(getByTitle("CopyIcon"))
   fireEvent.mouseLeave(getByTitle("CopyIcon"))
   fireEvent.mouseEnter(getByTitle("CopyIcon"))
+  await new Promise((r) => setTimeout(r, 150));
   expect(screen.getByText("CopiedTooltip")).toBeInTheDocument()
 })

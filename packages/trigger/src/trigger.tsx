@@ -2,7 +2,7 @@
 import { forwardRef, MutableRefObject, ReactNode, useEffect, useRef, useState } from "react"
 import { TriggerPosition, TriggerProps } from "./interface"
 import { AnimatePresence, motion, Variants } from "framer-motion"
-import { applyOuterCss, applyTipsContainer, applyTipsText, applyTriangleStyle } from "./style"
+import { applyChildrenContainer, applyOuterCss, applyTipsContainer, applyTipsText, applyTriangleStyle } from "./style"
 import { TriangleBottom, TriangleLeft, TriangleRight, TriangleTop } from "./triangle"
 import { getAnimation } from "./transform"
 import { adjustLocation, AdjustResult } from "./adjust-tips-location"
@@ -107,11 +107,9 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
   }
 
   useEffect(() => {
-    if (tipVisible || popupVisible) {
-      adjustLocation(tipsNode, childrenRef.current, position).then((adjustResult) => {
-        setTipsTransform(adjustResult)
-      })
-    }
+    adjustLocation(tipsNode, childrenRef.current, position).then((adjustResult) => {
+      setTipsTransform(adjustResult)
+    })
   }, [tipVisible, popupVisible])
 
   return <div ref={ref} css={applyOuterCss} {...otherProps}
@@ -142,7 +140,7 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
                 }
                 onClick && onClick(event)
               }}>
-    <span ref={childrenRef}>{props.children}</span>
+    <span css={applyChildrenContainer} ref={childrenRef}>{props.children}</span>
     <AnimatePresence>
       {!disabled && finalVisible && <motion.div
         ref={tipsRef}
