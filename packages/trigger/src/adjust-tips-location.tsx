@@ -22,10 +22,12 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
   await render(<div style={{ display: "inline-flex" }}>{tipsNode}</div>, computeElement, async () => {
   })
 
+  if (computeElement.children.length < 1) {
+    return adjustResult
+  }
+
   const tipsDom = computeElement.children.item(0)!!.getBoundingClientRect()
   const childrenDom = childrenRef.getBoundingClientRect()
-  console.log(childrenDom.width, childrenDom.height)
-  console.log(tipsDom.width, tipsDom.height)
   switch (position) {
     case "top":
       adjustResult = {

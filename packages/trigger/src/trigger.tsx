@@ -110,7 +110,7 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
     adjustLocation(tipsNode, childrenRef.current, position).then((adjustResult) => {
       setTipsTransform(adjustResult)
     })
-  }, [tipVisible, popupVisible])
+  }, [tipVisible, popupVisible, position])
 
   return <div ref={ref} css={applyOuterCss} {...otherProps}
               onMouseEnter={(event) => {
