@@ -2,9 +2,7 @@ import * as React from "react"
 import { ReactNode } from "react"
 import { unmountComponentAtNode } from "react-dom"
 
-let computeElement: HTMLElement
-
-function inRange(maxHeight: number, lastLineMaxWidth: number, rows: number) {
+function inRange(computeElement: HTMLElement, maxHeight: number, lastLineMaxWidth: number, rows: number) {
   const lines = computeElement.getClientRects().length
   if (lines > rows) {
     return false
@@ -16,16 +14,16 @@ function inRange(maxHeight: number, lastLineMaxWidth: number, rows: number) {
   return lastLineWidth <= lastLineMaxWidth
 }
 
-function measureText(textNode: Text, fullText: string, maxHeight: number, lastLineMaxWidth: number, rows: number, start: number = 0, end: number = fullText.length) {
-  if (start >= end - 1 && inRange(maxHeight, lastLineMaxWidth, rows)) {
+function measureText(computeElement: HTMLElement, textNode: Text, fullText: string, maxHeight: number, lastLineMaxWidth: number, rows: number, start: number = 0, end: number = fullText.length) {
+  if (start >= end - 1 && inRange(computeElement, maxHeight, lastLineMaxWidth, rows)) {
     return
   }
   const mid = Math.floor((start + end) / 2)
   textNode.textContent = fullText.slice(0, mid).trim()
-  if (inRange(maxHeight, lastLineMaxWidth, rows)) {
-    measureText(textNode, fullText, maxHeight, lastLineMaxWidth, rows, mid, end)
+  if (inRange(computeElement, maxHeight, lastLineMaxWidth, rows)) {
+    measureText(computeElement, textNode, fullText, maxHeight, lastLineMaxWidth, rows, mid, end)
   } else {
-    measureText(textNode, fullText, maxHeight, lastLineMaxWidth, rows, start, mid)
+    measureText(computeElement, textNode, fullText, maxHeight, lastLineMaxWidth, rows, start, mid)
   }
 }
 
@@ -65,10 +63,8 @@ export function measureElement(
   const lineHeight = contentRef.getClientRects()[0]?.height ?? 0
   const operationWidth = getContentWidth(operationRef)
 
-  if (computeElement == undefined) {
-    computeElement = document.createElement(contentRef.tagName)
-    document.body.appendChild(computeElement)
-  }
+  let computeElement = document.createElement(contentRef.tagName)
+  document.body.appendChild(computeElement)
 
   // create text node
   const fullText = mergedToString(React.Children.toArray(children))
@@ -97,7 +93,7 @@ export function measureElement(
   }
 
   const lastLineMaxWidth = getMaxLineWidth(computeElement) - operationWidth
-  measureText(textNode, fullText, maxHeight, lastLineMaxWidth, rows)
+  measureText(computeElement, textNode, fullText, maxHeight, lastLineMaxWidth, rows)
   const finalString = computeElement.textContent ?? ""
   unmountComponentAtNode(computeElement)
   computeElement.innerHTML = ""
