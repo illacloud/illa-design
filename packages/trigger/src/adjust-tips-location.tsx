@@ -2,8 +2,6 @@ import { ReactNode } from "react"
 import { render, unmountComponentAtNode } from "react-dom"
 import { TriggerPosition } from "./interface"
 
-let computeElement: HTMLElement
-
 export interface AdjustResult {
   readonly transX: number,
   readonly transY: number
@@ -11,23 +9,21 @@ export interface AdjustResult {
 
 export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLElement, position: TriggerPosition) {
 
-  if (computeElement == undefined) {
-    computeElement = document.createElement(HTMLDivElement.name)
-    document.body.appendChild(computeElement)
-  }
+  let computeElement: HTMLElement
+  computeElement = document.createElement(HTMLDivElement.name)
+  document.body.appendChild(computeElement)
+
   let adjustResult: AdjustResult = {
     transY: 0,
     transX: 0,
   }
+
   await render(<div style={{ display: "inline-flex" }}>{tipsNode}</div>, computeElement, async () => {
   })
 
-  if (computeElement.children.length < 1) {
-    return adjustResult
-  }
-
   const tipsDom = computeElement.children.item(0)!!.getBoundingClientRect()
   const childrenDom = childrenRef.getBoundingClientRect()
+
   switch (position) {
     case "top":
       adjustResult = {
