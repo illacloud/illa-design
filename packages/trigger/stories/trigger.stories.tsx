@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { TriggerProps, Trigger } from "../src"
+import { Trigger, TriggerProps } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { Button } from "@illa-design/button"
@@ -14,7 +14,7 @@ export default {
 } as Meta
 
 const T: Story<TriggerProps> = (args) => {
-  return <Space>
+  return <Space style={{padding: "200px"}}>
     <Trigger {...args}><Button>Hover Here</Button></Trigger>
     <Button>Second</Button>
   </Space>

@@ -1,6 +1,6 @@
 import { Variants } from "framer-motion"
 
-export function getTransform(originX: string, originY: string, closeDelay: number, openDelay: number): Variants {
+export function getAnimation(originX: string, originY: string, closeDelay: number, openDelay: number): Variants {
   return {
     initial: {
       scale: 0,

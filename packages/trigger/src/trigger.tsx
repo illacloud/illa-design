@@ -1,42 +1,39 @@
 /** @jsxImportSource @emotion/react */
-import { forwardRef, MutableRefObject, ReactNode, useRef, useState } from "react"
+import { forwardRef, MutableRefObject, ReactNode, useEffect, useRef, useState } from "react"
 import { TriggerPosition, TriggerProps } from "./interface"
 import { AnimatePresence, motion, Variants } from "framer-motion"
 import { applyOuterCss, applyTipsContainer, applyTipsText, applyTriangleStyle } from "./style"
 import { TriangleBottom, TriangleLeft, TriangleRight, TriangleTop } from "./triangle"
-import { getTransform } from "./transform"
+import { getAnimation } from "./transform"
+import { adjustLocation, AdjustResult } from "./adjust-tips-location"
 
-function applyTransform(position: TriggerPosition, closeDelay: number, openDelay: number): Variants {
+function applyAnimation(position: TriggerPosition, closeDelay: number, openDelay: number, adjustResult?: AdjustResult): Variants {
   switch (position) {
     case "top":
-      return getTransform("50%", "100%", closeDelay, openDelay)
+      return getAnimation(`calc(50% + ${adjustResult?.transX ?? 0}px)`, `calc(100% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
     case "tl":
-      return getTransform("12px", "100%", closeDelay, openDelay)
+      return getAnimation(`calc(12px + ${adjustResult?.transX ?? 0}px)`, `calc(100% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
     case "tr":
-      return getTransform("calc(100% - 12px)", "100%", closeDelay, openDelay)
+      return getAnimation(`calc(100% - 12px + ${adjustResult?.transX ?? 0}px)`, `calc(100% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
     case "bottom":
-      return getTransform("50%", "0", closeDelay, openDelay)
+      return getAnimation(`calc(50% + ${adjustResult?.transX ?? 0}px)`, `${adjustResult?.transY ?? 0}px`, closeDelay, openDelay)
     case "bl":
-      return getTransform("12px", "0", closeDelay, openDelay)
+      return getAnimation(`calc(12px + ${adjustResult?.transX ?? 0}px)`, `${adjustResult?.transY ?? 0}px`, closeDelay, openDelay)
     case "br":
-      return getTransform("calc(100% - 12px)", "0", closeDelay, openDelay)
+      return getAnimation(`calc(100% - 12px + ${adjustResult?.transX ?? 0}px)`, `${adjustResult?.transY ?? 0}px`, closeDelay, openDelay)
     case "left":
-      return getTransform("100%", "50%", closeDelay, openDelay)
+      return getAnimation(`calc(100% + ${adjustResult?.transX ?? 0}px)`, `calc(50% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
     case "lt":
-      return getTransform("100%", "12px", closeDelay, openDelay)
+      return getAnimation(`calc(100% + ${adjustResult?.transX ?? 0}px)`, `calc(12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
     case "lb":
-      return getTransform("100%", "calc(100% - 12px)", closeDelay, openDelay)
+      return getAnimation(`calc(100% + ${adjustResult?.transX ?? 0}px)`, `calc(100% - 12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
     case "right":
-      return getTransform("0", "50%", closeDelay, openDelay)
+      return getAnimation(`${adjustResult?.transX ?? 0}px`, `calc(50% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
     case "rt":
-      return getTransform("0", "12px", closeDelay, openDelay)
+      return getAnimation(`${adjustResult?.transX ?? 0}px`, `calc(12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
     case "rb":
-      return getTransform("0", "calc(100% - 12px)", closeDelay, openDelay)
+      return getAnimation(`${adjustResult?.transX ?? 0}px`, `calc(100% - 12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
   }
-}
-
-function adjustLocation(tipsRef: HTMLElement, childrenRef: HTMLElement) {
-  console.log(tipsRef, childrenRef)
 }
 
 export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => {
@@ -70,6 +67,7 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
 
   const tipsRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
   const childrenRef = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
+  const [tipsTransform, setTipsTransform] = useState<AdjustResult>()
 
   let tipsNode: ReactNode
 
@@ -77,7 +75,7 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
     case "top":
     case "tl":
     case "tr":
-      tipsNode = <div css={applyTipsContainer(position)}>
+      tipsNode = <div css={applyTipsContainer(position, tipsTransform)}>
         <span css={applyTipsText(colorScheme)}>{content}</span>
         {showArrow && <TriangleTop css={applyTriangleStyle(colorScheme, position)} width="8px" height="4px" />}
       </div>
@@ -85,7 +83,7 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
     case "bottom":
     case "bl":
     case "br":
-      tipsNode = <div css={applyTipsContainer(position)}>
+      tipsNode = <div css={applyTipsContainer(position, tipsTransform)}>
         {showArrow && <TriangleBottom css={applyTriangleStyle(colorScheme, position)} width="8px" height="4px" />}
         <span css={applyTipsText(colorScheme)}>{content}</span>
       </div>
@@ -93,7 +91,7 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
     case "left":
     case "lt":
     case "lb":
-      tipsNode = <div css={applyTipsContainer(position)}>
+      tipsNode = <div css={applyTipsContainer(position, tipsTransform)}>
         <span css={applyTipsText(colorScheme)}>{content}</span>
         {showArrow && <TriangleLeft css={applyTriangleStyle(colorScheme, position)} width="4px" height="8px" />}
       </div>
@@ -101,12 +99,20 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
     case "right":
     case "rt":
     case "rb":
-      tipsNode = <div css={applyTipsContainer(position)}>
+      tipsNode = <div css={applyTipsContainer(position, tipsTransform)}>
         {showArrow && <TriangleRight css={applyTriangleStyle(colorScheme, position)} width="4px" height="8px" />}
         <span css={applyTipsText(colorScheme)}>{content}</span>
       </div>
       break
   }
+
+  useEffect(() => {
+    if (tipVisible || popupVisible) {
+      adjustLocation(tipsNode, childrenRef.current, position).then((adjustResult) => {
+        setTipsTransform(adjustResult)
+      })
+    }
+  }, [tipVisible, popupVisible])
 
   return <div ref={ref} css={applyOuterCss} {...otherProps}
               onMouseEnter={(event) => {
@@ -141,7 +147,7 @@ export const Trigger = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => 
       {!disabled && finalVisible && <motion.div
         ref={tipsRef}
         style={{ position: "absolute" }}
-        variants={applyTransform(position, closeDelay, openDelay)}
+        variants={applyAnimation(position, closeDelay, openDelay, tipsTransform)}
         initial="initial"
         animate="animate"
         exit="exit"

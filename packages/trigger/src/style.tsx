@@ -1,6 +1,7 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { TriggerColorScheme, TriggerPosition } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { AdjustResult } from "./adjust-tips-location"
 
 const colorSchemes = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
 
@@ -9,7 +10,7 @@ export const applyOuterCss = css`
   display: inline;
 `
 
-export function applyTipsContainer(position: TriggerPosition): SerializedStyles {
+export function applyTipsContainer(position: TriggerPosition, tipsTransform?: AdjustResult): SerializedStyles {
 
   const isColumn =
     position == "top" ||
@@ -22,6 +23,7 @@ export function applyTipsContainer(position: TriggerPosition): SerializedStyles 
   return css`
     display: flex;
     flex-direction: ${isColumn ? "column" : "row"};
+    transform: translate(${tipsTransform?.transX ?? 0}px, ${tipsTransform?.transY ?? 0}px);
     opacity: 90%;
     z-index: 10;
     color: ${globalColor(`--${illaPrefix}-white-01`)};
@@ -29,20 +31,27 @@ export function applyTipsContainer(position: TriggerPosition): SerializedStyles 
 }
 
 export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles {
-  const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-03`) : colorScheme
+  const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
   return css`
     align-self: center;
     background-color: ${bgColor};
     min-width: 32px;
     min-height: 32px;
+    max-width: 588px;
     border-radius: 2px;
     font-size: 14px;
     padding: 8px 12px;
   `
 }
 
+export function applyTransform(adjustResult: AdjustResult): SerializedStyles {
+  return css`
+    transform: translate(${adjustResult.transX}, ${adjustResult.transY});
+  `
+}
+
 export function applyTriangleStyle(colorScheme: TriggerColorScheme, position: TriggerPosition): SerializedStyles {
-  const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-03`) : colorScheme
+  const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
   const mainStyle = css`
     color: ${bgColor};
   `
