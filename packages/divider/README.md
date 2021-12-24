@@ -18,10 +18,10 @@ import {Divider} from "@illa-design/divider"
 
 ### Divider Basic Properties
 
-| Props     | Desc                         | Type                                               | Default      |
-| --------- | ---------------------------- | -------------------------------------------------- | ------------ |
-| direction | setting direction of divider | string: "vertical" \| "horizontal"                 | "horizontal" |
-| variant   | setting divider's variant    | string: "solid" \| "dashed" \| "dotted" \|"double" | "solid"      |
+| Props     | Desc                         | Type                                        | Default      |
+| --------- | ---------------------------- | ------------------------------------------- | ------------ |
+| direction | setting direction of divider |  "vertical" \| "horizontal"                 | "horizontal" |
+| variant   | setting divider's variant    |  "solid" \| "dashed" \| "dotted" \|"double" | "solid"      |
 
 ## Example
 
