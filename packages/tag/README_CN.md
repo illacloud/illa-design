@@ -20,9 +20,7 @@ import { Tag } from "@illa-dedign/tag"
 
 | 参数名      | 描述               | 类型                                                         | 默认值    |
 | ----------- | ------------------ | ------------------------------------------------------------ | --------- |
-| style       | 节点样式           | `CSSProperties`                                              | `-`       |
-| className   | 节点类名           | `string \| string[]`                                         | `-`       |
-| colorScheme | 设置标签背景颜色   | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"gray"`  |
+| colorScheme | 设置标签背景颜色   | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" \| string` | `"gray"`  |
 | size        | 设置标签尺寸       | `"small" \| "medium" \| "large"`                   | `"small"` |
 | visible     | 设置标签是否隐藏   | `boolean`                                                    | `-`       |
 | closable    | 设置是否可关闭标签 | `boolean`                                                    | `-`       |
