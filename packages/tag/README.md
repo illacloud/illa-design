@@ -20,23 +20,23 @@ import { Tag } from "@illa-dedign/tag"
 
 | Props       | Desc                                | Type                                                         | Default   |
 | ----------- | ----------------------------------- | ------------------------------------------------------------ | --------- |
-| colorScheme | Setting backgrount color            | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple"\| string ` | `"gray"`  |
-| size        | Setting size                        | `"small" \| "medium" \| "large"`                             | `"small"` |
-| visible     | Setting whether the Tag is visiable | `boolean`                                                    | `-`       |
-| closable    | Setting whether the Tag is visiable | `boolean`                                                    | `-`       |
-| variant     | Setting style pattern               | `"outline" \| "fill" \| "light"`                             | `"light"` |
+| colorScheme | Setting backgrount color            | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple"\| string | "gray"  |
+| size        | Setting size                        | "small" \| "medium" \| "large"                             | "small" |
+| visible     | Setting whether the Tag is visiable | boolean                                                    | -       |
+| closable    | Setting whether the Tag is visiable | boolean                                                    | -       |
+| variant     | Setting style pattern               | "outline" \| "fill" \| "light"                             | "light" |
 
 ### Tag Extented Props
 
-| Props | Desc                    | Type        | Default |
-| ----- | ----------------------- | ----------- | ------- |
-| icon  | Setting Tag's left icon | `ReactNode` | `-`     |
+| Props | Desc                    | Type      | Default |
+| ----- | ----------------------- | --------- | ------- |
+| icon  | Setting Tag's left icon | ReactNode | -       |
 
 ### Tag Events
 
-| Props   | Desc                         | Type         | Default |
-| ------- | ---------------------------- | ------------ | ------- |
-| onClose | Callback when the Tag closed | `() => void` | `-`     |
+| Props   | Desc                         | Type       | Default |
+| ------- | ---------------------------- | ---------- | ------- |
+| onClose | Callback when the Tag closed | () => void | -       |
 
 ## Example
 
