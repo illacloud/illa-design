@@ -22,8 +22,8 @@ import { Tag } from "@illa-dedign/tag"
 | ----------- | ----------------------------------- | ------------------------------------------------------------ | --------- |
 | colorScheme | Setting backgrount color            | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple"\| string | "gray"  |
 | size        | Setting size                        | "small" \| "medium" \| "large"                             | "small" |
-| visible     | Setting whether the Tag is visiable | boolean                                                    | -       |
-| closable    | Setting whether the Tag is visiable | boolean                                                    | -       |
+| visible     | Setting whether the Tag is visiable | boolean                                                    | true       |
+| closable    | Setting whether the Tag is visiable | boolean                                                    | false       |
 | variant     | Setting style pattern               | "outline" \| "fill" \| "light"                             | "light" |
 
 ### Tag Extented Props
