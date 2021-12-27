@@ -22,8 +22,8 @@ import { Tag } from "@illa-dedign/tag"
 | ----------- | ------------------ | ------------------------------------------------------------ | --------- |
 | colorScheme | 设置标签背景颜色   | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" \| string | "gray"  |
 | size        | 设置标签尺寸       | "small" \| "medium" \| "large"                   | "small" |
-| visible     | 设置标签是否隐藏   | boolean                                                    | true       |
-| closable    | 设置是否可关闭标签 | boolean                                                    | false       |
+| visible     | 设置标签是否隐藏   | boolean                                                    | -       |
+| closable    | 设置是否可关闭标签 | boolean                                                    | -       |
 | variant     | 设置标签的预置样式   | "outline" \| "fill" \| "light"                               | "light"    |
 
 ### Tag 扩展属性
