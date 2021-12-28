@@ -42,7 +42,7 @@ test("Paragraph renders with styles", () => {
       the
       implementation of an activity or process, or the result of that plan or specification in the form of a prototype,
       product or process. The verb to design expresses the process of developing a design. In some cases, the direct
-      construction of an object without an explicit prior plan (such as in craf twork, some engineering, coding, and
+      construction of an object without an explicit prior plan (such as in craft work, some engineering, coding, and
       graphic design) may also be considered to be a design activity.</Paragraph>
   </Typography>)
   expect(screen.getByTestId("test-paragraph")).toMatchSnapshot()

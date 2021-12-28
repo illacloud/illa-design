@@ -17,36 +17,29 @@ export const Basic: Story<TriggerProps> = (args) => {
   return <Space style={{ padding: "200px" }} direction="vertical">
 
     <Space style={{ marginLeft: "70px" }}>
-      <Trigger {...args} position="tl"><Button>TL</Button></Trigger>
-      <Trigger {...args} position="top"><Button>TOP</Button></Trigger>
-      <Trigger {...args} position="tr"><Button>TR</Button></Trigger>
+      <Trigger {...args} position="tl" content="TL"><Button>TL</Button></Trigger>
+      <Trigger {...args} position="top" content="TOP"><Button>TOP</Button></Trigger>
+      <Trigger {...args} position="tr" content="TR"><Button>TR</Button></Trigger>
     </Space>
 
     <Space direction="horizontal" size="200px">
       <Space direction="vertical">
-        <Trigger {...args} position="lt"><Button>LT</Button></Trigger>
-        <Trigger {...args} position="left"><Button>LEFT</Button></Trigger>
-        <Trigger {...args} position="lb"><Button>LB</Button></Trigger>
+        <Trigger {...args} position="lt" content="LT"><Button>LT</Button></Trigger>
+        <Trigger {...args} position="left" content="LEFT"><Button>LEFT</Button></Trigger>
+        <Trigger {...args} position="lb" content="LB"><Button>LB</Button></Trigger>
       </Space>
       <Space direction="vertical">
-        <Trigger {...args} position="rt"><Button>RT</Button></Trigger>
-        <Trigger {...args} position="right"><Button>RIGHT</Button></Trigger>
-        <Trigger {...args} position="rb"><Button>TR</Button></Trigger>
+        <Trigger {...args} position="rt" content="RT"><Button>RT</Button></Trigger>
+        <Trigger {...args} position="right" content="RIGHT"><Button>RIGHT</Button></Trigger>
+        <Trigger {...args} position="rb" content="TR"><Button>TR</Button></Trigger>
       </Space>
     </Space>
 
     <Space style={{ marginLeft: "70px" }}>
-      <Trigger {...args} position="bl"><Button>BL</Button></Trigger>
-      <Trigger {...args} position="bottom"><Button>BOTTOM</Button></Trigger>
-      <Trigger {...args} position="br"><Button>BR</Button></Trigger>
+      <Trigger {...args} position="bl" content="BL"><Button>BL</Button></Trigger>
+      <Trigger {...args} position="bottom" content="BOTTOM"><Button>BOTTOM</Button></Trigger>
+      <Trigger {...args} position="br" content="BR"><Button>BR</Button></Trigger>
     </Space>
 
-  </Space>
-}
-
-export const Single: Story<TriggerProps> = (args) => {
-  return <Space style={{ marginLeft: "70px" }}>
-    <Trigger {...args}><Button>TL</Button></Trigger>
-    <Button>TOP</Button>
   </Space>
 }

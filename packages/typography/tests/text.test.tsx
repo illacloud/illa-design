@@ -1,6 +1,6 @@
 import * as React from "react"
-import { fireEvent, render, screen } from "@testing-library/react"
-import { CopyableBuilder, Text, Typography } from "../src"
+import { render, screen } from "@testing-library/react"
+import { Text, Typography } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import "@testing-library/jest-dom"
 

@@ -116,16 +116,14 @@ export const Base: FC<BaseProps> = (props) => {
 
   // update clip text
   useEffect(() => {
-    if (showExpand) {
-      const {
-        fullText,
-        screenString,
-        isClip,
-      } = measureElement(contentRef.current, operationRef.current, originEllipsis.rows, props.children)
-      setClipShowText(screenString)
-      setFullText(fullText)
-      setShowExpand(isClip)
-    }
+    const {
+      fullText,
+      screenString,
+      isClip,
+    } = measureElement(contentRef.current, operationRef.current, originEllipsis.rows, props.children)
+    setClipShowText(screenString)
+    setFullText(fullText)
+    setShowExpand(isClip)
   }, [width])
 
   return <Tooltip content={currentFullText} ref={contentRef}
