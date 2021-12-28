@@ -3,6 +3,8 @@ import * as React from "react"
 import { forwardRef } from "react"
 import { HeadingProps } from "./interface"
 import { Base } from "./base"
+import { Tooltip } from "@illa-design/tooltip"
+import mergedToString from "./measure-element"
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
 
@@ -23,47 +25,59 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref)
 
   switch (level) {
     case "h1":
-      return <h1 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h1>
+      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
+                      disabled={disabled}>
+        <h1 ref={ref} {...otherProps}>
+          <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
+                underline={underline} deleted={deleted} code={code} copyable={copyable}>
+            {props.children}
+          </Base>
+        </h1>
+      </Tooltip>
     case "h2":
-      return <h2 ref={ref} {...otherProps}>
+      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
+                      disabled={disabled}><h2 ref={ref} {...otherProps}>
         <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
               underline={underline} deleted={deleted} code={code} copyable={copyable}>
           {props.children}
         </Base>
-      </h2>
+      </h2></Tooltip>
     case "h3":
-      return <h3 ref={ref} {...otherProps}>
+      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
+                      disabled={disabled}><h3 ref={ref} {...otherProps}>
         <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
               underline={underline} deleted={deleted} code={code} copyable={copyable}>
           {props.children}
         </Base>
-      </h3>
+      </h3></Tooltip>
     case "h4":
-      return <h4 ref={ref} {...otherProps}>
+      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
+                      disabled={disabled}><h4 ref={ref} {...otherProps}>
         <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
               underline={underline} deleted={deleted} code={code} copyable={copyable}>
           {props.children}
         </Base>
-      </h4>
+      </h4></Tooltip>
     case "h5":
-      return <h5 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h5>
+      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
+                      disabled={disabled}>
+        <h5 ref={ref} {...otherProps}>
+          <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
+                underline={underline} deleted={deleted} code={code} copyable={copyable}>
+            {props.children}
+          </Base>
+        </h5>
+      </Tooltip>
     case "h6":
-      return <h6 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h6>
+      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
+                      disabled={disabled}>
+        <h6 ref={ref} {...otherProps}>
+          <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
+                underline={underline} deleted={deleted} code={code} copyable={copyable}>
+            {props.children}
+          </Base>
+        </h6>
+      </Tooltip>
   }
 
 })

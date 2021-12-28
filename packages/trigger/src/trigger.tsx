@@ -29,8 +29,6 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     disabled = false,
     popupVisible,
     onVisibleChange,
-    onMouseEnter,
-    onMouseLeave,
     onClick,
     ...otherProps
   } = props
@@ -96,30 +94,24 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     exit="exit"
   >{centerNode}</motion.div>
 
-  useEffect(() => {
-
-  })
-
   return <>
     <span ref={childrenRef} {...otherProps}
-          onMouseEnter={(event) => {
+          onMouseEnter={() => {
             if (!disabled && popupVisible == undefined) {
               setTipsVisible(true)
               if (onVisibleChange != undefined) {
                 onVisibleChange(true)
               }
             }
-            onMouseEnter && onMouseEnter(event)
           }}
           css={applyChildrenContainer}
-          onMouseLeave={(event) => {
+          onMouseLeave={() => {
             if (!disabled && popupVisible == undefined) {
               setTipsVisible(false)
               if (onVisibleChange != undefined) {
                 onVisibleChange(false)
               }
             }
-            onMouseLeave && onMouseLeave(event)
           }}
           onClick={(event) => {
             if (!disabled && closeOnClick && popupVisible == undefined) {

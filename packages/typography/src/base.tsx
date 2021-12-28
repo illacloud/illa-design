@@ -62,7 +62,6 @@ export const Base: FC<BaseProps> = (props) => {
   const [clipShowText, setClipShowText] = useState("")
   const [copied, setCopied] = useState(false)
   const [currentFullText, setFullText] = useState("")
-  const [showMainContentToolTip, setShowMainContentToolTip] = useState(true)
 
   // get ref
   const contentRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
@@ -95,12 +94,6 @@ export const Base: FC<BaseProps> = (props) => {
     {copyable && originCopyable.copyIcon &&
       <Tooltip content={copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip}
                disabled={copied ? !originCopyable.copiedToolTip : !originCopyable.copiedIcon}
-               onMouseEnter={() => {
-                 setShowMainContentToolTip(false)
-               }}
-               onMouseLeave={() => {
-                 setShowMainContentToolTip(true)
-               }}
       >
         <span onClick={() => {
           setCopied(true)
