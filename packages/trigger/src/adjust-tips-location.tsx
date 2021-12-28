@@ -4,10 +4,11 @@ import { TriggerPosition } from "./interface"
 
 export interface AdjustResult {
   readonly transX: number,
-  readonly transY: number
+  readonly transY: number,
+  readonly opposite: boolean
 }
 
-export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLElement, position: TriggerPosition) {
+export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLElement, position: TriggerPosition, autoFitPosition: boolean) {
 
   let computeElement: HTMLElement
   computeElement = document.createElement(HTMLDivElement.name)
@@ -16,6 +17,7 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
   let adjustResult: AdjustResult = {
     transY: 0,
     transX: 0,
+    opposite: false,
   }
 
   await render(<div style={{ display: "inline-flex" }}>{tipsNode}</div>, computeElement, async () => {
@@ -26,76 +28,40 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
 
   switch (position) {
     case "top":
-      adjustResult = {
-        transY: -(tipsDom.height + childrenDom.height + 16),
-        transX: (childrenDom.width - tipsDom.width) / 2,
-      }
+      adjustResult = adjustTop(tipsDom, childrenDom, autoFitPosition)
       break
     case "tl":
-      adjustResult = {
-        transY: -(tipsDom.height + childrenDom.height + 16),
-        transX: 0,
-      }
+      adjustResult = adjustTl(tipsDom, childrenDom, autoFitPosition)
       break
     case "tr":
-      adjustResult = {
-        transY: -(tipsDom.height + childrenDom.height + 16),
-        transX: childrenDom.width - tipsDom.width,
-      }
+      adjustResult = adjustTr(tipsDom, childrenDom, autoFitPosition)
       break
     case "left":
-      adjustResult = {
-        transY: -(tipsDom.height + childrenDom.height) / 2,
-        transX: -(tipsDom.width + 16),
-      }
+      adjustResult = adjustLeft(tipsDom, childrenDom, autoFitPosition)
       break
     case "lt":
-      adjustResult = {
-        transY: -childrenDom.height,
-        transX: -(tipsDom.width + 16),
-      }
+      adjustResult = adjustLt(tipsDom, childrenDom, autoFitPosition)
       break
     case "lb":
-      adjustResult = {
-        transY: -tipsDom.height,
-        transX: -(tipsDom.width + 16),
-      }
+      adjustResult = adjustLb(tipsDom, childrenDom, autoFitPosition)
       break
     case "bottom":
-      adjustResult = {
-        transY: 16,
-        transX: (childrenDom.width - tipsDom.width) / 2,
-      }
+      adjustResult = adjustBottom(tipsDom, childrenDom, autoFitPosition)
       break
     case "bl":
-      adjustResult = {
-        transY: 16,
-        transX: 0,
-      }
+      adjustResult = adjustBl(tipsDom, childrenDom, autoFitPosition)
       break
     case "br":
-      adjustResult = {
-        transY: 16,
-        transX: childrenDom.width - tipsDom.width,
-      }
+      adjustResult = adjustBr(tipsDom, childrenDom, autoFitPosition)
       break
     case "right":
-      adjustResult = {
-        transY: -(tipsDom.height + childrenDom.height) / 2,
-        transX: childrenDom.width + 16,
-      }
+      adjustResult = adjustRight(tipsDom, childrenDom, autoFitPosition)
       break
     case "rt":
-      adjustResult = {
-        transY: -childrenDom.height,
-        transX: childrenDom.width + 16,
-      }
+      adjustResult = adjustRt(tipsDom, childrenDom, autoFitPosition)
       break
     case "rb":
-      adjustResult = {
-        transY: -tipsDom.height,
-        transX: childrenDom.width + 16,
-      }
+      adjustResult = adjustRb(tipsDom, childrenDom, autoFitPosition)
       break
   }
 
@@ -104,62 +70,162 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
   return adjustResult
 }
 
-function inWindowRange(): boolean {
-  return true
-}
-
-// top
-function adjustTop(tipsDom: DOMRect, childrenDom: DOMRect): AdjustResult {
+function adjustTop(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (childrenDom.top < tipsDom.height + 16) {
+      return adjustBottom(tipsDom, childrenDom, false, true)
+    }
+  }
   return {
     transY: -(tipsDom.height + childrenDom.height + 16),
     transX: (childrenDom.width - tipsDom.width) / 2,
+    opposite: opposite,
   }
 }
 
-// function adjustTl(): AdjustResult {
-//
-// }
-//
-// function adjustTr(): AdjustResult {
-//
-// }
-//
-// // bottom
-// function adjustBottom(): AdjustResult {
-//
-// }
-//
-// function adjustBl(): AdjustResult {
-//
-// }
-//
-// function adjustBr(): AdjustResult {
-//
-// }
-//
-// // left
-// function adjustLeft(): AdjustResult {
-//
-// }
-//
-// function adjustLt(): AdjustResult {
-//
-// }
-//
-// function adjustLb(): AdjustResult {
-//
-// }
-//
-// // right
-// function adjustRight(): AdjustResult {
-//
-// }
-//
-// function adjustRt(): AdjustResult {
-//
-// }
-//
-// function adjustRb(): AdjustResult {
-//
-// }
+function adjustTl(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (childrenDom.top < tipsDom.height + 16) {
+      return adjustBl(tipsDom, childrenDom, false, true)
+    }
+  }
+  return {
+    transY: -(tipsDom.height + childrenDom.height + 16),
+    transX: 0,
+    opposite: opposite,
+  }
+}
+
+function adjustTr(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (childrenDom.top < tipsDom.height + 16) {
+      return adjustBr(tipsDom, childrenDom, false, true)
+    }
+  }
+  return {
+    transY: -(tipsDom.height + childrenDom.height + 16),
+    transX: childrenDom.width - tipsDom.width,
+    opposite: opposite,
+  }
+}
+
+// bottom
+function adjustBottom(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (window.innerHeight - childrenDom.bottom < tipsDom.height + 16) {
+      return adjustTop(tipsDom, childrenDom, false, true)
+    }
+  }
+  return {
+    transY: 16,
+    transX: (childrenDom.width - tipsDom.width) / 2,
+    opposite: opposite,
+  }
+}
+
+function adjustBl(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (window.innerHeight - childrenDom.bottom < tipsDom.height + 16) {
+      return adjustTl(tipsDom, childrenDom, false, true)
+    }
+  }
+  return {
+    transY: 16,
+    transX: 0,
+    opposite: opposite,
+  }
+}
+
+function adjustBr(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (window.innerHeight - childrenDom.bottom < tipsDom.height + 16) {
+      return adjustTr(tipsDom, childrenDom, false, true)
+    }
+  }
+  return {
+    transY: 16,
+    transX: childrenDom.width - tipsDom.width,
+    opposite: opposite,
+  }
+}
+
+// left
+function adjustLeft(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (childrenDom.left < tipsDom.width + 16) {
+      return adjustRight(tipsDom, childrenDom, false, true)
+    }
+  }
+  return {
+    transY: -(tipsDom.height + childrenDom.height) / 2,
+    transX: -(tipsDom.width + 16),
+    opposite: opposite,
+  }
+}
+
+function adjustLt(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (childrenDom.left < tipsDom.width + 16) {
+      return adjustRt(tipsDom, childrenDom, false, true)
+    }
+  }
+  return {
+    transY: -childrenDom.height,
+    transX: -(tipsDom.width + 16),
+    opposite: opposite,
+  }
+}
+
+function adjustLb(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (childrenDom.left < tipsDom.width + 16) {
+      return adjustRb(tipsDom, childrenDom, false, true)
+    }
+  }
+  return {
+    transY: -tipsDom.height,
+    transX: -(tipsDom.width + 16),
+    opposite: opposite,
+  }
+}
+
+// right
+function adjustRight(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (window.innerWidth - childrenDom.right < tipsDom.width + 16) {
+      return adjustLeft(tipsDom, childrenDom, false, true)
+    }
+  }
+  return {
+    transY: -(tipsDom.height + childrenDom.height) / 2,
+    transX: childrenDom.width + 16,
+    opposite: opposite,
+  }
+}
+
+function adjustRt(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (window.innerWidth - childrenDom.right < tipsDom.width + 16) {
+      return adjustLt(tipsDom, childrenDom, false, true)
+    }
+  }
+  return {
+    transY: -childrenDom.height,
+    transX: childrenDom.width + 16,
+    opposite: opposite,
+  }
+}
+
+function adjustRb(tipsDom: DOMRect, childrenDom: DOMRect, autoFitPosition: boolean, opposite: boolean = false): AdjustResult {
+  if (autoFitPosition) {
+    if (window.innerWidth - childrenDom.right < tipsDom.width + 16) {
+      return adjustLb(tipsDom, childrenDom, false, true)
+    }
+  }
+  return {
+    transY: -tipsDom.height,
+    transX: childrenDom.width + 16,
+    opposite: opposite,
+  }
+}
 

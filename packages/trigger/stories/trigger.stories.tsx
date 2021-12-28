@@ -13,7 +13,7 @@ export default {
   decorators: [withTests({ results })],
 } as Meta
 
-const T: Story<TriggerProps> = (args) => {
+export const Basic: Story<TriggerProps> = (args) => {
   return <Space style={{ padding: "200px" }} direction="vertical">
 
     <Space style={{ marginLeft: "70px" }}>
@@ -44,4 +44,9 @@ const T: Story<TriggerProps> = (args) => {
   </Space>
 }
 
-export const Basic = T.bind({})
+export const Single: Story<TriggerProps> = (args) => {
+  return <Space style={{ marginLeft: "70px" }}>
+    <Trigger {...args}><Button>TL</Button></Trigger>
+    <Button>TOP</Button>
+  </Space>
+}

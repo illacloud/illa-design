@@ -2,6 +2,8 @@ import { css, SerializedStyles } from "@emotion/react"
 import { TriggerColorScheme, TriggerPosition } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { AdjustResult } from "./adjust-tips-location"
+import { getAnimation } from "./transform"
+import { Variants } from "framer-motion"
 
 const colorSchemes = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
 
@@ -96,5 +98,34 @@ export function applyTriangleStyle(colorScheme: TriggerColorScheme, position: Tr
         align-self: end;
         margin-bottom: 12px;
       `
+  }
+}
+
+export function applyAnimation(position: TriggerPosition, closeDelay: number, openDelay: number, adjustResult?: AdjustResult): Variants {
+  switch (position) {
+    case "top":
+      return getAnimation(`calc(50% + ${adjustResult?.transX ?? 0}px)`, `calc(100% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+    case "tl":
+      return getAnimation(`calc(12px + ${adjustResult?.transX ?? 0}px)`, `calc(100% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+    case "tr":
+      return getAnimation(`calc(100% - 12px + ${adjustResult?.transX ?? 0}px)`, `calc(100% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+    case "bottom":
+      return getAnimation(`calc(50% + ${adjustResult?.transX ?? 0}px)`, `${adjustResult?.transY ?? 0}px`, closeDelay, openDelay)
+    case "bl":
+      return getAnimation(`calc(12px + ${adjustResult?.transX ?? 0}px)`, `${adjustResult?.transY ?? 0}px`, closeDelay, openDelay)
+    case "br":
+      return getAnimation(`calc(100% - 12px + ${adjustResult?.transX ?? 0}px)`, `${adjustResult?.transY ?? 0}px`, closeDelay, openDelay)
+    case "left":
+      return getAnimation(`calc(100% + ${adjustResult?.transX ?? 0}px)`, `calc(50% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+    case "lt":
+      return getAnimation(`calc(100% + ${adjustResult?.transX ?? 0}px)`, `calc(12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+    case "lb":
+      return getAnimation(`calc(100% + ${adjustResult?.transX ?? 0}px)`, `calc(100% - 12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+    case "right":
+      return getAnimation(`${adjustResult?.transX ?? 0}px`, `calc(50% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+    case "rt":
+      return getAnimation(`${adjustResult?.transX ?? 0}px`, `calc(12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+    case "rb":
+      return getAnimation(`${adjustResult?.transX ?? 0}px`, `calc(100% - 12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
   }
 }
