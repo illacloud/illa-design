@@ -1,14 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { forwardRef } from "react"
+import { FC } from "react"
 import { Trigger, TriggerProps } from "@illa-design/trigger"
 
-export const Tooltip = forwardRef<HTMLDivElement, TriggerProps>((props, ref) => {
-
+export const Tooltip: FC<TriggerProps> = ((props) => {
   const {
     colorScheme = "blackAlpha",
     ...otherProps
   } = props
-
-  return <Trigger ref={ref} colorScheme={colorScheme} {...otherProps}>{props.children}</Trigger>
-
+  return <Trigger colorScheme={colorScheme} {...otherProps}>{props.children}</Trigger>
 })

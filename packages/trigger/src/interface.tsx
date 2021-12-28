@@ -28,7 +28,7 @@ export type TriggerPosition =
   | "rt"
   | "rb"
 
-export interface TriggerProps extends HTMLAttributes<HTMLDivElement> {
+export interface TriggerProps extends HTMLAttributes<HTMLSpanElement> {
   colorScheme?: TriggerColorScheme
   content?: string | ReactNode
   position?: TriggerPosition

@@ -7,13 +7,12 @@ import { Variants } from "framer-motion"
 
 const colorSchemes = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
 
-export const applyOuterCss = css`
-  position: relative;
+export const applyChildrenContainer = css`
   display: inline;
 `
 
-export const applyChildrenContainer = css`
-  display: inline-flex;
+export const applyMotionDiv = css`
+  display: flex;
 `
 
 export function applyTipsContainer(position: TriggerPosition, tipsTransform?: AdjustResult): SerializedStyles {
@@ -27,7 +26,7 @@ export function applyTipsContainer(position: TriggerPosition, tipsTransform?: Ad
     position == "br"
 
   return css`
-    display: flex;
+    display: inline-flex;
     flex-direction: ${isColumn ? "column" : "row"};
     transform: translate(${tipsTransform?.transX ?? 0}px, ${tipsTransform?.transY ?? 0}px);
     opacity: 90%;
@@ -39,8 +38,10 @@ export function applyTipsContainer(position: TriggerPosition, tipsTransform?: Ad
 export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles {
   const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
   return css`
-    align-self: center;
     background-color: ${bgColor};
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-width: 32px;
     min-height: 32px;
     max-width: 588px;
@@ -52,7 +53,7 @@ export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles
 
 export function applyTransform(adjustResult: AdjustResult): SerializedStyles {
   return css`
-    transform: translate(${adjustResult.transX}, ${adjustResult.transY});
+    transform: translate(${adjustResult.transX}px, ${adjustResult.transY}px);
   `
 }
 

@@ -94,7 +94,6 @@ export const Base: FC<BaseProps> = (props) => {
     </Fragment>}
     {copyable && originCopyable.copyIcon &&
       <Tooltip content={copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip}
-               ref={contentRef}
                disabled={copied ? !originCopyable.copiedToolTip : !originCopyable.copiedIcon}
                onMouseEnter={() => {
                  setShowMainContentToolTip(false)
@@ -126,9 +125,8 @@ export const Base: FC<BaseProps> = (props) => {
     setShowExpand(isClip)
   }, [width])
 
-  return <Tooltip content={currentFullText} ref={contentRef}
-                  disabled={!originEllipsis.tooltip || !showMainContentToolTip}>
+  return <>
     {content}
     {operation}
-  </Tooltip>
+  </>
 }

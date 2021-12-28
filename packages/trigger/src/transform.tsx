@@ -20,7 +20,6 @@ export function getAnimation(originX: string, originY: string, closeDelay: numbe
       scale: 0,
       opacity: 0,
       transition: {
-        delay: 3,
         opacity: { delay: closeDelay / 1000, duration: 0.2, easings: "easeInOut" },
         scale: { delay: closeDelay / 1000, duration: 0.2, easings: "easeInOut" },
       },

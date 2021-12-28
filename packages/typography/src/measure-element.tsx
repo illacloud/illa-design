@@ -1,6 +1,5 @@
 import * as React from "react"
 import { ReactNode } from "react"
-import { unmountComponentAtNode } from "react-dom"
 
 function inRange(computeElement: HTMLElement, maxHeight: number, lastLineMaxWidth: number, rows: number) {
   const lines = computeElement.getClientRects().length
@@ -66,6 +65,7 @@ export function measureElement(
   let computeElement = document.createElement(contentRef.tagName)
   document.body.appendChild(computeElement)
 
+
   // create text node
   const fullText = mergedToString(React.Children.toArray(children))
   const textNode = document.createTextNode(fullText)
@@ -83,8 +83,7 @@ export function measureElement(
   const maxHeight = lineHeight * rows
 
   if (getContentHeight(computeElement) <= maxHeight) {
-    unmountComponentAtNode(computeElement)
-    computeElement.innerHTML = ""
+    computeElement.remove()
     return {
       fullText: fullText,
       screenString: fullText,
@@ -95,9 +94,7 @@ export function measureElement(
   const lastLineMaxWidth = getMaxLineWidth(computeElement) - operationWidth
   measureText(computeElement, textNode, fullText, maxHeight, lastLineMaxWidth, rows)
   const finalString = computeElement.textContent ?? ""
-  unmountComponentAtNode(computeElement)
-  computeElement.innerHTML = ""
-
+  computeElement.remove()
   return {
     fullText: fullText,
     screenString: finalString,
