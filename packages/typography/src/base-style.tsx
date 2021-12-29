@@ -77,7 +77,7 @@ export function applyExpandLabelCss(): SerializedStyles {
     cursor: pointer;
     margin: 0 4px;
     text-decoration: none;
-    color: ${globalColor(`--${illaPrefix}-techBlue-03`)};
+    color: ${globalColor(`--${illaPrefix}-blue-03`)};
   `
 }
 

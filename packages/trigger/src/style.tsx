@@ -8,11 +8,11 @@ import { Variants } from "framer-motion"
 const colorSchemes = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
 
 export const applyChildrenContainer = css`
-  display: inline;
+  display: inline-flex;
 `
 
 export const applyMotionDiv = css`
-  display: flex;
+  display: inline-flex;
 `
 
 export function applyTipsContainer(position: TriggerPosition, tipsTransform?: AdjustResult): SerializedStyles {
@@ -39,7 +39,7 @@ export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles
   const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
   return css`
     background-color: ${bgColor};
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     min-width: 32px;

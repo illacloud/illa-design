@@ -11,7 +11,7 @@ import {
   applyTriangleStyle,
 } from "./style"
 import { TriangleBottom, TriangleLeft, TriangleRight, TriangleTop } from "./triangle"
-import { AdjustResult, getFinalPosition } from "./adjust-tips-location"
+import { adjustLocation, AdjustResult, getFinalPosition } from "./adjust-tips-location"
 import { Popup } from "./popup"
 
 export const Trigger: FC<TriggerProps> = ((props) => {
@@ -94,10 +94,19 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     exit="exit"
   >{centerNode}</motion.div>
 
+  useEffect(() => {
+    adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition).then((result) => {
+      setAdjustResult(result)
+    })
+  }, [position, autoFitPosition])
+
   return <>
     <span ref={childrenRef} {...otherProps}
           onMouseEnter={() => {
             if (!disabled && popupVisible == undefined) {
+              adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition).then((result) => {
+                setAdjustResult(result)
+              })
               setTipsVisible(true)
               if (onVisibleChange != undefined) {
                 onVisibleChange(true)
@@ -113,14 +122,13 @@ export const Trigger: FC<TriggerProps> = ((props) => {
               }
             }
           }}
-          onClick={(event) => {
+          onClick={() => {
             if (!disabled && closeOnClick && popupVisible == undefined) {
               setTipsVisible(false)
               if (onVisibleChange != undefined) {
                 onVisibleChange(false)
               }
             }
-            onClick && onClick(event)
           }}>{props.children}</span>
     <AnimatePresence>{!disabled && finalVisible ?
       <Popup>

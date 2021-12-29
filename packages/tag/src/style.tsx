@@ -43,7 +43,7 @@ export const closeIcon = css`
 `
 
 export const colors: TagColorScheme[] = [
-  "white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple", "techBlue",
+  "white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple",
 ]
 
 export function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {

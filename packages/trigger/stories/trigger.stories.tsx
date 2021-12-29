@@ -15,13 +15,11 @@ export default {
 
 export const Basic: Story<TriggerProps> = (args) => {
   return <Space style={{ padding: "200px" }} direction="vertical">
-
     <Space style={{ marginLeft: "70px" }}>
       <Trigger {...args} position="tl" content="TL"><Button>TL</Button></Trigger>
       <Trigger {...args} position="top" content="TOP"><Button>TOP</Button></Trigger>
       <Trigger {...args} position="tr" content="TR"><Button>TR</Button></Trigger>
     </Space>
-
     <Space direction="horizontal" size="200px">
       <Space direction="vertical">
         <Trigger {...args} position="lt" content="LT"><Button>LT</Button></Trigger>
@@ -31,15 +29,13 @@ export const Basic: Story<TriggerProps> = (args) => {
       <Space direction="vertical">
         <Trigger {...args} position="rt" content="RT"><Button>RT</Button></Trigger>
         <Trigger {...args} position="right" content="RIGHT"><Button>RIGHT</Button></Trigger>
-        <Trigger {...args} position="rb" content="TR"><Button>TR</Button></Trigger>
+        <Trigger {...args} position="rb" content="RB"><Button>RB</Button></Trigger>
       </Space>
     </Space>
-
     <Space style={{ marginLeft: "70px" }}>
       <Trigger {...args} position="bl" content="BL"><Button>BL</Button></Trigger>
       <Trigger {...args} position="bottom" content="BOTTOM"><Button>BOTTOM</Button></Trigger>
       <Trigger {...args} position="br" content="BR"><Button>BR</Button></Trigger>
     </Space>
-
   </Space>
 }

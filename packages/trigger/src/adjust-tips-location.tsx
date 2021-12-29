@@ -20,12 +20,10 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
     opposite: false,
   }
 
-  await render(<div style={{ display: "inline-flex" }}>{tipsNode}</div>, computeElement, async () => {
-  })
+  await render(<div style={{ display: "inline-flex" }}>{tipsNode}</div>, computeElement, async () => {})
 
   const tipsDom = computeElement.children.item(0)!!.getBoundingClientRect()
   const childrenDom = childrenRef.getBoundingClientRect()
-
 
   switch (position) {
     case "top": {
@@ -41,8 +39,8 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
     case "tl": {
       if (fitTl(tipsDom, childrenDom) || !autoFitPosition) {
         adjustResult = mergeResult(adjustTl(tipsDom, childrenDom), false)
-      } else if (fitBottom(tipsDom, childrenDom)) {
-        adjustResult = mergeResult(adjustBl(), true)
+      } else if (fitBl(tipsDom, childrenDom)) {
+        adjustResult = mergeResult(adjustBl(tipsDom, childrenDom), true)
       } else {
         adjustResult = mergeResult(adjustTl(tipsDom, childrenDom), false)
       }
@@ -51,7 +49,7 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
     case "tr": {
       if (fitTr(tipsDom, childrenDom) || !autoFitPosition) {
         adjustResult = mergeResult(adjustTr(tipsDom, childrenDom), false)
-      } else if (fitBottom(tipsDom, childrenDom)) {
+      } else if (fitBr(tipsDom, childrenDom)) {
         adjustResult = mergeResult(adjustBr(tipsDom, childrenDom), true)
       } else {
         adjustResult = mergeResult(adjustTr(tipsDom, childrenDom), false)
@@ -70,18 +68,18 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
     }
     case "bl": {
       if (fitBl(tipsDom, childrenDom) || !autoFitPosition) {
-        adjustResult = mergeResult(adjustBl(), false)
+        adjustResult = mergeResult(adjustBl(tipsDom, childrenDom), false)
       } else if (fitTl(tipsDom, childrenDom)) {
         adjustResult = mergeResult(adjustTl(tipsDom, childrenDom), true)
       } else {
-        adjustResult = mergeResult(adjustBl(), false)
+        adjustResult = mergeResult(adjustBl(tipsDom, childrenDom), false)
       }
       break
     }
     case "br": {
       if (fitBr(tipsDom, childrenDom) || !autoFitPosition) {
         adjustResult = mergeResult(adjustBr(tipsDom, childrenDom), false)
-      } else if (fitTl(tipsDom, childrenDom)) {
+      } else if (fitTr(tipsDom, childrenDom)) {
         adjustResult = mergeResult(adjustTr(tipsDom, childrenDom), true)
       } else {
         adjustResult = mergeResult(adjustBr(tipsDom, childrenDom), false)
@@ -91,7 +89,7 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
     case "left": {
       if (fitLeft(tipsDom, childrenDom) || !autoFitPosition) {
         adjustResult = mergeResult(adjustLeft(tipsDom, childrenDom), false)
-      } else if (fitTl(tipsDom, childrenDom)) {
+      } else if (fitRight(tipsDom, childrenDom)) {
         adjustResult = mergeResult(adjustRight(tipsDom, childrenDom), true)
       } else {
         adjustResult = mergeResult(adjustLeft(tipsDom, childrenDom), false)
@@ -110,18 +108,18 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
     }
     case "lb": {
       if (fitLb(tipsDom, childrenDom) || !autoFitPosition) {
-        adjustResult = mergeResult(adjustLb(tipsDom), false)
-      } else if (fitRt(tipsDom, childrenDom)) {
+        adjustResult = mergeResult(adjustLb(tipsDom, childrenDom), false)
+      } else if (fitRb(tipsDom, childrenDom)) {
         adjustResult = mergeResult(adjustRb(tipsDom, childrenDom), true)
       } else {
-        adjustResult = mergeResult(adjustLb(tipsDom), false)
+        adjustResult = mergeResult(adjustLb(tipsDom, childrenDom), false)
       }
       break
     }
     case "right": {
       if (fitRight(tipsDom, childrenDom) || !autoFitPosition) {
         adjustResult = mergeResult(adjustRight(tipsDom, childrenDom), false)
-      } else if (fitRt(tipsDom, childrenDom)) {
+      } else if (fitLeft(tipsDom, childrenDom)) {
         adjustResult = mergeResult(adjustLeft(tipsDom, childrenDom), true)
       } else {
         adjustResult = mergeResult(adjustRight(tipsDom, childrenDom), false)
@@ -131,7 +129,7 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
     case "rt": {
       if (fitRt(tipsDom, childrenDom) || !autoFitPosition) {
         adjustResult = mergeResult(adjustRt(tipsDom, childrenDom), false)
-      } else if (fitRt(tipsDom, childrenDom)) {
+      } else if (fitLt(tipsDom, childrenDom)) {
         adjustResult = mergeResult(adjustLt(tipsDom, childrenDom), true)
       } else {
         adjustResult = mergeResult(adjustRt(tipsDom, childrenDom), false)
@@ -141,8 +139,8 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
     case "rb": {
       if (fitRb(tipsDom, childrenDom) || !autoFitPosition) {
         adjustResult = mergeResult(adjustRb(tipsDom, childrenDom), false)
-      } else if (fitRt(tipsDom, childrenDom)) {
-        adjustResult = mergeResult(adjustLb(tipsDom), true)
+      } else if (fitLb(tipsDom, childrenDom)) {
+        adjustResult = mergeResult(adjustLb(tipsDom, childrenDom), true)
       } else {
         adjustResult = mergeResult(adjustRb(tipsDom, childrenDom), false)
       }
@@ -163,103 +161,102 @@ function mergeResult(result: [number, number], finalOppositeState: boolean): Adj
 
 // top
 function adjustTop(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [(childrenDom.width - tipsDom.width) / 2, -(tipsDom.height + childrenDom.height + 16)]
+  return [(childrenDom.width - tipsDom.width) / 2 + childrenDom.left + window.scrollX, (childrenDom.top + window.scrollY) - 16 - tipsDom.height]
 }
 
 function adjustTl(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [0, -(tipsDom.height + childrenDom.height + 16)]
+  return [childrenDom.left + window.scrollX, (childrenDom.top + window.scrollY) - 16 - tipsDom.height]
 }
 
 function adjustTr(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [childrenDom.width - tipsDom.width, -(tipsDom.height + childrenDom.height + 16)]
+  return [childrenDom.left + window.scrollX + childrenDom.width - tipsDom.width, (childrenDom.top + window.scrollY) - 16 - tipsDom.height]
 }
 
 function fitTop(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return childrenDom.top >= tipsDom.height + 16
+  return (childrenDom.top + window.scrollY) >= tipsDom.height + 16
 }
 
 function fitTl(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return childrenDom.top >= tipsDom.height + 16
+  return (childrenDom.top + window.scrollY) >= tipsDom.height + 16
 }
 
 function fitTr(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return childrenDom.top >= tipsDom.height + 16
+  return (childrenDom.top + window.scrollY) >= tipsDom.height + 16
 }
 
 // bottom
 function adjustBottom(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [(childrenDom.width - tipsDom.width) / 2, 16]
+  return [(childrenDom.width - tipsDom.width) / 2 + childrenDom.left + window.scrollX, (childrenDom.bottom + window.scrollY) + 16]
 }
 
-function adjustBl(): [number, number] {
-  return [0, 16]
+function adjustBl(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+  return [childrenDom.left + window.scrollX, (childrenDom.bottom + window.scrollY) + 16]
 }
 
 function adjustBr(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [childrenDom.width - tipsDom.width, 16]
+  return [childrenDom.left + window.scrollX + childrenDom.width - tipsDom.width, (childrenDom.bottom + window.scrollY) + 16]
 }
 
 function fitBottom(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return document.documentElement.clientHeight - childrenDom.bottom >= tipsDom.height + 16
+  return window.document.documentElement.clientHeight - (childrenDom.bottom + window.scrollY) >= tipsDom.height + 16
 }
 
 function fitBl(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return document.documentElement.clientHeight - childrenDom.bottom >= tipsDom.height + 16
+  return window.document.documentElement.clientHeight - (childrenDom.bottom + window.scrollY) >= tipsDom.height + 16
 }
 
 function fitBr(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return document.documentElement.clientHeight - childrenDom.bottom >= tipsDom.height + 16
+  return window.document.documentElement.clientHeight - (childrenDom.bottom + window.scrollY) >= tipsDom.height + 16
 }
 
 // left
 function adjustLeft(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [-(tipsDom.width + 16), -(tipsDom.height + childrenDom.height) / 2]
-
+  return [childrenDom.left + window.scrollX - (tipsDom.width + 16), (childrenDom.top + window.scrollY) - (tipsDom.height - childrenDom.height) / 2]
 }
 
 function adjustLt(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [-(tipsDom.width + 16), -childrenDom.height]
+  return [childrenDom.left + window.scrollX - (tipsDom.width + 16), (childrenDom.top + window.scrollY)]
 }
 
-function adjustLb(tipsDom: DOMRect): [number, number] {
-  return [-(tipsDom.width + 16), -tipsDom.height]
+function adjustLb(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+  return [childrenDom.left + window.scrollX - (tipsDom.width + 16), (childrenDom.bottom + window.scrollY) - tipsDom.height]
 }
 
 function fitLeft(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return childrenDom.left >= tipsDom.width + 16
+  return childrenDom.left + window.scrollX >= tipsDom.width + 16
 }
 
 function fitLt(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return childrenDom.left >= tipsDom.width + 16
+  return childrenDom.left + window.scrollX >= tipsDom.width + 16
 }
 
 function fitLb(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return childrenDom.left >= tipsDom.width + 16
+  return childrenDom.left + window.scrollX >= tipsDom.width + 16
 }
 
 // right
 function adjustRight(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [childrenDom.width + 16, -(tipsDom.height + childrenDom.height) / 2]
+  return [(childrenDom.right + window.scrollX) + 16, (childrenDom.top + window.scrollY) - (tipsDom.height - childrenDom.height) / 2]
 }
 
 function adjustRt(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [childrenDom.width + 16, -childrenDom.height]
+  return [(childrenDom.right + window.scrollX) + 16, (childrenDom.top + window.scrollY)]
 }
 
 function adjustRb(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [childrenDom.width + 16, -tipsDom.height]
+  return [(childrenDom.right + window.scrollX) + 16, (childrenDom.bottom + window.scrollY) - tipsDom.height]
 }
 
 function fitRight(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return document.documentElement.clientWidth - childrenDom.right >= tipsDom.width + 16
+  return window.document.documentElement.clientWidth - childrenDom.right >= tipsDom.width + 16
 }
 
 function fitRt(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return document.documentElement.clientWidth - childrenDom.right >= tipsDom.width + 16
+  return window.document.documentElement.clientWidth - childrenDom.right >= tipsDom.width + 16
 }
 
 function fitRb(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return document.documentElement.clientWidth - childrenDom.right >= tipsDom.width + 16
+  return window.document.documentElement.clientWidth - childrenDom.right >= tipsDom.width + 16
 }
 
 export function getFinalPosition(opposite: boolean, position: TriggerPosition): TriggerPosition {
