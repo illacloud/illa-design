@@ -3,7 +3,7 @@ import { createPortal } from "react-dom"
 
 function createPopupContainer(): HTMLDivElement {
   const popupContainer = document.createElement("div")
-  popupContainer.style.width = "100%"
+  popupContainer.style.display = "inline-flex"
   popupContainer.style.position = "absolute"
   popupContainer.style.top = "0"
   popupContainer.style.left = "0"
