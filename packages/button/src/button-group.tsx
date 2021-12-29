@@ -13,14 +13,14 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>((props, 
     variant = "fill",
     shape = "square",
     spacing = "4px",
-    attached = false,
+    attached,
     ...otherProps
   } = props
   const newChildren = Children.map(props.children, (child: ReactNode, index: number) => {
     const first = index == 0
     const last = index == Children.count(props.children) - 1
     return <ButtonGroupContext.Provider value={{ colorScheme, size, variant, shape, spacing, attached, first, last }}>
-      <span css={applySpacing(spacing, index, attached)}>
+      <span css={applySpacing(spacing, index, attached ?? false)}>
         {child}
       </span>
     </ButtonGroupContext.Provider>

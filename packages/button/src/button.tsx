@@ -25,9 +25,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
     {value => {
 
       const {
-        attached = false,
-        first = false,
-        last = false,
+        attached,
+        first,
+        last,
       } = value ?? {}
 
       const {
@@ -35,12 +35,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
         size = value?.size ?? "small",
         variant = value?.variant ?? "fill",
         shape = value?.shape ?? "square",
-        fullWidth = false,
-        loading = false,
-        loadingText = undefined,
-        leftIcon = undefined,
-        disabled = false,
-        rightIcon = undefined,
+        fullWidth,
+        loading,
+        loadingText,
+        leftIcon,
+        disabled,
+        rightIcon,
         ...otherProps
       } = props
 
@@ -49,10 +49,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
 
       if (hasChild || (hasLoadingText && loading)) {
         const finalContainer = css`
-          ${applyTagContainer(fullWidth)};
-          ${applyCursor(loading, disabled)}
+          ${applyTagContainer(fullWidth ?? false)};
+          ${applyCursor(loading ?? false, disabled ?? false)}
           ${applyPaddingStyle(size, variant)};
-          ${applyShape(shape, attached, first, last)};
+          ${applyShape(shape, attached ?? false, first ?? false, last ?? false)};
           ${applyElementColor(variant, colorScheme)};
           ${applyBg(variant, colorScheme)};
         `
@@ -67,10 +67,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
         </button>
       } else {
         const finalContainer = css`
-          ${applyTagContainer(fullWidth)};
-          ${applyCursor(loading, disabled)}
+          ${applyTagContainer(fullWidth ?? false)};
+          ${applyCursor(loading ?? false, disabled ?? false)}
           ${applyWithoutTextSize(size)};
-          ${applyShape(shape, attached, first, last)};
+          ${applyShape(shape, attached ?? false, first ?? false, last ?? false)};
           ${applyElementColor(variant, colorScheme)};
           ${applyBg(variant, colorScheme)};
         `

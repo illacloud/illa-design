@@ -13,13 +13,13 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref)
     colorScheme = "blackAlpha",
     level = "h2",
     ellipsis,
-    bold = false,
-    disabled = false,
-    mark = false,
-    underline = false,
-    deleted = false,
-    code = false,
-    copyable = false,
+    bold,
+    disabled,
+    mark,
+    underline,
+    deleted,
+    code,
+    copyable,
     ...otherProps
   } = props
 

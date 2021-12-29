@@ -25,8 +25,8 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     openDelay = 150,
     autoFitPosition = true,
     closeOnClick = true,
-    defaultPopupVisible = false,
-    disabled = false,
+    defaultPopupVisible,
+    disabled,
     popupVisible,
     onVisibleChange,
     onClick,
@@ -34,7 +34,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
   } = props
 
 
-  const [tipVisible, setTipsVisible] = useState<boolean>(defaultPopupVisible)
+  const [tipVisible, setTipsVisible] = useState<boolean>(defaultPopupVisible ?? false)
 
   let finalVisible: boolean
   if (popupVisible != undefined) {
@@ -102,6 +102,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
 
   return <>
     <span ref={childrenRef} {...otherProps}
+          css={applyChildrenContainer}
           onMouseEnter={() => {
             if (!disabled && popupVisible == undefined) {
               adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition).then((result) => {
@@ -113,7 +114,6 @@ export const Trigger: FC<TriggerProps> = ((props) => {
               }
             }
           }}
-          css={applyChildrenContainer}
           onMouseLeave={() => {
             if (!disabled && popupVisible == undefined) {
               setTipsVisible(false)

@@ -13,13 +13,13 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
   const {
     colorScheme = "blackAlpha",
     ellipsis,
-    bold = false,
-    disabled = false,
-    mark = false,
-    underline = false,
-    deleted = false,
-    code = false,
-    copyable = false,
+    bold,
+    disabled,
+    mark,
+    underline,
+    deleted,
+    code,
+    copyable,
     fontSize = "12px",
     ...otherProps
   } = props

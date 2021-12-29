@@ -45,12 +45,12 @@ export const Base: FC<BaseProps> = (props) => {
   const {
     colorScheme = "blackAlpha",
     ellipsis,
-    bold = false,
-    disabled = false,
-    mark = false,
-    underline = false,
-    deleted = false,
-    code = false,
+    bold,
+    disabled,
+    mark,
+    underline,
+    deleted,
+    code,
     copyable,
   } = props
 

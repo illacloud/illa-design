@@ -423,6 +423,7 @@ export const avatarGroupContainer = css`
 export function applySpacing(spacing: string, index: number, attached: boolean): SerializedStyles {
   if (attached) {
     return css`
+      display: inline-flex;
       margin-left: ${index != 0 ? "-1px" : "0px"};
       &:hover {
         z-index: 2;
@@ -430,6 +431,7 @@ export function applySpacing(spacing: string, index: number, attached: boolean):
     `
   } else {
     return css`
+      display: inline-flex;
       margin-left: ${index == 0 ? "0px" : spacing};
       &:hover {
         z-index: 2;
