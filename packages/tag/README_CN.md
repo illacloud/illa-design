@@ -73,11 +73,10 @@ import { Tag } from "@illa-dedign/tag"
 ```jsx
 <Tag> Hello </Tag>
 <Tag variant="fill" colorScheme="red" icon={<BsFacebook />}>Hello</Tag>
-```  
   
 ### 设置标签可被关闭
 
-通过closeable这个接口可以设置icon可被关闭
+通过closable这个接口可以设置icon可被关闭
 
 ```jsx
 <Tag>Hello</Tag>

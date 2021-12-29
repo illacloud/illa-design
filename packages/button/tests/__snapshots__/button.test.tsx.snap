@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders fullwidth 1`] = `
+.emotion-0 {
+  width: 100%;
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px 12px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-0:hover {
+  color: #fff;
+}
+
+.emotion-0:active {
+  color: #fff;
+}
+
+.emotion-0:disabled {
+  color: #fff;
+}
+
+.emotion-0:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-0:active {
+  background-color: #1e29bd;
+}
+
+.emotion-0:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-1 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+<button
+  class="emotion-0"
+  data-testid="test-with-fullwidth"
+>
+  <span
+    class="emotion-1"
+  >
+    Hello
+  </span>
+</button>
+`;
+
+exports[`Button renders round 1`] = `
+.emotion-0 {
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px 12px;
+  border-radius: 999px;
+  color: #fff;
+  background-color: #2a3ed6;
+}
+
+.emotion-0:hover {
+  color: #fff;
+}
+
+.emotion-0:active {
+  color: #fff;
+}
+
+.emotion-0:disabled {
+  color: #fff;
+}
+
+.emotion-0:hover {
+  background-color: #3e53eb;
+}
+
+.emotion-0:active {
+  background-color: #1e29bd;
+}
+
+.emotion-0:disabled {
+  background-color: #aebeff;
+}
+
+.emotion-1 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+<button
+  class="emotion-0"
+  data-testid="test-with-round"
+>
+  <span
+    class="emotion-1"
+  >
+    Hello
+  </span>
+</button>
+`;
+
+exports[`Button renders with different variant 1`] = `
+.emotion-0 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+<span
+  class="emotion-0"
+>
+  Hello Fill
+</span>
+`;
+
+exports[`Button renders with different variant 2`] = `
+.emotion-0 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+<span
+  class="emotion-0"
+>
+  Hello Dashed
+</span>
+`;
+
+exports[`Button renders with different variant 3`] = `
+.emotion-0 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+<span
+  class="emotion-0"
+>
+  Hello Gray Dashed
+</span>
+`;
+
+exports[`Button renders with different variant 4`] = `
+.emotion-0 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+<span
+  class="emotion-0"
+>
+  Hello Outline
+</span>
+`;
+
+exports[`Button renders with different variant 5`] = `
+.emotion-0 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+<span
+  class="emotion-0"
+>
+  Hello Gray Outline
+</span>
+`;
+
+exports[`Button renders with different variant 6`] = `
+.emotion-0 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+<span
+  class="emotion-0"
+>
+  Hello Text
+</span>
+`;

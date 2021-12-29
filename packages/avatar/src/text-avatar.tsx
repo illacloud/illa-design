@@ -2,7 +2,7 @@
 import * as React from "react"
 import { FC, MutableRefObject, useEffect, useRef } from "react"
 import { AvatarProps } from "./interface"
-import { applyMergeCss } from "./common-css"
+import { applyMergeCss } from "./style"
 
 function adjustFontScale(textRef: MutableRefObject<HTMLSpanElement | null>, avatarRef: MutableRefObject<HTMLDivElement | null>) {
   if (textRef.current != null && avatarRef.current != null) {

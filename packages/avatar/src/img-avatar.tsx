@@ -2,7 +2,7 @@
 import * as React from "react"
 import { FC } from "react"
 import { AvatarProps } from "./interface"
-import { applyAvatarSize, applyShape } from "./common-css"
+import { applyAvatarSize, applyShape } from "./style"
 import { Image } from "@illa-design/image"
 
 export const ImgAvatar: FC<AvatarProps> = (props) => {

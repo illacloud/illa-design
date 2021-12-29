@@ -127,3 +127,34 @@ export function applyShape(shape: AvatarShape): string {
     }
   }
 }
+
+// icon avatar
+export function applyIconSize(size: AvatarSize) {
+  let width: number
+  let height: number
+  switch (size) {
+    case "large": {
+      width = 28
+      height = 28
+      break
+    }
+    case "medium": {
+      width = 18
+      height = 18
+      break
+    }
+    case "small": {
+      width = 14
+      height = 14
+      break
+    }
+  }
+  return css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: ${width}px;
+    height: ${height}px;
+  `
+}

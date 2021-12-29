@@ -5,13 +5,13 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ["packages/**/src/*.tsx"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  extensionsToTreatAsEsm: [".ts"],
   modulePathIgnorePatterns: [
     "<rootDir>/examples",
   ],
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
+  runner: "jest-electron/runner",
   transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
   globals: {
     "ts-jest": {

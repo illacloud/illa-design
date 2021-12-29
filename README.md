@@ -86,7 +86,12 @@ Then your can open storybook in your browser.
 
 ## 🌱 Contributing
 
-Read our [contributing guide](./CONTRIBUTING.md) and let's build a better illa Design together.
+Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
+
+## 🔥 We're Hiring
+Looking for a passionate and creative team?
+We are actively hiring engineers for the following positions:
+- Frontend engineer(Beijing / Shenzhen)
 
 ## License
 

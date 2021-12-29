@@ -8,6 +8,7 @@ exports[`Tag renders with color and variant 1`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -46,6 +47,7 @@ exports[`Tag renders with color and variant 2`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -84,6 +86,7 @@ exports[`Tag renders with color and variant 3`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -122,6 +125,7 @@ exports[`Tag renders with color and variant 4`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -160,6 +164,7 @@ exports[`Tag renders with color and variant 5`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -198,6 +203,7 @@ exports[`Tag renders with color and variant 6`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -236,6 +242,7 @@ exports[`Tag renders with color and variant 7`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -246,7 +253,7 @@ exports[`Tag renders with color and variant 7`] = `
   border-radius: 1px;
   border: solid 1px #ebebeb;
   color: #1f1f1f;
-  padding: 1px 8px;
+  padding: 0px 7px;
 }
 
 .emotion-1 {
@@ -274,6 +281,7 @@ exports[`Tag renders with color and variant 8`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -284,7 +292,7 @@ exports[`Tag renders with color and variant 8`] = `
   border-radius: 1px;
   border: solid 1px #007a41;
   color: #007a41;
-  padding: 1px 8px;
+  padding: 0px 7px;
 }
 
 .emotion-1 {
@@ -312,6 +320,7 @@ exports[`Tag renders with color and variant 9`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -322,7 +331,7 @@ exports[`Tag renders with color and variant 9`] = `
   border-radius: 1px;
   color: #123321;
   border: solid 1px #123321;
-  padding: 1px 8px;
+  padding: 0px 7px;
 }
 
 .emotion-1 {
@@ -350,6 +359,7 @@ exports[`Tag renders with different size 1`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -388,6 +398,7 @@ exports[`Tag renders with different size 2`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -426,6 +437,7 @@ exports[`Tag renders with different size 3`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
+  white-space: nowrap;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
