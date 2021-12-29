@@ -13,7 +13,6 @@ import {
 import { TriangleBottom, TriangleLeft, TriangleRight, TriangleTop } from "./triangle"
 import { adjustLocation, AdjustResult, getFinalPosition } from "./adjust-tips-location"
 import { Popup } from "./popup"
-import useMouseHovered from "react-use/lib/useMouseHovered"
 
 export const Trigger: FC<TriggerProps> = ((props) => {
 

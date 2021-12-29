@@ -173,15 +173,15 @@ function adjustTr(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
 }
 
 function fitTop(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return (childrenDom.top + window.scrollY) >= tipsDom.height + 16
+  return childrenDom.top >= tipsDom.height + 16
 }
 
 function fitTl(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return (childrenDom.top + window.scrollY) >= tipsDom.height + 16
+  return childrenDom.top >= tipsDom.height + 16
 }
 
 function fitTr(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return (childrenDom.top + window.scrollY) >= tipsDom.height + 16
+  return childrenDom.top >= tipsDom.height + 16
 }
 
 // bottom
@@ -198,15 +198,15 @@ function adjustBr(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
 }
 
 function fitBottom(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return window.document.documentElement.clientHeight - (childrenDom.bottom + window.scrollY) >= tipsDom.height + 16
+  return window.document.documentElement.clientHeight - childrenDom.bottom >= tipsDom.height + 16
 }
 
 function fitBl(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return window.document.documentElement.clientHeight - (childrenDom.bottom + window.scrollY) >= tipsDom.height + 16
+  return window.document.documentElement.clientHeight - childrenDom.bottom >= tipsDom.height + 16
 }
 
 function fitBr(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return window.document.documentElement.clientHeight - (childrenDom.bottom + window.scrollY) >= tipsDom.height + 16
+  return window.document.documentElement.clientHeight - childrenDom.bottom >= tipsDom.height + 16
 }
 
 // left
@@ -223,15 +223,15 @@ function adjustLb(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
 }
 
 function fitLeft(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return childrenDom.left + window.scrollX >= tipsDom.width + 16
+  return childrenDom.left >= tipsDom.width + 16
 }
 
 function fitLt(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return childrenDom.left + window.scrollX >= tipsDom.width + 16
+  return childrenDom.left >= tipsDom.width + 16
 }
 
 function fitLb(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
-  return childrenDom.left + window.scrollX >= tipsDom.width + 16
+  return childrenDom.left >= tipsDom.width + 16
 }
 
 // right
