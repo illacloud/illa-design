@@ -5,6 +5,7 @@ import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { Space } from "@illa-design/space"
 import { BsFacebook, BsTwitch } from "react-icons/bs"
+import { Divider } from "@illa-design/divider"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -22,7 +23,7 @@ export default {
 } as Meta
 
 export const Basic: Story<ButtonProps> = (args) => {
-  return <Space direction="horizontal" align="start" style={{width: "500px"}} wrap>
+  return <Space direction="vertical" align="start" wrap>
     <Button {...args}>Hello</Button>
     <Button {...args} leftIcon={<BsFacebook />}>Hello</Button>
     <Button {...args} rightIcon={<BsFacebook />}>Hello</Button>

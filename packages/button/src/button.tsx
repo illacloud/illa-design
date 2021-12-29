@@ -67,9 +67,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
         </button>
       } else {
         const finalContainer = css`
-          ${applyTagContainer(fullWidth ?? false)};
+          ${applyTagContainer(fullWidth)};
           ${applyCursor(loading ?? false, disabled ?? false)}
-          ${applyWithoutTextSize(size)};
+          ${applyWithoutTextSize(size, fullWidth)};
           ${applyShape(shape, attached ?? false, first ?? false, last ?? false)};
           ${applyElementColor(variant, colorScheme)};
           ${applyBg(variant, colorScheme)};
@@ -77,7 +77,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
 
         return <button ref={ref} css={finalContainer} {...otherProps} disabled={disabled || loading}>
           {(loading || leftIcon) &&
-            <span css={applyIconWithoutText(size)}>{loading ? <LoadingIcon spin={true} /> : leftIcon}</span>}
+            <span css={applyIconWithoutText(size)}>{loading ?
+              <LoadingIcon spin={true} /> : leftIcon}</span>}
           {rightIcon && <span css={applyIconWithoutText(size)}>{rightIcon}</span>}
         </button>
       }
