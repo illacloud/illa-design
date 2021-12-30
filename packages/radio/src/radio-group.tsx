@@ -1,11 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { Children, createContext, CSSProperties, forwardRef, ReactNode } from "react"
+import { ChangeEvent, createContext, forwardRef } from "react"
 import { RadioGroupContextProps, RadioGroupProps } from "./interface"
-import { css, SerializedStyles } from "@emotion/react"
+import { SerializedStyles } from "@emotion/react"
 import { Radio } from "./radio"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor } from "@illa-design/theme"
 import { applyRadioContainerVertical, applyRadioContainerHorizontal } from "./style"
-import * as events from "events"
 import { useMergeValue } from "./hook"
 
 function isArray(obj: any) {
@@ -18,13 +17,12 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
   const {
     children, options, disabled,
     direction = "horizontal",
-    ...otherProps
   } = props
 
-  // const [value, setValue] = useMergeValue(undefined, {
-  //   defaultValue: props.defaultValue,
-  //   value: props.value,
-  // });
+  const [value, setValue] = useMergeValue(undefined, {
+    defaultValue: props.defaultValue,
+    value: props.value,
+  })
 
   let radioGroupCss: SerializedStyles
   switch (direction) {
@@ -36,13 +34,24 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
       break
   }
 
-  const onChangeValue = (v: any, event: events): void => {
-    console.log(event, props, 'onChangeValue')
+  const onChangeValue = (v: any, event: ChangeEvent): void => {
+    const { onChange } = props;
+    if (v !== value) {
+      if (!('value' in props)) {
+        setValue(v);
+      }
+      onChange && onChange(v, event);
+    }
   };
 
-  const name = "uuid"
+  const name = new Date().valueOf().toString()
 
-  return <RadioGroupContext.Provider value={{ name, options, disabled, ...otherProps }}>
+  const contextProp = {
+    onChangeValue,
+    name, options, disabled, value
+  };
+
+  return <RadioGroupContext.Provider value={contextProp}>
     <div css={radioGroupCss} ref={ref}>
       {options && isArray(options)
         ? options.map((option, index) => {

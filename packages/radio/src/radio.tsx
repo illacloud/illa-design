@@ -1,46 +1,60 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, useEffect, useRef, useState } from "react"
+import { forwardRef, ChangeEvent, useContext } from "react"
 import { RadioProps } from "./interface"
 import { RadioGroupContext } from "./radio-group"
 import { css } from "@emotion/react"
 import { applyMergeCss, applyRadioSize } from "./style"
 import { useMergeValue } from "./hook"
-import * as events from "events"
-
-const applyOuterCss = css`
-  vertical-align: middle;
-  display: inline-flex;
-`
 
 export const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
   const length = '16px';
-  const { children, disabled, checked } = props
   const colorScheme = props?.colorScheme ?? "blue"
-  const currentChecked = useMergeValue(false, {
-    value: props.checked,
-    defaultValue: props.defaultChecked,
-  });
 
-  return <RadioGroupContext.Consumer>
-    {value => {
+  const context = useContext(RadioGroupContext);
+  const mergeProps = { ...props };
+  const { children, disabled, value  } = mergeProps;
 
-      const currentName = props?.name || value?.name
+  if (context) {
+    mergeProps.checked = context?.value === props?.value;
+    mergeProps.disabled = !!(context?.disabled || props?.disabled);
+  }
 
-      return <label css={applyMergeCss(props)}>
+  const [currentChecked, setCurrentChecked] = useMergeValue(false, {
+    value: mergeProps.checked,
+    defaultValue: mergeProps.defaultChecked,
+  })
+
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const { onChange, value } = mergeProps;
+    if (disabled) {
+      return;
+    }
+    if (context) {
+      context.onChangeValue && context.onChangeValue(value, event);
+    } else if (!('checked' in props) && !currentChecked) {
+      setCurrentChecked(true);
+    }
+    !currentChecked && onChange && onChange(true, event);
+  };
+
+  return <label css={applyMergeCss(props)}>
         <input
           type="radio"
-          name={currentName}
+          {...(context?.name ? { name: context.name } : {})}
           css={applyRadioSize(colorScheme, length)}
-          value={props.value}
-          defaultChecked={props.defaultChecked}
-          checked={props.checked}
-          disabled={props.disabled}
+          value={value||''}
+          checked={currentChecked}
+          disabled={disabled}
+          onChange={(event) => {
+            event.persist();
+            onChange(event);
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
         />
         {children}
       </label>
-    }
-    }
-  </RadioGroupContext.Consumer>
 
 })

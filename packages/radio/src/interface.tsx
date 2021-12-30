@@ -1,4 +1,4 @@
-import { CSSProperties, HTMLAttributes, ReactNode } from "react"
+import { HTMLAttributes, ChangeEvent } from "react"
 
 export type RadioColorScheme =
   string
@@ -14,7 +14,7 @@ export type RadioColorScheme =
   | "cyan"
   | "purple"
 
-export interface RadioProps extends HTMLAttributes<HTMLDivElement> {
+export interface RadioContextProps {
   name?: string
   value?: any
   disabled?: boolean
@@ -22,12 +22,16 @@ export interface RadioProps extends HTMLAttributes<HTMLDivElement> {
   defaultChecked?: boolean
 
   colorScheme?: RadioColorScheme
+  onChange?: (value: any, event: ChangeEvent) => void;
 }
+
+export type RadioOwnProps = HTMLAttributes<HTMLDivElement> & RadioContextProps
+
+export interface RadioProps extends RadioOwnProps {}
 
 export type RadioOwnGroupProps = HTMLAttributes<HTMLDivElement> & RadioGroupContextProps
 
-export interface RadioGroupProps extends RadioOwnGroupProps {
-}
+export interface RadioGroupProps extends RadioOwnGroupProps {}
 
 interface optionsArr {
   label: string
@@ -45,4 +49,6 @@ export interface RadioGroupContextProps {
   spacing?: string | number
 
   colorScheme?: RadioColorScheme
+  onChange?: (value: any, event: ChangeEvent) => void;
+  onChangeValue?: (value: any, event: ChangeEvent) => void;
 }

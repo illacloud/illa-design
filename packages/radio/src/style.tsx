@@ -10,7 +10,6 @@ const radioCss = css`
 // default radio
 export function applyRadioSize(colorScheme: RadioColorScheme, length?: string) {
   const currentLength = length ?? "16px"
-  console.log(colorScheme, 'colorScheme')
 
   return css`
     -webkit-appearance: none;
@@ -63,8 +62,6 @@ export function applyRadioContainer() {
 }
 
 export function applyMergeCss(props: RadioProps): SerializedStyles {
-  const currentChecked = props.checked ?? "small"
-  const currentDefaultChecked = props.disabled ?? false
   const currentDisabled = props.disabled ?? false
 
   return css`

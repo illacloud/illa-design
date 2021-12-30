@@ -7,7 +7,7 @@ import { BsGithub, BsMailbox, BsTwitch } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "DATA DISPLAY/RadioGroup",
+  title: "DATA INPUT/RadioGroup",
   component: RadioGroup,
   decorators: [withTests({ results })],
 } as Meta
