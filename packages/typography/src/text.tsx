@@ -24,12 +24,21 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
     ...otherProps
   } = props
 
-  return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
-                  disabled={disabled}><span css={applyTextContainer(fontSize)} ref={ref} {...otherProps}>
-    <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-          underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-  </span></Tooltip>
+  const showTooltip = !disabled && (ellipsis == true || (typeof ellipsis == "object" && ellipsis.tooltip))
+  const base = <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
+                     underline={underline} deleted={deleted} code={code} copyable={copyable}>
+    {props.children}
+  </Base>
+  const text = <span css={applyTextContainer(fontSize)} ref={ref} {...otherProps}>
+    {base}
+  </span>
+
+  if (showTooltip) {
+    return <Tooltip content={mergedToString(React.Children.toArray(props.children))}>
+      {text}
+    </Tooltip>
+  } else {
+    return text
+  }
 
 })

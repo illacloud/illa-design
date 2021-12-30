@@ -23,61 +23,52 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref)
     ...otherProps
   } = props
 
+  const showTooltip = !disabled && (ellipsis == true || (typeof ellipsis == "object" && ellipsis.tooltip))
+
+  const base = <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
+                     underline={underline} deleted={deleted} code={code} copyable={copyable}>
+    {props.children}
+  </Base>
+
+  let headingNode
+
   switch (level) {
     case "h1":
-      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
-                      disabled={disabled}>
-        <h1 ref={ref} {...otherProps}>
-          <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-                underline={underline} deleted={deleted} code={code} copyable={copyable}>
-            {props.children}
-          </Base>
-        </h1>
-      </Tooltip>
+      headingNode = <h1 ref={ref} {...otherProps}>
+        {base}
+      </h1>
+      break
     case "h2":
-      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
-                      disabled={disabled}><h2 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h2></Tooltip>
+      headingNode = <h2 ref={ref} {...otherProps}>
+        {base}
+      </h2>
+      break
     case "h3":
-      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
-                      disabled={disabled}><h3 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h3></Tooltip>
+      headingNode = <h3 ref={ref} {...otherProps}>
+        {base}
+      </h3>
+      break
     case "h4":
-      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
-                      disabled={disabled}><h4 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h4></Tooltip>
+      headingNode = <h4 ref={ref} {...otherProps}>
+        {base}
+      </h4>
+      break
     case "h5":
-      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
-                      disabled={disabled}>
-        <h5 ref={ref} {...otherProps}>
-          <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-                underline={underline} deleted={deleted} code={code} copyable={copyable}>
-            {props.children}
-          </Base>
-        </h5>
-      </Tooltip>
+      headingNode = <h5 ref={ref} {...otherProps}>
+        {base}
+      </h5>
+      break
     case "h6":
-      return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
-                      disabled={disabled}>
-        <h6 ref={ref} {...otherProps}>
-          <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-                underline={underline} deleted={deleted} code={code} copyable={copyable}>
-            {props.children}
-          </Base>
-        </h6>
-      </Tooltip>
+      headingNode = <h6 ref={ref} {...otherProps}>
+        {base}
+      </h6>
+      break
   }
-
+  if (showTooltip) {
+    return <Tooltip content={mergedToString(React.Children.toArray(props.children))}>
+      {headingNode}
+    </Tooltip>
+  } else {
+    return headingNode
+  }
 })

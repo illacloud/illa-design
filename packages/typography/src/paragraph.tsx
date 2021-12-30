@@ -25,11 +25,20 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>((props
     ...otherProps
   } = props
 
-  return <Tooltip content={mergedToString(React.Children.toArray(props.children))}
-                  disabled={disabled}><p css={applyParagraphContainer(indent ?? false)} ref={ref} {...otherProps}>
+  const showTooltip = !disabled && (ellipsis == true || (typeof ellipsis == "object" && ellipsis.tooltip))
+
+  const p = <p css={applyParagraphContainer(indent ?? false)} ref={ref} {...otherProps}>
     <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
           underline={underline} deleted={deleted} code={code} copyable={copyable}>
       {props.children}
     </Base>
-  </p></Tooltip>
+  </p>
+
+  if (showTooltip) {
+    return <Tooltip content={mergedToString(React.Children.toArray(props.children))}>
+      {p}
+    </Tooltip>
+  } else {
+    return p
+  }
 })

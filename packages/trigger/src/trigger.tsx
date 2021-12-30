@@ -96,9 +96,15 @@ export const Trigger: FC<TriggerProps> = ((props) => {
 
 
   useEffect(() => {
+    let isMount = true
     adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition).then((result) => {
-      setAdjustResult(result)
+      if (isMount) {
+        setAdjustResult(result)
+      }
     })
+    return () => {
+      isMount = false
+    }
   }, [position, autoFitPosition, content, showArrow])
 
   return <>

@@ -48,7 +48,6 @@ function getMaxLineWidth(contentRef: HTMLSpanElement): number {
 }
 
 export interface MeasureResult {
-  fullText: string
   screenString: string
   isClip: boolean
 }
@@ -85,7 +84,6 @@ export function measureElement(
   if (getContentHeight(computeElement) <= maxHeight) {
     computeElement.remove()
     return {
-      fullText: fullText,
       screenString: fullText,
       isClip: false,
     } as MeasureResult
