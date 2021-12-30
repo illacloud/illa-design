@@ -115,7 +115,6 @@ export const Trigger: FC<TriggerProps> = ((props) => {
           css={applyChildrenContainer}
           onMouseEnter={async () => {
             if (!disabled && !finalVisible && popupVisible == undefined) {
-              console.log("优秀")
               const result = await adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition)
               // async deal
               if (!finalVisible) {

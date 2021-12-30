@@ -4,16 +4,6 @@ import "@testing-library/jest-dom"
 import { Button } from "@illa-design/button"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-test("Trigger renders correctly", async () => {
-  render(<Trigger content="Trigger Success">
-    <Button>Hello Trigger</Button>
-  </Trigger>)
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger"))
-  await waitFor(() => expect(screen.getByText("Trigger Success")).toBeInTheDocument(), {
-    timeout: 3000,
-  })
-})
-
 test("Trigger renders with different color scheme", async () => {
   render(<div>
     <Trigger data-testid="test-trigger-custom" content="Trigger Success" colorScheme="#123456">
