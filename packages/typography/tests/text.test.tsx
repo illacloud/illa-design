@@ -1,6 +1,6 @@
 import * as React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
-import { EllipsisBuilder, Text, Typography } from "../src"
+import { Text, Typography } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import "@testing-library/jest-dom"
 
