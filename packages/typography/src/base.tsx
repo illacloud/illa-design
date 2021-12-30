@@ -112,13 +112,19 @@ export const Base: FC<BaseProps> = (props) => {
 
   // update clip text
   useEffect(() => {
+    let isMount = true
     if (finalShowExpand) {
       const {
         screenString,
         isClip,
       } = measureElement(contentRef.current, operationRef.current, originEllipsis.rows, props.children)
-      setClipShowText(screenString)
-      setShowExpand(isClip)
+      if (isMount) {
+        setClipShowText(screenString)
+        setShowExpand(isClip)
+      }
+    }
+    return () => {
+      isMount = false
     }
   }, [width, finalShowExpand])
 
