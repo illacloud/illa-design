@@ -6,6 +6,14 @@ exports[`Paragraph renders with code style 1`] = `
   background-color: #f3f5f7;
 }
 
+.emotion-2 {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 4px;
+  text-align: center;
+  color: #1f1f1f;
+}
+
 <p
   class="emotion-0"
   data-testid="test-paragraph"
@@ -19,7 +27,11 @@ exports[`Paragraph renders with code style 1`] = `
     />
     A design is a plan or specification for the construction of an object or system or for the implementation of an activity or process, or the result of that plan or specification in the form of a prototype, product or process. The verb to design expresses the process of developing a design. In some cases, the direct construction of an object without an explicit prior plan (such as in craft work, some engineering, coding, and graphic design) may also be considered to be a design activity.
   </span>
-  <span />
+  <span>
+    <span
+      class="emotion-2"
+    />
+  </span>
 </p>
 `;
 
@@ -54,6 +66,14 @@ exports[`Paragraph renders with styles 1`] = `
   text-decoration: underline line-through;
 }
 
+.emotion-2 {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 4px;
+  text-align: center;
+  color: #1f1f1f;
+}
+
 <p
   class="emotion-0"
   data-testid="test-paragraph"
@@ -65,8 +85,12 @@ exports[`Paragraph renders with styles 1`] = `
     <iframe
       style="background: transparent; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: -1;"
     />
-    A design is a plan or specification for the construction of an object or system or for the implementation of an activity or process, or the result of that plan or specification in the form of a prototype, product or process. The verb to design expresses the process of developing a design. In some cases, the direct construction of an object without an explicit prior plan (such as in craf twork, some engineering, coding, and graphic design) may also be considered to be a design activity.
+    A design is a plan or specification for the construction of an object or system or for the implementation of an activity or process, or the result of that plan or specification in the form of a prototype, product or process. The verb to design expresses the process of developing a design. In some cases, the direct construction of an object without an explicit prior plan (such as in craft work, some engineering, coding, and graphic design) may also be considered to be a design activity.
   </span>
-  <span />
+  <span>
+    <span
+      class="emotion-2"
+    />
+  </span>
 </p>
 `;

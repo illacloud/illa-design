@@ -3,16 +3,20 @@
 exports[`Button renders fullwidth 1`] = `
 .emotion-0 {
   width: 100%;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -24,7 +28,7 @@ exports[`Button renders fullwidth 1`] = `
   padding: 2px 12px;
   border-radius: 4px;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-0:hover {
@@ -40,15 +44,15 @@ exports[`Button renders fullwidth 1`] = `
 }
 
 .emotion-0:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-0:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-0:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-1 {
@@ -80,10 +84,10 @@ exports[`Button renders round 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -95,7 +99,7 @@ exports[`Button renders round 1`] = `
   padding: 2px 12px;
   border-radius: 999px;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-0:hover {
@@ -111,15 +115,15 @@ exports[`Button renders round 1`] = `
 }
 
 .emotion-0:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-0:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-0:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-1 {

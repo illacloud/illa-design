@@ -1,10 +1,11 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Tooltip, TooltipProps } from "../src"
+import { Tooltip } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { Button } from "@illa-design/button"
 import { Space } from "@illa-design/space"
+import { TriggerProps } from "@illa-design/trigger"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -13,7 +14,7 @@ export default {
   decorators: [withTests({ results })],
 } as Meta
 
-const T: Story<TooltipProps> = (args) => {
+const T: Story<TriggerProps> = (args) => {
   return <Space>
     <Tooltip {...args}><Button>Hover Here</Button></Tooltip>
     <Button>Second</Button>

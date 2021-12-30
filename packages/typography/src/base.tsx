@@ -4,17 +4,18 @@ import * as React from "react"
 import { FC, Fragment, MutableRefObject, useEffect, useRef, useState } from "react"
 import { applyCopyableContainerSize, applyExpandLabelCss, applyFontColor, applyFontContentStyle } from "./base-style"
 import { css } from "@storybook/theming"
-import { measureElement } from "./measure-element"
+import mergedToString, { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
 import useSize from "react-use/lib/useSize"
+import { Tooltip } from "@illa-design/tooltip"
 
 function getEllipsis(ellipsis?: boolean | Ellipsis): Ellipsis {
   let originEllipsis: Ellipsis
   if (typeof ellipsis == "boolean" && ellipsis) {
     originEllipsis = new EllipsisBuilder().create()
-  } else if (typeof ellipsis == "boolean" && !ellipsis || ellipsis == undefined) {
-    originEllipsis = new EllipsisBuilder().expandable(false).create()
+  } else if ((typeof ellipsis == "boolean" && !ellipsis) || ellipsis == undefined) {
+    originEllipsis = new EllipsisBuilder().expandable(false).tooltip(false).create()
   } else {
     originEllipsis = ellipsis
   }
@@ -44,12 +45,12 @@ export const Base: FC<BaseProps> = (props) => {
   const {
     colorScheme = "blackAlpha",
     ellipsis,
-    bold = false,
-    disabled = false,
-    mark = false,
-    underline = false,
-    deleted = false,
-    code = false,
+    bold,
+    disabled,
+    mark,
+    underline,
+    deleted,
+    code,
     copyable,
   } = props
 
@@ -58,27 +59,39 @@ export const Base: FC<BaseProps> = (props) => {
 
   // set expandable state
   const [showExpand, setShowExpand] = useState<boolean>(originEllipsis.expandable)
+  const finalShowExpand = originEllipsis.expandable && showExpand
+
   const [clipShowText, setClipShowText] = useState("")
   const [copied, setCopied] = useState(false)
-  const [currentFullText, setFullText] = useState("")
 
   // get ref
-  const contentRef = useRef<HTMLSpanElement>() as MutableRefObject<HTMLSpanElement>
-  const operationRef = useRef<HTMLSpanElement>() as MutableRefObject<HTMLSpanElement>
+  const contentRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
+  const operationRef = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
 
   // apply content
   const contentCss = css`
     ${applyFontColor(colorScheme)};
     ${applyFontContentStyle(bold, mark, underline, deleted, disabled, code)};
   `
-
-  const [content, { width }] = useSize(<span ref={contentRef} css={contentCss}>
-    {showExpand ? clipShowText : props.children}
-  </span>)
+  const [content, { width }] = useSize(<span
+    ref={contentRef}
+    css={contentCss}>
+    {finalShowExpand ? clipShowText : props.children}</span>)
 
   // apply operation
+
+  const copyableElement = <span onClick={() => {
+    setCopied(true)
+    copyToClipboard(mergedToString(React.Children.toArray(props.children)))
+    if (originCopyable.onCopy != undefined) {
+      originCopyable.onCopy()
+    }
+  }} css={applyCopyableContainerSize()}>{!copied ? originCopyable.copyIcon : originCopyable.copiedIcon}</span>
+
+  const showCopyTooltip = copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip
+
   const operation = <span ref={operationRef}>
-    {showExpand && <Fragment>
+    {finalShowExpand && <Fragment>
       <span css={contentCss}>
         ...
         {originEllipsis.suffix && <span>{originEllipsis.suffix}</span>}
@@ -91,29 +104,23 @@ export const Base: FC<BaseProps> = (props) => {
       }}>{originEllipsis.expandLabel}</a>}
     </Fragment>}
     {copyable && originCopyable.copyIcon &&
-      <span onClick={() => {
-        setCopied(true)
-        copyToClipboard(currentFullText)
-        if (originCopyable.onCopy != undefined) {
-          originCopyable.onCopy()
-        }
-      }} css={applyCopyableContainerSize()}>{!copied ? originCopyable.copyIcon : originCopyable.copiedIcon}</span>
+    showCopyTooltip ? <Tooltip content={copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip}>
+      {copyableElement}
+    </Tooltip> : copyableElement
     }
   </span>
 
   // update clip text
   useEffect(() => {
-    if (showExpand) {
+    if (finalShowExpand) {
       const {
-        fullText,
         screenString,
         isClip,
       } = measureElement(contentRef.current, operationRef.current, originEllipsis.rows, props.children)
       setClipShowText(screenString)
-      setFullText(fullText)
       setShowExpand(isClip)
     }
-  }, [width])
+  }, [width, finalShowExpand])
 
   return <>
     {content}
