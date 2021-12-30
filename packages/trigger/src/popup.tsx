@@ -7,6 +7,7 @@ function createPopupContainer(): HTMLDivElement {
   popupContainer.style.position = "absolute"
   popupContainer.style.top = "0"
   popupContainer.style.left = "0"
+  popupContainer.style.pointerEvents = "none"
   return popupContainer
 }
 

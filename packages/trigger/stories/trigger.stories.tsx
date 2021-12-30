@@ -14,8 +14,8 @@ export default {
 } as Meta
 
 export const Basic: Story<TriggerProps> = (args) => {
-  return <Space direction="vertical" style={{ margin: "200px" }}>
-    <Space style={{ marginLeft: "70px" }}>
+  return <Space direction="vertical">
+    <Space>
       <Trigger {...args} position="tl" content="TL"><Button>TL</Button></Trigger>
       <Trigger {...args} position="top"
                content="This is long long long long long long long long text"><Button>TOP</Button></Trigger>

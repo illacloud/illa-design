@@ -13,7 +13,6 @@ import {
 import { TriangleBottom, TriangleLeft, TriangleRight, TriangleTop } from "./triangle"
 import { adjustLocation, AdjustResult, getFinalPosition } from "./adjust-tips-location"
 import { Popup } from "./popup"
-import { Paragraph, Typography } from "@illa-design/typography"
 
 export const Trigger: FC<TriggerProps> = ((props) => {
 
@@ -95,6 +94,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     exit="exit"
   >{centerNode}</motion.div>
 
+
   useEffect(() => {
     adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition).then((result) => {
       setAdjustResult(result)
@@ -117,6 +117,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
           }}
           onMouseLeave={() => {
             if (!disabled && popupVisible == undefined) {
+
               setTipsVisible(false)
               if (onVisibleChange != undefined) {
                 onVisibleChange(false)
