@@ -4,8 +4,7 @@ import { Button, ButtonProps } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { Space } from "@illa-design/space"
-import { BsFacebook, BsTwitch } from "react-icons/bs"
-import { Divider } from "@illa-design/divider"
+import { BsFacebook } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {

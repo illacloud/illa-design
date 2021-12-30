@@ -13,6 +13,7 @@ import {
 import { TriangleBottom, TriangleLeft, TriangleRight, TriangleTop } from "./triangle"
 import { adjustLocation, AdjustResult, getFinalPosition } from "./adjust-tips-location"
 import { Popup } from "./popup"
+import { Paragraph, Typography } from "@illa-design/typography"
 
 export const Trigger: FC<TriggerProps> = ((props) => {
 
@@ -98,7 +99,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition).then((result) => {
       setAdjustResult(result)
     })
-  }, [position, autoFitPosition])
+  }, [position, autoFitPosition, content, showArrow])
 
   return <>
     <span ref={childrenRef} {...otherProps}
@@ -130,10 +131,11 @@ export const Trigger: FC<TriggerProps> = ((props) => {
               }
             }
           }}>{props.children}</span>
-    <AnimatePresence>{!disabled && finalVisible ?
-      <Popup>
-        {tipsNode}
-      </Popup> : null}
+    <AnimatePresence>
+      {!disabled && finalVisible ?
+        <Popup>
+          {tipsNode}
+        </Popup> : null}
     </AnimatePresence>
   </>
 

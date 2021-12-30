@@ -14,7 +14,6 @@ export const Popup: FC = ((props) => {
 
   const container = createPopupContainer()
   document.body.append(container)
-
   useEffect(() => {
     return () => {
       document.body.removeChild(container)

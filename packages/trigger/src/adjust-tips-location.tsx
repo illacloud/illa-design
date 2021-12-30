@@ -20,7 +20,8 @@ export async function adjustLocation(tipsNode: ReactNode, childrenRef: HTMLEleme
     opposite: false,
   }
 
-  await render(<div style={{ display: "inline-flex" }}>{tipsNode}</div>, computeElement, async () => {})
+  await render(<div style={{ display: "inline-flex" }}>{tipsNode}</div>, computeElement, async () => {
+  })
 
   const tipsDom = computeElement.children.item(0)!!.getBoundingClientRect()
   const childrenDom = childrenRef.getBoundingClientRect()

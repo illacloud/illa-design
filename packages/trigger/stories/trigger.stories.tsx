@@ -14,10 +14,11 @@ export default {
 } as Meta
 
 export const Basic: Story<TriggerProps> = (args) => {
-  return <Space style={{ padding: "200px" }} direction="vertical">
+  return <Space direction="vertical" style={{ margin: "200px" }}>
     <Space style={{ marginLeft: "70px" }}>
       <Trigger {...args} position="tl" content="TL"><Button>TL</Button></Trigger>
-      <Trigger {...args} position="top" content="TOP"><Button>TOP</Button></Trigger>
+      <Trigger {...args} position="top"
+               content="This is long long long long long long long long text"><Button>TOP</Button></Trigger>
       <Trigger {...args} position="tr" content="TR"><Button>TR</Button></Trigger>
     </Space>
     <Space direction="horizontal" size="200px">
@@ -34,8 +35,8 @@ export const Basic: Story<TriggerProps> = (args) => {
     </Space>
     <Space style={{ marginLeft: "70px" }}>
       <Trigger {...args} position="bl" content="BL"><Button>BL</Button></Trigger>
-      <Trigger {...args} position="bottom" content="BOTTOM"><Button>BOTTOM</Button></Trigger>
-      <Trigger {...args} position="br" content="BR"><Button>BR</Button></Trigger>
+      <Trigger {...args} position="bottom" content="我是个测试"><Button>BOTTOM</Button></Trigger>
+      <Trigger {...args} position="br" content="A design is a plan or specification for the construction of an object or system or for the implementation of an activity or process, or the result of that plan or specification in the form of a prototype, product or pro"><Button>BR</Button></Trigger>
     </Space>
   </Space>
 }

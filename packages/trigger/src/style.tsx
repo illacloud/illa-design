@@ -39,12 +39,11 @@ export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles
   const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
   return css`
     background-color: ${bgColor};
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 32px;
-    min-height: 32px;
+    width:fit-content;
+    text-align: left;
     max-width: 588px;
+    white-space: pre-line;
+    word-break: break-all;
     border-radius: 2px;
     font-size: 14px;
     padding: 8px 12px;
