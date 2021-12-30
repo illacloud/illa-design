@@ -13,7 +13,9 @@ test("Paragraph renders short text with ellipsis", async () => {
       This is a paragraph
     </Paragraph>
   </Typography>)
-  await waitFor(() => expect(screen.queryByText("...")).not.toBeTruthy())
+  await waitFor(() => {
+    expect(screen.queryByText("...")).not.toBeTruthy()
+  })
 })
 
 test("Paragraph render with ellipsis", async () => {
@@ -42,11 +44,9 @@ test("Paragraph render with ellipsis", async () => {
     expect(screen.getByText("TestSuffix")).toBeInTheDocument()
     expect(screen.getByText("...")).toBeInTheDocument()
   })
-  act(() => {
-    fireEvent.click(screen.getByTitle("PersonIcon"))
-    expect(onExpand).toBeCalled()
-  })
+  fireEvent.click(screen.getByTitle("PersonIcon"))
   await waitFor(() => {
     expect(screen.queryByText("...")).not.toBeTruthy()
+    expect(onExpand).toBeCalled()
   })
 })

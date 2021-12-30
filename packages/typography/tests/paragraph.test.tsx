@@ -34,7 +34,7 @@ test("Paragraph renders with indent", () => {
 
 test("Paragraph renders with styles", () => {
   render(<Typography>
-    <Paragraph data-testid="test-paragraph" underline={true} mark={true} deleted={true} bold={true}>A design is a plan
+    <Paragraph data-testid="test-paragraph" underline mark deleted bold>A design is a plan
       or
       specification for the
       construction of

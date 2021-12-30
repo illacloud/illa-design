@@ -43,7 +43,7 @@ export function applyFontContentStyle(bold?: boolean, mark?: boolean | Typograph
   }
 
   if (mark != undefined) {
-    if (mark === true) {
+    if (mark == true) {
       finalCss = css`
         ${finalCss};
         background-color: ${globalColor(`--${illaPrefix}-yellow-06`)};

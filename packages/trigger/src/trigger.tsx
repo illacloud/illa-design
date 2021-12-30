@@ -97,15 +97,17 @@ export const Trigger: FC<TriggerProps> = ((props) => {
 
   useEffect(() => {
     let isMount = true
-    adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition).then((result) => {
-      if (isMount) {
-        setAdjustResult(result)
-      }
-    })
+    if (finalVisible) {
+      adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition).then((result) => {
+        if (isMount) {
+          setAdjustResult(result)
+        }
+      })
+    }
     return () => {
       isMount = false
     }
-  }, [position, autoFitPosition, content, showArrow])
+  }, [finalVisible])
 
   return <>
     <span ref={childrenRef} {...otherProps}

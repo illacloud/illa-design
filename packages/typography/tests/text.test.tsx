@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render, screen, waitFor } from "@testing-library/react"
+import { act, render, screen, waitFor } from "@testing-library/react"
 import { Text, Typography } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import "@testing-library/jest-dom"
@@ -30,5 +30,7 @@ test("Text renders with copy icon", async () => {
   render(<Typography>
     <Text data-testid="test-text" fontSize="20px" copyable={true}>Text</Text>
   </Typography>)
-  await waitFor(() => expect(screen.getByTitle("CopyIcon")).toBeInTheDocument())
+  await waitFor(() => {
+    expect(screen.getByTitle("CopyIcon")).toBeInTheDocument()
+  })
 })
