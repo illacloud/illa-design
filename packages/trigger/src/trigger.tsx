@@ -2,6 +2,7 @@
 import { FC, MutableRefObject, ReactNode, useEffect, useRef, useState } from "react"
 import { TriggerProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
+import { v4 as uuidv4 } from "uuid"
 import {
   applyAnimation,
   applyChildrenContainer,
@@ -107,25 +108,26 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     return () => {
       isMount = false
     }
-  }, [finalVisible])
+  }, [popupVisible, position, showArrow])
 
   return <>
     <span ref={childrenRef} {...otherProps}
           css={applyChildrenContainer}
-          onMouseEnter={() => {
-            if (!disabled && popupVisible == undefined) {
-              adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition).then((result) => {
+          onMouseEnter={async () => {
+            if (!disabled && !finalVisible && popupVisible == undefined) {
+              const result = await adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition)
+              // async deal
+              if (!finalVisible) {
                 setAdjustResult(result)
-              })
-              setTipsVisible(true)
-              if (onVisibleChange != undefined) {
-                onVisibleChange(true)
+                setTipsVisible(true)
+                if (onVisibleChange != undefined) {
+                  onVisibleChange(true)
+                }
               }
             }
           }}
           onMouseLeave={() => {
-            if (!disabled && popupVisible == undefined) {
-
+            if (!disabled && finalVisible && popupVisible == undefined) {
               setTipsVisible(false)
               if (onVisibleChange != undefined) {
                 onVisibleChange(false)
@@ -133,7 +135,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
             }
           }}
           onClick={() => {
-            if (!disabled && closeOnClick && popupVisible == undefined) {
+            if (!disabled && closeOnClick && finalVisible && popupVisible == undefined) {
               setTipsVisible(false)
               if (onVisibleChange != undefined) {
                 onVisibleChange(false)
@@ -142,7 +144,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
           }}>{props.children}</span>
     <AnimatePresence>
       {!disabled && finalVisible ?
-        <Popup>
+        <Popup key={uuidv4()}>
           {tipsNode}
         </Popup> : null}
     </AnimatePresence>

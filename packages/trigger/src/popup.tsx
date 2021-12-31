@@ -12,12 +12,11 @@ function createPopupContainer(): HTMLDivElement {
 }
 
 export const Popup: FC = ((props) => {
-
   const container = createPopupContainer()
   document.body.append(container)
   useEffect(() => {
     return () => {
-      document.body.removeChild(container)
+      container.remove()
     }
   })
   return createPortal(props.children, container)

@@ -1,7 +1,7 @@
 /**
  * @jest-environment jest-electron/environment
  */
-import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { CopyableBuilder, Text, Typography } from "../src"
 import { ImageDefaultIcon, PersonIcon } from "@illa-design/icon"
 import * as React from "react"
@@ -18,6 +18,8 @@ test("Text renders with copy event", async () => {
   fireEvent.click(screen.getByTitle("CopyIcon"))
   await waitFor(() => {
     expect(onCopy).toBeCalled()
+  }, {
+    timeout: 3000,
   })
 })
 
@@ -27,12 +29,12 @@ test("Text renders with different copy icon", async () => {
           copyable={new CopyableBuilder().copyIcon(<ImageDefaultIcon />).copiedIcon(
             <PersonIcon />).create()}>Text</Text>
   </Typography>)
-  await waitFor(() => {
-    expect(screen.getByTitle("ImageDefaultIcon")).toBeInTheDocument()
+  await waitFor(() => expect(screen.getByTitle("ImageDefaultIcon")).toBeInTheDocument(), {
+    timeout: 3000,
   })
   fireEvent.click(screen.getByTitle("ImageDefaultIcon"))
-  await waitFor(() => {
-    expect(screen.getByTitle("PersonIcon")).toBeInTheDocument()
+  await waitFor(() => expect(screen.getByTitle("PersonIcon")).toBeInTheDocument(), {
+    timeout: 3000,
   })
 })
 
@@ -45,13 +47,13 @@ test("Text renders with different copy tooltips", async () => {
             .create()}>Text</Text>
   </Typography>)
   fireEvent.mouseEnter(screen.getByTitle("CopyIcon"))
-  await waitFor(() => {
-    expect(screen.getByText("CopyTooltip")).toBeInTheDocument()
+  await waitFor(() => expect(screen.getByText("CopyTooltip")).toBeInTheDocument(), {
+    timeout: 3000,
   })
   fireEvent.click(screen.getByTitle("CopyIcon"))
   fireEvent.mouseLeave(screen.getByTitle("CopyIcon"))
   fireEvent.mouseEnter(screen.getByTitle("CopyIcon"))
-  await waitFor(() => {
-    expect(screen.getByText("CopiedTooltip")).toBeInTheDocument()
+  await waitFor(() => expect(screen.getByText("CopiedTooltip")).toBeInTheDocument(), {
+    timeout: 3000,
   })
 })
