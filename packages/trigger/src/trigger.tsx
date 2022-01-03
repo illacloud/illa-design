@@ -158,7 +158,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
       if (tipVisible) {
         setTipsVisible(false)
         if (onVisibleChange != undefined) {
-          onVisibleChange(true)
+          onVisibleChange(false)
         }
       }
     }
