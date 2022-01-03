@@ -11,11 +11,14 @@ export const applyChildrenContainer = css`
   display: inline-flex;
 `
 
-export const applyMotionDiv = css`
-  display: inline-flex;
-`
+export function applyMotionDiv() {
+  return css`
+    display: inline-flex;
+    pointer-events: auto;
+  `
+}
 
-export function applyTipsContainer(position: TriggerPosition, tipsTransform?: AdjustResult): SerializedStyles {
+export function applyTipsContainer(position: TriggerPosition): SerializedStyles {
 
   const isColumn =
     position == "top" ||
@@ -25,10 +28,43 @@ export function applyTipsContainer(position: TriggerPosition, tipsTransform?: Ad
     position == "bl" ||
     position == "br"
 
+
+  let paddingStyle: SerializedStyles
+  switch (position) {
+    case "top":
+    case "tl":
+    case "tr":
+      paddingStyle = css`
+        padding-bottom: 16px;
+      `
+      break
+    case "bottom":
+    case "bl":
+    case "br":
+      paddingStyle = css`
+        padding-top: 16px;
+      `
+      break
+    case "left":
+    case "lt":
+    case "lb":
+      paddingStyle = css`
+        padding-right: 16px;
+      `
+      break
+    case "right":
+    case "rt":
+    case "rb":
+      paddingStyle = css`
+        padding-left: 16px;
+      `
+      break
+  }
+
   return css`
+    ${paddingStyle};
     display: inline-flex;
     flex-direction: ${isColumn ? "column" : "row"};
-    transform: translate(${tipsTransform?.transX ?? 0}px, ${tipsTransform?.transY ?? 0}px);
     opacity: 90%;
     z-index: 10;
     color: ${globalColor(`--${illaPrefix}-white-01`)};
@@ -39,7 +75,7 @@ export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles
   const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
   return css`
     background-color: ${bgColor};
-    width:fit-content;
+    width: fit-content;
     text-align: left;
     max-width: 588px;
     white-space: pre-line;
@@ -61,71 +97,76 @@ export function applyTriangleStyle(colorScheme: TriggerColorScheme, position: Tr
   const mainStyle = css`
     color: ${bgColor};
   `
+  let positionStyle: SerializedStyles
   switch (position) {
     case "top":
     case "bottom":
     case "left":
     case "right":
-      return css`
-        ${mainStyle};
+      positionStyle = css`
         align-self: center;
       `
+      break
     case "tl":
     case "bl":
-      return css`
-        ${mainStyle};
+      positionStyle = css`
         align-self: start;
         margin-left: 12px;
       `
+      break
     case "tr":
     case "br":
-      return css`
-        ${mainStyle};
+      positionStyle = css`
         align-self: end;
         margin-right: 12px;
       `
+      break
     case "lt":
     case "rt":
-      return css`
-        ${mainStyle};
+      positionStyle = css`
         align-self: start;
         margin-top: 12px;
       `
+      break
     case "lb":
     case "rb":
-      return css`
-        ${mainStyle};
+      positionStyle = css`
         align-self: end;
         margin-bottom: 12px;
       `
+      break
   }
+  return css`
+    ${mainStyle};
+    ${positionStyle};
+  `
 }
 
-export function applyAnimation(position: TriggerPosition, closeDelay: number, openDelay: number, adjustResult?: AdjustResult): Variants {
+export function applyAnimation(position: TriggerPosition): Variants {
   switch (position) {
     case "top":
-      return getAnimation(`calc(50% + ${adjustResult?.transX ?? 0}px)`, `calc(100% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+      return getAnimation(`calc(50%)`, `calc(100%)`)
     case "tl":
-      return getAnimation(`calc(12px + ${adjustResult?.transX ?? 0}px)`, `calc(100% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+      return getAnimation(`calc(12px)`, `calc(100%)`)
     case "tr":
-      return getAnimation(`calc(100% - 12px + ${adjustResult?.transX ?? 0}px)`, `calc(100% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+      return getAnimation(`calc(100% - 12px)`, `calc(100%)`)
     case "bottom":
-      return getAnimation(`calc(50% + ${adjustResult?.transX ?? 0}px)`, `${adjustResult?.transY ?? 0}px`, closeDelay, openDelay)
+      return getAnimation(`calc(50%)`, `0px`)
     case "bl":
-      return getAnimation(`calc(12px + ${adjustResult?.transX ?? 0}px)`, `${adjustResult?.transY ?? 0}px`, closeDelay, openDelay)
+      return getAnimation(`calc(12px)`, `0px`)
     case "br":
-      return getAnimation(`calc(100% - 12px + ${adjustResult?.transX ?? 0}px)`, `${adjustResult?.transY ?? 0}px`, closeDelay, openDelay)
+      return getAnimation(`calc(100% - 12px)`, `0px`)
     case "left":
-      return getAnimation(`calc(100% + ${adjustResult?.transX ?? 0}px)`, `calc(50% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+      return getAnimation(`calc(100%)`, `calc(50%)`)
     case "lt":
-      return getAnimation(`calc(100% + ${adjustResult?.transX ?? 0}px)`, `calc(12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+      return getAnimation(`calc(100%)`, `calc(12px)`)
     case "lb":
-      return getAnimation(`calc(100% + ${adjustResult?.transX ?? 0}px)`, `calc(100% - 12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+      return getAnimation(`calc(100%)`, `calc(100% - 12px)`)
     case "right":
-      return getAnimation(`${adjustResult?.transX ?? 0}px`, `calc(50% + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+      return getAnimation(`0px`, `calc(50%)`)
     case "rt":
-      return getAnimation(`${adjustResult?.transX ?? 0}px`, `calc(12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+      return getAnimation(`0px`, `calc(12px)`)
     case "rb":
-      return getAnimation(`${adjustResult?.transX ?? 0}px`, `calc(100% - 12px + ${adjustResult?.transY ?? 0}px)`, closeDelay, openDelay)
+      return getAnimation(`0px`, `calc(100%)`)
   }
 }
