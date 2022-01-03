@@ -2,7 +2,6 @@
 import { FC, MutableRefObject, ReactNode, useEffect, useRef, useState } from "react"
 import { TriggerProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
-import { v4 as uuidv4 } from "uuid"
 import {
   applyAnimation,
   applyChildrenContainer,
@@ -182,7 +181,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
           }}>{props.children}</span>
     <AnimatePresence>
       {!disabled && tipVisible && childrenRef.current != null ?
-        <Popup key={uuidv4()} top={`${adjustResult?.transY}px`} left={`${adjustResult?.transX}px`}>
+        <Popup top={`${adjustResult?.transY}px`} left={`${adjustResult?.transX}px`}>
           {tipsNode}
         </Popup> : null}
     </AnimatePresence>
