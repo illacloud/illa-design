@@ -42,6 +42,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
   const [adjustResult, setAdjustResult] = useState<AdjustResult>()
   const finalPosition = getFinalPosition(adjustResult?.opposite ?? false, position)
 
+  // delay to do sth
   let timeOutHandlerId: number | undefined
   const delayTodo = (todo: () => void, timeout: number) => {
     if (timeOutHandlerId != undefined) {
@@ -163,6 +164,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     }
     return () => {
       isMount = false
+      window.clearTimeout(timeOutHandlerId)
     }
   }, [popupVisible, position, content, disabled])
 

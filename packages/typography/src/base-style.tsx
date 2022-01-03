@@ -42,19 +42,18 @@ export function applyFontContentStyle(bold?: boolean, mark?: boolean | Typograph
     `
   }
 
-  if (mark != undefined) {
-    if (mark == true) {
-      finalCss = css`
-        ${finalCss};
-        background-color: ${globalColor(`--${illaPrefix}-yellow-06`)};
-      `
-    } else {
-      const bgColor = typeof mark == "string" && colorSchemes.includes(mark) ? globalColor(`--${illaPrefix}-${mark}-06`) : mark
-      finalCss = css`
-        ${finalCss};
-        background-color: ${bgColor};
-      `
-    }
+  if (mark && typeof mark != "string") {
+    finalCss = css`
+      ${finalCss};
+      background-color: ${globalColor(`--${illaPrefix}-yellow-06`)};
+    `
+  }
+  if (typeof mark == "string") {
+    const bgColor = colorSchemes.includes(mark) ? globalColor(`--${illaPrefix}-${mark}-06`) : mark
+    finalCss = css`
+      ${finalCss};
+      background-color: ${bgColor};
+    `
   }
 
   finalCss = css`
