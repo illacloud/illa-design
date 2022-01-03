@@ -165,7 +165,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     return () => {
       isMount = false
     }
-  }, [popupVisible, position, content])
+  }, [popupVisible, position, content, disabled])
 
 
   return <>
