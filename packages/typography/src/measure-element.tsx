@@ -64,7 +64,6 @@ export function measureElement(
   let computeElement = document.createElement(contentRef.tagName)
   document.body.appendChild(computeElement)
 
-
   // create text node
   const fullText = mergedToString(React.Children.toArray(children))
   const textNode = document.createTextNode(fullText)

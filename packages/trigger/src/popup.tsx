@@ -1,18 +1,23 @@
 import { FC, useEffect } from "react"
 import { createPortal } from "react-dom"
 
-function createPopupContainer(): HTMLDivElement {
+function createPopupContainer(top: string, left: string): HTMLDivElement {
   const popupContainer = document.createElement("div")
   popupContainer.style.display = "inline-flex"
   popupContainer.style.position = "absolute"
-  popupContainer.style.top = "0"
-  popupContainer.style.left = "0"
+  popupContainer.style.left = left
+  popupContainer.style.top = top
   popupContainer.style.pointerEvents = "none"
   return popupContainer
 }
 
-export const Popup: FC = ((props) => {
-  const container = createPopupContainer()
+export interface PopupProps {
+  top: string
+  left: string
+}
+
+export const Popup: FC<PopupProps> = ((props) => {
+  const container = createPopupContainer(props.top, props.left)
   document.body.append(container)
   useEffect(() => {
     return () => {
