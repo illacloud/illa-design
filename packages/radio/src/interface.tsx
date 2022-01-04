@@ -1,4 +1,5 @@
-import { HTMLAttributes, ChangeEvent } from "react"
+import { HTMLAttributes, ChangeEvent, ReactNode } from "react"
+import { AvatarColorScheme, AvatarGroupContextProps, AvatarShape, AvatarSize } from "@illa-design/avatar/src"
 
 export type RadioColorScheme =
   string
@@ -14,7 +15,7 @@ export type RadioColorScheme =
   | "cyan"
   | "purple"
 
-export interface RadioContextProps {
+export interface RadioProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange'> {
   name?: string
   value?: any
   disabled?: boolean
@@ -25,13 +26,9 @@ export interface RadioContextProps {
   onChange?: (value: any, event: ChangeEvent) => void;
 }
 
-export type RadioOwnProps = HTMLAttributes<HTMLDivElement> & RadioContextProps
-
-export interface RadioProps extends RadioOwnProps {}
-
 export type RadioOwnGroupProps = HTMLAttributes<HTMLDivElement> & RadioGroupContextProps
 
-export interface RadioGroupProps extends RadioOwnGroupProps {}
+// export interface RadioGroupProps extends RadioOwnGroupProps {}
 
 interface optionsArr {
   label: string
@@ -52,4 +49,9 @@ export interface RadioGroupContextProps {
 
   onChange?: (value: any, event: ChangeEvent) => void;
   onChangeValue?: (value: any, event: ChangeEvent) => void;
+}
+
+export interface RadioGroupProps<T> extends
+  Omit<HTMLAttributes<HTMLDivElement>, 'onChange'|'defaultValue'>,
+  RadioGroupContextProps  {
 }

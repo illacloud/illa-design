@@ -6,7 +6,7 @@ import { RadioGroupContext } from "./radio-group"
 import { applyMergeCss, applyRadioSize } from "./style"
 import { useMergeValue } from "./hook"
 
-export const Radio = forwardRef<HTMLDivElement, RadioProps>((props) => {
+export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
   const colorScheme = props?.colorScheme ?? "blue"
 
   const context = useContext(RadioGroupContext);
@@ -36,7 +36,7 @@ export const Radio = forwardRef<HTMLDivElement, RadioProps>((props) => {
     !currentChecked && onChange && onChange(true, event);
   };
 
-  return <label css={applyMergeCss(props)}>
+  return <label css={applyMergeCss(props)} ref={ref}>
         <input
           type="radio"
           {...(context?.name ? { name: context.name } : {})}

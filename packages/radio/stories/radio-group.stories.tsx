@@ -13,7 +13,7 @@ export default {
 } as Meta
 
 const Template: Story<RadioProps> = (args) => {
-  return <div>
+  return <>
     <RadioGroup {...args}>
       <Radio value="a">AAAAAA</Radio>
       <Radio value="b">B</Radio>
@@ -23,7 +23,7 @@ const Template: Story<RadioProps> = (args) => {
     <br />
     <RadioGroup {...args} options={["A", "B", "C"]}>
     </RadioGroup>
-  </div>
+  </>
 }
 
 export const Basic = Template.bind({})
