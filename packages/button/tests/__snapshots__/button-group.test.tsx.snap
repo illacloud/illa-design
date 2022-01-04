@@ -32,6 +32,10 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-left: 0px;
 }
 
@@ -46,10 +50,10 @@ exports[`Button Group renders attached with round shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -62,7 +66,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   border-top-left-radius: 999px;
   border-bottom-left-radius: 999px;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-2:hover {
@@ -78,15 +82,15 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-2:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-2:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-2:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-3 {
@@ -99,6 +103,10 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-left: -1px;
 }
 
@@ -113,10 +121,10 @@ exports[`Button Group renders attached with round shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -128,7 +136,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   padding: 2px 12px;
   border-radius: 0;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-5:hover {
@@ -144,15 +152,15 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-5:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-5:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-5:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-6 {
@@ -179,10 +187,10 @@ exports[`Button Group renders attached with round shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -193,32 +201,32 @@ exports[`Button Group renders attached with round shape 1`] = `
   cursor: pointer;
   padding: 1px 11px;
   border-radius: 0;
-  color: #2a3ed6;
-  border: solid 1px #2a3ed6;
+  color: #134ae0;
+  border: solid 1px #134ae0;
 }
 
 .emotion-12:hover {
-  color: #3e53eb;
+  color: #175ceb;
 }
 
 .emotion-12:active {
-  color: #1e29bd;
+  color: #083bc7;
 }
 
 .emotion-12:disabled {
-  color: #aebeff;
+  color: #99beff;
 }
 
 .emotion-12:hover {
-  border: solid 1px #3e53eb;
+  border: solid 1px #175ceb;
 }
 
 .emotion-12:active {
-  border: solid 1px #1e29bd;
+  border: solid 1px #083bc7;
 }
 
 .emotion-12:disabled {
-  border: solid 1px #aebeff;
+  border: solid 1px #99beff;
 }
 
 .emotion-16 {
@@ -228,10 +236,10 @@ exports[`Button Group renders attached with round shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -243,7 +251,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   padding: 2px 12px;
   border-radius: 0;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-16:hover {
@@ -259,15 +267,15 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-16:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-16:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-16:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-18 {
@@ -283,10 +291,10 @@ exports[`Button Group renders attached with round shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -303,7 +311,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   height: 24px;
   border-radius: 0;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-26:hover {
@@ -319,15 +327,15 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-26:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-26:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-26:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-27 {
@@ -357,10 +365,10 @@ exports[`Button Group renders attached with round shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -373,7 +381,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   border-top-right-radius: 999px;
   border-bottom-right-radius: 999px;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-30:hover {
@@ -389,15 +397,15 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-30:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-30:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-30:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 <div
@@ -633,6 +641,10 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-left: 0px;
 }
 
@@ -647,10 +659,10 @@ exports[`Button Group renders attached with square shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -663,7 +675,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-2:hover {
@@ -679,15 +691,15 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-2:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-2:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-2:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-3 {
@@ -700,6 +712,10 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-left: -1px;
 }
 
@@ -714,10 +730,10 @@ exports[`Button Group renders attached with square shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -729,7 +745,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   padding: 2px 12px;
   border-radius: 0;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-5:hover {
@@ -745,15 +761,15 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-5:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-5:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-5:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-6 {
@@ -780,10 +796,10 @@ exports[`Button Group renders attached with square shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -794,32 +810,32 @@ exports[`Button Group renders attached with square shape 1`] = `
   cursor: pointer;
   padding: 1px 11px;
   border-radius: 0;
-  color: #2a3ed6;
-  border: solid 1px #2a3ed6;
+  color: #134ae0;
+  border: solid 1px #134ae0;
 }
 
 .emotion-12:hover {
-  color: #3e53eb;
+  color: #175ceb;
 }
 
 .emotion-12:active {
-  color: #1e29bd;
+  color: #083bc7;
 }
 
 .emotion-12:disabled {
-  color: #aebeff;
+  color: #99beff;
 }
 
 .emotion-12:hover {
-  border: solid 1px #3e53eb;
+  border: solid 1px #175ceb;
 }
 
 .emotion-12:active {
-  border: solid 1px #1e29bd;
+  border: solid 1px #083bc7;
 }
 
 .emotion-12:disabled {
-  border: solid 1px #aebeff;
+  border: solid 1px #99beff;
 }
 
 .emotion-16 {
@@ -829,10 +845,10 @@ exports[`Button Group renders attached with square shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -844,7 +860,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   padding: 2px 12px;
   border-radius: 0;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-16:hover {
@@ -860,15 +876,15 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-16:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-16:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-16:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-18 {
@@ -884,10 +900,10 @@ exports[`Button Group renders attached with square shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -904,7 +920,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   height: 24px;
   border-radius: 0;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-26:hover {
@@ -920,15 +936,15 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-26:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-26:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-26:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-27 {
@@ -958,10 +974,10 @@ exports[`Button Group renders attached with square shape 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -974,7 +990,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-30:hover {
@@ -990,15 +1006,15 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-30:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-30:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-30:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 <div
@@ -1234,6 +1250,10 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-left: 0px;
 }
 
@@ -1248,10 +1268,10 @@ exports[`Button Group renders with spacing 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -1263,7 +1283,7 @@ exports[`Button Group renders with spacing 1`] = `
   padding: 2px 12px;
   border-radius: 4px;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-2:hover {
@@ -1279,15 +1299,15 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-2:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-2:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-2:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-3 {
@@ -1300,7 +1320,11 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-4 {
-  margin-left: 4px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin-left: 12px;
 }
 
 .emotion-4:hover {
@@ -1331,10 +1355,10 @@ exports[`Button Group renders with spacing 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -1345,32 +1369,32 @@ exports[`Button Group renders with spacing 1`] = `
   cursor: pointer;
   padding: 1px 11px;
   border-radius: 4px;
-  color: #2a3ed6;
-  border: solid 1px #2a3ed6;
+  color: #134ae0;
+  border: solid 1px #134ae0;
 }
 
 .emotion-12:hover {
-  color: #3e53eb;
+  color: #175ceb;
 }
 
 .emotion-12:active {
-  color: #1e29bd;
+  color: #083bc7;
 }
 
 .emotion-12:disabled {
-  color: #aebeff;
+  color: #99beff;
 }
 
 .emotion-12:hover {
-  border: solid 1px #3e53eb;
+  border: solid 1px #175ceb;
 }
 
 .emotion-12:active {
-  border: solid 1px #1e29bd;
+  border: solid 1px #083bc7;
 }
 
 .emotion-12:disabled {
-  border: solid 1px #aebeff;
+  border: solid 1px #99beff;
 }
 
 .emotion-16 {
@@ -1380,10 +1404,10 @@ exports[`Button Group renders with spacing 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -1395,7 +1419,7 @@ exports[`Button Group renders with spacing 1`] = `
   padding: 2px 12px;
   border-radius: 4px;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-16:hover {
@@ -1411,15 +1435,15 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-16:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-16:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-16:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-18 {
@@ -1435,10 +1459,10 @@ exports[`Button Group renders with spacing 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -1455,7 +1479,7 @@ exports[`Button Group renders with spacing 1`] = `
   height: 24px;
   border-radius: 4px;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-26:hover {
@@ -1471,15 +1495,15 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-26:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-26:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-26:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 .emotion-27 {
@@ -1509,10 +1533,10 @@ exports[`Button Group renders with spacing 1`] = `
   margin: 0;
   border: 0;
   background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -1524,7 +1548,7 @@ exports[`Button Group renders with spacing 1`] = `
   padding: 2px 12px;
   border-radius: 4px;
   color: #fff;
-  background-color: #2a3ed6;
+  background-color: #134ae0;
 }
 
 .emotion-30:hover {
@@ -1540,15 +1564,15 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-30:hover {
-  background-color: #3e53eb;
+  background-color: #175ceb;
 }
 
 .emotion-30:active {
-  background-color: #1e29bd;
+  background-color: #083bc7;
 }
 
 .emotion-30:disabled {
-  background-color: #aebeff;
+  background-color: #99beff;
 }
 
 <div

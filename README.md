@@ -73,7 +73,7 @@ Or clone locally:
 $ git clone https://github.com/illa-family/illa-design.git
 $ cd illa-design
 $ yarn
-$ npx lerna bootstarp
+$ npx lerna bootstrap
 ```
 
 Step 2: Run.

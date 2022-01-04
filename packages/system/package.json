@@ -40,7 +40,10 @@
   },
   "dependencies": {
     "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react-dom": "^17.0.0",
+    "react-use": "^17.3.1",
+    "@types/uuid": "^8.3.2",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.0",

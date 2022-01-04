@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Avatar renders with colorScheme 1`] = `
+exports[`Avatar Avatar renders with colorScheme 1`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -63,47 +63,7 @@ exports[`Avatar renders with colorScheme 1`] = `
   vertical-align: middle;
 }
 
-<div
-    class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    >
-      <div
-        class="emotion-2"
-      >
-        <svg
-          class="emotion-3"
-          color="currentColor"
-          height="14px"
-          viewBox="0 0 16 16"
-          width="14px"
-        >
-          <title>
-            PersonIcon
-          </title>
-          <path
-            d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Avatar renders with colorScheme 2`] = `
-<DocumentFragment>
-  .emotion-0 {
-  vertical-align: middle;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-1 {
+.emotion-5 {
   background-color: #007a41;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -132,71 +92,7 @@ exports[`Avatar renders with colorScheme 2`] = `
   border-radius: 50%;
 }
 
-.emotion-2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 14px;
-  height: 14px;
-}
-
-.emotion-3 {
-  vertical-align: middle;
-}
-
-<div
-    class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    >
-      <div
-        class="emotion-2"
-      >
-        <svg
-          class="emotion-3"
-          color="currentColor"
-          height="14px"
-          viewBox="0 0 16 16"
-          width="14px"
-        >
-          <title>
-            PersonIcon
-          </title>
-          <path
-            d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Avatar renders with colorScheme 3`] = `
-<DocumentFragment>
-  .emotion-0 {
-  vertical-align: middle;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-1 {
+.emotion-9 {
   background-color: #123321;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -225,61 +121,93 @@ exports[`Avatar renders with colorScheme 3`] = `
   border-radius: 50%;
 }
 
-.emotion-2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 14px;
-  height: 14px;
-}
-
-.emotion-3 {
-  vertical-align: middle;
-}
-
-<div
-    class="emotion-0"
-  >
+<div>
     <div
-      class="emotion-1"
+      class="emotion-0"
     >
       <div
-        class="emotion-2"
+        class="emotion-1"
       >
-        <svg
-          class="emotion-3"
-          color="currentColor"
-          height="14px"
-          viewBox="0 0 16 16"
-          width="14px"
+        <div
+          class="emotion-2"
         >
-          <title>
-            PersonIcon
-          </title>
-          <path
-            d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            class="emotion-3"
+            color="currentColor"
+            height="14px"
+            viewBox="0 0 16 16"
+            width="14px"
+          >
+            <title>
+              PersonIcon
+            </title>
+            <path
+              d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-0"
+    >
+      <div
+        class="emotion-5"
+      >
+        <div
+          class="emotion-2"
+        >
+          <svg
+            class="emotion-3"
+            color="currentColor"
+            height="14px"
+            viewBox="0 0 16 16"
+            width="14px"
+          >
+            <title>
+              PersonIcon
+            </title>
+            <path
+              d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-0"
+    >
+      <div
+        class="emotion-9"
+      >
+        <div
+          class="emotion-2"
+        >
+          <svg
+            class="emotion-3"
+            color="currentColor"
+            height="14px"
+            viewBox="0 0 16 16"
+            width="14px"
+          >
+            <title>
+              PersonIcon
+            </title>
+            <path
+              d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>
 </DocumentFragment>
 `;
 
-exports[`Avatar renders with icon 1`] = `
+exports[`Avatar Avatar renders with icon 1`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -366,7 +294,7 @@ exports[`Avatar renders with icon 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Avatar renders with shape 1`] = `
+exports[`Avatar Avatar renders with shape 1`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -429,47 +357,7 @@ exports[`Avatar renders with shape 1`] = `
   vertical-align: middle;
 }
 
-<div
-    class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    >
-      <div
-        class="emotion-2"
-      >
-        <svg
-          class="emotion-3"
-          color="currentColor"
-          height="14px"
-          viewBox="0 0 16 16"
-          width="14px"
-        >
-          <title>
-            PersonIcon
-          </title>
-          <path
-            d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Avatar renders with shape 2`] = `
-<DocumentFragment>
-  .emotion-0 {
-  vertical-align: middle;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-1 {
+.emotion-5 {
   background-color: #c2c2c2;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -498,61 +386,66 @@ exports[`Avatar renders with shape 2`] = `
   border-radius: 4px;
 }
 
-.emotion-2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 14px;
-  height: 14px;
-}
-
-.emotion-3 {
-  vertical-align: middle;
-}
-
-<div
-    class="emotion-0"
-  >
+<div>
     <div
-      class="emotion-1"
+      class="emotion-0"
     >
       <div
-        class="emotion-2"
+        class="emotion-1"
       >
-        <svg
-          class="emotion-3"
-          color="currentColor"
-          height="14px"
-          viewBox="0 0 16 16"
-          width="14px"
+        <div
+          class="emotion-2"
         >
-          <title>
-            PersonIcon
-          </title>
-          <path
-            d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            class="emotion-3"
+            color="currentColor"
+            height="14px"
+            viewBox="0 0 16 16"
+            width="14px"
+          >
+            <title>
+              PersonIcon
+            </title>
+            <path
+              d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-0"
+    >
+      <div
+        class="emotion-5"
+      >
+        <div
+          class="emotion-2"
+        >
+          <svg
+            class="emotion-3"
+            color="currentColor"
+            height="14px"
+            viewBox="0 0 16 16"
+            width="14px"
+          >
+            <title>
+              PersonIcon
+            </title>
+            <path
+              d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>
 </DocumentFragment>
 `;
 
-exports[`Avatar renders with size 1`] = `
+exports[`Avatar Avatar renders with size 1`] = `
 <DocumentFragment>
   .emotion-0 {
   vertical-align: middle;
@@ -615,47 +508,7 @@ exports[`Avatar renders with size 1`] = `
   vertical-align: middle;
 }
 
-<div
-    class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    >
-      <div
-        class="emotion-2"
-      >
-        <svg
-          class="emotion-3"
-          color="currentColor"
-          height="14px"
-          viewBox="0 0 16 16"
-          width="14px"
-        >
-          <title>
-            PersonIcon
-          </title>
-          <path
-            d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Avatar renders with size 2`] = `
-<DocumentFragment>
-  .emotion-0 {
-  vertical-align: middle;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-1 {
+.emotion-5 {
   background-color: #c2c2c2;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -684,7 +537,7 @@ exports[`Avatar renders with size 2`] = `
   border-radius: 50%;
 }
 
-.emotion-2 {
+.emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -704,51 +557,7 @@ exports[`Avatar renders with size 2`] = `
   height: 18px;
 }
 
-.emotion-3 {
-  vertical-align: middle;
-}
-
-<div
-    class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    >
-      <div
-        class="emotion-2"
-      >
-        <svg
-          class="emotion-3"
-          color="currentColor"
-          height="18px"
-          viewBox="0 0 16 16"
-          width="18px"
-        >
-          <title>
-            PersonIcon
-          </title>
-          <path
-            d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Avatar renders with size 3`] = `
-<DocumentFragment>
-  .emotion-0 {
-  vertical-align: middle;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.emotion-1 {
+.emotion-9 {
   background-color: #c2c2c2;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -777,7 +586,7 @@ exports[`Avatar renders with size 3`] = `
   border-radius: 50%;
 }
 
-.emotion-2 {
+.emotion-10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -797,34 +606,86 @@ exports[`Avatar renders with size 3`] = `
   height: 28px;
 }
 
-.emotion-3 {
-  vertical-align: middle;
-}
-
-<div
-    class="emotion-0"
-  >
+<div>
     <div
-      class="emotion-1"
+      class="emotion-0"
     >
       <div
-        class="emotion-2"
+        class="emotion-1"
       >
-        <svg
-          class="emotion-3"
-          color="currentColor"
-          height="28px"
-          viewBox="0 0 16 16"
-          width="28px"
+        <div
+          class="emotion-2"
         >
-          <title>
-            PersonIcon
-          </title>
-          <path
-            d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            class="emotion-3"
+            color="currentColor"
+            height="14px"
+            viewBox="0 0 16 16"
+            width="14px"
+          >
+            <title>
+              PersonIcon
+            </title>
+            <path
+              d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-0"
+    >
+      <div
+        class="emotion-5"
+      >
+        <div
+          class="emotion-6"
+        >
+          <svg
+            class="emotion-3"
+            color="currentColor"
+            height="18px"
+            viewBox="0 0 16 16"
+            width="18px"
+          >
+            <title>
+              PersonIcon
+            </title>
+            <path
+              d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-0"
+    >
+      <div
+        class="emotion-9"
+      >
+        <div
+          class="emotion-10"
+        >
+          <svg
+            class="emotion-3"
+            color="currentColor"
+            height="28px"
+            viewBox="0 0 16 16"
+            width="28px"
+          >
+            <title>
+              PersonIcon
+            </title>
+            <path
+              d="M8 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm2.667-4a2.667 2.667 0 1 1-5.334 0 2.667 2.667 0 0 1 5.334 0zM16 14.667C16 16 14.667 16 14.667 16H1.333S0 16 0 14.667c0-1.334 1.333-5.334 8-5.334s8 4 8 5.334zm-1.333-.006c-.002-.328-.206-1.314-1.11-2.218-.869-.87-2.505-1.776-5.557-1.776-3.053 0-4.688.906-5.557 1.776-.904.904-1.107 1.89-1.11 2.218h13.334z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>

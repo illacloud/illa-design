@@ -7,12 +7,9 @@ import { BsGithub, BsMailbox, BsTwitch } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Data Display/AvatarGroup",
+  title: "DATA DISPLAY/AvatarGroup",
   component: AvatarGroup,
   decorators: [withTests({ results })],
-  parameters: {
-    zeplinLink: "zpl://screen?sid=6183c5489b28c93340ca98c5&pid=617f7cd2526c70be1a3bf3ff",
-  },
 } as Meta
 
 const Template: Story<AvatarProps> = (args) => {

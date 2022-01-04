@@ -7,12 +7,9 @@ import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "Data Display/Avatar",
+  title: "DATA DISPLAY/Avatar",
   component: Avatar,
   decorators: [withTests({ results })],
-  parameters: {
-    zeplinLink: "zpl://screen?sid=6183c5489b28c93340ca98c5&pid=617f7cd2526c70be1a3bf3ff",
-  },
   argTypes: {
     icon: {
       control: false,

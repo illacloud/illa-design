@@ -1,6 +1,7 @@
 import { Button } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
+import { BsApp, BsTwitch } from "react-icons/bs"
 
 test("Button renders with text", () => {
   render(<Button data-testid="test">Hello</Button>)
@@ -17,26 +18,34 @@ test("Button renders with different colorscheme", () => {
 test("Button renders without text", () => {
   render(<Button data-testid="test-without-text" />)
   expect(screen.getByTestId("test-without-text")).toBeInTheDocument()
+  render(<Button data-testid="test-without-text-medium" size="medium" rightIcon={<BsApp />} />)
+  expect(screen.getByTestId("test-without-text-medium")).toBeInTheDocument()
+  render(<Button data-testid="test-without-text-large" size="large" rightIcon={<BsApp />} />)
+  expect(screen.getByTestId("test-without-text-large")).toBeInTheDocument()
 })
 
 test("Button renders with different size", () => {
-  render(<Button data-testid="test-small" size="small">Hello</Button>)
+  render(<Button data-testid="test-small" size="small" rightIcon={<BsTwitch />} leftIcon={<BsApp />}>Hello</Button>)
   expect(screen.getByTestId("test-small")).toBeInTheDocument()
-  render(<Button data-testid="test-medium" size="medium">Hello</Button>)
+  render(<Button data-testid="test-medium" size="medium" rightIcon={<BsTwitch />} leftIcon={<BsApp />}>Hello</Button>)
   expect(screen.getByTestId("test-medium")).toBeInTheDocument()
-  render(<Button data-testid="test-large" size="large">Hello</Button>)
+  render(<Button data-testid="test-large" size="large" rightIcon={<BsTwitch />} leftIcon={<BsApp />}>Hello</Button>)
   expect(screen.getByTestId("test-large")).toBeInTheDocument()
 })
 
 test("Button renders with different variant", () => {
-  render(<Button data-testid="test-with-fill" variant="fill">Hello</Button>)
-  expect(screen.getByTestId("test-with-fill")).toMatchSnapshot()
-  render(<Button data-testid="test-with-dashed" variant="dashed">Hello</Button>)
-  expect(screen.getByTestId("test-with-dashed")).toMatchSnapshot()
-  render(<Button data-testid="test-with-outline" variant="outline">Hello</Button>)
-  expect(screen.getByTestId("test-with-outline")).toMatchSnapshot()
-  render(<Button data-testid="test-with-text" variant="text">Hello</Button>)
-  expect(screen.getByTestId("test-with-text")).toMatchSnapshot()
+  render(<Button variant="fill">Hello Fill</Button>)
+  expect(screen.getByText("Hello Fill")).toMatchSnapshot()
+  render(<Button variant="dashed">Hello Dashed</Button>)
+  expect(screen.getByText("Hello Dashed")).toMatchSnapshot()
+  render(<Button variant="dashed" colorScheme="gray">Hello Gray Dashed</Button>)
+  expect(screen.getByText("Hello Gray Dashed")).toMatchSnapshot()
+  render(<Button variant="outline">Hello Outline</Button>)
+  expect(screen.getByText("Hello Outline")).toMatchSnapshot()
+  render(<Button variant="outline" colorScheme="gray">Hello Gray Outline</Button>)
+  expect(screen.getByText("Hello Gray Outline")).toMatchSnapshot()
+  render(<Button variant="text">Hello Text</Button>)
+  expect(screen.getByText("Hello Text")).toMatchSnapshot()
 })
 
 test("Button renders round", () => {
