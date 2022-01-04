@@ -42,13 +42,14 @@ interface optionsArr {
 export interface RadioGroupContextProps {
   name?: string
   value?: any
+  colorScheme?: RadioColorScheme
   disabled?: boolean
   defaultValue?: any
   options?: string[] | optionsArr[]
   direction?: "vertical" | "horizontal"
   spacing?: string | number
 
-  colorScheme?: RadioColorScheme
+
   onChange?: (value: any, event: ChangeEvent) => void;
   onChangeValue?: (value: any, event: ChangeEvent) => void;
 }

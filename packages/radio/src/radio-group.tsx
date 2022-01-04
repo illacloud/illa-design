@@ -3,7 +3,6 @@ import { ChangeEvent, createContext, forwardRef } from "react"
 import { RadioGroupContextProps, RadioGroupProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"
 import { Radio } from "./radio"
-import { globalColor } from "@illa-design/theme"
 import { applyRadioContainerVertical, applyRadioContainerHorizontal } from "./style"
 import { useMergeValue } from "./hook"
 
@@ -17,6 +16,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
   const {
     children, options, disabled,
     direction = "horizontal",
+    spacing = direction === "horizontal" ? "24px":"16px"
   } = props
 
   const [value, setValue] = useMergeValue(undefined, {
@@ -27,10 +27,10 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
   let radioGroupCss: SerializedStyles
   switch (direction) {
     case "vertical":
-      radioGroupCss = applyRadioContainerVertical()
+      radioGroupCss = applyRadioContainerVertical(spacing)
       break
     case "horizontal":
-      radioGroupCss = applyRadioContainerHorizontal()
+      radioGroupCss = applyRadioContainerHorizontal(spacing)
       break
   }
 
@@ -48,7 +48,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
 
   const contextProp = {
     onChangeValue,
-    name, options, disabled, value
+    name, options, disabled, value, spacing
   };
 
   return <RadioGroupContext.Provider value={contextProp}>

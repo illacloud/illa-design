@@ -20,7 +20,7 @@ export function useMergeValue<T>(
       return;
     }
     if (value === undefined) {
-      setStateValue(value);
+      setStateValue(value as T);
     }
   }, [value]);
 

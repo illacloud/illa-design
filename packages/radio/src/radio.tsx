@@ -3,12 +3,10 @@ import * as React from "react"
 import { forwardRef, ChangeEvent, useContext } from "react"
 import { RadioProps } from "./interface"
 import { RadioGroupContext } from "./radio-group"
-import { css } from "@emotion/react"
 import { applyMergeCss, applyRadioSize } from "./style"
 import { useMergeValue } from "./hook"
 
-export const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
-  const length = '16px';
+export const Radio = forwardRef<HTMLDivElement, RadioProps>((props) => {
   const colorScheme = props?.colorScheme ?? "blue"
 
   const context = useContext(RadioGroupContext);
@@ -42,7 +40,7 @@ export const Radio = forwardRef<HTMLDivElement, RadioProps>((props, ref) => {
         <input
           type="radio"
           {...(context?.name ? { name: context.name } : {})}
-          css={applyRadioSize(colorScheme, length)}
+          css={applyRadioSize(colorScheme)}
           value={value||''}
           checked={currentChecked}
           disabled={disabled}
