@@ -30,6 +30,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     popupVisible,
     onVisibleChange,
     onClick,
+    trigger = "hover",
     ...otherProps
   } = props
 
@@ -92,32 +93,28 @@ export const Trigger: FC<TriggerProps> = ((props) => {
   }
 
   const showTips = () => {
-    if (!disabled && popupVisible == undefined) {
-      delayTodo(async () => {
-        if (!tipVisible) {
-          const result = await adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition)
-          // async deal
-          setAdjustResult(result)
-          setTipsVisible(true)
-          if (onVisibleChange != undefined) {
-            onVisibleChange(true)
-          }
+    delayTodo(async () => {
+      if (!tipVisible) {
+        const result = await adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition)
+        // async deal
+        setAdjustResult(result)
+        setTipsVisible(true)
+        if (onVisibleChange != undefined) {
+          onVisibleChange(true)
         }
-      }, openDelay)
-    }
+      }
+    }, openDelay)
   }
 
   const hideTips = () => {
-    if (!disabled && popupVisible == undefined) {
-      delayTodo(() => {
-        if (tipVisible) {
-          setTipsVisible(false)
-          if (onVisibleChange != undefined) {
-            onVisibleChange(false)
-          }
+    delayTodo(() => {
+      if (tipVisible) {
+        setTipsVisible(false)
+        if (onVisibleChange != undefined) {
+          onVisibleChange(false)
         }
-      }, closeDelay)
-    }
+      }
+    }, closeDelay)
   }
 
   tipsNode = <motion.div
@@ -129,12 +126,16 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     exit="exit"
     onMouseEnter={
       () => {
-        showTips()
+        if (!disabled && trigger == "hover" && popupVisible == undefined) {
+          showTips()
+        }
       }
     }
     onMouseLeave={
       () => {
-        hideTips()
+        if (!disabled && trigger == "hover" && popupVisible == undefined) {
+          hideTips()
+        }
       }
     }
   >{centerNode}</motion.div>
@@ -173,13 +174,45 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     <span ref={childrenRef} {...otherProps}
           css={applyChildrenContainer}
           onMouseEnter={() => {
-            showTips()
+            if (!disabled && trigger == "hover" && popupVisible == undefined) {
+              showTips()
+            }
           }}
           onMouseLeave={() => {
-            hideTips()
+            if (!disabled && trigger == "hover" && popupVisible == undefined) {
+              hideTips()
+            }
+          }}
+          onFocus={() => {
+            if (!disabled && trigger == "focus" && popupVisible == undefined) {
+              showTips()
+            }
+          }}
+          onBlur={() => {
+            if (!disabled && trigger == "focus" && popupVisible == undefined) {
+              hideTips()
+            }
           }}
           onClick={() => {
-            hideTips()
+            switch (trigger) {
+              case "click":
+                if (!disabled && popupVisible == undefined) {
+                  if (!tipVisible) {
+                    showTips()
+                  } else {
+                    if (closeOnClick) {
+                      hideTips()
+                    }
+                  }
+                }
+                break
+              case "hover":
+              case "focus":
+                if (!disabled && popupVisible == undefined && closeOnClick && tipVisible) {
+                  hideTips()
+                }
+                break
+            }
           }}>{props.children}</span>
     <AnimatePresence>
       {!disabled && tipVisible && childrenRef.current != null ?
