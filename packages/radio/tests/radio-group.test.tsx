@@ -5,11 +5,19 @@ import * as React from "react"
 
 test("RadioGroup renders correctly", () => {
   render(
-    <RadioGroup data-testid="test-radio-group">
-      <Radio value="a">A</Radio>
-      <Radio value="b">B</Radio>
+    <RadioGroup data-testid="test-radio-group" aria-label="radio-group">
+      <Radio value="a">a</Radio>
+      <Radio value="b">b</Radio>
       <Radio value="c">c</Radio>
     </RadioGroup>,
   )
-  // expect(screen.getByTestId("test-radio-group")).toBeInTheDocument()
+  // expect(screen.getByLabelText("radio-group")).toBeInTheDocument()
+})
+
+test("RadioGroup options renders correctly", () => {
+  render(
+    <RadioGroup options={["A", "B", "C"]} aria-label="radio-group-with-options">
+    </RadioGroup>,
+  )
+  // expect(screen.getByLabelText("radio-group-with-options")).toBeInTheDocument()
 })

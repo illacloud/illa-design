@@ -12,7 +12,7 @@ function isArray(obj: any) {
 
 export const RadioGroupContext = createContext<RadioGroupContextProps | undefined>(undefined)
 
-export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>((props, ref) => {
+export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
   const {
     children, options, disabled,
     direction = "horizontal",

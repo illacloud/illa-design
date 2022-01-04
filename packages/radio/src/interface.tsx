@@ -46,12 +46,11 @@ export interface RadioGroupContextProps {
   direction?: "vertical" | "horizontal"
   spacing?: string | number
 
-
   onChange?: (value: any, event: ChangeEvent) => void;
   onChangeValue?: (value: any, event: ChangeEvent) => void;
 }
 
-export interface RadioGroupProps<T> extends
+export interface RadioGroupProps extends
   Omit<HTMLAttributes<HTMLDivElement>, 'onChange'|'defaultValue'>,
   RadioGroupContextProps  {
 }

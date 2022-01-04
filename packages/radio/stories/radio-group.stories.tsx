@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Radio, RadioGroup, RadioProps } from "../src"
+import { Radio, RadioGroup, RadioGroupProps } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { BsGithub, BsMailbox, BsTwitch } from "react-icons/bs"
@@ -12,8 +12,8 @@ export default {
   decorators: [withTests({ results })],
 } as Meta
 
-const Template: Story<RadioProps> = (args) => {
-  return <>
+const Template: Story<RadioGroupProps> = (args) => {
+  return <div>
     <RadioGroup {...args}>
       <Radio value="a">AAAAAA</Radio>
       <Radio value="b">B</Radio>
@@ -23,7 +23,7 @@ const Template: Story<RadioProps> = (args) => {
     <br />
     <RadioGroup {...args} options={["A", "B", "C"]}>
     </RadioGroup>
-  </>
+  </div>
 }
 
 export const Basic = Template.bind({})
