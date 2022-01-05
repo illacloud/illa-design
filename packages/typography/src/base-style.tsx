@@ -24,7 +24,7 @@ export function applyFontColor(colorScheme: TypographyColorScheme): SerializedSt
   `
 }
 
-export function applyFontContentStyle(bold: boolean, mark: boolean | TypographyColorScheme, underline: boolean, deleted: boolean, disabled: boolean, code: boolean): SerializedStyles {
+export function applyFontContentStyle(bold?: boolean, mark?: boolean | TypographyColorScheme, underline?: boolean, deleted?: boolean, disabled?: boolean, code?: boolean): SerializedStyles {
 
   let finalCss = css``
 
@@ -42,13 +42,14 @@ export function applyFontContentStyle(bold: boolean, mark: boolean | TypographyC
     `
   }
 
-  if (mark === true) {
+  if (mark && typeof mark != "string") {
     finalCss = css`
       ${finalCss};
       background-color: ${globalColor(`--${illaPrefix}-yellow-06`)};
     `
-  } else {
-    const bgColor = typeof mark == "string" && colorSchemes.includes(mark) ? globalColor(`--${illaPrefix}-${mark}-06`) : mark
+  }
+  if (typeof mark == "string") {
+    const bgColor = colorSchemes.includes(mark) ? globalColor(`--${illaPrefix}-${mark}-06`) : mark
     finalCss = css`
       ${finalCss};
       background-color: ${bgColor};
@@ -77,7 +78,7 @@ export function applyExpandLabelCss(): SerializedStyles {
     cursor: pointer;
     margin: 0 4px;
     text-decoration: none;
-    color: ${globalColor(`--${illaPrefix}-techBlue-03`)};
+    color: ${globalColor(`--${illaPrefix}-blue-03`)};
   `
 }
 

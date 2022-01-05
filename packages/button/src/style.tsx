@@ -3,10 +3,11 @@ import { ButtonColorScheme, ButtonShape, ButtonSize, ButtonVariant } from "./int
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 // button
-export function applyTagContainer(fullWidth: boolean) {
+export function applyTagContainer(fullWidth?: boolean) {
   return css`
     ${fullWidth ? css`
       width: 100%;
+      justify-content: center;
     ` : null};
     vertical-align: middle;
     white-space: nowrap;
@@ -14,7 +15,7 @@ export function applyTagContainer(fullWidth: boolean) {
     margin: 0;
     border: 0;
     background-color: transparent;
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
   `
@@ -294,24 +295,24 @@ export function applyPaddingStyle(size: ButtonSize, variant: ButtonVariant): Ser
   }
 }
 
-export function applyWithoutTextSize(size: ButtonSize): SerializedStyles {
+export function applyWithoutTextSize(size: ButtonSize, fullWidth?: boolean): SerializedStyles {
   switch (size) {
     case "small":
       return css`
         justify-content: center;
-        width: 24px;
+        width: ${fullWidth ? "100%" : "24px"};
         height: 24px;
       `
     case "medium":
       return css`
         justify-content: center;
-        width: 32px;
+        width: ${fullWidth ? "100%" : "32px"};
         height: 32px;
       `
     case "large":
       return css`
         justify-content: center;
-        width: 40px;
+        width: ${fullWidth ? "100%" : "40px"};
         height: 40px;
       `
   }
@@ -368,14 +369,6 @@ export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
 export function applyIconWithoutText(size: ButtonSize): SerializedStyles {
   switch (size) {
     case "small":
-      return css`
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-        width: 12px;
-        height: 12px;
-        justify-content: center;
-      `
     case "medium":
     case "large":
       return css`
@@ -423,14 +416,18 @@ export const avatarGroupContainer = css`
 export function applySpacing(spacing: string, index: number, attached: boolean): SerializedStyles {
   if (attached) {
     return css`
+      display: inline-flex;
       margin-left: ${index != 0 ? "-1px" : "0px"};
+
       &:hover {
         z-index: 2;
       }
     `
   } else {
     return css`
+      display: inline-flex;
       margin-left: ${index == 0 ? "0px" : spacing};
+
       &:hover {
         z-index: 2;
       }

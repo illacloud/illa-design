@@ -33,13 +33,8 @@ export function applyDividerSizeSingle(size: SpaceSize, direction: SpaceDirectio
       break
   }
   return css`
-    ${direction == "horizontal" ?
-    css`
-              height: 100%;
-            ` :
-    css`
-              width: 100%;
-            `};
+    ${direction == "horizontal" ? css`height: 100%;` : css`width: 100%;`};
+    display: inline-flex;
     margin-right: ${horSpace};
     margin-bottom: ${verSpace};
   `
@@ -58,6 +53,7 @@ export function applyDividerMultiSize(size: SpaceSize[], direction: SpaceDirecti
       break
   }
   return css`
+    display: inline-flex;
     margin-right: ${horSpace};
     margin-bottom: ${verSpace};
   `

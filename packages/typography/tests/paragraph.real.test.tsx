@@ -1,22 +1,24 @@
 /**
  * @jest-environment jest-electron/environment
  */
-import { fireEvent, render, screen } from "@testing-library/react"
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { EllipsisBuilder, Paragraph, Typography } from "../src"
 import * as React from "react"
 import "@testing-library/jest-dom"
 import { PersonIcon } from "@illa-design/icon"
 
-test("Paragraph renders short text with ellipsis", () => {
+test("Paragraph renders short text with ellipsis", async () => {
   render(<Typography>
     <Paragraph ellipsis={true}>
       This is a paragraph
     </Paragraph>
   </Typography>)
-  expect(screen.queryByText("...")).not.toBeInTheDocument()
+  await waitFor(() => {
+    expect(screen.queryByText("...")).not.toBeTruthy()
+  })
 })
 
-test("Paragraph render with ellipsis", () => {
+test("Paragraph render with ellipsis", async () => {
   const onExpand = jest.fn()
   render(<Typography>
     <Paragraph data-testid="test-paragraph"
@@ -38,9 +40,13 @@ test("Paragraph render with ellipsis", () => {
       graphic design) may also be considered to be a design activity.
     </Paragraph>
   </Typography>)
-  expect(screen.getByText("TestSuffix")).toBeInTheDocument()
-  expect(screen.getByText("...")).toBeInTheDocument()
+  await waitFor(() => {
+    expect(screen.getByText("TestSuffix")).toBeInTheDocument()
+    expect(screen.getByText("...")).toBeInTheDocument()
+  })
   fireEvent.click(screen.getByTitle("PersonIcon"))
-  expect(onExpand).toBeCalled()
-  expect(screen.queryByText("...")).not.toBeInTheDocument()
+  await waitFor(() => {
+    expect(screen.queryByText("...")).not.toBeTruthy()
+    expect(onExpand).toBeCalled()
+  })
 })

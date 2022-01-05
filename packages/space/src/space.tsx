@@ -11,19 +11,19 @@ export const Space = forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
     size = "small",
     align = "center",
     direction = "horizontal",
-    divider = false,
-    wrap = false,
+    divider,
+    wrap,
     ...otherProps
   } = props
 
   let childrenArray = Children.toArray(props.children)
 
-  return <div css={applyContainer(direction, align, wrap)} ref={ref} {...otherProps}>
+  return <div css={applyContainer(direction, align, wrap ?? false)} ref={ref} {...otherProps}>
     {childrenArray.map((child, index) => {
       return <Fragment key={index}>
-        {index != 0 && divider ? <Divider css={applyDividerSize(size, direction, wrap, false)}
+        {index != 0 && divider ? <Divider css={applyDividerSize(size, direction, wrap ?? false, false)}
                                           direction={direction == "horizontal" ? "vertical" as DividerDirection : "horizontal" as DividerDirection} /> : null}
-        <div css={applyDividerSize(size, direction, wrap, index == childrenArray.length - 1)}>
+        <div css={applyDividerSize(size, direction, wrap ?? false, index == childrenArray.length - 1)}>
           {child}
         </div>
       </Fragment>

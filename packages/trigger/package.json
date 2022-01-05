@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/typography",
+  "name": "@illa-design/trigger",
   "version": "0.0.1-alpha.0",
   "description": "Illa Design base.",
   "keywords": [
-    "typography",
+    "trigger",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/typography"
+    "directory": "packages/trigger"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
@@ -41,7 +41,6 @@
   "dependencies": {
     "@illa-design/system": "^0.0.1-alpha.0",
     "@illa-design/theme": "^0.0.1-alpha.0",
-    "@illa-design/icon": "^0.0.1-alpha.0",
-    "@illa-design/tooltip": "^0.0.1-alpha.0"
+    "@illa-design/icon": "^0.0.1-alpha.0"
   }
 }

@@ -15,7 +15,7 @@ export const AvatarGroupContext = createContext<AvatarGroupContextProps | undefi
 
 export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>((props, ref) => {
   const {
-    zIndexAscend = false,
+    zIndexAscend,
     maxCount = Number.MAX_VALUE,
     colorScheme,
     size,
