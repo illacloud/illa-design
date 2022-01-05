@@ -1,5 +1,5 @@
 import { Radio } from "../src"
-import { render, screen } from "@testing-library/react"
+import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 test("Radio renders with text", () => {
@@ -38,4 +38,15 @@ test("Radio renders with disabled", () => {
 
   render(<Radio disabled={false}>222</Radio>)
   expect(screen.getByLabelText("222")).not.toBeDisabled()
+})
+
+test("Radio renders with click", async () => {
+  const changeEvent = jest.fn()
+  render(<Radio onChange={changeEvent}>test radio change</Radio>)
+  fireEvent.click(screen.getByLabelText("test radio change"))
+  await waitFor(() => {
+    expect(screen.getByLabelText("test radio change")).toBeChecked()
+  }, {
+    timeout: 3000,
+  })
 })

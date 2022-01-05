@@ -21,3 +21,11 @@ test("RadioGroup options renders correctly", () => {
   )
   // expect(screen.getByLabelText("radio-group-with-options")).toBeInTheDocument()
 })
+
+test("RadioGroup renders with value", () => {
+  render(
+    <RadioGroup options={["valueA", "valueB", "valueC"]} value={"valueA"}>
+    </RadioGroup>,
+  )
+  expect(screen.getByLabelText("valueA")).toBeChecked()
+})
