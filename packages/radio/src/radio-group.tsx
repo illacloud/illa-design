@@ -3,20 +3,28 @@ import { ChangeEvent, createContext, forwardRef } from "react"
 import { RadioGroupContextProps, RadioGroupProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"
 import { Radio } from "./radio"
-import { applyRadioContainerVertical, applyRadioContainerHorizontal } from "./style"
+import { applyRadioContainerHorizontal, applyRadioContainerVertical } from "./style"
 import { useMergeValue } from "./hook"
 
 function isArray(obj: any) {
-  return Object.prototype.toString.call(obj) === '[object Array]';
+  return Object.prototype.toString.call(obj) === "[object Array]"
 }
 
-export const RadioGroupContext = createContext<RadioGroupContextProps | undefined>(undefined)
+interface extraProps {
+  onChangeValue?: (value: any, event: ChangeEvent) => void;
+}
+
+export const RadioGroupContext = createContext<(RadioGroupContextProps & extraProps) | undefined>(undefined)
 
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
   const {
-    children, options, disabled,
+    children,
+    options,
+    disabled,
+    onChange,
     direction = "horizontal",
-    spacing = direction === "horizontal" ? "24px":"16px"
+    spacing = direction === "horizontal" ? "24px" : "16px",
+    ...otherProps
   } = props
 
   const [value, setValue] = useMergeValue(undefined, {
@@ -35,23 +43,23 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
   }
 
   const onChangeValue = (v: any, event: ChangeEvent): void => {
-    const { onChange } = props;
+    const { onChange } = props
     if (v !== value) {
-      if (!('value' in props)) {
-        setValue(v);
+      if (!("value" in props)) {
+        setValue(v)
       }
-      onChange && onChange(v, event);
+      onChange && onChange(v, event)
     }
-  };
+  }
 
   const name = new Date().valueOf().toString()
 
   const contextProp = {
     onChangeValue,
-    name, options, disabled, value, spacing
-  };
+    name, options, disabled, value, spacing,
+  }
 
-  const newChildren = (
+  return <div css={radioGroupCss} ref={ref} {...otherProps}>
     <RadioGroupContext.Provider value={contextProp}>
       {options && isArray(options)
         ? options.map((option, index) => {
@@ -60,7 +68,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
               <Radio key={index} value={option} disabled={disabled}>
                 {option}
               </Radio>
-            );
+            )
           }
           return (
             <Radio
@@ -70,13 +78,9 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
             >
               {option.label}
             </Radio>
-          );
+          )
         })
         : children}
     </RadioGroupContext.Provider>
-  )
-
-  return <div css={radioGroupCss} ref={ref}>
-    {newChildren}
   </div>
 })

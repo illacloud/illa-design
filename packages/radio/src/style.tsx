@@ -37,24 +37,6 @@ export function applyRadioSize(colorScheme: RadioColorScheme) {
   `
 }
 
-export function applyRadioContainer() {
-  return css`
-    display: inline-flex;
-    overflow: hidden;
-    word-wrap: break-word;
-    white-space: nowrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    //padding: 4px;
-    cursor: pointer;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    &:disabled {
-      cursor: not-allowed;
-    }
-  `
-}
-
 export function applyMergeCss(props: RadioProps): SerializedStyles {
   const currentDisabled = props.disabled ?? false
 

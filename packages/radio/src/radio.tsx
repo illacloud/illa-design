@@ -48,9 +48,6 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
             event.persist();
             onChange(event);
           }}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
         />
         {children}
       </label>

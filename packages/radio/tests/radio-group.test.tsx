@@ -4,27 +4,53 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 test("RadioGroup renders correctly", () => {
-  const { asFragment } = render(
-    <RadioGroup data-testid="test-radio-group" aria-label="radio-group" role={"group"}>
+  render(
+    <RadioGroup name="Group1" data-testId="radio-group" colorScheme="green">
       <Radio value="a">a</Radio>
       <Radio value="b">b</Radio>
       <Radio value="c">c</Radio>
     </RadioGroup>,
   )
-  // expect(asFragment()).toMatchSnapshot()
-  // expect(screen.getAllByRole("group")).toBeInTheDocument()
-  // expect(screen.getAllByRole("radio-group")).toBeInTheDocument()
+  expect(screen.getByTestId("radio-group")).toBeInTheDocument()
+  expect(screen.getByLabelText("a")).not.toBeChecked()
+})
+
+test("RadioGroup disabled renders correctly", () => {
+  render(
+    <RadioGroup
+      options={["disabledA", "disabledB"]}
+      data-testid="radio-group-disabled"
+      disabled>
+    </RadioGroup>,
+  )
+  expect(screen.getByTestId("radio-group-disabled")).toBeInTheDocument()
+  expect(screen.getByLabelText("disabledA")).toBeDisabled()
+  expect(screen.getByLabelText("disabledB")).toBeDisabled()
 })
 
 test("RadioGroup options renders correctly", () => {
   render(
-    <RadioGroup options={["A", "B", "C"]} data-testid="test-radio-group-1">
+    <RadioGroup options={["A", "B", "C"]} data-testid="radio-group-options">
     </RadioGroup>,
   )
-  // expect(screen.getByTestId("test-radio-group-1")).toBeInTheDocument()
+  expect(screen.getByTestId("radio-group-options")).toBeInTheDocument()
 })
 
-test("RadioGroup renders with value", () => {
+test("RadioGroup render with options", () => {
+  render(
+    <RadioGroup
+      options={[
+        {value:"A", label: "A", disabled: false},
+        {value:"B", label: "B" , disabled: true},
+        {value:"C", label: "C" , disabled: false},
+      ]}
+      data-testid="radio-group-options">
+    </RadioGroup>,
+  )
+  expect(screen.getByTestId("radio-group-options")).toBeInTheDocument()
+})
+
+test("RadioGroup render with value", () => {
   render(
     <RadioGroup options={["valueA", "valueB", "valueC"]} value={"valueA"}>
     </RadioGroup>,
@@ -32,15 +58,43 @@ test("RadioGroup renders with value", () => {
   expect(screen.getByLabelText("valueA")).toBeChecked()
 })
 
-test("RadioGroup renders with click", async () => {
+test("RadioGroup options render with spacing", () => {
   render(
-    <RadioGroup options={["clickA", "clickB", "clickC"]}>
+    <RadioGroup
+      data-testid="radio-group-spacing"
+      options={["spacingA", "spacingB", "spacingC"]} spacing="15px">
     </RadioGroup>,
   )
-  fireEvent.click(screen.getByLabelText("clickB"))
-  await waitFor(() => {
-    expect(screen.getByLabelText("clickB")).toBeChecked()
-  }, {
-    timeout: 3000,
-  })
+  expect(screen.getByTestId("radio-group-spacing")).toBeInTheDocument()
+})
+
+test("RadioGroup options render with spacing", () => {
+  render(
+    <RadioGroup
+      data-testid="radio-group-spacing-16"
+      options={["spacingA", "spacingB", "spacingC"]} spacing={16}>
+    </RadioGroup>,
+  )
+  expect(screen.getByTestId("radio-group-spacing-16")).toBeInTheDocument()
+})
+
+test("RadioGroup options render with direction", () => {
+  render(
+    <RadioGroup
+      data-testid="radio-group-direction"
+      options={["directionA", "directionB", "directionC"]} direction="horizontal">
+    </RadioGroup>,
+  )
+  expect(screen.getByTestId("radio-group-direction")).toBeInTheDocument()
+})
+
+test("RadioGroup render with click", async () => {
+  const changeEvent = jest.fn()
+  render(<RadioGroup
+    options={["GroupClickA", "GroupClickB", "GroupClickC"]}>
+    onChange={changeEvent}
+  </RadioGroup>)
+  fireEvent.click(screen.getByLabelText("GroupClickB"))
+  expect(screen.getByLabelText("GroupClickB")).toBeChecked()
+  // expect(changeEvent).toBeCalled()
 })

@@ -9,7 +9,7 @@ test("Radio renders with text", () => {
   expect(screen.getByLabelText("Hello")).not.toBeChecked()
 })
 
-test("Radio renders with colorscheme green", () => {
+test("Radio renders with colorScheme green", () => {
   render(<Radio colorScheme="green">green</Radio>)
   expect(screen.getByText("green")).toBeInTheDocument()
 })
@@ -44,9 +44,6 @@ test("Radio renders with click", async () => {
   const changeEvent = jest.fn()
   render(<Radio onChange={changeEvent}>test radio change</Radio>)
   fireEvent.click(screen.getByLabelText("test radio change"))
-  await waitFor(() => {
-    expect(screen.getByLabelText("test radio change")).toBeChecked()
-  }, {
-    timeout: 3000,
-  })
+  expect(screen.getByLabelText("test radio change")).toBeChecked()
+  expect(changeEvent).toBeCalled()
 })
