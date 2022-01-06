@@ -68,6 +68,9 @@ test("RadioGroup options render with spacing", () => {
     </RadioGroup>,
   )
   expect(screen.getByTestId("radio-group-spacing")).toBeInTheDocument()
+  expect(screen.getByTestId("radio-group-spacing")).toHaveStyle(`
+    gap: 15px;
+  `)
 })
 
 test("RadioGroup options render with spacing", () => {
@@ -79,6 +82,9 @@ test("RadioGroup options render with spacing", () => {
     </RadioGroup>,
   )
   expect(screen.getByTestId("radio-group-spacing-16")).toBeInTheDocument()
+  expect(screen.getByTestId("radio-group-spacing-16")).toHaveStyle(`
+    gap: 16px;
+  `)
 })
 
 test("RadioGroup options render with direction", () => {
@@ -89,6 +95,9 @@ test("RadioGroup options render with direction", () => {
     </RadioGroup>,
   )
   expect(screen.getByTestId("radio-group-direction")).toBeInTheDocument()
+  expect(screen.getByTestId("radio-group-direction")).toHaveStyle(`
+    flex-direction: row;
+  `)
 })
 
 test("RadioGroup options render with direction vertical", () => {
@@ -99,6 +108,9 @@ test("RadioGroup options render with direction vertical", () => {
     </RadioGroup>,
   )
   expect(screen.getByTestId("radio-group-vertical")).toBeInTheDocument()
+  expect(screen.getByTestId("radio-group-vertical")).toHaveStyle(`
+    flex-direction: column;
+  `)
 })
 
 test("RadioGroup render with click", async () => {
@@ -107,7 +119,32 @@ test("RadioGroup render with click", async () => {
     options={["GroupClickA", "GroupClickB", "GroupClickC"]}>
     onChange={changeEvent}
   </RadioGroup>)
-  fireEvent.click(screen.getByLabelText("GroupClickB"))
-  expect(screen.getByLabelText("GroupClickB")).toBeChecked()
+
+  const GroupClickA = screen.getByLabelText("GroupClickA")
+  const GroupClickB = screen.getByLabelText("GroupClickB")
+
+  fireEvent.click(GroupClickB)
+  expect(GroupClickB).toBeChecked()
+  GroupClickB.focus()
+  expect(GroupClickB).toHaveFocus()
   // expect(changeEvent).toBeCalled()
+  fireEvent.click(GroupClickA)
+  expect(GroupClickA).toBeChecked()
+})
+
+test("RadioGroup child render with click", async () => {
+  const changeEvent = jest.fn()
+  render(
+    <RadioGroup data-testId="radio-group" onChange={changeEvent}>
+      <Radio value="a">a</Radio>
+      <Radio value="b">b</Radio>
+      <Radio value="c">c</Radio>
+    </RadioGroup>,
+  )
+  fireEvent.click(screen.getByLabelText("a"))
+  expect(screen.getByLabelText("a")).toBeChecked()
+  expect(changeEvent).toBeCalled()
+  fireEvent.click(screen.getByLabelText("c"))
+  expect(screen.getByLabelText("c")).toBeChecked()
+  expect(changeEvent).toBeCalled()
 })

@@ -1,5 +1,5 @@
 import { Radio } from "../src"
-import { render, screen, fireEvent, waitFor } from "@testing-library/react"
+import { render, screen, fireEvent } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 test("Radio renders with text", () => {

@@ -7,12 +7,10 @@ import { applyMergeCss, applyRadioSize } from "./style"
 import { useMergeValue } from "./hook"
 
 export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
-  const colorScheme = props?.colorScheme ?? "blue"
-
   const context = useContext(RadioGroupContext);
   const mergeProps = { ...props };
   const { children, disabled, value  } = mergeProps;
-
+  const colorScheme = props?.colorScheme ? props?.colorScheme : context?.colorScheme ?? "blue"
   if (context) {
     mergeProps.checked = context?.value === props?.value;
     mergeProps.disabled = !!(context?.disabled || props?.disabled);
@@ -44,10 +42,7 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
           value={value||''}
           checked={currentChecked}
           disabled={disabled}
-          onChange={(event) => {
-            event.persist();
-            onChange(event);
-          }}
+          onChange={onChange}
         />
         {children}
       </label>

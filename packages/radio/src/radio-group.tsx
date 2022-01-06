@@ -22,6 +22,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
     options,
     disabled,
     onChange,
+    colorScheme,
     direction = "horizontal",
     spacing = direction === "horizontal" ? "24px" : "16px",
     ...otherProps
@@ -48,7 +49,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
       if (!("value" in props)) {
         setValue(v)
       }
-      onChange && onChange(v, event)
+      onChange && onChange(true, event)
     }
   }
 
@@ -56,7 +57,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
 
   const contextProp = {
     onChangeValue,
-    name, options, disabled, value, spacing,
+    name, options, disabled, value, spacing, colorScheme
   }
 
   return <div css={radioGroupCss} ref={ref} {...otherProps}>
