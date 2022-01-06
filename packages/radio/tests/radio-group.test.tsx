@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Radio, RadioGroup } from "../src"
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 test("RadioGroup renders correctly", () => {
@@ -114,12 +114,9 @@ test("RadioGroup options render with direction vertical", () => {
 })
 
 test("RadioGroup render with click", async () => {
-  const changeEvent = jest.fn()
   render(<RadioGroup
     options={["GroupClickA", "GroupClickB", "GroupClickC"]}>
-    onChange={changeEvent}
   </RadioGroup>)
-
   const GroupClickA = screen.getByLabelText("GroupClickA")
   const GroupClickB = screen.getByLabelText("GroupClickB")
 
@@ -127,7 +124,6 @@ test("RadioGroup render with click", async () => {
   expect(GroupClickB).toBeChecked()
   GroupClickB.focus()
   expect(GroupClickB).toHaveFocus()
-  // expect(changeEvent).toBeCalled()
   fireEvent.click(GroupClickA)
   expect(GroupClickA).toBeChecked()
 })

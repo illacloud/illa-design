@@ -23,9 +23,6 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
 
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const { onChange, value } = mergeProps;
-    if (disabled) {
-      return;
-    }
     if (context) {
       context.onChangeValue && context.onChangeValue(value, event);
     } else if (!('checked' in props) && !currentChecked) {
