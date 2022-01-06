@@ -15,9 +15,9 @@ interface extraProps {
   onChangeValue?: (value: any, event: ChangeEvent) => void;
 }
 
-export const RadioGroupContext = createContext<(RadioGroupContextProps & extraProps) | undefined>(undefined)
+export const RadioGroupContext = createContext<(RadioGroupContextProps<any> & extraProps) | undefined>(undefined)
 
-export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
+export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>((props, ref) => {
   const {
     children,
     options,
@@ -45,7 +45,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
       break
   }
 
-  const onChangeValue = (v: any, event: ChangeEvent): void => {
+  function onChangeValue<T> (v: T, event: ChangeEvent): void {
     const { onChange } = props
     if (v !== value) {
       if (!("value" in props)) {

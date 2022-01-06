@@ -22,15 +22,15 @@ export interface RadioProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onCh
   defaultChecked?: boolean
 
   colorScheme?: RadioColorScheme
-  onChange?: (value: any, event: ChangeEvent) => void;
+  onChange?: (checked: boolean, event: ChangeEvent) => void;
 }
 
-export interface RadioGroupContextProps {
+export interface RadioGroupContextProps<T> {
   name?: string
-  value?: any
+  value?: T
   colorScheme?: RadioColorScheme
   disabled?: boolean
-  defaultValue?: any
+  defaultValue?: T
   options?: string[] | {
     label: string
     value: string
@@ -39,10 +39,10 @@ export interface RadioGroupContextProps {
   direction?: "vertical" | "horizontal"
   spacing?: string | number
 
-  onChange?: (value: any, event: ChangeEvent) => void;
+  onChange?: (checked: boolean, event: ChangeEvent) => void;
 }
 
-export interface RadioGroupProps extends
+export interface RadioGroupProps<T> extends
   Omit<HTMLAttributes<HTMLDivElement>, 'onChange'|'defaultValue'>,
-  RadioGroupContextProps  {
+  RadioGroupContextProps<T>  {
 }
