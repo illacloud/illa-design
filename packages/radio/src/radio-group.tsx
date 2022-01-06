@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { ChangeEvent, createContext, forwardRef } from "react"
+import { v4 as uuidv4 } from 'uuid';
 import { RadioGroupContextProps, RadioGroupProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"
 import { Radio } from "./radio"
@@ -21,10 +22,11 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
     children,
     options,
     disabled,
-    onChange,
     colorScheme,
     direction = "horizontal",
     spacing = direction === "horizontal" ? "24px" : "16px",
+    name,
+    onChange,
     ...otherProps
   } = props
 
@@ -52,9 +54,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>((props, re
       onChange && onChange(true, event)
     }
   }
-
-  const name = new Date().valueOf().toString()
-
+  console.log(name, 'name')
   const contextProp = {
     onChangeValue,
     name, options, disabled, value, spacing, colorScheme

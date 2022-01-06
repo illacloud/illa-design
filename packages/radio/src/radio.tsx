@@ -22,6 +22,7 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
   })
 
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    event.persist()
     const { onChange, value } = mergeProps;
     if (context) {
       context.onChangeValue && context.onChangeValue(value, event);
