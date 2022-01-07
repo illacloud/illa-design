@@ -5,7 +5,7 @@ import "@testing-library/jest-dom"
 
 test("RadioGroup renders correctly", () => {
   render(
-    <RadioGroup name="Group1" data-testId="radio-group" colorScheme="green">
+    <RadioGroup name="Group1" data-testid="radio-group" colorScheme="green">
       <Radio value="a">a</Radio>
       <Radio value="b">b</Radio>
       <Radio value="c">c</Radio>
@@ -131,7 +131,7 @@ test("RadioGroup render with click", async () => {
 test("RadioGroup child render with click", async () => {
   const changeEvent = jest.fn()
   render(
-    <RadioGroup data-testId="radio-group" onChange={changeEvent}>
+    <RadioGroup onChange={changeEvent}>
       <Radio value="a">a</Radio>
       <Radio value="b">b</Radio>
       <Radio value="c">c</Radio>

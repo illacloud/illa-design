@@ -14,13 +14,12 @@ export type RadioColorScheme =
   | "cyan"
   | "purple"
 
-export interface RadioProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange'> {
+export interface RadioProps extends Omit<HTMLAttributes<HTMLLabelElement>, "onChange"> {
   name?: string
   value?: any
   disabled?: boolean
   checked?: boolean
   defaultChecked?: boolean
-
   colorScheme?: RadioColorScheme
   onChange?: (checked: boolean, event: ChangeEvent) => void;
 }
@@ -38,11 +37,10 @@ export interface RadioGroupContextProps<T> {
   }[]
   direction?: "vertical" | "horizontal"
   spacing?: string | number
-
   onChange?: (checked: boolean, event: ChangeEvent) => void;
 }
 
 export interface RadioGroupProps<T> extends
-  Omit<HTMLAttributes<HTMLDivElement>, 'onChange'|'defaultValue'>,
+  Omit<HTMLAttributes<HTMLDivElement>, "onChange"|"defaultValue">,
   RadioGroupContextProps<T>  {
 }

@@ -1,7 +1,7 @@
 {
   "name": "@illa-design/radio",
   "version": "0.0.1-alpha.0",
-  "description": "Illa Design Avatar.",
+  "description": "Illa Design Radio.",
   "keywords": [
     "radio",
     "react",
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/avatar"
+    "directory": "packages/radio"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"

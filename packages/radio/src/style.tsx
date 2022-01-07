@@ -6,8 +6,6 @@ import { css } from "@emotion/react"
 // default radio
 export function applyRadioSize(colorScheme: RadioColorScheme) {
   return css`
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     border-radius: 50%;
     margin: auto 6px auto auto;
