@@ -21,19 +21,25 @@ test("Trigger renders without close on click", async () => {
 })
 
 test("Trigger renders with content", async () => {
-  render(<Trigger content="Trigger Success">
+  const visibleEvent = jest.fn()
+  render(<Trigger content="Trigger Success" onVisibleChange={visibleEvent}>
     <Button>Hello Trigger</Button>
   </Trigger>)
   fireEvent.mouseEnter(screen.getByText("Hello Trigger"))
-  await waitFor(() => expect(screen.getByText("Trigger Success")).toBeInTheDocument(), {
+  await waitFor(() => expect(visibleEvent).toBeCalledWith(true), {
     timeout: 3000,
   })
+  expect(screen.getByText("Trigger Success")).toBeInTheDocument()
 })
 
-test("Trigger renders disabled", async () => {
-  render(<Trigger content="Trigger Success" position="top" popupVisible>
+test("Trigger renders popup visible", async () => {
+  const visibleEvent = jest.fn()
+  render(<Trigger content="Trigger Success" position="top" popupVisible onVisibleChange={visibleEvent}>
     <Button>Hello Trigger</Button>
   </Trigger>)
+  await waitFor(() => expect(visibleEvent).toBeCalledWith(true), {
+    timeout: 3000,
+  })
   fireEvent.mouseEnter(screen.getByText("Hello Trigger"))
   fireEvent.mouseLeave(screen.getByText("Hello Trigger"))
   expect(screen.queryAllByText("Trigger Success").length).toEqual(1)
