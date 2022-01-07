@@ -5,6 +5,8 @@ import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
   applyChildrenContainer,
+  applyCloseButton,
+  applyCloseContentCss,
   applyMotionDiv,
   applyTipsContainer,
   applyTipsText,
@@ -17,7 +19,7 @@ import { Popup } from "./popup"
 export const Trigger: FC<TriggerProps> = ((props) => {
 
   const {
-    colorScheme = "blackAlpha",
+    colorScheme = "gray",
     content = "",
     position = "top",
     showArrow = true,
@@ -27,6 +29,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     closeOnClick = true,
     defaultPopupVisible,
     disabled,
+    hasCloseIcon,
     popupVisible,
     onVisibleChange,
     onClick,
@@ -57,12 +60,21 @@ export const Trigger: FC<TriggerProps> = ((props) => {
 
   let tipsNode: ReactNode
   let centerNode: ReactNode
+
+  const closeContent = <div css={applyCloseContentCss}>
+    {content}
+    {hasCloseIcon && <span css={applyCloseButton} onClick={() => {
+      setTipsVisible(false)
+    }
+    }>Close</span>}
+  </div>
+
   switch (finalPosition) {
     case "top":
     case "tl":
     case "tr":
       centerNode = <div css={applyTipsContainer(finalPosition)}>
-        <div css={applyTipsText(colorScheme)}>{content}</div>
+        <div css={applyTipsText(colorScheme)}>{closeContent}</div>
         {showArrow && <TriangleTop css={applyTriangleStyle(colorScheme, finalPosition)} width="8px" height="4px" />}
       </div>
       break
@@ -71,14 +83,14 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     case "br":
       centerNode = <div css={applyTipsContainer(finalPosition)}>
         {showArrow && <TriangleBottom css={applyTriangleStyle(colorScheme, finalPosition)} width="8px" height="4px" />}
-        <div css={applyTipsText(colorScheme)}>{content}</div>
+        <div css={applyTipsText(colorScheme)}>{closeContent}</div>
       </div>
       break
     case "left":
     case "lt":
     case "lb":
       centerNode = <div css={applyTipsContainer(finalPosition)}>
-        <div css={applyTipsText(colorScheme)}>{content}</div>
+        <div css={applyTipsText(colorScheme)}>{closeContent}</div>
         {showArrow && <TriangleLeft css={applyTriangleStyle(colorScheme, finalPosition)} width="4px" height="8px" />}
       </div>
       break
@@ -87,7 +99,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     case "rb":
       centerNode = <div css={applyTipsContainer(finalPosition)}>
         {showArrow && <TriangleRight css={applyTriangleStyle(colorScheme, finalPosition)} width="4px" height="8px" />}
-        <div css={applyTipsText(colorScheme)}>{content}</div>
+        <div css={applyTipsText(colorScheme)}>{closeContent}</div>
       </div>
       break
   }

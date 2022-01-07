@@ -10,19 +10,12 @@ export default {
   title: "DATA DISPLAY/Popover",
   component: Popover,
   decorators: [withTests({ results })],
-  parameters: {
-    zeplinLink: "",
-  },
-  argTypes: {
-    template: {
-      options: ["large", "small", "medium"],
-      control: {
-        type: "select",
-      },
-    },
-  },
 } as Meta
 
-export const Basic: Story<PopoverProps> = (args) => <Popover {...args} content="Popover">
-  <Button>Hello Popover</Button>
-</Popover>
+export const Basic: Story<PopoverProps> = (args) => <div style={{ margin: "200px" }}>
+  <Popover {...args}
+           content="This is a good popover, it can show some interesting things"
+           title={"title"}>
+    <Button>Hello Popover</Button>
+  </Popover>
+</div>

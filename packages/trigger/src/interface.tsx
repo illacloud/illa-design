@@ -3,7 +3,6 @@ import { HTMLAttributes, ReactNode } from "react"
 export type TriggerColorScheme =
   string
   | "white"
-  | "blackAlpha"
   | "gray"
   | "grayBlue"
   | "red"
@@ -43,5 +42,6 @@ export interface TriggerProps extends HTMLAttributes<HTMLSpanElement> {
   defaultPopupVisible?: boolean
   popupVisible?: boolean
   disabled?: boolean
+  hasCloseIcon?: boolean
   onVisibleChange?: (visible: boolean) => void
 }
