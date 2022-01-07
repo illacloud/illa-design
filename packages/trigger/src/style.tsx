@@ -173,6 +173,7 @@ export const applyCloseContentCss = css`
 `
 
 export const applyCloseButton = css`
+  display: inline-flex;
   margin-top: 4px;
   align-self: end;
 `

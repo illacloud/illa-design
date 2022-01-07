@@ -9,6 +9,7 @@ import {
   applyFontContentStyle,
   applyOperationSpan,
 } from "./base-style"
+import { v4 as uuidv4 } from "uuid"
 import { css } from "@storybook/theming"
 import mergedToString, { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
@@ -80,6 +81,7 @@ export const Base: FC<BaseProps> = (props) => {
     ${applyFontContentStyle(bold, mark, underline, deleted, disabled, code)};
   `
   const [content, { width }] = useSize(<span
+    key={uuidv4()}
     ref={contentRef}
     css={contentCss}>
     {finalShowExpand ? clipShowText : props.children}</span>)
