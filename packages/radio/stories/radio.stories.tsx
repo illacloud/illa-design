@@ -17,7 +17,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<RadioProps> = (args) => <Radio {...args}>AAAAAA</Radio>
+const Template: Story<RadioProps> = (args) => <Radio {...args}>ILLA</Radio>
 
 export const Basic = Template.bind({
   icon: <BsFacebook />,
