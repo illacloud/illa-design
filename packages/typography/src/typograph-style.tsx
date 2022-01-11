@@ -60,5 +60,9 @@ export function applyTypoContainer(): SerializedStyles {
       font-size: ${getHeadingSize("h6")[0]};
       line-height: ${getHeadingSize("h6")[1]};
     }
+
+    p {
+      margin: 0;
+    }
   `
 }
