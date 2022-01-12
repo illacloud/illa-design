@@ -45,6 +45,7 @@
     "build-storybook": "npx build-storybook",
     "test": "npx jest",
     "prebuild": "npx zx ./scripts/prebuild.mjs",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "chromatic": "npx chromatic --project-token=19a366a65900"
   }
 }
