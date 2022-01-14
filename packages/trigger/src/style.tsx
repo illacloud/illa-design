@@ -1,11 +1,10 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { TriggerColorScheme, TriggerPosition } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { AdjustResult } from "./adjust-tips-location"
 import { getAnimation } from "./transform"
 import { Variants } from "framer-motion"
 
-const colorSchemes = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
+const colorSchemes = ["white", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
 
 export const applyChildrenContainer = css`
   display: inline-flex;
@@ -65,7 +64,6 @@ export function applyTipsContainer(position: TriggerPosition): SerializedStyles 
     ${paddingStyle};
     display: inline-flex;
     flex-direction: ${isColumn ? "column" : "row"};
-    opacity: 90%;
     z-index: 10;
     color: ${globalColor(`--${illaPrefix}-white-01`)};
   `
@@ -73,8 +71,11 @@ export function applyTipsContainer(position: TriggerPosition): SerializedStyles 
 
 export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles {
   const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
+  const textColor = colorScheme == "white" ? globalColor(`--${illaPrefix}-gray-03`) : globalColor(`--${illaPrefix}-white-02`)
   return css`
+    box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
     background-color: ${bgColor};
+    color: ${textColor};
     width: fit-content;
     text-align: left;
     max-width: 588px;
@@ -86,16 +87,11 @@ export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles
   `
 }
 
-export function applyTransform(adjustResult: AdjustResult): SerializedStyles {
-  return css`
-    transform: translate(${adjustResult.transX}px, ${adjustResult.transY}px);
-  `
-}
-
 export function applyTriangleStyle(colorScheme: TriggerColorScheme, position: TriggerPosition): SerializedStyles {
   const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
   const mainStyle = css`
     color: ${bgColor};
+    z-index: 1;
   `
   let positionStyle: SerializedStyles
   switch (position) {
@@ -170,3 +166,14 @@ export function applyAnimation(position: TriggerPosition): Variants {
       return getAnimation(`0px`, `calc(100%)`)
   }
 }
+
+export const applyCloseContentCss = css`
+  display: flex;
+  flex-direction: column;
+`
+
+export const applyCloseButton = css`
+  display: inline-flex;
+  margin-top: 4px;
+  align-self: end;
+`

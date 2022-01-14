@@ -21,140 +21,106 @@ test("Trigger renders without close on click", async () => {
 })
 
 test("Trigger renders with content", async () => {
-  render(<Trigger content="Trigger Success">
+  const visibleEvent = jest.fn()
+  render(<Trigger content="Trigger Success" onVisibleChange={visibleEvent}>
     <Button>Hello Trigger</Button>
   </Trigger>)
   fireEvent.mouseEnter(screen.getByText("Hello Trigger"))
-  await waitFor(() => expect(screen.getByText("Trigger Success")).toBeInTheDocument(), {
+  await waitFor(() => expect(visibleEvent).toBeCalledWith(true), {
     timeout: 3000,
   })
+  expect(screen.getByText("Trigger Success")).toBeInTheDocument()
 })
 
-test("Trigger renders disabled", async () => {
-  render(<Trigger content="Trigger Success" position="top" popupVisible>
+test("Trigger renders popup visible", async () => {
+  const visibleEvent = jest.fn()
+  render(<Trigger content="Trigger Success" position="top" popupVisible onVisibleChange={visibleEvent}>
     <Button>Hello Trigger</Button>
   </Trigger>)
+  await waitFor(() => expect(visibleEvent).toBeCalledWith(true), {
+    timeout: 3000,
+  })
   fireEvent.mouseEnter(screen.getByText("Hello Trigger"))
   fireEvent.mouseLeave(screen.getByText("Hello Trigger"))
   expect(screen.queryAllByText("Trigger Success").length).toEqual(1)
 })
 
 test("Trigger renders with different position", async () => {
+  const visibleEventTop = jest.fn()
+  const visibleEventTl = jest.fn()
+  const visibleEventTr = jest.fn()
+  const visibleEventBottom = jest.fn()
+  const visibleEventBl = jest.fn()
+  const visibleEventBr = jest.fn()
+  const visibleEventLeft = jest.fn()
+  const visibleEventLt = jest.fn()
+  const visibleEventLb = jest.fn()
+  const visibleEventRight = jest.fn()
+  const visibleEventRt = jest.fn()
+  const visibleEventRb = jest.fn()
   render(<div>
-    <Trigger position="top" content="top">
+    <Trigger position="top" content="top" onVisibleChange={visibleEventTop}>
       <Button>Hello Trigger Top</Button>
     </Trigger>
-    <Trigger position="tl" content="tl">
+    <Trigger position="tl" content="tl" onVisibleChange={visibleEventTl}>
       <Button>Hello Trigger Tl</Button>
     </Trigger>
-    <Trigger position="tr" content="tr">
+    <Trigger position="tr" content="tr" onVisibleChange={visibleEventTr}>
       <Button>Hello Trigger Tr</Button>
     </Trigger>
-    <Trigger position="bottom" content="bottom">
+    <Trigger position="bottom" content="bottom" onVisibleChange={visibleEventBottom}>
       <Button>Hello Trigger Bottom</Button>
     </Trigger>
-    <Trigger position="bl" content="bl">
+    <Trigger position="bl" content="bl" onVisibleChange={visibleEventBl}>
       <Button>Hello Trigger Bl</Button>
     </Trigger>
-    <Trigger position="br" content="br">
+    <Trigger position="br" content="br" onVisibleChange={visibleEventBr}>
       <Button>Hello Trigger Br</Button>
     </Trigger>
-    <Trigger position="left" content="left">
+    <Trigger position="left" content="left" onVisibleChange={visibleEventLeft}>
       <Button>Hello Trigger Left</Button>
     </Trigger>
-    <Trigger position="lt" content="lt">
+    <Trigger position="lt" content="lt" onVisibleChange={visibleEventLt}>
       <Button>Hello Trigger Lt</Button>
     </Trigger>
-    <Trigger position="lb" content="lb">
+    <Trigger position="lb" content="lb" onVisibleChange={visibleEventLb}>
       <Button>Hello Trigger Lb</Button>
     </Trigger>
-    <Trigger position="right" content="right">
+    <Trigger position="right" content="right" onVisibleChange={visibleEventRight}>
       <Button>Hello Trigger Right</Button>
     </Trigger>
-    <Trigger position="rt" content="rt">
+    <Trigger position="rt" content="rt" onVisibleChange={visibleEventRt}>
       <Button>Hello Trigger Rt</Button>
     </Trigger>
-    <Trigger position="rb" content="rb">
+    <Trigger position="rb" content="rb" onVisibleChange={visibleEventRb}>
       <Button>Hello Trigger Rb</Button>
     </Trigger>
   </div>)
 
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger Top"))
-  await waitFor(() => expect(screen.getByText("top")).toBeInTheDocument())
-  fireEvent.mouseLeave(screen.getByText("Hello Trigger Top"))
-  await waitFor(() => expect(screen.queryByTitle("top")).not.toBeTruthy(), {
-    timeout: 3000,
-  })
+  async function tobeExpected(childrenText: string, content: string, event: (visible: boolean) => void) {
+    fireEvent.mouseEnter(screen.getByText(childrenText))
+    await waitFor(() => expect(event).toBeCalledWith(true), {
+      timeout: 3000,
+    })
+    expect(screen.getByText(content)).toBeInTheDocument()
+    fireEvent.mouseLeave(screen.getByText(childrenText))
+    await waitFor(() => expect(event).toBeCalledWith(false), {
+      timeout: 3000,
+    })
+  }
 
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger Tl"))
-  await waitFor(() => expect(screen.getByText("tl")).toBeInTheDocument())
-  fireEvent.mouseLeave(screen.getByText("Hello Trigger Tl"))
-  await waitFor(() => expect(screen.queryByTitle("tl")).not.toBeTruthy(), {
-    timeout: 3000,
-  })
-
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger Tr"))
-  await waitFor(() => expect(screen.getByText("tr")).toBeInTheDocument())
-  fireEvent.mouseLeave(screen.getByText("Hello Trigger Tr"))
-  await waitFor(() => expect(screen.queryByTitle("tr")).not.toBeTruthy(), {
-    timeout: 3000,
-  })
-
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger Bottom"))
-  await waitFor(() => expect(screen.getByText("bottom")).toBeInTheDocument())
-  fireEvent.mouseLeave(screen.getByText("Hello Trigger Bottom"))
-  await waitFor(() => expect(screen.queryByTitle("bottom")).not.toBeTruthy(), {
-    timeout: 3000,
-  })
-
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger Bl"))
-  await waitFor(() => expect(screen.getByText("bl")).toBeInTheDocument())
-  fireEvent.mouseLeave(screen.getByText("Hello Trigger Bl"))
-  await waitFor(() => expect(screen.queryByTitle("bl")).not.toBeTruthy(), {
-    timeout: 3000,
-  })
-
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger Br"))
-  await waitFor(() => expect(screen.getByText("br")).toBeInTheDocument())
-  fireEvent.mouseLeave(screen.getByText("Hello Trigger Br"))
-  await waitFor(() => expect(screen.queryByTitle("br")).not.toBeTruthy(), {
-    timeout: 3000,
-  })
-
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger Left"))
-  await waitFor(() => expect(screen.getByText("left")).toBeInTheDocument())
-  fireEvent.mouseLeave(screen.getByText("Hello Trigger Left"))
-  await waitFor(() => expect(screen.queryByTitle("left")).not.toBeTruthy(), {
-    timeout: 3000,
-  })
-
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger Lt"))
-  await waitFor(() => expect(screen.getByText("lt")).toBeInTheDocument())
-  fireEvent.mouseLeave(screen.getByText("Hello Trigger Lt"))
-  await waitFor(() => expect(screen.queryByTitle("lt")).not.toBeTruthy(), {
-    timeout: 3000,
-  })
-
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger Lb"))
-  await waitFor(() => expect(screen.getByText("lb")).toBeInTheDocument())
-  fireEvent.mouseLeave(screen.getByText("Hello Trigger Lb"))
-  await waitFor(() => expect(screen.queryByTitle("lb")).not.toBeTruthy(), {
-    timeout: 3000,
-  })
-
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger Rt"))
-  await waitFor(() => expect(screen.getByText("rt")).toBeInTheDocument())
-  fireEvent.mouseLeave(screen.getByText("Hello Trigger Rt"))
-  await waitFor(() => expect(screen.queryByTitle("rt")).not.toBeTruthy(), {
-    timeout: 3000,
-  })
-
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger Rb"))
-  await waitFor(() => expect(screen.getByText("rb")).toBeInTheDocument())
-  fireEvent.mouseLeave(screen.getByText("Hello Trigger Rb"))
-  await waitFor(() => expect(screen.queryByTitle("rb")).not.toBeTruthy(), {
-    timeout: 3000,
-  })
+  await tobeExpected("Hello Trigger Top", "top", visibleEventTop)
+  await tobeExpected("Hello Trigger Tl", "tl", visibleEventTl)
+  await tobeExpected("Hello Trigger Tr", "tr", visibleEventTr)
+  await tobeExpected("Hello Trigger Left", "left", visibleEventLeft)
+  await tobeExpected("Hello Trigger Lt", "lt", visibleEventLt)
+  await tobeExpected("Hello Trigger Lb", "lb", visibleEventLb)
+  await tobeExpected("Hello Trigger Right", "right", visibleEventRight)
+  await tobeExpected("Hello Trigger Rt", "rt", visibleEventRt)
+  await tobeExpected("Hello Trigger Rb", "rb", visibleEventRb)
+  await tobeExpected("Hello Trigger Bottom", "bottom", visibleEventBottom)
+  await tobeExpected("Hello Trigger Bl", "bl", visibleEventBl)
+  await tobeExpected("Hello Trigger Br", "br", visibleEventBr)
 })
 
 test("Trigger's onVisible event and delay time", async () => {

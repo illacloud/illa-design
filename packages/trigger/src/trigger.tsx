@@ -5,6 +5,8 @@ import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
   applyChildrenContainer,
+  applyCloseButton,
+  applyCloseContentCss,
   applyMotionDiv,
   applyTipsContainer,
   applyTipsText,
@@ -17,8 +19,8 @@ import { Popup } from "./popup"
 export const Trigger: FC<TriggerProps> = ((props) => {
 
   const {
-    colorScheme = "blackAlpha",
-    content = "",
+    colorScheme = "gray",
+    content,
     position = "top",
     showArrow = true,
     closeDelay = 150,
@@ -27,9 +29,11 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     closeOnClick = true,
     defaultPopupVisible,
     disabled,
+    hasCloseIcon,
     popupVisible,
     onVisibleChange,
     onClick,
+    trigger = "hover",
     ...otherProps
   } = props
 
@@ -49,19 +53,31 @@ export const Trigger: FC<TriggerProps> = ((props) => {
       window.clearTimeout(timeOutHandlerId)
     }
     timeOutHandlerId = window.setTimeout(() => {
-      timeOutHandlerId = undefined
       todo()
+      timeOutHandlerId = undefined
     }, timeout)
   }
 
   let tipsNode: ReactNode
   let centerNode: ReactNode
+
+  const closeContent = <div css={applyCloseContentCss}>
+    {content}
+    {hasCloseIcon && <div css={applyCloseButton} onClick={(event) => {
+      setTipsVisible(false)
+      if (onVisibleChange != undefined) {
+        onVisibleChange(false)
+      }
+    }
+    }>Close</div>}
+  </div>
+
   switch (finalPosition) {
     case "top":
     case "tl":
     case "tr":
       centerNode = <div css={applyTipsContainer(finalPosition)}>
-        <div css={applyTipsText(colorScheme)}>{content}</div>
+        <div css={applyTipsText(colorScheme)}>{closeContent}</div>
         {showArrow && <TriangleTop css={applyTriangleStyle(colorScheme, finalPosition)} width="8px" height="4px" />}
       </div>
       break
@@ -70,14 +86,14 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     case "br":
       centerNode = <div css={applyTipsContainer(finalPosition)}>
         {showArrow && <TriangleBottom css={applyTriangleStyle(colorScheme, finalPosition)} width="8px" height="4px" />}
-        <div css={applyTipsText(colorScheme)}>{content}</div>
+        <div css={applyTipsText(colorScheme)}>{closeContent}</div>
       </div>
       break
     case "left":
     case "lt":
     case "lb":
       centerNode = <div css={applyTipsContainer(finalPosition)}>
-        <div css={applyTipsText(colorScheme)}>{content}</div>
+        <div css={applyTipsText(colorScheme)}>{closeContent}</div>
         {showArrow && <TriangleLeft css={applyTriangleStyle(colorScheme, finalPosition)} width="4px" height="8px" />}
       </div>
       break
@@ -86,38 +102,34 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     case "rb":
       centerNode = <div css={applyTipsContainer(finalPosition)}>
         {showArrow && <TriangleRight css={applyTriangleStyle(colorScheme, finalPosition)} width="4px" height="8px" />}
-        <div css={applyTipsText(colorScheme)}>{content}</div>
+        <div css={applyTipsText(colorScheme)}>{closeContent}</div>
       </div>
       break
   }
 
   const showTips = () => {
-    if (!disabled && popupVisible == undefined) {
-      delayTodo(async () => {
-        if (!tipVisible) {
-          const result = await adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition)
-          // async deal
-          setAdjustResult(result)
-          setTipsVisible(true)
-          if (onVisibleChange != undefined) {
-            onVisibleChange(true)
-          }
+    delayTodo(async () => {
+      if (!tipVisible) {
+        const result = await adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition)
+        // async deal
+        setAdjustResult(result)
+        setTipsVisible(true)
+        if (onVisibleChange != undefined) {
+          onVisibleChange(true)
         }
-      }, openDelay)
-    }
+      }
+    }, openDelay)
   }
 
   const hideTips = () => {
-    if (!disabled && popupVisible == undefined) {
-      delayTodo(() => {
-        if (tipVisible) {
-          setTipsVisible(false)
-          if (onVisibleChange != undefined) {
-            onVisibleChange(false)
-          }
+    delayTodo(() => {
+      if (tipVisible) {
+        setTipsVisible(false)
+        if (onVisibleChange != undefined) {
+          onVisibleChange(false)
         }
-      }, closeDelay)
-    }
+      }
+    }, closeDelay)
   }
 
   tipsNode = <motion.div
@@ -129,12 +141,16 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     exit="exit"
     onMouseEnter={
       () => {
-        showTips()
+        if (!disabled && trigger == "hover" && popupVisible == undefined) {
+          showTips()
+        }
       }
     }
     onMouseLeave={
       () => {
-        hideTips()
+        if (!disabled && trigger == "hover" && popupVisible == undefined) {
+          hideTips()
+        }
       }
     }
   >{centerNode}</motion.div>
@@ -170,17 +186,50 @@ export const Trigger: FC<TriggerProps> = ((props) => {
 
 
   return <>
-    <span ref={childrenRef} {...otherProps}
-          css={applyChildrenContainer}
-          onMouseEnter={() => {
-            showTips()
-          }}
-          onMouseLeave={() => {
-            hideTips()
-          }}
-          onClick={() => {
-            hideTips()
-          }}>{props.children}</span>
+    <span
+      ref={childrenRef} {...otherProps}
+      css={applyChildrenContainer}
+      onMouseEnter={() => {
+        if (!disabled && trigger == "hover" && popupVisible == undefined) {
+          showTips()
+        }
+      }}
+      onMouseLeave={() => {
+        if (!disabled && trigger == "hover" && popupVisible == undefined) {
+          hideTips()
+        }
+      }}
+      onFocus={() => {
+        if (!disabled && trigger == "focus" && popupVisible == undefined) {
+          showTips()
+        }
+      }}
+      onBlur={() => {
+        if (!disabled && trigger == "focus" && popupVisible == undefined) {
+          hideTips()
+        }
+      }}
+      onClick={() => {
+        switch (trigger) {
+          case "click":
+            if (!disabled && popupVisible == undefined) {
+              if (!tipVisible) {
+                showTips()
+              } else {
+                if (closeOnClick) {
+                  hideTips()
+                }
+              }
+            }
+            break
+          case "hover":
+          case "focus":
+            if (!disabled && popupVisible == undefined && closeOnClick && tipVisible) {
+              hideTips()
+            }
+            break
+        }
+      }}>{props.children}</span>
     <AnimatePresence>
       {!disabled && tipVisible && childrenRef.current != null ?
         <Popup top={`${adjustResult?.transY}px`} left={`${adjustResult?.transX}px`}>
