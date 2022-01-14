@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from "react"
+import { HTMLAttributes, ReactNode, ChangeEvent } from "react"
 
 export type InputBoarderColor =
   string
@@ -28,6 +28,7 @@ export interface InputElementProps extends Omit<HTMLAttributes<HTMLInputElement>
   maxLength?: number
   showCount?: boolean
   allowClear?: boolean
+  onValueChange?: (value: string, event:ChangeEvent) => void
 }
 export interface InputProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix"> {
   variant?: InputVariant

@@ -11,5 +11,13 @@ export default {
   decorators: [withTests({ results })],
 } as Meta
 
-export const Template: Story<InputProps> = (props) => <Input {...props} />
-
+export const Template: Story<InputProps> = (props) => {
+  return (
+    <div>
+      <Input {...props} />
+      <Input prefix="prefix" suffix="suffix" {...props} />
+      <Input addonAfter="After" addonBefore="Before" {...props} />
+      <Input addonAfter="After" addonBefore="Before" {...props} />
+    </div>
+  )
+}
