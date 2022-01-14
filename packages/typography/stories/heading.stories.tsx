@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { EllipsisBuilder, Heading, HeadingProps, Typography } from "../src"
+import { CopyableBuilder, EllipsisBuilder, Heading, HeadingProps, Typography } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 
@@ -13,8 +13,9 @@ export default {
 
 export const Basic: Story<HeadingProps> = (args) => {
   return <Typography>
-    <Heading {...args} ellipsis={new EllipsisBuilder().rows(2).expandable(true).suffix("123").create()}
-             copyable={true}>A design is a plan or specification for the construction of an object or system or for the
+    <Heading {...args} level="h4" ellipsis={new EllipsisBuilder().rows(2).expandable(true).suffix("123").create()}
+             copyable={new CopyableBuilder().copyTooltip("CopyTooltip").copiedTooltip("CopiedTooltip").create()}>A
+      design is a plan or specification for the construction of an object or system or for the
       implementation of an activity or process, or the result of that plan or specification in the form of a prototype,
       product or process. The verb to design expresses the process of developing a design. In some cases, the direct
       construction of an object without an explicit prior plan (such as in craft work, some engineering, coding, and

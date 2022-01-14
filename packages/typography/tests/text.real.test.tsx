@@ -40,11 +40,10 @@ test("Text renders with different copy icon", async () => {
 
 test("Text renders with different copy tooltips", async () => {
   render(<Typography>
-    <Text data-testid="test-text" fontSize="20px"
-          copyable={new CopyableBuilder()
-            .copyTooltip("CopyTooltip")
-            .copiedTooltip("CopiedTooltip")
-            .create()}>Text</Text>
+    <Text copyable={new CopyableBuilder()
+      .copyTooltip("CopyTooltip")
+      .copiedTooltip("CopiedTooltip")
+      .create()}>Text</Text>
   </Typography>)
   fireEvent.mouseEnter(screen.getByTitle("CopyIcon"))
   await waitFor(() => expect(screen.getByText("CopyTooltip")).toBeInTheDocument(), {

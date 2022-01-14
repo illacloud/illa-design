@@ -2,7 +2,14 @@
 import { Ellipsis, EllipsisBuilder } from "./ellipsis-config"
 import * as React from "react"
 import { FC, Fragment, MutableRefObject, useEffect, useRef, useState } from "react"
-import { applyCopyableContainerSize, applyExpandLabelCss, applyFontColor, applyFontContentStyle } from "./base-style"
+import {
+  applyCopyableContainerSize,
+  applyExpandLabelCss,
+  applyFontColor,
+  applyFontContentStyle,
+  applyOperationSpan,
+} from "./base-style"
+import { v4 as uuidv4 } from "uuid"
 import { css } from "@storybook/theming"
 import mergedToString, { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
@@ -74,12 +81,12 @@ export const Base: FC<BaseProps> = (props) => {
     ${applyFontContentStyle(bold, mark, underline, deleted, disabled, code)};
   `
   const [content, { width }] = useSize(<span
+    key={uuidv4()}
     ref={contentRef}
     css={contentCss}>
     {finalShowExpand ? clipShowText : props.children}</span>)
 
   // apply operation
-
   const copyableElement = <span onClick={() => {
     setCopied(true)
     copyToClipboard(mergedToString(React.Children.toArray(props.children)))
@@ -90,11 +97,11 @@ export const Base: FC<BaseProps> = (props) => {
 
   const showCopyTooltip = copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip
 
-  const operation = <span ref={operationRef}>
+  const operation = <span css={applyOperationSpan} ref={operationRef}>
     {finalShowExpand && <Fragment>
       <span css={contentCss}>
         ...
-        {originEllipsis.suffix && <span>{originEllipsis.suffix}</span>}
+        {originEllipsis.suffix && <span css={applyOperationSpan}>{originEllipsis.suffix}</span>}
       </span>
       {<a css={applyExpandLabelCss()} onClick={() => {
         if (originEllipsis.onExpand != undefined) {

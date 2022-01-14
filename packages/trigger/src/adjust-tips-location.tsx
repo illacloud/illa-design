@@ -161,15 +161,15 @@ function mergeResult(result: [number, number], finalOppositeState: boolean): Adj
 
 // top
 function adjustTop(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [(childrenDom.width - tipsDom.width) / 2 + childrenDom.left + window.scrollX, (childrenDom.top + window.scrollY) - 16 - tipsDom.height]
+  return [(childrenDom.width - tipsDom.width) / 2 + childrenDom.left + window.scrollX, (childrenDom.top + window.scrollY) - tipsDom.height]
 }
 
 function adjustTl(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [childrenDom.left + window.scrollX, (childrenDom.top + window.scrollY) - 16 - tipsDom.height]
+  return [childrenDom.left + window.scrollX, (childrenDom.top + window.scrollY) - tipsDom.height]
 }
 
 function adjustTr(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
-  return [childrenDom.left + window.scrollX + childrenDom.width - tipsDom.width, (childrenDom.top + window.scrollY) - 16 - tipsDom.height]
+  return [childrenDom.left + window.scrollX + childrenDom.width - tipsDom.width, (childrenDom.top + window.scrollY) - tipsDom.height]
 }
 
 function fitTop(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
