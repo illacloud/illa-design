@@ -50,12 +50,8 @@
     "@illa-design/theme": "^0.0.1-alpha.0",
     "@illa-design/typography": "^0.0.1-alpha.0",
     "@illa-design/trigger": "^0.0.1-alpha.0",
-<<<<<<< HEAD
     "@illa-design/input": "^0.0.1-alpha.0",
-    "@illa-design/tooltip": "^0.0.1-alpha.0"
-=======
     "@illa-design/tooltip": "^0.0.1-alpha.0",
     "@illa-design/popover": "^0.0.1-alpha.0"
->>>>>>> d29b8b5efa0c58c30634e65077619cd6014545bf
   }
 }
