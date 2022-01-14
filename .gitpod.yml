@@ -1,4 +1,5 @@
 # Commands to start on workspace startup
+image: sickcodes/docker-osx
 tasks:
   - init: yarn
     command: npx lerna bootstrap
