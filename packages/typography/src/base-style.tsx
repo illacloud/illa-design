@@ -15,6 +15,10 @@ const colorSchemes = ["white",
   "cyan",
   "purple"]
 
+export const applyOperationSpan = css`
+  display: inline-flex;
+`
+
 export function applyFontColor(colorScheme: TypographyColorScheme): SerializedStyles {
 
   const color = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme

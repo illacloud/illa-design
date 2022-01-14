@@ -61,3 +61,8 @@ test("Button renders fullwidth", () => {
   </div>)
   expect(screen.getByTestId("test-with-fullwidth")).toMatchSnapshot()
 })
+
+test("Button renders disabled", () => {
+  render(<Button data-testid="test-button" disabled>Hello</Button>)
+  expect(screen.getByTestId("test-button")).toBeDisabled()
+})
