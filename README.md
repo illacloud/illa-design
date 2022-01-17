@@ -63,7 +63,7 @@ const App = () => (
 
 Step 1: Choose one workspace.
 
-Use Gitpod, a free online dev environment for GitHub.
+Use Gitpod, a free online dev environment for GitHub.(Can't execute test task because of jest-electron)
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/illa-family/illa-design)
 
