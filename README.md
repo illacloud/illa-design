@@ -74,12 +74,12 @@ $ git clone https://github.com/illa-family/illa-design.git
 $ cd illa-design
 $ yarn
 $ npx lerna bootstrap
-$ yarn build-all-components
 ```
 
 Step 2: Run.
 
 ```bash
+$ yarn build-all-components
 $ yarn storybook
 ```
 
