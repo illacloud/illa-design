@@ -44,7 +44,6 @@
     "build-all-components": "npx zx ./scripts/build-all-components.mjs",
     "build-storybook": "npx build-storybook",
     "test": "npx jest",
-    "prebuild": "npx zx ./scripts/prebuild.mjs",
     "prepare": "husky install"
   }
 }

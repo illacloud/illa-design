@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/trigger",
+  "name": "@illa-design/link",
   "version": "0.0.1-alpha.0",
   "description": "Illa Design base.",
   "keywords": [
-    "trigger",
+    "link",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/trigger"
+    "directory": "packages/link"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
@@ -41,7 +41,6 @@
   "dependencies": {
     "@illa-design/system": "^0.0.1-alpha.0",
     "@illa-design/theme": "^0.0.1-alpha.0",
-    "@illa-design/icon": "^0.0.1-alpha.0",
-    "@illa-design/link": "^0.0.1-alpha.0"
+    "@illa-design/icon": "^0.0.1-alpha.0"
   }
 }
