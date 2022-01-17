@@ -29,7 +29,7 @@ export type TriggerPosition =
 
 export type TriggerTrigger = "hover" | "click" | "focus"
 
-export interface TriggerProps extends HTMLAttributes<HTMLSpanElement> {
+export interface TriggerProps {
   colorScheme?: TriggerColorScheme
   trigger?: TriggerTrigger
   content?: string | ReactNode
