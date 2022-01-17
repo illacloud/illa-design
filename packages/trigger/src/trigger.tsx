@@ -15,6 +15,7 @@ import {
 import { TriangleBottom, TriangleLeft, TriangleRight, TriangleTop } from "./triangle"
 import { adjustLocation, AdjustResult, getFinalPosition } from "./adjust-tips-location"
 import { Popup } from "./popup"
+import { Link } from "@illa-design/link"
 
 export const Trigger: FC<TriggerProps> = ((props) => {
 
@@ -62,13 +63,14 @@ export const Trigger: FC<TriggerProps> = ((props) => {
 
   const closeContent = <div css={applyCloseContentCss}>
     <div>{content}</div>
-    {hasCloseIcon && <div css={applyCloseButton} onClick={(event) => {
-      setTipsVisible(false)
-      if (onVisibleChange != undefined) {
-        onVisibleChange(false)
+    {hasCloseIcon &&
+      <Link colorScheme={colorScheme == "white" ? "blue" : "white"} css={applyCloseButton} onClick={() => {
+        setTipsVisible(false)
+        if (onVisibleChange != undefined) {
+          onVisibleChange(false)
+        }
       }
-    }
-    }>Close</div>}
+      }>Close</Link>}
   </div>
 
   switch (finalPosition) {

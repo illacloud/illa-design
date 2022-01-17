@@ -18,7 +18,9 @@ export const Popover: FC<PopoverProps> = ((props) => {
     <div css={applyTypographyContainer}>
       <Typography>
         {title &&
-          <Heading css={applyTitleColor(colorScheme)} title={title} ellipsis={false} level="h6">{title}</Heading>}
+          <Heading css={applyTitleColor(colorScheme)}
+                   colorScheme={colorScheme == "white" ? "gray" : "white"}
+                   title={title} ellipsis={false} level="h6">{title}</Heading>}
         {content}
       </Typography>
     </div>
