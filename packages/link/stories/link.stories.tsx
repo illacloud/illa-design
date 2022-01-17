@@ -11,4 +11,4 @@ export default {
   decorators: [withTests({ results })],
 } as Meta
 
-export const Basic: Story<LinkProps> = (args) => <Link {...args}>Link</Link>
+export const Basic: Story<LinkProps> = (args) => <Link {...args} icon>Link</Link>

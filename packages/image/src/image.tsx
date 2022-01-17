@@ -4,6 +4,7 @@ import { forwardRef, useEffect, useState } from "react"
 import { ImageProps } from "./interface"
 import { ImageDefaultIcon } from "@illa-design/icon"
 import { applyDefaultFallback, applyImageCss, applyOuterCss } from "./style"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 enum ImageState {
   Loading,
@@ -20,7 +21,7 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
     alt = "",
     // custom
     objectFit = "cover",
-    fallback = <ImageDefaultIcon />,
+    fallback = <ImageDefaultIcon color={globalColor(`--${illaPrefix}-blackAlpha-06`)} />,
     fallbackSrc = "",
     radius = "4px",
     // img
