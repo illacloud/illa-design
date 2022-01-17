@@ -45,7 +45,7 @@ const errorOutlineStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-red-02`)};
   }
 `
-function applyVariantStyle(variant?: string) {
+export function applyVariantStyle(variant?: string) {
   let inputStyle: SerializedStyles
   switch (variant) {
     default:

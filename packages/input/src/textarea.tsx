@@ -1,18 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { ChangeEvent, forwardRef, useEffect, useState, useMemo } from "react"
-import { InputProps, InputSize } from "./interface"
+import { ChangeEvent, forwardRef, useEffect, useState, useMemo, ReactNode, useRef } from "react"
+import { InputSize, TextAreaProps } from "./interface"
 import { omit } from "@illa-design/system"
 import {
-  applyAddonCss,
-  applyContainerCss,
   applyCountLimitStyle,
   applyInputContainer,
   applyLengthErrorStyle,
   applyPrefixCls,
 } from "./style"
 import { InputElement } from "./input-element"
-import * as events from "events"
+import { applyContainerCss } from "./textarea-style"
 
 export interface StateValue {
   disabled?: boolean
@@ -22,7 +20,7 @@ export interface StateValue {
   size?: InputSize
 }
 
-export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
+export const Input = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
 
   const {
     allowClear,
@@ -31,27 +29,21 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     placeholder,
     maxLength,
     showCount,
-    prefix,
-    addonAfter,
-    addonBefore,
-    size = "medium",
     variant = "outline",
     ...rest
   } = props
 
   const otherProps = omit(rest, [
-    "prefix",
-    "suffix",
     "className",
     "defaultValue",
-    "addonBefore",
-    "addonAfter",
   ])
 
+  const isComposition = useRef(false);
   const [focus, setFocus] = useState(false);
   const [value, setValue] = useState("");
+  const [compositionValue, setCompositionValue] = useState<string|undefined>('');
   const valueLength = value ? value.length : 0;
-  let suffix = props.suffix
+  let suffix: ReactNode
 
   const lengthError = useMemo(() => {
     if (maxLength) {
@@ -65,7 +57,6 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     disabled,
     focus,
     variant,
-    size,
   }
 
   if (maxLength && showCount) {
@@ -77,35 +68,34 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     );
   }
 
-  const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
+  const onValueChange = (v: string, e: ChangeEvent<HTMLTextAreaElement>) => {
     if (!('value' in props)) {
       setValue(v);
     }
     props.onChange && props.onChange(e);
   };
 
+  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const newValue = e.target?.value;
+    if (!isComposition.current) {
+      if (!onValueChange) {
+        return;
+      }
+      onValueChange(newValue, e);
+    } else {
+      setCompositionValue(newValue);
+    }
+  };
 
   return <div ref={ref} {...otherProps}>
     <span css={applyContainerCss(variant)}>
-      {addonBefore ? (<div css={applyAddonCss(stateValue)}>{addonBefore}</div> ): null}
       <span css={applyInputContainer(stateValue)}>
-      {prefix ? (<span css={applyPrefixCls}>{prefix}</span> ): null}
-        <InputElement
-          {...props}
-          onFocus={(e) => {
-            setFocus(true);
-            props.onFocus && props.onFocus(e);
-          }}
-          onBlur={(e) => {
-            setFocus(false);
-            props.onBlur && props.onBlur(e);
-          }}
+        <textarea
           value={value}
-          onValueChange={onValueChange}
+          onChange={onChange}
         />
         {suffix ? (<span css={applyPrefixCls}>{suffix}</span> ): null}
       </span>
-      {addonAfter ? (<div css={applyAddonCss(stateValue)}>{addonAfter}</div> ): null}
     </span>
   </div>
 

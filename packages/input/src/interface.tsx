@@ -28,7 +28,7 @@ export interface InputElementProps extends Omit<HTMLAttributes<HTMLInputElement>
   maxLength?: number
   showCount?: boolean
   allowClear?: boolean
-  onValueChange?: (value: string, event:ChangeEvent) => void
+  onValueChange?: (value: string, event:ChangeEvent<HTMLInputElement>) => void
 }
 export interface InputProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix"> {
   variant?: InputVariant
@@ -49,6 +49,7 @@ export interface InputProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix
 }
 
 export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
+  variant?: InputVariant
   placeholder?: string
   defaultValue?: string
   disabled?: boolean

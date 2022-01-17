@@ -8,7 +8,7 @@ import { applyInputContainer, applyInputStyle } from "./style"
 export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((props, ref) => {
   const inputRef = useRef<HTMLInputElement>();
   const isComposition = useRef(false);
-  const [compositionValue, setCompositionValue] = useState('');
+  const [compositionValue, setCompositionValue] = useState<string|undefined>('');
 
   const {
     allowClear,
@@ -32,7 +32,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
     "showCount",
   ])
 
-  const onChange = (e: ChangeEvent) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target?.value;
     if (!isComposition.current) {
       if (!onValueChange) {
@@ -45,7 +45,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
   };
 
   // 处理中文输入
-  const onComposition = (e: ChangeEvent) => {
+  const onComposition = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.type === 'compositionend') {
       isComposition.current = false;
       setCompositionValue(undefined);
