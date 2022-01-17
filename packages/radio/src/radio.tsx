@@ -5,6 +5,7 @@ import { RadioProps } from "./interface"
 import { RadioGroupContext } from "./radio-group"
 import { applyMergeCss, applyRadioSize } from "./style"
 import { useMergeValue } from "./hook"
+import { omit } from "@illa-design/system"
 
 export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
   const context = useContext(RadioGroupContext);
@@ -31,7 +32,7 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
     !currentChecked && onChange && onChange(true, event);
   };
 
-  return <label css={applyMergeCss(props)} ref={ref} {...otherProps}>
+  return <label css={applyMergeCss(props)} ref={ref} {...omit(otherProps, ['colorScheme'])}>
         <input
           type="radio"
           {...(context?.name ? { name: context.name } : {})}

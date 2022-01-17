@@ -39,7 +39,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@emotion/react": "^11.5.0",
+    "@emotion/react": "^11.7.1",
     "framer-motion": "^4.1.17",
     "@illa-design/system": "^0.0.1-alpha.0"
   }
