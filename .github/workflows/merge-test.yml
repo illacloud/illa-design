@@ -34,7 +34,6 @@ jobs:
       - name: Build
         run: |
           yarn install --frozen-lockfile
-          npx lerna bootstrap
 
   test:
     needs:
@@ -69,6 +68,7 @@ jobs:
 
       - name: Build Components
         run: |
+          npx lerna bootstrap
           yarn build-all-components
 
       - name: Run jest
