@@ -2,35 +2,35 @@ import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { StateValue } from "./input"
 
-const inputFillStyle = css`
+export const inputFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
   border-color: ${globalColor(`--${illaPrefix}-gray-09`)};
   color: ${globalColor(`--${illaPrefix}-gray-05`)};
 `
-const inputOutlineStyle = css`
+export const inputOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
   color: ${globalColor(`--${illaPrefix}-gray-05`)};
 `
-const disableOutlineStyle = css`
+export const disableOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
   color: ${globalColor(`--${illaPrefix}-gray-05`)};
 `
-const disableFillStyle = css`
+export const disableFillStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
   color: ${globalColor(`--${illaPrefix}-gray-05`)};
   background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
 `
-const hoverFillStyle = css`
+export const hoverFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
   border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
 `
 
-const errorFocusStyle = css`
+export const errorFocusStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
   box-shadow: 0 0 8px 0 rgba(224, 36, 36, 0.5);
 `
-const errorFillStyle = css`
+export const errorFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-red-07`)};
   border-color: ${globalColor(`--${illaPrefix}-red-07`)};
   &:hover {
@@ -38,7 +38,7 @@ const errorFillStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-red-06`)};
   }
 `
-const errorOutlineStyle = css`
+export const errorOutlineStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
   &:hover {
@@ -131,8 +131,8 @@ function applyStatus(stateValue: StateValue) {
     mainStyle = css`
       border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
       box-shadow: 0 0 8px 0 rgba(19, 83, 224, 0.5);
-      background-color: unset;
       ${stateValue?.error ? errorFocusStyle : ''}
+      background-color: white;
       `
   } else if (stateValue?.error) {
     mainStyle = css`

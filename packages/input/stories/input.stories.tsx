@@ -3,6 +3,8 @@ import { Meta, Story } from "@storybook/react"
 import { InputProps, Input } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
+import { Radio, RadioProps } from "@illa-design/radio/src"
+import { BsFacebook } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -11,7 +13,7 @@ export default {
   decorators: [withTests({ results })],
 } as Meta
 
-export const Template: Story<InputProps> = (props) => {
+const Template: Story<InputProps> = (props) => {
   return (
     <div>
       <Input {...props} />
@@ -21,3 +23,7 @@ export const Template: Story<InputProps> = (props) => {
     </div>
   )
 }
+
+export const Basic = Template.bind({
+  icon: <BsFacebook />,
+})

@@ -4,15 +4,17 @@ import { ChangeEvent, forwardRef, useEffect, useState, useMemo, ReactNode, useRe
 import { InputSize, TextAreaProps } from "./interface"
 import { omit } from "@illa-design/system"
 import {
-  applyCountLimitStyle,
-  applyInputContainer,
   applyLengthErrorStyle,
-  applyPrefixCls,
+  applyCountLimitStyle,
 } from "./style"
-import { InputElement } from "./input-element"
-import { applyContainerCss } from "./textarea-style"
+import {
+  applyContainerCss,
+  applyTextAreaContainer,
+  applyTextAreaStyle,
+  applyPrefixCls
+} from "./textarea-style"
 
-export interface StateValue {
+export interface TextAreaState {
   disabled?: boolean
   error?: boolean
   focus?: boolean
@@ -20,7 +22,7 @@ export interface StateValue {
   size?: InputSize
 }
 
-export const Input = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
+export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
 
   const {
     allowClear,
@@ -29,6 +31,7 @@ export const Input = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
     placeholder,
     maxLength,
     showCount,
+    autoSize,
     variant = "outline",
     ...rest
   } = props
@@ -36,12 +39,14 @@ export const Input = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
   const otherProps = omit(rest, [
     "className",
     "defaultValue",
+    "onChange",
   ])
 
+  const textAreaRef = useRef<HTMLTextAreaElement>();
   const isComposition = useRef(false);
   const [focus, setFocus] = useState(false);
-  const [value, setValue] = useState("");
-  const [compositionValue, setCompositionValue] = useState<string|undefined>('');
+  const [value, setValue] = useState(props.value || "");
+  const [compositionValue, setCompositionValue] = useState<string|undefined>();
   const valueLength = value ? value.length : 0;
   let suffix: ReactNode
 
@@ -59,6 +64,17 @@ export const Input = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
     variant,
   }
 
+  const autoResize = function() {
+    if (textAreaRef?.current && autoSize) {
+      const textStyle = window.getComputedStyle(textAreaRef.current as Element)
+      const paddingSize =
+        parseFloat(textStyle.getPropertyValue('padding-top')) +
+        parseFloat(textStyle.getPropertyValue('padding-bottom'));
+      textAreaRef.current.style.height = 'auto';
+      textAreaRef.current.style.height = textAreaRef?.current?.scrollHeight - paddingSize  + 'px';
+    }
+  }
+
   if (maxLength && showCount) {
     suffix = (
       <span css={applyCountLimitStyle}>
@@ -67,7 +83,9 @@ export const Input = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
       </span>
     );
   }
-
+  if (autoSize) {
+    autoResize()
+  }
   const onValueChange = (v: string, e: ChangeEvent<HTMLTextAreaElement>) => {
     if (!('value' in props)) {
       setValue(v);
@@ -77,25 +95,57 @@ export const Input = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target?.value;
+    if (autoSize) {
+      autoResize()
+    }
     if (!isComposition.current) {
-      if (!onValueChange) {
-        return;
-      }
       onValueChange(newValue, e);
     } else {
       setCompositionValue(newValue);
     }
   };
 
+  // 处理中文输入
+  const onComposition = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.type === 'compositionend') {
+      isComposition.current = false;
+      setCompositionValue(undefined);
+      onValueChange && onValueChange(e.target.value, e);
+    } else {
+      isComposition.current = true;
+    }
+  };
+
+
+  const textAreaProps = {
+    ...otherProps,
+    disabled,
+    placeholder,
+    value: compositionValue || value || '',
+    onCompositionStart: onComposition,
+    onCompositionUpdate: onComposition,
+    onCompositionEnd: onComposition,
+  }
+
   return <div ref={ref} {...otherProps}>
     <span css={applyContainerCss(variant)}>
-      <span css={applyInputContainer(stateValue)}>
+      <span css={applyTextAreaContainer(stateValue)}>
         <textarea
-          value={value}
+          ref={textAreaRef}
+          css={applyTextAreaStyle}
+          {...textAreaProps}
           onChange={onChange}
+          onFocus={(e) => {
+            setFocus(true);
+            props.onFocus && props.onFocus(e);
+          }}
+          onBlur={(e) => {
+            setFocus(false);
+            props.onBlur && props.onBlur(e);
+          }}
         />
-        {suffix ? (<span css={applyPrefixCls}>{suffix}</span> ): null}
       </span>
+      {suffix ? (<span css={applyPrefixCls}>{suffix}</span> ): null}
     </span>
   </div>
 

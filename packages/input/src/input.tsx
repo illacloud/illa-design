@@ -78,7 +78,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   }
 
   const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
-    if (!('value' in props)) {
+    if (!('value' in props) || !props.value) {
       setValue(v);
     }
     props.onChange && props.onChange(e);

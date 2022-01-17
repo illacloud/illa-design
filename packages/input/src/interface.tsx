@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode, ChangeEvent } from "react"
+import { HTMLAttributes, ReactNode, ChangeEvent, InputHTMLAttributes } from "react"
 
 export type InputBoarderColor =
   string
@@ -16,7 +16,7 @@ export type InputVariant = "fill" | "outline"
 
 export type InputSize = "small" | "medium" | "large"
 
-export interface InputElementProps extends Omit<HTMLAttributes<HTMLInputElement>, "prefix"> {
+export interface InputElementProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
