@@ -2,12 +2,19 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { Link } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { PersonIcon } from "@illa-design/icon"
 
 test("Link renders with icon", () => {
-  render(<Link icon={true}>
-    Link
-  </Link>)
+  render(<div>
+    <Link icon={true}>
+      Link
+    </Link>
+    <Link icon={<PersonIcon />}>
+      Link
+    </Link>
+  </div>)
   expect(screen.getByTitle("LinkIcon")).toBeInTheDocument()
+  expect(screen.getByTitle("PersonIcon")).toBeInTheDocument()
 })
 
 test("Link renders disabled", () => {
