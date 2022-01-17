@@ -17,7 +17,8 @@ export const Popover: FC<PopoverProps> = ((props) => {
   return <Trigger {...otherProps} colorScheme={colorScheme} content={
     <div css={applyTypographyContainer}>
       <Typography>
-        <Heading css={applyTitleColor(colorScheme)} title={title} ellipsis={false} level="h6">{title}</Heading>
+        {title &&
+          <Heading css={applyTitleColor(colorScheme)} title={title} ellipsis={false} level="h6">{title}</Heading>}
         {content}
       </Typography>
     </div>

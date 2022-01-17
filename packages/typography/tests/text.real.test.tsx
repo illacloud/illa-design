@@ -39,10 +39,12 @@ test("Text renders with different copy icon", async () => {
 })
 
 test("Text renders with different copy tooltips", async () => {
+  const onCopy = jest.fn()
   render(<Typography>
     <Text copyable={new CopyableBuilder()
       .copyTooltip("CopyTooltip")
       .copiedTooltip("CopiedTooltip")
+      .onCopy(onCopy)
       .create()}>Text</Text>
   </Typography>)
   fireEvent.mouseEnter(screen.getByTitle("CopyIcon"))
@@ -50,6 +52,7 @@ test("Text renders with different copy tooltips", async () => {
     timeout: 3000,
   })
   fireEvent.click(screen.getByTitle("CopyIcon"))
+  await waitFor(() => expect(onCopy).toBeCalled())
   fireEvent.mouseLeave(screen.getByTitle("CopyIcon"))
   fireEvent.mouseEnter(screen.getByTitle("CopyIcon"))
   await waitFor(() => expect(screen.getByText("CopiedTooltip")).toBeInTheDocument(), {

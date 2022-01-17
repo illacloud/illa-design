@@ -32,7 +32,6 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     hasCloseIcon,
     popupVisible,
     onVisibleChange,
-    onClick,
     trigger = "hover",
     ...otherProps
   } = props
@@ -62,7 +61,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
   let centerNode: ReactNode
 
   const closeContent = <div css={applyCloseContentCss}>
-    {content}
+    <div>{content}</div>
     {hasCloseIcon && <div css={applyCloseButton} onClick={(event) => {
       setTipsVisible(false)
       if (onVisibleChange != undefined) {
@@ -171,7 +170,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
         }
       })
     } else {
-      if (tipVisible) {
+      if (tipVisible && isMount) {
         setTipsVisible(false)
         if (onVisibleChange != undefined) {
           onVisibleChange(false)
