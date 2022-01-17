@@ -30,40 +30,12 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref)
     {props.children}
   </Base>
 
-  let headingNode
+  const TagWrapper = level
 
-  switch (level) {
-    case "h1":
-      headingNode = <h1 ref={ref} {...otherProps}>
-        {base}
-      </h1>
-      break
-    case "h2":
-      headingNode = <h2 ref={ref} {...otherProps}>
-        {base}
-      </h2>
-      break
-    case "h3":
-      headingNode = <h3 ref={ref} {...otherProps}>
-        {base}
-      </h3>
-      break
-    case "h4":
-      headingNode = <h4 ref={ref} {...otherProps}>
-        {base}
-      </h4>
-      break
-    case "h5":
-      headingNode = <h5 ref={ref} {...otherProps}>
-        {base}
-      </h5>
-      break
-    case "h6":
-      headingNode = <h6 ref={ref} {...otherProps}>
-        {base}
-      </h6>
-      break
-  }
+  let headingNode = <TagWrapper ref={ref} {...otherProps}>
+    {base}
+  </TagWrapper>
+
   if (showTooltip) {
     return <Tooltip content={mergedToString(React.Children.toArray(props.children))}>
       {headingNode}

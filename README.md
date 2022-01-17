@@ -20,12 +20,12 @@
 
 ## ✨ Features
 
-1. 🛠 **Made for React & Vue3 & Svelte:** Ready-to-use component library for React, Vue 3(in progress) and Svelte JavaScript
-   Framework(in progress).
+1. 🛠 **Made for React & Vue3 & Svelte:** Ready-to-use component library for React, Vue 3(in progress) and Svelte
+   JavaScript Framework(in progress).
 2. 📝 **TypeScript Friendly:** Come with TypeScript typings out of the box and support with predictable static typings.
 3. 📦 **High Productivity:** Easy and fast, import in 5 seconds.
-4. 🎨 **Vibrant Design:** Beautifully designed components and powerful theming system supports custom themes to match your
-   brand, including light and dark mode.
+4. 🎨 **Vibrant Design:** Beautifully designed components and powerful theming system supports custom themes to match
+   your brand, including light and dark mode.
 5. 🌍 **Internationalization:** Each component was designed with i18n in mind and multiple languages are supported.
 6. 📱 **Fully Responsive:** Perfectly adaptable with all the devices, desktops to mobiles.
 
@@ -79,7 +79,7 @@ $ npx lerna bootstrap
 Step 2: Run.
 
 ```bash
-$ yarn prebuild
+$ yarn build-all-components
 $ yarn storybook
 ```
 
@@ -103,12 +103,14 @@ Join ILLA Design community to share your ideas, suggestions or questions and con
 
 ## 🌱 Contributing
 
-Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
+Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check
+out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
 
 ## 🔥 We're Hiring
-Looking for a passionate and creative team?
-We are actively hiring engineers for the following positions:
-- Frontend engineer(Beijing/Shenzhen)
+
+Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
+
+- Frontend engineer(Beijing / Shenzhen)
 
 ## License
 

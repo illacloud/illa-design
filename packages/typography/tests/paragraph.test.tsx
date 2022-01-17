@@ -1,7 +1,7 @@
 import * as React from "react"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { EllipsisBuilder, Paragraph, Typography } from "../src"
+import { Paragraph, Typography } from "../src"
 
 test("Paragraph renders with different font size", () => {
   render(<Typography>
