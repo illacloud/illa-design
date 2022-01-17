@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { forwardRef, useRef, useState, useImperativeHandle, ChangeEvent } from "react"
-import { InputElementProps, InputProps } from "./interface"
+import { InputElementProps } from "./interface"
 import { omit } from "@illa-design/system"
 import { applyInputContainer, applyInputStyle } from "./style"
 
