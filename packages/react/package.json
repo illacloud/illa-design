@@ -53,6 +53,7 @@
     "@illa-design/trigger": "^0.0.1-alpha.0",
     "@illa-design/tooltip": "^0.0.1-alpha.0",
     "@illa-design/popover": "^0.0.1-alpha.0",
-    "@illa-design/link": "^0.0.1-alpha.0"
+    "@illa-design/link": "^0.0.1-alpha.0",
+    "@illa-design/config-provider": "^0.0.1-alpha.0"
   }
 }

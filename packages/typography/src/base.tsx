@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { Ellipsis, EllipsisBuilder } from "./ellipsis-config"
 import * as React from "react"
-import { FC, Fragment, MutableRefObject, useEffect, useRef, useState } from "react"
+import { FC, Fragment, MutableRefObject, useContext, useEffect, useRef, useState } from "react"
 import {
   applyCopyableContainerSize,
   applyExpandLabelCss,
@@ -15,8 +15,9 @@ import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
 import useSize from "react-use/lib/useSize"
 import { Tooltip } from "@illa-design/tooltip"
+import { ConfigProviderContext, ConfigProviderProps, def } from "@illa-design/config-provider"
 
-function getEllipsis(ellipsis?: boolean | Ellipsis): Ellipsis {
+function getEllipsis(ellipsis?: boolean | Ellipsis, configProviderProps?: ConfigProviderProps): Ellipsis {
   let originEllipsis: Ellipsis
   if (typeof ellipsis == "boolean" && ellipsis) {
     originEllipsis = new EllipsisBuilder().create()
@@ -25,10 +26,14 @@ function getEllipsis(ellipsis?: boolean | Ellipsis): Ellipsis {
   } else {
     originEllipsis = ellipsis
   }
+  const locale = configProviderProps?.locale?.typography ?? def.typography
+  if (originEllipsis.expandLabel == undefined) {
+    originEllipsis.expandLabel = locale["expandLabel"]
+  }
   return originEllipsis
 }
 
-function getCopyable(copyable?: boolean | Copyable): Copyable {
+function getCopyable(copyable?: boolean | Copyable, configProviderProps?: ConfigProviderProps): Copyable {
   // get copyable
   let originCopyable: Copyable
   if (typeof copyable == "boolean" && copyable) {
@@ -37,6 +42,13 @@ function getCopyable(copyable?: boolean | Copyable): Copyable {
     originCopyable = new CopyableBuilder().copyIcon(null).copiedIcon(null).create()
   } else {
     originCopyable = copyable
+  }
+  const locale = configProviderProps?.locale?.typography ?? def.typography
+  if (originCopyable.copyTooltip == undefined) {
+    originCopyable.copyTooltip = locale["copyTooltip"]
+  }
+  if (originCopyable.copiedToolTip == undefined) {
+    originCopyable.copiedToolTip = locale["copiedToolTip"]
   }
   return originCopyable
 }
@@ -60,11 +72,14 @@ export const Base: FC<BaseProps> = (props) => {
     copyable,
   } = props
 
-  let originEllipsis = getEllipsis(ellipsis)
-  let originCopyable = getCopyable(copyable)
+  let configContext = useContext<ConfigProviderProps | undefined>(ConfigProviderContext)
+
+  let originEllipsis = getEllipsis(ellipsis, configContext)
+  let originCopyable = getCopyable(copyable, configContext)
 
   // set expandable state
   const [showExpand, setShowExpand] = useState<boolean>(originEllipsis.expandable)
+  const [haveShowExpandSize, setHaveShowExpandSize] = useState<boolean>(false)
   const finalShowExpand = originEllipsis.expandable && showExpand
 
   const [clipShowText, setClipShowText] = useState("")
@@ -96,7 +111,7 @@ export const Base: FC<BaseProps> = (props) => {
   const showCopyTooltip = copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip
 
   const operation = <span css={applyOperationSpan} ref={operationRef}>
-    {finalShowExpand && <Fragment>
+    {finalShowExpand && !haveShowExpandSize && <Fragment>
       <span css={contentCss}>
         ...
         {originEllipsis.suffix && <span css={applyOperationSpan}>{originEllipsis.suffix}</span>}
@@ -125,7 +140,7 @@ export const Base: FC<BaseProps> = (props) => {
       } = measureElement(contentRef.current, operationRef.current, originEllipsis.rows, props.children)
       if (isMount) {
         setClipShowText(screenString)
-        setShowExpand(isClip)
+        setHaveShowExpandSize(!isClip)
       }
     }
     return () => {
