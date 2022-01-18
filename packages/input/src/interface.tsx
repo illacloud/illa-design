@@ -29,6 +29,7 @@ export interface InputElementProps extends Omit<InputHTMLAttributes<HTMLInputEle
   showCount?: boolean
   allowClear?: boolean
   onValueChange?: (value: string, event:ChangeEvent<HTMLInputElement>) => void
+  onClear?: (event:ChangeEvent) => void
 }
 export interface InputProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix"> {
   variant?: InputVariant

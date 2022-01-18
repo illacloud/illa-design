@@ -3,7 +3,9 @@ import * as React from "react"
 import { forwardRef, useRef, useState, useImperativeHandle, ChangeEvent } from "react"
 import { InputElementProps } from "./interface"
 import { omit } from "@illa-design/system"
-import { applyInputContainer, applyInputStyle } from "./style"
+import { CloseIcon } from "@illa-design/icon"
+import {applyInputContainer, applyInputStyle, pointerStyle} from "./style"
+import * as events from "events";
 
 export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((props, ref) => {
   const inputRef = useRef<HTMLInputElement>();
@@ -20,6 +22,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
     maxLength,
     value,
     type,
+    onClear,
     ...rest
   } = props
 
@@ -74,6 +77,19 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
       {...inputProps}
       {...(type ? { type } : {})}
     />
+    {!disabled && allowClear && value ? (
+      <span
+        css={pointerStyle}
+        onClick={(e) => {
+          e.stopPropagation();
+          onValueChange && onValueChange('', e);
+          onClear && onClear(e);
+        }}
+        onMouseDown={(e) => {
+          e.preventDefault();
+        }}
+      ><CloseIcon/></span>
+    ) : null}
   </>
 
 })
