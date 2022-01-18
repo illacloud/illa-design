@@ -68,8 +68,8 @@ export function applyContainerCss(variant: string) {
     position: relative;
     width: 280px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: end;
     margin-bottom: 16px;
     font-size: 14px;
     line-height: 1.57;
@@ -102,6 +102,7 @@ export function applyTextAreaStyle() {
     font-size: 14px;
     font-family: HelveticaNeue;
     line-height: 1.57;
+    min-height: 44px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border-radius: 4px;
     border: none;
@@ -117,12 +118,9 @@ export function applyTextAreaStyle() {
 
 export function applyPrefixCls() {
   return css`
-    position: absolute;
-    right: 12px;
-    bottom: 9px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    margin-top: 4px;
+    text-align: end;
+    font-size: 14px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
 }

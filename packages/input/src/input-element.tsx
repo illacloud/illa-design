@@ -19,6 +19,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
     onValueChange,
     maxLength,
     value,
+    type,
     ...rest
   } = props
 
@@ -68,7 +69,11 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
   }
 
   return <>
-    <input css={applyInputStyle} {...inputProps} />
+    <input
+      css={applyInputStyle}
+      {...inputProps}
+      {...(type ? { type } : {})}
+    />
   </>
 
 })

@@ -198,7 +198,7 @@ export function applyInputStyle() {
     appearance: none;
     font-size: 14px;
     font-family: HelveticaNeue;
-    line-height: 1.57;
+    line-height: 22px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border-radius: 0;
     border: none;
@@ -299,3 +299,8 @@ export function applyLengthErrorStyle(error?: boolean) {
       color: ${globalColor(`--${illaPrefix}-gray-05`)};
     `
 }
+
+export const pointerStyle = css`
+  cursor: pointer;
+
+`

@@ -93,7 +93,5 @@ export interface PasswordProps extends HTMLAttributes<HTMLDivElement> {
   error?: boolean
   size?: InputSize
   value?: string
-  maxLength?: number
-  showCount?: boolean
   allowClear?: boolean
 }

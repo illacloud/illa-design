@@ -1,9 +1,8 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { InputProps, Input } from "../src"
+import {InputProps, Input, TextAreaProps, TextArea, Password, PasswordProps} from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
-import { Radio, RadioProps } from "@illa-design/radio/src"
 import { BsFacebook } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list

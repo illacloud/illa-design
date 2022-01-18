@@ -146,6 +146,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) =
         />
       </span>
       {suffix ? (<span css={applyPrefixCls}>{suffix}</span> ): null}
+
     </span>
   </div>
 

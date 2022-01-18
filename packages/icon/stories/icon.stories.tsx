@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { CloseIcon, CopyIcon, IconProps, ImageDefaultIcon, LoadingIcon, PersonIcon } from "../src"
+import { CloseIcon, CopyIcon, IconProps, ImageDefaultIcon, LoadingIcon, PersonIcon, EyeOnIcon, EyeOffIcon } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 
@@ -27,5 +27,7 @@ export const Copy: Story<IconProps> = (props) => <CopyIcon {...props} />
 export const ImageDefault: Story<IconProps> = (props) => <ImageDefaultIcon {...props} />
 export const Loading: Story<IconProps> = (props) => <LoadingIcon {...props} />
 export const Person: Story<IconProps> = (props) => <PersonIcon {...props} />
+export const EyeOn: Story<IconProps> = (props) => <EyeOnIcon {...props} />
+export const EyeOff: Story<IconProps> = (props) => <EyeOffIcon {...props} />
 
 
