@@ -70,4 +70,4 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>((props, 
   </div>
 })
 
-AvatarGroup.displayName = "Avatar"
+AvatarGroup.displayName = "AvatarGroup"
