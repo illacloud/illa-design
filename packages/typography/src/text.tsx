@@ -42,3 +42,5 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
   }
 
 })
+
+Text.displayName = "Text"

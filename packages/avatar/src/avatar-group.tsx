@@ -69,3 +69,5 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>((props, 
     {newNodeList}
   </div>
 })
+
+AvatarGroup.displayName = "Avatar"

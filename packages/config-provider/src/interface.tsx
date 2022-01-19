@@ -3,6 +3,6 @@ export interface ConfigProviderProps {
 }
 
 export interface Locale {
-  typography: Record<string, any>
-  trigger: Record<string, any>
+  typography: Record<string, string>
+  trigger: Record<string, string>
 }

@@ -81,3 +81,5 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>((prop
     </RadioGroupContext.Provider>
   </div>
 })
+
+RadioGroup.displayName = "RadioGroup"

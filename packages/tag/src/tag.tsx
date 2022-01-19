@@ -102,3 +102,5 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     }} />}
   </div> : null
 })
+
+Tag.displayName = "Tag"

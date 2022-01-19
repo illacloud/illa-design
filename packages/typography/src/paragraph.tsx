@@ -42,3 +42,5 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>((props
     return p
   }
 })
+
+Paragraph.displayName = "Paragraph"

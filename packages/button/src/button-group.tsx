@@ -29,3 +29,5 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>((props, 
     {newChildren}
   </div>
 })
+
+ButtonGroup.displayName = "ButtonGroup"

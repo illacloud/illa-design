@@ -6,7 +6,7 @@ import { withTests } from "@storybook/addon-jest"
 import { Button } from "@illa-design/button"
 
 import { CopyableBuilder, EllipsisBuilder, Paragraph, Typography } from "@illa-design/typography"
-import { ConfigProvider, ConfigProviderContext, ConfigProviderProps, enUS, Locale, zhCN } from "../src"
+import { ConfigProvider, ConfigProviderProps, enUS, Locale, zhCN } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {

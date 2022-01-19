@@ -28,3 +28,5 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
               color={color} {...otherProps}>{props.children}</svg>
 
 })
+
+Icon.displayName = "Icon"

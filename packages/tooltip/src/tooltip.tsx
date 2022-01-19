@@ -9,3 +9,5 @@ export const Tooltip: FC<TriggerProps> = ((props) => {
   } = props
   return <Trigger colorScheme={colorScheme} {...otherProps}>{props.children}</Trigger>
 })
+
+Tooltip.displayName = "Tooltip"

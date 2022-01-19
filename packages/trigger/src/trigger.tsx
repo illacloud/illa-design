@@ -243,3 +243,5 @@ export const Trigger: FC<TriggerProps> = ((props) => {
   </>
 
 })
+
+Trigger.displayName = "Trigger"
