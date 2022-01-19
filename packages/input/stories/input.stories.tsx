@@ -7,7 +7,7 @@ import { BsFacebook } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "DATA DISPLAY/Input",
+  title: "DATA INPUT/Input",
   component: Input,
   decorators: [withTests({ results })],
 } as Meta

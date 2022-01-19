@@ -39,15 +39,6 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     ...rest
   } = props
 
-  const otherProps = omit(rest, [
-    "prefix",
-    "suffix",
-    "className",
-    "defaultValue",
-    "addonBefore",
-    "addonAfter",
-  ])
-
   const [focus, setFocus] = useState(false);
   const [value, setValue] = useState("");
   const valueLength = value ? value.length : 0;
@@ -77,13 +68,39 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     );
   }
 
-  const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
+  const onValueChange = (v: string, e:ChangeEvent<HTMLInputElement>) => {
     if (!('value' in props) || !props.value) {
       setValue(v);
     }
     props.onChange && props.onChange(e);
   };
 
+  const onClear = () => {
+    if (!('value' in props) || !props.value) {
+      setValue('');
+    }
+    props.onClear && props.onClear();
+  }
+
+  const otherProps = omit(rest, [
+    "prefix",
+    "suffix",
+    "className",
+    "defaultValue",
+    "addonBefore",
+    "addonAfter",
+    "onClear",
+    "onChange",
+  ])
+
+  const inputProps = {
+    ...otherProps,
+    onClear,
+    allowClear,
+    error,
+    disabled,
+    placeholder,
+  }
 
   return <div ref={ref} {...otherProps}>
     <span css={applyContainerCss(variant)}>
@@ -91,7 +108,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
       <span css={applyInputContainer(stateValue)}>
       {prefix ? (<span css={applyPrefixCls}>{prefix}</span> ): null}
         <InputElement
-          {...props}
+          {...inputProps}
           onFocus={(e) => {
             setFocus(true);
             props.onFocus && props.onFocus(e);

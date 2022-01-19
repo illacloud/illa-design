@@ -3,9 +3,10 @@ import * as React from "react"
 import { forwardRef, useRef, useState, useImperativeHandle, ChangeEvent } from "react"
 import { InputElementProps } from "./interface"
 import { omit } from "@illa-design/system"
-import { CloseIcon } from "@illa-design/icon"
-import {applyInputContainer, applyInputStyle, pointerStyle} from "./style"
-import * as events from "events";
+import { ErrorIcon } from "@illa-design/icon"
+import {applyInputStyle, pointerStyle} from "./style"
+import { css } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((props, ref) => {
   const inputRef = useRef<HTMLInputElement>();
@@ -39,10 +40,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target?.value;
     if (!isComposition.current) {
-      if (!onValueChange) {
-        return;
-      }
-      onValueChange(newValue, e);
+      onValueChange && onValueChange(newValue, e);
     } else {
       setCompositionValue(newValue);
     }
@@ -82,13 +80,12 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
         css={pointerStyle}
         onClick={(e) => {
           e.stopPropagation();
-          onValueChange && onValueChange('', e);
-          onClear && onClear(e);
+          onClear && onClear();
         }}
         onMouseDown={(e) => {
           e.preventDefault();
         }}
-      ><CloseIcon/></span>
+      ><ErrorIcon css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)};`)}/></span>
     ) : null}
   </>
 

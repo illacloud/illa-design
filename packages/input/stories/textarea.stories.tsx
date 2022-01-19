@@ -6,12 +6,12 @@ import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-    title: "DATA DISPLAY/TextArea",
+    title: "DATA INPUT/TextArea",
     component: TextArea,
     decorators: [withTests({ results })],
 } as Meta
 
-export const Template: Story<TextAreaProps> = (props) => {
+export const textarea: Story<TextAreaProps> = (props) => {
     return (
         <div>
             <TextArea {...props} />

@@ -11,8 +11,11 @@ import {
   applyContainerCss,
   applyTextAreaContainer,
   applyTextAreaStyle,
-  applyPrefixCls
+  applyPrefixCls, clearStyle
 } from "./textarea-style"
+import { ErrorIcon } from "@illa-design/icon";
+import { css } from "@emotion/react";
+import { globalColor, illaPrefix } from "@illa-design/theme";
 
 export interface TextAreaState {
   disabled?: boolean
@@ -32,14 +35,15 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) =
     maxLength,
     showCount,
     autoSize,
+    defaultValue,
     variant = "outline",
     ...rest
   } = props
 
   const otherProps = omit(rest, [
     "className",
-    "defaultValue",
     "onChange",
+    "onClear",
   ])
 
   const textAreaRef = useRef<HTMLTextAreaElement>();
@@ -116,6 +120,12 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) =
     }
   };
 
+  const onClear = () => {
+    if (!('value' in props) || !props.value) {
+      setValue('');
+    }
+    props.onClear && props.onClear();
+  }
 
   const textAreaProps = {
     ...otherProps,
@@ -127,7 +137,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) =
     onCompositionEnd: onComposition,
   }
 
-  return <div ref={ref} {...otherProps}>
+  return <div ref={ref} {...rest}>
     <span css={applyContainerCss(variant)}>
       <span css={applyTextAreaContainer(stateValue)}>
         <textarea
@@ -144,6 +154,18 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>((props, ref) =
             props.onBlur && props.onBlur(e);
           }}
         />
+        {!disabled && allowClear && value ? (
+            <span
+                css={clearStyle}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onClear && onClear();
+                }}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                }}
+            ><ErrorIcon css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)};`)}/></span>
+        ) : null}
       </span>
       {suffix ? (<span css={applyPrefixCls}>{suffix}</span> ): null}
 

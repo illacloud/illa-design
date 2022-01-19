@@ -302,5 +302,4 @@ export function applyLengthErrorStyle(error?: boolean) {
 
 export const pointerStyle = css`
   cursor: pointer;
-
 `

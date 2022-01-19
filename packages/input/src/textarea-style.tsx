@@ -124,3 +124,10 @@ export function applyPrefixCls() {
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
 }
+
+export const clearStyle = css`
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 10px;
+`
