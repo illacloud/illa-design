@@ -61,7 +61,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
   let tipsNode: ReactNode
   let centerNode: ReactNode
 
-  const configProviderProps = useContext<ConfigProviderProps | undefined>(ConfigProviderContext)
+  const configProviderProps = useContext<ConfigProviderProps>(ConfigProviderContext)
   const locale = configProviderProps?.locale?.trigger ?? def.trigger
 
   const closeContent = <div css={applyCloseContentCss}>

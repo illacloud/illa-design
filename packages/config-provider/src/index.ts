@@ -1,5 +1,6 @@
 export * from "./config-provider"
 export * from "./interface"
+export * from "./config-provider-context"
 
 // locale
 export * from "./locale/en-US"

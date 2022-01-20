@@ -16,7 +16,7 @@ const colorSchemes = ["white",
   "purple"]
 
 export const applyOperationSpan = css`
-  display: inline-flex;
+  
 `
 
 export const applyCopyContainer = css`
@@ -95,17 +95,16 @@ export function applyExpandLabelCss(): SerializedStyles {
 export function applyCopyableContainerSize(): SerializedStyles {
   return css`
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
     margin-left: 4px;
-    text-align: center;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
 }
 
 export const applyCopyableIconSize = css`
+  cursor: pointer;
+  font-size: 0.75em;
+  margin-left: 4px;
+  color: ${globalColor(`--${illaPrefix}-gray-02`)};
   display: inline-flex;
   align-items: center;
-  width: 0.75em;
-  height: 0.75em;
 `

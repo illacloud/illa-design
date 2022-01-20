@@ -17,7 +17,7 @@ export default {
 
 export const Basic: Story<ConfigProviderProps> = (args) => {
   const [currenLocale, setCurrentLocale] = useState<Locale>(enUS)
-  return <ConfigProvider locale={currenLocale}>
+  return <ConfigProvider locale={currenLocale} {...args}>
     <Typography>
       <Paragraph ellipsis={new EllipsisBuilder().rows(2).expandable(true).create()}
                  copyable={new CopyableBuilder().create()}>A

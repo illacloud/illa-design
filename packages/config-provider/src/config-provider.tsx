@@ -1,19 +1,16 @@
-import { createContext, FC } from "react"
+import * as React from "react"
+import { FC } from "react"
 import { ConfigProviderProps } from "./interface"
+import { ConfigProviderContext } from "./config-provider-context"
 
-export const ConfigProviderContext = createContext<ConfigProviderProps | undefined>(undefined)
 
 export const ConfigProvider: FC<ConfigProviderProps> = ((props) => {
   const {
     locale,
   } = props
-  return <ConfigProviderContext.Provider value={{
-    locale,
-  }}>
+  return <ConfigProviderContext.Provider value={{ locale }}>
     {props.children}
   </ConfigProviderContext.Provider>
 })
-
-ConfigProviderContext.displayName = "ConfigProviderContext"
 
 ConfigProvider.displayName = "ConfigProvider"
