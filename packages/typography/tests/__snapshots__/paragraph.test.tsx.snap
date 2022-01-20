@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Paragraph renders with code style 1`] = `
+.emotion-0 {
+  font-size: 14px;
+}
+
 .emotion-1 {
   color: rgba(0, 0, 0, 0.64);
   background-color: #f3f5f7;
@@ -69,6 +73,10 @@ exports[`Paragraph renders with disabled style 1`] = `
 `;
 
 exports[`Paragraph renders with styles 1`] = `
+.emotion-0 {
+  font-size: 14px;
+}
+
 .emotion-1 {
   color: rgba(0, 0, 0, 0.64);
   font-weight: bold;
