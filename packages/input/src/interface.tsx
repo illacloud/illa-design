@@ -1,5 +1,4 @@
 import { HTMLAttributes, ReactNode, ChangeEvent, InputHTMLAttributes, TextareaHTMLAttributes } from "react"
-import {TextArea} from "./textarea";
 
 export type InputBoarderColor =
   string
@@ -32,6 +31,7 @@ export interface InputElementProps extends Omit<InputHTMLAttributes<HTMLInputEle
   onValueChange?: (value: string, event:ChangeEvent<HTMLInputElement>) => void
   onClear?: () => void
 }
+
 export interface InputProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix"> {
   variant?: InputVariant
   placeholder?: string
@@ -81,7 +81,6 @@ export interface SearchProps extends HTMLAttributes<HTMLDivElement> {
   size?: InputSize
   value?: string
   maxLength?: number
-  showCount?: boolean
   allowClear?: boolean
   onClear?: () => void
 }

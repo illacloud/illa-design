@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { ChangeEvent, forwardRef, useEffect, useState, useMemo, ReactNode, useRef } from "react"
+import { ChangeEvent, forwardRef, useState, useMemo, ReactNode, useRef } from "react"
 import { InputSize, TextAreaProps } from "./interface"
 import { omit } from "@illa-design/system"
 import {

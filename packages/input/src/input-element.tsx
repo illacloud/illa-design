@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, useRef, useState, useImperativeHandle, ChangeEvent } from "react"
+import { forwardRef, useRef, useState, ChangeEvent } from "react"
 import { InputElementProps } from "./interface"
 import { omit } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
@@ -9,7 +9,6 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((props, ref) => {
-  const inputRef = useRef<HTMLInputElement>();
   const isComposition = useRef(false);
   const [compositionValue, setCompositionValue] = useState<string|undefined>('');
 
@@ -71,6 +70,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
 
   return <>
     <input
+      ref={ref}
       css={applyInputStyle}
       {...inputProps}
       {...(type ? { type } : {})}
@@ -85,7 +85,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
         onMouseDown={(e) => {
           e.preventDefault();
         }}
-      ><ErrorIcon css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)};`)}/></span>
+      ><ErrorIcon css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)}; margin-left: 10px;`)}/></span>
     ) : null}
   </>
 

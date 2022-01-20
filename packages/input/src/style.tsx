@@ -227,9 +227,18 @@ export function applyPrefixCls() {
     &:first-of-type {
       margin-right: 12px;
     }
-    &:last-of-type {
+    &:last-child {
       margin-left: 12px;
     }
+  `
+}
+export function applySuffixCls() {
+  return css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    margin-left: 12px;
   `
 }
 

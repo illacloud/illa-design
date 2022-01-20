@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { ChangeEvent, forwardRef, useEffect, useState, useMemo } from "react"
+import { ChangeEvent, forwardRef, useState, useMemo } from "react"
 import { InputProps, InputSize } from "./interface"
 import { omit } from "@illa-design/system"
 import {
@@ -9,10 +9,9 @@ import {
   applyCountLimitStyle,
   applyInputContainer,
   applyLengthErrorStyle,
-  applyPrefixCls,
+  applyPrefixCls, applySuffixCls,
 } from "./style"
 import { InputElement } from "./input-element"
-import * as events from "events"
 
 export interface StateValue {
   disabled?: boolean
@@ -91,6 +90,8 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     "addonAfter",
     "onClear",
     "onChange",
+    "onFocus",
+    "onBlur",
   ])
 
   const inputProps = {
@@ -120,7 +121,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           value={value}
           onValueChange={onValueChange}
         />
-        {suffix ? (<span css={applyPrefixCls}>{suffix}</span> ): null}
+        {suffix ? (<span css={applySuffixCls}>{suffix}</span> ): null}
       </span>
       {addonAfter ? (<span css={applyAddonCss(stateValue)}>{addonAfter}</span> ): null}
     </span>

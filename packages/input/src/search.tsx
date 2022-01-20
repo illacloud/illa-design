@@ -1,16 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import {ChangeEvent, forwardRef, useEffect, useState, ReactNode} from "react"
-import {PasswordProps, SearchProps} from "./interface"
-import {omit} from "@illa-design/system"
+import { ChangeEvent, forwardRef, useState, ReactNode } from "react"
+import { SearchProps } from "./interface"
+import { omit } from "@illa-design/system"
 import { SearchIcon } from "@illa-design/icon"
 import {
     applyContainerCss,
-    applyInputContainer,
-    pointerStyle,
+    applyInputContainer, applySuffixCls,
 } from "./style"
-import {InputElement} from "./input-element"
-import {Button} from "@illa-design/button";
+import { InputElement } from "./input-element"
+import { Button } from "@illa-design/button";
+import { css } from "@emotion/react";
+import { globalColor, illaPrefix } from "@illa-design/theme";
 
 export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
 
@@ -31,10 +32,8 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
         "onClear",
     ])
 
-    const [visibility, setVisibility] = useState(false);
     const [focus, setFocus] = useState(false);
     const [value, setValue] = useState("");
-    let suffix: ReactNode
 
     const stateValue = {error, disabled, focus, variant, size,}
 
@@ -56,6 +55,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
         ...rest,
         onClear,
         allowClear,
+        placeholder,
     }
 
     return <div ref={ref} {...otherProps}>
@@ -75,7 +75,9 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
                 onValueChange={onValueChange}
                 onClear={onClear}
             />
-            {!searchButton ? (<span css={pointerStyle}><SearchIcon /></span>) : null}
+            {!searchButton ? (<span css={applySuffixCls}>
+                <SearchIcon css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)};`)} />
+            </span>) : null}
       </span>
         {searchButton ? (<span><Button size={size} leftIcon={<SearchIcon />} /></span>) : null}
     </span>

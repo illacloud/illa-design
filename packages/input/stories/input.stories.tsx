@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { PersonIcon } from "@illa-design/icon"
-import {InputProps, Input, SearchProps, Search} from "../src"
+import { InputProps, Input } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { BsFacebook } from "react-icons/bs"
