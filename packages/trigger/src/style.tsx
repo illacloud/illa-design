@@ -34,28 +34,28 @@ export function applyTipsContainer(position: TriggerPosition): SerializedStyles 
     case "tl":
     case "tr":
       paddingStyle = css`
-        padding-bottom: 16px;
+        padding-bottom: 4px;
       `
       break
     case "bottom":
     case "bl":
     case "br":
       paddingStyle = css`
-        padding-top: 16px;
+        padding-top: 4px;
       `
       break
     case "left":
     case "lt":
     case "lb":
       paddingStyle = css`
-        padding-right: 16px;
+        padding-right: 4px;
       `
       break
     case "right":
     case "rt":
     case "rb":
       paddingStyle = css`
-        padding-left: 16px;
+        padding-left: 4px;
       `
       break
   }
