@@ -124,9 +124,10 @@ export const Base: FC<BaseProps> = (props) => {
       }}>{originEllipsis.expandLabel}</a>}
     </Fragment>}
     {copyable && originCopyable.copyIcon &&
-    showCopyTooltip ? <Tooltip content={copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip}>
-      {copyableElement}
-    </Tooltip> : copyableElement
+    showCopyTooltip ?
+      <Tooltip closeOnClick={false} content={copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip}>
+        {copyableElement}
+      </Tooltip> : copyableElement
     }
   </span>
 
