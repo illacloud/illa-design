@@ -7,6 +7,7 @@ export const colorSchemes: LinkColorScheme[] = ["white", "blackAlpha", "gray", "
 export function applyLinkContainer(colorScheme: LinkColorScheme) {
   const hoverBgColor = colorScheme == "white" ? globalColor(`--${illaPrefix}-white-06`) : globalColor(`--${illaPrefix}-gray-09`)
   return css`
+    vertical-align: middle;
     display: inline-flex;
     align-items: center;
     flex-direction: row;
