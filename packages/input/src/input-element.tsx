@@ -1,14 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, useRef, useState, ChangeEvent } from "react"
-import { InputElementProps } from "./interface"
+import { forwardRef, useRef, useState, ChangeEvent, useImperativeHandle } from "react"
+import {InputElementProps, InputRefType} from "./interface"
 import { omit } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
 import {applyInputStyle, pointerStyle} from "./style"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((props, ref) => {
+export const InputElement = forwardRef<InputRefType, InputElementProps>((props, ref) => {
+  const inputRef = useRef<HTMLInputElement>();
+
   const isComposition = useRef(false);
   const [compositionValue, setCompositionValue] = useState<string|undefined>('');
 
@@ -34,7 +36,25 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
     "addonBefore",
     "addonAfter",
     "showCount",
+    'onKeyDown',
+    'onPressEnter',
   ])
+
+  useImperativeHandle(
+      ref,
+      () => {
+        return {
+          dom: inputRef.current,
+          focus: () => {
+            inputRef?.current?.focus?.();
+          },
+          blur: () => {
+            inputRef?.current?.blur?.();
+          },
+        };
+      },
+      []
+  );
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target?.value;
@@ -50,12 +70,11 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
     if (e.type === 'compositionend') {
       isComposition.current = false;
       setCompositionValue(undefined);
-      onValueChange && onValueChange(e.target.value, e);
+      onValueChange && onValueChange(e?.target?.value, e);
     } else {
       isComposition.current = true;
     }
   };
-
 
   const inputProps = {
     ...otherProps,
@@ -70,7 +89,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
 
   return <>
     <input
-      ref={ref}
+      ref={inputRef}
       css={applyInputStyle}
       {...inputProps}
       {...(type ? { type } : {})}
@@ -80,6 +99,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>((pro
         css={pointerStyle}
         onClick={(e) => {
           e.stopPropagation();
+          inputRef?.current?.focus?.();
           onClear && onClear();
         }}
         onMouseDown={(e) => {

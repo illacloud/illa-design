@@ -16,7 +16,15 @@ export type InputVariant = "fill" | "outline"
 
 export type InputSize = "small" | "medium" | "large"
 
-export interface InputElementProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+export type InputRefType = {
+  blur?: () => void;
+  focus?: () => void;
+  dom?: HTMLInputElement;
+};
+
+export interface InputElementProps extends
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | "size" >
+{
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
@@ -28,8 +36,11 @@ export interface InputElementProps extends Omit<InputHTMLAttributes<HTMLInputEle
   maxLength?: number
   showCount?: boolean
   allowClear?: boolean
-  onValueChange?: (value: string, event:ChangeEvent<HTMLInputElement>) => void
   onClear?: () => void
+  onValueChange?: (value: string, e: ChangeEvent<HTMLInputElement>) => void
+  // onCompositionStart?: (e: ChangeEvent<HTMLInputElement>) => void
+  // onCompositionUpdate?: (e: ChangeEvent<HTMLInputElement>) => void
+  // onCompositionEnd?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 export interface InputProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix"> {
