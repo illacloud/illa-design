@@ -19,6 +19,12 @@ export const applyOperationSpan = css`
   display: inline-flex;
 `
 
+export const applyCopyContainer = css`
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+`
+
 export function applyFontColor(colorScheme: TypographyColorScheme): SerializedStyles {
 
   const color = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
@@ -89,7 +95,8 @@ export function applyExpandLabelCss(): SerializedStyles {
 export function applyCopyableContainerSize(): SerializedStyles {
   return css`
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     margin-left: 4px;
     text-align: center;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
