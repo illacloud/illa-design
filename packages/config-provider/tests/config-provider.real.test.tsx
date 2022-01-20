@@ -22,5 +22,5 @@ test("Link renders with icon", () => {
       </Heading>
     </Typography>
   </ConfigProvider>)
-  expect(screen.getByText("展开")).toBeInTheDocument()
+  expect(screen.getByText("Expand")).toBeInTheDocument()
 })
