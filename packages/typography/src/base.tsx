@@ -3,7 +3,7 @@ import { Ellipsis, EllipsisBuilder } from "./ellipsis-config"
 import * as React from "react"
 import { FC, Fragment, MutableRefObject, useContext, useEffect, useRef, useState } from "react"
 import {
-  applyCopyableContainerSize,
+  applyCopyableContainerSize, applyCopyableIconSize,
   applyExpandLabelCss,
   applyFontColor,
   applyFontContentStyle,
@@ -106,7 +106,9 @@ export const Base: FC<BaseProps> = (props) => {
     if (originCopyable.onCopy != undefined) {
       originCopyable.onCopy()
     }
-  }} css={applyCopyableContainerSize()}>{!copied ? originCopyable.copyIcon : originCopyable.copiedIcon}</span>
+  }} css={applyCopyableContainerSize()}>
+    <span css={applyCopyableIconSize}>{!copied ? originCopyable.copyIcon : originCopyable.copiedIcon}</span>
+  </span>
 
   const showCopyTooltip = copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip
 

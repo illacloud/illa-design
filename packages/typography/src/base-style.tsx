@@ -102,3 +102,10 @@ export function applyCopyableContainerSize(): SerializedStyles {
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
 }
+
+export const applyCopyableIconSize = css`
+  display: inline-flex;
+  align-items: center;
+  width: 0.75em;
+  height: 0.75em;
+`

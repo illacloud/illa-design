@@ -32,6 +32,19 @@ exports[`Paragraph renders with code style 1`] = `
   color: #1f1f1f;
 }
 
+.emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 0.75em;
+  height: 0.75em;
+}
+
 <div
   class="emotion-0"
   data-testid="test-paragraph"
@@ -52,7 +65,11 @@ exports[`Paragraph renders with code style 1`] = `
   >
     <span
       class="emotion-3"
-    />
+    >
+      <span
+        class="emotion-4"
+      />
+    </span>
   </span>
 </div>
 `;
@@ -114,6 +131,19 @@ exports[`Paragraph renders with styles 1`] = `
   color: #1f1f1f;
 }
 
+.emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 0.75em;
+  height: 0.75em;
+}
+
 <div
   class="emotion-0"
   data-testid="test-paragraph"
@@ -134,7 +164,11 @@ exports[`Paragraph renders with styles 1`] = `
   >
     <span
       class="emotion-3"
-    />
+    >
+      <span
+        class="emotion-4"
+      />
+    </span>
   </span>
 </div>
 `;
