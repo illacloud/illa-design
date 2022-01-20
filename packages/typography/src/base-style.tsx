@@ -16,7 +16,7 @@ const colorSchemes = ["white",
   "purple"]
 
 export const applyOperationSpan = css`
-  
+  display: inline-block;
 `
 
 export const applyCopyContainer = css`
