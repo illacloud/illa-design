@@ -2,7 +2,13 @@
 import { Ellipsis, EllipsisBuilder } from "./ellipsis-config"
 import * as React from "react"
 import { FC, Fragment, MutableRefObject, useContext, useEffect, useRef, useState } from "react"
-import { applyCopyableIconSize, applyExpandLabelCss, applyFontColor, applyFontContentStyle } from "./base-style"
+import {
+  applyCopyableIconSize,
+  applyExpandLabelCss,
+  applyFontColor,
+  applyFontContentStyle,
+  applyOperationSpan,
+} from "./base-style"
 import { css } from "@storybook/theming"
 import mergedToString, { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
@@ -88,10 +94,10 @@ export const Base: FC<BaseProps> = (props) => {
     ${applyFontColor(colorScheme)};
     ${applyFontContentStyle(bold, mark, underline, deleted, disabled, code)};
   `
-  const [content, { width }] = useSize(<span
+  const content = <span
     ref={contentRef}
     css={contentCss}>
-    {finalShowExpand ? clipShowText : props.children}</span>)
+    {finalShowExpand ? clipShowText : props.children}</span>
 
   // apply operation
   const copyableElement = <span onClick={() => {
@@ -106,26 +112,34 @@ export const Base: FC<BaseProps> = (props) => {
 
   const showCopyTooltip = copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip
 
-  const operation = <span ref={operationRef}>
-    {finalShowExpand && !haveShowExpandSize && <Fragment>
+  const expandPanel = finalShowExpand && !haveShowExpandSize && <Fragment>
       <span css={contentCss}>
         ...
         {originEllipsis.suffix && <span>{originEllipsis.suffix}</span>}
       </span>
-      {<a css={applyExpandLabelCss()} onClick={() => {
-        if (originEllipsis.onExpand != undefined) {
-          originEllipsis.onExpand()
-        }
-        setShowExpand(false)
-      }}>{originEllipsis.expandLabel}</a>}
-    </Fragment>}
-    {copyable && originCopyable.copyIcon &&
-    showCopyTooltip ?
-      <Tooltip closeOnClick={false} content={copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip}>
-        {copyableElement}
-      </Tooltip> : copyableElement
-    }
+    {<a css={applyExpandLabelCss()} onClick={() => {
+      if (originEllipsis.onExpand != undefined) {
+        originEllipsis.onExpand()
+      }
+      setShowExpand(false)
+    }}>{originEllipsis.expandLabel}</a>}
+  </Fragment>
+
+  const copyablePanel = copyable && originCopyable.copyIcon &&
+  showCopyTooltip ?
+    <Tooltip closeOnClick={false} content={copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip}>
+      {copyableElement}
+    </Tooltip> : copyableElement
+
+  const operation = (showExpand || copyable) && <span ref={operationRef} css={applyOperationSpan}>
+    {expandPanel}
+    {copyablePanel}
   </span>
+
+  const [base, { width }] = useSize(<span>
+    {content}
+    {operation}
+  </span>)
 
   // update clip text
   useEffect(() => {
@@ -145,8 +159,5 @@ export const Base: FC<BaseProps> = (props) => {
     }
   }, [width, finalShowExpand])
 
-  return <>
-    <span>{content}</span>
-    {operation}
-  </>
+  return base
 }
