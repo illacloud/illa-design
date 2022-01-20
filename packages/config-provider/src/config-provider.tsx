@@ -14,4 +14,6 @@ export const ConfigProvider: FC<ConfigProviderProps> = ((props) => {
   </ConfigProviderContext.Provider>
 })
 
+ConfigProviderContext.displayName = "ConfigProviderContext"
+
 ConfigProvider.displayName = "ConfigProvider"

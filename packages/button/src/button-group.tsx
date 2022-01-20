@@ -30,4 +30,5 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>((props, 
   </div>
 })
 
+ButtonGroupContext.displayName = "ButtonGroupContext"
 ButtonGroup.displayName = "ButtonGroup"
