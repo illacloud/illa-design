@@ -53,8 +53,7 @@ test("Text renders with different copy tooltips", async () => {
   })
   fireEvent.click(screen.getByTitle("CopyIcon"))
   await waitFor(() => expect(onCopy).toBeCalled())
-  fireEvent.mouseLeave(screen.getByTitle("CopyIcon"))
-  fireEvent.mouseEnter(screen.getByTitle("CopyIcon"))
+  fireEvent.mouseEnter(screen.getByTitle("RightIcon"))
   await waitFor(() => expect(screen.getByText("CopiedTooltip")).toBeInTheDocument(), {
     timeout: 3000,
   })
