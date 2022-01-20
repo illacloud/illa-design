@@ -9,22 +9,15 @@ import { BsFacebook } from "react-icons/bs"
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "DATA INPUT/Input",
-  component: Input,
+  component: Search,
   decorators: [withTests({ results })],
 } as Meta
 
-const Template: Story<InputProps> = (props) => {
-  return (
-    <div>
-      <Input {...props} />
-      <Input prefix="prefix" suffix="suffix" {...props} />
-      <Input addonAfter="After" {...props} />
-      <Input addonAfter={<PersonIcon />} addonBefore="Before" {...props} />
-      <Input addonAfter="After" addonBefore="Before" {...props} />
-    </div>
-  )
-}
 
-export const Basic = Template.bind({
-  icon: <BsFacebook />,
-})
+export const search: Story<SearchProps> = (props) => {
+    return (
+        <div>
+            <Search {...props} />
+        </div>
+    )
+}

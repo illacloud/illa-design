@@ -1,4 +1,5 @@
 export * from "./input"
+export * from "./search"
 export * from "./password"
 export * from "./textarea"
 export * from "./interface"

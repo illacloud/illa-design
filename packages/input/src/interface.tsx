@@ -83,6 +83,7 @@ export interface SearchProps extends HTMLAttributes<HTMLDivElement> {
   maxLength?: number
   showCount?: boolean
   allowClear?: boolean
+  onClear?: () => void
 }
 
 export interface PasswordProps extends HTMLAttributes<HTMLDivElement> {
@@ -98,4 +99,5 @@ export interface PasswordProps extends HTMLAttributes<HTMLDivElement> {
   size?: InputSize
   value?: string
   allowClear?: boolean
+  onClear?: () => void
 }

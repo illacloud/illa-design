@@ -184,11 +184,18 @@ export function applyInputContainer(stateValue:StateValue) {
     align-items: center;
     font-size: 14px;
     line-height: 1.57;
-    border-radius: 4px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border: solid 1px  ${globalColor(`--${illaPrefix}-gray-08`)};
     ${sizeCss}
     ${applyStatus(stateValue)}
+    &:first-of-type {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+    &:last-of-type {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
   `
 }
 
@@ -217,10 +224,10 @@ export function applyPrefixCls() {
     flex-direction: row;
     align-items: center;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    &:first-child {
+    &:first-of-type {
       margin-right: 12px;
     }
-    &:last-child {
+    &:last-of-type {
       margin-left: 12px;
     }
   `
@@ -236,10 +243,10 @@ export function applyAddonCss(stateValue:StateValue) {
         border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
         border-top: 0;
         border-bottom: 0;
-        &:first-child {
+        &:first-of-type {
           border-left: 0;
         }
-        &:last-child {
+        &:last-of-type {
           border-right: 0;
         }
       `
@@ -247,10 +254,10 @@ export function applyAddonCss(stateValue:StateValue) {
     case "outline":
       inputStyle = css`
         border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-        &:first-child {
+        &:first-of-type {
           border-right: 0;
         }
-        &:last-child {
+        &:last-of-type {
           border-left: 0;
         }
       `
@@ -265,11 +272,11 @@ export function applyAddonCss(stateValue:StateValue) {
     border-width: 1px;
     border-style: solid;
     padding: 0 12px;
-    &:first-child {
+    &:first-of-type {
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
     }
-    &:last-child {
+    &:last-of-type {
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
     }

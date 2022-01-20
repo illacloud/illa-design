@@ -3,14 +3,14 @@ import * as React from "react"
 import {ChangeEvent, forwardRef, useEffect, useState, ReactNode} from "react"
 import {PasswordProps, SearchProps} from "./interface"
 import {omit} from "@illa-design/system"
-import {EyeOnIcon, EyeOffIcon} from "@illa-design/icon"
+import { SearchIcon } from "@illa-design/icon"
 import {
     applyContainerCss,
     applyInputContainer,
     pointerStyle,
 } from "./style"
 import {InputElement} from "./input-element"
-import * as events from "events"
+import {Button} from "@illa-design/button";
 
 export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
 
@@ -27,6 +27,8 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
 
     const otherProps = omit(rest, [
         "defaultValue",
+        "onChange",
+        "onClear",
     ])
 
     const [visibility, setVisibility] = useState(false);
@@ -35,10 +37,6 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     let suffix: ReactNode
 
     const stateValue = {error, disabled, focus, variant, size,}
-    const passwordProp = {
-        ...rest,
-        type: visibility ? "text" : "password",
-    }
 
     const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
         if (!('value' in props) || !props.value) {
@@ -47,12 +45,24 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
         props.onChange && props.onChange(e);
     };
 
+    const onClear = () => {
+        if (!('value' in props) || !props.value) {
+            setValue('');
+        }
+        props.onClear && props.onClear();
+    }
+
+    const searchProp = {
+        ...rest,
+        onClear,
+        allowClear,
+    }
 
     return <div ref={ref} {...otherProps}>
     <span css={applyContainerCss(variant)}>
         <span css={applyInputContainer(stateValue)}>
             <InputElement
-                {...passwordProp}
+                {...searchProp}
                 onFocus={(e) => {
                     setFocus(true);
                     props.onFocus && props.onFocus(e);
@@ -63,10 +73,11 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
                 }}
                 value={value}
                 onValueChange={onValueChange}
+                onClear={onClear}
             />
-            {searchButton ? (<span css={pointerStyle}></span>) : null}
+            {!searchButton ? (<span css={pointerStyle}><SearchIcon /></span>) : null}
       </span>
-        {searchButton ? (<span css={pointerStyle}></span>) : null}
+        {searchButton ? (<span><Button size={size} leftIcon={<SearchIcon />} /></span>) : null}
     </span>
     </div>
 

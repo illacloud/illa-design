@@ -104,7 +104,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
 
   return <div ref={ref} {...otherProps}>
     <span css={applyContainerCss(variant)}>
-      {addonBefore ? (<div css={applyAddonCss(stateValue)}>{addonBefore}</div> ): null}
+      {addonBefore ? (<span css={applyAddonCss(stateValue)}>{addonBefore}</span> ): null}
       <span css={applyInputContainer(stateValue)}>
       {prefix ? (<span css={applyPrefixCls}>{prefix}</span> ): null}
         <InputElement
@@ -122,7 +122,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         />
         {suffix ? (<span css={applyPrefixCls}>{suffix}</span> ): null}
       </span>
-      {addonAfter ? (<div css={applyAddonCss(stateValue)}>{addonAfter}</div> ): null}
+      {addonAfter ? (<span css={applyAddonCss(stateValue)}>{addonAfter}</span> ): null}
     </span>
   </div>
 
