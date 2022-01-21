@@ -2,7 +2,7 @@
 import * as React from "react"
 import { ChangeEvent, forwardRef, useState, useMemo } from "react"
 import { InputProps, InputSize } from "./interface"
-import { omit } from "@illa-design/system"
+import { omit, useMergeValue } from "@illa-design/system"
 import {
   applyAddonCss,
   applyContainerCss,
@@ -12,6 +12,7 @@ import {
   applyPrefixCls, applySuffixCls,
 } from "./style"
 import { InputElement } from "./input-element"
+import { formatForRule } from "./utils"
 
 export interface StateValue {
   disabled?: boolean
@@ -33,13 +34,18 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     prefix,
     addonAfter,
     addonBefore,
+    defaultValue,
     size = "medium",
     variant = "outline",
     ...rest
   } = props
 
   const [focus, setFocus] = useState(false)
-  const [value, setValue] = useState("")
+  const [value, setValue] = useMergeValue('', {
+      defaultValue: defaultValue ? formatForRule(defaultValue, maxLength) : undefined,
+      value: props.value ? formatForRule(props.value, maxLength) : undefined,
+    }
+  )
   const valueLength = value ? value.length : 0
   let suffix = props.suffix
 

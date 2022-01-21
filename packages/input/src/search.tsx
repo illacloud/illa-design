@@ -2,7 +2,7 @@
 import * as React from "react"
 import { ChangeEvent, forwardRef, useState } from "react"
 import { SearchProps } from "./interface"
-import { omit } from "@illa-design/system"
+import { omit, useMergeValue } from "@illa-design/system"
 import { SearchIcon } from "@illa-design/icon"
 import {
   applyContainerCss,
@@ -20,6 +20,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     error,
     disabled,
     placeholder,
+    defaultValue,
     searchButton = false,
     size = "medium",
     variant = "outline",
@@ -33,7 +34,11 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   ])
 
   const [focus, setFocus] = useState(false)
-  const [value, setValue] = useState("")
+  const [value, setValue] = useMergeValue('', {
+      defaultValue: defaultValue ? defaultValue : undefined,
+      value: props.value ? props.value: undefined,
+    }
+  )
 
   const stateValue = { error, disabled, focus, variant, size }
 

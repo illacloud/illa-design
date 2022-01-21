@@ -2,7 +2,7 @@
 import * as React from "react"
 import { ChangeEvent, forwardRef, useState, useMemo, ReactNode, useRef, useImperativeHandle } from "react"
 import { InputSize, TextAreaProps, TextAreaType } from "./interface"
-import { omit } from "@illa-design/system"
+import { omit, useMergeValue } from "@illa-design/system"
 import {
   applyLengthErrorStyle,
   applyCountLimitStyle,
@@ -16,6 +16,7 @@ import {
 import { ErrorIcon } from "@illa-design/icon"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { formatForRule } from "./utils"
 
 export interface TextAreaState {
   disabled?: boolean
@@ -49,7 +50,11 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>((props, ref) => 
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
   const isComposition = useRef(false)
   const [focus, setFocus] = useState(false)
-  const [value, setValue] = useState(props.value || "")
+  const [value, setValue] = useMergeValue('', {
+      defaultValue: defaultValue ? formatForRule(defaultValue, maxLength) : undefined,
+      value: props.value ? formatForRule(props.value, maxLength) : undefined,
+    }
+  )
   const [compositionValue, setCompositionValue] = useState<string | undefined>()
   const valueLength = value ? value.length : 0
   let suffix: ReactNode

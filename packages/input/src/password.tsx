@@ -2,7 +2,7 @@
 import * as React from "react"
 import { ChangeEvent, forwardRef, useState } from "react"
 import { PasswordProps } from "./interface"
-import { omit } from "@illa-design/system"
+import { omit, useMergeValue } from "@illa-design/system"
 import { EyeOnIcon, EyeOffIcon } from "@illa-design/icon"
 import {
   applyContainerCss,
@@ -10,6 +10,7 @@ import {
   pointerStyle,
 } from "./style"
 import { InputElement } from "./input-element"
+import { formatForRule } from "./utils"
 
 export const Password = forwardRef<HTMLDivElement, PasswordProps>((props, ref) => {
 
@@ -21,6 +22,7 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>((props, ref) =
     invisibleButton = true,
     size = "medium",
     variant = "outline",
+    defaultValue,
     ...rest
   } = props
 
@@ -32,7 +34,11 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>((props, ref) =
 
   const [visibility, setVisibility] = useState(false)
   const [focus, setFocus] = useState(false)
-  const [value, setValue] = useState("")
+  const [value, setValue] = useMergeValue('', {
+      defaultValue: defaultValue ? defaultValue : undefined,
+      value: props.value ? props.value: undefined,
+    }
+  )
   const stateValue = { error, disabled, focus, variant, size }
 
   const onClear = () => {
