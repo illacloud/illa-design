@@ -44,3 +44,5 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref)
     return headingNode
   }
 })
+
+Heading.displayName = "Heading"

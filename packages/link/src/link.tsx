@@ -26,3 +26,5 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
     {props.children}
   </a>
 })
+
+Link.displayName = "Link"

@@ -16,7 +16,13 @@ const colorSchemes = ["white",
   "purple"]
 
 export const applyOperationSpan = css`
+  display: inline-block;
+`
+
+export const applyCopyContainer = css`
   display: inline-flex;
+  flex-direction: row;
+  align-items: center;
 `
 
 export function applyFontColor(colorScheme: TypographyColorScheme): SerializedStyles {
@@ -89,9 +95,16 @@ export function applyExpandLabelCss(): SerializedStyles {
 export function applyCopyableContainerSize(): SerializedStyles {
   return css`
     cursor: pointer;
-    display: inline-block;
     margin-left: 4px;
-    text-align: center;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
 }
+
+export const applyCopyableIconSize = css`
+  cursor: pointer;
+  font-size: 0.75em;
+  margin-left: 4px;
+  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  display: inline-flex;
+  align-items: center;
+`

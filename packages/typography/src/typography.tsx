@@ -7,3 +7,6 @@ export const Typography = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>((
     {props.children}
   </article>
 })
+
+
+Typography.displayName = "Typography"

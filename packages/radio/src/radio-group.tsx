@@ -44,7 +44,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>((prop
       break
   }
 
-  function onChangeValue<T> (v: T, event: ChangeEvent): void {
+  function onChangeValue<T>(v: T, event: ChangeEvent): void {
     const { onChange } = props
     if (v !== value) {
       if (!("value" in props)) {
@@ -56,7 +56,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>((prop
 
   const contextProp = {
     onChangeValue,
-    name, options, disabled, value, spacing, colorScheme
+    name, options, disabled, value, spacing, colorScheme,
   }
 
   return <div css={radioGroupCss} ref={ref} {...otherProps}>
@@ -68,7 +68,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>((prop
               <Radio key={index} value={option} disabled={disabled}>
                 {option}
               </Radio>
-            : <Radio
+              : <Radio
                 key={option.value}
                 value={option.value}
                 disabled={disabled || option.disabled}
@@ -81,3 +81,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>((prop
     </RadioGroupContext.Provider>
   </div>
 })
+
+RadioGroupContext.displayName = "RadioGroupContext"
+
+RadioGroup.displayName = "RadioGroup"

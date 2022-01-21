@@ -90,3 +90,5 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
     }
   </div>
 })
+
+Image.displayName = "Image"

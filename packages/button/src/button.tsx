@@ -85,3 +85,5 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
     }}
   </ButtonGroupContext.Consumer>
 })
+
+Button.displayName = "Button"

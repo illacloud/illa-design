@@ -1,5 +1,4 @@
 # Commands to start on workspace startup
-image: gitpod/workspace-full-vnc
 tasks:
   - init: yarn
     command: npx lerna bootstrap

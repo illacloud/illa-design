@@ -31,3 +31,5 @@ export const Space = forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
   </div>
 
 })
+
+Space.displayName = "Space"

@@ -43,3 +43,5 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
   </AvatarGroupContext.Consumer>
 
 })
+
+Avatar.displayName = "Avatar"

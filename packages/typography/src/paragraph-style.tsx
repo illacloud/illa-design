@@ -9,3 +9,9 @@ export function applyParagraphContainer(indent: boolean): SerializedStyles {
     return css``
   }
 }
+
+export function applyTextContainer(fontSize: string): SerializedStyles {
+  return css`
+    font-size: ${fontSize};
+  `
+}

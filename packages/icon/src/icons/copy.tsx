@@ -8,3 +8,5 @@ export const CopyIcon = createIcon({
     <path key="CopyIconTwo" fillRule="evenodd" clipRule="evenodd" fill="currentColor"
           d="M3.996.75a.75.75 0 0 1 .75-.75h8.504A2.75 2.75 0 0 1 16 2.75v8.5a.75.75 0 0 1-1.5 0v-8.5c0-.69-.56-1.25-1.25-1.25H4.746a.75.75 0 0 1-.75-.75z" />],
 })
+
+CopyIcon.displayName = "CopyIcon"

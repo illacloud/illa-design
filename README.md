@@ -10,7 +10,6 @@
 
 ![cover](https://devbo.cn/cover.png)
 
-[![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
 [![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
 [![feishu](https://devbo.cn/feishu.svg)](https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=a8ck3dda-d44f-4897-8504-6775e8ff5e13)
 [![chromatic](https://devbo.cn/chromatic.svg)](https://chromatic.com/library?appId=618513c5ace06a003a5ed751&branch=main)
@@ -80,6 +79,7 @@ Step 2: Run.
 
 ```bash
 $ yarn build-all-components
+$ yarn test
 $ yarn storybook
 ```
 

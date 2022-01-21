@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { FC, MutableRefObject, ReactNode, useEffect, useRef, useState } from "react"
+import { FC, MutableRefObject, ReactNode, useContext, useEffect, useRef, useState } from "react"
 import { TriggerProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
 import {
@@ -16,6 +16,7 @@ import { TriangleBottom, TriangleLeft, TriangleRight, TriangleTop } from "./tria
 import { adjustLocation, AdjustResult, getFinalPosition } from "./adjust-tips-location"
 import { Popup } from "./popup"
 import { Link } from "@illa-design/link"
+import { ConfigProviderContext, ConfigProviderProps, def } from "@illa-design/config-provider"
 
 export const Trigger: FC<TriggerProps> = ((props) => {
 
@@ -36,7 +37,6 @@ export const Trigger: FC<TriggerProps> = ((props) => {
     trigger = "hover",
     ...otherProps
   } = props
-
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
 
@@ -61,6 +61,9 @@ export const Trigger: FC<TriggerProps> = ((props) => {
   let tipsNode: ReactNode
   let centerNode: ReactNode
 
+  const configProviderProps = useContext<ConfigProviderProps>(ConfigProviderContext)
+  const locale = configProviderProps?.locale?.trigger ?? def.trigger
+
   const closeContent = <div css={applyCloseContentCss}>
     <div>{content}</div>
     {hasCloseIcon &&
@@ -70,7 +73,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
           onVisibleChange(false)
         }
       }
-      }>Close</Link>}
+      }>{locale["close"]}</Link>}
   </div>
 
   switch (finalPosition) {
@@ -158,7 +161,17 @@ export const Trigger: FC<TriggerProps> = ((props) => {
 
   useEffect(() => {
     let isMount = true
-    if (!disabled && (popupVisible || (popupVisible == undefined && defaultPopupVisible))) {
+    if (tipVisible) {
+      adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition).then((result) => {
+        // async deal
+        if (isMount) {
+          setAdjustResult(result)
+          if (onVisibleChange != undefined) {
+            onVisibleChange(true)
+          }
+        }
+      })
+    } else if (!disabled && (popupVisible || (popupVisible == undefined && defaultPopupVisible))) {
       adjustLocation(tipsNode, childrenRef.current, position, autoFitPosition).then((result) => {
         // async deal
         if (isMount) {
@@ -171,13 +184,6 @@ export const Trigger: FC<TriggerProps> = ((props) => {
           }
         }
       })
-    } else {
-      if (tipVisible && isMount) {
-        setTipsVisible(false)
-        if (onVisibleChange != undefined) {
-          onVisibleChange(false)
-        }
-      }
     }
     return () => {
       isMount = false
@@ -240,3 +246,5 @@ export const Trigger: FC<TriggerProps> = ((props) => {
   </>
 
 })
+
+Trigger.displayName = "Trigger"

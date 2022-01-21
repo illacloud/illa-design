@@ -21,8 +21,6 @@ export function getHeadingSize(level: HeadingLevel): string[] {
 
 export function applyTypoContainer(): SerializedStyles {
   return css`
-    display: flex;
-    flex-direction: column;
     word-break: break-all;
 
     h1 {
