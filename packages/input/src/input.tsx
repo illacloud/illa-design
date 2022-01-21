@@ -38,17 +38,17 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     ...rest
   } = props
 
-  const [focus, setFocus] = useState(false);
-  const [value, setValue] = useState("");
-  const valueLength = value ? value.length : 0;
+  const [focus, setFocus] = useState(false)
+  const [value, setValue] = useState("")
+  const valueLength = value ? value.length : 0
   let suffix = props.suffix
 
   const lengthError = useMemo(() => {
     if (maxLength) {
-      return valueLength > maxLength;
+      return valueLength > maxLength
     }
-    return false;
-  }, [valueLength, maxLength]);
+    return false
+  }, [valueLength, maxLength])
 
   const stateValue = {
     error: error || lengthError,
@@ -64,21 +64,21 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         <span css={applyLengthErrorStyle(lengthError)}>{valueLength}</span>
         <span>/{maxLength}</span>
       </span>
-    );
+    )
   }
 
-  const onValueChange = (v: string, e:ChangeEvent<HTMLInputElement>) => {
-    if (!('value' in props) || !props.value) {
-      setValue(v);
+  const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
+    if (!("value" in props) || !props.value) {
+      setValue(v)
     }
-    props.onChange && props.onChange(e);
-  };
+    props.onChange && props.onChange(e)
+  }
 
   const onClear = () => {
-    if (!('value' in props) || !props.value) {
-      setValue('');
+    if (!("value" in props) || !props.value) {
+      setValue("")
     }
-    props.onClear && props.onClear();
+    props.onClear && props.onClear()
   }
 
   const otherProps = omit(rest, [
@@ -105,25 +105,25 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
 
   return <div ref={ref} {...otherProps}>
     <span css={applyContainerCss(variant)}>
-      {addonBefore ? (<span css={applyAddonCss(stateValue)}>{addonBefore}</span> ): null}
+      {addonBefore ? (<span css={applyAddonCss(stateValue)}>{addonBefore}</span>) : null}
       <span css={applyInputContainer(stateValue)}>
-      {prefix ? (<span css={applyPrefixCls}>{prefix}</span> ): null}
+      {prefix ? (<span css={applyPrefixCls}>{prefix}</span>) : null}
         <InputElement
           {...inputProps}
           onFocus={(e) => {
-            setFocus(true);
-            props.onFocus && props.onFocus(e);
+            setFocus(true)
+            props.onFocus && props.onFocus(e)
           }}
           onBlur={(e) => {
-            setFocus(false);
-            props.onBlur && props.onBlur(e);
+            setFocus(false)
+            props.onBlur && props.onBlur(e)
           }}
           value={value}
           onValueChange={onValueChange}
         />
-        {suffix ? (<span css={applySuffixCls}>{suffix}</span> ): null}
+        {suffix ? (<span css={applySuffixCls}>{suffix}</span>) : null}
       </span>
-      {addonAfter ? (<span css={applyAddonCss(stateValue)}>{addonAfter}</span> ): null}
+      {addonAfter ? (<span css={applyAddonCss(stateValue)}>{addonAfter}</span>) : null}
     </span>
   </div>
 

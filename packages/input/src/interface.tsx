@@ -19,12 +19,16 @@ export type InputSize = "small" | "medium" | "large"
 export type InputRefType = {
   blur?: () => void;
   focus?: () => void;
-  dom?: HTMLInputElement;
+  dom: HTMLInputElement | null;
 };
 
-export interface InputElementProps extends
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | "size" >
-{
+export type TextAreaType = {
+  blur?: () => void;
+  focus?: () => void;
+  dom: HTMLTextAreaElement | null;
+};
+
+export interface InputElementProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
@@ -38,9 +42,6 @@ export interface InputElementProps extends
   allowClear?: boolean
   onClear?: () => void
   onValueChange?: (value: string, e: ChangeEvent<HTMLInputElement>) => void
-  // onCompositionStart?: (e: ChangeEvent<HTMLInputElement>) => void
-  // onCompositionUpdate?: (e: ChangeEvent<HTMLInputElement>) => void
-  // onCompositionEnd?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 export interface InputProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix"> {
@@ -69,9 +70,9 @@ export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   disabled?: boolean
   error?: boolean
   autoSize?: boolean | {
-      minRows?: number
-      maxRows?: number
-    }
+    minRows?: number
+    maxRows?: number
+  }
   value?: string
   maxLength?: number
   showCount?: boolean

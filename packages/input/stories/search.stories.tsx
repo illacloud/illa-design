@@ -13,9 +13,9 @@ export default {
 
 
 export const search: Story<SearchProps> = (props) => {
-    return (
-        <div>
-            <Search {...props} />
-        </div>
-    )
+  return (
+    <div>
+      <Search {...props} />
+    </div>
+  )
 }

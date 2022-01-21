@@ -177,6 +177,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   align-items: center;
   width: 12px;
   height: 12px;
+  font-size: 12px;
   margin-right: 6px;
 }
 
@@ -309,6 +310,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   justify-content: center;
   width: 24px;
   height: 24px;
+  font-size: 12px;
   border-radius: 0;
   color: #fff;
   background-color: #134ae0;
@@ -786,6 +788,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   align-items: center;
   width: 12px;
   height: 12px;
+  font-size: 12px;
   margin-right: 6px;
 }
 
@@ -918,6 +921,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   justify-content: center;
   width: 24px;
   height: 24px;
+  font-size: 12px;
   border-radius: 0;
   color: #fff;
   background-color: #134ae0;
@@ -1345,6 +1349,7 @@ exports[`Button Group renders with spacing 1`] = `
   align-items: center;
   width: 12px;
   height: 12px;
+  font-size: 12px;
   margin-right: 6px;
 }
 
@@ -1477,6 +1482,7 @@ exports[`Button Group renders with spacing 1`] = `
   justify-content: center;
   width: 24px;
   height: 24px;
+  font-size: 12px;
   border-radius: 4px;
   color: #fff;
   background-color: #134ae0;

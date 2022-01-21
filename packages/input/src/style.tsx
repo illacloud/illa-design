@@ -33,6 +33,7 @@ export const errorFocusStyle = css`
 export const errorFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-red-07`)};
   border-color: ${globalColor(`--${illaPrefix}-red-07`)};
+
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-red-06`)};
     border-color: ${globalColor(`--${illaPrefix}-red-06`)};
@@ -41,10 +42,12 @@ export const errorFillStyle = css`
 export const errorOutlineStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
+
   &:hover {
     border-color: ${globalColor(`--${illaPrefix}-red-02`)};
   }
 `
+
 export function applyVariantStyle(variant?: string) {
   let inputStyle: SerializedStyles
   switch (variant) {
@@ -126,33 +129,33 @@ function applyStatus(stateValue: StateValue) {
     mainStyle = css`
       cursor: not-allowed;
       ${disableStyle}
-      `
+    `
   } else if (stateValue?.focus) {
     mainStyle = css`
       border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
       box-shadow: 0 0 8px 0 rgba(19, 83, 224, 0.5);
-      ${stateValue?.error ? errorFocusStyle : ''}
+      ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
-      `
+    `
   } else if (stateValue?.error) {
     mainStyle = css`
       ${errorStyle}
-      `
+    `
   } else {
     mainStyle = css`
       &:hover {
-          border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
-          ${hoverStyle}
+        border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
+        ${hoverStyle}
       }
     `
   }
   return css`
     ${inputStyle};
     ${mainStyle};
-    `
+  `
 }
 
-export function applyInputContainer(stateValue:StateValue) {
+export function applyInputContainer(stateValue: StateValue) {
   let sizeCss: SerializedStyles
 
   switch (stateValue?.size) {
@@ -185,13 +188,15 @@ export function applyInputContainer(stateValue:StateValue) {
     font-size: 14px;
     line-height: 1.57;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    border: solid 1px  ${globalColor(`--${illaPrefix}-gray-08`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+
     ${sizeCss}
     ${applyStatus(stateValue)}
     &:first-of-type {
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
     }
+
     &:last-of-type {
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
@@ -212,6 +217,7 @@ export function applyInputStyle() {
     outline: unset;
     cursor: inherit;
     background-color: inherit;
+
     &::placeholder {
       color: ${globalColor(`--${illaPrefix}-gray-04`)};
     }
@@ -224,14 +230,17 @@ export function applyPrefixCls() {
     flex-direction: row;
     align-items: center;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
+
     &:first-of-type {
       margin-right: 12px;
     }
+
     &:last-child {
       margin-left: 12px;
     }
   `
 }
+
 export function applySuffixCls() {
   return css`
     display: flex;
@@ -242,7 +251,7 @@ export function applySuffixCls() {
   `
 }
 
-export function applyAddonCss(stateValue:StateValue) {
+export function applyAddonCss(stateValue: StateValue) {
   let inputStyle: SerializedStyles
   switch (stateValue?.variant) {
     default:
@@ -252,9 +261,11 @@ export function applyAddonCss(stateValue:StateValue) {
         border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
         border-top: 0;
         border-bottom: 0;
+
         &:first-of-type {
           border-left: 0;
         }
+
         &:last-of-type {
           border-right: 0;
         }
@@ -263,9 +274,11 @@ export function applyAddonCss(stateValue:StateValue) {
     case "outline":
       inputStyle = css`
         border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+
         &:first-of-type {
           border-right: 0;
         }
+
         &:last-of-type {
           border-left: 0;
         }
@@ -281,14 +294,17 @@ export function applyAddonCss(stateValue:StateValue) {
     border-width: 1px;
     border-style: solid;
     padding: 0 12px;
+
     &:first-of-type {
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
     }
+
     &:last-of-type {
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
     }
+
     ${inputStyle}
     ${applySizeStyle(stateValue?.size)}
   `
@@ -311,9 +327,9 @@ export function applyLengthErrorStyle(error?: boolean) {
       color: ${globalColor(`--${illaPrefix}-red-03`)};
     `
   }
-  return  css`
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
-    `
+  return css`
+    color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  `
 }
 
 export const pointerStyle = css`

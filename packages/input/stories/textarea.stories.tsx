@@ -6,16 +6,16 @@ import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-    title: "DATA INPUT/Input",
-    component: TextArea,
-    decorators: [withTests({ results })],
+  title: "DATA INPUT/Input",
+  component: TextArea,
+  decorators: [withTests({ results })],
 } as Meta
 
 export const textarea: Story<TextAreaProps> = (props) => {
-    return (
-        <div>
-            <TextArea {...props} />
-            <TextArea allowClear {...props} />
-        </div>
-    )
+  return (
+    <div>
+      <TextArea {...props} />
+      <TextArea allowClear {...props} />
+    </div>
+  )
 }

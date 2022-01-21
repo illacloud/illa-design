@@ -6,15 +6,15 @@ import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-    title: "DATA INPUT/Input",
-    component: Password,
-    decorators: [withTests({ results })],
+  title: "DATA INPUT/Input",
+  component: Password,
+  decorators: [withTests({ results })],
 } as Meta
 
 export const password: Story<PasswordProps> = (props) => {
-    return (
-        <div>
-            <Password {...props} />
-        </div>
-    )
+  return (
+    <div>
+      <Password {...props} />
+    </div>
+  )
 }

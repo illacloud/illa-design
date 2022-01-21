@@ -42,7 +42,7 @@ function applyStatus(stateValue: StateValue) {
     mainStyle = css`
       border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
       box-shadow: 0 0 8px 0 rgba(19, 83, 224, 0.5);
-      ${stateValue?.error ? errorFocusStyle : ''}
+      ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
     `
   } else if (stateValue?.error) {
@@ -79,7 +79,7 @@ export function applyContainerCss(variant: string) {
   `
 }
 
-export function applyTextAreaContainer(stateValue:StateValue) {
+export function applyTextAreaContainer(stateValue: StateValue) {
   return css`
     width: 100%;
     display: flex;
@@ -89,7 +89,7 @@ export function applyTextAreaContainer(stateValue:StateValue) {
     line-height: 1.57;
     border-radius: 4px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    border: solid 1px  ${globalColor(`--${illaPrefix}-gray-08`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     ${applyStatus(stateValue)}
   `
 }
@@ -110,6 +110,7 @@ export function applyTextAreaStyle() {
     cursor: inherit;
     resize: vertical;
     background-color: inherit;
+
     &::placeholder {
       color: ${globalColor(`--${illaPrefix}-gray-04`)};
     }

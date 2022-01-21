@@ -1,18 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { forwardRef, useRef, useState, ChangeEvent, useImperativeHandle } from "react"
-import {InputElementProps, InputRefType} from "./interface"
+import { InputElementProps, InputRefType } from "./interface"
 import { omit } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
-import {applyInputStyle, pointerStyle} from "./style"
+import { applyInputStyle, pointerStyle } from "./style"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const InputElement = forwardRef<InputRefType, InputElementProps>((props, ref) => {
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const isComposition = useRef(false);
-  const [compositionValue, setCompositionValue] = useState<string|undefined>('');
+  const isComposition = useRef(false)
+  const [compositionValue, setCompositionValue] = useState<string | undefined>("")
 
   const {
     allowClear,
@@ -36,49 +36,49 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>((props, 
     "addonBefore",
     "addonAfter",
     "showCount",
-    'onKeyDown',
-    'onPressEnter',
+    "onKeyDown",
+    "onPressEnter",
   ])
 
   useImperativeHandle(
-      ref,
-      () => {
-        return {
-          dom: inputRef.current,
-          focus: () => {
-            inputRef?.current?.focus?.();
-          },
-          blur: () => {
-            inputRef?.current?.blur?.();
-          },
-        };
-      },
-      []
-  );
+    ref,
+    () => {
+      return {
+        dom: inputRef.current,
+        focus: () => {
+          inputRef?.current?.focus?.()
+        },
+        blur: () => {
+          inputRef?.current?.blur?.()
+        },
+      }
+    },
+    [],
+  )
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target?.value;
+    const newValue = e.target?.value
     if (!isComposition.current) {
-      onValueChange && onValueChange(newValue, e);
+      onValueChange && onValueChange(newValue, e)
     } else {
-      setCompositionValue(newValue);
+      setCompositionValue(newValue)
     }
-  };
+  }
 
   // 处理中文输入
-  const onComposition = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.type === 'compositionend') {
-      isComposition.current = false;
-      setCompositionValue(undefined);
-      onValueChange && onValueChange(e?.target?.value, e);
+  const onComposition = (e: React.CompositionEvent & React.ChangeEvent<HTMLInputElement>) => {
+    if (e.type === "compositionend") {
+      isComposition.current = false
+      setCompositionValue(undefined)
+      onValueChange && onValueChange(e?.target?.value, e)
     } else {
-      isComposition.current = true;
+      isComposition.current = true
     }
-  };
+  }
 
   const inputProps = {
     ...otherProps,
-    value: compositionValue || value || '',
+    value: compositionValue || value || "",
     disabled,
     placeholder,
     onChange,
@@ -98,14 +98,14 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>((props, 
       <span
         css={pointerStyle}
         onClick={(e) => {
-          e.stopPropagation();
-          inputRef?.current?.focus?.();
-          onClear && onClear();
+          e.stopPropagation()
+          inputRef?.current?.focus?.()
+          onClear && onClear()
         }}
         onMouseDown={(e) => {
-          e.preventDefault();
+          e.preventDefault()
         }}
-      ><ErrorIcon css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)}; margin-left: 10px;`)}/></span>
+      ><ErrorIcon css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)}; margin-left: 10px;`)} /></span>
     ) : null}
   </>
 
