@@ -39,6 +39,7 @@
     "packages/*"
   ],
   "scripts": {
+    "build-develop": "sh ./scripts/build-develop.sh",
     "storybook": "npx start-storybook -p 6006",
     "build-all-components": "npx zx ./scripts/build-all-components.mjs",
     "build-storybook": "npx build-storybook",
