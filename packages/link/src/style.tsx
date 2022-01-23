@@ -4,8 +4,17 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const colorSchemes: LinkColorScheme[] = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
 
-export function applyLinkContainer(colorScheme: LinkColorScheme) {
+export function applyLinkContainer(colorScheme: LinkColorScheme, hoverable: boolean) {
   const hoverBgColor = colorScheme == "white" ? globalColor(`--${illaPrefix}-white-06`) : globalColor(`--${illaPrefix}-gray-09`)
+  let hoverCss
+  if (hoverable) {
+    hoverCss = css`
+      &:hover {
+        background-color: ${hoverBgColor};
+        border-radius: 4px;
+      }
+    `
+  }
   return css`
     vertical-align: middle;
     display: inline-flex;
@@ -14,11 +23,7 @@ export function applyLinkContainer(colorScheme: LinkColorScheme) {
     padding: 1px 4px;
     font-size: 14px;
     line-height: 22px;
-
-    &:hover {
-      background-color: ${hoverBgColor};
-      border-radius: 4px;
-    }
+    ${hoverCss};
   `
 }
 
