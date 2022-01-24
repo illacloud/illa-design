@@ -14,7 +14,6 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
-
   const {
     allowClear,
     error,
@@ -31,6 +30,10 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     "defaultValue",
     "onChange",
     "onClear",
+    "onFocus",
+    "onBlur",
+    "onSearch",
+    "onPressEnter",
   ])
 
   const [focus, setFocus] = useState(false)
@@ -39,25 +42,24 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
       value: props.value ? props.value: undefined,
     }
   )
-
   const stateValue = { error, disabled, focus, variant, size }
 
   const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
     if (!("value" in props) || !props.value) {
       setValue(v)
     }
-    props.onChange && props.onChange(e)
+    props.onChange?.(e)
   }
 
   const onClear = () => {
-    if (!("value" in props) || !props.value) {
+    if (!("value" in props)) {
       setValue("")
     }
-    props.onClear && props.onClear()
+    props.onClear?.()
   }
 
   const searchProp = {
-    ...rest,
+    ...otherProps,
     onClear,
     disabled,
     allowClear,
@@ -80,12 +82,18 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
               value={value}
               onValueChange={onValueChange}
               onClear={onClear}
+              onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                !disabled && props.onSearch?.(value);
+                props.onPressEnter?.(e);
+              }}
             />
           {!searchButton ? (<span css={applySuffixCls}>
                 <SearchIcon css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)};`)} />
             </span>) : null}
       </span>
-      {searchButton ? (<span><Button buttonRadius="0 4px 4px 0" size={size} leftIcon={<SearchIcon />} /></span>) : null}
+      {searchButton ? (<span>
+        <Button buttonRadius="0 4px 4px 0" size={size} leftIcon={<SearchIcon />} onClick={()=>{props.onSearch?.(value)}} />
+      </span>) : null}
     </span>
   </div>
 

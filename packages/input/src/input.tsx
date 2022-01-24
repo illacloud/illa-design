@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { ChangeEvent, forwardRef, useState, useMemo } from "react"
-import { InputProps, InputSize } from "./interface"
+import {ChangeEvent, forwardRef, useState, useMemo, useRef, useImperativeHandle} from "react"
+import {InputProps, InputRefType, InputSize} from "./interface"
 import { omit, useMergeValue } from "@illa-design/system"
 import {
   applyAddonCss,
@@ -22,7 +22,7 @@ export interface StateValue {
   size?: InputSize
 }
 
-export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
+export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
 
   const {
     allowClear,
@@ -40,6 +40,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     ...rest
   } = props
 
+  const inputRef = useRef<InputRefType>({} as InputRefType)
   const [focus, setFocus] = useState(false)
   const [value, setValue] = useMergeValue('', {
       defaultValue: defaultValue ? formatForRule(defaultValue, maxLength) : undefined,
@@ -64,6 +65,8 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     size,
   }
 
+  useImperativeHandle(ref, () => inputRef?.current, []);
+
   if (maxLength && showCount) {
     suffix = (
       <span css={applyCountLimitStyle}>
@@ -84,7 +87,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     if (!("value" in props) || !props.value) {
       setValue("")
     }
-    props.onClear && props.onClear()
+    props.onClear?.()
   }
 
   const otherProps = omit(rest, [
@@ -109,12 +112,13 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     placeholder,
   }
 
-  return <div ref={ref} {...otherProps}>
+  return <div {...otherProps}>
     <span css={applyContainerCss(variant)}>
       {addonBefore ? (<span css={applyAddonCss(stateValue)}>{addonBefore}</span>) : null}
       <span css={applyInputContainer(stateValue)}>
       {prefix ? (<span css={applyPrefixCls}>{prefix}</span>) : null}
         <InputElement
+          ref={inputRef}
           {...inputProps}
           onFocus={(e) => {
             setFocus(true)
@@ -126,6 +130,9 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           }}
           value={value}
           onValueChange={onValueChange}
+          onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
+            props.onPressEnter?.(e);
+          }}
         />
         {suffix ? (<span css={applySuffixCls}>{suffix}</span>) : null}
       </span>

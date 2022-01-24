@@ -52,11 +52,15 @@ test("Search render with error", () => {
 })
 
 test("Search render with focus and blur", () => {
-  render(<Search placeholder="test-focus" error />)
+  const focusEvent = jest.fn()
+  const blurEvent = jest.fn()
+  render(<Search placeholder="test-focus" onFocus={focusEvent} onBlur={blurEvent} />)
   const testInputFocus = screen.getByPlaceholderText("test-focus")
   testInputFocus.focus()
+  expect(focusEvent).toBeCalled()
   expect(testInputFocus).toHaveFocus()
   testInputFocus.blur()
+  expect(blurEvent).toBeCalled()
   expect(testInputFocus).not.toHaveFocus()
 })
 
@@ -75,5 +79,41 @@ test("Search render with input event", async () => {
   fireEvent.compositionUpdate(testSearchEvent,{ data: '是', target: { value: '是' } } )
   fireEvent.compositionEnd(testSearchEvent,{ data: '是' })
   expect(testSearchEvent).toHaveDisplayValue("是")
+})
+
+test("Search render with clear event", async () => {
+  const clearEvent = jest.fn()
+  render(<Search placeholder="test-clear-event" allowClear onClear={clearEvent} />)
+  const testClearEvent = screen.getByPlaceholderText("test-clear-event")
+
+  fireEvent.change(testClearEvent, { target: { value: "clear" } })
+  testClearEvent.focus()
+  if (testClearEvent.nextElementSibling) {
+    fireEvent.click(testClearEvent.nextElementSibling)
+  }
+  expect(clearEvent).toBeCalled()
+  expect(testClearEvent).toHaveDisplayValue("")
+})
+
+test("Search render with search event", async () => {
+  const searchEvent = jest.fn()
+  const pressEnterEvent = jest.fn()
+  render(<Search placeholder="test-search-event" onSearch={searchEvent} onPressEnter={pressEnterEvent} />)
+  const testSearchEvent = screen.getByPlaceholderText("test-search-event")
+
+  fireEvent.keyDown(testSearchEvent, { keyCode: 13 })
+  expect(searchEvent).toBeCalled()
+  expect(pressEnterEvent).toBeCalled()
+})
+
+test("Search render with searchButton event", async () => {
+  const searchEvent = jest.fn()
+  render(<Search placeholder="test-search-button" onSearch={searchEvent} searchButton />)
+  const testSearchEvent = screen.getByPlaceholderText("test-search-button")
+
+  if (testSearchEvent.parentElement?.nextSibling?.firstChild){
+    fireEvent.click(testSearchEvent.parentElement?.nextSibling?.firstChild)
+  }
+  expect(searchEvent).toBeCalled()
 })
 

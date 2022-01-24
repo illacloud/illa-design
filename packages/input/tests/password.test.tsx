@@ -9,6 +9,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 test("Password render correctly", () => {
   render(<Password placeholder={"password"} />)
   expect(screen.getByPlaceholderText("password")).toBeInTheDocument()
+  expect(screen.getByPlaceholderText("password")).toHaveAttribute('type', 'password')
 
   expect(screen.getByPlaceholderText("password").parentElement).toHaveStyle({
     borderColor: `${globalColor(`--${illaPrefix}-gray-08`)}`,
@@ -51,12 +52,26 @@ test("Password render with error", () => {
   })
 })
 
+test("Password render with type text", () => {
+  render(<Password placeholder="test-type" />)
+  const testVisible = screen.getByPlaceholderText("test-type")
+  expect(testVisible).toHaveAttribute('type', 'password')
+  if (testVisible.nextSibling?.firstChild) {
+    fireEvent.click(testVisible.nextSibling.firstChild)
+  }
+  expect(testVisible).toHaveAttribute('type', 'text')
+})
+
 test("Password render with focus and blur", () => {
-  render(<Password placeholder="test-focus" error />)
+  const focusEvent = jest.fn()
+  const blurEvent = jest.fn()
+  render(<Password placeholder="test-focus" onFocus={focusEvent} onBlur={blurEvent} />)
   const testInputFocus = screen.getByPlaceholderText("test-focus")
   testInputFocus.focus()
+  expect(focusEvent).toBeCalled()
   expect(testInputFocus).toHaveFocus()
   testInputFocus.blur()
+  expect(blurEvent).toBeCalled()
   expect(testInputFocus).not.toHaveFocus()
 })
 
@@ -77,3 +92,16 @@ test("Password render with input event", async () => {
   expect(testPasswordEvent).toHaveDisplayValue("是")
 })
 
+test("Password render with clear event", async () => {
+  const clearEvent = jest.fn()
+  render(<Password placeholder="test-clear-event" allowClear onClear={clearEvent} />)
+  const testClearEvent = screen.getByPlaceholderText("test-clear-event")
+
+  fireEvent.change(testClearEvent, { target: { value: "123" } })
+  testClearEvent.focus()
+  if (testClearEvent.nextSibling) {
+    fireEvent.click(testClearEvent.nextSibling)
+  }
+  expect(clearEvent).toBeCalled()
+  expect(testClearEvent).toHaveDisplayValue("")
+})

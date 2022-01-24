@@ -41,6 +41,12 @@ test("TextArea render with maxLength", () => {
   expect(screen.getByPlaceholderText("maxLength")).toHaveDisplayValue("test")
 })
 
+test("TextArea render with showCount", () => {
+  render(<TextArea maxLength={23} showCount />)
+  expect(screen.getByText("/23")).toBeInTheDocument();
+  expect(screen.getByText("/23").previousSibling).toHaveTextContent('0');
+})
+
 test("TextArea render with disabled", () => {
   render(<TextArea placeholder="test-disabled" disabled />)
   expect(screen.getByPlaceholderText("test-disabled")).toBeDisabled()
@@ -57,11 +63,15 @@ test("TextArea render with error", () => {
 })
 
 test("TextArea render with focus and blur", () => {
-  render(<TextArea placeholder="test-focus" error />)
+  const focusEvent = jest.fn()
+  const blurEvent = jest.fn()
+  render(<TextArea placeholder="test-focus" onFocus={focusEvent} onBlur={blurEvent} />)
   const testInputFocus = screen.getByPlaceholderText("test-focus")
   testInputFocus.focus()
+  expect(focusEvent).toBeCalled()
   expect(testInputFocus).toHaveFocus()
   testInputFocus.blur()
+  expect(blurEvent).toBeCalled()
   expect(testInputFocus).not.toHaveFocus()
 })
 
@@ -82,3 +92,23 @@ test("TextArea render with input event", async () => {
   expect(testTextAreaEvent).toHaveDisplayValue("是")
 })
 
+test("TextArea render with clear event", async () => {
+  const clearEvent = jest.fn()
+  render(<TextArea placeholder="test-clear-event" allowClear onClear={clearEvent} />)
+  const testClearEvent = screen.getByPlaceholderText("test-clear-event")
+
+  fireEvent.change(testClearEvent, { target: { value: "123" } })
+  testClearEvent.focus()
+  if (testClearEvent.nextElementSibling) {
+    fireEvent.click(testClearEvent.nextElementSibling)
+  }
+  expect(clearEvent).toBeCalled()
+  expect(testClearEvent).toHaveDisplayValue("")
+})
+
+test("TextArea render with autoSize", async () => {
+  render(<TextArea placeholder="test-autoSize" autoSize />)
+  const testAutoSize = screen.getByPlaceholderText("test-autoSize")
+
+  expect(testAutoSize).toHaveDisplayValue("")
+})

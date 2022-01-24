@@ -4,16 +4,10 @@ import { ChangeEvent, forwardRef, useState } from "react"
 import { PasswordProps } from "./interface"
 import { omit, useMergeValue } from "@illa-design/system"
 import { EyeOnIcon, EyeOffIcon } from "@illa-design/icon"
-import {
-  applyContainerCss,
-  applyInputContainer, applySuffixCls,
-  pointerStyle,
-} from "./style"
+import { applyContainerCss, applyInputContainer, applySuffixCls, pointerStyle } from "./style"
 import { InputElement } from "./input-element"
-import { formatForRule } from "./utils"
 
 export const Password = forwardRef<HTMLDivElement, PasswordProps>((props, ref) => {
-
   const {
     allowClear,
     error,
@@ -30,6 +24,8 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>((props, ref) =
     "defaultValue",
     "onChange",
     "onClear",
+    "onFocus",
+    "onBlur",
   ])
 
   const [visibility, setVisibility] = useState(false)
@@ -41,18 +37,18 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>((props, ref) =
   )
   const stateValue = { error, disabled, focus, variant, size }
 
-  const onClear = () => {
-    if (!("value" in props) || !props.value) {
-      setValue("")
-    }
-    props.onClear && props.onClear()
-  }
-
   const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
     if (!("value" in props) || !props.value) {
       setValue(v)
     }
     props.onChange && props.onChange(e)
+  }
+
+  const onClear = () => {
+    if (!("value" in props) || !props.value) {
+      setValue("")
+    }
+    props.onClear && props.onClear()
   }
 
   const passwordProp = {

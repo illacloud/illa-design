@@ -261,11 +261,9 @@ export function applyAddonCss(stateValue: StateValue) {
         border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
         border-top: 0;
         border-bottom: 0;
-
         &:first-of-type {
           border-left: 0;
         }
-
         &:last-of-type {
           border-right: 0;
         }
@@ -274,11 +272,9 @@ export function applyAddonCss(stateValue: StateValue) {
     case "outline":
       inputStyle = css`
         border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-
         &:first-of-type {
           border-right: 0;
         }
-
         &:last-of-type {
           border-left: 0;
         }
@@ -310,16 +306,13 @@ export function applyAddonCss(stateValue: StateValue) {
   `
 }
 
-export function applyCountLimitStyle() {
-
-  return css`
+export const  applyCountLimitStyle =  css`
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     color: ${globalColor(`--${illaPrefix}-gray-05`)};
-  `
-}
+`
 
 export function applyLengthErrorStyle(error?: boolean) {
   if (error) {

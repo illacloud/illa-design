@@ -76,12 +76,24 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>((props, 
     }
   }
 
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const keyCode = e.keyCode || e.which;
+    if (isComposition.current) {
+      return;
+    }
+    props.onKeyDown?.(e);
+    if (keyCode === 13) {
+      props.onPressEnter?.(e);
+    }
+  };
+
   const inputProps = {
     ...otherProps,
     value: compositionValue || value || "",
     disabled,
     placeholder,
     onChange,
+    onKeyDown,
     onCompositionStart: onComposition,
     onCompositionUpdate: onComposition,
     onCompositionEnd: onComposition,

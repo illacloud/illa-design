@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactNode, ChangeEvent, InputHTMLAttributes, TextareaHTMLAttributes } from "react"
+import * as React from "react";
 
 export type InputBoarderColor =
   string
@@ -42,6 +43,7 @@ export interface InputElementProps extends Omit<InputHTMLAttributes<HTMLInputEle
   allowClear?: boolean
   onClear?: () => void
   onValueChange?: (value: string, e: ChangeEvent<HTMLInputElement>) => void
+  onPressEnter?: (e:React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export interface InputProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix"> {
@@ -61,6 +63,7 @@ export interface InputProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix
   addonAfter?: ReactNode
   addonBefore?: ReactNode
   onClear?: () => void
+  onPressEnter?: (e:React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -95,6 +98,8 @@ export interface SearchProps extends HTMLAttributes<HTMLDivElement> {
   maxLength?: number
   allowClear?: boolean
   onClear?: () => void
+  onSearch?: (value?: string) => void
+  onPressEnter?: (event: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 export interface PasswordProps extends HTMLAttributes<HTMLDivElement> {

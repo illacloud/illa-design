@@ -3,10 +3,7 @@ import * as React from "react"
 import { ChangeEvent, forwardRef, useState, useMemo, ReactNode, useRef, useImperativeHandle } from "react"
 import { InputSize, TextAreaProps, TextAreaType } from "./interface"
 import { omit, useMergeValue } from "@illa-design/system"
-import {
-  applyLengthErrorStyle,
-  applyCountLimitStyle,
-} from "./style"
+import { applyLengthErrorStyle, applyCountLimitStyle,} from "./style"
 import {
   applyContainerCss,
   applyTextAreaContainer,
@@ -27,7 +24,6 @@ export interface TextAreaState {
 }
 
 export const TextArea = forwardRef<TextAreaType, TextAreaProps>((props, ref) => {
-
   const {
     allowClear,
     error,
@@ -45,6 +41,8 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>((props, ref) => 
     "className",
     "onChange",
     "onClear",
+    "onFocus",
+    "onBlur",
   ])
 
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
@@ -92,6 +90,7 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>((props, ref) => 
       </span>
     )
   }
+
   if (autoSize) {
     autoResize()
   }
