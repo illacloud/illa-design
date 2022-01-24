@@ -58,6 +58,7 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>((props, ref) =
   const passwordProp = {
     ...rest,
     type: visibility ? "text" : "password",
+    disabled,
     placeholder,
     allowClear,
     onClear,

@@ -27,6 +27,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loadingText?: string
   leftIcon?: ReactNode
   rightIcon?: ReactNode
+  buttonRadius?: string
 }
 
 export interface ButtonGroupProps extends HTMLAttributes<HTMLDivElement>, Omit<ButtonGroupContextProps, "first" | "last"> {

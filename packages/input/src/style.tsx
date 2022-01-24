@@ -88,17 +88,17 @@ function applySizeStyle(size?: string) {
     default:
     case "large":
       sizeCss = css`
-        height: 40px;
+        height: 38px;
       `
       break
     case "medium":
       sizeCss = css`
-        height: 32px;
+        height: 30px;
       `
       break
     case "small":
       sizeCss = css`
-        height: 24px;
+        height: 22px;
       `
       break
   }
@@ -162,19 +162,19 @@ export function applyInputContainer(stateValue: StateValue) {
     default:
     case "large":
       sizeCss = css`
-        height: 40px;
+        height: 38px;
         padding: 0 16px;
       `
       break
     case "medium":
       sizeCss = css`
-        height: 32px;
+        height: 30px;
         padding: 0 16px;
       `
       break
     case "small":
       sizeCss = css`
-        height: 24px;
+        height: 22px;
         padding: 0 12px;
       `
       break
@@ -210,7 +210,7 @@ export function applyInputStyle() {
     appearance: none;
     font-size: 14px;
     font-family: HelveticaNeue;
-    line-height: 22px;
+    line-height: 20px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border-radius: 0;
     border: none;

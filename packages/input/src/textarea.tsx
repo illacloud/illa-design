@@ -157,7 +157,7 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>((props, ref) => 
   }
 
   return <>
-    <span css={applyContainerCss(variant)} {...rest}>
+    <span css={applyContainerCss(variant)} {...otherProps}>
       <span css={applyTextAreaContainer(stateValue)}>
         <textarea
           ref={textAreaRef}
@@ -183,7 +183,11 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>((props, ref) => 
             onMouseDown={(e) => {
               e.preventDefault()
             }}
-          ><ErrorIcon css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)};`)} /></span>
+          ><ErrorIcon css={css`
+            color: ${globalColor(`--${illaPrefix}-gray-07`)};
+            width: 12px;
+            height: 12px;
+            `} /></span>
         ) : null}
       </span>
       {suffix ? (<span css={applyPrefixCls}>{suffix}</span>) : null}

@@ -98,10 +98,10 @@ export function applyTextAreaStyle() {
   return css`
     width: 100%;
     appearance: none;
-    padding: 12px 16px;
+    padding: 5px 16px 12px;
     font-size: 14px;
     font-family: HelveticaNeue;
-    line-height: 1.57;
+    line-height: 22px;
     min-height: 44px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border-radius: 4px;
@@ -130,5 +130,5 @@ export const clearStyle = css`
   cursor: pointer;
   position: absolute;
   right: 5px;
-  top: 10px;
+  top: 5px;
 `

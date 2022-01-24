@@ -59,6 +59,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   const searchProp = {
     ...rest,
     onClear,
+    disabled,
     allowClear,
     placeholder,
   }
@@ -84,7 +85,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
                 <SearchIcon css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)};`)} />
             </span>) : null}
       </span>
-      {searchButton ? (<span><Button size={size} leftIcon={<SearchIcon />} /></span>) : null}
+      {searchButton ? (<span><Button buttonRadius="0 4px 4px 0" size={size} leftIcon={<SearchIcon />} /></span>) : null}
     </span>
   </div>
 

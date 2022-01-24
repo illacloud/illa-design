@@ -33,6 +33,7 @@ test("Input render with value", () => {
 test("Input render with defaultValue", () => {
   render(<Input placeholder="defaultValue" defaultValue="test defaultValue" />)
   expect(screen.getByPlaceholderText("defaultValue")).toHaveDisplayValue("test defaultValue")
+  expect(screen.getByPlaceholderText("defaultValue")).toBeInTheDocument()
 })
 
 test("Input render with maxLength", () => {
