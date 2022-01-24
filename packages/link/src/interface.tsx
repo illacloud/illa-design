@@ -18,4 +18,5 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   disabled?: boolean
   icon?: boolean | ReactNode
   colorScheme?: LinkColorScheme
+  hoverable?: boolean
 }

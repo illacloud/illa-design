@@ -13,8 +13,8 @@ export default {
   argTypes: {
     icon: {
       control: false,
-    }
-  }
+    },
+  },
 } as Meta
 
 const Template: Story<AvatarProps> = (args) => <Avatar {...args} />

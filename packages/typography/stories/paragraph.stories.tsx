@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Paragraph, ParagraphProps, Typography } from "../src"
+import { CopyableBuilder, EllipsisBuilder, Paragraph, ParagraphProps, Typography } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 
@@ -12,7 +12,9 @@ export default {
 } as Meta
 
 export const Basic: Story<ParagraphProps> = (args) => <Typography>
-  <Paragraph {...args}>A design is a plan or specification for the construction of an object or system or for the
+  <Paragraph {...args} ellipsis={new EllipsisBuilder().rows(2).expandable(true).create()}
+             copyable={new CopyableBuilder().create()}>A design is a plan or specification for the construction of an
+    object or system or for the
     implementation of an activity or process, or the result of that plan or specification in the form of a prototype,
     product or process. The verb to design expresses the process of developing a design. In some cases, the direct
     construction of an object without an explicit prior plan (such as in craft work, some engineering, coding, and

@@ -28,3 +28,5 @@ export const Popover: FC<PopoverProps> = ((props) => {
     {props.children}
   </Trigger>
 })
+
+Popover.displayName = "Popover"

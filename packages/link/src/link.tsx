@@ -11,13 +11,14 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
     disabled,
     icon,
     colorScheme = "blue",
+    hoverable = true,
     ...otherProps
   } = props
 
   const leftIcon = typeof icon == "boolean" && icon ? <LinkIcon /> : icon
 
   const finalCss = css`
-    ${applyLinkContainer(colorScheme)};
+    ${applyLinkContainer(colorScheme, hoverable)};
     ${applyDisable(colorScheme, disabled)};
   `
 
@@ -26,3 +27,5 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
     {props.children}
   </a>
 })
+
+Link.displayName = "Link"

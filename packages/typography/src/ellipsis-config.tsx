@@ -4,7 +4,7 @@ export class Ellipsis {
   expandable: boolean = true
   rows: number = 2
   suffix: string | null = null
-  expandLabel: string | ReactNode = "Expand"
+  expandLabel: string | ReactNode
   tooltip: boolean = true
   onExpand?: () => void
 }

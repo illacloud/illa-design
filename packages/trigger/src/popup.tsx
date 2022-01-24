@@ -1,14 +1,16 @@
-import { FC, useEffect } from "react"
+/** @jsxImportSource @emotion/react */
+import { FC } from "react"
 import { createPortal } from "react-dom"
+import { css, SerializedStyles } from "@emotion/react"
 
-function createPopupContainer(top: string, left: string): HTMLDivElement {
-  const popupContainer = document.createElement("div")
-  popupContainer.style.display = "inline-flex"
-  popupContainer.style.position = "absolute"
-  popupContainer.style.left = left
-  popupContainer.style.top = top
-  popupContainer.style.pointerEvents = "none"
-  return popupContainer
+function applyPopupContainer(top: string, left: string): SerializedStyles {
+  return css`
+    display: inline-flex;
+    position: absolute;
+    left: ${left};
+    top: ${top};
+    pointer-events: none;
+  `
 }
 
 export interface PopupProps {
@@ -17,12 +19,7 @@ export interface PopupProps {
 }
 
 export const Popup: FC<PopupProps> = ((props) => {
-  const container = createPopupContainer(props.top, props.left)
-  document.body.append(container)
-  useEffect(() => {
-    return () => {
-      container.remove()
-    }
-  })
-  return createPortal(props.children, container)
+  return createPortal(<div css={applyPopupContainer(props.top, props.left)}>
+    {props.children}
+  </div>, document.body)
 })

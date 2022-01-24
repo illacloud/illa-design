@@ -34,28 +34,28 @@ export function applyTipsContainer(position: TriggerPosition): SerializedStyles 
     case "tl":
     case "tr":
       paddingStyle = css`
-        padding-bottom: 16px;
+        padding-bottom: 4px;
       `
       break
     case "bottom":
     case "bl":
     case "br":
       paddingStyle = css`
-        padding-top: 16px;
+        padding-top: 4px;
       `
       break
     case "left":
     case "lt":
     case "lb":
       paddingStyle = css`
-        padding-right: 16px;
+        padding-right: 4px;
       `
       break
     case "right":
     case "rt":
     case "rb":
       paddingStyle = css`
-        padding-left: 16px;
+        padding-left: 4px;
       `
       break
   }
@@ -76,11 +76,8 @@ export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles
     box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
     background-color: ${bgColor};
     color: ${textColor};
-    width: fit-content;
     text-align: left;
     max-width: 588px;
-    white-space: pre-line;
-    word-break: break-all;
     border-radius: 2px;
     font-size: 14px;
     padding: 8px 12px;

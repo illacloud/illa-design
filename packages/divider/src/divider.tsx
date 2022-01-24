@@ -25,3 +25,5 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>((props, ref) => 
 
   return <div css={dividerCss} ref={ref} {...otherProps} />
 })
+
+Divider.displayName = "Divider"
