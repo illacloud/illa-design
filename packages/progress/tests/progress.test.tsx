@@ -4,9 +4,9 @@ import { Progress } from "../src"
 
 test("Progress renders with correctly", () => {
   render(
-    <Progress icon={true}>
+    <Progress>
       Link
     </Progress>,
   )
-  expect(screen.getByTitle("LinkIcon")).toBeInTheDocument()
+  expect(screen.getByText("Link")).toBeInTheDocument()
 })
