@@ -113,7 +113,7 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>((props, ref) => 
     }
   }
 
-  // 处理中文输入
+  // Handle Chinese keyboard input
   const onComposition = (e: React.CompositionEvent & React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.type === "compositionend") {
       isComposition.current = false

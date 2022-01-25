@@ -65,7 +65,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>((props, 
     }
   }
 
-  // 处理中文输入
+  // Handle Chinese keyboard input
   const onComposition = (e: React.CompositionEvent & React.ChangeEvent<HTMLInputElement>) => {
     if (e.type === "compositionend") {
       isComposition.current = false
