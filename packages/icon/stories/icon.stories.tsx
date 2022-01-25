@@ -5,12 +5,14 @@ import {
   CopyIcon,
   IconProps,
   ImageDefaultIcon,
+  LinkIcon,
   LoadingIcon,
   PersonIcon,
   EyeOnIcon,
   EyeOffIcon,
   ErrorIcon,
-  SearchIcon
+  SearchIcon,
+  RightIcon,
 } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
@@ -42,5 +44,7 @@ export const EyeOn: Story<IconProps> = (props) => <EyeOnIcon {...props} />
 export const EyeOff: Story<IconProps> = (props) => <EyeOffIcon {...props} />
 export const Search: Story<IconProps> = (props) => <SearchIcon {...props} />
 export const Error: Story<IconProps> = (props) => <ErrorIcon {...props} />
+export const Link: Story<IconProps> = (props) => <LinkIcon {...props} />
+export const Right: Story<IconProps> = (props) => <RightIcon {...props} />
 
 

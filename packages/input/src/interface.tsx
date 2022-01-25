@@ -2,7 +2,7 @@ import { HTMLAttributes, ReactNode, ChangeEvent, InputHTMLAttributes, TextareaHT
 import * as React from "react";
 
 export type InputBoarderColor =
-  string
+  | string
   | "gray"
   | "blue"
   | "purple"
@@ -18,18 +18,19 @@ export type InputVariant = "fill" | "outline"
 export type InputSize = "small" | "medium" | "large"
 
 export type InputRefType = {
-  blur?: () => void;
-  focus?: () => void;
-  dom: HTMLInputElement | null;
-};
+  blur?: () => void
+  focus?: () => void
+  dom: HTMLInputElement | null
+}
 
 export type TextAreaType = {
-  blur?: () => void;
-  focus?: () => void;
-  dom: HTMLTextAreaElement | null;
-};
+  blur?: () => void
+  focus?: () => void
+  dom: HTMLTextAreaElement | null
+}
 
-export interface InputElementProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+export interface InputElementProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
@@ -43,10 +44,11 @@ export interface InputElementProps extends Omit<InputHTMLAttributes<HTMLInputEle
   allowClear?: boolean
   onClear?: () => void
   onValueChange?: (value: string, e: ChangeEvent<HTMLInputElement>) => void
-  onPressEnter?: (e:React.KeyboardEvent<HTMLInputElement>) => void;
+  onPressEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
-export interface InputProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix"> {
+export interface InputProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "prefix"> {
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
@@ -63,19 +65,22 @@ export interface InputProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix
   addonAfter?: ReactNode
   addonBefore?: ReactNode
   onClear?: () => void
-  onPressEnter?: (e:React.KeyboardEvent<HTMLInputElement>) => void;
+  onPressEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
-export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextAreaProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   variant?: InputVariant
   placeholder?: string
   defaultValue?: string
   disabled?: boolean
   error?: boolean
-  autoSize?: boolean | {
-    minRows?: number
-    maxRows?: number
-  }
+  autoSize?:
+    | boolean
+    | {
+        minRows?: number
+        maxRows?: number
+      }
   value?: string
   maxLength?: number
   showCount?: boolean

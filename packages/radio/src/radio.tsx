@@ -46,3 +46,5 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
       </label>
 
 })
+
+Radio.displayName = "Radio"

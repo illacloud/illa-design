@@ -13,5 +13,5 @@ export * from "@illa-design/trigger"
 export * from "@illa-design/tooltip"
 export * from "@illa-design/popover"
 export * from "@illa-design/input"
-
-
+export * from "@illa-design/link"
+export * from "@illa-design/config-provider"

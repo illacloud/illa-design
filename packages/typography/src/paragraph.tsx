@@ -3,9 +3,10 @@ import * as React from "react"
 import { forwardRef } from "react"
 import { ParagraphProps } from "./interface"
 import { Base } from "./base"
-import { applyParagraphContainer } from "./paragraph-style"
+import { applyParagraphContainer, applyTextContainer } from "./paragraph-style"
 import mergedToString from "./measure-element"
 import { Tooltip } from "@illa-design/tooltip"
+import { css } from "@storybook/theming"
 
 export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>((props, ref) => {
 
@@ -27,7 +28,12 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>((props
 
   const showTooltip = !disabled && (ellipsis == true || (typeof ellipsis == "object" && ellipsis.tooltip))
 
-  const p = <div css={applyParagraphContainer(indent ?? false)} ref={ref} {...otherProps}>
+  const finalCss = css`
+    ${applyParagraphContainer(indent ?? false)};
+    ${applyTextContainer(fontSize)};
+  `
+
+  const p = <div css={finalCss} ref={ref} {...otherProps}>
     <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
           underline={underline} deleted={deleted} code={code} copyable={copyable}>
       {props.children}
@@ -42,3 +48,5 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>((props
     return p
   }
 })
+
+Paragraph.displayName = "Paragraph"

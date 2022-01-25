@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import {ChangeEvent, forwardRef, useState, useMemo, useRef, useImperativeHandle} from "react"
-import {InputProps, InputRefType, InputSize} from "./interface"
+import { ChangeEvent, forwardRef, useState, useMemo, useRef, useImperativeHandle } from "react"
 import { omit, useMergeValue } from "@illa-design/system"
+import { InputProps, InputRefType, InputSize } from "./interface"
 import {
   applyAddonCss,
   applyContainerCss,
   applyCountLimitStyle,
   applyInputContainer,
   applyLengthErrorStyle,
-  applyPrefixCls, applySuffixCls,
+  applyPrefixCls,
+  applySuffixCls,
 } from "./style"
 import { InputElement } from "./input-element"
 import { formatForRule } from "./utils"
@@ -23,7 +24,6 @@ export interface StateValue {
 }
 
 export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
-
   const {
     allowClear,
     error,
@@ -42,11 +42,12 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
 
   const inputRef = useRef<InputRefType>({} as InputRefType)
   const [focus, setFocus] = useState(false)
-  const [value, setValue] = useMergeValue('', {
-      defaultValue: defaultValue ? formatForRule(defaultValue, maxLength) : undefined,
-      value: props.value ? formatForRule(props.value, maxLength) : undefined,
-    }
-  )
+  const [value, setValue] = useMergeValue("", {
+    defaultValue: defaultValue
+      ? formatForRule(defaultValue, maxLength)
+      : undefined,
+    value: props.value ? formatForRule(props.value, maxLength) : undefined,
+  })
   const valueLength = value ? value.length : 0
   let suffix = props.suffix
 
@@ -65,7 +66,7 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     size,
   }
 
-  useImperativeHandle(ref, () => inputRef?.current, []);
+  useImperativeHandle(ref, () => inputRef?.current, [])
 
   if (maxLength && showCount) {
     suffix = (
@@ -112,32 +113,37 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     placeholder,
   }
 
-  return <div {...otherProps}>
-    <span css={applyContainerCss(variant)}>
-      {addonBefore ? (<span css={applyAddonCss(stateValue)}>{addonBefore}</span>) : null}
-      <span css={applyInputContainer(stateValue)}>
-      {prefix ? (<span css={applyPrefixCls}>{prefix}</span>) : null}
-        <InputElement
-          ref={inputRef}
-          {...inputProps}
-          onFocus={(e) => {
-            setFocus(true)
-            props.onFocus && props.onFocus(e)
-          }}
-          onBlur={(e) => {
-            setFocus(false)
-            props.onBlur && props.onBlur(e)
-          }}
-          value={value}
-          onValueChange={onValueChange}
-          onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
-            props.onPressEnter?.(e);
-          }}
-        />
-        {suffix ? (<span css={applySuffixCls}>{suffix}</span>) : null}
+  return (
+    <div {...otherProps}>
+      <span css={applyContainerCss(variant)}>
+        {addonBefore ? (
+          <span css={applyAddonCss(stateValue)}>{addonBefore}</span>
+        ) : null}
+        <span css={applyInputContainer(stateValue)}>
+          {prefix ? <span css={applyPrefixCls}>{prefix}</span> : null}
+          <InputElement
+            ref={inputRef}
+            {...inputProps}
+            onFocus={(e) => {
+              setFocus(true)
+              props.onFocus && props.onFocus(e)
+            }}
+            onBlur={(e) => {
+              setFocus(false)
+              props.onBlur && props.onBlur(e)
+            }}
+            value={value}
+            onValueChange={onValueChange}
+            onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
+              props.onPressEnter?.(e)
+            }}
+          />
+          {suffix ? <span css={applySuffixCls}>{suffix}</span> : null}
+        </span>
+        {addonAfter ? (
+          <span css={applyAddonCss(stateValue)}>{addonAfter}</span>
+        ) : null}
       </span>
-      {addonAfter ? (<span css={applyAddonCss(stateValue)}>{addonAfter}</span>) : null}
-    </span>
-  </div>
-
+    </div>
+  )
 })

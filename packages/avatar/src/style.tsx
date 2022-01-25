@@ -155,6 +155,7 @@ export function applyIconSize(size: AvatarSize) {
     align-items: center;
     justify-content: center;
     width: ${width}px;
+    font-size: ${width}px;
     height: ${height}px;
   `
 }
