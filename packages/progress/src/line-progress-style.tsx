@@ -36,6 +36,7 @@ export function applyLineContainer(width: string, stokeWidth: string): Serialize
 
 export function applySpace(): SerializedStyles {
   return css`
+    width: 100%;
     position: absolute;
   `
 }
@@ -56,6 +57,30 @@ export function applyLineProgress(percent: number, stokeWidth: string, colorSche
   `
 }
 
+export function applyLineProgressStep(percent: number, stokeWidth: string, width: string, colorScheme: ProgressColorScheme, steps: number, index: number): SerializedStyles {
+  let color
+  if (colorScheme == "gray") {
+    color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
+  } else {
+    color = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-03`) : colorScheme
+  }
+
+  let finalWidth: string
+
+  if ((100 / steps) * (index + 1) > percent) {
+    finalWidth = "0px"
+  } else {
+    finalWidth = width
+  }
+
+  return css`
+    width: ${finalWidth};
+    border-radius: calc(${stokeWidth} / 2);
+    background-color: ${color};
+    height: ${stokeWidth};
+  `
+}
+
 export function applyLineProgressBg(stokeWidth: string, trailColorScheme: ProgressColorScheme): SerializedStyles {
   let color
   if (trailColorScheme == "gray") {
@@ -69,5 +94,23 @@ export function applyLineProgressBg(stokeWidth: string, trailColorScheme: Progre
     width: 100%;
     border-radius: calc(${stokeWidth} / 2);
     height: ${stokeWidth};
+  `
+}
+
+export function applyLineProgressBgStep(strokeWidth: string, width: string, trailColorScheme: ProgressColorScheme): SerializedStyles {
+
+  let color
+
+  if (trailColorScheme == "gray") {
+    color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
+  } else {
+    color = colorSchemes.includes(trailColorScheme) ? globalColor(`--${illaPrefix}-${trailColorScheme}-06`) : trailColorScheme
+  }
+
+  return css`
+    background-color: ${color};
+    width: ${width};
+    border-radius: calc(${strokeWidth} / 2);
+    height: ${strokeWidth};
   `
 }

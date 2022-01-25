@@ -5,11 +5,15 @@ import {
   applyLineContainer,
   applyLineProgress,
   applyLineProgressBg,
+  applyLineProgressBgStep,
+  applyLineProgressStep,
   applyProgressContainer,
   applyProgressText,
+  applySpace,
   applyStatusIcon,
 } from "./line-progress-style"
 import { ErrorIcon, SuccessIcon } from "@illa-design/icon"
+import { Space } from "@illa-design/space"
 
 export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
 
@@ -38,18 +42,58 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>((props, re
       break
   }
 
-  return <div ref={ref} {...otherProps} css={applyProgressContainer}>
-    <div css={applyLineContainer(width, strokeWidth)}>
-      <div css={applyLineProgressBg(strokeWidth, trailColor)} />
-      <div css={applyLineProgress(percent, strokeWidth, color)} />
-    </div>
-    {showText && <span css={applyProgressText}>
+  if (steps == 1) {
+    return <div ref={ref} {...otherProps} css={applyProgressContainer}>
+      <div css={applyLineContainer(width, strokeWidth)}>
+        <div css={applyLineProgressBg(strokeWidth, trailColor)} />
+        <div css={applyLineProgress(percent, strokeWidth, color)} />
+      </div>
+      {showText && <span css={applyProgressText}>
       {formatText(percent)}
     </span>}
-    {status != "normal" && <span css={applyStatusIcon}>
+      {status != "normal" && <span css={applyStatusIcon}>
       {statusComponent}
     </span>}
-  </div>
+    </div>
+  } else {
+    let lineProgressContainer = []
+    let lineProgressBgContainer = []
+
+    for (let i = 0; i < steps; i++) {
+      lineProgressContainer.push(
+        <div key={i} css={applyLineProgressStep(percent,
+          strokeWidth,
+          `calc((${width} - (${steps} - 1) * 4px) / ${steps})`,
+          color,
+          steps,
+          i)} />,
+      )
+      lineProgressBgContainer.push(
+        <div key={i} css={applyLineProgressBgStep(strokeWidth,
+          `calc((${width} - (${steps} - 1) * 4px) / ${steps})`,
+          trailColor)} />,
+      )
+    }
+
+    console.log(lineProgressContainer, lineProgressBgContainer)
+
+    return <div ref={ref} {...otherProps} css={applyProgressContainer}>
+      <div css={applyLineContainer(width, strokeWidth)}>
+        <Space css={applySpace()} size="4px">
+          {lineProgressBgContainer}
+        </Space>
+        <Space css={applySpace()} size="4px">
+          {lineProgressContainer}
+        </Space>
+      </div>
+      {showText && <span css={applyProgressText}>
+      {formatText(percent)}
+    </span>}
+      {status != "normal" && <span css={applyStatusIcon}>
+      {statusComponent}
+    </span>}
+    </div>
+  }
 })
 
 LineProgress.displayName = "LineProgress"

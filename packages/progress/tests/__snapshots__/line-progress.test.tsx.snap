@@ -296,22 +296,55 @@ exports[`LineProgress renders with steps 1`] = `
 }
 
 .emotion-2 {
-  position: absolute;
-  background-color: #ebebeb;
   width: 100%;
+  position: absolute;
+}
+
+.emotion-3 {
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.emotion-4 {
+  height: 100%;
+  display: inline-flex;
+  margin-right: 4px;
+  margin-bottom: 0px;
+}
+
+.emotion-5 {
+  background-color: #ebebeb;
+  width: calc((320px - (3 - 1) * 4px) / 3);
   border-radius: calc(8px / 2);
   height: 8px;
 }
 
-.emotion-3 {
-  position: absolute;
-  width: 0%;
+.emotion-8 {
+  height: 100%;
+  display: inline-flex;
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+.emotion-13 {
+  width: 0px;
   border-radius: calc(8px / 2);
   background-color: #1e6fff;
   height: 8px;
 }
 
-.emotion-4 {
+.emotion-18 {
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
@@ -326,14 +359,58 @@ exports[`LineProgress renders with steps 1`] = `
     class="emotion-1"
   >
     <div
-      class="emotion-2"
-    />
+      class="emotion-2 emotion-3"
+    >
+      <div
+        class="emotion-4"
+      >
+        <div
+          class="emotion-5"
+        />
+      </div>
+      <div
+        class="emotion-4"
+      >
+        <div
+          class="emotion-5"
+        />
+      </div>
+      <div
+        class="emotion-8"
+      >
+        <div
+          class="emotion-5"
+        />
+      </div>
+    </div>
     <div
-      class="emotion-3"
-    />
+      class="emotion-2 emotion-3"
+    >
+      <div
+        class="emotion-4"
+      >
+        <div
+          class="emotion-13"
+        />
+      </div>
+      <div
+        class="emotion-4"
+      >
+        <div
+          class="emotion-13"
+        />
+      </div>
+      <div
+        class="emotion-8"
+      >
+        <div
+          class="emotion-13"
+        />
+      </div>
+    </div>
   </div>
   <span
-    class="emotion-4"
+    class="emotion-18"
   >
     0%
   </span>
