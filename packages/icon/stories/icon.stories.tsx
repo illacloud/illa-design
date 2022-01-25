@@ -1,9 +1,19 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { CloseIcon, CopyIcon, IconProps, ImageDefaultIcon, LinkIcon, LoadingIcon, PersonIcon } from "../src"
+import {
+  CloseIcon,
+  CopyIcon,
+  ErrorIcon,
+  IconProps,
+  ImageDefaultIcon,
+  LinkIcon,
+  LoadingIcon,
+  PersonIcon,
+  RightIcon,
+  SuccessIcon,
+} from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
-import { RightIcon } from "../src/icons/right"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -30,5 +40,7 @@ export const Loading: Story<IconProps> = (props) => <LoadingIcon {...props} />
 export const Person: Story<IconProps> = (props) => <PersonIcon {...props} />
 export const Link: Story<IconProps> = (props) => <LinkIcon {...props} />
 export const Right: Story<IconProps> = (props) => <RightIcon {...props} />
+export const Error: Story<IconProps> = (props) => <ErrorIcon {...props} />
+export const Success: Story<IconProps> = (props) => <SuccessIcon {...props} />
 
 
