@@ -40,7 +40,7 @@ export const Loading: Story<IconProps> = (props) => <LoadingIcon {...props} />
 export const Person: Story<IconProps> = (props) => <PersonIcon {...props} />
 export const EyeOn: Story<IconProps> = (props) => <EyeOnIcon {...props} />
 export const EyeOff: Story<IconProps> = (props) => <EyeOffIcon {...props} />
-export const Search: Story<IconProps> = (props) => <SearchIcon style={{color: "black"}} {...props} />
+export const Search: Story<IconProps> = (props) => <SearchIcon {...props} />
 export const Error: Story<IconProps> = (props) => <ErrorIcon {...props} />
 
 

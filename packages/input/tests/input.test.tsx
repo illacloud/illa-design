@@ -1,6 +1,3 @@
-/**
- * @jest-environment jest-electron/environment
- */
 import { Input } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
