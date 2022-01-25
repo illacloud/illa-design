@@ -100,3 +100,5 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
     )
   },
 )
+
+Password.displayName = "Password"

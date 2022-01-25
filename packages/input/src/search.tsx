@@ -108,3 +108,5 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     </div>
   )
 })
+
+Search.displayName = "Search"

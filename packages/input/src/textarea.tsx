@@ -223,3 +223,5 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
     )
   },
 )
+
+TextArea.displayName = "TextArea"
