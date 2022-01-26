@@ -63,7 +63,7 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
-export function applyContainerCss(variant: string) {
+export function applyContainerCss() {
   return css`
     position: relative;
     width: 280px;
@@ -75,7 +75,6 @@ export function applyContainerCss(variant: string) {
     line-height: 1.57;
     border-radius: 4px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    ${applyVariantStyle(variant)}
   `
 }
 

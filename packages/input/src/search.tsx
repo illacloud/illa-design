@@ -18,6 +18,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     placeholder,
     defaultValue,
     searchButton = false,
+    boarderColor = "blue",
     size = "medium",
     variant = "outline",
     ...rest
@@ -38,7 +39,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     defaultValue: defaultValue ? defaultValue : undefined,
     value: props.value ? props.value : undefined,
   })
-  const stateValue = { error, disabled, focus, variant, size }
+  const stateValue = { error, disabled, focus, variant, size, boarderColor }
 
   const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
     if (!("value" in props) || !props.value) {

@@ -20,6 +20,7 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       disabled,
       placeholder,
       invisibleButton = true,
+      boarderColor = "blue",
       size = "medium",
       variant = "outline",
       defaultValue,
@@ -40,7 +41,7 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       defaultValue: defaultValue ? defaultValue : undefined,
       value: props.value ? props.value : undefined,
     })
-    const stateValue = { error, disabled, focus, variant, size }
+    const stateValue = { error, disabled, focus, variant, size, boarderColor }
 
     const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
       if (!("value" in props) || !props.value) {

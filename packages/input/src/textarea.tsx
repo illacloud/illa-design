@@ -180,7 +180,7 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
 
     return (
       <>
-        <span css={applyContainerCss(variant)} {...otherProps}>
+        <span css={applyContainerCss} {...otherProps}>
           <span css={applyTextAreaContainer(stateValue)}>
             <textarea
               ref={textAreaRef}

@@ -1,8 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { ChangeEvent, forwardRef, useState, useMemo, useRef, useImperativeHandle } from "react"
+import {
+  ChangeEvent,
+  forwardRef,
+  useState,
+  useMemo,
+  useRef,
+  useImperativeHandle,
+} from "react"
 import { omit, useMergeValue } from "@illa-design/system"
-import { InputProps, InputRefType, InputSize } from "./interface"
+import { InputProps, InputRefType } from "./interface"
 import {
   applyAddonCss,
   applyContainerCss,
@@ -20,7 +27,8 @@ export interface StateValue {
   error?: boolean
   focus?: boolean
   variant?: string
-  size?: InputSize
+  size?: InputProps["size"]
+  boarderColor?: InputProps["boarderColor"]
 }
 
 export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
@@ -35,6 +43,7 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     addonAfter,
     addonBefore,
     defaultValue,
+    boarderColor = "blue",
     size = "medium",
     variant = "outline",
     ...rest
@@ -64,6 +73,7 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     focus,
     variant,
     size,
+    boarderColor,
   }
 
   useImperativeHandle(ref, () => inputRef?.current, [])
@@ -98,6 +108,7 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     "defaultValue",
     "addonBefore",
     "addonAfter",
+    "onPressEnter",
     "onClear",
     "onChange",
     "onFocus",
