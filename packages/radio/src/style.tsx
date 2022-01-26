@@ -46,6 +46,8 @@ export function applyMergeCss(props: RadioProps): SerializedStyles {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    font-size: 14px;
+    line-height: 22px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     cursor: ${currentDisabled ? 'not-allowed': 'pointer'};
   `

@@ -31,9 +31,9 @@ export interface RadioGroupContextProps<T> {
   disabled?: boolean
   defaultValue?: T
   options?: string[] | {
-    label: string
-    value: string
-    disabled: boolean
+    label?: string
+    value?: string
+    disabled?: boolean
   }[]
   direction?: "vertical" | "horizontal"
   spacing?: string | number
