@@ -2,9 +2,11 @@
 import * as React from "react"
 import {
   ChangeEvent,
+  CSSProperties,
   forwardRef,
   useState,
   useMemo,
+  useEffect,
   ReactNode,
   useRef,
   useImperativeHandle,
@@ -13,6 +15,7 @@ import { css } from "@emotion/react"
 import { omit, useMergeValue } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import autoSizeTextAreaHeight from "./autoSizeTextAreaHeight"
 import { applyLengthErrorStyle, applyCountLimitStyle } from "./style"
 import { InputSize, TextAreaProps, TextAreaType } from "./interface"
 import {
@@ -57,6 +60,8 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
     ])
 
     const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
+    const [autoSizeStyle, setAutoSizeStyle] = useState<CSSProperties>({})
+
     const isComposition = useRef(false)
     const [focus, setFocus] = useState(false)
     const [value, setValue] = useMergeValue("", {
@@ -65,9 +70,7 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
         : undefined,
       value: props.value ? formatForRule(props.value, maxLength) : undefined,
     })
-    const [compositionValue, setCompositionValue] = useState<
-      string | undefined
-    >()
+    const [composValue, setComposValue] = useState<string | undefined>()
     const valueLength = value ? value.length : 0
     let suffix: ReactNode
 
@@ -85,20 +88,6 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
       variant,
     }
 
-    const autoResize = function () {
-      if (textAreaRef?.current && autoSize) {
-        const textStyle = window.getComputedStyle(
-          textAreaRef.current as Element,
-        )
-        const paddingSize =
-          parseFloat(textStyle.getPropertyValue("padding-top")) +
-          parseFloat(textStyle.getPropertyValue("padding-bottom"))
-        textAreaRef.current.style.height = "auto"
-        textAreaRef.current.style.height =
-          textAreaRef?.current?.scrollHeight - paddingSize + "px"
-      }
-    }
-
     if (maxLength && showCount) {
       suffix = (
         <span css={applyCountLimitStyle}>
@@ -108,8 +97,8 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
       )
     }
 
-    if (autoSize) {
-      autoResize()
+    if (disabled) {
+      autoSizeStyle.resize = "none"
     }
     const onValueChange = (v: string, e: ChangeEvent<HTMLTextAreaElement>) => {
       if (!("value" in props)) {
@@ -120,13 +109,10 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
 
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
       const newValue = e.target?.value
-      if (autoSize) {
-        autoResize()
-      }
       if (!isComposition.current) {
         onValueChange(newValue, e)
       } else {
-        setCompositionValue(newValue)
+        setComposValue(newValue)
       }
     }
 
@@ -136,7 +122,7 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
     ) => {
       if (e.type === "compositionend") {
         isComposition.current = false
-        setCompositionValue(undefined)
+        setComposValue(undefined)
         onValueChange && onValueChange(e.target.value, e)
       } else {
         isComposition.current = true
@@ -161,6 +147,16 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
       [],
     )
 
+    useEffect(() => {
+      if (textAreaRef?.current && autoSize) {
+        const autoStyle = autoSizeTextAreaHeight(
+          props.autoSize,
+          textAreaRef.current,
+        )
+        autoStyle ? setAutoSizeStyle(autoStyle) : null
+      }
+    }, [value])
+
     const onClear = () => {
       if (!("value" in props) || !props.value) {
         setValue("")
@@ -172,7 +168,7 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
       ...otherProps,
       disabled,
       placeholder,
-      value: compositionValue || value || "",
+      value: composValue || value || "",
       onCompositionStart: onComposition,
       onCompositionUpdate: onComposition,
       onCompositionEnd: onComposition,
@@ -183,6 +179,7 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
         <span css={applyContainerCss} {...otherProps}>
           <span css={applyTextAreaContainer(stateValue)}>
             <textarea
+              style={{ ...autoSizeStyle }}
               ref={textAreaRef}
               css={applyTextAreaStyle}
               {...textAreaProps}
