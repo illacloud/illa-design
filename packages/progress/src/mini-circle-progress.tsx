@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef, ReactNode } from "react"
 import { ProgressProps } from "./interface"
-import { ErrorIcon, SuccessIcon } from "@illa-design/icon"
+import { SuccessIcon, WarningIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import { applyContainer } from "./common-style"
 import { applyCircleProgressContainer, applyCircleStatus, applyCircleSvgContainer } from "./mini-circle-progress-style"
@@ -47,7 +47,7 @@ export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>((pro
       statusComponent = <SuccessIcon />
       break
     case "error":
-      statusComponent = <ErrorIcon />
+      statusComponent = <WarningIcon />
       break
   }
 

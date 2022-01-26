@@ -2,7 +2,7 @@
 import { forwardRef, ReactNode } from "react"
 import { ProgressProps } from "./interface"
 import { applyCircleStatus, applyProgressText } from "./circle-progress-style"
-import { ErrorIcon, SuccessIcon } from "@illa-design/icon"
+import { SuccessIcon, WarningIcon } from "@illa-design/icon"
 import { applyContainer, applyProgressContainer, applyProgressContainerBg, applySvgContainer } from "./common-style"
 
 export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
@@ -46,7 +46,7 @@ export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>((props, 
       statusComponent = <SuccessIcon />
       break
     case "error":
-      statusComponent = <ErrorIcon />
+      statusComponent = <WarningIcon />
       break
   }
 

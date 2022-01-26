@@ -12,7 +12,7 @@ import {
   applySpace,
   applyStatusIcon,
 } from "./line-progress-style"
-import { ErrorIcon, SuccessIcon } from "@illa-design/icon"
+import { WarningIcon, SuccessIcon } from "@illa-design/icon"
 import { Space } from "@illa-design/space"
 
 export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
@@ -52,7 +52,7 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>((props, re
       statusComponent = <SuccessIcon />
       break
     case "error":
-      statusComponent = <ErrorIcon />
+      statusComponent = <WarningIcon />
       break
   }
 

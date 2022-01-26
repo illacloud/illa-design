@@ -3,12 +3,7 @@ import { createIcon } from "../create-icon"
 export const ErrorIcon = createIcon({
   title: "ErrorIcon",
   viewBox: "0 0 12 12",
-  path: <>
-    <path fillRule="evenodd" clipRule="evenodd" d="M6 0a6 6 0 1 1 0 12A6 6 0 0 1 6 0z" fill="#FF4747" />
-    <path fillRule="evenodd" clipRule="evenodd"
-          d="M6 3a.75.75 0 0 0-.75.75v2a.75.75 0 0 0 1.5 0v-2A.75.75 0 0 0 6 3zm0 6a.75.75 0 1 0 0-1.5A.75.75 0 0 0 6 9z"
-          fill="#fff" />
-  </>,
+  d: "M12 6A6 6 0 1 0 0 6a6 6 0 0 0 12 0zM4.146 4.146a.5.5 0 0 1 .708 0L6 5.293l1.146-1.147a.5.5 0 1 1 .708.708L6.707 6l1.147 1.146a.5.5 0 1 1-.708.708L6 6.707 4.854 7.854a.5.5 0 1 1-.708-.708L5.293 6 4.146 4.854a.5.5 0 0 1 0-.708z",
 })
 
 ErrorIcon.displayName = "ErrorIcon"
