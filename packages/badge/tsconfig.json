@@ -1,5 +1,5 @@
 {
-  "extends": "../../../../program/illa-design/tsconfig.json",
+  "extends": "../../tsconfig.json",
   "include": [
     "./src"
   ]
