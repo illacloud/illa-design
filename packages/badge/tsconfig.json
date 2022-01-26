@@ -1,0 +1,6 @@
+{
+  "extends": "../../../../program/illa-design/tsconfig.json",
+  "include": [
+    "./src"
+  ]
+}
