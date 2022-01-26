@@ -7,6 +7,7 @@ import {
   applyChildrenContainer,
   applyCloseButton,
   applyCloseContentCss,
+  applyDefaultContentSize,
   applyMotionDiv,
   applyTipsContainer,
   applyTipsText,
@@ -65,7 +66,7 @@ export const Trigger: FC<TriggerProps> = ((props) => {
   const locale = configProviderProps?.locale?.trigger ?? def.trigger
 
   const closeContent = <div css={applyCloseContentCss}>
-    <div>{content}</div>
+    <div css={applyDefaultContentSize}>{content}</div>
     {hasCloseIcon &&
       <Link colorScheme={colorScheme == "white" ? "blue" : "white"} css={applyCloseButton} onClick={() => {
         setTipsVisible(false)

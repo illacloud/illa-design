@@ -44,8 +44,8 @@ function getCopyable(configProviderProps: ConfigProviderProps, copyable?: boolea
     originCopyable = copyable
   }
   const locale = configProviderProps.locale?.typography ?? def.typography
-  if (originCopyable.copyTooltip == undefined) {
-    originCopyable.copyTooltip = locale["copyTooltip"]
+  if (originCopyable.copyToolTip == undefined) {
+    originCopyable.copyToolTip = locale["copyToolTip"]
   }
   if (originCopyable.copiedToolTip == undefined) {
     originCopyable.copiedToolTip = locale["copiedToolTip"]
@@ -110,7 +110,7 @@ export const Base: FC<BaseProps> = (props) => {
     {!copied ? originCopyable.copyIcon : originCopyable.copiedIcon}
   </span>
 
-  const showCopyTooltip = copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip
+  const showCopyTooltip = copied ? originCopyable.copiedToolTip : originCopyable.copyToolTip
 
   const expandPanel = finalShowExpand && !haveShowExpandSize && <Fragment>
       <span css={contentCss}>
@@ -127,7 +127,7 @@ export const Base: FC<BaseProps> = (props) => {
 
   const copyablePanel = copyable && originCopyable.copyIcon &&
   showCopyTooltip ?
-    <Tooltip closeOnClick={false} content={copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip}>
+    <Tooltip closeOnClick={false} content={copied ? originCopyable.copiedToolTip : originCopyable.copyToolTip}>
       {copyableElement}
     </Tooltip> : copyableElement
 

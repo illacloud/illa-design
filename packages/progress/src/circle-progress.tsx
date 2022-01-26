@@ -1,15 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef, ReactNode } from "react"
 import { ProgressProps } from "./interface"
-import {
-  applyCircleContainer,
-  applyCircleStatus,
-  applyContainer,
-  applyProgressContainer,
-  applyProgressContainerBg,
-  applyProgressText,
-} from "./circle-progress-style"
+import { applyCircleStatus, applyProgressText } from "./circle-progress-style"
 import { ErrorIcon, SuccessIcon } from "@illa-design/icon"
+import { applyContainer, applyProgressContainer, applyProgressContainerBg, applySvgContainer } from "./common-style"
 
 export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>((props, ref) => {
 
@@ -57,7 +51,7 @@ export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>((props, 
   }
 
   return <div css={applyContainer(width)} ref={ref} {...otherProps}>
-    <svg css={applyCircleContainer(width)}>
+    <svg css={applySvgContainer(width)}>
       <circle
         css={applyProgressContainerBg(trailColor, width, strokeWidth)}
         fill="none"

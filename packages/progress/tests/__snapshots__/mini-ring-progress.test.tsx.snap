@@ -3,8 +3,8 @@
 exports[`Progress renders with colors 1`] = `
 .emotion-0 {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 16px;
+  height: 16px;
   vertical-align: middle;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -21,67 +21,62 @@ exports[`Progress renders with colors 1`] = `
 }
 
 .emotion-1 {
-  width: 80px;
-  height: 80px;
+  display: inline-flex;
 }
 
 .emotion-2 {
+  width: 16px;
+  height: 16px;
+}
+
+.emotion-3 {
   stroke: #fcc;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transform-origin: center;
-  stroke-dasharray: calc(3.141592653589793 * 2 * (80px - 4px) / 2);
+  stroke-dasharray: calc(3.141592653589793 * 2 * (16px - 4px) / 2);
 }
 
-.emotion-3 {
+.emotion-4 {
   stroke: #ff4747;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transform-origin: center;
-  stroke-dasharray: calc(3.141592653589793 * 2 * (80px - 4px) / 2);
-  stroke-dashoffset: calc(calc(3.141592653589793 * 2 * (80px - 4px) / 2) - (0 / 100 * calc(3.141592653589793 * 2 * (80px - 4px) / 2)));
-}
-
-.emotion-4 {
-  position: absolute;
-  line-height: 22px;
-  font-size: 14px;
-  color: #999;
+  stroke-dasharray: calc(3.141592653589793 * 2 * (16px - 4px) / 2);
+  stroke-dashoffset: calc(calc(3.141592653589793 * 2 * (16px - 4px) / 2) - (0 / 100 * calc(3.141592653589793 * 2 * (16px - 4px) / 2)));
 }
 
 <div
   class="emotion-0"
   data-testid="test-progress-red"
 >
-  <svg
+  <span
     class="emotion-1"
   >
-    <circle
+    <svg
       class="emotion-2"
-      cx="calc(80px / 2)"
-      cy="calc(80px / 2)"
-      fill="none"
-      r="calc((80px - 4px) / 2)"
-      stroke-width="4px"
-    />
-    <circle
-      class="emotion-3"
-      cx="calc(80px / 2)"
-      cy="calc(80px / 2)"
-      fill="none"
-      r="calc((80px - 4px) / 2)"
-      stroke-linecap="round"
-      stroke-width="4px"
-    />
-  </svg>
-  <span
-    class="emotion-4"
-  >
-    0%
+    >
+      <circle
+        class="emotion-3"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc((16px - 4px) / 2)"
+        stroke-width="4px"
+      />
+      <circle
+        class="emotion-4"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc((16px - 4px) / 2)"
+        stroke-width="4px"
+      />
+    </svg>
   </span>
 </div>
 `;
@@ -89,8 +84,8 @@ exports[`Progress renders with colors 1`] = `
 exports[`Progress renders with colors 2`] = `
 .emotion-0 {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 16px;
+  height: 16px;
   vertical-align: middle;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -107,67 +102,62 @@ exports[`Progress renders with colors 2`] = `
 }
 
 .emotion-1 {
-  width: 80px;
-  height: 80px;
+  display: inline-flex;
 }
 
 .emotion-2 {
+  width: 16px;
+  height: 16px;
+}
+
+.emotion-3 {
   stroke: #ebebeb;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transform-origin: center;
-  stroke-dasharray: calc(3.141592653589793 * 2 * (80px - 4px) / 2);
+  stroke-dasharray: calc(3.141592653589793 * 2 * (16px - 4px) / 2);
 }
 
-.emotion-3 {
+.emotion-4 {
   stroke: #1f1f1f;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transform-origin: center;
-  stroke-dasharray: calc(3.141592653589793 * 2 * (80px - 4px) / 2);
-  stroke-dashoffset: calc(calc(3.141592653589793 * 2 * (80px - 4px) / 2) - (0 / 100 * calc(3.141592653589793 * 2 * (80px - 4px) / 2)));
-}
-
-.emotion-4 {
-  position: absolute;
-  line-height: 22px;
-  font-size: 14px;
-  color: #999;
+  stroke-dasharray: calc(3.141592653589793 * 2 * (16px - 4px) / 2);
+  stroke-dashoffset: calc(calc(3.141592653589793 * 2 * (16px - 4px) / 2) - (0 / 100 * calc(3.141592653589793 * 2 * (16px - 4px) / 2)));
 }
 
 <div
   class="emotion-0"
   data-testid="test-progress-gray"
 >
-  <svg
+  <span
     class="emotion-1"
   >
-    <circle
+    <svg
       class="emotion-2"
-      cx="calc(80px / 2)"
-      cy="calc(80px / 2)"
-      fill="none"
-      r="calc((80px - 4px) / 2)"
-      stroke-width="4px"
-    />
-    <circle
-      class="emotion-3"
-      cx="calc(80px / 2)"
-      cy="calc(80px / 2)"
-      fill="none"
-      r="calc((80px - 4px) / 2)"
-      stroke-linecap="round"
-      stroke-width="4px"
-    />
-  </svg>
-  <span
-    class="emotion-4"
-  >
-    0%
+    >
+      <circle
+        class="emotion-3"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc((16px - 4px) / 2)"
+        stroke-width="4px"
+      />
+      <circle
+        class="emotion-4"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc((16px - 4px) / 2)"
+        stroke-width="4px"
+      />
+    </svg>
   </span>
 </div>
 `;
@@ -175,8 +165,8 @@ exports[`Progress renders with colors 2`] = `
 exports[`Progress renders with colors 3`] = `
 .emotion-0 {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 16px;
+  height: 16px;
   vertical-align: middle;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -193,67 +183,62 @@ exports[`Progress renders with colors 3`] = `
 }
 
 .emotion-1 {
-  width: 80px;
-  height: 80px;
+  display: inline-flex;
 }
 
 .emotion-2 {
+  width: 16px;
+  height: 16px;
+}
+
+.emotion-3 {
   stroke: #321321;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transform-origin: center;
-  stroke-dasharray: calc(3.141592653589793 * 2 * (80px - 4px) / 2);
+  stroke-dasharray: calc(3.141592653589793 * 2 * (16px - 4px) / 2);
 }
 
-.emotion-3 {
+.emotion-4 {
   stroke: #123123;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transform-origin: center;
-  stroke-dasharray: calc(3.141592653589793 * 2 * (80px - 4px) / 2);
-  stroke-dashoffset: calc(calc(3.141592653589793 * 2 * (80px - 4px) / 2) - (0 / 100 * calc(3.141592653589793 * 2 * (80px - 4px) / 2)));
-}
-
-.emotion-4 {
-  position: absolute;
-  line-height: 22px;
-  font-size: 14px;
-  color: #999;
+  stroke-dasharray: calc(3.141592653589793 * 2 * (16px - 4px) / 2);
+  stroke-dashoffset: calc(calc(3.141592653589793 * 2 * (16px - 4px) / 2) - (0 / 100 * calc(3.141592653589793 * 2 * (16px - 4px) / 2)));
 }
 
 <div
   class="emotion-0"
   data-testid="test-progress-custom"
 >
-  <svg
+  <span
     class="emotion-1"
   >
-    <circle
+    <svg
       class="emotion-2"
-      cx="calc(80px / 2)"
-      cy="calc(80px / 2)"
-      fill="none"
-      r="calc((80px - 4px) / 2)"
-      stroke-width="4px"
-    />
-    <circle
-      class="emotion-3"
-      cx="calc(80px / 2)"
-      cy="calc(80px / 2)"
-      fill="none"
-      r="calc((80px - 4px) / 2)"
-      stroke-linecap="round"
-      stroke-width="4px"
-    />
-  </svg>
-  <span
-    class="emotion-4"
-  >
-    0%
+    >
+      <circle
+        class="emotion-3"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc((16px - 4px) / 2)"
+        stroke-width="4px"
+      />
+      <circle
+        class="emotion-4"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc((16px - 4px) / 2)"
+        stroke-width="4px"
+      />
+    </svg>
   </span>
 </div>
 `;
@@ -279,11 +264,15 @@ exports[`Progress renders with custom width 1`] = `
 }
 
 .emotion-1 {
+  display: inline-flex;
+}
+
+.emotion-2 {
   width: 100px;
   height: 100px;
 }
 
-.emotion-2 {
+.emotion-3 {
   stroke: #ebebeb;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -293,7 +282,7 @@ exports[`Progress renders with custom width 1`] = `
   stroke-dasharray: calc(3.141592653589793 * 2 * (100px - 10px) / 2);
 }
 
-.emotion-3 {
+.emotion-4 {
   stroke: #1e6fff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -304,42 +293,33 @@ exports[`Progress renders with custom width 1`] = `
   stroke-dashoffset: calc(calc(3.141592653589793 * 2 * (100px - 10px) / 2) - (50 / 100 * calc(3.141592653589793 * 2 * (100px - 10px) / 2)));
 }
 
-.emotion-4 {
-  position: absolute;
-  line-height: 22px;
-  font-size: 14px;
-  color: #999;
-}
-
 <div
   class="emotion-0"
   data-testid="test-progress"
 >
-  <svg
+  <span
     class="emotion-1"
   >
-    <circle
+    <svg
       class="emotion-2"
-      cx="calc(100px / 2)"
-      cy="calc(100px / 2)"
-      fill="none"
-      r="calc((100px - 10px) / 2)"
-      stroke-width="10px"
-    />
-    <circle
-      class="emotion-3"
-      cx="calc(100px / 2)"
-      cy="calc(100px / 2)"
-      fill="none"
-      r="calc((100px - 10px) / 2)"
-      stroke-linecap="round"
-      stroke-width="10px"
-    />
-  </svg>
-  <span
-    class="emotion-4"
-  >
-    50%
+    >
+      <circle
+        class="emotion-3"
+        cx="calc(100px / 2)"
+        cy="calc(100px / 2)"
+        fill="none"
+        r="calc((100px - 10px) / 2)"
+        stroke-width="10px"
+      />
+      <circle
+        class="emotion-4"
+        cx="calc(100px / 2)"
+        cy="calc(100px / 2)"
+        fill="none"
+        r="calc((100px - 10px) / 2)"
+        stroke-width="10px"
+      />
+    </svg>
   </span>
 </div>
 `;
@@ -347,8 +327,8 @@ exports[`Progress renders with custom width 1`] = `
 exports[`Progress renders with steps 1`] = `
 .emotion-0 {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 16px;
+  height: 16px;
   vertical-align: middle;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -365,67 +345,62 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-1 {
-  width: 80px;
-  height: 80px;
+  display: inline-flex;
 }
 
 .emotion-2 {
+  width: 16px;
+  height: 16px;
+}
+
+.emotion-3 {
   stroke: #ebebeb;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transform-origin: center;
-  stroke-dasharray: calc(3.141592653589793 * 2 * (80px - 4px) / 2);
+  stroke-dasharray: calc(3.141592653589793 * 2 * (16px - 4px) / 2);
 }
 
-.emotion-3 {
+.emotion-4 {
   stroke: #1e6fff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transform-origin: center;
-  stroke-dasharray: calc(3.141592653589793 * 2 * (80px - 4px) / 2);
-  stroke-dashoffset: calc(calc(3.141592653589793 * 2 * (80px - 4px) / 2) - (0 / 100 * calc(3.141592653589793 * 2 * (80px - 4px) / 2)));
-}
-
-.emotion-4 {
-  position: absolute;
-  line-height: 22px;
-  font-size: 14px;
-  color: #999;
+  stroke-dasharray: calc(3.141592653589793 * 2 * (16px - 4px) / 2);
+  stroke-dashoffset: calc(calc(3.141592653589793 * 2 * (16px - 4px) / 2) - (0 / 100 * calc(3.141592653589793 * 2 * (16px - 4px) / 2)));
 }
 
 <div
   class="emotion-0"
   data-testid="test-progress"
 >
-  <svg
+  <span
     class="emotion-1"
   >
-    <circle
+    <svg
       class="emotion-2"
-      cx="calc(80px / 2)"
-      cy="calc(80px / 2)"
-      fill="none"
-      r="calc((80px - 4px) / 2)"
-      stroke-width="4px"
-    />
-    <circle
-      class="emotion-3"
-      cx="calc(80px / 2)"
-      cy="calc(80px / 2)"
-      fill="none"
-      r="calc((80px - 4px) / 2)"
-      stroke-linecap="round"
-      stroke-width="4px"
-    />
-  </svg>
-  <span
-    class="emotion-4"
-  >
-    0%
+    >
+      <circle
+        class="emotion-3"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc((16px - 4px) / 2)"
+        stroke-width="4px"
+      />
+      <circle
+        class="emotion-4"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc((16px - 4px) / 2)"
+        stroke-width="4px"
+      />
+    </svg>
   </span>
 </div>
 `;

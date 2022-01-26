@@ -36,6 +36,8 @@ export default {
 export const Basic: Story<ProgressProps> = (args) => <Space direction="vertical">
   <Progress type="line" {...args} />
   <Progress type="circle" {...args} />
+  <Progress type="miniCircle" {...args} />
+  <Progress type="miniRing" {...args} />
 </Space>
 
 
