@@ -60,7 +60,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   const hasChildren = children ? true : false
 
   const renderBadge = () => {
-    // status优先级最高
+    // display status dot
     if (status) {
       return (
         <span css={applyBadgeStatusWrapper()}>
@@ -72,7 +72,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
         </span>
       )
     }
-    // 自定义图标
+    // display customized icon
     if (isObject(count)) {
       return (
         <span
@@ -83,7 +83,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
         </span>
       )
     }
-    // 显示自定义文本
+    // display text
     if (text) {
       return (
         <span
@@ -94,7 +94,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
         </span>
       )
     }
-    // 显示小圆点
+    // display dot
     if (dot && count && count > 0) {
       return (
         <span

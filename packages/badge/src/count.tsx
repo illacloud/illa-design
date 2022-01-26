@@ -5,7 +5,7 @@ import { CountProps } from "./interface"
 import { applyBadgeNumberOrText, applyBadgeScale } from "./style"
 
 export function Count(props: CountProps) {
-  const { count, dotStyle, color, hasChildren } = props
+  const { count, dotStyle, color='#ff4747', hasChildren=false } = props
   const oldCount = usePrevious(count)
   const isChanged = count !== oldCount
 

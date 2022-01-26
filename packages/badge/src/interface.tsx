@@ -35,6 +35,6 @@ export interface BadgeProps extends HTMLAttributes<HTMLElement> {
 export interface CountProps {
   count?: string | number
   dotStyle?: CSSProperties
-  color: string
-  hasChildren: boolean
+  color?: string
+  hasChildren?: boolean
 }

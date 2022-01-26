@@ -82,7 +82,6 @@ export function applyBadgeNumberOrText(
 }
 
 export function applyBadgeScale(isChanged: boolean = false) {
-  console.log(isChanged, "ischanged")
   return isChanged
     ? css`
         animation-name: ${badgeScale};

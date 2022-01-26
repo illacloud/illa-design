@@ -6,11 +6,7 @@ export default function usePrevious<T>(
 ) {
   const ref = useRef()
   useEffect(() => {
-    console.log(ref.current, value, "ref")
     ref.current = value
-    return () => {
-      console.log("unmount")
-    }
   })
   return ref.current
 }
