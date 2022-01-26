@@ -4,6 +4,7 @@ import { Progress } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { ProgressProps } from "../dist/types"
+import { Space } from "@illa-design/space"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -21,17 +22,20 @@ export default {
     },
     color: {
       control: {
-        type: "text"
-      }
+        type: "text",
+      },
     },
     trailColor: {
       control: {
-        type: "text"
-      }
-    }
+        type: "text",
+      },
+    },
   },
 } as Meta
 
-export const Basic: Story<ProgressProps> = (args) => <Progress type="line" {...args} />
+export const Basic: Story<ProgressProps> = (args) => <Space direction="vertical">
+  <Progress type="line" {...args} />
+  <Progress type="circle" {...args} />
+</Space>
 
 

@@ -27,10 +27,24 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>((props, re
       return `${percent}%`
     },
     percent = 0,
-    strokeWidth = "8px",
+    strokeWidth = "4px",
     width = "320px",
     ...otherProps
   } = props
+
+  let finalColor: string
+
+  switch (status) {
+    case "normal":
+      finalColor = color
+      break
+    case "success":
+      finalColor = "green"
+      break
+    case "error":
+      finalColor = "red"
+      break
+  }
 
   let statusComponent: ReactNode
   switch (status) {
@@ -46,7 +60,7 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>((props, re
     return <div ref={ref} {...otherProps} css={applyProgressContainer}>
       <div css={applyLineContainer(width, strokeWidth)}>
         <div css={applyLineProgressBg(strokeWidth, trailColor)} />
-        <div css={applyLineProgress(percent, strokeWidth, color)} />
+        <div css={applyLineProgress(percent, strokeWidth, finalColor)} />
       </div>
       {showText && <span css={applyProgressText}>
       {formatText(percent)}
@@ -64,7 +78,7 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>((props, re
         <div key={i} css={applyLineProgressStep(percent,
           strokeWidth,
           `calc((${width} - (${steps} - 1) * 4px) / ${steps})`,
-          color,
+          finalColor,
           steps,
           i)} />,
       )
@@ -74,8 +88,6 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>((props, re
           trailColor)} />,
       )
     }
-
-    console.log(lineProgressContainer, lineProgressBgContainer)
 
     return <div ref={ref} {...otherProps} css={applyProgressContainer}>
       <div css={applyLineContainer(width, strokeWidth)}>
@@ -89,9 +101,7 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>((props, re
       {showText && <span css={applyProgressText}>
       {formatText(percent)}
     </span>}
-      {status != "normal" && <span css={applyStatusIcon}>
-      {statusComponent}
-    </span>}
+      {status != "normal" && <span css={applyStatusIcon}>{statusComponent}</span>}
     </div>
   }
 })
