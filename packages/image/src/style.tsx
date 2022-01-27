@@ -4,7 +4,6 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export function applyImageCss(objFit: "fill" | "container" | "cover" | "none" | "scale-down", radius: string) {
   return css`
     object-fit: ${objFit};
-    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
     border-radius: ${radius};
   `
 }

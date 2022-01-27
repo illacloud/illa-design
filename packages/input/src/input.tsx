@@ -98,6 +98,7 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     "defaultValue",
     "addonBefore",
     "addonAfter",
+    "onPressEnter",
     "onClear",
     "onChange",
     "onFocus",
