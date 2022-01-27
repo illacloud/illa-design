@@ -15,7 +15,7 @@ export const textarea: Story<TextAreaProps> = (props) => {
   return (
     <div>
       <TextArea {...props} />
-      <TextArea allowClear {...props} />
+      <TextArea allowClear autoSize {...props} />
     </div>
   )
 }

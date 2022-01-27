@@ -15,11 +15,13 @@ test("TextArea render correctly", () => {
 
 test("TextArea render with variant fill", () => {
   render(<TextArea placeholder="variant-fill" variant="fill" />)
-  expect(screen.getByPlaceholderText("variant-fill").parentElement).toHaveStyle({
-    backgroundColor: `${globalColor(`--${illaPrefix}-gray-09`)}`,
-    borderColor: `${globalColor(`--${illaPrefix}-gray-09`)}`,
-    color: `${globalColor(`--${illaPrefix}-gray-05`)}`,
-  })
+  expect(screen.getByPlaceholderText("variant-fill").parentElement).toHaveStyle(
+    {
+      backgroundColor: `${globalColor(`--${illaPrefix}-gray-09`)}`,
+      borderColor: `${globalColor(`--${illaPrefix}-gray-09`)}`,
+      color: `${globalColor(`--${illaPrefix}-gray-05`)}`,
+    },
+  )
 })
 
 test("TextArea render with value", () => {
@@ -28,27 +30,39 @@ test("TextArea render with value", () => {
 })
 
 test("TextArea render with defaultValue", () => {
-  render(<TextArea placeholder="defaultValue" defaultValue="test defaultValue" />)
-  expect(screen.getByPlaceholderText("defaultValue")).toHaveDisplayValue("test defaultValue")
+  render(
+    <TextArea placeholder="defaultValue" defaultValue="test defaultValue" />,
+  )
+  expect(screen.getByPlaceholderText("defaultValue")).toHaveDisplayValue(
+    "test defaultValue",
+  )
   expect(screen.getByPlaceholderText("defaultValue")).toBeInTheDocument()
 })
 
 test("TextArea render with maxLength", () => {
-  render(<TextArea placeholder="maxLength" defaultValue="test maxLength" maxLength={4} />)
+  render(
+    <TextArea
+      placeholder="maxLength"
+      defaultValue="test maxLength"
+      maxLength={4}
+    />,
+  )
   expect(screen.getByPlaceholderText("maxLength")).toHaveDisplayValue("test")
 })
 
 test("TextArea render with showCount", () => {
   render(<TextArea maxLength={23} showCount />)
-  expect(screen.getByText("/23")).toBeInTheDocument();
-  expect(screen.getByText("/23").previousSibling).toHaveTextContent('0');
+  expect(screen.getByText("/23")).toBeInTheDocument()
+  expect(screen.getByText("/23").previousSibling).toHaveTextContent("0")
 })
 
 test("TextArea render with disabled", () => {
   render(<TextArea placeholder="test-disabled" disabled />)
   expect(screen.getByPlaceholderText("test-disabled")).toBeDisabled()
-  expect(screen.getByPlaceholderText("test-disabled").parentElement).toHaveStyle({
-    cursor: 'not-allowed',
+  expect(
+    screen.getByPlaceholderText("test-disabled").parentElement,
+  ).toHaveStyle({
+    cursor: "not-allowed",
   })
 })
 
@@ -62,7 +76,13 @@ test("TextArea render with error", () => {
 test("TextArea render with focus and blur", () => {
   const focusEvent = jest.fn()
   const blurEvent = jest.fn()
-  render(<TextArea placeholder="test-focus" onFocus={focusEvent} onBlur={blurEvent} />)
+  render(
+    <TextArea
+      placeholder="test-focus"
+      onFocus={focusEvent}
+      onBlur={blurEvent}
+    />,
+  )
   const testInputFocus = screen.getByPlaceholderText("test-focus")
   testInputFocus.focus()
   expect(focusEvent).toBeCalled()
@@ -84,14 +104,19 @@ test("TextArea render with input event", async () => {
   expect(testTextAreaEvent).toHaveDisplayValue("456")
 
   fireEvent.compositionStart(testTextAreaEvent)
-  fireEvent.compositionUpdate(testTextAreaEvent,{ data: '是', target: { value: '是' } } )
-  fireEvent.compositionEnd(testTextAreaEvent,{ data: '是' })
+  fireEvent.compositionUpdate(testTextAreaEvent, {
+    data: "是",
+    target: { value: "是" },
+  })
+  fireEvent.compositionEnd(testTextAreaEvent, { data: "是" })
   expect(testTextAreaEvent).toHaveDisplayValue("是")
 })
 
 test("TextArea render with clear event", async () => {
   const clearEvent = jest.fn()
-  render(<TextArea placeholder="test-clear-event" allowClear onClear={clearEvent} />)
+  render(
+    <TextArea placeholder="test-clear-event" allowClear onClear={clearEvent} />,
+  )
   const testClearEvent = screen.getByPlaceholderText("test-clear-event")
 
   fireEvent.change(testClearEvent, { target: { value: "123" } })
@@ -101,11 +126,4 @@ test("TextArea render with clear event", async () => {
   }
   expect(clearEvent).toBeCalled()
   expect(testClearEvent).toHaveDisplayValue("")
-})
-
-test("TextArea render with autoSize", async () => {
-  render(<TextArea placeholder="test-autoSize" autoSize />)
-  const testAutoSize = screen.getByPlaceholderText("test-autoSize")
-
-  expect(testAutoSize).toHaveDisplayValue("")
 })

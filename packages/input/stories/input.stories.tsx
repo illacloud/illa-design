@@ -11,6 +11,24 @@ export default {
   title: "DATA INPUT/Input",
   component: Input,
   decorators: [withTests({ results })],
+  argTypes: {
+    prefix: {
+      control: {
+        type: "text",
+      },
+    },
+    suffix: {
+      control: {
+        type: "text",
+      },
+    },
+    addonAfter: {
+      control: false,
+    },
+    addonBefore: {
+      control: false,
+    },
+  },
 } as Meta
 
 const Template: Story<InputProps> = (props) => {
