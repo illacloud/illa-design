@@ -57,7 +57,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   }
   colorStyle = colorStyle ? colorStyle : globalColor(`--${illaPrefix}-red-03`)
 
-  const hasChildren = children ? true : false
+  const hasChildren = !!children
 
   const renderBadge = () => {
     // display status dot
@@ -100,7 +100,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
         <span
           style={dotStyle}
           css={applyBadgeDot(colorStyle, hasChildren)}
-        ></span>
+        />
       )
     }
 
@@ -115,7 +115,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     ) : null
   }
   return (
-    <span css={applyBadge()} ref={ref} {...restProps}>
+    <span css={applyBadge} ref={ref} {...restProps}>
       {children}
       {renderBadge()}
     </span>

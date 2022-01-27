@@ -2,10 +2,11 @@
 import React from "react"
 import usePrevious from "./usePrevious"
 import { CountProps } from "./interface"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 import { applyBadgeNumberOrText, applyBadgeScale } from "./style"
 
 export function Count(props: CountProps) {
-  const { count, dotStyle, color='#ff4747', hasChildren=false } = props
+  const { count, dotStyle, color=globalColor(`--${illaPrefix}-red-03`), hasChildren=false } = props
   const oldCount = usePrevious(count)
   const isChanged = count !== oldCount
 
