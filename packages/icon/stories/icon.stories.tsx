@@ -13,6 +13,7 @@ import {
   ErrorIcon,
   SearchIcon,
   RightIcon,
+  EmptyIcon,
 } from "../src"
 import results from "../../../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
@@ -46,5 +47,4 @@ export const Search: Story<IconProps> = (props) => <SearchIcon {...props} />
 export const Error: Story<IconProps> = (props) => <ErrorIcon {...props} />
 export const Link: Story<IconProps> = (props) => <LinkIcon {...props} />
 export const Right: Story<IconProps> = (props) => <RightIcon {...props} />
-
-
+export const Empty: Story<IconProps> = (props) => <EmptyIcon {...props} />
