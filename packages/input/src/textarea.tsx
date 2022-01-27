@@ -155,7 +155,7 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
         )
         autoStyle ? setAutoSizeStyle(autoStyle) : null
       }
-    }, [value])
+    }, [value, defaultValue, placeholder])
 
     const onClear = () => {
       if (!("value" in props) || !props.value) {
