@@ -19,11 +19,6 @@ export default {
         type: "text",
       },
     },
-    size: {
-      control: {
-        type: "text",
-      },
-    },
   },
 } as Meta
 

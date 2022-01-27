@@ -1,20 +1,21 @@
 /** @jsxImportSource @emotion/react */
-import { forwardRef } from "react"
-import { EmptyProps } from "./interface"
-import { omit } from "@illa-design/system"
-import {descriptionCss, emptyContainerCss, iconCss} from "./style"
+import {forwardRef, useContext} from "react"
 import { Image } from "@illa-design/image"
 import { EmptyIcon } from "@illa-design/icon"
+import { ConfigProviderContext, ConfigProviderProps, def } from "@illa-design/config-provider"
+import { descriptionCss, emptyContainerCss, iconCss } from "./style"
+import { EmptyProps } from "./interface"
 
 export const Empty = forwardRef<HTMLDivElement, EmptyProps>((props, ref) => {
-  const {
-    icon = (<EmptyIcon css={iconCss} />),
+    const configProviderProps = useContext<ConfigProviderProps>(ConfigProviderContext)
+    const locale = configProviderProps?.locale?.empty ?? def.empty
+
+    const {
+    icon = <EmptyIcon css={iconCss} />,
     imgSrc,
-    description = "暂无数据",
+    description = locale["noData"],
     ...rest
   } = props
-
-  const otherProps = omit(rest, ["size"])
 
   return (
     <div ref={ref} css={emptyContainerCss} {...rest}>
