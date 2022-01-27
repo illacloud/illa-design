@@ -31,15 +31,15 @@ export const Password: PasswordRef = forwardRef<InputRefType, PasswordProps>(
       error,
       disabled,
       placeholder,
-      invisibleButton = true,
-      boarderColor = "blue",
-      size = "medium",
-      variant = "outline",
       defaultValue,
       onClear,
       onChange,
       onFocus,
       onBlur,
+      invisibleButton = true,
+      boarderColor = "blue",
+      size = "medium",
+      variant = "outline",
       ...rest
     } = props
 
