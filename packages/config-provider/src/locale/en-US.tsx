@@ -9,4 +9,7 @@ export const enUS = {
   trigger: {
     "close": "Close",
   },
+  empty: {
+    "noData": "No data",
+  },
 } as Locale

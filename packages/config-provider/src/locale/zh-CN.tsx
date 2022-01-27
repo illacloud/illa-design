@@ -9,4 +9,7 @@ export const zhCN = {
   trigger: {
     "close": "关闭",
   },
+  empty: {
+    "noData": "暂无数据",
+  },
 } as Locale
