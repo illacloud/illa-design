@@ -3,6 +3,7 @@ import { Meta, Story } from "@storybook/react"
 import {
   CloseIcon,
   CopyIcon,
+  EmptyIcon,
   ErrorIcon,
   EyeOffIcon,
   EyeOnIcon,
@@ -50,5 +51,4 @@ export const Right: Story<IconProps> = (props) => <RightIcon {...props} />
 export const Error: Story<IconProps> = (props) => <ErrorIcon {...props} />
 export const Warning: Story<IconProps> = (props) => <WarningIcon {...props} />
 export const Success: Story<IconProps> = (props) => <SuccessIcon {...props} />
-
-
+export const Empty: Story<IconProps> = (props) => <EmptyIcon {...props} />
