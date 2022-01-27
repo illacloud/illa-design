@@ -127,10 +127,3 @@ test("TextArea render with clear event", async () => {
   expect(clearEvent).toBeCalled()
   expect(testClearEvent).toHaveDisplayValue("")
 })
-
-test("TextArea render with autoSize", async () => {
-  render(<TextArea placeholder="test-autoSize" autoSize />)
-  const testAutoSize = screen.getByPlaceholderText("test-autoSize")
-
-  expect(testAutoSize).toHaveDisplayValue("")
-})
