@@ -55,7 +55,8 @@
     "@illa-design/tooltip": "^0.0.1-alpha.0",
     "@illa-design/popover": "^0.0.1-alpha.0",
     "@illa-design/link": "^0.0.1-alpha.0",
-    "@illa-design/empty": "^0.0.1-alpha.0",
-    "@illa-design/config-provider": "^0.0.1-alpha.0"
+    "@illa-design/config-provider": "^0.0.1-alpha.0",
+    "@illa-design/badge": "^0.0.1-alpha.0",
+    "@illa-design/empty": "^0.0.1-alpha.0"
   }
 }
