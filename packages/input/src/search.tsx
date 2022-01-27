@@ -1,8 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { ChangeEvent, forwardRef, useState } from "react"
-import { SearchProps } from "./interface"
-import { omit, useMergeValue } from "@illa-design/system"
+import {
+  ChangeEvent,
+  forwardRef,
+  ForwardRefExoticComponent,
+  useImperativeHandle,
+  useState,
+  useRef,
+} from "react"
+import { InputRefType, SearchProps } from "./interface"
+import { useMergeValue } from "@illa-design/system"
 import { SearchIcon } from "@illa-design/icon"
 import { applyContainerCss, applyInputContainer, applySuffixCls } from "./style"
 import { InputElement } from "./input-element"
@@ -10,8 +17,13 @@ import { Button } from "@illa-design/button"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
+export type SearchRef = ForwardRefExoticComponent<
+  SearchProps & React.RefAttributes<InputRefType>
+>
+export const Search: SearchRef = forwardRef<InputRefType, SearchProps>((props, ref) => {
   const {
+    style,
+    className,
     allowClear,
     error,
     disabled,
@@ -21,19 +33,16 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     boarderColor = "blue",
     size = "medium",
     variant = "outline",
+    onChange,
+    onClear,
+    onFocus,
+    onBlur,
+    onSearch,
+    onPressEnter,
     ...rest
   } = props
 
-  const otherProps = omit(rest, [
-    "defaultValue",
-    "onChange",
-    "onClear",
-    "onFocus",
-    "onBlur",
-    "onSearch",
-    "onPressEnter",
-  ])
-
+  const inputRef = useRef<InputRefType>({} as InputRefType)
   const [focus, setFocus] = useState(false)
   const [value, setValue] = useMergeValue("", {
     defaultValue: defaultValue ? defaultValue : undefined,
@@ -45,26 +54,19 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     if (!("value" in props) || !props.value) {
       setValue(v)
     }
-    props.onChange?.(e)
-  }
-
-  const onClear = () => {
-    if (!("value" in props)) {
-      setValue("")
-    }
-    props.onClear?.()
+    onChange?.(e)
   }
 
   const searchProp = {
-    ...otherProps,
-    onClear,
+    ...rest,
     disabled,
     allowClear,
     placeholder,
   }
+  useImperativeHandle(ref, () => inputRef?.current, [])
 
   return (
-    <div ref={ref} {...otherProps}>
+    <div style={style} className={className}>
       <span css={applyContainerCss(variant)}>
         <span css={applyInputContainer(stateValue)}>
           <InputElement
@@ -79,7 +81,12 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
             }}
             value={value}
             onValueChange={onValueChange}
-            onClear={onClear}
+            onClear={() => {
+              if (!("value" in props)) {
+                setValue("")
+              }
+              onClear?.()
+            }}
             onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
               !disabled && props.onSearch?.(value)
               props.onPressEnter?.(e)

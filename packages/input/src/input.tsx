@@ -7,9 +7,10 @@ import {
   useMemo,
   useRef,
   useImperativeHandle,
+  ForwardRefExoticComponent,
 } from "react"
-import { omit, useMergeValue } from "@illa-design/system"
-import { InputProps, InputRefType } from "./interface"
+import { useMergeValue } from "@illa-design/system"
+import { InputProps, InputRefType, InputSize } from "./interface"
 import {
   applyAddonCss,
   applyContainerCss,
@@ -30,9 +31,11 @@ export interface StateValue {
   size?: InputProps["size"]
   boarderColor?: InputProps["boarderColor"]
 }
-
-export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
+export type InputRef = ForwardRefExoticComponent<InputProps & React.RefAttributes<InputRefType>>
+export const Input: InputRef = forwardRef<InputRefType, InputProps>((props, ref) => {
   const {
+    style,
+    className,
     allowClear,
     error,
     disabled,
@@ -44,6 +47,7 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     addonBefore,
     defaultValue,
     boarderColor = "blue",
+    onClear,
     size = "medium",
     variant = "outline",
     ...rest
@@ -94,38 +98,8 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     props.onChange && props.onChange(e)
   }
 
-  const onClear = () => {
-    if (!("value" in props) || !props.value) {
-      setValue("")
-    }
-    props.onClear?.()
-  }
-
-  const otherProps = omit(rest, [
-    "prefix",
-    "suffix",
-    "className",
-    "defaultValue",
-    "addonBefore",
-    "addonAfter",
-    "onPressEnter",
-    "onClear",
-    "onChange",
-    "onFocus",
-    "onBlur",
-  ])
-
-  const inputProps = {
-    ...otherProps,
-    onClear,
-    allowClear,
-    error,
-    disabled,
-    placeholder,
-  }
-
   return (
-    <div {...otherProps}>
+    <div style={style} className={className}>
       <span css={applyContainerCss(variant)}>
         {addonBefore ? (
           <span css={applyAddonCss(stateValue)}>{addonBefore}</span>
@@ -134,7 +108,12 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
           {prefix ? <span css={applyPrefixCls}>{prefix}</span> : null}
           <InputElement
             ref={inputRef}
-            {...inputProps}
+            {...rest}
+            value={value}
+            error={error}
+            disabled={disabled}
+            placeholder={placeholder}
+            allowClear={allowClear}
             onFocus={(e) => {
               setFocus(true)
               props.onFocus && props.onFocus(e)
@@ -143,7 +122,12 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
               setFocus(false)
               props.onBlur && props.onBlur(e)
             }}
-            value={value}
+            onClear={() => {
+              if (!("value" in props) || !props.value) {
+                setValue("")
+              }
+              onClear?.()
+            }}
             onValueChange={onValueChange}
             onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
               props.onPressEnter?.(e)

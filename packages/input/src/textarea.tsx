@@ -39,6 +39,8 @@ export interface TextAreaState {
 export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
   (props, ref) => {
     const {
+      style,
+      className,
       allowClear,
       error,
       disabled,
@@ -176,7 +178,7 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
 
     return (
       <>
-        <span css={applyContainerCss} {...otherProps}>
+        <span css={applyContainerCss} style={style} className={className}>
           <span css={applyTextAreaContainer(stateValue)}>
             <textarea
               style={{ ...autoSizeStyle }}
