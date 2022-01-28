@@ -7,6 +7,7 @@ import { withTests } from "@storybook/addon-jest"
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "General/Empty",
+  component: Empty,
   decorators: [withTests({ results })],
   argTypes: {
     description: {
@@ -22,4 +23,4 @@ export default {
   },
 } as Meta
 
-export const empty: Story<EmptyProps> = (props) => <Empty {...props} />
+export const Basic: Story<EmptyProps> = (props) => <Empty {...props} />
