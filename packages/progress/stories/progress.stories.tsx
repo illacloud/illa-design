@@ -1,8 +1,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Progress } from "../src"
-import results from "../coverage/coverage-final.json"
-import { withTests } from "@storybook/addon-jest"
+
 import { ProgressProps } from "../dist/types"
 import { Space } from "@illa-design/space"
 
@@ -10,14 +9,17 @@ import { Space } from "@illa-design/space"
 export default {
   title: "FEEDBACK/Progress",
   component: Progress,
-  decorators: [withTests({ results })],
+
   argTypes: {
     type: {
       control: false,
     },
     percent: {
       control: {
-        type: "range", min: 0, max: 100, step: 1,
+        type: "range",
+        min: 0,
+        max: 100,
+        step: 1,
       },
     },
     color: {
@@ -33,11 +35,11 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<ProgressProps> = (args) => <Space direction="vertical">
-  <Progress type="line" {...args} />
-  <Progress type="circle" {...args} />
-  <Progress type="miniCircle" {...args} />
-  <Progress type="miniRing" {...args} />
-</Space>
-
-
+export const Basic: Story<ProgressProps> = (args) => (
+  <Space direction="vertical">
+    <Progress type="line" {...args} />
+    <Progress type="circle" {...args} />
+    <Progress type="miniCircle" {...args} />
+    <Progress type="miniRing" {...args} />
+  </Space>
+)
