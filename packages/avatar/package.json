@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/avatar",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.0",
   "description": "Illa Design Avatar.",
   "keywords": [
     "avatar",
@@ -36,12 +36,13 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "test": "yarn jest"
   },
   "dependencies": {
-    "@illa-design/icon": "^0.0.1-alpha.0",
-    "@illa-design/image": "^0.0.1-alpha.0",
-    "@illa-design/system": "^0.0.1-alpha.0",
-    "@illa-design/theme": "^0.0.1-alpha.0"
+    "@illa-design/icon": "*",
+    "@illa-design/image": "*",
+    "@illa-design/system": "*",
+    "@illa-design/theme": "*"
   }
 }

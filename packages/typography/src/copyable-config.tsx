@@ -6,7 +6,7 @@ export class Copyable {
   copyIcon: ReactNode = <CopyIcon color={globalColor(`--${illaPrefix}-gray-01`)} />
   copiedIcon: ReactNode = <RightIcon />
   copiedToolTip: boolean | string | ReactNode
-  copyTooltip: boolean | string | ReactNode
+  copyToolTip: boolean | string | ReactNode
   onCopy?: () => void
 }
 
@@ -28,8 +28,8 @@ export class CopyableBuilder {
     return this
   }
 
-  public copyTooltip(copyTooltip: boolean | string | ReactNode): CopyableBuilder {
-    this.config.copyTooltip = copyTooltip
+  public copyTooltip(copyToolTip: boolean | string | ReactNode): CopyableBuilder {
+    this.config.copyToolTip = copyToolTip
     return this
   }
 

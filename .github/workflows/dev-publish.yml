@@ -67,7 +67,6 @@ jobs:
 
       - name: Build Components
         run: |
-          npx lerna bootstrap
           yarn build-all-components
 
       - name: Run jest

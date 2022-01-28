@@ -3,7 +3,7 @@ module.exports = {
   coverageDirectory: "./coverage/",
   coverageReporters: ["json"],
   collectCoverage: true,
-  collectCoverageFrom: ["packages/**/src/*.tsx"],
+  collectCoverageFrom: ["./src/*.tsx"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   modulePathIgnorePatterns: [
     "<rootDir>/examples",

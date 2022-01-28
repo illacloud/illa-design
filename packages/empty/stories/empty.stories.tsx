@@ -1,12 +1,13 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Empty, EmptyProps } from "../src"
-import results from "../../../coverage/coverage-final.json"
+import results from "../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "General/Empty",
+  component: Empty,
   decorators: [withTests({ results })],
   argTypes: {
     description: {
@@ -22,4 +23,4 @@ export default {
   },
 } as Meta
 
-export const empty: Story<EmptyProps> = (props) => <Empty {...props} />
+export const Basic: Story<EmptyProps> = (props) => <Empty {...props} />
