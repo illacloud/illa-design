@@ -4,8 +4,8 @@ import { Avatar } from "@illa-design/avatar"
 import { CloseIcon } from "@illa-design/icon"
 import { Badge, BadgeProps } from "../src"
 import { withTests } from "@storybook/addon-jest"
-import { Space } from "../../space"
-import results from "../../../coverage/coverage-final.json"
+import { Space } from "@illa-design/space"
+import results from "../coverage/coverage-final.json"
 import { ButtonGroup, Button } from "@illa-design/button"
 
 //👇 This default export determines where your story goes in the story list

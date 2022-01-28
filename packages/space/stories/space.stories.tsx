@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Space, SpaceProps } from "../src"
-import results from "../../../coverage/coverage-final.json"
+import results from "../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { Tag } from "@illa-design/tag"
 import { Image } from "@illa-design/image"

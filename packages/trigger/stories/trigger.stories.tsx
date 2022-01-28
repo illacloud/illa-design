@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Trigger, TriggerProps } from "../src"
-import results from "../../../coverage/coverage-final.json"
+import results from "../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { Button } from "@illa-design/button"
 import { Space } from "@illa-design/space"

@@ -36,7 +36,8 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "test": "yarn jest"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",

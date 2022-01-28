@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useState } from "react"
 import { Meta, Story } from "@storybook/react"
-import results from "../../../coverage/coverage-final.json"
+import results from "../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { Button } from "@illa-design/button"
 import { ConfigProvider, ConfigProviderContext, ConfigProviderProps, enUS, Locale, zhCN } from "../src"

@@ -17,7 +17,7 @@ import {
   SuccessIcon,
   WarningIcon,
 } from "../src"
-import results from "../../../coverage/coverage-final.json"
+import results from "../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 
 //👇 This default export determines where your story goes in the story list

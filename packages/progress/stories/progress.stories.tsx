@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Progress } from "../src"
-import results from "../../../coverage/coverage-final.json"
+import results from "../coverage/coverage-final.json"
 import { withTests } from "@storybook/addon-jest"
 import { ProgressProps } from "../dist/types"
 import { Space } from "@illa-design/space"
