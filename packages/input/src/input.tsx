@@ -130,7 +130,7 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>((props, ref)
             }}
             onValueChange={onValueChange}
             onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
-              onPressEnter?.(e)
+              props.onPressEnter?.(e)
             }}
           />
           {suffix ? <span css={applySuffixCls}>{suffix}</span> : null}
