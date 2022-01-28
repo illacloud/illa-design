@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/link",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.0",
   "description": "Illa Design base.",
   "keywords": [
     "link",
@@ -40,8 +40,8 @@
     "test": "yarn jest"
   },
   "dependencies": {
-    "@illa-design/system": "^0.0.1-alpha.1",
-    "@illa-design/theme": "^0.0.1-alpha.1",
-    "@illa-design/icon": "^0.0.1-alpha.1"
+    "@illa-design/system": "*",
+    "@illa-design/theme": "*",
+    "@illa-design/icon": "*"
   }
 }

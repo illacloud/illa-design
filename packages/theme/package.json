@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/theme",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.0",
   "description": "Illa Design theme.",
   "keywords": [
     "theme",
@@ -42,6 +42,6 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "framer-motion": "^4.1.17",
-    "@illa-design/system": "^0.0.1-alpha.1"
+    "@illa-design/system": "*"
   }
 }
