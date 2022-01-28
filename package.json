@@ -31,9 +31,9 @@
   ],
   "scripts": {
     "build-develop": "sh ./scripts/build-develop.sh",
-    "storybook": "yarn test && yarn start-storybook -p 6006",
+    "storybook": "yarn test && npx start-storybook -p 6006",
     "build-all-components": "yarn turbo run build",
-    "build-storybook": "yarn test && yarn build-storybook",
+    "build-storybook": "yarn test && npx build-storybook",
     "test": "yarn turbo run test",
     "prepare": "husky install"
   },
