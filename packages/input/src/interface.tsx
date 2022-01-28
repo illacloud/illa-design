@@ -1,5 +1,10 @@
-import { HTMLAttributes, ReactNode, ChangeEvent, InputHTMLAttributes, TextareaHTMLAttributes } from "react"
-import * as React from "react";
+import {
+  ReactNode,
+  ChangeEvent,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+} from "react"
+import * as React from "react"
 
 export type InputBoarderColor =
   | string
@@ -48,7 +53,7 @@ export interface InputElementProps
 }
 
 export interface InputProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "prefix"> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "prefix" | "size"> {
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
@@ -88,7 +93,8 @@ export interface TextAreaProps
   onClear?: () => void
 }
 
-export interface SearchProps extends HTMLAttributes<HTMLDivElement> {
+export interface SearchProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   searchButton?: boolean
   loading?: boolean
 
@@ -107,7 +113,8 @@ export interface SearchProps extends HTMLAttributes<HTMLDivElement> {
   onPressEnter?: (event: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
-export interface PasswordProps extends HTMLAttributes<HTMLDivElement> {
+export interface PasswordProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   invisibleButton?: boolean
   loading?: boolean
 

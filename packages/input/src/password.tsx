@@ -1,6 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { ChangeEvent, forwardRef, useState } from "react"
+import {
+  ChangeEvent,
+  forwardRef,
+  ForwardRefExoticComponent,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react"
 import { omit, useMergeValue } from "@illa-design/system"
 import { EyeOnIcon, EyeOffIcon } from "@illa-design/icon"
 import {
@@ -9,53 +16,42 @@ import {
   applySuffixCls,
   pointerStyle,
 } from "./style"
-import { PasswordProps } from "./interface"
+import { InputRefType, PasswordProps } from "./interface"
 import { InputElement } from "./input-element"
 
-export const Password = forwardRef<HTMLDivElement, PasswordProps>(
+export type PasswordRef = ForwardRefExoticComponent<
+  PasswordProps & React.RefAttributes<InputRefType>
+>
+export const Password: PasswordRef = forwardRef<InputRefType, PasswordProps>(
   (props, ref) => {
     const {
+      style,
+      className,
       allowClear,
       error,
       disabled,
       placeholder,
+      defaultValue,
+      onClear,
+      onChange,
+      onFocus,
+      onBlur,
       invisibleButton = true,
+      boarderColor = "blue",
       size = "medium",
       variant = "outline",
-      defaultValue,
       ...rest
     } = props
 
-    const otherProps = omit(rest, [
-      "defaultValue",
-      "onChange",
-      "onClear",
-      "onFocus",
-      "onBlur",
-    ])
-
+    const inputRef = useRef<InputRefType>({} as InputRefType)
     const [visibility, setVisibility] = useState(false)
     const [focus, setFocus] = useState(false)
     const [value, setValue] = useMergeValue("", {
       defaultValue: defaultValue ? defaultValue : undefined,
       value: props.value ? props.value : undefined,
     })
-    const stateValue = { error, disabled, focus, variant, size }
 
-    const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
-      if (!("value" in props) || !props.value) {
-        setValue(v)
-      }
-      props.onChange && props.onChange(e)
-    }
-
-    const onClear = () => {
-      if (!("value" in props) || !props.value) {
-        setValue("")
-      }
-      props.onClear && props.onClear()
-    }
-
+    const stateValue = { error, disabled, focus, variant, size, boarderColor }
     const passwordProp = {
       ...rest,
       type: visibility ? "text" : "password",
@@ -65,11 +61,20 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       onClear,
     }
 
+    const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
+      if (!("value" in props) || !props.value) {
+        setValue(v)
+      }
+      props.onChange && props.onChange(e)
+    }
+    useImperativeHandle(ref, () => inputRef?.current, [])
+
     return (
-      <div ref={ref} {...otherProps}>
+      <div style={style} className={className}>
         <span css={applyContainerCss(variant)}>
           <span css={applyInputContainer(stateValue)}>
             <InputElement
+              ref={inputRef}
               {...passwordProp}
               onFocus={(e) => {
                 setFocus(true)
@@ -78,6 +83,12 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
               onBlur={(e) => {
                 setFocus(false)
                 props.onBlur && props.onBlur(e)
+              }}
+              onClear={() => {
+                if (!("value" in props) || !props.value) {
+                  setValue("")
+                }
+                onClear?.()
               }}
               value={value}
               onValueChange={onValueChange}

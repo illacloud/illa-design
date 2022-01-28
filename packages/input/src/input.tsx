@@ -1,7 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { ChangeEvent, forwardRef, useImperativeHandle, useMemo, useRef, useState } from "react"
-import { omit, useMergeValue } from "@illa-design/system"
+import {
+  ChangeEvent,
+  forwardRef,
+  useState,
+  useMemo,
+  useRef,
+  useImperativeHandle,
+  ForwardRefExoticComponent,
+} from "react"
+import { useMergeValue } from "@illa-design/system"
 import { InputProps, InputRefType, InputSize } from "./interface"
 import {
   applyAddonCss,
@@ -20,11 +28,14 @@ export interface StateValue {
   error?: boolean
   focus?: boolean
   variant?: string
-  size?: InputSize
+  size?: InputProps["size"]
+  boarderColor?: InputProps["boarderColor"]
 }
-
-export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
+export type InputRef = ForwardRefExoticComponent<InputProps & React.RefAttributes<InputRefType>>
+export const Input: InputRef = forwardRef<InputRefType, InputProps>((props, ref) => {
   const {
+    style,
+    className,
     allowClear,
     error,
     disabled,
@@ -35,7 +46,8 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     addonAfter,
     addonBefore,
     defaultValue,
-    onPressEnter,
+    boarderColor = "blue",
+    onClear,
     size = "medium",
     variant = "outline",
     ...rest
@@ -65,6 +77,7 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     focus,
     variant,
     size,
+    boarderColor,
   }
 
   useImperativeHandle(ref, () => inputRef?.current, [])
@@ -85,38 +98,8 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     props.onChange && props.onChange(e)
   }
 
-  const onClear = () => {
-    if (!("value" in props) || !props.value) {
-      setValue("")
-    }
-    props.onClear?.()
-  }
-
-  const otherProps = omit(rest, [
-    "prefix",
-    "suffix",
-    "className",
-    "defaultValue",
-    "addonBefore",
-    "addonAfter",
-    "onPressEnter",
-    "onClear",
-    "onChange",
-    "onFocus",
-    "onBlur",
-  ])
-
-  const inputProps = {
-    ...otherProps,
-    onClear,
-    allowClear,
-    error,
-    disabled,
-    placeholder,
-  }
-
   return (
-    <div {...otherProps}>
+    <div style={style} className={className}>
       <span css={applyContainerCss(variant)}>
         {addonBefore ? (
           <span css={applyAddonCss(stateValue)}>{addonBefore}</span>
@@ -125,7 +108,12 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
           {prefix ? <span css={applyPrefixCls}>{prefix}</span> : null}
           <InputElement
             ref={inputRef}
-            {...inputProps}
+            {...rest}
+            value={value}
+            error={error}
+            disabled={disabled}
+            placeholder={placeholder}
+            allowClear={allowClear}
             onFocus={(e) => {
               setFocus(true)
               props.onFocus && props.onFocus(e)
@@ -134,7 +122,12 @@ export const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
               setFocus(false)
               props.onBlur && props.onBlur(e)
             }}
-            value={value}
+            onClear={() => {
+              if (!("value" in props) || !props.value) {
+                setValue("")
+              }
+              onClear?.()
+            }}
             onValueChange={onValueChange}
             onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
               onPressEnter?.(e)

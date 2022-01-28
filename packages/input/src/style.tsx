@@ -1,4 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
+import * as chroma from "chroma-js";
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { StateValue } from "./input"
 
@@ -28,7 +29,7 @@ export const hoverFillStyle = css`
 export const errorFocusStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-  box-shadow: 0 0 8px 0 rgba(224, 36, 36, 0.5);
+  box-shadow: 0 0 8px 0 ${chroma(globalColor(`--${illaPrefix}-red-01`)).alpha(0.5).hex()};
 `
 export const errorFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-red-07`)};
@@ -77,6 +78,7 @@ export function applyContainerCss(variant: string) {
     font-size: 14px;
     line-height: 1.57;
     border-radius: 4px;
+    vertical-align: middle;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     ${applyVariantStyle(variant)}
   `
@@ -131,9 +133,15 @@ function applyStatus(stateValue: StateValue) {
       ${disableStyle}
     `
   } else if (stateValue?.focus) {
+    const boxShadowColor = globalColor(
+      `--${illaPrefix}-${stateValue.boarderColor}-01`,
+    )
     mainStyle = css`
-      border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
-      box-shadow: 0 0 8px 0 rgba(19, 83, 224, 0.5);
+      border-color: ${globalColor(
+        `--${illaPrefix}-${stateValue.boarderColor}-03`,
+      )};
+      box-shadow: 0 0 8px 0
+        ${boxShadowColor ? chroma(boxShadowColor).alpha(0.5).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
     `
@@ -144,7 +152,9 @@ function applyStatus(stateValue: StateValue) {
   } else {
     mainStyle = css`
       &:hover {
-        border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
+        border-color: ${globalColor(
+          `--${illaPrefix}-${stateValue.boarderColor}-06`,
+        )};
         ${hoverStyle}
       }
     `
@@ -230,6 +240,8 @@ export function applyPrefixCls() {
     flex-direction: row;
     align-items: center;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    white-space: nowrap;
+    vertical-align: middle;
 
     &:first-of-type {
       margin-right: 12px;
@@ -248,6 +260,8 @@ export function applySuffixCls() {
     align-items: center;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     margin-left: 12px;
+    white-space: nowrap;
+    vertical-align: middle;
   `
 }
 
@@ -294,6 +308,8 @@ export function applyAddonCss(stateValue: StateValue) {
     border-width: 1px;
     border-style: solid;
     padding: 0 12px;
+    white-space: nowrap;
+    vertical-align: middle;
 
     &:first-of-type {
       border-top-left-radius: 4px;
