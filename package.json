@@ -37,5 +37,6 @@
     "build-storybook": "yarn test && yarn build-storybook",
     "test": "yarn turbo run test",
     "prepare": "husky install"
-  }
+  },
+  "packageManager": "yarn@1.22.17"
 }
