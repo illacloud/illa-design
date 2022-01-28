@@ -25,8 +25,7 @@
     "husky": "^7.0.4",
     "turbo": "^1.1.1",
     "prettier": "^2.5.1",
-    "react-icons": "^4.3.1",
-    "zx": "^4.2.0"
+    "react-icons": "^4.3.1"
   },
   "workspaces": [
     "packages/*"
