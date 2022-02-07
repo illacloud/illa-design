@@ -1,0 +1,39 @@
+import { HTMLAttributes, ReactText, LabelHTMLAttributes } from "react"
+
+export interface CheckboxProps<T extends ReactText = any>
+  extends Omit<LabelHTMLAttributes<HTMLLabelElement>, "onChange"> {
+  value?: T
+  disabled?: boolean
+  checked?: boolean
+  defaultChecked?: boolean
+  onChange?: (checked: boolean, event: Event) => void
+  onGroupChange?: (value: T, checked: boolean) => void
+  isCheckboxGroup?: boolean
+}
+
+export interface CheckboxGroupContextProps<T extends ReactText = any> {
+    disabled?: boolean;
+    isGroup: boolean;
+    onGroupChange: (_optionValue: T, _checked: boolean, e: Event) => void;
+    checkboxGroupValue: ReactText[];
+    registerValue: (value: ReactText) => void;
+    unRegisterValue: (value: ReactText) => void;
+}
+
+export interface CheckboxGroupProps<T extends ReactText = any>
+    extends Omit<LabelHTMLAttributes<HTMLLabelElement>, "onChange"> {
+    value?: T[]
+    // defaultValue?: T[]
+    disabled?: boolean
+    options?: (
+        | T
+        | {
+        label?: string
+        value?: string
+        disabled?: boolean
+    }
+        )[]
+    direction?: "vertical" | "horizontal"
+    spacing?: string | number
+    onChange?: (value: T[], event: Event) => void
+}
