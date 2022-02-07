@@ -41,6 +41,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
         leftIcon,
         disabled,
         rightIcon,
+        buttonRadius,
         ...otherProps
       } = props
 
@@ -73,6 +74,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
           ${applyShape(shape, attached ?? false, first ?? false, last ?? false)};
           ${applyElementColor(variant, colorScheme)};
           ${applyBg(variant, colorScheme)};
+          ${buttonRadius ? `border-radius: ${buttonRadius};` : ''}
         `
 
         return <button ref={ref} css={finalContainer} {...otherProps} disabled={disabled || loading}>

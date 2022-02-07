@@ -302,18 +302,21 @@ export function applyWithoutTextSize(size: ButtonSize, fullWidth?: boolean): Ser
         justify-content: center;
         width: ${fullWidth ? "100%" : "24px"};
         height: 24px;
+        font-size: 12px;
       `
     case "medium":
       return css`
         justify-content: center;
         width: ${fullWidth ? "100%" : "32px"};
         height: 32px;
+        font-size: 12px;
       `
     case "large":
       return css`
         justify-content: center;
         width: ${fullWidth ? "100%" : "40px"};
         height: 40px;
+        font-size: 12px;
       `
   }
 }
@@ -351,6 +354,7 @@ export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
         align-items: center;
         width: 12px;
         height: 12px;
+        font-size: 12px;
         margin-right: 6px;
       `
     case "medium":
@@ -361,6 +365,7 @@ export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
         align-items: center;
         width: 12px;
         height: 12px;
+        font-size: 12px;
         margin-right: 8px;
       `
   }
@@ -391,6 +396,7 @@ export function applyRightIconStyle(size: ButtonSize): SerializedStyles {
         align-items: center;
         width: 12px;
         height: 12px;
+        font-size: 12px;
         margin-left: 6px;
       `
     case "medium":
@@ -401,6 +407,7 @@ export function applyRightIconStyle(size: ButtonSize): SerializedStyles {
         align-items: center;
         width: 12px;
         height: 12px;
+        font-size: 12px;
         margin-left: 8px;
       `
   }

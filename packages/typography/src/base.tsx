@@ -16,6 +16,8 @@ import { Copyable, CopyableBuilder } from "./copyable-config"
 import useSize from "react-use/lib/useSize"
 import { Tooltip } from "@illa-design/tooltip"
 import { ConfigProviderContext, ConfigProviderProps, def } from "@illa-design/config-provider"
+import { CopyIcon, RightIcon } from "@illa-design/icon"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 function getEllipsis(configProviderProps: ConfigProviderProps, ellipsis?: boolean | Ellipsis): Ellipsis {
   let originEllipsis: Ellipsis
@@ -29,6 +31,9 @@ function getEllipsis(configProviderProps: ConfigProviderProps, ellipsis?: boolea
   const locale = configProviderProps.locale?.typography ?? def.typography
   if (originEllipsis.expandLabel == undefined) {
     originEllipsis.expandLabel = locale["expandLabel"]
+  }
+  if (originEllipsis.rows == undefined) {
+    originEllipsis.rows = 2
   }
   return originEllipsis
 }
@@ -44,11 +49,17 @@ function getCopyable(configProviderProps: ConfigProviderProps, copyable?: boolea
     originCopyable = copyable
   }
   const locale = configProviderProps.locale?.typography ?? def.typography
-  if (originCopyable.copyTooltip == undefined) {
-    originCopyable.copyTooltip = locale["copyTooltip"]
+  if (originCopyable.copyToolTip == undefined) {
+    originCopyable.copyToolTip = locale["copyToolTip"]
   }
   if (originCopyable.copiedToolTip == undefined) {
     originCopyable.copiedToolTip = locale["copiedToolTip"]
+  }
+  if (originCopyable.copyIcon == undefined) {
+    originCopyable.copyIcon = <CopyIcon color={globalColor(`--${illaPrefix}-gray-01`)} />
+  }
+  if (originCopyable.copiedIcon == undefined) {
+    originCopyable.copiedIcon = <RightIcon />
   }
   return originCopyable
 }
@@ -110,7 +121,7 @@ export const Base: FC<BaseProps> = (props) => {
     {!copied ? originCopyable.copyIcon : originCopyable.copiedIcon}
   </span>
 
-  const showCopyTooltip = copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip
+  const showCopyTooltip = copied ? originCopyable.copiedToolTip : originCopyable.copyToolTip
 
   const expandPanel = finalShowExpand && !haveShowExpandSize && <Fragment>
       <span css={contentCss}>
@@ -127,7 +138,7 @@ export const Base: FC<BaseProps> = (props) => {
 
   const copyablePanel = copyable && originCopyable.copyIcon &&
   showCopyTooltip ?
-    <Tooltip closeOnClick={false} content={copied ? originCopyable.copiedToolTip : originCopyable.copyTooltip}>
+    <Tooltip closeOnClick={false} content={copied ? originCopyable.copiedToolTip : originCopyable.copyToolTip}>
       {copyableElement}
     </Tooltip> : copyableElement
 

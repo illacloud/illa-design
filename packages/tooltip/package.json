@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/tooltip",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.0",
   "description": "Illa Design base.",
   "keywords": [
     "tooltip",
@@ -39,6 +39,6 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@illa-design/trigger": "^0.0.1-alpha.0"
+    "@illa-design/trigger": "*"
   }
 }

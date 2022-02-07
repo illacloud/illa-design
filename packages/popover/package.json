@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/popover",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.0",
   "description": "Illa Design base.",
   "keywords": [
     "popover",
@@ -39,9 +39,9 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@illa-design/system": "^0.0.1-alpha.0",
-    "@illa-design/theme": "^0.0.1-alpha.0",
-    "@illa-design/trigger": "^0.0.1-alpha.0",
-    "@illa-design/typography": "^0.0.1-alpha.0"
+    "@illa-design/system": "*",
+    "@illa-design/theme": "*",
+    "@illa-design/trigger": "*",
+    "@illa-design/typography": "*"
   }
 }
