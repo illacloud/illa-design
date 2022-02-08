@@ -2,21 +2,18 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { CheckboxProps } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
-import icon from "./check-icon.png"
 
-// default radio
-export function applyRadioSize() {
+export function applyCheckboxSize() {
   return css`
     position: relative;
     appearance: none;
     border-radius: 2px;
-    margin: auto 6px auto auto;
+    margin: auto 8px auto auto;
     width: 16px;
     height: 16px;
     border: solid 2px ${globalColor(`--${illaPrefix}-gray-08`)};
     cursor: pointer;
     transition: 0.15s all linear;
-
     &:hover {
       border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
     }
@@ -28,28 +25,26 @@ export function applyRadioSize() {
     }
 
     &:checked {
-      border: unset;
+      border-color: transparent;
+      background-color: ${globalColor(`--${illaPrefix}-blue-01`)};
 
       &:before {
-        width: 16px;
-        height: 16px;
+        width: 100%;
+        height: 100%;
         border-radius: 2px;
         left: 0;
         top: 0;
-        background: no-repeat center/ 8px url(${require("./check-icon.png")})
-          ${globalColor(`--${illaPrefix}-blue-01`)};
+        background: no-repeat center/ 8px url(${require("./check-icon.svg")});
         transition: 0.15s all linear;
         content: "";
         position: absolute;
       }
 
       &:hover {
-        &:before {
-          background-color: ${globalColor(`--${illaPrefix}-blue-02`)};
-        }
+        background-color: ${globalColor(`--${illaPrefix}-blue-02`)};
       }
 
-      &:disabled:before {
+      &:disabled {
         background-color: ${globalColor(`--${illaPrefix}-blue-06`)};
       }
     }
@@ -74,7 +69,7 @@ export function applyMergeCss(props: CheckboxProps): SerializedStyles {
   `
 }
 
-export function applyRadioContainerHorizontal(
+export function applyCheckboxContainerHorizontal(
   spacing: string | number,
 ): SerializedStyles {
   const currentSpacing = typeof spacing === "string" ? spacing : `${spacing}px`
@@ -85,10 +80,11 @@ export function applyRadioContainerHorizontal(
     flex-direction: row;
     align-items: center;
     gap: ${currentSpacing};
+    margin-right: ${currentSpacing};
   `
 }
 
-export function applyRadioContainerVertical(
+export function applyCheckboxContainerVertical(
   spacing: string | number,
 ): SerializedStyles {
   const currentSpacing = typeof spacing === "string" ? spacing : `${spacing}px`

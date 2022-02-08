@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, ChangeEvent, useContext, useCallback } from "react"
+import { forwardRef, useEffect, useContext, useCallback } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { CheckboxProps } from "./interface"
 import { CheckboxGroupContext } from "./checkbox-group"
-import { applyMergeCss, applyRadioSize } from "./style"
+import { applyMergeCss, applyCheckboxSize } from "./style"
 import { omit } from "@illa-design/system"
 
 export type CheckboxRef = React.ForwardRefExoticComponent<
@@ -18,14 +18,23 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
     const mergeProps = { ...props }
     const { children, disabled, value, onChange, ...otherProps } = mergeProps
     if (context.isGroup) {
-      mergeProps.checked = context.checkboxGroupValue.indexOf(props.value) !== -1
-      mergeProps.disabled = "disabled" in props ? props.disabled : context.disabled
+      mergeProps.checked =
+        context.checkboxGroupValue.indexOf(props.value) !== -1
+      mergeProps.disabled =
+        "disabled" in props ? props.disabled : context.disabled
     }
 
     const [currentChecked, setCurrentChecked] = useMergeValue(false, {
       value: mergeProps.checked,
       defaultValue: mergeProps.defaultChecked,
     })
+
+    useEffect(() => {
+      context.registerValue(value)
+      return () => {
+        context.unRegisterValue(value)
+      }
+    }, [value])
 
     return (
       <label
@@ -35,7 +44,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
       >
         <input
           type="checkbox"
-          css={applyRadioSize}
+          css={applyCheckboxSize}
           value={value}
           checked={currentChecked}
           disabled={disabled}
@@ -59,4 +68,4 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
   },
 )
 
-Checkbox.displayName = "Radio"
+Checkbox.displayName = "Checkbox"

@@ -7,8 +7,6 @@ export interface CheckboxProps<T extends ReactText = any>
   checked?: boolean
   defaultChecked?: boolean
   onChange?: (checked: boolean, event: Event) => void
-  onGroupChange?: (value: T, checked: boolean) => void
-  isCheckboxGroup?: boolean
 }
 
 export interface CheckboxGroupContextProps<T extends ReactText = any> {
@@ -21,9 +19,9 @@ export interface CheckboxGroupContextProps<T extends ReactText = any> {
 }
 
 export interface CheckboxGroupProps<T extends ReactText = any>
-    extends Omit<LabelHTMLAttributes<HTMLLabelElement>, "onChange"> {
+    extends Omit<LabelHTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue"> {
     value?: T[]
-    // defaultValue?: T[]
+    defaultValue?: T[]
     disabled?: boolean
     options?: (
         | T
@@ -36,4 +34,5 @@ export interface CheckboxGroupProps<T extends ReactText = any>
     direction?: "vertical" | "horizontal"
     spacing?: string | number
     onChange?: (value: T[], event: Event) => void
+    onGroupChange?: (value: T, checked: boolean) => void
 }

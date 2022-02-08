@@ -1,10 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import { ChangeEvent, createContext, forwardRef } from "react"
+import {
+  createContext,
+  forwardRef,
+  ReactText,
+  useCallback,
+  useState,
+} from "react"
 import { useMergeValue } from "@illa-design/system"
 import { CheckboxGroupContextProps, CheckboxGroupProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"
 import { Checkbox } from "./checkbox"
-import { applyRadioContainerHorizontal, applyRadioContainerVertical } from "./style"
+import {
+  applyCheckboxContainerHorizontal,
+  applyCheckboxContainerVertical,
+} from "./style"
 
 function isArray(obj: any) {
   return Object.prototype.toString.call(obj) === "[object Array]"
@@ -18,69 +27,94 @@ export const CheckboxGroupContext = createContext<CheckboxGroupContextProps>({
   unRegisterValue: () => {},
 })
 
-export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>((props, ref) => {
-  const {
-    children,
-    options,
-    disabled,
-    direction = "horizontal",
-    spacing = direction === "horizontal" ? "24px" : "16px",
-    onChange,
-    ...otherProps
-  } = props
+export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
+  (props, ref) => {
+    const {
+      children,
+      options,
+      disabled,
+      value,
+      defaultValue,
+      direction = "horizontal",
+      spacing = direction === "horizontal" ? "24px" : "16px",
+      onChange,
+      ...otherProps
+    } = props
 
-  const [value, setValue] = useMergeValue(undefined, {
-    defaultValue: props.defaultValue,
-    value: props.value,
-  })
+    const [currentValue, setCurrentValue] = useMergeValue([], {
+      defaultValue: "defaultValue" in props ? defaultValue || [] : undefined,
+      value: "value" in props ? value || [] : undefined,
+    })
+    const [allOptionValues, setAllOptionValues] = useState<ReactText[]>([])
 
-  let radioGroupCss: SerializedStyles
-  switch (direction) {
-    case "vertical":
-      radioGroupCss = applyRadioContainerVertical(spacing)
-      break
-    case "horizontal":
-      radioGroupCss = applyRadioContainerHorizontal(spacing)
-      break
-  }
-
-  function onChangeValue<T>(v: T, event: ChangeEvent): void {
-    const { onChange } = props
-    if (v !== value) {
-      if (!("value" in props)) {
-        setValue(v)
-      }
-      onChange && onChange(true, event)
+    let checkboxGroupCss: SerializedStyles
+    switch (direction) {
+      case "vertical":
+        checkboxGroupCss = applyCheckboxContainerVertical(spacing)
+        break
+      case "horizontal":
+        checkboxGroupCss = applyCheckboxContainerHorizontal(spacing)
+        break
     }
-  }
 
-  const contextProp = {
-    onChangeValue,
-    options, disabled, value, spacing,
-  }
+    const onGroupChange = useCallback(
+      (optionValue, checked: boolean, e: Event) => {
+        const newVal = currentValue.slice()
+          console.log(newVal, optionValue, checked)
+        if (checked) {
+          newVal.push(optionValue)
+        } else {
+          newVal.splice(currentValue.indexOf(optionValue), 1)
+        }
+        setCurrentValue(newVal)
 
-  return <div css={radioGroupCss} ref={ref} {...otherProps}>
-    <CheckboxGroupContext.Provider value={contextProp}>
-      {options && isArray(options)
-        ? options.map((option, index) => {
-          return (
-            typeof option === "string" ?
-              <Checkbox key={index} value={option} disabled={disabled}>
-                {option}
-              </Checkbox>
-              : <Checkbox
-                key={option.value}
-                value={option.value}
-                disabled={disabled || option.disabled}
-              >
-                {option.label}
-              </Checkbox>
-          )
+          console.log(allOptionValues)
+        onChange?.(
+          newVal.filter((v) => allOptionValues.indexOf(v) > -1),
+          e,
+        )
+      },
+      [currentValue, onChange, allOptionValues],
+    )
+
+    const contextProp = {
+      isGroup: true,
+      checkboxGroupValue: currentValue,
+      onGroupChange,
+      disabled,
+      registerValue: (v: ReactText) => {
+        setAllOptionValues((allOptionValues) => {
+          return Array.from(new Set([...allOptionValues, v]))
         })
-        : children}
-    </CheckboxGroupContext.Provider>
-  </div>
-})
+      },
+      unRegisterValue: (v: ReactText) => {
+        setAllOptionValues((allOptionValues) => {
+          return allOptionValues.filter((x) => x !== v)
+        })
+      },
+    }
+
+    return (
+      <div css={checkboxGroupCss} ref={ref} {...otherProps}>
+        <CheckboxGroupContext.Provider value={contextProp}>
+          {isArray(options)
+            ? options?.map((option, index) => {
+                return (
+                  <Checkbox
+                    key={`check-${index}`}
+                    value={option.value || option}
+                    disabled={disabled || option?.disabled}
+                  >
+                    {option.label || option}
+                  </Checkbox>
+                )
+              })
+            : children}
+        </CheckboxGroupContext.Provider>
+      </div>
+    )
+  },
+)
 
 CheckboxGroupContext.displayName = "CheckboxGroupContext"
 
