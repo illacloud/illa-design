@@ -23,6 +23,8 @@ export default {
 } as Meta
 
 export const checkboxGroup: Story<CheckboxGroupProps> = (args) => {
+  const [value, setValue] = React.useState<React.ReactText[]>([]);
+
   return (
     <div>
       <CheckboxGroup
@@ -31,7 +33,12 @@ export const checkboxGroup: Story<CheckboxGroupProps> = (args) => {
       />
       <br />
       <CheckboxGroup {...args} options={["Option A", "Option B", "Option C"]} />
+      <CheckboxGroup value={value} onChange={(e)=>{setValue(e)}}>
+        <Checkbox value={'111'}>111</Checkbox>
+        <Checkbox value={'222'}>222</Checkbox>
+        <Checkbox value={'333'}>333</Checkbox>
+      </CheckboxGroup>
     </div>
   )
 }
-console.log(checkboxGroup.argTypes, 'checkboxGroup.argTypes')
+console.log(checkboxGroup, 'checkboxGroup.argTypes')
