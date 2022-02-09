@@ -39,7 +39,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   } = props
 
   const [leftOffset, topOffset] = offset || []
-  const dotStyle = propsDotStyle ?? {}
+  const dotStyle = { ...(propsDotStyle || {}) };
 
   if (leftOffset) {
     dotStyle.marginRight = -leftOffset
