@@ -28,18 +28,6 @@ export function applyCheckboxSize() {
       border-color: transparent;
       background-color: ${globalColor(`--${illaPrefix}-blue-01`)};
 
-      &:before {
-        width: 100%;
-        height: 100%;
-        border-radius: 2px;
-        left: 0;
-        top: 0;
-        background: no-repeat center/ 8px url(${require("./check-icon.svg")});
-        transition: 0.15s all linear;
-        content: "";
-        position: absolute;
-      }
-
       &:hover {
         background-color: ${globalColor(`--${illaPrefix}-blue-02`)};
       }
@@ -51,10 +39,23 @@ export function applyCheckboxSize() {
   `
 }
 
+export function applyCheckState(checked: boolean) {
+  return css`
+    position: absolute;
+    left: 0;
+    width: 16px;
+    height: 8px;
+    transform: ${checked? 'scale(1)' : 'scale(0)'};
+    color: white;
+    transition: 0.15s all linear;
+  `
+}
+
 export function applyMergeCss(props: CheckboxProps): SerializedStyles {
   const currentDisabled = props.disabled ?? false
 
   return css`
+    position: relative;
     display: inline-flex;
     overflow: hidden;
     word-wrap: break-word;

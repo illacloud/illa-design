@@ -6,18 +6,17 @@ import { Checkbox, CheckboxProps } from "../src"
 export default {
   title: "DATA INPUT/Checkbox",
   component: Checkbox,
-  // argTypes: {
-  //   isCheckboxGroup: {
-  //     control: false,
-  //   },
-  // },
+  argTypes: {
+    value: {
+      control: false,
+    },
+  },
 } as Meta
 
 export const checkbox: Story<CheckboxProps> = (args) => {
   return (
     <div>
       <Checkbox {...args}>ILLA</Checkbox>
-      <Checkbox {...args}>www</Checkbox>
     </div>
   )
 }

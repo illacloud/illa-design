@@ -42,7 +42,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
     } = props
 
     const [currentValue, setCurrentValue] = useMergeValue([], {
-      defaultValue: "defaultValue" in props ? defaultValue || [] : undefined,
+      defaultValue: "defaultValue" in props ? props.defaultValue || [] : undefined,
       value: "value" in props ? value || [] : undefined,
     })
     const [allOptionValues, setAllOptionValues] = useState<ReactText[]>([])
@@ -60,16 +60,13 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
     const onGroupChange = useCallback(
       (optionValue, checked: boolean, e: Event) => {
         const newVal = currentValue.slice()
-          console.log(newVal, optionValue, checked)
         if (checked) {
           newVal.push(optionValue)
         } else {
           newVal.splice(currentValue.indexOf(optionValue), 1)
         }
         setCurrentValue(newVal)
-
-          console.log(allOptionValues)
-        onChange?.(
+          onChange?.(
           newVal.filter((v) => allOptionValues.indexOf(v) > -1),
           e,
         )

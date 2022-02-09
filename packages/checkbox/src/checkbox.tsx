@@ -2,9 +2,10 @@
 import * as React from "react"
 import { forwardRef, useEffect, useContext, useCallback } from "react"
 import { useMergeValue } from "@illa-design/system"
+import { CheckmarkIcon } from "@illa-design/icon"
 import { CheckboxProps } from "./interface"
 import { CheckboxGroupContext } from "./checkbox-group"
-import { applyMergeCss, applyCheckboxSize } from "./style"
+import { applyMergeCss, applyCheckboxSize, applyCheckState } from "./style"
 import { omit } from "@illa-design/system"
 
 export type CheckboxRef = React.ForwardRefExoticComponent<
@@ -18,10 +19,11 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
     const mergeProps = { ...props }
     const { children, disabled, value, onChange, ...otherProps } = mergeProps
     if (context.isGroup) {
+        console.log(context, 'context')
       mergeProps.checked =
         context.checkboxGroupValue.indexOf(props.value) !== -1
       mergeProps.disabled =
-        "disabled" in props ? props.disabled : context.disabled
+        "disabled" in props ? disabled : context?.disabled
     }
 
     const [currentChecked, setCurrentChecked] = useMergeValue(false, {
@@ -40,7 +42,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
       <label
         css={applyMergeCss(props)}
         ref={ref}
-        {...omit(otherProps, ["colorScheme"])}
+        {...otherProps}
       >
         <input
           type="checkbox"
@@ -62,6 +64,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
           )}
           onClick={(e) => e.stopPropagation()}
         />
+          <CheckmarkIcon css={applyCheckState(currentChecked)} />
         {children}
       </label>
     )
