@@ -5,17 +5,17 @@ export function getHeadingSize(level: HeadingLevel): string[] {
   // font-size line-height
   switch (level) {
     case "h1":
-      return ["64px", "normal"]
-    case "h2":
-      return ["56px", "normal"]
-    case "h3":
-      return ["48px", "normal"]
-    case "h4":
       return ["36px", "normal"]
-    case "h5":
+    case "h2":
+      return ["32px", "normal"]
+    case "h3":
+      return ["28px", "normal"]
+    case "h4":
       return ["24px", "normal"]
-    case "h6":
+    case "h5":
       return ["20px", "normal"]
+    case "h6":
+      return ["16px", "normal"]
   }
 }
 
