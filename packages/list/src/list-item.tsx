@@ -15,9 +15,9 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
       <div css={applyListItemContainer} ref={ref} {...otherProps}>
         <div css={applyListItemInner}>
           {props.children}
-          <div css={applyListItemActionsStyle}>{actions}</div>
+          {actions && <div css={applyListItemActionsStyle}>{actions}</div>}
         </div>
-        <div css={applyListItemExtraStyle}>{extra}</div>
+        {extra && <div css={applyListItemExtraStyle}>{extra}</div>}
       </div>
     )
   },

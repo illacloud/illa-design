@@ -5,9 +5,11 @@ import {
   applyItemMetaAvatar,
   applyItemMetaContainer,
   applyItemMetaTitle,
+  applyTypoStyle,
 } from "./style"
 import { Avatar } from "@illa-design/avatar"
 import { Paragraph, Text, Typography } from "@illa-design/typography"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const ListItemMeta = forwardRef<HTMLDivElement, ListItemMetaProps>(
   (props, ref) => {
@@ -22,13 +24,24 @@ export const ListItemMeta = forwardRef<HTMLDivElement, ListItemMetaProps>(
             src={avatar}
           />
         )}
-        <Typography>
+        <Typography css={applyTypoStyle}>
           {title && (
-            <Text fontSize="14px" css={applyItemMetaTitle}>
+            <Text fontSize="14px" bold css={applyItemMetaTitle}>
               {title}
             </Text>
           )}
-          {description && <Paragraph fontSize="14px">{description}</Paragraph>}
+          {description && (
+            <Paragraph
+              colorScheme={
+                title == undefined
+                  ? globalColor(`--${illaPrefix}-gray-02`)
+                  : globalColor(`--${illaPrefix}-gray-04`)
+              }
+              fontSize="14px"
+            >
+              {description}
+            </Paragraph>
+          )}
         </Typography>
       </div>
     )

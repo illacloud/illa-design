@@ -22,11 +22,12 @@ export const Basic: Story<ListProps<any>> = (args) => (
     ]}
     render={(data, index) => {
       return (
-        <ListItem
-          actions={<Button>Actions</Button>}
-          extra={<Image src={"https://devbo.cn/logo.svg"} />}
-        >
-          <ListItemMeta title={data.title} description={data.description} />
+        <ListItem>
+          <ListItemMeta
+            title={data.title}
+            description={data.description}
+            avatar={"https://devbo.cn/logo.svg"}
+          />
         </ListItem>
       )
     }}
@@ -34,7 +35,7 @@ export const Basic: Story<ListProps<any>> = (args) => (
       return index.toString()
     }}
     hoverable
-    height={300}
+    height={200}
     header={<span>Header</span>}
     footer={<span>Footer</span>}
   />

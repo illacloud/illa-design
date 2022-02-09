@@ -1,8 +1,9 @@
-import { HTMLAttributes, ReactNode } from "react"
+import { HTMLAttributes, ReactNode, UIEventHandler } from "react"
 
 export type ListSize = "small" | "medium" | "large"
 
-export interface ListProps<T> extends HTMLAttributes<HTMLDivElement> {
+export interface ListProps<T>
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onScroll"> {
   data?: T[]
   size?: ListSize
   bordered?: boolean
@@ -18,6 +19,7 @@ export interface ListProps<T> extends HTMLAttributes<HTMLDivElement> {
   hasMore?: boolean
   loader?: ReactNode
   endMessage?: ReactNode
+  onScroll?: UIEventHandler<HTMLElement>
 }
 
 export interface ListItemProps extends HTMLAttributes<HTMLDivElement> {
@@ -29,8 +31,4 @@ export interface ListItemMetaProps extends HTMLAttributes<HTMLDivElement> {
   title?: string
   avatar?: string
   description?: string
-}
-
-export interface VirtualListProps {
-  height?: number
 }

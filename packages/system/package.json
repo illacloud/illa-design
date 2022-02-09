@@ -58,6 +58,7 @@
     "@emotion/jest": "^11.7.1",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.0",
     "jest": "^27.4.0",
     "jest-environment-jsdom": "^27.4.0"

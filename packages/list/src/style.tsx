@@ -81,6 +81,10 @@ export const applyItemMetaAvatar = css`
   margin-right: 8px;
 `
 
+export const applyTypoStyle = css`
+  align-self: center;
+`
+
 export const applyItemMetaTitle = css`
   margin-bottom: 4px;
 `
