@@ -1,13 +1,11 @@
 import * as React from "react"
-import { Meta, Story, ComponentStory, ComponentMeta } from "@storybook/react"
-import { Checkbox, CheckboxGroup, CheckboxGroupProps } from "../src"
-import PropTypes from "prop-types"
+import { Meta, ComponentStory } from "@storybook/react"
+import { CheckboxGroup } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "DATA INPUT/Checkbox",
   component: CheckboxGroup,
-
   argTypes: {
     disabled: {
       control: {
@@ -22,12 +20,10 @@ export default {
       control: {
         type: "object",
       },
-      defaultValue: ["B"],
+      defaultValue: [],
     },
     value: {
-      control: {
-        type: "text",
-      },
+      control: false,
     },
     options: {
       control: {
@@ -47,7 +43,6 @@ export default {
 } as Meta
 
 const Basic: ComponentStory<typeof CheckboxGroup> = (args) => {
-  const [value, setValue] = React.useState<React.ReactText[]>([])
 
   return (
     <div>
@@ -63,17 +58,6 @@ const Basic: ComponentStory<typeof CheckboxGroup> = (args) => {
       />
       <br />
       <CheckboxGroup {...args} options={["Option A", "Option B", "Option C"]} />
-      <br />
-      <CheckboxGroup
-        value={value}
-        onChange={(e) => {
-          setValue(e)
-        }}
-      >
-        <Checkbox value={"111"}>111</Checkbox>
-        <Checkbox value={"222"}>222</Checkbox>
-        <Checkbox value={"333"}>333</Checkbox>
-      </CheckboxGroup>
     </div>
   )
 }

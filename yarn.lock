@@ -2059,7 +2059,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@storybook/addon-a11y@^6.4.9":
+"@storybook/addon-a11y@^6.4.18":
   version "6.4.18"
   resolved "https://registry.npmmirror.com/@storybook/addon-a11y/-/addon-a11y-6.4.18.tgz#c61f71cd7b17aff408835ee35e29bf4a0716ece7"
   integrity sha512-sqsA5pXXKKDsquSXu5KC8WxQ1gg5ZoNIltWRgmJCEt4a0bkGUzn2iz+uW/gbt4NOVWGPXKvmMBLT/q4Q9gb+og==
@@ -2081,7 +2081,7 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-actions@6.4.18", "@storybook/addon-actions@^6.4.9":
+"@storybook/addon-actions@6.4.18", "@storybook/addon-actions@^6.4.18":
   version "6.4.18"
   resolved "https://registry.npmmirror.com/@storybook/addon-actions/-/addon-actions-6.4.18.tgz#e997060e1b0af62f9f831301a56a3addfc1f1365"
   integrity sha512-qPw5qfbWPmyOdaXxAVAbdVLVVE31gRrkH0ESUps+FXVNypRz1/0lJ6M2VrtOHMrFbGBl94SALdqsHOx6OYZKwg==
@@ -2194,7 +2194,7 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-essentials@^6.4.9":
+"@storybook/addon-essentials@^6.4.18":
   version "6.4.18"
   resolved "https://registry.npmmirror.com/@storybook/addon-essentials/-/addon-essentials-6.4.18.tgz#0f8a90a53887bfd5dfc0d147d634bf0ae19a9a5d"
   integrity sha512-AWKF0Gn7HagzB4ZbZdSXauJ8rgjbIB0Y1jgNCYtReZ//9QDSmF9yrFE0fLJi8O0WBHiQOTeV8Vj+yooGGWRRWQ==
@@ -2214,7 +2214,7 @@
     regenerator-runtime "^0.13.7"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-links@^6.4.9":
+"@storybook/addon-links@^6.4.18":
   version "6.4.18"
   resolved "https://registry.npmmirror.com/@storybook/addon-links/-/addon-links-6.4.18.tgz#edb61db6c291056f7d3c64566aea436a6796c50a"
   integrity sha512-yIbL57+tV1Ei2b7zTGU/T7muBFByTPm/8IN5SA5tSFYRTR9VtFuvBXco6I9Wz9GLN/REyVa4+AoDahokk7+vPQ==
@@ -2262,7 +2262,7 @@
     regenerator-runtime "^0.13.7"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-storysource@^6.4.9":
+"@storybook/addon-storysource@^6.4.18":
   version "6.4.18"
   resolved "https://registry.npmmirror.com/@storybook/addon-storysource/-/addon-storysource-6.4.18.tgz#00f0fb919b6224bfa8379b7c4c66e0b32b443921"
   integrity sha512-02hs9dnfJs5lihQ0c/Cv4+lQNmkR0Fd+isEL+oVNcWTE9g0LVSLzC3evzeQCJv0SDzei7T0N+G7pF1P2dmc5PQ==
@@ -2311,7 +2311,7 @@
     prop-types "^15.7.2"
     regenerator-runtime "^0.13.7"
 
-"@storybook/addons@6.4.18", "@storybook/addons@^6.4.9":
+"@storybook/addons@6.4.18", "@storybook/addons@^6.4.18":
   version "6.4.18"
   resolved "https://registry.npmmirror.com/@storybook/addons/-/addons-6.4.18.tgz#fc92a4a608680f2e182a5e896ed382792f6b774e"
   integrity sha512-fd3S79P4jJCYZNA2JxA1Xnkj0UlHGQ4Vg72aroWy4OQFlgGQor1LgPfM6RaJ9rh/4k4BXYPXsS7wzI0UWKG3Lw==
@@ -2792,7 +2792,7 @@
     react-docgen-typescript "^2.0.0"
     tslib "^2.0.0"
 
-"@storybook/react@^6.4.9":
+"@storybook/react@^6.4.18":
   version "6.4.18"
   resolved "https://registry.npmmirror.com/@storybook/react/-/react-6.4.18.tgz#22624af56a9873c6616b5dc6a1e30c968bac95d2"
   integrity sha512-dKxwsvJEGTm/aNIJSJMI4MImsI4EhmBa42FtwVvtFkrokuMf2CsmTJsaaAh+1or9SKGTiFuGsYDGhX5joE3XUQ==
@@ -2884,7 +2884,7 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/theming@6.4.18", "@storybook/theming@^6.4.9":
+"@storybook/theming@6.4.18", "@storybook/theming@^6.4.18":
   version "6.4.18"
   resolved "https://registry.npmmirror.com/@storybook/theming/-/theming-6.4.18.tgz#05365cc1d3dab5d71b80a82928fc5188106a0ed6"
   integrity sha512-1o0w2eP+8sXUesdtXpZR4Yvayp1h3xvK7l9+wuHh+1uCy+EvD5UI9d1HvU5kt5fw7XAJJcInaVAmyAbpwct0TQ==

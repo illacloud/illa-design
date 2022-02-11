@@ -1,31 +1,18 @@
 /** @jsxImportSource @emotion/react */
-import {
-  createContext,
-  forwardRef,
-  ReactText,
-  useCallback,
-  useState,
-} from "react"
+import { forwardRef, ReactText, useCallback, useState } from "react"
 import { useMergeValue } from "@illa-design/system"
-import { CheckboxGroupContextProps, CheckboxGroupProps } from "./interface"
+import { CheckboxGroupProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"
 import { Checkbox } from "./checkbox"
 import {
   applyCheckboxContainerHorizontal,
   applyCheckboxContainerVertical,
 } from "./style"
+import { CheckboxGroupContext } from "./context"
 
 function isArray(obj: any) {
   return Object.prototype.toString.call(obj) === "[object Array]"
 }
-
-export const CheckboxGroupContext = createContext<CheckboxGroupContextProps>({
-  isGroup: false,
-  checkboxGroupValue: [],
-  onGroupChange: () => {},
-  registerValue: () => {},
-  unRegisterValue: () => {},
-})
 
 export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
   (props, ref) => {
@@ -42,7 +29,8 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
     } = props
 
     const [currentValue, setCurrentValue] = useMergeValue([], {
-      defaultValue: "defaultValue" in props ? props.defaultValue || [] : undefined,
+      defaultValue:
+        "defaultValue" in props ? props.defaultValue || [] : undefined,
       value: "value" in props ? value || [] : undefined,
     })
     const [allOptionValues, setAllOptionValues] = useState<ReactText[]>([])
@@ -63,37 +51,37 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
         if (checked) {
           newVal.push(optionValue)
         } else {
-          newVal.splice(currentValue.indexOf(optionValue), 1)
+          newVal.splice(currentValue?.indexOf(optionValue), 1)
         }
         setCurrentValue(newVal)
-          onChange?.(
-          newVal.filter((v) => allOptionValues.indexOf(v) > -1),
+        onChange?.(
+          newVal.filter((v) => allOptionValues?.indexOf(v) > -1),
           e,
         )
       },
       [currentValue, onChange, allOptionValues],
     )
 
-    const contextProp = {
-      isGroup: true,
-      checkboxGroupValue: currentValue,
-      onGroupChange,
-      disabled,
-      registerValue: (v: ReactText) => {
-        setAllOptionValues((allOptionValues) => {
-          return Array.from(new Set([...allOptionValues, v]))
-        })
-      },
-      unRegisterValue: (v: ReactText) => {
-        setAllOptionValues((allOptionValues) => {
-          return allOptionValues.filter((x) => x !== v)
-        })
-      },
-    }
-
     return (
       <div css={checkboxGroupCss} ref={ref} {...otherProps}>
-        <CheckboxGroupContext.Provider value={contextProp}>
+        <CheckboxGroupContext.Provider
+          value={{
+            isGroup: true,
+            checkboxGroupValue: currentValue,
+            onGroupChange,
+            disabled,
+            registerValue: (v: ReactText) => {
+              setAllOptionValues((allOptionValues) => {
+                return Array.from(new Set([...allOptionValues, v]))
+              })
+            },
+            unRegisterValue: (v: ReactText) => {
+              setAllOptionValues((allOptionValues) => {
+                return allOptionValues.filter((x) => x !== v)
+              })
+            },
+          }}
+        >
           {isArray(options)
             ? options?.map((option, index) => {
                 return (
@@ -112,7 +100,5 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
     )
   },
 )
-
-CheckboxGroupContext.displayName = "CheckboxGroupContext"
 
 CheckboxGroup.displayName = "CheckboxGroup"
