@@ -41,7 +41,11 @@
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
+    "chroma-js": "^2.1.2",
     "framer-motion": "^4.1.17",
     "@illa-design/system": "*"
+  },
+  "devDependencies": {
+    "@types/chroma-js": "^2.1.3"
   }
 }
