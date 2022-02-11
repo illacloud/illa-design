@@ -1,4 +1,3 @@
-import React from "react"
 import { mount } from "@cypress/react"
 import { List, ListItem, ListItemMeta } from "../src"
 import { Button } from "@illa-design/button"
