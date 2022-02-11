@@ -104,3 +104,6 @@ report.*
 
 # turbo
 .turbo
+
+# cypress
+cypress/screenshots/
