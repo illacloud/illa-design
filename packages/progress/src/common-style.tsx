@@ -3,7 +3,19 @@ import { SerializedStyles } from "@storybook/theming"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { css } from "@emotion/react"
 
-const colorSchemes: ProgressColorScheme[] = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
+const colorSchemes: ProgressColorScheme[] = [
+  "white",
+  "blackAlpha",
+  "gray",
+  "grayBlue",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+]
 
 export function applySvgContainer(width: string): SerializedStyles {
   return css`
@@ -24,18 +36,25 @@ export function applyContainer(width: string): SerializedStyles {
   `
 }
 
-export function applyProgressContainer(colorScheme: ProgressColorScheme, width: string, strokeWidth: string, percent: number): SerializedStyles {
-
+export function applyProgressContainer(
+  colorScheme: ProgressColorScheme,
+  width: string,
+  strokeWidth: string,
+  percent: number,
+): SerializedStyles {
   const perimeter = `calc(${Math.PI} * 2 * (${width} - ${strokeWidth}) / 2)`
 
   let color
   if (colorScheme == "gray") {
     color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
   } else {
-    color = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-03`) : colorScheme
+    color = colorSchemes.includes(colorScheme)
+      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
+      : colorScheme
   }
 
   return css`
+    transition: all 200ms;
     stroke: ${color};
     transform: rotate(-90deg);
     transform-origin: center;
@@ -44,15 +63,20 @@ export function applyProgressContainer(colorScheme: ProgressColorScheme, width: 
   `
 }
 
-export function applyProgressContainerBg(trailColorScheme: ProgressColorScheme, width: string, strokeWidth: string): SerializedStyles {
-
+export function applyProgressContainerBg(
+  trailColorScheme: ProgressColorScheme,
+  width: string,
+  strokeWidth: string,
+): SerializedStyles {
   const perimeter = `calc(${Math.PI} * 2 * (${width} - ${strokeWidth}) / 2)`
 
   let color
   if (trailColorScheme == "gray") {
     color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
   } else {
-    color = colorSchemes.includes(trailColorScheme) ? globalColor(`--${illaPrefix}-${trailColorScheme}-06`) : trailColorScheme
+    color = colorSchemes.includes(trailColorScheme)
+      ? globalColor(`--${illaPrefix}-${trailColorScheme}-06`)
+      : trailColorScheme
   }
 
   return css`
