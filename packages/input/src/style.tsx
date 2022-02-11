@@ -1,5 +1,5 @@
+const chroma = require("chroma-js");
 import { css, SerializedStyles } from "@emotion/react"
-import * as chroma from "chroma-js";
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { StateValue } from "./input"
 

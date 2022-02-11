@@ -39,7 +39,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "chroma-js": "^2.1.2",
+    "dayjs": "^1.10.7",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-use": "^17.3.1",
