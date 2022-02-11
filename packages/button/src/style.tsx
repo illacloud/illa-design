@@ -1,14 +1,22 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { ButtonColorScheme, ButtonShape, ButtonSize, ButtonVariant } from "./interface"
+import {
+  ButtonColorScheme,
+  ButtonShape,
+  ButtonSize,
+  ButtonVariant,
+} from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 // button
 export function applyTagContainer(fullWidth?: boolean) {
   return css`
-    ${fullWidth ? css`
-      width: 100%;
-      justify-content: center;
-    ` : null};
+    ${fullWidth
+      ? css`
+          width: 100%;
+          justify-content: center;
+        `
+      : null};
+    transition: all 200ms ease-in-out;
     vertical-align: middle;
     white-space: nowrap;
     outline: none;
@@ -25,150 +33,256 @@ export enum State {
   DEFAULT,
   HOVER,
   ACTIVE,
-  DISABLE
+  DISABLE,
 }
 
-export function getDifferentStatusColor(colorScheme: ButtonColorScheme, variant: ButtonVariant, state: State): string[] {
+export function getDifferentStatusColor(
+  colorScheme: ButtonColorScheme,
+  variant: ButtonVariant,
+  state: State,
+): string[] {
   switch (state) {
     case State.DEFAULT:
       switch (variant) {
         case "fill":
           if (colorScheme != "gray") {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-01`), globalColor(`--${illaPrefix}-white-01`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-01`),
+              globalColor(`--${illaPrefix}-white-01`),
+            ]
           } else {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-09`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-09`),
+              globalColor(`--${illaPrefix}-${colorScheme}-02`),
+            ]
           }
         case "dashed":
         case "outline":
           if (colorScheme != "gray") {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-01`), globalColor(`--${illaPrefix}-${colorScheme}-01`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-01`),
+              globalColor(`--${illaPrefix}-${colorScheme}-01`),
+            ]
           } else {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-08`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-08`),
+              globalColor(`--${illaPrefix}-${colorScheme}-02`),
+            ]
           }
         case "text":
-          return [globalColor("transparent"), globalColor(`--${illaPrefix}-${colorScheme}-01`)]
+          return [
+            globalColor("transparent"),
+            globalColor(`--${illaPrefix}-${colorScheme}-01`),
+          ]
       }
     case State.HOVER:
       switch (variant) {
         case "fill":
           if (colorScheme != "gray") {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-02`), globalColor(`--${illaPrefix}-white-01`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-02`),
+              globalColor(`--${illaPrefix}-white-01`),
+            ]
           } else {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-08`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-08`),
+              globalColor(`--${illaPrefix}-${colorScheme}-02`),
+            ]
           }
         case "dashed":
         case "outline":
           if (colorScheme != "gray") {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-02`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-02`),
+              globalColor(`--${illaPrefix}-${colorScheme}-02`),
+            ]
           } else {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-07`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-07`),
+              globalColor(`--${illaPrefix}-${colorScheme}-02`),
+            ]
           }
         case "text":
-          return [globalColor(`--${illaPrefix}-gray-09`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+          return [
+            globalColor(`--${illaPrefix}-gray-09`),
+            globalColor(`--${illaPrefix}-${colorScheme}-02`),
+          ]
       }
     case State.ACTIVE:
       switch (variant) {
         case "fill":
           if (colorScheme != "gray") {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-n-01`), globalColor(`--${illaPrefix}-white-01`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
+              globalColor(`--${illaPrefix}-white-01`),
+            ]
           } else {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-06`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-06`),
+              globalColor(`--${illaPrefix}-${colorScheme}-02`),
+            ]
           }
         case "dashed":
         case "outline":
           if (colorScheme != "gray") {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-n-01`), globalColor(`--${illaPrefix}-${colorScheme}-n-01`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
+              globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
+            ]
           } else {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-05`), globalColor(`--${illaPrefix}-${colorScheme}-02`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-05`),
+              globalColor(`--${illaPrefix}-${colorScheme}-02`),
+            ]
           }
         case "text":
-          return [globalColor(`--${illaPrefix}-gray-08`), globalColor(`--${illaPrefix}-${colorScheme}-n-01`)]
+          return [
+            globalColor(`--${illaPrefix}-gray-08`),
+            globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
+          ]
       }
     case State.DISABLE:
       switch (variant) {
         case "fill":
           if (colorScheme != "gray") {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-05`), globalColor(`--${illaPrefix}-white-01`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-05`),
+              globalColor(`--${illaPrefix}-white-01`),
+            ]
           } else {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-09`), globalColor(`--${illaPrefix}-${colorScheme}-05`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-09`),
+              globalColor(`--${illaPrefix}-${colorScheme}-05`),
+            ]
           }
         case "dashed":
         case "outline":
           if (colorScheme != "gray") {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-05`), globalColor(`--${illaPrefix}-${colorScheme}-05`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-05`),
+              globalColor(`--${illaPrefix}-${colorScheme}-05`),
+            ]
           } else {
-            return [globalColor(`--${illaPrefix}-${colorScheme}-08`), globalColor(`--${illaPrefix}-${colorScheme}-05`)]
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-08`),
+              globalColor(`--${illaPrefix}-${colorScheme}-05`),
+            ]
           }
         case "text":
-          return [globalColor("transparent"), globalColor(`--${illaPrefix}-${colorScheme}-05`)]
+          return [
+            globalColor("transparent"),
+            globalColor(`--${illaPrefix}-${colorScheme}-05`),
+          ]
       }
   }
 }
 
-export function applyBg(variant: ButtonVariant, colorScheme: ButtonColorScheme): SerializedStyles {
+export function applyBg(
+  variant: ButtonVariant,
+  colorScheme: ButtonColorScheme,
+): SerializedStyles {
   switch (variant) {
     case "text":
       return css`
         &:hover {
-          background-color: ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[0]};
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.HOVER,
+          )[0]};
         }
 
         &:active {
-          background-color: ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
+          transition: none;
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.ACTIVE,
+          )[0]};
         }
       `
     case "dashed":
       return css`
-        border: dashed 1px ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
+        border: dashed 1px
+          ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
 
         &:hover {
-          border: dashed 1px ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[0]};
+          border: dashed 1px
+            ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[0]};
         }
 
         &:active {
-          border: dashed 1px ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
+          transition: none;
+          border: dashed 1px
+            ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
         }
 
         &:disabled {
-          border: dashed 1px ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
+          border: dashed 1px
+            ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
         }
       `
     case "fill":
       return css`
-        background-color: ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
+        background-color: ${getDifferentStatusColor(
+          colorScheme,
+          variant,
+          State.DEFAULT,
+        )[0]};
 
         &:hover {
-          background-color: ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[0]};
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.HOVER,
+          )[0]};
         }
 
         &:active {
-          background-color: ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
+          transition: none;
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.ACTIVE,
+          )[0]};
         }
 
         &:disabled {
-          background-color: ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
+          )[0]};
         }
       `
     case "outline":
       return css`
-        border: solid 1px ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
+        border: solid 1px
+          ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
 
         &:hover {
-          border: solid 1px ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[0]};
+          border: solid 1px
+            ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[0]};
         }
 
         &:active {
-          border: solid 1px ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
+          transition: none;
+          border: solid 1px
+            ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
         }
 
         &:disabled {
-          border: solid 1px ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
+          border: solid 1px
+            ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
         }
       `
   }
 }
 
-export function applyCursor(loading: boolean, disabled: boolean): SerializedStyles {
+export function applyCursor(
+  loading: boolean,
+  disabled: boolean,
+): SerializedStyles {
   if (loading) {
     return css`
       cursor: default;
@@ -184,53 +298,103 @@ export function applyCursor(loading: boolean, disabled: boolean): SerializedStyl
   }
 }
 
-export function applyElementColor(variant: ButtonVariant, colorScheme: ButtonColorScheme): SerializedStyles {
+export function applyElementColor(
+  variant: ButtonVariant,
+  colorScheme: ButtonColorScheme,
+): SerializedStyles {
   switch (variant) {
     case "text":
       return css`
-        color: ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[1]};
+        color: ${getDifferentStatusColor(
+          colorScheme,
+          variant,
+          State.DEFAULT,
+        )[1]};
 
         &:disabled {
-          color: ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[1]};
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
+          )[1]};
         }
       `
     case "outline":
     case "dashed":
       return css`
-        color: ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[1]};
+        color: ${getDifferentStatusColor(
+          colorScheme,
+          variant,
+          State.DEFAULT,
+        )[1]};
 
         &:hover {
-          color: ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[1]};
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.HOVER,
+          )[1]};
         }
 
         &:active {
-          color: ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[1]};
+          transition: none;
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.ACTIVE,
+          )[1]};
         }
 
         &:disabled {
-          color: ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[1]};
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
+          )[1]};
         }
       `
     case "fill":
       return css`
-        color: ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[1]};
+        color: ${getDifferentStatusColor(
+          colorScheme,
+          variant,
+          State.DEFAULT,
+        )[1]};
 
         &:hover {
-          color: ${getDifferentStatusColor(colorScheme, variant, State.HOVER)[1]};
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.HOVER,
+          )[1]};
         }
 
         &:active {
-          color: ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[1]};
+          transition: none;
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.ACTIVE,
+          )[1]};
         }
 
         &:disabled {
-          color: ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[1]};
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
+          )[1]};
         }
       `
   }
 }
 
-export function applyShape(shape: ButtonShape, attached: boolean, first: boolean, last: boolean): SerializedStyles {
+export function applyShape(
+  shape: ButtonShape,
+  attached: boolean,
+  first: boolean,
+  last: boolean,
+): SerializedStyles {
   switch (shape) {
     case "square":
       if (attached) {
@@ -278,24 +442,36 @@ export function applyShape(shape: ButtonShape, attached: boolean, first: boolean
   }
 }
 
-export function applyPaddingStyle(size: ButtonSize, variant: ButtonVariant): SerializedStyles {
+export function applyPaddingStyle(
+  size: ButtonSize,
+  variant: ButtonVariant,
+): SerializedStyles {
   switch (size) {
     case "small":
       return css`
-        padding: ${variant == "outline" || variant == "dashed" ? "1px 11px" : "2px 12px"};
+        padding: ${variant == "outline" || variant == "dashed"
+          ? "1px 11px"
+          : "2px 12px"};
       `
     case "medium":
       return css`
-        padding: ${variant == "outline" || variant == "dashed" ? "4px 15px" : "5px 16px"};
+        padding: ${variant == "outline" || variant == "dashed"
+          ? "4px 15px"
+          : "5px 16px"};
       `
     case "large":
       return css`
-        padding: ${variant == "outline" || variant == "dashed" ? "8px 15px" : "9px 16px"};
+        padding: ${variant == "outline" || variant == "dashed"
+          ? "8px 15px"
+          : "9px 16px"};
       `
   }
 }
 
-export function applyWithoutTextSize(size: ButtonSize, fullWidth?: boolean): SerializedStyles {
+export function applyWithoutTextSize(
+  size: ButtonSize,
+  fullWidth?: boolean,
+): SerializedStyles {
   switch (size) {
     case "small":
       return css`
@@ -420,7 +596,11 @@ export const avatarGroupContainer = css`
   align-items: center;
 `
 
-export function applySpacing(spacing: string, index: number, attached: boolean): SerializedStyles {
+export function applySpacing(
+  spacing: string,
+  index: number,
+  attached: boolean,
+): SerializedStyles {
   if (attached) {
     return css`
       display: inline-flex;

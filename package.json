@@ -46,9 +46,8 @@
     "storybook": "yarn test && npx start-storybook -p 6006",
     "build-all-components": "yarn turbo run build",
     "build-storybook": "yarn test && npx build-storybook",
-    "test": "yarn build-all-components && yarn jest && yarn cypress open-ct",
+    "test": "yarn build-all-components && yarn jest",
     "e2e": "yarn build-all-components && yarn cypress open-ct",
-    "unit-test": "yarn build-all-components && yarn jest",
     "prepare": "husky install"
   },
   "packageManager": "yarn@1.22.17"
