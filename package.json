@@ -35,6 +35,7 @@
     "build-all-components": "yarn turbo run build",
     "build-storybook": "yarn test && npx build-storybook",
     "test": "yarn turbo run test",
+    "lint": "prettier --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install"
   },
   "packageManager": "yarn@1.22.17"
