@@ -39,7 +39,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   } = props
 
   const [leftOffset, topOffset] = offset || []
-  const dotStyle = propsDotStyle ?? {}
+  const dotStyle = { ...(propsDotStyle || {}) }
 
   if (leftOffset) {
     dotStyle.marginRight = -leftOffset
@@ -49,13 +49,17 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   }
 
   let colorStyle: string = ""
-  if (status) {
-    colorStyle = globalColor(statusColor[status])
-  }
   if (colorScheme) {
     colorStyle = globalColor(`--${illaPrefix}-${colorScheme}-03`)
   }
-  colorStyle = colorStyle ? colorStyle : globalColor(`--${illaPrefix}-red-03`)
+  if (status) {
+    colorStyle = globalColor(statusColor[status])
+  }
+  colorStyle = colorStyle
+    ? colorStyle
+    : isObject(count)
+    ? globalColor(`--${illaPrefix}-white-01`)
+    : globalColor(`--${illaPrefix}-red-03`)
 
   const hasChildren = !!children
 
@@ -63,12 +67,12 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     // display status dot
     if (status) {
       return (
-        <span css={applyBadgeStatusWrapper()}>
+        <span css={applyBadgeStatusWrapper}>
           <span
             css={applyBadgeDot(colorStyle, hasChildren, true)}
             style={dotStyle}
           />
-          {text && <span css={applyBadgeStatusText()}>{text}</span>}
+          {text && <span css={applyBadgeStatusText}>{text}</span>}
         </span>
       )
     }
@@ -97,10 +101,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     // display dot
     if (dot && count && count > 0) {
       return (
-        <span
-          style={dotStyle}
-          css={applyBadgeDot(colorStyle, hasChildren)}
-        />
+        <span style={dotStyle} css={applyBadgeDot(colorStyle, hasChildren)} />
       )
     }
 

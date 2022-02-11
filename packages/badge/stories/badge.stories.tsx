@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Avatar } from "@illa-design/avatar"
-import { CloseIcon } from "@illa-design/icon"
+import { SearchIcon } from "@illa-design/icon"
 import { Badge, BadgeProps } from "../src"
 
 import { Space } from "@illa-design/space"
@@ -60,7 +60,7 @@ const Template: Story<BadgeProps> = (args) => {
         <Avatar shape={"square"} />
       </Badge>
       <Badge {...args} />
-      <Badge {...args} count={<CloseIcon />}>
+      <Badge {...args} count={<SearchIcon style={{ color: "black" }} />}>
         <Avatar shape={"square"} />
       </Badge>
       <Badge count={num}>
@@ -79,7 +79,6 @@ Basic.args = {
   count: 1,
   offset: [0, 0],
   maxCount: 99,
-  colorScheme: "red",
   dotStyle: {},
   dot: false,
   text: "",
