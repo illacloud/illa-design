@@ -32,6 +32,8 @@ exports[`Progress renders with colors 1`] = `
 }
 
 .emotion-3 {
+  -webkit-transition: width 200ms;
+  transition: width 200ms;
   position: absolute;
   width: 0%;
   border-radius: calc(4px / 2);
@@ -100,6 +102,8 @@ exports[`Progress renders with colors 2`] = `
 }
 
 .emotion-3 {
+  -webkit-transition: width 200ms;
+  transition: width 200ms;
   position: absolute;
   width: 0%;
   border-radius: calc(4px / 2);
@@ -168,6 +172,8 @@ exports[`Progress renders with colors 3`] = `
 }
 
 .emotion-3 {
+  -webkit-transition: width 200ms;
+  transition: width 200ms;
   position: absolute;
   width: 0%;
   border-radius: calc(4px / 2);
@@ -671,6 +677,8 @@ exports[`Progress renders with custom width 1`] = `
 }
 
 .emotion-3 {
+  -webkit-transition: width 200ms;
+  transition: width 200ms;
   position: absolute;
   width: 50%;
   border-radius: calc(10px / 2);
