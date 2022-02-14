@@ -81,6 +81,6 @@ test("Statistic renders with precision", () => {
 })
 
 test("Statistic renders with format", () => {
-  render(<Statistic value={1644822796115} format={"YYYY-MM-DD HH:mm:ss:SSS"} />)
-  expect(screen.getByText("2022-02-14 15:13:16:115")).toBeInTheDocument()
+  render(<Statistic value={1644822796115} format={"YYYY-MM-DD"} />)
+  expect(screen.getByText("2022-02-14")).toBeInTheDocument()
 })

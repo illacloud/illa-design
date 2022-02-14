@@ -27,7 +27,6 @@ export const Basic = Template.bind({})
 Basic.args = {
   title: "",
   // value: Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30,
-  // format: "HH:mm:ss",
   value: Date.now() + 1000 * 20,
   now: Date.now(),
 }
