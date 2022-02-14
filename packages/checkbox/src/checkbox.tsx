@@ -7,10 +7,6 @@ import { CheckboxProps } from "./interface"
 import { applyMergeCss, applyCheckboxSize, applyCheckState } from "./style"
 import { CheckboxGroupContext } from "./context"
 
-export type CheckboxRef = React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<CheckboxProps> & React.RefAttributes<unknown>
->
-
 export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
   (props, ref) => {
     const context = useContext(CheckboxGroupContext)
