@@ -12,16 +12,16 @@ export function getAnimation(originX: string, originY: string): Variants {
       scale: 1,
       opacity: 1,
       transition: {
-        opacity: { duration: 0.2, easings: "easeInOut" },
-        scale: { duration: 0.2, easings: "easeInOut" },
+        opacity: { duration: 0.2, ease: "easeInOut" },
+        scale: { duration: 0.2, ease: "easeInOut" },
       },
     },
     exit: {
       scale: 0,
       opacity: 0,
       transition: {
-        opacity: { duration: 0.2, easings: "easeInOut" },
-        scale: { duration: 0.2, easings: "easeInOut" },
+        opacity: { duration: 0.2, ease: "easeInOut" },
+        scale: { duration: 0.2, ease: "easeInOut" },
       },
     },
   } as Variants

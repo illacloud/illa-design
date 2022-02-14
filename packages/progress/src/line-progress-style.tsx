@@ -3,7 +3,19 @@ import { SerializedStyles } from "@storybook/theming"
 import { ProgressColorScheme } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-const colorSchemes: ProgressColorScheme[] = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
+const colorSchemes: ProgressColorScheme[] = [
+  "white",
+  "blackAlpha",
+  "gray",
+  "grayBlue",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+]
 
 export const applyProgressContainer = css`
   vertical-align: middle;
@@ -25,7 +37,10 @@ export const applyStatusIcon = css`
   margin-left: 8px;
 `
 
-export function applyLineContainer(width: string, stokeWidth: string): SerializedStyles {
+export function applyLineContainer(
+  width: string,
+  stokeWidth: string,
+): SerializedStyles {
   return css`
     display: inline-block;
     height: ${stokeWidth};
@@ -41,14 +56,21 @@ export function applySpace(): SerializedStyles {
   `
 }
 
-export function applyLineProgress(percent: number, stokeWidth: string, colorScheme: ProgressColorScheme): SerializedStyles {
+export function applyLineProgress(
+  percent: number,
+  stokeWidth: string,
+  colorScheme: ProgressColorScheme,
+): SerializedStyles {
   let color
   if (colorScheme == "gray") {
     color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
   } else {
-    color = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-03`) : colorScheme
+    color = colorSchemes.includes(colorScheme)
+      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
+      : colorScheme
   }
   return css`
+    transition: width 200ms;
     position: absolute;
     width: ${percent}%;
     border-radius: calc(${stokeWidth} / 2);
@@ -57,12 +79,21 @@ export function applyLineProgress(percent: number, stokeWidth: string, colorSche
   `
 }
 
-export function applyLineProgressStep(percent: number, stokeWidth: string, width: string, colorScheme: ProgressColorScheme, steps: number, index: number): SerializedStyles {
+export function applyLineProgressStep(
+  percent: number,
+  stokeWidth: string,
+  width: string,
+  colorScheme: ProgressColorScheme,
+  steps: number,
+  index: number,
+): SerializedStyles {
   let color
   if (colorScheme == "gray") {
     color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
   } else {
-    color = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-03`) : colorScheme
+    color = colorSchemes.includes(colorScheme)
+      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
+      : colorScheme
   }
 
   let finalWidth: string
@@ -81,12 +112,17 @@ export function applyLineProgressStep(percent: number, stokeWidth: string, width
   `
 }
 
-export function applyLineProgressBg(stokeWidth: string, trailColorScheme: ProgressColorScheme): SerializedStyles {
+export function applyLineProgressBg(
+  stokeWidth: string,
+  trailColorScheme: ProgressColorScheme,
+): SerializedStyles {
   let color
   if (trailColorScheme == "gray") {
     color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
   } else {
-    color = colorSchemes.includes(trailColorScheme) ? globalColor(`--${illaPrefix}-${trailColorScheme}-06`) : trailColorScheme
+    color = colorSchemes.includes(trailColorScheme)
+      ? globalColor(`--${illaPrefix}-${trailColorScheme}-06`)
+      : trailColorScheme
   }
   return css`
     position: absolute;
@@ -97,14 +133,19 @@ export function applyLineProgressBg(stokeWidth: string, trailColorScheme: Progre
   `
 }
 
-export function applyLineProgressBgStep(strokeWidth: string, width: string, trailColorScheme: ProgressColorScheme): SerializedStyles {
-
+export function applyLineProgressBgStep(
+  strokeWidth: string,
+  width: string,
+  trailColorScheme: ProgressColorScheme,
+): SerializedStyles {
   let color
 
   if (trailColorScheme == "gray") {
     color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
   } else {
-    color = colorSchemes.includes(trailColorScheme) ? globalColor(`--${illaPrefix}-${trailColorScheme}-06`) : trailColorScheme
+    color = colorSchemes.includes(trailColorScheme)
+      ? globalColor(`--${illaPrefix}-${trailColorScheme}-06`)
+      : trailColorScheme
   }
 
   return css`

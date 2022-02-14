@@ -3,11 +3,9 @@ module.exports = {
   coverageDirectory: "./coverage/",
   coverageReporters: ["json"],
   collectCoverage: true,
-  collectCoverageFrom: ["./src/*.tsx"],
+  collectCoverageFrom: ["packages/**/src/*.(ts|tsx)"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  modulePathIgnorePatterns: [
-    "<rootDir>/examples",
-  ],
+  modulePathIgnorePatterns: ["<rootDir>/examples"],
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
@@ -18,6 +16,6 @@ module.exports = {
     },
   },
   snapshotSerializers: [
-    "@emotion/jest/serializer", /* if needed other snapshotSerializers should go here */
+    "@emotion/jest/serializer" /* if needed other snapshotSerializers should go here */,
   ],
 }

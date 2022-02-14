@@ -4,21 +4,17 @@ import "@testing-library/jest-dom"
 import { LoadingIcon } from "@illa-design/icon"
 
 test("Badge renders with text", () => {
-  render(<Badge data-testid="test" text="Hello"></Badge>)
+  render(<Badge data-testid="test" text="Hello" />)
   expect(screen.getByTestId("test")).toBeInTheDocument()
   expect(screen.getByText("Hello")).toBeInTheDocument()
 })
 
 test("Badge renders with different colorScheme", () => {
-  render(
-    <Badge data-testid="test-with-gray" count={1} colorScheme="gray"></Badge>,
-  )
+  render(<Badge data-testid="test-with-gray" count={1} colorScheme="gray" />)
   expect(screen.getByTestId("test-with-gray")?.firstChild).toHaveStyle({
     "background-color": "#5c5c5c",
   })
-  render(
-    <Badge data-testid="test-with-green" count={1} colorScheme="green"></Badge>,
-  )
+  render(<Badge data-testid="test-with-green" count={1} colorScheme="green" />)
   expect(screen.getByTestId("test-with-green")?.firstChild).toHaveStyle({
     "background-color": "#00aa5b",
   })
