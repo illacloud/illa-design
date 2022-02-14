@@ -1,11 +1,11 @@
 {
-  "name": "@illa-design/react",
+  "name": "@illa-design/checkbox",
   "version": "0.0.0",
-  "description": "Illa Design React.",
+  "description": "Illa Design Checkbox.",
   "keywords": [
-    "ui",
-    "ui-components",
-    "react"
+    "radio",
+    "react",
+    "component"
   ],
   "sideEffects": false,
   "author": "illa Family <opensource@illasoft.com>",
@@ -30,35 +30,18 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/react"
+    "directory": "packages/radio"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "test": "yarn jest"
   },
   "dependencies": {
-    "@illa-design/avatar": "*",
-    "@illa-design/icon": "*",
-    "@illa-design/image": "*",
     "@illa-design/system": "*",
-    "@illa-design/tag": "*",
     "@illa-design/theme": "*",
-    "@illa-design/divider": "*",
-    "@illa-design/space": "*",
-    "@illa-design/button": "*",
-    "@illa-design/radio": "*",
-    "@illa-design/typography": "*",
-    "@illa-design/trigger": "*",
-    "@illa-design/input": "*",
-    "@illa-design/tooltip": "*",
-    "@illa-design/popover": "*",
-    "@illa-design/link": "*",
-    "@illa-design/progress": "*",
-    "@illa-design/empty": "*",
-    "@illa-design/badge": "*",
-    "@illa-design/checkbox": "*",
-    "@illa-design/list": "*"
+    "@illa-design/icon": "*"
   }
 }
