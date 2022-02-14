@@ -18,8 +18,11 @@ export interface PopupProps {
   left: string
 }
 
-export const Popup: FC<PopupProps> = ((props) => {
-  return createPortal(<div css={applyPopupContainer(props.top, props.left)}>
-    {props.children}
-  </div>, document.body)
-})
+export const Popup: FC<PopupProps> = (props) => {
+  return createPortal(
+    <div css={applyPopupContainer(props.top, props.left)}>
+      {props.children}
+    </div>,
+    document.body,
+  )
+}

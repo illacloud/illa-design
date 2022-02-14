@@ -3,7 +3,8 @@ import { TypographyColorScheme } from "./interface"
 import { css, SerializedStyles } from "@storybook/theming"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-const colorSchemes = ["white",
+const colorSchemes = [
+  "white",
   "blackAlpha",
   "gray",
   "grayBlue",
@@ -13,7 +14,8 @@ const colorSchemes = ["white",
   "green",
   "blue",
   "cyan",
-  "purple"]
+  "purple",
+]
 
 export const applyOperationSpan = css`
   display: inline-block;
@@ -25,17 +27,26 @@ export const applyCopyContainer = css`
   align-items: center;
 `
 
-export function applyFontColor(colorScheme: TypographyColorScheme): SerializedStyles {
-
-  const color = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
+export function applyFontColor(
+  colorScheme: TypographyColorScheme,
+): SerializedStyles {
+  const color = colorSchemes.includes(colorScheme)
+    ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
+    : colorScheme
 
   return css`
     color: ${color};
   `
 }
 
-export function applyFontContentStyle(bold?: boolean, mark?: boolean | TypographyColorScheme, underline?: boolean, deleted?: boolean, disabled?: boolean, code?: boolean): SerializedStyles {
-
+export function applyFontContentStyle(
+  bold?: boolean,
+  mark?: boolean | TypographyColorScheme,
+  underline?: boolean,
+  deleted?: boolean,
+  disabled?: boolean,
+  code?: boolean,
+): SerializedStyles {
   let finalCss = css``
 
   if (code) {
@@ -59,7 +70,9 @@ export function applyFontContentStyle(bold?: boolean, mark?: boolean | Typograph
     `
   }
   if (typeof mark == "string") {
-    const bgColor = colorSchemes.includes(mark) ? globalColor(`--${illaPrefix}-${mark}-06`) : mark
+    const bgColor = colorSchemes.includes(mark)
+      ? globalColor(`--${illaPrefix}-${mark}-06`)
+      : mark
     finalCss = css`
       ${finalCss};
       background-color: ${bgColor};

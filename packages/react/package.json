@@ -58,6 +58,7 @@
     "@illa-design/progress": "*",
     "@illa-design/empty": "*",
     "@illa-design/badge": "*",
+    "@illa-design/checkbox": "*",
     "@illa-design/list": "*"
   }
 }

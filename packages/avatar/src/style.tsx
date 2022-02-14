@@ -1,20 +1,37 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { AvatarProps, AvatarColorScheme, AvatarShape, AvatarSize } from "./interface"
+import {
+  AvatarProps,
+  AvatarColorScheme,
+  AvatarShape,
+  AvatarSize,
+} from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 
-export const colors: AvatarColorScheme[] = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
+export const colors: AvatarColorScheme[] = [
+  "white",
+  "blackAlpha",
+  "gray",
+  "grayBlue",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+]
 
 export function applyBgColor(colorScheme: AvatarColorScheme): SerializedStyles {
   let bgColor: SerializedStyles
   if (colors.includes(colorScheme)) {
     if (colorScheme == "gray") {
       bgColor = css`
-        background-color: ${globalColor(`--${illaPrefix}-${colorScheme}-05`)}
+        background-color: ${globalColor(`--${illaPrefix}-${colorScheme}-05`)};
       `
     } else {
       bgColor = css`
-        background-color: ${globalColor(`--${illaPrefix}-${colorScheme}-01`)}
+        background-color: ${globalColor(`--${illaPrefix}-${colorScheme}-01`)};
       `
     }
   } else {

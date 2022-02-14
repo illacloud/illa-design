@@ -7,7 +7,10 @@ export const applyTypographyContainer = css`
 `
 
 export function applyTitleColor(colorScheme: TriggerColorScheme) {
-  const textColor = colorScheme == "white" ? globalColor(`--${illaPrefix}-gray-02`) : globalColor(`--${illaPrefix}-white-02`)
+  const textColor =
+    colorScheme == "white"
+      ? globalColor(`--${illaPrefix}-gray-02`)
+      : globalColor(`--${illaPrefix}-white-02`)
   return css`
     color: ${textColor};
     margin-bottom: 4px;

@@ -1,7 +1,7 @@
 import { CSSProperties, HTMLAttributes, ReactNode } from "react"
 
 export type AvatarColorScheme =
-  string
+  | string
   | "white"
   | "blackAlpha"
   | "gray"
@@ -27,8 +27,9 @@ export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   icon?: ReactNode
 }
 
-export interface AvatarGroupProps extends HTMLAttributes<HTMLDivElement>, AvatarGroupContextProps {
-}
+export interface AvatarGroupProps
+  extends HTMLAttributes<HTMLDivElement>,
+    AvatarGroupContextProps {}
 
 export interface AvatarGroupContextProps {
   zIndexAscend?: boolean

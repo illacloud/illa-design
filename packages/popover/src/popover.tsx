@@ -5,28 +5,35 @@ import { Trigger } from "@illa-design/trigger"
 import { Heading, Typography } from "@illa-design/typography"
 import { applyTitleColor, applyTypographyContainer } from "./style"
 
-export const Popover: FC<PopoverProps> = ((props) => {
+export const Popover: FC<PopoverProps> = (props) => {
+  const { title, content, colorScheme = "white", ...otherProps } = props
 
-  const {
-    title,
-    content,
-    colorScheme = "white",
-    ...otherProps
-  } = props
-
-  return <Trigger {...otherProps} colorScheme={colorScheme} content={
-    <div css={applyTypographyContainer}>
-      <Typography>
-        {title &&
-          <Heading css={applyTitleColor(colorScheme)}
-                   colorScheme={colorScheme == "white" ? "gray" : "white"}
-                   title={title} ellipsis={false} level="h6">{title}</Heading>}
-        {content}
-      </Typography>
-    </div>
-  }>
-    {props.children}
-  </Trigger>
-})
+  return (
+    <Trigger
+      {...otherProps}
+      colorScheme={colorScheme}
+      content={
+        <div css={applyTypographyContainer}>
+          <Typography>
+            {title && (
+              <Heading
+                css={applyTitleColor(colorScheme)}
+                colorScheme={colorScheme == "white" ? "gray" : "white"}
+                title={title}
+                ellipsis={false}
+                level="h6"
+              >
+                {title}
+              </Heading>
+            )}
+            {content}
+          </Typography>
+        </div>
+      }
+    >
+      {props.children}
+    </Trigger>
+  )
+}
 
 Popover.displayName = "Popover"
