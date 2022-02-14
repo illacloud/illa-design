@@ -17,6 +17,9 @@ import {
   SuccessIcon,
   WarningIcon,
   CheckmarkIcon,
+  PreIcon,
+  NextIcon,
+  MoreIcon
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -56,3 +59,6 @@ export const Empty: Story<IconProps> = (props) => <EmptyIcon {...props} />
 export const Checkmark: Story<IconProps> = (props) => (
   <CheckmarkIcon {...props} />
 )
+export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
+export const Next: Story<IconProps> = (props) => <NextIcon {...props} />
+export const More: Story<IconProps> = (props) => <MoreIcon {...props} />

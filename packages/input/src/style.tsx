@@ -168,30 +168,51 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
-export function applyInputContainer(stateValue: StateValue) {
+export function applyInputContainer(stateValue: StateValue, requirePadding: boolean) {
   let sizeCss: SerializedStyles
-
-  switch (stateValue?.size) {
-    default:
-    case "large":
-      sizeCss = css`
+  if (requirePadding){
+    switch (stateValue?.size) {
+      default:
+      case "large":
+        sizeCss = css`
         height: 38px;
         padding: 0 16px;
       `
-      break
-    case "medium":
-      sizeCss = css`
+        break
+      case "medium":
+        sizeCss = css`
         height: 30px;
         padding: 0 16px;
       `
-      break
-    case "small":
-      sizeCss = css`
+        break
+      case "small":
+        sizeCss = css`
         height: 22px;
         padding: 0 12px;
       `
-      break
+        break
+    }
+  } else {
+    switch (stateValue?.size) {
+      default:
+      case "large":
+        sizeCss = css`
+        height: 38px;
+      `
+        break
+      case "medium":
+        sizeCss = css`
+        height: 30px;
+      `
+        break
+      case "small":
+        sizeCss = css`
+        height: 22px;
+      `
+        break
+    }
   }
+
 
   return css`
     width: 100%;
@@ -217,20 +238,30 @@ export function applyInputContainer(stateValue: StateValue) {
   `
 }
 
-export function applyInputStyle() {
+export function applyInputStyle(textCenterHorizontal: boolean | undefined) {
+  let textAlignCss: SerializedStyles
+  if (textCenterHorizontal) {
+    textAlignCss = css`
+      text-align: center;
+    `
+  } else {
+    textAlignCss = css`
+      text-align: start`
+  }
   return css`
     width: 100%;
     appearance: none;
     font-size: 14px;
     font-family: HelveticaNeue;
+    border-radius: 4px;
     line-height: 20px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    border-radius: 0;
     border: none;
     outline: unset;
     cursor: inherit;
     background-color: inherit;
 
+    ${textAlignCss}
     &::placeholder {
       color: ${globalColor(`--${illaPrefix}-gray-04`)};
     }

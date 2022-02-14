@@ -53,6 +53,8 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
       onClear,
       size = "medium",
       variant = "outline",
+      requirePadding = true,
+      textCenterHorizontal = false,
       ...rest
     } = props
 
@@ -107,7 +109,7 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
           {addonBefore ? (
             <span css={applyAddonCss(stateValue)}>{addonBefore}</span>
           ) : null}
-          <span css={applyInputContainer(stateValue)}>
+          <span css={applyInputContainer(stateValue,requirePadding)}>
             {prefix ? <span css={applyPrefixCls}>{prefix}</span> : null}
             <InputElement
               ref={inputRef}
@@ -117,6 +119,7 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
               disabled={disabled}
               placeholder={placeholder}
               allowClear={allowClear}
+              textCenterHorizontal={textCenterHorizontal}
               onFocus={(e) => {
                 setFocus(true)
                 props.onFocus && props.onFocus(e)
