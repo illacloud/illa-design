@@ -36,8 +36,7 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build",
-    "test": "yarn jest"
+    "build": "tsc && vite build"
   },
   "dependencies": {
     "@illa-design/system": "*"

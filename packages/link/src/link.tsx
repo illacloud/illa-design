@@ -6,7 +6,6 @@ import { LinkIcon } from "@illa-design/icon"
 import { css } from "@emotion/react"
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
-
   const {
     disabled,
     icon,
@@ -22,10 +21,12 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
     ${applyDisable(colorScheme, disabled)};
   `
 
-  return <a ref={ref} {...otherProps} css={finalCss}>
-    <span css={applyLeftIcon}>{leftIcon}</span>
-    {props.children}
-  </a>
+  return (
+    <a ref={ref} {...otherProps} css={finalCss}>
+      {leftIcon && <span css={applyLeftIcon}>{leftIcon}</span>}
+      {props.children}
+    </a>
+  )
 })
 
 Link.displayName = "Link"
