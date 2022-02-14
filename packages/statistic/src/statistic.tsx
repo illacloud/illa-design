@@ -1,13 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import React, { forwardRef, useMemo } from "react"
 import { StatisticProps } from "./interface"
-import dayjs from "dayjs"
+import * as dayjs from "dayjs"
+import * as _ from "lodash"
+
 import {
   applyStatisticContent,
   applyStatistic,
   applyStatisticTitle,
-  applyStatisticPrefix,
-  applyStatisticSuffix,
+  applyStatisticDecorator,
+  applyStatisticValue,
 } from "./style"
 
 export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
@@ -26,27 +28,35 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
       ...restProps
     } = props
     const renderValue = useMemo(() => {
-      let temp = value
       if (format) {
-        temp = dayjs(value).format(format)
-        return temp
+        return dayjs(value).format(format)
       }
-      if (precision) {
-        temp = Number(value).toFixed(precision)
+      let temp: number | string = Number(value)
+      if (!isFinite(temp)) {
+        return value
+      }
+      if (precision !== void 0) {
+        temp = temp.toFixed(precision)
       }
       let [int, decimal] = String(temp).split(".")
-      if (!isNaN(Number(int))) {
-        int = int.replace(/\B(?=(\d{3})+(?!\d))/g, groupSeparator)
-      }
+      int = int.replace(/\B(?=(\d{3})+(?!\d))/g, groupSeparator)
       return decimal !== void 0 ? int + decimalSeparator + decimal : int
     }, [format, value, groupSeparator, decimalSeparator, precision])
     return (
       <div css={applyStatistic} ref={ref} {...restProps}>
         {title && <div css={applyStatisticTitle}>{title}</div>}
         <div css={applyStatisticContent} style={valueStyle}>
-          {prefix && <span css={applyStatisticPrefix}>{prefix}</span>}
-          <span>{renderValue}</span>
-          {suffix && <span css={applyStatisticSuffix}>{suffix}</span>}
+          {prefix && (
+            <span css={applyStatisticDecorator(true, !_.isObject(prefix))}>
+              {prefix}
+            </span>
+          )}
+          <span css={applyStatisticValue}>{renderValue}</span>
+          {suffix && (
+            <span css={applyStatisticDecorator(false, !_.isObject(suffix))}>
+              {suffix}
+            </span>
+          )}
         </div>
       </div>
     )

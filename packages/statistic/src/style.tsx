@@ -26,16 +26,22 @@ export function applyStatisticContent() {
   `
 }
 
-export function applyStatisticPrefix() {
+export function applyStatisticDecorator(isPrefix: boolean, isText: boolean) {
+  const spacing = isText ? 4 : 8
+  const margin = isPrefix
+    ? `margin-right:${spacing}px;`
+    : `margin-left:${spacing}px;`
+  const restStyle = isText ? `font-size: 14px;line-height: 1.57;` : ``
   return css`
-    margin-right: 8px;
     display: inline-block;
+    ${margin + restStyle}
   `
 }
 
-export function applyStatisticSuffix() {
+export function applyStatisticValue() {
   return css`
-    margin-left: 8px;
     display: inline-block;
+    direction: ltr;
+    vertical-align: middle;
   `
 }
