@@ -19,4 +19,3 @@ export * from "@illa-design/progress"
 export * from "@illa-design/empty"
 export * from "@illa-design/checkbox"
 export * from "@illa-design/list"
-

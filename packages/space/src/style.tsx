@@ -1,7 +1,11 @@
 import { SpaceAlign, SpaceDirection, SpaceSize } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
 
-export function applyContainer(direction: SpaceDirection, align: SpaceAlign, wrap: boolean): SerializedStyles {
+export function applyContainer(
+  direction: SpaceDirection,
+  align: SpaceAlign,
+  wrap: boolean,
+): SerializedStyles {
   let cssDirection: string
   switch (direction) {
     case "horizontal":
@@ -20,11 +24,17 @@ export function applyContainer(direction: SpaceDirection, align: SpaceAlign, wra
   `
 }
 
-export function applyDividerSizeSingle(size: SpaceSize, direction: SpaceDirection, wrap: boolean, isLast: boolean): SerializedStyles {
+export function applyDividerSizeSingle(
+  size: SpaceSize,
+  direction: SpaceDirection,
+  wrap: boolean,
+  isLast: boolean,
+): SerializedStyles {
   let horSpace, verSpace: string
   switch (direction) {
     case "horizontal":
-      horSpace = direction == "horizontal" && !isLast ? getSpaceSize(size) : "0px"
+      horSpace =
+        direction == "horizontal" && !isLast ? getSpaceSize(size) : "0px"
       verSpace = wrap ? getSpaceSize(size) : "0px"
       break
     case "vertical":
@@ -33,22 +43,34 @@ export function applyDividerSizeSingle(size: SpaceSize, direction: SpaceDirectio
       break
   }
   return css`
-    ${direction == "horizontal" ? css`height: 100%;` : css`width: 100%;`};
+    ${direction == "horizontal"
+      ? css`
+          height: 100%;
+        `
+      : css`
+          width: 100%;
+        `};
     display: inline-flex;
     margin-right: ${horSpace};
     margin-bottom: ${verSpace};
   `
 }
 
-export function applyDividerMultiSize(size: SpaceSize[], direction: SpaceDirection, isLast: boolean): SerializedStyles {
+export function applyDividerMultiSize(
+  size: SpaceSize[],
+  direction: SpaceDirection,
+  isLast: boolean,
+): SerializedStyles {
   let horSpace, verSpace: string
   switch (direction) {
     case "horizontal":
-      horSpace = direction == "horizontal" && !isLast ? getSpaceSize(size[0]) : "0px"
+      horSpace =
+        direction == "horizontal" && !isLast ? getSpaceSize(size[0]) : "0px"
       verSpace = getSpaceSize(size[1])
       break
     case "vertical":
-      verSpace = direction == "vertical" && !isLast ? getSpaceSize(size[1]) : "0px"
+      verSpace =
+        direction == "vertical" && !isLast ? getSpaceSize(size[1]) : "0px"
       horSpace = getSpaceSize(size[0])
       break
   }
@@ -59,7 +81,12 @@ export function applyDividerMultiSize(size: SpaceSize[], direction: SpaceDirecti
   `
 }
 
-export function applyDividerSize(size: SpaceSize | SpaceSize[], direction: SpaceDirection, wrap: boolean, isLast: boolean): SerializedStyles {
+export function applyDividerSize(
+  size: SpaceSize | SpaceSize[],
+  direction: SpaceDirection,
+  wrap: boolean,
+  isLast: boolean,
+): SerializedStyles {
   if (typeof size == "string") {
     return applyDividerSizeSingle(size, direction, wrap, isLast)
   } else {

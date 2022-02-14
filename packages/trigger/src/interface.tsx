@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 
 export type TriggerColorScheme =
-  string
+  | string
   | "white"
   | "gray"
   | "grayBlue"
@@ -14,7 +14,7 @@ export type TriggerColorScheme =
   | "purple"
 
 export type TriggerPosition =
-  "top"
+  | "top"
   | "tl"
   | "tr"
   | "bottom"

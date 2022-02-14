@@ -49,7 +49,7 @@
     "test": "yarn build-all-components && yarn jest",
     "e2e": "yarn build-all-components && yarn cypress open-ct",
     "unit-test": "yarn build-all-components && yarn jest",
-    "lint": "prettier --write \"packages/**/*.{ts,tsx}\"",
+    "lint": "prettier --write \"packages/**/*.{ts,tsx}\" \"!__snapshots__/**\" ",
     "prepare": "husky install"
   },
   "packageManager": "yarn@1.22.17"

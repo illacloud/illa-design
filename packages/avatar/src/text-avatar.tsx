@@ -4,7 +4,10 @@ import { FC, MutableRefObject, useEffect, useRef } from "react"
 import { AvatarProps } from "./interface"
 import { applyMergeCss } from "./style"
 
-function adjustFontScale(textRef: MutableRefObject<HTMLSpanElement | null>, avatarRef: MutableRefObject<HTMLDivElement | null>) {
+function adjustFontScale(
+  textRef: MutableRefObject<HTMLSpanElement | null>,
+  avatarRef: MutableRefObject<HTMLDivElement | null>,
+) {
   if (textRef.current != null && avatarRef.current != null) {
     const textWidth = textRef.current!!.clientWidth
     const size = avatarRef.current!!.offsetWidth
@@ -35,7 +38,9 @@ export const TextAvatar: FC<AvatarProps> = (props) => {
     adjustFontScale(textRef, avatarRef)
   }, [finalProps.text, finalProps.size])
 
-  return <div ref={avatarRef} css={applyMergeCss(finalProps)}>
-    <span ref={textRef}>{props.text}</span>
-  </div>
+  return (
+    <div ref={avatarRef} css={applyMergeCss(finalProps)}>
+      <span ref={textRef}>{props.text}</span>
+    </div>
+  )
 }
