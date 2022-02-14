@@ -10,6 +10,11 @@ exports[`Avatar Avatar renders with colorScheme 1`] = `
   display: inline-flex;
 }
 
+.emotion-0 {
+  vertical-align: middle;
+  display: inline-flex;
+}
+
 .emotion-1 {
   background-color: #c2c2c2;
   display: -webkit-inline-box;
@@ -218,6 +223,11 @@ exports[`Avatar Avatar renders with icon 1`] = `
   display: inline-flex;
 }
 
+.emotion-0 {
+  vertical-align: middle;
+  display: inline-flex;
+}
+
 .emotion-1 {
   background-color: #c2c2c2;
   display: -webkit-inline-box;
@@ -303,6 +313,11 @@ exports[`Avatar Avatar renders with shape 1`] = `
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-0 {
+  vertical-align: middle;
   display: inline-flex;
 }
 
@@ -455,6 +470,11 @@ exports[`Avatar Avatar renders with size 1`] = `
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-0 {
+  vertical-align: middle;
   display: inline-flex;
 }
 

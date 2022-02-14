@@ -14,7 +14,6 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { InputElementProps, InputRefType } from "./interface"
 import { applyInputStyle, pointerStyle } from "./style"
 
-
 export const InputElement = forwardRef<InputRefType, InputElementProps>(
   (props, ref) => {
     const inputRef = useRef<HTMLInputElement | null>(null)

@@ -7,11 +7,15 @@ test("Divider renders default", () => {
 })
 
 test("Divider renders horizontal", () => {
-  const { asFragment } = render(<Divider direction="horizontal" variant="solid" />)
+  const { asFragment } = render(
+    <Divider direction="horizontal" variant="solid" />,
+  )
   expect(asFragment()).toMatchSnapshot()
 })
 
 test("Divider renders vertical", () => {
-  const { asFragment } = render(<Divider direction="vertical" variant="dashed" />)
+  const { asFragment } = render(
+    <Divider direction="vertical" variant="dashed" />,
+  )
   expect(asFragment()).toMatchSnapshot()
 })

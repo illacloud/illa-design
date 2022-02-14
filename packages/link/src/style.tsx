@@ -2,10 +2,28 @@ import { css } from "@emotion/react"
 import { LinkColorScheme } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const colorSchemes: LinkColorScheme[] = ["white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
+export const colorSchemes: LinkColorScheme[] = [
+  "white",
+  "blackAlpha",
+  "gray",
+  "grayBlue",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+]
 
-export function applyLinkContainer(colorScheme: LinkColorScheme, hoverable: boolean) {
-  const hoverBgColor = colorScheme == "white" ? globalColor(`--${illaPrefix}-white-06`) : globalColor(`--${illaPrefix}-gray-09`)
+export function applyLinkContainer(
+  colorScheme: LinkColorScheme,
+  hoverable: boolean,
+) {
+  const hoverBgColor =
+    colorScheme == "white"
+      ? globalColor(`--${illaPrefix}-white-06`)
+      : globalColor(`--${illaPrefix}-gray-09`)
   let hoverCss
   if (hoverable) {
     hoverCss = css`
@@ -32,8 +50,12 @@ export const applyLeftIcon = css`
 `
 
 export function applyDisable(colorScheme: LinkColorScheme, disabled?: boolean) {
-  const textColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
-  const finalColor = disabled ? globalColor(`--${illaPrefix}-${colorScheme}-05`) : textColor
+  const textColor = colorSchemes.includes(colorScheme)
+    ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
+    : colorScheme
+  const finalColor = disabled
+    ? globalColor(`--${illaPrefix}-${colorScheme}-05`)
+    : textColor
   const cursor = disabled ? "not-allowed" : "default"
   return css`
     color: ${finalColor};

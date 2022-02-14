@@ -1,7 +1,7 @@
 import { AnchorHTMLAttributes, ReactNode } from "react"
 
 export type LinkColorScheme =
-  string
+  | string
   | "white"
   | "blackAlpha"
   | "gray"

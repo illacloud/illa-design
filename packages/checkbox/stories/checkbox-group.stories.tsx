@@ -43,7 +43,6 @@ export default {
 } as Meta
 
 const Basic: ComponentStory<typeof CheckboxGroup> = (args) => {
-
   return (
     <div>
       <CheckboxGroup {...args} />

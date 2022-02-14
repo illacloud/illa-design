@@ -45,7 +45,7 @@ export function applyCheckState(checked: boolean) {
     left: 0;
     width: 16px;
     height: 8px;
-    transform: ${checked? 'scale(1)' : 'scale(0)'};
+    transform: ${checked ? "scale(1)" : "scale(0)"};
     color: white;
     transition: 0.15s all linear;
   `

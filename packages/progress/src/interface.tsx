@@ -1,7 +1,7 @@
 import { HTMLAttributes, ReactNode } from "react"
 
 export type ProgressColorScheme =
-  string
+  | string
   | "white"
   | "blackAlpha"
   | "gray"

@@ -15,7 +15,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
     const { children, disabled, value, onChange, ...otherProps } = mergeProps
     if (context.isGroup) {
       mergeProps.checked =
-          context.checkboxGroupValue?.indexOf(props.value) !== -1
+        context.checkboxGroupValue?.indexOf(props.value) !== -1
       mergeProps.disabled = "disabled" in props ? disabled : context?.disabled
     }
 

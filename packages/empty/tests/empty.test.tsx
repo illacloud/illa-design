@@ -14,6 +14,10 @@ test("Empty render icon", () => {
 })
 
 test("Empty render description", () => {
-  render(<Empty data-testid="test-description" description={"test description"} />)
-  expect(screen.getByTestId("test-description").lastChild).toHaveTextContent("test description")
+  render(
+    <Empty data-testid="test-description" description={"test description"} />,
+  )
+  expect(screen.getByTestId("test-description").lastChild).toHaveTextContent(
+    "test description",
+  )
 })

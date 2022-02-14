@@ -31,116 +31,120 @@ export interface StateValue {
   size?: InputProps["size"]
   boarderColor?: InputProps["boarderColor"]
 }
-export type InputRef = ForwardRefExoticComponent<InputProps & React.RefAttributes<InputRefType>>
-export const Input: InputRef = forwardRef<InputRefType, InputProps>((props, ref) => {
-  const {
-    style,
-    className,
-    allowClear,
-    error,
-    disabled,
-    placeholder,
-    maxLength,
-    showCount,
-    prefix,
-    addonAfter,
-    addonBefore,
-    defaultValue,
-    boarderColor = "blue",
-    onClear,
-    size = "medium",
-    variant = "outline",
-    ...rest
-  } = props
+export type InputRef = ForwardRefExoticComponent<
+  InputProps & React.RefAttributes<InputRefType>
+>
+export const Input: InputRef = forwardRef<InputRefType, InputProps>(
+  (props, ref) => {
+    const {
+      style,
+      className,
+      allowClear,
+      error,
+      disabled,
+      placeholder,
+      maxLength,
+      showCount,
+      prefix,
+      addonAfter,
+      addonBefore,
+      defaultValue,
+      boarderColor = "blue",
+      onClear,
+      size = "medium",
+      variant = "outline",
+      ...rest
+    } = props
 
-  const inputRef = useRef<InputRefType>({} as InputRefType)
-  const [focus, setFocus] = useState(false)
-  const [value, setValue] = useMergeValue("", {
-    defaultValue: defaultValue
-      ? formatForRule(defaultValue, maxLength)
-      : undefined,
-    value: props.value ? formatForRule(props.value, maxLength) : undefined,
-  })
-  const valueLength = value ? value.length : 0
-  let suffix = props.suffix
+    const inputRef = useRef<InputRefType>({} as InputRefType)
+    const [focus, setFocus] = useState(false)
+    const [value, setValue] = useMergeValue("", {
+      defaultValue: defaultValue
+        ? formatForRule(defaultValue, maxLength)
+        : undefined,
+      value: props.value ? formatForRule(props.value, maxLength) : undefined,
+    })
+    const valueLength = value ? value.length : 0
+    let suffix = props.suffix
 
-  const lengthError = useMemo(() => {
-    if (maxLength) {
-      return valueLength > maxLength
+    const lengthError = useMemo(() => {
+      if (maxLength) {
+        return valueLength > maxLength
+      }
+      return false
+    }, [valueLength, maxLength])
+
+    const stateValue = {
+      error: error || lengthError,
+      disabled,
+      focus,
+      variant,
+      size,
+      boarderColor,
     }
-    return false
-  }, [valueLength, maxLength])
 
-  const stateValue = {
-    error: error || lengthError,
-    disabled,
-    focus,
-    variant,
-    size,
-    boarderColor,
-  }
+    useImperativeHandle(ref, () => inputRef?.current, [])
 
-  useImperativeHandle(ref, () => inputRef?.current, [])
-
-  if (maxLength && showCount) {
-    suffix = (
-      <span css={applyCountLimitStyle}>
-        <span css={applyLengthErrorStyle(lengthError)}>{valueLength}</span>
-        <span>/{maxLength}</span>
-      </span>
-    )
-  }
-
-  const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
-    if (!("value" in props) || !props.value) {
-      setValue(v)
-    }
-    props.onChange && props.onChange(e)
-  }
-
-  return (
-    <div style={style} className={className}>
-      <span css={applyContainerCss(variant)}>
-        {addonBefore ? (
-          <span css={applyAddonCss(stateValue)}>{addonBefore}</span>
-        ) : null}
-        <span css={applyInputContainer(stateValue)}>
-          {prefix ? <span css={applyPrefixCls}>{prefix}</span> : null}
-          <InputElement
-            ref={inputRef}
-            {...rest}
-            value={value}
-            error={error}
-            disabled={disabled}
-            placeholder={placeholder}
-            allowClear={allowClear}
-            onFocus={(e) => {
-              setFocus(true)
-              props.onFocus && props.onFocus(e)
-            }}
-            onBlur={(e) => {
-              setFocus(false)
-              props.onBlur && props.onBlur(e)
-            }}
-            onClear={() => {
-              if (!("value" in props) || !props.value) {
-                setValue("")
-              }
-              onClear?.()
-            }}
-            onValueChange={onValueChange}
-            onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
-              props.onPressEnter?.(e)
-            }}
-          />
-          {suffix ? <span css={applySuffixCls}>{suffix}</span> : null}
+    if (maxLength && showCount) {
+      suffix = (
+        <span css={applyCountLimitStyle}>
+          <span css={applyLengthErrorStyle(lengthError)}>{valueLength}</span>
+          <span>/{maxLength}</span>
         </span>
-        {addonAfter ? (
-          <span css={applyAddonCss(stateValue)}>{addonAfter}</span>
-        ) : null}
-      </span>
-    </div>
-  )
-})
+      )
+    }
+
+    const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
+      if (!("value" in props) || !props.value) {
+        setValue(v)
+      }
+      props.onChange && props.onChange(e)
+    }
+
+    return (
+      <div style={style} className={className}>
+        <span css={applyContainerCss(variant)}>
+          {addonBefore ? (
+            <span css={applyAddonCss(stateValue)}>{addonBefore}</span>
+          ) : null}
+          <span css={applyInputContainer(stateValue)}>
+            {prefix ? <span css={applyPrefixCls}>{prefix}</span> : null}
+            <InputElement
+              ref={inputRef}
+              {...rest}
+              value={value}
+              error={error}
+              disabled={disabled}
+              placeholder={placeholder}
+              allowClear={allowClear}
+              onFocus={(e) => {
+                setFocus(true)
+                props.onFocus && props.onFocus(e)
+              }}
+              onBlur={(e) => {
+                setFocus(false)
+                props.onBlur && props.onBlur(e)
+              }}
+              onClear={() => {
+                if (!("value" in props) || !props.value) {
+                  setValue("")
+                }
+                onClear?.()
+              }}
+              onValueChange={onValueChange}
+              onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                props.onPressEnter?.(e)
+              }}
+            />
+            {suffix ? <span css={applySuffixCls}>{suffix}</span> : null}
+          </span>
+          {addonAfter ? (
+            <span css={applyAddonCss(stateValue)}>{addonAfter}</span>
+          ) : null}
+        </span>
+      </div>
+    )
+  },
+)
 
 Input.displayName = "Input"
