@@ -22,7 +22,6 @@ import {
 } from "./style"
 
 export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
-
   const {
     visible = true,
     colorScheme = "gray",
@@ -89,18 +88,30 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     ${sizeCss};
   `
 
-  return visible ? <div css={finalStyle} ref={ref} {...otherProps}>
-    {props.icon && <span css={leftIcon}>{props.icon}</span>}
-    <span css={css`
-      font-size: 14px;
-      line-height: 22px;
-    `}>{props.children}</span>
-    {props.closable && <CloseIcon size="7px" css={closeIcon} onClick={() => {
-      if (props.onClose != undefined) {
-        props.onClose()
-      }
-    }} />}
-  </div> : null
+  return visible ? (
+    <div css={finalStyle} ref={ref} {...otherProps}>
+      {props.icon && <span css={leftIcon}>{props.icon}</span>}
+      <span
+        css={css`
+          font-size: 14px;
+          line-height: 22px;
+        `}
+      >
+        {props.children}
+      </span>
+      {props.closable && (
+        <CloseIcon
+          size="7px"
+          css={closeIcon}
+          onClick={() => {
+            if (props.onClose != undefined) {
+              props.onClose()
+            }
+          }}
+        />
+      )}
+    </div>
+  ) : null
 })
 
 Tag.displayName = "Tag"

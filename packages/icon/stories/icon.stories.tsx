@@ -16,6 +16,7 @@ import {
   SearchIcon,
   SuccessIcon,
   WarningIcon,
+  CheckmarkIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -52,3 +53,6 @@ export const Error: Story<IconProps> = (props) => <ErrorIcon {...props} />
 export const Warning: Story<IconProps> = (props) => <WarningIcon {...props} />
 export const Success: Story<IconProps> = (props) => <SuccessIcon {...props} />
 export const Empty: Story<IconProps> = (props) => <EmptyIcon {...props} />
+export const Checkmark: Story<IconProps> = (props) => (
+  <CheckmarkIcon {...props} />
+)

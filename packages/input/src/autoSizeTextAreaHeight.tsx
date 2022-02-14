@@ -73,7 +73,7 @@ function autoSizeTextAreaHeight(
   const getRows = () => {
     let minRows
     let maxRows
-    if (Object.prototype.toString.call(autoSize) === '[object Object]') {
+    if (Object.prototype.toString.call(autoSize) === "[object Object]") {
       minRows = (autoSize as any).minRows
       maxRows = (autoSize as any).maxRows
     }

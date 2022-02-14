@@ -46,24 +46,39 @@ test("Common css renders shape", () => {
 })
 
 test("Common css renders merge", () => {
-  expect(omit(applyMergeCss({
-    colorScheme: "gray",
-    size: "large",
-    shape: "square",
-    icon: <BsFacebook />,
-  }), ["name"])).toMatchSnapshot()
+  expect(
+    omit(
+      applyMergeCss({
+        colorScheme: "gray",
+        size: "large",
+        shape: "square",
+        icon: <BsFacebook />,
+      }),
+      ["name"],
+    ),
+  ).toMatchSnapshot()
 
-  expect(omit(applyMergeCss({
-    colorScheme: "gray",
-    size: "large",
-    shape: "square",
-    src: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-  }), ["name"])).toMatchSnapshot()
+  expect(
+    omit(
+      applyMergeCss({
+        colorScheme: "gray",
+        size: "large",
+        shape: "square",
+        src: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+      }),
+      ["name"],
+    ),
+  ).toMatchSnapshot()
 
-  expect(omit(applyMergeCss({
-    colorScheme: "gray",
-    size: "large",
-    shape: "square",
-    text: "Hello World",
-  }), ["name"])).toMatchSnapshot()
+  expect(
+    omit(
+      applyMergeCss({
+        colorScheme: "gray",
+        size: "large",
+        shape: "square",
+        text: "Hello World",
+      }),
+      ["name"],
+    ),
+  ).toMatchSnapshot()
 })

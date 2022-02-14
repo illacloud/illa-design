@@ -6,7 +6,6 @@ import { omit } from "@illa-design/system"
 import { rotateAnimation } from "./style"
 
 export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
-
   const {
     width = props.size ?? "1em",
     height = props.size ?? "1em",
@@ -17,16 +16,27 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
 
   const otherProps = omit(rest, ["size"])
 
-  const finalCss = spin ? css`
-    ${rotateAnimation};
-    vertical-align: middle;
-  ` : css`
-    vertical-align: middle;
-  `
+  const finalCss = spin
+    ? css`
+        ${rotateAnimation};
+        vertical-align: middle;
+      `
+    : css`
+        vertical-align: middle;
+      `
 
-  return <svg ref={ref} css={finalCss} width={width} height={height}
-              color={color} {...otherProps}>{props.children}</svg>
-
+  return (
+    <svg
+      ref={ref}
+      css={finalCss}
+      width={width}
+      height={height}
+      color={color}
+      {...otherProps}
+    >
+      {props.children}
+    </svg>
+  )
 })
 
 Icon.displayName = "Icon"

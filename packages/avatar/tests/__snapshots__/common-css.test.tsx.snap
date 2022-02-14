@@ -5,7 +5,7 @@ Object {
   "map": undefined,
   "next": undefined,
   "styles": "
-        background-color: #007a41
+        background-color: #007a41;
       ",
   "toString": [Function],
 }
@@ -16,7 +16,7 @@ Object {
   "map": undefined,
   "next": undefined,
   "styles": "
-        background-color: #c2c2c2
+        background-color: #c2c2c2;
       ",
   "toString": [Function],
 }
@@ -84,7 +84,7 @@ Object {
   "next": undefined,
   "styles": "
     
-        background-color: #007a41
+        background-color: #007a41;
       ;;
     display: inline-flex;
     overflow: hidden;
@@ -106,7 +106,7 @@ Object {
   "next": undefined,
   "styles": "
     
-        background-color: #c2c2c2
+        background-color: #c2c2c2;
       ;;
     display: inline-flex;
     overflow: hidden;
@@ -151,7 +151,7 @@ Object {
   "styles": "
     
     
-        background-color: #c2c2c2
+        background-color: #c2c2c2;
       ;;
     display: inline-flex;
     overflow: hidden;
@@ -182,7 +182,7 @@ Object {
   "styles": "
     
     
-        background-color: #c2c2c2
+        background-color: #c2c2c2;
       ;;
     display: inline-flex;
     overflow: hidden;
@@ -213,7 +213,7 @@ Object {
   "styles": "
     
     
-        background-color: #c2c2c2
+        background-color: #c2c2c2;
       ;;
     display: inline-flex;
     overflow: hidden;

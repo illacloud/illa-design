@@ -1,5 +1,4 @@
 import { isDayjs } from "./is"
-// import * as dayjs from "dayjs"
 const dayjs = require("dayjs")
 // thx arco
 export function getDayjsValue(time: any, format: string) {

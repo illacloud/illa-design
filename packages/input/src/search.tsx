@@ -20,101 +20,103 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export type SearchRef = ForwardRefExoticComponent<
   SearchProps & React.RefAttributes<InputRefType>
 >
-export const Search: SearchRef = forwardRef<InputRefType, SearchProps>((props, ref) => {
-  const {
-    style,
-    className,
-    allowClear,
-    error,
-    disabled,
-    placeholder,
-    defaultValue,
-    searchButton = false,
-    boarderColor = "blue",
-    size = "medium",
-    variant = "outline",
-    onChange,
-    onClear,
-    onFocus,
-    onBlur,
-    onSearch,
-    onPressEnter,
-    ...rest
-  } = props
+export const Search: SearchRef = forwardRef<InputRefType, SearchProps>(
+  (props, ref) => {
+    const {
+      style,
+      className,
+      allowClear,
+      error,
+      disabled,
+      placeholder,
+      defaultValue,
+      searchButton = false,
+      boarderColor = "blue",
+      size = "medium",
+      variant = "outline",
+      onChange,
+      onClear,
+      onFocus,
+      onBlur,
+      onSearch,
+      onPressEnter,
+      ...rest
+    } = props
 
-  const inputRef = useRef<InputRefType>({} as InputRefType)
-  const [focus, setFocus] = useState(false)
-  const [value, setValue] = useMergeValue("", {
-    defaultValue: defaultValue ? defaultValue : undefined,
-    value: props.value ? props.value : undefined,
-  })
-  const stateValue = { error, disabled, focus, variant, size, boarderColor }
+    const inputRef = useRef<InputRefType>({} as InputRefType)
+    const [focus, setFocus] = useState(false)
+    const [value, setValue] = useMergeValue("", {
+      defaultValue: defaultValue ? defaultValue : undefined,
+      value: props.value ? props.value : undefined,
+    })
+    const stateValue = { error, disabled, focus, variant, size, boarderColor }
 
-  const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
-    if (!("value" in props) || !props.value) {
-      setValue(v)
+    const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
+      if (!("value" in props) || !props.value) {
+        setValue(v)
+      }
+      onChange?.(e)
     }
-    onChange?.(e)
-  }
 
-  const searchProp = {
-    ...rest,
-    disabled,
-    allowClear,
-    placeholder,
-  }
-  useImperativeHandle(ref, () => inputRef?.current, [])
+    const searchProp = {
+      ...rest,
+      disabled,
+      allowClear,
+      placeholder,
+    }
+    useImperativeHandle(ref, () => inputRef?.current, [])
 
-  return (
-    <div style={style} className={className}>
-      <span css={applyContainerCss(variant)}>
-        <span css={applyInputContainer(stateValue)}>
-          <InputElement
-            {...searchProp}
-            onFocus={(e) => {
-              setFocus(true)
-              props.onFocus && props.onFocus(e)
-            }}
-            onBlur={(e) => {
-              setFocus(false)
-              props.onBlur && props.onBlur(e)
-            }}
-            value={value}
-            onValueChange={onValueChange}
-            onClear={() => {
-              if (!("value" in props)) {
-                setValue("")
-              }
-              onClear?.()
-            }}
-            onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
-              !disabled && props.onSearch?.(value)
-              props.onPressEnter?.(e)
-            }}
-          />
-          {!searchButton ? (
-            <span css={applySuffixCls}>
-              <SearchIcon
-                css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)};`)}
+    return (
+      <div style={style} className={className}>
+        <span css={applyContainerCss(variant)}>
+          <span css={applyInputContainer(stateValue)}>
+            <InputElement
+              {...searchProp}
+              onFocus={(e) => {
+                setFocus(true)
+                props.onFocus && props.onFocus(e)
+              }}
+              onBlur={(e) => {
+                setFocus(false)
+                props.onBlur && props.onBlur(e)
+              }}
+              value={value}
+              onValueChange={onValueChange}
+              onClear={() => {
+                if (!("value" in props)) {
+                  setValue("")
+                }
+                onClear?.()
+              }}
+              onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                !disabled && props.onSearch?.(value)
+                props.onPressEnter?.(e)
+              }}
+            />
+            {!searchButton ? (
+              <span css={applySuffixCls}>
+                <SearchIcon
+                  css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)};`)}
+                />
+              </span>
+            ) : null}
+          </span>
+          {searchButton ? (
+            <span>
+              <Button
+                buttonRadius="0 4px 4px 0"
+                size={size}
+                leftIcon={<SearchIcon />}
+                onClick={() => {
+                  props.onSearch?.(value)
+                }}
               />
             </span>
           ) : null}
         </span>
-        {searchButton ? (
-          <span>
-            <Button
-              buttonRadius="0 4px 4px 0"
-              size={size}
-              leftIcon={<SearchIcon />}
-              onClick={() => {
-                props.onSearch?.(value)
-              }}
-            />
-          </span>
-        ) : null}
-      </span>
-    </div>
-  )
-})
+      </div>
+    )
+  },
+)
 
 Search.displayName = "Search"

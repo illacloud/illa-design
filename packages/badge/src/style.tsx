@@ -69,7 +69,7 @@ export function applyBadgeNumberOrText(
     align-items: center;
     font-size: 12px;
     font-weight: 500;
-    line-height: 1.67;
+    line-height: 20px;
     border-radius: 10px;
     box-sizing: border-box;
     transition: 0.15s all linear;
@@ -77,6 +77,7 @@ export function applyBadgeNumberOrText(
     background-color: ${color};
     color: ${globalColor(`--${illaPrefix}-white-01`)};
     text-align: center;
+    white-space: pre;
     ${position + padding}
   `
 }

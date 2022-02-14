@@ -1,5 +1,5 @@
+const chroma = require("chroma-js")
 import { css, SerializedStyles } from "@emotion/react"
-import * as chroma from "chroma-js";
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { StateValue } from "./input"
 
@@ -29,7 +29,10 @@ export const hoverFillStyle = css`
 export const errorFocusStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-  box-shadow: 0 0 8px 0 ${chroma(globalColor(`--${illaPrefix}-red-01`)).alpha(0.5).hex()};
+  box-shadow: 0 0 8px 0
+    ${chroma(globalColor(`--${illaPrefix}-red-01`))
+      .alpha(0.5)
+      .hex()};
 `
 export const errorFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-red-07`)};

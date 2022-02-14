@@ -1,14 +1,21 @@
 import { css } from "@emotion/core"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export function applyImageCss(objFit: "fill" | "container" | "cover" | "none" | "scale-down", radius: string) {
+export function applyImageCss(
+  objFit: "fill" | "container" | "cover" | "none" | "scale-down",
+  radius: string,
+) {
   return css`
     object-fit: ${objFit};
     border-radius: ${radius};
   `
 }
 
-export function applyDefaultFallback(width: string | number, height: string | number, radius: string) {
+export function applyDefaultFallback(
+  width: string | number,
+  height: string | number,
+  radius: string,
+) {
   return css`
     display: inline-flex;
     flex-direction: row;
@@ -22,6 +29,6 @@ export function applyDefaultFallback(width: string | number, height: string | nu
 }
 
 export const applyOuterCss = css`
-  vertical-align:middle;
+  vertical-align: middle;
   display: inline-flex;
 `

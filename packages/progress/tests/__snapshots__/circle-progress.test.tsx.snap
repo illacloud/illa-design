@@ -36,6 +36,8 @@ exports[`Progress renders with colors 1`] = `
 }
 
 .emotion-3 {
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
   stroke: #ff4747;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -122,6 +124,8 @@ exports[`Progress renders with colors 2`] = `
 }
 
 .emotion-3 {
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
   stroke: #1f1f1f;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -208,6 +212,8 @@ exports[`Progress renders with colors 3`] = `
 }
 
 .emotion-3 {
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
   stroke: #123123;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -294,6 +300,8 @@ exports[`Progress renders with custom width 1`] = `
 }
 
 .emotion-3 {
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
   stroke: #1e6fff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -380,6 +388,8 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-3 {
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
   stroke: #1e6fff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);

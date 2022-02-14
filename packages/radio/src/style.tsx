@@ -20,9 +20,9 @@ export function applyRadioSize(colorScheme: RadioColorScheme) {
     &:disabled {
       cursor: not-allowed;
       border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-      background-color:  ${globalColor(`--${illaPrefix}-gray-09`)};
+      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
     }
-    
+
     &:checked {
       border: 4px solid ${globalColor(`--${illaPrefix}-${colorScheme}-01`)};
       &:hover {
@@ -49,11 +49,13 @@ export function applyMergeCss(props: RadioProps): SerializedStyles {
     font-size: 14px;
     line-height: 22px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    cursor: ${currentDisabled ? 'not-allowed': 'pointer'};
+    cursor: ${currentDisabled ? "not-allowed" : "pointer"};
   `
 }
 
-export function applyRadioContainerHorizontal(spacing: string|number): SerializedStyles {
+export function applyRadioContainerHorizontal(
+  spacing: string | number,
+): SerializedStyles {
   const currentSpacing = typeof spacing === "string" ? spacing : `${spacing}px`
 
   return css`
@@ -65,7 +67,9 @@ export function applyRadioContainerHorizontal(spacing: string|number): Serialize
   `
 }
 
-export function applyRadioContainerVertical(spacing: string|number): SerializedStyles {
+export function applyRadioContainerVertical(
+  spacing: string | number,
+): SerializedStyles {
   const currentSpacing = typeof spacing === "string" ? spacing : `${spacing}px`
 
   return css`
