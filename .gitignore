@@ -106,5 +106,5 @@ report.*
 .turbo
 
 # cypress
-cypress/videos
-cypress/screenshots
+packages/**/cypress/videos
+packages/**/cypress/screenshots
