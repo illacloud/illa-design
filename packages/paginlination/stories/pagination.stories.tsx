@@ -1,8 +1,7 @@
-import {Avatar, AvatarProps} from "@illa-design/avatar/src";
 import {Meta, Story} from "@storybook/react";
 import {BsFacebook} from "react-icons/bs";
 import * as React from "react";
-import {Pagination} from "../src/pagination";
+import {Pagination} from "../src";
 import {PaginationProps} from "../src/interface";
 
 export default {

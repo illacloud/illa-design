@@ -168,7 +168,7 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
-export function applyInputContainer(stateValue: StateValue, requirePadding: boolean) {
+export function applyInputContainer(stateValue: StateValue, requirePadding?: boolean) {
   let sizeCss: SerializedStyles
   if (requirePadding){
     switch (stateValue?.size) {
