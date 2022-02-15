@@ -19,7 +19,7 @@ import {
   CheckmarkIcon,
   PreIcon,
   NextIcon,
-  MoreIcon
+  MoreIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list

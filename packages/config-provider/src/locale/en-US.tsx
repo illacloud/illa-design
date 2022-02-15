@@ -13,8 +13,8 @@ export const enUS = {
     noData: "No data",
   },
   pagination: {
-    total:"Total {0}",
-    page:"Page",
-    go: "GO"
-  }
+    total: "Total {0}",
+    page: "Page",
+    go: "GO",
+  },
 } as Locale

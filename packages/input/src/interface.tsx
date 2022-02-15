@@ -47,7 +47,7 @@ export interface InputElementProps
   maxLength?: number
   showCount?: boolean
   allowClear?: boolean
-  textCenterHorizontal?:boolean
+  textCenterHorizontal?: boolean
   onClear?: () => void
   onValueChange?: (value: string, e: ChangeEvent<HTMLInputElement>) => void
   onPressEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void
@@ -71,7 +71,7 @@ export interface InputProps
   addonAfter?: ReactNode
   addonBefore?: ReactNode
   requirePadding?: boolean
-  textCenterHorizontal?:boolean
+  textCenterHorizontal?: boolean
   onClear?: () => void
   onPressEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
@@ -112,7 +112,7 @@ export interface SearchProps
   maxLength?: number
   allowClear?: boolean
   requirePadding?: boolean
-  textCenterHorizontal?:boolean
+  textCenterHorizontal?: boolean
   onClear?: () => void
   onSearch?: (value?: string) => void
   onPressEnter?: (event: React.KeyboardEvent<HTMLInputElement>) => void

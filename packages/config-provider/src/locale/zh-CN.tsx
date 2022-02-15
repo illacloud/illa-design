@@ -15,6 +15,6 @@ export const zhCN = {
   pagination: {
     total: "共{0}条",
     page: "页",
-    go: "前往"
-  }
+    go: "前往",
+  },
 } as Locale

@@ -109,7 +109,7 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
           {addonBefore ? (
             <span css={applyAddonCss(stateValue)}>{addonBefore}</span>
           ) : null}
-          <span css={applyInputContainer(stateValue,requirePadding)}>
+          <span css={applyInputContainer(stateValue, requirePadding)}>
             {prefix ? <span css={applyPrefixCls}>{prefix}</span> : null}
             <InputElement
               ref={inputRef}

@@ -168,28 +168,31 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
-export function applyInputContainer(stateValue: StateValue, requirePadding?: boolean) {
+export function applyInputContainer(
+  stateValue: StateValue,
+  requirePadding?: boolean,
+) {
   let sizeCss: SerializedStyles
-  if (requirePadding){
+  if (requirePadding) {
     switch (stateValue?.size) {
       default:
       case "large":
         sizeCss = css`
-        height: 38px;
-        padding: 0 16px;
-      `
+          height: 38px;
+          padding: 0 16px;
+        `
         break
       case "medium":
         sizeCss = css`
-        height: 30px;
-        padding: 0 16px;
-      `
+          height: 30px;
+          padding: 0 16px;
+        `
         break
       case "small":
         sizeCss = css`
-        height: 22px;
-        padding: 0 12px;
-      `
+          height: 22px;
+          padding: 0 12px;
+        `
         break
     }
   } else {
@@ -197,22 +200,21 @@ export function applyInputContainer(stateValue: StateValue, requirePadding?: boo
       default:
       case "large":
         sizeCss = css`
-        height: 38px;
-      `
+          height: 38px;
+        `
         break
       case "medium":
         sizeCss = css`
-        height: 30px;
-      `
+          height: 30px;
+        `
         break
       case "small":
         sizeCss = css`
-        height: 22px;
-      `
+          height: 22px;
+        `
         break
     }
   }
-
 
   return css`
     width: 100%;
@@ -246,7 +248,8 @@ export function applyInputStyle(textCenterHorizontal: boolean | undefined) {
     `
   } else {
     textAlignCss = css`
-      text-align: start`
+      text-align: start;
+    `
   }
   return css`
     width: 100%;
