@@ -19,7 +19,6 @@ import autoSizeTextAreaHeight from "./autoSizeTextAreaHeight"
 import { applyLengthErrorStyle, applyCountLimitStyle } from "./style"
 import { InputSize, TextAreaProps, TextAreaType } from "./interface"
 import {
-  applyContainerCss,
   applyTextAreaContainer,
   applyTextAreaStyle,
   applyPrefixCls,
@@ -178,44 +177,46 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
 
     return (
       <>
-        <span css={applyContainerCss} style={style} className={className}>
-          <span css={applyTextAreaContainer(stateValue)}>
-            <textarea
-              style={{ ...autoSizeStyle }}
-              ref={textAreaRef}
-              css={applyTextAreaStyle}
-              {...textAreaProps}
-              onChange={onChange}
-              onFocus={(e) => {
-                setFocus(true)
-                props.onFocus && props.onFocus(e)
+        <span
+          css={applyTextAreaContainer(stateValue)}
+          style={style}
+          className={className}
+        >
+          <textarea
+            style={{ ...autoSizeStyle }}
+            ref={textAreaRef}
+            css={applyTextAreaStyle}
+            {...textAreaProps}
+            onChange={onChange}
+            onFocus={(e) => {
+              setFocus(true)
+              props.onFocus && props.onFocus(e)
+            }}
+            onBlur={(e) => {
+              setFocus(false)
+              props.onBlur && props.onBlur(e)
+            }}
+          />
+          {!disabled && allowClear && value ? (
+            <span
+              css={clearStyle}
+              onClick={(e) => {
+                e.stopPropagation()
+                onClear && onClear()
               }}
-              onBlur={(e) => {
-                setFocus(false)
-                props.onBlur && props.onBlur(e)
+              onMouseDown={(e) => {
+                e.preventDefault()
               }}
-            />
-            {!disabled && allowClear && value ? (
-              <span
-                css={clearStyle}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onClear && onClear()
-                }}
-                onMouseDown={(e) => {
-                  e.preventDefault()
-                }}
-              >
-                <ErrorIcon
-                  css={css`
-                    color: ${globalColor(`--${illaPrefix}-gray-07`)};
-                    width: 12px;
-                    height: 12px;
-                  `}
-                />
-              </span>
-            ) : null}
-          </span>
+            >
+              <ErrorIcon
+                css={css`
+                  color: ${globalColor(`--${illaPrefix}-gray-07`)};
+                  width: 12px;
+                  height: 12px;
+                `}
+              />
+            </span>
+          ) : null}
           {suffix ? <span css={applyPrefixCls}>{suffix}</span> : null}
         </span>
       </>

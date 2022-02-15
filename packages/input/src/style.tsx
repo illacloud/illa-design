@@ -235,8 +235,10 @@ export function applyInputStyle() {
     &::placeholder {
       color: ${globalColor(`--${illaPrefix}-gray-04`)};
     }
+
     &:disabled {
       color: ${globalColor(`--${illaPrefix}-gray-05`)};
+
       &::placeholder {
         color: ${globalColor(`--${illaPrefix}-gray-05`)};
       }
@@ -244,7 +246,20 @@ export function applyInputStyle() {
   `
 }
 
-export function applyPrefixCls() {
+function baseFixCls(stateValue: StateValue) {
+  let sizeCss: SerializedStyles
+  switch (stateValue?.size) {
+    default:
+      sizeCss = css`
+        & > svg {
+          font-size: 16px;
+        }
+      `
+      break
+    case "small":
+      sizeCss = css``
+      break
+  }
   return css`
     display: flex;
     flex-direction: row;
@@ -252,6 +267,13 @@ export function applyPrefixCls() {
     white-space: nowrap;
     vertical-align: middle;
     font-size: inherit;
+    ${sizeCss}
+  `
+}
+
+export function applyPrefixCls(stateValue: StateValue) {
+  return css`
+    ${baseFixCls(stateValue)}
     &:first-of-type {
       margin-right: 12px;
     }
@@ -262,18 +284,10 @@ export function applyPrefixCls() {
   `
 }
 
-export function applySuffixCls() {
+export function applySuffixCls(stateValue: StateValue) {
   return css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    ${baseFixCls(stateValue)}
     margin-left: 12px;
-    white-space: nowrap;
-    vertical-align: middle;
-    font-size: inherit;
-    & > svg {
-      font-size: 16px;
-    }
   `
 }
 
@@ -312,20 +326,14 @@ export function applyAddonCss(stateValue: StateValue) {
       break
   }
   return css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    ${baseFixCls(stateValue)}
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
     border-width: 1px;
     border-style: solid;
     padding: 0 16px;
-    white-space: nowrap;
-    vertical-align: middle;
     line-height: initial;
-    & > svg {
-      font-size: 16px;
-    }
+
     &:first-of-type {
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
