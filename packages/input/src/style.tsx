@@ -77,7 +77,6 @@ export function applyContainerCss(variant: string) {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 16px;
     font-size: 14px;
     line-height: 1.57;
     border-radius: 4px;
