@@ -59,7 +59,6 @@
     "@illa-design/empty": "*",
     "@illa-design/badge": "*",
     "@illa-design/statistic": "*",
-    "@illa-design/badge": "*",
     "@illa-design/checkbox": "*",
     "@illa-design/list": "*"
   }
