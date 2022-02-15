@@ -130,13 +130,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
               e.preventDefault()
             }}
           >
-            <ErrorIcon
-              css={css(
-                `color: ${globalColor(
-                  `--${illaPrefix}-gray-07`,
-                )}; margin-left: 10px;`,
-              )}
-            />
+            <ErrorIcon css={css(`margin-left: 10px;`)} />
           </span>
         ) : null}
       </>
