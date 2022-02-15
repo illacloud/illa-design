@@ -5,8 +5,8 @@ import { PersonIcon } from "@illa-design/icon"
 import { InputProps, Input } from "../src"
 
 import { BsFacebook } from "react-icons/bs"
-import {Space} from "@illa-design/space";
-import {css} from "@emotion/core";
+import { Space } from "@illa-design/space"
+import { css } from "@emotion/core"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -36,11 +36,46 @@ export default {
 const Template: Story<InputProps> = (props) => {
   return (
     <div>
-      <Space css={css`display: block`} wrap><Input {...props} /></Space>
-      <Space css={css`display: block`} wrap><Input prefix="prefix" suffix="suffix" {...props} /></Space>
-      <Space css={css`display: block`} wrap><Input addonAfter="After" {...props} /></Space>
-      <Space css={css`display: block`} wrap><Input addonAfter={<PersonIcon />} addonBefore="Before" {...props} /></Space>
-      <Space css={css`display: block`} wrap><Input addonAfter="After" addonBefore="Before" {...props} /></Space>
+      <Space
+        css={css`
+          display: block;
+        `}
+        wrap
+      >
+        <Input {...props} />
+      </Space>
+      <Space
+        css={css`
+          display: block;
+        `}
+        wrap
+      >
+        <Input prefix="prefix" suffix="suffix" {...props} />
+      </Space>
+      <Space
+        css={css`
+          display: block;
+        `}
+        wrap
+      >
+        <Input addonAfter="After" {...props} />
+      </Space>
+      <Space
+        css={css`
+          display: block;
+        `}
+        wrap
+      >
+        <Input addonAfter={<PersonIcon />} addonBefore="Before" {...props} />
+      </Space>
+      <Space
+        css={css`
+          display: block;
+        `}
+        wrap
+      >
+        <Input addonAfter="After" addonBefore="Before" {...props} />
+      </Space>
     </div>
   )
 }
