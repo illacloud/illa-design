@@ -274,7 +274,6 @@ export function applySuffixCls() {
     & > svg {
       font-size: 16px;
     }
-    
   `
 }
 
