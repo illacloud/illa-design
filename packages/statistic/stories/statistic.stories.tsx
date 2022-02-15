@@ -17,7 +17,6 @@ const Template: Story<StatisticProps> = (args) => {
       <Statistic
         {...args}
         title={<ImageDefaultIcon />}
-        prefix={<ImageDefaultIcon />}
         suffix={<ImageDefaultIcon />}
       />
     </Space>
@@ -27,7 +26,6 @@ const Template: Story<StatisticProps> = (args) => {
 export const Basic = Template.bind({})
 Basic.args = {
   title: "Amount",
-  // value: dayjs("2018-04-04 16:00:00.000"),
   value: 0,
   prefix: "",
   suffix: "",

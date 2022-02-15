@@ -12,7 +12,7 @@ export function applyStatisticTitle() {
   return css`
     margin-bottom: 4px;
     font-family: SFProDisplay;
-    font-size: 12px;
+    font-size: 14px;
     color: ${globalColor(`--${illaPrefix}-gray-04`)};
   `
 }
@@ -31,7 +31,9 @@ export function applyStatisticDecorator(isPrefix: boolean, isText: boolean) {
   const margin = isPrefix
     ? `margin-right:${spacing}px;`
     : `margin-left:${spacing}px;`
-  const restStyle = isText ? `font-size: 14px;line-height: 1.57;` : ``
+  const restStyle = isText
+    ? `font-size: 14px;line-height: 1.57;`
+    : `vertical-align: text-bottom;`
   return css`
     display: inline-block;
     ${margin + restStyle}
@@ -42,6 +44,5 @@ export function applyStatisticValue() {
   return css`
     display: inline-block;
     direction: ltr;
-    vertical-align: middle;
   `
 }
