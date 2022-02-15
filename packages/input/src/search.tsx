@@ -96,7 +96,7 @@ export const Search: SearchRef = forwardRef<InputRefType, SearchProps>(
             {!searchButton ? (
               <span css={applySuffixCls}>
                 <SearchIcon
-                  css={css(`color: ${globalColor(`--${illaPrefix}-gray-07`)};`)}
+                  css={css(`color: ${globalColor(`--${illaPrefix}-gray-05`)};`)}
                 />
               </span>
             ) : null}

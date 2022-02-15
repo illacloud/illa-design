@@ -9,7 +9,7 @@ test("Search render correctly", () => {
 
   expect(screen.getByPlaceholderText("search").parentElement).toHaveStyle({
     borderColor: `${globalColor(`--${illaPrefix}-gray-08`)}`,
-    color: `${globalColor(`--${illaPrefix}-gray-05`)}`,
+    color: `${globalColor(`--${illaPrefix}-gray-02`)}`,
   })
 })
 
@@ -19,7 +19,7 @@ test("Search render with variant fill", () => {
     {
       backgroundColor: `${globalColor(`--${illaPrefix}-gray-09`)}`,
       borderColor: `${globalColor(`--${illaPrefix}-gray-09`)}`,
-      color: `${globalColor(`--${illaPrefix}-gray-05`)}`,
+      color: `${globalColor(`--${illaPrefix}-gray-02`)}`,
     },
   )
 })
