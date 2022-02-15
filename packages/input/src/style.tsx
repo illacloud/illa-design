@@ -271,6 +271,10 @@ export function applySuffixCls() {
     white-space: nowrap;
     vertical-align: middle;
     font-size: inherit;
+    & > svg {
+      font-size: 16px;
+    }
+    
   `
 }
 
@@ -319,7 +323,10 @@ export function applyAddonCss(stateValue: StateValue) {
     padding: 0 16px;
     white-space: nowrap;
     vertical-align: middle;
-
+    line-height: initial;
+    & > svg {
+      font-size: 16px;
+    }
     &:first-of-type {
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
