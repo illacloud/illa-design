@@ -70,7 +70,7 @@ jobs:
         run: |
           yarn build-all-components
 
-      - name: Run jest
+      - name: Run test
         uses: cypress-io/github-action@v2
         run: |
           yarn test
