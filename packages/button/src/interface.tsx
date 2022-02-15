@@ -12,7 +12,6 @@ export type ButtonColorScheme =
   | "blue"
   | "cyan"
   | "purple"
-  | "techBlue"
 
 export type ButtonSize = "small" | "medium" | "large"
 export type ButtonVariant = "fill" | "dashed" | "outline" | "text"
@@ -28,6 +27,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loadingText?: string
   leftIcon?: ReactNode
   rightIcon?: ReactNode
+  buttonRadius?: string
 }
 
 export interface ButtonGroupProps extends HTMLAttributes<HTMLDivElement>, Omit<ButtonGroupContextProps, "first" | "last"> {

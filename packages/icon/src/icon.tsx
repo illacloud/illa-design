@@ -11,7 +11,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
     width = props.size ?? "1em",
     height = props.size ?? "1em",
     color = "currentColor",
-    spin = false,
+    spin,
     ...rest
   } = props
 
@@ -28,3 +28,5 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
               color={color} {...otherProps}>{props.children}</svg>
 
 })
+
+Icon.displayName = "Icon"

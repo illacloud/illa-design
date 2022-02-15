@@ -31,6 +31,7 @@ export function applyTagSizeSmall(variant: TagVariant): SerializedStyles {
 
 export const leftIcon = css`
   width: 12px;
+  font-size: 12px;
   height: 12px;
   display: inline-flex;
   flex-direction: row;
@@ -39,11 +40,12 @@ export const leftIcon = css`
 `
 
 export const closeIcon = css`
+  font-size: 7px;
   margin-left: 4px;
 `
 
 export const colors: TagColorScheme[] = [
-  "white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple", "techBlue",
+  "white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple",
 ]
 
 export function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {

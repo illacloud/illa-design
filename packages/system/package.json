@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/system",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.0",
   "description": "Illa Design base.",
   "keywords": [
     "system",
@@ -36,19 +36,30 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "test": "yarn jest"
   },
   "dependencies": {
+    "chroma-js": "^2.1.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-use": "^17.3.1"
+    "react-use": "^17.3.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.0",
+    "@types/chroma-js": "^2.1.3",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@vitejs/plugin-react": "^1.0.0",
     "typescript": "^4.5.2",
-    "vite": "^2.6.14"
+    "vite": "^2.6.14",
+    "ts-jest": "^27.1.3",
+    "@emotion/jest": "^11.7.1",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.0",
+    "jest-environment-jsdom": "^27.4.0"
   }
 }

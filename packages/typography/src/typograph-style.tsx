@@ -21,36 +21,46 @@ export function getHeadingSize(level: HeadingLevel): string[] {
 
 export function applyTypoContainer(): SerializedStyles {
   return css`
-    display: flex;
     word-break: break-all;
+
     h1 {
+      margin: 0;
       font-size: ${getHeadingSize("h1")[0]};
       line-height: ${getHeadingSize("h1")[1]};
     }
 
     h2 {
+      margin: 0;
       font-size: ${getHeadingSize("h2")[0]};
       line-height: ${getHeadingSize("h2")[1]};
     }
 
     h3 {
+      margin: 0;
       font-size: ${getHeadingSize("h3")[0]};
       line-height: ${getHeadingSize("h3")[1]};
     }
 
     h4 {
+      margin: 0;
       font-size: ${getHeadingSize("h4")[0]};
       line-height: ${getHeadingSize("h4")[1]};
     }
 
     h5 {
+      margin: 0;
       font-size: ${getHeadingSize("h5")[0]};
       line-height: ${getHeadingSize("h5")[1]};
     }
 
     h6 {
+      margin: 0;
       font-size: ${getHeadingSize("h6")[0]};
       line-height: ${getHeadingSize("h6")[1]};
+    }
+
+    p {
+      margin: 0;
     }
   `
 }

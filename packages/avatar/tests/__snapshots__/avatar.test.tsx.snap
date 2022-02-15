@@ -56,6 +56,7 @@ exports[`Avatar Avatar renders with colorScheme 1`] = `
   -webkit-justify-content: center;
   justify-content: center;
   width: 14px;
+  font-size: 14px;
   height: 14px;
 }
 
@@ -263,6 +264,7 @@ exports[`Avatar Avatar renders with icon 1`] = `
   -webkit-justify-content: center;
   justify-content: center;
   width: 14px;
+  font-size: 14px;
   height: 14px;
 }
 
@@ -350,6 +352,7 @@ exports[`Avatar Avatar renders with shape 1`] = `
   -webkit-justify-content: center;
   justify-content: center;
   width: 14px;
+  font-size: 14px;
   height: 14px;
 }
 
@@ -501,6 +504,7 @@ exports[`Avatar Avatar renders with size 1`] = `
   -webkit-justify-content: center;
   justify-content: center;
   width: 14px;
+  font-size: 14px;
   height: 14px;
 }
 
@@ -554,6 +558,7 @@ exports[`Avatar Avatar renders with size 1`] = `
   -webkit-justify-content: center;
   justify-content: center;
   width: 18px;
+  font-size: 18px;
   height: 18px;
 }
 
@@ -603,6 +608,7 @@ exports[`Avatar Avatar renders with size 1`] = `
   -webkit-justify-content: center;
   justify-content: center;
   width: 28px;
+  font-size: 28px;
   height: 28px;
 }
 

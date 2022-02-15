@@ -34,7 +34,6 @@ jobs:
       - name: Build
         run: |
           yarn install --frozen-lockfile
-          npx lerna bootstrap
 
   test:
     needs:

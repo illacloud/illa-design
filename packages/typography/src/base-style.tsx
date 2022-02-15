@@ -15,6 +15,16 @@ const colorSchemes = ["white",
   "cyan",
   "purple"]
 
+export const applyOperationSpan = css`
+  display: inline-block;
+`
+
+export const applyCopyContainer = css`
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+`
+
 export function applyFontColor(colorScheme: TypographyColorScheme): SerializedStyles {
 
   const color = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
@@ -24,7 +34,7 @@ export function applyFontColor(colorScheme: TypographyColorScheme): SerializedSt
   `
 }
 
-export function applyFontContentStyle(bold: boolean, mark: boolean | TypographyColorScheme, underline: boolean, deleted: boolean, disabled: boolean, code: boolean): SerializedStyles {
+export function applyFontContentStyle(bold?: boolean, mark?: boolean | TypographyColorScheme, underline?: boolean, deleted?: boolean, disabled?: boolean, code?: boolean): SerializedStyles {
 
   let finalCss = css``
 
@@ -42,13 +52,14 @@ export function applyFontContentStyle(bold: boolean, mark: boolean | TypographyC
     `
   }
 
-  if (mark === true) {
+  if (mark && typeof mark != "string") {
     finalCss = css`
       ${finalCss};
       background-color: ${globalColor(`--${illaPrefix}-yellow-06`)};
     `
-  } else {
-    const bgColor = typeof mark == "string" && colorSchemes.includes(mark) ? globalColor(`--${illaPrefix}-${mark}-06`) : mark
+  }
+  if (typeof mark == "string") {
+    const bgColor = colorSchemes.includes(mark) ? globalColor(`--${illaPrefix}-${mark}-06`) : mark
     finalCss = css`
       ${finalCss};
       background-color: ${bgColor};
@@ -77,16 +88,23 @@ export function applyExpandLabelCss(): SerializedStyles {
     cursor: pointer;
     margin: 0 4px;
     text-decoration: none;
-    color: ${globalColor(`--${illaPrefix}-techBlue-03`)};
+    color: ${globalColor(`--${illaPrefix}-blue-03`)};
   `
 }
 
 export function applyCopyableContainerSize(): SerializedStyles {
   return css`
     cursor: pointer;
-    display: inline-block;
     margin-left: 4px;
-    text-align: center;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
 }
+
+export const applyCopyableIconSize = css`
+  cursor: pointer;
+  font-size: 0.75em;
+  margin-left: 4px;
+  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  display: inline-flex;
+  align-items: center;
+`

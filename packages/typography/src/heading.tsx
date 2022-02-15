@@ -3,6 +3,8 @@ import * as React from "react"
 import { forwardRef } from "react"
 import { HeadingProps } from "./interface"
 import { Base } from "./base"
+import { Tooltip } from "@illa-design/tooltip"
+import mergedToString from "./measure-element"
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
 
@@ -11,59 +13,36 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref)
     colorScheme = "blackAlpha",
     level = "h2",
     ellipsis,
-    bold = false,
-    disabled = false,
-    mark = false,
-    underline = false,
-    deleted = false,
-    code = false,
-    copyable = false,
+    bold,
+    disabled,
+    mark,
+    underline,
+    deleted,
+    code,
+    copyable,
     ...otherProps
   } = props
 
-  switch (level) {
-    case "h1":
-      return <h1 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h1>
-    case "h2":
-      return <h2 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h2>
-    case "h3":
-      return <h3 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h3>
-    case "h4":
-      return <h4 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h4>
-    case "h5":
-      return <h5 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h5>
-    case "h6":
-      return <h6 ref={ref} {...otherProps}>
-        <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
-              underline={underline} deleted={deleted} code={code} copyable={copyable}>
-          {props.children}
-        </Base>
-      </h6>
-  }
+  const showTooltip = !disabled && (ellipsis == true || (typeof ellipsis == "object" && ellipsis.tooltip))
 
+  const base = <Base colorScheme={colorScheme} ellipsis={ellipsis} bold={bold} disabled={disabled} mark={mark}
+                     underline={underline} deleted={deleted} code={code} copyable={copyable}>
+    {props.children}
+  </Base>
+
+  const TagWrapper = level
+
+  let headingNode = <TagWrapper ref={ref} {...otherProps}>
+    {base}
+  </TagWrapper>
+
+  if (showTooltip) {
+    return <Tooltip content={mergedToString(React.Children.toArray(props.children))}>
+      {headingNode}
+    </Tooltip>
+  } else {
+    return headingNode
+  }
 })
+
+Heading.displayName = "Heading"

@@ -23,12 +23,20 @@ exports[`Space renders with different align 1`] = `
 
 .emotion-1 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 8px;
   margin-bottom: 0px;
 }
 
 .emotion-2 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
 }
@@ -77,12 +85,20 @@ exports[`Space renders with different align 2`] = `
 
 .emotion-1 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 8px;
   margin-bottom: 0px;
 }
 
 .emotion-2 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
 }
@@ -131,12 +147,20 @@ exports[`Space renders with different align 3`] = `
 
 .emotion-1 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 8px;
   margin-bottom: 0px;
 }
 
 .emotion-2 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
 }
@@ -185,12 +209,20 @@ exports[`Space renders with different align 4`] = `
 
 .emotion-1 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 8px;
   margin-bottom: 0px;
 }
 
 .emotion-2 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
 }
@@ -239,6 +271,10 @@ exports[`Space renders with divider 1`] = `
 
 .emotion-1 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 8px;
   margin-bottom: 0px;
 }
@@ -255,6 +291,10 @@ exports[`Space renders with divider 1`] = `
 
 .emotion-4 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
 }
@@ -306,12 +346,20 @@ exports[`Space renders with wrap 1`] = `
 
 .emotion-1 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 8px;
   margin-bottom: 8px;
 }
 
 .emotion-6 {
   height: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-right: 0px;
   margin-bottom: 8px;
 }

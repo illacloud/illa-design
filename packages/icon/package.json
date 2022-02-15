@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/icon",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.0",
   "description": "Illa Design Icon.",
   "keywords": [
     "icon",
@@ -36,10 +36,11 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "test": "yarn jest"
   },
   "dependencies": {
-    "@illa-design/system": "^0.0.1-alpha.0",
-    "@illa-design/theme": "^0.0.1-alpha.0"
+    "@illa-design/system": "*",
+    "@illa-design/theme": "*"
   }
 }
