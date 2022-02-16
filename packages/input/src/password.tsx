@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from "react"
-import { omit, useMergeValue } from "@illa-design/system"
+import { useMergeValue } from "@illa-design/system"
 import { EyeOnIcon, EyeOffIcon } from "@illa-design/icon"
 import {
   applyContainerCss,
@@ -18,6 +18,7 @@ import {
 } from "./style"
 import { InputRefType, PasswordProps } from "./interface"
 import { InputElement } from "./input-element"
+import { css } from "@emotion/react"
 
 export type PasswordRef = ForwardRefExoticComponent<
   PasswordProps & React.RefAttributes<InputRefType>
@@ -95,15 +96,13 @@ export const Password: PasswordRef = forwardRef<InputRefType, PasswordProps>(
               onValueChange={onValueChange}
             />
             {invisibleButton ? (
-              <span css={applySuffixCls}>
-                <span
-                  css={pointerStyle}
-                  onClick={() => {
-                    setVisibility(!visibility)
-                  }}
-                >
-                  {visibility ? <EyeOnIcon /> : <EyeOffIcon />}
-                </span>
+              <span
+                css={css(pointerStyle, applySuffixCls(stateValue))}
+                onClick={() => {
+                  setVisibility(!visibility)
+                }}
+              >
+                {visibility ? <EyeOnIcon /> : <EyeOffIcon />}
               </span>
             ) : null}
           </span>

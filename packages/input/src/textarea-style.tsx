@@ -1,7 +1,7 @@
+const chroma = require("chroma-js")
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import {
-  applyVariantStyle,
   disableFillStyle,
   disableOutlineStyle,
   errorFillStyle,
@@ -41,7 +41,10 @@ function applyStatus(stateValue: StateValue) {
   } else if (stateValue?.focus) {
     mainStyle = css`
       border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
-      box-shadow: 0 0 8px 0 rgba(19, 83, 224, 0.5);
+      box-shadow: 0 0 8px 0
+        ${chroma(globalColor(`--${illaPrefix}-blue-01`))
+          .alpha(0.15)
+          .hex()};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
     `
@@ -63,29 +66,15 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
-export function applyContainerCss() {
-  return css`
-    position: relative;
-    width: 280px;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    margin-bottom: 16px;
-    font-size: 14px;
-    line-height: 1.57;
-    border-radius: 4px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-  `
-}
-
 export function applyTextAreaContainer(stateValue: StateValue) {
   return css`
-    width: 100%;
+    width: 280px;
+    margin-bottom: 16px;
     display: flex;
     flex-direction: row;
     align-items: center;
     font-size: 14px;
-    line-height: 1.57;
+    line-height: 22px;
     border-radius: 4px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
@@ -97,18 +86,21 @@ export function applyTextAreaStyle() {
   return css`
     width: 100%;
     appearance: none;
-    padding: 5px 16px 12px;
+    box-sizing: border-box;
+    padding: 5px 17px 12px;
     font-size: 14px;
     font-family: HelveticaNeue;
     line-height: 22px;
     min-height: 44px;
+    height: 44px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border-radius: 4px;
-    border: none;
+    border: 1px solid transparent;
     outline: unset;
     cursor: inherit;
     resize: vertical;
     background-color: inherit;
+    overflow: auto;
 
     &::placeholder {
       color: ${globalColor(`--${illaPrefix}-gray-04`)};

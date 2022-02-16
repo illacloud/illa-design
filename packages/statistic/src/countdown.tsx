@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React, { forwardRef, useEffect, useRef, useState } from "react"
 import { CountDownProps } from "./interface"
-import { getDayjsValue } from "@illa-design/system"
 import * as dayjs from "dayjs"
-import { getDateString } from "./util"
+import { getDateString, getDayjsValue } from "./util"
 
 import {
   applyStatisticContent,
