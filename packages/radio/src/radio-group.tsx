@@ -75,7 +75,8 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
         <RadioGroupContext.Provider value={contextProp}>
           {options && isArray(options)
             ? options.map((option, index) => {
-                return typeof option === "string" ? (
+                return typeof option === "string" ||
+                  typeof option === "number" ? (
                   <Radio key={index} value={option} disabled={disabled}>
                     {option}
                   </Radio>
