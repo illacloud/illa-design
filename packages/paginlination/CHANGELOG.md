@@ -1,4 +1,4 @@
-# @illa-design/avatar
+# @illa-design/pagination
 
 ## 0.0.0
 

@@ -26,7 +26,7 @@ export const PageSizeSelector = forwardRef<
   return (
     <span>
       <select
-        css={applyPageSizeSelectorCss(wholeDisable, size)}
+        css={applyPageSizeSelectorCss(size, wholeDisable)}
         value={compositionValue}
         disabled={wholeDisable}
         onChange={(e) => {

@@ -17,10 +17,7 @@ export const totalTextCss = css`
   margin-right: 8px;
 `
 
-export function applyInputCss(
-  size: PaginationSize,
-  disable: boolean | undefined,
-) {
+export function applyInputCss(size: PaginationSize, disable?: boolean) {
   return css`
     display: inline-flex !important;
     align-items: center;
@@ -33,10 +30,7 @@ export function applyInputCss(
   `
 }
 
-export function applyJumperInputCss(
-  disable: boolean | undefined,
-  size: PaginationSize,
-) {
+export function applyJumperInputCss(size: PaginationSize, disable?: boolean) {
   return css`
     margin-left: 14px;
     ${applyTextColor(disable)};
@@ -49,10 +43,7 @@ export const simplePaginationSumCss = css`
   color: ${globalColor(`--${illaPrefix}-gray-02`)}; ;
 `
 
-export function applyDefaultItemCss(
-  disable: boolean | undefined,
-  size: PaginationSize,
-) {
+export function applyDefaultItemCss(size: PaginationSize, disable?: boolean) {
   return css`
     display: inline-flex;
     justify-content: center;
@@ -68,18 +59,18 @@ export function applyDefaultItemCss(
 }
 
 export function applyDefaultItemWithMarginCss(
-  disable: boolean | undefined,
   size: PaginationSize,
+  disable?: boolean,
 ) {
   return css`
     margin-right: 8px;
-    ${applyDefaultItemCss(disable, size)}
+    ${applyDefaultItemCss(size, disable)}
   `
 }
 
 export function applyBackground(
-  disable: boolean | undefined,
-  selected: boolean | undefined,
+  disable?: boolean,
+  selected?: boolean,
 ): SerializedStyles | undefined {
   if (!disable && !selected) {
     return css`
@@ -100,7 +91,7 @@ export function applyBackground(
   }
 }
 
-export function applyCursor(disabled: boolean | undefined): SerializedStyles {
+export function applyCursor(disabled?: boolean): SerializedStyles {
   if (disabled) {
     return css`
       cursor: not-allowed;
@@ -113,8 +104,8 @@ export function applyCursor(disabled: boolean | undefined): SerializedStyles {
 }
 
 export function applyTextColor(
-  disabled: boolean | undefined,
-  selected?: boolean | undefined,
+  disabled?: boolean,
+  selected?: boolean,
 ): SerializedStyles {
   if (!selected) {
     if (disabled) {
@@ -140,11 +131,11 @@ export function applyTextColor(
 }
 
 export function applyPageNumItemSelectedCss(
-  disabled: boolean | undefined,
   size: PaginationSize,
+  disabled?: boolean,
 ): SerializedStyles {
   return css`
-    ${applyDefaultItemCss(disabled, size)};
+    ${applyDefaultItemCss(size, disabled)};
     margin-right: 8px;
     ${applyBackground(disabled, true)}
     ${applyTextColor(disabled, true)}
@@ -152,10 +143,10 @@ export function applyPageNumItemSelectedCss(
 }
 
 export function applyPageSizeSelectorCss(
-  disabled: boolean | undefined,
   size: PaginationSize,
+  disabled?: boolean,
 ) {
-  function applyBackgroundAndBorderColor(disabled: boolean | undefined) {
+  function applyBackgroundAndBorderColor(disabled?: boolean) {
     if (!disabled) {
       return css`
         &:hover {

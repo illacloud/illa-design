@@ -40,7 +40,7 @@ export const SimplePagination = forwardRef<
   return (
     <span css={paginationContainer}>
       <span
-        css={applyDefaultItemCss(currentPage == 0 || wholeDisabled, size)}
+        css={applyDefaultItemCss(size, currentPage == 0 || wholeDisabled)}
         onClick={() => {
           if (currentPage - 1 < 0 || wholeDisabled) return
           setCurrentPage(currentPage - 1)
@@ -71,8 +71,8 @@ export const SimplePagination = forwardRef<
       <span css={simplePaginationSumCss}> {`/ ${pageSum}`}</span>
       <span
         css={applyDefaultItemCss(
-          currentPage == pageSum - 1 || wholeDisabled,
           size,
+          currentPage == pageSum - 1 || wholeDisabled,
         )}
         onClick={() => {
           if (currentPage + 1 > pageSum - 1 || wholeDisabled) return

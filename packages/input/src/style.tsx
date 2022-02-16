@@ -1,3 +1,5 @@
+import { InputSize } from "./interface"
+
 const chroma = require("chroma-js")
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
@@ -166,99 +168,70 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
+export function applySizeCss(
+  requirePadding?: boolean,
+  size?: InputSize,
+): SerializedStyles {
+  let sizeCss: SerializedStyles
+  let paddindCss: SerializedStyles | undefined
+  if (requirePadding && size == "small") {
+    paddindCss = css`
+      padding: 0 12px;
+    `
+  } else if (requirePadding) {
+    paddindCss = css`
+      padding: 0 16px;
+    `
+  }
+  switch (size) {
+    default:
+    case "large":
+      sizeCss = css`
+        height: 38px;
+        ${paddindCss};
+      `
+      break
+    case "medium":
+      sizeCss = css`
+        height: 30px;
+        ${paddindCss};
+      `
+      break
+    case "small":
+      sizeCss = css`
+        height: 22px;
+        ${paddindCss};
+      `
+      break
+  }
+  return sizeCss
+}
+
 export function applyInputContainer(
   stateValue: StateValue,
   requirePadding?: boolean,
 ) {
-  let sizeCss: SerializedStyles
-  if (requirePadding) {
-    switch (stateValue?.size) {
-      default:
-      case "large":
-        sizeCss = css`
-          height: 38px;
-          padding: 0 16px;
-        `
-        break
-      case "medium":
-        sizeCss = css`
-          height: 30px;
-          padding: 0 16px;
-        `
-        break
-      case "small":
-        sizeCss = css`
-          height: 22px;
-          padding: 0 12px;
-        `
-        break
+  return css`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+    line-height: 1.57;
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    transition: all 200ms ease-in-out;
+    ${applySizeCss(requirePadding, stateValue?.size)};
+    ${applyStatus(stateValue)}
+    &:first-of-type {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
     }
-  } else {
-      switch (stateValue?.size) {
-          default:
-          case "large":
-              sizeCss = css`
-                height: 38px;
-              `
-              break
-          case "medium":
-              sizeCss = css`
-                height: 30px;
-              `
-              break
-          case "small":
-              sizeCss = css`
-                height: 22px;
-              `
-              break
-      }
-  }
-    switch (stateValue?.size) {
-      default:
-      case "large":
-        sizeCss = css`
-          height: 38px;
-          padding: 0 16px;
-        `
-        break
-      case "medium":
-        sizeCss = css`
-          height: 30px;
-          padding: 0 16px;
-        `
-        break
-      case "small":
-        sizeCss = css`
-          height: 22px;
-          padding: 0 12px;
-          font-size: 12px;
-        `
-        break
+    &:last-of-type {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
-
-    return css`
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      font-size: 14px;
-      line-height: 1.57;
-      color: ${globalColor(`--${illaPrefix}-gray-02`)};
-      border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
-      transition: all 200ms ease-in-out;
-
-      ${sizeCss}
-      ${applyStatus(stateValue)}
-      &:first-of-type {
-        border-top-left-radius: 4px;
-        border-bottom-left-radius: 4px;
-      }
-
-      &:last-of-type {
-        border-top-right-radius: 4px;
-        border-bottom-right-radius: 4px;
-      }
-    `
+  `
 }
 
 export function applyInputStyle(textCenterHorizontal?: boolean | undefined) {

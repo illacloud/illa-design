@@ -26,7 +26,7 @@ export const JumperInput = forwardRef<HTMLSpanElement, JumperInputProps>(
       <span css={paginationContainer}>
         <span css={totalTextCss}>{goToText}</span>
         <Input
-          css={applyJumperInputCss(wholeDisable, size)}
+          css={applyJumperInputCss(size, wholeDisable)}
           value={compositionValue}
           size={size}
           disabled={wholeDisable}

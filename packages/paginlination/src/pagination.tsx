@@ -128,7 +128,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
         ) : (
           <span css={paginationContainer}>
             <span
-              css={applyDefaultItemWithMarginCss(prevDisable, size)}
+              css={applyDefaultItemWithMarginCss(size, prevDisable)}
               onClick={() => {
                 if (prevDisable) return
                 setCurPage(curPage - 1)
@@ -149,7 +149,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
               />
             )}
             <span
-              css={applyDefaultItemCss(nextDisable, size)}
+              css={applyDefaultItemCss(size, nextDisable)}
               onClick={() => {
                 if (nextDisable) return
                 setCurPage(curPage + 1)

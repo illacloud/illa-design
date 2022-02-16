@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/avatar"
+    "directory": "packages/pagination"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"

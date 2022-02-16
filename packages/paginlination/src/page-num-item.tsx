@@ -20,8 +20,8 @@ export const PageNumItem = forwardRef<HTMLSpanElement, PageNumProps>(
     } = props
 
     const itemCss = selected
-      ? applyPageNumItemSelectedCss(wholeDisable, size)
-      : applyDefaultItemWithMarginCss(wholeDisable, size)
+      ? applyPageNumItemSelectedCss(size, wholeDisable)
+      : applyDefaultItemWithMarginCss(size, wholeDisable)
 
     return isMoreIndex ? (
       <span

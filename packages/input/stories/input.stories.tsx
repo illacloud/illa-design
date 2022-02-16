@@ -52,50 +52,15 @@ export default {
 const Template: Story<InputProps> = (props) => {
   return (
     <div>
-      <Space
-        css={css`
-          display: block;
-        `}
-        wrap
-      >
+      <Space direction={"vertical"} wrap>
         <Input {...props} />
-      </Space>
-      <Space
-        css={css`
-          display: block;
-        `}
-        wrap
-      >
         <Input prefix="prefix" suffix="suffix" {...props} />
-      </Space>
-      <Space
-        css={css`
-          display: block;
-        `}
-        wrap
-      >
         <Input addonAfter="After" {...props} />
-      </Space>
-      <Space
-        css={css`
-          display: block;
-        `}
-        wrap
-      >
         <Input addonAfter={<PersonIcon />} addonBefore="Before" {...props} />
-      </Space>
-      <Space
-        css={css`
-          display: block;
-        `}
-        wrap
-      >
         <Input addonAfter="After" addonBefore="Before" {...props} />
       </Space>
     </div>
   )
 }
 
-export const Basic = Template.bind({
-  icon: <BsFacebook />,
-})
+export const Basic = Template.bind({})
