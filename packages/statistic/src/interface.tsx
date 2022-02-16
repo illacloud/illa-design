@@ -1,5 +1,5 @@
-import { ReactNode, HTMLAttributes, CSSProperties } from "react"
-import { Dayjs } from "dayjs"
+import { CSSProperties, HTMLAttributes, ReactNode } from "react";
+import { Dayjs } from "dayjs";
 
 export interface StatisticProps
   extends Omit<HTMLAttributes<HTMLElement>, "title" | "prefix"> {
