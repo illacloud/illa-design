@@ -1,0 +1,74 @@
+import React, {
+  HTMLAttributes,
+  ChangeEvent,
+  PropsWithChildren,
+  ReactNode,
+  ReactElement,
+} from "react"
+
+export interface RadioGroupContextProps<T> {
+  name?: string
+  value?: T
+  disabled?: boolean
+  defaultValue?: T
+  options?: (
+    | string
+    | number
+    | { label: ReactNode; value: any; disabled?: boolean }
+  )[]
+  direction?: "vertical" | "horizontal"
+  spacing?: string | number
+  onChange?: (checked: boolean, event: ChangeEvent) => void
+}
+
+export interface RadioGroupProps<T>
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue">,
+    RadioGroupContextProps<T> {}
+
+export interface OptionProps extends HTMLAttributes<HTMLLIElement> {
+  disabled?: boolean
+  value?: string | number
+  title?: string
+}
+
+export interface OptionInfo extends PropsWithChildren<OptionProps> {
+  child: ReactElement
+  _valid: boolean
+  _index: number
+  _origin: "children" | "options" | "userCreatedOptions" | "userCreatingOption"
+}
+
+export type LabeledValue = {
+  value: string | number
+  label: ReactNode
+}
+
+export type SelectSize = "small" | "medium" | "large"
+
+export interface SelectProps
+  extends Omit<HTMLAttributes<HTMLSelectElement>, "onChange" | "defaultValue"> {
+  defaultValue?:
+    | string
+    | string[]
+    | number
+    | number[]
+    | LabeledValue
+    | LabeledValue[]
+  value?: string | string[] | number | number[] | LabeledValue | LabeledValue[]
+  mode?: "multiple" | "tags"
+  notFoundContent?: ReactNode
+  getPopupContainer?: (node: HTMLElement) => Element
+  placeholder?: string
+  showSearch?:
+    | boolean
+    | { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean }
+  size?: SelectSize
+  disabled?: boolean
+  error?: boolean
+  loading?: boolean
+  allowClear?: boolean
+  maxTagCount?: number
+  arrowIcon?: ReactNode | null
+  removeIcon?: ReactNode | null
+  onChange?: (value: boolean, option: OptionInfo | OptionInfo[]) => void
+}
