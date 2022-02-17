@@ -1,7 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import React, { forwardRef, useState } from "react"
 import { SwitchProps } from "./interface"
-import { applySwitch, applySwitchDot } from "./style"
+import * as _ from "lodash"
+import {
+  applySwitch,
+  applySwitchDot,
+  applySwitchText,
+  applySwitchIcon,
+} from "./style"
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (props, ref) => {
@@ -9,8 +15,8 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
       colorScheme = "blue",
       disabled = false,
       size = "medium",
-      checkedText,
-      uncheckedText,
+      checkedText = "",
+      uncheckedText = "",
       checkedIcon,
       uncheckedIcon,
       checked: propsChecked,
@@ -28,21 +34,36 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     ) => {
       if (propsChecked === void 0) {
         setChecked(!mergedChecked)
+        onChange && onChange(!mergedChecked, event)
       }
-      onChange && onChange(!mergedChecked, event)
       onClick && onClick(event)
     }
 
+    const renderText = mergedChecked ? checkedText : uncheckedText
+
     return (
       <button
-        css={applySwitch(colorScheme, disabled, mergedChecked, size)}
+        css={applySwitch(colorScheme, mergedChecked, size)}
         ref={ref}
         onClick={onHandleClick}
         disabled={disabled}
         type="button"
         {...restProps}
       >
-        <div css={applySwitchDot(size, mergedChecked)}></div>
+        <div css={applySwitchDot(size, mergedChecked, disabled)}>
+          {(checkedIcon || uncheckedIcon) && (
+            <div css={applySwitchIcon}>
+              {mergedChecked ? checkedIcon : uncheckedIcon}
+            </div>
+          )}
+        </div>
+        <div css={applySwitchText(mergedChecked, size)}>
+          {_.isObject(renderText) ? (
+            <div css={applySwitchIcon}>{renderText}</div>
+          ) : (
+            renderText
+          )}
+        </div>
       </button>
     )
   },

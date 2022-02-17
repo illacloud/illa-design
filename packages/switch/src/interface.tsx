@@ -21,8 +21,8 @@ export interface SwitchProps
   colorScheme?: SwitchColorScheme
   disabled?: boolean
   size?: SwitchSize
-  checkedText?: string
-  uncheckedText?: string
+  checkedText?: string | ReactNode
+  uncheckedText?: string | ReactNode
   uncheckedIcon?: ReactNode
   checkedIcon?: ReactNode
   defaultChecked?: boolean
