@@ -42,17 +42,6 @@ test("Progress renders with colors", () => {
   expect(screen.getByTestId("test-progress-custom")).toMatchSnapshot()
 })
 
-test("Progress renders with different status", () => {
-  render(
-    <div>
-      <Progress status="success" type="miniRing" />,
-      <Progress status="error" type="miniRing" />,
-    </div>,
-  )
-  expect(screen.getByTitle("SuccessIcon")).toBeInTheDocument()
-  expect(screen.getByTitle("WarningIcon")).toBeInTheDocument()
-})
-
 test("Progress renders without text", () => {
   render(<Progress percent={50} showText={false} type="miniRing" />)
   expect(screen.queryByText("50")).not.toBeTruthy()
@@ -74,4 +63,23 @@ test("Progress renders with custom width", () => {
 test("Progress renders with steps", () => {
   render(<Progress data-testid="test-progress" steps={3} type="miniRing" />)
   expect(screen.getByTestId("test-progress")).toMatchSnapshot()
+})
+
+test("Progress renders with different status", () => {
+  render(
+    <div>
+      <Progress
+        data-testid="test-progress-success"
+        status="success"
+        type="miniRing"
+      />
+      <Progress
+        data-testid="test-progress-error"
+        status="error"
+        type="miniRing"
+      />
+    </div>,
+  )
+  expect(screen.getByTestId("test-progress-success")).toMatchSnapshot()
+  expect(screen.getByTestId("test-progress-error")).toMatchSnapshot()
 })

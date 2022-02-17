@@ -5,6 +5,7 @@ export type TriggerColorScheme =
   | "white"
   | "gray"
   | "grayBlue"
+  | "blackAlpha"
   | "red"
   | "orange"
   | "yellow"
