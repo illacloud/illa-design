@@ -20,7 +20,7 @@ import { Trigger } from "@illa-dedign/trigger"
 
 | Props               | Desc                                                         | Type                                                         | Default      |
 | ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------ |
-| colorScheme         | Set background color                                         | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" | "blackAlpha" |
+| colorScheme         | Set background color                                         | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" \| string| "gray" | 
 | content             | The content shown in popup                                   | string \| ReactNode                                          | -            |
 | trigger             | Types of events that cause the popup to show                 | "hover" \| "click" \| "focus"                                | "hover"      |
 | position            | The position of the popup relative to the target.            | "top"\| "tl"\| "tr"\| "bottom"\| "bl"\| "br"\| "left"\| "lt"\| "lb"\| "right"\| "rt"\| "rb" | "top"        |
@@ -35,7 +35,7 @@ import { Trigger } from "@illa-dedign/trigger"
 
 ### Trigger Event
 
-| 参数名          | 描述                                                 | 类型                       | 默认值 |
+| Props          | Desc                                                 | Type                       | Default |
 | --------------- | ---------------------------------------------------- | -------------------------- | ------ |
 | onVisibleChange | Callback when the visibility of the popup is changed | (visible: boolean) => void | -      |
 
@@ -85,7 +85,6 @@ import { Trigger } from "@illa-dedign/trigger"
 
 ### Set popup's delay time to open
 
-通过openDelay和closeDelay这两个参数可以设置气泡展示和关闭的延时
 
 ```jsx
 <Trigger content="Trigger" position="top" colorScheme="cyan" openDelay={1000} closeDelay={1000}>
