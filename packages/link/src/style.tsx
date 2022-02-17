@@ -29,12 +29,13 @@ export function applyLinkContainer(
     hoverCss = css`
       &:hover {
         background-color: ${hoverBgColor};
-        border-radius: 4px;
       }
     `
   }
   return css`
+    transition: background-color 200ms ease-in-out;
     vertical-align: middle;
+    border-radius: 4px;
     display: inline-flex;
     align-items: center;
     flex-direction: row;
