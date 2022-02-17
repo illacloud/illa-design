@@ -1,12 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { Children, createContext, forwardRef, ReactNode } from "react"
-import { ButtonGroupContextProps, ButtonGroupProps } from "./interface"
+import { Children, forwardRef, ReactNode } from "react"
+import { ButtonGroupContext } from "./button-group-context"
+import { ButtonGroupProps } from "./interface"
 import { applySpacing, avatarGroupContainer } from "./style"
-
-export const ButtonGroupContext = createContext<
-  ButtonGroupContextProps | undefined
->(undefined)
 
 export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
   (props, ref) => {
@@ -52,5 +49,4 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
   },
 )
 
-ButtonGroupContext.displayName = "ButtonGroupContext"
 ButtonGroup.displayName = "ButtonGroup"
