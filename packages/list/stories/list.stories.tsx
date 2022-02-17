@@ -40,3 +40,27 @@ export const Basic: Story<ListProps<any>> = (args) => (
     footer={<span>Footer</span>}
   />
 )
+export const AAA: Story<ListProps<any>> = (args) => (
+  <List
+    {...args}
+    data={[
+      { title: "Title A", description: "Desc A" },
+      { title: "Title B", description: "Desc B" },
+      { title: "Title C", description: "Desc C" },
+      { title: "Title D", description: "Desc D" },
+      { title: "Title E", description: "Desc E" },
+    ]}
+    render={(data, index) => {
+      return (
+        <span>
+          {data.title}qq
+        </span>
+      )
+    }}
+    renderKey={(data, index) => {
+      return index.toString()
+    }}
+    hoverable
+    height={200}
+  />
+)

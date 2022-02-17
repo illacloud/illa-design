@@ -38,6 +38,8 @@ export interface OptionInfo extends PropsWithChildren<OptionProps> {
   _origin: "children" | "options" | "userCreatedOptions" | "userCreatingOption"
 }
 
+export type OptionInfoMap = Map<OptionProps['value'], OptionInfo>;
+
 export type LabeledValue = {
   value: string | number
   label: ReactNode
@@ -70,5 +72,18 @@ export interface SelectProps
   maxTagCount?: number
   arrowIcon?: ReactNode | null
   removeIcon?: ReactNode | null
+  options?: (
+    | string
+    | number
+    | {
+        label: ReactNode | string
+        value: string | number
+        disabled?: boolean
+        extra?: any
+      }
+  )[]
+  filterOption?:
+    | boolean
+    | ((inputValue: string, option: ReactElement) => boolean)
   onChange?: (value: boolean, option: OptionInfo | OptionInfo[]) => void
 }

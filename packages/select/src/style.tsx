@@ -1,7 +1,7 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SelectProps } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
-import { css } from "@emotion/react"
+import { css, ComponentSelector } from "@emotion/react"
 
 // default select
 export function applyRadioSize() {
@@ -64,5 +64,17 @@ export function applyRadioContainerHorizontal(
     flex-direction: row;
     align-items: center;
     gap: ${currentSpacing};
+  `
+}
+
+export function applySelectStyle(
+
+): SerializedStyles {
+
+  return css`
+    display: inline-flex;
+    vertical-align: middle;
+    flex-direction: row;
+    align-items: center;
   `
 }

@@ -39,8 +39,10 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
+    "@illa-design/space": "*",
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
-    "@illa-design/space": "*"
+    "@illa-design/trigger": "*",
+    "rc-select": "^14.0.0-alpha.26"
   }
 }
