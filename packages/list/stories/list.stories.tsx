@@ -6,6 +6,18 @@ import { List, ListItem, ListItemMeta, ListProps } from "../src"
 export default {
   title: "DATA DISPLAY/List",
   component: List,
+  argTypes: {
+    header: {
+      control: {
+        type: "text",
+      },
+    },
+    footer: {
+      control: {
+        type: "text",
+      },
+    },
+  },
 } as Meta
 
 export const Basic: Story<ListProps<any>> = (args) => (
@@ -32,7 +44,5 @@ export const Basic: Story<ListProps<any>> = (args) => (
     renderKey={(data, index) => {
       return index.toString()
     }}
-    header={<span>Header</span>}
-    footer={<span>Footer</span>}
   />
 )
