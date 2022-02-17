@@ -8,7 +8,7 @@ export const WarningIcon = createIcon({
       fillRule="evenodd"
       clipRule="evenodd"
       d="M8 3a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V4a1 1 0 0 0-1-1zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
-      fill="#FF4747"
+      fill="currentColor"
     />
   ),
 })

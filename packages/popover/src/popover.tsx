@@ -12,6 +12,7 @@ export const Popover: FC<PopoverProps> = (props) => {
     colorScheme = "white",
     trigger = "click",
     hasCloseIcon = true,
+    closeOnClick = false,
     ...otherProps
   } = props
 
