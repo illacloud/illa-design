@@ -85,8 +85,6 @@ import { Tooltip } from "@illa-dedign/tooltip"
 
 ### Set popup's delay time to open
 
-通过openDelay和closeDelay这两个参数可以设置气泡展示和关闭的延时
-
 ```jsx
 <Tooltip content="Tooltip" position="top" colorScheme="cyan" openDelay={1000} closeDelay={1000}>
 	<Button>Tooltip</Button>
