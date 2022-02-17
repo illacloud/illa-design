@@ -1,8 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { List, ListItem, ListItemMeta, ListProps } from "../src"
-import { Image } from "@illa-design/image"
-import { Button } from "@illa-design/button"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -34,8 +32,6 @@ export const Basic: Story<ListProps<any>> = (args) => (
     renderKey={(data, index) => {
       return index.toString()
     }}
-    hoverable
-    height={200}
     header={<span>Header</span>}
     footer={<span>Footer</span>}
   />
