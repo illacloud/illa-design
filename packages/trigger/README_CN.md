@@ -20,7 +20,7 @@ import { Trigger } from "@illa-dedign/trigger"
 
 | 参数名              | 描述                                                    | 类型                                                         | 默认值       |
 | ------------------- | ------------------------------------------------------- | ------------------------------------------------------------ | ------------ |
-| colorScheme         | 设置背景颜色                                            | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" | "blackAlpha" |
+| colorScheme         | 设置背景颜色                                            | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple"  \| string | "gray" |
 | content             | 气泡上展示的内容                                        | string \| ReactNode                                          | -            |
 | trigger             | 出发方式                                                | "hover" \| "click" \| "focus"                                | "hover"      |
 | position            | 气泡出现的位置，有12个可选方向                          | "top"\| "tl"\| "tr"\| "bottom"\| "bl"\| "br"\| "left"\| "lt"\| "lb"\| "right"\| "rt"\| "rb" | "top"        |
