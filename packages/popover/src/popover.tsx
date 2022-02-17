@@ -6,12 +6,22 @@ import { Heading, Typography } from "@illa-design/typography"
 import { applyTitleColor, applyTypographyContainer } from "./style"
 
 export const Popover: FC<PopoverProps> = (props) => {
-  const { title, content, colorScheme = "white", ...otherProps } = props
+  const {
+    title,
+    content,
+    colorScheme = "white",
+    trigger = "click",
+    hasCloseIcon = true,
+    closeOnClick = false,
+    ...otherProps
+  } = props
 
   return (
     <Trigger
       {...otherProps}
       colorScheme={colorScheme}
+      trigger={trigger}
+      hasCloseIcon={hasCloseIcon}
       content={
         <div css={applyTypographyContainer}>
           <Typography>

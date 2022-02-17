@@ -7,15 +7,9 @@ module.exports = {
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
   modulePathIgnorePatterns: ["<rootDir>/examples"],
   transform: {
-    "^.+\\.tsx?$": "ts-jest",
-  },
-  transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
-  globals: {
-    "ts-jest": {
-      tsconfig: "tsconfig.json",
-    },
+    "^.+\\.tsx?$": "ts-jest"
   },
   snapshotSerializers: [
-    "@emotion/jest/serializer" /* if needed other snapshotSerializers should go here */,
-  ],
-}
+    "@emotion/jest/serializer" /* if needed other snapshotSerializers should go here */
+  ]
+};

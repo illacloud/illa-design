@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { ChangeEvent, createContext, forwardRef } from "react"
-import { RadioGroupContextProps, RadioGroupProps } from "./interface"
+import { ChangeEvent, forwardRef } from "react"
+import { RadioGroupProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"
 import { Radio } from "./radio"
 import {
@@ -8,18 +8,11 @@ import {
   applyRadioContainerVertical,
 } from "./style"
 import { useMergeValue } from "./hook"
+import { RadioGroupContext } from "./radio-group-context"
 
 function isArray(obj: any) {
   return Object.prototype.toString.call(obj) === "[object Array]"
 }
-
-interface extraProps {
-  onChangeValue?: (value: any, event: ChangeEvent) => void
-}
-
-export const RadioGroupContext = createContext<
-  (RadioGroupContextProps<any> & extraProps) | undefined
->(undefined)
 
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
   (props, ref) => {
@@ -75,7 +68,8 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
         <RadioGroupContext.Provider value={contextProp}>
           {options && isArray(options)
             ? options.map((option, index) => {
-                return typeof option === "string" ? (
+                return typeof option === "string" ||
+                  typeof option === "number" ? (
                   <Radio key={index} value={option} disabled={disabled}>
                     {option}
                   </Radio>
@@ -95,7 +89,5 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
     )
   },
 )
-
-RadioGroupContext.displayName = "RadioGroupContext"
 
 RadioGroup.displayName = "RadioGroup"

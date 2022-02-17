@@ -5,5 +5,8 @@
       "cypress",
       "@testing-library/cypress"
     ]
-  }
+  },
+  "include": [
+    "../tests/*.e2e.{tsx,ts}"
+  ]
 }

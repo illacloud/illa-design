@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes, CSSProperties } from "react"
+import { CSSProperties, HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
 
 export interface StatisticProps

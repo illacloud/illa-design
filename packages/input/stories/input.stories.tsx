@@ -27,6 +27,22 @@ export default {
     addonBefore: {
       control: false,
     },
+    boarderColor: {
+      options: [
+        "gray",
+        "blue",
+        "purple",
+        "red",
+        "green",
+        "yellow",
+        "orange",
+        "cyan",
+        "white",
+      ],
+      control: {
+        type: "select",
+      },
+    },
   },
 } as Meta
 

@@ -1,7 +1,7 @@
 import { createIcon } from "../create-icon"
 
-export const RightIcon = createIcon({
-  title: "RightIcon",
+export const WarningCircleIcon = createIcon({
+  title: "WarningCircleIcon",
   viewBox: "0 0 12 12",
   path: (
     <>
@@ -14,11 +14,11 @@ export const RightIcon = createIcon({
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M8.32 4.116a.5.5 0 0 1 .064.704l-2.5 3a.5.5 0 0 1-.738.034l-1.5-1.5a.5.5 0 1 1 .708-.708L5.466 6.76l2.15-2.58a.5.5 0 0 1 .704-.063z"
+        d="M6 3a.75.75 0 0 0-.75.75v2a.75.75 0 0 0 1.5 0v-2A.75.75 0 0 0 6 3zm0 6a.75.75 0 1 0 0-1.5A.75.75 0 0 0 6 9z"
         fill="#fff"
       />
     </>
   ),
 })
 
-RightIcon.displayName = "RightIcon"
+WarningCircleIcon.displayName = "WarningCircleIcon"

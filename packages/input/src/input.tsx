@@ -31,6 +31,7 @@ export interface StateValue {
   size?: InputProps["size"]
   boarderColor?: InputProps["boarderColor"]
 }
+
 export type InputRef = ForwardRefExoticComponent<
   InputProps & React.RefAttributes<InputRefType>
 >
@@ -108,7 +109,9 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
             <span css={applyAddonCss(stateValue)}>{addonBefore}</span>
           ) : null}
           <span css={applyInputContainer(stateValue)}>
-            {prefix ? <span css={applyPrefixCls}>{prefix}</span> : null}
+            {prefix ? (
+              <span css={applyPrefixCls(stateValue)}>{prefix}</span>
+            ) : null}
             <InputElement
               ref={inputRef}
               {...rest}
@@ -136,7 +139,9 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
                 props.onPressEnter?.(e)
               }}
             />
-            {suffix ? <span css={applySuffixCls}>{suffix}</span> : null}
+            {suffix ? (
+              <span css={applySuffixCls(stateValue)}>{suffix}</span>
+            ) : null}
           </span>
           {addonAfter ? (
             <span css={applyAddonCss(stateValue)}>{addonAfter}</span>

@@ -91,7 +91,9 @@ function getCopyable(
     )
   }
   if (originCopyable.copiedIcon == undefined) {
-    originCopyable.copiedIcon = <RightIcon />
+    originCopyable.copiedIcon = (
+      <RightIcon color={globalColor(`--${illaPrefix}-green-03`)} />
+    )
   }
   return originCopyable
 }

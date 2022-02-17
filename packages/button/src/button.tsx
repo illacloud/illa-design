@@ -4,7 +4,6 @@ import { Children, forwardRef } from "react"
 import { ButtonProps } from "./interface"
 import { css } from "@emotion/react"
 import { LoadingIcon } from "@illa-design/icon"
-import { ButtonGroupContext } from "./button-group"
 import {
   applyBg,
   applyCursor,
@@ -18,6 +17,7 @@ import {
   applyTagContainer,
   applyWithoutTextSize,
 } from "./style"
+import { ButtonGroupContext } from "."
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {

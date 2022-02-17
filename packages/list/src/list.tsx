@@ -4,6 +4,7 @@ import { ListProps } from "./interface"
 import { applyBarStyle, applyListContainer, applyListItemOuter } from "./style"
 import { Divider } from "@illa-design/divider"
 import VirtualList from "rc-virtual-list"
+import { Text, Typography } from "@illa-design/typography"
 
 export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
   const {
@@ -30,7 +31,15 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
     <div css={applyListContainer(bordered)} ref={ref} {...otherProps}>
       {header && (
         <>
-          <div css={applyBarStyle(size)}>{header}</div>
+          {typeof header == "string" ? (
+            <div css={applyBarStyle(size)}>
+              <Typography>
+                <Text bold>{header}</Text>
+              </Typography>
+            </div>
+          ) : (
+            <div css={applyBarStyle(size)}>{header}</div>
+          )}
           <Divider direction="horizontal" />
         </>
       )}
@@ -86,7 +95,15 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
       {footer && (
         <>
           <Divider direction="horizontal" />
-          <div css={applyBarStyle(size)}>{footer}</div>
+          {typeof footer == "string" ? (
+            <div css={applyBarStyle(size)}>
+              <Typography>
+                <Text bold>{footer}</Text>
+              </Typography>
+            </div>
+          ) : (
+            <div css={applyBarStyle(size)}>{footer}</div>
+          )}
         </>
       )}
     </div>
