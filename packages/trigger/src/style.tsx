@@ -11,6 +11,7 @@ const colorSchemes = [
   "red",
   "orange",
   "yellow",
+  "blackAlpha",
   "green",
   "blue",
   "cyan",
