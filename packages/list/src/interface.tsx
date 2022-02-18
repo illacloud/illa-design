@@ -10,8 +10,8 @@ export interface ListProps<T>
   split?: boolean
   height?: number
   hoverable?: boolean
-  header?: ReactNode
-  footer?: ReactNode
+  header?: ReactNode | string
+  footer?: ReactNode | string
   render?: (data: T, index: number) => ReactNode
   renderKey?: (data: T, index: number) => string
   bottomOffset?: number

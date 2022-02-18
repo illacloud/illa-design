@@ -6,7 +6,9 @@ export class Copyable {
   copyIcon: ReactNode = (
     <CopyIcon color={globalColor(`--${illaPrefix}-gray-01`)} />
   )
-  copiedIcon: ReactNode = (<RightIcon />)
+  copiedIcon: ReactNode = (
+    <RightIcon color={globalColor(`--${illaPrefix}-green-03`)} />
+  )
   copiedToolTip: boolean | string | ReactNode
   copyToolTip: boolean | string | ReactNode
   onCopy?: () => void

@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import {
+  CheckmarkIcon,
   CloseIcon,
   CopyIcon,
   EmptyIcon,
@@ -54,6 +55,9 @@ export const Link: Story<IconProps> = (props) => <LinkIcon {...props} />
 export const Right: Story<IconProps> = (props) => <RightIcon {...props} />
 export const Error: Story<IconProps> = (props) => <ErrorIcon {...props} />
 export const Warning: Story<IconProps> = (props) => <WarningIcon {...props} />
+export const WarningCircle: Story<IconProps> = (props) => (
+  <WarningCircle {...props} />
+)
 export const Success: Story<IconProps> = (props) => <SuccessIcon {...props} />
 export const Empty: Story<IconProps> = (props) => <EmptyIcon {...props} />
 export const Checkmark: Story<IconProps> = (props) => (

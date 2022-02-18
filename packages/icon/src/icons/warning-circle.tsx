@@ -9,7 +9,7 @@ export const WarningCircleIcon = createIcon({
         fillRule="evenodd"
         clipRule="evenodd"
         d="M6 0a6 6 0 1 1 0 12A6 6 0 0 1 6 0z"
-        fill="#FF4747"
+        fill="currentColor"
       />
       <path
         fillRule="evenodd"

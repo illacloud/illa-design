@@ -9,6 +9,7 @@ import {
   applyCircleStatus,
   applyCircleSvgContainer,
 } from "./mini-circle-progress-style"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
@@ -48,10 +49,14 @@ export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
     let statusComponent: ReactNode
     switch (status) {
       case "success":
-        statusComponent = <SuccessIcon />
+        statusComponent = (
+          <SuccessIcon color={globalColor(`--${illaPrefix}-green-03`)} />
+        )
         break
       case "error":
-        statusComponent = <WarningCircleIcon />
+        statusComponent = (
+          <WarningCircleIcon color={globalColor(`--${illaPrefix}-red-03`)} />
+        )
         break
     }
 

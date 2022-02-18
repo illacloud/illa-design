@@ -9,6 +9,7 @@ import {
   applyProgressContainerBg,
   applySvgContainer,
 } from "./common-style"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
@@ -48,10 +49,14 @@ export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
     let statusComponent: ReactNode
     switch (status) {
       case "success":
-        statusComponent = <SuccessIcon />
+        statusComponent = (
+          <SuccessIcon color={globalColor(`--${illaPrefix}-green-03`)} />
+        )
         break
       case "error":
-        statusComponent = <WarningIcon />
+        statusComponent = (
+          <WarningIcon color={globalColor(`--${illaPrefix}-red-03`)} />
+        )
         break
     }
 

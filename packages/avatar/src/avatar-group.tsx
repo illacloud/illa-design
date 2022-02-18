@@ -1,25 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import {
-  Children,
-  createContext,
-  CSSProperties,
-  forwardRef,
-  ReactNode,
-} from "react"
-import { AvatarGroupContextProps, AvatarGroupProps } from "./interface"
+import { Children, CSSProperties, forwardRef, ReactNode } from "react"
+import { AvatarGroupProps } from "./interface"
 import { css } from "@emotion/react"
 import { Avatar } from "./avatar"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { AvatarGroupContext } from "./avatar-group-context"
 
 const avatarGroupCss = css`
   display: flex;
   flex-direction: row;
   align-items: center;
 `
-
-export const AvatarGroupContext = createContext<
-  AvatarGroupContextProps | undefined
->(undefined)
 
 export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
   (props, ref) => {
@@ -96,7 +87,5 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
     )
   },
 )
-
-AvatarGroupContext.displayName = "AvatarGroupContext"
 
 AvatarGroup.displayName = "AvatarGroup"

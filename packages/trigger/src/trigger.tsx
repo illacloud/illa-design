@@ -51,6 +51,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     autoFitPosition = true,
     closeOnClick = true,
     defaultPopupVisible,
+    withoutPadding,
     disabled,
     hasCloseIcon,
     popupVisible,

@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, ChangeEvent, useContext } from "react"
+import { ChangeEvent, forwardRef, useContext } from "react"
 import { RadioProps } from "./interface"
-import { RadioGroupContext } from "./radio-group"
 import { applyMergeCss, applyRadioSize } from "./style"
 import { useMergeValue } from "./hook"
 import { omit } from "@illa-design/system"
+import { RadioGroupContext } from "./radio-group-context"
 
 export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
   const context = useContext(RadioGroupContext)
