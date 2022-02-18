@@ -71,8 +71,8 @@ export const errorFocusStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
   box-shadow: 0 0 8px 0
     ${chroma(globalColor(`--${illaPrefix}-red-01`))
-  .alpha(0.15)
-  .hex()};
+      .alpha(0.15)
+      .hex()};
 `
 export const errorOutlineStyle = css`
   background-color: unset;
@@ -118,8 +118,7 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
-
-export function applySelectView(stateValue:StateValue): SerializedStyles {
+export function applySelectView(stateValue: StateValue): SerializedStyles {
   return css`
     height: 32px;
     line-height: 30px;
@@ -130,7 +129,6 @@ export function applySelectView(stateValue:StateValue): SerializedStyles {
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     cursor: pointer;
     ${applyStatus(stateValue)}
-
   `
 }
 export function applySelectStyle(): SerializedStyles {

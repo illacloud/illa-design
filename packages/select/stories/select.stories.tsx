@@ -9,14 +9,16 @@ export default {
   component: Select,
 } as Meta
 
-const Template: Story<SelectProps> = (args) => <div>
-  <Select {...args}>
-    <Option>Abc</Option>
-    <Option>Bde</Option>
-  </Select>
-  <br/>
-  <Select />
-</div>
+const Template: Story<SelectProps> = (args) => (
+  <div>
+    <Select {...args}>
+      <Option>Abc</Option>
+      <Option>Bde</Option>
+    </Select>
+    <br />
+    <Select />
+  </div>
+)
 
 export const Basic = Template.bind({
   icon: <BsFacebook />,

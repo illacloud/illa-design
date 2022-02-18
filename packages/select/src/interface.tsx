@@ -38,7 +38,7 @@ export interface OptionInfo extends PropsWithChildren<OptionProps> {
   _origin: "children" | "options" | "userCreatedOptions" | "userCreatingOption"
 }
 
-export type OptionInfoMap = Map<OptionProps['value'], OptionInfo>;
+export type OptionInfoMap = Map<OptionProps["value"], OptionInfo>
 
 export type LabeledValue = {
   value: string | number
@@ -94,5 +94,3 @@ export interface SelectViewProps extends SelectProps {
   isMultiMode?: boolean
   popupVisible?: boolean
 }
-
-

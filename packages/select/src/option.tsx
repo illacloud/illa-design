@@ -29,7 +29,7 @@ export const Option = forwardRef<HTMLLIElement, SelectProps>((props, ref) => {
     <li css={applyOptionStyle} ref={ref}>
       {children}
     </li>
-  );
+  )
 })
 
 Option.displayName = "Option"

@@ -99,7 +99,7 @@ export function applyTipsText(
   if (withoutPadding) {
     padding = css``
   }
-  console.log(padding, 'padding')
+  console.log(padding, "padding")
   return css`
     box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
     background-color: ${bgColor};
