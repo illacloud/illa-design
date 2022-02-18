@@ -85,5 +85,14 @@ export interface SelectProps
   filterOption?:
     | boolean
     | ((inputValue: string, option: ReactElement) => boolean)
+
   onChange?: (value: boolean, option: OptionInfo | OptionInfo[]) => void
+  onVisibleChange?: (visible: boolean) => void
 }
+
+export interface SelectViewProps extends SelectProps {
+  isMultiMode?: boolean
+  popupVisible?: boolean
+}
+
+

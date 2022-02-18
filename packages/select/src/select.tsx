@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, ChangeEvent, useContext } from "react"
+import { forwardRef, ChangeEvent, useContext, useState } from "react"
 import { SelectProps } from "./interface"
 import { applyMergeCss, applyRadioSize, applySelectStyle } from "./style"
 import { omit, useMergeValue } from "@illa-design/system"
@@ -17,10 +17,16 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     disabled,
     value,
     defaultValue,
-    onChange,
     placeholder,
+    // event
+    onChange,
+    onVisibleChange,
     ...otherProps
   } = props
+
+  const isMultiMode = mode === "multiple" || mode === "tags"
+
+  const [currentVisible, setCurrentVisible] = useState<boolean>()
 
   const [currentValue, setCurrentValue] = useMergeValue(undefined, {
     value: value,
@@ -32,14 +38,15 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   }
 
   const renderOption = () => {
-
     const elementList = children ? (
       <List
-        css={css`min-width: 200px !important;`}
+        css={css`
+          min-width: 200px !important;
+        `}
         size="small"
         data={children as any}
         render={(data, index) => {
-          console.log(data, 'data')
+          console.log(data, "data")
           return data
         }}
         renderKey={(data, index) => {
@@ -50,11 +57,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       />
     ) : null
 
-    return (
-      <div>
-        {elementList || <Empty />}
-      </div>
-    )
+    return <div>{elementList || <Empty />}</div>
   }
   console.log(children, "children")
 
@@ -67,8 +70,19 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       position="tl"
       disabled={disabled}
       withoutPadding
+      popupVisible={currentVisible}
+      onVisibleChange={(value: boolean) => {
+        if (currentVisible !== value) {
+          setCurrentVisible(value)
+          onVisibleChange?.(value)
+        }
+      }}
     >
-      <SelectView {...props} />
+      <SelectView
+        {...props}
+        popupVisible={currentVisible}
+        isMultiMode={isMultiMode}
+      />
     </Trigger>
   )
 })
