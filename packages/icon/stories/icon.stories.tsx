@@ -15,7 +15,7 @@ import {
   PersonIcon,
   RightIcon,
   SearchIcon,
-  SuccessIcon,
+  SuccessIcon, WarningCircleIcon,
   WarningIcon,
   CheckmarkIcon,
   PreIcon,
@@ -56,7 +56,7 @@ export const Right: Story<IconProps> = (props) => <RightIcon {...props} />
 export const Error: Story<IconProps> = (props) => <ErrorIcon {...props} />
 export const Warning: Story<IconProps> = (props) => <WarningIcon {...props} />
 export const WarningCircle: Story<IconProps> = (props) => (
-  <WarningCircle {...props} />
+  <WarningCircleIcon {...props} />
 )
 export const Success: Story<IconProps> = (props) => <SuccessIcon {...props} />
 export const Empty: Story<IconProps> = (props) => <EmptyIcon {...props} />
