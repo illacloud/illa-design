@@ -23,8 +23,8 @@ test("Pagination render with defaultCurrent", () => {
 test("Pagination render with small size", () => {
   render(<Pagination size={"small"} total={100} />)
   expect(screen.getByText("2")).toHaveStyle({
-    width: `28px`,
-    height: `28px`,
+    width: `22px`,
+    height: `22px`,
   })
 })
 
