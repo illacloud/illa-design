@@ -16,7 +16,11 @@ import {
   RightIcon,
   SearchIcon,
   SuccessIcon,
+  WarningCircleIcon,
   WarningIcon,
+  PreIcon,
+  NextIcon,
+  MoreIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -52,10 +56,13 @@ export const Right: Story<IconProps> = (props) => <RightIcon {...props} />
 export const Error: Story<IconProps> = (props) => <ErrorIcon {...props} />
 export const Warning: Story<IconProps> = (props) => <WarningIcon {...props} />
 export const WarningCircle: Story<IconProps> = (props) => (
-  <WarningCircle {...props} />
+  <WarningCircleIcon {...props} />
 )
 export const Success: Story<IconProps> = (props) => <SuccessIcon {...props} />
 export const Empty: Story<IconProps> = (props) => <EmptyIcon {...props} />
 export const Checkmark: Story<IconProps> = (props) => (
   <CheckmarkIcon {...props} />
 )
+export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
+export const Next: Story<IconProps> = (props) => <NextIcon {...props} />
+export const More: Story<IconProps> = (props) => <MoreIcon {...props} />

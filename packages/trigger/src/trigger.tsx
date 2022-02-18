@@ -117,7 +117,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "tr":
       centerNode = (
         <div css={applyTipsContainer(finalPosition)}>
-          <div css={applyTipsText(colorScheme)}>{closeContent}</div>
+          <div css={applyTipsText(colorScheme, withoutPadding)}>{closeContent}</div>
           {showArrow && (
             <TriangleTop
               css={applyTriangleStyle(colorScheme, finalPosition)}
@@ -140,7 +140,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               height="4px"
             />
           )}
-          <div css={applyTipsText(colorScheme)}>{closeContent}</div>
+          <div css={applyTipsText(colorScheme, withoutPadding)}>{closeContent}</div>
         </div>
       )
       break
@@ -149,7 +149,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "lb":
       centerNode = (
         <div css={applyTipsContainer(finalPosition)}>
-          <div css={applyTipsText(colorScheme)}>{closeContent}</div>
+          <div css={applyTipsText(colorScheme, withoutPadding)}>{closeContent}</div>
           {showArrow && (
             <TriangleLeft
               css={applyTriangleStyle(colorScheme, finalPosition)}
@@ -172,7 +172,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               height="8px"
             />
           )}
-          <div css={applyTipsText(colorScheme)}>{closeContent}</div>
+          <div css={applyTipsText(colorScheme, withoutPadding)}>{closeContent}</div>
         </div>
       )
       break
