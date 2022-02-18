@@ -2,7 +2,7 @@
 import * as React from "react"
 import { forwardRef, ChangeEvent, useContext } from "react"
 import { SelectProps } from "./interface"
-import { applyMergeCss, applyRadioSize } from "./style"
+import { applyMergeCss, applyOptionStyle, applyRadioSize } from "./style"
 import { omit, useMergeValue } from "@illa-design/system"
 
 export const Option = forwardRef<HTMLLIElement, SelectProps>((props, ref) => {
@@ -26,7 +26,7 @@ export const Option = forwardRef<HTMLLIElement, SelectProps>((props, ref) => {
   }
 
   return (
-    <li ref={ref}>
+    <li css={applyOptionStyle} ref={ref}>
       {children}
     </li>
   );

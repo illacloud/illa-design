@@ -14,6 +14,8 @@ const Template: Story<SelectProps> = (args) => <div>
     <Option>Abc</Option>
     <Option>Bde</Option>
   </Select>
+  <br/>
+  <Select />
 </div>
 
 export const Basic = Template.bind({

@@ -1,9 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { forwardRef, ChangeEvent, useContext } from "react"
+import { Input } from "@illa-design/input"
+import { LoadingIcon, SearchIcon } from "@illa-design/icon"
+
 import { SelectProps } from "./interface"
+
 import { applyMergeCss, applyRadioSize, applySelectStyle } from "./style"
-import { omit, useMergeValue } from "@illa-design/system"
+import { useMergeValue } from "@illa-design/system"
 
 export const SelectView = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const {
@@ -27,7 +31,10 @@ export const SelectView = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   }
 
   const renderSingle = () => {
-    return <div>Single</div>
+    return <div>
+      SingleSingleSingleSingleSingle
+      <Input></Input>
+    </div>
   }
 
   return (

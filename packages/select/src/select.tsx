@@ -6,6 +6,7 @@ import { applyMergeCss, applyRadioSize, applySelectStyle } from "./style"
 import { omit, useMergeValue } from "@illa-design/system"
 import { Trigger } from "@illa-design/trigger"
 import { List } from "@illa-design/list"
+import { Empty } from "@illa-design/empty"
 import { SelectView } from "./select-view"
 import { css } from "@emotion/react"
 
@@ -31,12 +32,15 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   }
 
   const renderOption = () => {
-    return (
+
+    const elementList = children ? (
       <List
-        data={children}
+        css={css`min-width: 200px !important;`}
+        size="small"
+        data={children as any}
         render={(data, index) => {
           console.log(data, 'data')
-          return <span>{data}</span>
+          return data
         }}
         renderKey={(data, index) => {
           return index.toString()
@@ -44,6 +48,12 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         hoverable
         height={200}
       />
+    ) : null
+
+    return (
+      <div>
+        {elementList || <Empty />}
+      </div>
     )
   }
   console.log(children, "children")
@@ -55,8 +65,10 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       showArrow={false}
       colorScheme="white"
       position="tl"
+      disabled={disabled}
+      withoutPadding
     >
-      <SelectView />
+      <SelectView {...props} />
     </Trigger>
   )
 })

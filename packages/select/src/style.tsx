@@ -14,9 +14,11 @@ export function applyRadioSize() {
     border: solid 2px ${globalColor(`--${illaPrefix}-gray-08`)};
     cursor: pointer;
     transition: 0.15s all linear;
+
     &:hover {
       border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
     }
+
     &:disabled {
       cursor: not-allowed;
       border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
@@ -25,9 +27,11 @@ export function applyRadioSize() {
 
     &:checked {
       border: 4px solid ${globalColor(`--${illaPrefix}-blue-01`)};
+
       &:hover {
         border-color: ${globalColor(`--${illaPrefix}-blue-02`)};
       }
+
       &:disabled {
         border-color: ${globalColor(`--${illaPrefix}-blue-05`)};
       }
@@ -67,14 +71,29 @@ export function applyRadioContainerHorizontal(
   `
 }
 
-export function applySelectStyle(
-
-): SerializedStyles {
-
+export function applySelectStyle(): SerializedStyles {
   return css`
     display: inline-flex;
     vertical-align: middle;
     flex-direction: row;
     align-items: center;
+  `
+}
+
+// option
+export function applyOptionStyle(): SerializedStyles {
+  return css`
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 12px;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    line-height: 36px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    list-style: none;
   `
 }
