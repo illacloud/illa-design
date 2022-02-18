@@ -5,6 +5,7 @@ export type TriggerColorScheme =
   | "white"
   | "gray"
   | "grayBlue"
+  | "blackAlpha"
   | "red"
   | "orange"
   | "yellow"
@@ -31,6 +32,7 @@ export type TriggerTrigger = "hover" | "click" | "focus"
 
 export interface TriggerProps {
   colorScheme?: TriggerColorScheme
+  withoutPadding?: boolean
   trigger?: TriggerTrigger
   content?: string | ReactNode
   position?: TriggerPosition

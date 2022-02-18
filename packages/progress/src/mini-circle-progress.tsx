@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef, ReactNode } from "react"
 import { ProgressProps } from "./interface"
-import { SuccessIcon, WarningIcon } from "@illa-design/icon"
+import { SuccessIcon, WarningCircleIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import { applyContainer } from "./common-style"
 import {
@@ -9,6 +9,7 @@ import {
   applyCircleStatus,
   applyCircleSvgContainer,
 } from "./mini-circle-progress-style"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
@@ -48,17 +49,21 @@ export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
     let statusComponent: ReactNode
     switch (status) {
       case "success":
-        statusComponent = <SuccessIcon />
+        statusComponent = (
+          <SuccessIcon color={globalColor(`--${illaPrefix}-green-03`)} />
+        )
         break
       case "error":
-        statusComponent = <WarningIcon />
+        statusComponent = (
+          <WarningCircleIcon color={globalColor(`--${illaPrefix}-red-03`)} />
+        )
         break
     }
 
     return (
       <div css={applyContainer(width)} ref={ref} {...otherProps}>
         <Trigger disabled={!showText} content={formatText(percent)}>
-          {status == "normal" && (
+          {(status == "normal" || status == "error") && (
             <svg css={applyCircleSvgContainer(width, trailColor)}>
               <circle
                 css={applyCircleProgressContainer(finalColor, width, percent)}
@@ -70,7 +75,7 @@ export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
               />
             </svg>
           )}
-          {(status == "success" || status == "error") && (
+          {status == "success" && (
             <span css={applyCircleStatus}>{statusComponent}</span>
           )}
         </Trigger>

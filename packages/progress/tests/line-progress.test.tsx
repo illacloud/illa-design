@@ -71,7 +71,7 @@ test("Progress renders with different status", () => {
     </div>,
   )
   expect(screen.getByTitle("SuccessIcon")).toBeInTheDocument()
-  expect(screen.getByTitle("WarningIcon")).toBeInTheDocument()
+  expect(screen.getByTitle("WarningCircleIcon")).toBeInTheDocument()
 })
 
 test("Progress renders without text", () => {

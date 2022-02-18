@@ -5,8 +5,8 @@ import { AvatarProps } from "./interface"
 import { IconAvatar } from "./icon-avatar"
 import { TextAvatar } from "./text-avatar"
 import { ImgAvatar } from "./img-avatar"
-import { AvatarGroupContext } from "./avatar-group"
 import { css } from "@emotion/react"
+import { AvatarGroupContext } from "./avatar-group-context"
 
 const applyOuterCss = css`
   vertical-align: middle;

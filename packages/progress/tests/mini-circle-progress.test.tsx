@@ -42,15 +42,16 @@ test("Progress renders with colors", () => {
   expect(screen.getByTestId("test-progress-custom")).toMatchSnapshot()
 })
 
-test("Progress renders with different status", () => {
-  render(
-    <div>
-      <Progress status="success" type="miniCircle" />,
-      <Progress status="error" type="miniCircle" />,
-    </div>,
-  )
+test("Progress renders with success status", () => {
+  render(<Progress status="success" type="miniCircle" />)
   expect(screen.getByTitle("SuccessIcon")).toBeInTheDocument()
-  expect(screen.getByTitle("WarningIcon")).toBeInTheDocument()
+})
+
+test("Progress renders with error status", () => {
+  render(
+    <Progress data-testid="test-progress" status="error" type="miniCircle" />,
+  )
+  expect(screen.getByTestId("test-progress")).toMatchSnapshot()
 })
 
 test("Progress renders without text", () => {
