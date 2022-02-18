@@ -83,6 +83,7 @@ export function applyTipsContainer(
 
 export function applyTipsText(
   colorScheme: TriggerColorScheme,
+  withoutPadding?: boolean,
 ): SerializedStyles {
   const bgColor = colorSchemes.includes(colorScheme)
     ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
@@ -91,6 +92,14 @@ export function applyTipsText(
     colorScheme == "white"
       ? globalColor(`--${illaPrefix}-gray-03`)
       : globalColor(`--${illaPrefix}-white-02`)
+
+  let padding = css`
+    padding: 8px 12px;
+  `
+  if (withoutPadding) {
+    padding = css``
+  }
+
   return css`
     box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
     background-color: ${bgColor};
@@ -99,7 +108,7 @@ export function applyTipsText(
     max-width: 588px;
     border-radius: 2px;
     font-size: 14px;
-    padding: 8px 12px;
+    ${padding};
   `
 }
 
