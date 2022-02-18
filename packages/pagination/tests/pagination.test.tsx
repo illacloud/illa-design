@@ -31,8 +31,8 @@ test("Pagination render with small size", () => {
 test("Pagination render with  large size", () => {
   render(<Pagination size={"large"} total={100} />)
   expect(screen.getByText("2")).toHaveStyle({
-    width: `36px`,
-    height: `36px`,
+    width: `40px`,
+    height: `40px`,
   })
 })
 

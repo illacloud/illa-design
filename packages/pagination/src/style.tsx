@@ -14,25 +14,24 @@ export const totalTextCss = css`
   height: 100%;
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-gray-02`)};
-  margin-right: 8px;
 `
 
 export function applyInputCss(size: PaginationSize, disable?: boolean) {
   return css`
-    display: inline-flex !important;
+    display: inline-flex;
     align-items: center;
     font-size: 14px;
-    border-radius: 4px !important;
+    //border-radius: 4px;
     ${applySizeCss(size)}
     border-width: 0;
-    margin-bottom: 0 !important;
+    margin-bottom: 0;
     ${applyTextColor(disable)};
   `
 }
 
 export function applyJumperInputCss(size: PaginationSize, disable?: boolean) {
   return css`
-    margin-left: 14px;
+    margin-left: 16px;
     ${applyTextColor(disable)};
     ${applyInputCss(size, disable)}
   `
@@ -110,21 +109,21 @@ export function applyTextColor(
   if (!selected) {
     if (disabled) {
       return css`
-        color: ${globalColor(`--${illaPrefix}-gray-05`)} !important;
+        color: ${globalColor(`--${illaPrefix}-gray-05`)};
       `
     } else {
       return css`
-        color: ${globalColor(`--${illaPrefix}-gray-02`)} !important;
+        color: ${globalColor(`--${illaPrefix}-gray-02`)};
       `
     }
   } else {
     if (disabled) {
       return css`
-        color: ${globalColor(`--${illaPrefix}-blue-05`)} !important;
+        color: ${globalColor(`--${illaPrefix}-blue-05`)};
       `
     } else {
       return css`
-        color: ${globalColor(`--${illaPrefix}-blue-01`)} !important;
+        color: ${globalColor(`--${illaPrefix}-blue-01`)};
       `
     }
   }
@@ -186,20 +185,20 @@ function applySizeCss(size: PaginationSize): SerializedStyles {
     default:
     case "small":
       sizeCss = css`
-        width: 28px !important;
-        height: 28px;
+        width: 22px;
+        height: 22px;
       `
       break
     case "medium":
       sizeCss = css`
-        width: 32px !important;
+        width: 32px;
         height: 32px;
       `
       break
     case "large":
       sizeCss = css`
-        width: 36px !important;
-        height: 36px;
+        width: 40px;
+        height: 40px;
       `
       break
   }

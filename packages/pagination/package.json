@@ -41,12 +41,6 @@
   },
   "dependencies": {
     "@illa-design/icon": "*",
-    "@illa-design/image": "*",
-    "@illa-design/system": "*",
-    "@illa-design/theme": "*"
-  },
-  "devDependencies": {
-    "@testing-library/dom": "^8.11.3",
-    "@testing-library/user-event": "^13.5.0"
+    "@illa-design/input": "*"
   }
 }
