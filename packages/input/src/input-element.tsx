@@ -34,6 +34,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
       value,
       type,
       onClear,
+      textCenterHorizontal,
       ...rest
     } = props
 
@@ -114,7 +115,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
       <>
         <input
           ref={inputRef}
-          css={applyInputStyle}
+          css={applyInputStyle(textCenterHorizontal)}
           {...inputProps}
           {...(type ? { type } : {})}
         />

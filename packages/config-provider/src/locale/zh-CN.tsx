@@ -12,4 +12,9 @@ export const zhCN = {
   empty: {
     noData: "暂无数据",
   },
+  pagination: {
+    total: "共{0}条",
+    page: "页",
+    go: "前往",
+  },
 } as Locale

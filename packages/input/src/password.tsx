@@ -37,6 +37,7 @@ export const Password: PasswordRef = forwardRef<InputRefType, PasswordProps>(
       onChange,
       onFocus,
       onBlur,
+      requirePadding = true,
       invisibleButton = true,
       boarderColor = "blue",
       size = "medium",
@@ -73,7 +74,7 @@ export const Password: PasswordRef = forwardRef<InputRefType, PasswordProps>(
     return (
       <div style={style} className={className}>
         <span css={applyContainerCss(variant)}>
-          <span css={applyInputContainer(stateValue)}>
+          <span css={applyInputContainer(stateValue, requirePadding)}>
             <InputElement
               ref={inputRef}
               {...passwordProp}
