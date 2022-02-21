@@ -1,15 +1,20 @@
 import { Meta, Story } from "@storybook/react"
-import { BsFacebook } from "react-icons/bs"
 import * as React from "react"
 import { Pagination } from "../src"
-import { PaginationProps } from "../src/interface"
+import { PaginationProps } from "../src"
+import { ReactNode } from "react"
 
 export default {
   title: "DATA DISPLAY/Pagination",
   component: Pagination,
-
   argTypes: {
-    icon: {
+    prevIcon: {
+      control: false,
+    },
+    nextIcon: {
+      control: false,
+    },
+    moreIcon: {
       control: false,
     },
   },
@@ -17,6 +22,4 @@ export default {
 
 const Template: Story<PaginationProps> = (args) => <Pagination {...args} />
 
-export const Basic = Template.bind({
-  icon: <BsFacebook />,
-})
+export const Basic = Template.bind({})
