@@ -100,7 +100,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
 
     if (typeof showTotal === "function") {
       totalElement = (
-        <div>
+        <div css={totalTextCss}>
           {showTotal(total, [
             curPageVal * itemCountVal + 1,
             (curPageVal + 1) * itemCountVal,

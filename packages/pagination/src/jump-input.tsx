@@ -1,7 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef, useContext, useState } from "react"
 import { JumperInputProps } from "./interface"
-import { applyJumperInputCss, paginationContainer, totalTextCss } from "./style"
+import {
+  applyJumperInputCss,
+  jumperTitleCss,
+  paginationContainer,
+} from "./style"
 import { Input } from "@illa-design/input"
 import {
   ConfigProviderContext,
@@ -24,11 +28,12 @@ export const JumperInput = forwardRef<HTMLSpanElement, JumperInputProps>(
 
     return (
       <span css={paginationContainer}>
-        <span css={totalTextCss}>{goToText}</span>
+        <span css={jumperTitleCss}>{goToText}</span>
         <Input
           css={applyJumperInputCss(size, wholeDisable)}
           value={compositionValue}
           size={size}
+          textCenterHorizontal={true}
           disabled={wholeDisable}
           onChange={(event) => {
             const value = event.target.value.replace(/[^\d]/, "")
