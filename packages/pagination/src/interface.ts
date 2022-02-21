@@ -24,9 +24,9 @@ export interface PaginationProps
 }
 
 export interface Icons {
-  prev: ReactNode
-  next: ReactNode
-  more: ReactNode
+  prev?: ReactNode
+  next?: ReactNode
+  more?: ReactNode
 }
 
 export interface PageNumProps extends HTMLAttributes<HTMLSpanElement> {
