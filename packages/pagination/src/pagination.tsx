@@ -8,9 +8,9 @@ import {
   useMemo,
   useState,
 } from "react"
-import { Icons, PaginationProps } from "./interface"
+import { PaginationProps } from "./interface"
 
-import { MoreIcon, NextIcon, PreIcon } from "@illa-design/icon"
+import { CopyIcon, MoreIcon, NextIcon, PreIcon } from "@illa-design/icon"
 import {
   applyDefaultItemCss,
   applyDefaultItemWithMarginCss,
@@ -29,11 +29,6 @@ import {
 
 export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
   (props, ref) => {
-    const defaultIcon: Icons = {
-      prev: <PreIcon />,
-      more: <MoreIcon />,
-      next: <NextIcon />,
-    }
     const {
       currentPage,
       pageSize,
@@ -48,7 +43,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       sizeOptions = [10, 20, 30, 40, 50],
       simple,
       showJumper,
-      icons = defaultIcon,
+      icons,
+      testIcon,
       placeholder,
       onChange,
       onPageSizeChange,
@@ -109,6 +105,10 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       )
     }
 
+    const preIcon = icons?.prev ?? <PreIcon />
+    const nextIcon = icons?.next ?? <NextIcon />
+    const moreIcon = icons?.more ?? <MoreIcon />
+
     return (
       <div css={paginationContainer} placeholder={placeholder}>
         {totalElement}
@@ -121,8 +121,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
               if (pageNum == 0) return
               setCurPage(pageNum - 1)
             }}
-            nextIcon={icons.next}
-            prevIcon={icons.prev}
+            nextIcon={nextIcon}
+            prevIcon={preIcon}
             wholeDisabled={disabled == true}
           />
         ) : (
@@ -134,12 +134,12 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
                 setCurPage(curPage - 1)
               }}
             >
-              {icons.prev}
+              {preIcon}
             </span>
             {pageSum > 0 && (
               <PageNumGroup
                 total={pageSum}
-                moreIcon={icons.more}
+                moreIcon={moreIcon}
                 selectedIndex={curPage}
                 wholeDisable={disabled}
                 size={size}
@@ -155,7 +155,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
                 setCurPage(curPage + 1)
               }}
             >
-              {icons.next}
+              {nextIcon}
             </span>
           </span>
         )}
