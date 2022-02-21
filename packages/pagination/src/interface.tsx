@@ -17,17 +17,12 @@ export interface PaginationProps
   sizeOptions?: number[]
   simple?: boolean
   showJumper?: boolean
-  icons?: Icons
-  testIcon?: ReactNode
   placeholder?: string
   onChange?: (pageNumber: number, pageSize: number) => void
   onPageSizeChange?: (size: number, current: number) => void
-}
-
-export class Icons {
-  prev?: ReactNode
-  next?: ReactNode
-  more?: ReactNode
+  prevIcon?: ReactNode
+  nextIcon?: ReactNode
+  moreIcon?: ReactNode
 }
 
 export interface PageNumProps extends HTMLAttributes<HTMLSpanElement> {
