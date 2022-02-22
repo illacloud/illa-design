@@ -1,13 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { forwardRef, ChangeEvent, useContext } from "react"
-import { SelectProps } from "./interface"
+import { OptionProps, SelectProps } from "./interface"
 import { applyMergeCss, applyOptionStyle, applyRadioSize } from "./style"
 import { omit, useMergeValue } from "@illa-design/system"
 
-export const Option = forwardRef<HTMLLIElement, SelectProps>((props, ref) => {
+export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
   const {
-    mode,
     children,
     disabled,
     value,

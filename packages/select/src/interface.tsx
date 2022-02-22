@@ -26,9 +26,12 @@ export interface RadioGroupProps<T>
     RadioGroupContextProps<T> {}
 
 export interface OptionProps extends HTMLAttributes<HTMLLIElement> {
+  _key?: any;
   disabled?: boolean
   value?: string | number
   title?: string
+  extra?: any;
+
 }
 
 export interface OptionInfo extends PropsWithChildren<OptionProps> {
@@ -57,6 +60,7 @@ export interface SelectProps
     | LabeledValue
     | LabeledValue[]
   value?: string | string[] | number | number[] | LabeledValue | LabeledValue[]
+  inputValue?: string
   mode?: "multiple" | "tags"
   notFoundContent?: ReactNode
   getPopupContainer?: (node: HTMLElement) => Element
@@ -93,4 +97,5 @@ export interface SelectProps
 export interface SelectViewProps extends SelectProps {
   isMultiMode?: boolean
   popupVisible?: boolean
+  renderText: (value: any) => { text?: any; disabled?: boolean }
 }

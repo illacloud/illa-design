@@ -33,3 +33,7 @@ export function isNumber(obj: any): obj is number {
     Object.prototype.toString.call(obj) === "[object Number]" && obj === obj
   )
 }
+
+export function isFunction(obj: any): obj is (...args: any[]) => any {
+  return typeof obj === 'function';
+}
