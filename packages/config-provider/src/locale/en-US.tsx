@@ -15,6 +15,6 @@ export const enUS = {
   pagination: {
     total: "Total {0}",
     page: "Page",
-    go: "GO",
+    go: "Go to ",
   },
 } as Locale

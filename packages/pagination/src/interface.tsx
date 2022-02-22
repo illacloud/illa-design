@@ -17,22 +17,18 @@ export interface PaginationProps
   sizeOptions?: number[]
   simple?: boolean
   showJumper?: boolean
-  icons?: Icons
   placeholder?: string
   onChange?: (pageNumber: number, pageSize: number) => void
   onPageSizeChange?: (size: number, current: number) => void
-}
-
-export interface Icons {
-  prev: ReactNode
-  next: ReactNode
-  more: ReactNode
+  prevIcon?: ReactNode
+  nextIcon?: ReactNode
+  moreIcon?: ReactNode
 }
 
 export interface PageNumProps extends HTMLAttributes<HTMLSpanElement> {
   index: number
   selected: boolean
-  moreIcon: ReactNode
+  moreIcon?: ReactNode
   isMoreIndex: boolean | undefined
   handleClick: (index: number) => void
   wholeDisable: boolean | undefined
@@ -41,7 +37,7 @@ export interface PageNumProps extends HTMLAttributes<HTMLSpanElement> {
 
 export interface PageNumGroupProps extends HTMLAttributes<HTMLSpanElement> {
   total: number
-  moreIcon: ReactNode
+  moreIcon?: ReactNode
   selectedIndex: number
   onCurPageIndexChanged: (index: number) => void
   wholeDisable: boolean | undefined
@@ -58,8 +54,8 @@ export interface SimplePaginationProps extends HTMLAttributes<HTMLSpanElement> {
   defaultSelectedPageIndex: number
   onCurrentChange: (pageNum: number) => void
   pageSum: number
-  prevIcon: ReactNode
-  nextIcon: ReactNode
+  prevIcon?: ReactNode
+  nextIcon?: ReactNode
   wholeDisabled: boolean
   size: PaginationSize
 }

@@ -17,6 +17,7 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
     footer,
     height,
     render,
+    renderRaw,
     renderKey,
     bottomOffset = 0,
     onReachBottom,
@@ -81,14 +82,18 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
                 }
               }
             }
-            return (
-              <>
-                <div css={applyListItemOuter(size, hoverable)}>
-                  {render(item, data.indexOf(item))}
-                </div>
-                {endNode}
-              </>
-            )
+            if (renderRaw) {
+              return render(item, data.indexOf(item))
+            } else {
+              return (
+                <>
+                  <div css={applyListItemOuter(size, hoverable)}>
+                    {render(item, data.indexOf(item))}
+                  </div>
+                  {endNode}
+                </>
+              )
+            }
           }}
         </VirtualList>
       )}

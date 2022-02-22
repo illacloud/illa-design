@@ -49,6 +49,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     closeDelay = 150,
     openDelay = 150,
     autoFitPosition = true,
+    autoAlignPopupWidth,
     closeOnClick = true,
     defaultPopupVisible,
     withoutPadding,
@@ -117,7 +118,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "tr":
       centerNode = (
         <div css={applyTipsContainer(finalPosition)}>
-          <div css={applyTipsText(colorScheme, withoutPadding)}>
+          <div
+            css={applyTipsText(
+              colorScheme,
+              withoutPadding,
+              adjustResult,
+              autoAlignPopupWidth,
+            )}
+          >
             {closeContent}
           </div>
           {showArrow && (
@@ -142,7 +150,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
               height="4px"
             />
           )}
-          <div css={applyTipsText(colorScheme, withoutPadding)}>
+          <div
+            css={applyTipsText(
+              colorScheme,
+              withoutPadding,
+              adjustResult,
+              autoAlignPopupWidth,
+            )}
+          >
             {closeContent}
           </div>
         </div>
@@ -153,7 +168,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "lb":
       centerNode = (
         <div css={applyTipsContainer(finalPosition)}>
-          <div css={applyTipsText(colorScheme, withoutPadding)}>
+          <div
+            css={applyTipsText(
+              colorScheme,
+              withoutPadding,
+              adjustResult,
+              autoAlignPopupWidth,
+            )}
+          >
             {closeContent}
           </div>
           {showArrow && (
@@ -178,7 +200,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
               height="8px"
             />
           )}
-          <div css={applyTipsText(colorScheme, withoutPadding)}>
+          <div
+            css={applyTipsText(
+              colorScheme,
+              withoutPadding,
+              adjustResult,
+              autoAlignPopupWidth,
+            )}
+          >
             {closeContent}
           </div>
         </div>

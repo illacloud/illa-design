@@ -16,6 +16,11 @@ export const totalTextCss = css`
   color: ${globalColor(`--${illaPrefix}-gray-02`)};
 `
 
+export const jumperTitleCss = css`
+  ${totalTextCss};
+  margin-left: 8px;
+`
+
 export function applyInputCss(size: PaginationSize, disable?: boolean) {
   return css`
     display: inline-flex;

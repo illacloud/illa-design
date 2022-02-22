@@ -3,6 +3,7 @@ import { TriggerColorScheme, TriggerPosition } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getAnimation } from "./transform"
 import { Variants } from "framer-motion"
+import { AdjustResult } from "./adjust-tips-location"
 
 const colorSchemes = [
   "white",
@@ -84,6 +85,8 @@ export function applyTipsContainer(
 export function applyTipsText(
   colorScheme: TriggerColorScheme,
   withoutPadding?: boolean,
+  adjustResult?: AdjustResult,
+  autoAlignPopupWidth?: boolean,
 ): SerializedStyles {
   const bgColor = colorSchemes.includes(colorScheme)
     ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
@@ -93,13 +96,30 @@ export function applyTipsText(
       ? globalColor(`--${illaPrefix}-gray-03`)
       : globalColor(`--${illaPrefix}-white-02`)
 
+  let paddingHor = "12px"
+
   let padding = css`
-    padding: 8px 12px;
+    padding: 8px ${paddingHor};
   `
   if (withoutPadding) {
     padding = css``
   }
-  console.log(padding, "padding")
+
+  let width = css``
+  if (autoAlignPopupWidth) {
+    if (withoutPadding) {
+      width = css`
+        width: ${adjustResult?.childrenWidth}px;
+      `
+    } else {
+      width = css`
+        width: calc(
+          ${adjustResult?.childrenWidth}px - ${paddingHor} - ${paddingHor}
+        );
+      `
+    }
+  }
+
   return css`
     box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
     background-color: ${bgColor};
@@ -109,6 +129,7 @@ export function applyTipsText(
     border-radius: 2px;
     font-size: 14px;
     ${padding};
+    ${width}
   `
 }
 

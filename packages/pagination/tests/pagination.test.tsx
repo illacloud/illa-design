@@ -59,7 +59,7 @@ test("Pagination render with jumper", () => {
       total={99}
     />,
   )
-  expect(screen.getByText("GO")).toBeInTheDocument()
+  expect(screen.getByText("Go to")).toBeInTheDocument()
   const input = screen.getByRole(`textbox`)
   expect(screen.getByText("1")).toHaveStyle({
     color: `${globalColor(`--${illaPrefix}-blue-01`)}`,
