@@ -44,12 +44,14 @@ import {
   def,
 } from "@illa-design/config-provider"
 import useMeasure from "react-use/lib/useMeasure"
+import useClickAway from "react-use/lib/useClickAway"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
     colorScheme = "gray",
     content,
     position = "top",
+    clickOutsideToClose,
     showArrow = true,
     closeDelay = 150,
     openDelay = 150,
@@ -260,6 +262,16 @@ export const Trigger: FC<TriggerProps> = (props) => {
       initial="initial"
       animate="animate"
       exit="exit"
+      onClick={() => {
+        if (
+          !disabled &&
+          trigger == "click" &&
+          clickOutsideToClose &&
+          popupVisible == undefined
+        ) {
+          showTips()
+        }
+      }}
       onMouseEnter={() => {
         if (!disabled && trigger == "hover" && popupVisible == undefined) {
           showTips()
@@ -274,6 +286,17 @@ export const Trigger: FC<TriggerProps> = (props) => {
       {centerNode}
     </motion.div>
   )
+
+  useClickAway(childrenRef, () => {
+    if (
+      !disabled &&
+      trigger == "click" &&
+      clickOutsideToClose &&
+      popupVisible == undefined
+    ) {
+      hideTips()
+    }
+  })
 
   useEffect(() => {
     let isMount = true
