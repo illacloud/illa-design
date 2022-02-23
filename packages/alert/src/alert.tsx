@@ -1,5 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import React, { forwardRef, useState, useMemo, MouseEvent } from "react"
+import React, {
+  forwardRef,
+  useState,
+  useMemo,
+  useEffect,
+  MouseEvent,
+} from "react"
 import { AlertProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -29,12 +35,12 @@ const iconMap = {
 const variants = {
   enter: {
     opacity: 1,
-    "transform-origin": "0% 0%",
+    transformOrigin: "0% 0%",
     transform: "scaleY(1) translateZ(0)",
   },
   hidden: {
     opacity: 0,
-    "transform-origin": "0% 0%",
+    transformOrigin: "0% 0%",
     transform: "scaleY(0.8) translateZ(0)",
     transition: {
       opacity: { duration: 0.2, ease: "linear" },
@@ -43,7 +49,7 @@ const variants = {
   },
   show: {
     opacity: 1,
-    "transform-origin": "0% 0%",
+    transformOrigin: "0% 0%",
     transform: "scaleY(1) translateZ(0)",
     transition: {
       opacity: { duration: 0.2, ease: "linear" },
@@ -68,7 +74,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     ...restProps
   }: AlertProps & { children?: React.ReactNode | undefined } = props
   const [visible, setVisible] = useState<boolean>(true)
-
+  useEffect(() => () => afterClose && afterClose())
   const renderIcon = useMemo(() => {
     return icon ? icon : iconMap[type]
   }, [icon, type])
@@ -76,7 +82,6 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const onHandleClose = (e: MouseEvent) => {
     setVisible(false)
     onClose && onClose(e)
-    afterClose && afterClose()
   }
   return (
     <AnimatePresence>
@@ -86,12 +91,9 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
           animate={"show"}
           exit={"hidden"}
           initial={"enter"}
+          ref={ref}
         >
-          <div
-            css={applyAlert(type, !!content, !!banner)}
-            ref={ref}
-            {...restProps}
-          >
+          <div css={applyAlert(type, !!content, !!banner)} {...restProps}>
             {showIcon && (
               <div css={applyAlertIcon(type, !!content)}>{renderIcon}</div>
             )}
@@ -101,7 +103,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
             </div>
             {action && <div css={applyAlertAction}>{action}</div>}
             {closable && (
-              <button css={applyAlertCloseBtn} onClick={onHandleClose}>
+              <button css={applyAlertCloseBtn(type)} onClick={onHandleClose}>
                 {closeElement || <CloseIcon />}
               </button>
             )}

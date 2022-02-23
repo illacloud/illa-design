@@ -82,7 +82,7 @@ export function applyAlertContent() {
   `
 }
 
-export function applyAlertCloseBtn() {
+export function applyAlertCloseBtn(type: AlertType) {
   return css`
     box-sizing: border-box;
     padding: 0;
@@ -92,6 +92,7 @@ export function applyAlertCloseBtn() {
     border: none;
     margin-left: 8px;
     color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    background-color: ${colorMap[type]};
     width: 8px;
   `
 }
