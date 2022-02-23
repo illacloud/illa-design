@@ -16,8 +16,11 @@ import {
   RightIcon,
   SearchIcon,
   SuccessIcon,
-  WarningIcon,
   WarningCircleIcon,
+  WarningIcon,
+  PreIcon,
+  NextIcon,
+  MoreIcon,
   InfoCircleIcon,
 } from "../src"
 
@@ -64,3 +67,6 @@ export const Checkmark: Story<IconProps> = (props) => (
 export const InfoCircle: Story<IconProps> = (props) => (
   <InfoCircleIcon {...props} />
 )
+export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
+export const Next: Story<IconProps> = (props) => <NextIcon {...props} />
+export const More: Story<IconProps> = (props) => <MoreIcon {...props} />

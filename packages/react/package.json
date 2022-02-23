@@ -61,6 +61,7 @@
     "@illa-design/statistic": "*",
     "@illa-design/checkbox": "*",
     "@illa-design/list": "*",
-    "@illa-design/switch": "*"
+    "@illa-design/switch": "*",
+    "@illa-design/alert": "*"
   }
 }
