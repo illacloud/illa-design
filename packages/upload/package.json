@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/avatar"
+    "directory": "packages/upload"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
@@ -40,8 +40,9 @@
   },
   "dependencies": {
     "@illa-design/icon": "*",
+    "@illa-design/list": "*",
     "@illa-design/image": "*",
-    "@illa-design/system": "*",
-    "@illa-design/theme": "*"
+    "@illa-design/progress": "*",
+    "rc-upload": "^4.3.3"
   }
 }

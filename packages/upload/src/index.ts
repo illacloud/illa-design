@@ -1,1 +1,2 @@
-export * from "./upload"
+export * from "./uploadV2"
+export * from "./interface"

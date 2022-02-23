@@ -22,6 +22,9 @@ import {
   NextIcon,
   MoreIcon,
   InfoCircleIcon,
+  DeleteIcon,
+  MinusIcon,
+  UploadIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -70,3 +73,6 @@ export const InfoCircle: Story<IconProps> = (props) => (
 export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
 export const Next: Story<IconProps> = (props) => <NextIcon {...props} />
 export const More: Story<IconProps> = (props) => <MoreIcon {...props} />
+export const Minus: Story<IconProps> = (props) => <MinusIcon {...props} />
+export const Upload: Story<IconProps> = (props) => <UploadIcon {...props} />
+export const Delete: Story<IconProps> = (props) => <DeleteIcon {...props} />
