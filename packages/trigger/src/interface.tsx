@@ -1,10 +1,11 @@
 import { ReactNode } from "react"
 
 export type TriggerColorScheme =
-  string
+  | string
   | "white"
   | "gray"
   | "grayBlue"
+  | "blackAlpha"
   | "red"
   | "orange"
   | "yellow"
@@ -14,7 +15,7 @@ export type TriggerColorScheme =
   | "purple"
 
 export type TriggerPosition =
-  "top"
+  | "top"
   | "tl"
   | "tr"
   | "bottom"
@@ -31,6 +32,8 @@ export type TriggerTrigger = "hover" | "click" | "focus"
 
 export interface TriggerProps {
   colorScheme?: TriggerColorScheme
+  clickOutsideToClose?: boolean
+  withoutPadding?: boolean
   trigger?: TriggerTrigger
   content?: string | ReactNode
   position?: TriggerPosition
@@ -40,6 +43,7 @@ export interface TriggerProps {
   autoFitPosition?: boolean
   closeOnClick?: boolean
   defaultPopupVisible?: boolean
+  autoAlignPopupWidth?: boolean
   popupVisible?: boolean
   disabled?: boolean
   hasCloseIcon?: boolean

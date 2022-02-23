@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react"
 
 export type ButtonColorScheme =
-  "white"
+  | "white"
   | "blackAlpha"
   | "gray"
   | "grayBlue"
@@ -30,8 +30,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonRadius?: string
 }
 
-export interface ButtonGroupProps extends HTMLAttributes<HTMLDivElement>, Omit<ButtonGroupContextProps, "first" | "last"> {
-}
+export interface ButtonGroupProps
+  extends HTMLAttributes<HTMLDivElement>,
+    Omit<ButtonGroupContextProps, "first" | "last"> {}
 
 export interface ButtonGroupContextProps {
   colorScheme?: ButtonColorScheme

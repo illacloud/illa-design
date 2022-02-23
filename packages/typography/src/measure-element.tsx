@@ -1,7 +1,12 @@
 import * as React from "react"
 import { ReactNode } from "react"
 
-function inRange(computeElement: HTMLElement, maxHeight: number, lastLineMaxWidth: number, rows: number) {
+function inRange(
+  computeElement: HTMLElement,
+  maxHeight: number,
+  lastLineMaxWidth: number,
+  rows: number,
+) {
   const lines = computeElement.getClientRects().length
   if (lines > rows) {
     return false
@@ -13,16 +18,46 @@ function inRange(computeElement: HTMLElement, maxHeight: number, lastLineMaxWidt
   return lastLineWidth <= lastLineMaxWidth
 }
 
-function measureText(computeElement: HTMLElement, textNode: Text, fullText: string, maxHeight: number, lastLineMaxWidth: number, rows: number, start: number = 0, end: number = fullText.length) {
-  if (start >= end - 1 && inRange(computeElement, maxHeight, lastLineMaxWidth, rows)) {
+function measureText(
+  computeElement: HTMLElement,
+  textNode: Text,
+  fullText: string,
+  maxHeight: number,
+  lastLineMaxWidth: number,
+  rows: number,
+  start: number = 0,
+  end: number = fullText.length,
+) {
+  if (
+    start >= end - 1 &&
+    inRange(computeElement, maxHeight, lastLineMaxWidth, rows)
+  ) {
     return
   }
   const mid = Math.floor((start + end) / 2)
   textNode.textContent = fullText.slice(0, mid).trim()
   if (inRange(computeElement, maxHeight, lastLineMaxWidth, rows)) {
-    measureText(computeElement, textNode, fullText, maxHeight, lastLineMaxWidth, rows, mid, end)
+    measureText(
+      computeElement,
+      textNode,
+      fullText,
+      maxHeight,
+      lastLineMaxWidth,
+      rows,
+      mid,
+      end,
+    )
   } else {
-    measureText(computeElement, textNode, fullText, maxHeight, lastLineMaxWidth, rows, start, mid)
+    measureText(
+      computeElement,
+      textNode,
+      fullText,
+      maxHeight,
+      lastLineMaxWidth,
+      rows,
+      start,
+      mid,
+    )
   }
 }
 
@@ -89,7 +124,14 @@ export function measureElement(
   }
 
   const lastLineMaxWidth = getMaxLineWidth(computeElement) - operationWidth
-  measureText(computeElement, textNode, fullText, maxHeight, lastLineMaxWidth, rows)
+  measureText(
+    computeElement,
+    textNode,
+    fullText,
+    maxHeight,
+    lastLineMaxWidth,
+    rows,
+  )
   const finalString = computeElement.textContent ?? ""
   computeElement.remove()
   return {
@@ -109,7 +151,9 @@ export function isString(obj: any): obj is string {
 }
 
 export function isNumber(obj: any): obj is number {
-  return Object.prototype.toString.call(obj) === "[object Number]" && obj === obj // eslint-disable-line
+  return (
+    Object.prototype.toString.call(obj) === "[object Number]" && obj === obj
+  ) // eslint-disable-line
 }
 
 export default function mergedToString(children: any): string {

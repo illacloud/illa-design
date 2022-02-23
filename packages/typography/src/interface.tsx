@@ -3,7 +3,7 @@ import { Ellipsis } from "./ellipsis-config"
 import { Copyable } from "./copyable-config"
 
 export type TypographyColorScheme =
-  string
+  | string
   | "white"
   | "blackAlpha"
   | "gray"
@@ -22,12 +22,16 @@ export interface TextProps extends BaseProps, HTMLAttributes<HTMLSpanElement> {
   fontSize?: string
 }
 
-export interface ParagraphProps extends BaseProps, HTMLAttributes<HTMLParagraphElement> {
+export interface ParagraphProps
+  extends BaseProps,
+    HTMLAttributes<HTMLParagraphElement> {
   fontSize?: string
   indent?: boolean
 }
 
-export interface HeadingProps extends BaseProps, HTMLAttributes<HTMLHeadingElement> {
+export interface HeadingProps
+  extends BaseProps,
+    HTMLAttributes<HTMLHeadingElement> {
   level?: HeadingLevel
 }
 

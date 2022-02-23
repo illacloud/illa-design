@@ -14,7 +14,6 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { InputElementProps, InputRefType } from "./interface"
 import { applyInputStyle, pointerStyle } from "./style"
 
-
 export const InputElement = forwardRef<InputRefType, InputElementProps>(
   (props, ref) => {
     const inputRef = useRef<HTMLInputElement | null>(null)
@@ -35,6 +34,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
       value,
       type,
       onClear,
+      textCenterHorizontal,
       ...rest
     } = props
 
@@ -115,7 +115,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
       <>
         <input
           ref={inputRef}
-          css={applyInputStyle}
+          css={applyInputStyle(textCenterHorizontal)}
           {...inputProps}
           {...(type ? { type } : {})}
         />
@@ -131,13 +131,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
               e.preventDefault()
             }}
           >
-            <ErrorIcon
-              css={css(
-                `color: ${globalColor(
-                  `--${illaPrefix}-gray-07`,
-                )}; margin-left: 10px;`,
-              )}
-            />
+            <ErrorIcon css={css(`margin-left: 10px;`)} />
           </span>
         ) : null}
       </>

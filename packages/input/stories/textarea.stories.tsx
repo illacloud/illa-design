@@ -13,6 +13,7 @@ export const textarea: Story<TextAreaProps> = (props) => {
     <div>
       <TextArea {...props} />
       <TextArea allowClear autoSize {...props} />
+      <TextArea allowClear autoSize={{ minRows: 2, maxRows: 5 }} {...props} />
     </div>
   )
 }

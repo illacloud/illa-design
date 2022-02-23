@@ -37,7 +37,8 @@
   },
   "scripts": {
     "build": "tsc && vite build",
-    "test": "yarn jest"
+    "e2e:ci": "yarn cypress run-ct",
+    "e2e": "yarn cypress open-ct"
   },
   "dependencies": {
     "@illa-design/system": "*",

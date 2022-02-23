@@ -1,16 +1,16 @@
+import { InputSize } from "./interface"
+
+const chroma = require("chroma-js")
 import { css, SerializedStyles } from "@emotion/react"
-import * as chroma from "chroma-js";
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { StateValue } from "./input"
 
 export const inputFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
   border-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
 `
 export const inputOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
 `
 export const disableOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
@@ -29,7 +29,10 @@ export const hoverFillStyle = css`
 export const errorFocusStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-  box-shadow: 0 0 8px 0 ${chroma(globalColor(`--${illaPrefix}-red-01`)).alpha(0.5).hex()};
+  box-shadow: 0 0 8px 0
+    ${chroma(globalColor(`--${illaPrefix}-red-01`))
+      .alpha(0.15)
+      .hex()};
 `
 export const errorFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-red-07`)};
@@ -74,7 +77,6 @@ export function applyContainerCss(variant: string) {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 16px;
     font-size: 14px;
     line-height: 1.57;
     border-radius: 4px;
@@ -101,6 +103,7 @@ function applySizeStyle(size?: string) {
     case "small":
       sizeCss = css`
         height: 22px;
+        font-size: 12px;
       `
       break
   }
@@ -141,7 +144,7 @@ function applyStatus(stateValue: StateValue) {
         `--${illaPrefix}-${stateValue.boarderColor}-03`,
       )};
       box-shadow: 0 0 8px 0
-        ${boxShadowColor ? chroma(boxShadowColor).alpha(0.5).hex() : ""};
+        ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
     `
@@ -165,31 +168,49 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
-export function applyInputContainer(stateValue: StateValue) {
+export function applySizeCss(
+  requirePadding?: boolean,
+  size?: InputSize,
+): SerializedStyles {
   let sizeCss: SerializedStyles
-
-  switch (stateValue?.size) {
+  let paddindCss: SerializedStyles | undefined
+  if (requirePadding && size == "small") {
+    paddindCss = css`
+      padding: 0 12px;
+    `
+  } else if (requirePadding) {
+    paddindCss = css`
+      padding: 0 16px;
+    `
+  }
+  switch (size) {
     default:
     case "large":
       sizeCss = css`
         height: 38px;
-        padding: 0 16px;
+        ${paddindCss};
       `
       break
     case "medium":
       sizeCss = css`
         height: 30px;
-        padding: 0 16px;
+        ${paddindCss};
       `
       break
     case "small":
       sizeCss = css`
         height: 22px;
-        padding: 0 12px;
+        ${paddindCss};
       `
       break
   }
+  return sizeCss
+}
 
+export function applyInputContainer(
+  stateValue: StateValue,
+  requirePadding?: boolean,
+) {
   return css`
     width: 100%;
     display: flex;
@@ -199,14 +220,13 @@ export function applyInputContainer(stateValue: StateValue) {
     line-height: 1.57;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
-
-    ${sizeCss}
+    transition: all 200ms ease-in-out;
+    ${applySizeCss(requirePadding, stateValue?.size)};
     ${applyStatus(stateValue)}
-      &:first-of-type {
+    &:first-of-type {
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
     }
-
     &:last-of-type {
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
@@ -214,35 +234,73 @@ export function applyInputContainer(stateValue: StateValue) {
   `
 }
 
-export function applyInputStyle() {
+export function applyInputStyle(textCenterHorizontal?: boolean | undefined) {
+  let textAlignCss: SerializedStyles
+  if (textCenterHorizontal) {
+    textAlignCss = css`
+      text-align: center;
+    `
+  } else {
+    textAlignCss = css`
+      text-align: start;
+    `
+  }
   return css`
     width: 100%;
     appearance: none;
-    font-size: 14px;
-    font-family: HelveticaNeue;
+    font-size: inherit;
+    font-family: inherit;
+    border-radius: 4px;
     line-height: 20px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    border-radius: 0;
     border: none;
     outline: unset;
     cursor: inherit;
     background-color: inherit;
 
+    ${textAlignCss}
     &::placeholder {
       color: ${globalColor(`--${illaPrefix}-gray-04`)};
+    }
+
+    &:disabled {
+      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+
+      &::placeholder {
+        color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      }
     }
   `
 }
 
-export function applyPrefixCls() {
+function baseFixCls(stateValue: StateValue) {
+  let sizeCss: SerializedStyles
+  switch (stateValue?.size) {
+    default:
+      sizeCss = css`
+        & > svg {
+          font-size: 16px;
+        }
+      `
+      break
+    case "small":
+      sizeCss = css``
+      break
+  }
   return css`
     display: flex;
     flex-direction: row;
     align-items: center;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
     white-space: nowrap;
     vertical-align: middle;
+    font-size: inherit;
+    ${sizeCss}
+  `
+}
 
+export function applyPrefixCls(stateValue: StateValue) {
+  return css`
+    ${baseFixCls(stateValue)}
     &:first-of-type {
       margin-right: 12px;
     }
@@ -253,15 +311,10 @@ export function applyPrefixCls() {
   `
 }
 
-export function applySuffixCls() {
+export function applySuffixCls(stateValue: StateValue) {
   return css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    ${baseFixCls(stateValue)}
     margin-left: 12px;
-    white-space: nowrap;
-    vertical-align: middle;
   `
 }
 
@@ -300,16 +353,13 @@ export function applyAddonCss(stateValue: StateValue) {
       break
   }
   return css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    ${baseFixCls(stateValue)}
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
     border-width: 1px;
     border-style: solid;
-    padding: 0 12px;
-    white-space: nowrap;
-    vertical-align: middle;
+    padding: 0 16px;
+    line-height: initial;
 
     &:first-of-type {
       border-top-left-radius: 4px;
@@ -347,4 +397,9 @@ export function applyLengthErrorStyle(error?: boolean) {
 
 export const pointerStyle = css`
   cursor: pointer;
+  color: ${globalColor(`--${illaPrefix}-gray-06`)};
+
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  }
 `

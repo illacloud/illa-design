@@ -19,7 +19,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
+    "jsxImportSource": "@emotion/react"
   },
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "packages/**/tests/*.e2e.tsx"
+  ]
 }

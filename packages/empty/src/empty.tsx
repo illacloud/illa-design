@@ -1,16 +1,22 @@
 /** @jsxImportSource @emotion/react */
-import {forwardRef, useContext} from "react"
+import { forwardRef, useContext } from "react"
 import { Image } from "@illa-design/image"
 import { EmptyIcon } from "@illa-design/icon"
-import { ConfigProviderContext, ConfigProviderProps, def } from "@illa-design/config-provider"
+import {
+  ConfigProviderContext,
+  ConfigProviderProps,
+  def,
+} from "@illa-design/config-provider"
 import { descriptionCss, emptyContainerCss, iconCss } from "./style"
 import { EmptyProps } from "./interface"
 
 export const Empty = forwardRef<HTMLDivElement, EmptyProps>((props, ref) => {
-    const configProviderProps = useContext<ConfigProviderProps>(ConfigProviderContext)
-    const locale = configProviderProps?.locale?.empty ?? def.empty
+  const configProviderProps = useContext<ConfigProviderProps>(
+    ConfigProviderContext,
+  )
+  const locale = configProviderProps?.locale?.empty ?? def.empty
 
-    const {
+  const {
     icon = <EmptyIcon css={iconCss} />,
     imgSrc,
     description = locale["noData"],

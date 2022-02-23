@@ -54,7 +54,7 @@ function setMirrorTextArea(originTextArea: HTMLTextAreaElement): {
   )
   const paddingSize =
     parseFloat(originStyle.getPropertyValue("padding-top")) +
-    parseFloat(originStyle.getPropertyValue("padding-top"))
+    parseFloat(originStyle.getPropertyValue("padding-bottom"))
   const boxSizing = originStyle.getPropertyValue("box-sizing")
   const borderSize =
     parseFloat(originStyle.getPropertyValue("border-top-width")) +
@@ -73,7 +73,7 @@ function autoSizeTextAreaHeight(
   const getRows = () => {
     let minRows
     let maxRows
-    if (Object.prototype.toString.call(autoSize) === '[object Object]') {
+    if (Object.prototype.toString.call(autoSize) === "[object Object]") {
       minRows = (autoSize as any).minRows
       maxRows = (autoSize as any).maxRows
     }

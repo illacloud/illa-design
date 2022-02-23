@@ -3,8 +3,12 @@ import { CopyIcon, RightIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export class Copyable {
-  copyIcon: ReactNode = <CopyIcon color={globalColor(`--${illaPrefix}-gray-01`)} />
-  copiedIcon: ReactNode = <RightIcon />
+  copyIcon: ReactNode = (
+    <CopyIcon color={globalColor(`--${illaPrefix}-gray-01`)} />
+  )
+  copiedIcon: ReactNode = (
+    <RightIcon color={globalColor(`--${illaPrefix}-green-03`)} />
+  )
   copiedToolTip: boolean | string | ReactNode
   copyToolTip: boolean | string | ReactNode
   onCopy?: () => void
@@ -23,12 +27,16 @@ export class CopyableBuilder {
     return this
   }
 
-  public copiedTooltip(copiedTooltip: boolean | string | ReactNode): CopyableBuilder {
+  public copiedTooltip(
+    copiedTooltip: boolean | string | ReactNode,
+  ): CopyableBuilder {
     this.config.copiedToolTip = copiedTooltip
     return this
   }
 
-  public copyTooltip(copyToolTip: boolean | string | ReactNode): CopyableBuilder {
+  public copyTooltip(
+    copyToolTip: boolean | string | ReactNode,
+  ): CopyableBuilder {
     this.config.copyToolTip = copyToolTip
     return this
   }

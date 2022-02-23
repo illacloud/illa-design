@@ -3,8 +3,21 @@ import { TriggerColorScheme, TriggerPosition } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getAnimation } from "./transform"
 import { Variants } from "framer-motion"
+import { AdjustResult } from "./adjust-tips-location"
 
-const colorSchemes = ["white", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple"]
+const colorSchemes = [
+  "white",
+  "gray",
+  "grayBlue",
+  "red",
+  "orange",
+  "yellow",
+  "blackAlpha",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+]
 
 export const applyChildrenContainer = css`
   display: inline-flex;
@@ -17,8 +30,9 @@ export function applyMotionDiv() {
   `
 }
 
-export function applyTipsContainer(position: TriggerPosition): SerializedStyles {
-
+export function applyTipsContainer(
+  position: TriggerPosition,
+): SerializedStyles {
   const isColumn =
     position == "top" ||
     position == "tl" ||
@@ -26,7 +40,6 @@ export function applyTipsContainer(position: TriggerPosition): SerializedStyles 
     position == "bottom" ||
     position == "bl" ||
     position == "br"
-
 
   let paddingStyle: SerializedStyles
   switch (position) {
@@ -69,9 +82,44 @@ export function applyTipsContainer(position: TriggerPosition): SerializedStyles 
   `
 }
 
-export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles {
-  const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
-  const textColor = colorScheme == "white" ? globalColor(`--${illaPrefix}-gray-03`) : globalColor(`--${illaPrefix}-white-02`)
+export function applyTipsText(
+  colorScheme: TriggerColorScheme,
+  withoutPadding?: boolean,
+  adjustResult?: AdjustResult,
+  autoAlignPopupWidth?: boolean,
+): SerializedStyles {
+  const bgColor = colorSchemes.includes(colorScheme)
+    ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
+    : colorScheme
+  const textColor =
+    colorScheme == "white"
+      ? globalColor(`--${illaPrefix}-gray-03`)
+      : globalColor(`--${illaPrefix}-white-02`)
+
+  let paddingHor = "12px"
+
+  let padding = css`
+    padding: 8px ${paddingHor};
+  `
+  if (withoutPadding) {
+    padding = css``
+  }
+
+  let width = css``
+  if (autoAlignPopupWidth) {
+    if (withoutPadding) {
+      width = css`
+        width: ${adjustResult?.childrenWidth}px;
+      `
+    } else {
+      width = css`
+        width: calc(
+          ${adjustResult?.childrenWidth}px - ${paddingHor} - ${paddingHor}
+        );
+      `
+    }
+  }
+
   return css`
     box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
     background-color: ${bgColor};
@@ -80,12 +128,18 @@ export function applyTipsText(colorScheme: TriggerColorScheme): SerializedStyles
     max-width: 588px;
     border-radius: 2px;
     font-size: 14px;
-    padding: 8px 12px;
+    ${padding};
+    ${width}
   `
 }
 
-export function applyTriangleStyle(colorScheme: TriggerColorScheme, position: TriggerPosition): SerializedStyles {
-  const bgColor = colorSchemes.includes(colorScheme) ? globalColor(`--${illaPrefix}-${colorScheme}-02`) : colorScheme
+export function applyTriangleStyle(
+  colorScheme: TriggerColorScheme,
+  position: TriggerPosition,
+): SerializedStyles {
+  const bgColor = colorSchemes.includes(colorScheme)
+    ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
+    : colorScheme
   const mainStyle = css`
     color: ${bgColor};
     z-index: 1;

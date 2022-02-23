@@ -2,14 +2,19 @@ import { Locale } from "../interface"
 
 export const enUS = {
   typography: {
-    "copiedToolTip": "Copied",
-    "copyToolTip": "Copy",
-    "expandLabel": "Expand",
+    copiedToolTip: "Copied",
+    copyToolTip: "Copy",
+    expandLabel: "Expand",
   },
   trigger: {
-    "close": "Close",
+    close: "Close",
   },
   empty: {
-    "noData": "No data",
+    noData: "No data",
+  },
+  pagination: {
+    total: "Total {0}",
+    page: "Page",
+    go: "Go to ",
   },
 } as Locale

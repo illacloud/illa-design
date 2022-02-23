@@ -45,7 +45,17 @@ export const closeIcon = css`
 `
 
 export const colors: TagColorScheme[] = [
-  "white", "blackAlpha", "gray", "grayBlue", "red", "orange", "yellow", "green", "blue", "cyan", "purple",
+  "white",
+  "blackAlpha",
+  "gray",
+  "grayBlue",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
 ]
 
 export function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {
@@ -88,7 +98,9 @@ export function tagLightPrepare(color: TagColorScheme): SerializedStyles {
   }
 }
 
-export function tagFillNormal(color: Extract<TagColorScheme, string>): SerializedStyles {
+export function tagFillNormal(
+  color: Extract<TagColorScheme, string>,
+): SerializedStyles {
   return css`
     border-radius: 1px;
     color: ${globalColor(`--${illaPrefix}-white-01`)};
@@ -96,7 +108,9 @@ export function tagFillNormal(color: Extract<TagColorScheme, string>): Serialize
   `
 }
 
-export function tagOutlineNormal(color: Extract<TagColorScheme, string>): SerializedStyles {
+export function tagOutlineNormal(
+  color: Extract<TagColorScheme, string>,
+): SerializedStyles {
   return css`
     border-radius: 1px;
     color: ${color};

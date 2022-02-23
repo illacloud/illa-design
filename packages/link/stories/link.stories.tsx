@@ -9,7 +9,10 @@ export default {
 } as Meta
 
 export const Basic: Story<LinkProps> = (args) => (
-  <Link {...args} icon>
-    Link
-  </Link>
+  <div>
+    <Link {...args} icon>
+      Link
+    </Link>
+    <Link {...args}>Link</Link>
+  </div>
 )
