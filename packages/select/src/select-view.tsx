@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, useRef, useState, ChangeEvent, FocusEvent } from "react"
+import { forwardRef, useRef, useState, useEffect, FocusEvent } from "react"
 import { InputElement, InputRefType } from "@illa-design/input"
 import { LoadingIcon, SearchIcon, ExpandIcon } from "@illa-design/icon"
 
@@ -21,6 +21,12 @@ export interface StateValue {
   size?: SelectViewProps["size"]
 }
 
+const SearchStatus = {
+  BEFORE: 0,
+  EDITING: 1,
+  NONE: 2,
+};
+
 export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
   (props, ref) => {
     const {
@@ -34,7 +40,7 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
       defaultValue,
       showSearch,
       placeholder,
-      isMultiMode,
+      isMultipleMode,
       popupVisible,
       // event
       onChange,
@@ -53,8 +59,9 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
     const inputRef = useRef<InputRefType>(null)
     const [focused, setFocused] = useState(false)
     const mergedFocused = focused || popupVisible
+    const [searchStatus, setSearchStatus] = useState(SearchStatus.NONE);
 
-    const canFocusInput = showSearch || isMultiMode
+    const canFocusInput = showSearch || isMultipleMode
 
     const stateValue: StateValue = {
       error,
@@ -62,6 +69,20 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
       focus: mergedFocused,
       size,
     }
+
+    const handleFocus = (action: 'focus' | 'blur') => {
+      const element = canFocusInput ? inputRef.current : viewRef.current;
+      if (element) {
+        action === 'focus' ? element?.focus?.() : element?.blur?.();
+      }
+    };
+
+    useEffect(() => {
+      handleFocus(popupVisible ? 'focus' : 'blur');
+      if (canFocusInput) {
+        setSearchStatus(popupVisible ? SearchStatus.BEFORE : SearchStatus.NONE);
+      }
+    }, [popupVisible]);
 
     const renderMultiple = () => {
       return <div>Multiple/tags</div>
@@ -104,8 +125,13 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
             tryTriggerFocusChange("focus", event)
           }
         }}
+        onBlur={(event) => tryTriggerFocusChange('blur', event)}
       >
-        {isMultiMode ? renderMultiple() : renderSingle()}
+        <div
+          onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}
+        >
+          {isMultipleMode ? renderMultiple() : renderSingle()}
+        </div>
       </div>
     )
   },

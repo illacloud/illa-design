@@ -11,15 +11,20 @@ import { isString, isObject, isArray, isNumber } from "@illa-design/system"
 
 type OptionsType = SelectProps["options"]
 
-function isSelectOption(child: ReactElement): boolean {
+export function isSelectOption(child: ReactElement): boolean {
   return get(child, "props.isSelectOption")
 }
 
-function isSelectOptGroup(child: ReactElement): boolean {
+export function isSelectOptGroup(child: ReactElement): boolean {
   return get(child, "props.isSelectOptGroup")
 }
 
-function getHighlightText<T>({
+export function isEmptyValue(value: any, isMultiple: boolean) {
+  // Illegal value is considered as unselected
+  return isMultiple ? !isArray(value) || !value.length : value === undefined
+}
+
+export function getHighlightText<T>({
   nodeList,
   pattern,
   highlightClassName,
@@ -31,7 +36,6 @@ function getHighlightText<T>({
   if (!pattern) {
     return nodeList
   }
-
   const transformNode = (node: any) => {
     if (node && node.props && typeof node.props.children === "string") {
       const { children } = node.props
@@ -269,4 +273,33 @@ export function flatChildren(
     hasOptGroup,
     hasComplexLabelInOptions,
   }
+}
+
+export type SelectInner = string | number | string[] | number[] | undefined
+
+export function getValidValue(
+  value: any,
+  isMultiple: boolean,
+  labelInValue?: boolean,
+): SelectInner {
+  // Compatible when labelInValue is set, value is passed in the object
+  if (labelInValue) {
+    if (isMultiple) {
+      value = Array.isArray(value)
+        ? value.map((item) =>
+            isObject(item) && "label" in item ? item.value : item,
+          )
+        : value
+    } else {
+      value = isObject(value) && "label" in value ? value.value : value
+    }
+  }
+
+  return isEmptyValue(value, isMultiple)
+    ? isMultiple
+      ? Array.isArray(value)
+        ? value
+        : []
+      : undefined
+    : value
 }
