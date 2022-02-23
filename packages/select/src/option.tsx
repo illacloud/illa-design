@@ -6,14 +6,8 @@ import { applyMergeCss, applyOptionStyle, applyRadioSize } from "./style"
 import { omit, useMergeValue } from "@illa-design/system"
 
 export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
-  const {
-    children,
-    disabled,
-    value,
-    defaultValue,
-    onChange,
-    ...otherProps
-  } = props
+  const { children, disabled, value, defaultValue, onChange, ...otherProps } =
+    props
 
   const [currentValue, setCurrentValue] = useMergeValue(undefined, {
     value: value,

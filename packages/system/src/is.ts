@@ -35,5 +35,5 @@ export function isNumber(obj: any): obj is number {
 }
 
 export function isFunction(obj: any): obj is (...args: any[]) => any {
-  return typeof obj === 'function';
+  return typeof obj === "function"
 }

@@ -26,12 +26,11 @@ export interface RadioGroupProps<T>
     RadioGroupContextProps<T> {}
 
 export interface OptionProps extends HTMLAttributes<HTMLLIElement> {
-  _key?: any;
+  _key?: any
   disabled?: boolean
   value?: string | number
   title?: string
-  extra?: any;
-
+  extra?: any
 }
 
 export interface OptionInfo extends PropsWithChildren<OptionProps> {

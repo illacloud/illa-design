@@ -39,11 +39,11 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     value: value,
     defaultValue: defaultValue,
   })
-  const [inputValue, setInputValue, stateInputValue] = useMergeValue('', {
-    value: 'inputValue' in props ? props.inputValue || '' : undefined,
-  });
+  const [inputValue, setInputValue, stateInputValue] = useMergeValue("", {
+    value: "inputValue" in props ? props.inputValue || "" : undefined,
+  })
   // tag模式下，由用户输入而扩展到Options中的值
-  const [userCreatedOptions, setUserCreatedOptions] = useState<string[]>([]);
+  const [userCreatedOptions, setUserCreatedOptions] = useState<string[]>([])
 
   // 缓存较为耗时的 flatChildren 的结果
   const {
@@ -59,7 +59,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       {
         inputValue,
         userCreatedOptions,
-        userCreatingOption: (mode === "tags") ? inputValue : "",
+        userCreatingOption: mode === "tags" ? inputValue : "",
       },
     )
   }, [children])
