@@ -4,7 +4,7 @@
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/link
 ```
 
@@ -38,22 +38,19 @@ import { Link } from "@illa-dedign/link"
 ### 禁用
 
 ```jsx
-<Link />
-<Link disabled> Link </Link>>
+<Link disabled>Link</Link>
 ```
 
 ### 设置链接颜色
 
 ```jsx
-<Link />
-<Link colorScheme="yellow"> Link </Link>
+<Link colorScheme="yellow">Link</Link>
 
 ```
 
 ## 悬浮状态样式
 
 ```jsx
-<Link />
-<Link hoverable={false}> Link </Link>
+<Link hoverable>Link</Link>
 ```
 
