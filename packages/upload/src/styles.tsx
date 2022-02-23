@@ -4,14 +4,18 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export const uploadContainerCss = css`
   display: inline-flex;
   flex-direction: column;
-  width: 503px;
+  min-width: 503px;
   color: ${globalColor(`--${illaPrefix}-gray-02`)}; ;
 `
 
 export const uploadChildrenCss = css`
   display: inline-flex;
   flex-direction: column;
-  width: fit-content;
+  padding-right: 24px;
+`
+
+export const uploadButtonCss = css`
+  width: 100px;
 `
 
 export const inputCss = css`
@@ -45,9 +49,9 @@ export const dragUploadContainerCss = css`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 479px;
+  width: 100%;
   height: 194px;
-  ${backgroundCss}
+  ${backgroundCss};
 `
 
 export function applyImageUploadTextCss(disable?: boolean): SerializedStyles {

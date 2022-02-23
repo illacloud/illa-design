@@ -1,17 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { forwardRef, ReactNode, useRef, useState } from "react"
+import { forwardRef, useRef, useState } from "react"
 import { UploadItem, UploadProps, UploadRefType } from "./interface"
 import { UploadElementV2 } from "./upload-element-v2"
-import {
-  applyDragUploadTitleCss,
-  applyIconCss,
-  dragUploadContainerCss,
-  dragUploadTipCss,
-  fileListContainerCss,
-  uploadContainerCss,
-} from "./styles"
-import { MinusIcon, UploadIcon } from "@illa-design/icon"
-import { Button } from "@illa-design/button"
+import { fileListContainerCss, uploadContainerCss } from "./styles"
 import * as React from "react"
 import { FileListTextItem } from "./file-list-text-item"
 import { FileListPicItem } from "./file-list-pic-item"
@@ -28,7 +19,6 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     onChange,
     onReupload,
     onRemove,
-    drag,
     disabled,
     tip,
     onProgress,
@@ -116,32 +106,6 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
 
   const _fileList = getFileList(uploadState.current)
 
-  let tipNode: ReactNode
-  if (typeof tip === "string") {
-    tipNode = <div css={dragUploadTipCss}>{tip}</div>
-  } else if (typeof tip) {
-    tipNode = <div>{tip}</div>
-  }
-
-  let uploadComponent: ReactNode
-  if (drag) {
-    uploadComponent = (
-      <span css={dragUploadContainerCss}>
-        <MinusIcon css={applyIconCss(disabled)} />
-        <span css={applyDragUploadTitleCss(disabled)}>
-          Drag and drop an image
-        </span>
-        {tipNode}
-      </span>
-    )
-  } else {
-    uploadComponent = (
-      <Button size={"medium"} leftIcon={<UploadIcon />}>
-        Upload
-      </Button>
-    )
-  }
-
   return (
     <div css={uploadContainerCss}>
       <UploadElementV2
@@ -174,9 +138,7 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
           }
           onProgress && onProgress(file, e)
         }}
-      >
-        {uploadComponent}
-      </UploadElementV2>
+      />
       <List
         data={_fileList}
         bordered={false}
@@ -185,9 +147,9 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
         css={fileListContainerCss}
         render={(item) => {
           return listType === "text" ? (
-            <FileListTextItem item={item} />
+            <FileListTextItem item={item} deleteUpload={deleteUpload} />
           ) : (
-            <FileListPicItem item={item} />
+            <FileListPicItem item={item} deleteUpload={deleteUpload} />
           )
         }}
         renderKey={(item) => {

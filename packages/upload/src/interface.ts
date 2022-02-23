@@ -15,6 +15,7 @@ export type RequestOptions = Pick<
 
 export interface UploadRequestReturn {
   abort?: () => void
+
   [key: string]: any
 }
 
@@ -92,6 +93,7 @@ export interface UploadItem {
 
 export interface FileListItemProps extends HTMLAttributes<HTMLSpanElement> {
   item: UploadItem
+  deleteUpload: (file: UploadItem) => void
 }
 
 export interface CustomIconType {
@@ -114,4 +116,18 @@ export type UploadRefType = {
   abort: (file: UploadItem) => void
   deleteUpload?: (file: UploadItem) => void
   dom: HTMLDivElement | null
+}
+
+export interface TriggerNodeProps {
+  disabled?: boolean
+  tip?: string | ReactNode
+  onFileDragged?: (file: File[]) => void
+}
+
+export interface UploadButtonProps extends HTMLAttributes<HTMLDivElement> {
+  disabled?: boolean
+  autoUpload?: boolean
+  handleClick?: () => {}
+  handleClickSelectedButton: () => {}
+  handleClickUploadButton: () => {}
 }

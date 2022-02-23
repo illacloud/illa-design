@@ -6,7 +6,7 @@ interface FileWithPath extends UploadItem {
 
 interface InternalDataTransferItem extends DataTransferItem {
   isFile: boolean
-  file: (cd: (item: FileWithPath) => void) => void
+  file: (cd: (item: File) => void) => void
   createReader: () => any
   fullPath: string
   isDirectory: boolean
@@ -39,8 +39,8 @@ function loopFiles(
 
 export const traverseFileTree = (
   files: InternalDataTransferItem[],
-  callback: (files: File[]) => undefined | void,
-  isAccepted: (file: FileWithPath) => boolean,
+  callback: (files: File[]) => void | undefined,
+  isAccepted: (file: File, accept?: string | string[]) => boolean,
 ) => {
   const _traverseFileTree = (item: InternalDataTransferItem, path?: string) => {
     item.path = path || ""
@@ -48,13 +48,11 @@ export const traverseFileTree = (
       item.file((file) => {
         if (isAccepted(file)) {
           if (item.fullPath && !file.webkitRelativePath) {
-            Object.defineProperties(file, {
-              webkitRelativePath: {
-                writable: true,
-              },
+            Object.defineProperty(file, "webkitRelativePath", {
+              value: item.fullPath.replace(/^\//, ""),
             })
           }
-          callback([file.originFile])
+          callback([file])
         }
       })
     } else if (item.isDirectory) {

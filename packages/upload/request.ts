@@ -13,7 +13,9 @@ function getBody(xhr: XMLHttpRequest) {
   }
 }
 
-export function uploadRequest(options: RequestOptions): UploadRequestReturn {
+export function sendUploadRequest(
+  options: RequestOptions,
+): UploadRequestReturn {
   const {
     onProgress = () => {},
     onError = () => {},
