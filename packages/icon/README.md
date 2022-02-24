@@ -2,13 +2,13 @@
 
 icon is generally used to express information more concisely
 
-## Install
+## Installation
 
-```jsx
+```bash
 yarn add @illa-design/icon
 ```
 
-## Import component
+## Import
 
 ```jsx
 import { Icon, XxxIcon} from "@illa-design/icon"
@@ -20,8 +20,8 @@ import { Icon, XxxIcon} from "@illa-design/icon"
 
 | Props | Desc                                       | Type    | Default |
 | ----- | ------------------------------------------ | ------- | ------- |
-| size  | Setting size                               | string  | -       |
-| spin  | Setting whether the icon is rotated or not | boolean | false   |
+| size  | Setting size                               | `string`  | `- `      |
+| spin  | Setting whether the icon is rotated or not | `boolean` |` false`   |
 
 ## Example
 
