@@ -29,7 +29,7 @@ export const FileListPicItem = forwardRef<HTMLSpanElement, FileListItemProps>(
         </div>
         <DeleteIcon
           onClick={() => {
-            deleteUpload(item.uid)
+            deleteUpload(item)
           }}
           css={deleteIconCss}
         />

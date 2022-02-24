@@ -117,10 +117,12 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
         onUploadItemStatusChange={(file: UploadItem) => {
           if (!fileList) {
             setInnerUploadState((v) => {
-              return {
+              const newValue = {
                 ...v,
                 [file.uid]: file,
               }
+              console.log(`newValue ${JSON.stringify(newValue)}`)
+              return newValue
             })
           }
           console.log(`onUploadItemStatusChange ${file.name}`)
@@ -129,10 +131,12 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
           if (file) {
             if (!fileList) {
               setInnerUploadState((v) => {
-                return {
+                const newValue = {
                   ...v,
                   [file.uid]: file,
                 }
+                console.log(`newValue ${JSON.stringify(newValue)}`)
+                return newValue
               })
             }
           }

@@ -15,7 +15,6 @@ export type RequestOptions = Pick<
 
 export interface UploadRequestReturn {
   abort?: () => void
-
   [key: string]: any
 }
 

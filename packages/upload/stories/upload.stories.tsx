@@ -5,7 +5,7 @@ import { Upload } from "../src"
 import { UploadProps } from "../src/interface"
 
 export default {
-  title: "DATA INPUT/Upload",
+  title: "DATA INPUT/UploadElement",
   component: Upload,
 } as Meta
 

@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import { forwardRef, useImperativeHandle, useRef, useState } from "react"
+import { forwardRef, useRef, useState } from "react"
 import {
   RequestOptions,
   UploadInputElementProps,
@@ -7,12 +6,12 @@ import {
   UploadRefType,
   UploadRequestReturn,
 } from "./interface"
-import { sendUploadRequest } from "../request"
 import { inputCss, uploadButtonCss, uploadChildrenCss } from "./styles"
-import * as React from "react"
-import { TriggerNode } from "./drag-uploader"
 import { Button } from "@illa-design/button"
 import { UploadIcon } from "@illa-design/icon"
+import { TriggerNode } from "./drag-uploader"
+import * as React from "react"
+import { sendUploadRequest } from "../request"
 
 const getTargetFile = (file: UploadItem, fileList?: UploadItem[]) => {
   const key = "uid" in file ? "uid" : "name"
@@ -23,31 +22,28 @@ const getTargetFile = (file: UploadItem, fileList?: UploadItem[]) => {
 const deleteReq = (
   fileId: string,
   uploadRequests?: { [key: string]: UploadRequestReturn | void },
-  setRequests?: (requests: {
-    [key: string]: UploadRequestReturn | void
-  }) => void,
-) => {
+): { [key: string]: UploadRequestReturn | void } => {
   const newValue = { ...uploadRequests }
   delete newValue[fileId]
-  setRequests && setRequests(newValue)
+  return newValue
 }
 
 const handleFiles = (
   files: File[],
   fileList?: UploadItem[],
-  limit?: number,
-  onExceedLimit?: (files: File[], fileList: UploadItem[]) => void,
-  onUploadItemStatusChange?: (item: UploadItem) => void,
   autoUpload?: boolean,
-  beforeUpload?: (file: File, filesList: File[]) => boolean | Promise<any>,
-  uploadRequests?: { [key: string]: UploadRequestReturn | void },
-  onProgress?: (file: UploadItem, e?: ProgressEvent) => void,
+  limit?: number,
   headers?: object,
-  data?: object | ((any: any) => object),
   withCredentials?: boolean,
   action?: string,
-  customRequest?: (options: RequestOptions) => UploadRequestReturn | void,
+  data?: object | ((any: any) => object),
   name?: string | ((any: any) => string),
+  uploadRequests?: { [key: string]: UploadRequestReturn | void },
+  customRequest?: (options: RequestOptions) => UploadRequestReturn | void,
+  onExceedLimit?: (files: File[], fileList: UploadItem[]) => void,
+  beforeUpload?: (file: File, filesList: File[]) => boolean | Promise<any>,
+  onProgress?: (file: UploadItem, e?: ProgressEvent) => void,
+  onUploadItemStatusChange?: (item: UploadItem) => void,
 ) => {
   const fileSum = (fileList?.length ?? 0) + files.length
   if (typeof limit == "number" && limit < fileSum) {
@@ -62,8 +58,9 @@ const handleFiles = (
       status: "init",
       name: file.name,
     }
+    console.log(`onUploadItemStatusChange ${fileList?.length}`)
     onUploadItemStatusChange && onUploadItemStatusChange(upload)
-
+    console.log(`onUploadItemStatusChange ${fileList?.length}`)
     if (autoUpload) {
       setTimeout(() => {
         console.log(`setTimeout ${fileList?.length}`)
@@ -120,7 +117,10 @@ const doUpload = async (
   action?: string,
   customRequest?: (options: RequestOptions) => UploadRequestReturn | void,
   name?: string | ((any: any) => string),
-): Promise<{ [key: string]: UploadRequestReturn | void }> => {
+  setRequests?: (requests: {
+    [key: string]: UploadRequestReturn | void
+  }) => void,
+) => {
   const _onProgress = (percent: number, event?: ProgressEvent) => {
     const targetFile = getTargetFile(file, fileList)
     console.log(`_onProgress ${fileList?.length}`)
@@ -171,72 +171,45 @@ const doUpload = async (
     request = customRequest && (await customRequest({ ...options }))
   }
 
-  return { [file.uid]: request }
+  setRequests && setRequests({ ...uploadRequests, [file.uid]: request })
 }
-
-const upload = (file: UploadItem) => {
-  doUpload(file)
-}
-
-const abort = (
-  file: UploadItem,
-  uploadRequests?: { [key: string]: UploadRequestReturn | void },
-  onUploadItemStatusChange?: (item: UploadItem) => void,
-) => {
-  const req = uploadRequests && uploadRequests[file.uid]
-  if (req) {
-    req.abort && req.abort()
-    onUploadItemStatusChange &&
-      onUploadItemStatusChange({
-        ...file,
-        status: "error",
-      })
-    deleteReq(file.uid)
-  }
-}
-
-const reUpload = (file: UploadItem) => {
-  doUpload({
-    ...file,
-    percent: 0,
-    status: "uploading",
-  })
-}
-
-const deleteUpload = (file: UploadItem) => deleteReq(file.uid)
 
 export const UploadElementV2 = forwardRef<
   UploadRefType,
   UploadInputElementProps
 >((props, ref) => {
   const {
-    onUploadItemStatusChange,
-    action,
-    headers,
-    name,
-    data,
-    withCredentials,
-    customRequest,
-    onProgress,
-    fileList,
-    limit,
-    onExceedLimit,
-    autoUpload = true,
-    beforeUpload,
     accept,
     multiple,
-    tip,
-    disabled,
-    drag,
     directory,
+    fileList,
+    autoUpload,
+    limit,
+    headers,
+    withCredentials,
+    action,
+    data,
+    name,
+    disabled,
+    customRequest,
+    onExceedLimit,
+    beforeUpload,
+    onProgress,
+    drag,
+    tip,
+    onUploadItemStatusChange,
   } = props
-
-  console.log(`UploadElementV2 ${fileList?.length}`)
   const inputRef = useRef<HTMLInputElement | null>(null)
 
   const [uploadRequests, setUploadRequests] = useState<{
     [key: string]: UploadRequestReturn | void
   }>({})
+
+  const updateRequests = (requests: {
+    [key: string]: UploadRequestReturn | void
+  }) => {
+    setUploadRequests(requests)
+  }
 
   return (
     <>
@@ -254,19 +227,19 @@ export const UploadElementV2 = forwardRef<
             handleFiles(
               [].slice.call(files),
               fileList,
-              limit,
-              onExceedLimit,
-              onUploadItemStatusChange,
               autoUpload,
-              beforeUpload,
-              uploadRequests,
-              onProgress,
+              limit,
               headers,
-              data,
               withCredentials,
               action,
-              customRequest,
+              data,
               name,
+              uploadRequests,
+              customRequest,
+              onExceedLimit,
+              beforeUpload,
+              onProgress,
+              onUploadItemStatusChange,
             )
           }
           if (inputRef.current != undefined) {
@@ -294,26 +267,26 @@ export const UploadElementV2 = forwardRef<
           <TriggerNode
             disabled={disabled}
             tip={tip}
-            onFileDragged={(file) => {
-              Promise.resolve(
+            onFileDragged={(files) => {
+              if (files) {
                 handleFiles(
-                  file,
+                  [].slice.call(files),
                   fileList,
-                  limit,
-                  onExceedLimit,
-                  onUploadItemStatusChange,
                   autoUpload,
-                  beforeUpload,
-                  uploadRequests,
-                  onProgress,
+                  limit,
                   headers,
-                  data,
                   withCredentials,
                   action,
-                  customRequest,
+                  data,
                   name,
-                ),
-              )
+                  uploadRequests,
+                  customRequest,
+                  onExceedLimit,
+                  beforeUpload,
+                  onProgress,
+                  onUploadItemStatusChange,
+                )
+              }
             }}
           />
         )}

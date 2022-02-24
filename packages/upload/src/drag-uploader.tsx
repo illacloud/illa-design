@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef, ReactNode } from "react"
 import { TriggerNodeProps, UploadRefType } from "./interface"
-import { useDrop } from "react-use"
+import useDrop from "react-use/lib/useDrop"
 import {
   applyDragUploadTitleCss,
   applyIconCss,
