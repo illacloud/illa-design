@@ -4,7 +4,7 @@
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/space
 ```
 
@@ -20,11 +20,11 @@ import { space } from "@illa-dedign/space"
 
 | 参数名    | 描述         | 类型                                               | 默认值       |
 | --------- | ------------ | -------------------------------------------------- | ------------ |
-| size      | 间距大小     | "mini" \| "small" \| "medium" \| "large" \| string         | "small"        |
-| align     | 组件对齐方式 | "start" \| "center" \| "end" \| "baseline" | "center"     |
-| direction | 组件排列方向 |  "vertical" \| "horizontal"                | "horizontal" |
-| divider   | 添加分割符   | boolean：                                          | -        |
-| wrap      | 自动换行     | boolean：                                          | -        |
+| size      | 间距大小     | `"mini" \| "small" \| "medium" \| "large" \| string`         | `small`        |
+| align     | 组件对齐方式 | `"start" \| "center" \| "end" \| "baseline"` | `center`     |
+| direction | 组件排列方向 |  `"vertical" \| "horizontal"`                | `horizontal` |
+| divider   | 添加分割符   | `boolean`                                          | `-`        |
+| wrap      | 自动换行     | `boolean`                                          | `-`        |
 
 ## 使用方法
 
