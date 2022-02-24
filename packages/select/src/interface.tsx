@@ -7,24 +7,24 @@ import React, {
 } from "react"
 import { isEmptyValue } from "./utils"
 
-export interface RadioGroupContextProps<T> {
-  name?: string
-  value?: T
-  disabled?: boolean
-  defaultValue?: T
-  options?: (
-    | string
-    | number
-    | { label: ReactNode; value: any; disabled?: boolean }
-  )[]
-  direction?: "vertical" | "horizontal"
-  spacing?: string | number
-  onChange?: (checked: boolean, event: ChangeEvent) => void
-}
-
-export interface RadioGroupProps<T>
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue">,
-    RadioGroupContextProps<T> {}
+// export interface RadioGroupContextProps<T> {
+//   name?: string
+//   value?: T
+//   disabled?: boolean
+//   defaultValue?: T
+//   options?: (
+//     | string
+//     | number
+//     | { label: ReactNode; value: any; disabled?: boolean }
+//   )[]
+//   direction?: "vertical" | "horizontal"
+//   spacing?: string | number
+//   onChange?: (checked: boolean, event: ChangeEvent) => void
+// }
+//
+// export interface RadioGroupProps<T>
+//   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue">,
+//     RadioGroupContextProps<T> {}
 
 export interface OptionProps extends Omit<HTMLAttributes<HTMLLIElement>, 'onMouseEnter' | 'onMouseLeave'> {
   _key?: any

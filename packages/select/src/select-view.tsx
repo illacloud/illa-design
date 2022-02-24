@@ -17,6 +17,7 @@ import {
 } from "./style"
 import { isEmptyValue } from "./utils"
 import { css } from "@emotion/react"
+import include from "@illa-design/system"
 
 export interface StateValue {
   disabled?: boolean
@@ -207,6 +208,7 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
 
     return (
       <div
+        {...include(otherProps, ['onClick', 'onMouseEnter', 'onMouseLeave'])}
         ref={viewRef}
         css={applySelectView(stateValue)}
         onFocus={(event) => {
@@ -220,6 +222,7 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
           }
         }}
         onBlur={(event) => tryTriggerFocusChange("blur", event)}
+
       >
         <div
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}

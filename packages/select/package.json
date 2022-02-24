@@ -43,7 +43,6 @@
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
     "@illa-design/trigger": "*",
-    "@illa-design/input": "*",
-    "rc-select": "^14.0.0-alpha.26"
+    "@illa-design/input": "*"
   }
 }
