@@ -4,14 +4,14 @@ Radios are used when only one choice may be selected in a series of options.
 
 ## Installation
 
-```jsx
+```bash
 yarn add @illa-design/radio
 ```
 
 ## Import 
 
 ```jsx
-import { Radio } from "@illa-dedign/radion"
+import { Radio } from "@illa-dedign/radio"
 ```
 
 ## API
@@ -20,36 +20,36 @@ import { Radio } from "@illa-dedign/radion"
 
 | Props          | Desc                                      | Type                                                         | Default |
 | -------------- | ----------------------------------------- | ------------------------------------------------------------ | ------- |
-| colorScheme    | Set background color                      | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple"\|string | "blue"  |
-| value          | The value of radio                        | T                                                            | -       |
-| disabled       | Whether the radio is disabled             | boolean                                                      | -       |
-| checked        | Whether the radio is checked (Controlled) | boolean                                                      | -       |
-| defaultChecked | Whether the radio is initially selected   | boolean                                                      | -       |
+| colorScheme    | Set background color                      | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple"\|string `| `blue`  |
+| value          | The value of radio                        | `T `                                                           | `-   `    |
+| disabled       | Whether the radio is disabled             | `boolean  `                                                    | `-   `    |
+| checked        | Whether the radio is checked (Controlled) | `boolean `                                                     |` -  `     |
+| defaultChecked | Whether the radio is initially selected   | `boolean `                                                     | `- `      |
 
 ### Radio events
 
 | Props    | Desc                        | Type                                           | Default |
 | -------- | --------------------------- | ---------------------------------------------- | ------- |
-| onChange | Callback when value changes | (checked: boolean, event: ChangeEvent) => void | -       |
+| onChange | Callback when value changes | `(checked: boolean, event: ChangeEvent) => void` |` -  `     |
 
 ### RadioGroup Basic Props
 
 | Props        | Desc                                                | Type                                                         | Default      |
 | ------------ | --------------------------------------------------- | ------------------------------------------------------------ | ------------ |
-| name         | The name of the input field in a radio              | string                                                       | -            |
-| value        | The value to be used in the radio button            | T                                                            | -            |
-| colorScheme  | Set background color                                | "white"\| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string | "blue"       |
-| disabled     | Whether the radio is disabled                       | boolean                                                      | -            |
-| defaultValue | To set default value                                | T                                                            | -            |
-| options      | Set children options                                | string[] \| number[] \| { label: ReactNode; value: any; disabled: boolean }[] | -            |
-| direction    | Arrangement direction                               | "vertical" \| "horizontal"                                   | "horizontal" |
-| spacing      | The spacing between the checkbox and its label text | string \| number                                             | "24px"       |
+| name         | The name of the input field in a radio              | `string   `                                                    | `-   `         |
+| value        | The value to be used in the radio button            | `T `                                                           | `-   `         |
+| colorScheme  | Set background color                                |` "white"\| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string `| `blue`       |
+| disabled     | Whether the radio is disabled                       | `boolean `                                                     |` - `           |
+| defaultValue | To set default value                                | `T  `                                                          |` -   `         |
+| options      | Set children options                                | `string[] \| number[] \| { label: ReactNode; value: any; disabled: boolean }[] `| `- `           |
+| direction    | Arrangement direction                               |` "vertical" \| "horizontal"`                                   | `horizontal` |
+| spacing      | The spacing between the checkbox and its label text | `string \| number  `                                           | `24px`       |
 
 ### RadioGroup events
 
 | Props    | Desc                        | Type                                           | Default |
 | -------- | --------------------------- | ---------------------------------------------- | ------- |
-| onChange | Callback when value changes | (checked: boolean, event: ChangeEvent) => void | -       |
+| onChange | Callback when value changes | `(checked: boolean, event: ChangeEvent) => void` |`-`       |
 
 
 
