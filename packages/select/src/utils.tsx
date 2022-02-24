@@ -12,6 +12,7 @@ import { isString, isObject, isArray, isNumber } from "@illa-design/system"
 type OptionsType = SelectProps["options"]
 
 export function isSelectOption(child: ReactElement): boolean {
+  console.log(child, 'c', get(child, "props.isSelectOption"))
   return get(child, "props.isSelectOption")
 }
 

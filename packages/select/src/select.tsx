@@ -21,7 +21,7 @@ import {
   InputValueChangeReason,
   LabeledValue,
 } from "./interface"
-import { applyMergeCss, applyRadioSize, applySelectStyle } from "./style"
+import { applyMergeCss, applyRadioSize } from "./style"
 import {
   flatChildren,
   getValidValue,
@@ -30,10 +30,6 @@ import {
   isSelectOption,
   SelectInner,
 } from "./utils"
-
-// 输入框粘贴会先触发 onPaste 后触发 onChange，但 onChange 的 value 中不包含换行符
-// 如果刚刚因为粘贴触发过分词，则 onChange 不再进行分词尝试
-const THRESHOLD_TOKEN_SEPARATOR_TRIGGER = 100
 
 export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const {
@@ -94,8 +90,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const refOnInputChangeCallbackReason = useRef<InputValueChangeReason>()
   // 用 none 表示目前处于键盘操作中，忽略鼠标的 onMouseEnter 和 onMouseLeave 事件
   const refKeyboardArrowDirection = useRef<"up" | "down" | "none" | null>(null)
-  // 上次成功触发自动分词的时间
-  const refTSLastSeparateTriggered = useRef(0)
 
   // 缓存较为耗时的 flatChildren 的结果
   const {
@@ -211,9 +205,10 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const tryUpdatePopupVisible = (value: boolean) => {
     if (currentVisible !== value) {
       setCurrentVisible(value)
-      onVisibleChange && onVisibleChange(value)
+      onVisibleChange?.(value)
     }
   }
+
   const tryUpdateSelectValue = (value: SelectInner) => {
     setValue(value)
     if (onChange) {
@@ -238,7 +233,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
 
   // 多选时，取消一个选项
   const uncheckOption = (valueToRemove?: any) => {
-    // 取消选中时不需要检查option是否存在，因为可能已被外部剔除了此选项
     const option = getOptionInfoByValue(valueToRemove)
     const newValue = (value as string[]).filter((v) => v !== valueToRemove)
     tryUpdateSelectValue(newValue)
@@ -257,6 +251,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     optionValue: OptionProps["value"],
     disabled: boolean,
   ) => {
+    console.log('ww')
+    console.log(optionValue, disabled)
     if (disabled) {
       return
     }
@@ -281,7 +277,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   }
 
   const renderOption = () => {
-    const elementList = children ? (
+    const elementList = childrenList?.length ? (
       <List
         ref={refList}
         css={css`
@@ -289,7 +285,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
           width: 100%;
         `}
         size="small"
-        data={children as any}
+        data={childrenList as any}
         render={(data, index) => {
           return data
         }}
@@ -303,10 +299,12 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         onScroll={(e) => onPopupScroll?.(e.target)}
       >
         {(child: any) => {
+          console.log(child, 'child')
           if (isSelectOptGroup(child)) {
             return <child.type {...child.props} />
           }
           if (isSelectOption(child)) {
+            console.log('isSelectOption')
             return (
               child && (
                 <child.type
@@ -339,8 +337,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const selectViewEventHandlers = {
     onFocus,
     onBlur: (event: React.FocusEvent<HTMLSelectElement>) => {
-      onBlur && onBlur(event)
-      // 兼容：下拉列表隐藏时，失焦需要清空已输入内容
+      onBlur?.(event)
+      // 下拉列表隐藏时，失焦需要清空已输入内容
       !currentVisible && tryUpdateInputValue("", "optionListHide")
     },
     onChangeInputValue: (value: string) => {
@@ -392,12 +390,13 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         }
       }}
     >
-      <span>
         <SelectView
           {...props}
           {...selectViewEventHandlers}
+          inputValue={inputValue}
           popupVisible={currentVisible}
           isMultipleMode={isMultipleMode}
+          isEmptyValue={isNoOptionSelected}
           renderText={(value) => {
             const option = getOptionInfoByValue(value)
             let text = value
@@ -410,8 +409,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
             }
           }}
         />
-      </span>
-
     </Trigger>
   )
 })

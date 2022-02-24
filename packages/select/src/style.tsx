@@ -118,6 +118,7 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
+// SelectView
 export function applySelectView(stateValue: StateValue): SerializedStyles {
   return css`
     height: 32px;
@@ -131,12 +132,18 @@ export function applySelectView(stateValue: StateValue): SerializedStyles {
     ${applyStatus(stateValue)}
   `
 }
-export function applySelectStyle(): SerializedStyles {
+
+export function applySelectViewText(
+  showInput?:
+    | boolean
+    | { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean },
+): SerializedStyles {
   return css`
-    display: inline-flex;
-    vertical-align: middle;
-    flex-direction: row;
-    align-items: center;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    ${showInput ? "" : css({ display: "none !important" })};
   `
 }
 

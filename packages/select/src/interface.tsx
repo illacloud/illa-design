@@ -5,6 +5,7 @@ import React, {
   ReactNode,
   ReactElement,
 } from "react"
+import { isEmptyValue } from "./utils"
 
 export interface RadioGroupContextProps<T> {
   name?: string
@@ -25,12 +26,16 @@ export interface RadioGroupProps<T>
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue">,
     RadioGroupContextProps<T> {}
 
-export interface OptionProps extends HTMLAttributes<HTMLLIElement> {
+export interface OptionProps extends Omit<HTMLAttributes<HTMLLIElement>, 'onMouseEnter' | 'onMouseLeave'> {
   _key?: any
   disabled?: boolean
   value?: string | number
   title?: string
   extra?: any
+  isSelectOption?: boolean;
+  onMouseEnter?: (value: OptionProps['value']) => void;
+  onMouseLeave?: () => void;
+  onClickOption?: (value: OptionProps['value'], disabled?: boolean) => void;
 }
 
 export interface OptionInfo extends PropsWithChildren<OptionProps> {
@@ -105,6 +110,7 @@ export interface SelectProps
 export interface SelectViewProps extends SelectProps {
   isMultipleMode?: boolean
   popupVisible?: boolean
+  isEmptyValue?: boolean
   renderText: (value: any) => { text?: any; disabled?: boolean }
   onRemoveCheckedItem?: (item: any, index: number, e: any) => void
   onChangeInputValue?: (value: string, e: any) => void
