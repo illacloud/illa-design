@@ -18,7 +18,6 @@ export const Popover: FC<PopoverProps> = (props) => {
 
   return (
     <Trigger
-      {...otherProps}
       colorScheme={colorScheme}
       trigger={trigger}
       hasCloseIcon={hasCloseIcon}
@@ -40,6 +39,7 @@ export const Popover: FC<PopoverProps> = (props) => {
           </Typography>
         </div>
       }
+      {...otherProps}
     >
       {props.children}
     </Trigger>
