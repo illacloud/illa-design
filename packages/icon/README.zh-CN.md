@@ -4,7 +4,7 @@
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/icon
 ```
 
@@ -20,8 +20,8 @@ import { Icon, XxxIcon} from "@illa-design/icon"
 
 | 参数名 | 描述                     | 类型    | 默认值 |
 | ------ | ------------------------ | ------- | ------ |
-| size   | icon图标的大小，单位是px | string  | -      |
-| spin   | 控制icon图标是否旋转     | boolean | false   |
+| size   | icon图标的大小，单位是px | `sring` |`-  `   |
+| spin   | 控制icon图标是否旋转     | `boolean`| `false ` |
 
 ## 使用方法
 
