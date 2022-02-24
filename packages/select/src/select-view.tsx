@@ -25,7 +25,7 @@ const SearchStatus = {
   BEFORE: 0,
   EDITING: 1,
   NONE: 2,
-};
+}
 
 export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
   (props, ref) => {
@@ -59,7 +59,7 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
     const inputRef = useRef<InputRefType>(null)
     const [focused, setFocused] = useState(false)
     const mergedFocused = focused || popupVisible
-    const [searchStatus, setSearchStatus] = useState(SearchStatus.NONE);
+    const [searchStatus, setSearchStatus] = useState(SearchStatus.NONE)
 
     const canFocusInput = showSearch || isMultipleMode
 
@@ -70,19 +70,19 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
       size,
     }
 
-    const handleFocus = (action: 'focus' | 'blur') => {
-      const element = canFocusInput ? inputRef.current : viewRef.current;
+    const handleFocus = (action: "focus" | "blur") => {
+      const element = canFocusInput ? inputRef.current : viewRef.current
       if (element) {
-        action === 'focus' ? element?.focus?.() : element?.blur?.();
+        action === "focus" ? element?.focus?.() : element?.blur?.()
       }
-    };
+    }
 
     useEffect(() => {
-      handleFocus(popupVisible ? 'focus' : 'blur');
+      handleFocus(popupVisible ? "focus" : "blur")
       if (canFocusInput) {
-        setSearchStatus(popupVisible ? SearchStatus.BEFORE : SearchStatus.NONE);
+        setSearchStatus(popupVisible ? SearchStatus.BEFORE : SearchStatus.NONE)
       }
-    }, [popupVisible]);
+    }, [popupVisible])
 
     const renderMultiple = () => {
       return <div>Multiple/tags</div>
@@ -125,7 +125,7 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
             tryTriggerFocusChange("focus", event)
           }
         }}
-        onBlur={(event) => tryTriggerFocusChange('blur', event)}
+        onBlur={(event) => tryTriggerFocusChange("blur", event)}
       >
         <div
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}

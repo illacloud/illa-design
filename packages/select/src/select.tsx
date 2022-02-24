@@ -54,6 +54,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     onBlur,
     onClear,
     onDeselect,
+    onPopupScroll,
     onVisibleChange,
     onInputValueChange,
     ...otherProps
@@ -92,7 +93,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const refOnInputChangeCallbackValue = useRef(inputValue)
   const refOnInputChangeCallbackReason = useRef<InputValueChangeReason>()
   // 用 none 表示目前处于键盘操作中，忽略鼠标的 onMouseEnter 和 onMouseLeave 事件
-  const refKeyboardArrowDirection = useRef<"up" | "down" | "none">(null)
+  const refKeyboardArrowDirection = useRef<"up" | "down" | "none" | null>(null)
   // 上次成功触发自动分词的时间
   const refTSLastSeparateTriggered = useRef(0)
 
@@ -296,6 +297,10 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
           return index.toString()
         }}
         hoverable
+        onMouseMove={() => {
+          refKeyboardArrowDirection.current = null;
+        }}
+        onScroll={(e) => onPopupScroll?.(e.target)}
       >
         {(child: any) => {
           if (isSelectOptGroup(child)) {
@@ -369,7 +374,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
 
   return (
     <Trigger
-      trigger="focus"
+      trigger="click"
       content={renderOption()}
       showArrow={false}
       colorScheme="white"
@@ -379,7 +384,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       autoAlignPopupWidth
       popupVisible={currentVisible}
       onVisibleChange={(value: boolean) => {
-        console.log(value, 'onVisibleChange')
+        console.log(value, "onVisibleChange")
         if (currentVisible !== value) {
           setCurrentVisible(value)
           onVisibleChange?.(value)

@@ -60,7 +60,7 @@ export interface SelectProps
     | LabeledValue[]
   value?: string | string[] | number | number[] | LabeledValue | LabeledValue[]
   inputValue?: string
-  labelInValue?: boolean;
+  labelInValue?: boolean
   mode?: "multiple" | "tags"
   notFoundContent?: ReactNode
   getPopupContainer?: (node: HTMLElement) => Element
@@ -91,27 +91,31 @@ export interface SelectProps
     | ((inputValue: string, option: ReactElement) => boolean)
 
   onChange?: (value: any, option?: OptionInfo | OptionInfo[]) => void
-  onSearch?: (value: string, reason: InputValueChangeReason) => void;
+  onSearch?: (value: string, reason: InputValueChangeReason) => void
+  onPopupScroll?: (element: any) => void;
   onVisibleChange?: (visible: boolean) => void
-  onInputValueChange?: (value: string, reason: InputValueChangeReason) => void;
-  onDeselect?: (value: string | number | LabeledValue, option: OptionInfo) => void;
-  onClear?: (visible?: boolean) => void;
+  onInputValueChange?: (value: string, reason: InputValueChangeReason) => void
+  onDeselect?: (
+    value: string | number | LabeledValue,
+    option: OptionInfo,
+  ) => void
+  onClear?: (visible?: boolean) => void
 }
 
 export interface SelectViewProps extends SelectProps {
   isMultipleMode?: boolean
   popupVisible?: boolean
   renderText: (value: any) => { text?: any; disabled?: boolean }
-  onRemoveCheckedItem?: (item:any, index: number, e:any) => void;
-  onChangeInputValue?: (value: string, e:any) => void
-  onFocus?: (e:React.FocusEvent<HTMLSelectElement>) => void;
-  onBlur?: (e:React.FocusEvent<HTMLSelectElement>) => void;
-  onClear?: (e: any) => void;
+  onRemoveCheckedItem?: (item: any, index: number, e: any) => void
+  onChangeInputValue?: (value: string, e: any) => void
+  onFocus?: (e: React.FocusEvent<HTMLSelectElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLSelectElement>) => void
+  onClear?: (e: any) => void
 }
 
 // 造成输入框值改变的原因：用户输入、选中选项、选项下拉框收起、触发自动分词
 export type InputValueChangeReason =
-  | 'manual'
-  | 'optionChecked'
-  | 'optionListHide'
-  | 'tokenSeparator';
+  | "manual"
+  | "optionChecked"
+  | "optionListHide"
+  | "tokenSeparator"
