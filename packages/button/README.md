@@ -20,27 +20,27 @@ import { Button } from "@illa-dedign/button"
 
 | Props     | Desc                                                  | Type                                                         | Default   |
 | ----------- | ----------------------------------------------------- | ------------------------------------------------------------ | -------- |
-| colorScheme | Set background color                                  | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" | "blue"   |
-| size        | Set size                                              | "small" \| "medium" \| "large"                               | "small"  |
-| variant     | Set style pattern                                     | "fill" \| "dashed" \| "outline" \| "text"                    | "fill"   |
-| shape       | Set shape                                             | "square" \| "round"                                          | "square" |
-| fullWidth   | Set the width of the button adapts with the container | boolean                                                      | -        |
-| loading     | Set loading status of the button                      | boolean                                                      | -        |
-| loadingText | Set button's text when loading status                 | string                                                       | -        |
-| disabled    | Set disabled status                                   | boolean                                                      | -        |
+| colorScheme | Set background color                                  | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple"` | `blue`   |
+| size        | Set size                                              | `"small" \| "medium" \| "large"`                               | `small`  |
+| variant     | Set style pattern                                     | `"fill" \| "dashed" \| "outline" \| "text"`                    | `fill`   |
+| shape       | Set shape                                             | `"square" \| "round"`                                         | `square` |
+| fullWidth   | Set the width of the button adapts with the container | `boolean`                                                      | `-`        |
+| loading     | Set loading status of the button                      |`boolean`                                                     | `-`        |
+| loadingText | Set button's text when loading status                 | `string`                                                       | `-`        |
+| disabled    | Set disabled status                                   | `boolean`                                                      | `-`        |
 
 ### Button Extented Props
 
 | Props    | Desc           | Type      | Default |
 | --------- | -------------- | --------- | ------ |
-| leftIcon  | Set left icon  | ReactNode | -      |
-| rightIcon | Set right icon | ReactNode | -      |
+| leftIcon  | Set left icon  | `ReactNode` | `-`      |
+| rightIcon | Set right icon | `ReactNode` | `-`      |
 
 ### Button events
 
 | Props  | Desc                                  | Type               | Default |
 | ------- | ------------------------------------- | ------------------ | ------ |
-| onClick | Set the handler to handle click event | (e: Event) => void | -      |
+| onClick | Set the handler to handle click event | `(e: Event) => void` |` -    `  |
 
 ButtonGroup can combine multiple buttons and setting the basic properties of multiple buttons
 
@@ -48,8 +48,8 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 
 | Props    | Desc                    | Type             | Default |
 | -------- | ----------------------- | ---------------- | ------- |
-| spacing  | Set gap between buttons | number \| string | "8px"   |
-| attached | Combine buttons         | boolean          | -       |
+| spacing  | Set gap between buttons | `number \| string` | `8px`   |
+| attached | Combine buttons         | `boolean `         | `-   `    |
 
 ## Example
 
