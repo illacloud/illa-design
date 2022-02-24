@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
-import { Select, SelectProps, Option, Test } from "../src"
+import { Select, SelectProps, Option } from "../src"
 import { BsFacebook } from "react-icons/bs"
 import { Trigger } from "@illa-design/trigger"
 
@@ -18,9 +18,7 @@ const Template: Story<SelectProps> = (args) => (
       <Option>Abc</Option>
       <Option>Bde</Option>
     </Select>
-    <Trigger trigger="click">
-      <Test />
-    </Trigger>
+    <Trigger trigger="click">test</Trigger>
   </Space>
 )
 

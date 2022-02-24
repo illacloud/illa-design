@@ -1,12 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, useRef, useState, useEffect } from "react"
+import {
+  forwardRef,
+  useRef,
+  useState,
+  useEffect,
+  useImperativeHandle,
+} from "react"
 import {
   InputElement,
   InputRefType,
   InputElementProps,
 } from "@illa-design/input"
-import { useMergeValue, isObject } from "@illa-design/system"
+import { useMergeValue, isObject, omit } from "@illa-design/system"
 import { LoadingIcon, SearchIcon, ExpandIcon } from "@illa-design/icon"
 import { SelectViewProps } from "./interface"
 import {
@@ -17,7 +23,6 @@ import {
 } from "./style"
 import { isEmptyValue } from "./utils"
 import { css } from "@emotion/react"
-import include from "@illa-design/system"
 
 export interface StateValue {
   disabled?: boolean
@@ -32,10 +37,9 @@ const SearchStatus = {
   NONE: 2,
 }
 
-export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
+export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
   (props, ref) => {
     const {
-      mode,
       children,
       disabled,
       error,
@@ -54,9 +58,11 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
       onChange,
       onFocus,
       onBlur,
+      onClear,
       onPaste,
       onKeyDown,
       onVisibleChange,
+      onRemoveCheckedItem,
       onChangeInputValue,
       ...otherProps
     } = props
@@ -78,6 +84,7 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
     const isRetainInputValueSearch =
       isObject(showSearch) && showSearch?.retainInputValue
 
+    console.log(renderedValue, "renderedValue")
     const stateValue: StateValue = {
       error,
       disabled,
@@ -192,9 +199,9 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
       const needShowInput = (mergedFocused && canFocusInput) || isEmptyValue
 
       return (
-        <div>
+        <>
           <InputElement
-            css={css({ disabled: "none" })}
+            css={css({ display: "none" })}
             ref={inputRef}
             disabled={disabled}
             {...inputProps}
@@ -202,14 +209,13 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
           <span css={applySelectViewText(needShowInput)}>
             Single{_inputValue}
           </span>
-        </div>
+        </>
       )
     }
 
     return (
       <div
-        {...include(otherProps, ['onClick', 'onMouseEnter', 'onMouseLeave'])}
-        ref={viewRef}
+        ref={ref}
         css={applySelectView(stateValue)}
         onFocus={(event) => {
           if (disabled) {
@@ -222,7 +228,12 @@ export const SelectView = forwardRef<HTMLElement, SelectViewProps>(
           }
         }}
         onBlur={(event) => tryTriggerFocusChange("blur", event)}
-
+        {...omit(otherProps, [
+          "onSearch",
+          "onPopupScroll",
+          "onInputValueChange",
+          "onDeselect",
+        ])}
       >
         <div
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}

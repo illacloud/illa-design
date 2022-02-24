@@ -30,7 +30,6 @@ import {
   isSelectOption,
   SelectInner,
 } from "./utils"
-import { Test } from "./test11"
 
 export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const {
@@ -58,8 +57,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   } = props
 
   const isMultipleMode = mode === "multiple" || mode === "tags"
-  const isNoOptionSelected = isEmptyValue(value, isMultipleMode)
-
   const [currentVisible, setCurrentVisible] = useState<boolean>()
   // 用来保存 value 和选中项的映射
   const refValueMap = useRef<
@@ -73,6 +70,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       ? getValidValue(props.value, isMultipleMode, labelInValue)
       : stateValue
 
+  const isNoOptionSelected = isEmptyValue(currentValue, isMultipleMode)
   const [inputValue, setInputValue, stateInputValue] = useMergeValue("", {
     value: "inputValue" in props ? props.inputValue || "" : undefined,
   })
@@ -248,12 +246,23 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     }
   }
 
+  // 处理模式切换时 value 格式的校正
+  useEffect(() => {
+    if (isMultipleMode) {
+      if (!Array.isArray(value)) {
+        setValue(value === undefined ? [] : [value as any]);
+      }
+    } else if (Array.isArray(value)) {
+      setValue(value.length === 0 ? undefined : value[0] as any);
+    }
+  }, [isMultipleMode, value])
+
+
   const handleOptionClick = (
     optionValue: OptionProps["value"],
     disabled: boolean,
   ) => {
-    console.log('ww')
-    console.log(optionValue, disabled)
+    console.log(optionValue, disabled, 'handleOptionClick')
     if (disabled) {
       return
     }
@@ -287,25 +296,11 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         `}
         size="small"
         data={childrenList as any}
-        render={(data, index) => {
-          return data
-        }}
-        renderKey={(data, index) => {
-          return index.toString()
-        }}
-        hoverable
-        onMouseMove={() => {
-          refKeyboardArrowDirection.current = null
-        }}
-        onScroll={(e) => onPopupScroll?.(e.target)}
-      >
-        {(child: any) => {
-          console.log(child, 'child')
+        render={(child: any) => {
           if (isSelectOptGroup(child)) {
             return <child.type {...child.props} />
           }
           if (isSelectOption(child)) {
-            console.log('isSelectOption')
             return (
               child && (
                 <child.type
@@ -316,11 +311,11 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
                   onClickOption={handleOptionClick}
                   onMouseEnter={(value: any) => {
                     refKeyboardArrowDirection.current === null &&
-                      setValueActive(value)
+                    setValueActive(value)
                   }}
                   onMouseLeave={() => {
                     refKeyboardArrowDirection.current === null &&
-                      setValueActive(undefined)
+                    setValueActive(undefined)
                   }}
                 />
               )
@@ -328,6 +323,16 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
           }
           return child
         }}
+        renderKey={(data, index) => {
+          return index.toString()
+        }}
+        hoverable
+        onMouseMove={() => {
+          refKeyboardArrowDirection.current = null
+        }}
+        onScroll={(e) => onPopupScroll?.(e.target)}
+      >
+
       </List>
     ) : null
 
@@ -337,7 +342,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   // SelectView组件事件处理
   const selectViewEventHandlers = {
     onFocus,
-    onBlur: (event: React.FocusEvent<HTMLSelectElement>) => {
+    onBlur: (event: any) => {
       onBlur?.(event)
       // 下拉列表隐藏时，失焦需要清空已输入内容
       !currentVisible && tryUpdateInputValue("", "optionListHide")
@@ -391,25 +396,25 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         }
       }}
     >
-        <SelectView
-          {...props}
-          {...selectViewEventHandlers}
-          inputValue={inputValue}
-          popupVisible={currentVisible}
-          isMultipleMode={isMultipleMode}
-          isEmptyValue={isNoOptionSelected}
-          renderText={(value) => {
-            const option = getOptionInfoByValue(value)
-            let text = value
-            if (option) {
-              text = option.children
-            }
-            return {
-              text,
-              disabled: option?.disabled,
-            }
-          }}
-        />
+      <SelectView
+        {...props}
+        {...selectViewEventHandlers}
+        inputValue={inputValue}
+        popupVisible={currentVisible}
+        isMultipleMode={isMultipleMode}
+        isEmptyValue={isNoOptionSelected}
+        renderText={(value) => {
+          const option = getOptionInfoByValue(value)
+          let text = value
+          if (option) {
+            text = option.children
+          }
+          return {
+            text,
+            disabled: option?.disabled,
+          }
+        }}
+      />
     </Trigger>
   )
 })

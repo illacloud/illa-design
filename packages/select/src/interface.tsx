@@ -7,35 +7,20 @@ import React, {
 } from "react"
 import { isEmptyValue } from "./utils"
 
-// export interface RadioGroupContextProps<T> {
-//   name?: string
-//   value?: T
-//   disabled?: boolean
-//   defaultValue?: T
-//   options?: (
-//     | string
-//     | number
-//     | { label: ReactNode; value: any; disabled?: boolean }
-//   )[]
-//   direction?: "vertical" | "horizontal"
-//   spacing?: string | number
-//   onChange?: (checked: boolean, event: ChangeEvent) => void
-// }
-//
-// export interface RadioGroupProps<T>
-//   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue">,
-//     RadioGroupContextProps<T> {}
-
-export interface OptionProps extends Omit<HTMLAttributes<HTMLLIElement>, 'onMouseEnter' | 'onMouseLeave'> {
+export interface OptionProps
+  extends Omit<HTMLAttributes<HTMLLIElement>, "onMouseEnter" | "onMouseLeave"> {
   _key?: any
   disabled?: boolean
+  isMultipleMode?: boolean
   value?: string | number
   title?: string
   extra?: any
-  isSelectOption?: boolean;
-  onMouseEnter?: (value: OptionProps['value']) => void;
-  onMouseLeave?: () => void;
-  onClickOption?: (value: OptionProps['value'], disabled?: boolean) => void;
+  valueActive?: string
+  valueSelect?: string | string[] | number | number[]
+  isSelectOption?: boolean
+  onMouseEnter?: (value: OptionProps["value"]) => void
+  onMouseLeave?: () => void
+  onClickOption?: (value: OptionProps["value"], disabled?: boolean) => void
 }
 
 export interface OptionInfo extends PropsWithChildren<OptionProps> {
@@ -55,7 +40,10 @@ export type LabeledValue = {
 export type SelectSize = "small" | "medium" | "large"
 
 export interface SelectProps
-  extends Omit<HTMLAttributes<HTMLSelectElement>, "onChange" | "defaultValue"> {
+  extends Omit<
+    HTMLAttributes<HTMLDivElement>,
+    "defaultValue" | "onFocus" | "onBlur"
+  > {
   defaultValue?:
     | string
     | string[]
@@ -104,6 +92,8 @@ export interface SelectProps
     value: string | number | LabeledValue,
     option: OptionInfo,
   ) => void
+  onFocus?: (e: React.FocusEvent<HTMLDivElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLDivElement>) => void
   onClear?: (visible?: boolean) => void
 }
 
@@ -114,8 +104,6 @@ export interface SelectViewProps extends SelectProps {
   renderText: (value: any) => { text?: any; disabled?: boolean }
   onRemoveCheckedItem?: (item: any, index: number, e: any) => void
   onChangeInputValue?: (value: string, e: any) => void
-  onFocus?: (e: React.FocusEvent<HTMLSelectElement>) => void
-  onBlur?: (e: React.FocusEvent<HTMLSelectElement>) => void
   onClear?: (e: any) => void
 }
 

@@ -11,6 +11,10 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
     disabled,
     value,
     defaultValue,
+    valueActive,
+    valueSelect,
+    isMultipleMode,
+    //
     onChange,
     onMouseEnter,
     onMouseLeave,
@@ -18,21 +22,19 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
     ...otherProps
   } = props
 
-  const [currentValue, setCurrentValue] = useMergeValue(undefined, {
-    value: value,
-    defaultValue: defaultValue,
-  })
+  const currentValue = 'value' in props ? value : children?.toString();
+
 
   const optionProps = {
     onMouseEnter: () => onMouseEnter?.(value),
     onMouseLeave: () => onMouseLeave?.(),
     onClick: (event: any) => {
-      console.log(props, onClickOption, 'e')
-      onClickOption && onClickOption(value, disabled);
-      otherProps.onClick?.(event);
+      console.log(props, value, disabled, "e")
+      onClickOption && onClickOption(currentValue, disabled)
+      otherProps.onClick?.(event)
     },
-    ...omit(otherProps, ['_key', 'extra', 'isSelectOption', 'onClick']),
-  };
+    ...omit(otherProps, ["_key", "extra", "isSelectOption", "onClick"]),
+  }
 
   const onChangeValue = (event: ChangeEvent<HTMLInputElement>): void => {
     event.persist()
@@ -47,6 +49,6 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
 
 Option.defaultProps = {
   isSelectOption: true,
-};
+}
 
 Option.displayName = "Option"
