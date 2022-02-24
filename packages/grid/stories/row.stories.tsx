@@ -5,7 +5,7 @@ import { Col, Row, RowProps } from "../src"
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "LAYOUT/Grid/Row",
-  component: Row
+  component: Row,
 } as Meta
 
 export const Basic: Story<RowProps> = (args) => (
