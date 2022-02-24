@@ -28,6 +28,7 @@ import { Trigger } from "@illa-dedign/trigger"
 | closeDelay          | 消失/关闭时的延时，单位毫秒（ms）                       | `number`                                                     | `150`   |
 | openDelay           | 展现/打开时的延时，单位毫秒（ms）                       | `number`                                                     | `150`   |
 | autoFitPosition     | 设置气泡被遮挡时自动调整气泡位置                        | `boolean`                                                    | `true`  |
+| autoAlignPopupWidth | 是否根据触发组件的宽度自动调整弹窗的宽度                | `boolean`                                                    | `-`     |
 | closeOnClick        | 设置当点击被包含的组件时是否关闭气泡                    | `boolean`                                                    | `true`  |
 | defaultPopupVisible | 默认的弹出框状态                                        | `boolean`                                                    | `-`     |
 | popupVisible        | 弹出框是打开还是关闭状态                                | `boolean`                                                    | `-`     |
