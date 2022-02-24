@@ -20,8 +20,8 @@ import {Divider} from "@illa-design/divider"
 
 | Props     | Desc                         | Type                                        | Default      |
 | --------- | ---------------------------- | ------------------------------------------- | ------------ |
-| direction | setting direction of divider |  "vertical" \| "horizontal"                 | "horizontal" |
-| variant   | setting divider's variant    |  "solid" \| "dashed" \| "dotted" \|"double" | "solid"      |
+| direction | setting direction of divider |  `"vertical" \| "horizontal"`                 | `horizontal` |
+| variant   | setting divider's variant    | ` "solid" \| "dashed" \| "dotted" \|"double"` |` solid `     |
 
 ## Example
 
