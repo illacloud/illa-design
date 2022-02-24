@@ -3,6 +3,7 @@ import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
 import { Select, SelectProps, Option } from "../src"
 import { BsFacebook } from "react-icons/bs"
+import { Trigger } from "@illa-design/trigger"
 
 //👇 This default export determines where your story goes in the story list
 export default {

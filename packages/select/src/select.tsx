@@ -381,6 +381,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       position="tl"
       disabled={disabled}
       withoutPadding
+      clickOutsideToClose
       autoAlignPopupWidth
       popupVisible={currentVisible}
       onVisibleChange={(value: boolean) => {
@@ -391,23 +392,26 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         }
       }}
     >
-      <SelectView
-        {...props}
-        {...selectViewEventHandlers}
-        popupVisible={currentVisible}
-        isMultipleMode={isMultipleMode}
-        renderText={(value) => {
-          const option = getOptionInfoByValue(value)
-          let text = value
-          if (option) {
-            text = option.children
-          }
-          return {
-            text,
-            disabled: option?.disabled,
-          }
-        }}
-      />
+      <span>
+        <SelectView
+          {...props}
+          {...selectViewEventHandlers}
+          popupVisible={currentVisible}
+          isMultipleMode={isMultipleMode}
+          renderText={(value) => {
+            const option = getOptionInfoByValue(value)
+            let text = value
+            if (option) {
+              text = option.children
+            }
+            return {
+              text,
+              disabled: option?.disabled,
+            }
+          }}
+        />
+      </span>
+
     </Trigger>
   )
 })
