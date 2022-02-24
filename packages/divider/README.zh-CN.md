@@ -20,8 +20,8 @@ import {Divider} from "@illa-design/react"
 
 | 参数名    | 描述           | 类型                                                | 默认值       |
 | --------- | -------------- | --------------------------------------------------- | ------------ |
-| direction | 设置分割线方向 | "vertical" \| "horizontal"                 | "horizontal" |
-| variant   | 分割线样式     | "solid" \| "dashed" \| "dotted" \|"double" | "solid"      |
+| direction | 设置分割线方向 | `"vertical" \| "horizontal" `                | `horizontal` |
+| variant   | 分割线样式     | `"solid" \| "dashed" \| "dotted" \|"double"` | `solid`      |
 
 ## 使用方法
 
