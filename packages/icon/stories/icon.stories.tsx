@@ -22,6 +22,7 @@ import {
   NextIcon,
   MoreIcon,
   ExpandIcon,
+  InfoCircleIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -63,6 +64,9 @@ export const Success: Story<IconProps> = (props) => <SuccessIcon {...props} />
 export const Empty: Story<IconProps> = (props) => <EmptyIcon {...props} />
 export const Checkmark: Story<IconProps> = (props) => (
   <CheckmarkIcon {...props} />
+)
+export const InfoCircle: Story<IconProps> = (props) => (
+  <InfoCircleIcon {...props} />
 )
 export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
 export const Next: Story<IconProps> = (props) => <NextIcon {...props} />

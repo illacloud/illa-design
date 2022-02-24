@@ -298,7 +298,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         }}
         hoverable
         onMouseMove={() => {
-          refKeyboardArrowDirection.current = null;
+          refKeyboardArrowDirection.current = null
         }}
         onScroll={(e) => onPopupScroll?.(e.target)}
       >

@@ -1,8 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import {
+  Children,
+  cloneElement,
   FC,
+  isValidElement,
   MutableRefObject,
+  ReactElement,
   ReactNode,
+  RefCallback,
   useContext,
   useEffect,
   useRef,
@@ -12,7 +17,6 @@ import { TriggerProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
-  applyChildrenContainer,
   applyCloseButton,
   applyCloseContentCss,
   applyDefaultContentSize,
@@ -39,12 +43,15 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
+import useMeasure from "react-use/lib/useMeasure"
+import useClickAway from "react-use/lib/useClickAway"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
     colorScheme = "gray",
     content,
     position = "top",
+    clickOutsideToClose,
     showArrow = true,
     closeDelay = 150,
     openDelay = 150,
@@ -58,12 +65,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
     popupVisible,
     onVisibleChange,
     trigger = "hover",
-    ...otherProps
   } = props
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
 
   const tipsRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
+
+  const [measureRef, measureInfo] = useMeasure<HTMLElement>()
+
   const childrenRef = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
 
   const [adjustResult, setAdjustResult] = useState<AdjustResult>()
@@ -253,6 +262,16 @@ export const Trigger: FC<TriggerProps> = (props) => {
       initial="initial"
       animate="animate"
       exit="exit"
+      onClick={() => {
+        if (
+          !disabled &&
+          trigger == "click" &&
+          clickOutsideToClose &&
+          popupVisible == undefined
+        ) {
+          showTips()
+        }
+      }}
       onMouseEnter={() => {
         if (!disabled && trigger == "hover" && popupVisible == undefined) {
           showTips()
@@ -267,6 +286,17 @@ export const Trigger: FC<TriggerProps> = (props) => {
       {centerNode}
     </motion.div>
   )
+
+  useClickAway(childrenRef, () => {
+    if (
+      !disabled &&
+      trigger == "click" &&
+      clickOutsideToClose &&
+      popupVisible == undefined
+    ) {
+      hideTips()
+    }
+  })
 
   useEffect(() => {
     let isMount = true
@@ -311,63 +341,104 @@ export const Trigger: FC<TriggerProps> = (props) => {
       isMount = false
       window.clearTimeout(timeOutHandlerId)
     }
-  }, [popupVisible, position, content, disabled])
+  }, [popupVisible, position, content, disabled, measureInfo])
+
+  const newProps = {
+    ref: (rawRef: HTMLElement | null) => {
+      if (rawRef != null) {
+        measureRef(rawRef)
+        childrenRef.current = rawRef
+      }
+    },
+    onMouseEnter: () => {
+      if (!disabled && trigger == "hover" && popupVisible == undefined) {
+        showTips()
+      }
+    },
+    onMouseLeave: () => {
+      if (!disabled && trigger == "hover" && popupVisible == undefined) {
+        hideTips()
+      }
+    },
+    onFocus: () => {
+      if (!disabled && trigger == "focus" && popupVisible == undefined) {
+        showTips()
+      }
+    },
+    onBlur: () => {
+      if (!disabled && trigger == "focus" && popupVisible == undefined) {
+        hideTips()
+      }
+    },
+    onClick: () => {
+      switch (trigger) {
+        case "click":
+          if (!disabled && popupVisible == undefined) {
+            if (!tipVisible) {
+              showTips()
+            } else {
+              if (closeOnClick) {
+                hideTips()
+              }
+            }
+          }
+          break
+        case "hover":
+        case "focus":
+          if (
+            !disabled &&
+            popupVisible == undefined &&
+            closeOnClick &&
+            tipVisible
+          ) {
+            hideTips()
+          }
+          break
+      }
+    },
+  }
 
   return (
     <>
-      <span
-        ref={childrenRef}
-        {...otherProps}
-        css={applyChildrenContainer}
-        onMouseEnter={() => {
-          if (!disabled && trigger == "hover" && popupVisible == undefined) {
-            showTips()
-          }
-        }}
-        onMouseLeave={() => {
-          if (!disabled && trigger == "hover" && popupVisible == undefined) {
-            hideTips()
-          }
-        }}
-        onFocus={() => {
-          if (!disabled && trigger == "focus" && popupVisible == undefined) {
-            showTips()
-          }
-        }}
-        onBlur={() => {
-          if (!disabled && trigger == "focus" && popupVisible == undefined) {
-            hideTips()
-          }
-        }}
-        onClick={() => {
-          switch (trigger) {
-            case "click":
-              if (!disabled && popupVisible == undefined) {
-                if (!tipVisible) {
-                  showTips()
-                } else {
-                  if (closeOnClick) {
-                    hideTips()
+      {Children.count(props.children) > 0 &&
+        Children.map(props.children, (child) => {
+          if (isValidElement(child)) {
+            const finalProps = {
+              ref: (rawRef: HTMLElement | null) => {
+                newProps.ref(rawRef)
+                if ((child as ReactElement).props?.ref != undefined) {
+                  const newRef = (child as ReactElement).props?.ref
+                  if (typeof newRef == "function") {
+                    ;(newRef as RefCallback<any>).call(rawRef, undefined)
+                  } else if (typeof newRef == "object") {
+                    ;(newRef as MutableRefObject<any>).current = rawRef
                   }
                 }
-              }
-              break
-            case "hover":
-            case "focus":
-              if (
-                !disabled &&
-                popupVisible == undefined &&
-                closeOnClick &&
-                tipVisible
-              ) {
-                hideTips()
-              }
-              break
+              },
+              onMouseEnter: (e: Event) => {
+                newProps.onMouseEnter()
+                ;(child as ReactElement).props?.onMouseEnter?.call(e)
+              },
+              onMouseLeave: (e: Event) => {
+                newProps.onMouseLeave()
+                ;(child as ReactElement).props?.onMouseLeave?.call(e)
+              },
+              onFocus: (e: Event) => {
+                newProps.onFocus()
+                ;(child as ReactElement).props?.onFocus?.call(e)
+              },
+              onBlur: (e: Event) => {
+                newProps.onBlur()
+                ;(child as ReactElement).props?.onBlur?.call(e)
+              },
+              onClick: (e: Event) => {
+                newProps.onClick()
+                ;(child as ReactElement).props?.onClick?.call(e)
+              },
+            }
+            return cloneElement(child as ReactElement, { ...finalProps })
           }
-        }}
-      >
-        {props.children}
-      </span>
+        })}
       <AnimatePresence>
         {!disabled && tipVisible && childrenRef.current != null ? (
           <Popup

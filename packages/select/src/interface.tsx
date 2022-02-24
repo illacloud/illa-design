@@ -92,7 +92,7 @@ export interface SelectProps
 
   onChange?: (value: any, option?: OptionInfo | OptionInfo[]) => void
   onSearch?: (value: string, reason: InputValueChangeReason) => void
-  onPopupScroll?: (element: any) => void;
+  onPopupScroll?: (element: any) => void
   onVisibleChange?: (visible: boolean) => void
   onInputValueChange?: (value: string, reason: InputValueChangeReason) => void
   onDeselect?: (
