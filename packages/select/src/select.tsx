@@ -250,19 +250,18 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   useEffect(() => {
     if (isMultipleMode) {
       if (!Array.isArray(value)) {
-        setValue(value === undefined ? [] : [value as any]);
+        setValue(value === undefined ? [] : [value as any])
       }
     } else if (Array.isArray(value)) {
-      setValue(value.length === 0 ? undefined : value[0] as any);
+      setValue(value.length === 0 ? undefined : (value[0] as any))
     }
   }, [isMultipleMode, value])
-
 
   const handleOptionClick = (
     optionValue: OptionProps["value"],
     disabled: boolean,
   ) => {
-    console.log(optionValue, disabled, 'handleOptionClick')
+    console.log(optionValue, disabled, "handleOptionClick")
     if (disabled) {
       return
     }
@@ -311,11 +310,11 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
                   onClickOption={handleOptionClick}
                   onMouseEnter={(value: any) => {
                     refKeyboardArrowDirection.current === null &&
-                    setValueActive(value)
+                      setValueActive(value)
                   }}
                   onMouseLeave={() => {
                     refKeyboardArrowDirection.current === null &&
-                    setValueActive(undefined)
+                      setValueActive(undefined)
                   }}
                 />
               )
@@ -331,9 +330,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
           refKeyboardArrowDirection.current = null
         }}
         onScroll={(e) => onPopupScroll?.(e.target)}
-      >
-
-      </List>
+      ></List>
     ) : null
 
     return <div>{elementList || <Empty />}</div>
@@ -399,11 +396,13 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       <SelectView
         {...props}
         {...selectViewEventHandlers}
+        value={currentValue}
         inputValue={inputValue}
         popupVisible={currentVisible}
         isMultipleMode={isMultipleMode}
         isEmptyValue={isNoOptionSelected}
         renderText={(value) => {
+          console.log(value, 'renderText')
           const option = getOptionInfoByValue(value)
           let text = value
           if (option) {

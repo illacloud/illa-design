@@ -201,7 +201,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       return (
         <>
           <InputElement
-            css={css({ display: "none" })}
+            css={applySelectViewText(!needShowInput)}
             ref={inputRef}
             disabled={disabled}
             {...inputProps}

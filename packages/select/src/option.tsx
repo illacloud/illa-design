@@ -22,8 +22,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
     ...otherProps
   } = props
 
-  const currentValue = 'value' in props ? value : children?.toString();
-
+  const currentValue = "value" in props ? value : children?.toString()
 
   const optionProps = {
     onMouseEnter: () => onMouseEnter?.(value),
