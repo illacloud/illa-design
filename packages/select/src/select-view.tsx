@@ -156,6 +156,24 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       },
     }
 
+    const suffixIcon = loading ? (
+      <span>
+        <LoadingIcon />
+      </span>
+    ) : showSearch && popupVisible ? (
+      <span>
+        <SearchIcon />
+      </span>
+    ) : popupVisible ? (
+      <span>
+        <ExpandIcon  style={{ transform: 'rotate(180deg)' }} />
+      </span>
+    ):  (
+      <span>
+        <ExpandIcon />
+      </span>
+    )
+
     const renderSingle = () => {
       let _inputValue: string
 
@@ -236,10 +254,14 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         <div
           css={css`
             width: 100%;
+            display: flex;
           `}
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}
         >
           {isMultipleMode ? renderMultiple() : renderSingle()}
+          <div>
+            {suffixIcon}
+          </div>
         </div>
       </div>
     )

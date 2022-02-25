@@ -60,9 +60,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const isMultipleMode = mode === "multiple" || mode === "tags"
   const [currentVisible, setCurrentVisible] = useState<boolean>()
   // 用来保存 value 和选中项的映射
-  const refValueMap = useRef<
-    Array<{ value: OptionProps["value"]; option: OptionInfo }>
-  >([])
+  const refValueMap = useRef<Array<{ value: OptionProps["value"]; option: OptionInfo }>>([])
   const [stateValue, setValue] = useState(
     getValidValue(props.defaultValue, isMultipleMode, labelInValue),
   )
@@ -213,8 +211,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         value === undefined
           ? undefined
           : Array.isArray(value)
-          ? value.map(getOptionInfoByValue)
-          : getOptionInfoByValue(value)
+            ? value.map(getOptionInfoByValue)
+            : getOptionInfoByValue(value)
       onChange(getValueForCallbackParameter(value, option), option)
     }
   }
@@ -286,6 +284,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   // SelectView组件事件处理
   const selectViewEventHandlers = {
     onFocus,
+    // onClick: () => {
+    //    tryUpdatePopupVisible(!currentValue)
+    // },
     onBlur: (event: any) => {
       onBlur?.(event)
       // 下拉列表隐藏时，失焦需要清空已输入内容
@@ -320,81 +321,78 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   }
 
   return (
-    <div>
-      <div onClick={()=>{setCurrentVisible(false)}}>xxxxx</div>
-      <Trigger
-        trigger="click"
-        content={
-          <OptionList
-            ref={refList}
-            childrenList={childrenList}
-            render={(child: any) => {
-              console.log("render")
-              if (isSelectOptGroup(child)) {
-                return <child.type {...child.props} />
-              }
-              if (isSelectOption(child)) {
-                return (
-                  child && (
-                    <child.type
-                      {...child.props}
-                      valueSelect={currentValue}
-                      valueActive={valueActive}
-                      isMultipleMode={isMultipleMode}
-                      onClickOption={handleOptionClick}
-                      onMouseEnter={(value: any) => {
-                        refKeyboardArrowDirection.current === null &&
-                        setValueActive(value)
-                      }}
-                      onMouseLeave={() => {
-                        refKeyboardArrowDirection.current === null &&
-                        setValueActive(undefined)
-                      }}
-                    />
-                  )
+    <Trigger
+      trigger="click"
+      content={
+        <OptionList
+          ref={refList}
+          childrenList={childrenList}
+          render={(child: any) => {
+            console.log("render")
+            if (isSelectOptGroup(child)) {
+              return <child.type {...child.props} />
+            }
+            if (isSelectOption(child)) {
+              return (
+                child && (
+                  <child.type
+                    {...child.props}
+                    valueSelect={currentValue}
+                    valueActive={valueActive}
+                    isMultipleMode={isMultipleMode}
+                    onClickOption={handleOptionClick}
+                    onMouseEnter={(value: any) => {
+                      refKeyboardArrowDirection.current === null &&
+                      setValueActive(value)
+                    }}
+                    onMouseLeave={() => {
+                      refKeyboardArrowDirection.current === null &&
+                      setValueActive(undefined)
+                    }}
+                  />
                 )
-              }
-              return child
-            }}
-            onMouseMove={() => {
-              refKeyboardArrowDirection.current = null
-            }}
-            onScroll={(e) => onPopupScroll?.(e.target)}
-          />
-        }
-        showArrow={false}
-        colorScheme="white"
-        position="bl"
-        disabled={disabled}
-        withoutPadding
-        clickOutsideToClose
-        autoAlignPopupWidth
-        popupVisible={currentVisible}
-        onVisibleChange={tryUpdatePopupVisible}
-      >
-        <SelectView
-          {...props}
-          {...selectViewEventHandlers}
-          value={currentValue}
-          inputValue={inputValue}
-          popupVisible={currentVisible}
-          isMultipleMode={isMultipleMode}
-          isEmptyValue={isNoOptionSelected}
-          renderText={(value) => {
-            console.log(value, "renderText")
-            const option = getOptionInfoByValue(value)
-            let text = value
-            if (option) {
-              text = option.children
+              )
             }
-            return {
-              text,
-              disabled: option?.disabled,
-            }
+            return child
           }}
+          onMouseMove={() => {
+            refKeyboardArrowDirection.current = null
+          }}
+          onScroll={(e) => onPopupScroll?.(e.target)}
         />
-      </Trigger>
-    </div>
+      }
+      showArrow={false}
+      colorScheme="white"
+      position="bl"
+      disabled={disabled}
+      withoutPadding
+      clickOutsideToClose
+      autoAlignPopupWidth
+      popupVisible={currentVisible}
+      onVisibleChange={tryUpdatePopupVisible}
+    >
+      <SelectView
+        {...props}
+        {...selectViewEventHandlers}
+        value={currentValue}
+        inputValue={inputValue}
+        popupVisible={currentVisible}
+        isMultipleMode={isMultipleMode}
+        isEmptyValue={isNoOptionSelected}
+        renderText={(value) => {
+          console.log(value, "renderText")
+          const option = getOptionInfoByValue(value)
+          let text = value
+          if (option) {
+            text = option.children
+          }
+          return {
+            text,
+            disabled: option?.disabled,
+          }
+        }}
+      />
+    </Trigger>
   )
 })
 

@@ -18,7 +18,6 @@ const Template: Story<SelectProps> = (args) => (
       <Option>Abc</Option>
       <Option>Bde</Option>
     </Select>
-    <Trigger trigger="click">test</Trigger>
   </Space>
 )
 
