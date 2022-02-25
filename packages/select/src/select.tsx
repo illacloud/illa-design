@@ -60,7 +60,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const isMultipleMode = mode === "multiple" || mode === "tags"
   const [currentVisible, setCurrentVisible] = useState<boolean>()
   // 用来保存 value 和选中项的映射
-  const refValueMap = useRef<Array<{ value: OptionProps["value"]; option: OptionInfo }>>([])
+  const refValueMap = useRef<
+    Array<{ value: OptionProps["value"]; option: OptionInfo }>
+  >([])
   const [stateValue, setValue] = useState(
     getValidValue(props.defaultValue, isMultipleMode, labelInValue),
   )
@@ -211,8 +213,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         value === undefined
           ? undefined
           : Array.isArray(value)
-            ? value.map(getOptionInfoByValue)
-            : getOptionInfoByValue(value)
+          ? value.map(getOptionInfoByValue)
+          : getOptionInfoByValue(value)
       onChange(getValueForCallbackParameter(value, option), option)
     }
   }
@@ -343,11 +345,11 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
                     onClickOption={handleOptionClick}
                     onMouseEnter={(value: any) => {
                       refKeyboardArrowDirection.current === null &&
-                      setValueActive(value)
+                        setValueActive(value)
                     }}
                     onMouseLeave={() => {
                       refKeyboardArrowDirection.current === null &&
-                      setValueActive(undefined)
+                        setValueActive(undefined)
                     }}
                   />
                 )

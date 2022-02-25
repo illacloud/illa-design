@@ -166,9 +166,9 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       </span>
     ) : popupVisible ? (
       <span>
-        <ExpandIcon  style={{ transform: 'rotate(180deg)' }} />
+        <ExpandIcon style={{ transform: "rotate(180deg)" }} />
       </span>
-    ):  (
+    ) : (
       <span>
         <ExpandIcon />
       </span>
@@ -223,7 +223,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             {...inputProps}
           />
           <span css={applySelectViewText(!needShowInput)}>
-            Single{_inputValue}
+            {_inputValue}
           </span>
         </>
       )
@@ -254,14 +254,15 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         <div
           css={css`
             width: 100%;
+            height: 100%;
             display: flex;
+            flex-direction: row;
+            align-items: center;
           `}
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}
         >
           {isMultipleMode ? renderMultiple() : renderSingle()}
-          <div>
-            {suffixIcon}
-          </div>
+          <div>{suffixIcon}</div>
         </div>
       </div>
     )

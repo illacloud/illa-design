@@ -121,8 +121,9 @@ function applyStatus(stateValue: StateValue) {
 // SelectView
 export function applySelectView(stateValue: StateValue): SerializedStyles {
   return css`
-    height: 32px;
-    width: 120px;
+    box-sizing: border-box;
+    height: 40px;
+    width: 132px;
     line-height: 30px;
     font-size: 14px;
     padding: 9px 16px;
@@ -140,7 +141,9 @@ export function applySelectViewText(
     | { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean },
 ): SerializedStyles {
   return css`
+    width: 100%;
     font-size: 14px;
+    // line-height: initial !important;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
