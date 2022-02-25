@@ -359,7 +359,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
       isMount = false
       window.clearTimeout(timeOutHandlerId)
     }
-  }, [popupVisible, position, content, disabled, measureInfo])
+  }, [
+    popupVisible,
+    position,
+    content,
+    disabled,
+    autoAlignPopupWidth,
+    measureInfo,
+  ])
 
   const newProps = {
     ref: (rawRef: HTMLElement | null) => {
