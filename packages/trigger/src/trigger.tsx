@@ -288,12 +288,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
   )
 
   useClickAway(childrenRef, () => {
-    if (
-      !disabled &&
-      trigger == "click" &&
-      clickOutsideToClose &&
-      popupVisible == undefined
-    ) {
+    if (!disabled && clickOutsideToClose) {
       hideTips()
     }
   })
