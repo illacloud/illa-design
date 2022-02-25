@@ -17,25 +17,33 @@ export const iconColorMap = {
   error: `${globalColor(`--${illaPrefix}-red-03`)}`,
 }
 
-export function applyAlert(
+export function applyAlertContainer(
   type: AlertType,
   hasContent: boolean,
   showBanner: boolean,
 ) {
   const padding = hasContent ? `16px` : `9px 16px`
-  const align = hasContent ? `flex-start` : `center`
   const radius = showBanner ? `` : `border-radius: 2px`
   return css`
+    display: inline-flex;
     box-sizing: border-box;
     ${radius};
     padding: ${padding};
     font-size: 14px;
     line-height: 1.57;
-    display: flex;
-    align-items: ${align};
     overflow: hidden;
     width: 100%;
     background-color: ${colorMap[type]};
+  `
+}
+export function applyAlert(hasContent: boolean) {
+  const align = hasContent ? `flex-start` : `center`
+  return css`
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: ${align};
+    overflow: hidden;
+    width: 100%;
   `
 }
 
