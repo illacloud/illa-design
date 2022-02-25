@@ -2,11 +2,19 @@ import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { SwitchProps, Switch } from "../src"
 import { Space } from "@illa-design/space"
-import { SuccessIcon, CloseIcon } from "@illa-design/icon"
+import { CheckmarkIcon, CloseIcon } from "@illa-design/icon"
 
 export default {
   title: "DATA INPUT/Switch",
   component: Switch,
+  argTypes: {
+    checkedIcon: {
+      control: false,
+    },
+    uncheckedIcon: {
+      control: false,
+    },
+  },
 } as Meta
 
 const Template: Story<SwitchProps> = (args) => {
@@ -15,9 +23,9 @@ const Template: Story<SwitchProps> = (args) => {
       <Switch {...args} />
       <Switch
         {...args}
-        checkedText={<SuccessIcon />}
+        checkedText={<CheckmarkIcon />}
         uncheckedText={<CloseIcon />}
-        checkedIcon={<SuccessIcon />}
+        checkedIcon={<CheckmarkIcon />}
         uncheckedIcon={<CloseIcon />}
       />
     </Space>
