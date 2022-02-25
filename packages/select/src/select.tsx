@@ -30,6 +30,7 @@ import {
   isSelectOption,
   SelectInner,
 } from "./utils"
+import { OptionList } from "./option-list"
 
 export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const {
@@ -59,9 +60,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const isMultipleMode = mode === "multiple" || mode === "tags"
   const [currentVisible, setCurrentVisible] = useState<boolean>()
   // 用来保存 value 和选中项的映射
-  const refValueMap = useRef<
-    Array<{ value: OptionProps["value"]; option: OptionInfo }>
-  >([])
+  const refValueMap = useRef<Array<{ value: OptionProps["value"]; option: OptionInfo }>>([])
   const [stateValue, setValue] = useState(
     getValidValue(props.defaultValue, isMultipleMode, labelInValue),
   )
@@ -178,10 +177,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     return item?.option as OptionInfo
   }
 
-  const onChangeValue = (event: ChangeEvent<HTMLInputElement>): void => {
-    event.persist()
-  }
-
   // Object should be returned when labelInValue is true
   const getValueForCallbackParameter = (
     value: SelectInner,
@@ -202,6 +197,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
 
   // 尝试更新 popupVisible，触发 onVisibleChange
   const tryUpdatePopupVisible = (value: boolean) => {
+    console.log(value, currentVisible, 'tryUpdatePopupVisible')
     if (currentVisible !== value) {
       setCurrentVisible(value)
       onVisibleChange?.(value)
@@ -215,8 +211,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         value === undefined
           ? undefined
           : Array.isArray(value)
-          ? value.map(getOptionInfoByValue)
-          : getOptionInfoByValue(value)
+            ? value.map(getOptionInfoByValue)
+            : getOptionInfoByValue(value)
       onChange(getValueForCallbackParameter(value, option), option)
     }
   }
@@ -285,57 +281,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     }
   }
 
-  const renderOption = () => {
-    const elementList = childrenList?.length ? (
-      <List
-        ref={refList}
-        css={css`
-          min-width: unset !important;
-          width: 100%;
-        `}
-        size="small"
-        data={childrenList as any}
-        render={(child: any) => {
-          if (isSelectOptGroup(child)) {
-            return <child.type {...child.props} />
-          }
-          if (isSelectOption(child)) {
-            return (
-              child && (
-                <child.type
-                  {...child.props}
-                  valueSelect={value}
-                  valueActive={valueActive}
-                  isMultipleMode={isMultipleMode}
-                  onClickOption={handleOptionClick}
-                  onMouseEnter={(value: any) => {
-                    refKeyboardArrowDirection.current === null &&
-                      setValueActive(value)
-                  }}
-                  onMouseLeave={() => {
-                    refKeyboardArrowDirection.current === null &&
-                      setValueActive(undefined)
-                  }}
-                />
-              )
-            )
-          }
-          return child
-        }}
-        renderKey={(data, index) => {
-          return index.toString()
-        }}
-        hoverable
-        onMouseMove={() => {
-          refKeyboardArrowDirection.current = null
-        }}
-        onScroll={(e) => onPopupScroll?.(e.target)}
-      ></List>
-    ) : null
-
-    return <div>{elementList || <Empty />}</div>
-  }
-
   // SelectView组件事件处理
   const selectViewEventHandlers = {
     onFocus,
@@ -346,9 +291,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     },
     onChangeInputValue: (value: string) => {
       tryUpdateInputValue(value, "manual")
-
       if (!currentVisible && value) {
-        tryUpdatePopupVisible(true)
+        // tryUpdatePopupVisible(true)
       }
     },
     // Option Items
@@ -376,7 +320,43 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   return (
     <Trigger
       trigger="click"
-      content={renderOption()}
+      content={
+        <OptionList
+          ref={refList}
+          childrenList={childrenList}
+          render={(child: any) => {
+            console.log('render')
+            if (isSelectOptGroup(child)) {
+              return <child.type {...child.props} />
+            }
+            if (isSelectOption(child)) {
+              return (
+                child && (
+                  <child.type
+                    {...child.props}
+                    valueSelect={currentValue}
+                    valueActive={valueActive}
+                    isMultipleMode={isMultipleMode}
+                    onClickOption={handleOptionClick}
+                    onMouseEnter={(value: any) => {
+                      refKeyboardArrowDirection.current === null &&
+                      setValueActive(value)
+                    }}
+                    onMouseLeave={() => {
+                      refKeyboardArrowDirection.current === null &&
+                      setValueActive(undefined)
+                    }}
+                  />
+                )
+              )
+            }
+            return child
+          }}
+          onMouseMove={() => {
+            refKeyboardArrowDirection.current = null
+          }}
+          onScroll={(e) => onPopupScroll?.(e.target)}
+        />}
       showArrow={false}
       colorScheme="white"
       position="tl"
@@ -385,13 +365,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       clickOutsideToClose
       autoAlignPopupWidth
       popupVisible={currentVisible}
-      onVisibleChange={(value: boolean) => {
-        console.log(value, "onVisibleChange")
-        if (currentVisible !== value) {
-          setCurrentVisible(value)
-          onVisibleChange?.(value)
-        }
-      }}
+      onVisibleChange={tryUpdatePopupVisible}
     >
       <SelectView
         {...props}
@@ -402,7 +376,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         isMultipleMode={isMultipleMode}
         isEmptyValue={isNoOptionSelected}
         renderText={(value) => {
-          console.log(value, 'renderText')
+          console.log(value, "renderText")
           const option = getOptionInfoByValue(value)
           let text = value
           if (option) {

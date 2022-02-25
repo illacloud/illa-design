@@ -84,7 +84,6 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     const isRetainInputValueSearch =
       isObject(showSearch) && showSearch?.retainInputValue
 
-    console.log(renderedValue, "renderedValue")
     const stateValue: StateValue = {
       error,
       disabled,
