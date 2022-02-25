@@ -6,42 +6,51 @@ import { css } from "@emotion/react"
 import { Empty } from "@illa-design/empty"
 
 interface OptionListProps<T> {
-  childrenList?: React.ReactElement<any, string | React.JSXElementConstructor<any>>[]
-  render?: (data: T, index: number) => ReactNode;
+  childrenList?: React.ReactElement<
+    any,
+    string | React.JSXElementConstructor<any>
+  >[]
+  render?: (data: T, index: number) => ReactNode
 
   onMouseMove?: () => void
-  onScroll?: UIEventHandler<HTMLElement>;
+  onScroll?: UIEventHandler<HTMLElement>
 }
 
-export const OptionList = forwardRef<HTMLDivElement, OptionListProps<any>>((props, ref) => {
-  const {
-    childrenList,
-    render,
-    //
-    onMouseMove,
-    onScroll,
-  } = props
+export const OptionList = forwardRef<HTMLDivElement, OptionListProps<any>>(
+  (props, ref) => {
+    const {
+      childrenList,
+      render,
+      //
+      onMouseMove,
+      onScroll,
+    } = props
 
-  return <>
-    {childrenList?.length ? (
-      <List
-        ref={ref}
-        css={css`
-          min-width: unset !important;
-          width: 100%;
-        `}
-        size="small"
-        data={childrenList as any}
-        render={render}
-        onMouseMove={onMouseMove}
-        onScroll={onScroll}
-        renderKey={(data, index) => {
-          return index.toString()
-        }}
-        hoverable
-      />
-    ) : <Empty />}
-  </>
-})
+    return (
+      <>
+        {childrenList?.length ? (
+          <List
+            ref={ref}
+            css={css`
+              min-width: unset !important;
+              width: 100%;
+            `}
+            size="small"
+            data={childrenList as any}
+            render={render}
+            onMouseMove={onMouseMove}
+            onScroll={onScroll}
+            renderKey={(data, index) => {
+              return index.toString()
+            }}
+            hoverable
+          />
+        ) : (
+          <Empty />
+        )}
+      </>
+    )
+  },
+)
 
 OptionList.displayName = "OptionList"

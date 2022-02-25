@@ -60,7 +60,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const isMultipleMode = mode === "multiple" || mode === "tags"
   const [currentVisible, setCurrentVisible] = useState<boolean>()
   // 用来保存 value 和选中项的映射
-  const refValueMap = useRef<Array<{ value: OptionProps["value"]; option: OptionInfo }>>([])
+  const refValueMap = useRef<
+    Array<{ value: OptionProps["value"]; option: OptionInfo }>
+  >([])
   const [stateValue, setValue] = useState(
     getValidValue(props.defaultValue, isMultipleMode, labelInValue),
   )
@@ -197,7 +199,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
 
   // 尝试更新 popupVisible，触发 onVisibleChange
   const tryUpdatePopupVisible = (value: boolean) => {
-    console.log(value, currentVisible, 'tryUpdatePopupVisible')
+    console.log(value, currentVisible, "tryUpdatePopupVisible")
     if (currentVisible !== value) {
       setCurrentVisible(value)
       onVisibleChange?.(value)
@@ -211,8 +213,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         value === undefined
           ? undefined
           : Array.isArray(value)
-            ? value.map(getOptionInfoByValue)
-            : getOptionInfoByValue(value)
+          ? value.map(getOptionInfoByValue)
+          : getOptionInfoByValue(value)
       onChange(getValueForCallbackParameter(value, option), option)
     }
   }
@@ -275,9 +277,10 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       if (optionValue !== value) {
         tryUpdateSelectValue(optionValue as SelectInner)
       }
+      tryUpdatePopupVisible(false)
       setTimeout(() => {
         tryUpdatePopupVisible(false)
-      })
+      }, 5000)
     }
   }
 
@@ -318,77 +321,81 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   }
 
   return (
-    <Trigger
-      trigger="click"
-      content={
-        <OptionList
-          ref={refList}
-          childrenList={childrenList}
-          render={(child: any) => {
-            console.log('render')
-            if (isSelectOptGroup(child)) {
-              return <child.type {...child.props} />
-            }
-            if (isSelectOption(child)) {
-              return (
-                child && (
-                  <child.type
-                    {...child.props}
-                    valueSelect={currentValue}
-                    valueActive={valueActive}
-                    isMultipleMode={isMultipleMode}
-                    onClickOption={handleOptionClick}
-                    onMouseEnter={(value: any) => {
-                      refKeyboardArrowDirection.current === null &&
-                      setValueActive(value)
-                    }}
-                    onMouseLeave={() => {
-                      refKeyboardArrowDirection.current === null &&
-                      setValueActive(undefined)
-                    }}
-                  />
+    <div>
+      <div onClick={()=>{setCurrentVisible(false)}}>xxxxx</div>
+      <Trigger
+        trigger="click"
+        content={
+          <OptionList
+            ref={refList}
+            childrenList={childrenList}
+            render={(child: any) => {
+              console.log("render")
+              if (isSelectOptGroup(child)) {
+                return <child.type {...child.props} />
+              }
+              if (isSelectOption(child)) {
+                return (
+                  child && (
+                    <child.type
+                      {...child.props}
+                      valueSelect={currentValue}
+                      valueActive={valueActive}
+                      isMultipleMode={isMultipleMode}
+                      onClickOption={handleOptionClick}
+                      onMouseEnter={(value: any) => {
+                        refKeyboardArrowDirection.current === null &&
+                        setValueActive(value)
+                      }}
+                      onMouseLeave={() => {
+                        refKeyboardArrowDirection.current === null &&
+                        setValueActive(undefined)
+                      }}
+                    />
+                  )
                 )
-              )
-            }
-            return child
-          }}
-          onMouseMove={() => {
-            refKeyboardArrowDirection.current = null
-          }}
-          onScroll={(e) => onPopupScroll?.(e.target)}
-        />}
-      showArrow={false}
-      colorScheme="white"
-      position="tl"
-      disabled={disabled}
-      withoutPadding
-      clickOutsideToClose
-      autoAlignPopupWidth
-      popupVisible={currentVisible}
-      onVisibleChange={tryUpdatePopupVisible}
-    >
-      <SelectView
-        {...props}
-        {...selectViewEventHandlers}
-        value={currentValue}
-        inputValue={inputValue}
+              }
+              return child
+            }}
+            onMouseMove={() => {
+              refKeyboardArrowDirection.current = null
+            }}
+            onScroll={(e) => onPopupScroll?.(e.target)}
+          />
+        }
+        showArrow={false}
+        colorScheme="white"
+        position="bl"
+        disabled={disabled}
+        withoutPadding
+        clickOutsideToClose
+        autoAlignPopupWidth
         popupVisible={currentVisible}
-        isMultipleMode={isMultipleMode}
-        isEmptyValue={isNoOptionSelected}
-        renderText={(value) => {
-          console.log(value, "renderText")
-          const option = getOptionInfoByValue(value)
-          let text = value
-          if (option) {
-            text = option.children
-          }
-          return {
-            text,
-            disabled: option?.disabled,
-          }
-        }}
-      />
-    </Trigger>
+        onVisibleChange={tryUpdatePopupVisible}
+      >
+        <SelectView
+          {...props}
+          {...selectViewEventHandlers}
+          value={currentValue}
+          inputValue={inputValue}
+          popupVisible={currentVisible}
+          isMultipleMode={isMultipleMode}
+          isEmptyValue={isNoOptionSelected}
+          renderText={(value) => {
+            console.log(value, "renderText")
+            const option = getOptionInfoByValue(value)
+            let text = value
+            if (option) {
+              text = option.children
+            }
+            return {
+              text,
+              disabled: option?.disabled,
+            }
+          }}
+        />
+      </Trigger>
+    </div>
   )
 })
 

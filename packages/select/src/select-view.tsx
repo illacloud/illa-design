@@ -173,7 +173,6 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       }
 
       const inputProps: InputElementProps = {
-        style: { width: "100%" },
         value: typeof !isObject(_inputValue) ? _inputValue : "",
         // Allow placeholder to display the selected value first when searching
         placeholder:
@@ -200,12 +199,12 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       return (
         <>
           <InputElement
-            css={applySelectViewText(!needShowInput)}
+            css={applySelectViewText(needShowInput)}
             ref={inputRef}
             disabled={disabled}
             {...inputProps}
           />
-          <span css={applySelectViewText(needShowInput)}>
+          <span css={applySelectViewText(!needShowInput)}>
             Single{_inputValue}
           </span>
         </>
@@ -235,6 +234,9 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         ])}
       >
         <div
+          css={css`
+            width: 100%;
+          `}
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}
         >
           {isMultipleMode ? renderMultiple() : renderSingle()}

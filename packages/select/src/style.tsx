@@ -122,7 +122,7 @@ function applyStatus(stateValue: StateValue) {
 export function applySelectView(stateValue: StateValue): SerializedStyles {
   return css`
     height: 32px;
-    min-width: 120px;
+    width: 120px;
     line-height: 30px;
     font-size: 14px;
     padding: 9px 16px;
