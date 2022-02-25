@@ -277,10 +277,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       if (optionValue !== value) {
         tryUpdateSelectValue(optionValue as SelectInner)
       }
-      tryUpdatePopupVisible(false)
       setTimeout(() => {
         tryUpdatePopupVisible(false)
-      }, 5000)
+      })
     }
   }
 
@@ -295,7 +294,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     onChangeInputValue: (value: string) => {
       tryUpdateInputValue(value, "manual")
       if (!currentVisible && value) {
-        // tryUpdatePopupVisible(true)
+        tryUpdatePopupVisible(true)
       }
     },
     // Option Items
