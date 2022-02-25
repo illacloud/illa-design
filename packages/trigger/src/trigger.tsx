@@ -300,7 +300,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   useEffect(() => {
     let isMount = true
-    if (tipVisible) {
+    if (tipVisible && popupVisible == undefined) {
       adjustLocation(
         tipsNode,
         childrenRef.current,
@@ -332,6 +332,24 @@ export const Trigger: FC<TriggerProps> = (props) => {
             setTipsVisible(true)
             if (onVisibleChange != undefined) {
               onVisibleChange(true)
+            }
+          }
+        }
+      })
+    } else if (popupVisible == false) {
+      adjustLocation(
+        tipsNode,
+        childrenRef.current,
+        position,
+        autoFitPosition,
+      ).then((result) => {
+        // async deal
+        if (isMount) {
+          setAdjustResult(result)
+          if (tipVisible) {
+            setTipsVisible(false)
+            if (onVisibleChange != undefined) {
+              onVisibleChange(false)
             }
           }
         }
