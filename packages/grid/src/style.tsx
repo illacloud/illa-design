@@ -1,7 +1,145 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@storybook/theming"
+import { GridSize, RowAlign, RowJustify } from "./interface"
 
-export function applyRowContainer(): SerializedStyles {
-  return css``
+export function applyRowContainer(
+  align?: RowAlign,
+  justify?: RowJustify,
+): SerializedStyles {
+  return css`
+    display: flex;
+    justify-items: ${align};
+    align-items: ${justify};
+  `
+}
+
+export function applyHorizontalGap(
+  horizontalGap?: GridSize | string,
+): SerializedStyles {
+  if (typeof horizontalGap == "object") {
+    const { xs, sm, md, lg, xl, xxl } = horizontalGap
+    return applyHorizontalSizeGap(xs, sm, md, lg, xl, xxl)
+  }
+  return css`
+    row-gap: ${horizontalGap}px;
+  `
+}
+
+export function applyVerticalGap(
+  verticalGap?: GridSize | string,
+): SerializedStyles {
+  if (typeof verticalGap == "object") {
+    const { xs, sm, md, lg, xl, xxl } = verticalGap
+    return applyVerticalSizeGap(xs, sm, md, lg, xl, xxl)
+  }
+  return css`
+    column-gap: ${verticalGap}px;
+  `
+}
+
+export function applyHorizontalSizeGap(
+  xs?: number,
+  sm?: number,
+  md?: number,
+  lg?: number,
+  xl?: number,
+  xxl?: number,
+): SerializedStyles {
+  return css`
+    @media (min-width: 0px) {
+      row-gap: ${xs};
+    }
+    @media (min-width: 576px) {
+      row-gap: ${sm};
+    }
+    @media (min-width: 768px) {
+      row-gap: ${md};
+    }
+    @media (min-width: 992px) {
+      row-gap: ${lg};
+    }
+    @media (min-width: 1200px) {
+      row-gap: ${xl};
+    }
+    @media (min-width: 1600px) {
+      row-gap: ${xxl};
+    }
+  `
+}
+
+export function applyVerticalSizeGap(
+  xs?: number,
+  sm?: number,
+  md?: number,
+  lg?: number,
+  xl?: number,
+  xxl?: number,
+): SerializedStyles {
+  return css`
+    @media (min-width: 0px) {
+      column-gap: ${xs};
+    }
+    @media (min-width: 576px) {
+      column-gap: ${sm};
+    }
+    @media (min-width: 768px) {
+      column-gap: ${md};
+    }
+    @media (min-width: 992px) {
+      column-gap: ${lg};
+    }
+    @media (min-width: 1200px) {
+      column-gap: ${xl};
+    }
+    @media (min-width: 1600px) {
+      column-gap: ${xxl};
+    }
+  `
+}
+
+export function applyColContainer(order?: number): SerializedStyles {
+  if (order != undefined) {
+    return css`
+      box-sizing: border-box;
+      order: ${order};
+    `
+  } else {
+    return css`
+      box-sizing: border-box;
+    `
+  }
+}
+
+export interface UnitWidth {
+  normal?: string
+  xs?: string
+  sm?: string
+  md?: string
+  lg?: string
+  xl?: string
+  xxl?: string
+}
+
+export function getOneUnitWidth(
+  childCount: number,
+  horizontalGap?: GridSize | string,
+): UnitWidth {
+  if (typeof horizontalGap == "string") {
+    return {
+      normal: `calc(100% - ${horizontalGap} * (${childCount} - 1))`,
+    }
+  } else if (typeof horizontalGap == "object") {
+    return {
+      xs: `calc(100% - ${horizontalGap.xs ?? "0px"} * (${childCount} - 1))`,
+      sm: `calc(100% - ${horizontalGap.sm ?? "0px"} * (${childCount} - 1))`,
+      md: `calc(100% - ${horizontalGap.md ?? "0px"} * (${childCount} - 1))`,
+      lg: `calc(100% - ${horizontalGap.lg ?? "0px"} * (${childCount} - 1))`,
+      xl: `calc(100% - ${horizontalGap.xl ?? "0px"} * (${childCount} - 1))`,
+      xxl: `calc(100% - ${horizontalGap.xxl ?? "0px"} * (${childCount} - 1))`,
+    }
+  } else {
+    return {
+      normal: `calc(100% / 24)`,
+    }
+  }
 }

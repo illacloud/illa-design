@@ -1,14 +1,14 @@
 import { HTMLAttributes } from "react"
 
-export type RowAlign = "top" | "middle" | "bottom"
+export type RowAlign = "start" | "center" | "end" | "stretch"
 export type RowJustify =
-  | "left"
+  | "start"
   | "center"
-  | "right"
+  | "end"
   | "space-around"
   | "space-between"
 
-export interface GridGap {
+export interface GridSize {
   xs?: number
   sm?: number
   md?: number
@@ -20,14 +20,19 @@ export interface GridGap {
 export interface RowProps extends HTMLAttributes<HTMLDivElement> {
   align?: RowAlign
   justify?: RowJustify
-  horizontalGap?: GridGap[] | string
-  verticalGap?: GridGap[] | string
+  horizontalGap?: GridSize | string
+  verticalGap?: GridSize | string
 }
 
-export interface ColProps extends HTMLAttributes<HTMLDivElement>, GridGap {
+export interface ColProps extends HTMLAttributes<HTMLDivElement>, GridSize {
   span?: number
   offset?: number
   order?: number
   push?: number
   pull?: number
+}
+
+export interface RowContextProps {
+  horizontalGap?: GridSize | string
+  verticalGap?: GridSize | string
 }
