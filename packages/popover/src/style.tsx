@@ -13,6 +13,5 @@ export function applyTitleColor(colorScheme: TriggerColorScheme) {
       : globalColor(`--${illaPrefix}-white-02`)
   return css`
     color: ${textColor};
-    margin-bottom: 4px;
   `
 }

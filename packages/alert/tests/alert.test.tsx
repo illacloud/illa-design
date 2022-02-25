@@ -9,16 +9,16 @@ test("Alert renders with different type", () => {
   render(<Alert data-testid="test-with-success" type="success" />)
   render(<Alert data-testid="test-with-warning" type="warning" />)
   render(<Alert data-testid="test-with-error" type="error" />)
-  expect(screen.getByTestId("test-with-info")).toHaveStyle({
+  expect(screen.getByTestId("test-with-info").parentNode).toHaveStyle({
     "background-color": `${globalColor(`--${illaPrefix}-blue-07`)}`,
   })
-  expect(screen.getByTestId("test-with-success")).toHaveStyle({
+  expect(screen.getByTestId("test-with-success").parentNode).toHaveStyle({
     "background-color": `${globalColor(`--${illaPrefix}-green-07`)}`,
   })
-  expect(screen.getByTestId("test-with-warning")).toHaveStyle({
+  expect(screen.getByTestId("test-with-warning").parentNode).toHaveStyle({
     "background-color": `${globalColor(`--${illaPrefix}-orange-07`)}`,
   })
-  expect(screen.getByTestId("test-with-error")).toHaveStyle({
+  expect(screen.getByTestId("test-with-error").parentNode).toHaveStyle({
     "background-color": `${globalColor(`--${illaPrefix}-red-07`)}`,
   })
 })
