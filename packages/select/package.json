@@ -36,7 +36,9 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "e2e:ci": "yarn cypress run-ct",
+    "e2e": "yarn cypress open-ct"
   },
   "dependencies": {
     "@illa-design/space": "*",
