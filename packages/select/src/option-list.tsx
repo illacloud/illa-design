@@ -38,7 +38,11 @@ export const OptionList = forwardRef<HTMLDivElement, OptionListProps<any>>(
             hoverable
           />
         ) : (
-          <Empty css={css`padding: 16px 0;`} />
+          <Empty
+            css={css`
+              padding: 16px 0;
+            `}
+          />
         )}
       </>
     )

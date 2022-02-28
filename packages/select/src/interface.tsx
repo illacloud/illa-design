@@ -3,7 +3,8 @@ import React, {
   ChangeEvent,
   PropsWithChildren,
   ReactNode,
-  ReactElement, UIEventHandler,
+  ReactElement,
+  UIEventHandler,
 } from "react"
 import { isEmptyValue } from "./utils"
 
@@ -42,7 +43,7 @@ export interface OptionListProps<T> {
   childrenList?: React.ReactElement<
     any,
     string | React.JSXElementConstructor<any>
-    >[]
+  >[]
   render?: (data: T, index: number) => ReactNode
   onMouseMove?: () => void
   onScroll?: UIEventHandler<HTMLElement>

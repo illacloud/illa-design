@@ -15,11 +15,7 @@ import {
 import { useMergeValue, isObject, omit } from "@illa-design/system"
 import { LoadingIcon, SearchIcon, ExpandIcon } from "@illa-design/icon"
 import { SelectViewProps } from "./interface"
-import {
-  applyIconStyle,
-  applySelectView,
-  applySelectViewText,
-} from "./style"
+import { applyIconStyle, applySelectView, applySelectViewText } from "./style"
 import { isEmptyValue } from "./utils"
 import { css } from "@emotion/react"
 import { color } from "@storybook/theming"
@@ -160,7 +156,10 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     const suffixIcon = loading ? (
       <LoadingIcon
         spin
-        css={css`color: ${globalColor(`--${illaPrefix}-gray-07`)};`} />
+        css={css`
+          color: ${globalColor(`--${illaPrefix}-gray-07`)};
+        `}
+      />
     ) : showSearch && popupVisible ? (
       <SearchIcon />
     ) : popupVisible ? (

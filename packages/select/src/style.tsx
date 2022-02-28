@@ -69,9 +69,10 @@ export const disableOutlineStyle = css`
 export const errorFocusStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-  box-shadow: 0 0 8px 0 ${chroma(globalColor(`--${illaPrefix}-red-01`))
-          .alpha(0.15)
-          .hex()};
+  box-shadow: 0 0 8px 0
+    ${chroma(globalColor(`--${illaPrefix}-red-01`))
+      .alpha(0.15)
+      .hex()};
 `
 export const errorOutlineStyle = css`
   background-color: unset;
@@ -95,7 +96,8 @@ function applyStatus(stateValue: StateValue) {
     const boxShadowColor = globalColor(`--${illaPrefix}-blue-01`)
     mainStyle = css`
       border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
-      box-shadow: 0 0 8px 0 ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
+      box-shadow: 0 0 8px 0
+        ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
     `
