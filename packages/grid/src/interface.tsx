@@ -17,7 +17,7 @@ export interface GridSize {
   xxl?: string
 }
 
-export interface ColSizeProps {
+export interface ColSize {
   span?: number
   offset?: number
   order?: number
@@ -25,21 +25,30 @@ export interface ColSizeProps {
   pull?: number
 }
 
-export interface RowProps extends HTMLAttributes<HTMLDivElement> {
+export interface ColGridProps {
+  xs?: ColSize | number
+  sm?: ColSize | number
+  md?: ColSize | number
+  lg?: ColSize | number
+  xl?: ColSize | number
+  xxl?: ColSize | number
+}
+
+export interface RowGridProps {
   align?: RowAlign
   justify?: RowJustify
   horizontalGap?: GridSize | string
   verticalGap?: GridSize | string
 }
 
-export interface ColProps extends HTMLAttributes<HTMLDivElement>, ColSizeProps {
-  xs?: ColSizeProps | number
-  sm?: ColSizeProps | number
-  md?: ColSizeProps | number
-  lg?: ColSizeProps | number
-  xl?: ColSizeProps | number
-  xxl?: ColSizeProps | number
-}
+export interface RowProps
+  extends HTMLAttributes<HTMLDivElement>,
+    RowGridProps {}
+
+export interface ColProps
+  extends HTMLAttributes<HTMLDivElement>,
+    ColSize,
+    ColGridProps {}
 
 export interface RowContextProps {
   horizontalGap?: GridSize | string

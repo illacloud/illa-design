@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@storybook/theming"
-import { ColSizeProps, GridSize, RowAlign, RowJustify } from "./interface"
+import { ColSize, GridSize, RowAlign, RowJustify } from "./interface"
 
 export function applyRowContainer(
   align?: RowAlign,
@@ -216,7 +216,7 @@ export function applyColWidthStyle(
 export function applyReactiveStyle(
   minWidth: string,
   oneUnitWidth: string,
-  size?: ColSizeProps | number,
+  size?: ColSize | number,
 ): SerializedStyles {
   if (size != undefined) {
     if (typeof size == "number") {
