@@ -72,5 +72,5 @@ jobs:
 
       - name: Run test
         uses: cypress-io/github-action@v2
-        run: |
-          yarn test
+        with:
+          command: yarn test

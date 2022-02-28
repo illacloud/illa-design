@@ -71,8 +71,8 @@ jobs:
 
       - name: Run test
         uses: cypress-io/github-action@v2
-        run: |
-          yarn test
+          with:
+            command: yarn test
 
       - name: Publish to Codecov
         uses: codecov/codecov-action@v2.1.0
