@@ -262,7 +262,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     <motion.div
       ref={tipsRef}
       css={applyMotionDiv()}
-      variants={applyAnimation(finalPosition)}
+      variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
       animate="animate"
       exit="exit"
