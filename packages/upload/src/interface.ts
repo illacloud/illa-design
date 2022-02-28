@@ -69,7 +69,7 @@ export interface UploadProps
   ) => ReactNode
   beforeUpload?: (file: File, filesList: File[]) => boolean | Promise<any>
   onChange?: (fileList: UploadItem[], file: UploadItem) => void
-  onRemove?: (file: UploadItem, fileList: UploadItem[]) => void
+  onRemove?: (file: UploadItem, fileList: UploadItem[]) => void | Promise<any>
   onProgress?: (file: UploadItem, e?: ProgressEvent) => void
   onReupload?: (file: UploadItem) => void
   onExceedLimit?: (files: File[], fileList: UploadItem[]) => void

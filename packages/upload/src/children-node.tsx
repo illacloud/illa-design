@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { forwardRef } from "react"
+import { forwardRef, useContext } from "react"
 import { ChildrenNodeProps, UploadItem, UploadRefType } from "./interface"
 import {
   applyIconCss,
@@ -13,6 +13,11 @@ import { MinusIcon, UploadIcon } from "@illa-design/icon"
 import * as React from "react"
 import { Button } from "@illa-design/button"
 import { TriggerNode } from "./drag-uploader"
+import {
+  ConfigProviderContext,
+  ConfigProviderProps,
+  def,
+} from "@illa-design/config-provider"
 
 export const ChildrenNode = forwardRef<UploadRefType, ChildrenNodeProps>(
   (props, ref) => {
@@ -28,6 +33,16 @@ export const ChildrenNode = forwardRef<UploadRefType, ChildrenNodeProps>(
       pictureUpload,
       currentUploadItem,
     } = props
+
+    const configProviderProps = useContext<ConfigProviderProps>(
+      ConfigProviderContext,
+    )
+
+    const locale = configProviderProps?.locale?.upload ?? def.upload
+
+    const uploadText = locale["upload"]
+    const selectText = locale["selectFile"]
+    const beginUpload = locale["beginUpload"]
 
     const imageUploader = (item?: UploadItem) => {
       return (
@@ -87,7 +102,7 @@ export const ChildrenNode = forwardRef<UploadRefType, ChildrenNodeProps>(
           size={"medium"}
           leftIcon={<UploadIcon />}
         >
-          Upload
+          {uploadText}
         </Button>
       </span>
     )
@@ -103,7 +118,7 @@ export const ChildrenNode = forwardRef<UploadRefType, ChildrenNodeProps>(
           size={"medium"}
           leftIcon={<UploadIcon />}
         >
-          Select file
+          {selectText}
         </Button>
         <Button
           disabled={disabled}
@@ -114,7 +129,7 @@ export const ChildrenNode = forwardRef<UploadRefType, ChildrenNodeProps>(
           size={"medium"}
           leftIcon={<UploadIcon />}
         >
-          Start upload
+          {beginUpload}
         </Button>
       </span>
     )

@@ -1,12 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, useMemo, useRef, useState } from "react"
+import { forwardRef, useEffect, useMemo, useRef, useState } from "react"
 import { UploadItem, UploadProps, UploadRefType } from "./interface"
 import { UploadElement } from "./upload-element"
 import { fileListContainerCss, uploadContainerCss } from "./styles"
 import { FileListTextItem } from "./file-list-text-item"
 import { FileListPicItem } from "./file-list-pic-item"
 import { List } from "@illa-design/list"
+
+const isFunction = (obj?: object) => typeof obj === "function"
 
 export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   const {
@@ -61,26 +63,44 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
 
   uploadState.current = fileList ? processFile(fileList) : innerUploadState
 
-  const getFileList = (obj?: { [key: string]: UploadItem }): UploadItem[] => {
+  useEffect(() => {
+    console.log(`useEffect`, _fileList.length)
+  }, [innerUploadState])
+
+  const getFileList = (
+    obj?: { [key: string]: UploadItem },
+    source?: string,
+  ): UploadItem[] => {
+    console.log(`getFileList source`, source)
+    console.log(`getFileList`, obj)
     if (!obj || !uploadState) return []
-    const res = Object.keys(obj).map((x) => obj[x as keyof UploadItem])
-    return res
+    return Object.keys(obj).map((x) => obj[x as keyof UploadItem])
   }
 
   const _fileList = useMemo(() => {
-    return getFileList(uploadState.current)
+    console.log(`_fileList`, getFileList(uploadState.current, "useMemo").length)
+    return getFileList(uploadState.current, "useMemo")
   }, [innerUploadState])
 
   const deleteUpload = (file: UploadItem) => {
-    const obj = { ...uploadState.current }
-    console.log(`deleteUpload`, Object.keys(obj).length)
-    delete obj[file.uid]
-    console.log(`deleteUpload`, Object.keys(obj).length)
-    if (!fileList) {
-      setInnerUploadState(obj)
+    if (file) {
+      Promise.resolve(
+        onRemove && isFunction(onRemove) ? onRemove(file, _fileList) : onRemove,
+      )
+        .then((value) => {
+          if (value !== false) {
+            const obj = { ...uploadState.current }
+            delete obj[file.uid]
+            if (!fileList) {
+              setInnerUploadState(obj)
+            }
+            uploaderRef.current && uploaderRef.current.deleteUpload(file)
+          }
+        })
+        .catch((e) => {
+          console.error(e)
+        })
     }
-    onRemove && onRemove(file, _fileList)
-    uploaderRef.current && uploaderRef.current.deleteUpload(file)
   }
 
   const uploadFile = (file: UploadItem) => {
@@ -110,10 +130,11 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
         [targetFile.uid]: file,
       }
     })
+    const list = getFileList(uploadState.current, "updateFileList")
     if (targetFile?.status != "uploading") {
-      onChange && onChange(_fileList, targetFile)
+      onChange && onChange(list, targetFile)
     } else if (hasUploadedSet.has(targetFile?.uid)) {
-      onChange && onChange(_fileList, targetFile)
+      onChange && onChange(list, targetFile)
       hasUploadedSet.add(targetFile?.uid)
     }
     if (file?.status === "uploading") {
@@ -123,16 +144,17 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
 
   const getTargetFile = (file: UploadItem) => {
     const key = "uid" in file ? "uid" : "name"
-    const list = getFileList(uploadState.current)
+    const list = getFileList(uploadState.current, "getTargetFile")
     return list?.find((item) => item["uid"] === file["uid"])
   }
+
   return (
     <div css={uploadContainerCss}>
       <UploadElement
         pictureUpload={pictureUpload}
         updateTargetItem={updateFileList}
         ref={uploaderRef}
-        fileList={_fileList}
+        fileList={getFileList(uploadState.current, "element")}
         disabled={disabled}
         customRequest={customRequest}
         {...rest}
@@ -152,7 +174,7 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
       />
       {showUploadList && pictureUpload !== true && (
         <List
-          data={getFileList(uploadState.current)}
+          data={getFileList(uploadState.current, "element-list")}
           bordered={false}
           split={false}
           renderRaw={true}

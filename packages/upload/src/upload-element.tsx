@@ -27,8 +27,9 @@ const checkLimit = (
   limit?: number,
   fileList?: UploadItem[],
 ): boolean => {
+  console.log(`checkLimit`, fileList?.length)
   const fileSum = (fileList?.length ?? 0) + files.length
-  console.log(`checkLimit`, fileList?.length, fileSum, limit)
+  console.log(`checkLimit`, fileSum)
   return !(typeof limit == "number" && limit < fileSum)
 }
 
@@ -38,13 +39,6 @@ const deleteReq = (
 ): UploadElementState => {
   const newValue = { ...uploadRequests }
   delete newValue[fileId]
-  uploadRequests &&
-    console.log(
-      "uploadRequests.length",
-      Object.keys(uploadRequests).length,
-      "newValue.length",
-      Object.keys(newValue).length,
-    )
   return newValue
 }
 
@@ -105,7 +99,6 @@ const doUpload = (
 
   if (action) {
     const request = sendUploadRequest({ ...options, action })
-    console.log(`action`, { [file.uid]: request }.toString())
     return request
   } else {
     return customRequest && { [file.uid]: customRequest({ ...options }) }
@@ -172,10 +165,8 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
         [key: string]: UploadRequestReturn | void
       },
     ) => {
-      console.log(`requests`)
       if (requests) {
         const req = requests[file.uid]
-        // console.log(`requests`, req, req.abort)
         req &&
           Promise.resolve(req).then((result) => {
             result?.abort && result.abort()
@@ -253,7 +244,6 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
           css={inputCss}
           {...(directory ? { webkitdirectory: "true" } : {})}
           onChange={(event) => {
-            console.log(`onChange`, event.target.value)
             const files = event.target.files
             if (files) {
               const fileArr = [].slice.call(files)
@@ -288,7 +278,6 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
                   }
                 })
               } else {
-                console.log(`onExceedLimit `)
                 onExceedLimit && onExceedLimit(fileArr, fileList ?? [])
               }
             }
