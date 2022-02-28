@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@storybook/theming"
-import { GridSize, RowAlign, RowJustify } from "./interface"
+import { ColSizeProps, GridSize, RowAlign, RowJustify } from "./interface"
 
 export function applyRowContainer(
   align?: RowAlign,
@@ -126,16 +126,28 @@ export function getOneUnitWidth(
 ): UnitWidth {
   if (typeof horizontalGap == "string") {
     return {
-      normal: `calc(100% - ${horizontalGap} * (${childCount} - 1))`,
+      normal: `calc((100% - ${horizontalGap} * (${childCount} - 1)) / 24)`,
     }
   } else if (typeof horizontalGap == "object") {
     return {
-      xs: `calc(100% - ${horizontalGap.xs ?? "0px"} * (${childCount} - 1))`,
-      sm: `calc(100% - ${horizontalGap.sm ?? "0px"} * (${childCount} - 1))`,
-      md: `calc(100% - ${horizontalGap.md ?? "0px"} * (${childCount} - 1))`,
-      lg: `calc(100% - ${horizontalGap.lg ?? "0px"} * (${childCount} - 1))`,
-      xl: `calc(100% - ${horizontalGap.xl ?? "0px"} * (${childCount} - 1))`,
-      xxl: `calc(100% - ${horizontalGap.xxl ?? "0px"} * (${childCount} - 1))`,
+      xs: `calc((100% - ${
+        horizontalGap.xs ?? "0px"
+      } * (${childCount} - 1)) / 24)`,
+      sm: `calc((100% - ${
+        horizontalGap.sm ?? "0px"
+      } * (${childCount} - 1)) / 24)`,
+      md: `calc((100% - ${
+        horizontalGap.md ?? "0px"
+      } * (${childCount} - 1)) / 24)`,
+      lg: `calc((100% - ${
+        horizontalGap.lg ?? "0px"
+      } * (${childCount} - 1)) / 24)`,
+      xl: `calc((100% - ${
+        horizontalGap.xl ?? "0px"
+      } * (${childCount} - 1)) / 24)`,
+      xxl: `calc((100% - ${
+        horizontalGap.xxl ?? "0px"
+      } * (${childCount} - 1)) / 24)`,
     }
   } else {
     return {
@@ -143,3 +155,60 @@ export function getOneUnitWidth(
     }
   }
 }
+
+// reactive
+
+export function applyColPushStyle(
+  push: number,
+  oneUnitWidth: string,
+): SerializedStyles {
+  if (oneUnitWidth) {
+    return css`
+      padding-left: calc(${push} * ${oneUnitWidth});
+    `
+  } else {
+    return css``
+  }
+}
+
+export function applyColPullStyle(
+  pull: number,
+  oneUnitWidth: string,
+): SerializedStyles {
+  if (oneUnitWidth) {
+    return css`
+      padding-right: calc(${pull} * ${oneUnitWidth});
+    `
+  } else {
+    return css``
+  }
+}
+
+export function applyColOffsetStyle(
+  offset: number,
+  oneUnitWidth: string,
+): SerializedStyles {
+  if (oneUnitWidth) {
+    return css`
+      margin-left: calc(${offset} * ${oneUnitWidth});
+    `
+  } else {
+    return css``
+  }
+}
+
+export function applyColWidthStyle(
+  span: number,
+  oneUnitWidth: string,
+): SerializedStyles {
+  if (oneUnitWidth) {
+    return css`
+      width: calc(${span} * ${oneUnitWidth});
+    `
+  } else {
+    return css``
+  }
+}
+
+// reactive size
+export function applyXsStyle(xs: ColSizeProps | number, oneUnitWidth: string) {}
