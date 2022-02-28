@@ -9,12 +9,12 @@ export type RowJustify =
   | "space-between"
 
 export interface GridSize {
-  xs?: number
-  sm?: number
-  md?: number
-  lg?: number
-  xl?: number
-  xxl?: number
+  xs?: string
+  sm?: string
+  md?: string
+  lg?: string
+  xl?: string
+  xxl?: string
 }
 
 export interface ColSizeProps {

@@ -8,6 +8,7 @@ import {
   applyColPullStyle,
   applyColPushStyle,
   applyColWidthStyle,
+  applyReactiveStyle,
   getOneUnitWidth,
 } from "./style"
 import { css } from "@emotion/react"
@@ -38,17 +39,41 @@ export const Col = forwardRef<HTMLDivElement, ColProps>((props, ref) => {
   // container css
   const containerCss = applyColContainer(order)
   // outer css
-  const containerPushCss = applyColPushStyle(push, oneUnitWidth.normal ?? "0px")
-  const containerPullCss = applyColPullStyle(pull, oneUnitWidth.normal ?? "0px")
-  const containerOffsetCss = applyColOffsetStyle(
-    offset,
-    oneUnitWidth.normal ?? "0px",
-  )
-  const containerWidthCss = applyColWidthStyle(
-    span,
-    oneUnitWidth.normal ?? "0px",
-  )
+  const containerPushCss = applyColPushStyle(oneUnitWidth.normal, push - pull)
+  const containerPullCss = applyColPullStyle(oneUnitWidth.normal, pull - push)
+  const containerOffsetCss = applyColOffsetStyle(oneUnitWidth.normal, offset)
+  const containerWidthCss = applyColWidthStyle(oneUnitWidth.normal, span)
   // reactive css
+  const xsCss = applyReactiveStyle(
+    "0px",
+    oneUnitWidth.xs ?? oneUnitWidth.normal,
+    xs,
+  )
+  const smCss = applyReactiveStyle(
+    "576px",
+    oneUnitWidth.sm ?? oneUnitWidth.normal,
+    sm,
+  )
+  const mdCss = applyReactiveStyle(
+    "768px",
+    oneUnitWidth.md ?? oneUnitWidth.normal,
+    md,
+  )
+  const lgCss = applyReactiveStyle(
+    "992px",
+    oneUnitWidth.lg ?? oneUnitWidth.normal,
+    lg,
+  )
+  const xlCss = applyReactiveStyle(
+    "1200px",
+    oneUnitWidth.xl ?? oneUnitWidth.normal,
+    xl,
+  )
+  const xxlCss = applyReactiveStyle(
+    "1600px",
+    oneUnitWidth.xxl ?? oneUnitWidth.normal,
+    xxl,
+  )
 
   const finalCss = css`
     ${containerCss};
@@ -56,6 +81,12 @@ export const Col = forwardRef<HTMLDivElement, ColProps>((props, ref) => {
     ${containerPullCss};
     ${containerOffsetCss};
     ${containerWidthCss};
+    ${xsCss};
+    ${smCss};
+    ${mdCss};
+    ${lgCss};
+    ${xlCss};
+    ${xxlCss};
   `
 
   return (

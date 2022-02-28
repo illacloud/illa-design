@@ -8,6 +8,8 @@ export function applyRowContainer(
 ): SerializedStyles {
   return css`
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-items: ${align};
     align-items: ${justify};
   `
@@ -21,7 +23,7 @@ export function applyHorizontalGap(
     return applyHorizontalSizeGap(xs, sm, md, lg, xl, xxl)
   }
   return css`
-    row-gap: ${horizontalGap}px;
+    column-gap: ${horizontalGap};
   `
 }
 
@@ -33,47 +35,17 @@ export function applyVerticalGap(
     return applyVerticalSizeGap(xs, sm, md, lg, xl, xxl)
   }
   return css`
-    column-gap: ${verticalGap}px;
+    row-gap: ${verticalGap};
   `
 }
 
 export function applyHorizontalSizeGap(
-  xs?: number,
-  sm?: number,
-  md?: number,
-  lg?: number,
-  xl?: number,
-  xxl?: number,
-): SerializedStyles {
-  return css`
-    @media (min-width: 0px) {
-      row-gap: ${xs};
-    }
-    @media (min-width: 576px) {
-      row-gap: ${sm};
-    }
-    @media (min-width: 768px) {
-      row-gap: ${md};
-    }
-    @media (min-width: 992px) {
-      row-gap: ${lg};
-    }
-    @media (min-width: 1200px) {
-      row-gap: ${xl};
-    }
-    @media (min-width: 1600px) {
-      row-gap: ${xxl};
-    }
-  `
-}
-
-export function applyVerticalSizeGap(
-  xs?: number,
-  sm?: number,
-  md?: number,
-  lg?: number,
-  xl?: number,
-  xxl?: number,
+  xs?: string,
+  sm?: string,
+  md?: string,
+  lg?: string,
+  xl?: string,
+  xxl?: string,
 ): SerializedStyles {
   return css`
     @media (min-width: 0px) {
@@ -97,6 +69,36 @@ export function applyVerticalSizeGap(
   `
 }
 
+export function applyVerticalSizeGap(
+  xs?: string,
+  sm?: string,
+  md?: string,
+  lg?: string,
+  xl?: string,
+  xxl?: string,
+): SerializedStyles {
+  return css`
+    @media (min-width: 0px) {
+      row-gap: ${xs};
+    }
+    @media (min-width: 576px) {
+      row-gap: ${sm};
+    }
+    @media (min-width: 768px) {
+      row-gap: ${md};
+    }
+    @media (min-width: 992px) {
+      row-gap: ${lg};
+    }
+    @media (min-width: 1200px) {
+      row-gap: ${xl};
+    }
+    @media (min-width: 1600px) {
+      row-gap: ${xxl};
+    }
+  `
+}
+
 export function applyColContainer(order?: number): SerializedStyles {
   if (order != undefined) {
     return css`
@@ -111,7 +113,7 @@ export function applyColContainer(order?: number): SerializedStyles {
 }
 
 export interface UnitWidth {
-  normal?: string
+  normal: string
   xs?: string
   sm?: string
   md?: string
@@ -130,6 +132,7 @@ export function getOneUnitWidth(
     }
   } else if (typeof horizontalGap == "object") {
     return {
+      normal: `calc(100% / 24)`,
       xs: `calc((100% - ${
         horizontalGap.xs ?? "0px"
       } * (${childCount} - 1)) / 24)`,
@@ -157,12 +160,11 @@ export function getOneUnitWidth(
 }
 
 // reactive
-
 export function applyColPushStyle(
-  push: number,
   oneUnitWidth: string,
+  push?: number,
 ): SerializedStyles {
-  if (oneUnitWidth) {
+  if (push) {
     return css`
       padding-left: calc(${push} * ${oneUnitWidth});
     `
@@ -172,10 +174,10 @@ export function applyColPushStyle(
 }
 
 export function applyColPullStyle(
-  pull: number,
   oneUnitWidth: string,
+  pull?: number,
 ): SerializedStyles {
-  if (oneUnitWidth) {
+  if (pull) {
     return css`
       padding-right: calc(${pull} * ${oneUnitWidth});
     `
@@ -185,10 +187,10 @@ export function applyColPullStyle(
 }
 
 export function applyColOffsetStyle(
-  offset: number,
   oneUnitWidth: string,
+  offset?: number,
 ): SerializedStyles {
-  if (oneUnitWidth) {
+  if (offset) {
     return css`
       margin-left: calc(${offset} * ${oneUnitWidth});
     `
@@ -198,10 +200,10 @@ export function applyColOffsetStyle(
 }
 
 export function applyColWidthStyle(
-  span: number,
   oneUnitWidth: string,
+  span?: number,
 ): SerializedStyles {
-  if (oneUnitWidth) {
+  if (span) {
     return css`
       width: calc(${span} * ${oneUnitWidth});
     `
@@ -211,4 +213,29 @@ export function applyColWidthStyle(
 }
 
 // reactive size
-export function applyXsStyle(xs: ColSizeProps | number, oneUnitWidth: string) {}
+export function applyReactiveStyle(
+  minWidth: string,
+  oneUnitWidth: string,
+  size?: ColSizeProps | number,
+): SerializedStyles {
+  if (size != undefined) {
+    if (typeof size == "number") {
+      return css`
+        @media (min-width: ${minWidth}) {
+          ${applyColWidthStyle(oneUnitWidth, size)};
+        }
+      `
+    } else {
+      return css`
+        @media (min-width: ${minWidth}) {
+          ${applyColPushStyle(oneUnitWidth, size?.push)};
+          ${applyColPullStyle(oneUnitWidth, size?.pull)};
+          ${applyColOffsetStyle(oneUnitWidth, size?.offset)};
+          ${applyColWidthStyle(oneUnitWidth, size?.span)};
+        }
+      `
+    }
+  } else {
+    return css``
+  }
+}
