@@ -1,3 +1,4 @@
+
 <div align="center">
     <img alt="ILLA Design Logo" width="120px" height="120px" src="https://devbo.cn/logo.svg"/>
 </div>
@@ -107,7 +108,8 @@ out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get in
 
 Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
 
-- Frontend engineer(Beijing / Shenzhen)
+- Frontend Engineer(Beijing / Shenzhen)
+- Golang Engineer(Beijing / Shenzhen)
 
 ## License
 
