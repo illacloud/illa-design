@@ -6,7 +6,8 @@ import {
   deleteIconCss,
   fileItemContainerCss,
   filePicItemCss,
-  progressCss,
+  imageSizeCss,
+  rightIconCss,
 } from "./styles"
 import { Image } from "@illa-design/image"
 import { Progress } from "@illa-design/progress"
@@ -15,7 +16,7 @@ import { DeleteIcon } from "@illa-design/icon"
 
 export const FileListPicItem = forwardRef<HTMLSpanElement, FileListItemProps>(
   (props, ref) => {
-    const { deleteUpload, item } = props
+    const { deleteUpload, item, reUpload } = props
     const { name, percent, status, url, originFile } = item
     const picUrl = url
       ? url
@@ -23,9 +24,15 @@ export const FileListPicItem = forwardRef<HTMLSpanElement, FileListItemProps>(
     return (
       <div css={fileItemContainerCss}>
         <div css={filePicItemCss}>
-          <Image width={40} height={40} src={url} />
+          <Image
+            css={imageSizeCss}
+            width={40}
+            height={40}
+            radius={"2px"}
+            src={picUrl}
+          />
           <span css={applyFileItemTitleCss(status == "error")}>{name}</span>
-          <Progress css={progressCss} type="miniCircle" percent={percent} />
+          <Progress css={rightIconCss} type="miniCircle" percent={percent} />
         </div>
         <DeleteIcon
           onClick={() => {

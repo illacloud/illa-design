@@ -1,4 +1,12 @@
-import { forwardRef, useRef, useState } from "react"
+/** @jsxImportSource @emotion/react */
+import * as React from "react"
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react"
 import {
   RequestOptions,
   UploadInputElementProps,
@@ -6,148 +14,81 @@ import {
   UploadRefType,
   UploadRequestReturn,
 } from "./interface"
-import { inputCss, uploadButtonCss, uploadChildrenCss } from "./styles"
-import { Button } from "@illa-design/button"
-import { UploadIcon } from "@illa-design/icon"
-import { TriggerNode } from "./drag-uploader"
-import * as React from "react"
-import { sendUploadRequest } from "../request"
+import { inputCss, uploadChildrenCss } from "./styles"
+import { sendUploadRequest } from "./request"
+import { ChildrenNode } from "./children-node"
 
-const getTargetFile = (file: UploadItem, fileList?: UploadItem[]) => {
-  const key = "uid" in file ? "uid" : "name"
-  console.log(`key ${key}  ${file.uid}  ${fileList?.length}`)
-  return fileList?.find((item) => item[key] === file[key])
+export type UploadElementState = {
+  [key: string]: UploadRequestReturn | void
+}
+
+const checkLimit = (
+  files: File[],
+  limit?: number,
+  fileList?: UploadItem[],
+): boolean => {
+  const fileSum = (fileList?.length ?? 0) + files.length
+  console.log(`checkLimit`, fileList?.length, fileSum, limit)
+  return !(typeof limit == "number" && limit < fileSum)
 }
 
 const deleteReq = (
   fileId: string,
   uploadRequests?: { [key: string]: UploadRequestReturn | void },
-): { [key: string]: UploadRequestReturn | void } => {
+): UploadElementState => {
   const newValue = { ...uploadRequests }
   delete newValue[fileId]
+  uploadRequests &&
+    console.log(
+      "uploadRequests.length",
+      Object.keys(uploadRequests).length,
+      "newValue.length",
+      Object.keys(newValue).length,
+    )
   return newValue
 }
 
-const handleFiles = (
-  files: File[],
-  fileList?: UploadItem[],
-  autoUpload?: boolean,
-  limit?: number,
-  headers?: object,
-  withCredentials?: boolean,
-  action?: string,
-  data?: object | ((any: any) => object),
-  name?: string | ((any: any) => string),
-  uploadRequests?: { [key: string]: UploadRequestReturn | void },
-  customRequest?: (options: RequestOptions) => UploadRequestReturn | void,
-  onExceedLimit?: (files: File[], fileList: UploadItem[]) => void,
-  beforeUpload?: (file: File, filesList: File[]) => boolean | Promise<any>,
-  onProgress?: (file: UploadItem, e?: ProgressEvent) => void,
-  onUploadItemStatusChange?: (item: UploadItem) => void,
-) => {
-  const fileSum = (fileList?.length ?? 0) + files.length
-  if (typeof limit == "number" && limit < fileSum) {
-    return onExceedLimit && onExceedLimit(files, fileList ?? [])
-  }
-
-  const asyncUpload = (file: File, index: number) => {
-    const upload: UploadItem = {
-      uid: `${String(+new Date())}${index}`,
-      originFile: file,
-      percent: 0,
-      status: "init",
-      name: file.name,
-    }
-    console.log(`onUploadItemStatusChange ${fileList?.length}`)
-    onUploadItemStatusChange && onUploadItemStatusChange(upload)
-    console.log(`onUploadItemStatusChange ${fileList?.length}`)
-    if (autoUpload) {
-      setTimeout(() => {
-        console.log(`setTimeout ${fileList?.length}`)
-        doUpload(
-          {
-            ...upload,
-            status: "uploading",
-          },
-          fileList,
-          onProgress,
-          onUploadItemStatusChange,
-          uploadRequests,
-          headers,
-          data,
-          withCredentials,
-          action,
-          customRequest,
-          name,
-        )
-      }, 0)
-    }
-  }
-
-  files.forEach((file, index) => {
-    if (typeof beforeUpload === "function") {
-      console.log(`beforeUpload ${fileList?.length}`)
-      Promise.resolve(beforeUpload(file, files))
-        .then((val) => {
-          if (val !== false) {
-            const isFile = Object.prototype.toString.call(val)
-            const newFile = isFile ? val : file
-            asyncUpload(newFile as File, index)
-          }
-        })
-        .catch((e) => {
-          console.error(e)
-        })
-    } else {
-      console.log(`beforeUpload ${fileList?.length}`)
-      asyncUpload(file, index)
-    }
-  })
+const getInitUploadItem = (file: File, index: number) => {
+  return {
+    uid: `${String(+new Date())}${index}`,
+    originFile: file,
+    percent: 0,
+    status: "init",
+    name: file.name,
+  } as UploadItem
 }
 
-const doUpload = async (
+const doUpload = (
   file: UploadItem,
-  fileList?: UploadItem[],
-  onProgress?: (file: UploadItem, e?: ProgressEvent) => void,
-  onUploadItemStatusChange?: (item: UploadItem) => void,
   uploadRequests?: { [key: string]: UploadRequestReturn | void },
   headers?: object,
   data?: object | ((any: any) => object),
   withCredentials?: boolean,
   action?: string,
-  customRequest?: (options: RequestOptions) => UploadRequestReturn | void,
   name?: string | ((any: any) => string),
-  setRequests?: (requests: {
-    [key: string]: UploadRequestReturn | void
-  }) => void,
-) => {
+  customRequest?: (options: RequestOptions) => UploadRequestReturn | void,
+  updateUploadItem?: (file: UploadItem, e?: ProgressEvent) => void,
+): UploadElementState | undefined => {
   const _onProgress = (percent: number, event?: ProgressEvent) => {
-    const targetFile = getTargetFile(file, fileList)
-    console.log(`_onProgress ${fileList?.length}`)
-    if (targetFile) {
-      targetFile.status = "uploading"
-      targetFile.percent = percent
-      onProgress && onProgress(targetFile, event)
-    }
+    updateUploadItem &&
+      updateUploadItem(
+        { ...file, status: "uploading", percent: percent },
+        event,
+      )
   }
-
   const _onSuccess = (response?: object) => {
-    const targetFile = getTargetFile(file, fileList)
-    if (targetFile) {
-      targetFile.status = "done"
-      targetFile.response = response
-      onUploadItemStatusChange && onUploadItemStatusChange(targetFile)
-    }
+    updateUploadItem &&
+      updateUploadItem({
+        ...file,
+        status: "done",
+        response: response,
+        percent: 100,
+      })
   }
 
   const _onError = (response?: object) => {
-    const targetFile = getTargetFile(file, fileList)
-    console.log(`_onError ${targetFile}`)
-    if (targetFile) {
-      targetFile.status = "error"
-      targetFile.response = response
-      onUploadItemStatusChange && onUploadItemStatusChange(targetFile)
-    }
+    updateUploadItem &&
+      updateUploadItem({ ...file, status: "error", response: response })
     deleteReq(file.uid, uploadRequests)
   }
 
@@ -162,135 +103,218 @@ const doUpload = async (
     withCredentials,
   }
 
-  onUploadItemStatusChange && onUploadItemStatusChange(file)
-
-  let request
   if (action) {
-    request = sendUploadRequest({ ...options, action })
+    const request = sendUploadRequest({ ...options, action })
+    console.log(`action`, { [file.uid]: request }.toString())
+    return request
   } else {
-    request = customRequest && (await customRequest({ ...options }))
+    return customRequest && { [file.uid]: customRequest({ ...options }) }
   }
-
-  setRequests && setRequests({ ...uploadRequests, [file.uid]: request })
 }
 
-export const UploadElementV2 = forwardRef<
-  UploadRefType,
-  UploadInputElementProps
->((props, ref) => {
-  const {
-    accept,
-    multiple,
-    directory,
-    fileList,
-    autoUpload,
-    limit,
-    headers,
-    withCredentials,
-    action,
-    data,
-    name,
-    disabled,
-    customRequest,
-    onExceedLimit,
-    beforeUpload,
-    onProgress,
-    drag,
-    tip,
-    onUploadItemStatusChange,
-  } = props
-  const inputRef = useRef<HTMLInputElement | null>(null)
+export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
+  (props, ref) => {
+    const {
+      accept,
+      multiple,
+      directory,
+      fileList,
+      autoUpload = true,
+      limit,
+      headers,
+      withCredentials,
+      action,
+      data,
+      name,
+      disabled,
+      customRequest,
+      onExceedLimit,
+      beforeUpload = () => {},
+      drag,
+      tip,
+      updateTargetItem,
+      pictureUpload,
+      placeholder,
+    } = props
+    const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const [uploadRequests, setUploadRequests] = useState<{
-    [key: string]: UploadRequestReturn | void
-  }>({})
+    const [_uploadRequests, setUploadRequests] = useState<UploadElementState>(
+      {},
+    )
 
-  const updateRequests = (requests: {
-    [key: string]: UploadRequestReturn | void
-  }) => {
-    setUploadRequests(requests)
-  }
+    useEffect(() => {
+      setImageFile(fileList?.pop())
+    }, [_uploadRequests])
 
-  return (
-    <>
-      <input
-        ref={inputRef}
-        accept={accept}
-        multiple={multiple}
-        style={{ display: "none" }}
-        css={inputCss}
-        {...(directory ? { webkitdirectory: "true" } : {})}
-        onChange={(event) => {
-          const files = event.target.files
-          console.log(`onChange ${files?.length}`)
-          if (files) {
-            handleFiles(
-              [].slice.call(files),
-              fileList,
-              autoUpload,
-              limit,
-              headers,
-              withCredentials,
-              action,
-              data,
-              name,
-              uploadRequests,
-              customRequest,
-              onExceedLimit,
-              beforeUpload,
-              onProgress,
-              onUploadItemStatusChange,
-            )
-          }
-          if (inputRef.current != undefined) {
-            inputRef.current.value = ""
-          }
-        }}
-        type={"file"}
-      />
-      <div
-        css={uploadChildrenCss}
-        draggable={true}
-        onClick={() => {
-          !disabled && inputRef && inputRef.current?.click()
-        }}
-      >
-        {drag ? (
-          <Button
-            css={uploadButtonCss}
-            size={"medium"}
-            leftIcon={<UploadIcon />}
-          >
-            Upload
-          </Button>
-        ) : (
-          <TriggerNode
+    const abort = (file: UploadItem) => {
+      const req = _uploadRequests[file.uid]
+      if (req) {
+        req.abort && req.abort()
+        updateTargetItem({
+          ...file,
+          status: "error",
+        })
+        setUploadRequests(deleteReq(file.uid))
+      }
+    }
+
+    const reUpload = (file: UploadItem) => {
+      doUploadWithProps({
+        ...file,
+        percent: 0,
+        status: "uploading",
+      })
+    }
+
+    const deleteUpload = (
+      file: UploadItem,
+      requests?: {
+        [key: string]: UploadRequestReturn | void
+      },
+    ) => {
+      console.log(`requests`)
+      if (requests) {
+        const req = requests[file.uid]
+        // console.log(`requests`, req, req.abort)
+        req &&
+          Promise.resolve(req).then((result) => {
+            result?.abort && result.abort()
+          })
+        setUploadRequests(deleteReq(file.uid, requests))
+      }
+    }
+
+    useImperativeHandle(
+      ref,
+      () => {
+        return {
+          dom: inputRef.current,
+          reUpload: reUpload,
+          abort: abort,
+          deleteUpload: (item) => {
+            deleteUpload(item, _uploadRequests)
+          },
+          upload: (item) => {
+            doUploadWithProps(item, autoUpload)
+          },
+        }
+      },
+      [_uploadRequests],
+    )
+
+    const doUploadWithProps = (item: UploadItem, autoUpload?: boolean) => {
+      const request = doUpload(
+        item,
+        _uploadRequests,
+        headers,
+        data,
+        withCredentials,
+        action,
+        name,
+        customRequest,
+        updateTargetItem,
+      )
+      setUploadRequests({ ..._uploadRequests, [item.uid]: request })
+    }
+
+    const [imageFile, setImageFile] = useState<UploadItem>()
+
+    const handleUploadButton = () => {
+      !disabled && inputRef && inputRef.current?.click()
+    }
+
+    const handleDragFile = (files?: File[]) => {
+      if (files) {
+        const fileArr = [].slice.call(files)
+        if (checkLimit(fileArr, limit, fileList)) {
+          fileArr.forEach((file, index) => {
+            const upload = getInitUploadItem(file, index)
+            updateTargetItem(upload)
+            doUploadWithProps(upload, true)
+          })
+        }
+      }
+    }
+
+    const handleUploadWithoutAutoUpload = () => {
+      fileList?.forEach((file) => {
+        doUploadWithProps(file, true)
+      })
+    }
+
+    return (
+      <>
+        <input
+          placeholder={placeholder}
+          ref={inputRef}
+          accept={accept}
+          multiple={multiple}
+          style={{ display: "none" }}
+          css={inputCss}
+          {...(directory ? { webkitdirectory: "true" } : {})}
+          onChange={(event) => {
+            console.log(`onChange`, event.target.value)
+            const files = event.target.files
+            if (files) {
+              const fileArr = [].slice.call(files)
+              if (checkLimit(fileArr, limit, fileList)) {
+                fileArr.forEach((file, index) => {
+                  if (typeof beforeUpload === "function") {
+                    Promise.resolve(beforeUpload(file, fileArr))
+                      .then((val) => {
+                        if (val !== false) {
+                          const isFile =
+                            Object.prototype.toString.call(val) ===
+                            "[object File]"
+                          const newFile = isFile ? val : file
+                          const upload = getInitUploadItem(
+                            newFile as File,
+                            index,
+                          )
+                          updateTargetItem(upload)
+                          doUploadWithProps(
+                            upload,
+                            autoUpload && !pictureUpload,
+                          )
+                        }
+                      })
+                      .catch((e) => {
+                        console.error(e)
+                      })
+                  } else {
+                    const upload = getInitUploadItem(file, index)
+                    updateTargetItem(upload)
+                    doUploadWithProps(upload, autoUpload)
+                  }
+                })
+              } else {
+                console.log(`onExceedLimit `)
+                onExceedLimit && onExceedLimit(fileArr, fileList ?? [])
+              }
+            }
+            if (inputRef.current != undefined) {
+              inputRef.current.value = ""
+            }
+          }}
+          type={"file"}
+        />
+        <div css={uploadChildrenCss}>
+          <ChildrenNode
+            onClick={() => {
+              handleUploadButton()
+            }}
+            handleClickSelectedButton={() => handleUploadButton()}
+            handleClickUploadButton={() => handleUploadWithoutAutoUpload()}
+            autoUpload={autoUpload}
+            drag={drag}
             disabled={disabled}
             tip={tip}
-            onFileDragged={(files) => {
-              if (files) {
-                handleFiles(
-                  [].slice.call(files),
-                  fileList,
-                  autoUpload,
-                  limit,
-                  headers,
-                  withCredentials,
-                  action,
-                  data,
-                  name,
-                  uploadRequests,
-                  customRequest,
-                  onExceedLimit,
-                  beforeUpload,
-                  onProgress,
-                  onUploadItemStatusChange,
-                )
-              }
-            }}
+            onFileDragged={(files) => handleDragFile(files)}
+            pictureUpload={pictureUpload}
+            currentUploadItem={imageFile}
           />
-        )}
-      </div>
-    </>
-  )
-})
+        </div>
+      </>
+    )
+  },
+)

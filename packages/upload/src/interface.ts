@@ -13,8 +13,9 @@ export type RequestOptions = Pick<
   file: File
 }
 
-export interface UploadRequestReturn {
-  abort?: () => void
+export class UploadRequestReturn {
+  abort?: () => void;
+
   [key: string]: any
 }
 
@@ -47,7 +48,7 @@ export interface UploadProps
   fileList?: UploadItem[]
   directory?: boolean
   accept?: string
-  customRequest: (options: RequestOptions) => UploadRequestReturn | void
+  customRequest?: (options: RequestOptions) => UploadRequestReturn | void
   listType?: ListType
   showUploadList?: boolean | CustomIconType
   autoUpload?: boolean
@@ -57,7 +58,6 @@ export interface UploadProps
   drag?: boolean
   multiple?: boolean
   tip?: string | ReactNode
-  // todo
   headers?: object
   data?: object | ((any: any) => object)
   name?: string | ((any: any) => string)
@@ -69,15 +69,18 @@ export interface UploadProps
   ) => ReactNode
   beforeUpload?: (file: File, filesList: File[]) => boolean | Promise<any>
   onChange?: (fileList: UploadItem[], file: UploadItem) => void
-  onPreview?: (file: UploadItem) => void
   onRemove?: (file: UploadItem, fileList: UploadItem[]) => void
   onProgress?: (file: UploadItem, e?: ProgressEvent) => void
   onReupload?: (file: UploadItem) => void
   onExceedLimit?: (files: File[], fileList: UploadItem[]) => void
+  // todo @zhengjiaiq 跟产品确定
+  pictureUpload?: boolean
+  placeholder?: string
 }
 
 export interface UploadInputElementProps extends UploadProps {
   onUploadItemStatusChange?: (item: UploadItem) => void
+  updateTargetItem: (file?: UploadItem, e?: ProgressEvent) => void
 }
 
 export interface UploadItem {
@@ -93,6 +96,7 @@ export interface UploadItem {
 export interface FileListItemProps extends HTMLAttributes<HTMLSpanElement> {
   item: UploadItem
   deleteUpload: (file: UploadItem) => void
+  reUpload: (file: UploadItem) => void
 }
 
 export interface CustomIconType {
@@ -113,20 +117,28 @@ export type UploadRefType = {
   upload: (file: UploadItem) => void
   reUpload: (file: UploadItem) => void
   abort: (file: UploadItem) => void
-  deleteUpload?: (file: UploadItem) => void
+  deleteUpload: (file: UploadItem) => void
   dom: HTMLDivElement | null
 }
 
-export interface TriggerNodeProps {
+export interface TriggerNodeProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onClick"> {
   disabled?: boolean
   tip?: string | ReactNode
   onFileDragged?: (file: File[]) => void
+  onClick: () => void
 }
 
-export interface UploadButtonProps extends HTMLAttributes<HTMLDivElement> {
+export interface ChildrenNodeProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onClick"> {
   disabled?: boolean
+  tip?: string | ReactNode
+  drag?: boolean
   autoUpload?: boolean
-  handleClick?: () => {}
-  handleClickSelectedButton: () => {}
-  handleClickUploadButton: () => {}
+  onFileDragged?: (file: File[]) => void
+  onClick?: () => void
+  handleClickSelectedButton?: () => void
+  handleClickUploadButton?: () => void
+  pictureUpload?: boolean
+  currentUploadItem?: UploadItem
 }

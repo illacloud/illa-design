@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { forwardRef, useRef, useState } from "react"
-import { UploadItem, UploadProps, UploadRefType } from "./interface"
-import { UploadElementV2 } from "./upload-element-v2"
-import { fileListContainerCss, uploadContainerCss } from "./styles"
 import * as React from "react"
+import { forwardRef, useMemo, useRef, useState } from "react"
+import { UploadItem, UploadProps, UploadRefType } from "./interface"
+import { UploadElement } from "./upload-element"
+import { fileListContainerCss, uploadContainerCss } from "./styles"
 import { FileListTextItem } from "./file-list-text-item"
 import { FileListPicItem } from "./file-list-pic-item"
 import { List } from "@illa-design/list"
@@ -22,6 +22,7 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     disabled,
     tip,
     onProgress,
+    pictureUpload,
     ...rest
   } = props
 
@@ -56,22 +57,30 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   const [innerUploadState, setInnerUploadState] = useState<{
     [key: string]: UploadItem
   }>(fileList ? processFile(fileList) : processFile(defaultFileList))
+  const hasUploadedSet = new Set<string>()
 
   uploadState.current = fileList ? processFile(fileList) : innerUploadState
 
   const getFileList = (obj?: { [key: string]: UploadItem }): UploadItem[] => {
-    console.log(`getFileList ${JSON.stringify(obj)}`)
     if (!obj || !uploadState) return []
-    return Object.keys(obj).map((x) => obj[x as keyof UploadItem])
+    const res = Object.keys(obj).map((x) => obj[x as keyof UploadItem])
+    return res
   }
+
+  const _fileList = useMemo(() => {
+    return getFileList(uploadState.current)
+  }, [innerUploadState])
 
   const deleteUpload = (file: UploadItem) => {
     const obj = { ...uploadState.current }
+    console.log(`deleteUpload`, Object.keys(obj).length)
     delete obj[file.uid]
+    console.log(`deleteUpload`, Object.keys(obj).length)
     if (!fileList) {
       setInnerUploadState(obj)
     }
-    onChange && onChange(getFileList(obj), file)
+    onRemove && onRemove(file, _fileList)
+    uploaderRef.current && uploaderRef.current.deleteUpload(file)
   }
 
   const uploadFile = (file: UploadItem) => {
@@ -86,80 +95,88 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     onReupload && onReupload(file)
   }
 
-  const removeFile = (file: UploadItem) => {
-    if (file) {
-      const isFunction = typeof onRemove === "function"
-      Promise.resolve(isFunction ? onRemove(file, []) : onRemove).then(
-        (value) => {
-          uploaderRef.current && uploaderRef.current.abort(file)
-          deleteUpload(file)
-        },
-      )
-    }
-  }
-
   const abortFile = (file: UploadItem) => {
     if (file) {
       uploaderRef.current && uploaderRef.current.abort(file)
     }
   }
 
-  const _fileList = getFileList(uploadState.current)
+  const updateFileList = (file?: UploadItem, e?: ProgressEvent) => {
+    if (!file) return
+    const targetFile = getTargetFile(file) ?? file
+    setInnerUploadState((v) => {
+      return {
+        ...v,
+        [targetFile.uid]: file,
+      }
+    })
+    if (targetFile?.status != "uploading") {
+      onChange && onChange(_fileList, targetFile)
+    } else if (hasUploadedSet.has(targetFile?.uid)) {
+      onChange && onChange(_fileList, targetFile)
+      hasUploadedSet.add(targetFile?.uid)
+    }
+    if (file?.status === "uploading") {
+      onProgress && onProgress(targetFile, e)
+    }
+  }
 
+  const getTargetFile = (file: UploadItem) => {
+    const key = "uid" in file ? "uid" : "name"
+    const list = getFileList(uploadState.current)
+    return list?.find((item) => item["uid"] === file["uid"])
+  }
   return (
     <div css={uploadContainerCss}>
-      <UploadElementV2
+      <UploadElement
+        pictureUpload={pictureUpload}
+        updateTargetItem={updateFileList}
         ref={uploaderRef}
         fileList={_fileList}
         disabled={disabled}
         customRequest={customRequest}
         {...rest}
-        onUploadItemStatusChange={(file: UploadItem) => {
-          if (!fileList) {
-            setInnerUploadState((v) => {
-              const newValue = {
-                ...v,
-                [file.uid]: file,
-              }
-              console.log(`newValue ${JSON.stringify(newValue)}`)
-              return newValue
-            })
-          }
-          console.log(`onUploadItemStatusChange ${file.name}`)
-        }}
         onProgress={(file: UploadItem, e?: ProgressEvent) => {
           if (file) {
             if (!fileList) {
               setInnerUploadState((v) => {
-                const newValue = {
+                return {
                   ...v,
                   [file.uid]: file,
                 }
-                console.log(`newValue ${JSON.stringify(newValue)}`)
-                return newValue
               })
             }
           }
           onProgress && onProgress(file, e)
         }}
       />
-      <List
-        data={_fileList}
-        bordered={false}
-        split={false}
-        renderRaw={true}
-        css={fileListContainerCss}
-        render={(item) => {
-          return listType === "text" ? (
-            <FileListTextItem item={item} deleteUpload={deleteUpload} />
-          ) : (
-            <FileListPicItem item={item} deleteUpload={deleteUpload} />
-          )
-        }}
-        renderKey={(item) => {
-          return item.uid
-        }}
-      />
+      {showUploadList && pictureUpload !== true && (
+        <List
+          data={getFileList(uploadState.current)}
+          bordered={false}
+          split={false}
+          renderRaw={true}
+          css={fileListContainerCss}
+          render={(item) => {
+            return listType === "text" ? (
+              <FileListTextItem
+                item={item}
+                deleteUpload={deleteUpload}
+                reUpload={(item) => reUploadFile(item)}
+              />
+            ) : (
+              <FileListPicItem
+                item={item}
+                deleteUpload={deleteUpload}
+                reUpload={(item) => reUploadFile(item)}
+              />
+            )
+          }}
+          renderKey={(item) => {
+            return item.uid
+          }}
+        />
+      )}
     </div>
   )
 })

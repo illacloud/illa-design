@@ -20,10 +20,9 @@ export function applyTagContainer(fullWidth?: boolean) {
     vertical-align: middle;
     white-space: nowrap;
     outline: none;
-    margin: 0;
     border: 0;
     background-color: transparent;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     align-items: center;
   `

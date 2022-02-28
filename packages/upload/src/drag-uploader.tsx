@@ -3,9 +3,9 @@ import { forwardRef, ReactNode } from "react"
 import { TriggerNodeProps, UploadRefType } from "./interface"
 import useDrop from "react-use/lib/useDrop"
 import {
+  applyDragUploadContainerCss,
   applyDragUploadTitleCss,
   applyIconCss,
-  dragUploadContainerCss,
   dragUploadTipCss,
 } from "./styles"
 import { MinusIcon } from "@illa-design/icon"
@@ -15,7 +15,7 @@ import { isAcceptFile } from "./file-accept"
 
 export const TriggerNode = forwardRef<UploadRefType, TriggerNodeProps>(
   (props, ref) => {
-    const { disabled, tip, onFileDragged } = props
+    const { disabled, tip, onFileDragged, onClick } = props
     const state = useDrop({
       onFiles: (files, event?: DragEvent) => {
         traverseFileTree(
@@ -37,10 +37,10 @@ export const TriggerNode = forwardRef<UploadRefType, TriggerNodeProps>(
 
     return (
       <>
-        <span css={dragUploadContainerCss}>
+        <span onClick={onClick} css={applyDragUploadContainerCss(disabled)}>
           <MinusIcon css={applyIconCss(disabled)} />
           <span css={applyDragUploadTitleCss(disabled)}>
-            Drag and drop an image
+            Drag and drop an file
           </span>
           {tipNode}
         </span>

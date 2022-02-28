@@ -1,4 +1,4 @@
-import { RequestOptions, UploadRequestReturn } from "./src"
+import { RequestOptions, UploadRequestReturn } from "./index"
 
 function getBody(xhr: XMLHttpRequest) {
   const text = xhr.responseText || xhr.response
@@ -43,13 +43,11 @@ export function sendUploadRequest(
       let percent = 0
       if (event.total > 0) {
         percent = (event.loaded / event.total) * 100
-        console.log(`xhr.onProgress ${percent}`)
       }
       onProgress(percent, event)
     }
   }
   xhr.onerror = (e) => {
-    console.log(`xhr.onerror`)
     onError(e)
   }
 
@@ -59,7 +57,6 @@ export function sendUploadRequest(
     }
     onSuccess(getBody(xhr))
   }
-
   const formData = new FormData()
   formData.append(name || "file", file)
   if (data && typeof data === "object") {
