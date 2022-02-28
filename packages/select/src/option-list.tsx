@@ -4,24 +4,14 @@ import { forwardRef, useContext, ReactNode, UIEventHandler } from "react"
 import { List } from "@illa-design/list"
 import { css } from "@emotion/react"
 import { Empty } from "@illa-design/empty"
-
-interface OptionListProps<T> {
-  childrenList?: React.ReactElement<
-    any,
-    string | React.JSXElementConstructor<any>
-  >[]
-  render?: (data: T, index: number) => ReactNode
-
-  onMouseMove?: () => void
-  onScroll?: UIEventHandler<HTMLElement>
-}
+import { OptionListProps } from "./interface"
 
 export const OptionList = forwardRef<HTMLDivElement, OptionListProps<any>>(
   (props, ref) => {
     const {
       childrenList,
       render,
-      //
+      // event
       onMouseMove,
       onScroll,
     } = props
@@ -34,10 +24,12 @@ export const OptionList = forwardRef<HTMLDivElement, OptionListProps<any>>(
             css={css`
               min-width: unset !important;
               width: 100%;
+              border: unset !important;
             `}
             size="small"
             data={childrenList as any}
             render={render}
+            renderRaw
             onMouseMove={onMouseMove}
             onScroll={onScroll}
             renderKey={(data, index) => {
@@ -46,7 +38,7 @@ export const OptionList = forwardRef<HTMLDivElement, OptionListProps<any>>(
             hoverable
           />
         ) : (
-          <Empty />
+          <Empty css={css`padding: 16px 0;`} />
         )}
       </>
     )

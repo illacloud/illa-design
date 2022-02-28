@@ -16,13 +16,14 @@ import { useMergeValue, isObject, omit } from "@illa-design/system"
 import { LoadingIcon, SearchIcon, ExpandIcon } from "@illa-design/icon"
 import { SelectViewProps } from "./interface"
 import {
-  applyMergeCss,
-  applyRadioSize,
+  applyIconStyle,
   applySelectView,
   applySelectViewText,
 } from "./style"
 import { isEmptyValue } from "./utils"
 import { css } from "@emotion/react"
+import { color } from "@storybook/theming"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export interface StateValue {
   disabled?: boolean
@@ -41,11 +42,8 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
   (props, ref) => {
     const {
       children,
-      disabled,
-      error,
-      loading,
       value,
-      size,
+      size = "medium",
       inputValue,
       defaultValue,
       showSearch,
@@ -54,6 +52,9 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       popupVisible,
       isEmptyValue,
       renderText,
+      error,
+      loading,
+      disabled,
       // event
       onChange,
       onFocus,
@@ -157,21 +158,15 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     }
 
     const suffixIcon = loading ? (
-      <span>
-        <LoadingIcon />
-      </span>
+      <LoadingIcon
+        spin
+        css={css`color: ${globalColor(`--${illaPrefix}-gray-07`)};`} />
     ) : showSearch && popupVisible ? (
-      <span>
-        <SearchIcon />
-      </span>
+      <SearchIcon />
     ) : popupVisible ? (
-      <span>
-        <ExpandIcon style={{ transform: "rotate(180deg)" }} />
-      </span>
+      <ExpandIcon css={css({ transform: "rotate(180deg)" })} />
     ) : (
-      <span>
-        <ExpandIcon />
-      </span>
+      <ExpandIcon />
     )
 
     const renderSingle = () => {
@@ -222,9 +217,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             disabled={disabled}
             {...inputProps}
           />
-          <span css={applySelectViewText(!needShowInput)}>
-            {_inputValue}
-          </span>
+          <span css={applySelectViewText(!needShowInput)}>{_inputValue}</span>
         </>
       )
     }
@@ -262,7 +255,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}
         >
           {isMultipleMode ? renderMultiple() : renderSingle()}
-          <div>{suffixIcon}</div>
+          <div css={applyIconStyle}>{suffixIcon}</div>
         </div>
       </div>
     )

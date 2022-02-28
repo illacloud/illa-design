@@ -8,9 +8,10 @@ import { omit, useMergeValue } from "@illa-design/system"
 export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
   const {
     children,
-    disabled,
     value,
     defaultValue,
+    size = "medium",
+    disabled,
     valueActive,
     valueSelect,
     isMultipleMode,
@@ -40,7 +41,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
   }
 
   return (
-    <li css={applyOptionStyle} ref={ref} {...optionProps}>
+    <li css={applyOptionStyle(size)} ref={ref} {...optionProps}>
       {children}
     </li>
   )

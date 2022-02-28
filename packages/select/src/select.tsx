@@ -35,6 +35,7 @@ import { OptionList } from "./option-list"
 export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const {
     mode,
+    size = "medium",
     children,
     disabled,
     value,
@@ -339,6 +340,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
                 child && (
                   <child.type
                     {...child.props}
+                    size={size}
                     valueSelect={currentValue}
                     valueActive={valueActive}
                     isMultipleMode={isMultipleMode}
@@ -368,6 +370,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       position="bl"
       disabled={disabled}
       withoutPadding
+      closeOnClick
       clickOutsideToClose
       autoAlignPopupWidth
       popupVisible={currentVisible}
@@ -382,7 +385,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         isMultipleMode={isMultipleMode}
         isEmptyValue={isNoOptionSelected}
         renderText={(value) => {
-          console.log(value, "renderText")
           const option = getOptionInfoByValue(value)
           let text = value
           if (option) {

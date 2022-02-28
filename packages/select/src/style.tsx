@@ -69,10 +69,9 @@ export const disableOutlineStyle = css`
 export const errorFocusStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-  box-shadow: 0 0 8px 0
-    ${chroma(globalColor(`--${illaPrefix}-red-01`))
-      .alpha(0.15)
-      .hex()};
+  box-shadow: 0 0 8px 0 ${chroma(globalColor(`--${illaPrefix}-red-01`))
+          .alpha(0.15)
+          .hex()};
 `
 export const errorOutlineStyle = css`
   background-color: unset;
@@ -96,8 +95,7 @@ function applyStatus(stateValue: StateValue) {
     const boxShadowColor = globalColor(`--${illaPrefix}-blue-01`)
     mainStyle = css`
       border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
-      box-shadow: 0 0 8px 0
-        ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
+      box-shadow: 0 0 8px 0 ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
     `
@@ -118,6 +116,35 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
+export function applySizeStyle(size?: SelectProps["size"]) {
+  let sizeStyle: SerializedStyles = css()
+  switch (size) {
+    default:
+    case "large":
+      sizeStyle = css`
+        width: 132px;
+        height: 40px;
+        padding: 9px 16px;
+      `
+      break
+    case "medium":
+      sizeStyle = css`
+        width: 132px;
+        height: 32px;
+        padding: 5px 16px;
+      `
+      break
+    case "small":
+      sizeStyle = css`
+        width: 120px;
+        height: 24px;
+        padding: 1px 12px;
+      `
+      break
+  }
+  return sizeStyle
+}
+
 // SelectView
 export function applySelectView(stateValue: StateValue): SerializedStyles {
   return css`
@@ -131,6 +158,7 @@ export function applySelectView(stateValue: StateValue): SerializedStyles {
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     cursor: pointer;
+    ${applySizeStyle(stateValue?.size)}
     ${applyStatus(stateValue)}
   `
 }
@@ -143,7 +171,6 @@ export function applySelectViewText(
   return css`
     width: 100%;
     font-size: 14px;
-    // line-height: initial !important;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -151,8 +178,17 @@ export function applySelectViewText(
   `
 }
 
+export function applyIconStyle(): SerializedStyles {
+  return css`
+    & > svg {
+      font-size: 12px;
+    }
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  `
+}
+
 // option
-export function applyOptionStyle(): SerializedStyles {
+export function applyOptionStyle(size: SelectProps["size"]): SerializedStyles {
   return css`
     position: relative;
     box-sizing: border-box;
@@ -166,5 +202,12 @@ export function applyOptionStyle(): SerializedStyles {
     white-space: nowrap;
     text-overflow: ellipsis;
     list-style: none;
+    display: flex;
+    align-items: center;
+    &:hover {
+      background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+      color: ${globalColor(`--${illaPrefix}-blue-01`)};
+    }
+    ${applySizeStyle(size)}
   `
 }

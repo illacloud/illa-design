@@ -3,7 +3,7 @@ import React, {
   ChangeEvent,
   PropsWithChildren,
   ReactNode,
-  ReactElement,
+  ReactElement, UIEventHandler,
 } from "react"
 import { isEmptyValue } from "./utils"
 
@@ -18,6 +18,7 @@ export interface OptionProps
   valueActive?: string
   valueSelect?: string | string[] | number | number[]
   isSelectOption?: boolean
+  size?: SelectSize
   onMouseEnter?: (value: OptionProps["value"]) => void
   onMouseLeave?: () => void
   onClickOption?: (value: OptionProps["value"], disabled?: boolean) => void
@@ -35,6 +36,16 @@ export type OptionInfoMap = Map<OptionProps["value"], OptionInfo>
 export type LabeledValue = {
   value: string | number
   label: ReactNode
+}
+
+export interface OptionListProps<T> {
+  childrenList?: React.ReactElement<
+    any,
+    string | React.JSXElementConstructor<any>
+    >[]
+  render?: (data: T, index: number) => ReactNode
+  onMouseMove?: () => void
+  onScroll?: UIEventHandler<HTMLElement>
 }
 
 export type SelectSize = "small" | "medium" | "large"
