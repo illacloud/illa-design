@@ -109,7 +109,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
           colorScheme={colorScheme == "white" ? "blue" : "white"}
           css={applyCloseButton}
           onClick={() => {
-            setTipsVisible(false)
+            if (popupVisible == undefined) {
+              setTipsVisible(false)
+            }
             if (onVisibleChange != undefined) {
               onVisibleChange(false)
             }

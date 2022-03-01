@@ -36,7 +36,9 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "e2e:ci": "npx cypress run-ct",
+    "e2e": "npx cypress open-ct"
   },
   "dependencies": {
     "@illa-design/system": "*",
