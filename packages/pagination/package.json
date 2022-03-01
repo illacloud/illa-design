@@ -37,7 +37,7 @@
   },
   "scripts": {
     "build": "tsc && vite build",
-    "test": "yarn jest"
+    "test": "npx jest"
   },
   "dependencies": {
     "@illa-design/icon": "*",
