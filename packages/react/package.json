@@ -63,6 +63,7 @@
     "@illa-design/list": "*",
     "@illa-design/switch": "*",
     "@illa-design/alert": "*",
-    "@illa-design/select": "*"
+    "@illa-design/select": "*",
+    "@illa-design/grid": "*"
   }
 }

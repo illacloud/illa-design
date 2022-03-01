@@ -111,7 +111,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     const _moreIcon: ReactNode = moreIcon ?? <MoreIcon />
 
     return (
-      <div {...otherProps} css={paginationContainer} placeholder={placeholder}>
+      <div css={paginationContainer} placeholder={placeholder} {...otherProps}>
         {totalElement}
         {simple ? (
           <SimplePagination

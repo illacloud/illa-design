@@ -1,5 +1,5 @@
 import { isDayjs } from "@illa-design/system"
-import * as dayjs from "dayjs"
+import dayjs from "dayjs"
 
 const units: [string, number][] = [
   ["Y", 1000 * 60 * 60 * 24 * 365], // years

@@ -63,7 +63,7 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>(
 
     if (steps == 1) {
       return (
-        <div ref={ref} {...otherProps} css={applyProgressContainer}>
+        <div ref={ref} css={applyProgressContainer} {...otherProps}>
           <div css={applyLineContainer(width, strokeWidth)}>
             <div css={applyLineProgressBg(strokeWidth, trailColor)} />
             <div css={applyLineProgress(percent, strokeWidth, finalColor)} />
@@ -107,7 +107,7 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>(
       }
 
       return (
-        <div ref={ref} {...otherProps} css={applyProgressContainer}>
+        <div ref={ref} css={applyProgressContainer} {...otherProps}>
           <div css={applyLineContainer(width, strokeWidth)}>
             <Space css={applySpace()} size="4px">
               {lineProgressBgContainer}
