@@ -51,8 +51,10 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       error,
       loading,
       disabled,
+      options,
       // event
       onChange,
+      onClick,
       onFocus,
       onBlur,
       onClear,
@@ -225,7 +227,9 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       <div
         ref={ref}
         css={applySelectView(stateValue)}
+        onClick={onClick}
         onFocus={(event) => {
+          console.log(event, 'focus')
           if (disabled) {
             return
           }

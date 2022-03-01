@@ -11,10 +11,13 @@ export default {
   component: Select,
 } as Meta
 
+const options = ["Beijing", "Shanghai", "Guangzhou", "Shenzhen", "Chengdu", "Wuhan"]
+
 const Template: Story<SelectProps> = (args) => (
   <Space direction="vertical">
     <Select {...args} />
-    <Select {...args}>
+    <Select options={options} defaultValue={"Shenzhen"} {...args} />
+    <Select placeholder="Select items" {...args}>
       <Option>Abc</Option>
       <Option>Bde</Option>
     </Select>

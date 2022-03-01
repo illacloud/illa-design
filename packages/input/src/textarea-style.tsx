@@ -1,4 +1,4 @@
-const chroma = require("chroma-js")
+import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import {

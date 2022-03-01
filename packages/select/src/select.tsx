@@ -21,7 +21,6 @@ import {
   InputValueChangeReason,
   LabeledValue,
 } from "./interface"
-import { applyMergeCss, applyRadioSize } from "./style"
 import {
   flatChildren,
   getValidValue,
@@ -89,8 +88,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   // 触发 onInputValueChange 回调的值
   const refOnInputChangeCallbackValue = useRef(inputValue)
   const refOnInputChangeCallbackReason = useRef<InputValueChangeReason>()
-  // 用 none 表示目前处于键盘操作中，忽略鼠标的 onMouseEnter 和 onMouseLeave 事件
-  const refKeyboardArrowDirection = useRef<"up" | "down" | "none" | null>(null)
 
   // 缓存较为耗时的 flatChildren 的结果
   const {
@@ -200,10 +197,11 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
 
   // 尝试更新 popupVisible，触发 onVisibleChange
   const tryUpdatePopupVisible = (value: boolean) => {
-    console.log(value, currentVisible, "tryUpdatePopupVisible")
+    //console.log(value, currentVisible, "tryUpdatePopupVisible")
     if (currentVisible !== value) {
       setCurrentVisible(value)
       onVisibleChange?.(value)
+      //console.log("onVisibleChange", value)
     }
   }
 
@@ -260,7 +258,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     optionValue: OptionProps["value"],
     disabled: boolean,
   ) => {
-    console.log(optionValue, disabled, "handleOptionClick")
     if (disabled) {
       return
     }
@@ -287,9 +284,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   // SelectView组件事件处理
   const selectViewEventHandlers = {
     onFocus,
-    // onClick: () => {
-    //    tryUpdatePopupVisible(!currentValue)
-    // },
     onBlur: (event: any) => {
       onBlur?.(event)
       // 下拉列表隐藏时，失焦需要清空已输入内容
@@ -331,7 +325,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
           ref={refList}
           childrenList={childrenList}
           render={(child: any) => {
-            console.log("render")
             if (isSelectOptGroup(child)) {
               return <child.type {...child.props} />
             }
@@ -346,11 +339,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
                     isMultipleMode={isMultipleMode}
                     onClickOption={handleOptionClick}
                     onMouseEnter={(value: any) => {
-                      refKeyboardArrowDirection.current === null &&
                         setValueActive(value)
                     }}
                     onMouseLeave={() => {
-                      refKeyboardArrowDirection.current === null &&
                         setValueActive(undefined)
                     }}
                   />
@@ -358,9 +349,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
               )
             }
             return child
-          }}
-          onMouseMove={() => {
-            refKeyboardArrowDirection.current = null
           }}
           onScroll={(e) => onPopupScroll?.(e.target)}
         />
