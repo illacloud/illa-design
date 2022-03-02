@@ -15,3 +15,25 @@ export function isDayjs(time: any): time is Dayjs {
     "$s" in time
   )
 }
+
+export function isArray(obj: any): obj is any[] {
+  return Object.prototype.toString.call(obj) === "[object Array]"
+}
+
+export function isObject(obj: any): obj is { [key: string]: any } {
+  return Object.prototype.toString.call(obj) === "[object Object]"
+}
+
+export function isString(obj: any): obj is string {
+  return Object.prototype.toString.call(obj) === "[object String]"
+}
+
+export function isNumber(obj: any): obj is number {
+  return (
+    Object.prototype.toString.call(obj) === "[object Number]" && obj === obj
+  )
+}
+
+export function isFunction(obj: any): obj is (...args: any[]) => any {
+  return typeof obj === "function"
+}
