@@ -10,16 +10,18 @@ test("Select renders with text", () => {
 })
 
 test("Select renders with options", () => {
-  render(<Select value={1} options={[1, 2, 3]}  />)
+  render(<Select value={1} options={[1, 2, 3]} />)
   expect(screen.getByText("1")).toBeInTheDocument()
 })
 
 test("Select renders with Option", () => {
-  render(<Select value={'A'} >
-    <Option>A</Option>
-    <Option>B</Option>
-    <Option>C</Option>
-  </Select>)
+  render(
+    <Select value={"A"}>
+      <Option>A</Option>
+      <Option>B</Option>
+      <Option>C</Option>
+    </Select>,
+  )
   expect(screen.getByText("A")).toBeInTheDocument()
 })
 
@@ -35,11 +37,11 @@ test("Select renders with error", () => {
 
 test("Select renders with size", () => {
   render(<Select value={1} options={[1, 2, 3]} size="large" />)
-  render(<Select value={'a'} options={['a', 'b', 'c']} size="small" />)
+  render(<Select value={"a"} options={["a", "b", "c"]} size="small" />)
   expect(screen.getByText("1")?.parentElement?.parentElement).toHaveStyle({
-    height: '40px',
+    height: "40px",
   })
   expect(screen.getByText("a")?.parentElement?.parentElement).toHaveStyle({
-    height: '24px',
+    height: "24px",
   })
 })

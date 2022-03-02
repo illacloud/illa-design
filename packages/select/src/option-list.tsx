@@ -17,7 +17,11 @@ export const OptionList = forwardRef<HTMLDivElement, OptionListProps<any>>(
     } = props
 
     return (
-      <div css={css`background-color: white;`}>
+      <div
+        css={css`
+          background-color: white;
+        `}
+      >
         {childrenList?.length ? (
           <List
             ref={ref}

@@ -11,7 +11,14 @@ export default {
   component: Select,
 } as Meta
 
-const options = ["Beijing", "Shanghai", "Guangzhou", "Shenzhen", "Chengdu", "Wuhan"]
+const options = [
+  "Beijing",
+  "Shanghai",
+  "Guangzhou",
+  "Shenzhen",
+  "Chengdu",
+  "Wuhan",
+]
 
 const Template: Story<SelectProps> = (args) => (
   <Space direction="vertical">

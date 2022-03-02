@@ -339,10 +339,10 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
                     isMultipleMode={isMultipleMode}
                     onClickOption={handleOptionClick}
                     onMouseEnter={(value: any) => {
-                        setValueActive(value)
+                      setValueActive(value)
                     }}
                     onMouseLeave={() => {
-                        setValueActive(undefined)
+                      setValueActive(undefined)
                     }}
                   />
                 )

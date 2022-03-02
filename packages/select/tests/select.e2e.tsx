@@ -17,12 +17,15 @@ it("Select renders correctly", () => {
 
 it("Select renders with text", () => {
   const change = cy.spy()
-  mount(<Select
-    placeholder={"test"}
-    options={[1, 2, 3]}
-    onVisibleChange={change}
-     />)
+  mount(
+    <Select
+      placeholder={"test"}
+      options={[1, 2, 3]}
+      onVisibleChange={change}
+    />,
+  )
   cy.findByPlaceholderText("test").click()
   cy.findByText("1").click()
   expect(cy.findByText("1")).exist
+  // expect(change).to.be.called
 })
