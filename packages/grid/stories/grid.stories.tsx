@@ -1,0 +1,54 @@
+import * as React from "react"
+import { Meta, Story } from "@storybook/react"
+import { Col, Row } from "../src"
+import { globalColor, illaPrefix } from "@illa-design/theme"
+
+//👇 This default export determines where your story goes in the story list
+export default {
+  title: "LAYOUT/Grid",
+} as Meta
+
+export const Basic: Story = () => (
+  <Row
+    style={{ backgroundColor: globalColor(`--${illaPrefix}-blackAlpha-06`) }}
+    horizontalGap={{ xs: "40px" }}
+    verticalGap={{ xs: "80px" }}
+  >
+    <Col md={11}>
+      <div
+        style={{
+          borderRadius: "6px",
+          height: "50px",
+          backgroundColor: globalColor(`--${illaPrefix}-blue-03`),
+          color: "white",
+        }}
+      >
+        Col-1
+      </div>
+    </Col>
+    <Col xs={{ span: 10 }}>
+      <div
+        style={{
+          borderRadius: "6px",
+          height: "80px",
+          backgroundColor: globalColor(`--${illaPrefix}-blue-02`),
+          color: "white",
+        }}
+      >
+        Col-2
+      </div>
+    </Col>
+    <Col xs={{ span: 10 }}>
+      <div
+        style={{
+          borderRadius: "6px",
+          height: "80px",
+          backgroundColor: globalColor(`--${illaPrefix}-blue-02`),
+          color: "white",
+        }}
+      >
+        Col-2
+      </div>
+    </Col>
+  </Row>
+)

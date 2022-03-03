@@ -1,0 +1,6 @@
+{
+  "component": {
+    "testFiles": "*.e2e.{ts,tsx}",
+    "componentFolder": "tests"
+  }
+}

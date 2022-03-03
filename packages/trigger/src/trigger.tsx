@@ -109,7 +109,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
           colorScheme={colorScheme == "white" ? "blue" : "white"}
           css={applyCloseButton}
           onClick={() => {
-            setTipsVisible(false)
+            if (popupVisible == undefined) {
+              setTipsVisible(false)
+            }
             if (onVisibleChange != undefined) {
               onVisibleChange(false)
             }
@@ -235,7 +237,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
         )
         // async deal
         setAdjustResult(result)
-        setTipsVisible(true)
+        if (popupVisible == undefined) {
+          setTipsVisible(true)
+        }
         if (onVisibleChange != undefined) {
           onVisibleChange(true)
         }
@@ -246,7 +250,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
   const hideTips = () => {
     delayTodo(() => {
       if (tipVisible) {
-        setTipsVisible(false)
+        if (popupVisible == undefined) {
+          setTipsVisible(false)
+        }
         if (onVisibleChange != undefined) {
           onVisibleChange(false)
         }
@@ -258,27 +264,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
     <motion.div
       ref={tipsRef}
       css={applyMotionDiv()}
-      variants={applyAnimation(finalPosition)}
+      variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
       animate="animate"
       exit="exit"
       onClick={() => {
-        if (
-          !disabled &&
-          trigger == "click" &&
-          clickOutsideToClose &&
-          popupVisible == undefined
-        ) {
+        if (!disabled && trigger == "click" && clickOutsideToClose) {
           showTips()
         }
       }}
       onMouseEnter={() => {
-        if (!disabled && trigger == "hover" && popupVisible == undefined) {
+        if (!disabled && trigger == "hover") {
           showTips()
         }
       }}
       onMouseLeave={() => {
-        if (!disabled && trigger == "hover" && popupVisible == undefined) {
+        if (!disabled && trigger == "hover") {
           hideTips()
         }
       }}
@@ -288,12 +289,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
   )
 
   useClickAway(childrenRef, () => {
-    if (
-      !disabled &&
-      trigger == "click" &&
-      clickOutsideToClose &&
-      popupVisible == undefined
-    ) {
+    if (!disabled && clickOutsideToClose) {
       hideTips()
     }
   })
@@ -376,32 +372,32 @@ export const Trigger: FC<TriggerProps> = (props) => {
       }
     },
     onMouseEnter: () => {
-      if (!disabled && trigger == "hover" && popupVisible == undefined) {
+      if (!disabled && trigger == "hover") {
         showTips()
       }
     },
     onMouseLeave: () => {
-      if (!disabled && trigger == "hover" && popupVisible == undefined) {
+      if (!disabled && trigger == "hover") {
         hideTips()
       }
     },
     onFocus: () => {
-      if (!disabled && trigger == "focus" && popupVisible == undefined) {
+      if (!disabled && trigger == "focus") {
         showTips()
       }
     },
     onBlur: () => {
-      if (!disabled && trigger == "focus" && popupVisible == undefined) {
+      if (!disabled && trigger == "focus") {
         hideTips()
       }
     },
     onClick: () => {
       switch (trigger) {
         case "click":
-          if (!disabled && popupVisible == undefined) {
+          if (!disabled) {
             if (!tipVisible) {
               showTips()
-            } else {
+            } else if (tipVisible) {
               if (closeOnClick) {
                 hideTips()
               }
@@ -410,12 +406,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           break
         case "hover":
         case "focus":
-          if (
-            !disabled &&
-            popupVisible == undefined &&
-            closeOnClick &&
-            tipVisible
-          ) {
+          if (!disabled && closeOnClick && tipVisible) {
             hideTips()
           }
           break

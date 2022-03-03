@@ -1,27 +1,54 @@
 import { Variants } from "framer-motion"
 
-export function getAnimation(originX: string, originY: string): Variants {
+export function getAnimation(
+  originX: string,
+  originY: string,
+  showArrow: boolean,
+  isHorizontal: boolean,
+): Variants {
+  let initialScaleX
+  let initialScaleY
+
+  if (showArrow) {
+    initialScaleX = 0
+    initialScaleY = 0
+  } else {
+    if (isHorizontal) {
+      initialScaleX = 0.9
+      initialScaleY = 1
+    } else {
+      initialScaleX = 1
+      initialScaleY = 0.9
+    }
+  }
+
   return {
     initial: {
-      scale: 0,
+      scaleY: initialScaleY,
+      scaleX: initialScaleX,
       opacity: 0,
-      originX: originX,
-      originY: originY,
+      originX: showArrow ? originX : 0,
+      originY: showArrow ? originY : 0,
     },
     animate: {
-      scale: 1,
+      scaleX: 1,
+      scaleY: 1,
       opacity: 1,
       transition: {
-        opacity: { duration: 0.2, ease: "easeInOut" },
-        scale: { duration: 0.2, ease: "easeInOut" },
+        opacity: { duration: 0.15, ease: "easeInOut" },
+        scaleX: { duration: 0.15, ease: "easeInOut" },
+        scaleY: { duration: 0.15, ease: "easeInOut" },
       },
     },
     exit: {
-      scale: 0,
+      scaleY: initialScaleY,
+      scaleX: initialScaleX,
       opacity: 0,
       transition: {
-        opacity: { duration: 0.2, ease: "easeInOut" },
-        scale: { duration: 0.2, ease: "easeInOut" },
+        duration: 0.2,
+        opacity: { duration: 0.15, ease: "easeInOut" },
+        scaleX: { duration: 0.15, ease: "easeInOut" },
+        scaleY: { duration: 0.15, ease: "easeInOut" },
       },
     },
   } as Variants

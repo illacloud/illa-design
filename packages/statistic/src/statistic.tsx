@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import React, { forwardRef, useMemo } from "react"
+import { forwardRef, useMemo } from "react"
 import { StatisticProps } from "./interface"
-import * as dayjs from "dayjs"
+import dayjs from "dayjs"
 import * as _ from "lodash"
 
 import {
-  applyStatisticContent,
   applyStatistic,
-  applyStatisticTitle,
+  applyStatisticContent,
   applyStatisticDecorator,
+  applyStatisticTitle,
   applyStatisticValue,
 } from "./style"
 

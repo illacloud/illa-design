@@ -22,7 +22,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   `
 
   return (
-    <a ref={ref} {...otherProps} css={finalCss}>
+    <a ref={ref} css={finalCss} {...otherProps}>
       {leftIcon && <span css={applyLeftIcon}>{leftIcon}</span>}
       {props.children}
     </a>

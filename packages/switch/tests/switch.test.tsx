@@ -79,7 +79,9 @@ test("Switch renders with status changed", () => {
   })
   const target = screen.getByTestId("test-status-changed")
   fireEvent.click(target)
-  expect(target).toHaveStyle({ "background-color": `${globalColor(`--${illaPrefix}-blue-03`)}`, })
+  expect(target).toHaveStyle({
+    "background-color": `${globalColor(`--${illaPrefix}-blue-03`)}`,
+  })
   expect(onClickEvent).toBeCalled()
   expect(onChangeEvent).toBeCalled()
 })
