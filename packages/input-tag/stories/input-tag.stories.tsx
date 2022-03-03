@@ -14,7 +14,7 @@ const Template: Story<InputTagProps> = (props) => {
   return (
     <div>
       <Space direction={"vertical"} wrap>
-        <InputTag {...props} />
+        <InputTag style={{ maxWidth: "350px" }} {...props} />
       </Space>
     </div>
   )

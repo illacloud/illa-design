@@ -104,10 +104,10 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
     if (autoFitWidth) {
       useEffect(() => {
         if (mirrorInputRef.current && inputRef.current) {
-          const width = mirrorInputRef.current.offsetWidth;
-          inputRef.current.style.width = `${width + (width ? 8 : 4)}px`;
+          const width = mirrorInputRef.current.offsetWidth
+          inputRef.current.style.width = `${width + (width ? 8 : 4)}px`
         }
-      },[compositionValue, value, placeholder])
+      }, [compositionValue, value, placeholder])
     }
 
     const inputProps = {
@@ -148,7 +148,10 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
           </span>
         ) : null}
         {autoFitWidth ? (
-          <span css={css(applyInputStyle(textCenterHorizontal), mirrorStyle)} ref={mirrorInputRef}>
+          <span
+            css={css(applyInputStyle(textCenterHorizontal), mirrorStyle)}
+            ref={mirrorInputRef}
+          >
             {mirrorValue && mirrorValue.replace(/\s/g, "\u00A0")}
           </span>
         ) : null}

@@ -2,27 +2,13 @@ import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { StateValue } from "./input-tag"
-import { InputTagSize } from "./interface"
 
-export const inputFillStyle = css`
-  background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-  border-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-`
 export const inputOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
 `
 export const disableOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
   color: ${globalColor(`--${illaPrefix}-gray-05`)};
-`
-export const disableFillStyle = css`
-  border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
-  background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-`
-export const hoverFillStyle = css`
-  background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-  border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
 `
 
 export const errorFocusStyle = css`
@@ -33,15 +19,6 @@ export const errorFocusStyle = css`
       .alpha(0.15)
       .hex()};
 `
-export const errorFillStyle = css`
-  background-color: ${globalColor(`--${illaPrefix}-red-07`)};
-  border-color: ${globalColor(`--${illaPrefix}-red-07`)};
-
-  &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-red-06`)};
-    border-color: ${globalColor(`--${illaPrefix}-red-06`)};
-  }
-`
 export const errorOutlineStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
@@ -50,25 +27,6 @@ export const errorOutlineStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-red-02`)};
   }
 `
-
-export function applyVariantStyle(variant?: string) {
-  let inputStyle: SerializedStyles
-  switch (variant) {
-    default:
-    case "fill":
-      inputStyle = css`
-        background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-        border-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-      `
-      break
-    case "outline":
-      inputStyle = css`
-        border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-      `
-      break
-  }
-  return inputStyle
-}
 
 export function applyContainerCss(variant: string) {
   return css`
@@ -81,7 +39,6 @@ export function applyContainerCss(variant: string) {
     border-radius: 4px;
     vertical-align: middle;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    ${applyVariantStyle(variant)}
   `
 }
 
@@ -92,16 +49,19 @@ function applySizeStyle(size?: string) {
     case "large":
       sizeCss = css`
         padding: 8px 16px;
+        gap: 8px;
       `
       break
     case "medium":
       sizeCss = css`
         padding: 4px 16px;
+        gap: 4px;
       `
       break
     case "small":
       sizeCss = css`
         padding: 4px 12px;
+        gap: 4px;
       `
       break
   }
@@ -149,23 +109,6 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
-export function applySizeCss(
-  requirePadding?: boolean,
-  size?: InputTagSize,
-): SerializedStyles {
-  let paddindCss: SerializedStyles = css()
-  if (requirePadding && size == "small") {
-    paddindCss = css`
-      padding: 0 12px;
-    `
-  } else if (requirePadding) {
-    paddindCss = css`
-      padding: 0 16px;
-    `
-  }
-  return paddindCss
-}
-
 export function applyInputContainer(
   stateValue: StateValue,
   requirePadding?: boolean,
@@ -198,45 +141,6 @@ export function applyInputContainer(
   `
 }
 
-export function applyInputStyle(textCenterHorizontal?: boolean | undefined) {
-  let textAlignCss: SerializedStyles
-  if (textCenterHorizontal) {
-    textAlignCss = css`
-      text-align: center;
-    `
-  } else {
-    textAlignCss = css`
-      text-align: start;
-    `
-  }
-  return css`
-    width: 100%;
-    appearance: none;
-    font-size: inherit;
-    font-family: inherit;
-    border-radius: 4px;
-    line-height: 20px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    border: none;
-    outline: unset;
-    cursor: inherit;
-    background-color: inherit;
-
-    ${textAlignCss}
-    &::placeholder {
-      color: ${globalColor(`--${illaPrefix}-gray-04`)};
-    }
-
-    &:disabled {
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
-
-      &::placeholder {
-        color: ${globalColor(`--${illaPrefix}-gray-05`)};
-      }
-    }
-  `
-}
-
 function baseFixCls(stateValue: StateValue) {
   let sizeCss: SerializedStyles
   switch (stateValue?.size) {
@@ -262,56 +166,10 @@ function baseFixCls(stateValue: StateValue) {
   `
 }
 
-export function applyPrefixCls(stateValue: StateValue) {
-  return css`
-    ${baseFixCls(stateValue)}
-    &:first-of-type {
-      margin-right: 12px;
-    }
-
-    &:last-child {
-      margin-left: 12px;
-    }
-  `
-}
-
 export function applySuffixCls(stateValue: StateValue) {
   return css`
     ${baseFixCls(stateValue)}
     margin-left: 12px;
-  `
-}
-
-export function applyAddonCss(stateValue: StateValue) {
-  let inputStyle: SerializedStyles = css`
-    border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-    &:first-of-type {
-      border-right: 0;
-    }
-    &:last-of-type {
-      border-left: 0;
-    }
-  `
-  return css`
-    ${baseFixCls(stateValue)}
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-    border-width: 1px;
-    border-style: solid;
-    padding: 0 16px;
-    line-height: initial;
-
-    &:first-of-type {
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-    }
-
-    &:last-of-type {
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-    }
-
-    ${inputStyle}
   `
 }
 
@@ -322,17 +180,6 @@ export const applyCountLimitStyle = css`
   align-items: center;
   color: ${globalColor(`--${illaPrefix}-gray-05`)};
 `
-
-export function applyLengthErrorStyle(error?: boolean) {
-  if (error) {
-    return css`
-      color: ${globalColor(`--${illaPrefix}-red-03`)};
-    `
-  }
-  return css`
-    color: ${globalColor(`--${illaPrefix}-gray-05`)};
-  `
-}
 
 export const pointerStyle = css`
   cursor: pointer;

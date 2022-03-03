@@ -95,20 +95,25 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
         css={css`
           font-size: 14px;
           line-height: 22px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         `}
       >
         {props.children}
       </span>
       {props.closable && (
-        <CloseIcon
-          size="7px"
-          css={closeIcon}
-          onClick={() => {
-            if (props.onClose != undefined) {
-              props.onClose()
-            }
-          }}
-        />
+        <span>
+          <CloseIcon
+            size="7px"
+            css={closeIcon}
+            onClick={() => {
+              if (props.onClose != undefined) {
+                props.onClose()
+              }
+            }}
+          />
+        </span>
       )}
     </div>
   ) : null

@@ -68,6 +68,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
       focus,
       size,
     }
+
     const valueChangeHandler = (value: ObjectValueType[]) => {
       if (disabled || readOnly) {
         return
@@ -92,6 +93,12 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
 
       return (
         <Tag
+          css={css`
+            box-sizing: border-box;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          `}
           visible
           size={size}
           closable={closable}
@@ -99,7 +106,13 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
             tagCloseHandler(item, index)
           }}
         >
-          <span>
+          <span
+            css={css`
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            `}
+          >
             {typeof label === "string" ? label.replace(/\s/g, "\u00A0") : label}
           </span>
         </Tag>
@@ -141,17 +154,10 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
         <span css={applyInputContainer(stateValue)}>
           <>
             {currentValue?.map((tag, index) => {
-              const isRepeat =
-                currentValue?.findIndex((item) => item.value === tag.value) !==
-                index
-              console.log(
-                React.isValidElement(mergedRenderTag(tag, index)),
-                "isValidElement",
-              )
               return (
                 <motion.div
                   css={css`
-                    margin-right: 8px;
+                    display: inline-grid;
                   `}
                   initial="initial"
                   animate={"show"}
