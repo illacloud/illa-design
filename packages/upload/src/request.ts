@@ -6,11 +6,7 @@ function getBody(xhr: XMLHttpRequest) {
     return text
   }
 
-  try {
-    return JSON.parse(text)
-  } catch (e) {
-    return text
-  }
+  return JSON.parse(text) && text
 }
 
 export function sendUploadRequest(
@@ -47,15 +43,18 @@ export function sendUploadRequest(
       onProgress(percent, event)
     }
   }
-  xhr.onerror = (e) => {
-    onError(e)
-  }
+  // xhr.onerror = (e) => {
+  //   onError(e)
+  //   console.log(`onerror`, e)
+  // }
 
   xhr.onload = function onload() {
     if (xhr.status < 200 || xhr.status >= 300) {
-      return onError(getBody(xhr))
+      console.log("onload", onError)
+      onError(getBody(xhr))
+    } else {
+      onSuccess(getBody(xhr))
     }
-    onSuccess(getBody(xhr))
   }
   const formData = new FormData()
   formData.append(name || "file", file)

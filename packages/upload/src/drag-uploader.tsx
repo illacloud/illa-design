@@ -11,7 +11,6 @@ import {
 import { MinusIcon } from "@illa-design/icon"
 import * as React from "react"
 import { traverseFileTree } from "./traverse-file-tree"
-import { isAcceptFile } from "./file-accept"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
@@ -20,7 +19,7 @@ import {
 
 export const TriggerNode = forwardRef<UploadRefType, TriggerNodeProps>(
   (props, ref) => {
-    const { disabled, tip, onFileDragged, onClick } = props
+    const { disabled, tip, onFileDragged, onClick, accept } = props
     const state = useDrop({
       onFiles: (files, event?: DragEvent) => {
         traverseFileTree(
@@ -28,7 +27,7 @@ export const TriggerNode = forwardRef<UploadRefType, TriggerNodeProps>(
           (files) => {
             onFileDragged && onFileDragged(files)
           },
-          isAcceptFile,
+          accept,
         )
       },
     })

@@ -3,14 +3,9 @@ import { forwardRef, ReactNode, useMemo } from "react"
 import { FileListItemProps } from "./interface"
 import {
   applyFileItemTitleCss,
-  deleteIconCss,
   fileItemContainerCss,
   fileTextItemCss,
-  rightIconCss,
-  tryTextCss,
 } from "./styles"
-import { Image } from "@illa-design/image"
-import { Progress } from "@illa-design/progress"
 import * as React from "react"
 import {
   DeleteIcon,
@@ -25,6 +20,7 @@ import {
   FileWPSIcon,
   SuccessIcon,
 } from "@illa-design/icon"
+import { getDeleteButton, getRightIcon } from "./file-list-util"
 
 const checkFileType = (type: string, ...targetType: string[]) => {
   let flag = false
@@ -33,7 +29,7 @@ const checkFileType = (type: string, ...targetType: string[]) => {
       flag = true
     }
   })
-
+  console.log(`checkFileType`, type, targetType, flag)
   return flag
 }
 
@@ -52,6 +48,7 @@ const fileIcon = (file: File) => {
       type = "audio"
     }
   }
+  const fileName = file.name
 
   if (checkFileType(type, "image")) {
     return <FilePictureIcon />
@@ -62,19 +59,19 @@ const fileIcon = (file: File) => {
   if (checkFileType(type, "audio")) {
     return <FileMusicIcon />
   }
-  if (checkFileType(type, "pdf")) {
+  if (checkFileType(fileName, "pdf")) {
     return <FilePdfIcon />
   }
-  if (checkFileType(type, "ppt")) {
+  if (checkFileType(fileName, "ppt", "pptx")) {
     return <FilePPTIcon />
   }
-  if (checkFileType(type, "xlsx", "xls")) {
+  if (checkFileType(fileName, "xlsx", "xls")) {
     return <FileExcelIcon />
   }
-  if (checkFileType(type, "wps")) {
+  if (checkFileType(fileName, "wps")) {
     return <FileWPSIcon />
   }
-  if (checkFileType(type, "word")) {
+  if (checkFileType(fileName, "word")) {
     return <FileWordIcon />
   }
   return <FileDefaultIcon />
@@ -84,34 +81,13 @@ export const FileListTextItem = forwardRef<HTMLSpanElement, FileListItemProps>(
   (props, ref) => {
     const { item, deleteUpload, reUpload } = props
     const { name, percent, status, originFile } = props.item
-
+    console.log(status)
     const _fileIcon = useMemo(() => {
       return fileIcon(originFile)
     }, [originFile])
 
-    let rightView
-    switch (status) {
-      case "done":
-        rightView = <SuccessIcon css={rightIconCss} />
-        break
-      case "error":
-        rightView = (
-          <span
-            css={tryTextCss}
-            onClick={() => {
-              console.log(`rightView reUpload `)
-              reUpload && reUpload(item)
-            }}
-          >
-            Click to retry
-          </span>
-        )
-        break
-      default:
-        rightView = (
-          <Progress css={rightIconCss} type="miniCircle" percent={percent} />
-        )
-    }
+    let rightView = getRightIcon(status, item, percent, reUpload)
+    const deleteButton = getDeleteButton(item, deleteUpload)
 
     return (
       <div css={fileItemContainerCss}>
@@ -120,7 +96,7 @@ export const FileListTextItem = forwardRef<HTMLSpanElement, FileListItemProps>(
           <span css={applyFileItemTitleCss(status == "error")}>{name}</span>
           {rightView}
         </div>
-        <DeleteIcon css={deleteIconCss} onClick={() => deleteUpload(item)} />
+        {deleteButton}
       </div>
     )
   },

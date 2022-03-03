@@ -40,9 +40,12 @@
   },
   "dependencies": {
     "@illa-design/icon": "*",
-    "@illa-design/list": "*",
     "@illa-design/image": "*",
+    "@illa-design/list": "*",
     "@illa-design/progress": "*",
-    "rc-upload": "^4.3.3"
+    "sinon": "^13.0.1"
+  },
+  "devDependencies": {
+    "sinon": "^13.0.1"
   }
 }

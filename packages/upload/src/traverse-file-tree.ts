@@ -1,4 +1,5 @@
 import { UploadItem } from "./interface"
+import { isAcceptFile } from "./file-accept"
 
 interface FileWithPath extends UploadItem {
   webkitRelativePath?: string
@@ -40,13 +41,13 @@ function loopFiles(
 export const traverseFileTree = (
   files: InternalDataTransferItem[],
   callback: (files: File[]) => void | undefined,
-  isAccepted: (file: File, accept?: string | string[]) => boolean,
+  accept?: string,
 ) => {
   const _traverseFileTree = (item: InternalDataTransferItem, path?: string) => {
     item.path = path || ""
     if (item.isFile) {
       item.file((file) => {
-        if (isAccepted(file)) {
+        if (isAcceptFile(file, accept)) {
           if (item.fullPath && !file.webkitRelativePath) {
             Object.defineProperty(file, "webkitRelativePath", {
               value: item.fullPath.replace(/^\//, ""),

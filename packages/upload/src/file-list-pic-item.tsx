@@ -3,24 +3,29 @@ import { forwardRef } from "react"
 import { FileListItemProps } from "./interface"
 import {
   applyFileItemTitleCss,
-  deleteIconCss,
   fileItemContainerCss,
   filePicItemCss,
   imageSizeCss,
-  rightIconCss,
 } from "./styles"
 import { Image } from "@illa-design/image"
-import { Progress } from "@illa-design/progress"
 import * as React from "react"
-import { DeleteIcon } from "@illa-design/icon"
+import { getDeleteButton, getRightIcon } from "./file-list-util"
+
+const getObjectUrl = (file?: File) => {
+  if (file) {
+    const url = window.URL ? URL : webkitURL
+    return url.createObjectURL(file)
+  }
+}
 
 export const FileListPicItem = forwardRef<HTMLSpanElement, FileListItemProps>(
   (props, ref) => {
     const { deleteUpload, item, reUpload } = props
     const { name, percent, status, url, originFile } = item
-    const picUrl = url
-      ? url
-      : originFile && (window.URL ? URL : webkitURL).createObjectURL(originFile)
+    const picUrl = url ? url : getObjectUrl(originFile)
+    let rightView = getRightIcon(status, item, percent, reUpload)
+    const deleteButton = getDeleteButton(item, deleteUpload)
+    console.log(status)
     return (
       <div css={fileItemContainerCss}>
         <div css={filePicItemCss}>
@@ -32,14 +37,9 @@ export const FileListPicItem = forwardRef<HTMLSpanElement, FileListItemProps>(
             src={picUrl}
           />
           <span css={applyFileItemTitleCss(status == "error")}>{name}</span>
-          <Progress css={rightIconCss} type="miniCircle" percent={percent} />
+          {rightView}
         </div>
-        <DeleteIcon
-          onClick={() => {
-            deleteUpload(item)
-          }}
-          css={deleteIconCss}
-        />
+        {deleteButton}
       </div>
     )
   },

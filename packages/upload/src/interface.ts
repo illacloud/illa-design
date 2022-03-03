@@ -81,10 +81,11 @@ export interface UploadProps
 export interface UploadInputElementProps extends UploadProps {
   onUploadItemStatusChange?: (item: UploadItem) => void
   updateTargetItem: (file?: UploadItem, e?: ProgressEvent) => void
+  getFileList: () => UploadItem[]
 }
 
 export interface UploadItem {
-  uid: string
+  uid?: string
   status: UploadStatus
   originFile: File
   percent: number
@@ -114,9 +115,7 @@ export interface FileList {
 }
 
 export type UploadRefType = {
-  upload: (file: UploadItem) => void
   reUpload: (file: UploadItem) => void
-  abort: (file: UploadItem) => void
   deleteUpload: (file: UploadItem) => void
   dom: HTMLDivElement | null
 }
@@ -127,6 +126,7 @@ export interface TriggerNodeProps
   tip?: string | ReactNode
   onFileDragged?: (file: File[]) => void
   onClick: () => void
+  accept?: string
 }
 
 export interface ChildrenNodeProps
@@ -141,4 +141,5 @@ export interface ChildrenNodeProps
   handleClickUploadButton?: () => void
   pictureUpload?: boolean
   currentUploadItem?: UploadItem
+  accept?: string
 }

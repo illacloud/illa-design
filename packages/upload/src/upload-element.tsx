@@ -4,6 +4,7 @@ import {
   forwardRef,
   useEffect,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState,
 } from "react"
@@ -17,6 +18,7 @@ import {
 import { inputCss, uploadChildrenCss } from "./styles"
 import { sendUploadRequest } from "./request"
 import { ChildrenNode } from "./children-node"
+import { isAcceptFile } from "./file-accept"
 
 export type UploadElementState = {
   [key: string]: UploadRequestReturn | void
@@ -27,9 +29,7 @@ const checkLimit = (
   limit?: number,
   fileList?: UploadItem[],
 ): boolean => {
-  console.log(`checkLimit`, fileList?.length)
   const fileSum = (fileList?.length ?? 0) + files.length
-  console.log(`checkLimit`, fileSum)
   return !(typeof limit == "number" && limit < fileSum)
 }
 
@@ -81,9 +81,12 @@ const doUpload = (
   }
 
   const _onError = (response?: object) => {
+    console.log("_onError")
     updateUploadItem &&
       updateUploadItem({ ...file, status: "error", response: response })
-    deleteReq(file.uid, uploadRequests)
+    if (file.uid) {
+      deleteReq(file.uid, uploadRequests)
+    }
   }
 
   const options = {
@@ -100,7 +103,7 @@ const doUpload = (
   if (action) {
     const request = sendUploadRequest({ ...options, action })
     return request
-  } else {
+  } else if (customRequest && file.uid) {
     return customRequest && { [file.uid]: customRequest({ ...options }) }
   }
 }
@@ -122,12 +125,13 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
       disabled,
       customRequest,
       onExceedLimit,
-      beforeUpload = () => {},
+      beforeUpload,
       drag,
       tip,
       updateTargetItem,
       pictureUpload,
       placeholder,
+      getFileList,
     } = props
     const inputRef = useRef<HTMLInputElement | null>(null)
 
@@ -136,20 +140,9 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
     )
 
     useEffect(() => {
-      setImageFile(fileList?.pop())
+      const fileList = getFileList()
+      setImageFile(fileList[fileList.length - 1])
     }, [_uploadRequests])
-
-    const abort = (file: UploadItem) => {
-      const req = _uploadRequests[file.uid]
-      if (req) {
-        req.abort && req.abort()
-        updateTargetItem({
-          ...file,
-          status: "error",
-        })
-        setUploadRequests(deleteReq(file.uid))
-      }
-    }
 
     const reUpload = (file: UploadItem) => {
       doUploadWithProps({
@@ -166,6 +159,7 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
       },
     ) => {
       if (requests) {
+        if (!file.uid) return
         const req = requests[file.uid]
         req &&
           Promise.resolve(req).then((result) => {
@@ -181,12 +175,8 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
         return {
           dom: inputRef.current,
           reUpload: reUpload,
-          abort: abort,
           deleteUpload: (item) => {
             deleteUpload(item, _uploadRequests)
-          },
-          upload: (item) => {
-            doUploadWithProps(item, autoUpload)
           },
         }
       },
@@ -194,6 +184,7 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
     )
 
     const doUploadWithProps = (item: UploadItem, autoUpload?: boolean) => {
+      if (!item.uid) return
       const request = doUpload(
         item,
         _uploadRequests,
@@ -247,31 +238,24 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
             const files = event.target.files
             if (files) {
               const fileArr = [].slice.call(files)
-              if (checkLimit(fileArr, limit, fileList)) {
+              const curList = getFileList()
+              if (checkLimit(fileArr, limit, curList)) {
                 fileArr.forEach((file, index) => {
                   if (typeof beforeUpload === "function") {
-                    Promise.resolve(beforeUpload(file, fileArr))
-                      .then((val) => {
-                        if (val !== false) {
-                          const isFile =
-                            Object.prototype.toString.call(val) ===
-                            "[object File]"
-                          const newFile = isFile ? val : file
-                          const upload = getInitUploadItem(
-                            newFile as File,
-                            index,
-                          )
-                          updateTargetItem(upload)
-                          doUploadWithProps(
-                            upload,
-                            autoUpload && !pictureUpload,
-                          )
-                        }
-                      })
-                      .catch((e) => {
-                        console.error(e)
-                      })
+                    Promise.resolve(beforeUpload(file, fileArr)).then((val) => {
+                      if (val !== false) {
+                        const isFile =
+                          Object.prototype.toString.call(val) ===
+                          "[object File]"
+                        const newFile = isFile ? val : file
+                        if (!isAcceptFile(newFile, accept)) return
+                        const upload = getInitUploadItem(newFile as File, index)
+                        updateTargetItem(upload)
+                        doUploadWithProps(upload, autoUpload && !pictureUpload)
+                      }
+                    })
                   } else {
+                    if (!isAcceptFile(file, accept)) return
                     const upload = getInitUploadItem(file, index)
                     updateTargetItem(upload)
                     doUploadWithProps(upload, autoUpload)
@@ -298,6 +282,7 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
             drag={drag}
             disabled={disabled}
             tip={tip}
+            accept={accept}
             onFileDragged={(files) => handleDragFile(files)}
             pictureUpload={pictureUpload}
             currentUploadItem={imageFile}

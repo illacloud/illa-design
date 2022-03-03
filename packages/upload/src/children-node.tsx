@@ -32,6 +32,7 @@ export const ChildrenNode = forwardRef<UploadRefType, ChildrenNodeProps>(
       onFileDragged,
       pictureUpload,
       currentUploadItem,
+      accept,
     } = props
 
     const configProviderProps = useContext<ConfigProviderProps>(
@@ -45,16 +46,15 @@ export const ChildrenNode = forwardRef<UploadRefType, ChildrenNodeProps>(
     const beginUpload = locale["beginUpload"]
 
     const imageUploader = (item?: UploadItem) => {
+      console.log("imageUploader", item)
       return (
         <span
           onClick={() => {
             onClick()
           }}
-          css={applyImageUploadContainerCss(disabled)}
         >
           {item ? (
             <Image
-              css={imageSizeCss}
               width={100}
               height={100}
               radius={"2px"}
@@ -68,11 +68,10 @@ export const ChildrenNode = forwardRef<UploadRefType, ChildrenNodeProps>(
               }
             />
           ) : (
-            <>
-              {" "}
+            <span css={applyImageUploadContainerCss(disabled)}>
               <MinusIcon css={applyIconCss(disabled)} />
               <span css={applyImageUploadTextCss(disabled)}>Upload</span>
-            </>
+            </span>
           )}
         </span>
       )
@@ -86,6 +85,7 @@ export const ChildrenNode = forwardRef<UploadRefType, ChildrenNodeProps>(
         onClick={() => {
           onClick()
         }}
+        accept={accept}
         onFileDragged={(files) => {
           onFileDragged && onFileDragged(files)
         }}

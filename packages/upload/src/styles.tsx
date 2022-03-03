@@ -91,28 +91,10 @@ export const dragUploadTipCss = css`
   text-align: center;
 `
 
-export function applyTextCss(
-  disable?: boolean,
-  isTip?: boolean,
-): SerializedStyles {
-  return css`
-    ${applyTextColorCss(disable, isTip)}
-    font-size: 14px;
-  `
-}
-
-export function applyTextColorCss(
-  disable?: boolean,
-  isTip?: boolean,
-): SerializedStyles {
+export function applyTextColorCss(disable?: boolean): SerializedStyles {
   if (disable) {
     return css`
       color: ${globalColor(`--${illaPrefix}-gray-05`)};
-    `
-  }
-  if (isTip) {
-    return css`
-      color: ${globalColor(`--${illaPrefix}-gray-04`)};
     `
   }
   return css`

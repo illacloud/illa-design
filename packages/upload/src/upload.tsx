@@ -14,7 +14,6 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   const {
     listType = "text",
     showUploadList = true,
-    beforeUpload = () => true,
     fileList,
     defaultFileList,
     customRequest,
@@ -22,7 +21,6 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     onReupload,
     onRemove,
     disabled,
-    tip,
     onProgress,
     pictureUpload,
     ...rest
@@ -63,22 +61,15 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
 
   uploadState.current = fileList ? processFile(fileList) : innerUploadState
 
-  useEffect(() => {
-    console.log(`useEffect`, _fileList.length)
-  }, [innerUploadState])
-
   const getFileList = (
     obj?: { [key: string]: UploadItem },
     source?: string,
   ): UploadItem[] => {
-    console.log(`getFileList source`, source)
-    console.log(`getFileList`, obj)
     if (!obj || !uploadState) return []
     return Object.keys(obj).map((x) => obj[x as keyof UploadItem])
   }
 
   const _fileList = useMemo(() => {
-    console.log(`_fileList`, getFileList(uploadState.current, "useMemo").length)
     return getFileList(uploadState.current, "useMemo")
   }, [innerUploadState])
 
@@ -86,28 +77,17 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     if (file) {
       Promise.resolve(
         onRemove && isFunction(onRemove) ? onRemove(file, _fileList) : onRemove,
-      )
-        .then((value) => {
-          if (value !== false) {
-            const obj = { ...uploadState.current }
-            delete obj[file.uid]
-            if (!fileList) {
-              setInnerUploadState(obj)
-            }
-            uploaderRef.current && uploaderRef.current.deleteUpload(file)
+      ).then((value) => {
+        if (value !== false) {
+          const obj = { ...uploadState.current }
+          file.uid && delete obj[file.uid]
+          if (!fileList) {
+            setInnerUploadState(obj)
           }
-        })
-        .catch((e) => {
-          console.error(e)
-        })
+          uploaderRef.current && uploaderRef.current.deleteUpload(file)
+        }
+      })
     }
-  }
-
-  const uploadFile = (file: UploadItem) => {
-    file &&
-      setTimeout(() => {
-        uploaderRef.current && uploaderRef.current.upload(file)
-      }, 0)
   }
 
   const reUploadFile = (file: UploadItem) => {
@@ -115,37 +95,27 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     onReupload && onReupload(file)
   }
 
-  const abortFile = (file: UploadItem) => {
-    if (file) {
-      uploaderRef.current && uploaderRef.current.abort(file)
-    }
-  }
-
   const updateFileList = (file?: UploadItem, e?: ProgressEvent) => {
     if (!file) return
-    const targetFile = getTargetFile(file) ?? file
+    const list = getFileList(uploadState.current, "updateFileList")
+
+    const targetFile = list?.find((item) => item["uid"] === file["uid"]) ?? file
+    if (!targetFile.uid) return
     setInnerUploadState((v) => {
       return {
         ...v,
-        [targetFile.uid]: file,
+        [targetFile.uid ?? ""]: file,
       }
     })
-    const list = getFileList(uploadState.current, "updateFileList")
-    if (targetFile?.status != "uploading") {
-      onChange && onChange(list, targetFile)
-    } else if (hasUploadedSet.has(targetFile?.uid)) {
-      onChange && onChange(list, targetFile)
+    if (file?.status != "uploading") {
+      onChange && onChange(list, file)
+    } else if (!hasUploadedSet.has(targetFile?.uid)) {
+      onChange && onChange(list, file)
       hasUploadedSet.add(targetFile?.uid)
     }
     if (file?.status === "uploading") {
-      onProgress && onProgress(targetFile, e)
+      onProgress && onProgress(file, e)
     }
-  }
-
-  const getTargetFile = (file: UploadItem) => {
-    const key = "uid" in file ? "uid" : "name"
-    const list = getFileList(uploadState.current, "getTargetFile")
-    return list?.find((item) => item["uid"] === file["uid"])
   }
 
   return (
@@ -154,23 +124,10 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
         pictureUpload={pictureUpload}
         updateTargetItem={updateFileList}
         ref={uploaderRef}
-        fileList={getFileList(uploadState.current, "element")}
+        getFileList={() => getFileList(uploadState.current, "element")}
         disabled={disabled}
         customRequest={customRequest}
         {...rest}
-        onProgress={(file: UploadItem, e?: ProgressEvent) => {
-          if (file) {
-            if (!fileList) {
-              setInnerUploadState((v) => {
-                return {
-                  ...v,
-                  [file.uid]: file,
-                }
-              })
-            }
-          }
-          onProgress && onProgress(file, e)
-        }}
       />
       {showUploadList && pictureUpload !== true && (
         <List
