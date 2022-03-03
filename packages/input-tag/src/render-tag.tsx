@@ -1,21 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import {
-  forwardRef,
-  ElementRef,
-  useState,
-  useMemo,
-  useRef,
-  HTMLAttributes,
-} from "react"
+import { forwardRef, HTMLAttributes } from "react"
 import { motion } from "framer-motion"
 import { Tag } from "@illa-design/tag"
 import { InputTagProps } from "./interface"
-import { applyInputContainer, applySuffixCls } from "./style"
-import { formatValue, ObjectValueType } from "./utils"
+import { tagStyle } from "./style"
+import { ObjectValueType } from "./utils"
 import { css } from "@emotion/react"
 
-export interface RenderTagsProps<T> extends HTMLAttributes<HTMLElement> {
+export interface RenderTagsProps extends HTMLAttributes<HTMLElement> {
   size?: InputTagProps["size"]
   value: ObjectValueType[]
   readOnly?: boolean
@@ -25,7 +18,7 @@ export interface RenderTagsProps<T> extends HTMLAttributes<HTMLElement> {
   valueChangeHandler?: (value: ObjectValueType[]) => void
 }
 
-export const RenderTags = forwardRef<HTMLElement, RenderTagsProps<any>>(
+export const RenderTags = forwardRef<HTMLElement, RenderTagsProps>(
   (props, ref) => {
     const {
       style,
@@ -65,12 +58,7 @@ export const RenderTags = forwardRef<HTMLElement, RenderTagsProps<any>>(
               key={index}
             >
               <Tag
-                css={css`
-                  box-sizing: border-box;
-                  overflow: hidden;
-                  white-space: nowrap;
-                  text-overflow: ellipsis;
-                `}
+                css={tagStyle}
                 visible
                 size={size}
                 closable={closable}
@@ -78,13 +66,7 @@ export const RenderTags = forwardRef<HTMLElement, RenderTagsProps<any>>(
                   tagCloseHandler(item, index)
                 }}
               >
-                <span
-                  css={css`
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                  `}
-                >
+                <span>
                   {typeof label === "string"
                     ? label.replace(/\s/g, "\u00A0")
                     : label}

@@ -28,20 +28,6 @@ export const errorOutlineStyle = css`
   }
 `
 
-export function applyContainerCss(variant: string) {
-  return css`
-    width: 280px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 14px;
-    line-height: 1.57;
-    border-radius: 4px;
-    vertical-align: middle;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-  `
-}
-
 function applySizeStyle(size?: string) {
   let sizeCss: SerializedStyles
   switch (size) {
@@ -49,23 +35,50 @@ function applySizeStyle(size?: string) {
     case "large":
       sizeCss = css`
         padding: 8px 16px;
-        gap: 8px;
       `
       break
     case "medium":
       sizeCss = css`
         padding: 4px 16px;
-        gap: 4px;
       `
       break
     case "small":
       sizeCss = css`
         padding: 4px 12px;
-        gap: 4px;
       `
       break
   }
   return sizeCss
+}
+
+export function applyInputInnerCss(stateValue: StateValue) {
+  let paddingCss: SerializedStyles
+  switch (stateValue?.size) {
+    default:
+    case "large":
+      paddingCss = css`
+        gap: 8px;
+      `
+      break
+    case "medium":
+      paddingCss = css`
+        gap: 4px;
+      `
+      break
+    case "small":
+      paddingCss = css`
+        gap: 4px;
+      `
+      break
+  }
+  return css`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    align-items: center;
+    ${paddingCss}
+  `
 }
 
 function applyStatus(stateValue: StateValue) {
@@ -109,35 +122,21 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
-export function applyInputContainer(
-  stateValue: StateValue,
-  requirePadding?: boolean,
-) {
+export function applyInputContainer(stateValue: StateValue) {
   return css`
     width: 100%;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    flex-grow: 1;
     align-items: center;
     font-size: 14px;
     line-height: 1.57;
     cursor: text;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-radius: 4px;
     transition: all 200ms ease-in-out;
     ${applySizeStyle(stateValue?.size)};
-
     ${applyStatus(stateValue)}
-    &:first-of-type {
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-    }
-
-    &:last-of-type {
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-    }
   `
 }
 
@@ -188,4 +187,12 @@ export const pointerStyle = css`
   &:hover {
     color: ${globalColor(`--${illaPrefix}-gray-05`)};
   }
+`
+
+// renderTag style
+export const tagStyle = css`
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `

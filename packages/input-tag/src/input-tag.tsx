@@ -1,14 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, ElementRef, useState, useMemo, useRef } from "react"
-import { motion } from "framer-motion"
+import { forwardRef, ElementRef, useState, useRef } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { InputElement } from "@illa-design/input"
-import { Tag } from "@illa-design/tag"
+import { ErrorIcon } from "@illa-design/icon"
 import { InputTagProps } from "./interface"
-import { applyInputContainer, applySuffixCls } from "./style"
+import {
+  applyInputContainer,
+  applyInputInnerCss,
+  applySuffixCls,
+  pointerStyle,
+} from "./style"
 import { formatValue, ObjectValueType } from "./utils"
-import { css } from "@emotion/react"
+import { RenderTags } from "./render-tag"
 
 export interface StateValue {
   disabled?: boolean
@@ -79,46 +83,6 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
       onChange?.(labelInValue ? value : value?.map((item) => item.value))
     }
 
-    const tagCloseHandler = (itemValue: ObjectValueType, index: number) => {
-      onRemove?.(itemValue, index)
-      valueChangeHandler([
-        ...currentValue?.slice(0, index),
-        ...currentValue?.slice(index + 1),
-      ])
-    }
-
-    const mergedRenderTag = (item: ObjectValueType, index: number) => {
-      const { value: itemValue, label } = item
-      const closable = !readOnly && !disabled && item.closable !== false
-
-      return (
-        <Tag
-          css={css`
-            box-sizing: border-box;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-          `}
-          visible
-          size={size}
-          closable={closable}
-          onClose={() => {
-            tagCloseHandler(item, index)
-          }}
-        >
-          <span
-            css={css`
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-            `}
-          >
-            {typeof label === "string" ? label.replace(/\s/g, "\u00A0") : label}
-          </span>
-        </Tag>
-      )
-    }
-
     const tryAddInputValueToTag = async () => {
       try {
         console.log(currentInputValue, currentValue, "input")
@@ -142,6 +106,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
 
     return (
       <div
+        css={applyInputContainer(stateValue)}
         style={style}
         className={className}
         ref={ref}
@@ -151,24 +116,16 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
         }}
         {...rest}
       >
-        <span css={applyInputContainer(stateValue)}>
-          <>
-            {currentValue?.map((tag, index) => {
-              return (
-                <motion.div
-                  css={css`
-                    display: inline-grid;
-                  `}
-                  initial="initial"
-                  animate={"show"}
-                  exit={"hidden"}
-                  key={index}
-                >
-                  {mergedRenderTag(tag, index)}
-                </motion.div>
-              )
-            })}
-          </>
+        <span css={applyInputInnerCss(stateValue)}>
+          <RenderTags
+            value={currentValue}
+            size={size}
+            disabled={disabled}
+            readOnly={readOnly}
+            labelInValue={labelInValue}
+            onRemove={onRemove}
+            valueChangeHandler={valueChangeHandler}
+          />
           <InputElement
             ref={inputRef}
             size={size}
@@ -201,6 +158,24 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
             <span css={applySuffixCls(stateValue)}>{suffix}</span>
           ) : null}
         </span>
+        {allowClear && !disabled && currentValue?.length ? (
+          <span
+            css={pointerStyle}
+            onClick={(e) => {
+              e.stopPropagation()
+              valueChangeHandler([])
+              if (!focus) {
+                inputRef?.current?.focus?.()
+              }
+              onClear?.()
+            }}
+            onMouseDown={(e: any) => {
+              e?.target?.tagName !== "INPUT" && e.preventDefault()
+            }}
+          >
+            <ErrorIcon />
+          </span>
+        ) : null}
       </div>
     )
   },
