@@ -8,7 +8,6 @@ import {
 } from "./styles"
 import * as React from "react"
 import {
-  DeleteIcon,
   FileDefaultIcon,
   FileExcelIcon,
   FileMusicIcon,
@@ -18,7 +17,6 @@ import {
   FileVideoIcon,
   FileWordIcon,
   FileWPSIcon,
-  SuccessIcon,
 } from "@illa-design/icon"
 import { getDeleteButton, getRightIcon } from "./file-list-util"
 
@@ -29,11 +27,10 @@ const checkFileType = (type: string, ...targetType: string[]) => {
       flag = true
     }
   })
-  console.log(`checkFileType`, type, targetType, flag)
   return flag
 }
 
-const fileIcon = (file: File) => {
+const getFileIcon = (file: File) => {
   let type = ""
   if (file && file.type) {
     type = file.type
@@ -81,9 +78,8 @@ export const FileListTextItem = forwardRef<HTMLSpanElement, FileListItemProps>(
   (props, ref) => {
     const { item, deleteUpload, reUpload } = props
     const { name, percent, status, originFile } = props.item
-    console.log(status)
-    const _fileIcon = useMemo(() => {
-      return fileIcon(originFile)
+    const fileIcon = useMemo(() => {
+      return getFileIcon(originFile)
     }, [originFile])
 
     let rightView = getRightIcon(status, item, percent, reUpload)
@@ -92,7 +88,7 @@ export const FileListTextItem = forwardRef<HTMLSpanElement, FileListItemProps>(
     return (
       <div css={fileItemContainerCss}>
         <div css={fileTextItemCss}>
-          {_fileIcon}
+          {fileIcon}
           <span css={applyFileItemTitleCss(status == "error")}>{name}</span>
           {rightView}
         </div>

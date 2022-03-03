@@ -81,7 +81,6 @@ const doUpload = (
   }
 
   const _onError = (response?: object) => {
-    console.log("_onError")
     updateUploadItem &&
       updateUploadItem({ ...file, status: "error", response: response })
     if (file.uid) {
@@ -152,20 +151,26 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
       })
     }
 
-    const deleteUpload = (
-      file: UploadItem,
-      requests?: {
-        [key: string]: UploadRequestReturn | void
-      },
-    ) => {
-      if (requests) {
+    const deleteUpload = (file: UploadItem) => {
+      if (_uploadRequests) {
         if (!file.uid) return
-        const req = requests[file.uid]
+        const req = _uploadRequests[file.uid]
         req &&
           Promise.resolve(req).then((result) => {
             result?.abort && result.abort()
           })
-        setUploadRequests(deleteReq(file.uid, requests))
+        setUploadRequests(deleteReq(file.uid, _uploadRequests))
+      }
+    }
+
+    const abortUpload = (file: UploadItem) => {
+      if (_uploadRequests) {
+        if (!file.uid) return
+        const req = _uploadRequests[file.uid]
+        req &&
+          Promise.resolve(req).then((result) => {
+            result?.abort && result.abort()
+          })
       }
     }
 
@@ -175,9 +180,8 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
         return {
           dom: inputRef.current,
           reUpload: reUpload,
-          deleteUpload: (item) => {
-            deleteUpload(item, _uploadRequests)
-          },
+          deleteUpload: deleteUpload,
+          abort: abortUpload,
         }
       },
       [_uploadRequests],

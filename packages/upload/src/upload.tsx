@@ -1,7 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { forwardRef, useEffect, useMemo, useRef, useState } from "react"
-import { UploadItem, UploadProps, UploadRefType } from "./interface"
+import {
+  UploadItem,
+  UploadListProps,
+  UploadProps,
+  UploadRefType,
+} from "./interface"
 import { UploadElement } from "./upload-element"
 import { fileListContainerCss, uploadContainerCss } from "./styles"
 import { FileListTextItem } from "./file-list-text-item"
@@ -23,6 +28,22 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     disabled,
     onProgress,
     pictureUpload,
+    directory,
+    accept,
+    autoUpload,
+    action,
+    limit,
+    drag,
+    multiple,
+    tip,
+    headers,
+    data,
+    name,
+    withCredentials,
+    renderUploadList,
+    beforeUpload,
+    onExceedLimit,
+    placeholder,
     ...rest
   } = props
 
@@ -61,16 +82,13 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
 
   uploadState.current = fileList ? processFile(fileList) : innerUploadState
 
-  const getFileList = (
-    obj?: { [key: string]: UploadItem },
-    source?: string,
-  ): UploadItem[] => {
+  const getFileList = (obj?: { [key: string]: UploadItem }): UploadItem[] => {
     if (!obj || !uploadState) return []
     return Object.keys(obj).map((x) => obj[x as keyof UploadItem])
   }
 
   const _fileList = useMemo(() => {
-    return getFileList(uploadState.current, "useMemo")
+    return getFileList(uploadState.current)
   }, [innerUploadState])
 
   const deleteUpload = (file: UploadItem) => {
@@ -95,9 +113,13 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     onReupload && onReupload(file)
   }
 
+  const abortUploadFile = (file: UploadItem) => {
+    uploaderRef.current && uploaderRef.current.abort(file)
+  }
+
   const updateFileList = (file?: UploadItem, e?: ProgressEvent) => {
     if (!file) return
-    const list = getFileList(uploadState.current, "updateFileList")
+    const list = getFileList(uploadState.current)
 
     const targetFile = list?.find((item) => item["uid"] === file["uid"]) ?? file
     if (!targetFile.uid) return
@@ -118,44 +140,73 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     }
   }
 
+  let fileListView
+  if (renderUploadList) {
+    const fileList = getFileList(uploadState.current)
+    const uploadListProps: UploadListProps = {
+      disabled: disabled,
+      onRemove: (file) => deleteUpload(file),
+      onReupload: (file) => reUploadFile(file),
+      onAbort: (file) => abortUploadFile(file),
+    }
+    fileListView = <>{renderUploadList(fileList, uploadListProps)}</>
+  } else {
+    fileListView = (
+      <List
+        data={getFileList(uploadState.current)}
+        bordered={false}
+        split={false}
+        renderRaw={true}
+        css={fileListContainerCss}
+        render={(item) => {
+          return listType === "text" ? (
+            <FileListTextItem
+              item={item}
+              deleteUpload={deleteUpload}
+              reUpload={(item) => reUploadFile(item)}
+            />
+          ) : (
+            <FileListPicItem
+              item={item}
+              deleteUpload={deleteUpload}
+              reUpload={(item) => reUploadFile(item)}
+            />
+          )
+        }}
+        renderKey={(item) => {
+          return item.uid
+        }}
+      />
+    )
+  }
+
   return (
-    <div css={uploadContainerCss}>
+    <div css={uploadContainerCss} ref={ref} {...rest}>
       <UploadElement
+        directory={directory}
+        accept={accept}
+        autoUpload={autoUpload}
+        action={action}
+        limit={limit}
+        drag={drag}
+        multiple={multiple}
+        tip={tip}
+        headers={headers}
+        data={data}
+        name={name}
+        withCredentials={withCredentials}
+        beforeUpload={beforeUpload}
+        onExceedLimit={onExceedLimit}
+        placeholder={placeholder}
         pictureUpload={pictureUpload}
         updateTargetItem={updateFileList}
         ref={uploaderRef}
-        getFileList={() => getFileList(uploadState.current, "element")}
+        getFileList={() => getFileList(uploadState.current)}
         disabled={disabled}
         customRequest={customRequest}
         {...rest}
       />
-      {showUploadList && pictureUpload !== true && (
-        <List
-          data={getFileList(uploadState.current, "element-list")}
-          bordered={false}
-          split={false}
-          renderRaw={true}
-          css={fileListContainerCss}
-          render={(item) => {
-            return listType === "text" ? (
-              <FileListTextItem
-                item={item}
-                deleteUpload={deleteUpload}
-                reUpload={(item) => reUploadFile(item)}
-              />
-            ) : (
-              <FileListPicItem
-                item={item}
-                deleteUpload={deleteUpload}
-                reUpload={(item) => reUploadFile(item)}
-              />
-            )
-          }}
-          renderKey={(item) => {
-            return item.uid
-          }}
-        />
-      )}
+      {showUploadList && pictureUpload !== true && <>{fileListView}</>}
     </div>
   )
 })

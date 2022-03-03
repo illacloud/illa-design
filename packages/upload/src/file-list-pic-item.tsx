@@ -25,7 +25,6 @@ export const FileListPicItem = forwardRef<HTMLSpanElement, FileListItemProps>(
     const picUrl = url ? url : getObjectUrl(originFile)
     let rightView = getRightIcon(status, item, percent, reUpload)
     const deleteButton = getDeleteButton(item, deleteUpload)
-    console.log(status)
     return (
       <div css={fileItemContainerCss}>
         <div css={filePicItemCss}>

@@ -1,14 +1,5 @@
 import { RequestOptions, UploadRequestReturn } from "./index"
 
-function getBody(xhr: XMLHttpRequest) {
-  const text = xhr.responseText || xhr.response
-  if (!text) {
-    return text
-  }
-
-  return JSON.parse(text) && text
-}
-
 export function sendUploadRequest(
   options: RequestOptions,
 ): UploadRequestReturn {
@@ -43,17 +34,12 @@ export function sendUploadRequest(
       onProgress(percent, event)
     }
   }
-  // xhr.onerror = (e) => {
-  //   onError(e)
-  //   console.log(`onerror`, e)
-  // }
 
   xhr.onload = function onload() {
     if (xhr.status < 200 || xhr.status >= 300) {
-      console.log("onload", onError)
-      onError(getBody(xhr))
+      onError(xhr.response)
     } else {
-      onSuccess(getBody(xhr))
+      onSuccess(xhr.response)
     }
   }
   const formData = new FormData()

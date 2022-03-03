@@ -4,7 +4,6 @@ import { ChildrenNodeProps, UploadItem, UploadRefType } from "./interface"
 import {
   applyIconCss,
   applyImageUploadTextCss,
-  imageSizeCss,
   noAutoUploadButtonCss,
   applyImageUploadContainerCss,
 } from "./styles"
@@ -46,7 +45,6 @@ export const ChildrenNode = forwardRef<UploadRefType, ChildrenNodeProps>(
     const beginUpload = locale["beginUpload"]
 
     const imageUploader = (item?: UploadItem) => {
-      console.log("imageUploader", item)
       return (
         <span
           onClick={() => {

@@ -20,26 +20,10 @@ export class UploadRequestReturn {
 }
 
 export interface UploadListProps {
-  listType?: string
-  fileList?: UploadItem[]
-  showUploadList?: boolean | CustomIconType
-  progressProps?: Partial<ProgressProps>
-  onUpload?: (file: UploadItem) => void
-  onAbort?: (file: UploadItem) => void
-  onRemove?: (file: UploadItem) => void
-  onReupload?: (file: UploadItem) => void
-  onPreview?: (file: UploadItem) => void
+  onAbort: (file: UploadItem) => void
+  onRemove: (file: UploadItem) => void
+  onReupload: (file: UploadItem) => void
   disabled?: boolean
-  renderUploadItem?: (
-    originNode: ReactNode,
-    file: UploadItem,
-    fileList: UploadItem[],
-  ) => ReactNode
-  renderUploadList?: (
-    fileList: UploadItem[],
-    uploadListProps: Omit<UploadListProps, "renderUploadList">,
-  ) => ReactNode
-  prefixCls?: string
 }
 
 export interface UploadProps
@@ -62,7 +46,6 @@ export interface UploadProps
   data?: object | ((any: any) => object)
   name?: string | ((any: any) => string)
   withCredentials?: boolean
-  progressProps?: Partial<ProgressProps>
   renderUploadList?: (
     fileList: UploadItem[],
     uploadListProps: UploadListProps,
@@ -73,7 +56,6 @@ export interface UploadProps
   onProgress?: (file: UploadItem, e?: ProgressEvent) => void
   onReupload?: (file: UploadItem) => void
   onExceedLimit?: (files: File[], fileList: UploadItem[]) => void
-  // todo @zhengjiaiq 跟产品确定
   pictureUpload?: boolean
   placeholder?: string
 }
@@ -115,9 +97,10 @@ export interface FileList {
 }
 
 export type UploadRefType = {
+  dom: HTMLDivElement | null
   reUpload: (file: UploadItem) => void
   deleteUpload: (file: UploadItem) => void
-  dom: HTMLDivElement | null
+  abort: (file: UploadItem) => void
 }
 
 export interface TriggerNodeProps

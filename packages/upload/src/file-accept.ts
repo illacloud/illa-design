@@ -12,7 +12,6 @@ export const isAcceptFile = (file: File, accept?: string): boolean => {
     return accepts.some((type) => {
       const text = type && type.toLowerCase()
       const fileType = (file.type || "").toLowerCase()
-      console.log(text, fileType)
       if (text === fileType) {
         return true
       }
@@ -24,6 +23,5 @@ export const isAcceptFile = (file: File, accept?: string): boolean => {
       }
     })
   }
-  console.log("false")
   return !!file
 }

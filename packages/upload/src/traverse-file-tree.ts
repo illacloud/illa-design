@@ -1,10 +1,6 @@
 import { UploadItem } from "./interface"
 import { isAcceptFile } from "./file-accept"
 
-interface FileWithPath extends UploadItem {
-  webkitRelativePath?: string
-}
-
 interface InternalDataTransferItem extends DataTransferItem {
   isFile: boolean
   file: (cd: (item: File) => void) => void
@@ -15,27 +11,57 @@ interface InternalDataTransferItem extends DataTransferItem {
   path: string
 }
 
+function sequence(
+  dirReader: any,
+  fileList: InternalDataTransferItem[],
+  callback: (fileList: InternalDataTransferItem[]) => void,
+) {
+  dirReader.readEntries((entries: InternalDataTransferItem[]) => {
+    const entryList = Array.prototype.slice.apply(entries)
+    fileList = fileList.concat(entryList)
+    const isFinished = !entryList.length
+    if (isFinished) {
+      callback(fileList)
+    } else {
+      sequence(dirReader, fileList, callback)
+    }
+  })
+}
+
 function loopFiles(
   item: InternalDataTransferItem,
   callback: (fileList: InternalDataTransferItem[]) => void,
 ) {
   const dirReader = item.createReader()
   let fileList: InternalDataTransferItem[] = []
+  sequence(dirReader, fileList, callback)
+}
 
-  function sequence() {
-    dirReader.readEntries((entries: InternalDataTransferItem[]) => {
-      const entryList = Array.prototype.slice.apply(entries)
-      fileList = fileList.concat(entryList)
-      const isFinished = !entryList.length
-      if (isFinished) {
-        callback(fileList)
-      } else {
-        sequence()
+const traverseByRecur = (
+  item: InternalDataTransferItem,
+  callback: (files: File[]) => void | undefined,
+  accept?: string,
+  path?: string,
+) => {
+  item.path = path || ""
+  if (item.isFile) {
+    item.file((file) => {
+      if (isAcceptFile(file, accept)) {
+        if (item.fullPath && !file.webkitRelativePath) {
+          Object.defineProperty(file, "webkitRelativePath", {
+            value: item.fullPath.replace(/^\//, ""),
+          })
+        }
+        callback([file])
       }
     })
+  } else if (item.isDirectory) {
+    loopFiles(item, (entries: InternalDataTransferItem[]) => {
+      entries.forEach((entryItem) => {
+        traverseByRecur(entryItem, callback, accept, `${path}${item.name}/`)
+      })
+    })
   }
-
-  sequence()
 }
 
 export const traverseFileTree = (
@@ -43,28 +69,7 @@ export const traverseFileTree = (
   callback: (files: File[]) => void | undefined,
   accept?: string,
 ) => {
-  const _traverseFileTree = (item: InternalDataTransferItem, path?: string) => {
-    item.path = path || ""
-    if (item.isFile) {
-      item.file((file) => {
-        if (isAcceptFile(file, accept)) {
-          if (item.fullPath && !file.webkitRelativePath) {
-            Object.defineProperty(file, "webkitRelativePath", {
-              value: item.fullPath.replace(/^\//, ""),
-            })
-          }
-          callback([file])
-        }
-      })
-    } else if (item.isDirectory) {
-      loopFiles(item, (entries: InternalDataTransferItem[]) => {
-        entries.forEach((entryItem) => {
-          _traverseFileTree(entryItem, `${path}${item.name}/`)
-        })
-      })
-    }
-  }
   files.forEach((file) => {
-    _traverseFileTree(file.webkitGetAsEntry() as any)
+    traverseByRecur(file.webkitGetAsEntry() as any, callback, accept)
   })
 }
