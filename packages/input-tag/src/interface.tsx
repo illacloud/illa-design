@@ -6,7 +6,7 @@ export type InputTagSize = "small" | "medium" | "large"
 export interface InputTagProps<T = any>
   extends Omit<
     HTMLAttributes<HTMLDivElement>,
-    "size" | "value" | "defaultValue"
+    "size" | "value" | "defaultValue" | "onChange"
   > {
   inputValue?: string
   defaultValue?: T[]
@@ -30,7 +30,8 @@ export interface InputTagProps<T = any>
   onFocus?: (e: any) => void
   onBlur?: (e: any) => void
   onPaste?: (e: any) => void
-  onRemove?: (value: T, index: number, event: any) => void
+  onChange?: (value: T[]) => void;
+  onRemove?: (value: T, index: number, event?: any) => void
   onInputChange?: (inputValue: string, event?: any) => void
   onPressEnter?: (e: any) => void
 }

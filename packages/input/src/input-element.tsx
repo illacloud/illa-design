@@ -10,7 +10,6 @@ import {
 import { css } from "@emotion/react"
 import { omit } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { InputElementProps, InputRefType } from "./interface"
 import { applyInputStyle, pointerStyle } from "./style"
 

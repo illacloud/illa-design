@@ -91,18 +91,17 @@ function applySizeStyle(size?: string) {
     default:
     case "large":
       sizeCss = css`
-        height: 38px;
+        padding: 8px 16px;
       `
       break
     case "medium":
       sizeCss = css`
-        height: 30px;
+        padding: 4px 16px;
       `
       break
     case "small":
       sizeCss = css`
-        height: 22px;
-        font-size: 12px;
+        padding: 4px 12px;
       `
       break
   }
@@ -154,8 +153,7 @@ export function applySizeCss(
   requirePadding?: boolean,
   size?: InputTagSize,
 ): SerializedStyles {
-  let sizeCss: SerializedStyles
-  let paddindCss: SerializedStyles | undefined
+  let paddindCss: SerializedStyles = css()
   if (requirePadding && size == "small") {
     paddindCss = css`
       padding: 0 12px;
@@ -165,28 +163,7 @@ export function applySizeCss(
       padding: 0 16px;
     `
   }
-  switch (size) {
-    default:
-    case "large":
-      sizeCss = css`
-        height: 38px;
-        ${paddindCss};
-      `
-      break
-    case "medium":
-      sizeCss = css`
-        height: 30px;
-        ${paddindCss};
-      `
-      break
-    case "small":
-      sizeCss = css`
-        height: 22px;
-        ${paddindCss};
-      `
-      break
-  }
-  return sizeCss
+  return paddindCss
 }
 
 export function applyInputContainer(
@@ -197,13 +174,15 @@ export function applyInputContainer(
     width: 100%;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
     align-items: center;
     font-size: 14px;
     line-height: 1.57;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     transition: all 200ms ease-in-out;
-    ${applySizeCss(requirePadding, stateValue?.size)};
+    ${applySizeStyle(stateValue?.size)};
 
     ${applyStatus(stateValue)}
     &:first-of-type {
@@ -332,7 +311,6 @@ export function applyAddonCss(stateValue: StateValue) {
     }
 
     ${inputStyle}
-    ${applySizeStyle(stateValue?.size)}
   `
 }
 
