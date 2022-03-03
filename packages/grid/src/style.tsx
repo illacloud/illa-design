@@ -10,8 +10,8 @@ export function applyRowContainer(
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-items: ${align};
-    align-items: ${justify};
+    justify-content: ${justify};
+    align-items: ${align};
   `
 }
 
