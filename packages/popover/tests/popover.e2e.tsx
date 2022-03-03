@@ -1,8 +1,8 @@
 import * as React from "react"
 import { Button } from "@illa-design/button"
 import { mount } from "@cypress/react"
-import "@testing-library/cypress"
 import { Popover } from "../src"
+import "@testing-library/cypress"
 
 it("Popover renders correctly", () => {
   mount(

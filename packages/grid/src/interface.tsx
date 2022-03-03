@@ -53,4 +53,5 @@ export interface ColProps
 export interface RowContextProps {
   horizontalGap?: GridSize | string
   verticalGap?: GridSize | string
+  childCount?: number
 }
