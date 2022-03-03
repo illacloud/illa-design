@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, useState, useMemo, useRef } from "react"
+import { forwardRef, ElementRef, useState, useMemo, useRef } from "react"
 import { motion } from "framer-motion"
 import { useMergeValue } from "@illa-design/system"
 import { InputElement } from "@illa-design/input"
@@ -17,6 +17,10 @@ export interface StateValue {
   size?: InputTagProps["size"]
 }
 
+// default validate func
+const defaultValidate = (inputValue: string, values: ObjectValueType[]) =>
+  inputValue && values?.every((item) => item?.value !== inputValue)
+
 export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
   (props, ref) => {
     const {
@@ -32,7 +36,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
       readOnly,
       suffix,
       icon,
-      validate,
+      validate = defaultValidate,
       labelInValue,
       size = "medium",
       // events
@@ -56,6 +60,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
     const [currentInputValue, setInputValue] = useMergeValue("", {
       value: inputValue,
     })
+    const inputRef = useRef<ElementRef<typeof InputElement>>(null)
 
     const stateValue = {
       error,
@@ -75,7 +80,10 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
 
     const tagCloseHandler = (itemValue: ObjectValueType, index: number) => {
       onRemove?.(itemValue, index)
-      valueChangeHandler([...currentValue?.slice(0, index), ...currentValue?.slice(index + 1)])
+      valueChangeHandler([
+        ...currentValue?.slice(0, index),
+        ...currentValue?.slice(index + 1),
+      ])
     }
 
     const mergedRenderTag = (item: ObjectValueType, index: number) => {
@@ -85,23 +93,33 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
       return (
         <Tag
           visible
+          size={size}
           closable={closable}
           onClose={() => {
             tagCloseHandler(item, index)
           }}
         >
-        <span>
-          {typeof label === "string" ? label.replace(/\s/g, "\u00A0") : label}
-        </span>
+          <span>
+            {typeof label === "string" ? label.replace(/\s/g, "\u00A0") : label}
+          </span>
         </Tag>
       )
     }
 
     const tryAddInputValueToTag = async () => {
       try {
-        const isLegal = typeof validate === "function" ? await validate(currentInputValue, currentValue) : true
+        console.log(currentInputValue, currentValue, "input")
+        const isLegal =
+          typeof validate === "function"
+            ? await validate(currentInputValue, currentValue)
+            : true
         if (isLegal) {
-          valueChangeHandler(currentValue?.concat({ value: currentInputValue, label: currentInputValue }))
+          valueChangeHandler(
+            currentValue?.concat({
+              value: currentInputValue,
+              label: currentInputValue,
+            }),
+          )
           setInputValue("")
         }
       } catch (error) {
@@ -110,49 +128,73 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
     }
 
     return (
-      <div style={style} className={className} ref={ref} {...rest}>
-          <span css={applyInputContainer(stateValue)}>
-            <>
-              {currentValue?.map((tag, index) => {
-                const isRepeat = currentValue?.findIndex((item) => item.value === tag.value) !== index
-                return (
-                  <motion.div
-                    css={css`margin-right: 8px;`} initial="initial" animate={"show"} exit={"hidden"} key={index}>
-                    {mergedRenderTag(tag, index)}
-                  </motion.div>
-                )
-              })}
-            </>
-            <InputElement
-              size={size}
-              value={currentInputValue}
-              disabled={disabled}
-              readOnly={readOnly}
-              placeholder={!currentValue?.length ? placeholder : ""}
-              onFocus={(event) => {
-                if (!disabled && !readOnly) {
-                  setFocus(true)
-                  onFocus?.(event)
-                }
-              }}
-              onBlur={(event) => {
-                setFocus(false)
-                onBlur?.(event)
-                setInputValue("")
-              }}
-              onValueChange={(value, event) => {
-                setInputValue(value)
-                onInputChange?.(value, event)
-              }}
-              onPressEnter={async (event) => {
-                onPressEnter?.(event)
-                await tryAddInputValueToTag()
-              }}
-            />
-            {suffix ? (
-              <span css={applySuffixCls(stateValue)}>{suffix}</span>
-            ) : null}
-          </span>
+      <div
+        style={style}
+        className={className}
+        ref={ref}
+        onClick={(e) => {
+          !focus && inputRef?.current?.focus?.()
+          onClick?.(e)
+        }}
+        {...rest}
+      >
+        <span css={applyInputContainer(stateValue)}>
+          <>
+            {currentValue?.map((tag, index) => {
+              const isRepeat =
+                currentValue?.findIndex((item) => item.value === tag.value) !==
+                index
+              console.log(
+                React.isValidElement(mergedRenderTag(tag, index)),
+                "isValidElement",
+              )
+              return (
+                <motion.div
+                  css={css`
+                    margin-right: 8px;
+                  `}
+                  initial="initial"
+                  animate={"show"}
+                  exit={"hidden"}
+                  key={index}
+                >
+                  {mergedRenderTag(tag, index)}
+                </motion.div>
+              )
+            })}
+          </>
+          <InputElement
+            ref={inputRef}
+            size={size}
+            value={currentInputValue}
+            disabled={disabled}
+            readOnly={readOnly}
+            autoFitWidth
+            placeholder={!currentValue?.length ? placeholder : ""}
+            onFocus={(event) => {
+              if (!disabled && !readOnly) {
+                setFocus(true)
+                onFocus?.(event)
+              }
+            }}
+            onBlur={(event) => {
+              setFocus(false)
+              onBlur?.(event)
+              setInputValue("")
+            }}
+            onValueChange={(value, event) => {
+              setInputValue(value)
+              onInputChange?.(value, event)
+            }}
+            onPressEnter={async (event) => {
+              onPressEnter?.(event)
+              await tryAddInputValueToTag()
+            }}
+          />
+          {suffix ? (
+            <span css={applySuffixCls(stateValue)}>{suffix}</span>
+          ) : null}
+        </span>
       </div>
     )
   },

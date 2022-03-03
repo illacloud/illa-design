@@ -179,6 +179,7 @@ export function applyInputContainer(
     align-items: center;
     font-size: 14px;
     line-height: 1.57;
+    cursor: text;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     transition: all 200ms ease-in-out;

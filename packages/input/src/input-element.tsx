@@ -6,16 +6,18 @@ import {
   useState,
   ChangeEvent,
   useImperativeHandle,
+  useEffect,
 } from "react"
 import { css } from "@emotion/react"
 import { omit } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
 import { InputElementProps, InputRefType } from "./interface"
-import { applyInputStyle, pointerStyle } from "./style"
+import { applyInputStyle, mirrorStyle, pointerStyle } from "./style"
 
 export const InputElement = forwardRef<InputRefType, InputElementProps>(
   (props, ref) => {
     const inputRef = useRef<HTMLInputElement | null>(null)
+    const mirrorInputRef = useRef<HTMLSpanElement>(null)
 
     const isComposition = useRef(false)
     const [compositionValue, setCompositionValue] = useState<
@@ -33,6 +35,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
       value,
       type,
       onClear,
+      autoFitWidth,
       textCenterHorizontal,
       ...rest
     } = props
@@ -98,6 +101,15 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
       }
     }
 
+    if (autoFitWidth) {
+      useEffect(() => {
+        if (mirrorInputRef.current && inputRef.current) {
+          const width = mirrorInputRef.current.offsetWidth;
+          inputRef.current.style.width = `${width + (width ? 8 : 4)}px`;
+        }
+      },[compositionValue, value, placeholder])
+    }
+
     const inputProps = {
       ...otherProps,
       value: compositionValue || value || "",
@@ -109,6 +121,8 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
       onCompositionUpdate: onComposition,
       onCompositionEnd: onComposition,
     }
+
+    const mirrorValue = inputProps.value || placeholder
 
     return (
       <>
@@ -131,6 +145,11 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
             }}
           >
             <ErrorIcon css={css(`margin-left: 10px;`)} />
+          </span>
+        ) : null}
+        {autoFitWidth ? (
+          <span css={css(applyInputStyle(textCenterHorizontal), mirrorStyle)} ref={mirrorInputRef}>
+            {mirrorValue && mirrorValue.replace(/\s/g, "\u00A0")}
           </span>
         ) : null}
       </>
