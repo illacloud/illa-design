@@ -11,7 +11,7 @@ yarn add @illa-design/divider
 ## 引用组件
 
 ```jsx
-import {Divider} from "@illa-design/react"
+import { Divider } from "@illa-design/divider"
 ```
 
 ## 组件接口(API)
@@ -21,7 +21,7 @@ import {Divider} from "@illa-design/react"
 | 参数名    | 描述           | 类型                                                | 默认值       |
 | --------- | -------------- | --------------------------------------------------- | ------------ |
 | direction | 设置分割线方向 | `"vertical" \| "horizontal" `                | `horizontal` |
-| variant   | 分割线样式     | `"solid" \| "dashed" \| "dotted" \|"double"` | `solid`      |
+| variant   | 分割线样式     | `"solid" \| "dashed" \| "dotted" \| "double"` | `solid`      |
 
 ## 使用方法
 
@@ -44,7 +44,7 @@ import {Divider} from "@illa-design/react"
 ### 设置分割线样式
 
 ```jsx
-<Divider/>
+<Divider />
 <Divider direction="vertical" />
 <Divider variant="dashed" />
 <Divider variant="dotted" />
