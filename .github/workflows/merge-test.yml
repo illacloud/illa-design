@@ -75,4 +75,7 @@ jobs:
       - name: Run test
         uses: cypress-io/github-action@v2
         with:
+          browser: chrome
+          headless: true
+          install: false
           command: yarn test

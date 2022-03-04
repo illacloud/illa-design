@@ -31,10 +31,8 @@ export const Col = forwardRef<HTMLDivElement, ColProps>((props, ref) => {
 
   const rowContextProps = useContext(RowContext)
   const horizontalGap = rowContextProps?.horizontalGap
-  const oneUnitWidth = getOneUnitWidth(
-    Children.count(props.children),
-    horizontalGap,
-  )
+  const childCount = rowContextProps?.childCount ?? 1
+  const oneUnitWidth = getOneUnitWidth(childCount, horizontalGap)
 
   // container css
   const containerCss = applyColContainer(order)

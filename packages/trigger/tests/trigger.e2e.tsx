@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Trigger } from "../src"
 import { Button } from "@illa-design/button"
-import { mount } from "@cypress/react"
+import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 import { Space } from "@illa-design/space"
 
@@ -13,6 +13,7 @@ it("Trigger renders correctly", () => {
   )
   cy.findByText("Hello Trigger Custom").trigger("mouseover")
   expect(cy.findByText("Trigger Success Custom")).exist
+  unmount()
 })
 
 it("Trigger renders with close button", () => {
@@ -25,6 +26,7 @@ it("Trigger renders with close button", () => {
   cy.findByText("Close").should("exist")
   cy.findByText("Close").trigger("click")
   cy.findByText("Trigger Success Custom").should("not.exist")
+  unmount()
 })
 
 it("Trigger renders with different color", () => {
@@ -43,6 +45,7 @@ it("Trigger renders with different color", () => {
     "color",
     "rgb(255, 255, 255)",
   )
+  unmount()
 })
 
 it("Trigger renders without padding", () => {
@@ -56,6 +59,7 @@ it("Trigger renders without padding", () => {
     .parent()
     .parent()
     .should("not.have.a.property", "padding")
+  unmount()
 })
 
 it("Trigger renders without triangle", () => {
@@ -66,6 +70,7 @@ it("Trigger renders without triangle", () => {
   )
   cy.findByText("Button").trigger("mouseover")
   cy.findByTitle("TriangleIconBottom").should("not.exist")
+  unmount()
 })
 
 it("Trigger renders without auto fit position", () => {
@@ -76,6 +81,7 @@ it("Trigger renders without auto fit position", () => {
   )
   cy.findByText("Button").trigger("mouseover")
   cy.findByTitle("TriangleIconTop").should("exist")
+  unmount()
 })
 
 it("Trigger renders with time delay", () => {
@@ -94,6 +100,7 @@ it("Trigger renders with time delay", () => {
   cy.findByText("Trigger").should("exist")
   cy.findByText("Button").trigger("click")
   cy.findByText("Trigger").should("not.exist")
+  unmount()
 })
 
 it("Trigger renders without close on click", () => {
@@ -110,6 +117,7 @@ it("Trigger renders without close on click", () => {
   cy.findByText("Button").click()
   cy.findByText("Button").click()
   cy.findByText("Trigger").should("exist")
+  unmount()
 })
 
 it("Trigger renders with default visible", () => {
@@ -119,6 +127,7 @@ it("Trigger renders with default visible", () => {
     </Trigger>,
   )
   cy.findByText("Trigger").should("exist")
+  unmount()
 })
 
 it("Trigger renders with equal width", () => {
@@ -127,17 +136,19 @@ it("Trigger renders with equal width", () => {
       autoAlignPopupWidth={true}
       position="bottom"
       content="Trigger"
-      defaultPopupVisible={true}
+      popupVisible={true}
     >
       <div>Button</div>
     </Trigger>,
   )
+  cy.wait(2000)
   cy.findByText("Trigger")
     .parent()
     .parent()
     .parent()
     .invoke("width")
     .should("equal", 484)
+  unmount()
 })
 
 it("Trigger renders with control", () => {
@@ -155,16 +166,18 @@ it("Trigger renders with control", () => {
   cy.findByText("Visible").should("exist")
   cy.findByText("Invisible Button").click()
   cy.findByText("Invisible Trigger").should("not.exist")
+  unmount()
 })
 
 it("Trigger renders with disabled", () => {
   mount(
-    <Trigger content="Visible" trigger="click">
+    <Trigger content="Visible" trigger="click" disabled>
       <Button>Button</Button>
     </Trigger>,
   )
   cy.findByText("Button").click()
   cy.findByText("Visible").should("not.exist")
+  unmount()
 })
 
 it("Trigger renders with close button", () => {
@@ -177,6 +190,7 @@ it("Trigger renders with close button", () => {
   cy.findByText("Close").should("exist")
   cy.findByText("Close").click()
   cy.findByText("Visible").should("not.exist")
+  unmount()
 })
 
 it("Trigger renders with on visible change event", () => {
@@ -190,4 +204,5 @@ it("Trigger renders with on visible change event", () => {
   expect(mock.calledWith(true))
   cy.findByText("Button").click()
   expect(mock.calledWith(false))
+  unmount()
 })

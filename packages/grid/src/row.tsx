@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { forwardRef } from "react"
+import { forwardRef, Children } from "react"
 import { RowContextProps, RowProps } from "./interface"
 import {
   applyHorizontalGap,
@@ -25,7 +25,13 @@ export const Row = forwardRef<HTMLDivElement, RowProps>((props, ref) => {
   return (
     <div ref={ref} css={finalCss} {...otherProps}>
       <RowContext.Provider
-        value={{ verticalGap, horizontalGap } as RowContextProps}
+        value={
+          {
+            verticalGap,
+            horizontalGap,
+            childCount: Children.count(props.children),
+          } as RowContextProps
+        }
       >
         {props.children}
       </RowContext.Provider>

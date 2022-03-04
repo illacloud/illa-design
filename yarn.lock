@@ -1497,10 +1497,10 @@
   resolved "https://registry.yarnpkg.com/@cypress/mount-utils/-/mount-utils-1.0.2.tgz#afbc4f8c350b7cd86edc5ad0db0cbe1e0181edc8"
   integrity sha512-Fn3fdTiyayHoy8Ol0RSu4MlBH2maQ2ZEXeEVKl/zHHXEQpld5HX3vdNLhK5YLij8cLynA4DxOT/nO9iEnIiOXw==
 
-"@cypress/react@^5.12.2":
-  version "5.12.3"
-  resolved "https://registry.yarnpkg.com/@cypress/react/-/react-5.12.3.tgz#45b1c1f21b2a4c0c4e9989e091c4ff5a6debdaf2"
-  integrity sha512-PQV8BC1R1CHWZiB0z+06JXZqCTro3W//YLlFP1UJ+M+KNdf2Hj5h2yVzz2Ns2Xhc2tkg6kxMF4n13W68yotcOw==
+"@cypress/react@^5.12.4":
+  version "5.12.4"
+  resolved "https://registry.yarnpkg.com/@cypress/react/-/react-5.12.4.tgz#c40e2ec7da065b7c5f53df029f9ff5a131c9a8f2"
+  integrity sha512-d44InxWKmwQKyCMQT/3n1UplYa39yKEQTPlb2HhXF6ickqtmhxw7kePv00yrJpBc9gy2jUkNUOfCbtt2uz1kUw==
   dependencies:
     "@cypress/mount-utils" "1.0.2"
     debug "^4.3.2"
@@ -5499,7 +5499,7 @@ cyclist@^1.0.1:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
 
-cypress@^9.4.1:
+cypress@^9.5.1:
   version "9.5.1"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-9.5.1.tgz#51162f3688cedf5ffce311b914ef49a7c1ece076"
   integrity sha512-H7lUWB3Svr44gz1rNnj941xmdsCljXoJa2cDneAltjI9leKLMQLm30x6jLlpQ730tiVtIbW5HdUmBzPzwzfUQg==

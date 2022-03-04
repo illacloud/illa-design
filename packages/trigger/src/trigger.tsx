@@ -7,7 +7,8 @@ import {
   MutableRefObject,
   ReactElement,
   ReactNode,
-  RefCallback,
+  Ref,
+  RefObject,
   useContext,
   useEffect,
   useRef,
@@ -45,6 +46,50 @@ import {
 } from "@illa-design/config-provider"
 import useMeasure from "react-use/lib/useMeasure"
 import useClickAway from "react-use/lib/useClickAway"
+
+type ReactRef<T> = Ref<T> | RefObject<T> | MutableRefObject<T>
+
+// Function assertions
+export function isFunction<T extends Function = Function>(
+  value: any,
+): value is T {
+  return typeof value === "function"
+}
+
+/**
+ * Assigns a value to a ref function or object
+ *
+ * @param ref the ref to assign to
+ * @param value the value
+ */
+function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
+  if (ref == null) return
+
+  if (isFunction(ref)) {
+    ref(value)
+    return
+  }
+
+  try {
+    // @ts-ignore
+    ref.current = value
+  } catch (error) {
+    throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
+  }
+}
+
+/**
+ * Combine multiple React refs into a single ref function.
+ * This is used mostly when you need to allow consumers forward refs to
+ * internal components
+ *
+ * @param refs refs to assign to value to
+ */
+function mergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
+  return (node: T | null) => {
+    refs.forEach((ref) => assignRef(ref, node))
+  }
+}
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -228,7 +273,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const showTips = () => {
     delayTodo(async () => {
-      if (!tipVisible) {
+      if (!tipVisible && childrenRef.current != null) {
         const result = await adjustLocation(
           tipsNode,
           childrenRef.current,
@@ -296,60 +341,62 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   useEffect(() => {
     let isMount = true
-    if (tipVisible && popupVisible == undefined) {
-      adjustLocation(
-        tipsNode,
-        childrenRef.current,
-        position,
-        autoFitPosition,
-      ).then((result) => {
-        // async deal
-        if (isMount) {
-          setAdjustResult(result)
-          if (onVisibleChange != undefined) {
-            onVisibleChange(true)
-          }
-        }
-      })
-    } else if (
-      !disabled &&
-      (popupVisible || (popupVisible == undefined && defaultPopupVisible))
-    ) {
-      adjustLocation(
-        tipsNode,
-        childrenRef.current,
-        position,
-        autoFitPosition,
-      ).then((result) => {
-        // async deal
-        if (isMount) {
-          setAdjustResult(result)
-          if (!tipVisible) {
-            setTipsVisible(true)
+    if (!disabled && childrenRef.current != null) {
+      if (tipVisible && popupVisible == undefined) {
+        adjustLocation(
+          tipsNode,
+          childrenRef.current,
+          position,
+          autoFitPosition,
+        ).then((result) => {
+          // async deal
+          if (isMount) {
+            setAdjustResult(result)
             if (onVisibleChange != undefined) {
               onVisibleChange(true)
             }
           }
-        }
-      })
-    } else if (popupVisible == false) {
-      adjustLocation(
-        tipsNode,
-        childrenRef.current,
-        position,
-        autoFitPosition,
-      ).then((result) => {
-        // async deal
-        if (isMount) {
-          setAdjustResult(result)
-          if (tipVisible) {
-            setTipsVisible(false)
-            if (onVisibleChange != undefined) {
-              onVisibleChange(false)
+        })
+      } else if (
+        popupVisible ||
+        (popupVisible == undefined && defaultPopupVisible)
+      ) {
+        adjustLocation(
+          tipsNode,
+          childrenRef.current,
+          position,
+          autoFitPosition,
+        ).then((result) => {
+          // async deal
+          if (isMount) {
+            setAdjustResult(result)
+            if (!tipVisible) {
+              setTipsVisible(true)
+              if (onVisibleChange != undefined) {
+                onVisibleChange(true)
+              }
             }
           }
-        }
-      })
+        })
+      } else if (popupVisible == false) {
+        adjustLocation(
+          tipsNode,
+          childrenRef.current,
+          position,
+          autoFitPosition,
+        ).then((result) => {
+          // async deal
+          if (isMount) {
+            setAdjustResult(result)
+            if (tipVisible) {
+              setTipsVisible(false)
+              if (onVisibleChange != undefined) {
+                onVisibleChange(false)
+              }
+            }
+          }
+        })
+      }
     }
     return () => {
       isMount = false
@@ -365,12 +412,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
   ])
 
   const newProps = {
-    ref: (rawRef: HTMLElement | null) => {
-      if (rawRef != null) {
-        measureRef(rawRef)
-        childrenRef.current = rawRef
-      }
-    },
     onMouseEnter: () => {
       if (!disabled && trigger == "hover") {
         showTips()
@@ -420,17 +461,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
         Children.map(props.children, (child) => {
           if (isValidElement(child)) {
             const finalProps = {
-              ref: (rawRef: HTMLElement | null) => {
-                newProps.ref(rawRef)
-                if ((child as ReactElement).props?.ref != undefined) {
-                  const newRef = (child as ReactElement).props?.ref
-                  if (typeof newRef == "function") {
-                    ;(newRef as RefCallback<any>).call(rawRef, undefined)
-                  } else if (typeof newRef == "object") {
-                    ;(newRef as MutableRefObject<any>).current = rawRef
-                  }
-                }
-              },
+              ref: mergeRefs(
+                (child as ReactElement).props?.ref ?? null,
+                measureRef,
+                childrenRef,
+              ),
               onMouseEnter: (e: Event) => {
                 newProps.onMouseEnter()
                 ;(child as ReactElement).props?.onMouseEnter?.call(e)
