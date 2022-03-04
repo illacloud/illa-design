@@ -89,5 +89,5 @@ import { Pagination } from "@illa-dedign/pagination"
 ### 展示全部配置项
 
 ```jsx
- <Pagination showTotal total={200} showJumper sizeCanChange} />
+ <Pagination showTotal total={200} showJumper sizeCanChange />
 ```
