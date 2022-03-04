@@ -11,7 +11,7 @@ yarn add @illa-design/divider
 ## Import component
 
 ```jsx
-import {Divider} from "@illa-design/divider"
+import { Divider } from "@illa-design/divider"
 ```
 
 ## API
