@@ -23,7 +23,7 @@ export interface StateValue {
 
 // default validate func
 const defaultValidate = (inputValue: string, values: ObjectValueType[]) =>
-  values?.every((item) => item?.value !== inputValue)
+  inputValue && values?.every((item) => item?.value !== inputValue)
 
 export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
   (props, ref) => {
