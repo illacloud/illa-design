@@ -30,9 +30,12 @@ import { Trigger } from "@illa-dedign/trigger"
 | autoFitPosition     | 设置气泡被遮挡时自动调整气泡位置                        | `boolean`                                                    | `true`  |
 | autoAlignPopupWidth | 是否根据触发组件的宽度自动调整弹窗的宽度                | `boolean`                                                    | `-`     |
 | closeOnClick        | 设置当点击被包含的组件时是否关闭气泡                    | `boolean`                                                    | `true`  |
+| clickOutsideToClose | 设置当点击被包含的组件以及气泡外面时是否关闭气泡                    | `boolean`                                                    | `-`  |
 | defaultPopupVisible | 默认的弹出框状态                                        | `boolean`                                                    | `-`     |
 | popupVisible        | 弹出框是打开还是关闭状态                                | `boolean`                                                    | `-`     |
 | disabled            | 是否禁用弹出                                            | `boolean`                                                    | `-`     |
+| withoutPadding      | 是否没有填充色                                           | `boolean`                                                    | `-`     |
+
 
 ### Trigger 事件
 
@@ -48,7 +51,7 @@ import { Trigger } from "@illa-dedign/trigger"
 
 ```jsx
 <Trigger content="Trigger">
-	<Button>Trigger</Button>
+  <Button>Trigger</Button>
 </Trigger>
 ```
 
@@ -58,7 +61,7 @@ import { Trigger } from "@illa-dedign/trigger"
 
 ```jsx
 <Trigger content="Trigger" position="bottom">
-	<Button>Trigger</Button>
+  <Button>Trigger</Button>
 </Trigger>
 ```
 
@@ -68,7 +71,7 @@ import { Trigger } from "@illa-dedign/trigger"
 
 ```jsx
 <Trigger content="Trigger" position="top" colorScheme="cyan">
-	<Button>Trigger</Button>
+  <Button>Trigger</Button>
 </Trigger>
 ```
 
@@ -78,7 +81,7 @@ import { Trigger } from "@illa-dedign/trigger"
 
 ```jsx
 <Trigger content="Trigger" position="top" colorScheme="cyan" showArrow={false}>
-	<Button>Trigger</Button>
+  <Button>Trigger</Button>
 </Trigger>
 ```
 
@@ -88,7 +91,7 @@ import { Trigger } from "@illa-dedign/trigger"
 
 ```jsx
 <Trigger content="Trigger" position="top" colorScheme="cyan" defaultPopupVisible>
-	<Button>Trigger</Button>
+  <Button>Trigger</Button>
 </Trigger>
 ```
 
@@ -98,7 +101,7 @@ import { Trigger } from "@illa-dedign/trigger"
 
 ```jsx
 <Trigger content="Trigger" position="top" colorScheme="cyan" openDelay={1000} closeDelay={1000}>
-	<Button>Trigger</Button>
+  <Button>Trigger</Button>
 </Trigger>
 ```
 
