@@ -28,11 +28,6 @@ import { Button } from "@illa-dedign/button"
 | loading     | 设置按钮是否为加载中状态     |` boolean  `                                                    | `- `       |
 | loadingText | 设置按钮加载中时的提示文案   | `string       `                                                | `- `       |
 | disabled    | 设置按钮是否被禁用           | `boolean  `                                                    | `- `       |
-
-### Button 扩展属性
-
-| 参数名    | 描述         | 类型      | 默认值 |
-| --------- | ------------ | --------- | ------ |
 | leftIcon  | 设置左侧图标 |` ReactNode` |` -`      |
 | rightIcon | 设置右侧图标 | `ReactNode` |` -  `    |
 
@@ -56,7 +51,7 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 ### 基础用法
 
 ```jsx
-<Button >Hello</Button>
+<Button>Hello</Button>
 ```
 
 ### 设置按钮大小
@@ -84,7 +79,7 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 通过leftIcon 和 rightIcon 这两个接口可以分别设置按钮左侧的icon和右侧的icon
 
 ```jsx
-<Button> Hello </Button>
+<Button>Hello</Button>
 <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
 ```
 
@@ -104,14 +99,14 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 
 ```jsx
 <ButtonGroup variant="outline" spacing="5px">
-	<Button>Hello</Button>
-	<Button disabled>Hello</Button>
-	<Button loading loadingText="Loading">Hello</Button>
+  <Button>Hello</Button>
+  <Button disabled>Hello</Button>
+  <Button loading loadingText="Loading">Hello</Button>
 </ButtonGroup>
 <ButtonGroup variant="outline" attached>
-	<Button leftIcon={<BsArrowLeft />}/>
-	<Button >Hello</Button>
-	<Button rightIcon={<BsArrowRight />}/>
+  <Button leftIcon={<BsArrowLeft />} />
+  <Button>Hello</Button>
+  <Button rightIcon={<BsArrowRight />} />
 </ButtonGroup>
 ```
 
