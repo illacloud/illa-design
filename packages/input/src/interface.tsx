@@ -47,6 +47,7 @@ export interface InputElementProps
   maxLength?: number
   showCount?: boolean
   allowClear?: boolean
+  autoFitWidth?: boolean
   textCenterHorizontal?: boolean
   onClear?: () => void
   onValueChange?: (value: string, e: ChangeEvent<HTMLInputElement>) => void

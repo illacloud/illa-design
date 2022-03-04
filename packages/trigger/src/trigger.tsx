@@ -50,9 +50,7 @@ import useClickAway from "react-use/lib/useClickAway"
 type ReactRef<T> = Ref<T> | RefObject<T> | MutableRefObject<T>
 
 // Function assertions
-export function isFunction<T extends Function = Function>(
-  value: any,
-): value is T {
+function isFunction<T extends Function = Function>(value: any): value is T {
   return typeof value === "function"
 }
 
