@@ -44,10 +44,10 @@ import { Space } from "@illa-dedign/space"
 
 ```jsx
 <Space alige="start">
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```
 
@@ -55,10 +55,10 @@ import { Space } from "@illa-dedign/space"
 
 ```jsx
 <Space direction="vertical">
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```
 
@@ -66,10 +66,10 @@ import { Space } from "@illa-dedign/space"
 
 ```jsx
 <Space divider>
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```
 
@@ -77,9 +77,9 @@ import { Space } from "@illa-dedign/space"
 
 ```jsx
 <Space wrap>
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```
