@@ -8,7 +8,7 @@ Pagination is used to show content  in pages and can control the internal capaci
 yarn add @illa-design/pagination
 ```
 
-## Import
+## Import component
 
 ```jsx
 import { Pagination } from "@illa-dedign/pagination"
