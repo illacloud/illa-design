@@ -94,17 +94,10 @@ export function applyNotificationSlide(position: NoticePosition): Variants {
   return {
     initial: {
       x: `${originX}`,
-      // transition: {
-      //   transform: { duration: 0.2, ease: "linear" },
-      // },
     },
     animate: {
       opacity: 1,
-      // transform: `translateX(0)`,
       x: 0,
-      // transition: {
-      //   transform: { duration: 0.2, ease: "linear" },
-      // },
     },
     exit: {
       opacity: 0,
@@ -113,10 +106,4 @@ export function applyNotificationSlide(position: NoticePosition): Variants {
       },
     },
   }
-}
-
-export function applyNotificationMount() {
-  return css`
-    transition: transform 0.2s ease-in-out;
-  `
 }

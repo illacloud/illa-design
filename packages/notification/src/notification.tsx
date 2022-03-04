@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Notice } from "./notice"
 import BaseNotice from "./baseNotice"
 import { applyNotificationSlide, applyNotificationWrapper } from "./style"
+import * as _ from "lodash"
 
 let maxCount: number
 let duration: number
@@ -42,8 +43,8 @@ class Notification extends BaseNotice {
     if (options.maxCount) {
       maxCount = options.maxCount
     }
-    if (options.duration && isFinite(options.duration)) {
-      duration = options.duration
+    if (_.isFinite(options.duration)) {
+      duration = options.duration as number
     }
     if (options.getContainer && options.getContainer() !== container) {
       container = options.getContainer()
@@ -69,7 +70,6 @@ class Notification extends BaseNotice {
   static addInstance: (config: NotificationProps) => ReactInstance | null = (
     noticeProps: NotificationProps,
   ) => {
-    console.log("add")
     const { position = "topRight" } = noticeProps
     const _noticeProps = {
       duration,
@@ -92,7 +92,6 @@ class Notification extends BaseNotice {
     const div = document.createElement("div")
     let instance = null
     ;(container || document.body).appendChild(div)
-    console.log("alien")
     ReactDOM.render(
       <Notification
         ref={(ref) => {
@@ -104,7 +103,6 @@ class Notification extends BaseNotice {
       />,
       div,
     )
-    console.log("help")
     return instance
   }
 
@@ -122,6 +120,11 @@ class Notification extends BaseNotice {
               exit={"exit"}
               initial={"initial"}
               transition={{ duration: 0.2 }}
+              onAnimationComplete={(definition) => {
+                if (definition === "exit") {
+                  notice.afterClose && notice.afterClose()
+                }
+              }}
             >
               <Notice
                 {...notice}

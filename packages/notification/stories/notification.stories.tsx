@@ -12,6 +12,15 @@ export default {
     icon: {
       control: false,
     },
+    type: {
+      control: false,
+    },
+    update: {
+      control: false,
+    },
+    noticeType: {
+      control: false,
+    },
     closeElement: {
       control: false,
     },
@@ -40,7 +49,13 @@ const Template: Story<NotificationProps> = (args) => {
         </Button>
         <Button
           onClick={() => {
-            Notification.info({ ...args, style: { width: 500 } })
+            Notification.info({
+              ...args,
+              style: { width: 500 },
+              afterClose: () => {
+                console.log("complete animate")
+              },
+            })
           }}
         >
           Open Notification(Style)
@@ -75,10 +90,10 @@ const Template: Story<NotificationProps> = (args) => {
         </Button>
         <Button
           onClick={() => {
-            Notification.config({ maxCount: 3 })
+            Notification.config({ maxCount: 3, duration: 1500 })
           }}
         >
-          Config Maxcount 3
+          Config maxcount 3 duration 1500
         </Button>
         <Button
           onClick={() => {
@@ -109,30 +124,45 @@ const Template: Story<NotificationProps> = (args) => {
                 id: "need_update_duration",
                 content: "content has updated!",
                 duration: 3000,
+                closable: true,
+                closeElement: <SearchIcon />,
               })
             }, 2000)
           }}
         >
           Update Notification
         </Button>
+        <Button
+          onClick={() => {
+            Notification.config({
+              getContainer: () => {
+                const isIFrame = (
+                  input: HTMLElement | null,
+                ): input is HTMLIFrameElement =>
+                  input !== null && input.tagName === "IFRAME"
+                let frame = document.getElementById("Container")
+                let doc = document.body
+                if (isIFrame(frame) && frame.contentWindow) {
+                  doc = frame.contentWindow.document.body
+                }
+                return doc
+              },
+            })
+          }}
+        >
+          Open Container Notification
+        </Button>
+        <Button
+          onClick={() => {
+            Notification.clear()
+          }}
+        >
+          Clear
+        </Button>
+        <iframe id={"Container"} style={{ width: 750, height: 600 }}>
+          <div>Hello</div>
+        </iframe>
       </Space>
-      {/*<Alert*/}
-      {/*    {...args}*/}
-      {/*    icon={<SearchIcon />}*/}
-      {/*    closeElement={<SearchIcon />}*/}
-      {/*    action={*/}
-      {/*        <Space direction={"vertical"}>*/}
-      {/*            <Button size="small">Detail</Button>*/}
-      {/*            <Button size="small">Close</Button>*/}
-      {/*        </Space>*/}
-      {/*    }*/}
-      {/*    onClose={() => {*/}
-      {/*        console.log("close")*/}
-      {/*    }}*/}
-      {/*    afterClose={() => {*/}
-      {/*        console.log("after close")*/}
-      {/*    }}*/}
-      {/*/>*/}
     </>
   )
 }

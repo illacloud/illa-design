@@ -1,11 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, {
-  forwardRef,
-  useState,
-  useMemo,
-  useEffect,
-  MouseEvent,
-} from "react"
+import React, { forwardRef, useState, useMemo, MouseEvent } from "react"
 import { AlertProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -77,7 +71,6 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     ...restProps
   }: AlertProps & { children?: React.ReactNode | undefined } = props
   const [visible, setVisible] = useState<boolean>(true)
-  useEffect(() => () => afterClose && afterClose())
   const renderIcon = useMemo(() => {
     return icon ? icon : iconMap[type]
   }, [icon, type])
@@ -98,6 +91,11 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
           exit={"hidden"}
           initial={"enter"}
           ref={ref}
+          onAnimationComplete={(definition) => {
+            if (definition === "hidden") {
+              afterClose && afterClose()
+            }
+          }}
         >
           <div css={applyAlert(!!content)} {...restProps}>
             {showIcon && (
