@@ -14,11 +14,11 @@ import {
 } from "@illa-design/input"
 import { useMergeValue, isObject, omit } from "@illa-design/system"
 import { LoadingIcon, SearchIcon, ExpandIcon } from "@illa-design/icon"
+import { InputTag } from "@illa-design/input-tag"
 import { SelectViewProps } from "./interface"
 import { applyIconStyle, applySelectView, applySelectViewText } from "./style"
 import { isEmptyValue } from "./utils"
 import { css } from "@emotion/react"
-import { color } from "@storybook/theming"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export interface StateValue {
@@ -105,7 +105,9 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     }, [popupVisible])
 
     const renderMultiple = () => {
-      return <div>Multiple/tags</div>
+      return (
+        <InputTag />
+      )
     }
 
     const tryTriggerFocusChange = (action: "focus" | "blur", event: any) => {
