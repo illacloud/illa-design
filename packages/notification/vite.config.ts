@@ -18,7 +18,7 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@illa-design/pagination",
+      name: "@illa-design/notification",
       fileName: (format) => `${format}/index.js`,
     },
     rollupOptions: {
