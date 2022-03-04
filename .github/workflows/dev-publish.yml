@@ -74,6 +74,7 @@ jobs:
 
       - name: Build Components
         run: |
+          chmod -R 777 ./packages
           yarn build-all-components
 
       - name: Run test

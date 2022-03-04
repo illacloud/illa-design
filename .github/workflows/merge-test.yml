@@ -48,10 +48,6 @@ jobs:
         node-version: [ 16.x ]
 
     steps:
-      - name: Set permissions
-        run: |
-          chmod -R 777 /github/home
-      
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -75,6 +71,7 @@ jobs:
 
       - name: Build Components
         run: |
+          chmod -R 777 ./packages
           yarn build-all-components
 
       - name: Run test
