@@ -142,7 +142,7 @@ import { Typography } from "@illa-dedign/typography"
 
 ```
 
-## Ellipsis text
+### Ellipsis text
 
 ```jsx
 <paragraph indent ellipsis={new EllipsisBuilder().rows(2).expandable(true).create()}>
