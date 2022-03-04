@@ -78,7 +78,6 @@ export function applyTipsContainer(
     display: inline-flex;
     flex-direction: ${isColumn ? "column" : "row"};
     z-index: 10;
-    color: ${globalColor(`--${illaPrefix}-white-01`)};
   `
 }
 
@@ -89,12 +88,14 @@ export function applyTipsText(
   autoAlignPopupWidth?: boolean,
 ): SerializedStyles {
   const bgColor = colorSchemes.includes(colorScheme)
-    ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
+    ? colorScheme == "white"
+      ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
+      : globalColor(`--${illaPrefix}-${colorScheme}-02`)
     : colorScheme
   const textColor =
     colorScheme == "white"
-      ? globalColor(`--${illaPrefix}-gray-03`)
-      : globalColor(`--${illaPrefix}-white-02`)
+      ? globalColor(`--${illaPrefix}-gray-02`)
+      : globalColor(`--${illaPrefix}-white-01`)
 
   let paddingHor = "12px"
 

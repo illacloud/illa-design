@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/popover",
+  "name": "@illa-design/input-tag",
   "version": "0.0.0",
-  "description": "Illa Design base.",
+  "description": "Illa Design InputTag.",
   "keywords": [
-    "popover",
+    "input-tag",
     "react",
     "component"
   ],
@@ -30,20 +30,19 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/popover"
+    "directory": "packages/input-tag"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build",
-    "e2e:ci": "npx cypress run-ct",
-    "e2e": "npx cypress open-ct"
+    "build": "tsc && vite build"
   },
   "dependencies": {
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
-    "@illa-design/trigger": "*",
-    "@illa-design/typography": "*"
+    "@illa-design/icon": "*",
+    "@illa-design/input": "*",
+    "@illa-design/tag": "*"
   }
 }

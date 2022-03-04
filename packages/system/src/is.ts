@@ -34,6 +34,8 @@ export function isNumber(obj: any): obj is number {
   )
 }
 
-export function isFunction(obj: any): obj is (...args: any[]) => any {
-  return typeof obj === "function"
+export function isFunction<T extends Function = Function>(
+  value: any,
+): value is T {
+  return typeof value === "function"
 }

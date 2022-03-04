@@ -107,27 +107,23 @@ exports[`List renders without border and split 1`] = `
 }
 
 .emotion-7 {
-  margin-bottom: 4px;
+  font-size: 14px;
 }
 
 .emotion-8 {
-  font-size: 14px;
-}
-
-.emotion-9 {
-  color: rgba(0, 0, 0, 0.64);
+  color: #1f1f1f;
   font-weight: bold;
 }
 
-.emotion-10 {
+.emotion-9 {
   font-size: 14px;
 }
 
-.emotion-11 {
+.emotion-10 {
   color: #999;
 }
 
-.emotion-12 {
+.emotion-11 {
   display: inline-flex;
   vertical-align: middle;
   border-color: #ebebeb;
@@ -168,7 +164,7 @@ exports[`List renders without border and split 1`] = `
                     class="emotion-5 emotion-6"
                   >
                     <span
-                      class="emotion-7 emotion-8"
+                      class="emotion-7"
                     >
                       <span
                         style="position: relative;"
@@ -177,14 +173,17 @@ exports[`List renders without border and split 1`] = `
                           style="background: transparent; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: -1;"
                         />
                         <span
-                          class="emotion-9"
+                          class="emotion-8"
                         >
                           Title A
                         </span>
                       </span>
                     </span>
                     <div
-                      class="emotion-10"
+                      style="height: 4px;"
+                    />
+                    <div
+                      class="emotion-9"
                     >
                       <span
                         style="position: relative;"
@@ -193,7 +192,7 @@ exports[`List renders without border and split 1`] = `
                           style="background: transparent; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: -1;"
                         />
                         <span
-                          class="emotion-11"
+                          class="emotion-10"
                         >
                           Desc A
                         </span>
@@ -205,7 +204,7 @@ exports[`List renders without border and split 1`] = `
             </div>
           </div>
           <div
-            class="emotion-12"
+            class="emotion-11"
           />
           <div
             class="emotion-1"
@@ -223,7 +222,7 @@ exports[`List renders without border and split 1`] = `
                     class="emotion-5 emotion-6"
                   >
                     <span
-                      class="emotion-7 emotion-8"
+                      class="emotion-7"
                     >
                       <span
                         style="position: relative;"
@@ -232,14 +231,17 @@ exports[`List renders without border and split 1`] = `
                           style="background: transparent; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: -1;"
                         />
                         <span
-                          class="emotion-9"
+                          class="emotion-8"
                         >
                           Title A
                         </span>
                       </span>
                     </span>
                     <div
-                      class="emotion-10"
+                      style="height: 4px;"
+                    />
+                    <div
+                      class="emotion-9"
                     >
                       <span
                         style="position: relative;"
@@ -248,7 +250,7 @@ exports[`List renders without border and split 1`] = `
                           style="background: transparent; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: -1;"
                         />
                         <span
-                          class="emotion-11"
+                          class="emotion-10"
                         >
                           Desc A
                         </span>

@@ -10,8 +10,8 @@ export function applyRowContainer(
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-items: ${align};
-    align-items: ${justify};
+    justify-content: ${justify};
+    align-items: ${align};
   `
 }
 
@@ -103,10 +103,12 @@ export function applyColContainer(order?: number): SerializedStyles {
   if (order != undefined) {
     return css`
       box-sizing: border-box;
+      position: relative;
       order: ${order};
     `
   } else {
     return css`
+      position: relative;
       box-sizing: border-box;
     `
   }
@@ -166,7 +168,7 @@ export function applyColPushStyle(
 ): SerializedStyles {
   if (push) {
     return css`
-      padding-left: calc(${push} * ${oneUnitWidth});
+      left: calc(${push} * ${oneUnitWidth});
     `
   } else {
     return css``
@@ -179,7 +181,7 @@ export function applyColPullStyle(
 ): SerializedStyles {
   if (pull) {
     return css`
-      padding-right: calc(${pull} * ${oneUnitWidth});
+      right: calc(${pull} * ${oneUnitWidth});
     `
   } else {
     return css``

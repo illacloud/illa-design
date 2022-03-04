@@ -35,7 +35,9 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
           {typeof header == "string" ? (
             <div css={applyBarStyle(size)}>
               <Typography>
-                <Text bold>{header}</Text>
+                <Text bold colorScheme={"gray"}>
+                  {header}
+                </Text>
               </Typography>
             </div>
           ) : (
@@ -103,7 +105,9 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
           {typeof footer == "string" ? (
             <div css={applyBarStyle(size)}>
               <Typography>
-                <Text bold>{footer}</Text>
+                <Text bold colorScheme={"gray"}>
+                  {footer}
+                </Text>
               </Typography>
             </div>
           ) : (

@@ -25,6 +25,9 @@ exports[`Tag renders with color and variant 1`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div
@@ -64,6 +67,9 @@ exports[`Tag renders with color and variant 2`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div
@@ -103,6 +109,9 @@ exports[`Tag renders with color and variant 3`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div
@@ -142,6 +151,9 @@ exports[`Tag renders with color and variant 4`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div
@@ -181,6 +193,9 @@ exports[`Tag renders with color and variant 5`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div
@@ -220,6 +235,9 @@ exports[`Tag renders with color and variant 6`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div
@@ -259,6 +277,9 @@ exports[`Tag renders with color and variant 7`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div
@@ -298,6 +319,9 @@ exports[`Tag renders with color and variant 8`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div
@@ -337,6 +361,9 @@ exports[`Tag renders with color and variant 9`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div
@@ -376,6 +403,9 @@ exports[`Tag renders with different size 1`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div
@@ -415,6 +445,9 @@ exports[`Tag renders with different size 2`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div
@@ -454,6 +487,9 @@ exports[`Tag renders with different size 3`] = `
 .emotion-1 {
   font-size: 14px;
   line-height: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 <div

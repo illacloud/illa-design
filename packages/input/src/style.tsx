@@ -402,3 +402,11 @@ export const pointerStyle = css`
     color: ${globalColor(`--${illaPrefix}-gray-05`)};
   }
 `
+
+export const mirrorStyle = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  width: unset;
+`
