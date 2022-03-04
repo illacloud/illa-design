@@ -37,7 +37,7 @@ import { Space } from "@illa-dedign/space"
 ### 设置间隙大小
 
 ```jsx
-<Space size="large"/>
+<Space size="large" />
 ```
 
 ### 设置组件对齐方式
@@ -46,10 +46,10 @@ import { Space } from "@illa-dedign/space"
 
 ```jsx
 <Space alige="start">
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```
 
@@ -59,10 +59,10 @@ import { Space } from "@illa-dedign/space"
 
 ```jsx
 <Space direction="vertical">
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```
 
@@ -72,10 +72,10 @@ import { Space } from "@illa-dedign/space"
 
 ```jsx
 <Space divider>
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```
 
@@ -85,9 +85,9 @@ import { Space } from "@illa-dedign/space"
 
 ```jsx
 <Space wrap>
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```
