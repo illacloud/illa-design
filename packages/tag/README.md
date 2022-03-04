@@ -65,7 +65,7 @@ import { Tag } from "@illa-dedign/tag"
 ### With left icon
 
 ```jsx
-<Tag> Hello </Tag>
+<Tag>Hello</Tag>
 <Tag variant="fill" colorScheme="red" icon={<BsFacebook />}>Hello</Tag>
 ```
 
