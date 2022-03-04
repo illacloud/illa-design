@@ -51,7 +51,7 @@ import { Switch } from "@illa-dedign/switch"
 通过colorScheme和size接口可以分别更改开关的颜色和大小
 
 ```jsx
-<Switch colorScheme="cyan" size="large"/>
+<Switch colorScheme="cyan" size="large" />
 ```
 
 ### 设置开关文案
@@ -64,7 +64,7 @@ import { Switch } from "@illa-dedign/switch"
 
 ### 设置默认打开状态
 
-通过showArrow接口可以设置是否展示气泡上的箭头
+通过defaultChecked接口可以设置默认打开状态
 
 ```jsx
 <Switch defaultChecked />
