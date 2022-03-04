@@ -51,7 +51,7 @@ jobs:
       - name: Set permissions
         run: |
           chmod -R 777 /github/home
-          chmod -R 777 cypress
+      
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
