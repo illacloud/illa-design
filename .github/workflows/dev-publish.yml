@@ -7,8 +7,6 @@ on:
 jobs:
   install:
     runs-on: ubuntu-latest
-    container:
-      image: cypress/included:9.5.1
 
     strategy:
       matrix:
@@ -42,8 +40,6 @@ jobs:
       - install
 
     runs-on: ubuntu-latest
-    container:
-      image: cypress/included:9.5.1
 
     strategy:
       matrix:
@@ -73,13 +69,12 @@ jobs:
 
       - name: Build Components
         run: |
-          chmod -R 777 .
-          npm install typescript -g
           yarn build-all-components
 
-      - name: Run test
-        run: |
-          yarn test
+      - uses: cypress-io/github-action@v2
+        with:
+          install: false
+          command: yarn test
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
