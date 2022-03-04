@@ -11,7 +11,7 @@ yarn add @illa-design/space
 ## 引用组件
 
 ```jsx
-import { space } from "@illa-dedign/space"
+import { Space } from "@illa-dedign/space"
 ```
 
 ## 组件接口(API)
