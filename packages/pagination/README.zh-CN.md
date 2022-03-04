@@ -59,7 +59,7 @@ import { Pagination } from "@illa-dedign/pagination"
 通过sizeCanChange接口可以设置页码内容数量
 
 ```jsx
- <Pagination defaultCurrent={5} total={200} sizeCanChange />,
+ <Pagination defaultCurrent={5} total={200} sizeCanChange />
 ```
 
 ### 设置可跳转
