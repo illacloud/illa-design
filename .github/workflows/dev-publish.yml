@@ -73,7 +73,7 @@ jobs:
 
       - name: Build Components
         run: |
-          chmod -R 777 ./packages
+          chmod -R 777 .
           npm install typescript -g
           yarn build-all-components
 
