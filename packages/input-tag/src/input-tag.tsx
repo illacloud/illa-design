@@ -4,7 +4,7 @@ import { forwardRef, ElementRef, useState, useRef } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { InputElement } from "@illa-design/input"
 import { ErrorIcon } from "@illa-design/icon"
-import { InputTagProps, ObjectValueType } from "./interface"
+import { InputTagProps, ObjectValueType, StateValue } from "./interface"
 import {
   applyInputContainer,
   applyInputInnerCss,
@@ -13,13 +13,6 @@ import {
 } from "./style"
 import { formatValue } from "./utils"
 import { RenderTags } from "./render-tag"
-
-export interface StateValue {
-  disabled?: boolean
-  error?: boolean
-  focus?: boolean
-  size?: InputTagProps["size"]
-}
 
 // default validate func
 const defaultValidate = (inputValue: string, values: ObjectValueType[]) =>

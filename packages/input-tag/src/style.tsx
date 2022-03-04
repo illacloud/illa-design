@@ -1,7 +1,7 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { StateValue } from "./input-tag"
+import { StateValue } from "./interface"
 
 export const inputOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-gray-08`)};

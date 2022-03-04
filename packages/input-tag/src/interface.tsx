@@ -41,3 +41,20 @@ export type ObjectValueType = {
   label?: ReactNode
   closable?: boolean
 }
+
+export interface RenderTagsProps extends HTMLAttributes<HTMLElement> {
+  size?: InputTagProps["size"]
+  value: ObjectValueType[]
+  readOnly?: boolean
+  disabled?: boolean
+  labelInValue?: boolean
+  onRemove?: InputTagProps["onRemove"]
+  valueChangeHandler?: (value: ObjectValueType[]) => void
+}
+
+export interface StateValue {
+  disabled?: boolean
+  error?: boolean
+  focus?: boolean
+  size?: InputTagProps["size"]
+}

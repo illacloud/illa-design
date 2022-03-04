@@ -3,19 +3,9 @@ import * as React from "react"
 import { forwardRef, HTMLAttributes } from "react"
 import { motion } from "framer-motion"
 import { Tag } from "@illa-design/tag"
-import { InputTagProps, ObjectValueType } from "./interface"
+import { ObjectValueType, RenderTagsProps } from "./interface"
 import { tagStyle } from "./style"
 import { css } from "@emotion/react"
-
-export interface RenderTagsProps extends HTMLAttributes<HTMLElement> {
-  size?: InputTagProps["size"]
-  value: ObjectValueType[]
-  readOnly?: boolean
-  disabled?: boolean
-  labelInValue?: boolean
-  onRemove?: InputTagProps["onRemove"]
-  valueChangeHandler?: (value: ObjectValueType[]) => void
-}
 
 export const RenderTags = forwardRef<HTMLElement, RenderTagsProps>(
   (props, ref) => {
