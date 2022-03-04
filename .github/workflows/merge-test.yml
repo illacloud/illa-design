@@ -41,7 +41,9 @@ jobs:
       - install
 
     runs-on: ubuntu-latest
-    container: cypress/included:9.5.1
+    container:
+      image: cypress/included:9.5.1
+      options: --user root
 
     strategy:
       matrix:
@@ -71,7 +73,6 @@ jobs:
 
       - name: Build Components
         run: |
-          chmod -R 777 ./packages
           yarn build-all-components
 
       - name: Run test

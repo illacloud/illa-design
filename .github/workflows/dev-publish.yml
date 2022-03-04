@@ -40,17 +40,15 @@ jobs:
       - install
 
     runs-on: ubuntu-latest
-    container: cypress/included:9.5.1
+    container:
+      image: cypress/included:9.5.1
+      options: --user root
 
     strategy:
       matrix:
         node-version: [ 16.x ]
 
     steps:
-      - name: Set permissions
-        run: |
-          chmod -R 777 /github/home
-
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
