@@ -8,7 +8,7 @@ ConfigProvider is used to set global params, like language
 yarn add @illa-design/config-provider
 ```
 
-## Import 
+## Import component
 
 ```jsx
 import { ConfigProvider } from "@illa-dedign/config-provider"
