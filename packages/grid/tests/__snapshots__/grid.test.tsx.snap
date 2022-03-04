@@ -1,0 +1,347 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid renders col correctly. 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  position: relative;
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  order: 2;
+  margin-left: calc(3 * calc(100% / 24));
+  width: calc(12 * calc(100% / 24));
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  position: relative;
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+  margin-left: calc(3 * calc(100% / 24));
+  width: calc(12 * calc(100% / 24));
+}
+
+<div
+  class="emotion-0"
+  data-testid="test-row"
+>
+  <div
+    class="emotion-1"
+  />
+  <div
+    class="emotion-2"
+  />
+</div>
+`;
+
+exports[`Grid renders reactive correctly. 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.emotion-1 {
+  position: relative;
+  box-sizing: border-box;
+  width: calc(24 * calc(100% / 24));
+}
+
+@media (min-width: 0px) {
+  .emotion-1 {
+    left: calc(3 * calc(100% / 24));
+    right: calc(3 * calc(100% / 24));
+    margin-left: calc(3 * calc(100% / 24));
+    width: calc(12 * calc(100% / 24));
+  }
+}
+
+@media (min-width: 576px) {
+  .emotion-1 {
+    left: calc(3 * calc(100% / 24));
+    right: calc(3 * calc(100% / 24));
+    margin-left: calc(3 * calc(100% / 24));
+  }
+}
+
+@media (min-width: 768px) {
+  .emotion-1 {
+    left: calc(3 * calc(100% / 24));
+    right: calc(3 * calc(100% / 24));
+    margin-left: calc(3 * calc(100% / 24));
+    width: calc(12 * calc(100% / 24));
+  }
+}
+
+@media (min-width: 992px) {
+  .emotion-1 {
+    left: calc(3 * calc(100% / 24));
+    right: calc(3 * calc(100% / 24));
+    margin-left: calc(3 * calc(100% / 24));
+    width: calc(12 * calc(100% / 24));
+  }
+}
+
+@media (min-width: 1200px) {
+  .emotion-1 {
+    left: calc(3 * calc(100% / 24));
+    right: calc(3 * calc(100% / 24));
+    margin-left: calc(3 * calc(100% / 24));
+    width: calc(12 * calc(100% / 24));
+  }
+}
+
+@media (min-width: 1600px) {
+  .emotion-1 {
+    left: calc(3 * calc(100% / 24));
+    right: calc(3 * calc(100% / 24));
+    margin-left: calc(3 * calc(100% / 24));
+    width: calc(12 * calc(100% / 24));
+  }
+}
+
+.emotion-2 {
+  position: relative;
+  box-sizing: border-box;
+  width: calc(24 * calc(100% / 24));
+}
+
+@media (min-width: 0px) {
+  .emotion-2 {
+    width: calc(12 * calc(100% / 24));
+  }
+}
+
+@media (min-width: 576px) {
+  .emotion-2 {
+    width: calc(12 * calc(100% / 24));
+  }
+}
+
+@media (min-width: 768px) {
+  .emotion-2 {
+    width: calc(12 * calc(100% / 24));
+  }
+}
+
+@media (min-width: 992px) {
+  .emotion-2 {
+    width: calc(12 * calc(100% / 24));
+  }
+}
+
+@media (min-width: 1200px) {
+  .emotion-2 {
+    width: calc(12 * calc(100% / 24));
+  }
+}
+
+@media (min-width: 1600px) {
+  .emotion-2 {
+    width: calc(12 * calc(100% / 24));
+  }
+}
+
+<div
+  class="emotion-0"
+  data-testid="test-row"
+>
+  <div
+    class="emotion-1"
+  />
+  <div
+    class="emotion-2"
+  />
+</div>
+`;
+
+exports[`Grid renders span. 1`] = `
+.emotion-0 {
+  -webkit-column-gap: 30px;
+  column-gap: 30px;
+  row-gap: 30px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: end;
+  justify-content: end;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+}
+
+.emotion-1 {
+  position: relative;
+  box-sizing: border-box;
+  width: calc(13 * calc((100% - 30px * (2 - 1)) / 24));
+}
+
+.emotion-2 {
+  position: relative;
+  box-sizing: border-box;
+  width: calc(15 * calc((100% - 30px * (2 - 1)) / 24));
+}
+
+<div
+  class="emotion-0"
+  data-testid="test-row"
+>
+  <div
+    class="emotion-1"
+  />
+  <div
+    class="emotion-2"
+  />
+</div>
+`;
+
+exports[`Grid renders with gap. 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 0px) {
+  .emotion-0 {
+    -webkit-column-gap: 12px;
+    column-gap: 12px;
+  }
+}
+
+@media (min-width: 576px) {
+  .emotion-0 {
+    -webkit-column-gap: 12px;
+    column-gap: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .emotion-0 {
+    -webkit-column-gap: 12px;
+    column-gap: 12px;
+  }
+}
+
+@media (min-width: 992px) {
+  .emotion-0 {
+    -webkit-column-gap: 12px;
+    column-gap: 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .emotion-0 {
+    -webkit-column-gap: 12px;
+    column-gap: 12px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .emotion-0 {
+    -webkit-column-gap: 12px;
+    column-gap: 12px;
+  }
+}
+
+@media (min-width: 0px) {
+  .emotion-0 {
+    row-gap: 12px;
+  }
+}
+
+@media (min-width: 576px) {
+  .emotion-0 {
+    row-gap: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .emotion-0 {
+    row-gap: 12px;
+  }
+}
+
+@media (min-width: 992px) {
+  .emotion-0 {
+    row-gap: 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .emotion-0 {
+    row-gap: 12px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .emotion-0 {
+    row-gap: 12px;
+  }
+}
+
+.emotion-1 {
+  position: relative;
+  box-sizing: border-box;
+  width: calc(20 * calc(100% / 24));
+}
+
+.emotion-2 {
+  position: relative;
+  box-sizing: border-box;
+  width: calc(15 * calc(100% / 24));
+}
+
+<div
+  class="emotion-0"
+  data-testid="test-row"
+>
+  <div
+    class="emotion-1"
+  />
+  <div
+    class="emotion-2"
+  />
+</div>
+`;

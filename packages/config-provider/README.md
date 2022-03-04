@@ -31,4 +31,3 @@ import { ConfigProvider } from "@illa-dedign/config-provider"
   <Pagination total={200} showTotal />
 </ConfigProvider>
 ```
-

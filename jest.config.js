@@ -4,12 +4,13 @@ module.exports = {
   coverageReporters: ["json"],
   collectCoverage: true,
   collectCoverageFrom: ["packages/**/src/*.(ts|tsx)"],
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+  moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
   modulePathIgnorePatterns: ["<rootDir>/examples"],
-  transform: {
-    "^.+\\.tsx?$": "ts-jest"
+  snapshotSerializers: ["@emotion/jest/serializer"],
+  globals: {
+    "ts-jest": {
+      tsconfig: "tsconfig.json",
+    },
   },
-  snapshotSerializers: [
-    "@emotion/jest/serializer" /* if needed other snapshotSerializers should go here */
-  ]
-};
+  preset: "ts-jest",
+}

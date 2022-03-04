@@ -6,7 +6,7 @@ on:
 
 jobs:
   install:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -27,9 +27,10 @@ jobs:
         with:
           path: |
             **/node_modules
+            ~/.cache
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Build
         run: |
@@ -39,7 +40,7 @@ jobs:
     needs:
       - install
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -62,15 +63,17 @@ jobs:
         with:
           path: |
             **/node_modules
+            ~/.cache
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
 
       - name: Build Components
         run: |
           yarn build-all-components
 
-      - name: Run test
-        uses: cypress-io/github-action@v2
-        run: |
-          yarn test
+      - uses: cypress-io/github-action@v2
+        with:
+          install: false
+          command: yarn test

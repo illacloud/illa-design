@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import React, { forwardRef, useEffect, useRef, useState } from "react"
+import { forwardRef, useEffect, useRef, useState } from "react"
 import { CountDownProps } from "./interface"
-import * as dayjs from "dayjs"
+import dayjs from "dayjs"
 import { getDateString, getDayjsValue } from "./util"
 
 import {
-  applyStatisticContent,
   applyStatistic,
+  applyStatisticContent,
   applyStatisticTitle,
 } from "./style"
 

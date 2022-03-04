@@ -64,8 +64,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               <button
                 ref={ref}
                 css={finalContainer}
-                {...otherProps}
                 disabled={disabled || loading}
+                {...otherProps}
               >
                 {(loading || leftIcon) && (
                   <span css={applyLeftIconStyle(size)}>
@@ -100,8 +100,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               <button
                 ref={ref}
                 css={finalContainer}
-                {...otherProps}
                 disabled={disabled || loading}
+                {...otherProps}
               >
                 {(loading || leftIcon) && (
                   <span css={applyIconWithoutText(size)}>

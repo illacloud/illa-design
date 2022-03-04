@@ -37,8 +37,8 @@
   },
   "scripts": {
     "build": "tsc && vite build",
-    "e2e:ci": "yarn cypress run-ct",
-    "e2e": "yarn cypress open-ct"
+    "e2e:ci": "npx cypress run-ct",
+    "e2e": "npx cypress open-ct"
   },
   "dependencies": {
     "@illa-design/system": "*",
