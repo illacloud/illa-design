@@ -17,6 +17,7 @@ exports[`Grid renders col correctly. 1`] = `
 
 .emotion-1 {
   box-sizing: border-box;
+  position: relative;
   -webkit-order: 2;
   -ms-flex-order: 2;
   order: 2;
@@ -26,6 +27,7 @@ exports[`Grid renders col correctly. 1`] = `
 
 .emotion-2 {
   box-sizing: border-box;
+  position: relative;
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
@@ -62,6 +64,7 @@ exports[`Grid renders reactive correctly. 1`] = `
 }
 
 .emotion-1 {
+  position: relative;
   box-sizing: border-box;
   width: calc(24 * calc(100% / 24));
 }
@@ -120,6 +123,7 @@ exports[`Grid renders reactive correctly. 1`] = `
 }
 
 .emotion-2 {
+  position: relative;
   box-sizing: border-box;
   width: calc(24 * calc(100% / 24));
 }
@@ -200,11 +204,13 @@ exports[`Grid renders span. 1`] = `
 }
 
 .emotion-1 {
+  position: relative;
   box-sizing: border-box;
   width: calc(13 * calc((100% - 30px * (2 - 1)) / 24));
 }
 
 .emotion-2 {
+  position: relative;
   box-sizing: border-box;
   width: calc(15 * calc((100% - 30px * (2 - 1)) / 24));
 }
@@ -316,11 +322,13 @@ exports[`Grid renders with gap. 1`] = `
 }
 
 .emotion-1 {
+  position: relative;
   box-sizing: border-box;
   width: calc(20 * calc(100% / 24));
 }
 
 .emotion-2 {
+  position: relative;
   box-sizing: border-box;
   width: calc(15 * calc(100% / 24));
 }

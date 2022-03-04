@@ -103,10 +103,12 @@ export function applyColContainer(order?: number): SerializedStyles {
   if (order != undefined) {
     return css`
       box-sizing: border-box;
+      position: relative;
       order: ${order};
     `
   } else {
     return css`
+      position: relative;
       box-sizing: border-box;
     `
   }
