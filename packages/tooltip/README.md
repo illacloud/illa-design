@@ -20,7 +20,7 @@ import { Tooltip } from "@illa-dedign/tooltip"
 
 | Props               | Desc                                                         | Type                                                         | Default |
 | ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------- |
-| colorScheme         | Set background color                                         | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" \|string` | `gray`  |
+| colorScheme         | Set background color                                         | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" \| string` | `gray`  |
 | content             | The content shown in popup                                   | `string \| ReactNode`                                        | `-`     |
 | trigger             | Types of events that cause the popup to show                 | `"hover" \| "click" \| "focus"`                              | `hover` |
 | position            | The position of the popup relative to the target.            | `"top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br" \| "left" \| "lt" \| "lb" \| "right" \| "rt" \| "rb"` | `top`   |
@@ -33,7 +33,7 @@ import { Tooltip } from "@illa-dedign/tooltip"
 | popupVisible        | Set whether the  popup is visible                            | `boolean`                                                    | `-`     |
 | disabled            | Whether to disable the popup                                 | `boolean`                                                    | `-`     |
 
-### Trigger Event
+### Trigger Events
 
 | Props           | Desc                                                 | Type                         | Default |
 | --------------- | ---------------------------------------------------- | ---------------------------- | ------- |
@@ -47,7 +47,7 @@ import { Tooltip } from "@illa-dedign/tooltip"
 
 ```jsx
 <Tooltip content="Tooltip">
-	<Button>Tooltip</Button>
+  <Button>Tooltip</Button>
 </Tooltip>
 ```
 
@@ -55,7 +55,7 @@ import { Tooltip } from "@illa-dedign/tooltip"
 
 ```jsx
 <Tooltip content="Tooltip" position="bottom">
-	<Button>Tooltip</Button>
+  <Button>Tooltip</Button>
 </Tooltip>
 ```
 
@@ -63,7 +63,7 @@ import { Tooltip } from "@illa-dedign/tooltip"
 
 ```jsx
 <Tooltip content="Tooltip" position="top" colorScheme="cyan">
-	<Button>Tooltip</Button>
+  <Button>Tooltip</Button>
 </Tooltip>
 ```
 
@@ -71,7 +71,7 @@ import { Tooltip } from "@illa-dedign/tooltip"
 
 ```jsx
 <Tooltip content="Tooltip" position="top" colorScheme="cyan" showArrow={false}>
-	<Button>Tooltip</Button>
+  <Button>Tooltip</Button>
 </Tooltip>
 ```
 
@@ -79,17 +79,16 @@ import { Tooltip } from "@illa-dedign/tooltip"
 
 ```jsx
 <Tooltip content="Tooltip" position="top" colorScheme="cyan" defaultPopupVisible>
-	<Button>Tooltip</Button>
+  <Button>Tooltip</Button>
 </Tooltip>
 ```
 
 ### Set popup's delay time to open
 
-通过openDelay和closeDelay这两个参数可以设置气泡展示和关闭的延时
 
 ```jsx
 <Tooltip content="Tooltip" position="top" colorScheme="cyan" openDelay={1000} closeDelay={1000}>
-	<Button>Tooltip</Button>
+  <Button>Tooltip</Button>
 </Tooltip>
 ```
 
