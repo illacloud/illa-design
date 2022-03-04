@@ -42,7 +42,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: cypress/included:9.5.1
-      options: --user root
 
     strategy:
       matrix:
@@ -72,6 +71,7 @@ jobs:
 
       - name: Build Components
         run: |
+          chmod -R 777 ./packages
           npm install typescript -g
           yarn build-all-components
 
