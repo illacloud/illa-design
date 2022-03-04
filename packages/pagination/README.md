@@ -37,7 +37,7 @@ import { Pagination } from "@illa-dedign/pagination"
 | nextIcon         | Set next page icon                              | `ReactNode`                                                  | `-`                |
 | moreIcon         | Set more page icon                              | `ReactNode`                                                  | `-`                |
 
-### Pagination Event
+### Pagination Events
 
 | Props            | Desc                                      | Type                                             | Default |
 | ---------------- | ----------------------------------------- | ------------------------------------------------ | ------- |
@@ -57,7 +57,7 @@ import { Pagination } from "@illa-dedign/pagination"
 ### Set capacity of each page can be change
 
 ```jsx
- <Pagination defaultCurrent={5} total={200} sizeCanChange />,
+ <Pagination defaultCurrent={5} total={200} sizeCanChange />
 ```
 
 ### Set jumper
@@ -66,7 +66,7 @@ import { Pagination } from "@illa-dedign/pagination"
 <Pagination total={200} showJumper />
 ```
 
-### Set pagination's size
+### Set Pagination's size
 
 ```jsx
 <Pagination size="small" total={50} showTotal showJumper sizeCanChange />
