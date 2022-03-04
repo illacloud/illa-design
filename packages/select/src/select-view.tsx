@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
   useEffect,
+  useReducer,
   useImperativeHandle,
 } from "react"
 import {
@@ -12,9 +13,9 @@ import {
   InputRefType,
   InputElementProps,
 } from "@illa-design/input"
-import { useMergeValue, isObject, omit } from "@illa-design/system"
+import { useMergeValue, isObject, omit, isNumber } from "@illa-design/system"
 import { LoadingIcon, SearchIcon, ExpandIcon } from "@illa-design/icon"
-import { InputTag } from "@illa-design/input-tag"
+import { InputTag, ObjectValueType } from "@illa-design/input-tag"
 import { SelectViewProps } from "./interface"
 import { applyIconStyle, applySelectView, applySelectViewText } from "./style"
 import { isEmptyValue } from "./utils"
@@ -47,6 +48,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       isMultipleMode,
       popupVisible,
       isEmptyValue,
+      maxTagCount,
       renderText,
       error,
       loading,
@@ -104,9 +106,61 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       }
     }, [popupVisible])
 
+    function forceUpdate() {
+      const [, dispatch] = useReducer((v) => v + 1, 0)
+      return dispatch
+    }
+
     const renderMultiple = () => {
+      const usedValue = value === undefined ? [] : [].concat(value as [])
+      const usedMaxTagCount = isNumber(maxTagCount)
+        ? Math.max(maxTagCount, 0)
+        : usedValue.length
+      const tagsToShow: ObjectValueType[] = usedValue
+        .slice(0, usedMaxTagCount)
+        .map((v) => {
+          const result = renderText(v)
+          return {
+            value: v,
+            label: result.text,
+            closable: !result.disabled,
+          }
+        })
+      const invisibleTagCount = usedValue.length - usedMaxTagCount
+      if (invisibleTagCount > 0) {
+        tagsToShow.push({
+          label: `+${invisibleTagCount}...`,
+          closable: false,
+        })
+      }
+
+      const eventHandlers = {
+        onPaste: inputEventHandlers.paste,
+        onKeyDown: inputEventHandlers.keyDown,
+        onFocus: inputEventHandlers.focus,
+        onBlur: inputEventHandlers.blur,
+        onInputChange: inputEventHandlers.change,
+        onRemove: (value: any, index: number, event: any) => {
+          maxTagCount && forceUpdate()
+          onRemoveCheckedItem?.(value, index, event)
+        },
+      }
+
       return (
-        <InputTag />
+        <InputTag
+          css={css`
+            border: unset !important;
+            padding: unset !important;
+            box-shadow: unset !important;
+          `}
+          ref={inputRef as any}
+          disabled={disabled}
+          placeholder={placeholder}
+          value={tagsToShow}
+          inputValue={inputValue}
+          size={size}
+          {...eventHandlers}
+        />
       )
     }
 

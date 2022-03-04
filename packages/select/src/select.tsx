@@ -113,8 +113,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
 
   const scrollIntoView = (optionValue: any) => {
     const activeOption = optionInfoMap.get(optionValue)
-    if (refList.current && activeOption && activeOption.child.props) {
-      refList.current.scrollTo({ key: activeOption.child.props._key })
+    if (refList.current && activeOption && activeOption?.child?.props) {
+      refList.current.scrollTo({ key: activeOption?.child?.props?._key })
     }
   }
 
@@ -160,20 +160,20 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   }, [inputValue])
 
   const getOptionInfoByValue = (value: OptionProps["value"]): OptionInfo => {
-    const option = optionInfoMap.get(value)
+    const option = optionInfoMap?.get(value)
     if (option) {
-      const index = refValueMap.current.findIndex(
-        (item) => item.value === value,
+      const index = refValueMap.current?.findIndex(
+        (item) => item?.value === value,
       )
       if (index > -1) {
-        refValueMap.current.splice(index, 1, { value, option })
+        refValueMap.current?.splice(index, 1, { value, option })
       } else {
-        refValueMap.current.push({ value, option })
+        refValueMap.current?.push({ value, option })
       }
       return option
     }
 
-    const item = refValueMap.current.find((x) => x.value === value)
+    const item = refValueMap.current?.find((x) => x.value === value)
     return item?.option as OptionInfo
   }
 
@@ -222,7 +222,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const checkOption = (valueToAdd: any) => {
     const option = optionInfoMap.get(valueToAdd)
     if (option) {
-      const newValue = (value as string[]).concat(valueToAdd)
+      const newValue = (currentValue as string[]).concat(valueToAdd)
       tryUpdateSelectValue(newValue)
     }
   }
@@ -230,7 +230,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   // 多选时，取消一个选项
   const uncheckOption = (valueToRemove?: any) => {
     const option = getOptionInfoByValue(valueToRemove)
-    const newValue = (value as string[]).filter((v) => v !== valueToRemove)
+    const newValue = (currentValue as string[])?.filter(
+      (v) => v !== valueToRemove,
+    )
     tryUpdateSelectValue(newValue)
 
     if (onDeselect) {
@@ -246,13 +248,29 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   // 处理模式切换时 value 格式的校正
   useEffect(() => {
     if (isMultipleMode) {
-      if (!Array.isArray(value)) {
-        setValue(value === undefined ? [] : [value as any])
+      if (!Array.isArray(currentValue)) {
+        setValue(currentValue === undefined ? [] : [currentValue as any])
       }
-    } else if (Array.isArray(value)) {
-      setValue(value.length === 0 ? undefined : (value[0] as any))
+    } else if (Array.isArray(currentValue)) {
+      setValue(
+        currentValue?.length === 0 ? undefined : (currentValue?.[0] as any),
+      )
     }
-  }, [isMultipleMode, value])
+  }, [isMultipleMode, currentValue])
+
+  // 更新 refValueMap，避免数组规模无节制扩大
+  useEffect(() => {
+    refValueMap.current = refValueMap.current?.filter((x) => {
+      if (x?.value) {
+        return isMultipleMode
+          ? isArray(currentValue) &&
+              (currentValue as Array<string | number>)?.indexOf(x?.value) > -1
+          : x?.value === currentValue
+      }
+      // ?
+      return false
+    })
+  }, [currentValue, isMultipleMode])
 
   const handleOptionClick = (
     optionValue: OptionProps["value"],
@@ -263,7 +281,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     }
 
     if (isMultipleMode) {
-      ;(value as Array<OptionProps["value"]>).indexOf(optionValue) === -1
+      ;(currentValue as Array<OptionProps["value"]>)?.indexOf(optionValue) ===
+      -1
         ? checkOption(optionValue)
         : uncheckOption(optionValue)
 
@@ -272,7 +291,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         tryUpdateInputValue("", "optionChecked")
       }
     } else {
-      if (optionValue !== value) {
+      if (optionValue !== currentValue) {
         tryUpdateSelectValue(optionValue as SelectInner)
       }
       setTimeout(() => {
@@ -297,15 +316,15 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     },
     // Option Items
     onRemoveCheckedItem: (_: any, index: number, event: Event) => {
-      event.stopPropagation()
+      event?.stopPropagation()
       uncheckOption(currentValue?.[index as never])
     },
     onClear: (event: any) => {
       event.stopPropagation()
       if (isMultipleMode) {
         // 保留已经被选中但被disabled的选项值
-        const newValue = (value as []).filter((v) => {
-          const item = optionInfoMap.get(v)
+        const newValue = (currentValue as [])?.filter((v) => {
+          const item = optionInfoMap?.get(v)
           return item && item.disabled
         })
         tryUpdateSelectValue(newValue)

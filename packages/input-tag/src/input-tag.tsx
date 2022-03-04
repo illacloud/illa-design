@@ -31,6 +31,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       error,
       disabled,
       readOnly,
+      disableInput,
       suffix,
       icon,
       validate = defaultValidate,
@@ -122,7 +123,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
             ref={inputRef}
             size={size}
             value={currentInputValue}
-            disabled={disabled}
+            disabled={disabled || disableInput}
             readOnly={readOnly}
             autoFitWidth
             placeholder={!currentValue?.length ? placeholder : ""}

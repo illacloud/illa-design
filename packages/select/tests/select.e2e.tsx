@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Select } from "../src"
-import { mount } from "@cypress/react"
+import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
 it("Select renders correctly", () => {
@@ -28,4 +28,5 @@ it("Select renders with text", () => {
   cy.findByText("1").click()
   expect(cy.findByText("1")).exist
   // expect(change).to.be.called
+  unmount()
 })
