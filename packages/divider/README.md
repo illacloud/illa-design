@@ -21,7 +21,7 @@ import {Divider} from "@illa-design/divider"
 | Props     | Desc                         | Type                                        | Default      |
 | --------- | ---------------------------- | ------------------------------------------- | ------------ |
 | direction | setting direction of divider |  `"vertical" \| "horizontal"`                 | `horizontal` |
-| variant   | setting divider's variant    | ` "solid" \| "dashed" \| "dotted" \|"double"` |` solid `     |
+| variant   | setting divider's variant    | ` "solid" \| "dashed" \| "dotted" \| "double"` |` solid `     |
 
 ## Example
 
@@ -31,17 +31,17 @@ import {Divider} from "@illa-design/divider"
 <Divider />
 ```
 
-### Set divider's direction
+### Set Divider's direction
 
 ```jsx
 <Divider />
 <Divider direction="vertical" />
 ```
 
-### Set divider's variant
+### Set Divider's variant
 
 ```jsx
-<Divider/>
+<Divider />
 <Divider direction="vertical" />
 <Divider variant="dashed" />
 <Divider variant="dotted" />
