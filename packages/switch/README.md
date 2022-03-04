@@ -49,7 +49,7 @@ import { Switch } from "@illa-dedign/switch"
 ### Set color and size
 
 ```jsx
-<Switch colorScheme="cyan" size="large"/>
+<Switch colorScheme="cyan" size="large" />
 ```
 
 ### Set Text
