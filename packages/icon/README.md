@@ -8,7 +8,7 @@ icon is generally used to express information more concisely
 yarn add @illa-design/icon
 ```
 
-## Import
+## Import component
 
 ```jsx
 import { Icon, XxxIcon} from "@illa-design/icon"
