@@ -2,9 +2,9 @@
 
 Divider is used to visually separate content
 
-## Install
+## Installation
 
-```jsx
+```bash
 yarn add @illa-design/divider
 ```
 
