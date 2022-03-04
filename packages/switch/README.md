@@ -8,7 +8,7 @@ Switch is used in mutual exclusivity selection scenarious
 yarn add @illa-design/switch
 ```
 
-## Import
+## Importm component
 
 ```jsx
 import { Switch } from "@illa-dedign/switch"
@@ -30,7 +30,7 @@ import { Switch } from "@illa-dedign/switch"
 | defaultChecked | Set the default status is checked                         | `boolean`                                                    | `-`      |
 | checked        | Set switch's status is checked                            | `boolean`                                                    | `-`      |
 
-### Switch Event
+### Switch Events
 
 | Props    | Desc                                             | Type                                          | Default |
 | -------- | ------------------------------------------------ | --------------------------------------------- | ------- |
@@ -52,7 +52,7 @@ import { Switch } from "@illa-dedign/switch"
 <Switch colorScheme="cyan" size="large" />
 ```
 
-### Set Text
+### Set text
 
 ```jsx
 <Switch colorScheme="cyan" size="large" checkedText="on" uncheckedText="off" />
