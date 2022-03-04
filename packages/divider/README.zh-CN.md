@@ -4,7 +4,7 @@
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/divider
 ```
 
