@@ -133,7 +133,9 @@ test("InputTag render with clear event", async () => {
   await waitFor(() => {
     userEvent.type(testEvent, `{enter}`)
   })
-  const ele = screen.getByText("456")?.parentElement?.nextElementSibling?.firstElementChild
+  const ele =
+    screen.getByText("456")?.parentElement?.nextElementSibling
+      ?.firstElementChild
   if (ele) {
     fireEvent.click(ele)
     expect(removeEvent).toBeCalled()

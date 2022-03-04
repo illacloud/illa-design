@@ -124,7 +124,8 @@ function applyStatus(stateValue: StateValue) {
 
 export function applyInputContainer(stateValue: StateValue) {
   return css`
-    width: 100%;
+    width: 198px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -171,14 +172,6 @@ export function applySuffixCls(stateValue: StateValue) {
     margin-left: 12px;
   `
 }
-
-export const applyCountLimitStyle = css`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
-`
 
 export const pointerStyle = css`
   cursor: pointer;

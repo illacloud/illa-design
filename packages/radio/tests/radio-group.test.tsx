@@ -30,10 +30,7 @@ test("RadioGroup disabled renders correctly", () => {
 
 test("RadioGroup options renders correctly", () => {
   render(
-    <RadioGroup
-      options={["A", "B", "C"]}
-      data-testid="radio-group-options"
-    />,
+    <RadioGroup options={["A", "B", "C"]} data-testid="radio-group-options" />,
   )
   expect(screen.getByTestId("radio-group-options")).toBeInTheDocument()
 })
@@ -55,10 +52,7 @@ test("RadioGroup render with options", () => {
 
 test("RadioGroup render with value", () => {
   render(
-    <RadioGroup
-      options={["valueA", "valueB", "valueC"]}
-      value={"valueA"}
-    />,
+    <RadioGroup options={["valueA", "valueB", "valueC"]} value={"valueA"} />,
   )
   expect(screen.getByLabelText("valueA")).toBeChecked()
 })
@@ -120,11 +114,7 @@ test("RadioGroup options render with direction vertical", () => {
 })
 
 test("RadioGroup render with click", async () => {
-  render(
-    <RadioGroup
-      options={["GroupClickA", "GroupClickB", "GroupClickC"]}
-    />,
-  )
+  render(<RadioGroup options={["GroupClickA", "GroupClickB", "GroupClickC"]} />)
   const GroupClickA = screen.getByLabelText("GroupClickA")
   const GroupClickB = screen.getByLabelText("GroupClickB")
 
