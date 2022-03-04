@@ -73,6 +73,7 @@ jobs:
 
       - name: Build Components
         run: |
+          npm install typescript -g
           yarn build-all-components
 
       - name: Run test
