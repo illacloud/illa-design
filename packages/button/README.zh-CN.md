@@ -4,7 +4,7 @@
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/button
 ```
 
@@ -20,27 +20,22 @@ import { Button } from "@illa-dedign/button"
 
 | 参数名      | 描述                         | 类型                                                         | 默认值   |
 | ----------- | ---------------------------- | ------------------------------------------------------------ | -------- |
-| colorScheme | 设置背景颜色                 | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" | "blue"   |
-| size        | 设置尺寸大小                 | "small" \| "medium" \| "large"                               | "small"  |
-| variant     | 设置按钮样式                 | "fill" \| "dashed" \| "outline" \| "text"                    | "fill"   |
-| shape       | 设置按钮形状                 | "square" \| "round"                                          | "square" |
-| fullWidth   | 按钮的宽度是否随容器自适应。 | boolean                                                      | -        |
-| loading     | 设置按钮是否为加载中状态     | boolean                                                      | -        |
-| loadingText | 设置按钮加载中时的提示文案   | string                                                       | -        |
-| disabled    | 设置按钮是否被禁用           | boolean                                                      | -        |
-
-### Button 扩展属性
-
-| 参数名    | 描述         | 类型      | 默认值 |
-| --------- | ------------ | --------- | ------ |
-| leftIcon  | 设置左侧图标 | ReactNode | -      |
-| rightIcon | 设置右侧图标 | ReactNode | -      |
+| colorScheme | 设置背景颜色                 | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple"` | `blue `  |
+| size        | 设置尺寸大小                 | `"small" \| "medium" \| "large"     `                          | `small`  |
+| variant     | 设置按钮样式                 | `"fill" \| "dashed" \| "outline" \| "text"   `                 | `fill`   |
+| shape       | 设置按钮形状                 | `"square" \| "round"  `                                        | `square` |
+| fullWidth   | 按钮的宽度是否随容器自适应。 | `boolean                  `                                    | `- `       |
+| loading     | 设置按钮是否为加载中状态     |` boolean  `                                                    | `- `       |
+| loadingText | 设置按钮加载中时的提示文案   | `string       `                                                | `- `       |
+| disabled    | 设置按钮是否被禁用           | `boolean  `                                                    | `- `       |
+| leftIcon  | 设置左侧图标 |` ReactNode` |` -`      |
+| rightIcon | 设置右侧图标 | `ReactNode` |` -  `    |
 
 ### Button 事件
 
 | 参数名  | 描述           | 类型               | 默认值 |
 | ------- | -------------- | ------------------ | ------ |
-| onClick | 点击按钮的回调 | (e: Event) => void | -      |
+| onClick | 点击按钮的回调 | `(e: Event) => void` | `-  `    |
 
 ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Button的基础属性外还可以设置Button之间的间隙以及是否挨在一起
 
@@ -48,15 +43,15 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 
 | 参数名   | 描述               | 类型             | 默认值 |
 | -------- | ------------------ | ---------------- | ------ |
-| spacing  | 设置按钮之间的间隙 | number \| string | "8px"  |
-| attached | 设置按钮挨在一起   | boolean          | -      |
+| spacing  | 设置按钮之间的间隙 | `number \| string` | `8px`  |
+| attached | 设置按钮挨在一起   |` boolean  `        |` -`      |
 
 ## 使用方法
 
 ### 基础用法
 
 ```jsx
-<Button >Hello</Button>
+<Button>Hello</Button>
 ```
 
 ### 设置按钮大小
@@ -84,7 +79,7 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 通过leftIcon 和 rightIcon 这两个接口可以分别设置按钮左侧的icon和右侧的icon
 
 ```jsx
-<Button> Hello </Button>
+<Button>Hello</Button>
 <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
 ```
 
@@ -104,14 +99,14 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 
 ```jsx
 <ButtonGroup variant="outline" spacing="5px">
-	<Button>Hello</Button>
-	<Button disabled>Hello</Button>
-	<Button loading loadingText="Loading">Hello</Button>
+  <Button>Hello</Button>
+  <Button disabled>Hello</Button>
+  <Button loading loadingText="Loading">Hello</Button>
 </ButtonGroup>
 <ButtonGroup variant="outline" attached>
-	<Button leftIcon={<BsArrowLeft />}/>
-	<Button >Hello</Button>
-	<Button rightIcon={<BsArrowRight />}/>
+  <Button leftIcon={<BsArrowLeft />} />
+  <Button>Hello</Button>
+  <Button rightIcon={<BsArrowRight />} />
 </ButtonGroup>
 ```
 
