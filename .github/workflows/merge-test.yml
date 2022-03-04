@@ -41,6 +41,7 @@ jobs:
       - install
 
     runs-on: ubuntu-latest
+    container: cypress/included
 
     strategy:
       matrix:
