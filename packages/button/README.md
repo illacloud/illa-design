@@ -4,11 +4,11 @@ The Button component is used to trigger an action or event, such as submitting a
 
 ## Installation
 
-```jsx
+```bash
 yarn add @illa-design/button
 ```
 
-## Import 
+## Import component
 
 ```jsx
 import { Button } from "@illa-dedign/button"
