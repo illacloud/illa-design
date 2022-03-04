@@ -4,14 +4,14 @@ import { forwardRef, ElementRef, useState, useRef } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { InputElement } from "@illa-design/input"
 import { ErrorIcon } from "@illa-design/icon"
-import { InputTagProps } from "./interface"
+import { InputTagProps, ObjectValueType } from "./interface"
 import {
   applyInputContainer,
   applyInputInnerCss,
   applySuffixCls,
   pointerStyle,
 } from "./style"
-import { formatValue, ObjectValueType } from "./utils"
+import { formatValue } from "./utils"
 import { RenderTags } from "./render-tag"
 
 export interface StateValue {
@@ -23,9 +23,9 @@ export interface StateValue {
 
 // default validate func
 const defaultValidate = (inputValue: string, values: ObjectValueType[]) =>
-  inputValue && values?.every((item) => item?.value !== inputValue)
+  values?.every((item) => item?.value !== inputValue)
 
-export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
+export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
   (props, ref) => {
     const {
       style,
@@ -85,7 +85,6 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
 
     const tryAddInputValueToTag = async () => {
       try {
-        console.log(currentInputValue, currentValue, "input")
         const isLegal =
           typeof validate === "function"
             ? await validate(currentInputValue, currentValue)
@@ -100,7 +99,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps<any>>(
           setInputValue("")
         }
       } catch (error) {
-        console.error(error)
+        throw new Error(`Cannot add inputValue to tag: ${error}`)
       }
     }
 

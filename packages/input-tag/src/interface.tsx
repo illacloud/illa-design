@@ -35,3 +35,9 @@ export interface InputTagProps<T = any>
   onInputChange?: (inputValue: string, event?: any) => void
   onPressEnter?: (e: any) => void
 }
+
+export type ObjectValueType = {
+  value?: any
+  label?: ReactNode
+  closable?: boolean
+}

@@ -3,9 +3,8 @@ import * as React from "react"
 import { forwardRef, HTMLAttributes } from "react"
 import { motion } from "framer-motion"
 import { Tag } from "@illa-design/tag"
-import { InputTagProps } from "./interface"
+import { InputTagProps, ObjectValueType } from "./interface"
 import { tagStyle } from "./style"
-import { ObjectValueType } from "./utils"
 import { css } from "@emotion/react"
 
 export interface RenderTagsProps extends HTMLAttributes<HTMLElement> {

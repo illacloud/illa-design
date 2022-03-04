@@ -1,11 +1,6 @@
 import { ReactNode } from "react"
 import { isArray, isObject } from "@illa-design/system"
-
-export type ObjectValueType = {
-  value?: any
-  label?: ReactNode
-  closable?: boolean
-}
+import { ObjectValueType } from "./interface"
 
 export const formatValue = (value: (ObjectValueType | string)[]) => {
   if (!isArray(value)) {
