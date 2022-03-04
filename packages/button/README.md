@@ -28,13 +28,8 @@ import { Button } from "@illa-dedign/button"
 | loading     | Set loading status of the button                      |`boolean`                                                     | `-`        |
 | loadingText | Set button's text when loading status                 | `string`                                                       | `-`        |
 | disabled    | Set disabled status                                   | `boolean`                                                      | `-`        |
-
-### Button Extented Props
-
-| Props    | Desc           | Type      | Default |
-| --------- | -------------- | --------- | ------ |
-| leftIcon  | Set left icon  | `ReactNode` | `-`      |
-| rightIcon | Set right icon | `ReactNode` | `-`      |
+| leftIcon    | Set left icon  						| `ReactNode` 							| `-`      |
+| rightIcon   | Set right icon 						| `ReactNode` 							| `-`      |
 
 ### Button events
 
@@ -49,14 +44,14 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 | Props    | Desc                    | Type             | Default |
 | -------- | ----------------------- | ---------------- | ------- |
 | spacing  | Set gap between buttons | `number \| string` | `8px`   |
-| attached | Combine buttons         | `boolean `         | `-   `    |
+| attached | Combine buttons         | `boolean `         | `-`    |
 
 ## Example
 
 ### Basic usage
 
 ```jsx
-<Button >Hello</Button>
+<Button>Hello</Button>
 ```
 
 ### Set Button's size
@@ -78,7 +73,7 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 ### Set Button's icons
 
 ```jsx
-<Button> Hello </Button>
+<Button>Hello</Button>
 <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
 ```
 
@@ -94,14 +89,14 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 
 ```jsx
 <ButtonGroup variant="outline" spacing="5px">
-	<Button>Hello</Button>
-	<Button disabled>Hello</Button>
-	<Button loading loadingText="Loading">Hello</Button>
+  <Button>Hello</Button>
+  <Button disabled>Hello</Button>
+  <Button loading loadingText="Loading">Hello</Button>
 </ButtonGroup>
 <ButtonGroup variant="outline" attached>
-	<Button leftIcon={<BsArrowLeft />}/>
-	<Button >Hello</Button>
-	<Button rightIcon={<BsArrowRight />}/>
+  <Button leftIcon={<BsArrowLeft />} />
+  <Button>Hello</Button>
+  <Button rightIcon={<BsArrowRight />} />
 </ButtonGroup>
 ```
 
