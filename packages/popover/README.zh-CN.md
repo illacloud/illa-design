@@ -21,11 +21,11 @@ import { Popover } from "@illa-dedign/popover"
 | 参数名              | 描述                                                    | 类型                                                         | 默认值  |
 | ------------------- | ------------------------------------------------------- | ------------------------------------------------------------ | ------- |
 | colorScheme         | 设置背景颜色                                            | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" \| string` | `gray`  |
-| title               | 气泡弹窗上的标题                                        | `string`                                                     | -       |
-| content             | 气泡上展示的内容                                        | `string \| ReactNode`                                        | -       |
-| hasCloseIcon        | 设置是否有关闭icon                                      | `boolean`                                                    |         |
+| title               | 气泡弹窗上的标题                                        | `string`                                                     | `-`       |
+| content             | 气泡上展示的内容                                        | `string \| ReactNode`                                        | `- `      |
+| hasCloseIcon        | 设置是否有关闭icon                                      | `boolean`                                                    |   `- `       |
 | trigger             | 出发方式                                                | `"hover" \| "click" \| "focus"`                              | `hover` |
-| position            | 气泡出现的位置，有12个可选方向                          | `"top"\| "tl"\| "tr"\| "bottom"\| "bl"\| "br"\| "left"\| "lt"\| "lb"\| "right"\| "rt"\| "rb"` | `top`   |
+| position            | 气泡出现的位置，有12个可选方向                          | `"top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br" \| "left" \| "lt" \| "lb" \| "right" \| "rt" \| "rb"` | `top`   |
 | showArrow           | 是否展示“箭头” “箭头”是个从气泡指向对应组件的等边三角形 | `boolean`                                                    | `true`  |
 | closeDelay          | 消失/关闭时的延时，单位毫秒（ms）                       | `number`                                                     | `150`   |
 | openDelay           | 展现/打开时的延时，单位毫秒（ms）                       | `number`                                                     | `150`   |
@@ -49,7 +49,7 @@ import { Popover } from "@illa-dedign/popover"
 
 ```jsx
 <Popover title="This is title" content="Popover">
-	<Button>Popover</Button>
+  <Button>Popover</Button>
 </Popover>
 ```
 
@@ -59,7 +59,7 @@ import { Popover } from "@illa-dedign/popover"
 
 ```jsx
 <Popover title="This is title" content="Popover" position="bottom">
-	<Button>Popover</Button>
+  <Button>Popover</Button>
 </Popover>
 ```
 
@@ -69,7 +69,7 @@ import { Popover } from "@illa-dedign/popover"
 
 ```jsx
 <Popover title="This is title" content="Popover" position="top" colorScheme="cyan">
-	<Button>Popover</Button>
+  <Button>Popover</Button>
 </Popover>
 ```
 
@@ -79,7 +79,7 @@ import { Popover } from "@illa-dedign/popover"
 
 ```jsx
 <Popover title="This is title" content="Popover" position="top" colorScheme="cyan" showArrow={false}>
-	<Button>Popover</Button>
+  <Button>Popover</Button>
 </Popover>
 ```
 
@@ -87,7 +87,7 @@ import { Popover } from "@illa-dedign/popover"
 
 ```jsx
 <Popover title="This is title" content="Popover" position="top" colorScheme="cyan" hasCloseIcon>
-	<Button>Popover</Button>
+  <Button>Popover</Button>
 </Popover>
 ```
 
@@ -97,7 +97,7 @@ import { Popover } from "@illa-dedign/popover"
 
 ```jsx
 <Popover title="This is title" content="Popover" position="top" colorScheme="cyan" defaultPopupVisible>
-	<Button>Popover</Button>
+  <Button>Popover</Button>
 </Popover>
 ```
 
@@ -107,7 +107,7 @@ import { Popover } from "@illa-dedign/popover"
 
 ```jsx
 <Popover title="This is title" content="Popover" position="top" colorScheme="cyan" openDelay={1000} closeDelay={1000}>
-	<Button>Popover</Button>
+  <Button>Popover</Button>
 </Popover>
 ```
 
