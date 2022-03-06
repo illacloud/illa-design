@@ -46,10 +46,11 @@
     "storybook": "yarn test && yarn start-storybook -p 6006",
     "build-all-components": "npx turbo run build",
     "build-storybook": "yarn test && yarn build-storybook",
-    "test": "yarn build-all-components && npx jest && npx turbo run e2e:ci",
+    "test": "npx patch-package && yarn build-all-components && npx jest && npx turbo run e2e:ci",
     "unit-test": "yarn build-all-components && npx jest",
     "lint": "prettier --write \"packages/**/*.{ts,tsx}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "npx patch-package"
   },
   "packageManager": "yarn@1.22.17"
 }

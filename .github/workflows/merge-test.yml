@@ -75,6 +75,4 @@ jobs:
 
       - uses: cypress-io/github-action@v2
         with:
-          command: |
-            npx patch-package
-            yarn test
+          command: yarn test
