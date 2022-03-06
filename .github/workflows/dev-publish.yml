@@ -74,7 +74,9 @@ jobs:
       - uses: cypress-io/github-action@v2
         with:
           install: false
-          command: yarn test
+          command: ｜ 
+            yarn test
+            pkill Xvfb
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
