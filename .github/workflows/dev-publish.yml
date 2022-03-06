@@ -74,6 +74,7 @@ jobs:
       - name: Run Test
         uses: cypress-io/github-action@v2
         with:
+          install: false
           command: yarn test
 
       - name: Publish to Chromatic
