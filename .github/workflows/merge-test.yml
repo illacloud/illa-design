@@ -73,17 +73,8 @@ jobs:
         run: |
           yarn build-all-components
 
-      - name: Prepare Test Env
-        run: |
-          /usr/bin/Xvfb :99 -screen 0 500x500x24+32 &
-          export DISPLAY=:99
-
       - name: Run Test
         uses: cypress-io/github-action@v2
         with:
           install: false
           command: yarn test
-
-      - name: Finish Test
-        run: |
-          pkill Xvfb
