@@ -75,6 +75,4 @@ jobs:
 
       - uses: cypress-io/github-action@v2
         with:
-          command: ｜ 
-            yarn test
-            pkill Xvfb
+          command: yarn test && pkill Xvfb
