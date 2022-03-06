@@ -72,9 +72,9 @@ jobs:
           yarn build-all-components
 
       - name: Run Test
-        run: |
-          yarn test  
-          pkill Xvfb
+        uses: cypress-io/github-action@v2
+        with:
+          command: yarn test
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
