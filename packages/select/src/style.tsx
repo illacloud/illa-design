@@ -71,22 +71,22 @@ export function applySizeStyle(size?: SelectProps["size"]) {
     default:
     case "large":
       sizeStyle = css`
-        width: 132px;
-        height: 40px;
+        //width: 132px;
+        //height: 40px;
         padding: 9px 16px;
       `
       break
     case "medium":
       sizeStyle = css`
-        width: 132px;
-        height: 32px;
+        //width: 132px;
+        //height: 32px;
         padding: 5px 16px;
       `
       break
     case "small":
       sizeStyle = css`
-        width: 120px;
-        height: 24px;
+        //width: 120px;
+        //height: 24px;
         padding: 1px 12px;
       `
       break
@@ -98,17 +98,27 @@ export function applySizeStyle(size?: SelectProps["size"]) {
 export function applySelectView(stateValue: StateValue): SerializedStyles {
   return css`
     box-sizing: border-box;
-    height: 40px;
+    // height: 40px;
+    // padding: 9px 16px;
     width: 132px;
     line-height: 30px;
     font-size: 14px;
-    padding: 9px 16px;
     border-radius: 4px;
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     cursor: pointer;
-    ${applySizeStyle(stateValue?.size)}
     ${applyStatus(stateValue)}
+  `
+}
+
+export function applySelectContent(stateValue: StateValue): SerializedStyles {
+  return css`
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    ${applySizeStyle(stateValue?.size)}
   `
 }
 

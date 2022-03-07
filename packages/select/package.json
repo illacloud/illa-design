@@ -47,6 +47,7 @@
     "@illa-design/trigger": "*",
     "@illa-design/list": "*",
     "@illa-design/input": "*",
-    "@illa-design/input-tag": "*"
+    "@illa-design/input-tag": "*",
+    "@illa-design/checkbox": "*"
   }
 }

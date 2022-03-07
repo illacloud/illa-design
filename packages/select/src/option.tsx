@@ -4,6 +4,7 @@ import { forwardRef, ChangeEvent, useContext } from "react"
 import { OptionProps, SelectProps } from "./interface"
 import { applyOptionStyle } from "./style"
 import { omit, useMergeValue } from "@illa-design/system"
+import { Checkbox } from "@illa-design/checkbox"
 
 export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
   const {
@@ -24,6 +25,9 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
   } = props
 
   const currentValue = "value" in props ? value : children?.toString()
+  const isChecked = isMultipleMode
+    ? (valueSelect as any[]).indexOf(value) !== -1
+    : valueSelect === value
 
   const optionProps = {
     onMouseEnter: () => onMouseEnter?.(value),
@@ -41,9 +45,22 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
   }
 
   return (
-    <li css={applyOptionStyle(size)} ref={ref} {...optionProps}>
-      {children}
-    </li>
+    <>
+      {isMultipleMode ? (
+        <li css={applyOptionStyle(size)} ref={ref}>
+          <Checkbox
+            checked={isChecked}
+            disabled={disabled}
+            onChange={optionProps.onClick}
+          />
+          <span {...optionProps}>{children}</span>
+        </li>
+      ) : (
+        <li css={applyOptionStyle(size)} ref={ref} {...optionProps}>
+          {children}
+        </li>
+      )}
+    </>
   )
 })
 

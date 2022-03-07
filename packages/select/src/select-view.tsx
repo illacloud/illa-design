@@ -17,7 +17,12 @@ import { useMergeValue, isObject, omit, isNumber } from "@illa-design/system"
 import { LoadingIcon, SearchIcon, ExpandIcon } from "@illa-design/icon"
 import { InputTag, ObjectValueType } from "@illa-design/input-tag"
 import { SelectViewProps } from "./interface"
-import { applyIconStyle, applySelectView, applySelectViewText } from "./style"
+import {
+  applyIconStyle,
+  applySelectContent,
+  applySelectView,
+  applySelectViewText,
+} from "./style"
 import { isEmptyValue } from "./utils"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
@@ -304,13 +309,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         ])}
       >
         <div
-          css={css`
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-          `}
+          css={applySelectContent(stateValue)}
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}
         >
           {isMultipleMode ? renderMultiple() : renderSingle()}

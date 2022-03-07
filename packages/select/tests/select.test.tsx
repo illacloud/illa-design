@@ -2,7 +2,6 @@ import { Select, Option } from "../src"
 import { render, screen, fireEvent } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import "@testing-library/jest-dom"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 
 test("Select renders with text", () => {
   render(<Select placeholder={"test"} />)
@@ -38,10 +37,6 @@ test("Select renders with error", () => {
 test("Select renders with size", () => {
   render(<Select value={1} options={[1, 2, 3]} size="large" />)
   render(<Select value={"a"} options={["a", "b", "c"]} size="small" />)
-  expect(screen.getByText("1")?.parentElement?.parentElement).toHaveStyle({
-    height: "40px",
-  })
-  expect(screen.getByText("a")?.parentElement?.parentElement).toHaveStyle({
-    height: "24px",
-  })
+  expect(screen.getByText("1")?.parentElement?.parentElement).toBeInTheDocument()
+  expect(screen.getByText("a")?.parentElement?.parentElement).toBeInTheDocument()
 })
