@@ -20,21 +20,21 @@ import { Avatar } from "@illa-dedign/avatar"
 
 | Props       | Desc                                                     | Type                                                         | Default    |
 | ----------- | -------------------------------------------------------- | ------------------------------------------------------------ | ---------- |
-| colorScheme | Color of avatar                                          | `"white" \|"blackAlpha" \|"gray" \|"grayBlue" \|"red" \|"orange" \|"yellow" \|"green" \|"blue" \|"cyan" \|"purple" ` | `"gray"`   |
+| colorScheme | Color of avatar                                          | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \|"green" \|"blue" \|"cyan" \|"purple" ` | `"gray"`   |
 | src         | The image url of avatar                                  | `string \| string[]`                                         | `-`        |
-| size        | Size of the avatar                                       | `"small" \|"medium" \|"large"`                               | `"small"`  |
-| text        | The displayed  text of the avatar when src is not loaded | `string \|string[]`                                          | `-`        |
-| shape       | The shape of avatar                                      | `"circle" \|"square" `                                       | `"circle"` |
+| size        | Size of the avatar                                       | `"small" \| "medium" \| "large"`                               | `"small"`  |
+| text        | The displayed  text of the avatar when src is not loaded | `string \| string[]`                                          | `-`        |
+| shape       | The shape of avatar                                      | `"circle" \| "square" `                                       | `"circle"` |
 | icon        | The default avatar when text and src is not specified    | `ReactNode`                                                  | `-`        |
 
 ### Avatar-group Basic Properties
 
 | Props        | Desc                                  | Type                                                         | Default   |
 | ------------ | ------------------------------------- | ------------------------------------------------------------ | --------- |
-| colorScheme  | Color of avatar group                 | `"white" \|"blackAlpha" \|"gray" \|"grayBlue" \|"red" \|"orange" \|"yellow" \|"green" \|"blue" \|"cyan" \|"purple" ` | `"gray"`  |
-| size         | Size of avatar group                  | `"small" \|"medium" \|"large"`                               | `"small"` |
+| colorScheme  | Color of avatar group                 | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \|"cyan" \|"purple" ` | `"gray"`  |
+| size         | Size of avatar group                  | `"small" \| "medium" \| "large"`                               | `"small"` |
 | maxCount     | The max count of avatar group         | `number `                                                    | `-`       |
-| zIndexAscend | The avatars are z-index ascend or not | `boolean`                                                    | `"false"` |
+| zIndexAscend | The avatars are z-index ascend or not | `boolean`                                                    | `false`   |
 
 
 
@@ -55,36 +55,30 @@ import { Avatar } from "@illa-dedign/avatar"
 ### Set Avatar's size
 
 ```jsx
-<Avatar />
 <Avatar size="small">Small</Avatar>
 ```
 
 ### Set Avatar's shape and color
 
 ```jsx
-<Avatar />
 <Avatar shape="saqure" colorScheme="red">Small</Avatar>
-
 ```
 
 ### Set Avatar's icon
 
 ```jsx
-<Avatar />
 <Avatar icon={<CloseIcon />} />
 ```
 
 ### Set Avatar's image
 
 ```jsx
-<Avatar />
 <Avatar src='https://bit.ly/dan-abramov' />
 ```
 
 ### Set Avatar's text
 
 ```jsx
-<Avatar />
 <Avatar text="e" />
 ```
 
