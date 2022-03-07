@@ -4,11 +4,11 @@ ConfigProvider is used to set global params, like language
 
 ## Installation
 
-```jsx
+```bash
 yarn add @illa-design/config-provider
 ```
 
-## Import 
+## Import component
 
 ```jsx
 import { ConfigProvider } from "@illa-dedign/config-provider"
@@ -18,9 +18,9 @@ import { ConfigProvider } from "@illa-dedign/config-provider"
 
 ### ConfigProvider Basic Properties
 
-| Props  | Desc         | Type   | Default |
-| ------ | ------------ | ------ | ------- |
-| locale | Set language | Locale | -       |
+| Props  | Desc         | Type     | Default |
+| ------ | ------------ | -------- | ------- |
+| locale | Set language | `Locale` | `-`     |
 
 ## Example
 
@@ -31,4 +31,3 @@ import { ConfigProvider } from "@illa-dedign/config-provider"
   <Pagination total={200} showTotal />
 </ConfigProvider>
 ```
-
