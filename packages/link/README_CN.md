@@ -20,12 +20,10 @@ import { Link } from "@illa-dedign/link"
 
 | Props       | Desc                | Type                                                                                            | Default   |
 |-------------|---------------------|-------------------------------------------------------------------------------------------------|-----------|
-| colorScheme | 设置字体颜色              | `"white"｜"blackAlpha"｜"gray"｜"grayBlue"｜"red"｜"orange"｜"yellow"｜"green"｜"blue"｜"cyan"｜"purple"` | `"blue"`  |
-| icon        | 显示图标，设置为true时展示默认图标 | `ReactNode｜boolean`                                                                             | `-`       |
+| colorScheme | 设置字体颜色              | `"white"｜"blackAlpha" ｜ "gray" ｜ "grayBlue" ｜ "red" ｜ "orange" ｜ "yellow" ｜ "green" ｜ "blue" ｜ "cyan" ｜ "purple"` | `"blue"`  |
+| icon        | 显示图标，设置为true时展示默认图标 | `ReactNode ｜ boolean`                                                                             | `-`       |
 | disabled    | 是否禁用                | `boolean`                                                                                       | `"small"` |
 | hoverable   | 悬浮状态是否有底色           | `boolean`                                                                                       | `-`       |
-
-###     
 
 ## 使用方法
 
@@ -45,7 +43,6 @@ import { Link } from "@illa-dedign/link"
 
 ```jsx
 <Link colorScheme="yellow">Link</Link>
-
 ```
 
 ## 悬浮状态样式
@@ -53,4 +50,3 @@ import { Link } from "@illa-dedign/link"
 ```jsx
 <Link hoverable>Link</Link>
 ```
-
