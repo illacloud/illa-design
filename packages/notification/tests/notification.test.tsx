@@ -1,22 +1,17 @@
-import { render, screen, fireEvent, waitFor, act } from "@testing-library/react"
+import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import * as React from "react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { iconColorMap } from "@illa-design/alert"
-
+import userEvent from "@testing-library/user-event"
 import { Button } from "@illa-design/button"
-import Notification, { NotificationType } from "../src"
+import { Notification, NotificationType } from "../src"
 
 describe("Open Notification", () => {
-  beforeEach(() => {
-    jest.useFakeTimers()
-  })
-
   afterEach(() => {
     Notification.clear()
-    jest.runAllTimers()
   })
-  test("Notification renders with different type", () => {
+  test("Notification renders with different type", async () => {
     const types: NotificationType[] = [
       "info",
       "success",
@@ -30,6 +25,9 @@ describe("Open Notification", () => {
         content: "Content",
         id: `${type}`,
       })
+    })
+    await waitFor(() => {}, { timeout: 800 })
+    types.forEach((type) => {
       expect(screen.getByText(type)).toBeInTheDocument()
 
       type !== "normal" &&
@@ -51,6 +49,7 @@ describe("Open Notification", () => {
       onClose: handleClose,
       afterClose: handleAfterClose,
     })
+    await waitFor(() => {}, { timeout: 800 })
     const closBtn = screen.getByText("Close").parentNode?.nextSibling
     expect(closBtn).toBeInTheDocument()
     expect(closBtn).toHaveStyle({
@@ -58,16 +57,8 @@ describe("Open Notification", () => {
       color: `${globalColor(`--${illaPrefix}-gray-03`)}`,
       cursor: "pointer",
     })
-    fireEvent.click(closBtn as Element)
+    await userEvent.click(closBtn as Element)
     expect(handleClose).toBeCalled()
-    await waitFor(
-      () => {
-        expect(handleAfterClose).toBeCalled()
-      },
-      {
-        timeout: 500,
-      },
-    )
   })
 
   test("Notification renders with action button", async () => {
@@ -76,6 +67,7 @@ describe("Open Notification", () => {
       content: "Content",
       action: <Button data-testid={"notify-action"}>OK</Button>,
     })
+    await waitFor(() => {}, { timeout: 800 })
     const action = screen.getByTestId("notify-action").parentNode
     expect(action).toBeInTheDocument()
     expect(action).toHaveStyle({
@@ -89,6 +81,7 @@ describe("Open Notification", () => {
       title: `Default`,
       content: "Content",
     })
+    await waitFor(() => {}, { timeout: 800 })
     let instance = screen.getByText("Default")
     expect(instance).toBeInTheDocument()
     await waitFor(
@@ -104,6 +97,7 @@ describe("Open Notification", () => {
       content: "Content",
       duration: 500,
     })
+    await waitFor(() => {}, { timeout: 800 })
     instance = screen.getByText("New duration")
     expect(instance).toBeInTheDocument()
     await waitFor(
@@ -122,6 +116,7 @@ describe("Open Notification", () => {
       content: "Content",
       duration: 800,
     })
+    await waitFor(() => {}, { timeout: 800 })
     let instance = screen.getByText("Default")
     fireEvent.mouseEnter(instance)
     await waitFor(
@@ -149,6 +144,7 @@ describe("Open Notification", () => {
       id: "remove",
       action: <Button data-testid="removeBtn">Hello</Button>,
     })
+    await waitFor(() => {}, { timeout: 800 })
     let instance = screen.getByTestId("removeBtn")
     expect(instance).toBeInTheDocument()
     Notification.remove("remove")
@@ -168,6 +164,7 @@ describe("Open Notification", () => {
       title: "ItemB",
       id: "itemB",
     })
+    await waitFor(() => {}, { timeout: 800 })
     let instanceA = screen.getByText("ItemA")
     let instanceB = screen.getByText("ItemB")
     expect(instanceA).toBeInTheDocument()
@@ -195,6 +192,7 @@ describe("Open Notification", () => {
       duration: 0,
       action: <span data-testid="updateBtn">updateBefore</span>,
     })
+    await waitFor(() => {}, { timeout: 800 })
     const instance = screen.getByTestId("updateBtn")
     expect(instance.innerHTML).toBe("updateBefore")
     Notification.info({
@@ -202,6 +200,7 @@ describe("Open Notification", () => {
       id: "Before",
       action: <span data-testid="updateBtn">After</span>,
     })
+    await waitFor(() => {}, { timeout: 800 })
     expect(instance.innerHTML).toBe("After")
   })
 })
@@ -222,8 +221,10 @@ test("Notification renders with global config", async () => {
     title: "Old",
     id: "old",
   })
+  await waitFor(() => {}, { timeout: 800 })
   expect(screen.getByTestId("container")).toBeInTheDocument()
   expect(screen.getByTestId("container").firstChild).toBeInTheDocument()
+
   const instance = screen.getByText("Old")
   await waitFor(
     () => {
@@ -237,6 +238,6 @@ test("Notification renders with global config", async () => {
     title: "New",
     id: "new",
   })
-  expect(instance.innerHTML).not.toBe("Old")
-  expect(instance.innerHTML).toBe("New")
+  await waitFor(() => {}, { timeout: 800 })
+  expect(screen.getByText("New")).toBeInTheDocument()
 })

@@ -1,21 +1,31 @@
 /** @jsxImportSource @emotion/react */
-import React, { ReactInstance } from "react"
+import React, { forwardRef, useState, useCallback, useEffect } from "react"
 import ReactDOM from "react-dom"
 import {
   NotificationProps,
+  NoticeProps,
   ConfigProps,
   NoticePosition,
   NotificationType,
+  NotificationSet,
+  NotificationWrapper,
+  NotificationComponent,
 } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
 import { Notice } from "./notice"
-import BaseNotice from "./baseNotice"
 import { applyNotificationSlide, applyNotificationWrapper } from "./style"
 import * as _ from "lodash"
 
 let maxCount: number
 let duration: number
-let container: HTMLElement
+let container: HTMLElement = document.body
+
+function getId(noticeProps: NoticeProps) {
+  if (noticeProps.id) {
+    return noticeProps.id
+  }
+  return `illa_notice_id_${Date.now()}_${Math.random()}`
+}
 
 const notificationTypes: NotificationType[] = [
   "info",
@@ -24,128 +34,185 @@ const notificationTypes: NotificationType[] = [
   "warning",
   "normal",
 ]
-let notificationInstance: {
-  [propName: string]: Notification | null
-} = {}
 
-class Notification extends BaseNotice {
-  static success: (config: NotificationProps) => ReactInstance | null
+const notificationPositions: NoticePosition[] = [
+  "topLeft",
+  "topRight",
+  "bottomLeft",
+  "bottomRight",
+]
 
-  static info: (config: NotificationProps) => ReactInstance | null
+let notificationContainer: NotificationWrapper
+const initContainer = () => {
+  notificationContainer = {}
+  notificationPositions.forEach((position) => {
+    notificationContainer[position] = document.createElement("div")
+    container.appendChild(notificationContainer[position] as Node)
+  })
+}
+initContainer()
 
-  static warning: (config: NotificationProps) => ReactInstance | null
-
-  static error: (config: NotificationProps) => ReactInstance | null
-
-  static normal: (config: NotificationProps) => ReactInstance | null
-
-  static config = (options: ConfigProps = {}): void => {
-    if (options.maxCount) {
-      maxCount = options.maxCount
-    }
-    if (_.isFinite(options.duration)) {
-      duration = options.duration as number
-    }
-    if (options.getContainer && options.getContainer() !== container) {
-      container = options.getContainer()
-      Object.keys(notificationInstance).forEach((notice) =>
-        notificationInstance[notice]!.clear(),
-      )
-      notificationInstance = {}
-    }
-  }
-
-  static clear: () => void = () => {
-    Object.keys(notificationInstance).forEach((ins) => {
-      notificationInstance[ins]!.clear()
-    })
-  }
-
-  static remove: (id: string) => void = (id: string) => {
-    Object.keys(notificationInstance).forEach((ins) => {
-      notificationInstance[ins]!.remove(id)
-    })
-  }
-
-  static addInstance: (config: NotificationProps) => ReactInstance | null = (
-    noticeProps: NotificationProps,
-  ) => {
-    const { position = "topRight" } = noticeProps
-    const _noticeProps = {
-      duration,
-      ...noticeProps,
-    }
-    if (notificationInstance[position]) {
-      const notices = notificationInstance[position]!.state.notices
-      if (notices.length >= maxCount) {
-        const updated = notices[0]
-        notices.shift()
-        notificationInstance[position]!.add({
-          ..._noticeProps,
-          id: updated.id,
-        })
-      } else {
-        notificationInstance[position]!.add(_noticeProps)
+export const Notification: NotificationComponent = forwardRef<
+  HTMLDivElement,
+  NotificationProps
+>((props, ref) => {
+  const { notice, shouldClear, position = "topRight", removeId } = props
+  const [notificationSet, setNotificationSet] = useState<NotificationSet>({
+    topRight: [],
+    topLeft: [],
+    bottomLeft: [],
+    bottomRight: [],
+  })
+  const getRemoves = useCallback((id: string, notificationSet) => {
+    let removeIndex = -1,
+      pos = "topRight"
+    Object.keys(notificationSet).forEach((position) => {
+      const index = notificationSet[
+        position as keyof NotificationSet
+      ].findIndex((notice: NoticeProps) => notice.id === id)
+      if (index > -1) {
+        removeIndex = index
+        pos = position
       }
-      return notificationInstance[position]
+    })
+    return [removeIndex, pos]
+  }, [])
+
+  if (removeId !== void 0) {
+    const [index, pos] = getRemoves(removeId, notificationSet)
+
+    if (index > -1) {
+      const newNotices = notificationSet[pos as keyof NotificationSet].filter(
+        (notice) => notice.id !== removeId,
+      )
+      setNotificationSet({ ...notificationSet, [position]: newNotices })
     }
-    const div = document.createElement("div")
-    let instance = null
-    ;(container || document.body).appendChild(div)
-    ReactDOM.render(
-      <Notification
-        ref={(ref) => {
-          notificationInstance[position] = ref
-          notificationInstance[position]!.add(_noticeProps)
-          instance = notificationInstance[position]
-          return instance
-        }}
-      />,
-      div,
-    )
-    return instance
   }
 
-  render() {
-    const { notices, position = "topRight" } = this.state
-    return (
-      <div css={applyNotificationWrapper(position as NoticePosition)}>
-        <AnimatePresence>
-          {notices.map((notice) => (
-            <motion.div
-              key={notice.id}
-              layout
-              variants={applyNotificationSlide(position as NoticePosition)}
-              animate={"animate"}
-              exit={"exit"}
-              initial={"initial"}
-              transition={{ duration: 0.2 }}
-              onAnimationComplete={(definition) => {
-                if (definition === "exit") {
-                  notice.afterClose && notice.afterClose()
-                }
-              }}
-            >
-              <Notice
-                {...notice}
-                onClose={this.remove}
-                noticeType="Notification"
-              />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
-    )
+  useEffect(() => {
+    if (shouldClear) {
+      setNotificationSet({
+        ...notificationSet,
+        [position]: [],
+      })
+    }
+  }, [shouldClear])
+
+  const hasUpdate = notificationSet[position].findIndex(
+    (notice) => notice.update,
+  )
+  if (hasUpdate > -1) {
+    const newNotices = notificationSet[position].map((notice) => {
+      if (notice.update) {
+        delete notice.update
+      }
+      return notice
+    })
+    setNotificationSet({ ...notificationSet, [position]: newNotices })
   }
+
+  useEffect(() => {
+    if (notice) {
+      const isUpdate =
+        notificationSet[position].findIndex((item) => item.id === notice.id) >
+        -1
+      const _notice = { ...notice }
+      if (isUpdate) {
+        const newNotices = notificationSet[position].map((item) => {
+          if (item.id === _notice.id) {
+            _notice.update = true
+            return _notice
+          }
+          return item
+        })
+        setNotificationSet({ ...notificationSet, [position]: newNotices })
+      } else {
+        const newNotices = [...notificationSet[position]]
+        if (newNotices.length >= maxCount) {
+          newNotices.shift()
+        }
+        _notice.id = getId(_notice)
+        newNotices.push(_notice)
+        setNotificationSet({ ...notificationSet, [position]: newNotices })
+      }
+    }
+  }, [notice])
+
+  return (
+    <div ref={ref} css={applyNotificationWrapper(position as NoticePosition)}>
+      <AnimatePresence>
+        {notificationSet[position].map((notice) => (
+          <motion.div
+            key={notice.id}
+            layout
+            variants={applyNotificationSlide(position as NoticePosition)}
+            animate={"animate"}
+            exit={"exit"}
+            initial={"initial"}
+            transition={{ duration: 0.2 }}
+            onAnimationComplete={(definition) => {
+              if (definition === "exit") {
+                notice.afterClose && notice.afterClose()
+              }
+            }}
+          >
+            <Notice {...notice} noticeType="Notification" />
+          </motion.div>
+        ))}
+      </AnimatePresence>
+    </div>
+  )
+}) as NotificationComponent
+
+Notification.remove = (id: string) => {
+  notificationPositions.forEach((position) => {
+    ReactDOM.render(
+      <Notification removeId={id} position={position} />,
+      notificationContainer[position] as HTMLDivElement,
+    )
+  })
+}
+
+Notification.add = (notice: NoticeProps) => {
+  const { position = "topRight" } = notice
+  const noticeProps = {
+    duration,
+    ...notice,
+  }
+  ReactDOM.render(
+    <Notification notice={noticeProps} position={position} />,
+    notificationContainer[position] as HTMLDivElement,
+  )
+}
+
+Notification.config = (options: ConfigProps = {}) => {
+  if (options.maxCount) {
+    maxCount = options.maxCount
+  }
+  if (_.isFinite(options.duration)) {
+    duration = options.duration as number
+  }
+  if (options.getContainer && options.getContainer() !== container) {
+    container = options.getContainer()
+    Notification.clear()
+    initContainer()
+  }
+}
+Notification.clear = () => {
+  notificationPositions.forEach((position) => {
+    ReactDOM.render(
+      <Notification shouldClear position={position} />,
+      notificationContainer[position] as HTMLDivElement,
+    )
+  })
 }
 
 notificationTypes.forEach((type) => {
-  Notification[type] = (noticeProps: NotificationProps) => {
-    return Notification.addInstance({
+  Notification[type] = (noticeProps: NoticeProps) => {
+    return Notification.add({
       ...noticeProps,
       type,
     })
   }
 })
-
-export default Notification
+Notification.displayName = "Notification"

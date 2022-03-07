@@ -24,7 +24,7 @@ import {
   InfoCircleIcon,
 } from "@illa-design/icon"
 import { AlertType } from "@illa-design/alert"
-
+import { Notification } from "./notification"
 const iconMap = {
   info: <InfoCircleIcon />,
   success: <RightIcon />,
@@ -62,7 +62,8 @@ export const Notice = forwardRef<HTMLDivElement, NoticeProps>((props, ref) => {
     }
   }, [update, duration])
   const handleClose = () => {
-    onClose && onClose(id as string)
+    onClose && onClose()
+    Notification.remove(id as string)
   }
   const removeTimer = () => {
     if (timerRef.current) {

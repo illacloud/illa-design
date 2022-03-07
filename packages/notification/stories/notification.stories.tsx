@@ -3,11 +3,12 @@ import { Meta, Story } from "@storybook/react"
 import { SearchIcon } from "@illa-design/icon"
 import { Space } from "@illa-design/space"
 import { Button, ButtonGroup } from "@illa-design/button"
-import Notification, { NotificationProps } from "../src"
+import { Notification, NotificationProps, Notice } from "../src"
+import { NoticeProps } from "../dist/types"
 
 export default {
   title: "FEEDBACK/Notification",
-  component: Notification,
+  component: Notice,
   argTypes: {
     icon: {
       control: false,
@@ -36,7 +37,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<NotificationProps> = (args) => {
+const Template: Story<NoticeProps> = (args) => {
   return (
     <>
       <Space direction={"vertical"}>
@@ -54,6 +55,9 @@ const Template: Story<NotificationProps> = (args) => {
               style: { width: 500 },
               afterClose: () => {
                 console.log("complete animate")
+              },
+              onClose: () => {
+                console.log("closing")
               },
             })
           }}
@@ -116,7 +120,7 @@ const Template: Story<NotificationProps> = (args) => {
               id: "need_update_duration",
               title: "Ready to update",
               content: "Will update after 2 seconds...",
-              duration: 3000,
+              duration: 8000,
             })
             window.setTimeout(() => {
               Notification.success({
@@ -134,34 +138,11 @@ const Template: Story<NotificationProps> = (args) => {
         </Button>
         <Button
           onClick={() => {
-            Notification.config({
-              getContainer: () => {
-                const isIFrame = (
-                  input: HTMLElement | null,
-                ): input is HTMLIFrameElement =>
-                  input !== null && input.tagName === "IFRAME"
-                let frame = document.getElementById("Container")
-                let doc = document.body
-                if (isIFrame(frame) && frame.contentWindow) {
-                  doc = frame.contentWindow.document.body
-                }
-                return doc
-              },
-            })
-          }}
-        >
-          Open Container Notification
-        </Button>
-        <Button
-          onClick={() => {
             Notification.clear()
           }}
         >
           Clear
         </Button>
-        <iframe id={"Container"} style={{ width: 750, height: 600 }}>
-          <div>Hello</div>
-        </iframe>
       </Space>
     </>
   )
