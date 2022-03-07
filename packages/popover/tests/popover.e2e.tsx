@@ -6,7 +6,7 @@ import "@testing-library/cypress"
 
 it("Popover renders correctly", () => {
   mount(
-    <Popover content="Popover">
+    <Popover content="Popover" closeDelay={0} openDelay={0} position={"bottom"}>
       <Button>Hello</Button>
     </Popover>,
   )
