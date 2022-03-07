@@ -26,7 +26,7 @@ export function applySwitch(
   const isInnerColor: boolean = innerColor.indexOf(colorScheme) > -1
   let bgc = checked
     ? isInnerColor
-      ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
+      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
       : colorScheme
     : globalColor(`--${illaPrefix}-gray-06`)
   return css`

@@ -23,6 +23,7 @@ import {
   applyAlertContentWrapper,
   applyAlertIcon,
   applyAlertTitle,
+  applyAlertContainer,
 } from "./style"
 
 const iconMap = {
@@ -60,6 +61,8 @@ const variants = {
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const {
+    style,
+    className,
     title,
     action,
     closable,
@@ -87,13 +90,16 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     <AnimatePresence>
       {visible && (
         <motion.div
+          css={applyAlertContainer(type, !!content, !!banner)}
+          style={style}
+          className={className}
           variants={variants}
           animate={"show"}
           exit={"hidden"}
           initial={"enter"}
           ref={ref}
         >
-          <div css={applyAlert(type, !!content, !!banner)} {...restProps}>
+          <div css={applyAlert(!!content)} {...restProps}>
             {showIcon && (
               <div css={applyAlertIcon(type, !!content)}>{renderIcon}</div>
             )}

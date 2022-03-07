@@ -4,7 +4,7 @@
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/avatar
 ```
 
@@ -55,7 +55,6 @@ import { Avatar } from "@illa-dedign/avatar"
 ### 设置头像大小
 
 ```jsx
-<Avatar />
 <Avatar size="small">Small</Avatar>
 ```
 
@@ -70,21 +69,18 @@ import { Avatar } from "@illa-dedign/avatar"
 ### 设置头像的图标
 
 ```jsx
-<Avatar />
 <Avatar icon={<CloseIcon />} />
 ```
 
 ### 设置头像的图片
 
 ```jsx
-<Avatar />
 <Avatar src='https://bit.ly/dan-abramov' />
 ```
 
 ### 设置头像的文字
 
 ```jsx
-<Avatar />
 <Avatar text="e" />
 ```
 

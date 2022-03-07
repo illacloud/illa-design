@@ -18,28 +18,32 @@ export const Popover: FC<PopoverProps> = (props) => {
 
   return (
     <Trigger
-      {...otherProps}
       colorScheme={colorScheme}
       trigger={trigger}
+      closeOnClick={closeOnClick}
       hasCloseIcon={hasCloseIcon}
       content={
         <div css={applyTypographyContainer}>
           <Typography>
             {title && (
-              <Heading
-                css={applyTitleColor(colorScheme)}
-                colorScheme={colorScheme == "white" ? "gray" : "white"}
-                title={title}
-                ellipsis={false}
-                level="h6"
-              >
-                {title}
-              </Heading>
+              <>
+                <Heading
+                  css={applyTitleColor(colorScheme)}
+                  colorScheme={colorScheme == "white" ? "gray" : "white"}
+                  title={title}
+                  ellipsis={false}
+                  level="h6"
+                >
+                  {title}
+                </Heading>
+                <div style={{ height: "4px" }} />
+              </>
             )}
             {content}
           </Typography>
         </div>
       }
+      {...otherProps}
     >
       {props.children}
     </Trigger>

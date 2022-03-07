@@ -21,7 +21,7 @@ test("RadioGroup disabled renders correctly", () => {
       options={["disabledA", "disabledB"]}
       data-testid="radio-group-disabled"
       disabled
-    ></RadioGroup>,
+    />,
   )
   expect(screen.getByTestId("radio-group-disabled")).toBeInTheDocument()
   expect(screen.getByLabelText("disabledA")).toBeDisabled()
@@ -30,10 +30,7 @@ test("RadioGroup disabled renders correctly", () => {
 
 test("RadioGroup options renders correctly", () => {
   render(
-    <RadioGroup
-      options={["A", "B", "C"]}
-      data-testid="radio-group-options"
-    ></RadioGroup>,
+    <RadioGroup options={["A", "B", "C"]} data-testid="radio-group-options" />,
   )
   expect(screen.getByTestId("radio-group-options")).toBeInTheDocument()
 })
@@ -47,7 +44,7 @@ test("RadioGroup render with options", () => {
         { value: "C", label: "C", disabled: false },
       ]}
       data-testid="radio-group-options"
-    ></RadioGroup>,
+    />,
   )
   expect(screen.getByTestId("radio-group-options")).toBeInTheDocument()
   expect(screen.getByLabelText("B")).toBeDisabled()
@@ -55,10 +52,7 @@ test("RadioGroup render with options", () => {
 
 test("RadioGroup render with value", () => {
   render(
-    <RadioGroup
-      options={["valueA", "valueB", "valueC"]}
-      value={"valueA"}
-    ></RadioGroup>,
+    <RadioGroup options={["valueA", "valueB", "valueC"]} value={"valueA"} />,
   )
   expect(screen.getByLabelText("valueA")).toBeChecked()
 })
@@ -69,7 +63,7 @@ test("RadioGroup options render with spacing", () => {
       data-testid="radio-group-spacing"
       options={["A", "B", "C"]}
       spacing="15px"
-    ></RadioGroup>,
+    />,
   )
   expect(screen.getByTestId("radio-group-spacing")).toBeInTheDocument()
   expect(screen.getByTestId("radio-group-spacing")).toHaveStyle(`
@@ -83,7 +77,7 @@ test("RadioGroup options render with spacing", () => {
       data-testid="radio-group-spacing-16"
       options={["A", "B", "C"]}
       spacing={16}
-    ></RadioGroup>,
+    />,
   )
   expect(screen.getByTestId("radio-group-spacing-16")).toBeInTheDocument()
   expect(screen.getByTestId("radio-group-spacing-16")).toHaveStyle(`
@@ -97,7 +91,7 @@ test("RadioGroup options render with direction", () => {
       data-testid="radio-group-direction"
       options={["directionA", "directionB", "directionC"]}
       direction="horizontal"
-    ></RadioGroup>,
+    />,
   )
   expect(screen.getByTestId("radio-group-direction")).toBeInTheDocument()
   expect(screen.getByTestId("radio-group-direction")).toHaveStyle(`
@@ -111,7 +105,7 @@ test("RadioGroup options render with direction vertical", () => {
       data-testid="radio-group-vertical"
       options={["A", "B", "C"]}
       direction="vertical"
-    ></RadioGroup>,
+    />,
   )
   expect(screen.getByTestId("radio-group-vertical")).toBeInTheDocument()
   expect(screen.getByTestId("radio-group-vertical")).toHaveStyle(`
@@ -120,11 +114,7 @@ test("RadioGroup options render with direction vertical", () => {
 })
 
 test("RadioGroup render with click", async () => {
-  render(
-    <RadioGroup
-      options={["GroupClickA", "GroupClickB", "GroupClickC"]}
-    ></RadioGroup>,
-  )
+  render(<RadioGroup options={["GroupClickA", "GroupClickB", "GroupClickC"]} />)
   const GroupClickA = screen.getByLabelText("GroupClickA")
   const GroupClickB = screen.getByLabelText("GroupClickB")
 

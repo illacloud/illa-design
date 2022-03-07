@@ -4,7 +4,7 @@ The progress component provides feedback on the running status of tasks in the p
 
 ## Installation
 
-```jsx
+```bash
 yarn add @illa-design/progress
 ```
 

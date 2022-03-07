@@ -34,7 +34,13 @@ export const Basic: Story<TriggerProps> = (args) => {
             <Button>LEFT</Button>
           </Trigger>
           <Trigger {...args} position="lb" content="LB">
-            <Button>LB</Button>
+            <Button
+              onClick={() => {
+                console.log("根本搞不定")
+              }}
+            >
+              LB
+            </Button>
           </Trigger>
         </Space>
         <Space direction="vertical">

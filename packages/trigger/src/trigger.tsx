@@ -7,7 +7,8 @@ import {
   MutableRefObject,
   ReactElement,
   ReactNode,
-  RefCallback,
+  Ref,
+  RefObject,
   useContext,
   useEffect,
   useRef,
@@ -45,6 +46,48 @@ import {
 } from "@illa-design/config-provider"
 import useMeasure from "react-use/lib/useMeasure"
 import useClickAway from "react-use/lib/useClickAway"
+
+type ReactRef<T> = Ref<T> | RefObject<T> | MutableRefObject<T>
+
+// Function assertions
+function isFunction<T extends Function = Function>(value: any): value is T {
+  return typeof value === "function"
+}
+
+/**
+ * Assigns a value to a ref function or object
+ *
+ * @param ref the ref to assign to
+ * @param value the value
+ */
+function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
+  if (ref == null) return
+
+  if (isFunction(ref)) {
+    ref(value)
+    return
+  }
+
+  try {
+    // @ts-ignore
+    ref.current = value
+  } catch (error) {
+    throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
+  }
+}
+
+/**
+ * Combine multiple React refs into a single ref function.
+ * This is used mostly when you need to allow consumers forward refs to
+ * internal components
+ *
+ * @param refs refs to assign to value to
+ */
+function mergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
+  return (node: T | null) => {
+    refs.forEach((ref) => assignRef(ref, node))
+  }
+}
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -109,7 +152,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
           colorScheme={colorScheme == "white" ? "blue" : "white"}
           css={applyCloseButton}
           onClick={() => {
-            setTipsVisible(false)
+            if (popupVisible == undefined) {
+              setTipsVisible(false)
+            }
             if (onVisibleChange != undefined) {
               onVisibleChange(false)
             }
@@ -226,7 +271,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const showTips = () => {
     delayTodo(async () => {
-      if (!tipVisible) {
+      if (!tipVisible && childrenRef.current != null) {
         const result = await adjustLocation(
           tipsNode,
           childrenRef.current,
@@ -235,7 +280,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
         )
         // async deal
         setAdjustResult(result)
-        setTipsVisible(true)
+        if (popupVisible == undefined) {
+          setTipsVisible(true)
+        }
         if (onVisibleChange != undefined) {
           onVisibleChange(true)
         }
@@ -246,7 +293,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
   const hideTips = () => {
     delayTodo(() => {
       if (tipVisible) {
-        setTipsVisible(false)
+        if (popupVisible == undefined) {
+          setTipsVisible(false)
+        }
         if (onVisibleChange != undefined) {
           onVisibleChange(false)
         }
@@ -258,27 +307,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
     <motion.div
       ref={tipsRef}
       css={applyMotionDiv()}
-      variants={applyAnimation(finalPosition)}
+      variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
       animate="animate"
       exit="exit"
       onClick={() => {
-        if (
-          !disabled &&
-          trigger == "click" &&
-          clickOutsideToClose &&
-          popupVisible == undefined
-        ) {
+        if (!disabled && trigger == "click" && clickOutsideToClose) {
           showTips()
         }
       }}
       onMouseEnter={() => {
-        if (!disabled && trigger == "hover" && popupVisible == undefined) {
+        if (!disabled && trigger == "hover") {
           showTips()
         }
       }}
       onMouseLeave={() => {
-        if (!disabled && trigger == "hover" && popupVisible == undefined) {
+        if (!disabled && trigger == "hover") {
           hideTips()
         }
       }}
@@ -288,95 +332,111 @@ export const Trigger: FC<TriggerProps> = (props) => {
   )
 
   useClickAway(childrenRef, () => {
-    if (
-      !disabled &&
-      trigger == "click" &&
-      clickOutsideToClose &&
-      popupVisible == undefined
-    ) {
+    if (!disabled && clickOutsideToClose) {
       hideTips()
     }
   })
 
   useEffect(() => {
     let isMount = true
-    if (tipVisible) {
-      adjustLocation(
-        tipsNode,
-        childrenRef.current,
-        position,
-        autoFitPosition,
-      ).then((result) => {
-        // async deal
-        if (isMount) {
-          setAdjustResult(result)
-          if (onVisibleChange != undefined) {
-            onVisibleChange(true)
-          }
-        }
-      })
-    } else if (
-      !disabled &&
-      (popupVisible || (popupVisible == undefined && defaultPopupVisible))
-    ) {
-      adjustLocation(
-        tipsNode,
-        childrenRef.current,
-        position,
-        autoFitPosition,
-      ).then((result) => {
-        // async deal
-        if (isMount) {
-          setAdjustResult(result)
-          if (!tipVisible) {
-            setTipsVisible(true)
+    if (!disabled && childrenRef.current != null) {
+      if (tipVisible && popupVisible == undefined) {
+        adjustLocation(
+          tipsNode,
+          childrenRef.current,
+          position,
+          autoFitPosition,
+        ).then((result) => {
+          // async deal
+          if (isMount) {
+            setAdjustResult(result)
             if (onVisibleChange != undefined) {
               onVisibleChange(true)
             }
           }
-        }
-      })
+        })
+      } else if (
+        popupVisible ||
+        (popupVisible == undefined && defaultPopupVisible)
+      ) {
+        adjustLocation(
+          tipsNode,
+          childrenRef.current,
+          position,
+          autoFitPosition,
+        ).then((result) => {
+          // async deal
+          if (isMount) {
+            setAdjustResult(result)
+            if (!tipVisible) {
+              setTipsVisible(true)
+              if (onVisibleChange != undefined) {
+                onVisibleChange(true)
+              }
+            }
+          }
+        })
+      } else if (popupVisible == false) {
+        adjustLocation(
+          tipsNode,
+          childrenRef.current,
+          position,
+          autoFitPosition,
+        ).then((result) => {
+          // async deal
+          if (isMount) {
+            setAdjustResult(result)
+            if (tipVisible) {
+              setTipsVisible(false)
+              if (onVisibleChange != undefined) {
+                onVisibleChange(false)
+              }
+            }
+          }
+        })
+      }
     }
     return () => {
       isMount = false
       window.clearTimeout(timeOutHandlerId)
     }
-  }, [popupVisible, position, content, disabled, measureInfo])
+  }, [
+    popupVisible,
+    position,
+    content,
+    disabled,
+    autoAlignPopupWidth,
+    measureInfo,
+  ])
 
   const newProps = {
-    ref: (rawRef: HTMLElement | null) => {
-      if (rawRef != null) {
-        measureRef(rawRef)
-        childrenRef.current = rawRef
-      }
-    },
     onMouseEnter: () => {
-      if (!disabled && trigger == "hover" && popupVisible == undefined) {
+      if (!disabled && trigger == "hover") {
         showTips()
       }
     },
     onMouseLeave: () => {
-      if (!disabled && trigger == "hover" && popupVisible == undefined) {
+      if (!disabled && trigger == "hover") {
         hideTips()
       }
     },
     onFocus: () => {
-      if (!disabled && trigger == "focus" && popupVisible == undefined) {
+      if (!disabled && trigger == "focus") {
         showTips()
       }
     },
     onBlur: () => {
-      if (!disabled && trigger == "focus" && popupVisible == undefined) {
+      if (!disabled && trigger == "focus") {
         hideTips()
       }
     },
     onClick: () => {
       switch (trigger) {
         case "click":
-          if (!disabled && popupVisible == undefined) {
+          if (!disabled) {
             if (!tipVisible) {
               showTips()
-            } else {
+            } else if (tipVisible) {
               if (closeOnClick) {
                 hideTips()
               }
@@ -385,12 +445,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           break
         case "hover":
         case "focus":
-          if (
-            !disabled &&
-            popupVisible == undefined &&
-            closeOnClick &&
-            tipVisible
-          ) {
+          if (!disabled && closeOnClick && tipVisible) {
             hideTips()
           }
           break
@@ -404,17 +459,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
         Children.map(props.children, (child) => {
           if (isValidElement(child)) {
             const finalProps = {
-              ref: (rawRef: HTMLElement | null) => {
-                newProps.ref(rawRef)
-                if ((child as ReactElement).props?.ref != undefined) {
-                  const newRef = (child as ReactElement).props?.ref
-                  if (typeof newRef == "function") {
-                    ;(newRef as RefCallback<any>).call(rawRef, undefined)
-                  } else if (typeof newRef == "object") {
-                    ;(newRef as MutableRefObject<any>).current = rawRef
-                  }
-                }
-              },
+              ref: mergeRefs(
+                (child as ReactElement).props?.ref ?? null,
+                measureRef,
+                childrenRef,
+              ),
               onMouseEnter: (e: Event) => {
                 newProps.onMouseEnter()
                 ;(child as ReactElement).props?.onMouseEnter?.call(e)

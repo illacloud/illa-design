@@ -27,9 +27,10 @@ jobs:
         with:
           path: |
             **/node_modules
+            ~/Library/Caches/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Build
         run: |
@@ -62,15 +63,16 @@ jobs:
         with:
           path: |
             **/node_modules
+            ~/Library/Caches/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
 
       - name: Build Components
         run: |
           yarn build-all-components
 
-      - name: Run test
-        uses: cypress-io/github-action@v2
+      - name: Run Test
         run: |
           yarn test
