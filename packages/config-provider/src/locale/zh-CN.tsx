@@ -17,4 +17,10 @@ export const zhCN = {
     page: "页",
     go: "前往",
   },
+  upload: {
+    upload: "上传",
+    dragTip: "拖拽文件至此处",
+    selectFile: "选择文件",
+    beginUpload: "开始上传",
+  },
 } as Locale

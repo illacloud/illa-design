@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/popover",
+  "name": "@illa-design/upload",
   "version": "0.0.0",
-  "description": "Illa Design base.",
+  "description": "Illa Design Upload.",
   "keywords": [
-    "popover",
+    "upload",
     "react",
     "component"
   ],
@@ -30,20 +30,22 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/popover"
+    "directory": "packages/upload"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build",
-    "e2e:ci": "npx cypress run-ct",
-    "e2e": "npx cypress open-ct"
+    "build": "tsc && vite build"
   },
   "dependencies": {
-    "@illa-design/system": "*",
-    "@illa-design/theme": "*",
-    "@illa-design/trigger": "*",
-    "@illa-design/typography": "*"
+    "@illa-design/icon": "*",
+    "@illa-design/image": "*",
+    "@illa-design/list": "*",
+    "@illa-design/progress": "*",
+    "sinon": "^13.0.1"
+  },
+  "devDependencies": {
+    "sinon": "^13.0.1"
   }
 }

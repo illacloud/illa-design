@@ -4,7 +4,7 @@ The Link component is used to display links.
 
 ## Installlation
 
-```jsx
+```bash
 yarn add @illa-design/link
 ```
 
@@ -21,7 +21,7 @@ import { Link } from "@illa-dedign/link"
 | Props       | Desc                                            | Type                                                         | Default   |
 | ----------- | ----------------------------------------------- | ------------------------------------------------------------ | --------- |
 | colorScheme | Color of the link                               | `"white" \|"blackAlpha" \|"gray" \|"grayBlue" \|"red" \|"orange" \|"yellow" \|"green" \|"blue" \|"cyan" \|"purple" ` | `"blue"`  |
-| icon        | Setting the default when icon=true              | `ReactNode\| boolean`                                        | `-`禁用   |
+| icon        | Setting the default when icon=true              | `ReactNode\| boolean`                                        | `-`   |
 | disabled    | The link is disabled or not                     | `boolean`                                                    | `"small"` |
 | hoverable   | Showing the under color of the link while hover | `boolean`                                                    | `-`       |
 
@@ -38,14 +38,12 @@ import { Link } from "@illa-dedign/link"
 ### Disabled
 
 ```jsx
-<Link />
 <Link disabled> Link </Link>>
 ```
 
 ### Set link's color
 
 ```jsx
-<Link />
 <Link colorScheme="yellow"> Link </Link>
 
 ```
@@ -53,7 +51,6 @@ import { Link } from "@illa-dedign/link"
 ## Set link's hover under color
 
 ```jsx
-<Link />
 <Link hoverable={false}> Link </Link>
 ```
 
