@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Trigger } from "../src"
+import { Trigger } from "@illa-design/Trigger"
 import { Button } from "@illa-design/button"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
