@@ -16,18 +16,18 @@ it("Trigger renders correctly", () => {
   unmount()
 })
 
-// it("Trigger renders with close button", () => {
-//   mount(
-//     <Trigger content="Trigger Success Custom" hasCloseIcon trigger="click">
-//       <Button>Hello Trigger Custom</Button>
-//     </Trigger>,
-//   )
-//   cy.findByText("Hello Trigger Custom").trigger("click")
-//   cy.findByText("Close").should("exist")
-//   cy.findByText("Close").trigger("click")
-//   cy.findByText("Trigger Success Custom").should("not.exist")
-//   unmount()
-// })
+it("Trigger renders with close button", () => {
+  mount(
+    <Trigger content="Trigger Success Custom" hasCloseIcon trigger="click">
+      <Button>Hello Trigger Custom</Button>
+    </Trigger>,
+  )
+  cy.findByText("Hello Trigger Custom").trigger("click")
+  cy.findByText("Close").should("exist")
+  cy.findByText("Close").trigger("click")
+  cy.findByText("Trigger Success Custom").should("not.exist")
+  unmount()
+})
 
 it("Trigger renders with different color", () => {
   mount(
