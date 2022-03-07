@@ -42,9 +42,9 @@
   ],
   "scripts": {
     "build-develop": "sh ./scripts/build-develop.sh",
-    "storybook": "yarn test && yarn start-storybook -p 6006",
+    "storybook": "build-all-components && yarn start-storybook -p 6006",
     "build-all-components": "npx turbo run build",
-    "build-storybook": "yarn test && yarn build-storybook",
+    "build-storybook": "build-all-components && yarn build-storybook",
     "test": "npx patch-package && yarn build-all-components && npx jest && npx turbo run e2e:ci",
     "unit-test": "yarn build-all-components && npx jest",
     "lint": "prettier --write \"packages/**/*.{ts,tsx}\"",
