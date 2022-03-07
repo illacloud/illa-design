@@ -6,7 +6,7 @@ on:
 
 jobs:
   install:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -39,7 +39,7 @@ jobs:
     needs:
       - install
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
