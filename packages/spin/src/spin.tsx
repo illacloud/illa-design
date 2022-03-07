@@ -8,7 +8,10 @@ import {
   containerCss,
   tipCss,
 } from "./styles"
-import { isObject } from "@illa-design/badge"
+
+export function isObject(obj: any): obj is { [key: string]: any } {
+  return Object.prototype.toString.call(obj) === "[object Object]"
+}
 
 export const Spin = forwardRef<HTMLDivElement, SpinProps>((props, ref) => {
   const {
