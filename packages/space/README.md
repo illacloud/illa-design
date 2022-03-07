@@ -4,14 +4,14 @@ Space is used to set the spacing and arrangement between components.
 
 ## Installation
 
-```jsx
+```bash
 yarn add @illa-design/space
 ```
 
 ## Import component
 
 ```jsx
-import { space } from "@illa-dedign/space"
+import { Space } from "@illa-dedign/space"
 ```
 
 ## API
@@ -20,11 +20,11 @@ import { space } from "@illa-dedign/space"
 
 | Props     | Desc                                  | Type                                               | Default      |
 | --------- | ------------------------------------- | -------------------------------------------------- | ------------ |
-| size      | The space between the each child      | "mini" \| "small" \| "medium" \| "large" \| string     | "small"      |
-| align     | Setting alignment                     | "start" \| "center" \| "end" \| "baseline"         | "center"     |
-| direction | Setting arrangement direction         | "vertical" \| "horizontal"                         | "horizontal" |
-| divider   | Adding divider between the each child | boolean                                            | -        |
-| wrap      | setting wrap                          | boolean                                            | -        |
+| size      | The space between the each child      | `"mini" \| "small" \| "medium" \| "large" \| string`     | `small`      |
+| align     | Setting alignment                     | `"start" \| "center" \| "end" \| "baseline"`         | `center`     |
+| direction | Setting arrangement direction         | `"vertical" \| "horizontal"`                         | `horizontal` |
+| divider   | Adding divider between the each child | `boolean `                                           | `- `       |
+| wrap      | setting wrap                          | `boolean`                                            |` -  `      |
 
 ## Example
 
@@ -44,10 +44,10 @@ import { space } from "@illa-dedign/space"
 
 ```jsx
 <Space alige="start">
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```
 
@@ -55,10 +55,10 @@ import { space } from "@illa-dedign/space"
 
 ```jsx
 <Space direction="vertical">
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```
 
@@ -66,10 +66,10 @@ import { space } from "@illa-dedign/space"
 
 ```jsx
 <Space divider>
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```
 
@@ -77,9 +77,9 @@ import { space } from "@illa-dedign/space"
 
 ```jsx
 <Space wrap>
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
+  <Tag>Hello</Tag>
+  <Tag size="small">Small</Tag>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="large">Large</Tag>
 </Space>
 ```

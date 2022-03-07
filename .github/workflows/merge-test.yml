@@ -27,7 +27,7 @@ jobs:
         with:
           path: |
             **/node_modules
-            ~/.cache
+            ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -73,7 +73,8 @@ jobs:
         run: |
           yarn build-all-components
 
-      - uses: cypress-io/github-action@v2
+      - name: Run Test
+        uses: cypress-io/github-action@v2
         with:
           install: false
           command: yarn test
