@@ -22,6 +22,7 @@ import {
   NextIcon,
   MoreIcon,
   InfoCircleIcon,
+  LoadingGradientIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -70,3 +71,6 @@ export const InfoCircle: Story<IconProps> = (props) => (
 export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
 export const Next: Story<IconProps> = (props) => <NextIcon {...props} />
 export const More: Story<IconProps> = (props) => <MoreIcon {...props} />
+export const LoadingGradient: Story<IconProps> = (props) => (
+  <LoadingGradientIcon {...props} />
+)
