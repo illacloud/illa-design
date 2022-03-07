@@ -37,6 +37,10 @@ test("Select renders with error", () => {
 test("Select renders with size", () => {
   render(<Select value={1} options={[1, 2, 3]} size="large" />)
   render(<Select value={"a"} options={["a", "b", "c"]} size="small" />)
-  expect(screen.getByText("1")?.parentElement?.parentElement).toBeInTheDocument()
-  expect(screen.getByText("a")?.parentElement?.parentElement).toBeInTheDocument()
+  expect(
+    screen.getByText("1")?.parentElement?.parentElement,
+  ).toBeInTheDocument()
+  expect(
+    screen.getByText("a")?.parentElement?.parentElement,
+  ).toBeInTheDocument()
 })
