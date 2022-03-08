@@ -20,10 +20,10 @@ import { Row, Col } from "@illa-dedign/grid"
 
 | Props         | Desc                                                         | Type                                                         | Default |
 | ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------- |
-| horizontalGap | the size of the horizontal interval betweent grids, could be a string or an object like `{ xs: "4px", sm: "8px", md: "12px"}` | `string | GridSize`                                          | `0px`   |
-| verticallGap  | The size of the vertical interval betweent grids, could be a string or an object like `{ xs: "4px", sm: "8px", md: "12px"}` | `string |GridSize`                                           | `0px`   |
-| align         | Vertical alignment                                           | `"start" | "center" | "end" | "stretch"`                     | `start` |
-| justify       | Horizontal alignment                                         | `"start" | "center" | "end" | "space-around" | "space-between"` | `start` |
+| horizontalGap | the size of the horizontal interval betweent grids, could be a string or an object like `{ xs: "4px", sm: "8px", md: "12px"}` | `string \| GridSize`                                          | `0px`   |
+| verticallGap  | The size of the vertical interval betweent grids, could be a string or an object like `{ xs: "4px", sm: "8px", md: "12px"}` | `string \|GridSize`                                           | `0px`   |
+| align         | Vertical alignment                                           | `"start" \| "center" \| "end" \| "stretch"`                     | `start` |
+| justify       | Horizontal alignment                                         | `"start" \| "center" \| "end" \| "space-around" \| "space-between"` | `start` |
 
 ### Col Basic Properties
 
@@ -34,12 +34,12 @@ import { Row, Col } from "@illa-dedign/grid"
 | order  | Raster order                                     | `number`                          | `-`     |
 | push   | Move the raster to right                         | `number`                          | `-`     |
 | pull   | Move the raster to rleft                         | `number`                          | `-`     |
-| xs     | Responsive configuration when `screen< 576px `   | `number | { [key: string]: any }` | `-`     |
-| sm     | Responsive configuration when `screen>= 576px`   | `number | { [key: string]: any }` | `-`     |
-| md     | Responsive configuration when `screen>= 768px `  | `number | { [key: string]: any }` | `-`     |
-| lg     | Responsive configuration when `screen>= 992px `  | `number | { [key: string]: any }` | `-`     |
-| xl     | Responsive configuration when `screen>= 1200px ` | `number | { [key: string]: any }` | `-`     |
-| xxl    | Responsive configuration when `screen>= 1600px ` | `number | { [key: string]: any }` | `-`     |
+| xs     | Responsive configuration when `screen< 576px `   | `number \| { [key: string]: any }` | `-`     |
+| sm     | Responsive configuration when `screen>= 576px`   | `number \| { [key: string]: any }` | `-`     |
+| md     | Responsive configuration when `screen>= 768px `  | `number \| { [key: string]: any }` | `-`     |
+| lg     | Responsive configuration when `screen>= 992px `  | `number \| { [key: string]: any }` | `-`     |
+| xl     | Responsive configuration when `screen>= 1200px ` | `number \| { [key: string]: any }` | `-`     |
+| xxl    | Responsive configuration when `screen>= 1600px ` | `number \| { [key: string]: any }` | `-`     |
 
 
 
