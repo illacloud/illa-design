@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import {
-  Children,
   cloneElement,
   FC,
   isValidElement,
@@ -18,6 +17,7 @@ import { TriggerProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
+  applyChildrenContainer,
   applyCloseButton,
   applyCloseContentCss,
   applyDefaultContentSize,
@@ -44,15 +44,11 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
-import useMeasure from "react-use/lib/useMeasure"
 import useClickAway from "react-use/lib/useClickAway"
+import useMeasure from "react-use/lib/useMeasure"
+import { isFunction, isObject } from "@illa-design/system"
 
 type ReactRef<T> = Ref<T> | RefObject<T> | MutableRefObject<T>
-
-// Function assertions
-function isFunction<T extends Function = Function>(value: any): value is T {
-  return typeof value === "function"
-}
 
 /**
  * Assigns a value to a ref function or object
@@ -63,16 +59,31 @@ function isFunction<T extends Function = Function>(value: any): value is T {
 function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
   if (ref == null) return
 
-  if (isFunction(ref)) {
-    ref(value)
-    return
-  }
+  if (isObject(value)) {
+    if (isFunction(ref)) {
+      // @ts-ignore
+      ref(value?.dom)
+      return
+    }
 
-  try {
-    // @ts-ignore
-    ref.current = value
-  } catch (error) {
-    throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
+    try {
+      // @ts-ignore
+      ref.current = value?.dom
+    } catch (error) {
+      throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
+    }
+  } else {
+    if (isFunction(ref)) {
+      ref(value)
+      return
+    }
+
+    try {
+      // @ts-ignore
+      ref.current = value
+    } catch (error) {
+      throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
+    }
   }
 }
 
@@ -114,8 +125,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const tipsRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
 
-  const [measureRef, measureInfo] = useMeasure<HTMLElement>()
-
   const childrenRef = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
 
   const [adjustResult, setAdjustResult] = useState<AdjustResult>()
@@ -123,6 +132,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
     adjustResult?.opposite ?? false,
     position,
   )
+
+  const [measureRef, measureInfo] = useMeasure<HTMLElement>()
 
   // delay to do sth
   let timeOutHandlerId: number | undefined
@@ -453,53 +464,70 @@ export const Trigger: FC<TriggerProps> = (props) => {
     },
   }
 
-  return (
-    <>
-      {Children.count(props.children) > 0 &&
-        Children.map(props.children, (child) => {
-          if (isValidElement(child)) {
-            const finalProps = {
-              ref: mergeRefs(
-                (child as ReactElement).props?.ref ?? null,
-                measureRef,
-                childrenRef,
-              ),
-              onMouseEnter: (e: Event) => {
-                newProps.onMouseEnter()
-                ;(child as ReactElement).props?.onMouseEnter?.call(e)
-              },
-              onMouseLeave: (e: Event) => {
-                newProps.onMouseLeave()
-                ;(child as ReactElement).props?.onMouseLeave?.call(e)
-              },
-              onFocus: (e: Event) => {
-                newProps.onFocus()
-                ;(child as ReactElement).props?.onFocus?.call(e)
-              },
-              onBlur: (e: Event) => {
-                newProps.onBlur()
-                ;(child as ReactElement).props?.onBlur?.call(e)
-              },
-              onClick: (e: Event) => {
-                newProps.onClick()
-                ;(child as ReactElement).props?.onClick?.call(e)
-              },
-            }
-            return cloneElement(child as ReactElement, { ...finalProps })
-          }
-        })}
-      <AnimatePresence>
-        {!disabled && tipVisible && childrenRef.current != null ? (
-          <Popup
-            top={`${adjustResult?.transY}px`}
-            left={`${adjustResult?.transX}px`}
-          >
-            {tipsNode}
-          </Popup>
-        ) : null}
-      </AnimatePresence>
-    </>
+  const protalContent = (
+    <AnimatePresence>
+      {!disabled && tipVisible && childrenRef.current != null ? (
+        <Popup
+          top={`${adjustResult?.transY}px`}
+          left={`${adjustResult?.transX}px`}
+        >
+          {tipsNode}
+        </Popup>
+      ) : null}
+    </AnimatePresence>
   )
+
+  if (isValidElement(props.children)) {
+    const finalProps = {
+      ref: mergeRefs(
+        (props.children as ReactElement).props?.ref ?? null,
+        measureRef,
+        childrenRef,
+      ),
+      onMouseEnter: (e: Event) => {
+        newProps.onMouseEnter()
+        ;(props.children as ReactElement).props?.onMouseEnter?.call(e)
+      },
+      onMouseLeave: (e: Event) => {
+        newProps.onMouseLeave()
+        ;(props.children as ReactElement).props?.onMouseLeave?.call(e)
+      },
+      onFocus: (e: Event) => {
+        newProps.onFocus()
+        ;(props.children as ReactElement).props?.onFocus?.call(e)
+      },
+      onBlur: (e: Event) => {
+        newProps.onBlur()
+        ;(props.children as ReactElement).props?.onBlur?.call(e)
+      },
+      onClick: (e: Event) => {
+        newProps.onClick()
+        ;(props.children as ReactElement).props?.onClick?.call(e)
+      },
+    }
+    return (
+      <>
+        {cloneElement(props.children as ReactElement, { ...finalProps })}
+        {protalContent}
+      </>
+    )
+  } else {
+    return (
+      <span
+        css={applyChildrenContainer}
+        ref={(ref) => {
+          if (ref != null) {
+            measureRef(ref)
+            childrenRef.current = ref
+          }
+        }}
+        {...newProps}
+      >
+        {props.children}
+        {protalContent}
+      </span>
+    )
+  }
 }
 
 Trigger.displayName = "Trigger"

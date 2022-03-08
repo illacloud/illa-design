@@ -64,6 +64,10 @@
     "@illa-design/switch": "*",
     "@illa-design/alert": "*",
     "@illa-design/select": "*",
-    "@illa-design/grid": "*"
+    "@illa-design/grid": "*",
+    "@illa-design/pagination": "*",
+    "@illa-design/upload": "*",
+    "@illa-design/spin": "*",
+    "@illa-design/notification": "*"
   }
 }

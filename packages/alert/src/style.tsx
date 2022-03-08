@@ -44,6 +44,7 @@ export function applyAlert(hasContent: boolean) {
     align-items: ${align};
     overflow: hidden;
     width: 100%;
+    word-break: break-all;
   `
 }
 

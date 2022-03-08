@@ -23,6 +23,19 @@ import {
   MoreIcon,
   ExpandIcon,
   InfoCircleIcon,
+  DeleteIcon,
+  MinusIcon,
+  UploadIcon,
+  FileWordIcon,
+  FileDefaultIcon,
+  FileVideoIcon,
+  FileExcelIcon,
+  FileMusicIcon,
+  FilePdfIcon,
+  FilePictureIcon,
+  FileWPSIcon,
+  FilePPTIcon,
+  LoadingGradientIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -72,3 +85,28 @@ export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
 export const Next: Story<IconProps> = (props) => <NextIcon {...props} />
 export const Expand: Story<IconProps> = (props) => <ExpandIcon {...props} />
 export const More: Story<IconProps> = (props) => <MoreIcon {...props} />
+export const Minus: Story<IconProps> = (props) => <MinusIcon {...props} />
+export const Upload: Story<IconProps> = (props) => <UploadIcon {...props} />
+export const Delete: Story<IconProps> = (props) => <DeleteIcon {...props} />
+export const FileWord: Story<IconProps> = (props) => <FileWordIcon {...props} />
+export const FileDefault: Story<IconProps> = (props) => (
+  <FileDefaultIcon {...props} />
+)
+export const FileVideo: Story<IconProps> = (props) => (
+  <FileVideoIcon {...props} />
+)
+export const FileExcel: Story<IconProps> = (props) => (
+  <FileExcelIcon {...props} />
+)
+export const FileMusic: Story<IconProps> = (props) => (
+  <FileMusicIcon {...props} />
+)
+export const FilePdf: Story<IconProps> = (props) => <FilePdfIcon {...props} />
+export const FilePicture: Story<IconProps> = (props) => (
+  <FilePictureIcon {...props} />
+)
+export const FileWPS: Story<IconProps> = (props) => <FileWPSIcon {...props} />
+export const FilePPT: Story<IconProps> = (props) => <FilePPTIcon {...props} />
+export const LoadingGradient: Story<IconProps> = (props) => (
+  <LoadingGradientIcon {...props} />
+)

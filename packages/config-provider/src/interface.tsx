@@ -7,4 +7,5 @@ export interface Locale {
   trigger: Record<string, string>
   empty: Record<string, string>
   pagination: Record<string, string>
+  upload: Record<string, string>
 }

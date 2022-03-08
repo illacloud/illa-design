@@ -20,14 +20,14 @@ import { Input } from "@illa-design/input"
 
 | Props        | Desc           | Type                                                                                             | Default     |
 |--------------|----------------|--------------------------------------------------------------------------------------------------|-------------|
-| variant      | 输入框的两种样式：填充、描边 | `"fill"｜"outline"`                                                                               | `"outline"` |
-| placeholder  | 输入框提示文字        | `string｜string[]`                                                                                | `-`         |
-| boarderColor | 输入框颜色          | `"white"｜"blackAlpha"｜"gray"｜"grayBlue"｜"red"｜"orange"｜"yellow"｜"green"｜"blue"｜"cyan"｜"purple" ` | `"blue"`    |
-| defaultValue | 输入框默认内容        | `string｜string[]`                                                                                | `-`         |
+| variant      | 输入框的两种样式：填充、描边 | `"fill" ｜ "outline"`                                                                               | `"outline"` |
+| placeholder  | 输入框提示文字        | `string ｜ string[]`                                                                                | `-`         |
+| boarderColor | 输入框颜色          | `"white" ｜ "blackAlpha" ｜ "gray" ｜ "grayBlue" ｜ "red" ｜ "orange" ｜ "yellow" ｜ "green" ｜ "blue" ｜ "cyan" ｜ "purple" ` | `"blue"`    |
+| defaultValue | 输入框默认内容        | `string ｜ string[]`                                                                                | `-`         |
 | disabled     | 是否禁用           | `boolean`                                                                                        | `false`     |
 | error        | 是否为错误状态        | `boolean`                                                                                        | `false`     |
-| size         | 输入框大小          | `"small"｜"medium"｜"large"`                                                                       | `"medium"`  |
-| value        | 输入框内容          | `string｜string[]`                                                                                | `-`         |
+| size         | 输入框大小          | `"small" ｜ "medium" ｜ "large"`                                                                       | `"medium"`  |
+| value        | 输入框内容          | `string ｜ string[]`                                                                                | `-`         |
 | maxLength    | 最大长度           | `number`                                                                                         | `-`         |
 | showCount    | 是否展示           | `boolean`                                                                                        | `false`     |
 | allowClear   | 是否可以点击清除图标删除内容 | `boolean`                                                                                        | `-`         |
@@ -40,12 +40,12 @@ import { Input } from "@illa-design/input"
 
 | Props        | Desc         | Type                                       | Default |
 |--------------|--------------|--------------------------------------------|---------|
-| placeholder  | 输入框提示文字      | `string｜string[]`                         | `-`     |
-| defaultValue | 输入框默认内容      | `string｜string[]`                         | `-`     |
+| placeholder  | 输入框提示文字      | `string ｜ string[]`                         | `-`     |
+| defaultValue | 输入框默认内容      | `string ｜ string[]`                         | `-`     |
 | disabled     | 是否为禁用状态      | `boolean`                                  | `-`     |
 | error        | 是否为错误状态      | `boolean`                                  | `false` |
-| autoSize     | 是否自动调整输入框高度  | `boolean｜{minRows?:number;maxRows?number}` | `-`     |
-| value        | 输入框内容        | `string｜string[]`                         | `-`     |
+| autoSize     | 是否自动调整输入框高度  | `boolean ｜ {minRows?:number;maxRows?number}` | `-`     |
+| value        | 输入框内容        | `string ｜ string[]`                         | `-`     |
 | maxLength    | 最大字符长度       | `number`                                   | `-`     |
 | showCount    | 是否展示字数       | `boolean`                                  | `false` |
 | allowClear   | 是否可以点击清除图标删除 | `boolean`                                  | `-`     |
@@ -55,14 +55,14 @@ import { Input } from "@illa-design/input"
 | Props        | Desc           | Type                                                                                             | Default     |
 |--------------|----------------|--------------------------------------------------------------------------------------------------|-------------|
 | searchButton | 是否为后置按钮模式      | `boolean`                                                                                        | `false`     |
-| variant      | 输入框的两种样式：填充、描边 | `"fill"｜"outline"`                                                                               | `"outline"` |
-| placeholder  | 输入框提示文字        | `string｜string[]`                                                                                | `-`         |
-| defaultValue | 输入框默认内容        | `string｜string[]`                                                                                | `-`         |
+| variant      | 输入框的两种样式：填充、描边 | `"fill" ｜ "outline"`                                                                               | `"outline"` |
+| placeholder  | 输入框提示文字        | `string ｜ string[]`                                                                                | `-`         |
+| defaultValue | 输入框默认内容        | `string ｜ string[]`                                                                                | `-`         |
 | disabled     | 是否为禁用状态        | `boolean`                                                                                        | `-`         |
-| boarderColor | 输入框颜色          | `"white"｜"blackAlpha"｜"gray"｜"grayBlue"｜"red"｜"orange"｜"yellow"｜"green"｜"blue"｜"cyan"｜"purple" ` | `"blue"`    |
+| boarderColor | 输入框颜色          | `"white" ｜ "blackAlpha" ｜ "gray" ｜ "grayBlue" ｜ "red" ｜ "orange" ｜ "yellow" ｜ "green" ｜ "blue" ｜ "cyan" ｜ "purple" ` | `"blue"`    |
 | error        | 是否为错误状态        | `boolean`                                                                                        | `false`     |
-| size         | 输入框大小          | `"small"｜"medium"｜"large"`                                                                       | `"medium"`  |
-| value        | 输入框内容          | `string｜string[]`                                                                                | `-`         |
+| size         | 输入框大小          | `"small" ｜ "medium" ｜ "large"`                                                                       | `"medium"`  |
+| value        | 输入框内容          | `string ｜ string[]`                                                                                | `-`         |
 | allowClear   | 是否可以点击清除图标删除   | `boolean`                                                                                        | `-`         |
 
 ### InputPassword 基础属性
@@ -70,14 +70,14 @@ import { Input } from "@illa-design/input"
 | Props           | Desc           | Type                                                                                             | Default     |
 |-----------------|----------------|--------------------------------------------------------------------------------------------------|-------------|
 | invisibleButton | 是否显示密码可视按钮     | `boolean`                                                                                        | `true`      |
-| variant         | 输入框的两种样式：填充、描边 | `"fill"｜"outline"`                                                                               | `"outline"` |
-| placeholder     | 输入框提示文字        | `string｜string[]`                                                                                | `-`         |
-| defaultValue    | 输入框默认内容        | `string｜string[]`                                                                                | `-`         |
+| variant         | 输入框的两种样式：填充、描边 | `"fill" ｜ "outline"`                                                                               | `"outline"` |
+| placeholder     | 输入框提示文字        | `string ｜ string[]`                                                                                | `-`         |
+| defaultValue    | 输入框默认内容        | `string ｜ string[]`                                                                                | `-`         |
 | disabled        | 是否为禁用状态        | `boolean`                                                                                        | `-`         |
-| boarderColor    | 输入框颜色          | `"white"｜"blackAlpha"｜"gray"｜"grayBlue"｜"red"｜"orange"｜"yellow"｜"green"｜"blue"｜"cyan"｜"purple" ` | `"blue"`    |
+| boarderColor    | 输入框颜色          | `"white" ｜ "blackAlpha" ｜ "gray" ｜ "grayBlue" ｜ "red" ｜ "orange" ｜ "yellow" ｜ "green" ｜ "blue" ｜ "cyan" ｜ "purple" ` | `"blue"`    |
 | error           | 是否为错误状态        | `boolean`                                                                                        | `false`     |
-| size            | 输入框大小          | `"small"｜"medium"｜"large"  `                                                                     | `"medium"`  |
-| value           | 输入框内容          | `string｜string[]`                                                                                | `-`         |
+| size            | 输入框大小          | `"small" ｜ "medium" ｜ "large"  `                                                                     | `"medium"`  |
+| value           | 输入框内容          | `string ｜ string[]`                                                                                | `-`         |
 | allowClear      | 是否可以点击清除图标删除   | `boolean`                                                                                        | `-`         |
 
 ### Input 事件
