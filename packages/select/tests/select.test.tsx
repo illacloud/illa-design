@@ -46,7 +46,13 @@ test("Select renders with size", () => {
 })
 
 test("Select renders with mode", () => {
-  render(<Select value={[1, 2]} options={[1, 2, 3]} mode="multiple" />)
+  render(<Select value={[1, 2]} options={[1, 2, 3]} mode="multiple" labelInValue />)
   expect(screen.getByText("1")).toBeInTheDocument()
   expect(screen.getByText("2")).toBeInTheDocument()
+})
+
+test("Select renders with maxTagCount", () => {
+  render(<Select value={[1, 2]} options={[1, 2, 3]} maxTagCount={1} mode="tags" />)
+  expect(screen.getByText("1")).toBeInTheDocument()
+  expect(screen.getByText("+1...")).toBeInTheDocument()
 })

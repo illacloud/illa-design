@@ -14,16 +14,15 @@ import {
   InputElementProps,
 } from "@illa-design/input"
 import { isObject, omit, isNumber } from "@illa-design/system"
-import { LoadingIcon, SearchIcon, ExpandIcon } from "@illa-design/icon"
+import { LoadingIcon, SearchIcon, ExpandIcon, ErrorIcon } from "@illa-design/icon"
 import { InputTag, ObjectValueType } from "@illa-design/input-tag"
 import { SelectViewProps } from "./interface"
 import {
   applyIconStyle,
   applySelectContent,
   applySelectView,
-  applySelectViewText,
+  applySelectViewText, iconPointerStyle,
 } from "./style"
-import { isEmptyValue } from "./utils"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
@@ -60,6 +59,9 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       loading,
       disabled,
       options,
+      labelInValue,
+      allowClear,
+      removeIcon,
       // event
       onChange,
       onClick,
@@ -157,7 +159,17 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       },
     }
 
-    const suffixIcon = loading ? (
+    const suffixIcon = !disabled && !isEmptyValue && allowClear ? (
+      <span
+        css={iconPointerStyle}
+        onClick={onClear}
+        onMouseDown={(event) => {
+          event?.preventDefault();
+        }}
+      >
+        {removeIcon ? removeIcon : <ErrorIcon />}
+      </span>
+    ): loading ? (
       <LoadingIcon
         spin
         css={css`

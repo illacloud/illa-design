@@ -69,7 +69,6 @@ export interface SelectProps
   labelInValue?: boolean
   mode?: "multiple" | "tags"
   notFoundContent?: ReactNode
-  getPopupContainer?: (node: HTMLElement) => Element
   placeholder?: string
   showSearch?:
     | boolean

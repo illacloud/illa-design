@@ -43,9 +43,7 @@ export function getHighlightText<T>({
             if (index > indexOfNextRegTest) {
               result.push(children.slice(indexOfNextRegTest, index))
             }
-            result.push(
-              <span key={index}>{match}</span>,
-            )
+            result.push(<span key={index}>{match}</span>)
             indexOfNextRegTest = index + match.length
           })
           result.push(children.slice(indexOfNextRegTest))

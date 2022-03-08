@@ -143,9 +143,23 @@ export function applyIconStyle(): SerializedStyles {
     & > svg {
       font-size: 12px;
     }
+
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
 }
+
+export const iconPointerStyle = css`
+  cursor: pointer;
+  color: ${globalColor(`--${illaPrefix}-gray-06`)};
+
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  }
+
+  & > svg {
+    font-size: 12px;
+  }
+`
 
 // option
 export function applyOptionStyle(size: SelectProps["size"]): SerializedStyles {
@@ -164,10 +178,12 @@ export function applyOptionStyle(size: SelectProps["size"]): SerializedStyles {
     list-style: none;
     display: flex;
     align-items: center;
+
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
       color: ${globalColor(`--${illaPrefix}-blue-01`)};
     }
+
     ${applySizeStyle(size)}
   `
 }
