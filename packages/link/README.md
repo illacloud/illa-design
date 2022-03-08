@@ -20,12 +20,10 @@ import { Link } from "@illa-dedign/link"
 
 | Props       | Desc                                            | Type                                                         | Default   |
 | ----------- | ----------------------------------------------- | ------------------------------------------------------------ | --------- |
-| colorScheme | Color of the link                               | `"white" \|"blackAlpha" \|"gray" \|"grayBlue" \|"red" \|"orange" \|"yellow" \|"green" \|"blue" \|"cyan" \|"purple" ` | `"blue"`  |
-| icon        | Setting the default when icon=true              | `ReactNode\| boolean`                                        | `-`   |
+| colorScheme | Color of the link                               | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`  |
+| icon        | Setting the default when icon=true              | `ReactNode \| boolean`                                        | `-`   |
 | disabled    | The link is disabled or not                     | `boolean`                                                    | `"small"` |
 | hoverable   | Showing the under color of the link while hover | `boolean`                                                    | `-`       |
-
-### 
 
 ## Example
 
@@ -53,4 +51,3 @@ import { Link } from "@illa-dedign/link"
 ```jsx
 <Link hoverable={false}> Link </Link>
 ```
-
