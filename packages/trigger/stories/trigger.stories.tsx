@@ -4,6 +4,7 @@ import { Trigger, TriggerProps } from "../src"
 
 import { Button } from "@illa-design/button"
 import { Space } from "@illa-design/space"
+import { Input } from "@illa-design/input"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -67,7 +68,14 @@ export const Basic: Story<TriggerProps> = (args) => {
           position="br"
           content="A design is a plan or specification for the construction of an object or system or for the implementation of an activity or process, or the result of that plan or specification in the form of a prototype, product or pro"
         >
-          <Button>BR</Button>
+          111111
+        </Trigger>
+        <Trigger
+          {...args}
+          position="br"
+          content="A design is a plan or specification for the construction of an object or system or for the implementation of an activity or process, or the result of that plan or specification in the form of a prototype, product or pro"
+        >
+          <Input />
         </Trigger>
       </Space>
     </Space>

@@ -17,4 +17,10 @@ export const enUS = {
     page: "Page",
     go: "Go to ",
   },
+  upload: {
+    upload: "Upload",
+    dragTip: "Drag and drop the file",
+    selectFile: "Select File",
+    beginUpload: "Upload File",
+  },
 } as Locale

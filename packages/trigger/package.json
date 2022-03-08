@@ -37,8 +37,8 @@
   },
   "scripts": {
     "build": "tsc && vite build",
-    "e2e:ci": "npx cypress run-ct",
-    "e2e": "npx cypress open-ct"
+    "e2e:ci": "npx cypress run-ct --browser chrome",
+    "e2e": "npx cypress open-ct --browser chrome"
   },
   "dependencies": {
     "@illa-design/system": "*",
