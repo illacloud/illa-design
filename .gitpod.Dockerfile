@@ -15,4 +15,5 @@ RUN sudo apt-get install -y \
     libasound2 \
     libxtst6 \
     xauth \
-    xvfb
+    xvfb \
+RUN export NODE_OPTIONS="--max_old_space_size=4096"
