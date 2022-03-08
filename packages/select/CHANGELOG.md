@@ -1,4 +1,4 @@
-# @illa-design/radio
+# @illa-design/select
 
 ## 0.0.0
 

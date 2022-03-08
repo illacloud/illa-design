@@ -4,6 +4,6 @@ The Select component is used to xxx.
 
 ## Installation
 
-```jsx
-yarn add @illa-design/radio
+```bsh
+yarn add @illa-design/select
 ```

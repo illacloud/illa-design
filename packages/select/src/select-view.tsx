@@ -14,14 +14,20 @@ import {
   InputElementProps,
 } from "@illa-design/input"
 import { isObject, omit, isNumber } from "@illa-design/system"
-import { LoadingIcon, SearchIcon, ExpandIcon, ErrorIcon } from "@illa-design/icon"
+import {
+  LoadingIcon,
+  SearchIcon,
+  ExpandIcon,
+  ErrorIcon,
+} from "@illa-design/icon"
 import { InputTag, ObjectValueType } from "@illa-design/input-tag"
 import { SelectViewProps } from "./interface"
 import {
   applyIconStyle,
   applySelectContent,
   applySelectView,
-  applySelectViewText, iconPointerStyle,
+  applySelectViewText,
+  iconPointerStyle,
 } from "./style"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
@@ -159,30 +165,31 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       },
     }
 
-    const suffixIcon = !disabled && !isEmptyValue && allowClear ? (
-      <span
-        css={iconPointerStyle}
-        onClick={onClear}
-        onMouseDown={(event) => {
-          event?.preventDefault();
-        }}
-      >
-        {removeIcon ? removeIcon : <ErrorIcon />}
-      </span>
-    ): loading ? (
-      <LoadingIcon
-        spin
-        css={css`
-          color: ${globalColor(`--${illaPrefix}-gray-07`)};
-        `}
-      />
-    ) : showSearch && popupVisible ? (
-      <SearchIcon />
-    ) : popupVisible ? (
-      <ExpandIcon css={css({ transform: "rotate(180deg)" })} />
-    ) : (
-      <ExpandIcon />
-    )
+    const suffixIcon =
+      !disabled && !isEmptyValue && allowClear ? (
+        <span
+          css={iconPointerStyle}
+          onClick={onClear}
+          onMouseDown={(event) => {
+            event?.preventDefault()
+          }}
+        >
+          {removeIcon ? removeIcon : <ErrorIcon />}
+        </span>
+      ) : loading ? (
+        <LoadingIcon
+          spin
+          css={css`
+            color: ${globalColor(`--${illaPrefix}-gray-07`)};
+          `}
+        />
+      ) : showSearch && popupVisible ? (
+        <SearchIcon />
+      ) : popupVisible ? (
+        <ExpandIcon css={css({ transform: "rotate(180deg)" })} />
+      ) : (
+        <ExpandIcon />
+      )
 
     const renderSingle = () => {
       let _inputValue: string
