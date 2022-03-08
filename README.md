@@ -87,7 +87,7 @@ Join ILLA Design community to share your ideas, suggestions or questions and con
 
 <b>中文</b>
 
-[![feishu](https://devbo.cn/feishu.svg)](https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=a8ck3dda-d44f-4897-8504-6775e8ff5e13)
+[![feishu](https://devbo.cn/feishu_readme_test1.svg)](https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=a8ck3dda-d44f-4897-8504-6775e8ff5e13)
 
 <b>English</b>
 
