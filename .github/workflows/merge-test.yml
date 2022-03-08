@@ -80,3 +80,4 @@ jobs:
           runTests: false
       - run: yarn cypress info
       - run: yarn test
+
