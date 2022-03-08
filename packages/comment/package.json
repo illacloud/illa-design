@@ -37,8 +37,5 @@
   },
   "scripts": {
     "build": "tsc && vite build"
-  },
-  "dependencies": {
-
   }
 }
