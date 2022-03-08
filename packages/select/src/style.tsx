@@ -1,7 +1,7 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SelectProps } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
-import { css, ComponentSelector } from "@emotion/react"
+import { css } from "@emotion/react"
 import { StateValue } from "./select-view"
 import chroma from "chroma-js"
 
@@ -100,7 +100,7 @@ export function applySelectView(stateValue: StateValue): SerializedStyles {
     box-sizing: border-box;
     // height: 40px;
     // padding: 9px 16px;
-    width: 132px;
+    width: 280px;
     line-height: 30px;
     font-size: 14px;
     border-radius: 4px;
@@ -118,6 +118,7 @@ export function applySelectContent(stateValue: StateValue): SerializedStyles {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     ${applySizeStyle(stateValue?.size)}
   `
 }

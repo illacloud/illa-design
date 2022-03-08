@@ -1,5 +1,5 @@
 import { Select, Option } from "../src"
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import "@testing-library/jest-dom"
 
@@ -43,4 +43,10 @@ test("Select renders with size", () => {
   expect(
     screen.getByText("a")?.parentElement?.parentElement,
   ).toBeInTheDocument()
+})
+
+test("Select renders with mode", () => {
+  render(<Select value={[1, 2]} options={[1, 2, 3]} mode="multiple" />)
+  expect(screen.getByText("1")).toBeInTheDocument()
+  expect(screen.getByText("2")).toBeInTheDocument()
 })

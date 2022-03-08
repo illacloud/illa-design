@@ -9,8 +9,9 @@ import { OptionListProps } from "./interface"
 export const OptionList = forwardRef<HTMLDivElement, OptionListProps<any>>(
   (props, ref) => {
     const {
-      childrenList,
       render,
+      childrenList,
+      notFoundContent,
       // event
       onMouseMove,
       onScroll,
@@ -37,10 +38,12 @@ export const OptionList = forwardRef<HTMLDivElement, OptionListProps<any>>(
             onMouseMove={onMouseMove}
             onScroll={onScroll}
             renderKey={(data, index) => {
-              return index.toString()
+              return index?.toString()
             }}
             hoverable
           />
+        ) : notFoundContent ? (
+          <span>{notFoundContent}</span>
         ) : (
           <Empty
             css={css`

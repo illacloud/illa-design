@@ -9,6 +9,13 @@ import { Trigger } from "@illa-design/trigger"
 export default {
   title: "DATA INPUT/Select",
   component: Select,
+  argTypes: {
+    value: {
+      control: {
+        type: "array",
+      },
+    },
+  },
 } as Meta
 
 const options = [

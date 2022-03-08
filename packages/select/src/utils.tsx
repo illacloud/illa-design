@@ -15,10 +15,6 @@ export function isSelectOption(child: ReactElement): boolean {
   return get(child, "props.isSelectOption")
 }
 
-export function isSelectOptGroup(child: ReactElement): boolean {
-  return get(child, "props.isSelectOptGroup")
-}
-
 export function isEmptyValue(value: any, isMultiple: boolean) {
   // Illegal value is considered as unselected
   return isMultiple ? !isArray(value) || !value.length : value === undefined
@@ -27,11 +23,9 @@ export function isEmptyValue(value: any, isMultiple: boolean) {
 export function getHighlightText<T>({
   nodeList,
   pattern,
-  highlightClassName,
 }: {
   nodeList: T
   pattern: string | RegExp
-  highlightClassName: string | string[]
 }): T {
   if (!pattern) {
     return nodeList
@@ -43,28 +37,18 @@ export function getHighlightText<T>({
         children: (() => {
           let indexOfNextRegTest = 0
           const result = []
-
-          // 首先进行正则查询，将匹配项和匹配项之间的字符串依次拼接
           children.replace(pattern, (...args: (string | any)[]) => {
             const match = args[0]
             const index = args[args.length - 2]
-
-            // 与上次匹配项之间的内容
             if (index > indexOfNextRegTest) {
               result.push(children.slice(indexOfNextRegTest, index))
             }
-
-            // 当前匹配项
             result.push(
-              //<span key={index} className={cs(highlightClassName)}>
               <span key={index}>{match}</span>,
             )
             indexOfNextRegTest = index + match.length
           })
-
-          // 最后将剩余未被匹配的字符串拼接到最后
           result.push(children.slice(indexOfNextRegTest))
-
           return result
         })(),
       })
@@ -93,26 +77,16 @@ export function flatChildren(
     userCreatedOptions?: string[]
     userCreatingOption?: string
   },
-  // 递归过程中需要持续传递的数据
   {
     optionInfoMap = new Map(),
     optionValueList = [],
     customNodeCount = 0,
   }: {
-    // 缓存所有选项的信息
     optionInfoMap?: OptionInfoMap
-    // 缓存所有选项的值
     optionValueList?: Array<OptionProps["value"]>
-    // 自定义节点的数量，用于此节点 key 的生成
     customNodeCount?: number
   } = {},
 ) {
-  // 是否存在 OptGroup
-  let hasOptGroup = false
-  // 是否存在 children 不为字符串的 Option
-  let hasComplexLabelInOptions = false
-
-  // 经过 value 去重并且包含了 OptGroup 的 children 数组
   let childrenList: Array<ReactElement> = []
   let optionIndexListForArrowKey: Array<number> = []
 
@@ -126,7 +100,7 @@ export function flatChildren(
     key?: React.Key | null,
     isGroupTitle?: boolean,
   ) => {
-    // 处理自定义节点的 key 值
+    // Handle custom node key
     if (!label && !value && !key) {
       customNodeCount++
       return `custom_node_${customNodeCount}`
@@ -178,10 +152,6 @@ export function flatChildren(
         }
       }
     }
-
-    if (typeof child.props.children !== "string") {
-      hasComplexLabelInOptions = true
-    }
   }
 
   const extendChildren = (
@@ -218,35 +188,7 @@ export function flatChildren(
 
   if (children) {
     React.Children?.map(children as any, (child: React.ReactElement) => {
-      if (isSelectOptGroup(child)) {
-        const { children, options } = child.props
-        const {
-          childrenList: _childrenList,
-          optionIndexListForArrowKey: _optionIndexListForArrowKey,
-          hasComplexLabelInOptions: _hasComplexLabelInOptions,
-        } = flatChildren(
-          { children, options, filterOption },
-          { inputValue },
-          { optionInfoMap, optionValueList, customNodeCount },
-        )
-
-        if (_childrenList.length) {
-          childrenList.push(
-            React.cloneElement(child, {
-              children: null,
-              _key: getChildKey(child.props, child.key, true),
-            }),
-          )
-
-          childrenList = childrenList.concat(_childrenList)
-          optionIndexListForArrowKey = optionIndexListForArrowKey.concat(
-            _optionIndexListForArrowKey,
-          )
-          hasOptGroup = true
-          hasComplexLabelInOptions =
-            hasComplexLabelInOptions || _hasComplexLabelInOptions
-        }
-      } else if (isSelectOption(child)) {
+      if (isSelectOption(child)) {
         handleOption(child, "children")
       } else if (isObject(child) && child.props) {
         childrenList.push(
@@ -265,13 +207,10 @@ export function flatChildren(
     childrenList: getHighlightText({
       nodeList: childrenList,
       pattern: inputValue,
-      highlightClassName: `highlight`,
     }),
     optionInfoMap,
     optionValueList,
     optionIndexListForArrowKey,
-    hasOptGroup,
-    hasComplexLabelInOptions,
   }
 }
 

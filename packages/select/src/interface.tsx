@@ -44,6 +44,7 @@ export interface OptionListProps<T> {
     any,
     string | React.JSXElementConstructor<any>
   >[]
+  notFoundContent?: ReactNode
   render?: (data: T, index: number) => ReactNode
   onMouseMove?: () => void
   onScroll?: UIEventHandler<HTMLElement>

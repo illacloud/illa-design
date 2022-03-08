@@ -25,7 +25,6 @@ import {
   flatChildren,
   getValidValue,
   isEmptyValue,
-  isSelectOptGroup,
   isSelectOption,
   SelectInner,
 } from "./utils"
@@ -42,8 +41,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     labelInValue,
     placeholder,
     options,
-    filterOption,
+    filterOption = true,
     showSearch,
+    notFoundContent,
     // event
     onChange,
     onSearch,
@@ -59,9 +59,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
 
   const isMultipleMode = mode === "multiple" || mode === "tags"
   const [currentVisible, setCurrentVisible] = useState<boolean>()
-  // 用来保存 value 和选中项的映射
   const refValueMap = useRef<
-    Array<{ value: OptionProps["value"]; option: OptionInfo }>
+    { value: OptionProps["value"]; option: OptionInfo }[]
   >([])
   const [stateValue, setValue] = useState(
     getValidValue(props.defaultValue, isMultipleMode, labelInValue),
@@ -75,9 +74,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const [inputValue, setInputValue, stateInputValue] = useMergeValue("", {
     value: "inputValue" in props ? props.inputValue || "" : undefined,
   })
-  // tag模式下，由用户输入而扩展到Options中的值
   const [userCreatedOptions, setUserCreatedOptions] = useState<string[]>([])
-  // 具有选中态或者 hover 态的 option 的 value
   const [valueActive, setValueActive] = useState<OptionProps["value"]>(
     isArray(currentValue) ? currentValue[0] : currentValue,
   )
@@ -85,18 +82,15 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   // ref
   const refList = useRef<any>(null)
   const refTrigger = useRef(null)
-  // 触发 onInputValueChange 回调的值
+  // onInputValueChange Callback
   const refOnInputChangeCallbackValue = useRef(inputValue)
   const refOnInputChangeCallbackReason = useRef<InputValueChangeReason>()
 
-  // 缓存较为耗时的 flatChildren 的结果
   const {
     childrenList,
     optionInfoMap,
     optionValueList,
     optionIndexListForArrowKey,
-    hasOptGroup,
-    hasComplexLabelInOptions,
   } = useMemo(() => {
     return flatChildren(
       { children, options, filterOption },
@@ -106,7 +100,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         userCreatingOption: mode === "tags" ? inputValue : "",
       },
     )
-  }, [children])
+  }, [children, options, filterOption, inputValue, userCreatedOptions])
 
   const valueActiveDefault =
     optionValueList?.[optionIndexListForArrowKey?.[0]] ?? undefined
@@ -118,7 +112,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     }
   }
 
-  // 尝试更新 inputValue，触发 onInputValueChange
   const tryUpdateInputValue = (
     value: string,
     reason: InputValueChangeReason,
@@ -131,24 +124,23 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     }
   }
 
-  // 选项下拉框显示/隐藏时的一些自动行为
+  // currentVisible change
   useEffect(() => {
     if (currentVisible) {
-      // 重新设置 hover 态的 Option
       const firstValue = isArray(currentValue) ? currentValue[0] : currentValue
       const nextValueActive =
         !isNoOptionSelected && optionInfoMap.has(firstValue)
           ? firstValue
           : valueActiveDefault
       setValueActive(nextValueActive)
-      // 在弹出框动画结束之后再执行scrollIntoView，否则会有不必要的滚动产生
+      // wait option animation ends, to avoid unnecessary scroll
       setTimeout(() => scrollIntoView(nextValueActive))
     } else {
       tryUpdateInputValue("", "optionListHide")
     }
   }, [currentVisible])
 
-  // 在 inputValue 变化时，适时触发 onSearch
+  // when inputValue change, trigger onSearch
   useEffect(() => {
     const { current: reason } = refOnInputChangeCallbackReason
     if (
@@ -195,13 +187,10 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     return value
   }
 
-  // 尝试更新 popupVisible，触发 onVisibleChange
   const tryUpdatePopupVisible = (value: boolean) => {
-    //console.log(value, currentVisible, "tryUpdatePopupVisible")
     if (currentVisible !== value) {
       setCurrentVisible(value)
       onVisibleChange?.(value)
-      //console.log("onVisibleChange", value)
     }
   }
 
@@ -218,7 +207,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     }
   }
 
-  // 多选时，选择一个选项
+  // isMultipleMode = true
   const checkOption = (valueToAdd: any) => {
     const option = optionInfoMap.get(valueToAdd)
     if (option) {
@@ -226,8 +215,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       tryUpdateSelectValue(newValue)
     }
   }
-
-  // 多选时，取消一个选项
   const uncheckOption = (valueToRemove?: any) => {
     const option = getOptionInfoByValue(valueToRemove)
     const newValue = (currentValue as string[])?.filter(
@@ -245,7 +232,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     }
   }
 
-  // 处理模式切换时 value 格式的校正
+  // when mode change, format value
   useEffect(() => {
     if (isMultipleMode) {
       if (!Array.isArray(currentValue)) {
@@ -258,7 +245,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     }
   }, [isMultipleMode, currentValue])
 
-  // 更新 refValueMap，避免数组规模无节制扩大
+  // update refValueMap
   useEffect(() => {
     refValueMap.current = refValueMap.current?.filter((x) => {
       if (x?.value) {
@@ -267,10 +254,28 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
               (currentValue as Array<string | number>)?.indexOf(x?.value) > -1
           : x?.value === currentValue
       }
-      // ?
       return false
     })
   }, [currentValue, isMultipleMode])
+
+  // allowCreate = true, change optionValue
+  useEffect(() => {
+    // Treat the value without the corresponding option as custom tag, and remove the valueTag that don't exist in the value
+    if (mode === "tags" && Array.isArray(currentValue)) {
+      const newUseCreatedOptions = (currentValue as any[]).filter((v) => {
+        const option = optionInfoMap.get(v)
+        return !option || option._origin === "userCreatingOption"
+      })
+      const validUseCreatedOptions = userCreatedOptions.filter(
+        (tag) => (currentValue as any[]).indexOf(tag) !== -1,
+      )
+      const _userCreatedOptions =
+        validUseCreatedOptions.concat(newUseCreatedOptions)
+      if (_userCreatedOptions.toString() !== userCreatedOptions.toString()) {
+        setUserCreatedOptions(_userCreatedOptions)
+      }
+    }
+  }, [currentValue])
 
   const handleOptionClick = (
     optionValue: OptionProps["value"],
@@ -279,14 +284,12 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     if (disabled) {
       return
     }
-
     if (isMultipleMode) {
       ;(currentValue as Array<OptionProps["value"]>)?.indexOf(optionValue) ===
       -1
         ? checkOption(optionValue)
         : uncheckOption(optionValue)
-
-      // 点击一个选项时，清空输入框内容
+      // clear InputValue
       if (!isObject(showSearch) || !showSearch.retainInputValueWhileSelect) {
         tryUpdateInputValue("", "optionChecked")
       }
@@ -300,12 +303,11 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     }
   }
 
-  // SelectView组件事件处理
+  // SelectView event handle
   const selectViewEventHandlers = {
     onFocus,
     onBlur: (event: any) => {
       onBlur?.(event)
-      // 下拉列表隐藏时，失焦需要清空已输入内容
       !currentVisible && tryUpdateInputValue("", "optionListHide")
     },
     onChangeInputValue: (value: string) => {
@@ -314,7 +316,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         tryUpdatePopupVisible(true)
       }
     },
-    // Option Items
     onRemoveCheckedItem: (_: any, index: number, event: Event) => {
       event?.stopPropagation()
       uncheckOption(currentValue?.[index as never])
@@ -322,7 +323,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     onClear: (event: any) => {
       event.stopPropagation()
       if (isMultipleMode) {
-        // 保留已经被选中但被disabled的选项值
+        // Keep the value that has been selected but disabled
         const newValue = (currentValue as [])?.filter((v) => {
           const item = optionInfoMap?.get(v)
           return item && item.disabled
@@ -344,9 +345,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
           ref={refList}
           childrenList={childrenList}
           render={(child: any) => {
-            if (isSelectOptGroup(child)) {
-              return <child.type {...child.props} />
-            }
             if (isSelectOption(child)) {
               return (
                 child && (

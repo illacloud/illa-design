@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, ChangeEvent, useContext } from "react"
-import { OptionProps, SelectProps } from "./interface"
+import { forwardRef } from "react"
+import { OptionProps } from "./interface"
 import { applyOptionStyle } from "./style"
-import { omit, useMergeValue } from "@illa-design/system"
+import { omit } from "@illa-design/system"
 import { Checkbox } from "@illa-design/checkbox"
 
 export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
@@ -16,7 +16,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
     valueActive,
     valueSelect,
     isMultipleMode,
-    //
+    // events
     onChange,
     onMouseEnter,
     onMouseLeave,
@@ -33,27 +33,22 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
     onMouseEnter: () => onMouseEnter?.(value),
     onMouseLeave: () => onMouseLeave?.(),
     onClick: (event: any) => {
-      console.log(props, value, disabled, "e")
       onClickOption && onClickOption(currentValue, disabled)
       otherProps.onClick?.(event)
     },
     ...omit(otherProps, ["_key", "extra", "isSelectOption", "onClick"]),
   }
 
-  const onChangeValue = (event: ChangeEvent<HTMLInputElement>): void => {
-    event.persist()
-  }
-
   return (
     <>
       {isMultipleMode ? (
-        <li css={applyOptionStyle(size)} ref={ref}>
+        <li css={applyOptionStyle(size)} ref={ref} {...optionProps}>
           <Checkbox
             checked={isChecked}
             disabled={disabled}
             onChange={optionProps.onClick}
           />
-          <span {...optionProps}>{children}</span>
+          <span>{children}</span>
         </li>
       ) : (
         <li css={applyOptionStyle(size)} ref={ref} {...optionProps}>

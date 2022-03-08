@@ -13,7 +13,7 @@ import {
   InputRefType,
   InputElementProps,
 } from "@illa-design/input"
-import { useMergeValue, isObject, omit, isNumber } from "@illa-design/system"
+import { isObject, omit, isNumber } from "@illa-design/system"
 import { LoadingIcon, SearchIcon, ExpandIcon } from "@illa-design/icon"
 import { InputTag, ObjectValueType } from "@illa-design/input-tag"
 import { SelectViewProps } from "./interface"
@@ -45,6 +45,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     const {
       children,
       value,
+      mode,
       size = "medium",
       inputValue,
       defaultValue,
@@ -73,18 +74,13 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       ...otherProps
     } = props
 
-    const [currentValue, setCurrentValue] = useMergeValue(undefined, {
-      value: value,
-      defaultValue: defaultValue,
-    })
-
     const viewRef = useRef(null)
     const inputRef = useRef<InputRefType>(null)
     const [focused, setFocused] = useState(false)
     const mergedFocused = focused || popupVisible
     const [searchStatus, setSearchStatus] = useState(SearchStatus.NONE)
 
-    const canFocusInput = showSearch || isMultipleMode
+    const canFocusInput = showSearch || mode === "tags"
     const renderedValue =
       !isMultipleMode && value !== undefined ? renderText(value).text : ""
     const isRetainInputValueSearch =
@@ -116,59 +112,6 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       return dispatch
     }
 
-    const renderMultiple = () => {
-      const usedValue = value === undefined ? [] : [].concat(value as [])
-      const usedMaxTagCount = isNumber(maxTagCount)
-        ? Math.max(maxTagCount, 0)
-        : usedValue.length
-      const tagsToShow: ObjectValueType[] = usedValue
-        .slice(0, usedMaxTagCount)
-        .map((v) => {
-          const result = renderText(v)
-          return {
-            value: v,
-            label: result.text,
-            closable: !result.disabled,
-          }
-        })
-      const invisibleTagCount = usedValue.length - usedMaxTagCount
-      if (invisibleTagCount > 0) {
-        tagsToShow.push({
-          label: `+${invisibleTagCount}...`,
-          closable: false,
-        })
-      }
-
-      const eventHandlers = {
-        onPaste: inputEventHandlers.paste,
-        onKeyDown: inputEventHandlers.keyDown,
-        onFocus: inputEventHandlers.focus,
-        onBlur: inputEventHandlers.blur,
-        onInputChange: inputEventHandlers.change,
-        onRemove: (value: any, index: number, event: any) => {
-          maxTagCount && forceUpdate()
-          onRemoveCheckedItem?.(value, index, event)
-        },
-      }
-
-      return (
-        <InputTag
-          css={css`
-            border: unset !important;
-            padding: unset !important;
-            box-shadow: unset !important;
-          `}
-          ref={inputRef as any}
-          disabled={disabled}
-          placeholder={placeholder}
-          value={tagsToShow}
-          inputValue={inputValue}
-          size={size}
-          {...eventHandlers}
-        />
-      )
-    }
-
     const tryTriggerFocusChange = (action: "focus" | "blur", event: any) => {
       // The focus event at this time should be triggered by the input element
       if (canFocusInput && event.target === viewRef.current) {
@@ -184,7 +127,6 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     }
 
     const tryTriggerKeyDown = (event: any) => {
-      // The keyboard event at this time should be triggered by the input element, ignoring the bubbling up keyboard event
       if (canFocusInput && event.currentTarget === viewRef.current) {
         return
       }
@@ -196,7 +138,6 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       onKeyDown && onKeyDown(event)
     }
 
-    // event handling of input box
     const inputEventHandlers = {
       paste: onPaste as
         | React.ClipboardEventHandler<HTMLInputElement>
@@ -281,6 +222,61 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
           />
           <span css={applySelectViewText(!needShowInput)}>{_inputValue}</span>
         </>
+      )
+    }
+
+    const renderMultiple = () => {
+      const usedValue = value === undefined ? [] : [].concat(value as [])
+      const usedMaxTagCount = isNumber(maxTagCount)
+        ? Math.max(maxTagCount, 0)
+        : usedValue.length
+      const tagsToShow: ObjectValueType[] = usedValue
+        .slice(0, usedMaxTagCount)
+        .map((v) => {
+          const result = renderText(v)
+          return {
+            value: v,
+            label: result.text,
+            closable: !result.disabled,
+          }
+        })
+      const invisibleTagCount = usedValue.length - usedMaxTagCount
+      if (invisibleTagCount > 0) {
+        tagsToShow.push({
+          label: `+${invisibleTagCount}...`,
+          closable: false,
+        })
+      }
+
+      const eventHandlers = {
+        onPaste: inputEventHandlers.paste,
+        onKeyDown: inputEventHandlers.keyDown,
+        onFocus: inputEventHandlers.focus,
+        onBlur: inputEventHandlers.blur,
+        onInputChange: inputEventHandlers.change,
+        onRemove: (value: any, index: number, event: any) => {
+          maxTagCount && forceUpdate()
+          onRemoveCheckedItem?.(value, index, event)
+        },
+      }
+
+      return (
+        <InputTag
+          css={css`
+            width: 100% !important;
+            border: unset !important;
+            padding: unset !important;
+            box-shadow: unset !important;
+          `}
+          disableInput={!(showSearch || isMultipleMode)}
+          ref={inputRef as any}
+          disabled={disabled}
+          placeholder={placeholder}
+          value={tagsToShow}
+          inputValue={inputValue}
+          size={size}
+          {...eventHandlers}
+        />
       )
     }
 
