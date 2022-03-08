@@ -42,10 +42,6 @@
     "@illa-design/icon": "*",
     "@illa-design/image": "*",
     "@illa-design/list": "*",
-    "@illa-design/progress": "*",
-    "sinon": "^13.0.1"
-  },
-  "devDependencies": {
-    "sinon": "^13.0.1"
+    "@illa-design/progress": "*"
   }
 }
