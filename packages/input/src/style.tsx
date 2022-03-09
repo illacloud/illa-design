@@ -1,8 +1,7 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { StateValue } from "./input"
-import { InputSize } from "./interface"
+import { InputSize, StateValue } from "./interface"
 
 export const inputFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-gray-09`)};

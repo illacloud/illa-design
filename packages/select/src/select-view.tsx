@@ -21,7 +21,7 @@ import {
   ErrorIcon,
 } from "@illa-design/icon"
 import { InputTag, ObjectValueType } from "@illa-design/input-tag"
-import { SelectViewProps } from "./interface"
+import { SelectViewProps, SelectStateValue } from "./interface"
 import {
   applyIconStyle,
   applySelectContent,
@@ -31,13 +31,6 @@ import {
 } from "./style"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-
-export interface StateValue {
-  disabled?: boolean
-  error?: boolean
-  focus?: boolean
-  size?: SelectViewProps["size"]
-}
 
 const SearchStatus = {
   BEFORE: 0,
@@ -94,7 +87,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     const isRetainInputValueSearch =
       isObject(showSearch) && showSearch?.retainInputValue
 
-    const stateValue: StateValue = {
+    const stateValue: SelectStateValue = {
       error,
       disabled,
       focus: mergedFocused,

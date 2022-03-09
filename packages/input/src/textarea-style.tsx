@@ -11,7 +11,7 @@ import {
   inputFillStyle,
   inputOutlineStyle,
 } from "./style"
-import { StateValue } from "./input"
+import { StateValue } from "./interface"
 
 function applyStatus(stateValue: StateValue) {
   let mainStyle: SerializedStyles

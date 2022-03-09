@@ -136,3 +136,12 @@ export interface PasswordProps
   requirePadding?: boolean
   onClear?: () => void
 }
+
+export interface StateValue {
+  disabled?: boolean
+  error?: boolean
+  focus?: boolean
+  variant?: string
+  size?: InputProps["size"]
+  boarderColor?: InputProps["boarderColor"]
+}

@@ -1,8 +1,7 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { SelectProps } from "./interface"
+import { SelectProps, SelectStateValue } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
-import { StateValue } from "./select-view"
 import chroma from "chroma-js"
 
 // default select
@@ -30,7 +29,7 @@ export const errorOutlineStyle = css`
   }
 `
 
-function applyStatus(stateValue: StateValue) {
+function applyStatus(stateValue: SelectStateValue) {
   let mainStyle: SerializedStyles
   let inputStyle = inputOutlineStyle
 
@@ -95,7 +94,9 @@ export function applySizeStyle(size?: SelectProps["size"]) {
 }
 
 // SelectView
-export function applySelectView(stateValue: StateValue): SerializedStyles {
+export function applySelectView(
+  stateValue: SelectStateValue,
+): SerializedStyles {
   return css`
     box-sizing: border-box;
     // height: 40px;
@@ -111,7 +112,9 @@ export function applySelectView(stateValue: StateValue): SerializedStyles {
   `
 }
 
-export function applySelectContent(stateValue: StateValue): SerializedStyles {
+export function applySelectContent(
+  stateValue: SelectStateValue,
+): SerializedStyles {
   return css`
     box-sizing: border-box;
     width: 100%;

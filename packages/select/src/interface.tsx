@@ -125,3 +125,10 @@ export type InputValueChangeReason =
   | "optionChecked"
   | "optionListHide"
   | "tokenSeparator"
+
+export interface SelectStateValue {
+  disabled?: boolean
+  error?: boolean
+  focus?: boolean
+  size?: SelectViewProps["size"]
+}
