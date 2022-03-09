@@ -1,12 +1,10 @@
 import React, {
   HTMLAttributes,
-  ChangeEvent,
   PropsWithChildren,
   ReactNode,
   ReactElement,
   UIEventHandler,
 } from "react"
-import { isEmptyValue } from "./utils"
 
 export interface OptionProps
   extends Omit<HTMLAttributes<HTMLLIElement>, "onMouseEnter" | "onMouseLeave"> {
