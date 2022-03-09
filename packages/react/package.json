@@ -52,6 +52,7 @@
     "@illa-design/typography": "*",
     "@illa-design/trigger": "*",
     "@illa-design/input": "*",
+    "@illa-design/input-number": "*",
     "@illa-design/tooltip": "*",
     "@illa-design/popover": "*",
     "@illa-design/link": "*",
