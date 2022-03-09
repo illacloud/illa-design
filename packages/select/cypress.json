@@ -1,4 +1,13 @@
 {
+  "fixturesFolder": "../../cypress/fixtures",
+  "integrationFolder": "../../cypress/integration",
+  "pluginsFile": "../../cypress/plugins/index.js",
+  "screenshotsFolder": "../../cypress/screenshots",
+  "videosFolder": "../../cypress/videos",
+  "downloadsFolder": "../../cypress/downloads",
+  "supportFile": "../../cypress/support/index.js",
+  "viewportWidth": 500,
+  "viewportHeight": 500,
   "component": {
     "testFiles": "*.e2e.{ts,tsx}",
     "componentFolder": "tests"
