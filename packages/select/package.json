@@ -43,7 +43,6 @@
   "dependencies": {
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
-    "@illa-design/space": "*",
     "@illa-design/icon": "*",
     "@illa-design/empty": "*",
     "@illa-design/trigger": "*",
