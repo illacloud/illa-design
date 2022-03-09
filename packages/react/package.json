@@ -36,7 +36,7 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && NODE_OPTIONS=--max-old-space-size=6000 vite build"
   },
   "dependencies": {
     "@illa-design/avatar": "*",
