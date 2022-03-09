@@ -2,16 +2,13 @@
 import React, { forwardRef, ReactElement } from "react"
 import { SpinProps } from "./interface"
 import { LoadingIcon, LoadingGradientIcon } from "@illa-design/icon"
+import { isObject } from "@illa-design/system"
 import {
   applySizeCss,
   applySpinContainerCss,
   containerCss,
   tipCss,
 } from "./styles"
-
-export function isObject(obj: any): obj is { [key: string]: any } {
-  return Object.prototype.toString.call(obj) === "[object Object]"
-}
 
 export const Spin = forwardRef<HTMLDivElement, SpinProps>((props, ref) => {
   const {
