@@ -68,6 +68,7 @@
     "@illa-design/upload": "*",
     "@illa-design/spin": "*",
     "@illa-design/notification": "*",
-    "@illa-design/message": "*"
+    "@illa-design/message": "*",
+    "@illa-design/comment": "*"
   }
 }

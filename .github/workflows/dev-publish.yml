@@ -73,11 +73,9 @@ jobs:
           yarn build-all-components
 
       - name: Run Test
-        uses: cypress-io/github-action@v2
-        with:
-          runTests: false
-      - run: yarn cypress info
-      - run: yarn test
+        run: |
+          yarn cypress info
+          yarn test
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
