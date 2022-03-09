@@ -41,9 +41,9 @@
     "e2e": "npx cypress open-ct --browser chrome"
   },
   "dependencies": {
-    "@illa-design/space": "*",
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
+    "@illa-design/space": "*",
     "@illa-design/icon": "*",
     "@illa-design/empty": "*",
     "@illa-design/trigger": "*",

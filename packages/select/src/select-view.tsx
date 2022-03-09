@@ -298,7 +298,6 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         css={applySelectView(stateValue)}
         onClick={onClick}
         onFocus={(event) => {
-          console.log(event, "focus")
           if (disabled) {
             return
           }

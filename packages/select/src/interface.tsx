@@ -119,7 +119,7 @@ export interface SelectViewProps extends SelectProps {
   onClear?: (e: any) => void
 }
 
-// 造成输入框值改变的原因：用户输入、选中选项、选项下拉框收起、触发自动分词
+// Reason：User manual input、Checked option、optionList Hide、auto word segmentation
 export type InputValueChangeReason =
   | "manual"
   | "optionChecked"
