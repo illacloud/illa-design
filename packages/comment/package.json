@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/upload",
+  "name": "@illa-design/comment",
   "version": "0.0.0",
-  "description": "Illa Design Upload.",
+  "description": "Illa Design comment.",
   "keywords": [
-    "upload",
+    "comment",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/upload"
+    "directory": "packages/comment"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
@@ -39,9 +39,6 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "*",
-    "@illa-design/image": "*",
-    "@illa-design/list": "*",
-    "@illa-design/progress": "*"
+    "@illa-design/theme": "*"
   }
 }
