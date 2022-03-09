@@ -65,11 +65,11 @@
     "@illa-design/switch": "*",
     "@illa-design/alert": "*",
     "@illa-design/input-tag": "*",
+    "@illa-design/select": "*",
     "@illa-design/grid": "*",
     "@illa-design/pagination": "*",
     "@illa-design/upload": "*",
     "@illa-design/spin": "*",
-    "@illa-design/select": "*",
     "@illa-design/notification": "*",
     "@illa-design/comment": "*"
   }
