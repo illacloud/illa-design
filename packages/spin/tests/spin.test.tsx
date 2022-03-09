@@ -17,14 +17,8 @@ test("Spin renders correctly", () => {
 })
 
 test("Spin renders correctly", () => {
-  render(<Spin type={"gradient"} placeholder={"spin"} />)
-  expect(screen.getByPlaceholderText("spin")).toBeInTheDocument()
-  expect(screen.getByTitle("LoadingGradientIcon")).toBeInTheDocument()
-})
-
-test("Spin renders correctly", () => {
   render(
-    <Spin type={"gradient"} placeholder={"spin"}>
+    <Spin placeholder={"spin"}>
       <span data-testid={"children-node"}>test</span>
     </Spin>,
   )
