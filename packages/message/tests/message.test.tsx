@@ -60,8 +60,11 @@ describe("Open Message", () => {
   })
 
   test("Message renders with duration", async () => {
-    Message.info("Default")
-    await waitFor(() => {}, { timeout: 800 })
+    Message.info({
+      content: "Default",
+      duration: 1500,
+    })
+    await waitFor(() => {}, { timeout: 500 })
     let instance = screen.getByText("Default")
     expect(instance).toBeInTheDocument()
     await waitFor(
@@ -69,7 +72,7 @@ describe("Open Message", () => {
         expect(instance).not.toBeInTheDocument()
       },
       {
-        timeout: 3500,
+        timeout: 2000,
       },
     )
     Message.info({
@@ -84,7 +87,7 @@ describe("Open Message", () => {
         expect(instance).not.toBeInTheDocument()
       },
       {
-        timeout: 1000,
+        timeout: 1500,
       },
     )
   })
@@ -182,10 +185,7 @@ describe("Open Message", () => {
 })
 
 test("Message renders with global config", async () => {
-  Message.info({
-    content: "Before",
-    id: "before",
-  })
+  Message.info("Before")
   render(<div data-testid="body" id={"container"} />)
   Message.config({
     maxCount: 1,
