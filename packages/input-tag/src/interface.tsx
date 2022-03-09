@@ -52,7 +52,7 @@ export interface RenderTagsProps extends HTMLAttributes<HTMLElement> {
   valueChangeHandler?: (value: ObjectValueType[]) => void
 }
 
-export interface StateValue {
+export interface InputTagStateValue {
   disabled?: boolean
   error?: boolean
   focus?: boolean
