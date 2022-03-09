@@ -1,18 +1,21 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { SearchIcon } from "@illa-design/icon"
 import { Space } from "@illa-design/space"
-import { Button, ButtonGroup } from "@illa-design/button"
-import { Notification, NoticeProps, Notice } from "../src"
+import { Button } from "@illa-design/button"
+import { Message } from "../src"
+import { NoticeProps, Notice } from "@illa-design/notification"
 
 export default {
-  title: "FEEDBACK/Notification",
+  title: "FEEDBACK/Message",
   component: Notice,
   argTypes: {
     icon: {
       control: false,
     },
     type: {
+      control: false,
+    },
+    title: {
       control: false,
     },
     update: {
@@ -37,7 +40,7 @@ export default {
       control: false,
     },
     position: {
-      options: ["topLeft", "topRight", "bottomLeft", "bottomRight"],
+      options: ["top", "bottom"],
     },
   },
 } as Meta
@@ -48,102 +51,95 @@ const Template: Story<NoticeProps> = (args) => {
       <Space direction={"vertical"}>
         <Button
           onClick={() => {
-            Notification.info(args)
+            Message.info(args)
           }}
         >
-          Open Notification(Info)
+          Open Message(Info)
         </Button>
         <Button
           onClick={() => {
-            Notification.info({
+            Message.info({
               ...args,
               style: { width: 500 },
-              afterClose: () => {
-                console.log("complete animate")
-              },
               onClose: () => {
                 console.log("closing")
               },
             })
           }}
         >
-          Open Notification(Style)
+          Open Message(Style)
         </Button>
         <Button
           onClick={() => {
-            Notification.success(args)
+            Message.success(args)
           }}
         >
           Open Notification(Success)
         </Button>
         <Button
           onClick={() => {
-            Notification.warning(args)
+            Message.loading(args)
           }}
         >
-          Open Notification(Warning)
+          Open Message(Loading)
         </Button>
         <Button
           onClick={() => {
-            Notification.error(args)
+            Message.loading("message is loading!")
           }}
         >
-          Open Notification(Error)
+          Open Message(Loading with string)
         </Button>
         <Button
           onClick={() => {
-            Notification.normal(args)
+            Message.warning(args)
           }}
         >
-          Open Notification(normal)
+          Open Message(Warning)
         </Button>
         <Button
           onClick={() => {
-            Notification.config({ maxCount: 3, duration: 1500 })
+            Message.error(args)
           }}
         >
-          Config maxcount 3 duration 1500
+          Open Message(Error)
         </Button>
         <Button
           onClick={() => {
-            Notification.info({
-              ...args,
-              action: (
-                <ButtonGroup>
-                  <Button type={"button"}>Cancel</Button>
-                  <Button>OK</Button>
-                </ButtonGroup>
-              ),
-            })
+            Message.normal(args)
           }}
         >
-          Open Notification(Action)
+          Open Message(normal)
         </Button>
         <Button
           onClick={() => {
-            Notification.normal({
+            Message.config({ maxCount: 3, duration: 1500 })
+          }}
+        >
+          Config max count 3 duration 1500
+        </Button>
+        <Button
+          onClick={() => {
+            Message.normal({
               id: "need_update_duration",
-              title: "Ready to update",
               content: "Will update after 2 seconds...",
-              duration: 8000,
+              duration: 3000,
             })
             window.setTimeout(() => {
-              Notification.success({
-                title: "Success update",
+              Message.success({
                 id: "need_update_duration",
                 content: "content has updated!",
                 duration: 3000,
                 closable: true,
-                closeElement: <SearchIcon />,
               })
             }, 2000)
           }}
         >
-          Update Notification
+          Update Message
         </Button>
         <Button
           onClick={() => {
-            Notification.clear()
+            Message.clear()
           }}
         >
           Clear
@@ -156,6 +152,5 @@ const Template: Story<NoticeProps> = (args) => {
 export const Basic = Template.bind({})
 
 Basic.args = {
-  title: "Alert Title",
-  content: "Alert Content",
+  content: "This is Message",
 }

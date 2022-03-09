@@ -12,9 +12,11 @@ export const colorMap = {
 
 export const iconColorMap = {
   info: `${globalColor(`--${illaPrefix}-blue-03`)}`,
+  loading: `${globalColor(`--${illaPrefix}-blue-03`)}`,
   success: `${globalColor(`--${illaPrefix}-green-03`)}`,
   warning: `${globalColor(`--${illaPrefix}-orange-03`)}`,
   error: `${globalColor(`--${illaPrefix}-red-03`)}`,
+  normal: "",
 }
 
 export function applyAlertContainer(
