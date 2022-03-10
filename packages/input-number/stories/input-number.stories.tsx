@@ -8,6 +8,11 @@ export default {
   title: "DATA INPUT/InputNumber",
   component: InputNumber,
   argTypes: {
+    value: {
+      control: {
+        type: "text",
+      },
+    },
     suffix: {
       control: {
         type: "text",

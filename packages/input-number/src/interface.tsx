@@ -6,7 +6,7 @@ export type InputNumberSize = "small" | "medium" | "large"
 export interface InputNumberProps<T = any>
   extends Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    "prefix" | "size" | "onChange" | "onKeyDown"
+    "prefix" | "size" | "onChange"
   > {
   step?: number
   precision?: number
@@ -34,8 +34,8 @@ export interface InputNumberProps<T = any>
   // events
   onFocus?: (e: any) => void
   onBlur?: (e: any) => void
-  onChange?: (value: number) => void
-  onKeyDown?: (e: Event) => void
+  onChange?: (value?: number) => void
+  // onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 export interface InputNumberStateValue {

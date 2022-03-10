@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import {
-  ChangeEvent,
   forwardRef,
   useState,
   useMemo,
@@ -10,7 +9,7 @@ import {
   ForwardRefExoticComponent,
 } from "react"
 import { useMergeValue } from "@illa-design/system"
-import { InputProps, InputRefType, InputSize } from "./interface"
+import { InputProps, InputRefType } from "./interface"
 import {
   applyAddonCss,
   applyContainerCss,
@@ -42,11 +41,15 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
       addonBefore,
       defaultValue,
       boarderColor = "blue",
-      onClear,
       size = "medium",
       variant = "outline",
       requirePadding = true,
       textCenterHorizontal = false,
+      onClear,
+      onChange,
+      onFocus,
+      onBlur,
+      onPressEnter,
       ...rest
     } = props
 
@@ -88,13 +91,6 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
       )
     }
 
-    const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
-      if (!("value" in props) || !props.value) {
-        setValue(v)
-      }
-      props.onChange && props.onChange(e)
-    }
-
     return (
       <div style={style} className={className}>
         <span css={applyContainerCss(variant)}>
@@ -116,11 +112,11 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
               textCenterHorizontal={textCenterHorizontal}
               onFocus={(e) => {
                 setFocus(true)
-                props.onFocus && props.onFocus(e)
+                onFocus?.(e)
               }}
               onBlur={(e) => {
                 setFocus(false)
-                props.onBlur && props.onBlur(e)
+                onBlur?.(e)
               }}
               onClear={() => {
                 if (!("value" in props) || !props.value) {
@@ -128,9 +124,14 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
                 }
                 onClear?.()
               }}
-              onValueChange={onValueChange}
-              onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
-                props.onPressEnter?.(e)
+              onValueChange={(value, event) => {
+                if (!("value" in props)) {
+                  setValue(value)
+                }
+                onChange?.(value, event)
+              }}
+              onPressEnter={(e) => {
+                onPressEnter?.(e)
               }}
             />
             {suffix ? (
