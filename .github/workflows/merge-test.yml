@@ -77,5 +77,6 @@ jobs:
 
       - name: Run Test
         run: |
+          yarn install
           yarn cypress info
           yarn test
