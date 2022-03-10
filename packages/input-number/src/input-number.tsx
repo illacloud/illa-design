@@ -8,15 +8,31 @@ export const InputNumber = forwardRef<HTMLDivElement, InputNumberProps>(
     const {
       style,
       className,
+      defaultValue,
+      value,
+      disabled,
+      error,
+      placeholder,
+      suffix,
+      prefix,
+      icons,
+      precision,
+      size,
+      step = 1,
+      mode = "embed",
+      min = -Infinity,
+      max = Infinity,
+      parser = (input) => input.replace(/[^\w\.-]+/g, ""),
+      formatter,
+      onBlur,
+      onFocus,
+      onChange,
+      onKeyDown,
       ...rest
     } = props
 
-
     return (
-      <div
-        style={style}
-        className={className}
-      >
+      <div style={style} className={className}>
         inputNumber
       </div>
     )
