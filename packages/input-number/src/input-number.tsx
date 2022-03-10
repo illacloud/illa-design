@@ -3,7 +3,7 @@ import * as React from "react"
 import { forwardRef, useState } from "react"
 import { InputNumberProps } from "./interface"
 import { Input, InputRefType } from "@illa-design/input"
-import { PreIcon, NextIcon } from "@illa-design/icon"
+import { UpIcon, DownIcon } from "@illa-design/icon"
 
 type StepMethods = "minus" | "plus"
 
@@ -81,10 +81,10 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
             {renderStepButton ? (
               <div>
                 <div {...stepButtonEvents("plus")}>
-                  {icons && icons.up ? icons.up : <PreIcon />}
+                  {icons && icons.up ? icons.up : <UpIcon />}
                 </div>
                 <div {...stepButtonEvents("minus")}>
-                  {icons && icons.down ? icons.down : <NextIcon />}
+                  {icons && icons.down ? icons.down : <DownIcon />}
                 </div>
               </div>
             ) : null}
