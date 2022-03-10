@@ -23,15 +23,6 @@ import {
 import { InputElement } from "./input-element"
 import { formatForRule } from "./utils"
 
-export interface StateValue {
-  disabled?: boolean
-  error?: boolean
-  focus?: boolean
-  variant?: string
-  size?: InputProps["size"]
-  boarderColor?: InputProps["boarderColor"]
-}
-
 export type InputRef = ForwardRefExoticComponent<
   InputProps & React.RefAttributes<InputRefType>
 >

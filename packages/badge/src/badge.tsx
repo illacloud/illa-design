@@ -2,6 +2,7 @@
 import React, { forwardRef } from "react"
 import { BadgeProps } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { isObject } from "@illa-design/system"
 import {
   applyBadge,
   applyBadgeStatusWrapper,
@@ -18,10 +19,6 @@ const statusColor = {
   success: `--${illaPrefix}-green-03`,
   warning: `--${illaPrefix}-yellow-03`,
   error: `--${illaPrefix}-red-03`,
-}
-
-export function isObject(obj: any): obj is { [key: string]: any } {
-  return Object.prototype.toString.call(obj) === "[object Object]"
 }
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {

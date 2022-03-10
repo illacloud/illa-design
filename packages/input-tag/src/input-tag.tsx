@@ -4,7 +4,7 @@ import { forwardRef, ElementRef, useState, useRef } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { InputElement } from "@illa-design/input"
 import { ErrorIcon } from "@illa-design/icon"
-import { InputTagProps, ObjectValueType, StateValue } from "./interface"
+import { InputTagProps, ObjectValueType, InputTagStateValue } from "./interface"
 import {
   applyInputContainer,
   applyInputInnerCss,
