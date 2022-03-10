@@ -46,6 +46,5 @@ export interface TriggerProps {
   autoAlignPopupWidth?: boolean
   popupVisible?: boolean
   disabled?: boolean
-  hasCloseIcon?: boolean
   onVisibleChange?: (visible: boolean) => void
 }

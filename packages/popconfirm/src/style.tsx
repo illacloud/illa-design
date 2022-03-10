@@ -5,7 +5,12 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export const applyTypographyContainer = css`
   display: flex;
   flex-direction: column;
-  padding: 12px 16px;
+  min-width: 320px;
+  padding: 16px;
+`
+
+export const applyButtonGroupStyle = css`
+  align-self: end;
 `
 
 export function applyTitleColor(colorScheme: TriggerColorScheme) {
@@ -17,8 +22,3 @@ export function applyTitleColor(colorScheme: TriggerColorScheme) {
     color: ${textColor};
   `
 }
-
-export const applyCloseButton = css`
-  margin-top: 4px;
-  align-self: end;
-`

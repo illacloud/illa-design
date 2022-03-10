@@ -20,7 +20,10 @@ export interface PopupProps {
 
 export const Popup: FC<PopupProps> = (props) => {
   return createPortal(
-    <div css={applyPopupContainer(props.top, props.left)}>
+    <div
+      key={`${props.top}-${props.left}`}
+      css={applyPopupContainer(props.top, props.left)}
+    >
       {props.children}
     </div>,
     document.body,

@@ -6,7 +6,7 @@ export const enUS = {
     copyToolTip: "Copy",
     expandLabel: "Expand",
   },
-  trigger: {
+  popover: {
     close: "Close",
   },
   empty: {
@@ -22,5 +22,9 @@ export const enUS = {
     dragTip: "Drag and drop the file",
     selectFile: "Select File",
     beginUpload: "Upload File",
+  },
+  popConfirm: {
+    confirm: "Confirm",
+    cancel: "Cancel",
   },
 } as Locale

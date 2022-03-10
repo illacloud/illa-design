@@ -20,3 +20,16 @@ it("Popover renders correctly", () => {
   cy.findByText("Popover").should("not.exist")
   unmount()
 })
+
+it("Popover renders with close button", () => {
+  mount(
+    <Popover hasCloseIcon trigger="click" content="Visible">
+      <Button>Button</Button>
+    </Popover>,
+  )
+  cy.findByText("Button").click()
+  cy.findByText("Close").should("exist")
+  cy.findByText("Close").click()
+  cy.findByText("Visible").should("not.exist")
+  unmount()
+})

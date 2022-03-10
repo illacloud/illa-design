@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/trigger",
+  "name": "@illa-design/popconfirm",
   "version": "0.0.0",
   "description": "Illa Design base.",
   "keywords": [
-    "trigger",
+    "popconfirm",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/trigger"
+    "directory": "packages/popconfirm"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
@@ -43,7 +43,9 @@
   "dependencies": {
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
-    "@illa-design/icon": "*",
+    "@illa-design/trigger": "*",
+    "@illa-design/typography": "*",
+    "@illa-design/button": "*",
     "@illa-design/config-provider": "*"
   }
 }
