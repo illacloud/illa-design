@@ -9,10 +9,13 @@ export default defineConfig({
   assetsInclude: "src/assets/*",
   plugins: [
     react({
+      babel: {
+        compact: false
+      },
       // Exclude storybook stories
-      exclude: /\.stories\.([tj])sx?$/,
+      exclude: [/\.stories\.([tj])sx?$/,/\.e2e\.([tj])sx?$/,/\.test\.([tj])sx?$/],
       // Only .tsx files
-      include: "**/*.tsx",
+      include: ["**/*.tsx","**/*.ts"],
     }),
   ],
   build: {
@@ -36,8 +39,8 @@ export default defineConfig({
       external: ["react", "react-dom"],
       output: {
         globals: {
-          "react": "React",
-          "react-dom": "ReactDom"
+          react: "React",
+          "react-dom": "ReactDom",
         },
       },
     },
