@@ -5,7 +5,7 @@ import { InputNumberProps } from "./interface"
 import { Input, InputRefType } from "@illa-design/input"
 import { PreIcon, NextIcon } from "@illa-design/icon"
 
-type StepMethods = 'minus' | 'plus';
+type StepMethods = "minus" | "plus"
 
 export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
   (props, ref) => {
@@ -38,21 +38,25 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
     } = props
 
     const renderStepButton = !hideControl && !readOnly && mode === "embed"
-    const [inputValue, setInputValue] = useState<string>('');
-    const [isOutOfRange, setIsOutOfRange] = useState(false);
-    const [isUserInputting, setIsUserInputting] = useState(false);
+    const [inputValue, setInputValue] = useState<string>("")
+    const [isOutOfRange, setIsOutOfRange] = useState(false)
+    const [isUserInputting, setIsUserInputting] = useState(false)
 
-    const handleArrowKey = (event: any, method: StepMethods, needRepeat = false) => {
-      event.persist();
-      event.preventDefault();
-      setIsUserInputting(false);
+    const handleArrowKey = (
+      event: any,
+      method: StepMethods,
+      needRepeat = false,
+    ) => {
+      event.persist()
+      event.preventDefault()
+      setIsUserInputting(false)
 
       if (disabled) {
-        return;
+        return
       }
 
-      let finalValue = min === -Infinity ? 0 : min;
-    };
+      let finalValue = min === -Infinity ? 0 : min
+    }
 
     const stepButtonEvents = (method: StepMethods) => {
       return readOnly
