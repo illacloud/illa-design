@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import * as React from "react"
 import { FC, useContext, useState } from "react"
 import { PopconfirmProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"
