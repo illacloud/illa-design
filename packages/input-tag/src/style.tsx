@@ -1,7 +1,7 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { StateValue } from "./interface"
+import { InputTagStateValue } from "./interface"
 
 export const inputOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
@@ -51,7 +51,7 @@ function applySizeStyle(size?: string) {
   return sizeCss
 }
 
-export function applyInputInnerCss(stateValue: StateValue) {
+export function applyInputInnerCss(stateValue: InputTagStateValue) {
   let paddingCss: SerializedStyles
   switch (stateValue?.size) {
     default:
@@ -81,7 +81,7 @@ export function applyInputInnerCss(stateValue: StateValue) {
   `
 }
 
-function applyStatus(stateValue: StateValue) {
+function applyStatus(stateValue: InputTagStateValue) {
   let mainStyle: SerializedStyles
   let disableStyle, hoverStyle, inputStyle, errorStyle: SerializedStyles
 
@@ -122,7 +122,7 @@ function applyStatus(stateValue: StateValue) {
   `
 }
 
-export function applyInputContainer(stateValue: StateValue) {
+export function applyInputContainer(stateValue: InputTagStateValue) {
   return css`
     width: 198px;
     box-sizing: border-box;
@@ -141,7 +141,7 @@ export function applyInputContainer(stateValue: StateValue) {
   `
 }
 
-function baseFixCls(stateValue: StateValue) {
+function baseFixCls(stateValue: InputTagStateValue) {
   let sizeCss: SerializedStyles
   switch (stateValue?.size) {
     default:
@@ -166,7 +166,7 @@ function baseFixCls(stateValue: StateValue) {
   `
 }
 
-export function applySuffixCls(stateValue: StateValue) {
+export function applySuffixCls(stateValue: InputTagStateValue) {
   return css`
     ${baseFixCls(stateValue)}
     margin-left: 12px;
