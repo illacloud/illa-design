@@ -149,15 +149,15 @@ it("Trigger renders with disabled", () => {
 })
 
 it("Trigger renders with on visible change event", () => {
-  const mock = cy.stub()
+  const mock = cy.stub().as("mock")
   mount(
     <Trigger trigger="click" content="Visible" onVisibleChange={mock}>
       <Button>Button</Button>
     </Trigger>,
   )
   cy.findByText("Button").click()
-  expect(mock.calledWith(true))
+  cy.get("@mock").should("to.be.calledWith", true)
   cy.findByText("Button").click()
-  expect(mock.calledWith(false))
+  cy.get("@mock").should("to.be.calledWith", false)
   unmount()
 })

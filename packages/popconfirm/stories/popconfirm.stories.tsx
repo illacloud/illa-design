@@ -16,7 +16,7 @@ export default {
 
 export const Basic: Story<PopconfirmProps> = (args) => (
   <div style={{ margin: "200px" }}>
-    <Popconfirm {...args} title={"title"}>
+    <Popconfirm {...args}>
       <Button>Click</Button>
     </Popconfirm>
   </div>
