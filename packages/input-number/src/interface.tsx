@@ -36,12 +36,6 @@ export interface InputNumberProps<T = any>
   onPressEnter?: (e: any) => void
 }
 
-export type ObjectValueType = {
-  value?: any
-  label?: ReactNode
-  closable?: boolean
-}
-
 export interface InputNumberStateValue {
   disabled?: boolean
   error?: boolean
