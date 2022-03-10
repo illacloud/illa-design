@@ -14,6 +14,7 @@ export interface InputNumberProps<T = any>
   max?: number
   error?: boolean
   disabled?: boolean
+  readOnly?: boolean
   defaultValue?: number
   value?: number | string
   placeholder?: string
