@@ -1,83 +1,63 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { Children, forwardRef } from "react"
+import { Children, forwardRef, ReactElement } from "react"
 import { TimelineProps } from "./interface"
-// import { Spin } from "@illa-design/spin"
+import { Spin } from "@illa-design/spin"
 import { TimelineItem } from "./timelineItem"
-import {
-  applyItemCss,
-  mainInfoCss,
-  timeTextCss,
-  applyVertItemLineCss,
-  applyHorItemLineCss,
-  applyVertItemDotCss,
-  applyHorItemDotCss,
-  applyVertItemContentCss,
-  applyHorItemContentCss,
-} from "./styles"
-// import { css } from "@emotion/react"
+import { TimelineContext } from './timeline-context'
+import { wrapLineCss } from './styles'
 
 export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
   (props, ref) => {
     const {
       style,
       className,
-      reverse,
-      // direction = "vertical",
-      direction = "horizontal",
-      mode = "alternate",
-      // mode = "bottom",
-      pending,
-      // pendingDot = <Spin size={12} />,
-      pendingDot,
+      reverse = false,
+      direction = "vertical",
+      pending = true,
+      pendingDot = <Spin size={'small'} />,
       labelPosition = "same",
       ...rest
     } = props
+    let { mode = "left" } = props
 
-    let testData = [1, 2, 3]
+    const pendingNode = typeof pending === 'boolean' ? null : pending;
+    const pedningItem = pending ? (
+      <TimelineItem dot={pendingDot}>{pendingNode}</TimelineItem>
+    ) : null
 
-    let modehandle = (mode: string, key: number) => {
-      return mode === "alternate"
-        ? key % 2 === 0
-          ? "alternate-left"
-          : "alternate-right"
-        : mode
+    let childLiItem = Children.toArray(props.children)
+
+    if (reverse) {
+      childLiItem.reverse()
     }
 
+    pending && childLiItem.push(pedningItem as any)
+
+    if (labelPosition === 'relative') {
+      // 
+      mode = 'alternate'
+    }
+
+    const items = Children.map(childLiItem, (ele, index) => {
+      return (
+        <TimelineContext.Provider
+          value={{
+            direction,
+            mode,
+            index
+          }}
+        >
+          {ele}
+        </TimelineContext.Provider>
+      )
+    })
+
+    let wrapCss = (direction === 'horizontal' && mode === "alternate") ? wrapLineCss : ''
+
     return (
-      <div>
-        <ul>
-          {
-            // 纵向
-            direction === "vertical" &&
-              testData.map((item, key) => (
-                <li css={applyItemCss(direction)}>
-                  <div css={applyVertItemLineCss(mode)}></div>
-                  <div css={applyVertItemDotCss(mode)}></div>
-                  <div css={applyVertItemContentCss(modehandle(mode, key))}>
-                    <div css={mainInfoCss}>The first milestone</div>
-                    <div css={timeTextCss}>2017-03-10</div>
-                  </div>
-                </li>
-              ))
-          }
-        </ul>
-        <ul>
-          {
-            // 横向
-            direction === "horizontal" &&
-              testData.map((item, key) => (
-                <li css={applyItemCss(direction)}>
-                  <div css={applyHorItemLineCss(mode)}></div>
-                  <div css={applyHorItemDotCss(mode)}></div>
-                  <div css={applyHorItemContentCss(modehandle(mode, key))}>
-                    <div css={mainInfoCss}>The first milestone</div>
-                    <div css={timeTextCss}>2017-03-10</div>
-                  </div>
-                </li>
-              ))
-          }
-        </ul>
+      <div ref={ref} {...rest} css={wrapCss}>
+        {items}
       </div>
     )
   },

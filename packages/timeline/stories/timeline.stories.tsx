@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Timeline, TimelineProps } from "../src"
+import { Timeline, TimelineProps, TimelineItem } from "../src"
 
 export default {
   title: "DATA DISPLAY/Timeline",
@@ -16,7 +16,13 @@ export default {
 } as Meta
 
 const Template: Story<TimelineProps> = (props) => {
-  return <Timeline></Timeline>
+  return (
+    <Timeline {...props}>
+      <TimelineItem>The first milestone</TimelineItem>
+      <TimelineItem>The second milestone</TimelineItem>
+      <TimelineItem>The third milestone</TimelineItem>
+    </Timeline>
+  )
 }
 
 export const Basic = Template.bind({})
