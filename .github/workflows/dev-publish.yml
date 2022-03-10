@@ -28,13 +28,14 @@ jobs:
           path: |
             **/node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-illa-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-illa-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
 
       - name: Build
         run: |
           yarn install --frozen-lockfile
+          yarn build-all-components
   build:
     needs:
       - install
@@ -63,14 +64,9 @@ jobs:
           path: |
             **/node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-illa-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-illa-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Build Components
-        run: |
-          export NODE_OPTIONS="--max_old_space_size=4096"
-          yarn build-all-components
+            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
 
       - name: Run Test
         run: |

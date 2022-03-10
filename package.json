@@ -44,7 +44,7 @@
   "scripts": {
     "build-develop": "sh ./scripts/build-develop.sh",
     "storybook": "yarn build-all-components && yarn start-storybook -p 6006",
-    "build-all-components": "npx turbo run build --include-dependencies",
+    "build-all-components": "NODE_OPTIONS=--max-old-space-size=4096 npx turbo run build",
     "build-storybook": "yarn build-all-components && npx build-storybook",
     "test": "npx patch-package && yarn build-all-components && npx jest && npx turbo run e2e:ci",
     "unit-test": "yarn build-all-components && npx jest",
