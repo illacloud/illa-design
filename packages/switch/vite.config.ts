@@ -10,12 +10,16 @@ export default defineConfig({
   plugins: [
     react({
       babel: {
-        compact: false
+        compact: false,
       },
       // Exclude storybook stories
-      exclude: [/\.stories\.([tj])sx?$/,/\.e2e\.([tj])sx?$/,/\.test\.([tj])sx?$/],
+      exclude: [
+        /\.stories\.([tj])sx?$/,
+        /\.e2e\.([tj])sx?$/,
+        /\.test\.([tj])sx?$/,
+      ],
       // Only .tsx files
-      include: ["**/*.tsx","**/*.ts"],
+      include: ["**/*.tsx", "**/*.ts"],
     }),
   ],
   build: {
