@@ -1,27 +1,59 @@
 /** @jsxImportSource @emotion/react */
-import { FC } from "react"
+import { FC, useContext, useState } from "react"
 import { PopoverProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"
 import { Heading, Typography } from "@illa-design/typography"
-import { applyTitleColor, applyTypographyContainer } from "./style"
+import {
+  applyCloseButton,
+  applyTitleColor,
+  applyTypographyContainer,
+} from "./style"
+import {
+  ConfigProviderContext,
+  ConfigProviderProps,
+  def,
+} from "@illa-design/config-provider"
+import { Link } from "@illa-design/link"
 
 export const Popover: FC<PopoverProps> = (props) => {
   const {
     title,
     content,
     colorScheme = "white",
+    popupVisible,
+    onVisibleChange,
     trigger = "click",
     hasCloseIcon = true,
     closeOnClick = false,
+    defaultPopupVisible,
     ...otherProps
   } = props
+
+  const configProviderProps = useContext<ConfigProviderProps>(
+    ConfigProviderContext,
+  )
+
+  const locale = configProviderProps?.locale?.popover ?? def.popover
+
+  const [popoverVisible, setPopoverVisible] = useState(
+    defaultPopupVisible ?? false,
+  )
 
   return (
     <Trigger
       colorScheme={colorScheme}
       trigger={trigger}
+      popupVisible={popupVisible != undefined ? popupVisible : popoverVisible}
       closeOnClick={closeOnClick}
-      hasCloseIcon={hasCloseIcon}
+      withoutPadding
+      onVisibleChange={(visible) => {
+        if (onVisibleChange != undefined) {
+          onVisibleChange(visible)
+        }
+        if (popupVisible == undefined) {
+          setPopoverVisible(visible)
+        }
+      }}
       content={
         <div css={applyTypographyContainer}>
           <Typography>
@@ -41,6 +73,22 @@ export const Popover: FC<PopoverProps> = (props) => {
             )}
             {content}
           </Typography>
+          {hasCloseIcon && (
+            <Link
+              colorScheme={colorScheme == "white" ? "blue" : "white"}
+              css={applyCloseButton}
+              onClick={() => {
+                if (popupVisible == undefined) {
+                  setPopoverVisible(false)
+                }
+                if (onVisibleChange != undefined) {
+                  onVisibleChange(false)
+                }
+              }}
+            >
+              {locale["close"]}
+            </Link>
+          )}
         </div>
       }
       {...otherProps}

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Trigger } from "@illa-design/Trigger"
+import { Trigger } from "../src"
 import { Button } from "@illa-design/button"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
@@ -13,38 +13,6 @@ it("Trigger renders correctly", () => {
   )
   cy.findByText("Hello Trigger Custom").trigger("mouseover")
   expect(cy.findByText("Trigger Success Custom")).exist
-  unmount()
-})
-
-it("Trigger renders with close button", () => {
-  mount(
-    <Trigger content="Trigger Success Custom" hasCloseIcon trigger="click">
-      <Button>Hello Trigger Custom</Button>
-    </Trigger>,
-  )
-  cy.findByText("Hello Trigger Custom").trigger("click")
-  cy.findByText("Close").should("exist")
-  cy.findByText("Close").trigger("click")
-  cy.findByText("Trigger Success Custom").should("not.exist")
-  unmount()
-})
-
-it("Trigger renders with different color", () => {
-  mount(
-    <Trigger content="Trigger Success Custom" colorScheme="#123456">
-      <Button>Hello Trigger Custom</Button>
-    </Trigger>,
-  )
-  cy.findByText("Hello Trigger Custom").trigger("mouseover")
-  cy.findByText("Trigger Success Custom")
-    .parent()
-    .parent()
-    .should("have.css", "background-color", "rgb(18, 52, 86)")
-  cy.findByText("Trigger Success Custom").should(
-    "have.css",
-    "color",
-    "rgb(255, 255, 255)",
-  )
   unmount()
 })
 
@@ -180,29 +148,16 @@ it("Trigger renders with disabled", () => {
   unmount()
 })
 
-it("Trigger renders with close button", () => {
-  mount(
-    <Trigger hasCloseIcon trigger="click" content="Visible">
-      <Button>Button</Button>
-    </Trigger>,
-  )
-  cy.findByText("Button").click()
-  cy.findByText("Close").should("exist")
-  cy.findByText("Close").click()
-  cy.findByText("Visible").should("not.exist")
-  unmount()
-})
-
 it("Trigger renders with on visible change event", () => {
-  const mock = cy.stub()
+  const mock = cy.stub().as("mock")
   mount(
     <Trigger trigger="click" content="Visible" onVisibleChange={mock}>
       <Button>Button</Button>
     </Trigger>,
   )
   cy.findByText("Button").click()
-  expect(mock.calledWith(true))
+  cy.get("@mock").should("to.be.calledWith", true)
   cy.findByText("Button").click()
-  expect(mock.calledWith(false))
+  cy.get("@mock").should("to.be.calledWith", false)
   unmount()
 })

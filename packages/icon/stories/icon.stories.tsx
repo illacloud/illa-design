@@ -37,7 +37,6 @@ import {
   FilePictureIcon,
   FileWPSIcon,
   FilePPTIcon,
-  LoadingGradientIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -111,6 +110,3 @@ export const FilePicture: Story<IconProps> = (props) => (
 )
 export const FileWPS: Story<IconProps> = (props) => <FileWPSIcon {...props} />
 export const FilePPT: Story<IconProps> = (props) => <FilePPTIcon {...props} />
-export const LoadingGradient: Story<IconProps> = (props) => (
-  <LoadingGradientIcon {...props} />
-)
