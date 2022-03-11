@@ -6,11 +6,23 @@ import { InputNumberProps } from "./interface"
 import { Input, InputRefType } from "@illa-design/input"
 import { UpIcon, DownIcon, MinusIcon, PlusIcon } from "@illa-design/icon"
 import { isNumber } from "@illa-design/system"
-import { applyAddonCss, applyInputNumber, applyStepEmbed, applyStepEmbedContainer } from "./style"
+import {
+  applyAddonCss,
+  applyInputNumber,
+  applyStepEmbed,
+  applyStepEmbedContainer,
+} from "./style"
 
 type StepMethods = "minus" | "plus"
 
-const KEYCODE_ArrowDown = 40
+const getPrecision = (precision?: number, step?: number) => {
+  if (isNumber(precision)) {
+    const decimal = `${step}`.split(".")[1]
+    const stepPrecision = (decimal && decimal.length) || 0
+    return Math.max(stepPrecision, precision)
+  }
+  return null
+}
 
 export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
   (props, ref) => {
@@ -44,7 +56,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
 
     const inputRef = useRef<InputRefType>(null)
     const timerRef = useRef<any>(null)
-    const refHasOperateSincePropValueChanged = useRef(false)
+    const hasOperateRef = useRef(false)
 
     const renderStepEmbed = !hideControl && !readOnly && mode === "embed"
     const renderStepButton = !hideControl && mode === "button"
@@ -63,14 +75,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
     const isEmptyValue =
       mergedValue === "" || mergedValue === undefined || mergedValue === null
 
-    const mergedPrecision = (() => {
-      if (isNumber(precision)) {
-        const decimal = `${step}`.split(".")[1]
-        const stepPrecision = (decimal && decimal.length) || 0
-        return Math.max(stepPrecision, precision)
-      }
-      return null
-    })()
+    const mergedPrecision = getPrecision(precision, step)
 
     const getLegalValue = useCallback(
       (changedValue) => {
@@ -169,20 +174,19 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
     }, [inputValue, isUserInputting, mergedValue, value])
 
     useEffect(() => {
-      refHasOperateSincePropValueChanged.current = false
+      hasOperateRef.current = false
     }, [value])
 
     useEffect(() => {
-      const _isOutOfRange = isNumber(mergedValue)
+      const outOfRange = isNumber(mergedValue)
         ? (isNumber(min) && mergedValue < min) ||
           (isNumber(max) && mergedValue > max)
         : false
       // Don't correct the illegal value caused by prop value. Wait for user to take actions.
-      if (_isOutOfRange && refHasOperateSincePropValueChanged.current) {
+      if (outOfRange && hasOperateRef.current) {
         setValue(getLegalValue(mergedValue))
       }
-
-      setIsOutOfRange(_isOutOfRange)
+      setIsOutOfRange(outOfRange)
     }, [min, max, mergedValue, getLegalValue])
 
     const stateValue = {
@@ -191,7 +195,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
 
     return (
       <Input
-        css={applyInputNumber()}
+        css={applyInputNumber}
         ref={inputRef}
         style={style}
         className={className}
@@ -221,10 +225,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
         }}
         addonBefore={{
           render: renderStepButton ? (
-            <span
-              css={applyAddonCss(stateValue)}
-              {...stepEvents("minus")}
-            >
+            <span css={applyAddonCss(stateValue)} {...stepEvents("minus")}>
               {icons && icons.plus ? icons.plus : <MinusIcon />}
             </span>
           ) : null,
@@ -260,8 +261,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
           onKeyDown && onKeyDown(e)
         }}
         onFocus={(e) => {
-          // Both tab and button click trigger focus event. This can be used to determine whether user has taken operations
-          refHasOperateSincePropValueChanged.current = true
+          hasOperateRef.current = true
           setInputValue(inputRef?.current?.dom?.value as string)
           onFocus && onFocus(e)
         }}
