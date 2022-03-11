@@ -10,7 +10,7 @@ import {
   ForwardRefExoticComponent,
 } from "react"
 import { useMergeValue } from "@illa-design/system"
-import { InputProps, InputRefType, InputSize } from "./interface"
+import { InputProps, InputRefType } from "./interface"
 import {
   applyAddonCss,
   applyContainerCss,

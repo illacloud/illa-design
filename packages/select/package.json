@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/trigger",
+  "name": "@illa-design/select",
   "version": "0.0.0",
-  "description": "Illa Design trigger.",
+  "description": "Illa Design Select.",
   "keywords": [
-    "trigger",
+    "select",
     "react",
     "component"
   ],
@@ -30,18 +30,25 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/trigger"
+    "directory": "packages/select"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "e2e:ci": "npx cypress run-ct --browser chrome",
+    "e2e": "npx cypress open-ct --browser chrome"
   },
   "dependencies": {
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
     "@illa-design/icon": "*",
-    "@illa-design/config-provider": "*"
+    "@illa-design/empty": "*",
+    "@illa-design/trigger": "*",
+    "@illa-design/list": "*",
+    "@illa-design/input": "*",
+    "@illa-design/input-tag": "*",
+    "@illa-design/checkbox": "*"
   }
 }
