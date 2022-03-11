@@ -8,6 +8,9 @@ export default {
   title: "DATA INPUT/InputNumber",
   component: InputNumber,
   argTypes: {
+    mode: {
+      options: ["embed", "button"],
+    },
     value: {
       control: {
         type: "text",

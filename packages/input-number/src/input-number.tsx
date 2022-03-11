@@ -4,7 +4,7 @@ import { forwardRef, useState, useRef, useCallback, useEffect } from "react"
 import NP from "number-precision"
 import { InputNumberProps } from "./interface"
 import { Input, InputRefType } from "@illa-design/input"
-import { UpIcon, DownIcon } from "@illa-design/icon"
+import { UpIcon, DownIcon, MinusIcon, PlusIcon } from "@illa-design/icon"
 import { isNumber } from "@illa-design/system"
 
 type StepMethods = "minus" | "plus"
@@ -45,7 +45,8 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
     const timerRef = useRef<any>(null)
     const refHasOperateSincePropValueChanged = useRef(false)
 
-    const renderStepButton = !hideControl && !readOnly && mode === "embed"
+    const renderStepEmbed = !hideControl && !readOnly && mode === "embed"
+    const renderStepButton = !hideControl && mode === "button"
     const [inputValue, setInputValue] = useState<string>("")
     const [displayValue, setDisplayValue] = useState<string>("")
     const [isOutOfRange, setIsOutOfRange] = useState(false)
@@ -151,7 +152,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
           }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
       let val: string | number
       if (isUserInputting) {
         val = inputValue
@@ -164,7 +165,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
       }
       val = formatter ? formatter(val) : val
       setDisplayValue(val)
-    },[inputValue, isUserInputting, mergedValue, value])
+    }, [inputValue, isUserInputting, mergedValue, value])
 
     useEffect(() => {
       refHasOperateSincePropValueChanged.current = false
@@ -195,7 +196,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
         prefix={prefix}
         suffix={
           <>
-            {renderStepButton ? (
+            {renderStepEmbed ? (
               <div>
                 <div {...stepButtonEvents("plus")}>
                   {icons && icons.up ? icons.up : <UpIcon />}
@@ -207,6 +208,20 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
             ) : null}
             {suffix && <span>{suffix}</span>}
           </>
+        }
+        addonBefore={
+          renderStepButton ? (
+            <span {...stepButtonEvents("minus")}>
+              {icons && icons.plus ? icons.plus : <MinusIcon />}
+            </span>
+          ) : null
+        }
+        addonAfter={
+          renderStepButton ? (
+            <span {...stepButtonEvents("plus")}>
+              {icons && icons.minus ? icons.minus : <PlusIcon />}
+            </span>
+          ) : null
         }
         onChange={(value: any) => {
           setIsUserInputting(true)
