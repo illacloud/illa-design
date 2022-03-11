@@ -28,6 +28,7 @@ export const Search: SearchRef = forwardRef<InputRefType, SearchProps>(
       allowClear,
       error,
       disabled,
+      loading,
       placeholder,
       defaultValue,
       searchButton = false,

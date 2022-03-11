@@ -18,6 +18,7 @@ export interface InputTagProps<T = any>
   disabled?: boolean
   autoFocus?: boolean
   readOnly?: boolean
+  disableInput?: boolean
   allowClear?: boolean
   // input output both { label: '', value: ''}
   labelInValue?: boolean

@@ -8,7 +8,7 @@ import {
   useImperativeHandle,
   ForwardRefExoticComponent,
 } from "react"
-import { isObject, useMergeValue } from "@illa-design/system"
+import { useMergeValue } from "@illa-design/system"
 import { InputProps, InputRefType } from "./interface"
 import {
   applyAddonCss,
