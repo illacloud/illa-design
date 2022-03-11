@@ -39,6 +39,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "*"
+    "@illa-design/icon": "*",
+    "@illa-design/theme":"*"
   }
 }
