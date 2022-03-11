@@ -5,11 +5,12 @@ import react from "@vitejs/plugin-react"
 export default defineConfig({
   plugins: [
     react({
+      jsxRuntime: "classic",
       babel: {
         compact: false,
       },
       exclude: [/\.stories\.([tj])sx?$/, /\.test\.([tj])sx?$/],
-      include: ["**/*.tsx", "**/*.ts", "**/*.e2e.tsx"],
+      include: ["**/**.tsx", "**/**.ts"],
     }),
   ],
 })
