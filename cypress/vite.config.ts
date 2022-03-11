@@ -9,7 +9,7 @@ export default defineConfig({
         compact: false,
       },
       exclude: [/\.stories\.([tj])sx?$/, /\.test\.([tj])sx?$/],
-      include: ["**/*.tsx", "**/*.ts", "**/*.e2e.ts"],
+      include: ["**/*.tsx", "**/*.ts", "**/*.e2e.tsx"],
     }),
   ],
 })
