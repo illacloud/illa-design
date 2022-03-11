@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React, { forwardRef, useState, useCallback, useEffect } from "react"
-import ReactDOM from "react-dom"
+import * as React from "react"
+import { forwardRef, useState, useCallback, useEffect } from "react"
+import * as ReactDOM from "react-dom"
 import {
   NotificationProps,
   NoticeProps,

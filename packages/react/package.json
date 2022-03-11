@@ -70,6 +70,7 @@
     "@illa-design/upload": "*",
     "@illa-design/spin": "*",
     "@illa-design/notification": "*",
-    "@illa-design/comment": "*"
+    "@illa-design/comment": "*",
+    "@illa-design/popconfirm": "*"
   }
 }
