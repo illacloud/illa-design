@@ -70,7 +70,7 @@ export function applyVariantStyle(variant?: string) {
   return inputStyle
 }
 
-export function applyContainerCss(variant: string) {
+export function applyContainerCss(stateValue: StateValue) {
   return css`
     width: 280px;
     display: flex;
@@ -81,7 +81,8 @@ export function applyContainerCss(variant: string) {
     border-radius: 4px;
     vertical-align: middle;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    ${applyVariantStyle(variant)}
+    ${applyVariantStyle(stateValue?.variant)}
+    ${applySizeStyle(stateValue?.size)}
   `
 }
 
@@ -91,17 +92,17 @@ function applySizeStyle(size?: string) {
     default:
     case "large":
       sizeCss = css`
-        height: 38px;
+        height: 40px;
       `
       break
     case "medium":
       sizeCss = css`
-        height: 30px;
+        height: 32px;
       `
       break
     case "small":
       sizeCss = css`
-        height: 22px;
+        height: 24px;
         font-size: 12px;
       `
       break
@@ -171,39 +172,17 @@ export function applySizeCss(
   requirePadding?: boolean,
   size?: InputSize,
 ): SerializedStyles {
-  let sizeCss: SerializedStyles
-  let paddindCss: SerializedStyles | undefined
+  let paddingCss: SerializedStyles = css()
   if (requirePadding && size == "small") {
-    paddindCss = css`
+    paddingCss = css`
       padding: 0 12px;
     `
   } else if (requirePadding) {
-    paddindCss = css`
+    paddingCss = css`
       padding: 0 16px;
     `
   }
-  switch (size) {
-    default:
-    case "large":
-      sizeCss = css`
-        height: 38px;
-        ${paddindCss};
-      `
-      break
-    case "medium":
-      sizeCss = css`
-        height: 30px;
-        ${paddindCss};
-      `
-      break
-    case "small":
-      sizeCss = css`
-        height: 22px;
-        ${paddindCss};
-      `
-      break
-  }
-  return sizeCss
+  return paddingCss
 }
 
 export function applyInputContainer(
@@ -212,6 +191,7 @@ export function applyInputContainer(
 ) {
   return css`
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -359,7 +339,7 @@ export function applyAddonCss(stateValue: StateValue) {
     border-style: solid;
     padding: 0 16px;
     line-height: initial;
-
+    height: 100%;
     &:first-of-type {
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
@@ -371,7 +351,6 @@ export function applyAddonCss(stateValue: StateValue) {
     }
 
     ${inputStyle}
-    ${applySizeStyle(stateValue?.size)}
   `
 }
 

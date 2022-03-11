@@ -6,6 +6,7 @@ import { InputNumberProps } from "./interface"
 import { Input, InputRefType } from "@illa-design/input"
 import { UpIcon, DownIcon, MinusIcon, PlusIcon } from "@illa-design/icon"
 import { isNumber } from "@illa-design/system"
+import { applyAddonCss, applyInputNumber } from "./style"
 
 type StepMethods = "minus" | "plus"
 
@@ -184,8 +185,13 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
       setIsOutOfRange(_isOutOfRange)
     }, [min, max, mergedValue, getLegalValue])
 
+    const stateValue = {
+      size,
+    }
+
     return (
       <Input
+        css={applyInputNumber}
         ref={inputRef}
         style={style}
         className={className}
@@ -193,36 +199,44 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
         disabled={disabled}
         placeholder={placeholder}
         value={displayValue}
-        prefix={prefix}
-        suffix={
-          <>
-            {renderStepEmbed ? (
-              <div>
-                <div {...stepButtonEvents("plus")}>
-                  {icons && icons.up ? icons.up : <UpIcon />}
+        prefix={{ render: prefix }}
+        suffix={{
+          render: (
+            <>
+              {renderStepEmbed ? (
+                <div>
+                  <div {...stepButtonEvents("plus")}>
+                    {icons && icons.up ? icons.up : <UpIcon />}
+                  </div>
+                  <div {...stepButtonEvents("minus")}>
+                    {icons && icons.down ? icons.down : <DownIcon />}
+                  </div>
                 </div>
-                <div {...stepButtonEvents("minus")}>
-                  {icons && icons.down ? icons.down : <DownIcon />}
-                </div>
-              </div>
-            ) : null}
-            {suffix && <span>{suffix}</span>}
-          </>
-        }
-        addonBefore={
-          renderStepButton ? (
-            <span {...stepButtonEvents("minus")}>
+              ) : null}
+              {suffix && <span>{suffix}</span>}
+            </>
+          ),
+          custom: true,
+        }}
+        addonBefore={{
+          render: renderStepButton ? (
+            <span
+              css={applyAddonCss(stateValue)}
+              {...stepButtonEvents("minus")}
+            >
               {icons && icons.plus ? icons.plus : <MinusIcon />}
             </span>
-          ) : null
-        }
-        addonAfter={
-          renderStepButton ? (
-            <span {...stepButtonEvents("plus")}>
+          ) : null,
+          custom: true,
+        }}
+        addonAfter={{
+          render: renderStepButton ? (
+            <span css={applyAddonCss(stateValue)} {...stepButtonEvents("plus")}>
               {icons && icons.minus ? icons.minus : <PlusIcon />}
             </span>
-          ) : null
-        }
+          ) : null,
+          custom: true,
+        }}
         onChange={(value: any) => {
           setIsUserInputting(true)
           let targetValue = value?.trim()?.replace?.(/。/g, ".")

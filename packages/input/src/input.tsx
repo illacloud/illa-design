@@ -8,7 +8,7 @@ import {
   useImperativeHandle,
   ForwardRefExoticComponent,
 } from "react"
-import { useMergeValue } from "@illa-design/system"
+import { isObject, useMergeValue } from "@illa-design/system"
 import { InputProps, InputRefType } from "./interface"
 import {
   applyAddonCss,
@@ -21,10 +21,20 @@ import {
 } from "./style"
 import { InputElement } from "./input-element"
 import { formatForRule } from "./utils"
+import { SerializedStyles } from "@emotion/react"
 
 export type InputRef = ForwardRefExoticComponent<
   InputProps & React.RefAttributes<InputRefType>
 >
+
+const inputAddon = (
+  node?: React.ReactNode,
+  custom?: boolean,
+  style?: SerializedStyles,
+): React.ReactNode | null => {
+  return node ? custom ? <>{node}</> : <span css={style}>{node}</span> : null
+}
+
 export const Input: InputRef = forwardRef<InputRefType, InputProps>(
   (props, ref) => {
     const {
@@ -62,7 +72,7 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
       value: props.value ? formatForRule(props.value, maxLength) : undefined,
     })
     const valueLength = value ? value.length : 0
-    let suffix = props.suffix
+    let suffix = props.suffix ?? {}
 
     const lengthError = useMemo(() => {
       if (maxLength) {
@@ -83,7 +93,7 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
     useImperativeHandle(ref, () => inputRef?.current, [])
 
     if (maxLength && showCount) {
-      suffix = (
+      suffix.render = (
         <span css={applyCountLimitStyle}>
           <span css={applyLengthErrorStyle(lengthError)}>{valueLength}</span>
           <span>/{maxLength}</span>
@@ -92,56 +102,66 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
     }
 
     return (
-      <div style={style} className={className}>
-        <span css={applyContainerCss(variant)}>
-          {addonBefore ? (
-            <span css={applyAddonCss(stateValue)}>{addonBefore}</span>
-          ) : null}
-          <span css={applyInputContainer(stateValue, requirePadding)}>
-            {prefix ? (
-              <span css={applyPrefixCls(stateValue)}>{prefix}</span>
-            ) : null}
-            <InputElement
-              ref={inputRef}
-              {...rest}
-              value={value}
-              error={error}
-              disabled={disabled}
-              placeholder={placeholder}
-              allowClear={allowClear}
-              textCenterHorizontal={textCenterHorizontal}
-              onFocus={(e) => {
-                setFocus(true)
-                onFocus?.(e)
-              }}
-              onBlur={(e) => {
-                setFocus(false)
-                onBlur?.(e)
-              }}
-              onClear={() => {
-                if (!("value" in props) || !props.value) {
-                  setValue("")
-                }
-                onClear?.()
-              }}
-              onValueChange={(value, event) => {
-                if (!("value" in props)) {
-                  setValue(value)
-                }
-                onChange?.(value, event)
-              }}
-              onPressEnter={(e) => {
-                onPressEnter?.(e)
-              }}
-            />
-            {suffix ? (
-              <span css={applySuffixCls(stateValue)}>{suffix}</span>
-            ) : null}
-          </span>
-          {addonAfter ? (
-            <span css={applyAddonCss(stateValue)}>{addonAfter}</span>
-          ) : null}
+      <div
+        css={applyContainerCss(stateValue)}
+        style={style}
+        className={className}
+      >
+        {inputAddon(
+          addonBefore?.render,
+          addonBefore?.custom,
+          applyAddonCss(stateValue),
+        )}
+        <span css={applyInputContainer(stateValue, requirePadding)}>
+          {inputAddon(
+            prefix?.render,
+            prefix?.custom,
+            applyPrefixCls(stateValue),
+          )}
+          <InputElement
+            ref={inputRef}
+            {...rest}
+            value={value}
+            error={error}
+            disabled={disabled}
+            placeholder={placeholder}
+            allowClear={allowClear}
+            textCenterHorizontal={textCenterHorizontal}
+            onFocus={(e) => {
+              setFocus(true)
+              onFocus?.(e)
+            }}
+            onBlur={(e) => {
+              setFocus(false)
+              onBlur?.(e)
+            }}
+            onClear={() => {
+              if (!("value" in props) || !props.value) {
+                setValue("")
+              }
+              onClear?.()
+            }}
+            onValueChange={(value, event) => {
+              if (!("value" in props)) {
+                setValue(value)
+              }
+              onChange?.(value, event)
+            }}
+            onPressEnter={(e) => {
+              onPressEnter?.(e)
+            }}
+          />
+          {inputAddon(
+            suffix?.render,
+            suffix?.custom,
+            applySuffixCls(stateValue),
+          )}
         </span>
+        {inputAddon(
+          addonAfter?.render,
+          addonAfter?.custom,
+          applyAddonCss(stateValue),
+        )}
       </div>
     )
   },
