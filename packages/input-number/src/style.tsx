@@ -56,7 +56,6 @@ export function applyAddonCss(stateValue: InputNumberStateValue) {
     &:hover {
       cursor: pointer;
       color: ${globalColor(`--${illaPrefix}-gray-02`)};
-
     }
 
     &:first-of-type {
@@ -74,6 +73,49 @@ export function applyAddonCss(stateValue: InputNumberStateValue) {
 }
 export function applyInputNumber() {
   return css`
-    width: 178px;
+    position: relative;
+    width: 178px !important;
+    &:hover {
+      [title=inputStepEmbed] {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  `
+}
+
+export function applyStepEmbedContainer() {
+  return css`
+    transition: 0.2s ease-in-out;
+    opacity: 0;
+    position: absolute;
+    right: 8px;
+  `
+}
+export function applyStepEmbed() {
+  return css`
+    //width: 18px;
+    //height: 12px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 0 3px;
+    color: ${globalColor(`--${illaPrefix}-gray-04`)};
+    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+    font-size: 12px;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      background-color: ${globalColor(`--${illaPrefix}-gray-07`)};
+    }
+    &:first-of-type {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    &:last-of-type {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
   `
 }

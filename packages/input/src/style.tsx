@@ -73,6 +73,7 @@ export function applyVariantStyle(variant?: string) {
 export function applyContainerCss(stateValue: StateValue) {
   return css`
     width: 280px;
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;

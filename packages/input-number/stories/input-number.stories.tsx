@@ -2,6 +2,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { InputNumber, InputNumberProps } from "../src"
+import { Space } from "@illa-design/space"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -26,8 +27,9 @@ export default {
 
 export const Template: Story<InputNumberProps> = (props) => {
   return (
-    <div>
+    <Space wrap direction="vertical">
       <InputNumber {...props} />
-    </div>
+      <InputNumber mode="button" {...props} />
+    </Space>
   )
 }
