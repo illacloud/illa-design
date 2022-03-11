@@ -61,7 +61,7 @@ import { Input } from "@illa-dedign/input"
 | disabled     | If true, the input box status is disabled              | `boolean`                                                    | `-`         |
 | boarderColor | Color of the box boarder                               | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`    |
 | error        | If true, the input box status is error                 | `boolean`                                                    | `false`     |
-| size         | Size of the box                                        | `"small" \| "medium"\| "large"  `                              | `"medium"`  |
+| size         | Size of the box                                        | `"small" \| "medium" \| "large"  `                              | `"medium"`  |
 | value        | Value                                                  | `string \| string[]`                                          |   `-`       |
 | allowClear   | Allow the delete button to clear the value             | `boolean`                                                    |    `-`      |
 
@@ -76,7 +76,7 @@ import { Input } from "@illa-dedign/input"
 | disabled        | If true, the input box status is disabled                   | `boolean`                                                    | `-`         |
 | boarderColor    | Color of the box boarder                                    | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`    |
 | error           | If true, the input box status is error                      | `boolean`                                                    | `false`     |
-| size            | Size of the box                                             | `"small" \| "medium"\| "large"  `                              | `"medium"`  |
+| size            | Size of the box                                             | `"small" \| "medium" \| "large"  `                              | `"medium"`  |
 | value           | Value                                                       | `string \| string[]`                                          |   `-`       |
 | allowClear      | Allow the delete button to clear the value                  | `boolean`                                                    |   `-`       |
 
@@ -117,10 +117,10 @@ import { Input } from "@illa-dedign/input"
 
 ```jsx
 <Input
-      placeholder="variant-fill"
-      prefix={"prefix"}
-      addonBefore={"addonBefore"}
-    />
+  placeholder="variant-fill"
+  prefix={"prefix"}
+  addonBefore={"addonBefore"}
+/>
 
 ```
 
