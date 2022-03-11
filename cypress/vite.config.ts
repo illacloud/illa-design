@@ -11,21 +11,9 @@ export default defineConfig({
         compact: false,
       },
       // Exclude storybook stories
-      exclude: [
-        /\.stories\.([tj])sx?$/,
-        /\.e2e\.([tj])sx?$/,
-        /\.test\.([tj])sx?$/,
-      ],
+      exclude: [/\.stories\.([tj])sx?$/, /\.test\.([tj])sx?$/],
       // Only .tsx files
-      include: ["**/*.tsx", "**/*.ts"],
+      include: ["**/*.tsx", "**/*.ts", "**/*.e2e.ts"],
     }),
   ],
-  build: {
-    sourcemap: true,
-    lib: {
-      entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@illa-design/cypress",
-      fileName: (format) => `${format}/index.js`,
-    },
-  },
 })
