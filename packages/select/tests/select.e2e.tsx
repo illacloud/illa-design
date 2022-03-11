@@ -2,7 +2,6 @@ import * as React from "react"
 import { Select } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import { waitFor } from "@testing-library/react"
 
 it("Select renders correctly", () => {
   mount(<Select placeholder={"test select"} value={"test"} />)

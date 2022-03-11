@@ -1,4 +1,4 @@
-import { Select, Option } from "@illa-design/select"
+import { Select, Option } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 

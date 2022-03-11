@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import * as React from "react"
 import {
   cloneElement,
   FC,
@@ -8,7 +9,6 @@ import {
   ReactNode,
   Ref,
   RefObject,
-  useContext,
   useEffect,
   useRef,
   useState,
@@ -18,8 +18,6 @@ import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
   applyChildrenContainer,
-  applyCloseButton,
-  applyCloseContentCss,
   applyDefaultContentSize,
   applyMotionDiv,
   applyTipsContainer,
@@ -38,12 +36,6 @@ import {
   getFinalPosition,
 } from "./adjust-tips-location"
 import { Popup } from "./popup"
-import { Link } from "@illa-design/link"
-import {
-  ConfigProviderContext,
-  ConfigProviderProps,
-  def,
-} from "@illa-design/config-provider"
 import useClickAway from "react-use/lib/useClickAway"
 import useMeasure from "react-use/lib/useMeasure"
 import { isFunction, isObject } from "@illa-design/system"
@@ -115,7 +107,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
     defaultPopupVisible,
     withoutPadding,
     disabled,
-    hasCloseIcon,
     popupVisible,
     onVisibleChange,
     trigger = "hover",
@@ -150,32 +141,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
   let tipsNode: ReactNode
   let centerNode: ReactNode
 
-  const configProviderProps = useContext<ConfigProviderProps>(
-    ConfigProviderContext,
-  )
-  const locale = configProviderProps?.locale?.trigger ?? def.trigger
-
-  const closeContent = (
-    <div css={applyCloseContentCss}>
-      <div css={applyDefaultContentSize}>{content}</div>
-      {hasCloseIcon && (
-        <Link
-          colorScheme={colorScheme == "white" ? "blue" : "white"}
-          css={applyCloseButton}
-          onClick={() => {
-            if (popupVisible == undefined) {
-              setTipsVisible(false)
-            }
-            if (onVisibleChange != undefined) {
-              onVisibleChange(false)
-            }
-          }}
-        >
-          {locale["close"]}
-        </Link>
-      )}
-    </div>
-  )
+  const closeContent = <div css={applyDefaultContentSize}>{content}</div>
 
   switch (finalPosition) {
     case "top":
