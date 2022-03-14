@@ -137,11 +137,6 @@ export function applyCardGrid(hoverable: boolean) {
     position: relative;
     box-sizing: border-box;
     width: 33.33%;
-    /*    box-shadow: 1px 0 0 0 ${globalColor(`--${illaPrefix}-gray-08`)},
-      0 1px 0 0 ${globalColor(`--${illaPrefix}-gray-08`)},
-      1px 1px 0 0 ${globalColor(`--${illaPrefix}-gray-08`)},
-      1px 0 0 0 ${globalColor(`--${illaPrefix}-gray-08`)} inset,
-      0 1px 0 0 ${globalColor(`--${illaPrefix}-gray-08`)} inset;*/
     &:hover {
       z-index: ${hoverable ? 1 : ""};
     }
@@ -162,7 +157,7 @@ export function applyCardMetaTitle() {
 
 export function applyCardMetaDescription() {
   return css`
-    &:not(:first-child) {
+    &:not(:first-of-type) {
       margin-top: 4px;
     }
   `
@@ -173,7 +168,7 @@ export function applyCardMetaFooter() {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    &:last-child {
+    &:last-of-type {
       margin-top: 16px;
     }
   `
