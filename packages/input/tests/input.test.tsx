@@ -33,7 +33,11 @@ test("Input render with variant fill", () => {
 
 test("Input render with size small", () => {
   render(
-    <Input placeholder="size-small" size="small" addonBefore={{ render: "Before" }} />,
+    <Input
+      placeholder="size-small"
+      size="small"
+      addonBefore={{ render: "Before" }}
+    />,
   )
   expect(screen.getByPlaceholderText("size-small").parentElement).toHaveStyle({
     padding: "0 12px",
@@ -42,7 +46,11 @@ test("Input render with size small", () => {
 
 test("Input render with size large", () => {
   render(
-    <Input placeholder="size-large" size="large" addonAfter={{ render: "addonAfter" }} />,
+    <Input
+      placeholder="size-large"
+      size="large"
+      addonAfter={{ render: "addonAfter" }}
+    />,
   )
   expect(screen.getByPlaceholderText("size-large").parentElement).toHaveStyle({
     padding: "0 16px",

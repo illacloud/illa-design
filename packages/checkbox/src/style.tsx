@@ -4,7 +4,7 @@ import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 
 export function applyCheckboxSize(checked?: boolean) {
-  let checkedCss= css()
+  let checkedCss = css()
   if (checked) {
     checkedCss = css`
       border-color: transparent;

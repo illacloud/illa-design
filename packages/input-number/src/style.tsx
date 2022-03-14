@@ -78,7 +78,7 @@ export function applyInputNumber() {
     position: relative;
     width: 178px !important;
     &:hover {
-      [title=inputStepEmbed] {
+      [title="inputStepEmbed"] {
         visibility: visible;
         opacity: 1;
       }
@@ -113,7 +113,7 @@ export function applyStepEmbedContainer(stateValue: InputNumberStateValue) {
     transition: 0.2s ease-in-out;
     opacity: 0;
     position: absolute;
-     right: 2px;
+    right: 2px;
     ${sizeCss}
   `
 }

@@ -100,12 +100,16 @@ test("InputNumber render with input", async () => {
     expect(screen.getByDisplayValue("1")).toBeInTheDocument()
   })
   fireEvent.focus(input)
-  fireEvent.keyDown(input, {key: 'ArrowUp', code: 'ArrowUp', charCode: 38})
+  fireEvent.keyDown(input, { key: "ArrowUp", code: "ArrowUp", charCode: 38 })
   await waitFor(() => {
     expect(changeEvent).toBeCalled()
     expect(screen.getByDisplayValue("2")).toBeInTheDocument()
   })
-  fireEvent.keyDown(input, {key: 'ArrowDown', code: 'ArrowDown', charCode: 40})
+  fireEvent.keyDown(input, {
+    key: "ArrowDown",
+    code: "ArrowDown",
+    charCode: 40,
+  })
   await waitFor(() => {
     expect(screen.getByDisplayValue("1")).toBeInTheDocument()
   })
