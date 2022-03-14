@@ -36,7 +36,6 @@ test("Input render with size small", () => {
     <Input placeholder="size-small" size="small" addonBefore={{ render: "Before" }} />,
   )
   expect(screen.getByPlaceholderText("size-small").parentElement).toHaveStyle({
-    height: "22px",
     padding: "0 12px",
   })
 })
@@ -46,7 +45,6 @@ test("Input render with size large", () => {
     <Input placeholder="size-large" size="large" addonAfter={{ render: "addonAfter" }} />,
   )
   expect(screen.getByPlaceholderText("size-large").parentElement).toHaveStyle({
-    height: "38px",
     padding: "0 16px",
   })
 })
