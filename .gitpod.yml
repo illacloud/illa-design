@@ -1,6 +1,0 @@
-# Commands to start on workspace startup
-image:
-  file: .gitpod.Dockerfile
-tasks:
-  - init: yarn
-# Ports to expose on workspace startup

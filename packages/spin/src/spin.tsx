@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { forwardRef, ReactElement } from "react"
 import { SpinProps } from "./interface"
-import { LoadingIcon, LoadingGradientIcon } from "@illa-design/icon"
+import { LoadingIcon } from "@illa-design/icon"
 import {
   applySizeCss,
   applySpinContainerCss,
@@ -20,7 +20,6 @@ export const Spin = forwardRef<HTMLDivElement, SpinProps>((props, ref) => {
     icon,
     element,
     tip,
-    type = "circle",
     children,
     placeholder,
     ...rest
@@ -34,11 +33,7 @@ export const Spin = forwardRef<HTMLDivElement, SpinProps>((props, ref) => {
   } else if (element) {
     loadingIcon = element
   } else {
-    if (type === "circle") {
-      loadingIcon = <LoadingIcon css={applySizeCss(size, loading)} />
-    } else {
-      loadingIcon = <LoadingGradientIcon css={applySizeCss(size, loading)} />
-    }
+    loadingIcon = <LoadingIcon css={applySizeCss(size, loading)} />
   }
   let tipView
   if (isObject(tip)) {

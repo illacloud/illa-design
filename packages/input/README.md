@@ -20,14 +20,14 @@ import { Input } from "@illa-dedign/input"
 
 | Props        | Desc                                       | Type                                                         | Default     |
 | ------------ | ------------------------------------------ | ------------------------------------------------------------ | ----------- |
-| variant      | Two styles of the input box                | `"fill" \|"outline"`                                         | `"outline"` |
-| placeholder  | The placeholder show on the input box      | `string \|string[]`                                          | `-`         |
-| boarderColor | Color of the box boarder                   | `"white" \|"blackAlpha" \|"gray" \|"grayBlue" \|"red" \|"orange" \|"yellow" \|"green" \|"blue" \|"cyan" \|"purple" ` | `"blue"`    |
+| variant      | Two styles of the input box                | `"fill" \| "outline"`                                         | `"outline"` |
+| placeholder  | The placeholder show on the input box      | `string \| string[]`                                          | `-`         |
+| boarderColor | Color of the box boarder                   | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`    |
 | defaultValue | Default value                              | `string \| string[]`                                         | `-`         |
 | disabled     | If true, the input box status is disabled  | `boolean`                                                    | `false`     |
 | error        | If true, the input box status is error     | `boolean`                                                    | `false`     |
-| size         | Size of the box                            | `"small" \|"medium"\|"large"  `                              | `"medium"`  |
-| value        | Value                                      | `string \|string[]`                                          | `-`         |
+| size         | Size of the box                            | `"small" \| "medium"\| "large"  `                              | `"medium"`  |
+| value        | Value                                      | `string \| string[]`                                          | `-`         |
 | maxLength    | Max leangth of the content                 | `number`                                                     | `-`         |
 | showCount    | Show the word count                        | `boolean`                                                    | `false`     |
 | allowClear   | Allow the delete button to clear the value | `boolean`                                                    | `-`         |
@@ -40,12 +40,12 @@ import { Input } from "@illa-dedign/input"
 
 | Props        | Desc                                                  | Type                                        | Default |
 | ------------ | ----------------------------------------------------- | ------------------------------------------- | ------- |
-| placeholder  | The placeholder show on the input box                 | `string \|string[]`                         | `-`     |
-| defaultValue | Default value                                         | `string \|string[]`                         | `-`     |
+| placeholder  | The placeholder show on the input box                 | `string \| string[]`                         | `-`     |
+| defaultValue | Default value                                         | `string \| string[]`                         | `-`     |
 | disabled     | If true, the input box status is disabled             | `boolean`                                   | `-`     |
 | error        | If true, the input box status is error                | `boolean`                                   | `false` |
-| autoSize     | If true, the size of the box will be automatic adjust | `boolean\|{minRows?:number;maxRows?number}` | `-`     |
-| value        | Value                                                 | `string \|string[]`                         | `-`     |
+| autoSize     | If true, the size of the box will be automatic adjust | `boolean\| {minRows?:number;maxRows?number}` | `-`     |
+| value        | Value                                                 | `string \| string[]`                         | `-`     |
 | maxLength    | Max leangth of the content                            | `number`                                    | `-`     |
 | showCount    | Show the word count                                   | `boolean`                                   | `false` |
 | allowClear   | Allow the delete button to clear the value            | `boolean`                                   | `-`     |
@@ -55,14 +55,14 @@ import { Input } from "@illa-dedign/input"
 | Props        | Desc                                                   | Type                                                         | Default     |
 | ------------ | ------------------------------------------------------ | ------------------------------------------------------------ | ----------- |
 | searchButton | If true, the search button show  on outside of the box | `boolean`                                                    | `false`     |
-| variant      | Two styles of the input box                            | `"fill" \|"outline"`                                         | `"outline"` |
-| placeholder  | The placeholder show on the input box                  | `string \|string[]`                                          | `-`         |
-| defaultValue | Default value                                          | `string \|string[]`                                          | `-`         |
+| variant      | Two styles of the input box                            | `"fill" \| "outline"`                                         | `"outline"` |
+| placeholder  | The placeholder show on the input box                  | `string \| string[]`                                          | `-`         |
+| defaultValue | Default value                                          | `string \| string[]`                                          | `-`         |
 | disabled     | If true, the input box status is disabled              | `boolean`                                                    | `-`         |
-| boarderColor | Color of the box boarder                               | `"white" \|"blackAlpha" \|"gray" \|"grayBlue" \|"red" \|"orange" \|"yellow" \|"green" \|"blue" \|"cyan" \|"purple" ` | `"blue"`    |
+| boarderColor | Color of the box boarder                               | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`    |
 | error        | If true, the input box status is error                 | `boolean`                                                    | `false`     |
-| size         | Size of the box                                        | `"small" \|"medium"\|"large"  `                              | `"medium"`  |
-| value        | Value                                                  | `string \|string[]`                                          |   `-`       |
+| size         | Size of the box                                        | `"small" \| "medium"\| "large"  `                              | `"medium"`  |
+| value        | Value                                                  | `string \| string[]`                                          |   `-`       |
 | allowClear   | Allow the delete button to clear the value             | `boolean`                                                    |    `-`      |
 
 ### InputPassword Basic Properties
@@ -70,14 +70,14 @@ import { Input } from "@illa-dedign/input"
 | Props           | Desc                                                        | Type                                                         | Default     |
 | --------------- | ----------------------------------------------------------- | ------------------------------------------------------------ | ----------- |
 | invisibleButton | If true, the invisible button show  on the right of the box | `boolean`                                                    | `true`      |
-| variant         | Two styles of the input box                                 | `"fill" \|"outline"`                                         | `"outline"` |
-| placeholder     | The placeholder show on the input bo                        | `string \|string[]`                                          |  `-`        |
-| defaultValue    | Default value                                               | `string \|string[]`                                          |  `-`       |
+| variant         | Two styles of the input box                                 | `"fill" \| "outline"`                                         | `"outline"` |
+| placeholder     | The placeholder show on the input bo                        | `string \| string[]`                                          |  `-`        |
+| defaultValue    | Default value                                               | `string \| string[]`                                          |  `-`       |
 | disabled        | If true, the input box status is disabled                   | `boolean`                                                    | `-`         |
-| boarderColor    | Color of the box boarder                                    | `"white" \|"blackAlpha" \|"gray" \|"grayBlue" \|"red" \|"orange" \|"yellow" \|"green" \|"blue" \|"cyan" \|"purple" ` | `"blue"`    |
+| boarderColor    | Color of the box boarder                                    | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`    |
 | error           | If true, the input box status is error                      | `boolean`                                                    | `false`     |
-| size            | Size of the box                                             | `"small" \|"medium"\|"large"  `                              | `"medium"`  |
-| value           | Value                                                       | `string \|string[]`                                          |   `-`       |
+| size            | Size of the box                                             | `"small" \| "medium"\| "large"  `                              | `"medium"`  |
+| value           | Value                                                       | `string \| string[]`                                          |   `-`       |
 | allowClear      | Allow the delete button to clear the value                  | `boolean`                                                    |   `-`       |
 
 ### Input Events
@@ -128,9 +128,9 @@ import { Input } from "@illa-dedign/input"
 
 ```jsx
 <Input
-      defaultValue="test maxLength"
-      maxLength={4}
-    />
+  defaultValue="test maxLength"
+  maxLength={4}
+/>
 ```
 
 ### Set word count
