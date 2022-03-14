@@ -3,7 +3,22 @@ import { CheckboxProps } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 
-export function applyCheckboxSize() {
+export function applyCheckboxSize(checked?: boolean) {
+  let checkedCss= css()
+  if (checked) {
+    checkedCss = css`
+      border-color: transparent;
+      background-color: ${globalColor(`--${illaPrefix}-blue-01`)};
+
+      &:hover {
+        background-color: ${globalColor(`--${illaPrefix}-blue-02`)};
+      }
+
+      &:disabled {
+        background-color: ${globalColor(`--${illaPrefix}-blue-06`)};
+      }
+    `
+  }
   return css`
     position: relative;
     appearance: none;
@@ -23,19 +38,7 @@ export function applyCheckboxSize() {
       border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
       background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
     }
-
-    &:checked {
-      border-color: transparent;
-      background-color: ${globalColor(`--${illaPrefix}-blue-01`)};
-
-      &:hover {
-        background-color: ${globalColor(`--${illaPrefix}-blue-02`)};
-      }
-
-      &:disabled {
-        background-color: ${globalColor(`--${illaPrefix}-blue-06`)};
-      }
-    }
+    ${checkedCss}
   `
 }
 
@@ -45,7 +48,7 @@ export function applyCheckState(checked: boolean) {
     left: 0;
     width: 16px;
     height: 8px;
-    transform: ${checked ? "scale(1)" : "scale(0)"};
+    transform: ${checked ? "scale(1);" : "scale(0);"};
     color: white;
     transition: 0.15s all linear;
   `

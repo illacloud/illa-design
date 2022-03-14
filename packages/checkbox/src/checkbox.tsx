@@ -2,7 +2,7 @@
 import * as React from "react"
 import { forwardRef, useEffect, useContext, useCallback } from "react"
 import { useMergeValue } from "@illa-design/system"
-import { CheckmarkIcon } from "@illa-design/icon"
+import { CheckmarkIcon, MinusIcon } from "@illa-design/icon"
 import { CheckboxProps } from "./interface"
 import { applyMergeCss, applyCheckboxSize, applyCheckState } from "./style"
 import { CheckboxGroupContext } from "./context"
@@ -12,7 +12,16 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
     const context = useContext(CheckboxGroupContext)
     const { onGroupChange } = context
     const mergeProps = { ...props }
-    const { children, disabled, value, onChange, ...otherProps } = mergeProps
+    const {
+      children,
+      disabled,
+      value,
+      onChange,
+      checked,
+      indeterminate,
+      defaultChecked,
+      ...otherProps
+    } = mergeProps
     if (context.isGroup) {
       mergeProps.checked =
         context.checkboxGroupValue?.indexOf(props.value) !== -1
@@ -35,7 +44,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
       <label css={applyMergeCss(props)} ref={ref} {...otherProps}>
         <input
           type="checkbox"
-          css={applyCheckboxSize}
+          css={applyCheckboxSize(currentChecked || indeterminate)}
           value={value}
           checked={currentChecked}
           disabled={disabled}
@@ -43,17 +52,21 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
             (e) => {
               e.persist()
               e.stopPropagation()
-              setCurrentChecked(e.target.checked)
-              if (context.isGroup) {
-                onGroupChange?.(props.value, e.target.checked, e)
+              setCurrentChecked(e?.target?.checked)
+              if (context?.isGroup) {
+                onGroupChange?.(value, e?.target?.checked, e)
               }
-              props.onChange && props.onChange(e.target.checked, e)
+              onChange?.(e?.target?.checked, e)
             },
-            [onGroupChange, context.isGroup, props.onChange, props.value],
+            [onGroupChange, context?.isGroup, onChange, value],
           )}
           onClick={(e) => e.stopPropagation()}
         />
-        <CheckmarkIcon css={applyCheckState(currentChecked)} />
+        {indeterminate ? (
+          <MinusIcon css={applyCheckState(true)} />
+        ) : (
+          <CheckmarkIcon css={applyCheckState(currentChecked)} />
+        )}
         {children}
       </label>
     )
