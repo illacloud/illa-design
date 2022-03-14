@@ -43,7 +43,6 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
     const otherProps = omit(rest, [
       "prefix",
       "suffix",
-      "className",
       "defaultValue",
       "addonBefore",
       "addonAfter",

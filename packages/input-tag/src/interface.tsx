@@ -18,6 +18,7 @@ export interface InputTagProps<T = any>
   disabled?: boolean
   autoFocus?: boolean
   readOnly?: boolean
+  disableInput?: boolean
   allowClear?: boolean
   // input output both { label: '', value: ''}
   labelInValue?: boolean
@@ -52,7 +53,7 @@ export interface RenderTagsProps extends HTMLAttributes<HTMLElement> {
   valueChangeHandler?: (value: ObjectValueType[]) => void
 }
 
-export interface StateValue {
+export interface InputTagStateValue {
   disabled?: boolean
   error?: boolean
   focus?: boolean

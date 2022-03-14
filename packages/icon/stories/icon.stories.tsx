@@ -21,6 +21,7 @@ import {
   PreIcon,
   NextIcon,
   MoreIcon,
+  ExpandIcon,
   InfoCircleIcon,
   DeleteIcon,
   MinusIcon,
@@ -34,7 +35,6 @@ import {
   FilePictureIcon,
   FileWPSIcon,
   FilePPTIcon,
-  LoadingGradientIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -82,6 +82,7 @@ export const InfoCircle: Story<IconProps> = (props) => (
 )
 export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
 export const Next: Story<IconProps> = (props) => <NextIcon {...props} />
+export const Expand: Story<IconProps> = (props) => <ExpandIcon {...props} />
 export const More: Story<IconProps> = (props) => <MoreIcon {...props} />
 export const Minus: Story<IconProps> = (props) => <MinusIcon {...props} />
 export const Upload: Story<IconProps> = (props) => <UploadIcon {...props} />
@@ -105,6 +106,3 @@ export const FilePicture: Story<IconProps> = (props) => (
 )
 export const FileWPS: Story<IconProps> = (props) => <FileWPSIcon {...props} />
 export const FilePPT: Story<IconProps> = (props) => <FilePPTIcon {...props} />
-export const LoadingGradient: Story<IconProps> = (props) => (
-  <LoadingGradientIcon {...props} />
-)

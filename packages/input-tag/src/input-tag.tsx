@@ -4,7 +4,7 @@ import { forwardRef, ElementRef, useState, useRef } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { InputElement } from "@illa-design/input"
 import { ErrorIcon } from "@illa-design/icon"
-import { InputTagProps, ObjectValueType, StateValue } from "./interface"
+import { InputTagProps, ObjectValueType } from "./interface"
 import {
   applyInputContainer,
   applyInputInnerCss,
@@ -31,6 +31,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       error,
       disabled,
       readOnly,
+      disableInput,
       suffix,
       icon,
       validate = defaultValidate,
@@ -122,7 +123,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
             ref={inputRef}
             size={size}
             value={currentInputValue}
-            disabled={disabled}
+            disabled={disabled || disableInput}
             readOnly={readOnly}
             autoFitWidth
             placeholder={!currentValue?.length ? placeholder : ""}

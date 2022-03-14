@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { FC, MutableRefObject, useEffect, useRef } from "react"
 import { AvatarProps } from "./interface"
 import { applyMergeCss } from "./style"

@@ -15,12 +15,12 @@
         <option name="specsDir" value="$PROJECT_DIR$/packages" />
         <option name="specFile" value="$PROJECT_DIR$/packages/trigger/tests/trigger.e2e.tsx" />
         <option name="testName" value="Trigger renders with different color scheme" />
-        <option name="workingDirectory" value="file://$PROJECT_DIR$/packages/trigger" />
+        <option name="workingDirectory" value="file://$PROJECT_DIR$" />
         <option name="envs">
           <map />
         </option>
-        <option name="additionalParams" value="" />
-        <option name="browser" />
+        <option name="additionalParams" value="-b chrome --headless " />
+        <option name="browser" value="CHROME" />
         <option name="passParentEnvs" value="true" />
         <option name="nodeJsRef" value="project" />
         <option name="npmRef" value="Project" />
@@ -37,12 +37,12 @@
       </CypressRunSettings>
     </option>
     <option name="passParentEnvs" value="true" />
-    <option name="programParameters" value="" />
+    <option name="programParameters" value="-b chrome --headless " />
     <option name="projectPathOnTarget" />
     <option name="selectedOptions">
       <list />
     </option>
-    <option name="workingDirectory" value="$PROJECT_DIR$/packages/trigger" />
+    <option name="workingDirectory" value="$PROJECT_DIR$" />
     <option name="configKind" value="JS" />
     <option name="allNames">
       <list>
@@ -52,12 +52,12 @@
     <option name="specsDir" value="$PROJECT_DIR$/packages" />
     <option name="specFile" value="$PROJECT_DIR$/packages/trigger/tests/trigger.e2e.tsx" />
     <option name="testName" value="Trigger renders with different color scheme" />
-    <option name="workingDirectory" value="file://$PROJECT_DIR$/packages/trigger" />
+    <option name="workingDirectory" value="file://$PROJECT_DIR$" />
     <option name="envs">
       <map />
     </option>
-    <option name="additionalParams" value="" />
-    <option name="browser" />
+    <option name="additionalParams" value="-b chrome --headless " />
+    <option name="browser" value="CHROME" />
     <option name="passParentEnvs" value="true" />
     <option name="nodeJsRef" value="project" />
     <option name="npmRef" value="Project" />

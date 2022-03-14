@@ -55,6 +55,7 @@
     "@illa-design/tooltip": "*",
     "@illa-design/popover": "*",
     "@illa-design/link": "*",
+    "@illa-design/config-provider": "*",
     "@illa-design/progress": "*",
     "@illa-design/empty": "*",
     "@illa-design/badge": "*",
@@ -63,12 +64,16 @@
     "@illa-design/list": "*",
     "@illa-design/switch": "*",
     "@illa-design/alert": "*",
+    "@illa-design/input-tag": "*",
+    "@illa-design/select": "*",
     "@illa-design/grid": "*",
     "@illa-design/pagination": "*",
     "@illa-design/upload": "*",
     "@illa-design/spin": "*",
     "@illa-design/notification": "*",
     "@illa-design/comment": "*",
+    "@illa-design/popconfirm": "*",
+    "@illa-design/description": "*",
     "@illa-design/timeline": "*"
   }
 }

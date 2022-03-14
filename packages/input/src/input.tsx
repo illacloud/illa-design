@@ -10,7 +10,7 @@ import {
   ForwardRefExoticComponent,
 } from "react"
 import { useMergeValue } from "@illa-design/system"
-import { InputProps, InputRefType, InputSize } from "./interface"
+import { InputProps, InputRefType } from "./interface"
 import {
   applyAddonCss,
   applyContainerCss,
@@ -22,15 +22,6 @@ import {
 } from "./style"
 import { InputElement } from "./input-element"
 import { formatForRule } from "./utils"
-
-export interface StateValue {
-  disabled?: boolean
-  error?: boolean
-  focus?: boolean
-  variant?: string
-  size?: InputProps["size"]
-  boarderColor?: InputProps["boarderColor"]
-}
 
 export type InputRef = ForwardRefExoticComponent<
   InputProps & React.RefAttributes<InputRefType>

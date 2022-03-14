@@ -239,16 +239,6 @@ export function applyAnimation(
   }
 }
 
-export const applyCloseContentCss = css`
-  display: flex;
-  flex-direction: column;
-`
-
 export const applyDefaultContentSize = css`
   font-size: 14px;
-`
-
-export const applyCloseButton = css`
-  margin-top: 4px;
-  align-self: end;
 `
