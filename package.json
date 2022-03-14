@@ -36,7 +36,12 @@
     "react-icons": "^4.3.1",
     "ts-jest": "^27.1.3",
     "turbo": "^1.1.1",
-    "sinon": "^13.0.1"
+    "sinon": "^13.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.5.2",
+    "vite": "^2.8.6",
+    "@vitejs/plugin-react": "^1.2.0"
   },
   "workspaces": [
     "packages/*"
@@ -44,9 +49,9 @@
   "scripts": {
     "build-develop": "sh ./scripts/build-develop.sh",
     "storybook": "yarn build-all-components && yarn start-storybook -p 6006",
-    "build-all-components": "NODE_OPTIONS=--max-old-space-size=10240 npx turbo run build",
+    "build-all-components": "NODE_OPTIONS=--max-old-space-size=6144 npx turbo run build",
     "build-storybook": "yarn build-all-components && npx build-storybook",
-    "test": "npx patch-package && yarn build-all-components && npx jest && npx turbo run e2e:ci",
+    "test": "npx patch-package && yarn build-all-components && npx jest && npx cypress run-ct -b chrome",
     "unit-test": "yarn build-all-components && npx jest",
     "lint": "prettier --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
