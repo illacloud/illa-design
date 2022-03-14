@@ -17,10 +17,14 @@ export default {
 
 const Template: Story<TimelineProps> = (props) => {
   return (
-    <Timeline {...props}>
+    // <Timeline {...props}>
+    //   <TimelineItem>The first milestone</TimelineItem>
+    //   <TimelineItem>The second milestone</TimelineItem>
+    //   <TimelineItem>The third milestone</TimelineItem>
+    // </Timeline>
+    <Timeline direction={"horizontal"} mode={"alternate"}>
       <TimelineItem>The first milestone</TimelineItem>
       <TimelineItem>The second milestone</TimelineItem>
-      <TimelineItem>The third milestone</TimelineItem>
     </Timeline>
   )
 }

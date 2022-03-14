@@ -4,8 +4,8 @@ import { Children, forwardRef, ReactElement } from "react"
 import { TimelineProps } from "./interface"
 import { Spin } from "@illa-design/spin"
 import { TimelineItem } from "./timelineItem"
-import { TimelineContext } from './timeline-context'
-import { wrapLineCss } from './styles'
+import { TimelineContext } from "./timeline-context"
+import { applyWrapCss } from "./styles"
 
 export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
   (props, ref) => {
@@ -13,17 +13,16 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
       style,
       className,
       reverse = false,
+      mode = "left",
       direction = "vertical",
-      pending = true,
-      pendingDot = <Spin size={'small'} />,
-      labelPosition = "same",
+      pending,
+      pendingDot = <Spin size={"small"} />,
       ...rest
     } = props
-    let { mode = "left" } = props
 
-    const pendingNode = typeof pending === 'boolean' ? null : pending;
+    const pendingNode = typeof pending === "boolean" ? null : pending
     const pedningItem = pending ? (
-      <TimelineItem dot={pendingDot}>{pendingNode}</TimelineItem>
+      <TimelineItem dot={pendingDot || pendingNode}></TimelineItem>
     ) : null
 
     let childLiItem = Children.toArray(props.children)
@@ -34,18 +33,13 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
 
     pending && childLiItem.push(pedningItem as any)
 
-    if (labelPosition === 'relative') {
-      // 
-      mode = 'alternate'
-    }
-
     const items = Children.map(childLiItem, (ele, index) => {
       return (
         <TimelineContext.Provider
           value={{
             direction,
             mode,
-            index
+            index,
           }}
         >
           {ele}
@@ -53,14 +47,12 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
       )
     })
 
-    let wrapCss = (direction === 'horizontal' && mode === "alternate") ? wrapLineCss : ''
-
     return (
-      <div ref={ref} {...rest} css={wrapCss}>
+      <div ref={ref} {...rest} css={applyWrapCss(direction)}>
         {items}
       </div>
     )
   },
 )
 
-// Timeline.Item = TimelineItem;
+Timeline.displayName = "Timeline"

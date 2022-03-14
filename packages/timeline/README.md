@@ -1,4 +1,4 @@
-# Spin
+# Timeline
 
 Vertical display timeline.
 
