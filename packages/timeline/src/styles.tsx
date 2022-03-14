@@ -4,7 +4,6 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export function applyWrapCss(direction: string): SerializedStyles {
   return css`
     display: inline-flex;
-    flex-wrap: wrap;
     ${direction === "vertical" && "flex-direction: column"};
   `
 }
