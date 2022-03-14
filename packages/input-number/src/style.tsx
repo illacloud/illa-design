@@ -14,6 +14,7 @@ function baseFixCls(stateValue: InputNumberStateValue) {
 
         padding: 0 8px;
       `
+      break
     case "medium":
       sizeCss = css`
         & > svg {
@@ -22,6 +23,7 @@ function baseFixCls(stateValue: InputNumberStateValue) {
 
         padding: 0 10px;
       `
+      break
     case "large":
       sizeCss = css`
         & > svg {
@@ -84,25 +86,45 @@ export function applyInputNumber() {
   `
 }
 
-export function applyStepEmbedContainer() {
+export function applyStepEmbedContainer(stateValue: InputNumberStateValue) {
+  let sizeCss: SerializedStyles
+  switch (stateValue?.size) {
+    default:
+    case "small":
+      sizeCss = css`
+        right: 2px;
+        font-size: 10px;
+      `
+      break
+    case "medium":
+      sizeCss = css`
+        right: 4px;
+        font-size: 12px;
+      `
+      break
+    case "large":
+      sizeCss = css`
+        right: 8px;
+        font-size: 12px;
+      `
+      break
+  }
   return css`
     transition: 0.2s ease-in-out;
     opacity: 0;
     position: absolute;
-    right: 8px;
+     right: 2px;
+    ${sizeCss}
   `
 }
 export function applyStepEmbed() {
   return css`
-    //width: 18px;
-    //height: 12px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     padding: 0 3px;
     color: ${globalColor(`--${illaPrefix}-gray-04`)};
     background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-    font-size: 12px;
     transition: 0.2s ease-in-out;
     &:hover {
       cursor: pointer;

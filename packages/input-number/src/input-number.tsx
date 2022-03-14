@@ -40,7 +40,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
       prefix,
       icons,
       precision,
-      size,
+      size = "medium",
       step = 1,
       mode = "embed",
       min = -Infinity,
@@ -196,6 +196,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
     return (
       <Input
         css={applyInputNumber}
+        size={size}
         ref={inputRef}
         style={style}
         className={className}
@@ -209,7 +210,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
           render: (
             <>
               {renderStepEmbed ? (
-                <div css={applyStepEmbedContainer} title="inputStepEmbed">
+                <div css={applyStepEmbedContainer(stateValue)} title="inputStepEmbed">
                   <span css={applyStepEmbed} {...stepEvents("plus")}>
                     {icons && icons.up ? icons.up : <UpIcon />}
                   </span>
