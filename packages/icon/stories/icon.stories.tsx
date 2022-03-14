@@ -18,15 +18,20 @@ import {
   RightIcon,
   SearchIcon,
   SuccessIcon,
+  ReduceIcon,
   WarningCircleIcon,
   WarningIcon,
   PreIcon,
   NextIcon,
+  UpIcon,
+  DownIcon,
   MoreIcon,
   ExpandIcon,
+  AddIcon,
   InfoCircleIcon,
   DeleteIcon,
   MinusIcon,
+  PlusIcon,
   UploadIcon,
   FileWordIcon,
   FileDefaultIcon,
@@ -77,6 +82,7 @@ export const WarningCircle: Story<IconProps> = (props) => (
   <WarningCircleIcon {...props} />
 )
 export const Success: Story<IconProps> = (props) => <SuccessIcon {...props} />
+export const Reduce: Story<IconProps> = (props) => <ReduceIcon {...props} />
 export const Empty: Story<IconProps> = (props) => <EmptyIcon {...props} />
 export const Checkmark: Story<IconProps> = (props) => (
   <CheckmarkIcon {...props} />
@@ -86,9 +92,13 @@ export const InfoCircle: Story<IconProps> = (props) => (
 )
 export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
 export const Next: Story<IconProps> = (props) => <NextIcon {...props} />
+export const Up: Story<IconProps> = (props) => <UpIcon {...props} />
+export const Down: Story<IconProps> = (props) => <DownIcon {...props} />
 export const Expand: Story<IconProps> = (props) => <ExpandIcon {...props} />
 export const More: Story<IconProps> = (props) => <MoreIcon {...props} />
+export const Add: Story<IconProps> = (props) => <AddIcon {...props} />
 export const Minus: Story<IconProps> = (props) => <MinusIcon {...props} />
+export const Plus: Story<IconProps> = (props) => <PlusIcon {...props} />
 export const Upload: Story<IconProps> = (props) => <UploadIcon {...props} />
 export const Delete: Story<IconProps> = (props) => <DeleteIcon {...props} />
 export const FileWord: Story<IconProps> = (props) => <FileWordIcon {...props} />

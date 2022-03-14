@@ -55,7 +55,10 @@ export interface InputElementProps
 }
 
 export interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "prefix" | "size"> {
+  extends Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    "prefix" | "size" | "onChange"
+  > {
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
@@ -67,14 +70,15 @@ export interface InputProps
   maxLength?: number
   showCount?: boolean
   allowClear?: boolean
-  prefix?: ReactNode
-  suffix?: ReactNode
-  addonAfter?: ReactNode
-  addonBefore?: ReactNode
+  prefix?: { custom?: boolean; render?: ReactNode }
+  suffix?: { custom?: boolean; render?: ReactNode }
+  addonAfter?: { custom?: boolean; render?: ReactNode }
+  addonBefore?: { custom?: boolean; render?: ReactNode }
   requirePadding?: boolean
   textCenterHorizontal?: boolean
   onClear?: () => void
   onPressEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  onChange?: (value: string, event: any) => void
 }
 
 export interface TextAreaProps
