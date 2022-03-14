@@ -24,6 +24,10 @@ export function isObject(obj: any): obj is { [key: string]: any } {
   return Object.prototype.toString.call(obj) === "[object Object]"
 }
 
+export function isPromise(obj: any): obj is { [key: string]: any } {
+  return Object.prototype.toString.call(obj) === "[object Promise]"
+}
+
 export function isString(obj: any): obj is string {
   return Object.prototype.toString.call(obj) === "[object String]"
 }
