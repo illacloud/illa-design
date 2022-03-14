@@ -35,7 +35,6 @@ export interface InputNumberProps<T = any>
   onFocus?: (e: any) => void
   onBlur?: (e: any) => void
   onChange?: (value?: number) => void
-  // onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 export interface InputNumberStateValue {
