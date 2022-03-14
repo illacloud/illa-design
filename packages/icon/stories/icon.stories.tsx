@@ -24,6 +24,7 @@ import {
   DownIcon,
   MoreIcon,
   ExpandIcon,
+  AddIcon,
   InfoCircleIcon,
   DeleteIcon,
   MinusIcon,
@@ -89,6 +90,7 @@ export const Up: Story<IconProps> = (props) => <UpIcon {...props} />
 export const Down: Story<IconProps> = (props) => <DownIcon {...props} />
 export const Expand: Story<IconProps> = (props) => <ExpandIcon {...props} />
 export const More: Story<IconProps> = (props) => <MoreIcon {...props} />
+export const Add: Story<IconProps> = (props) => <AddIcon {...props} />
 export const Minus: Story<IconProps> = (props) => <MinusIcon {...props} />
 export const Plus: Story<IconProps> = (props) => <PlusIcon {...props} />
 export const Upload: Story<IconProps> = (props) => <UploadIcon {...props} />
