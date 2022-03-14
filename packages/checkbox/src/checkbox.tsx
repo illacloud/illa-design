@@ -2,7 +2,7 @@
 import * as React from "react"
 import { forwardRef, useEffect, useContext, useCallback } from "react"
 import { useMergeValue } from "@illa-design/system"
-import { CheckmarkIcon, MinusIcon } from "@illa-design/icon"
+import { CheckmarkIcon, ReduceIcon } from "@illa-design/icon"
 import { CheckboxProps } from "./interface"
 import { applyMergeCss, applyCheckboxSize, applyCheckState } from "./style"
 import { CheckboxGroupContext } from "./context"
@@ -63,7 +63,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
           onClick={(e) => e.stopPropagation()}
         />
         {indeterminate ? (
-          <MinusIcon css={applyCheckState(true)} />
+          <ReduceIcon css={applyCheckState(true)} />
         ) : (
           <CheckmarkIcon css={applyCheckState(currentChecked)} />
         )}
