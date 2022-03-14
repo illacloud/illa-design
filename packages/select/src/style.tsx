@@ -157,10 +157,6 @@ export function applyIconStyle(): SerializedStyles {
       font-size: 12px;
     }
 
-    [title="selectRemoveIcon"] {
-      opacity: 1;
-    }
-
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
 }
