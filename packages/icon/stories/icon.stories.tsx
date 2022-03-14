@@ -12,6 +12,8 @@ import {
   ImageDefaultIcon,
   LinkIcon,
   LoadingIcon,
+  LikeIcon,
+  ShareIcon,
   PersonIcon,
   RightIcon,
   SearchIcon,
@@ -61,6 +63,8 @@ export const ImageDefault: Story<IconProps> = (props) => (
   <ImageDefaultIcon {...props} />
 )
 export const Loading: Story<IconProps> = (props) => <LoadingIcon {...props} />
+export const Like: Story<IconProps> = (props) => <LikeIcon {...props} />
+export const Share: Story<IconProps> = (props) => <ShareIcon {...props} />
 export const Person: Story<IconProps> = (props) => <PersonIcon {...props} />
 export const EyeOn: Story<IconProps> = (props) => <EyeOnIcon {...props} />
 export const EyeOff: Story<IconProps> = (props) => <EyeOffIcon {...props} />
