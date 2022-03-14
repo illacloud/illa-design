@@ -73,6 +73,7 @@
     "@illa-design/notification": "*",
     "@illa-design/comment": "*",
     "@illa-design/popconfirm": "*",
-    "@illa-design/description": "*"
+    "@illa-design/description": "*",
+    "@illa-design/card": "*"
   }
 }
