@@ -41,6 +41,8 @@
   "dependencies": {
     "@illa-design/system": "*",
     "@illa-design/icon": "*",
-    "@illa-design/theme": "*"
+    "@illa-design/theme": "*",
+    "@illa-design/spin": "*"
+
   }
 }
