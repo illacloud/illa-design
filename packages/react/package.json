@@ -74,6 +74,7 @@
     "@illa-design/comment": "*",
     "@illa-design/popconfirm": "*",
     "@illa-design/description": "*",
-    "@illa-design/timeline": "*"
+    "@illa-design/timeline": "*",
+    "@illa-design/card": "*"
   }
 }
