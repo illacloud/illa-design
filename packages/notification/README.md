@@ -35,19 +35,21 @@ import { Notification } from "@illa-dedign/notification"
 
 ### Method
 
-- `Notification.info(config)`
+```jsx
+ `Notification.info(config)`
 
-- `Notification.success(config)`
+ `Notification.success(config)`
 
-- `Notification.warning(config)`
+ `Notification.warning(config)`
 
-- `Notification.error(config)`
+ `Notification.error(config)`
 
-- `Notification.normal(config)`
+ `Notification.normal(config)`
 
-- `Notification.remove(id)`
+ `Notification.remove(id)`
 
-- `Notification.clear()`
+ `Notification.clear()`
+```
 
 ### Config Provider
 
