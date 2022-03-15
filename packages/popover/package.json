@@ -42,6 +42,7 @@
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
     "@illa-design/trigger": "*",
-    "@illa-design/typography": "*"
+    "@illa-design/typography": "*",
+    "@illa-design/link": "*"
   }
 }

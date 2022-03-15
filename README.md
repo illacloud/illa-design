@@ -1,3 +1,4 @@
+
 <div align="center">
     <img alt="ILLA Design Logo" width="120px" height="120px" src="https://devbo.cn/logo.svg"/>
 </div>
@@ -60,13 +61,7 @@ const App = () => (
 
 ## ⌨️ Development
 
-Step 1: Choose one workspace.
-
-Use Gitpod, a free online dev environment for GitHub.
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/illa-family/illa-design)
-
-Or clone locally:
+Step 1: Clone locally.
 
 ```bash
 $ git clone https://github.com/illa-family/illa-design.git
@@ -107,7 +102,8 @@ out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get in
 
 Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
 
-- Frontend engineer(Beijing / Shenzhen)
+- Frontend Engineer(Beijing / Shenzhen)
+- Golang Engineer(Beijing / Shenzhen)
 
 ## License
 

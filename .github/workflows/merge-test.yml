@@ -20,20 +20,22 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache node modules
+      - name: Cache node modules & Turbo building
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
           path: |
             **/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+            ~/Library/Caches/Cypress
+          key: ${{ runner.os }}-build-${{ github.run_id }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-build-${{ github.run_id }}
 
       - name: Build
         run: |
           yarn install --frozen-lockfile
+          yarn build-all-components
 
   test:
     needs:
@@ -55,22 +57,19 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache node modules
+      - name: Cache node modules & Turbo building
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
           path: |
             **/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+            ~/Library/Caches/Cypress
+          key: ${{ runner.os }}-build-${{ github.run_id }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-build-${{ github.run_id }}
 
-      - name: Build Components
+      - name: Run Test
         run: |
-          yarn build-all-components
-
-      - name: Run test
-        uses: cypress-io/github-action@v2
-        run: |
+          yarn cypress info
           yarn test

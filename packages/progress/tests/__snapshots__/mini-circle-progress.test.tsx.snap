@@ -21,13 +21,17 @@ exports[`Progress renders with colors 1`] = `
 }
 
 .emotion-1 {
+  display: inline-flex;
+}
+
+.emotion-2 {
   width: 16px;
   height: 16px;
   border-radius: 50%;
   background-color: #fcc;
 }
 
-.emotion-2 {
+.emotion-3 {
   -webkit-transition: all 200ms;
   transition: all 200ms;
   stroke: #ff4747;
@@ -44,18 +48,22 @@ exports[`Progress renders with colors 1`] = `
   class="emotion-0"
   data-testid="test-progress-red"
 >
-  <svg
+  <span
     class="emotion-1"
   >
-    <circle
+    <svg
       class="emotion-2"
-      cx="calc(16px / 2)"
-      cy="calc(16px / 2)"
-      fill="none"
-      r="calc(16px / 2)"
-      stroke-width="16px"
-    />
-  </svg>
+    >
+      <circle
+        class="emotion-3"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc(16px / 2)"
+        stroke-width="16px"
+      />
+    </svg>
+  </span>
 </div>
 `;
 
@@ -80,13 +88,17 @@ exports[`Progress renders with colors 2`] = `
 }
 
 .emotion-1 {
+  display: inline-flex;
+}
+
+.emotion-2 {
   width: 16px;
   height: 16px;
   border-radius: 50%;
   background-color: #ebebeb;
 }
 
-.emotion-2 {
+.emotion-3 {
   -webkit-transition: all 200ms;
   transition: all 200ms;
   stroke: #1f1f1f;
@@ -103,18 +115,22 @@ exports[`Progress renders with colors 2`] = `
   class="emotion-0"
   data-testid="test-progress-gray"
 >
-  <svg
+  <span
     class="emotion-1"
   >
-    <circle
+    <svg
       class="emotion-2"
-      cx="calc(16px / 2)"
-      cy="calc(16px / 2)"
-      fill="none"
-      r="calc(16px / 2)"
-      stroke-width="16px"
-    />
-  </svg>
+    >
+      <circle
+        class="emotion-3"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc(16px / 2)"
+        stroke-width="16px"
+      />
+    </svg>
+  </span>
 </div>
 `;
 
@@ -139,13 +155,17 @@ exports[`Progress renders with colors 3`] = `
 }
 
 .emotion-1 {
+  display: inline-flex;
+}
+
+.emotion-2 {
   width: 16px;
   height: 16px;
   border-radius: 50%;
   background-color: #321321;
 }
 
-.emotion-2 {
+.emotion-3 {
   -webkit-transition: all 200ms;
   transition: all 200ms;
   stroke: #123123;
@@ -162,18 +182,22 @@ exports[`Progress renders with colors 3`] = `
   class="emotion-0"
   data-testid="test-progress-custom"
 >
-  <svg
+  <span
     class="emotion-1"
   >
-    <circle
+    <svg
       class="emotion-2"
-      cx="calc(16px / 2)"
-      cy="calc(16px / 2)"
-      fill="none"
-      r="calc(16px / 2)"
-      stroke-width="16px"
-    />
-  </svg>
+    >
+      <circle
+        class="emotion-3"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc(16px / 2)"
+        stroke-width="16px"
+      />
+    </svg>
+  </span>
 </div>
 `;
 
@@ -198,13 +222,17 @@ exports[`Progress renders with custom width 1`] = `
 }
 
 .emotion-1 {
+  display: inline-flex;
+}
+
+.emotion-2 {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   background-color: #ebebeb;
 }
 
-.emotion-2 {
+.emotion-3 {
   -webkit-transition: all 200ms;
   transition: all 200ms;
   stroke: #1e6fff;
@@ -221,18 +249,22 @@ exports[`Progress renders with custom width 1`] = `
   class="emotion-0"
   data-testid="test-progress"
 >
-  <svg
+  <span
     class="emotion-1"
   >
-    <circle
+    <svg
       class="emotion-2"
-      cx="calc(100px / 2)"
-      cy="calc(100px / 2)"
-      fill="none"
-      r="calc(100px / 2)"
-      stroke-width="100px"
-    />
-  </svg>
+    >
+      <circle
+        class="emotion-3"
+        cx="calc(100px / 2)"
+        cy="calc(100px / 2)"
+        fill="none"
+        r="calc(100px / 2)"
+        stroke-width="100px"
+      />
+    </svg>
+  </span>
 </div>
 `;
 
@@ -257,13 +289,17 @@ exports[`Progress renders with error status 1`] = `
 }
 
 .emotion-1 {
+  display: inline-flex;
+}
+
+.emotion-2 {
   width: 16px;
   height: 16px;
   border-radius: 50%;
   background-color: #ebebeb;
 }
 
-.emotion-2 {
+.emotion-3 {
   -webkit-transition: all 200ms;
   transition: all 200ms;
   stroke: #ff4747;
@@ -280,18 +316,22 @@ exports[`Progress renders with error status 1`] = `
   class="emotion-0"
   data-testid="test-progress"
 >
-  <svg
+  <span
     class="emotion-1"
   >
-    <circle
+    <svg
       class="emotion-2"
-      cx="calc(16px / 2)"
-      cy="calc(16px / 2)"
-      fill="none"
-      r="calc(16px / 2)"
-      stroke-width="16px"
-    />
-  </svg>
+    >
+      <circle
+        class="emotion-3"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc(16px / 2)"
+        stroke-width="16px"
+      />
+    </svg>
+  </span>
 </div>
 `;
 
@@ -316,13 +356,17 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-1 {
+  display: inline-flex;
+}
+
+.emotion-2 {
   width: 16px;
   height: 16px;
   border-radius: 50%;
   background-color: #ebebeb;
 }
 
-.emotion-2 {
+.emotion-3 {
   -webkit-transition: all 200ms;
   transition: all 200ms;
   stroke: #1e6fff;
@@ -339,17 +383,21 @@ exports[`Progress renders with steps 1`] = `
   class="emotion-0"
   data-testid="test-progress"
 >
-  <svg
+  <span
     class="emotion-1"
   >
-    <circle
+    <svg
       class="emotion-2"
-      cx="calc(16px / 2)"
-      cy="calc(16px / 2)"
-      fill="none"
-      r="calc(16px / 2)"
-      stroke-width="16px"
-    />
-  </svg>
+    >
+      <circle
+        class="emotion-3"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
+        fill="none"
+        r="calc(16px / 2)"
+        stroke-width="16px"
+      />
+    </svg>
+  </span>
 </div>
 `;

@@ -1,6 +1,7 @@
 import { Switch } from "../src"
 import { render, screen, fireEvent } from "@testing-library/react"
 import { SuccessIcon, CloseIcon } from "@illa-design/icon"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 import "@testing-library/jest-dom"
 import * as React from "react"
 
@@ -44,7 +45,7 @@ test("Switch renders with different colorScheme in different status", () => {
     />,
   )
   expect(screen.getByTestId("test-innerColor")).toHaveStyle({
-    "background-color": "rgba(0, 0, 0, 0.88)",
+    "background-color": `${globalColor(`--${illaPrefix}-blackAlpha-03`)}`,
   })
   render(
     <Switch
@@ -78,7 +79,9 @@ test("Switch renders with status changed", () => {
   })
   const target = screen.getByTestId("test-status-changed")
   fireEvent.click(target)
-  expect(target).toHaveStyle({ "background-color": "#134ae0" })
+  expect(target).toHaveStyle({
+    "background-color": `${globalColor(`--${illaPrefix}-blue-03`)}`,
+  })
   expect(onClickEvent).toBeCalled()
   expect(onChangeEvent).toBeCalled()
 })

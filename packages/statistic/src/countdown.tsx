@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import React, { forwardRef, useEffect, useRef, useState } from "react"
+import { forwardRef, useEffect, useRef, useState } from "react"
 import { CountDownProps } from "./interface"
-import * as dayjs from "dayjs"
+import dayjs from "dayjs"
 import { getDateString, getDayjsValue } from "./util"
 
 import {
-  applyStatisticContent,
   applyStatistic,
+  applyStatisticContent,
   applyStatisticTitle,
 } from "./style"
 
@@ -29,14 +29,14 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
     const [valueShow, setValueShow] = useState(
       Math.max(deadline.diff(_now, "millisecond"), 0),
     )
-    const timerRef = useRef<NodeJS.Timer | NodeJS.Timeout | null>(null)
+    const timerRef = useRef<number | undefined>(undefined)
     const stopTimer = () => {
-      clearInterval(timerRef.current as NodeJS.Timeout)
-      timerRef.current = null
+      window.clearInterval(timerRef.current)
+      timerRef.current = void 0
     }
 
     const startTimer = () => {
-      timerRef.current = setInterval(() => {
+      timerRef.current = window.setInterval(() => {
         const _value = deadline.diff(dayjs(), "millisecond")
         const valueShow = Math.max(_value, 0)
         onChange && onChange(valueShow)

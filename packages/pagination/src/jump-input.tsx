@@ -35,8 +35,8 @@ export const JumperInput = forwardRef<HTMLSpanElement, JumperInputProps>(
           size={size}
           textCenterHorizontal={true}
           disabled={wholeDisable}
-          onChange={(event) => {
-            const value = event.target.value.replace(/[^\d]/, "")
+          onChange={(val) => {
+            const value = val?.replace(/[^\d]/, "")
             setCompositionValue(value)
           }}
           onPressEnter={() => {

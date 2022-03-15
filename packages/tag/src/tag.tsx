@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef } from "react"
+import { forwardRef, useState } from "react"
 import { TagProps } from "./interface"
 import { css } from "@emotion/react"
 import { CloseIcon } from "@illa-design/icon"
@@ -23,7 +23,7 @@ import {
 
 export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const {
-    visible = true,
+    visible,
     colorScheme = "gray",
     size = "small",
     variant = "light",
@@ -34,6 +34,8 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const otherProps = omit(rest, ["onClose", "icon"])
 
   let variantCss: SerializedStyles
+
+  const [realVisible, setRealVisible] = useState(true)
 
   // variant
   if (colors.includes(colorScheme)) {
@@ -88,27 +90,35 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     ${sizeCss};
   `
 
-  return visible ? (
+  return (visible == undefined ? realVisible : visible) ? (
     <div css={finalStyle} ref={ref} {...otherProps}>
       {props.icon && <span css={leftIcon}>{props.icon}</span>}
       <span
         css={css`
           font-size: 14px;
           line-height: 22px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         `}
       >
         {props.children}
       </span>
       {props.closable && (
-        <CloseIcon
-          size="7px"
-          css={closeIcon}
-          onClick={() => {
-            if (props.onClose != undefined) {
-              props.onClose()
-            }
-          }}
-        />
+        <span>
+          <CloseIcon
+            size="7px"
+            css={closeIcon}
+            onClick={() => {
+              if (props.onClose != undefined) {
+                props.onClose()
+              }
+              if (visible == undefined) {
+                setRealVisible(false)
+              }
+            }}
+          />
+        </span>
       )}
     </div>
   ) : null

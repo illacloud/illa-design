@@ -6,7 +6,7 @@ export const zhCN = {
     copyToolTip: "复制",
     expandLabel: "展开",
   },
-  trigger: {
+  popover: {
     close: "关闭",
   },
   empty: {
@@ -16,5 +16,15 @@ export const zhCN = {
     total: "共{0}条",
     page: "页",
     go: "前往",
+  },
+  upload: {
+    upload: "上传",
+    dragTip: "拖拽文件至此处",
+    selectFile: "选择文件",
+    beginUpload: "开始上传",
+  },
+  popConfirm: {
+    confirm: "确认",
+    cancel: "取消",
   },
 } as Locale

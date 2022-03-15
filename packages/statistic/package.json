@@ -39,6 +39,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
+    "dayjs": "^1.10.7",
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
     "@illa-design/icon": "*"

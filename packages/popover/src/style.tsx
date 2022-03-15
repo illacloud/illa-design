@@ -3,7 +3,9 @@ import { TriggerColorScheme } from "@illa-design/trigger"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const applyTypographyContainer = css`
-  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
 `
 
 export function applyTitleColor(colorScheme: TriggerColorScheme) {
@@ -13,6 +15,10 @@ export function applyTitleColor(colorScheme: TriggerColorScheme) {
       : globalColor(`--${illaPrefix}-white-02`)
   return css`
     color: ${textColor};
-    margin-bottom: 4px;
   `
 }
+
+export const applyCloseButton = css`
+  margin-top: 4px;
+  align-self: end;
+`

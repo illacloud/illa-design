@@ -1,7 +1,7 @@
 {
   "name": "@illa-design/trigger",
   "version": "0.0.0",
-  "description": "Illa Design base.",
+  "description": "Illa Design trigger.",
   "keywords": [
     "trigger",
     "react",
@@ -36,15 +36,12 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build",
-    "e2e:ci": "yarn cypress run-ct",
-    "e2e": "yarn cypress open-ct"
+    "build": "tsc && vite build"
   },
   "dependencies": {
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
     "@illa-design/icon": "*",
-    "@illa-design/link": "*",
     "@illa-design/config-provider": "*"
   }
 }

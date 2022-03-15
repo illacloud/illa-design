@@ -78,7 +78,6 @@ export function applyTipsContainer(
     display: inline-flex;
     flex-direction: ${isColumn ? "column" : "row"};
     z-index: 10;
-    color: ${globalColor(`--${illaPrefix}-white-01`)};
   `
 }
 
@@ -89,12 +88,14 @@ export function applyTipsText(
   autoAlignPopupWidth?: boolean,
 ): SerializedStyles {
   const bgColor = colorSchemes.includes(colorScheme)
-    ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
+    ? colorScheme == "white"
+      ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
+      : globalColor(`--${illaPrefix}-${colorScheme}-02`)
     : colorScheme
   const textColor =
     colorScheme == "white"
-      ? globalColor(`--${illaPrefix}-gray-03`)
-      : globalColor(`--${illaPrefix}-white-02`)
+      ? globalColor(`--${illaPrefix}-gray-02`)
+      : globalColor(`--${illaPrefix}-white-01`)
 
   let paddingHor = "12px"
 
@@ -189,45 +190,55 @@ export function applyTriangleStyle(
   `
 }
 
-export function applyAnimation(position: TriggerPosition): Variants {
+export function applyAnimation(
+  position: TriggerPosition,
+  showArrow: boolean,
+): Variants {
+  const isHorizontal =
+    position == "left" ||
+    position == "lt" ||
+    position == "lb" ||
+    position == "right" ||
+    position == "rt" ||
+    position == "rb"
   switch (position) {
     case "top":
-      return getAnimation(`calc(50%)`, `calc(100%)`)
+      return getAnimation(`calc(50%)`, `calc(100%)`, showArrow, isHorizontal)
     case "tl":
-      return getAnimation(`calc(12px)`, `calc(100%)`)
+      return getAnimation(`calc(12px)`, `calc(100%)`, showArrow, isHorizontal)
     case "tr":
-      return getAnimation(`calc(100% - 12px)`, `calc(100%)`)
+      return getAnimation(
+        `calc(100% - 12px)`,
+        `calc(100%)`,
+        showArrow,
+        isHorizontal,
+      )
     case "bottom":
-      return getAnimation(`calc(50%)`, `0px`)
+      return getAnimation(`calc(50%)`, `0px`, showArrow, isHorizontal)
     case "bl":
-      return getAnimation(`calc(12px)`, `0px`)
+      return getAnimation(`calc(12px)`, `0px`, showArrow, isHorizontal)
     case "br":
-      return getAnimation(`calc(100% - 12px)`, `0px`)
+      return getAnimation(`calc(100% - 12px)`, `0px`, showArrow, isHorizontal)
     case "left":
-      return getAnimation(`calc(100%)`, `calc(50%)`)
+      return getAnimation(`calc(100%)`, `calc(50%)`, showArrow, isHorizontal)
     case "lt":
-      return getAnimation(`calc(100%)`, `calc(12px)`)
+      return getAnimation(`calc(100%)`, `calc(12px)`, showArrow, isHorizontal)
     case "lb":
-      return getAnimation(`calc(100%)`, `calc(100% - 12px)`)
+      return getAnimation(
+        `calc(100%)`,
+        `calc(100% - 12px)`,
+        showArrow,
+        isHorizontal,
+      )
     case "right":
-      return getAnimation(`0px`, `calc(50%)`)
+      return getAnimation(`0px`, `calc(50%)`, showArrow, isHorizontal)
     case "rt":
-      return getAnimation(`0px`, `calc(12px)`)
+      return getAnimation(`0px`, `calc(12px)`, showArrow, isHorizontal)
     case "rb":
-      return getAnimation(`0px`, `calc(100%)`)
+      return getAnimation(`0px`, `calc(100%)`, showArrow, isHorizontal)
   }
 }
 
-export const applyCloseContentCss = css`
-  display: flex;
-  flex-direction: column;
-`
-
 export const applyDefaultContentSize = css`
   font-size: 14px;
-`
-
-export const applyCloseButton = css`
-  margin-top: 4px;
-  align-self: end;
 `

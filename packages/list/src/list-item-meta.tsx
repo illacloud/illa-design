@@ -26,10 +26,11 @@ export const ListItemMeta = forwardRef<HTMLDivElement, ListItemMetaProps>(
         )}
         <Typography css={applyTypoStyle}>
           {title && (
-            <Text fontSize="14px" bold css={applyItemMetaTitle}>
+            <Text fontSize="14px" colorScheme="gray" bold>
               {title}
             </Text>
           )}
+          {title && description && <div style={{ height: "4px" }} />}
           {description && (
             <Paragraph
               colorScheme={

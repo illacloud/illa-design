@@ -1,3 +1,4 @@
+const path = require("path")
 module.exports = {
   stories: [
     "../packages/**/stories/*.stories.mdx",
@@ -13,5 +14,13 @@ module.exports = {
   reactOptions: {
     fastRefresh: true,
     strictMode: true,
+  },
+  webpackFinal: async (config, { configType }) => {
+    config.module.rules.push({
+      type: "javascript/auto",
+      test: /\.mjs$/,
+      include: /node_modules/,
+    })
+    return config
   },
 }

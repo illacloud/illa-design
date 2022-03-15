@@ -20,20 +20,24 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache node modules
+      - name: Cache node modules & Turbo building
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
           path: |
             **/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+            ~/Library/Caches/Cypress
+          key: ${{ runner.os }}-build-${{ github.run_id }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-build-${{ github.run_id }}
+
 
       - name: Build
         run: |
           yarn install --frozen-lockfile
+          yarn build-all-components    
+
   build:
     needs:
       - install
@@ -54,31 +58,22 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache node modules
+      - name: Cache node modules & Turbo building
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
           path: |
             **/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+            ~/Library/Caches/Cypress
+          key: ${{ runner.os }}-build-${{ github.run_id }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-build-${{ github.run_id }}
 
-      - name: Build Components
+      - name: Run Test
         run: |
-          yarn build-all-components
-
-      - name: Run test
-        uses: cypress-io/github-action@v2
-        run: |
+          yarn cypress info
           yarn test
-
-      - name: Publish to Codecov
-        uses: codecov/codecov-action@v2.1.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage-final.json
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
@@ -86,3 +81,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: true
+          exitOnceUploaded: true
