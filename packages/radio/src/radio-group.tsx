@@ -23,6 +23,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
       colorScheme,
       direction = "horizontal",
       spacing = direction === "horizontal" ? "24px" : "16px",
+      type = 'radio',
       name,
       onChange,
       ...otherProps
@@ -56,6 +57,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
     const contextProp = {
       onChangeValue,
       name,
+      type,
       options,
       disabled,
       value,

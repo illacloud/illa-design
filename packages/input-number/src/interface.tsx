@@ -1,5 +1,5 @@
-import { ReactNode, InputHTMLAttributes } from "react"
 import * as React from "react"
+import { ReactNode, InputHTMLAttributes, Ref } from "react"
 
 export type InputNumberSize = "small" | "medium" | "large"
 
@@ -8,6 +8,7 @@ export interface InputNumberProps<T = any>
     InputHTMLAttributes<HTMLInputElement>,
     "prefix" | "size" | "onChange"
   > {
+  inputRef?: Ref<HTMLInputElement>
   step?: number
   precision?: number
   min?: number

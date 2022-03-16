@@ -1,13 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { PersonIcon } from "@illa-design/icon"
 import { InputProps, Input } from "../src"
-
-import { BsFacebook } from "react-icons/bs"
 import { Space } from "@illa-design/space"
-import { css } from "@emotion/core"
-import { render } from "react-dom"
 
 //👇 This default export determines where your story goes in the story list
 export default {

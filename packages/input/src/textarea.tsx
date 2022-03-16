@@ -17,7 +17,7 @@ import { ErrorIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import autoSizeTextAreaHeight from "./autoSizeTextAreaHeight"
 import { applyLengthErrorStyle, applyCountLimitStyle } from "./style"
-import { InputSize, TextAreaProps, TextAreaType } from "./interface"
+import { InputSize, TextAreaProps } from "./interface"
 import {
   applyTextAreaContainer,
   applyTextAreaStyle,
@@ -35,11 +35,12 @@ export interface TextAreaState {
   size?: InputSize
 }
 
-export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
+export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
   (props, ref) => {
     const {
       style,
       className,
+      textAreaRef,
       allowClear,
       error,
       disabled,
@@ -60,7 +61,7 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
       "onBlur",
     ])
 
-    const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
+    const refTextArea = useRef<HTMLTextAreaElement>(null)
     const [autoSizeStyle, setAutoSizeStyle] = useState<CSSProperties>({})
 
     const isComposition = useRef(false)
@@ -131,28 +132,16 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
     }
 
     useImperativeHandle(
-      ref,
-      () => ({
-        dom: textAreaRef.current,
-        focus: () => {
-          textAreaRef.current &&
-            textAreaRef.current.focus &&
-            textAreaRef.current.focus()
-        },
-        blur: () => {
-          textAreaRef.current &&
-            textAreaRef.current.blur &&
-            textAreaRef.current.blur()
-        },
-      }),
+      textAreaRef,
+      () => refTextArea.current as HTMLTextAreaElement,
       [],
     )
 
     useEffect(() => {
-      if (textAreaRef?.current && autoSize) {
+      if (refTextArea?.current && autoSize) {
         const autoStyle = autoSizeTextAreaHeight(
           props.autoSize,
-          textAreaRef.current,
+          refTextArea.current,
         )
         autoStyle ? setAutoSizeStyle(autoStyle) : null
       }
@@ -176,50 +165,49 @@ export const TextArea = forwardRef<TextAreaType, TextAreaProps>(
     }
 
     return (
-      <>
-        <span
-          css={applyTextAreaContainer(stateValue)}
-          style={style}
-          className={className}
-        >
-          <textarea
-            style={{ ...autoSizeStyle }}
-            ref={textAreaRef}
-            css={applyTextAreaStyle}
-            {...textAreaProps}
-            onChange={onChange}
-            onFocus={(e) => {
-              setFocus(true)
-              props.onFocus && props.onFocus(e)
+      <span
+        ref={ref}
+        css={applyTextAreaContainer(stateValue)}
+        style={style}
+        className={className}
+      >
+        <textarea
+          style={{ ...autoSizeStyle }}
+          ref={refTextArea}
+          css={applyTextAreaStyle}
+          {...textAreaProps}
+          onChange={onChange}
+          onFocus={(e) => {
+            setFocus(true)
+            props.onFocus && props.onFocus(e)
+          }}
+          onBlur={(e) => {
+            setFocus(false)
+            props.onBlur && props.onBlur(e)
+          }}
+        />
+        {!disabled && allowClear && value ? (
+          <span
+            css={clearStyle}
+            onClick={(e) => {
+              e.stopPropagation()
+              onClear && onClear()
             }}
-            onBlur={(e) => {
-              setFocus(false)
-              props.onBlur && props.onBlur(e)
+            onMouseDown={(e) => {
+              e.preventDefault()
             }}
-          />
-          {!disabled && allowClear && value ? (
-            <span
-              css={clearStyle}
-              onClick={(e) => {
-                e.stopPropagation()
-                onClear && onClear()
-              }}
-              onMouseDown={(e) => {
-                e.preventDefault()
-              }}
-            >
-              <ErrorIcon
-                css={css`
-                  color: ${globalColor(`--${illaPrefix}-gray-07`)};
-                  width: 12px;
-                  height: 12px;
-                `}
-              />
-            </span>
-          ) : null}
-          {suffix ? <span css={applyPrefixCls}>{suffix}</span> : null}
-        </span>
-      </>
+          >
+            <ErrorIcon
+              css={css`
+                color: ${globalColor(`--${illaPrefix}-gray-07`)};
+                width: 12px;
+                height: 12px;
+              `}
+            />
+          </span>
+        ) : null}
+        {suffix ? <span css={applyPrefixCls}>{suffix}</span> : null}
+      </span>
     )
   },
 )

@@ -36,6 +36,7 @@ export interface RadioGroupContextProps<T> {
     | number
     | { label: React.ReactNode; value: any; disabled?: boolean }
   )[]
+  type?: "radio" | "button"
   direction?: "vertical" | "horizontal"
   spacing?: string | number
   onChange?: (checked: boolean, event: ChangeEvent) => void

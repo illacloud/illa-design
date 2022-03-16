@@ -4,12 +4,9 @@ import {
   forwardRef,
   useState,
   useMemo,
-  useRef,
-  useImperativeHandle,
-  ForwardRefExoticComponent,
 } from "react"
 import { useMergeValue } from "@illa-design/system"
-import { InputProps, InputRefType } from "./interface"
+import { InputProps } from "./interface"
 import {
   applyAddonCss,
   applyContainerCss,
@@ -23,10 +20,6 @@ import { InputElement } from "./input-element"
 import { formatForRule } from "./utils"
 import { SerializedStyles } from "@emotion/react"
 
-export type InputRef = ForwardRefExoticComponent<
-  InputProps & React.RefAttributes<InputRefType>
->
-
 const inputAddon = (
   node?: React.ReactNode,
   custom?: boolean,
@@ -35,11 +28,12 @@ const inputAddon = (
   return node ? custom ? <>{node}</> : <span css={style}>{node}</span> : null
 }
 
-export const Input: InputRef = forwardRef<InputRefType, InputProps>(
+export const Input = forwardRef<HTMLDivElement, InputProps>(
   (props, ref) => {
     const {
       style,
       className,
+      inputRef,
       allowClear,
       error,
       disabled,
@@ -63,7 +57,6 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
       ...rest
     } = props
 
-    const inputRef = useRef<InputRefType>({} as InputRefType)
     const [focus, setFocus] = useState(false)
     const [value, setValue] = useMergeValue("", {
       defaultValue: defaultValue
@@ -90,8 +83,6 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
       boarderColor,
     }
 
-    useImperativeHandle(ref, () => inputRef?.current, [])
-
     if (maxLength && showCount) {
       suffix.render = (
         <span css={applyCountLimitStyle}>
@@ -103,6 +94,7 @@ export const Input: InputRef = forwardRef<InputRefType, InputProps>(
 
     return (
       <div
+        ref={ref}
         css={applyContainerCss(stateValue)}
         style={style}
         className={className}

@@ -1,10 +1,11 @@
+import * as React from "react"
 import {
   ReactNode,
   ChangeEvent,
   InputHTMLAttributes,
   TextareaHTMLAttributes,
+  Ref,
 } from "react"
-import * as React from "react"
 
 export type InputBoarderColor =
   | string
@@ -21,18 +22,6 @@ export type InputBoarderColor =
 export type InputVariant = "fill" | "outline"
 
 export type InputSize = "small" | "medium" | "large"
-
-export type InputRefType = {
-  blur?: () => void
-  focus?: () => void
-  dom: HTMLInputElement | null
-}
-
-export type TextAreaType = {
-  blur?: () => void
-  focus?: () => void
-  dom: HTMLTextAreaElement | null
-}
 
 export interface InputElementProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
@@ -59,6 +48,7 @@ export interface InputProps
     InputHTMLAttributes<HTMLInputElement>,
     "prefix" | "size" | "onChange"
   > {
+  inputRef?: Ref<HTMLInputElement>
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
@@ -83,6 +73,7 @@ export interface InputProps
 
 export interface TextAreaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  textAreaRef?: Ref<HTMLTextAreaElement>
   variant?: InputVariant
   placeholder?: string
   defaultValue?: string
@@ -103,9 +94,9 @@ export interface TextAreaProps
 
 export interface SearchProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+  inputRef?: Ref<HTMLInputElement>
   searchButton?: boolean
   loading?: boolean
-
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
@@ -125,9 +116,9 @@ export interface SearchProps
 
 export interface PasswordProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+  inputRef?: Ref<HTMLInputElement>
   invisibleButton?: boolean
   loading?: boolean
-
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
