@@ -2,7 +2,7 @@ import { HTMLAttributes, ReactElement, ReactNode } from "react"
 
 export declare type TabPosition = "left" | "right" | "top" | "bottom"
 export declare type TabsSize = "small" | "medium" | "large"
-export declare type Variant = "line" | "text" | "card"
+export declare type Variant = "line" | "text" | "card" | "capsule"
 
 export interface TabsProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -15,37 +15,42 @@ export interface TabsProps
   editable?: boolean
   addIcon?: ReactNode
   deleteIcon?: ReactNode
-  tabBarExtraContent?: ReactNode | { left?: ReactNode; right?: ReactNode }
   tabBarSpacing?: number
-  tabBarStyle?: object // TODO confirm
   destroyInactiveTabPane?: boolean
   // actions
   onChange?: (key: string) => void
   onClickTab?: (key: string) => void
   onAddTab?: () => void
   onDeleteTab?: (key: string) => void
-
   placeholder?: string
 }
 
 export interface TabContentProps extends HTMLAttributes<HTMLDivElement> {
   tabPanes?: ReactElement[]
-  defaultActiveKey?: string
+  selectedIndex: number
   animated?: boolean
+  variant: Variant
 }
 
 export type TabHeaderProps = TabsProps & {
   tabHeaderChild?: TabHeaderChildProps[]
-  onSelectTab: (key: string) => void
-  selectedIndex: number
+  handleSelectTab: (key: string) => void
+  selectedIndex?: number
+  handleDeleteTab?: (key: string) => void
 }
 
-export type TabHeaderChildProps = Pick<TabPaneProps, "title" | "disabled"> & {
+export type TabHeaderChildProps = Pick<
+  TabPaneProps,
+  "title" | "disabled" | "closable"
+> & {
   isSelected?: boolean
   tabKey: string
-  onSelectTab: (key: string) => void
-  size: TabsSize
+  handleSelectTab: (key: string) => void
   needDivLine?: boolean
+  variant?: Variant
+  deleteIcon?: ReactNode
+  size?: TabsSize
+  handleDeleteTab?: (key: string) => void
 }
 
 export interface TabPaneProps

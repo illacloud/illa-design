@@ -3,16 +3,20 @@ import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Tabs, TabsProps } from "../src"
 import { TabPane } from "../src/tab-pane"
+import { ReactNode } from "react"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "DATA DISPLAY/Tabs",
   component: Tabs,
   argTypes: {
-    icon: {
+    addIcon: {
       control: false,
     },
-    element: {
+    deleteIcon: {
+      control: false,
+    },
+    activeKey: {
       control: false,
     },
     animated: {
@@ -24,29 +28,54 @@ export default {
 } as Meta
 
 const Template: Story<TabsProps> = (props) => {
+  const tabArr: { key: string; title: string | ReactNode; content: string }[] =
+    [
+      {
+        key: "2",
+        title: "tab 0sssss2",
+        content: "tab content 02",
+      },
+      { key: "3", title: "tab 03", content: "tab content 03" },
+      { key: "4", title: "tab 04", content: "tab content 04" },
+      {
+        key: "6",
+        title: "tab 0sssss2",
+        content: "tab content 02",
+      },
+      { key: "7", title: "tab 03", content: "tab content 03" },
+      { key: "8", title: "tab 04", content: "tab content 04" },
+      {
+        key: "9",
+        title: "tab 0sssss2",
+        content: "tab content 02",
+      },
+      { key: "10", title: "tab 03", content: "tab content 03" },
+      { key: "11", title: "tab 04", content: "tab content 04" },
+      {
+        key: "12",
+        title: "tab 0sssss2",
+        content: "tab content 02",
+      },
+      { key: "13", title: "tab 03", content: "tab content 03" },
+      { key: "14", title: "tab 04", content: "tab content 04" },
+      {
+        key: "15",
+        title: "tab 0sssss2",
+        content: "tab content 02",
+      },
+      { key: "16", title: "tab 03", content: "tab content 03" },
+      { key: "17", title: "tab 04", content: "tab content 04" },
+    ]
+
   return (
     <Tabs {...props}>
-      <TabPane key={"yyyy"} title={"tab 01"}>
-        "tab content 01"
-      </TabPane>
-      <TabPane key={"2"} title={"tab 02000000"}>
-        "tab content 02"
-      </TabPane>
-      <TabPane key={"3"} title={"tab 03"}>
-        "tab content 03"
-      </TabPane>
-      <TabPane key={"4"} title={"tab 04"}>
-        "tab content 03"
-      </TabPane>
-      <TabPane key={"5"} title={"tab 05"}>
-        "tab content 03"
-      </TabPane>
-      <TabPane key={"s6"} title={"tab 03"}>
-        "tab content 03"
-      </TabPane>
-      <TabPane key={"7"} title={"tab 04"}>
-        "tab content 03"
-      </TabPane>
+      {tabArr.map((item, index) => {
+        return (
+          <TabPane title={item.title} key={item.key}>
+            {item.content}
+          </TabPane>
+        )
+      })}
     </Tabs>
   )
 }

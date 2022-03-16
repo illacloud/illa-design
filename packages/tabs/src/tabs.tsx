@@ -1,12 +1,17 @@
 /** @jsxImportSource @emotion/react */
-import React, { forwardRef, ReactElement, useState, useEffect } from "react"
-import { TabHeaderChildProps, TabPaneProps, TabsProps } from "./interface"
+import React, { forwardRef, ReactElement, useState, useMemo } from "react"
+import {
+  TabHeaderChildProps,
+  TabHeaderProps,
+  TabPaneProps,
+  TabsProps,
+} from "./interface"
 import { TabPane } from "./tab-pane"
 import { TabContent } from "./tab-content"
-import { containerCss } from "./styles"
+import { commonContainerCss, horizontalContainerCss } from "./styles"
+import { TabCommonHeader } from "./headers/tab-common-header"
+import { isAhead, isHorizontalLayout } from "./utils"
 import { TabLineHeader } from "./headers/tab-line-header"
-import { TabCardHeader } from "./headers/tab-card-header"
-import { TabCapsuleHeader } from "./headers/tab-capsule-header"
 
 export function isObject(obj: any): obj is { [key: string]: any } {
   return Object.prototype.toString.call(obj) === "[object Object]"
@@ -43,6 +48,27 @@ export function getTabChildren(children: ReactElement) {
   }
 }
 
+export function removeHeaderAndPane(index: number, tabsArr: TabChildren) {
+  if (index < 0) return tabsArr
+  const newHeaders = [...tabsArr.headers]
+  newHeaders.splice(index, 1)
+  const newPanes = [...tabsArr.panes]
+  newPanes.splice(index, 1)
+  return {
+    headers: newHeaders,
+    panes: newPanes,
+    firstTabKey: newHeaders[0].tabKey,
+  }
+}
+
+export function getSelectedIndex(
+  key?: string,
+  headers?: TabHeaderChildProps[],
+) {
+  if (!headers) return -1
+  return headers.findIndex((item) => key === item.tabKey)
+}
+
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const {
     children,
@@ -50,24 +76,33 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     defaultActiveKey,
     size = "medium",
     animated,
+    editable = false, // just valid when variant is card
+    variant = "line",
+    addIcon,
+    deleteIcon,
+    onChange,
+    onAddTab,
+    onDeleteTab,
+    onClickTab,
+    tabPosition = "top",
+    activeKey,
+    ...rest
   } = props
 
-  const [activeKey, setActiveKey] = useState<string | undefined>(
+  const [activeKeyState, setActiveKeyState] = useState<string | undefined>(
     defaultActiveKey,
   )
-  const [_selectedIndex, setSelectedIndex] = useState<number>(0)
 
-  const _children: TabChildren = getTabChildren(children as ReactElement)
-  useEffect(() => {
-    setActiveKey(_children.firstTabKey)
-  }, [])
+  const [_children, setChildren] = useState<TabChildren>({
+    headers: [],
+    panes: [],
+  })
 
-  useEffect(() => {
-    const index = _children.headers.findIndex((item) => {
-      return item.tabKey === activeKey
-    })
-    setSelectedIndex(index)
-  }, [activeKey])
+  useMemo(() => {
+    const tabs = getTabChildren(children as ReactElement)
+    setChildren(tabs)
+    if (!defaultActiveKey) setActiveKeyState(tabs.firstTabKey)
+  }, [children])
 
   let headerAnimated = true
   let paneAnimated = false
@@ -78,23 +113,80 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     headerAnimated = paneAnimated = animated
   }
 
+  const _activeKey = activeKey ?? activeKeyState
+
+  const headerProps: TabHeaderProps = {
+    selectedIndex: getSelectedIndex(_activeKey, _children.headers),
+    animated: headerAnimated,
+    tabHeaderChild: _children?.headers,
+    handleSelectTab: (key) => {
+      onClickTab && onClickTab(key)
+      setActiveKeyState(key)
+      onChange && onChange(key)
+    },
+    size: size,
+    variant: variant,
+    editable: editable,
+    addIcon: addIcon,
+    onAddTab: onAddTab,
+    tabPosition: tabPosition,
+    handleDeleteTab: (key) => {
+      const index = _children.headers.findIndex((item) => {
+        return item.tabKey === key
+      })
+      if (index === getSelectedIndex(_activeKey, _children.headers)) {
+        if (index === _children.headers.length - 1) {
+          setActiveKeyState(_children.headers[index - 1].tabKey)
+          onChange && onChange(_children.headers[index - 1].tabKey)
+        } else {
+          setActiveKeyState(_children.headers[index + 1].tabKey)
+          onChange && onChange(_children.headers[index + 1].tabKey)
+        }
+      }
+      const newArr = removeHeaderAndPane(index, _children)
+      setChildren(newArr)
+      onDeleteTab && onDeleteTab(key)
+    },
+    deleteIcon: deleteIcon,
+  }
+
+  const containerCss = useMemo(() => {
+    if (isHorizontalLayout(tabPosition)) {
+      return horizontalContainerCss
+    }
+    return commonContainerCss
+  }, [tabPosition])
+
+  const _variant = useMemo(() => {
+    if (tabPosition && tabPosition !== "top") {
+      return "line"
+    }
+    return variant
+  }, [variant, tabPosition])
+
   return (
-    <div css={containerCss} placeholder={placeholder}>
-      <TabCardHeader
-        selectedIndex={_selectedIndex}
-        size={size}
-        animated={headerAnimated}
-        tabHeaderChild={_children?.headers}
-        defaultActiveKey={activeKey}
-        onSelectTab={(key) => {
-          setActiveKey(key)
-        }}
-      />
+    <div css={containerCss} placeholder={placeholder} ref={ref} {...rest}>
+      {isAhead(tabPosition) && _variant === "line" && (
+        <TabLineHeader {...headerProps} />
+      )}
+      {tabPosition === "top" && _variant != "line" && (
+        <TabCommonHeader {...headerProps} />
+      )}
       <TabContent
         animated={paneAnimated}
         tabPanes={_children?.panes}
-        defaultActiveKey={activeKey}
+        selectedIndex={getSelectedIndex(
+          activeKey ?? activeKeyState,
+          _children.headers,
+        )}
+        variant={_variant}
       />
+      {!isAhead(tabPosition) && _variant === "line" && (
+        <TabLineHeader {...headerProps} />
+      )}
+      {!isAhead(tabPosition) && _variant != "line" && (
+        <TabCommonHeader {...headerProps} />
+      )}
     </div>
   )
 })
