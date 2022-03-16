@@ -95,11 +95,3 @@ export const targetContainer = () => {
     </>
   )
 }
-
-export const test = () => {
-  return (
-    <Affix offsetTop={200}>
-      <span>Hello</span>
-    </Affix>
-  )
-}
