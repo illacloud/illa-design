@@ -1,6 +1,5 @@
 // thx arco.design
-// const target = typeof window === "undefined" ? global : window
-const target = window
+const target = typeof window === "undefined" ? globalThis : window
 const vendors = ["webkit", "ms", "moz", "o"]
 
 let raf: any = (target as unknown as Window).requestAnimationFrame
