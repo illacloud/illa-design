@@ -176,7 +176,9 @@ describe("Upload", () => {
     expect(curFile && curFile.status == "init").toBe(true)
 
     expect(screen.getByText("test.png")).toBeInTheDocument()
-    fireEvent.click(screen.getByTitle("DeleteIcon"))
+    await act(async () => {
+      fireEvent.click(screen.getByTitle("DeleteIcon"))
+    })
     expect(onRemoveEvent).toBeCalled()
   })
 
