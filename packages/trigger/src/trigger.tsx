@@ -3,6 +3,7 @@ import * as React from "react"
 import {
   cloneElement,
   FC,
+  Fragment,
   isValidElement,
   MutableRefObject,
   ReactElement,
@@ -472,10 +473,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
       },
     }
     return (
-      <>
+      <Fragment>
         {cloneElement(props.children as ReactElement, { ...finalProps })}
         {protalContent}
-      </>
+      </Fragment>
     )
   } else {
     return (
