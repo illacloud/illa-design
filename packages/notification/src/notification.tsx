@@ -140,13 +140,13 @@ export const Notification: NotificationComponent = forwardRef<
   }, [notice])
 
   return (
-    <div ref={ref} css={applyNotificationWrapper(position as NoticePosition)}>
+    <div ref={ref} css={applyNotificationWrapper(position)}>
       <AnimatePresence>
         {notificationSet[position].map((notice) => (
           <motion.div
             key={notice.id}
             layout
-            variants={applyNotificationSlide(position as NoticePosition)}
+            variants={applyNotificationSlide(position)}
             animate={"animate"}
             exit={"exit"}
             initial={"initial"}
@@ -157,7 +157,11 @@ export const Notification: NotificationComponent = forwardRef<
               }
             }}
           >
-            <Notice {...notice} noticeType="Notification" />
+            <Notice
+              {...notice}
+              noticeType="Notification"
+              removeHook={Notification.remove}
+            />
           </motion.div>
         ))}
       </AnimatePresence>
@@ -181,8 +185,8 @@ Notification.add = (notice: NoticeProps) => {
     ...notice,
   }
   ReactDOM.render(
-    <Notification notice={noticeProps} position={position} />,
-    notificationContainer[position] as HTMLDivElement,
+    <Notification notice={noticeProps} position={position as NoticePosition} />,
+    notificationContainer[position as NoticePosition] as HTMLDivElement,
   )
 }
 

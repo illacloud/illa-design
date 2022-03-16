@@ -158,31 +158,20 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       },
     }
 
-    const suffixIcon =
-      !disabled && !isEmptyValue && allowClear ? (
-        <span
-          css={iconPointerStyle}
-          onClick={onClear}
-          onMouseDown={(event) => {
-            event?.preventDefault()
-          }}
-        >
-          {removeIcon ? removeIcon : <ErrorIcon />}
-        </span>
-      ) : loading ? (
-        <LoadingIcon
-          spin
-          css={css`
-            color: ${globalColor(`--${illaPrefix}-gray-07`)};
-          `}
-        />
-      ) : showSearch && popupVisible ? (
-        <SearchIcon />
-      ) : popupVisible ? (
-        <ExpandIcon css={css({ transform: "rotate(180deg)" })} />
-      ) : (
-        <ExpandIcon />
-      )
+    const suffixIcon = loading ? (
+      <LoadingIcon
+        spin
+        css={css`
+          color: ${globalColor(`--${illaPrefix}-gray-07`)};
+        `}
+      />
+    ) : showSearch && popupVisible ? (
+      <SearchIcon />
+    ) : popupVisible ? (
+      <ExpandIcon css={css({ transform: "rotate(180deg)" })} />
+    ) : (
+      <ExpandIcon />
+    )
 
     const renderSingle = () => {
       let _inputValue: string
@@ -320,6 +309,16 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}
         >
           {isMultipleMode ? renderMultiple() : renderSingle()}
+          {!disabled && !isEmptyValue && allowClear ? (
+            <span
+              title="selectRemoveIcon"
+              css={iconPointerStyle(size)}
+              onClick={onClear}
+              onMouseDown={(event) => event?.preventDefault()}
+            >
+              {removeIcon ? removeIcon : <ErrorIcon />}
+            </span>
+          ) : null}
           <div css={applyIconStyle}>{suffixIcon}</div>
         </div>
       </div>

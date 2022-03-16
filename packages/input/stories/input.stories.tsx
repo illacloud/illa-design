@@ -7,6 +7,7 @@ import { InputProps, Input } from "../src"
 import { BsFacebook } from "react-icons/bs"
 import { Space } from "@illa-design/space"
 import { css } from "@emotion/core"
+import { render } from "react-dom"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -47,6 +48,13 @@ export default {
       },
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        type: "code",
+      },
+    },
+  },
 } as Meta
 
 const Template: Story<InputProps> = (props) => {
@@ -54,10 +62,17 @@ const Template: Story<InputProps> = (props) => {
     <div>
       <Space direction={"vertical"} wrap>
         <Input {...props} />
-        <Input prefix="prefix" suffix="suffix" {...props} />
-        <Input addonAfter="After" {...props} />
-        <Input addonAfter={<PersonIcon />} addonBefore="Before" {...props} />
-        <Input addonAfter="After" addonBefore="Before" {...props} />
+        <Input
+          suffix={{ render: <PersonIcon />,}}
+          {...props}
+        />
+        <Input prefix={{ render: "prefix" }} {...props} />
+        <Input suffix={{ render: "suffix" }} {...props} />
+        <Input
+          addonBefore={{ render: "Before" }}
+          addonAfter={{ render: "After" }}
+          {...props}
+        />
       </Space>
     </div>
   )

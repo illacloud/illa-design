@@ -69,7 +69,7 @@ export const Search: SearchRef = forwardRef<InputRefType, SearchProps>(
 
     return (
       <div style={style} className={className}>
-        <span css={applyContainerCss(variant)}>
+        <span css={applyContainerCss(stateValue)}>
           <span css={applyInputContainer(stateValue)}>
             <InputElement
               {...searchProp}

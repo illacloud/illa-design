@@ -40,9 +40,9 @@
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
+    "@illa-design/system": "*",
     "chroma-js": "^2.1.2",
-    "framer-motion": "^6.2.8",
-    "@illa-design/system": "*"
+    "framer-motion": "^6.2.8"
   },
   "devDependencies": {
     "@types/chroma-js": "^2.1.3"
