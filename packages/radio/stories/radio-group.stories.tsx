@@ -15,6 +15,7 @@ const Template: Story<RadioGroupProps<any>> = (args) => {
       <Space direction="vertical">
         <RadioGroup {...args} options={["A", "B", "C"]} />
         <RadioGroup {...args} options={[1, 2, 3]} />
+        <RadioGroup {...args} options={[1]} />
       </Space>
     </div>
   )

@@ -2,7 +2,12 @@
 import * as React from "react"
 import { ChangeEvent, forwardRef, useContext } from "react"
 import { RadioProps } from "./interface"
-import { applyMergeCss, applyRadioSize } from "./style"
+import {
+  applyMergeCss,
+  applyRadioButton,
+  applyRadioSize,
+  disappear,
+} from "./style"
 import { useMergeValue } from "./hook"
 import { omit } from "@illa-design/system"
 import { RadioGroupContext } from "./radio-group-context"
@@ -34,22 +39,34 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
     !currentChecked && onChange && onChange(true, event)
   }
 
+  const stateValue = {
+    checked: currentChecked,
+    size: context?.size,
+    disable: !!(context?.disabled || props?.disabled),
+  }
+
   return (
     <label
-      css={applyMergeCss(props)}
+      css={
+        context?.type === "button"
+          ? applyRadioButton(stateValue)
+          : applyMergeCss(props)
+      }
       ref={ref}
       {...omit(otherProps, ["colorScheme"])}
     >
       <input
         type="radio"
         {...(context?.name ? { name: context.name } : {})}
-        css={applyRadioSize(colorScheme)}
+        css={
+          context?.type === "button" ? disappear : applyRadioSize(colorScheme)
+        }
         value={value || ""}
         checked={currentChecked}
         disabled={disabled}
         onChange={onChangeValue}
       />
-      {children}
+      <span>{children}</span>
     </label>
   )
 })

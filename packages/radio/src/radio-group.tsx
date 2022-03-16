@@ -4,6 +4,7 @@ import { RadioGroupProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"
 import { Radio } from "./radio"
 import {
+  applyRadioButtonContainer,
   applyRadioContainerHorizontal,
   applyRadioContainerVertical,
 } from "./style"
@@ -23,7 +24,8 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
       colorScheme,
       direction = "horizontal",
       spacing = direction === "horizontal" ? "24px" : "16px",
-      type = 'radio',
+      type = "radio",
+      size = "medium",
       name,
       onChange,
       ...otherProps
@@ -35,13 +37,18 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
     })
 
     let radioGroupCss: SerializedStyles
-    switch (direction) {
-      case "vertical":
-        radioGroupCss = applyRadioContainerVertical(spacing)
-        break
-      case "horizontal":
-        radioGroupCss = applyRadioContainerHorizontal(spacing)
-        break
+
+    if (type === "button") {
+      radioGroupCss = applyRadioButtonContainer(size)
+    } else {
+      switch (direction) {
+        case "vertical":
+          radioGroupCss = applyRadioContainerVertical(spacing)
+          break
+        case "horizontal":
+          radioGroupCss = applyRadioContainerHorizontal(spacing)
+          break
+      }
     }
 
     function onChangeValue<T>(v: T, event: ChangeEvent): void {
@@ -58,6 +65,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
       onChangeValue,
       name,
       type,
+      size,
       options,
       disabled,
       value,
