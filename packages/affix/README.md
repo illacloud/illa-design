@@ -18,14 +18,7 @@ import { Affix } from "@illa-dedign/affix"
 
 ### Affix Basic Properties
 
-| Props        | Desc                                | Type                                          | Default  |
-| ------------ | ----------------------------------- | --------------------------------------------- | -------- |
-| action       | Custom the action area              | `ReactNode`                                   | `-`      |
-
 ## Example
 
 ### Basic usage
 
-```jsx
-<Affix title="Affix Title" content="Affix Content" />
-```
