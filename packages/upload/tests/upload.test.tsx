@@ -1,15 +1,14 @@
-import { Upload } from "../src"
+import { Upload, UploadItem } from "../src"
 import { act, fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import userEvent from "@testing-library/user-event"
-import { UploadItem } from "../dist/types"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import sinon from "sinon"
 import Mock = jest.Mock
 
 describe("Upload", () => {
   let XHR: any
   let requests: any[] = []
-  const sinon = require("sinon")
   beforeEach(() => {
     XHR = sinon.useFakeXMLHttpRequest()
     XHR.onCreate = function (xhr: any) {
