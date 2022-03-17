@@ -51,7 +51,7 @@
   "scripts": {
     "build-develop": "sh ./scripts/build-develop.sh",
     "storybook": "yarn build-all-components && yarn start-storybook -p 6006",
-    "build-all-components": "NODE_OPTIONS=--max-old-space-size=6144 npx turbo run build",
+    "build-all-components": "NODE_OPTIONS=--max-old-space-size=8192 npx turbo run build",
     "build-storybook": "yarn build-all-components && npx build-storybook",
     "test": "npx patch-package && yarn build-all-components && npx jest && npx cypress run-ct -b chrome",
     "unit-test": "yarn build-all-components && npx jest",
