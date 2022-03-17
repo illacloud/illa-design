@@ -7,7 +7,7 @@ on:
 jobs:
   install:
     runs-on: macos-latest
-    environment: TURBO
+    environment: turbo
 
     strategy:
       matrix:
@@ -35,10 +35,8 @@ jobs:
 
       - name: Build
         run: |
-          echo $TURBO_TEAM
-          echo 112121212
-          echo $TURBO_TOKEN
-          echo 444444
+          echo ${{ TURBO_TEAM }}
+          echo ${{ TURBO_TOKEN }}
           yarn install --frozen-lockfile
           yarn build-all-components
 
@@ -47,7 +45,7 @@ jobs:
       - install
 
     runs-on: macos-latest
-    environment: TURBO
+    environment: turbo
 
     strategy:
       matrix:

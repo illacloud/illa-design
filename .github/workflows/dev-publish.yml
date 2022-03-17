@@ -7,7 +7,7 @@ on:
 jobs:
   install:
     runs-on: macos-latest
-    environment: TURBO
+    environment: turbo
 
     strategy:
       matrix:
@@ -44,7 +44,7 @@ jobs:
       - install
 
     runs-on: macos-latest
-    environment: TURBO
+    environment: turbo
 
     strategy:
       matrix:
