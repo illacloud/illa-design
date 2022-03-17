@@ -4,8 +4,8 @@ import { TabHeaderChildProps, Variant } from "../interface"
 import {
   applyCapsuleHeaderChildCss,
   applyCardHeaderChildCss,
+  applyCommonHeaderChildCss,
   applyTextCss,
-  commonHeaderChildCss,
   deleteButtonCss,
   verticalLineCss,
 } from "../styles"
@@ -25,15 +25,16 @@ export const TabHeaderChild = forwardRef<HTMLSpanElement, TabHeaderChildProps>(
       closable,
       deleteIcon = <CloseIcon size={"8"} />,
       handleDeleteTab,
+      tabBarSpacing = 16,
     } = props
 
     const childCss = useMemo(() => {
       if (variant === "card") {
-        return applyCardHeaderChildCss(isSelected)
+        return applyCardHeaderChildCss(tabBarSpacing, isSelected)
       } else if (variant === "capsule") {
-        return applyCapsuleHeaderChildCss(isSelected)
+        return applyCapsuleHeaderChildCss(tabBarSpacing, isSelected)
       }
-      return commonHeaderChildCss
+      return applyCommonHeaderChildCss(tabBarSpacing)
     }, [variant, isSelected])
 
     return (
@@ -42,6 +43,7 @@ export const TabHeaderChild = forwardRef<HTMLSpanElement, TabHeaderChildProps>(
         key={tabKey}
         ref={ref}
         onClick={() => {
+          if (disabled) return
           handleSelectTab(tabKey)
         }}
       >

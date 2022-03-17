@@ -27,15 +27,15 @@ export function applyPaddingSizeCss(size: TabsSize) {
 export const commonContainerCss = css`
   display: inline-flex;
   flex-direction: column;
-  width: 800px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
 `
 
 export const horizontalContainerCss = css`
   display: inline-flex;
   flex-direction: row;
-  width: 600px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
 `
 
 // header
@@ -116,7 +116,10 @@ export const tabCardHeaderContainerCss = css`
   box-sizing: border-box;
 `
 
-export function applyCapsuleHeaderChildCss(isSelected?: boolean) {
+export function applyCapsuleHeaderChildCss(
+  spaceWidth: number,
+  isSelected?: boolean,
+) {
   const selectedBoxCss =
     isSelected &&
     css`
@@ -125,13 +128,16 @@ export function applyCapsuleHeaderChildCss(isSelected?: boolean) {
       transition: background-color 200ms;
     `
   return css`
-    ${commonHeaderChildCss};
+    ${applyCommonHeaderChildCss(spaceWidth)};
     ${selectedBoxCss};
     margin: 4px;
   `
 }
 
-export function applyCardHeaderChildCss(isSelected?: boolean) {
+export function applyCardHeaderChildCss(
+  spaceWidth: number,
+  isSelected?: boolean,
+) {
   const selectedBoxCss = isSelected
     ? css`
         border: solid ${globalColor(`--${illaPrefix}-gray-08`)};
@@ -143,7 +149,7 @@ export function applyCardHeaderChildCss(isSelected?: boolean) {
   return css`
     position: relative;
     top: 1px;
-    ${commonHeaderChildCss};
+    ${applyCommonHeaderChildCss(spaceWidth)};
     ${selectedBoxCss};
     border-radius: 4px 4px 0 0;
     border-width: 1px;
@@ -169,15 +175,16 @@ export const deleteButtonCss = css`
   color: ${globalColor(`--${illaPrefix}-gray-05`)};
 `
 
-export const commonHeaderChildCss = css`
-  display: inline-flex;
-  align-items: center;
-  padding: 0 16px;
-
-  &:hover {
-    cursor: pointer;
-  }
-`
+export function applyCommonHeaderChildCss(spaceWidth: number) {
+  return css`
+    display: inline-flex;
+    align-items: center;
+    padding: 0 ${spaceWidth}px;
+    &:hover {
+      cursor: pointer;
+    }
+  `
+}
 
 export const verticalLineCss = css`
   width: 1px;
@@ -195,6 +202,7 @@ export function applyTextCss(
   if (disabled) {
     textColorCss = css`
       color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      cursor: not-allowed;
     `
   } else if (isSelected) {
     textColorCss = css`
@@ -264,7 +272,7 @@ export function applyHorizontalBlueLineCss(
   position: number,
   size?: TabsSize,
 ) {
-  let padding
+  let padding = 7
   switch (size) {
     case "large":
       padding = 9
@@ -272,8 +280,6 @@ export function applyHorizontalBlueLineCss(
     case "small":
       padding = 5
       break
-    default:
-      padding = 7
   }
   return css`
     width: 2px;

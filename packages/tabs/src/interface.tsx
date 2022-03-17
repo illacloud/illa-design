@@ -16,7 +16,6 @@ export interface TabsProps
   addIcon?: ReactNode
   deleteIcon?: ReactNode
   tabBarSpacing?: number
-  destroyInactiveTabPane?: boolean
   // actions
   onChange?: (key: string) => void
   onClickTab?: (key: string) => void
@@ -51,6 +50,7 @@ export type TabHeaderChildProps = Pick<
   deleteIcon?: ReactNode
   size?: TabsSize
   handleDeleteTab?: (key: string) => void
+  tabBarSpacing?: number
 }
 
 export interface TabPaneProps

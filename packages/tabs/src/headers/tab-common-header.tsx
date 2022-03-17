@@ -29,6 +29,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       size = "medium",
       handleDeleteTab,
       handleSelectTab,
+      tabBarSpacing,
       addIcon = <MinusIcon />,
     } = props
 
@@ -90,15 +91,13 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         {needScroll && (
           <span
             onClick={() => {
-              if (!scrollRef || !scrollRef?.current) return
+              if (preDisable || !scrollRef || !scrollRef?.current) return
               const dis = getLeftTargetPosition(
                 childrenWidth,
                 tabWidth,
                 scrollRef.current?.scrollLeft ?? 0,
               )
-              scrollRef &&
-                scrollRef?.current &&
-                scrollRef.current?.scrollTo(dis, 0)
+              scrollRef.current?.scrollTo(dis, 0)
               setLeftDis(dis)
             }}
             css={applyCommonPreNextIconCss(true, variant, preDisable)}
@@ -122,6 +121,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                     closable: variant === "card" && editable,
                     deleteIcon: deleteIcon,
                     handleDeleteTab: handleDeleteTab,
+                    tabBarSpacing: tabBarSpacing,
                   }
                   return <TabHeaderChild key={item.tabKey} {...childProps} />
                 })}
@@ -142,16 +142,15 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         {needScroll && (
           <span
             onClick={() => {
-              scrollRef &&
-                scrollRef?.current &&
-                scrollRef.current?.scrollTo(
-                  getTargetPosition(
-                    childrenWidth,
-                    tabWidth,
-                    scrollRef.current?.scrollLeft ?? 0,
-                  ),
-                  0,
-                )
+              if (nextDisable || !scrollRef || !scrollRef?.current) return
+              scrollRef.current?.scrollTo(
+                getTargetPosition(
+                  childrenWidth,
+                  tabWidth,
+                  scrollRef.current?.scrollLeft ?? 0,
+                ),
+                0,
+              )
             }}
             css={applyCommonPreNextIconCss(false, variant, nextDisable)}
           >

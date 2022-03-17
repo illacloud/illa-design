@@ -13,7 +13,7 @@
           </list>
         </option>
         <option name="specsDir" value="$PROJECT_DIR$/packages" />
-        <option name="specFile" value="$PROJECT_DIR$/packages/trigger/tests/trigger.e2e.tsx" />
+        <option name="specFile" value="$PROJECT_DIR$/packages/trigger/tests/tabs.e2e.tsx" />
         <option name="testName" value="Trigger renders with different color scheme" />
         <option name="workingDirectory" value="file://$PROJECT_DIR$" />
         <option name="envs">
@@ -50,7 +50,7 @@
       </list>
     </option>
     <option name="specsDir" value="$PROJECT_DIR$/packages" />
-    <option name="specFile" value="$PROJECT_DIR$/packages/trigger/tests/trigger.e2e.tsx" />
+    <option name="specFile" value="$PROJECT_DIR$/packages/trigger/tests/tabs.e2e.tsx" />
     <option name="testName" value="Trigger renders with different color scheme" />
     <option name="workingDirectory" value="file://$PROJECT_DIR$" />
     <option name="envs">

@@ -78,7 +78,7 @@
     "@illa-design/card": "*",
     "@illa-design/message": "*",
     "@illa-design/rate": "*",
-    "@illa-design/affix": "*"
+    "@illa-design/affix": "*",
     "@illa-design/comment": "*",
     "@illa-design/tabs": "*"
   }

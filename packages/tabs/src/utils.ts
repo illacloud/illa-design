@@ -12,6 +12,7 @@ export const getTargetPosition = (
   tabWidth: number,
   currentPosition: number,
 ) => {
+  console.log()
   let position = 0
   const len = childrenWidth.length
   if (currentPosition == 0) {

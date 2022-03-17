@@ -37,6 +37,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       size = "medium",
       tabPosition,
       handleSelectTab,
+      tabBarSpacing,
     } = props
 
     const [childrenWidth, setChildrenWidth] = useState<number[]>([])
@@ -187,7 +188,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         {needScroll && (
           <span
             onClick={() => {
-              if (!scrollRef || !scrollRef?.current) return
+              if (preDisable || !scrollRef || !scrollRef?.current) return
               let dis
               if (_isHorizontalLayout) {
                 dis = getLeftTargetPosition(
@@ -249,7 +250,8 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                       tabKey={item.tabKey}
                       isSelected={index === selectedIndex}
                       disabled={item.disabled}
-                      size={item.size}
+                      size={size}
+                      tabBarSpacing={tabBarSpacing}
                     />
                   )
                 })}
@@ -280,7 +282,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         {needScroll && (
           <span
             onClick={() => {
-              if (!scrollRef || !scrollRef?.current) return
+              if (nextDisable || !scrollRef || !scrollRef?.current) return
               let dis
               if (_isHorizontalLayout) {
                 dis = getTargetPosition(
@@ -293,9 +295,9 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                   scrollRef.current?.scrollTo(0, dis)
               } else {
                 dis = getTargetPosition(
-                  childrenHeight,
-                  tabHeight,
-                  scrollRef.current?.scrollTop ?? 0,
+                  childrenWidth,
+                  tabWidth,
+                  scrollRef.current?.scrollLeft ?? 0,
                 )
                 scrollRef &&
                   scrollRef?.current &&

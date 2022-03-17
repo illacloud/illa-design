@@ -13,10 +13,6 @@ import { TabCommonHeader } from "./headers/tab-common-header"
 import { isAhead, isHorizontalLayout } from "./utils"
 import { TabLineHeader } from "./headers/tab-line-header"
 
-export function isObject(obj: any): obj is { [key: string]: any } {
-  return Object.prototype.toString.call(obj) === "[object Object]"
-}
-
 export type TabChildren = {
   headers: TabHeaderChildProps[]
   panes: ReactElement[]
@@ -84,6 +80,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     onAddTab,
     onDeleteTab,
     onClickTab,
+    tabBarSpacing,
     tabPosition = "top",
     activeKey,
     ...rest
@@ -129,6 +126,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     editable: editable,
     addIcon: addIcon,
     onAddTab: onAddTab,
+    tabBarSpacing: tabBarSpacing,
     tabPosition: tabPosition,
     handleDeleteTab: (key) => {
       const index = _children.headers.findIndex((item) => {
