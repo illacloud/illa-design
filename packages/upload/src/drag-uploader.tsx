@@ -8,7 +8,7 @@ import {
   applyIconCss,
   dragUploadTipCss,
 } from "./styles"
-import { MinusIcon } from "@illa-design/icon"
+import { AddIcon } from "@illa-design/icon"
 import * as React from "react"
 import { traverseFileTree } from "./traverse-file-tree"
 import {
@@ -49,7 +49,7 @@ export const TriggerNode = forwardRef<UploadRefType, TriggerNodeProps>(
     return (
       <>
         <span onClick={onClick} css={applyDragUploadContainerCss(disabled)}>
-          <MinusIcon css={applyIconCss(disabled)} />
+          <AddIcon css={applyIconCss(disabled)} />
           <span css={applyDragUploadTitleCss(disabled)}>{dragTip}</span>
           {tipNode}
         </span>

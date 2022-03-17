@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { NoticePosition } from "./interface"
+import { MessageType, NoticePosition } from "./interface"
 import { AlertType, iconColorMap } from "@illa-design/alert"
 import { Variants } from "framer-motion"
 
@@ -106,4 +106,49 @@ export function applyNotificationSlide(position: NoticePosition): Variants {
       },
     },
   }
+}
+
+export function applyMessage(closable: boolean) {
+  const padding = closable ? `padding-right:36px` : ""
+  return css`
+    margin-bottom: 24px;
+    position: relative;
+    padding: 9px 16px;
+    ${padding};
+    pointer-events: auto;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
+    border-radius: 2px;
+    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+  `
+}
+
+export function applyMessageIcon(type: MessageType) {
+  return css`
+    margin-right: 8px;
+    font-size: 16px;
+    color: ${iconColorMap[type]};
+    display: inline-block;
+  `
+}
+export function applyMessageContent() {
+  return css`
+    font-family: SFProDisplay;
+    font-size: 14px;
+    line-height: 1.57;
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  `
+}
+export function applyMessageCloseBtn() {
+  return css`
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 8px;
+    display: inline-block;
+    cursor: pointer;
+    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  `
 }

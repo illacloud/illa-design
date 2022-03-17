@@ -6,6 +6,7 @@ export interface CheckboxProps<T extends ReactText = any>
   disabled?: boolean
   checked?: boolean
   defaultChecked?: boolean
+  indeterminate?: boolean
   onChange?: (checked: boolean, event: Event) => void
 }
 

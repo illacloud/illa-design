@@ -3,8 +3,7 @@ import { Meta, Story } from "@storybook/react"
 import { SearchIcon } from "@illa-design/icon"
 import { Space } from "@illa-design/space"
 import { Button, ButtonGroup } from "@illa-design/button"
-import { Notification, NotificationProps, Notice } from "../src"
-import { NoticeProps } from "../dist/types"
+import { Notification, NoticeProps, Notice } from "../src"
 
 export default {
   title: "FEEDBACK/Notification",
@@ -28,11 +27,17 @@ export default {
     action: {
       control: false,
     },
+    removeHook: {
+      control: false,
+    },
     onClose: {
       control: false,
     },
     afterClose: {
       control: false,
+    },
+    position: {
+      options: ["topLeft", "topRight", "bottomLeft", "bottomRight"],
     },
   },
 } as Meta

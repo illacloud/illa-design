@@ -99,8 +99,6 @@ export function applySelectView(
 ): SerializedStyles {
   return css`
     box-sizing: border-box;
-    // height: 40px;
-    // padding: 9px 16px;
     width: 280px;
     line-height: 30px;
     font-size: 14px;
@@ -108,6 +106,17 @@ export function applySelectView(
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     cursor: pointer;
+
+    &:hover {
+      [title="selectRemoveIcon"] {
+        opacity: 1;
+        // selectSuffixIcon hidden
+        & ~ * {
+          visibility: hidden;
+        }
+      }
+    }
+
     ${applyStatus(stateValue)}
   `
 }
@@ -116,6 +125,7 @@ export function applySelectContent(
   stateValue: SelectStateValue,
 ): SerializedStyles {
   return css`
+    position: relative;
     box-sizing: border-box;
     width: 100%;
     display: flex;
@@ -151,18 +161,45 @@ export function applyIconStyle(): SerializedStyles {
   `
 }
 
-export const iconPointerStyle = css`
-  cursor: pointer;
-  color: ${globalColor(`--${illaPrefix}-gray-06`)};
-
-  &:hover {
-    color: ${globalColor(`--${illaPrefix}-gray-05`)};
+export function iconPointerStyle(size: string) {
+  let positionStyle: SerializedStyles = css()
+  switch (size) {
+    default:
+    case "large":
+      positionStyle = css`
+        right: 16px;
+      `
+      break
+    case "medium":
+      positionStyle = css`
+        right: 16px;
+      `
+      break
+    case "small":
+      positionStyle = css`
+        right: 12px;
+      `
+      break
   }
+  return css`
+    // background-color: white;
+    position: absolute;
+    right: 12px;
+    opacity: 0;
+    cursor: pointer;
+    color: ${globalColor(`--${illaPrefix}-gray-06`)};
 
-  & > svg {
-    font-size: 12px;
-  }
-`
+    &:hover {
+      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+    }
+
+    & > svg {
+      font-size: 12px;
+    }
+
+    ${positionStyle}
+  `
+}
 
 // option
 export function applyOptionStyle(size: SelectProps["size"]): SerializedStyles {

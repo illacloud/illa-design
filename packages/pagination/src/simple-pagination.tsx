@@ -52,8 +52,8 @@ export const SimplePagination = forwardRef<
         css={applyInputCss(size, wholeDisabled)}
         disabled={wholeDisabled}
         value={compositionValue.toString()}
-        onChange={(event) => {
-          const value = event.target.value.replace(/[^\d]/, "")
+        onChange={(val) => {
+          const value = val?.replace(/[^\d]/, "")
           setCompositionValue(value)
           if (value.length > 0) {
             setCurrentPage(Number.parseInt(value) - 1)

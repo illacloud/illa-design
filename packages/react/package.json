@@ -52,6 +52,7 @@
     "@illa-design/typography": "*",
     "@illa-design/trigger": "*",
     "@illa-design/input": "*",
+    "@illa-design/input-number": "*",
     "@illa-design/tooltip": "*",
     "@illa-design/popover": "*",
     "@illa-design/link": "*",
@@ -73,6 +74,10 @@
     "@illa-design/notification": "*",
     "@illa-design/comment": "*",
     "@illa-design/popconfirm": "*",
+    "@illa-design/description": "*",
+    "@illa-design/timeline": "*",
+    "@illa-design/card": "*",
+    "@illa-design/message": "*",
     "@illa-design/affix": "*"
   }
 }

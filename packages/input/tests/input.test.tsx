@@ -18,8 +18,8 @@ test("Input render with variant fill", () => {
     <Input
       placeholder="variant-fill"
       variant="fill"
-      prefix={"prefix"}
-      addonBefore={"addonBefore"}
+      prefix={{ render: "prefix" }}
+      addonBefore={{ render: "addonBefore" }}
     />,
   )
   expect(screen.getByPlaceholderText("variant-fill").parentElement).toHaveStyle(
@@ -33,20 +33,26 @@ test("Input render with variant fill", () => {
 
 test("Input render with size small", () => {
   render(
-    <Input placeholder="size-small" size="small" addonBefore={"addonBefore"} />,
+    <Input
+      placeholder="size-small"
+      size="small"
+      addonBefore={{ render: "Before" }}
+    />,
   )
   expect(screen.getByPlaceholderText("size-small").parentElement).toHaveStyle({
-    height: "22px",
     padding: "0 12px",
   })
 })
 
 test("Input render with size large", () => {
   render(
-    <Input placeholder="size-large" size="large" addonAfter={"addonAfter"} />,
+    <Input
+      placeholder="size-large"
+      size="large"
+      addonAfter={{ render: "addonAfter" }}
+    />,
   )
   expect(screen.getByPlaceholderText("size-large").parentElement).toHaveStyle({
-    height: "38px",
     padding: "0 16px",
   })
 })
@@ -54,10 +60,10 @@ test("Input render with size large", () => {
 test("Input render with prefix", () => {
   render(
     <Input
-      prefix={"prefix"}
-      suffix={"suffix"}
-      addonAfter={"addonAfter"}
-      addonBefore={"addonBefore"}
+      prefix={{ render: "prefix" }}
+      suffix={{ render: "suffix" }}
+      addonAfter={{ render: "addonAfter" }}
+      addonBefore={{ render: "addonBefore" }}
     />,
   )
   expect(screen.getByText("prefix")).toBeInTheDocument()

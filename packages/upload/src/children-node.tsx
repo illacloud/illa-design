@@ -8,7 +8,7 @@ import {
   applyImageUploadContainerCss,
 } from "./styles"
 import { Image } from "@illa-design/image"
-import { MinusIcon, UploadIcon } from "@illa-design/icon"
+import { AddIcon, UploadIcon } from "@illa-design/icon"
 import * as React from "react"
 import { Button } from "@illa-design/button"
 import { TriggerNode } from "./drag-uploader"
@@ -67,7 +67,7 @@ export const ChildrenNode = forwardRef<UploadRefType, ChildrenNodeProps>(
             />
           ) : (
             <span css={applyImageUploadContainerCss(disabled)}>
-              <MinusIcon css={applyIconCss(disabled)} />
+              <AddIcon css={applyIconCss(disabled)} />
               <span css={applyImageUploadTextCss(disabled)}>Upload</span>
             </span>
           )}
