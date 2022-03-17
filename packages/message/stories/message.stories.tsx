@@ -86,7 +86,7 @@ const Template: Story<NoticeProps> = (args) => {
         <Button
           onClick={() => {
             Message.loading(
-              "messagegjhklkgfh ssagegjhklkgfh ssagegjhklkgfhssagegjhklkgfhssage gjhklkgfhs sagegjhklkgfhssagegjhklkgfhssagegjhklkgfhssagegjhklkgfhssag egjhklkgfhssagegjhklkgfhssagegjhklkgfhssagegj hklkgfhs sagegjhklkgfhssagegjhklkgfhgjui;oifgyuio;iuygfuoio;iuygfguoio;iuyfuiuoipo;iuygfuoioiu is loading!",
+              "LongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLong",
             )
           }}
         >
