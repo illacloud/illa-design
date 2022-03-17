@@ -43,6 +43,13 @@ export default {
       },
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        type: "code",
+      },
+    },
+  },
 } as Meta
 
 const Template: Story<InputProps> = (props) => {
@@ -50,10 +57,10 @@ const Template: Story<InputProps> = (props) => {
     <div>
       <Space direction={"vertical"} wrap>
         <Input {...props} />
-        {/*<Input*/}
-        {/*  suffix={{ render: <PersonIcon />,}}*/}
-        {/*  {...props}*/}
-        {/*/>*/}
+        <Input
+          suffix={{ render: <PersonIcon />,}}
+          {...props}
+        />
         <Input prefix={{ render: "prefix" }} {...props} />
         <Input suffix={{ render: "suffix" }} {...props} />
         <Input
