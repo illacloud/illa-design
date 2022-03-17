@@ -35,7 +35,9 @@ jobs:
       - name: Build
         run: |
           echo $TURBO_TEAM
+          echo 123123
           echo $TURBO_TOKEN
+          echo 1111333333
           yarn install --frozen-lockfile
           yarn build-all-components
 
