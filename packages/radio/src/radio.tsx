@@ -42,7 +42,7 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
   const stateValue = {
     checked: currentChecked,
     size: context?.size,
-    disable: !!(context?.disabled || props?.disabled),
+    disabled: !!(context?.disabled || props?.disabled),
   }
 
   return (

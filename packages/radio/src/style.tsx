@@ -114,6 +114,10 @@ export function applyRadioButtonContainer(size?: RadioSize): SerializedStyles {
     vertical-align: middle;
     flex-direction: row;
     align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
   `
 }
@@ -124,7 +128,9 @@ export function applyRadioButton(stateValue?: RadioStatus) {
   switch (stateValue?.size) {
     case "small":
       sizeCss = css`
-        padding: 0 8px;
+        padding: 1px 8px;
+        min-width: 44px;
+        height: 24px;
       `
       break
     case "medium":
@@ -143,12 +149,29 @@ export function applyRadioButton(stateValue?: RadioStatus) {
       break
   }
 
-  if (stateValue?.checked) {
+  if (stateValue?.disabled && stateValue?.checked) {
+    stateCss = css`
+      color: ${globalColor(`--${illaPrefix}-blue-06`)};
+      cursor: not-allowed;
+    `
+  } else if (stateValue?.disabled) {
+    stateCss = css`
+      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      cursor: not-allowed;
+    `
+  } else if (stateValue?.checked) {
     stateCss = css`
       font-weight: 500;
       border-radius: 4px;
-      color: ${globalColor(`--${illaPrefix}-gray-02`)};
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+      color: ${globalColor(`--${illaPrefix}-blue-03`)};
+      background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    `
+  } else {
+    stateCss = css`
+      &:hover {
+        border-radius: 4px;
+        background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+      }
     `
   }
   return css`
@@ -156,23 +179,10 @@ export function applyRadioButton(stateValue?: RadioStatus) {
     display: flex;
     align-items: center;
     justify-content: center;
-    // border: solid 2px ${globalColor(`--${illaPrefix}-gray-08`)};
+    box-sizing: border-box;
     cursor: pointer;
     transition: 0.15s all linear;
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
-    //background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
     ${sizeCss}
-    &:hover {
-      border-radius: 4px;
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-    }
-
     ${stateCss}
   `
 }

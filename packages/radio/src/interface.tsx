@@ -53,4 +53,5 @@ export interface RadioGroupProps<T>
 export interface RadioStatus {
   size?: RadioSize
   checked?: boolean
+  disabled?: boolean
 }
