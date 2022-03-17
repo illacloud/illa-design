@@ -45,8 +45,8 @@ export function applyRadioSize(colorScheme: RadioColorScheme) {
   `
 }
 
-export function applyMergeCss(props: RadioProps): SerializedStyles {
-  const currentDisabled = props.disabled ?? false
+export function applyMergeCss(stateValue?: RadioStatus): SerializedStyles {
+  const currentDisabled = stateValue?.disabled ?? false
 
   return css`
     display: inline-flex;
@@ -122,7 +122,8 @@ export function applyRadioButtonContainer(size?: RadioSize): SerializedStyles {
   `
 }
 
-export function applyRadioButton(stateValue?: RadioStatus) {
+export function applyRadioButton(stateValue: RadioStatus) {
+  const { colorScheme } = stateValue
   let sizeCss = css``
   let stateCss = css``
   switch (stateValue?.size) {
@@ -151,7 +152,7 @@ export function applyRadioButton(stateValue?: RadioStatus) {
 
   if (stateValue?.disabled && stateValue?.checked) {
     stateCss = css`
-      color: ${globalColor(`--${illaPrefix}-blue-06`)};
+      color: ${globalColor(`--${illaPrefix}-${colorScheme}-06`)};
       cursor: not-allowed;
     `
   } else if (stateValue?.disabled) {
@@ -163,8 +164,13 @@ export function applyRadioButton(stateValue?: RadioStatus) {
     stateCss = css`
       font-weight: 500;
       border-radius: 4px;
-      color: ${globalColor(`--${illaPrefix}-blue-03`)};
+      color: ${globalColor(`--${illaPrefix}-${colorScheme}-03`)};
       background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+
+      &::before,
+      & + label::before {
+        opacity: 0;
+      }
     `
   } else {
     stateCss = css`
@@ -182,6 +188,25 @@ export function applyRadioButton(stateValue?: RadioStatus) {
     box-sizing: border-box;
     cursor: pointer;
     transition: 0.15s all linear;
+
+    &:hover::before,
+    &:hover + &::before {
+      opacity: 0;
+    }
+
+    &:not(:first-of-type):before {
+      position: absolute;
+      top: 50%;
+      left: -2px;
+      transform: translateY(-50%);
+      display: block;
+      height: 12px;
+      width: 1px;
+      background-color: ${globalColor(`--${illaPrefix}-gray-07`)};
+      content: "";
+      transition: all 0.1s linear;
+    }
+
     ${sizeCss}
     ${stateCss}
   `

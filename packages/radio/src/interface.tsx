@@ -54,4 +54,5 @@ export interface RadioStatus {
   size?: RadioSize
   checked?: boolean
   disabled?: boolean
+  colorScheme: RadioColorScheme
 }

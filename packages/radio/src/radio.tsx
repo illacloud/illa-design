@@ -15,7 +15,16 @@ import { RadioGroupContext } from "./radio-group-context"
 export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
   const context = useContext(RadioGroupContext)
   const mergeProps = { ...props }
-  const { children, disabled, value, onChange, ...otherProps } = mergeProps
+  const {
+    style,
+    className,
+    children,
+    checked,
+    disabled,
+    value,
+    onChange,
+    ...otherProps
+  } = mergeProps
   const colorScheme = props?.colorScheme
     ? props?.colorScheme
     : context?.colorScheme ?? "blue"
@@ -43,14 +52,17 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
     checked: currentChecked,
     size: context?.size,
     disabled: !!(context?.disabled || props?.disabled),
+    colorScheme,
   }
 
   return (
     <label
+      style={style}
+      className={className}
       css={
         context?.type === "button"
           ? applyRadioButton(stateValue)
-          : applyMergeCss(props)
+          : applyMergeCss(stateValue)
       }
       ref={ref}
       {...omit(otherProps, ["colorScheme"])}
