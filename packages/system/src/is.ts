@@ -43,3 +43,7 @@ export function isFunction<T extends Function = Function>(
 ): value is T {
   return typeof value === "function"
 }
+
+export function isUndefined(obj: any): obj is undefined {
+  return obj === undefined
+}
