@@ -8,3 +8,19 @@ export interface AffixProps {
   children?: ReactNode
   onChange?: (isFixed: boolean) => void
 }
+
+export interface AffixFixedValue {
+  isFixed: boolean
+  position: PositionValue
+  size: SizeValue
+}
+
+export interface PositionValue {
+  type: "top" | "bottom"
+  offset: number
+}
+
+export interface SizeValue {
+  width: number
+  height: number
+}

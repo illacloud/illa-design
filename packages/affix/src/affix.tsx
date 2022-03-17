@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, {
   forwardRef,
   useState,
@@ -5,10 +6,11 @@ import React, {
   useLayoutEffect,
   useRef,
   useCallback,
-  CSSProperties,
 } from "react"
 import ResizeObserver from "rc-resize-observer"
-import { isFunction, isUndefined, throttleByRaf } from "@illa-design/system"
+import { isFunction, throttleByRaf } from "@illa-design/system"
+import { css } from "@emotion/react"
+import { applyAffixFixedStyle, applySize } from "./style"
 import { AffixProps } from "./interface"
 
 enum AffixStatus {
@@ -32,39 +34,33 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     children,
   } = props
 
-  const [state, setState] = useState<{
-    status: AffixStatus
-    isFixed: boolean
-    fixedStyles: CSSProperties
-    sizeStyles: CSSProperties
+  const [status, setStatus] = useState(AffixStatus.DONE)
+  const [position, setPosition] = useState<{
+    type: "top" | "bottom"
+    offset: number
   }>({
-    status: AffixStatus.DONE,
-    isFixed: false,
-    fixedStyles: {},
-    sizeStyles: {},
+    type: "top",
+    offset: 0,
   })
-
-  const { isFixed, fixedStyles, sizeStyles } = state
+  const [size, setSize] = useState<{ width: number; height: number }>({
+    width: 0,
+    height: 0,
+  })
 
   const targetRef = useRef<HTMLElement | Window | null>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
-  const lastIsFixed = useRef(isFixed)
+  const lastIsFixed = useRef(false)
 
   const updatePosition = useCallback(
     throttleByRaf(() => {
-      setState({
-        status: AffixStatus.START,
-        isFixed: false,
-        fixedStyles: {},
-        sizeStyles: {},
-      })
+      setStatus(AffixStatus.START)
     }),
     [],
   )
 
   useEffect(() => {
     updatePosition()
-  }, [offsetTop, offsetBottom, target, targetContainer])
+  }, [offsetTop, offsetBottom, target, targetContainer, updatePosition])
 
   useEffect(() => {
     const events = ["scroll", "resize"]
@@ -82,7 +78,7 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
         })
       }
     }
-  }, [target])
+  }, [target, updatePosition])
 
   useEffect(() => {
     const container =
@@ -95,11 +91,9 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
         container.removeEventListener("scroll", updatePosition)
       }
     }
-  }, [targetContainer])
+  }, [targetContainer, updatePosition])
 
   useLayoutEffect(() => {
-    const { status } = state
-
     if (
       status !== AffixStatus.START ||
       !targetRef.current ||
@@ -108,58 +102,53 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
       return
     }
 
-    const offsetType = isUndefined(offsetBottom) ? "top" : "bottom"
+    const type = offsetBottom === undefined ? "top" : "bottom"
     const wrapperRect = getTargetRect(wrapperRef.current)
     const targetRect = getTargetRect(targetRef.current)
 
-    let newFixedStyles = {}
-    let newSizeStyles = {}
     let newIsFixed = false
+    let offset
 
-    if (offsetType === "top") {
+    if (type === "top") {
       newIsFixed = wrapperRect.top - targetRect.top < (offsetTop || 0)
-      newFixedStyles = newIsFixed
-        ? {
-            position: "fixed",
-            top: targetRect.top + (offsetTop || 0),
-          }
-        : {}
+      offset = targetRect.top + (offsetTop || 0)
     } else {
       newIsFixed = targetRect.bottom - wrapperRect.bottom < (offsetBottom || 0)
-      newFixedStyles = newIsFixed
-        ? {
-            position: "fixed",
-            bottom:
-              window.innerHeight - targetRect.bottom + (offsetBottom || 0),
-          }
-        : {}
+      offset = window.innerHeight - targetRect.bottom + (offsetBottom || 0)
     }
-
-    newSizeStyles = newIsFixed
-      ? {
-          width: wrapperRef.current.offsetWidth,
-          height: wrapperRef.current.offsetHeight,
-        }
-      : {}
 
     if (newIsFixed !== lastIsFixed.current) {
       lastIsFixed.current = newIsFixed
-      isFunction(onChange) && onChange(newIsFixed)
+      onChange && isFunction(onChange) && onChange(newIsFixed)
     }
 
-    setState({
-      status: AffixStatus.DONE,
-      isFixed: newIsFixed,
-      fixedStyles: newFixedStyles,
-      sizeStyles: newSizeStyles,
+    setStatus(AffixStatus.DONE)
+    setPosition({
+      type,
+      offset,
+    })
+    setSize({
+      width: wrapperRef.current.clientWidth,
+      height: wrapperRef.current.clientHeight,
     })
   })
 
   return (
-    <ResizeObserver>
+    <ResizeObserver
+      onResize={() => {
+        updatePosition()
+      }}
+    >
       <div ref={wrapperRef}>
-        {isFixed && <div style={sizeStyles}></div>}
-        <div style={{ ...fixedStyles, ...sizeStyles }} ref={ref}>
+        {lastIsFixed.current && <div css={applySize(size)}></div>}
+        <div
+          css={applyAffixFixedStyle({
+            isFixed: lastIsFixed.current,
+            position,
+            size,
+          })}
+          ref={ref}
+        >
           <ResizeObserver
             onResize={() => {
               updatePosition()
