@@ -4,10 +4,13 @@ on:
   push:
     branches: [ main, develop ]
 
+env:
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+
 jobs:
   install:
     runs-on: macos-latest
-    environment: turbo
 
     strategy:
       matrix:
@@ -44,7 +47,6 @@ jobs:
       - install
 
     runs-on: macos-latest
-    environment: turbo
 
     strategy:
       matrix:
