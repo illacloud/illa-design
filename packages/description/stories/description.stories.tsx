@@ -14,7 +14,7 @@ export const Basic: Story<DescriptionProps> = (args) => (
     data={[
       {
         label: "Name",
-        value: "Socrates",
+        value: "ILLA",
       },
       {
         label: "Mobile",

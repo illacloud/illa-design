@@ -11,6 +11,7 @@ export const applyDescContainerStyle = css`
   padding: 24px;
   display: inline-flex;
   flex-direction: column;
+  vertical-align: center;
   min-width: 372px;
   max-width: 100%;
 `
