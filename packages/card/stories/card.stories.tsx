@@ -6,6 +6,7 @@ import { Link } from "@illa-design/link"
 import { Avatar } from "@illa-design/avatar"
 import { Typography } from "@illa-design/typography"
 import { LikeIcon, MoreIcon, ShareIcon } from "@illa-design/icon"
+import { Image } from "@illa-design/image"
 
 export default {
   title: "DATA DISPLAY/Card",
@@ -34,7 +35,7 @@ const Template: Story<CardProps> = (args) => {
     <>
       <Space size="large" direction="vertical">
         <Card style={{ width: 360 }} extra={<Link>More</Link>} {...args}>
-          Frence is a land, the British are a nation, and America is the passion
+          France is a land, the British are a nation, and America is the passion
           in our hearts.People all over the world carrying a Santa Claus came to
           the United States to chase their ideas of American dreams, but in the
           end ,there is nothing more than the pursuit of more money, and they
@@ -44,48 +45,39 @@ const Template: Story<CardProps> = (args) => {
         <Card style={{ width: 360 }} {...args} title={""}>
           圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。
         </Card>
-        <>
-          <Card
-            style={{ width: 360 }}
-            cover={
+        <Card
+          style={{ width: 360 }}
+          cover={
+            <Image
+              width="100%"
+              height="100%"
+              src="https://editor.analyticsvidhya.com/uploads/765900ba9-article-200807-github-gitguardbody-text.jpg"
+            />
+          }
+          {...args}
+        >
+          <CardMeta
+            title="圈圈圆圆圈圈"
+            avatar={
               <div
                 style={{
-                  height: 204,
-                  overflow: "hidden",
+                  display: "flex",
+                  alignItems: "center",
+                  color: "#1D2129",
                 }}
               >
-                <img
-                  style={{ width: "100%", transform: "translateY(-20px)" }}
-                  alt="dessert"
-                  src="//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/3ee5f13fb09879ecb5185e440cef6eb9.png~tplv-uwbnlip3yd-webp.webp"
-                />
+                <Avatar style={{ marginRight: 8 }}>A</Avatar>
+                <Typography>Username</Typography>
               </div>
             }
-            {...args}
-          >
-            <CardMeta
-              title="圈圈圆圆圈圈"
-              avatar={
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    color: "#1D2129",
-                  }}
-                >
-                  <Avatar style={{ marginRight: 8 }}>A</Avatar>
-                  <Typography>Username</Typography>
-                </div>
-              }
-              description={
-                <>
-                  圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。
-                </>
-              }
-            />
-          </Card>
-        </>
-        <Card bordered={true} style={{ width: "100%" }}>
+            description={
+              <>
+                圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。
+              </>
+            }
+          />
+        </Card>
+        <Card bordered={true} style={{ width: "100%", padding: "20px" }}>
           {new Array(7).fill(null).map((_, index) => {
             const hoverable = index % 2 === 0
             return (
