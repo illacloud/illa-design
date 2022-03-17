@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, {
   forwardRef,
   useState,
@@ -9,21 +8,21 @@ import React, {
   CSSProperties,
 } from "react"
 import ResizeObserver from "rc-resize-observer"
-import { AffixProps } from "./interface"
 import { isFunction, isUndefined, throttleByRaf } from "@illa-design/system"
+import { AffixProps } from "./interface"
 
 enum AffixStatus {
   START,
   DONE,
 }
 
-function getTargetRect(target: HTMLElement | Window | null): DOMRect {
+function getTargetRect(target: HTMLElement | Window): DOMRect {
   return target !== window
     ? (target as HTMLElement).getBoundingClientRect()
     : ({ top: 0, bottom: window.innerHeight } as DOMRect)
 }
 
-export const Affix = forwardRef<HTMLElement, AffixProps>((props, ref) => {
+export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   const {
     offsetTop = 0,
     offsetBottom,
@@ -65,7 +64,7 @@ export const Affix = forwardRef<HTMLElement, AffixProps>((props, ref) => {
 
   useEffect(() => {
     updatePosition()
-  }, [target, targetContainer, offsetBottom, offsetTop, updatePosition])
+  }, [offsetTop, offsetBottom, target, targetContainer])
 
   useEffect(() => {
     const events = ["scroll", "resize"]
@@ -83,7 +82,7 @@ export const Affix = forwardRef<HTMLElement, AffixProps>((props, ref) => {
         })
       }
     }
-  }, [target, updatePosition])
+  }, [target])
 
   useEffect(() => {
     const container =
@@ -96,7 +95,7 @@ export const Affix = forwardRef<HTMLElement, AffixProps>((props, ref) => {
         container.removeEventListener("scroll", updatePosition)
       }
     }
-  }, [targetContainer, updatePosition])
+  }, [targetContainer])
 
   useLayoutEffect(() => {
     const { status } = state
@@ -160,7 +159,7 @@ export const Affix = forwardRef<HTMLElement, AffixProps>((props, ref) => {
     <ResizeObserver>
       <div ref={wrapperRef}>
         {isFixed && <div style={sizeStyles}></div>}
-        <div style={{ ...fixedStyles, ...sizeStyles }}>
+        <div style={{ ...fixedStyles, ...sizeStyles }} ref={ref}>
           <ResizeObserver
             onResize={() => {
               updatePosition()
