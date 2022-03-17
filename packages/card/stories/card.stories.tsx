@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Card, Grid, Meta as CardMeta, CardProps } from "../src"
+import { Card, CardGrid, Meta as CardMeta, CardProps } from "../src"
 import { Space } from "@illa-design/space"
 import { Link } from "@illa-design/link"
 import { Avatar } from "@illa-design/avatar"
@@ -34,11 +34,11 @@ const Template: Story<CardProps> = (args) => {
     <>
       <Space size="large" direction="vertical">
         <Card style={{ width: 360 }} extra={<Link>More</Link>} {...args}>
-          Frence is a land, the British are a nation, and America is the passion
+          France is a land, the British are a nation, and America is the passion
           in our hearts.People all over the world carrying a Santa Claus came to
           the United States to chase their ideas of American dreams, but in the
           end ,there is nothing more than the pursuit of more money, and they
-          slowly get lost in this economically prosperious but utilitarian
+          slowly get lost in this economically prosperous but utilitarian
           society. So, sad stories undoubtedly happen in the most brilliant era
         </Card>
         <Card style={{ width: 360 }} {...args} title={""}>
@@ -57,7 +57,7 @@ const Template: Story<CardProps> = (args) => {
                 <img
                   style={{ width: "100%", transform: "translateY(-20px)" }}
                   alt="dessert"
-                  src="//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/3ee5f13fb09879ecb5185e440cef6eb9.png~tplv-uwbnlip3yd-webp.webp"
+                  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                 />
               </div>
             }
@@ -89,7 +89,11 @@ const Template: Story<CardProps> = (args) => {
           {new Array(7).fill(null).map((_, index) => {
             const hoverable = index % 2 === 0
             return (
-              <Grid key={index} hoverable={hoverable} style={{ width: "25%" }}>
+              <CardGrid
+                key={index}
+                hoverable={hoverable}
+                style={{ width: "25%" }}
+              >
                 <Card
                   style={{ width: "100%" }}
                   title="ILLA Card"
@@ -101,7 +105,7 @@ const Template: Story<CardProps> = (args) => {
                     </p>
                   ))}
                 </Card>
-              </Grid>
+              </CardGrid>
             )
           })}
         </Card>
