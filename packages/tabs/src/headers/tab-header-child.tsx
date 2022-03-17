@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef, useMemo } from "react"
-import { TabHeaderChildProps, Variant } from "../interface"
+import { TabHeaderChildProps } from "../interface"
 import {
   applyCapsuleHeaderChildCss,
   applyCardHeaderChildCss,

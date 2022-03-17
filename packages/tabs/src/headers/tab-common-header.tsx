@@ -15,7 +15,11 @@ import {
 import { TabHeaderChild } from "./tab-header-child"
 import { MinusIcon, NextIcon, PreIcon } from "@illa-design/icon"
 import useScrolling from "react-use/lib/useScrolling"
-import { getLeftTargetPosition, getTargetPosition } from "../utils"
+import {
+  getChildrenWidthArr,
+  getLeftTargetPosition,
+  getTargetPosition,
+} from "../utils"
 
 export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
   (props, ref) => {
@@ -42,41 +46,28 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       return tabLineHeaderContainerCss
     }, [variant])
 
-    const [childrenWidth, setChildrenWidth] = useState<number[]>([])
-    const [tabRealWidth, setTabRealWidth] = useState<number>(0)
-    const [leftDis, setLeftDis] = useState<number>(0)
-    const [tabWidth, setTabWidth] = useState<number>(0)
     const scrollRef = useRef<HTMLDivElement | null>(null)
     const childRef = useRef<HTMLDivElement | null>(null)
     const scrolling = useScrolling(scrollRef)
     const [preDisable, setPreDisable] = useState(true)
     const [nextDisable, setNextDisable] = useState(false)
     const [needScroll, setNeedScroll] = useState(false)
+    const [leftDis, setLeftDis] = useState<number>(0)
 
     useEffect(() => {
-      setTabWidth(scrollRef?.current?.offsetWidth ?? 0)
-      const children = childRef.current?.children
-      const len = children?.length ?? 0
-      const widthArr: number[] = []
-      let sum = 0
-      for (let i = 0; i < len; i++) {
-        widthArr.push(children?.item(i)?.clientWidth ?? 0)
-        sum += children?.item(i)?.clientWidth ?? 0
-      }
-      setChildrenWidth(widthArr)
-      setTabRealWidth(scrollRef.current?.scrollWidth ?? 0)
-      setLeftDis(scrollRef.current?.scrollLeft ?? 0)
+      if (!scrollRef?.current) return
+      setNeedScroll(
+        scrollRef?.current.scrollWidth > scrollRef?.current.offsetWidth,
+      )
+      setLeftDis(scrollRef?.current.scrollLeft ?? 0)
     }, [childRef, scrollRef, needScroll])
 
     useEffect(() => {
-      setNeedScroll(tabRealWidth > tabWidth)
-    }, [tabRealWidth, tabWidth])
-
-    useEffect(() => {
       setPreDisable(leftDis === 0)
-      if (tabWidth != 0 && tabRealWidth != 0) {
-        const realWidth = scrollRef.current?.scrollWidth ?? 0
-        setNextDisable(Math.abs(leftDis + tabWidth - realWidth) < 5)
+      const offsetWidth = scrollRef?.current?.offsetWidth ?? 0
+      const scrollWidth = scrollRef.current?.scrollWidth ?? 0
+      if (offsetWidth != 0 && scrollWidth != 0) {
+        setNextDisable(Math.abs(leftDis + offsetWidth - scrollWidth) < 1)
       }
     }, [leftDis])
 
@@ -91,10 +82,11 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         {needScroll && (
           <span
             onClick={() => {
-              if (preDisable || !scrollRef || !scrollRef?.current) return
+              if (preDisable || !scrollRef?.current || !childRef.current) return
+              const childrenWidthArr = getChildrenWidthArr(childRef.current)
               const dis = getLeftTargetPosition(
-                childrenWidth,
-                tabWidth,
+                childrenWidthArr,
+                scrollRef?.current?.offsetWidth ?? 0,
                 scrollRef.current?.scrollLeft ?? 0,
               )
               scrollRef.current?.scrollTo(dis, 0)
@@ -142,11 +134,13 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         {needScroll && (
           <span
             onClick={() => {
-              if (nextDisable || !scrollRef || !scrollRef?.current) return
+              if (nextDisable || !childRef.current || !scrollRef?.current)
+                return
+              const childrenWidthArr = getChildrenWidthArr(childRef.current)
               scrollRef.current?.scrollTo(
                 getTargetPosition(
-                  childrenWidth,
-                  tabWidth,
+                  childrenWidthArr,
+                  scrollRef?.current?.offsetWidth ?? 0,
                   scrollRef.current?.scrollLeft ?? 0,
                 ),
                 0,

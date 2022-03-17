@@ -21,7 +21,7 @@ export const TabContent = forwardRef<HTMLDivElement, TabContentProps>(
         ref={ref}
       >
         <div css={applyTabContentWrapperCss(selectedIndex ?? 0, animated)}>
-          {tabPanes && tabPanes?.map((item, index) => item)}
+          {tabPanes && tabPanes?.map((item) => item)}
         </div>
       </div>
     )

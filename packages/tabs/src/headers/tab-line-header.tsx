@@ -16,9 +16,11 @@ import {
   tabLineHeaderHorizontalContainerCss,
 } from "../styles"
 import { TabHeaderChild } from "./tab-header-child"
-import { NextIcon, PreIcon } from "@illa-design/icon"
+import { DownIcon, NextIcon, PreIcon, UpIcon } from "@illa-design/icon"
 import useScrolling from "react-use/lib/useScrolling"
 import {
+  getChildrenHeightArr,
+  getChildrenWidthArr,
   getLeftTargetPosition,
   getTargetPosition,
   isAhead,
@@ -28,71 +30,74 @@ import { TabHeaderProps } from "../interface"
 
 const PADDING = 16
 
+export function getChildrenSize(
+  isHorizontalLayout?: boolean,
+  parent?: HTMLDivElement | null,
+) {
+  if (!parent) return []
+  let childrenSizeArr: number[]
+  if (isHorizontalLayout) {
+    childrenSizeArr = parent ? getChildrenHeightArr(parent) : []
+  } else {
+    childrenSizeArr = parent ? getChildrenWidthArr(parent) : []
+  }
+  return childrenSizeArr
+}
+
 export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
   (props, ref) => {
     const {
       tabHeaderChild,
       selectedIndex = -1,
-      variant,
       size = "medium",
       tabPosition,
       handleSelectTab,
       tabBarSpacing,
     } = props
 
-    const [childrenWidth, setChildrenWidth] = useState<number[]>([])
-    const [tabRealWidth, setTabRealWidth] = useState<number>(0)
-    const [tabRealHeight, setTabRealHeight] = useState<number>(0)
-    const [tabHeight, setTabHeight] = useState<number>(0)
-    const [leftDis, setLeftDis] = useState<number>(0)
-    const [topDis, setTopDis] = useState<number>(0)
-    const [tabWidth, setTabWidth] = useState<number>(0)
     const scrollRef = useRef<HTMLDivElement | null>(null)
     const childRef = useRef<HTMLDivElement | null>(null)
     const scrolling = useScrolling(scrollRef)
     const [preDisable, setPreDisable] = useState(true)
     const [nextDisable, setNextDisable] = useState(false)
     const [needScroll, setNeedScroll] = useState(false)
+    const [leftDis, setLeftDis] = useState<number>(0)
+    const [topDis, setTopDis] = useState<number>(0)
 
-    const _isHorizontalLayout = isHorizontalLayout(tabPosition)
-    const _isAhead = isAhead(tabPosition)
+    const [_isHorizontalLayout, _isAhead] = useMemo(() => {
+      return [isHorizontalLayout(tabPosition), isAhead(tabPosition)]
+    }, [tabPosition])
 
     useEffect(() => {
-      setTabWidth(scrollRef?.current?.offsetWidth ?? 0)
-      setTabHeight(scrollRef?.current?.offsetHeight ?? 0)
-      const children = childRef.current?.children
-      const len = children?.length ?? 0
-      const widthArr: number[] = []
-      let sum = 0
-      for (let i = 0; i < len; i++) {
-        widthArr.push(children?.item(i)?.clientWidth ?? 0)
-        sum += children?.item(i)?.clientWidth ?? 0
-      }
-      setChildrenWidth(widthArr)
-      setTabRealWidth(scrollRef.current?.scrollWidth ?? 0)
-      setTabRealHeight(scrollRef.current?.scrollHeight ?? 0)
       setLeftDis(scrollRef.current?.scrollLeft ?? 0)
-      setLeftDis(scrollRef.current?.scrollTop ?? 0)
-    }, [childRef, scrollRef, needScroll])
+      setTopDis(scrollRef.current?.scrollTop ?? 0)
+    }, [scrollRef])
 
     useEffect(() => {
+      if (!scrollRef?.current) return
+      const dom = scrollRef?.current
       setNeedScroll(
         !_isHorizontalLayout
-          ? tabRealWidth > tabWidth
-          : tabRealHeight > tabHeight,
+          ? dom.scrollWidth > dom?.offsetWidth
+          : dom?.scrollHeight > dom?.offsetHeight,
       )
-    }, [scrollRef, tabWidth])
+    }, [scrollRef])
 
     useEffect(() => {
       setPreDisable(_isHorizontalLayout ? topDis === 0 : leftDis === 0)
-      if (tabWidth != 0) {
-        const realWidth = scrollRef.current?.scrollWidth ?? 0
-        const realHeight = scrollRef.current?.scrollHeight ?? 0
-        const nextDisable = _isHorizontalLayout
-          ? Math.abs(topDis + tabHeight - realHeight) < 1
-          : Math.abs(leftDis + tabWidth - realWidth) < 1
-        setNextDisable(nextDisable)
-      }
+      if (!scrollRef.current) return
+      const nextDisable = _isHorizontalLayout
+        ? Math.abs(
+            topDis +
+              scrollRef.current?.offsetHeight -
+              scrollRef.current?.scrollHeight,
+          ) < 1
+        : Math.abs(
+            leftDis +
+              scrollRef.current?.offsetWidth -
+              scrollRef.current?.scrollWidth,
+          ) < 1
+      setNextDisable(nextDisable)
     }, [leftDis, topDis])
 
     useEffect(() => {
@@ -102,53 +107,25 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       }
     }, [scrolling])
 
-    const [childrenHeight, setChildrenHeight] = useState<number[]>([])
-
     const linePosition = useMemo(() => {
-      let widthSum = 0
+      if (!scrollRef?.current) return 0
+      const sizeArr = getChildrenSize(_isHorizontalLayout, childRef.current)
+      let sum = 0
       for (let i = 0; i < selectedIndex; i++) {
-        widthSum += childrenWidth[i]
+        sum += sizeArr[i]
       }
-      return PADDING + widthSum
-    }, [selectedIndex, tabPosition, childrenWidth])
+      return _isHorizontalLayout ? sum : sum + PADDING
+    }, [selectedIndex, tabPosition, childRef, needScroll])
 
-    const lineHorizontalPosition = useMemo(() => {
-      let heightSum = 0
-      for (let i = 0; i < selectedIndex; i++) {
-        heightSum += childrenHeight[i]
-      }
-      return heightSum
-    }, [selectedIndex, tabPosition, childrenHeight])
-
-    const dividerLineWidth = useMemo(() => {
-      if (!tabHeaderChild?.length) return 0
-      let width = 0
-      for (let i = 0; i < tabHeaderChild?.length ?? 0; i++) {
-        width += childrenWidth[i]
-      }
-      return width
-    }, [childrenWidth])
-
-    const dividerLineHeight = useMemo(() => {
-      let height = 0
-      for (let i = 0; i < childrenHeight.length; i++) {
-        height += childrenHeight[i]
-      }
-      return height
-    }, [childrenHeight])
-
-    useEffect(() => {
-      const children = childRef.current?.children
-      const len = children?.length ?? 0
-      const widthArr: number[] = []
-      const heightArr: number[] = []
+    const dividerSize = useMemo(() => {
+      const sizeArr = getChildrenSize(_isHorizontalLayout, childRef.current)
+      let size = 0
+      const len = sizeArr?.length
       for (let i = 0; i < len; i++) {
-        widthArr.push(children?.item(i)?.clientWidth ?? 0)
-        heightArr.push(children?.item(i)?.clientHeight ?? 0)
+        size += sizeArr[i]
       }
-      setChildrenWidth(widthArr)
-      setChildrenHeight(heightArr)
-    }, [childRef])
+      return size
+    }, [selectedIndex, tabPosition, childRef, needScroll])
 
     let [
       headerContainer,
@@ -177,7 +154,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
 
     const [_preIcon, _nextIcon] = useMemo(() => {
       if (_isHorizontalLayout) {
-        return [<span>up</span>, <span>down</span>]
+        return [<UpIcon />, <DownIcon />]
       } else {
         return [<PreIcon />, <NextIcon />]
       }
@@ -192,8 +169,8 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
               let dis
               if (_isHorizontalLayout) {
                 dis = getLeftTargetPosition(
-                  childrenHeight,
-                  tabHeight,
+                  getChildrenSize(_isHorizontalLayout, childRef.current),
+                  scrollRef.current?.offsetHeight,
                   scrollRef.current?.scrollTop ?? 0,
                 )
                 scrollRef &&
@@ -201,8 +178,8 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                   scrollRef.current?.scrollTo(0, dis)
               } else {
                 dis = getLeftTargetPosition(
-                  childrenWidth,
-                  tabWidth,
+                  getChildrenSize(_isHorizontalLayout, childRef.current),
+                  scrollRef.current?.offsetWidth,
                   scrollRef.current?.scrollLeft ?? 0,
                 )
                 scrollRef &&
@@ -219,21 +196,13 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         <div ref={scrollRef} css={scrollContainerCss}>
           <div css={headerContainer} ref={ref}>
             {!_isAhead && (
-              <div
-                css={applyLineCss(
-                  isHorizontalLayout(tabPosition)
-                    ? dividerLineHeight
-                    : dividerLineWidth,
-                )}
-              >
+              <div css={applyLineCss(childRef && dividerSize)}>
                 <div
                   css={applyBlueLineCss(
-                    isHorizontalLayout(tabPosition)
-                      ? childrenHeight[selectedIndex]
-                      : childrenWidth[selectedIndex],
-                    isHorizontalLayout(tabPosition)
-                      ? lineHorizontalPosition
-                      : linePosition,
+                    getChildrenSize(_isHorizontalLayout, childRef.current)[
+                      selectedIndex
+                    ],
+                    linePosition,
                     size,
                   )}
                 />
@@ -257,21 +226,13 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                 })}
             </div>
             {isAhead(tabPosition) && (
-              <div
-                css={applyLineCss(
-                  isHorizontalLayout(tabPosition)
-                    ? dividerLineHeight
-                    : dividerLineWidth,
-                )}
-              >
+              <div css={applyLineCss(childRef && dividerSize)}>
                 <div
                   css={applyBlueLineCss(
-                    isHorizontalLayout(tabPosition)
-                      ? childrenHeight[selectedIndex]
-                      : childrenWidth[selectedIndex],
-                    isHorizontalLayout(tabPosition)
-                      ? lineHorizontalPosition
-                      : linePosition,
+                    getChildrenSize(_isHorizontalLayout, childRef.current)[
+                      selectedIndex
+                    ],
+                    linePosition,
                     size,
                   )}
                 />
@@ -286,8 +247,8 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
               let dis
               if (_isHorizontalLayout) {
                 dis = getTargetPosition(
-                  childrenHeight,
-                  tabHeight,
+                  getChildrenSize(_isHorizontalLayout, childRef.current),
+                  scrollRef.current?.offsetWidth,
                   scrollRef.current?.scrollTop ?? 0,
                 )
                 scrollRef &&
@@ -295,8 +256,8 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                   scrollRef.current?.scrollTo(0, dis)
               } else {
                 dis = getTargetPosition(
-                  childrenWidth,
-                  tabWidth,
+                  getChildrenSize(_isHorizontalLayout, childRef.current),
+                  scrollRef.current?.offsetWidth,
                   scrollRef.current?.scrollLeft ?? 0,
                 )
                 scrollRef &&
