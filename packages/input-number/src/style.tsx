@@ -76,7 +76,6 @@ export function applyAddonCss(stateValue: InputNumberStateValue) {
 export function applyInputNumber() {
   return css`
     position: relative;
-    width: 178px !important;
     &:hover {
       [title="inputStepEmbed"] {
         visibility: visible;
