@@ -17,15 +17,15 @@ const Template: Story<AffixStoryProps> = (args) => {
   const { text, ...affixProps } = args
   return (
     <>
-      {/* <div
-            style={{
-            height: "1000px",
-            width: "200px",
-            background: "linear-gradient(pink, orange)",
-            }}
-            >
-            Scroll up and down
-            </div> */}
+      <div
+        style={{
+          height: "1000px",
+          width: "200px",
+          background: "linear-gradient(pink, orange)",
+        }}
+      >
+        Scroll up and down
+      </div>
       <Affix {...affixProps}>
         <Button>{text}</Button>
       </Affix>
