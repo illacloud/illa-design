@@ -76,7 +76,6 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
 
   useImperativeHandle(ref, () => wrapperRef?.current as HTMLDivElement, [])
 
-  //
   useEffect(() => {
     mounted.current = true
 
