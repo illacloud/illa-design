@@ -5,7 +5,7 @@ import { Notification } from "@illa-design/notification"
 import { Affix, AffixProps } from "../src"
 
 export default {
-  title: "DATA DISPLAY/Affix",
+  title: "OTHERS /Affix",
   component: Affix,
 } as Meta
 
