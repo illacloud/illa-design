@@ -48,7 +48,7 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     height: 0,
   })
 
-  const mounted = useRef(true);
+  const mounted = useRef(true)
   const targetRef = useRef<HTMLElement | Window | null>(null)
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const lastIsFixed = useRef(false)
@@ -78,10 +78,10 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
 
   //
   useEffect(() => {
-    mounted.current = true;
+    mounted.current = true
 
     return () => {
-      mounted.current = false;
+      mounted.current = false
     }
   }, [])
 
