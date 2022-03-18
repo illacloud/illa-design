@@ -3,12 +3,13 @@ import React, {
   forwardRef,
   useState,
   useEffect,
-  useLayoutEffect,
   useRef,
   useCallback,
+  useImperativeHandle,
 } from "react"
-import ResizeObserver from "rc-resize-observer"
 import { isFunction, throttleByRaf } from "@illa-design/system"
+import useMeasure from "react-use/lib/useMeasure"
+import useIsomorphicLayoutEffect from "react-use/lib/useIsomorphicLayoutEffect"
 import { css } from "@emotion/react"
 import { applyAffixFixedStyle, applySize } from "./style"
 import { AffixProps } from "./interface"
@@ -48,8 +49,17 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   })
 
   const targetRef = useRef<HTMLElement | Window | null>(null)
-  const wrapperRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
   const lastIsFixed = useRef(false)
+
+  const [measureWrapperRef, measureWrapperInfo] = useMeasure<HTMLDivElement>()
+  const [measureAffixRef, measureAffixInfo] = useMeasure<HTMLDivElement>()
+
+  // wrapper div need a useMeasure ref and a element ref
+  const setWrapperRefs = (el: HTMLDivElement) => {
+    measureWrapperRef(el)
+    wrapperRef.current = el
+  }
 
   const updatePosition = useCallback(
     throttleByRaf(() => {
@@ -58,9 +68,19 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     [],
   )
 
+  useImperativeHandle(ref, () => wrapperRef?.current as HTMLDivElement, [])
+
   useEffect(() => {
     updatePosition()
-  }, [offsetTop, offsetBottom, target, targetContainer, updatePosition])
+  }, [
+    offsetTop,
+    offsetBottom,
+    target,
+    targetContainer,
+    updatePosition,
+    measureWrapperInfo,
+    measureAffixInfo,
+  ])
 
   useEffect(() => {
     const events = ["scroll", "resize"]
@@ -93,7 +113,7 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     }
   }, [targetContainer, updatePosition])
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (
       status !== AffixStatus.START ||
       !targetRef.current ||
@@ -134,31 +154,19 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   })
 
   return (
-    <ResizeObserver
-      onResize={() => {
-        updatePosition()
-      }}
-    >
-      <div ref={wrapperRef}>
-        {lastIsFixed.current && <div css={applySize(size)}></div>}
-        <div
-          css={applyAffixFixedStyle({
-            isFixed: lastIsFixed.current,
-            position,
-            size,
-          })}
-          ref={ref}
-        >
-          <ResizeObserver
-            onResize={() => {
-              updatePosition()
-            }}
-          >
-            {children}
-          </ResizeObserver>
-        </div>
+    <div ref={setWrapperRefs}>
+      {lastIsFixed.current && <div css={applySize(size)}></div>}
+      <div
+        css={applyAffixFixedStyle({
+          isFixed: lastIsFixed.current,
+          position,
+          size,
+        })}
+        ref={measureAffixRef}
+      >
+        {children}
       </div>
-    </ResizeObserver>
+    </div>
   )
 })
 
