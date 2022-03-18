@@ -35,7 +35,7 @@ export const TriggerNode = forwardRef<UploadRefType, TriggerNodeProps>(
     let tipNode: ReactNode
     if (typeof tip === "string") {
       tipNode = <div css={dragUploadTipCss}>{tip}</div>
-    } else if (typeof tip) {
+    } else {
       tipNode = <div>{tip}</div>
     }
 

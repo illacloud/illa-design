@@ -55,7 +55,6 @@ export const TabHeaderChild = forwardRef<HTMLSpanElement, TabHeaderChildProps>(
             onClick={(event) => {
               handleDeleteTab && handleDeleteTab(tabKey)
               event.stopPropagation()
-              return true
             }}
           >
             {deleteIcon}

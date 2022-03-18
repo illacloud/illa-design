@@ -12,6 +12,7 @@ import { commonContainerCss, horizontalContainerCss } from "./styles"
 import { TabCommonHeader } from "./headers/tab-common-header"
 import { isAhead, isHorizontalLayout } from "./utils"
 import { TabLineHeader } from "./headers/tab-line-header"
+import { isObject } from "@illa-design/system"
 
 export type TabChildren = {
   headers: TabHeaderChildProps[]
@@ -53,7 +54,7 @@ export function removeHeaderAndPane(index: number, tabsArr: TabChildren) {
   return {
     headers: newHeaders,
     panes: newPanes,
-    firstTabKey: newHeaders[0].tabKey,
+    firstTabKey: newHeaders[0]?.tabKey ?? "",
   }
 }
 
@@ -103,11 +104,12 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
   let headerAnimated = true
   let paneAnimated = false
-  if (typeof animated === "object") {
+
+  if (typeof animated === "boolean") {
+    headerAnimated = paneAnimated = animated
+  } else if (isObject(animated)) {
     headerAnimated = animated.inkBar ?? headerAnimated
     paneAnimated = animated.tabPane ?? paneAnimated
-  } else if (typeof animated === "boolean") {
-    headerAnimated = paneAnimated = animated
   }
 
   const _activeKey = activeKey ?? activeKeyState

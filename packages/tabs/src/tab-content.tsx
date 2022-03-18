@@ -9,7 +9,7 @@ import {
 
 export const TabContent = forwardRef<HTMLDivElement, TabContentProps>(
   (props, ref) => {
-    const { tabPanes, animated, selectedIndex, variant } = props
+    const { tabPanes, animated, selectedIndex = 0, variant } = props
 
     return (
       <div
@@ -20,7 +20,7 @@ export const TabContent = forwardRef<HTMLDivElement, TabContentProps>(
         }
         ref={ref}
       >
-        <div css={applyTabContentWrapperCss(selectedIndex ?? 0, animated)}>
+        <div css={applyTabContentWrapperCss(selectedIndex, animated)}>
           {tabPanes && tabPanes?.map((item) => item)}
         </div>
       </div>
