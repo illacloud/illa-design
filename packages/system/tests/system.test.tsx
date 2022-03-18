@@ -1,4 +1,6 @@
 import { omit } from "../src"
+import "@testing-library/jest-dom"
+import * as React from "react"
 
 test("System test omit function", () => {
   const obj = {

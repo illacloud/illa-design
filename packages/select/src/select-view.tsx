@@ -1,18 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import {
-  forwardRef,
-  useRef,
-  useState,
-  useEffect,
-  useReducer,
-  useImperativeHandle,
-} from "react"
-import {
-  InputElement,
-  InputRefType,
-  InputElementProps,
-} from "@illa-design/input"
+import { forwardRef, useRef, useState, useEffect, useReducer } from "react"
+import { InputElement, InputElementProps } from "@illa-design/input"
 import { isObject, omit, isNumber } from "@illa-design/system"
 import {
   LoadingIcon,
@@ -76,7 +65,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     } = props
 
     const viewRef = useRef(null)
-    const inputRef = useRef<InputRefType>(null)
+    const inputRef = useRef<HTMLInputElement>(null)
     const [focused, setFocused] = useState(false)
     const mergedFocused = focused || popupVisible
     const [searchStatus, setSearchStatus] = useState(SearchStatus.NONE)
@@ -270,7 +259,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             box-shadow: unset !important;
           `}
           disableInput={!(showSearch || isMultipleMode)}
-          ref={inputRef as any}
+          inputRef={inputRef}
           disabled={disabled}
           placeholder={placeholder}
           value={tagsToShow}

@@ -1,4 +1,4 @@
-import { Card, Meta, Grid } from "../src"
+import { Card, Meta, CardGrid } from "../src"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { Avatar } from "@illa-design/avatar"
@@ -56,7 +56,7 @@ test("Card renders with Cover", () => {
           <img
             style={{ width: "100%", transform: "translateY(-20px)" }}
             alt="dessert"
-            src="//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/3ee5f13fb09879ecb5185e440cef6eb9.png~tplv-uwbnlip3yd-webp.webp"
+            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
           />
         </div>
       }
@@ -65,13 +65,13 @@ test("Card renders with Cover", () => {
   expect(screen.getByText("Cover").parentNode?.nextSibling).toMatchSnapshot()
 })
 
-test("Card renders with Grid", () => {
+test("Card renders with CardGrid", () => {
   render(
     <Card bordered={true} style={{ width: "100%" }}>
       {new Array(7).fill(null).map((_, index) => {
         const hoverable = index % 2 === 0
         return (
-          <Grid key={index} hoverable={hoverable} style={{ width: "25%" }}>
+          <CardGrid key={index} hoverable={hoverable} style={{ width: "25%" }}>
             <Card
               style={{ width: "100%" }}
               title={`Card${index}`}
@@ -83,7 +83,7 @@ test("Card renders with Grid", () => {
                 </p>
               ))}
             </Card>
-          </Grid>
+          </CardGrid>
         )
       })}
     </Card>,

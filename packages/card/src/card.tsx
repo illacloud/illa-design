@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { forwardRef, Children, cloneElement, ReactElement } from "react"
-import { Grid } from "./grid"
+import { CardGrid } from "./card-grid"
 import { Meta } from "./meta"
 import { CardProps } from "./interface"
 import { Spin } from "@illa-design/spin"
@@ -37,7 +37,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
 
   Children.forEach(children, (element) => {
     if (element && (element as ReactElement).type) {
-      if ((element as ReactElement).type === Grid) {
+      if ((element as ReactElement).type === CardGrid) {
         isContainGrid = true
       } else if ((element as ReactElement).type === Meta) {
         isContainMeta = true

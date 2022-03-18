@@ -1,10 +1,8 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Card, Grid, Meta as CardMeta, CardProps } from "../src"
+import { Card, CardGrid, CardProps, Meta as CardMeta } from "../src"
 import { Space } from "@illa-design/space"
 import { Link } from "@illa-design/link"
-import { Avatar } from "@illa-design/avatar"
-import { Typography } from "@illa-design/typography"
 import { LikeIcon, MoreIcon, ShareIcon } from "@illa-design/icon"
 import { Image } from "@illa-design/image"
 
@@ -39,7 +37,7 @@ const Template: Story<CardProps> = (args) => {
           in our hearts.People all over the world carrying a Santa Claus came to
           the United States to chase their ideas of American dreams, but in the
           end ,there is nothing more than the pursuit of more money, and they
-          slowly get lost in this economically prosperious but utilitarian
+          slowly get lost in this economically prosperous but utilitarian
           society. So, sad stories undoubtedly happen in the most brilliant era
         </Card>
         <Card style={{ width: 360 }} {...args} title={""}>
@@ -66,8 +64,11 @@ const Template: Story<CardProps> = (args) => {
                   color: "#1D2129",
                 }}
               >
-                <Avatar style={{ marginRight: 8 }}>A</Avatar>
-                <Typography>Username</Typography>
+                <Image
+                  width={"100%"}
+                  style={{ transform: "translateY(-20px)" }}
+                  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                />
               </div>
             }
             description={
@@ -81,7 +82,11 @@ const Template: Story<CardProps> = (args) => {
           {new Array(7).fill(null).map((_, index) => {
             const hoverable = index % 2 === 0
             return (
-              <Grid key={index} hoverable={hoverable} style={{ width: "25%" }}>
+              <CardGrid
+                key={index}
+                hoverable={hoverable}
+                style={{ width: "25%" }}
+              >
                 <Card
                   style={{ width: "100%" }}
                   title="ILLA Card"
@@ -93,7 +98,7 @@ const Template: Story<CardProps> = (args) => {
                     </p>
                   ))}
                 </Card>
-              </Grid>
+              </CardGrid>
             )
           })}
         </Card>

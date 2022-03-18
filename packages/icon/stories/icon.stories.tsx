@@ -42,6 +42,8 @@ import {
   FilePictureIcon,
   FileWPSIcon,
   FilePPTIcon,
+  StarIcon,
+  HeartIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -70,6 +72,8 @@ export const ImageDefault: Story<IconProps> = (props) => (
 export const Loading: Story<IconProps> = (props) => <LoadingIcon {...props} />
 export const Like: Story<IconProps> = (props) => <LikeIcon {...props} />
 export const Share: Story<IconProps> = (props) => <ShareIcon {...props} />
+export const Star: Story<IconProps> = (props) => <StarIcon {...props} />
+export const Heart: Story<IconProps> = (props) => <HeartIcon {...props} />
 export const Person: Story<IconProps> = (props) => <PersonIcon {...props} />
 export const EyeOn: Story<IconProps> = (props) => <EyeOnIcon {...props} />
 export const EyeOff: Story<IconProps> = (props) => <EyeOffIcon {...props} />

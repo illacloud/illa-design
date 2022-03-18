@@ -19,7 +19,7 @@ export default {
 const Template: Story<InputTagProps> = (props) => {
   return (
     <div>
-      <InputTag {...props} />
+      <InputTag style={{ width: 280 }} {...props} />
     </div>
   )
 }
