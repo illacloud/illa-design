@@ -1,28 +1,23 @@
+/** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { Affix, AffixProps } from "../src"
+import { css } from "@emotion/react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
+
+const blockStyles = (height: number = 1000) => css`
+    height: ${height}px;
+    width: 200px;
+    background: linear-gradient(pink, orange)`;
 
 const TestAffix = (props: AffixProps) => {
   return (
     <>
-      <div
-        style={{
-          height: "1000px",
-          width: "200px",
-          background: "linear-gradient(pink, orange)",
-        }}
-      ></div>
+      <div css={blockStyles()} ></div>
       <Affix {...props}>
-        <span className="children">Hello</span>
+        <span>Affix content</span>
       </Affix>
-      <div
-        style={{
-          height: "1000px",
-          width: "200px",
-          background: "linear-gradient(orange, pink)",
-        }}
-      ></div>
+      <div css={blockStyles()}></div>
     </>
   )
 }
@@ -37,35 +32,24 @@ const TestAffixTargetContainer = () => {
         ref={container}
         className="container"
       >
-        <div
-          style={{
-            height: 600,
-            background: "linear-gradient(pink, lightblue)",
-          }}
-        >
+        <div css={blockStyles(600)} >
           <Affix
             target={() => container.current}
             offsetTop={20}
             targetContainer={() => window}
           >
-            <span className="children">hello</span>
+            <span>Affix content</span>
           </Affix>
         </div>
       </div>
-      <div
-        style={{
-          height: "1000px",
-          width: "200px",
-          background: "linear-gradient(orange, pink)",
-        }}
-      ></div>
+      <div css={blockStyles()}></div>
     </>
   )
 }
 
 it("Affix renders correctly", () => {
   mount(<TestAffix></TestAffix>)
-  expect(cy.findByText("Hello")).exist
+  expect(cy.findByText("Affix content")).exist
   unmount()
 })
 
@@ -73,7 +57,7 @@ it("Affix renders with fixed 100px to window top", () => {
   mount(<TestAffix offsetTop={100}></TestAffix>)
 
   cy.scrollTo(0, 1000)
-  cy.get(".children")
+  cy.findByText("Affix content")
     .parent()
     .should("have.css", "position", "fixed")
     .should("have.css", "top", "100px")
@@ -84,7 +68,7 @@ it("Affix renders with fixed 100px to window top", () => {
 it("Affix renders with fixed 100px to window bottom", () => {
   mount(<TestAffix offsetBottom={100}></TestAffix>)
 
-  cy.get(".children")
+  cy.findByText("Affix content")
     .parent()
     .should("have.css", "position", "fixed")
     .should("have.css", "bottom", "100px")
@@ -114,14 +98,14 @@ it("Affix renders with target container", () => {
   cy.get(".container").then((c) => {
     const cTop = c[0].getBoundingClientRect().top
 
-    cy.get(".children")
+    cy.findByText("Affix content")
       .parent()
       .should("have.css", "position", "fixed")
       .should("have.css", "top", `${cTop + 20}px`) // affix should be 20px to container top
   })
 
   cy.scrollTo(0, 1000)
-  cy.get(".children").should("not.be.visible")
+  cy.findByText("Affix content").should("not.be.visible")
 
   unmount()
 })
