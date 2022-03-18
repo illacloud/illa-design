@@ -234,7 +234,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const showTips = () => {
     delayTodo(async () => {
-      if (!tipVisible && childrenRef.current != null) {
+      if (childrenRef.current != null) {
         const result = await adjustLocation(
           tipsNode,
           childrenRef.current,
@@ -255,13 +255,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const hideTips = () => {
     delayTodo(() => {
-      if (tipVisible) {
-        if (popupVisible == undefined) {
-          setTipsVisible(false)
-        }
-        if (onVisibleChange != undefined) {
-          onVisibleChange(false)
-        }
+      if (popupVisible == undefined) {
+        setTipsVisible(false)
+      }
+      if (onVisibleChange != undefined) {
+        onVisibleChange(false)
       }
     }, closeDelay)
   }
@@ -368,8 +366,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
     position,
     content,
     disabled,
-    autoAlignPopupWidth,
     measureInfo,
+    autoAlignPopupWidth,
   ])
 
   const newProps = {
