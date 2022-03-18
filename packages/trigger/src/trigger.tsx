@@ -51,31 +51,16 @@ type ReactRef<T> = Ref<T> | RefObject<T> | MutableRefObject<T>
 function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
   if (ref == null) return
 
-  if (isObject(value)) {
-    if (isFunction(ref)) {
-      // @ts-ignore
-      ref(value?.dom)
-      return
-    }
+  if (isFunction(ref)) {
+    ref(value)
+    return
+  }
 
-    try {
-      // @ts-ignore
-      ref.current = value?.dom
-    } catch (error) {
-      throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
-    }
-  } else {
-    if (isFunction(ref)) {
-      ref(value)
-      return
-    }
-
-    try {
-      // @ts-ignore
-      ref.current = value
-    } catch (error) {
-      throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
-    }
+  try {
+    // @ts-ignore
+    ref.current = value
+  } catch (error) {
+    throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
   }
 }
 

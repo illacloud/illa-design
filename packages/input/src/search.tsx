@@ -3,12 +3,9 @@ import * as React from "react"
 import {
   ChangeEvent,
   forwardRef,
-  ForwardRefExoticComponent,
-  useImperativeHandle,
   useState,
-  useRef,
 } from "react"
-import { InputRefType, SearchProps } from "./interface"
+import { SearchProps } from "./interface"
 import { useMergeValue } from "@illa-design/system"
 import { SearchIcon } from "@illa-design/icon"
 import { applyContainerCss, applyInputContainer, applySuffixCls } from "./style"
@@ -17,14 +14,12 @@ import { Button } from "@illa-design/button"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export type SearchRef = ForwardRefExoticComponent<
-  SearchProps & React.RefAttributes<InputRefType>
->
-export const Search: SearchRef = forwardRef<InputRefType, SearchProps>(
+export const Search = forwardRef<HTMLDivElement, SearchProps>(
   (props, ref) => {
     const {
       style,
       className,
+      inputRef,
       allowClear,
       error,
       disabled,
@@ -44,7 +39,6 @@ export const Search: SearchRef = forwardRef<InputRefType, SearchProps>(
       ...rest
     } = props
 
-    const inputRef = useRef<InputRefType>({} as InputRefType)
     const [focus, setFocus] = useState(false)
     const [value, setValue] = useMergeValue("", {
       defaultValue: defaultValue ? defaultValue : undefined,
@@ -65,14 +59,14 @@ export const Search: SearchRef = forwardRef<InputRefType, SearchProps>(
       allowClear,
       placeholder,
     }
-    useImperativeHandle(ref, () => inputRef?.current, [])
 
     return (
-      <div style={style} className={className}>
+      <div ref={ref} style={style} className={className}>
         <span css={applyContainerCss(stateValue)}>
           <span css={applyInputContainer(stateValue)}>
             <InputElement
               {...searchProp}
+              ref={inputRef}
               onFocus={(e) => {
                 setFocus(true)
                 props.onFocus && props.onFocus(e)

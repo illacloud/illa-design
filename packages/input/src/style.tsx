@@ -71,7 +71,7 @@ export function applyVariantStyle(variant?: string) {
 
 export function applyContainerCss(stateValue: StateValue) {
   return css`
-    width: 280px;
+    width: 100%;
     position: relative;
     display: flex;
     flex-direction: row;

@@ -14,7 +14,7 @@ exports[`Card renders with Cover 1`] = `
   >
     <img
       alt="dessert"
-      src="//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/3ee5f13fb09879ecb5185e440cef6eb9.png~tplv-uwbnlip3yd-webp.webp"
+      src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
       style="width: 100%; transform: translateY(-20px);"
     />
   </div>
