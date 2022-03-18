@@ -12,8 +12,7 @@ import { fileListContainerCss, uploadContainerCss } from "./styles"
 import { FileListTextItem } from "./file-list-text-item"
 import { FileListPicItem } from "./file-list-pic-item"
 import { List } from "@illa-design/list"
-
-const isFunction = (obj?: object) => typeof obj === "function"
+import { isFunction } from "@illa-design/system"
 
 export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   const {
