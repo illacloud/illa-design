@@ -55,7 +55,7 @@ import { Timeline } from "@illa-dedign/timeline"
 Timeline mode={"alternate"}>
   <TimelineItem>The alternate mode left text</TimelineItem>
   <TimelineItem>The alternate mode right text</TimelineItem>
-</Timeline>,
+</Timeline>
 ```
 
 ### Set the label
@@ -63,7 +63,7 @@ Timeline mode={"alternate"}>
 ```jsx
 <Timeline>
   <TimelineItem label={"test label"} autoFixDotSize={true}></TimelineItem>
-</Timeline>,
+</Timeline>
 ```
 
 ### Set the pending dot
@@ -71,5 +71,5 @@ Timeline mode={"alternate"}>
 ```jsx
 <Timeline pending={true}>
   <TimelineItem></TimelineItem>
-</Timeline>,
+</Timeline>
 ```
