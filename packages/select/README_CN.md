@@ -20,21 +20,21 @@ import { Select } from "@illa-dedign/select"
 
 | Props             | Desc                                                         | Type                                                         | Default    |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------- |
-| defaultValue      | 选择框的默认值                                               | `string \|string[] \| number \|  number[] \| LabelValue \| LabelValue[]` | `-`        |
-| value             | 选择器的值（受控模式）                                       | `string \|string[] \|number \|number[] \|LabelValue \|LabelValue[]` | `-`        |
-| mode              | 是否开启多选模式或标签模式                                   | `"multiple" \|"tags" `                                       | `-`        |
+| defaultValue      | 选择框的默认值                                               | `string \| string[] \| number \| number[] \| LabelValue \| LabelValue[]` | `-`        |
+| value             | 选择器的值（受控模式）                                       | `string \| string[] \| number \| number[] \| LabelValue \| LabelValue[]` | `-`        |
+| mode              | 是否开启多选模式或标签模式                                   | `"multiple" \| "tags" `                                       | `-`        |
 | notFoundContent   | 没有数据时显示的内容                                         | `ReactNode`                                                  | `-`        |
 | getPopupContainer | 弹出框挂载的父节点                                           | `(node: HTMLElement) => Element `                            | `"circle"` |
 | placeholder       | 选择框默认文字                                               | `string`                                                     | `-`        |
 | showSearch        | 使单选模式可搜索，传入 `{ retainInputValue: true }` 在搜索框聚焦时保留现有内容传入 `{ retainInputValueWhileSelect: true }` 在多选选择时保留输入框内容。 | `boolean \| {retainInputValue?: boolean; retainInputValueWhileSelect?: boolean } ` | `-`        |
-| size              | 选择器尺寸                                                   | `small" \|"medium" \| "large" `                              | `"medium"` |
+| size              | 选择器尺寸                                                   | `small" \| "medium" \| "large" `                              | `"medium"` |
 | disabled          | 是否为禁用状态                                               | `boolean`                                                    | `-`        |
 | error             | 是否为错误状态                                               | `boolean`                                                    | `-`        |
 | loading           | 是否为加载状态                                               | `boolean`                                                    | `-`        |
 | allowClear        | 允许清除值                                                   | `boolean`                                                    | `-`        |
 | maxTagCount       | 最多显示多少个 `tag`，仅在多选或标签模式有效                 | `number`                                                     | `-`        |
 | arrowIcon         | 自定义箭头图标，设置为 `null` 不显示箭头图标                 | `ReactNode \| null`                                          | `-`        |
-| removeIcon        | 多选时配置选中项的删除图标。当传入`null`，不显示删除图标     | `ReactNode \|null`                                           | `-`        |
+| removeIcon        | 多选时配置选中项的删除图标。当传入`null`，不显示删除图标     | `ReactNode \| null`                                           | `-`        |
 
 ### Select 事件
 
