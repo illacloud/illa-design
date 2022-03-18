@@ -48,6 +48,7 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     height: 0,
   })
 
+  const mounted = useRef(true);
   const targetRef = useRef<HTMLElement | Window | null>(null)
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const lastIsFixed = useRef(false)
@@ -55,20 +56,34 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   const [measureWrapperRef, measureWrapperInfo] = useMeasure<HTMLDivElement>()
   const [measureAffixRef, measureAffixInfo] = useMeasure<HTMLDivElement>()
 
-  // wrapper div need a useMeasure ref and a element ref
   const setWrapperRefs = (el: HTMLDivElement) => {
+    // for size measure
     measureWrapperRef(el)
+    // for position compute
     wrapperRef.current = el
   }
 
   const updatePosition = useCallback(
     throttleByRaf(() => {
-      setStatus(AffixStatus.START)
+      /*
+       * check is mounted to avoid:
+       * Warning: Can't perform a React state update on an unmounted component.
+       */
+      mounted.current && setStatus(AffixStatus.START)
     }),
     [],
   )
 
   useImperativeHandle(ref, () => wrapperRef?.current as HTMLDivElement, [])
+
+  //
+  useEffect(() => {
+    mounted.current = true;
+
+    return () => {
+      mounted.current = false;
+    }
+  }, [])
 
   useEffect(() => {
     updatePosition()
