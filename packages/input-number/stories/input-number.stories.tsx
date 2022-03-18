@@ -17,6 +17,11 @@ export default {
         type: "text",
       },
     },
+    prefix: {
+      control: {
+        type: "text",
+      },
+    },
     suffix: {
       control: {
         type: "text",

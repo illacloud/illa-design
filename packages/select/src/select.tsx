@@ -29,11 +29,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     value,
     defaultValue,
     labelInValue,
-    placeholder,
     options,
     filterOption = true,
     showSearch,
-    notFoundContent,
     // event
     onChange,
     onSearch,
@@ -44,7 +42,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     onPopupScroll,
     onVisibleChange,
     onInputValueChange,
-    ...otherProps
   } = props
 
   const isMultipleMode = mode === "multiple" || mode === "tags"
@@ -53,11 +50,11 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     { value: OptionProps["value"]; option: OptionInfo }[]
   >([])
   const [stateValue, setValue] = useState(
-    getValidValue(props.defaultValue, isMultipleMode, labelInValue),
+    getValidValue(defaultValue, isMultipleMode, labelInValue),
   )
   const currentValue =
     "value" in props
-      ? getValidValue(props.value, isMultipleMode, labelInValue)
+      ? getValidValue(value, isMultipleMode, labelInValue)
       : stateValue
 
   const isNoOptionSelected = isEmptyValue(currentValue, isMultipleMode)
@@ -71,7 +68,6 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
 
   // ref
   const refList = useRef<any>(null)
-  const refTrigger = useRef(null)
   // onInputValueChange Callback
   const refOnInputChangeCallbackValue = useRef(inputValue)
   const refOnInputChangeCallbackReason = useRef<InputValueChangeReason>()

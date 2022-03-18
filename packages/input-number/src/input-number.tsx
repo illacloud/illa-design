@@ -1,9 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, useState, useRef, useCallback, useEffect } from "react"
+import {
+  forwardRef,
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+} from "react"
 import NP from "number-precision"
 import { InputNumberProps } from "./interface"
-import { Input, InputRefType } from "@illa-design/input"
+import { Input } from "@illa-design/input"
 import { UpIcon, DownIcon, MinusIcon, PlusIcon } from "@illa-design/icon"
 import { isNumber } from "@illa-design/system"
 import {
@@ -24,11 +31,12 @@ const getPrecision = (precision?: number, step?: number) => {
   return null
 }
 
-export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
+export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
   (props, ref) => {
     const {
       style,
       className,
+      inputRef,
       defaultValue,
       value,
       error,
@@ -54,7 +62,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
       ...rest
     } = props
 
-    const inputRef = useRef<InputRefType>(null)
+    const refInput = useRef<HTMLInputElement>(null)
     const timerRef = useRef<any>(null)
     const hasOperateRef = useRef(false)
 
@@ -131,7 +139,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
       }
 
       setValue(getLegalValue(finalValue))
-      inputRef?.current?.focus?.()
+      refInput?.current?.focus?.()
 
       // auto change while holding
       if (needRepeat) {
@@ -189,6 +197,12 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
       setIsOutOfRange(outOfRange)
     }, [min, max, mergedValue, getLegalValue])
 
+    useImperativeHandle(
+      inputRef,
+      () => refInput.current as HTMLInputElement,
+      [],
+    )
+
     const stateValue = {
       size,
     }
@@ -197,7 +211,8 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
       <Input
         css={applyInputNumber}
         size={size}
-        ref={inputRef}
+        ref={ref}
+        inputRef={refInput}
         style={style}
         className={className}
         error={error}
@@ -266,7 +281,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
         }}
         onFocus={(e) => {
           hasOperateRef.current = true
-          setInputValue(inputRef?.current?.dom?.value as string)
+          setInputValue(refInput?.current?.value as string)
           onFocus && onFocus(e)
         }}
         onBlur={(e) => {
