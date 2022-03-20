@@ -1,7 +1,7 @@
 import { ReactNode, CSSProperties } from "react"
 
 export interface AffixProps {
-  style?: CSSProperties,
+  style?: CSSProperties
   className?: string
   offsetTop?: number
   offsetBottom?: number
