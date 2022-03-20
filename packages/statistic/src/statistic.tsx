@@ -17,7 +17,6 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
     const {
       title,
       value = 0,
-      valueStyle,
       decimalSeparator = ".",
       format,
       groupSeparator = ",",
@@ -45,7 +44,7 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
     return (
       <div css={applyStatistic} ref={ref} {...restProps}>
         {title && <div css={applyStatisticTitle}>{title}</div>}
-        <div css={applyStatisticContent} style={valueStyle}>
+        <div css={applyStatisticContent}>
           {prefix && (
             <span css={applyStatisticDecorator(true, !_.isObject(prefix))}>
               {prefix}

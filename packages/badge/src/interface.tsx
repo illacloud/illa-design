@@ -24,9 +24,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLElement> {
   count?: number | ReactNode
   text?: string
   dot?: boolean
-  dotStyle?: CSSProperties
   maxCount?: number
-  offset?: [number, number]
   colorScheme?: BadgeColorScheme
   status?: BadgeStatus
   children?: ReactNode
@@ -34,7 +32,6 @@ export interface BadgeProps extends HTMLAttributes<HTMLElement> {
 
 export interface CountProps {
   count?: string | number
-  dotStyle?: CSSProperties
   color?: string
   hasChildren?: boolean
 }

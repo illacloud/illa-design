@@ -77,9 +77,7 @@ const Template: Story<BadgeProps> = (args) => {
 export const Basic = Template.bind({})
 Basic.args = {
   count: 1,
-  offset: [0, 0],
   maxCount: 99,
-  dotStyle: {},
   dot: false,
   text: "",
 }

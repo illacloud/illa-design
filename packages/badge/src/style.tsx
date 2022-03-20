@@ -1,6 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { css, keyframes } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { isObject } from "@illa-design/system"
+import { BadgeColorScheme, BadgeStatus } from "./interface"
+import { ReactNode } from "react"
+
+const statusColor = {
+  default: `--${illaPrefix}-gray-06`,
+  processing: `--${illaPrefix}-blue-03`,
+  success: `--${illaPrefix}-green-03`,
+  warning: `--${illaPrefix}-yellow-03`,
+  error: `--${illaPrefix}-red-03`,
+}
 
 export const badgeScale = keyframes`
   from {
@@ -108,4 +119,24 @@ export function applyBadgeStatusText() {
     line-height: 1.33;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
+}
+
+export function getDotColor(
+  count: number | ReactNode,
+  colorScheme?: BadgeColorScheme,
+  status?: BadgeStatus,
+) {
+  let colorStyle
+  if (colorScheme) {
+    colorStyle = globalColor(`--${illaPrefix}-${colorScheme}-03`)
+  }
+  if (status) {
+    colorStyle = globalColor(statusColor[status])
+  }
+  colorStyle = colorStyle
+    ? colorStyle
+    : isObject(count)
+    ? globalColor(`--${illaPrefix}-white-01`)
+    : globalColor(`--${illaPrefix}-red-03`)
+  return colorStyle
 }
