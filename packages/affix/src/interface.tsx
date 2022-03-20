@@ -1,6 +1,8 @@
-import { ReactNode } from "react"
+import { ReactNode, CSSProperties } from "react"
 
 export interface AffixProps {
+  style?: CSSProperties,
+  className?: string
   offsetTop?: number
   offsetBottom?: number
   target?: () => HTMLElement | null | Window

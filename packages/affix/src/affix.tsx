@@ -27,6 +27,8 @@ function getTargetRect(target: HTMLElement | Window): DOMRect {
 
 export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   const {
+    style,
+    className,
     offsetTop = 0,
     offsetBottom,
     target = () => window,
@@ -168,7 +170,7 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   })
 
   return (
-    <div ref={setWrapperRefs}>
+    <div ref={setWrapperRefs} style={style} className={className}>
       {lastIsFixed.current && <div css={applySize(size)}></div>}
       <div
         css={applyAffixFixedStyle({
