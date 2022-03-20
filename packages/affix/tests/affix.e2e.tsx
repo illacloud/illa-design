@@ -14,11 +14,11 @@ const blockStyles = (height: number = 1000) => css`
 const TestAffix = (props: AffixProps) => {
   return (
     <>
-      <div css={blockStyles()}></div>
+      <div css={blockStyles()} />
       <Affix {...props}>
         <span>Affix content</span>
       </Affix>
-      <div css={blockStyles()}></div>
+      <div css={blockStyles()} />
     </>
   )
 }
@@ -43,7 +43,7 @@ const TestAffixTargetContainer = () => {
           </Affix>
         </div>
       </div>
-      <div css={blockStyles()}></div>
+      <div css={blockStyles()} />
     </>
   )
 }

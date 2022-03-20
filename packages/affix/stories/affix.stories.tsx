@@ -1,5 +1,7 @@
+/** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
+import { css } from "@emotion/react"
 import { Button } from "@illa-design/button"
 import { Notification } from "@illa-design/notification"
 import { Affix, AffixProps } from "../src"
@@ -13,29 +15,21 @@ interface AffixStoryProps extends AffixProps {
   text: String
 }
 
+const blockStyles = (height: number = 1000) => css`
+  height: ${height}px;
+  width: 200px;
+  background: linear-gradient(pink, orange);
+`
+
 const Template: Story<AffixStoryProps> = (args) => {
   const { text, ...affixProps } = args
   return (
     <>
-      <div
-        style={{
-          height: "1000px",
-          width: "200px",
-          background: "linear-gradient(pink, orange)",
-        }}
-      >
-        Scroll up and down
-      </div>
+      <div css={blockStyles()}>Scroll up and down</div>
       <Affix {...affixProps}>
         <Button>{text}</Button>
       </Affix>
-      <div
-        style={{
-          height: "1000px",
-          width: "200px",
-          background: "linear-gradient(orange, pink)",
-        }}
-      ></div>
+      <div css={blockStyles()} />
     </>
   )
 }
@@ -70,12 +64,7 @@ export const targetContainer = () => {
   return (
     <>
       <div style={{ overflow: "auto", height: 300 }} ref={container}>
-        <div
-          style={{
-            height: 600,
-            background: "linear-gradient(pink, lightblue)",
-          }}
-        >
+        <div css={blockStyles(600)}>
           <Affix
             target={() => container.current}
             offsetTop={20}
@@ -85,13 +74,7 @@ export const targetContainer = () => {
           </Affix>
         </div>
       </div>
-      <div
-        style={{
-          height: "1000px",
-          width: "200px",
-          background: "linear-gradient(orange, pink)",
-        }}
-      ></div>
+      <div css={blockStyles()} />
     </>
   )
 }
