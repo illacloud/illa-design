@@ -9,8 +9,12 @@ import { Message } from "../src"
 import { MessageType } from "../../notification/src"
 
 describe("Open Message", () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
   afterEach(() => {
     Message.clear()
+    jest.runAllTimers()
   })
   test("Message renders with different type", async () => {
     const types: MessageType[] = [
