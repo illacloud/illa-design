@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 
-export interface BackTopProps extends ButtonHTMLAttributes<HTMLBaseElement> {
+export interface BackTopProps extends HTMLAttributes<HTMLDivElement> {
   visibleHeight?: number
   target?: () => HTMLElement | Window
   onClick?: () => void

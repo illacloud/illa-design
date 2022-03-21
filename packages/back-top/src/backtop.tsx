@@ -7,10 +7,15 @@ import React, {
   useState,
 } from "react"
 import { css } from "@emotion/react"
-import BTween from "b-tween"
 import { UpIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
-import { throttleByRaf, isFunction } from "@illa-design/system"
+import {
+  throttleByRaf,
+  isFunction,
+  raf,
+  caf,
+  easingMethod,
+} from "@illa-design/system"
 import { BackTopProps } from "./interface"
 import {
   applyFixedStyle,
@@ -22,14 +27,15 @@ import {
 export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
   (props, ref) => {
     const {
+      style,
+      className,
       visibleHeight = 400,
       target = () => window,
       easing = "quartOut",
       duration = 400,
       onClick,
       children,
-      style,
-      className,
+      ...rest
     } = props
 
     function getScrollTarget(target: HTMLElement | Window): HTMLElement {
@@ -39,20 +45,32 @@ export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
     }
 
     const [visible, setVisible] = useState(false)
-    const targetRef = useRef<HTMLElement>()
+    const targetRef = useRef<HTMLElement | Window>()
     const scrollTargetRef = useRef<HTMLElement>()
     const scrollToTop = useCallback(() => {
       const { scrollTop } = scrollTargetRef.current as HTMLElement
-      const tween = new BTween({
-        from: { scrollTop },
-        to: { scrollTop: 0 },
-        easing,
-        duration,
-        onUpdate: (keys: HTMLElement) => {
-          scrollTargetRef.current.scrollTop = keys.scrollTop
-        },
-      })
-      tween.start()
+      const startTime = Date.now()
+      let id: number
+
+      function frame() {
+        const nowTime = Date.now()
+        const durationFromStart = nowTime - startTime
+        const scrollTarget = scrollTargetRef.current
+
+        if (scrollTarget) {
+          scrollTarget.scrollTop =
+            scrollTop -
+            scrollTop *
+              (easingMethod as any)[easing](
+                durationFromStart > duration ? 1 : durationFromStart / duration,
+              )
+        }
+
+        durationFromStart < duration ? (id = raf(frame)) : caf(id)
+      }
+
+      raf(frame)
+
       isFunction(onClick) && onClick()
     }, [])
 
@@ -68,7 +86,7 @@ export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
       targetRef.current.addEventListener("scroll", onScroll)
 
       return () => {
-        targetRef?.current.removeEventListener("scroll", onScroll)
+        targetRef?.current?.removeEventListener("scroll", onScroll)
         onScroll.cancel()
       }
     })
@@ -86,6 +104,7 @@ export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
         className={className}
         ref={ref}
         onClick={scrollToTop}
+        {...rest}
       >
         <div css={[opacityTransition, applyOpacity(visible)]}>
           {children || defaultChildren}
