@@ -1,24 +1,28 @@
-/** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { Affix, AffixProps } from "../src"
-import { css, jsx } from "@emotion/react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
-const blockStyles = (height: number = 1000) => css`
-  height: ${height}px;
-  width: 200px;
-  background: linear-gradient(pink, orange);
-`
+const blockStyles = {
+  height: "1000px",
+  width: "200px",
+  background: "linear-gradient(pink, orange)",
+}
+
+const containerBlockStyles = {
+  height: "600px",
+  width: "200px",
+  background: "linear-gradient(pink, orange)",
+}
 
 const TestAffix = (props: AffixProps) => {
   return (
     <>
-      <div css={blockStyles()} />
+      <div style={blockStyles} />
       <Affix {...props}>
         <span>Affix content</span>
       </Affix>
-      <div css={blockStyles()} />
+      <div style={blockStyles} />
     </>
   )
 }
@@ -33,7 +37,7 @@ const TestAffixTargetContainer = () => {
         ref={container}
         className="container"
       >
-        <div css={blockStyles(600)}>
+        <div style={containerBlockStyles}>
           <Affix
             target={() => container.current}
             offsetTop={20}
@@ -43,7 +47,7 @@ const TestAffixTargetContainer = () => {
           </Affix>
         </div>
       </div>
-      <div css={blockStyles()} />
+      <div style={blockStyles} />
     </>
   )
 }
@@ -102,7 +106,7 @@ it("Affix renders with target container", () => {
     cy.findByText("Affix content")
       .parent()
       .should("have.css", "position", "fixed")
-      .should("have.css", "top", `${cTop + 20}px`) // affix should be 20px to container top
+      .should("have.css", "top", `${cTop + 20} px`) // affix should be 20px to container top
   })
 
   cy.scrollTo(0, 1000)
