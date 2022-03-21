@@ -7,13 +7,19 @@ import { applyBadgeNumberOrText, applyBadgeScale } from "./style"
 
 const defaultColor = globalColor(`--${illaPrefix}-red-03`)
 export function Count(props: CountProps) {
-  const { count, color = defaultColor, hasChildren = false } = props
+  const {
+    count,
+    color = defaultColor,
+    hasChildren = false,
+    ...restProps
+  } = props
   const oldCount = usePrevious(count)
   const isChanged = count !== oldCount
 
   return (
     <span
       css={applyBadgeNumberOrText(color, hasChildren, (count as string).length)}
+      {...restProps}
     >
       <span key={count as React.Key} css={applyBadgeScale(isChanged)}>
         {count}

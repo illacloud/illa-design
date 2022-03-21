@@ -129,6 +129,9 @@ export function getDotColor(
   let colorStyle
   if (colorScheme) {
     colorStyle = globalColor(`--${illaPrefix}-${colorScheme}-03`)
+    if (!colorStyle) {
+      colorStyle = colorScheme
+    }
   }
   if (status) {
     colorStyle = globalColor(statusColor[status])

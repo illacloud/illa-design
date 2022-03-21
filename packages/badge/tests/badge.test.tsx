@@ -15,6 +15,10 @@ test("Badge renders with different colorScheme", () => {
   expect(screen.getByTestId("test-with-gray")?.firstChild).toHaveStyle({
     "background-color": `${globalColor(`--${illaPrefix}-gray-03`)}`,
   })
+  render(<Badge data-testid="test-with-lime" count={1} colorScheme="lime" />)
+  expect(screen.getByTestId("test-with-lime")?.firstChild).toHaveStyle({
+    "background-color": "lime",
+  })
 })
 
 test("Badge renders with dot", () => {
@@ -31,6 +35,16 @@ test("Badge renders with dot", () => {
   })
   render(<Badge data-testid="test-dot-none" dot count={0} />)
   expect(screen.getByTestId("test-dot-none").firstChild).not.toBeInTheDocument()
+})
+
+test("Badge renders with offset", () => {
+  render(
+    <Badge data-testid="test-with-offset" count={22} offset={[1, 2]}></Badge>,
+  )
+  expect(screen.getByTestId("test-with-offset").firstChild).toHaveStyle({
+    "margin-right": "-1px",
+    "margin-top": "2px",
+  })
 })
 
 test("Badge renders with status", () => {

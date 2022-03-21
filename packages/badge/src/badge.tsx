@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { forwardRef } from "react"
+import React, { CSSProperties, forwardRef } from "react"
 import { BadgeProps } from "./interface"
 import { isObject } from "@illa-design/system"
 import {
@@ -20,12 +20,23 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     dot,
     maxCount = 99,
     colorScheme,
+    offset,
     status,
     children,
     ...restProps
   } = props
 
-  const colorStyle = getDotColor(count, colorScheme, status)
+  const [leftOffset, topOffset] = offset || []
+  const dotStyle: CSSProperties = {}
+
+  if (leftOffset) {
+    dotStyle.marginRight = -leftOffset
+  }
+  if (topOffset) {
+    dotStyle.marginTop = topOffset
+  }
+
+  let colorStyle = getDotColor(count, colorScheme, status)
 
   const hasChildren = !!children
 
@@ -33,7 +44,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     // display status dot
     if (status) {
       return (
-        <span css={applyBadgeStatusWrapper}>
+        <span css={applyBadgeStatusWrapper} style={dotStyle}>
           <span css={applyBadgeDot(colorStyle, hasChildren, true)} />
           {text && <span css={applyBadgeStatusText}>{text}</span>}
         </span>
@@ -42,7 +53,10 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     // display customized icon
     if (isObject(count)) {
       return (
-        <span css={applyBadgeNumberOrText(colorStyle, hasChildren, 0)}>
+        <span
+          css={applyBadgeNumberOrText(colorStyle, hasChildren, 0)}
+          style={dotStyle}
+        >
           {count}
         </span>
       )
@@ -52,6 +66,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
       return (
         <span
           css={applyBadgeNumberOrText(colorStyle, hasChildren, text.length)}
+          style={dotStyle}
         >
           {text}
         </span>
@@ -59,12 +74,19 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     }
     // display dot
     if (dot && count && count > 0) {
-      return <span css={applyBadgeDot(colorStyle, hasChildren)} />
+      return (
+        <span css={applyBadgeDot(colorStyle, hasChildren)} style={dotStyle} />
+      )
     }
 
     let renderCount = count && count > maxCount ? `${maxCount}+` : `${count}`
     return count && count > 0 ? (
-      <Count count={renderCount} hasChildren={hasChildren} color={colorStyle} />
+      <Count
+        count={renderCount}
+        hasChildren={hasChildren}
+        color={colorStyle}
+        style={dotStyle}
+      />
     ) : null
   }
   return (
