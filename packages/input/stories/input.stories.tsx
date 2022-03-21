@@ -9,7 +9,6 @@ import { PersonIcon } from "@illa-design/icon"
 export default {
   title: "DATA INPUT/Input",
   component: Input,
-
   argTypes: {
     prefix: {
       control: {
@@ -44,13 +43,7 @@ export default {
       },
     },
   },
-  parameters: {
-    docs: {
-      source: {
-        type: "code",
-      },
-    },
-  },
+
 } as Meta
 
 const Template: Story<InputProps> = (props) => {

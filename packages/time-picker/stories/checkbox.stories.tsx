@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { TimePicker, CheckboxProps } from "../src"
+import { TimePicker, TimePickerProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -13,7 +13,7 @@ export default {
   },
 } as Meta
 
-export const checkbox: Story<CheckboxProps> = (args) => {
+export const checkbox: Story<TimePickerProps> = (args) => {
   return (
     <div>
       <TimePicker {...args}>ILLA</TimePicker>

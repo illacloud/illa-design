@@ -28,7 +28,6 @@ import { Input } from "@illa-design/input"
 import { Trigger } from "@illa-design/trigger"
 import { CheckmarkIcon, ReduceIcon } from "@illa-design/icon"
 import { PickerProps, CalendarValue } from "./interface"
-import { applyMergeCss, applyCheckboxSize, applyCheckState } from "./style"
 
 interface RenderPickerProps extends PickerProps {
   defaultValue?: CalendarValue | CalendarValue[]
@@ -67,7 +66,7 @@ export const Picker = forwardRef<HTMLInputElement, RenderPickerProps>(
       ...otherProps
     } = props
 
-    const getDefaultValue = ():string|undefined => {
+    const getDefaultValue = ():Dayjs | (Dayjs | undefined)[] | undefined => {
       let value
       if (props.value) {
         value = getDayjsValue(props.value, format)

@@ -4,7 +4,6 @@ import { forwardRef, useEffect, useContext, useCallback } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { CheckmarkIcon, ReduceIcon } from "@illa-design/icon"
 import { RangePickerProps } from "./interface"
-import { applyMergeCss, applyCheckboxSize, applyCheckState } from "./style"
 
 export const RangePicker = forwardRef<HTMLLabelElement, RangePickerProps>(
   (props, ref) => {

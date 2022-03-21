@@ -11,8 +11,3 @@ test("Checkbox renders with disabled", () => {
   render(<TimePicker disabled>Hello</TimePicker>)
   expect(screen.getByRole("checkbox")).toBeDisabled()
 })
-
-test("Checkbox renders with checked", () => {
-  render(<TimePicker checked>Hello</TimePicker>)
-  expect(screen.getByRole("checkbox")).toBeChecked()
-})

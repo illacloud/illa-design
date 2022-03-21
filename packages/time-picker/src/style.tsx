@@ -1,5 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { CheckboxProps } from "./interface"
+//import { CheckboxProps } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 
@@ -51,25 +51,6 @@ export function applyCheckState(checked: boolean) {
     transform: ${checked ? "scale(1);" : "scale(0);"};
     color: white;
     transition: 0.15s all linear;
-  `
-}
-
-export function applyMergeCss(props: CheckboxProps): SerializedStyles {
-  const currentDisabled = props.disabled ?? false
-
-  return css`
-    position: relative;
-    display: inline-flex;
-    overflow: hidden;
-    word-wrap: break-word;
-    white-space: nowrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    line-height: 22px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    cursor: ${currentDisabled ? "not-allowed" : "pointer"};
   `
 }
 
