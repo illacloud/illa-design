@@ -27,7 +27,7 @@ describe("Open Message", () => {
         id: `${type}`,
       })
     })
-    await waitFor(() => {}, { timeout: 800 })
+    await waitFor(() => { }, { timeout: 800 })
     types.forEach((type) => {
       expect(screen.getByText(type)).toBeInTheDocument()
 
@@ -47,7 +47,7 @@ describe("Open Message", () => {
       closable: true,
       onClose: handleClose,
     })
-    await waitFor(() => {}, { timeout: 800 })
+    await waitFor(() => { }, { timeout: 800 })
     const closBtn = screen.getByText("Content").nextSibling
     expect(closBtn).toBeInTheDocument()
     expect(closBtn).toHaveStyle({
@@ -64,7 +64,7 @@ describe("Open Message", () => {
       content: "Default",
       duration: 1500,
     })
-    await waitFor(() => {}, { timeout: 500 })
+    await waitFor(() => { }, { timeout: 500 })
     let instance = screen.getByText("Default")
     expect(instance).toBeInTheDocument()
     await waitFor(
@@ -72,14 +72,14 @@ describe("Open Message", () => {
         expect(instance).not.toBeInTheDocument()
       },
       {
-        timeout: 2000,
+        timeout: 4000,
       },
     )
     Message.info({
       content: "Content",
       duration: 500,
     })
-    await waitFor(() => {}, { timeout: 800 })
+    await waitFor(() => { }, { timeout: 800 })
     instance = screen.getByText("Content")
     expect(instance).toBeInTheDocument()
     await waitFor(
@@ -97,7 +97,7 @@ describe("Open Message", () => {
       content: "Content",
       duration: 800,
     })
-    await waitFor(() => {}, { timeout: 800 })
+    await waitFor(() => { }, { timeout: 800 })
     let instance = screen.getByText("Content")
     fireEvent.mouseEnter(instance)
     await waitFor(
@@ -125,7 +125,7 @@ describe("Open Message", () => {
       id: "remove",
       action: <Button data-testid="removeBtn">Hello</Button>,
     })
-    await waitFor(() => {}, { timeout: 800 })
+    await waitFor(() => { }, { timeout: 800 })
     let instance = screen.getByText("Remove")
     expect(instance).toBeInTheDocument()
     Message.remove("remove")
@@ -145,7 +145,7 @@ describe("Open Message", () => {
       content: "ItemB",
       id: "itemB",
     })
-    await waitFor(() => {}, { timeout: 800 })
+    await waitFor(() => { }, { timeout: 800 })
     let instanceA = screen.getByText("ItemA")
     let instanceB = screen.getByText("ItemB")
     expect(instanceA).toBeInTheDocument()
@@ -172,14 +172,14 @@ describe("Open Message", () => {
       id: "Before",
       duration: 0,
     })
-    await waitFor(() => {}, { timeout: 800 })
+    await waitFor(() => { }, { timeout: 800 })
     const instance = screen.getByText("updateBefore")
     expect(instance.innerHTML).toBe("updateBefore")
     Message.info({
       content: "After",
       id: "Before",
     })
-    await waitFor(() => {}, { timeout: 800 })
+    await waitFor(() => { }, { timeout: 800 })
     expect(instance.innerHTML).toBe("After")
   })
 })
@@ -197,7 +197,7 @@ test("Message renders with global config", async () => {
     content: "Old",
     id: "old",
   })
-  await waitFor(() => {}, { timeout: 800 })
+  await waitFor(() => { }, { timeout: 800 })
   expect(screen.getByTestId("body")).toBeInTheDocument()
   expect(screen.getByTestId("body").firstChild).toBeInTheDocument()
 
@@ -214,6 +214,6 @@ test("Message renders with global config", async () => {
     content: "New",
     id: "new",
   })
-  await waitFor(() => {}, { timeout: 800 })
+  await waitFor(() => { }, { timeout: 800 })
   expect(screen.getByText("New")).toBeInTheDocument()
 })
