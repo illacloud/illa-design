@@ -1,12 +1,16 @@
 module.exports = (plop) => {
   plop.setGenerator("new", {
     description: "create a component",
-    // 命令式交互配置
     prompts: [
       {
         type: "input",
         name: "name",
         message: "component name",
+      },
+      {
+        type: "input",
+        name: "type",
+        message: "storybook type",
       },
     ],
     actions: [
