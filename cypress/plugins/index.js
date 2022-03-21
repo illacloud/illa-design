@@ -8,6 +8,9 @@ module.exports = (on, config) => {
       viteConfig: {
         configFile: path.resolve(__dirname, "..", "vite.config.ts"),
       },
+      optimizeDeps: {
+        include: ["@emotion/react/jsx-dev-runtime"]
+      }
     }),
   )
   return config
