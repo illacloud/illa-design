@@ -3,7 +3,6 @@
   "compilerOptions": {
     "types": [
       "vite/client",
-      "@emotion/react/types/css-prop",
       "cypress",
       "@testing-library/cypress"
     ]
