@@ -21,7 +21,45 @@ $ yarn test
 
 # 使用 chrome 浏览器运行 e2e 测试
 $ npx cypress run-ct -b chrome
+
+# 创建新组件
+$ yarn plop
 ```
+##如何创建一个新的组件
+```bash
+$ yarn plop
+component name: enter your component name here!
+````
+###有关plop模板配置
+```bash
+module.exports = (plop) => {
+  plop.setGenerator("new", {
+    description: "create a component",
+    #命令式交互配置,其中name的值即为组件名称,可在模版文件.hbs中通过{{name}}使用
+    prompts: [
+      {
+        type: "input",
+        name: "name",
+        message: "component name",
+      },
+    ],
+    #根据需要自行在actions中添加映射关系，需要在plop-templates文件夹下添加对应模板
+    actions: [
+      {
+        type: "add",
+        path: "packages/{{name}}/src/index.ts",
+        templateFile: "./plop-templates/src/index.hbs",
+      },
+      {
+        type: "add",
+        path: "packages/{{name}}/src/{{name}}.tsx",
+        templateFile: "./plop-templates/src/component.hbs",
+      }
+    ],
+  })
+}
+````
+[有关plop更多用法请参考](https://github.com/plopjs/plop)
 
 ## Pull Request
 
