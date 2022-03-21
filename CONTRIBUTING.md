@@ -4,6 +4,25 @@
 
 项目成员和外部贡献者的 pull requests 都需要经过相同的 code review 流程。
 
+### 常用命令
+
+```bash
+# 本地启动 storybook 预览组件
+$ yarn storybook
+
+# 格式化代码
+$ yarn lint
+
+# 组件构建
+$ yarn build-all-components
+
+# 运行完整的单元测试
+$ yarn test
+
+# 使用 chrome 浏览器运行 e2e 测试
+$ npx cypress run-ct -b chrome
+```
+
 ## Pull Request
 
 1. Fork [本仓库](https://github.com/illa-family/illa-design) ，从 `develop` 创建新分支。
