@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { Affix, AffixProps } from "../src"
-import { css } from "@emotion/react"
+import { css, jsx } from "@emotion/react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
