@@ -1,24 +1,24 @@
-/** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { Affix, AffixProps } from "../src"
-import { css } from "@emotion/react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
-const blockStyles = (height: number = 1000) => css`
-  height: ${height}px;
-  width: 200px;
-  background: linear-gradient(pink, orange);
-`
+const blockStyles = (height: number = 1000) => {
+  return {
+    height,
+    width: 200,
+    background: "linear-gradient(pink, orange)",
+  }
+}
 
 const TestAffix = (props: AffixProps) => {
   return (
     <>
-      <div css={blockStyles()} />
+      <div style={blockStyles()} />
       <Affix {...props}>
         <span>Affix content</span>
       </Affix>
-      <div css={blockStyles()} />
+      <div style={blockStyles()} />
     </>
   )
 }
@@ -33,7 +33,7 @@ const TestAffixTargetContainer = () => {
         ref={container}
         className="container"
       >
-        <div css={blockStyles(600)}>
+        <div style={blockStyles(600)}>
           <Affix
             target={() => container.current}
             offsetTop={20}
@@ -43,13 +43,13 @@ const TestAffixTargetContainer = () => {
           </Affix>
         </div>
       </div>
-      <div css={blockStyles()} />
+      <div style={blockStyles()} />
     </>
   )
 }
 
 it("Affix renders correctly", () => {
-  mount(<TestAffix></TestAffix>)
+  mount(<TestAffix />)
   expect(cy.findByText("Affix content")).exist
   unmount()
 })
@@ -92,7 +92,7 @@ it("Affix renders with onChange event", () => {
 })
 
 it("Affix renders with target container", () => {
-  mount(<TestAffixTargetContainer></TestAffixTargetContainer>)
+  mount(<TestAffixTargetContainer />)
 
   cy.get(".container").scrollTo(0, 200)
 
