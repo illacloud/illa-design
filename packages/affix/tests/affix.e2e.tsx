@@ -12,7 +12,7 @@ const TestAffix = (props: AffixProps) => {
           width: "200px",
           background: "linear-gradient(pink, orange)",
         }}
-      ></div>
+      />
       <Affix {...props}>
         <span className="children">Hello</span>
       </Affix>
@@ -22,7 +22,7 @@ const TestAffix = (props: AffixProps) => {
           width: "200px",
           background: "linear-gradient(orange, pink)",
         }}
-      ></div>
+      />
     </>
   )
 }
@@ -58,7 +58,7 @@ const TestAffixTargetContainer = () => {
           width: "200px",
           background: "linear-gradient(orange, pink)",
         }}
-      ></div>
+      />
     </>
   )
 }
@@ -82,8 +82,7 @@ it("Affix renders with fixed 100px to window top", () => {
 })
 
 it("Affix renders with fixed 100px to window bottom", () => {
-  mount(<TestAffix offsetBottom={100}></TestAffix>)
-
+  mount(<TestAffix offsetBottom={100} />)
   cy.get(".children")
     .parent()
     .should("have.css", "position", "fixed")
@@ -95,7 +94,7 @@ it("Affix renders with fixed 100px to window bottom", () => {
 it("Affix renders with onChange event", () => {
   const onChangeEvent = cy.stub().as("onChangeEvent")
 
-  mount(<TestAffix onChange={onChangeEvent} offsetTop={100}></TestAffix>)
+  mount(<TestAffix onChange={onChangeEvent} offsetTop={100} />)
 
   cy.scrollTo(0, 1000)
   cy.get("@onChangeEvent").should("be.calledWith", true)
@@ -107,7 +106,7 @@ it("Affix renders with onChange event", () => {
 })
 
 it("Affix renders with target container", () => {
-  mount(<TestAffixTargetContainer></TestAffixTargetContainer>)
+  mount(<TestAffixTargetContainer />)
 
   cy.get(".container").scrollTo(0, 200)
 

@@ -4,6 +4,8 @@ import { Button } from "@illa-design/button"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 import { Space } from "@illa-design/space"
+import { ReactNode } from "react"
+import { TabPane, Tabs } from "@illa-design/tabs"
 
 it("Trigger renders correctly", () => {
   mount(

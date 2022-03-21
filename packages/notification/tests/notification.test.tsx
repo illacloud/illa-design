@@ -8,8 +8,12 @@ import { Button } from "@illa-design/button"
 import { Notification, NotificationType } from "../src"
 
 describe("Open Notification", () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
   afterEach(() => {
     Notification.clear()
+    jest.runAllTimers()
   })
   test("Notification renders with different type", async () => {
     const types: NotificationType[] = [
