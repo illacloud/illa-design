@@ -1,6 +1,7 @@
 import { ReactNode, CSSProperties, HTMLAttributes } from "react"
 
-export interface AffixProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+export interface AffixProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   style?: CSSProperties
   className?: string
   offsetTop?: number
