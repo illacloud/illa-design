@@ -35,6 +35,7 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     targetContainer,
     onChange,
     children,
+    ...rest
   } = props
 
   const [status, setStatus] = useState(AffixStatus.DONE)
@@ -170,7 +171,7 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   })
 
   return (
-    <div ref={setWrapperRefs} style={style} className={className}>
+    <div ref={setWrapperRefs} style={style} className={className} {...rest}>
       {lastIsFixed.current && <div css={applySize(size)}></div>}
       <div
         css={applyAffixFixedStyle({
