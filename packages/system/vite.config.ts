@@ -8,7 +8,10 @@ const path = require("path")
 export default defineConfig({
   plugins: [
     react({
+      jsxImportSource: "@emotion/react",
+      jsxRuntime: "automatic",
       babel: {
+        plugins: ["@emotion/babel-plugin"],
         compact: false,
       },
       // Exclude storybook stories
