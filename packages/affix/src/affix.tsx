@@ -1,16 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import React, {
   forwardRef,
-  useState,
-  useEffect,
-  useRef,
   useCallback,
+  useEffect,
   useImperativeHandle,
+  useRef,
+  useState,
 } from "react"
 import { isFunction, throttleByRaf } from "@illa-design/system"
 import useMeasure from "react-use/lib/useMeasure"
 import useIsomorphicLayoutEffect from "react-use/lib/useIsomorphicLayoutEffect"
-import { css } from "@emotion/react"
 import { applyAffixFixedStyle, applySize } from "./style"
 import { AffixProps } from "./interface"
 
