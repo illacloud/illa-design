@@ -3,22 +3,20 @@ import { Affix, AffixProps } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
-const blockStyles = (height: number = 1000) => {
-  return {
-    height,
-    width: 200,
-    background: "linear-gradient(pink, orange)",
-  }
+const blockStyles = {
+  height: 1000,
+  width: 200,
+  background: "linear-gradient(pink, orange)",
 }
 
 const TestAffix = (props: AffixProps) => {
   return (
     <>
-      <div style={blockStyles()} />
+      <div style={blockStyles} />
       <Affix {...props}>
         <span>Affix content</span>
       </Affix>
-      <div style={blockStyles()} />
+      <div style={blockStyles} />
     </>
   )
 }
@@ -33,7 +31,11 @@ const TestAffixTargetContainer = () => {
         ref={container}
         className="container"
       >
-        <div style={blockStyles(600)}>
+        <div style={{
+          height: 600,
+          width: 200,
+          background: "linear-gradient(pink, orange)",
+        }}>
           <Affix
             target={() => container.current}
             offsetTop={20}
@@ -43,7 +45,7 @@ const TestAffixTargetContainer = () => {
           </Affix>
         </div>
       </div>
-      <div style={blockStyles()} />
+      <div style={blockStyles} />
     </>
   )
 }
