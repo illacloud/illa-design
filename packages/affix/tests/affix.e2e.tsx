@@ -106,7 +106,7 @@ it("Affix renders with target container", () => {
     cy.findByText("Affix content")
       .parent()
       .should("have.css", "position", "fixed")
-      .should("have.css", "top", `${cTop + 20} px`) // affix should be 20px to container top
+      .should("have.css", "top", `${cTop + 20}px`) // affix should be 20px to container top
   })
 
   cy.scrollTo(0, 1000)
