@@ -23,7 +23,7 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
     allowClear,
     disabled = false,
     readonly = false,
-    star = true,
+    heart,
     onChange,
     onHoverChange,
     ...restProps
@@ -71,7 +71,7 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
     let _usedCharacter =
       typeof character === "function" ? character(index) : character
 
-    if (!star) {
+    if (heart) {
       _usedCharacter = <HeartIcon />
     }
     const leftProps =
@@ -110,14 +110,14 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
           <div
             css={applyRateCharacterLeft(
               allowHalf && index + 0.5 === _usedIndex,
-              star,
+              !heart,
             )}
             {...leftProps}
           >
             {_usedCharacter}
           </div>
           <div
-            css={applyRateCharacterRight(index + 1 <= _usedIndex, star)}
+            css={applyRateCharacterRight(index + 1 <= _usedIndex, !heart)}
             {...rightProps}
           >
             {_usedCharacter}

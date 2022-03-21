@@ -11,7 +11,7 @@ export interface RateProps
   allowClear?: boolean
   readonly?: boolean
   disabled?: boolean
-  star?: boolean
+  heart?: boolean
   onChange?: (value: number) => void
   onHoverChange?: (value: number) => void
 }

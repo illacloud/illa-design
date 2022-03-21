@@ -12,13 +12,12 @@ import { Button, ButtonGroup } from "@illa-design/button"
 export default {
   title: "DATA DISPLAY/Badge",
   component: Badge,
-
-  argTypes: {
+  /*  argTypes: {
     status: {
       options: ["default", "processing", "success", "warning", "error"],
       control: { type: "radio" },
     },
-    colorScheme: {
+    /!*    colorScheme: {
       options: [
         "white",
         "blackAlpha",
@@ -48,8 +47,8 @@ export default {
           grayBlue: "grayBlue",
         },
       },
-    },
-  },
+    },*!/
+  },*/
 } as Meta
 
 const Template: Story<BadgeProps> = (args) => {
@@ -78,8 +77,4 @@ export const Basic = Template.bind({})
 Basic.args = {
   count: 1,
   offset: [0, 0],
-  maxCount: 99,
-  dotStyle: {},
-  dot: false,
-  text: "",
 }

@@ -7,7 +7,7 @@ import { RadioGroup, RadioGroupProps } from "../src"
 export default {
   title: "DATA INPUT/RadioGroup",
   component: RadioGroup,
-  argTypes:{
+  argTypes: {
     colorScheme: {
       options: [
         "white",
@@ -26,8 +26,7 @@ export default {
         type: "select",
       },
     },
-
-  }
+  },
 } as Meta
 
 const Template: Story<RadioGroupProps<any>> = (args) => {
