@@ -7,7 +7,7 @@ test("Config Provider renders with zh-CN", () => {
     <ConfigProvider locale={zhCN}>
       <ConfigProviderContext.Consumer>
         {(value) => {
-          return <div>{value.locale?.trigger["close"]}</div>
+          return <div>{value.locale?.popover["close"]}</div>
         }}
       </ConfigProviderContext.Consumer>
     </ConfigProvider>,

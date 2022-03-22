@@ -1,15 +1,18 @@
 import {
   HTMLAttributes,
-  MouseEvent,
   ReactNode,
   ForwardRefExoticComponent,
   PropsWithChildren,
 } from "react"
 import { AlertType } from "@illa-design/alert"
 
+export type MessagePosition = "top" | "bottom"
+
 export type NoticeType = "Notification" | "Message"
 
 export type NotificationType = AlertType | "normal"
+
+export type MessageType = NotificationType | "loading"
 
 export type ConfigProps = {
   maxCount?: number
@@ -49,22 +52,18 @@ export interface NoticeProps
   closable?: boolean
   onClose?: () => void
   afterClose?: () => void
-  type?: NotificationType
+  type?: MessageType
   title?: ReactNode
   content?: ReactNode
   icon?: ReactNode
   closeElement?: ReactNode
   showIcon?: boolean
-  position?: NoticePosition
+  position?: NoticePosition | MessagePosition
   duration?: number
   id?: string
   noticeType?: NoticeType
   update?: boolean
-}
-
-export interface BaseNoticeState {
-  notices: { [key: string]: any }[]
-  position?: string
+  removeHook?: (id: string) => void
 }
 
 export interface NotificationSet {
@@ -73,6 +72,7 @@ export interface NotificationSet {
   bottomLeft: NoticeProps[]
   bottomRight: NoticeProps[]
 }
+
 export interface NotificationWrapper {
   topRight?: HTMLDivElement
   topLeft?: HTMLDivElement

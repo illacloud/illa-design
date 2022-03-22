@@ -1,5 +1,5 @@
-import { ReactNode, HTMLAttributes } from "react"
 import * as React from "react"
+import { ReactNode, HTMLAttributes, Ref } from "react"
 
 export type InputTagSize = "small" | "medium" | "large"
 
@@ -8,16 +8,17 @@ export interface InputTagProps<T = any>
     HTMLAttributes<HTMLDivElement>,
     "size" | "value" | "defaultValue" | "onChange"
   > {
+  inputRef?: Ref<HTMLInputElement>
   inputValue?: string
   defaultValue?: T[]
   value?: T[]
-
   size?: InputTagSize
   placeholder?: string
   error?: boolean
   disabled?: boolean
   autoFocus?: boolean
   readOnly?: boolean
+  disableInput?: boolean
   allowClear?: boolean
   // input output both { label: '', value: ''}
   labelInValue?: boolean
@@ -52,7 +53,7 @@ export interface RenderTagsProps extends HTMLAttributes<HTMLElement> {
   valueChangeHandler?: (value: ObjectValueType[]) => void
 }
 
-export interface StateValue {
+export interface InputTagStateValue {
   disabled?: boolean
   error?: boolean
   focus?: boolean

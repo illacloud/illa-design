@@ -1,10 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef, ElementRef, useState, useRef } from "react"
+import {
+  forwardRef,
+  ElementRef,
+  useState,
+  useRef,
+  useImperativeHandle,
+} from "react"
 import { useMergeValue } from "@illa-design/system"
 import { InputElement } from "@illa-design/input"
 import { ErrorIcon } from "@illa-design/icon"
-import { InputTagProps, ObjectValueType, StateValue } from "./interface"
+import { InputTagProps, ObjectValueType } from "./interface"
 import {
   applyInputContainer,
   applyInputInnerCss,
@@ -23,6 +29,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
     const {
       style,
       className,
+      inputRef,
       value,
       defaultValue,
       inputValue,
@@ -31,6 +38,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       error,
       disabled,
       readOnly,
+      disableInput,
       suffix,
       icon,
       validate = defaultValidate,
@@ -57,7 +65,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
     const [currentInputValue, setInputValue] = useMergeValue("", {
       value: inputValue,
     })
-    const inputRef = useRef<ElementRef<typeof InputElement>>(null)
+    const refInput = useRef<HTMLInputElement>(null)
 
     const stateValue = {
       error,
@@ -96,6 +104,12 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       }
     }
 
+    useImperativeHandle(
+      inputRef,
+      () => refInput.current as HTMLInputElement,
+      [],
+    )
+
     return (
       <div
         css={applyInputContainer(stateValue)}
@@ -103,7 +117,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
         className={className}
         ref={ref}
         onClick={(e) => {
-          !focus && inputRef?.current?.focus?.()
+          !focus && refInput?.current?.focus?.()
           onClick?.(e)
         }}
         {...rest}
@@ -119,10 +133,10 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
             valueChangeHandler={valueChangeHandler}
           />
           <InputElement
-            ref={inputRef}
+            ref={refInput}
             size={size}
             value={currentInputValue}
-            disabled={disabled}
+            disabled={disabled || disableInput}
             readOnly={readOnly}
             autoFitWidth
             placeholder={!currentValue?.length ? placeholder : ""}
@@ -157,7 +171,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               e.stopPropagation()
               valueChangeHandler([])
               if (!focus) {
-                inputRef?.current?.focus?.()
+                refInput?.current?.focus?.()
               }
               onClear?.()
             }}

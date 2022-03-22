@@ -11,7 +11,7 @@ export default {
 export const password: Story<PasswordProps> = (props) => {
   return (
     <div>
-      <Password {...props} />
+      <Password style={{ width: 280 }} {...props} />
     </div>
   )
 }

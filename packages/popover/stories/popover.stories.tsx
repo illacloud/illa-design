@@ -7,15 +7,16 @@ import { Button } from "@illa-design/button"
 export default {
   title: "DATA DISPLAY/Popover",
   component: Popover,
+  argTypes: {
+    content: {
+      type: "string",
+    },
+  },
 } as Meta
 
 export const Basic: Story<PopoverProps> = (args) => (
   <div style={{ margin: "200px" }}>
-    <Popover
-      {...args}
-      content="This is a good popover, it can show some interesting things"
-      title={"title"}
-    >
+    <Popover {...args}>
       <Button>Hello Popover</Button>
     </Popover>
   </div>

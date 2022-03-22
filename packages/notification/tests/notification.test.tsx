@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react"
+import { render, screen, fireEvent, waitFor, act } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import * as React from "react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
@@ -8,8 +8,16 @@ import { Button } from "@illa-design/button"
 import { Notification, NotificationType } from "../src"
 
 describe("Open Notification", () => {
+  beforeEach(() => {
+    act(() => {
+      jest.useFakeTimers()
+    })
+  })
   afterEach(() => {
     Notification.clear()
+    act(() => {
+      jest.runAllTimers()
+    })
   })
   test("Notification renders with different type", async () => {
     const types: NotificationType[] = [
@@ -133,7 +141,7 @@ describe("Open Notification", () => {
         expect(instance).not.toBeInTheDocument()
       },
       {
-        timeout: 1500,
+        timeout: 2500,
       },
     )
   })
@@ -203,41 +211,41 @@ describe("Open Notification", () => {
     await waitFor(() => {}, { timeout: 800 })
     expect(instance.innerHTML).toBe("After")
   })
-})
 
-test("Notification renders with global config", async () => {
-  Notification.info({
-    title: "Before",
-    id: "before",
-  })
-  render(<div data-testid="container" id={"container"} />)
-  Notification.config({
-    maxCount: 1,
-    duration: 0,
-    getContainer: () => document.getElementById("container") as HTMLElement,
-  })
+  test("Notification renders with global config", async () => {
+    Notification.info({
+      title: "Before",
+      id: "before",
+    })
+    render(<div data-testid="container" id={"container"} />)
+    Notification.config({
+      maxCount: 1,
+      duration: 0,
+      getContainer: () => document.getElementById("container") as HTMLElement,
+    })
 
-  Notification.info({
-    title: "Old",
-    id: "old",
-  })
-  await waitFor(() => {}, { timeout: 800 })
-  expect(screen.getByTestId("container")).toBeInTheDocument()
-  expect(screen.getByTestId("container").firstChild).toBeInTheDocument()
+    Notification.info({
+      title: "Old",
+      id: "old",
+    })
+    await waitFor(() => {}, { timeout: 800 })
+    expect(screen.getByTestId("container")).toBeInTheDocument()
+    expect(screen.getByTestId("container").firstChild).toBeInTheDocument()
 
-  const instance = screen.getByText("Old")
-  await waitFor(
-    () => {
-      expect(instance).toBeInTheDocument()
-    },
-    {
-      timeout: 3500,
-    },
-  )
-  Notification.info({
-    title: "New",
-    id: "new",
+    const instance = screen.getByText("Old")
+    await waitFor(
+      () => {
+        expect(instance).toBeInTheDocument()
+      },
+      {
+        timeout: 3500,
+      },
+    )
+    Notification.info({
+      title: "New",
+      id: "new",
+    })
+    await waitFor(() => {}, { timeout: 800 })
+    expect(screen.getByText("New")).toBeInTheDocument()
   })
-  await waitFor(() => {}, { timeout: 800 })
-  expect(screen.getByText("New")).toBeInTheDocument()
 })

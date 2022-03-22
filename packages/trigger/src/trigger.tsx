@@ -1,14 +1,15 @@
 /** @jsxImportSource @emotion/react */
+import * as React from "react"
 import {
   cloneElement,
   FC,
+  Fragment,
   isValidElement,
   MutableRefObject,
   ReactElement,
   ReactNode,
   Ref,
   RefObject,
-  useContext,
   useEffect,
   useRef,
   useState,
@@ -18,8 +19,6 @@ import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
   applyChildrenContainer,
-  applyCloseButton,
-  applyCloseContentCss,
   applyDefaultContentSize,
   applyMotionDiv,
   applyTipsContainer,
@@ -38,12 +37,6 @@ import {
   getFinalPosition,
 } from "./adjust-tips-location"
 import { Popup } from "./popup"
-import { Link } from "@illa-design/link"
-import {
-  ConfigProviderContext,
-  ConfigProviderProps,
-  def,
-} from "@illa-design/config-provider"
 import useClickAway from "react-use/lib/useClickAway"
 import useMeasure from "react-use/lib/useMeasure"
 import { isFunction, isObject } from "@illa-design/system"
@@ -59,31 +52,16 @@ type ReactRef<T> = Ref<T> | RefObject<T> | MutableRefObject<T>
 function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
   if (ref == null) return
 
-  if (isObject(value)) {
-    if (isFunction(ref)) {
-      // @ts-ignore
-      ref(value?.dom)
-      return
-    }
+  if (isFunction(ref)) {
+    ref(value)
+    return
+  }
 
-    try {
-      // @ts-ignore
-      ref.current = value?.dom
-    } catch (error) {
-      throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
-    }
-  } else {
-    if (isFunction(ref)) {
-      ref(value)
-      return
-    }
-
-    try {
-      // @ts-ignore
-      ref.current = value
-    } catch (error) {
-      throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
-    }
+  try {
+    // @ts-ignore
+    ref.current = value
+  } catch (error) {
+    throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
   }
 }
 
@@ -115,7 +93,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
     defaultPopupVisible,
     withoutPadding,
     disabled,
-    hasCloseIcon,
     popupVisible,
     onVisibleChange,
     trigger = "hover",
@@ -150,32 +127,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
   let tipsNode: ReactNode
   let centerNode: ReactNode
 
-  const configProviderProps = useContext<ConfigProviderProps>(
-    ConfigProviderContext,
-  )
-  const locale = configProviderProps?.locale?.trigger ?? def.trigger
-
-  const closeContent = (
-    <div css={applyCloseContentCss}>
-      <div css={applyDefaultContentSize}>{content}</div>
-      {hasCloseIcon && (
-        <Link
-          colorScheme={colorScheme == "white" ? "blue" : "white"}
-          css={applyCloseButton}
-          onClick={() => {
-            if (popupVisible == undefined) {
-              setTipsVisible(false)
-            }
-            if (onVisibleChange != undefined) {
-              onVisibleChange(false)
-            }
-          }}
-        >
-          {locale["close"]}
-        </Link>
-      )}
-    </div>
-  )
+  const closeContent = <div css={applyDefaultContentSize}>{content}</div>
 
   switch (finalPosition) {
     case "top":
@@ -282,7 +234,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const showTips = () => {
     delayTodo(async () => {
-      if (!tipVisible && childrenRef.current != null) {
+      if (childrenRef.current != null) {
         const result = await adjustLocation(
           tipsNode,
           childrenRef.current,
@@ -303,13 +255,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const hideTips = () => {
     delayTodo(() => {
-      if (tipVisible) {
-        if (popupVisible == undefined) {
-          setTipsVisible(false)
-        }
-        if (onVisibleChange != undefined) {
-          onVisibleChange(false)
-        }
+      if (popupVisible == undefined) {
+        setTipsVisible(false)
+      }
+      if (onVisibleChange != undefined) {
+        onVisibleChange(false)
       }
     }, closeDelay)
   }
@@ -416,8 +366,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
     position,
     content,
     disabled,
-    autoAlignPopupWidth,
     measureInfo,
+    autoAlignPopupWidth,
   ])
 
   const newProps = {
@@ -506,10 +456,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
       },
     }
     return (
-      <>
+      <Fragment>
         {cloneElement(props.children as ReactElement, { ...finalProps })}
         {protalContent}
-      </>
+      </Fragment>
     )
   } else {
     return (

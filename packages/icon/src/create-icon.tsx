@@ -1,4 +1,4 @@
-// thx charkra ui
+// thx chakra ui
 import { forwardRef, ReactElement } from "react"
 import { Icon } from "./icon"
 import { IconProps } from "./interface"

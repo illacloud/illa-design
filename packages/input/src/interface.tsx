@@ -1,10 +1,11 @@
+import * as React from "react"
 import {
   ReactNode,
   ChangeEvent,
   InputHTMLAttributes,
   TextareaHTMLAttributes,
+  Ref,
 } from "react"
-import * as React from "react"
 
 export type InputBoarderColor =
   | string
@@ -21,18 +22,6 @@ export type InputBoarderColor =
 export type InputVariant = "fill" | "outline"
 
 export type InputSize = "small" | "medium" | "large"
-
-export type InputRefType = {
-  blur?: () => void
-  focus?: () => void
-  dom: HTMLInputElement | null
-}
-
-export type TextAreaType = {
-  blur?: () => void
-  focus?: () => void
-  dom: HTMLTextAreaElement | null
-}
 
 export interface InputElementProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
@@ -55,7 +44,11 @@ export interface InputElementProps
 }
 
 export interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "prefix" | "size"> {
+  extends Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    "prefix" | "size" | "onChange"
+  > {
+  inputRef?: Ref<HTMLInputElement>
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
@@ -67,18 +60,20 @@ export interface InputProps
   maxLength?: number
   showCount?: boolean
   allowClear?: boolean
-  prefix?: ReactNode
-  suffix?: ReactNode
-  addonAfter?: ReactNode
-  addonBefore?: ReactNode
+  prefix?: { custom?: boolean; render?: ReactNode }
+  suffix?: { custom?: boolean; render?: ReactNode }
+  addonAfter?: { custom?: boolean; render?: ReactNode }
+  addonBefore?: { custom?: boolean; render?: ReactNode }
   requirePadding?: boolean
   textCenterHorizontal?: boolean
   onClear?: () => void
   onPressEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  onChange?: (value: string, event: any) => void
 }
 
 export interface TextAreaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  textAreaRef?: Ref<HTMLTextAreaElement>
   variant?: InputVariant
   placeholder?: string
   defaultValue?: string
@@ -99,9 +94,9 @@ export interface TextAreaProps
 
 export interface SearchProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+  inputRef?: Ref<HTMLInputElement>
   searchButton?: boolean
   loading?: boolean
-
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
@@ -121,9 +116,9 @@ export interface SearchProps
 
 export interface PasswordProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+  inputRef?: Ref<HTMLInputElement>
   invisibleButton?: boolean
   loading?: boolean
-
   variant?: InputVariant
   placeholder?: string
   boarderColor?: InputBoarderColor
@@ -135,4 +130,13 @@ export interface PasswordProps
   allowClear?: boolean
   requirePadding?: boolean
   onClear?: () => void
+}
+
+export interface StateValue {
+  disabled?: boolean
+  error?: boolean
+  focus?: boolean
+  variant?: string
+  size?: InputProps["size"]
+  boarderColor?: InputProps["boarderColor"]
 }

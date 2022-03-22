@@ -11,12 +11,12 @@ import {
 import { css } from "@emotion/react"
 import { omit } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
-import { InputElementProps, InputRefType } from "./interface"
+import { InputElementProps } from "./interface"
 import { applyInputStyle, mirrorStyle, pointerStyle } from "./style"
 
-export const InputElement = forwardRef<InputRefType, InputElementProps>(
+export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
   (props, ref) => {
-    const inputRef = useRef<HTMLInputElement | null>(null)
+    const inputRef = useRef<HTMLInputElement>(null)
     const mirrorInputRef = useRef<HTMLSpanElement>(null)
 
     const isComposition = useRef(false)
@@ -43,7 +43,6 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
     const otherProps = omit(rest, [
       "prefix",
       "suffix",
-      "className",
       "defaultValue",
       "addonBefore",
       "addonAfter",
@@ -52,21 +51,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
       "onPressEnter",
     ])
 
-    useImperativeHandle(
-      ref,
-      () => {
-        return {
-          dom: inputRef.current,
-          focus: () => {
-            inputRef?.current?.focus?.()
-          },
-          blur: () => {
-            inputRef?.current?.blur?.()
-          },
-        }
-      },
-      [],
-    )
+    useImperativeHandle(ref, () => inputRef.current as HTMLInputElement, [])
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target?.value

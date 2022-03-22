@@ -36,7 +36,7 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "vite build"
   },
   "dependencies": {
     "@illa-design/avatar": "*",
@@ -52,9 +52,11 @@
     "@illa-design/typography": "*",
     "@illa-design/trigger": "*",
     "@illa-design/input": "*",
+    "@illa-design/input-number": "*",
     "@illa-design/tooltip": "*",
     "@illa-design/popover": "*",
     "@illa-design/link": "*",
+    "@illa-design/config-provider": "*",
     "@illa-design/progress": "*",
     "@illa-design/empty": "*",
     "@illa-design/badge": "*",
@@ -63,10 +65,24 @@
     "@illa-design/list": "*",
     "@illa-design/switch": "*",
     "@illa-design/alert": "*",
+    "@illa-design/input-tag": "*",
+    "@illa-design/select": "*",
     "@illa-design/grid": "*",
     "@illa-design/pagination": "*",
     "@illa-design/upload": "*",
     "@illa-design/spin": "*",
-    "@illa-design/notification": "*"
+    "@illa-design/notification": "*",
+    "@illa-design/popconfirm": "*",
+    "@illa-design/description": "*",
+    "@illa-design/timeline": "*",
+    "@illa-design/card": "*",
+    "@illa-design/message": "*",
+    "@illa-design/rate": "*",
+    "@illa-design/affix": "*",
+    "@illa-design/comment": "*",
+    "@illa-design/tabs": "*",
+    "react-use": "^17.3.1",
+    "framer-motion": "^6.2.8",
+    "@emotion/react": "^11.7.1"
   }
 }

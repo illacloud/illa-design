@@ -36,14 +36,13 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build",
-    "e2e:ci": "npx cypress run-ct --browser chrome",
-    "e2e": "npx cypress open-ct --browser chrome"
+    "build": "vite build"
   },
   "dependencies": {
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
     "@illa-design/trigger": "*",
-    "@illa-design/typography": "*"
+    "@illa-design/typography": "*",
+    "@illa-design/link": "*"
   }
 }

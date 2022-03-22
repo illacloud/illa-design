@@ -29,6 +29,12 @@
 5. 🌍 **Internationalization:** Each component was designed with i18n in mind and multiple languages are supported.
 6. 📱 **Fully Responsive:** Perfectly adaptable with all the devices, desktops to mobiles.
 
+## 💡 Components
+
+All components can be seen in Storybook 
+
+[![storybook](https://devbo.cn/storybook.svg)](https://main--618513c5ace06a003a5ed751.chromatic.com)
+
 ## 🖥 Fast Try
 
 You can quickly use ILLA Design on codesandbox.
@@ -61,13 +67,7 @@ const App = () => (
 
 ## ⌨️ Development
 
-Step 1: Choose one workspace.
-
-Use Gitpod, a free online dev environment for GitHub.
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/illa-family/illa-design)
-
-Or clone locally:
+Step 1: Clone locally.
 
 ```bash
 $ git clone https://github.com/illa-family/illa-design.git

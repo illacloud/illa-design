@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React, { forwardRef, useState, useCallback, useEffect } from "react"
-import ReactDOM from "react-dom"
+import * as React from "react"
+import { forwardRef, useState, useCallback, useEffect } from "react"
+import * as ReactDOM from "react-dom"
 import {
   NotificationProps,
   NoticeProps,
@@ -14,7 +15,6 @@ import {
 import { motion, AnimatePresence } from "framer-motion"
 import { Notice } from "./notice"
 import { applyNotificationSlide, applyNotificationWrapper } from "./style"
-import * as _ from "lodash"
 
 let maxCount: number
 let duration: number
@@ -139,13 +139,13 @@ export const Notification: NotificationComponent = forwardRef<
   }, [notice])
 
   return (
-    <div ref={ref} css={applyNotificationWrapper(position as NoticePosition)}>
+    <div ref={ref} css={applyNotificationWrapper(position)}>
       <AnimatePresence>
         {notificationSet[position].map((notice) => (
           <motion.div
             key={notice.id}
             layout
-            variants={applyNotificationSlide(position as NoticePosition)}
+            variants={applyNotificationSlide(position)}
             animate={"animate"}
             exit={"exit"}
             initial={"initial"}
@@ -156,7 +156,11 @@ export const Notification: NotificationComponent = forwardRef<
               }
             }}
           >
-            <Notice {...notice} noticeType="Notification" />
+            <Notice
+              {...notice}
+              noticeType="Notification"
+              removeHook={Notification.remove}
+            />
           </motion.div>
         ))}
       </AnimatePresence>
@@ -180,8 +184,8 @@ Notification.add = (notice: NoticeProps) => {
     ...notice,
   }
   ReactDOM.render(
-    <Notification notice={noticeProps} position={position} />,
-    notificationContainer[position] as HTMLDivElement,
+    <Notification notice={noticeProps} position={position as NoticePosition} />,
+    notificationContainer[position as NoticePosition] as HTMLDivElement,
   )
 }
 
@@ -189,7 +193,7 @@ Notification.config = (options: ConfigProps = {}) => {
   if (options.maxCount) {
     maxCount = options.maxCount
   }
-  if (_.isFinite(options.duration)) {
+  if (options.duration && isFinite(options.duration)) {
     duration = options.duration as number
   }
   if (options.getContainer && options.getContainer() !== container) {

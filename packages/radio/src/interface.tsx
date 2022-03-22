@@ -14,6 +14,8 @@ export type RadioColorScheme =
   | "cyan"
   | "purple"
 
+export type RadioSize = "small" | "medium" | "large"
+
 export interface RadioProps
   extends Omit<HTMLAttributes<HTMLLabelElement>, "onChange"> {
   name?: string
@@ -36,7 +38,10 @@ export interface RadioGroupContextProps<T> {
     | number
     | { label: React.ReactNode; value: any; disabled?: boolean }
   )[]
+  type?: "radio" | "button"
   direction?: "vertical" | "horizontal"
+  // only used in type="button"
+  size?: RadioSize
   spacing?: string | number
   onChange?: (checked: boolean, event: ChangeEvent) => void
 }
@@ -44,3 +49,10 @@ export interface RadioGroupContextProps<T> {
 export interface RadioGroupProps<T>
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue">,
     RadioGroupContextProps<T> {}
+
+export interface RadioStatus {
+  size?: RadioSize
+  checked?: boolean
+  disabled?: boolean
+  colorScheme: RadioColorScheme
+}
