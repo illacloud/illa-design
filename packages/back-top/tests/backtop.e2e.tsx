@@ -3,7 +3,7 @@ import { BackTop, BackTopProps } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
-const loremIpsum = Array(30)
+const loremIpsum = Array(50)
   .fill(0)
   .map(
     () =>
@@ -20,11 +20,12 @@ const TestBackTop = (props: BackTopProps) => {
   )
 }
 
-
 it("BackTop should not be visible", () => {
   mount(<TestBackTop />)
 
-  cy.get(".backtop").should('not.be.visible');
+  cy.get(".backtop").should("not.be.visible")
+
+  unmount()
 })
 
 it("BackTop should be visible", () => {
@@ -32,22 +33,93 @@ it("BackTop should be visible", () => {
 
   cy.scrollTo(0, 401)
 
-  cy.get(".backtop").should('be.visible');
+  cy.get(".backtop").should("be.visible")
+
+  unmount()
 })
 
 it("BackTop should not be visible after back to top", () => {
   mount(<TestBackTop visibleHeight={400} duration={400} />)
 
   cy.scrollTo(0, 401)
-  cy.get(".backtop").click();
+  cy.get(".backtop").click()
   cy.wait(400)
 
-  cy.get(".backtop").should('not.be.visible');
+  cy.get(".backtop").should("not.be.visible")
+
+  unmount()
 })
 
 it("BackTop should render custom content", () => {
-  mount(<TestBackTop visibleHeight={400}><button>Top</button></TestBackTop>)
+  mount(
+    <TestBackTop visibleHeight={400}>
+      <button>Top</button>
+    </TestBackTop>,
+  )
 
   cy.scrollTo(0, 401)
-  cy.findByText("Top").should("be.exist");
+  cy.findByText("Top").should("be.exist")
+
+  unmount()
+})
+
+it("BackTop with duration 2000 should not back to top in 400ms", () => {
+  mount(<TestBackTop duration={2000} />)
+
+  cy.scrollTo("bottom")
+  cy.get(".backtop").click()
+
+  cy.root().invoke("scrollTop").should("not.equal", 0)
+
+  unmount()
+})
+
+it("BackTop should back to top in 400ms", () => {
+  mount(<TestBackTop duration={400} />)
+
+  cy.scrollTo("bottom")
+  cy.get(".backtop").click()
+
+  cy.root().invoke("scrollTop").should("equal", 0)
+
+  unmount()
+})
+
+it("BackTop should trigger onClick callback", () => {
+  const onClick = cy.stub().as("onClick")
+
+  mount(<TestBackTop onClick={onClick} />)
+
+  cy.scrollTo("bottom")
+  cy.get(".backtop").click()
+  cy.get("@onClick").should("be.called")
+
+  unmount()
+})
+
+it("BackTop should render in target", () => {
+  mount(
+    <div style={{ position: "relative" }}>
+      <BackTop
+        className="backtop"
+        target={() => document.getElementById("target")}
+        style={{ position: "absolute" }}
+      ></BackTop>
+      <div
+        id="target"
+        style={{
+          height: 300,
+          overflow: "auto",
+        }}
+      >
+        {loremIpsum}
+      </div>
+    </div>,
+  )
+  cy.get("#target").scrollTo("bottom")
+  cy.get("#target").invoke("scrollTop").should("not.equal", 0)
+  cy.get(".backtop").click()
+  cy.get("#target").invoke("scrollTop").should("equal", 0)
+
+  unmount()
 })
