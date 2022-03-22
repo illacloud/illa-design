@@ -1,0 +1,4684 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Description renders with different data 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 7px 48px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  padding: 7px 48px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-3"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-3"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-3"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-3"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-3"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-3"
+            colspan="3"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with different reactive size 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  font-weight: bold;
+  color: #1f1f1f;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 12px;
+}
+
+.emotion-2 {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  padding: 5px 48px 5px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  padding: 5px 48px 5px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+.emotion-16 {
+  font-weight: bold;
+  color: #1f1f1f;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+
+.emotion-18 {
+  box-sizing: border-box;
+  padding: 7px 48px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.emotion-19 {
+  box-sizing: border-box;
+  padding: 7px 48px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+.emotion-31 {
+  font-weight: bold;
+  color: #1f1f1f;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 24px;
+}
+
+.emotion-33 {
+  box-sizing: border-box;
+  padding: 9px 48px 9px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.emotion-34 {
+  box-sizing: border-box;
+  padding: 9px 48px 9px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-1"
+    >
+      TitleSmall
+    </div>
+    <table
+      class="emotion-2"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-4"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-4"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-4"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-4"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-4"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-4"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-16"
+    >
+      TitleMedium
+    </div>
+    <table
+      class="emotion-2"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-19"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-19"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-19"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-19"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-19"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-19"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-31"
+    >
+      TitleLarge
+    </div>
+    <table
+      class="emotion-2"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-34"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-34"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-34"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-34"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-34"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-34"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with different size 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  font-weight: bold;
+  color: #1f1f1f;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 12px;
+}
+
+.emotion-2 {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  padding: 5px 48px 5px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  padding: 5px 48px 5px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+.emotion-16 {
+  font-weight: bold;
+  color: #1f1f1f;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+
+.emotion-18 {
+  box-sizing: border-box;
+  padding: 7px 48px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.emotion-19 {
+  box-sizing: border-box;
+  padding: 7px 48px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+.emotion-31 {
+  font-weight: bold;
+  color: #1f1f1f;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 24px;
+}
+
+.emotion-33 {
+  box-sizing: border-box;
+  padding: 9px 48px 9px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.emotion-34 {
+  box-sizing: border-box;
+  padding: 9px 48px 9px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-1"
+    >
+      TitleSmall
+    </div>
+    <table
+      class="emotion-2"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-4"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-4"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-4"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-4"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-4"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-4"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-16"
+    >
+      TitleMedium
+    </div>
+    <table
+      class="emotion-2"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-19"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-19"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-19"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-19"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-19"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-18"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-19"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-31"
+    >
+      TitleLarge
+    </div>
+    <table
+      class="emotion-2"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-34"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-34"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-34"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-34"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-34"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-33"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-34"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with horizontal layout 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 7px 48px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  padding: 7px 48px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-3"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-3"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-3"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-3"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with horizontal layout and border 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  border: solid 1px #ebebeb;
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 7px 24px;
+  margin: 0;
+  min-width: 115px;
+  border: solid 1px #ebebeb;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+  background-color: #f5f5f5;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  padding: 7px 24px;
+  margin: 0;
+  min-width: 115px;
+  border: solid 1px #ebebeb;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-3"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-3"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            ILLA
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-3"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-3"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with horizontal layout and single column 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 9px 40px 9px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  padding: 9px 40px 9px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            ILLA
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-3"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-3"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Name
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            ILLA
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Mobile
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            123-1234-1234
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Residence
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Hometown
+          </td>
+          <td
+            class="emotion-3"
+            colspan="1"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Date of Birth
+          </td>
+          <td
+            class="emotion-3"
+            colspan="3"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="1"
+          >
+            Address
+          </td>
+          <td
+            class="emotion-3"
+            colspan="5"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with inline-horizontal layout 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 7px 48px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-4 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+  margin-right: 16px;
+}
+
+.emotion-5 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with inline-horizontal layout and border 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  border: solid 1px #ebebeb;
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 7px 24px;
+  margin: 0;
+  min-width: 115px;
+  border: solid 1px #ebebeb;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-4 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+  margin-right: 16px;
+}
+
+.emotion-5 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with inline-horizontal layout and single column 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 7px 40px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-4 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+  margin-right: 16px;
+}
+
+.emotion-5 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with inline-vertical layout 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 9px 48px 9px 0px;
+  margin: 0;
+  min-width: 115px;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-4 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.emotion-5 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with inline-vertical layout and border 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  border: solid 1px #ebebeb;
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 5px 24px;
+  margin: 0;
+  min-width: 115px;
+  border: solid 1px #ebebeb;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-4 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.emotion-5 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+.emotion-28 {
+  box-sizing: border-box;
+  padding: 9px 24px;
+  margin: 0;
+  min-width: 115px;
+  border: solid 1px #ebebeb;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-28"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-28"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-28"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-28"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+          <td
+            align="right"
+            class="emotion-28"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-28"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with inline-vertical layout and single column 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 5px 40px 5px 0px;
+  margin: 0;
+  min-width: 115px;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-4 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.emotion-5 {
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Name
+              </span>
+              <span
+                class="emotion-5"
+              >
+                ILLA
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Mobile
+              </span>
+              <span
+                class="emotion-5"
+              >
+                123-1234-1234
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Residence
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Hometown
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Date of Birth
+              </span>
+              <span
+                class="emotion-5"
+              >
+                2020-05-15
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="6"
+          >
+            <div
+              class="emotion-3"
+            >
+              <span
+                class="emotion-4"
+              >
+                Address
+              </span>
+              <span
+                class="emotion-5"
+              >
+                Building, Road, Beijing
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with vertical layout 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 5px 48px 5px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.emotion-5 {
+  box-sizing: border-box;
+  padding: 5px 48px 5px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Name
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Mobile
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Residence
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="2"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="2"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="2"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Hometown
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="4"
+          >
+            Date of Birth
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="2"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="4"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="6"
+          >
+            Address
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="6"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Name
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Mobile
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Residence
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="2"
+          >
+            ILLA
+          </td>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="2"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="2"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Hometown
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="4"
+          >
+            Date of Birth
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="2"
+          >
+            Beijing
+          </td>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="4"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="6"
+          >
+            Address
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="6"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with vertical layout and border 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  border: solid 1px #ebebeb;
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 7px 24px;
+  margin: 0;
+  min-width: 115px;
+  border: solid 1px #ebebeb;
+  line-height: 22px;
+  font-size: 14px;
+  background-color: #f5f5f5;
+  color: #999;
+}
+
+.emotion-5 {
+  box-sizing: border-box;
+  padding: 7px 24px;
+  margin: 0;
+  min-width: 115px;
+  border: solid 1px #ebebeb;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Name
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Mobile
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Residence
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="2"
+          >
+            ILLA
+          </td>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="2"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="2"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Hometown
+          </td>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="4"
+          >
+            Date of Birth
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="2"
+          >
+            Beijing
+          </td>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="4"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="6"
+          >
+            Address
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-5"
+            colspan="6"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Name
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Mobile
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Residence
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="2"
+          >
+            ILLA
+          </td>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="2"
+          >
+            123-1234-1234
+          </td>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="2"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Hometown
+          </td>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="4"
+          >
+            Date of Birth
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="2"
+          >
+            Beijing
+          </td>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="4"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="6"
+          >
+            Address
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-5"
+            colspan="6"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Description renders with vertical layout and single column 1`] = `
+.emotion-0 {
+  padding: 24px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  vertical-align: center;
+  min-width: 372px;
+  max-width: 100%;
+}
+
+.emotion-1 {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  padding: 7px 40px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #999;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  padding: 7px 40px 7px 0px;
+  margin: 0;
+  min-width: 115px;
+  line-height: 22px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+<div
+  data-testid="test-description"
+>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Name
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="2"
+          >
+            ILLA
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Mobile
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="2"
+          >
+            123-1234-1234
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Residence
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="2"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="2"
+          >
+            Hometown
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="2"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="4"
+          >
+            Date of Birth
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="4"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-2"
+            colspan="6"
+          >
+            Address
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="left"
+            class="emotion-3"
+            colspan="6"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <table
+      class="emotion-1"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Name
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-3"
+            colspan="2"
+          >
+            ILLA
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Mobile
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-3"
+            colspan="2"
+          >
+            123-1234-1234
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Residence
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-3"
+            colspan="2"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="2"
+          >
+            Hometown
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-3"
+            colspan="2"
+          >
+            Beijing
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="4"
+          >
+            Date of Birth
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-3"
+            colspan="4"
+          >
+            2020-05-15
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-2"
+            colspan="6"
+          >
+            Address
+          </td>
+        </tr>
+        <tr>
+          <td
+            align="right"
+            class="emotion-3"
+            colspan="6"
+          >
+            Building, Road, Beijing
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

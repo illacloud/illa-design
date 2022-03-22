@@ -1,5 +1,5 @@
 import * as React from "react"
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Rate } from "../src"
 import "@testing-library/jest-dom"
@@ -47,7 +47,7 @@ test("Rate renders with click", () => {
 })
 
 test("Rate renders with heart", () => {
-  render(<Rate data-testid="test-heart" star={false} value={2} />)
+  render(<Rate data-testid="test-heart" heart value={2} />)
   expect(
     screen.getByTestId("test-heart").children[0].children[0].lastChild,
   ).toHaveStyle({ color: `${globalColor(`--${illaPrefix}-red-03`)}` })

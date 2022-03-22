@@ -28,9 +28,9 @@ const options = [
 
 const Template: Story<SelectProps> = (args) => (
   <Space direction="vertical">
-    <Select {...args} />
-    <Select options={options} defaultValue={"Shenzhen"} {...args} />
-    <Select placeholder="Select items" {...args}>
+    <Select style={{ width: 280 }} {...args} />
+    <Select style={{ width: 280 }} options={options} defaultValue={"Shenzhen"} {...args} />
+    <Select style={{ width: 280 }} placeholder="Select items" {...args}>
       <Option>Abc</Option>
       <Option>Bde</Option>
     </Select>

@@ -15,7 +15,6 @@ import {
 import { motion, AnimatePresence } from "framer-motion"
 import { Notice } from "./notice"
 import { applyNotificationSlide, applyNotificationWrapper } from "./style"
-import * as _ from "lodash"
 
 let maxCount: number
 let duration: number
@@ -194,7 +193,7 @@ Notification.config = (options: ConfigProps = {}) => {
   if (options.maxCount) {
     maxCount = options.maxCount
   }
-  if (_.isFinite(options.duration)) {
+  if (options.duration && isFinite(options.duration)) {
     duration = options.duration as number
   }
   if (options.getContainer && options.getContainer() !== container) {

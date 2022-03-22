@@ -36,7 +36,7 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "vite build"
   },
   "dependencies": {
     "@illa-design/avatar": "*",
@@ -72,13 +72,17 @@
     "@illa-design/upload": "*",
     "@illa-design/spin": "*",
     "@illa-design/notification": "*",
-    "@illa-design/comment": "*",
     "@illa-design/popconfirm": "*",
     "@illa-design/description": "*",
     "@illa-design/timeline": "*",
     "@illa-design/card": "*",
     "@illa-design/message": "*",
     "@illa-design/rate": "*",
-    "@illa-design/affix": "*"
+    "@illa-design/affix": "*",
+    "@illa-design/comment": "*",
+    "@illa-design/tabs": "*",
+    "react-use": "^17.3.1",
+    "framer-motion": "^6.2.8",
+    "@emotion/react": "^11.7.1"
   }
 }
