@@ -79,7 +79,7 @@ export const Picker = forwardRef<HTMLInputElement, RenderPickerProps>(
     const configProviderProps = useContext<ConfigProviderProps>(
       ConfigProviderContext,
     )
-    const locale = configProviderProps?.locale?.empty ?? def.empty
+    const locale = configProviderProps?.locale?.TimePicker ?? def.TimePicker
     const [valueShow, setValueShow] = useState<Dayjs | Dayjs[]>()
     const [inputValue, setInputValue] = useState<string>()
     const [focusedInputIndex, setFocusedInputIndex] = useState<number>(0)
@@ -98,8 +98,8 @@ export const Picker = forwardRef<HTMLInputElement, RenderPickerProps>(
 
     const rangeInputPlaceholder = isArray(placeholder)
       ? placeholder
-      : locale.TimePicker["placeholders"]
-    const inputPlaceHolder = placeholder || locale.TimePicker["placeholder"]
+      : locale["placeholders"]
+    const inputPlaceHolder = placeholder || locale["placeholder"]
 
     function isValidTime(time: string): boolean {
       return (
