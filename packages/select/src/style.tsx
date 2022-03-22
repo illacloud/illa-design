@@ -99,7 +99,7 @@ export function applySelectView(
 ): SerializedStyles {
   return css`
     box-sizing: border-box;
-    width: 280px;
+    width: 100%;
     line-height: 30px;
     font-size: 14px;
     border-radius: 4px;
