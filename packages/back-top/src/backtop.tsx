@@ -9,13 +9,8 @@ import React, {
 import { css } from "@emotion/react"
 import { UpIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
-import {
-  throttleByRaf,
-  isFunction,
-  raf,
-  caf,
-  easingMethod,
-} from "@illa-design/system"
+import { throttleByRaf, isFunction, raf, caf } from "@illa-design/system"
+import { easingMethod } from "./utils"
 import { BackTopProps } from "./interface"
 import {
   applyFixedStyle,
@@ -45,14 +40,16 @@ export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
     }
 
     const [visible, setVisible] = useState(false)
+
     const targetRef = useRef<HTMLElement | Window>()
     const scrollTargetRef = useRef<HTMLElement>()
+
     const scrollToTop = useCallback(() => {
       const { scrollTop } = scrollTargetRef.current as HTMLElement
       const startTime = Date.now()
       let id: number
 
-      function frame() {
+      function updateScrollTopPerFrame() {
         const nowTime = Date.now()
         const durationFromStart = nowTime - startTime
         const scrollTarget = scrollTargetRef.current
@@ -61,15 +58,17 @@ export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
           scrollTarget.scrollTop =
             scrollTop -
             scrollTop *
-              (easingMethod as any)[easing](
+              easingMethod[easing](
                 durationFromStart > duration ? 1 : durationFromStart / duration,
               )
         }
 
-        durationFromStart < duration ? (id = raf(frame)) : caf(id)
+        durationFromStart < duration
+          ? (id = raf(updateScrollTopPerFrame))
+          : caf(id)
       }
 
-      raf(frame)
+      raf(updateScrollTopPerFrame)
 
       isFunction(onClick) && onClick()
     }, [])

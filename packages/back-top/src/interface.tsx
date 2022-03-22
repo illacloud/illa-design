@@ -6,4 +6,5 @@ export interface BackTopProps extends HTMLAttributes<HTMLDivElement> {
   onClick?: () => void
   easing?: string
   duration?: number
+  children?: ReactNode
 }
