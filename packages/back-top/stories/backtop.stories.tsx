@@ -54,26 +54,24 @@ CustomIcon.args = {
 
 export const OtherTarget = () => {
   return (
-    <>
+    <div
+      css={css`
+        position: relative;
+      `}
+    >
+      <BackTop
+        target={() => document.getElementById("target")}
+        style={{ position: "absolute" }}
+      ></BackTop>
       <div
+        id="target"
         css={css`
-          position: relative;
+          height: 300px;
+          overflow: auto;
         `}
       >
-        <BackTop
-          target={() => document.getElementById("target")}
-          style={{ position: "absolute" }}
-        ></BackTop>
-        <div
-          id="target"
-          css={css`
-            height: 300px;
-            overflow: auto;
-          `}
-        >
-          {loremIpsumArticle}
-        </div>
+        {loremIpsumArticle}
       </div>
-    </>
+    </div>
   )
 }

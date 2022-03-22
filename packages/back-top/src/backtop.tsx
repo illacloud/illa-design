@@ -61,9 +61,9 @@ export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
           scrollTarget.scrollTop =
             scrollTop -
             scrollTop *
-            (easingMethod as any)[easing](
-              durationFromStart > duration ? 1 : durationFromStart / duration,
-            )
+              (easingMethod as any)[easing](
+                durationFromStart > duration ? 1 : durationFromStart / duration,
+              )
         }
 
         durationFromStart < duration ? (id = raf(frame)) : caf(id)
@@ -99,7 +99,12 @@ export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
 
     return (
       <div
-        css={[applyFixedStyle(), pointerStyle, applyOpacity(visible), opacityTransition]}
+        css={[
+          applyFixedStyle(),
+          pointerStyle,
+          applyOpacity(visible),
+          opacityTransition,
+        ]}
         style={style}
         className={className}
         ref={ref}
