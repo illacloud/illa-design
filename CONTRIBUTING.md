@@ -1,16 +1,18 @@
-# Contributing 
+# Contributing
 
 在提交贡献之前，请阅读下面指南。
 
 项目成员和外部贡献者的 pull requests 都需要经过相同的 code review 流程。
 
+## 如何创建一个新的组件
 
-##如何创建一个新的组件
 ```bash
 $ yarn plop
 component name: enter your component name here!
 ````
-###有关plop模板配置
+
+### 有关plop模板配置
+
 ```bash
 module.exports = (plop) => {
   plop.setGenerator("new", {
@@ -39,6 +41,7 @@ module.exports = (plop) => {
   })
 }
 ````
+
 [有关plop更多用法请参考](https://github.com/plopjs/plop)
 
 ## 常用命令
@@ -66,6 +69,7 @@ $ yarn plop
 ## 单元测试
 
 单元测试是本项目的重要组成部分, 添加到本库的功能代码都需要写对应的单元测试。 用法可参考以下文档
+
 - [jest](https://testing-library.com/docs/react-testing-library/intro/)
 - [cypress](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress)
 
