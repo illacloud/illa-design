@@ -1,9 +1,8 @@
 import "@testing-library/jest-dom"
 import { fireEvent, render, screen } from "@testing-library/react"
-import { Tabs } from "../src"
+import { TabPane, Tabs } from "../src"
 import * as React from "react"
 import { ReactNode } from "react"
-import { TabPane } from "../src/tab-pane"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 const tabArr: {

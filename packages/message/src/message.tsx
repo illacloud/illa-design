@@ -15,8 +15,6 @@ import {
   ConfigProps,
   MessagePosition,
 } from "@illa-design/notification"
-
-import * as _ from "lodash"
 import { applyMessageSlide, applyMessageWrapper } from "./style"
 
 let maxCount: number
@@ -182,7 +180,7 @@ Message.config = (options: ConfigProps = {}) => {
   if (options.maxCount) {
     maxCount = options.maxCount
   }
-  if (_.isFinite(options.duration)) {
+  if (options.duration && isFinite(options.duration)) {
     duration = options.duration as number
   }
   if (options.getContainer && options.getContainer() !== container) {

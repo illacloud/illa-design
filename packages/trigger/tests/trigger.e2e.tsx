@@ -4,46 +4,6 @@ import { Button } from "@illa-design/button"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 import { Space } from "@illa-design/space"
-import { ReactNode } from "react"
-import { TabPane, Tabs } from "@illa-design/tabs"
-
-const tabArr: {
-  key: string
-  title: string | ReactNode
-  content: string
-  disabled?: boolean
-}[] = [
-  {
-    key: "1",
-    title: "tab 01",
-    content: "tab content 01",
-  },
-  { key: "2", title: "tab 02", content: "tab content 02", disabled: true },
-  { key: "3", title: "tab 03", content: "tab content 03" },
-  {
-    key: "4",
-    title: "tab 04",
-    content: "tab content 04",
-  },
-  { key: "5", title: "tab 05", content: "tab content 05" },
-  { key: "6", title: "tab 06", content: "tab content 06" },
-]
-
-it("Tabs renders correctly", () => {
-  mount(
-    <Tabs placeholder={"tabs"} defaultActiveKey={"3"}>
-      {tabArr?.map((item) => {
-        return (
-          <TabPane title={item.title} key={item.key}>
-            {item.content}
-          </TabPane>
-        )
-      })}
-    </Tabs>,
-  )
-  expect(cy.findByPlaceholderText("tabs")).exist
-  unmount()
-})
 
 it("Trigger renders correctly", () => {
   mount(

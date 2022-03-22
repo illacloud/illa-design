@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import React, { forwardRef, useState } from "react"
 import { SwitchProps } from "./interface"
-import * as _ from "lodash"
 import {
   applySwitch,
   applySwitchDot,
   applySwitchText,
   applySwitchIcon,
 } from "./style"
+import { isObject } from "@illa-design/system"
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (props, ref) => {
@@ -58,7 +58,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
           )}
         </div>
         <div css={applySwitchText(mergedChecked, size)}>
-          {_.isObject(renderText) ? (
+          {isObject(renderText) ? (
             <div css={applySwitchIcon}>{renderText}</div>
           ) : (
             renderText

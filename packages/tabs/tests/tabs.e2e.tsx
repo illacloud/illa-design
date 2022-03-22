@@ -1,9 +1,8 @@
 import * as React from "react"
-
+import { ReactNode } from "react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import { ReactNode } from "react"
-import { TabPane, Tabs } from "@illa-design/tabs"
+import { TabPane, Tabs } from "../src"
 
 const tabArr: {
   key: string
