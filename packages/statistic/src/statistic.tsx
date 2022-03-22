@@ -2,7 +2,6 @@
 import { forwardRef, useMemo } from "react"
 import { StatisticProps } from "./interface"
 import dayjs from "dayjs"
-import * as _ from "lodash"
 
 import {
   applyStatistic,
@@ -11,6 +10,7 @@ import {
   applyStatisticTitle,
   applyStatisticValue,
 } from "./style"
+import { isObject } from "@illa-design/system"
 
 export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
   (props, ref) => {
@@ -46,13 +46,13 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
         {title && <div css={applyStatisticTitle}>{title}</div>}
         <div css={applyStatisticContent}>
           {prefix && (
-            <span css={applyStatisticDecorator(true, !_.isObject(prefix))}>
+            <span css={applyStatisticDecorator(true, !isObject(prefix))}>
               {prefix}
             </span>
           )}
           <span css={applyStatisticValue}>{renderValue}</span>
           {suffix && (
-            <span css={applyStatisticDecorator(false, !_.isObject(suffix))}>
+            <span css={applyStatisticDecorator(false, !isObject(suffix))}>
               {suffix}
             </span>
           )}

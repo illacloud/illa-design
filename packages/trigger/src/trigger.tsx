@@ -3,6 +3,7 @@ import * as React from "react"
 import {
   cloneElement,
   FC,
+  Fragment,
   isValidElement,
   MutableRefObject,
   ReactElement,
@@ -233,7 +234,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const showTips = () => {
     delayTodo(async () => {
-      if (!tipVisible && childrenRef.current != null) {
+      if (childrenRef.current != null) {
         const result = await adjustLocation(
           tipsNode,
           childrenRef.current,
@@ -254,13 +255,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const hideTips = () => {
     delayTodo(() => {
-      if (tipVisible) {
-        if (popupVisible == undefined) {
-          setTipsVisible(false)
-        }
-        if (onVisibleChange != undefined) {
-          onVisibleChange(false)
-        }
+      if (popupVisible == undefined) {
+        setTipsVisible(false)
+      }
+      if (onVisibleChange != undefined) {
+        onVisibleChange(false)
       }
     }, closeDelay)
   }
@@ -367,8 +366,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
     position,
     content,
     disabled,
-    autoAlignPopupWidth,
     measureInfo,
+    autoAlignPopupWidth,
   ])
 
   const newProps = {
@@ -457,10 +456,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
       },
     }
     return (
-      <>
+      <Fragment>
         {cloneElement(props.children as ReactElement, { ...finalProps })}
         {protalContent}
-      </>
+      </Fragment>
     )
   } else {
     return (

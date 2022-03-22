@@ -15,9 +15,6 @@ export default {
     icon: {
       control: false,
     },
-    onClose: {
-      control: false,
-    },
   },
 } as Meta
 
