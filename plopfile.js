@@ -8,9 +8,11 @@ module.exports = (plop) => {
         message: "component name",
       },
       {
-        type: "input",
+        type: "list",
         name: "type",
-        message: "storybook type",
+        message: "Which storybook type does the component belong",
+        choices: ["GENERAL", "LAYOUT", "DATA DISPLAY", "DATA INPUT", "FEEDBACK", "NAVIGATION", "OTHERS"],
+        default: 0,
       },
     ],
     actions: [
