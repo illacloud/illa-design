@@ -6,7 +6,7 @@ export const enUS = {
     copyToolTip: "Copy",
     expandLabel: "Expand",
   },
-  TimePicker: {
+  timePicker: {
     ok: "OK",
     placeholder: "Select time",
     placeholders: ["Start time", "End time"],

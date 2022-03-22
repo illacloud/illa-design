@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode } from "react"
+import React, { HTMLAttributes, ReactElement, ReactNode } from "react"
 import { Dayjs } from "dayjs"
 import { TriggerProps } from "@illa-design/trigger"
 
@@ -51,4 +51,15 @@ export interface RangePickerProps extends PickerProps {
   order?: boolean
   onSelect?: (valueString: string[], value: Dayjs[]) => void
   onChange?: (valueString: string[], value: Dayjs[]) => void
+}
+
+export interface RenderPickerProps extends PickerProps {
+  defaultValue?: CalendarValue | CalendarValue[]
+  value?: CalendarValue | CalendarValue[]
+  onSelect?: (value?: string | string[], dayjsValue?: Dayjs | Dayjs[]) => void
+  onChange?: (value?: string | string[], dayjsValue?: Dayjs | Dayjs[]) => void
+  isRangePicker?: boolean
+  picker?: ReactElement
+  hideFooter?: boolean
+  order?: boolean
 }

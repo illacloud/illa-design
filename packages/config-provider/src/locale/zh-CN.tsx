@@ -6,7 +6,7 @@ export const zhCN = {
     copyToolTip: "复制",
     expandLabel: "展开",
   },
-  TimePicker: {
+  timePicker: {
     ok: "确定",
     placeholder: "请选择时间",
     placeholders: ["开始时间", "结束时间"],

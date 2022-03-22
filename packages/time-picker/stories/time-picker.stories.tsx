@@ -4,7 +4,7 @@ import { TimePicker, TimePickerProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "DATA INPUT/Checkbox",
+  title: "DATA INPUT/TimePicker",
   component: TimePicker,
   argTypes: {
     value: {

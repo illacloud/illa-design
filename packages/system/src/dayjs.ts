@@ -4,7 +4,7 @@ import dayjs, { Dayjs } from "dayjs"
 export function getDayjsValue(
   time: any,
   format: string,
-): undefined | Dayjs | (Dayjs | undefined)[] {
+): undefined | Dayjs | Dayjs[] {
   if (!time) {
     return void 0
   }
@@ -21,7 +21,7 @@ export function getDayjsValue(
   }
 
   if (Array.isArray(time)) {
-    return time.map((t) => (t ? formatValue(t) : void 0))
+    return time.map((t) => formatValue(t))
   }
 
   return formatValue(time)
