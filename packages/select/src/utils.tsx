@@ -1,5 +1,4 @@
 import React, { ReactElement } from "react"
-import get from "lodash/get"
 import {
   OptionInfo,
   OptionInfoMap,
@@ -12,7 +11,7 @@ import { isString, isObject, isArray, isNumber } from "@illa-design/system"
 type OptionsType = SelectProps["options"]
 
 export function isSelectOption(child: ReactElement): boolean {
-  return get(child, "props.isSelectOption")
+  return child.props?.isSelectOption ?? false
 }
 
 export function isEmptyValue(value: any, isMultiple: boolean) {
@@ -89,7 +88,7 @@ export function flatChildren(
   let optionIndexListForArrowKey: Array<number> = []
 
   const getChildValue = (child: ReactElement) => {
-    const propValue = get(child, "props.value")
+    const propValue = child.props?.value
     return propValue === undefined ? child.props.children.toString() : propValue
   }
 
