@@ -11,10 +11,6 @@ export default {
   component: Affix,
 } as Meta
 
-interface AffixStoryProps extends AffixProps {
-  text: String
-}
-
 const blockStyles = css`
   width: 500px;
   white-space: pre-wrap;

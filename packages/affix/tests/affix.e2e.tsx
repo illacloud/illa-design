@@ -1,24 +1,22 @@
-/** @jsxImportSource @emotion/react */
 import * as React from "react"
 import { Affix, AffixProps } from "../src"
-import { css } from "@emotion/react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
-const blockStyles = (height: number = 1000) => css`
-  height: ${height}px;
-  width: 200px;
-  background: linear-gradient(pink, orange);
-`
+const blockStyles = {
+  height: 1000,
+  width: 200,
+  background: "linear-gradient(pink, orange)",
+}
 
 const TestAffix = (props: AffixProps) => {
   return (
     <>
-      <div css={blockStyles()} />
+      <div style={blockStyles} />
       <Affix {...props}>
         <span>Affix content</span>
       </Affix>
-      <div css={blockStyles()} />
+      <div style={blockStyles} />
     </>
   )
 }
@@ -33,7 +31,13 @@ const TestAffixTargetContainer = () => {
         ref={container}
         className="container"
       >
-        <div css={blockStyles(600)}>
+        <div
+          style={{
+            height: 600,
+            width: 200,
+            background: "linear-gradient(pink, orange)",
+          }}
+        >
           <Affix
             target={() => container.current}
             offsetTop={20}
@@ -43,7 +47,7 @@ const TestAffixTargetContainer = () => {
           </Affix>
         </div>
       </div>
-      <div css={blockStyles()} />
+      <div style={blockStyles} />
     </>
   )
 }
