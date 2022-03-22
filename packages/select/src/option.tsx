@@ -26,7 +26,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
 
   const currentValue = "value" in props ? value : children?.toString()
   const isChecked = isMultipleMode
-    ? (valueSelect as any[]).indexOf(value) !== -1
+    ? (valueSelect as any[])?.indexOf(value) !== -1
     : valueSelect === value
 
   const optionProps = {
