@@ -6,10 +6,12 @@ const path = require("path")
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  assetsInclude: "src/assets/*",
   plugins: [
     react({
+      jsxImportSource: "@emotion/react",
+      jsxRuntime: "automatic",
       babel: {
+        plugins: ["@emotion/babel-plugin"],
         compact: false,
       },
       // Exclude storybook stories
@@ -24,6 +26,7 @@ export default defineConfig({
   ],
   build: {
     sourcemap: true,
+    minify: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/time-picker",
@@ -37,7 +40,6 @@ export default defineConfig({
           declaration: true,
           declarationDir: path.resolve(__dirname, "dist/types"),
           exclude: path.resolve(__dirname, "node_modules/**"),
-          allowSyntheticDefaultImports: true,
         }),
       ],
       external: ["react", "react-dom"],
