@@ -8,9 +8,7 @@ export default {
 } as Meta
 
 const Template: Story<TableProps> = (args) => {
-  return (
-      <Table {...args}  />
-  )
+  return <Table {...args} />
 }
 
 export const Basic = Template.bind({})
