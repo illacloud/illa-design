@@ -43,9 +43,12 @@ import {
   FilePPTIcon,
   StarIcon,
   HeartIcon,
+  CaretDownIcon,
+  DragPointIcon,
   PenIcon,
   PreDoubleIcon,
   NextDoubleIcon,
+  LeafIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -133,3 +136,12 @@ export const PreDouble: Story<IconProps> = (props) => (
 export const NextDouble: Story<IconProps> = (props) => (
   <NextDoubleIcon {...props} />
 )
+
+export const CaretDown: Story<IconProps> = (props) => (
+  <CaretDownIcon {...props} />
+)
+export const DragPoint: Story<IconProps> = (props) => (
+  <DragPointIcon {...props} />
+)
+
+export const Leaf: Story<IconProps> = (props) => <LeafIcon {...props} />

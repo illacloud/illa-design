@@ -1,64 +1,26 @@
-import { HTMLAttributes, ReactNode } from "react"
-import sinonChai from "cypress/types/sinon-chai"
+import React, { HTMLAttributes, PropsWithChildren, ReactNode } from "react"
+import { TreeNode } from "./tree-node"
 
-export type TreeSize = "mini" | "small" | "default" | "large"
-export type CheckedStrategy = "SHOW_ALL" | "SHOW_PARENT" | "SHOW_CHILD"
-export type Icons = {
-  dragIcon?: ReactNode
-  switcherIcon?: ReactNode
-  loadingIcon?: ReactNode
-}
+export type TreeSize = "small" | "medium" | "large"
 
 export interface TreeProps
   extends Omit<
     HTMLAttributes<HTMLDivElement>,
-    "onDragLeave" | "onDragOver" | "onDragStart" | "onDrop" | "onSelect"
+    | "onDragLeave"
+    | "onDragOver"
+    | "onDragStart"
+    | "onDrop"
+    | "onSelect"
+    | "onDragEnd"
   > {
   size?: TreeSize
   blockNode?: boolean
-  autoExpandParent?: boolean
-  // 复选框
-  multiple?: boolean
+  renderTitle?: (props: NodeProps) => ReactNode
+  // checkBox
   checkable?: boolean
   checkStrictly?: boolean
-  checkedStrategy?: CheckedStrategy
+  defaultCheckedKeys?: string[]
   checkedKeys?: string[]
-
-  selectable?: boolean
-  defaultSelectedKeys?: string[]
-  defaultExpandedKeys?: string[]
-  // 受控
-  selectedKeys?: string[]
-  expandedKeys?: string[]
-  // data
-  treeData?: TreeDataType[]
-  // value => treeData
-  fieldNames?: FieldNamesType
-
-  // drop
-  allowDrop?: AllowDrop
-  dragIcon?: ReactNode
-
-  // nodeProps??
-  renderExtra?: (props: NodeProps) => ReactNode
-  renderTitle?: (props: NodeProps) => ReactNode
-
-  loadMore?: (node: NodeInstance) => Promise<void>
-
-  icons?: ReactNode
-  switcherIcon?: ReactNode
-  showLine?: boolean
-
-  // actions
-  onSelect?: (
-    selectedKeys: string[],
-    extra: {
-      selected: boolean
-      selectedNodes: NodeInstance[]
-      node: NodeInstance
-      e: Event
-    },
-  ) => void
   onCheck?: (
     checkedKeys: string[],
     extra: {
@@ -70,64 +32,146 @@ export interface TreeProps
       e: Event
     },
   ) => void
-
+  // expand
+  autoExpandParent?: boolean
+  defaultExpandedKeys?: string[]
+  expandedKeys?: string[]
   onExpand?: (
     expandedKeys: string[],
-    exra?: {
+    extra?: {
       expanded: boolean
       node: NodeInstance
       expandedNodes: NodeInstance[]
     },
   ) => void
-
+  // select
+  selectable?: boolean
+  defaultSelectedKeys?: string[]
+  selectedKeys?: string[]
+  multiple?: boolean
+  onSelect?: (
+    selectedKeys: string[],
+    extra: {
+      selected: boolean
+      selectedNodes: NodeInstance[]
+      node: NodeInstance
+      e: Event
+    },
+  ) => void
+  // data
+  treeData?: TreeDataType[]
+  // loadMore
+  loadMore?: (node: NodeInstance) => Promise<void>
+  // icons
+  dragIcon?: ReactNode
+  switcherIcon?: ReactNode
+  loadingIcon?: ReactNode
+  showLine?: boolean
+  // drag
+  allowDrop?: AllowDrop
+  draggable?: boolean
   onDrop?: (info: {
     e: DragEvent
-    dragNode: NodeInstance | null
-    dropNode: NodeInstance | null
+    dragNode: NodeInstance
+    dropNode: NodeInstance
     dropPosition: number
   }) => void
-
   onDragStart?: (e: DragEvent, node: NodeInstance) => void
   onDragOver?: (e: DragEvent, node: NodeInstance) => void
   onDragLeave?: (e: DragEvent, node: NodeInstance) => void
-
+  onDragEnd?: (e: DragEvent, node: NodeInstance) => void
+  // other
   placeholder?: string
 }
 
-export interface TreeDataType extends NodeProps {
+export interface TreeDataType extends Omit<NodeProps, "children"> {
   children?: TreeDataType[]
 }
 
-export interface NodeProps {
+export interface NodeProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "key" | "title"> {
+  key: string
   checkable?: boolean
   disableCheckbox?: boolean
   disabled?: boolean
   icon?: ReactNode
-  isLeaf?: boolean
-  key?: string
-  selectable?: boolean
+  size?: TreeSize
   title?: string | ReactNode
+  selectable?: boolean
+  expanding?: boolean
+  isLeaf?: boolean
+  _key?: string
+  _isSelected?: boolean
   _father?: NodeProps
   _level?: number
   _fatherPath?: NodeProps[]
+  _isLast?: boolean
+  _indentArr?: boolean[]
+  _checked?: boolean
+  _halfChecked?: boolean
+  _children?: string[]
+  showLine?: boolean
+  blockNode?: boolean
+  draggable?: boolean
+  handleExpand?: (key: string) => void
+  handleSelect?: (key: string, e: Event) => void
+  handleCheck?: (key: string, e: Event) => void
+  saveNodeCache?: (key: string, node: NodeInstance) => void
+  renderTitle?: (props: NodeProps) => ReactNode
+  handleLoadMore?: (key: string) => void
+  dataRef?: TreeDataType
+  loadingMore?: boolean
+  dragIcon?: ReactNode
+  switcherIcon?: ReactNode
+  loadingIcon?: ReactNode
+  handleDragStart?: (e: React.DragEvent<HTMLDivElement>, key: string) => void
+  handleDragEnd?: (e: React.DragEvent<HTMLDivElement>, key: string) => void
+  handleDragLeave?: (e: React.DragEvent<HTMLDivElement>, key: string) => void
+  handleDragOver?: (e: React.DragEvent<HTMLDivElement>, key: string) => void
+  handleDrop?: (e: React.DragEvent<HTMLDivElement>) => void
+  updateDragState?: (props: {
+    dragNodeKey?: string | null
+    dropNodeKey?: string | null
+    dropPosition?: number
+  }) => void
 }
 
-export interface FieldNamesType {
-  key?: string
-  title?: string
-  disabled?: string
-  children?: string
-  isLeaf?: string
-  disableCheckbox?: string
-  checkable?: string
+export interface ListProps extends HTMLAttributes<HTMLDivElement> {
+  listData: NodeProps[]
+  handleExpand?: (key: string) => void
+  handleSelect?: (key: string, e: Event) => void
+  handleCheck?: (key: string, e: Event) => void
+  handleLoadMore?: (key: string) => void
+  size?: TreeSize
+  blockNode?: boolean
+  draggable?: boolean
+  saveNodeCache?: (key: string, node: NodeInstance) => void
+  showLine?: boolean
+  checkable?: boolean
+  renderTitle?: (props: NodeProps) => ReactNode
+  loadingMoreKeys?: Set<string>
+  dragIcon?: ReactNode
+  switcherIcon?: ReactNode
+  loadingIcon?: ReactNode
+  handleDragStart?: (e: DragEvent, key: string) => void
+  handleDragEnd?: (e: DragEvent, key: string) => void
+  handleDragLeave?: (e: DragEvent, key: string) => void
+  handleDragOver?: (e: DragEvent, key: string) => void
+  handleDrop?: (e: DragEvent) => void
+  updateDragState?: (props: {
+    dragNodeKey?: string
+    dropNodeKey?: string
+    dropPosition?: number
+  }) => void
+  allowDrop?: AllowDrop
 }
 
-export type Key2nodePropsType = {
-  [key: string]: TreeDataType
-}
+export type AllowDrop = (options: {
+  node: NodeInstance
+  position: number
+}) => boolean
 
-export interface AllowDrop {}
-
-export interface NodeProps {}
-
-export interface NodeInstance {}
+export type NodeInstance = React.ReactElement<
+  PropsWithChildren<NodeProps>,
+  typeof TreeNode
+>
