@@ -1,39 +1,313 @@
 /** @jsxImportSource @emotion/react */
 import * as React from "react"
-import { forwardRef } from "react"
-import { TreeProps } from "./interface"
-import { List } from "@illa-design/list"
-import { ListItem, ListItemMeta } from "@illa-design/list/src"
-import { TreeNode } from "./tree-node"
-import { loopNode } from "./utils"
+import {
+  forwardRef,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
+import { NodeInstance, NodeProps, TreeDataType, TreeProps } from "./interface"
+import {
+  checkChildrenChecked,
+  checkParentChecked,
+  getNodes,
+  loopNode,
+  loopNodeWithState,
+} from "./utils"
+import { TreeList } from "./tree-list"
+import { UploadItem } from "@illa-design/upload/src"
 
-export function getNodeList() {}
+export const updateKeys = (
+  keys: string[],
+  targetKey: string,
+  multiple?: boolean,
+) => {
+  const hasTarget = keys?.includes(targetKey)
+  if (hasTarget) {
+    keys = keys?.filter((key) => key !== targetKey)
+  } else {
+    keys = multiple ? [...keys].concat(targetKey) : [targetKey]
+  }
+  return keys
+}
 
+// treeData is default
 export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
   const {
-    treeData = [],
+    // node data
+    treeData: defaultTreeData = [],
+    children,
+    // loadMore
+    loadMore,
+    // drag,
     onDragOver,
     onDragLeave,
     onDragStart,
     onDrop,
+    onDragEnd,
+    draggable,
+    allowDrop,
+    // select
+    selectable = true,
+    defaultSelectedKeys,
     onSelect,
+    selectedKeys,
+    multiple,
+    //  expand
+    expandedKeys,
+    defaultExpandedKeys,
+    onExpand,
+    autoExpandParent = true,
+    // checkable
+    checkable = false,
+    checkedKeys,
+    defaultCheckedKeys,
+    checkStrictly,
+    onCheck,
+    // ui
+    showLine = false,
+    size,
+    blockNode,
+    renderTitle,
+    // icons
+    dragIcon,
+    switcherIcon,
+    loadingIcon,
     ...rest
   } = props
 
-  console.log("treeData", treeData)
-  const list = loopNode(treeData)
+  const [selectedKeysState, setSelectedKeys] = useState(
+    defaultSelectedKeys ?? [],
+  )
+  const [expandedKeysState, setExpandedKeysState] = useState(
+    defaultExpandedKeys ?? [],
+  )
+  const [checkKeysState, setCheckKeysState] = useState(
+    defaultCheckedKeys ? new Set(defaultCheckedKeys) : new Set([]),
+  )
+
+  const [treeData, setTreeData] = useState<NodeProps[]>([])
+  const [loadMoreKeys, setLoadMoreKeys] = useState(new Set<string>())
+
+  const nodeCache = useRef<{ [key: string]: NodeInstance }>({})
+  const _defaultNodesList: TreeDataType[] = useMemo(() => {
+    return defaultTreeData.concat(getNodes(children as ReactElement))
+  }, [defaultTreeData])
+
+  const handleDragOver = useCallback(
+    (e: DragEvent, key: string) => {
+      const node = nodeCache.current[key]
+      onDragOver && onDragOver(e, node)
+    },
+    [onDragOver],
+  )
+
+  const handleDragStart = useCallback(
+    (e: DragEvent, key: string) => {
+      const node = nodeCache.current[key]
+      onDragStart && onDragStart(e, node)
+    },
+    [onDragStart],
+  )
+
+  const handleDragEnd = useCallback(
+    (e: DragEvent, key: string) => {
+      const node = nodeCache.current[key]
+      onDragEnd && onDragEnd(e, node)
+    },
+    [onDragEnd],
+  )
+
+  const handleDragLeave = useCallback(
+    (e: DragEvent, key: string) => {
+      const node = nodeCache.current[key]
+      onDragLeave && onDragLeave(e, node)
+    },
+    [onDragOver],
+  )
+  const [dragState, setDragState] = useState<{
+    dragNodeKey?: string
+    dropNodeKey?: string
+    dropPosition?: number
+  }>({})
+
+  const updateDragState = (props: {
+    dragNodeKey?: string
+    dropNodeKey?: string
+    dropPosition?: number
+  }) => {
+    const newValue = { ...dragState, ...props }
+    setDragState(newValue)
+  }
+
+  const handleDrop = useCallback(
+    (e: DragEvent) => {
+      const _dropNode = nodeCache.current[dragState.dropNodeKey ?? ""]
+      const _dropPosition = dragState.dropPosition ?? 0
+      const _info = {
+        e: e,
+        dropPosition: _dropPosition,
+        dragNode: nodeCache.current[dragState.dragNodeKey ?? ""],
+        dropNode: _dropNode,
+      }
+      if (
+        allowDrop &&
+        allowDrop({ node: _dropNode, position: _dropPosition })
+      ) {
+        return
+      }
+      onDrop && onDrop(_info)
+    },
+    [onDrop],
+  )
+
+  useEffect(() => {
+    let data = loopNodeWithState(
+      _defaultNodesList,
+      defaultExpandedKeys,
+      defaultSelectedKeys,
+    )
+    let _expandedKey
+    if (autoExpandParent && !defaultExpandedKeys) {
+      _expandedKey = data
+        .filter((item) => {
+          return !item.isLeaf
+        })
+        .map((item) => item.key)
+    } else {
+      _expandedKey = defaultExpandedKeys ?? []
+    }
+    data = loopNodeWithState(
+      _defaultNodesList,
+      _expandedKey,
+      defaultSelectedKeys ?? [],
+    )
+    setTreeData(data)
+    setExpandedKeysState(_expandedKey)
+  }, [])
+
+  function getNodeList(cache: { [key: string]: NodeInstance }) {
+    return Object.keys(cache).map((x) => cache[x as keyof UploadItem])
+  }
+
+  function handleSelect(targetKey: string, event: Event) {
+    const _selectedKeys = selectedKeys ?? selectedKeysState
+    if (!selectable) return
+    const keys = updateKeys(_selectedKeys, targetKey, multiple)
+    const newValue = loopNode(_defaultNodesList, keys)
+    setTreeData(newValue)
+    setSelectedKeys(keys)
+    const extra = {
+      selectedNodes: getNodeList(nodeCache.current).filter(
+        (item) => item.key && keys.includes(item.key.toString()),
+      ),
+      selected: keys.includes(targetKey),
+      node: nodeCache.current[targetKey],
+      e: event,
+    }
+    onSelect && onSelect(keys, extra)
+  }
+
+  function handleExpand(targetKey: string) {
+    const _expandedKeys = expandedKeys ?? expandedKeysState
+    const keys = updateKeys(_expandedKeys, targetKey, multiple)
+    setExpandedKeysState(keys)
+    const newValue = loopNodeWithState(
+      _defaultNodesList,
+      keys,
+      selectedKeys ?? selectedKeysState,
+      undefined,
+      undefined,
+    )
+    setTreeData(newValue)
+    const extra = {
+      expandedNodes: getNodeList(nodeCache.current).filter(
+        (item) => item.key && keys.includes(item.key.toString()),
+      ),
+      expanded: keys.includes(targetKey),
+      node: nodeCache.current[targetKey],
+    }
+    onExpand && onExpand(keys, extra)
+  }
+
+  function handleCheck(targetKey: string, event: Event) {
+    const _checkedKeys = checkedKeys ? new Set(checkedKeys) : checkKeysState
+    let keys = new Set(
+      updateKeys(Array.from(_checkedKeys), targetKey, multiple),
+    )
+    let halfSet: Set<string> = new Set()
+    if (!checkStrictly) {
+      keys = checkChildrenChecked(targetKey, treeData, keys) ?? keys
+      halfSet = checkParentChecked(keys, treeData)
+    }
+    setCheckKeysState(keys)
+    const newValue = loopNodeWithState(
+      _defaultNodesList,
+      undefined,
+      selectedKeys ?? selectedKeysState,
+      keys,
+      halfSet,
+    )
+    setTreeData(newValue)
+
+    const extra = {
+      checked: keys?.has(targetKey),
+      node: nodeCache.current[targetKey],
+      checkedNodes: getNodeList(nodeCache.current).filter(
+        (item) => item.key && keys.has(item.key.toString()),
+      ),
+      halfCheckedKeys: Array.from(halfSet ?? []),
+      halfCheckedNodes: getNodeList(nodeCache.current).filter(
+        (item) => item.key && halfSet?.has(item.key.toString()),
+      ),
+      e: event,
+    }
+    onCheck && onCheck(Array.from(keys), extra)
+  }
+
+  const handleLoadMore = async (key: string) => {
+    loadMoreKeys.add(key)
+    setLoadMoreKeys(new Set([...loadMoreKeys]))
+    const node = nodeCache.current[key]
+    loadMore && (await loadMore(node))
+    loadMoreKeys.delete(key)
+    setLoadMoreKeys(new Set([...loadMoreKeys]))
+  }
 
   return (
     <div ref={ref} {...rest}>
-      {list?.map((item) => {
-        return <TreeNode {...item} />
-      })}
-      {/*<List*/}
-      {/*  data={treeData}*/}
-      {/*  render={(data) => {*/}
-      {/*    return <TreeNode key={data.key} title={data.title} />*/}
-      {/*  }}*/}
-      {/*/>*/}
+      <TreeList
+        handleLoadMore={loadMore && handleLoadMore}
+        listData={treeData}
+        blockNode={blockNode}
+        size={size}
+        renderTitle={renderTitle}
+        showLine={showLine}
+        draggable={draggable}
+        handleExpand={handleExpand}
+        handleSelect={handleSelect}
+        handleCheck={handleCheck}
+        dragIcon={dragIcon}
+        switcherIcon={switcherIcon}
+        loadingIcon={loadingIcon}
+        loadingMoreKeys={loadMoreKeys}
+        saveNodeCache={(key: string, node: NodeInstance) => {
+          if (!Object.keys(nodeCache.current).includes(key)) {
+            nodeCache.current[key] = node
+          }
+        }}
+        checkable={checkable}
+        handleDragStart={handleDragStart}
+        handleDragEnd={handleDragEnd}
+        handleDragLeave={handleDragLeave}
+        handleDragOver={handleDragOver}
+        handleDrop={handleDrop}
+        updateDragState={updateDragState}
+        allowDrop={allowDrop}
+      />
     </div>
   )
 })

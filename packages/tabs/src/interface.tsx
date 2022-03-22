@@ -2,14 +2,14 @@ import { HTMLAttributes, ReactElement, ReactNode } from "react"
 
 export declare type TabPosition = "left" | "right" | "top" | "bottom"
 export declare type TabsSize = "small" | "medium" | "large"
-export declare type Variant = "line" | "text" | "card" | "capsule"
+export declare type TabVariant = "line" | "text" | "card" | "capsule"
 
 export interface TabsProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   tabPosition?: TabPosition
   animated?: boolean | { tabPane?: boolean; inkBar?: boolean }
   size?: TabsSize
-  variant?: Variant
+  variant?: TabVariant
   activeKey?: string
   defaultActiveKey?: string
   editable?: boolean
@@ -28,7 +28,7 @@ export interface TabContentProps extends HTMLAttributes<HTMLDivElement> {
   tabPanes?: ReactElement[]
   selectedIndex: number
   animated?: boolean
-  variant: Variant
+  variant: TabVariant
 }
 
 export type TabHeaderProps = TabsProps & {
@@ -46,7 +46,7 @@ export type TabHeaderChildProps = Pick<
   tabKey: string
   handleSelectTab: (key: string) => void
   needDivLine?: boolean
-  variant?: Variant
+  variant?: TabVariant
   deleteIcon?: ReactNode
   size?: TabsSize
   handleDeleteTab?: (key: string) => void
