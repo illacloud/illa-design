@@ -31,11 +31,13 @@ const TestAffixTargetContainer = () => {
         ref={container}
         className="container"
       >
-        <div style={{
-          height: 600,
-          width: 200,
-          background: "linear-gradient(pink, orange)",
-        }}>
+        <div
+          style={{
+            height: 600,
+            width: 200,
+            background: "linear-gradient(pink, orange)",
+          }}
+        >
           <Affix
             target={() => container.current}
             offsetTop={20}
