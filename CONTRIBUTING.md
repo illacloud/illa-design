@@ -4,27 +4,7 @@
 
 项目成员和外部贡献者的 pull requests 都需要经过相同的 code review 流程。
 
-### 常用命令
 
-```bash
-# 本地启动 storybook 预览组件
-$ yarn storybook
-
-# 格式化代码
-$ yarn lint
-
-# 组件构建
-$ yarn build-all-components
-
-# 运行完整的单元测试
-$ yarn test
-
-# 使用 chrome 浏览器运行 e2e 测试
-$ npx cypress run-ct -b chrome
-
-# 创建新组件
-$ yarn plop
-```
 ##如何创建一个新的组件
 ```bash
 $ yarn plop
@@ -60,6 +40,34 @@ module.exports = (plop) => {
 }
 ````
 [有关plop更多用法请参考](https://github.com/plopjs/plop)
+
+## 常用命令
+
+```bash
+# 本地启动 storybook 预览组件
+$ yarn storybook
+
+# 格式化代码
+$ yarn lint
+
+# 组件构建
+$ yarn build-all-components
+
+# 对所有组件运行测试
+$ yarn test
+
+# 使用 chrome 浏览器运行 e2e 测试
+$ npx cypress run-ct -b chrome
+
+# 创建新组件
+$ yarn plop
+```
+
+## 单元测试
+
+单元测试是本项目的重要组成部分, 添加到本库的功能代码都需要写对应的单元测试。 用法可参考以下文档
+- [jest](https://testing-library.com/docs/react-testing-library/intro/)
+- [cypress](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress)
 
 ## Pull Request
 
@@ -110,11 +118,3 @@ Commit messages 请遵循[conventional 标准](https://www.conventionalcommits.o
 ├── vite.config.ts (vite配置)
 └── package.json (库和依赖)
 ```
-
-## 单元测试
-
-单元测试是本项目的重要组成部分, 添加到本库的功能代码都需要写对应的单元测试。
-
-参考文档
-- [Jest](https://testing-library.com/docs/react-testing-library/intro/) 
-- [cypress](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress)
