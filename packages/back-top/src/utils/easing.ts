@@ -7,7 +7,7 @@ interface Easing {
   (t: number): number
 }
 
-interface easingMethod {
+interface EasingMethod {
   [index: string]: Easing
 }
 
@@ -55,23 +55,29 @@ const bounceIn: Easing = (t) => 1 - bounceOut(1 - t)
 const bounceInOut: Easing = (t) =>
   t < 0.5 ? bounceIn(t * 2) * 0.5 : bounceOut(t * 2 - 1) * 0.5 + 0.5
 
-export const easingMethod: easingMethod = {
+export const easingMethod: EasingMethod = {
   linear,
+
   quadIn,
   quadOut,
   quadInOut,
+
   cubicIn,
   cubicOut,
   cubicInOut,
+
   quartIn,
   quartOut,
   quartInOut,
+
   quintIn,
   quintOut,
   quintInOut,
+
   sineIn,
   sineOut,
   sineInOut,
+
   bounceIn,
   bounceOut,
   bounceInOut,
