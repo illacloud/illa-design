@@ -5,7 +5,7 @@ module.exports = (plop) => {
       {
         type: "input",
         name: "name",
-        message: "Component name:",
+        message: "Component name(e.g. Input, InputNumber):",
       },
       {
         type: "rawlist",
@@ -46,7 +46,7 @@ module.exports = (plop) => {
     actions: [
       {
         type: "addMany",
-        destination: "packages/{{name}}",
+        destination: "packages/{{dashCase name}}",
         templateFiles: "./plop-templates/**",
       },
     ],
