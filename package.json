@@ -47,6 +47,9 @@
     "typescript": "^4.5.2",
     "vite": "^2.8.6"
   },
+  "resolutions": {
+    "graceful-fs": "4.2.9"
+  },
   "workspaces": [
     "packages/*"
   ],
