@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, ReactNode, useContext } from "react"
 import { TriggerNodeProps, UploadRefType } from "./interface"
 import useDrop from "react-use/lib/useDrop"
@@ -9,7 +8,7 @@ import {
   dragUploadTipCss,
 } from "./styles"
 import { AddIcon } from "@illa-design/icon"
-import * as React from "react"
+
 import { traverseFileTree } from "./traverse-file-tree"
 import {
   ConfigProviderContext,

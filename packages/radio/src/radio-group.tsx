@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { ChangeEvent, forwardRef } from "react"
 import { RadioGroupProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"

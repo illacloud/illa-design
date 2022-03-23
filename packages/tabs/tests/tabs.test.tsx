@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
 import { fireEvent, render, screen } from "@testing-library/react"
 import { TabPane, Tabs } from "../src"
-import * as React from "react"
+
 import { ReactNode } from "react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 

@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Col, Row } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/theme"

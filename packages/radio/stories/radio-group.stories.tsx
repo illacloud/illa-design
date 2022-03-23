@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
 import { RadioGroup, RadioGroupProps } from "../src"

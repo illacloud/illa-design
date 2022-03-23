@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ChangeEvent } from "react"
+import { HTMLAttributes, ChangeEvent, ReactNode } from "react"
 
 export type RadioColorScheme =
   | string
@@ -36,7 +36,7 @@ export interface RadioGroupContextProps<T> {
   options?: (
     | string
     | number
-    | { label: React.ReactNode; value: any; disabled?: boolean }
+    | { label: ReactNode; value: any; disabled?: boolean }
   )[]
   type?: "radio" | "button"
   direction?: "vertical" | "horizontal"

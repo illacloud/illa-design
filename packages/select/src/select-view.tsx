@@ -1,6 +1,11 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
-import { forwardRef, useRef, useState, useEffect, useReducer } from "react"
+import {
+  forwardRef,
+  useRef,
+  useState,
+  useEffect,
+  useReducer,
+  ClipboardEventHandler,
+} from "react"
 import { InputElement, InputElementProps } from "@illa-design/input"
 import { isObject, omit, isNumber } from "@illa-design/system"
 import {
@@ -129,9 +134,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     }
 
     const inputEventHandlers = {
-      paste: onPaste as
-        | React.ClipboardEventHandler<HTMLInputElement>
-        | undefined,
+      paste: onPaste as ClipboardEventHandler<HTMLInputElement> | undefined,
       keyDown: tryTriggerKeyDown,
       focus: (event: any) => {
         event.stopPropagation()

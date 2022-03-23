@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Avatar } from "@illa-design/avatar"
 import { SearchIcon } from "@illa-design/icon"
@@ -52,7 +51,7 @@ export default {
 } as Meta
 
 const Template: Story<BadgeProps> = (args) => {
-  const [num, setNum] = React.useState(0)
+  const [num, setNum] = useState(0)
   return (
     <Space size={"large"}>
       <Badge {...args}>

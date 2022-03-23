@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef } from "react"
 import { TabPaneProps } from "./interface"
 import { tabPaneContainerCss } from "./styles"

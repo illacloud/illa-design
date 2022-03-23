@@ -1,5 +1,5 @@
 import { Meta, Story } from "@storybook/react"
-import * as React from "react"
+
 import { Pagination } from "../src"
 import { PaginationProps } from "../src"
 import { ReactNode } from "react"

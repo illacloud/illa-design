@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef } from "react"
 import { LinkProps } from "./interface"
 import { applyDisable, applyLeftIcon, applyLinkContainer } from "./style"

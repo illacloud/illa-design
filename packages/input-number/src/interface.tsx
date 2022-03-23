@@ -1,4 +1,3 @@
-import * as React from "react"
 import { ReactNode, InputHTMLAttributes, Ref } from "react"
 
 export type InputNumberSize = "small" | "medium" | "large"

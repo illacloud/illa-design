@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, useEffect, useMemo, useRef, useState } from "react"
+import { forwardRef, useEffect, useMemo, useRef, useState } from "react"
 import { TabHeaderChildProps, TabHeaderProps } from "../interface"
 import {
   addButtonCss,

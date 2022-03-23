@@ -1,6 +1,5 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, useState, useCallback, useEffect } from "react"
-import ReactDOM from "react-dom"
+import { forwardRef, useState, useCallback, useEffect } from "react"
+
 import {
   MessageComponent,
   MessageProps,
@@ -16,6 +15,7 @@ import {
   MessagePosition,
 } from "@illa-design/notification"
 import { applyMessageSlide, applyMessageWrapper } from "./style"
+import { render } from "react-dom"
 
 let maxCount: number
 let duration: number
@@ -157,7 +157,7 @@ export const Message: MessageComponent = forwardRef<
 
 Message.remove = (id: string) => {
   messagePosition.forEach((position) => {
-    ReactDOM.render(
+    render(
       <Message removeId={id} position={position} />,
       messageContainer[position] as HTMLDivElement,
     )
@@ -170,7 +170,7 @@ Message.add = (notice: NoticeProps) => {
     duration,
     ...notice,
   }
-  ReactDOM.render(
+  render(
     <Message notice={noticeProps} position={position as MessagePosition} />,
     messageContainer[position as MessagePosition] as HTMLDivElement,
   )
@@ -191,7 +191,7 @@ Message.config = (options: ConfigProps = {}) => {
 }
 Message.clear = () => {
   messagePosition.forEach((position) => {
-    ReactDOM.render(
+    render(
       <Message shouldClear position={position} />,
       messageContainer[position] as HTMLDivElement,
     )

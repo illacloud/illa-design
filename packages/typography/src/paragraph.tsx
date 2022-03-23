@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
-import { forwardRef } from "react"
+import { Children, forwardRef } from "react"
 import { ParagraphProps } from "./interface"
 import { Base } from "./base"
 import { applyParagraphContainer, applyTextContainer } from "./paragraph-style"
@@ -55,9 +53,7 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
 
     if (showTooltip) {
       return (
-        <Tooltip
-          content={mergedToString(React.Children.toArray(props.children))}
-        >
+        <Tooltip content={mergedToString(Children.toArray(props.children))}>
           {p}
         </Tooltip>
       )

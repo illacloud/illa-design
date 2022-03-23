@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, useState, useMemo, MouseEvent } from "react"
+import { forwardRef, useState, useMemo, MouseEvent, ReactNode } from "react"
 import { AlertProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -69,7 +68,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     onClose,
     afterClose,
     ...restProps
-  }: AlertProps & { children?: React.ReactNode | undefined } = props
+  }: AlertProps & { children?: ReactNode | undefined } = props
   const [visible, setVisible] = useState<boolean>(true)
   const renderIcon = useMemo(() => {
     return icon ? icon : iconMap[type]

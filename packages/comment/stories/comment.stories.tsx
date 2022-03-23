@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Comment, CommentProps } from "../src"
 import { Avatar } from "@illa-design/avatar"

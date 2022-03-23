@@ -1,8 +1,7 @@
-/** @jsxImportSource @emotion/react */
 import { DeleteIcon, SuccessIcon } from "@illa-design/icon"
 import { deleteIconCss, rightIconCss, tryTextCss } from "./styles"
 import { Progress } from "@illa-design/progress"
-import * as React from "react"
+
 import { UploadItem, UploadStatus } from "./interface"
 
 export const getRightIcon = (

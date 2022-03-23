@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, ReactNode, useMemo } from "react"
 import { FileListItemProps } from "./interface"
 import {
@@ -6,7 +5,7 @@ import {
   fileItemContainerCss,
   fileTextItemCss,
 } from "./styles"
-import * as React from "react"
+
 import {
   FileDefaultIcon,
   FileExcelIcon,

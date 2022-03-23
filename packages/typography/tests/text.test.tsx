@@ -1,4 +1,3 @@
-import * as React from "react"
 import { act, render, screen, waitFor } from "@testing-library/react"
 import { Text, Typography } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/theme"

@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
-import { ChangeEvent, forwardRef, useState } from "react"
+import { ChangeEvent, forwardRef, useState, KeyboardEvent } from "react"
 import { SearchProps } from "./interface"
 import { useMergeValue } from "@illa-design/system"
 import { SearchIcon } from "@illa-design/icon"
@@ -78,7 +76,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
               }
               onClear?.()
             }}
-            onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
+            onPressEnter={(e: KeyboardEvent<HTMLInputElement>) => {
               !disabled && props.onSearch?.(value)
               props.onPressEnter?.(e)
             }}

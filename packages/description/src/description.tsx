@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, Fragment, ReactNode } from "react"
 import {
   DescriptionAlign,

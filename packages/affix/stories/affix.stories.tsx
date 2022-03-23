@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { css } from "@emotion/react"
 import { Button } from "@illa-design/button"
@@ -66,7 +64,7 @@ export const Offset = () => {
 }
 
 export const targetContainer = () => {
-  const container = React.useRef(null)
+  const container = useRef(null)
 
   return (
     <>
