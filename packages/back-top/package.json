@@ -1,9 +1,9 @@
 {
   "name": "@illa-design/backtop",
   "version": "0.0.0",
-  "description": "Illa Design base.",
+  "description": "Illa Design BackTop.",
   "keywords": [
-    "button",
+    "backtop",
     "react",
     "component"
   ],
