@@ -9,25 +9,41 @@ export const tagContainer = css`
   white-space: nowrap;
   flex-direction: row;
   align-items: center;
+  box-sizing: border-box;
+  padding: 0 7px;
 `
 
 export function applyTagSizeLarge(variant: TagVariant): SerializedStyles {
   return css`
-    padding: ${variant == "outline" ? "4px 7px" : "5px 8px"};
+    font-size: 14px;
+    line-height: 22px;
+    height: 32px;
   `
 }
 
 export function applyTagSizeMedium(variant: TagVariant): SerializedStyles {
   return css`
-    padding: ${variant == "outline" ? "2px 7px" : "3px 8px"};
+    font-size: 14px;
+    line-height: 22px;
+    height: 24px;
   `
 }
 
 export function applyTagSizeSmall(variant: TagVariant): SerializedStyles {
   return css`
-    padding: ${variant == "outline" ? "0px 7px" : "1px 8px"};
+    font-size: 12px;
+    line-height: 18px;
+    height: 18px;
   `
 }
+
+export const tagContentStyle = css`
+  font-size: inherit;
+  line-height: inherit;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`
 
 export const leftIcon = css`
   width: 12px;
@@ -42,7 +58,29 @@ export const leftIcon = css`
 export const closeIcon = css`
   font-size: 7px;
   margin-left: 4px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 50%;
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-gray-07`)};
+    cursor: pointer;
+  }
 `
+export function applyCloseIcon(color: TagColorScheme): SerializedStyles {
+  return css`
+  font-size: 7px;
+  margin-left: 4px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 50%;
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-${color}-07`)};
+    cursor: pointer;
+  }
+`
+}
 
 export const colors: TagColorScheme[] = [
   "white",
