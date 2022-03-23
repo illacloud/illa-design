@@ -6,48 +6,12 @@ import { Badge, BadgeProps } from "../src"
 import { Space } from "@illa-design/space"
 
 import { Button, ButtonGroup } from "@illa-design/button"
+import { useState } from "react"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "DATA DISPLAY/Badge",
   component: Badge,
-  /*  argTypes: {
-    status: {
-      options: ["default", "processing", "success", "warning", "error"],
-      control: { type: "radio" },
-    },
-    /!*    colorScheme: {
-      options: [
-        "white",
-        "blackAlpha",
-        "gray",
-        "red",
-        "orange",
-        "yellow",
-        "green",
-        "blue",
-        "cyan",
-        "purple",
-        "grayBlue",
-      ],
-      control: {
-        type: "select",
-        labels: {
-          white: "white",
-          blackAlpha: "blackAlpha",
-          gray: "gray",
-          red: "red",
-          orange: "orange",
-          yellow: "yellow",
-          green: "green",
-          blue: "blue",
-          cyan: "cyan",
-          purple: "purple",
-          grayBlue: "grayBlue",
-        },
-      },
-    },*!/
-  },*/
 } as Meta
 
 const Template: Story<BadgeProps> = (args) => {

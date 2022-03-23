@@ -1,8 +1,5 @@
 import { Meta, Story } from "@storybook/react"
-
-import { Pagination } from "../src"
-import { PaginationProps } from "../src"
-import { ReactNode } from "react"
+import { Pagination, PaginationProps } from "../src"
 
 export default {
   title: "DATA DISPLAY/Pagination",
