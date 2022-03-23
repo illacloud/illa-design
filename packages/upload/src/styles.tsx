@@ -30,9 +30,9 @@ export function applyBackgroundCss(disabled?: boolean) {
   } else {
     return css`
       background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-
       &:hover {
         background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+        cursor: pointer;
       }
 
       &:active {
@@ -50,7 +50,9 @@ export function applyImageUploadContainerCss(disabled?: boolean) {
     justify-content: center;
     width: 100px;
     height: 100px;
-    ${applyBackgroundCss(disabled)}
+    ${applyBackgroundCss(disabled)};
+    ${applyTextColorCss(disabled)};
+    transition: background-color 200ms;
   `
 }
 
@@ -63,24 +65,20 @@ export function applyDragUploadContainerCss(disabled?: boolean) {
     width: 100%;
     height: 194px;
     ${applyBackgroundCss(disabled)};
+    transition: background-color 200ms;
   `
 }
 
-export function applyImageUploadTextCss(disable?: boolean): SerializedStyles {
-  return css`
-    ${applyTextColorCss(disable)};
-    font-size: 14px;
-  `
-}
+export const imageUploadTextCss = css`
+  font-size: 14px;
+  margin-top: 8px;
+`
 
-export function applyDragUploadTitleCss(disable?: boolean): SerializedStyles {
-  return css`
-    ${applyTextColorCss(disable)};
-    margin-top: 24px;
-    font-size: 16px;
-    font-weight: 600;
-  `
-}
+export const dragUploadTitleCss = css`
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: 500;
+`
 
 export const dragUploadTipCss = css`
   margin-top: 4px;
@@ -99,6 +97,9 @@ export function applyTextColorCss(disable?: boolean): SerializedStyles {
   }
   return css`
     color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    &:active {
+      color: ${globalColor(`--${illaPrefix}-blue-03`)};
+    }
   `
 }
 
@@ -109,8 +110,9 @@ export function applyIconCss(disable?: boolean): SerializedStyles {
     `
   }
   return css`
+    color: ${globalColor(`--${illaPrefix}-gray-03`)};
     &:active {
-      color: ${globalColor(`--${illaPrefix}-blue-01`)};
+      color: ${globalColor(`--${illaPrefix}-blue-03`)};
     }
   `
 }
@@ -185,9 +187,40 @@ export const tryTextCss = css`
 
 export const deleteIconCss = css`
   margin-left: 12px;
+  font-size: 12px;
   color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    cursor: pointer;
+  }
+  transition: color 200ms;
 `
 
 export const noAutoUploadButtonCss = css`
   margin-right: 24px;
+`
+
+export const picUploaded = css`
+  display: inline-flex;
+  width: 100px;
+  height: 100px;
+  position: relative;
+`
+
+export const picUploadedEditMask = css`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: ${globalColor(`--${illaPrefix}-white-01`)};
+  background-color: ${globalColor(`--${illaPrefix}-blackAlpha-03`)};
+`
+
+export const fileIconCss = css`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
 `
