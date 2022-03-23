@@ -15,7 +15,6 @@ export type RequestOptions = Pick<
 
 export class UploadRequestReturn {
   abort?: () => void;
-
   [key: string]: any
 }
 
@@ -29,23 +28,28 @@ export interface UploadListProps {
 export interface UploadProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "onProgress"> {
   defaultFileList?: UploadItem[]
+  // controlled
   fileList?: UploadItem[]
+  // input props
   directory?: boolean
-  accept?: string
-  customRequest?: (options: RequestOptions) => UploadRequestReturn | void
-  listType?: ListType
-  showUploadList?: boolean | CustomIconType
-  autoUpload?: boolean
   action?: string
-  limit?: number
-  disabled?: boolean
-  drag?: boolean
+  accept?: string
   multiple?: boolean
-  tip?: string | ReactNode
   headers?: object
   data?: object | ((any: any) => object)
   name?: string | ((any: any) => string)
   withCredentials?: boolean
+  customRequest?: (options: RequestOptions) => UploadRequestReturn | void
+  // ui
+  listType?: ListType
+  showUploadList?: boolean | CustomIconType
+  autoUpload?: boolean
+  disabled?: boolean
+  drag?: boolean
+  tip?: string | ReactNode
+  limit?: number
+
+  // action
   renderUploadList?: (
     fileList: UploadItem[],
     uploadListProps: UploadListProps,
@@ -80,16 +84,13 @@ export interface FileListItemProps extends HTMLAttributes<HTMLSpanElement> {
   item: UploadItem
   deleteUpload: (file: UploadItem) => void
   reUpload: (file: UploadItem) => void
+  icons?: CustomIconType
 }
 
 export interface CustomIconType {
-  previewIcon?: ReactNode
   removeIcon?: ReactNode
   fileIcon?: ReactNode
   reuploadIcon?: ReactNode
-  cancelIcon?: ReactNode
-  startIcon?: ReactNode
-  errorIcon?: ReactNode
 }
 
 export interface FileList {

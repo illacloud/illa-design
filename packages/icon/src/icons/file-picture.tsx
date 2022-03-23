@@ -2,7 +2,7 @@ import { createIcon } from "../create-icon"
 
 export const FilePictureIcon = createIcon({
   title: "FilePictureIcon",
-  viewBox: "0 0 12 16",
+  viewBox: "0 0 16 20",
   path: (
     <>
       <mask
