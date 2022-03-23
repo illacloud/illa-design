@@ -57,7 +57,7 @@ import { List } from "@illa-dedign/list"
 | Props       | Desc             | Type        | Default |
 | ----------- | ---------------- | ----------- | ------- |
 | title       | 列表元素标题     | `ReactNode` | `-`     |
-| avater      | 列表元素的图标   | `ReactNode` | `-`     |
+| avatar      | 列表元素的图标   | `ReactNode` | `-`     |
 | description | 列表元素描述内容 | `ReactNode` | `-`     |
 
 ## 使用方法
