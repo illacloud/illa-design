@@ -1,0 +1,45 @@
+{
+  "name": "@illa-design/date-picker",
+  "version": "0.0.0",
+  "description": "Illa Design Date-Picker.",
+  "keywords": [
+    "date-picker",
+    "react",
+    "component"
+  ],
+  "sideEffects": false,
+  "author": "illa Family <opensource@illasoft.com>",
+  "homepage": "https://github.com/illa-family/illa-design",
+  "license": "Apache-2.0",
+  "main": "dist/umd/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/umd/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/illa-family/illa-design.git",
+    "directory": "packages/date-picker"
+  },
+  "bugs": {
+    "url": "https://github.com/illa-family/illa-design/issues"
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@illa-design/system": "*",
+    "@illa-design/theme": "*"
+  }
+}

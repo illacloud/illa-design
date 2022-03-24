@@ -51,6 +51,7 @@ import {
   UploadIcon,
   WarningCircleIcon,
   WarningIcon,
+  CalendarIcon
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -151,3 +152,4 @@ export const SorterDown: Story<IconProps> = (props) => (
 
 export const Filter: Story<IconProps> = (props) => <FilterIcon {...props} />
 export const Time: Story<IconProps> = (props) => <TimeIcon {...props} />
+export const Calendar: Story<IconProps> = (props) => <CalendarIcon {...props} />
