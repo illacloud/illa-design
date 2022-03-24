@@ -1,4 +1,5 @@
 import { TabPosition } from "./interface"
+
 export const isHorizontalLayout = (tabPosition?: TabPosition) => {
   return tabPosition === "left" || tabPosition === "right"
 }
@@ -68,4 +69,24 @@ export const getLeftTargetPosition = (
     distance += childrenWidth[i]
   }
   return distance - childrenWidth[i - 1]
+}
+
+export const checkAndAdjustSelectedItemPosition = (
+  childrenWidth: number[],
+  tabWidth: number,
+  currentPosition: number,
+  selectedIndex: number,
+) => {
+  let selectedIndexPosition = 0
+  let i = 0
+  for (; i < selectedIndex; i++) {
+    selectedIndexPosition += childrenWidth[i]
+  }
+  if (selectedIndexPosition + childrenWidth[i] > currentPosition + tabWidth) {
+    return selectedIndexPosition + childrenWidth[i] - tabWidth
+  }
+  if (selectedIndexPosition < currentPosition) {
+    return selectedIndexPosition
+  }
+  return currentPosition
 }

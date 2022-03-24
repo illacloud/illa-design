@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { TabPane, Tabs } from "../src"
 
 import { ReactNode } from "react"
@@ -18,6 +18,7 @@ const tabArr: {
   },
   { key: "2", title: "tab 02", content: "tab content 02", disabled: true },
   { key: "3", title: "tab 03", content: "tab content 03" },
+  { key: "4", title: "tab 04", content: "tab content 04" },
 ]
 
 test("Tabs renders correctly", () => {
@@ -65,29 +66,6 @@ test("Tabs renders without defaultActivityKey", () => {
   })
 })
 
-test("Tabs renders without onChange and onClickTab", () => {
-  const changeEvent = jest.fn()
-  const clickEvent = jest.fn()
-  render(
-    <Tabs placeholder={"tabs"} onChange={changeEvent} onClickTab={clickEvent}>
-      {tabArr?.map((item) => {
-        return (
-          <TabPane title={item.title} key={item.key}>
-            {item.content}
-          </TabPane>
-        )
-      })}
-    </Tabs>,
-  )
-  const target = screen.getByText("tab 02")
-  fireEvent.click(target)
-  expect(screen.getByText("tab 02")).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-blue-03`)}`,
-  })
-  expect(changeEvent).toBeCalled()
-  expect(clickEvent).toBeCalled()
-})
-
 test("Tabs renders with variant is card", () => {
   render(
     <Tabs placeholder={"tabs"} variant={"card"}>
@@ -122,40 +100,6 @@ test("Tabs renders with variant is capsule", () => {
   })
 })
 
-test("Tabs renders with editable", () => {
-  const addEvent = jest.fn()
-  const deleteEvent = jest.fn()
-  render(
-    <Tabs
-      placeholder={"tabs"}
-      variant={"card"}
-      editable={true}
-      onAddTab={addEvent}
-      onDeleteTab={deleteEvent}
-    >
-      {tabArr?.map((item) => {
-        return (
-          <TabPane title={item.title} key={item.key}>
-            {item.content}
-          </TabPane>
-        )
-      })}
-    </Tabs>,
-  )
-  const addButton = screen.getByTitle("MinusIcon")
-  const deleteButton1 = screen.queryByText("tab 01")?.parentElement?.lastChild
-  const deleteButton2 = screen.queryByText("tab 03")?.parentElement?.lastChild
-  expect(deleteButton1).toBeInTheDocument()
-  expect(addButton).toBeInTheDocument()
-  fireEvent.click(addButton)
-  expect(addEvent).toBeCalled()
-  deleteButton1 && fireEvent.click(deleteButton1)
-  deleteButton2 && fireEvent.click(deleteButton2)
-  expect(deleteEvent).toBeCalled()
-  expect(deleteButton1).not.toBeInTheDocument()
-  expect(deleteButton2).not.toBeInTheDocument()
-})
-
 test("Tabs renders with tabBarSpacing", () => {
   render(
     <Tabs placeholder={"tabs"} tabBarSpacing={20}>
@@ -168,8 +112,8 @@ test("Tabs renders with tabBarSpacing", () => {
       })}
     </Tabs>,
   )
-  expect(screen.getByText("tab 01").parentElement).toHaveStyle({
-    padding: `0 20px`,
+  expect(screen.getByText("tab 01")).toHaveStyle({
+    margin: `6px 18px 6px 18px`,
   })
 })
 
@@ -186,7 +130,7 @@ test("Tabs renders with size is large", () => {
     </Tabs>,
   )
   expect(screen.getByText("tab 01")).toHaveStyle({
-    padding: `9px 0`,
+    margin: `8px 8px 8px 8px`,
   })
 })
 
@@ -203,7 +147,7 @@ test("Tabs renders with size is small", () => {
     </Tabs>,
   )
   expect(screen.getByText("tab 01")).toHaveStyle({
-    padding: `5px 0`,
+    margin: `4px 8px 4px 8px`,
   })
 })
 

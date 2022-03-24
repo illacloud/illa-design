@@ -33,6 +33,11 @@ const Template: Story<TabsProps> = (props) => {
     disabled?: boolean
   }[] = [
     {
+      key: "1",
+      title: "tab 01",
+      content: "tab content 01",
+    },
+    {
       key: "2",
       title: "tab 02",
       content: "tab content 02",
@@ -50,7 +55,7 @@ const Template: Story<TabsProps> = (props) => {
   ]
 
   return (
-    <Tabs style={{ width: 300, height: 200 }} {...props}>
+    <Tabs style={{ width: 500, height: 200 }} {...props}>
       {tabArr.map((item) => {
         return (
           <TabPane title={item.title} key={item.key} disabled={item.disabled}>

@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { FC } from "react"
 import { TabContentProps } from "./interface"
 import {
   applyTabContentWrapperCss,
@@ -6,23 +6,18 @@ import {
   tabContentContainerCss,
 } from "./styles"
 
-export const TabContent = forwardRef<HTMLDivElement, TabContentProps>(
-  (props, ref) => {
-    const { tabPanes, animated, selectedIndex = 0, variant } = props
+export const TabContent: FC<TabContentProps> = (props) => {
+  const { tabPanes, animated, selectedIndex = 0, variant } = props
 
-    return (
-      <div
-        css={
-          variant === "card"
-            ? tabCardContentContainerCss
-            : tabContentContainerCss
-        }
-        ref={ref}
-      >
-        <div css={applyTabContentWrapperCss(selectedIndex, animated)}>
-          {tabPanes && tabPanes?.map((item) => item)}
-        </div>
+  return (
+    <div
+      css={
+        variant === "card" ? tabCardContentContainerCss : tabContentContainerCss
+      }
+    >
+      <div css={applyTabContentWrapperCss(selectedIndex, animated)}>
+        {tabPanes && tabPanes?.map((item) => item)}
       </div>
-    )
-  },
-)
+    </div>
+  )
+}

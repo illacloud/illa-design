@@ -57,7 +57,7 @@ it("Tabs renders with next and pre", () => {
   cy.findByTitle("PreIcon")
     .parent()
     .parent()
-    .should("have.css", "color", "rgb(194, 194, 194)")
+    .should("have.css", "cursor", "not-allowed")
   expect(cy.findByTitle("NextIcon")).exist
   cy.findByTitle("NextIcon").parent().trigger("click")
   cy.wait(2000)
@@ -93,7 +93,7 @@ it("Tabs renders with next and pre", () => {
   cy.findByTitle("NextIcon")
     .parent()
     .parent()
-    .should("have.css", "color", "rgb(194, 194, 194)")
+    .should("have.css", "cursor", "not-allowed")
   unmount()
 })
 
@@ -120,6 +120,45 @@ it("Tabs renders with scroll", () => {
   cy.findByTitle("NextIcon")
     .parent()
     .parent()
-    .should("have.css", "color", "rgb(194, 194, 194)")
+    .should("have.css", "cursor", "not-allowed")
+  unmount()
+})
+
+it("Tabs renders with changeEvent and clickEvent", () => {
+  const changeEvent = cy.stub().as("changeEvent")
+  const clickEvent = cy.stub().as("clickEvent")
+  mount(
+    <Tabs placeholder={"tabs"} onChange={changeEvent} onClickTab={clickEvent}>
+      {tabArr?.map((item) => {
+        return (
+          <TabPane title={item.title} key={item.key}>
+            {item.content}
+          </TabPane>
+        )
+      })}
+    </Tabs>,
+  )
+  cy.findByText("tab 02").trigger("click")
+  cy.findByText("tab 02").should("have.css", "color", "rgb(30, 111, 255)")
+  cy.get("@changeEvent").should("to.be.calledWith", "2")
+  cy.get("@clickEvent").should("to.be.calledWith", "2")
+  unmount()
+})
+
+it("Tabs renders with editable", () => {
+  mount(
+    <Tabs placeholder={"tabs"} variant={"card"} editable={true}>
+      {tabArr?.map((item) => {
+        return (
+          <TabPane title={item.title} key={item.key}>
+            {item.content}
+          </TabPane>
+        )
+      })}
+    </Tabs>,
+  )
+  expect(cy.findByText("tab 02")).exist
+  cy.findByText("tab 02").findByTitle("CloseIcon").parent().trigger("click")
+  cy.findByPlaceholderText("tabs").should("not.contain", 'tab 02"')
   unmount()
 })
