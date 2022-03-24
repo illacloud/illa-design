@@ -1,0 +1,47 @@
+{
+    "name": "@illa-design/calendar",
+    "version": "0.0.0",
+    "description": "Illa Design Calendar.",
+    "keywords": [
+      "calendar",
+      "react",
+      "component"
+    ],
+    "sideEffects": false,
+    "author": "illa Family <opensource@illasoft.com>",
+    "homepage": "https://github.com/illa-family/illa-design",
+    "license": "Apache-2.0",
+    "main": "dist/umd/index.js",
+    "module": "dist/es/index.js",
+    "types": "dist/types/index.d.ts",
+    "typings": "dist/types/index.d.ts",
+    "exports": {
+      ".": {
+        "import": "./dist/es/index.js",
+        "require": "./dist/umd/index.js"
+      }
+    },
+    "files": [
+      "dist"
+    ],
+    "publishConfig": {
+      "access": "public"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/illa-family/illa-design.git",
+      "directory": "packages/calendar"
+    },
+    "bugs": {
+      "url": "https://github.com/illa-family/illa-design/issues"
+    },
+    "scripts": {
+      "build": "vite build"
+    },
+    "dependencies": {
+      "@illa-design/system": "*",
+      "@illa-design/icon": "*",
+      "@illa-design/theme": "*",
+      "@illa-design/select": "*"
+    }
+  }
