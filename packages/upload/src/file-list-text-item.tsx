@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { forwardRef, useMemo } from "react"
 import { FileListItemProps } from "./interface"
 import {
   applyFileItemTitleCss,
@@ -73,35 +73,37 @@ const getFileIcon = (file: File) => {
   return <FileDefaultIcon />
 }
 
-export const FileListTextItem: FC<FileListItemProps> = (props) => {
-  const { item, deleteUpload, reUpload, icons } = props
-  const { name, percent, status, originFile } = props.item
-  const fileIcon = useMemo(() => {
-    if (icons?.fileIcon) return icons?.fileIcon
-    return <span css={fileIconCss}>{getFileIcon(originFile)}</span>
-  }, [originFile, icons])
+export const FileListTextItem = forwardRef<HTMLDivElement, FileListItemProps>(
+  (props, ref) => {
+    const { item, deleteUpload, reUpload, icons } = props
+    const { name, percent, status, originFile } = props.item
+    const fileIcon = useMemo(() => {
+      if (icons?.fileIcon) return icons?.fileIcon
+      return <span css={fileIconCss}>{getFileIcon(originFile)}</span>
+    }, [originFile, icons])
 
-  let rightView = getRightIcon(
-    status,
-    item,
-    percent,
-    reUpload,
-    icons?.reuploadIcon,
-  )
-  const deleteButton = icons?.removeIcon ? (
-    <span onClick={() => deleteUpload(item)}>{icons.removeIcon}</span>
-  ) : (
-    getDeleteButton(item, deleteUpload)
-  )
+    let rightView = getRightIcon(
+      status,
+      item,
+      percent,
+      reUpload,
+      icons?.reuploadIcon,
+    )
+    const deleteButton = icons?.removeIcon ? (
+      <span onClick={() => deleteUpload(item)}>{icons.removeIcon}</span>
+    ) : (
+      getDeleteButton(item, deleteUpload)
+    )
 
-  return (
-    <div css={fileItemContainerCss}>
-      <div css={fileTextItemCss}>
-        {fileIcon}
-        <span css={applyFileItemTitleCss(status == "error")}>{name}</span>
-        {rightView}
+    return (
+      <div css={fileItemContainerCss} ref={ref}>
+        <div css={fileTextItemCss}>
+          {fileIcon}
+          <span css={applyFileItemTitleCss(status == "error")}>{name}</span>
+          {rightView}
+        </div>
+        {deleteButton}
       </div>
-      {deleteButton}
-    </div>
-  )
-}
+    )
+  },
+)

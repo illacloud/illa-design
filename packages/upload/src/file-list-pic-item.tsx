@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { forwardRef } from "react"
 import { FileListItemProps } from "./interface"
 import {
   applyFileItemTitleCss,
@@ -16,36 +16,38 @@ const getObjectUrl = (file?: File) => {
   }
 }
 
-export const FileListPicItem: FC<FileListItemProps> = (props) => {
-  const { deleteUpload, item, reUpload, icons } = props
-  const { name, percent, status, url, originFile } = item
-  const picUrl = url ? url : getObjectUrl(originFile)
-  let rightView = getRightIcon(
-    status,
-    item,
-    percent,
-    reUpload,
-    icons?.reuploadIcon,
-  )
-  const deleteButton = icons?.removeIcon ? (
-    <span onClick={() => deleteUpload(item)}>{icons.removeIcon}</span>
-  ) : (
-    getDeleteButton(item, deleteUpload)
-  )
-  return (
-    <div css={fileItemContainerCss}>
-      <div css={filePicItemCss}>
-        <Image
-          css={imageSizeCss}
-          width={40}
-          height={40}
-          radius={"2px"}
-          src={picUrl}
-        />
-        <span css={applyFileItemTitleCss(status == "error")}>{name}</span>
-        {rightView}
+export const FileListTextItem = forwardRef<HTMLDivElement, FileListItemProps>(
+  (props, ref) => {
+    const { deleteUpload, item, reUpload, icons } = props
+    const { name, percent, status, url, originFile } = item
+    const picUrl = url ? url : getObjectUrl(originFile)
+    let rightView = getRightIcon(
+      status,
+      item,
+      percent,
+      reUpload,
+      icons?.reuploadIcon,
+    )
+    const deleteButton = icons?.removeIcon ? (
+      <span onClick={() => deleteUpload(item)}>{icons.removeIcon}</span>
+    ) : (
+      getDeleteButton(item, deleteUpload)
+    )
+    return (
+      <div css={fileItemContainerCss} ref={ref}>
+        <div css={filePicItemCss}>
+          <Image
+            css={imageSizeCss}
+            width={40}
+            height={40}
+            radius={"2px"}
+            src={picUrl}
+          />
+          <span css={applyFileItemTitleCss(status == "error")}>{name}</span>
+          {rightView}
+        </div>
+        {deleteButton}
       </div>
-      {deleteButton}
-    </div>
-  )
-}
+    )
+  },
+)
