@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, useContext, useMemo, useState } from "react"
 import { CalendarHeader } from "./calendar-header"
 import { CalendarBody } from "./calendar-body"

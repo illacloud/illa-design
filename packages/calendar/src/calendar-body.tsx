@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { FC, Fragment, useMemo, useState } from "react"
 import { CalendarBodyProps } from "./interface"
 import {

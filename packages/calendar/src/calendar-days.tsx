@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef } from "react"
 import { CalendarDaysProps } from "./interface"
 import dayjs from "dayjs"

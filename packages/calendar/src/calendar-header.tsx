@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { FC, Fragment, useEffect, useState } from "react"
 import { CalendarHeaderProps, selectTimeProps } from "./interface"
 import { Button } from "@illa-design/button"
