@@ -9,7 +9,7 @@ export function getVisibleItemList(total: number, selectedIndex: number) {
   if (total > 9) {
     moreArr = []
     arr.push(0)
-    if (selectedIndex != 0) {
+    if (selectedIndex !== 0) {
       arr.splice(1, 0, selectedIndex)
     }
     if (selectedIndex > 1) {
@@ -34,7 +34,7 @@ export function getVisibleItemList(total: number, selectedIndex: number) {
       arr.push(total - 2)
       moreArr.push(total - 2)
     }
-    if (selectedIndex != total - 1) {
+    if (selectedIndex !== total - 1) {
       arr.push(total - 1)
     }
     for (let i = 0; arr.length < 7; i++) {
