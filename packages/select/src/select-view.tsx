@@ -255,12 +255,12 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
 
       return (
         <InputTag
-          style={{
-            width: "100%",
-            border: "unset",
-            padding: "unset",
-            boxShadow: "unset",
-          }}
+          _css={css`
+            width: 100%;
+            border: unset;
+            padding: unset;
+            box-shadow: unset;
+          `}
           disableInput={!(showSearch || isMultipleMode)}
           inputRef={inputRef}
           disabled={disabled}
