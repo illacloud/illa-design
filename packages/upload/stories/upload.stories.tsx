@@ -1,6 +1,5 @@
 import { Meta, Story } from "@storybook/react"
-import { Upload } from "../src"
-import { UploadProps } from "../src"
+import { Upload, UploadProps } from "../src"
 
 export default {
   title: "DATA INPUT/Upload",

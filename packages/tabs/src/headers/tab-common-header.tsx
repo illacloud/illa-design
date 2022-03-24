@@ -18,7 +18,7 @@ import {
   tabHeaderContainerCss,
   tabLineHeaderContainerCss,
   lineCss,
-} from "../styles"
+} from "../style"
 import { TabHeaderChild } from "./tab-header-child"
 import { AddIcon, NextIcon, PreIcon } from "@illa-design/icon"
 import useScrolling from "react-use/lib/useScrolling"
@@ -77,7 +77,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       setNeedScroll(
         scrollRef?.current.scrollWidth > scrollRef?.current.offsetWidth,
       )
-    }, [childRef, scrollRef, needScroll])
+    }, [childRef.current, scrollRef.current, needScroll])
 
     useEffect(() => {
       if (!scrolling && scrollRef?.current) {

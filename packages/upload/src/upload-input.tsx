@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { FC, useContext } from "react"
 import { ChildrenNodeProps, UploadItem } from "./interface"
 import {
@@ -7,7 +6,7 @@ import {
   picUploaded,
   picUploadedEditMask,
   imageUploadTextCss,
-} from "./styles"
+} from "./style"
 import { AddIcon, PenIcon, UploadIcon } from "@illa-design/icon"
 import * as React from "react"
 import { Button } from "@illa-design/button"

@@ -5,7 +5,7 @@ import {
   fileIconCss,
   fileItemContainerCss,
   fileTextItemCss,
-} from "./styles"
+} from "./style"
 import {
   FileDefaultIcon,
   FileExcelIcon,

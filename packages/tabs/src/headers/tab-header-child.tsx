@@ -7,7 +7,7 @@ import {
   applyTextCss,
   deleteButtonCss,
   verticalLineCss,
-} from "../styles"
+} from "../style"
 import { CloseIcon } from "@illa-design/icon"
 
 export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {

@@ -22,7 +22,7 @@ import {
   tabLineHeaderHorizontalContainerCss,
   applyHorizontalIconLineCss,
   applyCommonIconLineCss,
-} from "../styles"
+} from "../style"
 import { TabHeaderChild } from "./tab-header-child"
 import { DownIcon, NextIcon, PreIcon, UpIcon } from "@illa-design/icon"
 import useScrolling from "react-use/lib/useScrolling"
@@ -122,7 +122,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       checkPreAndNextDisable()
       if (!scrollRef?.current) return
       setNeedScroll(getScrollSize() > getOffsetSize())
-    }, [scrollRef, childRef])
+    }, [scrollRef.current, childRef.current])
 
     const checkPreAndNextDisable = () => {
       if (!scrollRef.current) return
@@ -137,7 +137,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         () =>
           getChildrenSize(_isHorizontalLayout, childRef.current)[selectedIndex],
       )
-    }, [childRef])
+    }, [childRef.current])
 
     useEffect(() => {
       if (!scrolling) {

@@ -5,7 +5,7 @@ import {
   applyDragUploadContainerCss,
   dragUploadTipCss,
   dragUploadTitleCss,
-} from "./styles"
+} from "./style"
 import { AddIcon } from "@illa-design/icon"
 import { traverseFileTree } from "./traverse-file-tree"
 import {

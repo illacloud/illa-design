@@ -7,7 +7,7 @@ import {
   UploadRefType,
 } from "./interface"
 import { UploadElement } from "./upload-element"
-import { fileListContainerCss, uploadContainerCss } from "./styles"
+import { fileListContainerCss, uploadContainerCss } from "./style"
 import { FileListTextItem } from "./file-list-text-item"
 import { FileListPicItem } from "./file-list-pic-item"
 import { List } from "@illa-design/list"

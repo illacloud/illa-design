@@ -4,7 +4,7 @@ import {
   applyTabContentWrapperCss,
   tabCardContentContainerCss,
   tabContentContainerCss,
-} from "./styles"
+} from "./style"
 
 export const TabContent: FC<TabContentProps> = (props) => {
   const { tabPanes, animated, selectedIndex = 0, variant } = props

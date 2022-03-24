@@ -1,5 +1,5 @@
 import { DeleteIcon, SuccessIcon } from "@illa-design/icon"
-import { deleteIconCss, rightIconCss, tryTextCss } from "./styles"
+import { deleteIconCss, rightIconCss, tryTextCss } from "./style"
 import { Progress } from "@illa-design/progress"
 
 import { UploadItem, UploadStatus } from "./interface"

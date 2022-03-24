@@ -12,7 +12,7 @@ import {
   UploadRefType,
   UploadRequestReturn,
 } from "./interface"
-import { inputCss, uploadChildrenCss } from "./styles"
+import { inputCss, uploadChildrenCss } from "./style"
 import { sendUploadRequest } from "./request"
 import { isAcceptFile } from "./file-accept"
 import { UploadInput } from "./upload-input"

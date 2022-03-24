@@ -5,7 +5,7 @@ import {
   fileItemContainerCss,
   filePicItemCss,
   imageSizeCss,
-} from "./styles"
+} from "./style"
 import { Image } from "@illa-design/image"
 import { getDeleteButton, getRightIcon } from "./file-list-utils"
 
