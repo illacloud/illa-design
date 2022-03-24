@@ -24,7 +24,11 @@ import {
   iconPointerStyle,
 } from "./style"
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  globalColor,
+  illaPrefix,
+  StyledEngineProvider,
+} from "@illa-design/theme"
 
 const SearchStatus = {
   BEFORE: 0,
