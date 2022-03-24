@@ -41,7 +41,6 @@ export default {
       },
     },
   },
-
 } as Meta
 
 const Template: Story<InputProps> = (props) => {

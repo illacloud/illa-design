@@ -4,7 +4,7 @@ export interface ConfigProviderProps {
 
 export interface Locale {
   typography: Record<string, string>
-  timePicker: Record<string, string|string[]>
+  timePicker: Record<string, string | string[]>
   popover: Record<string, string>
   empty: Record<string, string>
   pagination: Record<string, string>

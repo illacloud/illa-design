@@ -1,5 +1,12 @@
 import { isDayjs, isArray } from "./is"
 import dayjs, { Dayjs } from "dayjs"
+import AdvancedFormat from "dayjs/plugin/advancedFormat"
+import CustomParseFormat from "dayjs/plugin/customParseFormat"
+
+dayjs.extend(AdvancedFormat)
+dayjs.extend(CustomParseFormat)
+
+export { dayjs }
 
 export function getDayjsValue(
   time: any,

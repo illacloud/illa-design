@@ -7,6 +7,7 @@ import {
   TimePickerProps,
   RenderPickerProps,
 } from "./interface"
+import { TimePickerPopup } from "./time-picker-popup"
 
 export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
   (props, ref) => {
@@ -14,7 +15,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       <Picker
         {...(props as RenderPickerProps)}
         ref={ref}
-        picker={<div>TimePickerPopup</div>}
+        picker={<TimePickerPopup />}
       />
     )
   },

@@ -8,8 +8,9 @@ import {
   useRef,
   useState,
 } from "react"
-import dayjs, { Dayjs } from "dayjs"
+import { Dayjs } from "dayjs"
 import {
+  dayjs,
   isArray,
   useMergeValue,
   getDayjsValue,
@@ -48,9 +49,12 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       onChange,
       icons,
       size,
+      scrollSticky = true,
       editable = true,
       unmountOnExit,
       order = true,
+      // events
+      onClear,
       ...otherProps
     } = props
 
@@ -91,7 +95,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       ? placeholder
       : (locale["placeholder"] as string)
 
-    function isValidTime(time: string): boolean {
+    function isValidTime(time?: string): boolean {
       return (
         typeof time === "string" && dayjs(time, format)?.format(format) === time
       )
@@ -104,6 +108,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     }
 
     const setOpen = (visible: boolean, callback?: Function) => {
+      console.log(visible, "setOpen")
       setCurrentPopupVisible(visible)
       setInputValue(undefined)
       callback?.()
@@ -141,14 +146,14 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     const baseInputProps = {
       style,
       className,
-      popupVisible: currentPopupVisible,
+      // popupVisible: currentPopupVisible,
       format,
       disabled,
       error,
       size,
-      editable,
+      readOnly: !editable,
       allowClear,
-      suffixIcon: icons && icons.inputSuffix,
+      suffix: { render: icons && icons.inputSuffix },
       onPressEnter: () => {
         if (isRangePicker) {
           if (isArray(valueShow) && valueShow.length) {
@@ -170,36 +175,45 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         }
       },
       onClear: (e?: any) => {
-        e.stopPropagation()
+        e?.stopPropagation()
         onConfirmValue(undefined)
         onChange && onChange(undefined, undefined)
-        props.onClear && props.onClear()
+        onClear?.()
       },
-      onChange: (e: any) => {
-        const newInputValue = e.target.value
+      onChange: (inputValue?: string) => {
         if (!popupVisible) {
           setCurrentPopupVisible(true)
         }
-        setInputValue(newInputValue)
+        setInputValue(inputValue)
         if (isRangePicker) {
           const newValueShow = [
             ...(isArray(valueShow)
               ? valueShow
               : (currentValue as Dayjs[]) || []),
           ]
-          if (isValidTime(newInputValue)) {
+          if (isValidTime(inputValue)) {
             newValueShow[focusedInputIndex] = getDayjsValue(
-              newInputValue,
+              inputValue,
               format,
             ) as Dayjs
             setValueShow(newValueShow)
             setInputValue(undefined)
           }
-        } else if (isValidTime(newInputValue)) {
-          setValueShow(getDayjsValue(newInputValue, format))
+        } else if (isValidTime(inputValue)) {
+          setValueShow(getDayjsValue(inputValue, format))
           setInputValue(undefined)
         }
       },
+    }
+    console.log(inputValue, valueShow, currentValue, "input")
+
+    let showValue = ""
+    if (inputValue !== undefined) {
+      showValue = inputValue
+    } else if (valueShow && !isArray(valueShow)) {
+      showValue = dayjs(valueShow)?.format(format)
+    } else if (currentValue && !isArray(currentValue)) {
+      showValue = dayjs(currentValue)?.format(format)
     }
 
     return (
@@ -213,9 +227,10 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         position={position}
         disabled={disabled}
         onVisibleChange={(visible: boolean) => {
+          console.log(visible, "visible")
           if (visible) {
             setOpen(visible, () => {
-              inputRef.current?.focus()
+              //inputRef.current?.focus()
             })
           } else {
             setOpen(visible)
@@ -252,8 +267,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
             {...baseInputProps}
             inputRef={inputRef}
             placeholder={inputPlaceHolder}
-            value={(inputValue || valueShow || currentValue) as any}
-            // inputValue={inputValue as string}
+            value={showValue}
           />
         )}
       </Trigger>

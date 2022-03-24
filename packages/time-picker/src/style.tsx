@@ -42,18 +42,6 @@ export function applyCheckboxSize(checked?: boolean) {
   `
 }
 
-export function applyCheckState(checked: boolean) {
-  return css`
-    position: absolute;
-    left: 0;
-    width: 16px;
-    height: 8px;
-    transform: ${checked ? "scale(1);" : "scale(0);"};
-    color: white;
-    transition: 0.15s all linear;
-  `
-}
-
 export function applyCheckboxContainerHorizontal(
   spacing: string | number,
 ): SerializedStyles {
@@ -81,5 +69,39 @@ export function applyCheckboxContainerVertical(
     align-items: flex-start;
     gap: ${currentSpacing};
     margin-bottom: ${currentSpacing};
+  `
+}
+
+export function applyTimepickerContent() {
+  return css`
+    display: flex;
+    box-sizing: border-box;
+  `
+}
+
+export function applyTimepickerList() {
+  return css`
+    width: 64px;
+    height: 224px;
+    overflow: hidden;
+    box-sizing: border-box;
+    &:hover {
+      overflow-y: auto;
+    }
+  `
+}
+
+export function applyTimeColumn() {
+  return css`
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    &:after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 192px;
+    }
   `
 }

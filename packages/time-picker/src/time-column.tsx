@@ -1,5 +1,12 @@
-import React, { useRef, useEffect, useCallback, forwardRef, useImperativeHandle } from "react"
+import React, {
+  useRef,
+  useEffect,
+  useCallback,
+  forwardRef,
+  useImperativeHandle,
+} from "react"
 import debounce from "lodash/debounce"
+import { applyTimeColumn, applyTimepickerList } from "./style"
 
 type ListItem = {
   label?: string
@@ -38,7 +45,7 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
       const li = value ? lis.current.get(value) : undefined
       if (li && popupVisible && prevPopupVisible.current) {
         // scrollTo(wrapper.current, li.offsetTop, 150)
-        wrapper.current?.scrollTo({top: li.offsetTop})
+        wrapper.current?.scrollTo({ top: li.offsetTop })
         prevScrollTop.current = li.offsetTop
       }
     }, [value])
@@ -48,7 +55,7 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
         const li = value ? lis.current.get(value) : undefined
         if (li) {
           // scrollTo(wrapper.current, li.offsetTop, 0)
-          wrapper.current?.scrollTo({top: li.offsetTop})
+          wrapper.current?.scrollTo({ top: li.offsetTop })
           prevScrollTop.current = li.offsetTop
         }
       }
@@ -82,7 +89,7 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
           onHandleSelect?.(list[index].value, unit)
         }
       }, 100),
-      [onHandleSelect]
+      [onHandleSelect],
     )
 
     useImperativeHandle(ref, () => wrapper.current as HTMLDivElement, [])
@@ -90,13 +97,14 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
     return (
       <div
         ref={wrapper}
+        css={applyTimepickerList()}
         onWheel={() => {
           if (scrollSticky) {
             onScrollList()
           }
         }}
       >
-        <ul ref={ul}>
+        <ul ref={ul} css={applyTimeColumn()}>
           {list?.map((item) => {
             return (
               <li
