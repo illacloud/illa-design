@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { ChangeEvent, forwardRef } from "react"
 import { RadioGroupProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"
@@ -57,7 +56,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
         if (!("value" in props)) {
           setValue(v)
         }
-        onChange && onChange(true, event)
+        onChange && onChange(v, event)
       }
     }
 

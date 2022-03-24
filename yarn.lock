@@ -4304,6 +4304,11 @@ babel-plugin-syntax-jsx@^6.18.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
   integrity sha1-CvMqmm4Tyno/1QaeYtew9Y0NiUY=
 
+babel-plugin-tsconfig-paths@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-tsconfig-paths/-/babel-plugin-tsconfig-paths-1.0.2.tgz#e9db57de3dc0890102eb6228e70780b18872fa97"
+  integrity sha512-pI/6kgjjjSWp4Tv5eG70HGKX4jI16iyzFsS9XFP1AyG5jAPwkVwafM0dK1qrDYsz2plBNc0i3DsxAdM4aiFRZg==
+
 babel-preset-current-node-syntax@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/babel-preset-current-node-syntax/-/babel-preset-current-node-syntax-1.0.1.tgz#b4399239b89b2a011f9ddbe3e4f401fc40cff73b"

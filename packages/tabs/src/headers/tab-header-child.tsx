@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, useMemo } from "react"
 import { TabHeaderChildProps } from "../interface"
 import {

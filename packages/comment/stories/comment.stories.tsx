@@ -1,9 +1,6 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Comment, CommentProps } from "../src"
 import { Avatar } from "@illa-design/avatar"
-import { Component, ReactElement, ReactNode } from "react"
 import { css } from "@emotion/react"
 
 //👇 This default export determines where your story goes in the story list

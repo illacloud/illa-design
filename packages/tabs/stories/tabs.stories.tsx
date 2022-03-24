@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Tabs, TabsProps } from "../src"
 import { TabPane } from "../src"

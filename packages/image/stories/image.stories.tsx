@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Image, ImageProps } from "../src"
 import { BsTwitch } from "react-icons/bs"

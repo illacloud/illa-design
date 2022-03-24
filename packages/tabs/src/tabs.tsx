@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, ReactElement, useState, useMemo } from "react"
+import { forwardRef, ReactElement, useState, useMemo, Children } from "react"
 import {
   TabHeaderChildProps,
   TabHeaderProps,
@@ -24,7 +23,7 @@ export function getTabChildren(children: ReactElement) {
   const headerChildren: TabHeaderChildProps[] = []
   const paneChildren: ReactElement[] = []
   let firstTabKey: string | undefined
-  React.Children.forEach(children, (child: ReactElement, index: number) => {
+  Children.forEach(children, (child: ReactElement, index: number) => {
     if (child && child.type && (child as ReactElement<TabPaneProps>)) {
       if (child.props && (child.props as TabPaneProps) && child.props.title) {
         const _props = child.props

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, useMemo } from "react"
 import { StatisticProps } from "./interface"
 import dayjs from "dayjs"

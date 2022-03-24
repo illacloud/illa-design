@@ -1,4 +1,3 @@
-import * as React from "react"
 import { ReactNode, HTMLAttributes, Ref } from "react"
 
 export type InputTagSize = "small" | "medium" | "large"

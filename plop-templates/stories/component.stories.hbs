@@ -1,9 +1,8 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { {{properCase name}}, {{properCase name}}Props } from "../src"
 
 export default {
-  title: "{{properCase type}}/{{properCase name}}",
+  title: "{{type}}/{{properCase name}}",
   component: {{properCase name}},
 } as Meta
 

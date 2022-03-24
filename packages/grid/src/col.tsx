@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { Children, forwardRef, useContext } from "react"
 import { ColProps } from "./interface"
 import { RowContext } from "./row-context"

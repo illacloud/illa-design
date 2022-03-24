@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
 import { render, screen } from "@testing-library/react"
 import { Spin } from "../src"
-import * as React from "react"
+
 import { SearchIcon } from "@illa-design/icon"
 
 test("Spin renders correctly", () => {

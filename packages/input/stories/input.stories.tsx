@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { InputProps, Input } from "../src"
 import { Space } from "@illa-design/space"
