@@ -43,7 +43,7 @@ export interface RadioGroupContextProps<T> {
   // only used in type="button"
   size?: RadioSize
   spacing?: string | number
-  onChange?: (checked: boolean, event: ChangeEvent) => void
+  onChange?: (value: any, event: ChangeEvent) => void
 }
 
 export interface RadioGroupProps<T>
