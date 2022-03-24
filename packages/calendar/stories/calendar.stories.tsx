@@ -7,26 +7,26 @@ export default {
   component: Calendar,
   argTypes: {
     onChange: {
-      control: false
+      control: false,
     },
     onPanelChange: {
-      control: false
+      control: false,
     },
     dateRender: {
-      control: false
+      control: false,
     },
     monthRender: {
-      control: false
+      control: false,
     },
     dateInnerContent: {
-      control: false
+      control: false,
     },
     headerRender: {
-      control: false
+      control: false,
     },
     locale: {
-      control: false
-    }
+      control: false,
+    },
   },
 } as Meta
 
