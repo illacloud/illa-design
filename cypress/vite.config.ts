@@ -15,4 +15,7 @@ export default defineConfig({
       include: ["**/**.tsx", "**/**.ts"],
     }),
   ],
+  optimizeDeps: {
+    include: ["@emotion/react/jsx-dev-runtime"]
+  }
 })
