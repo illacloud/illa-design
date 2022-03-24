@@ -13,6 +13,7 @@ import {
   panelGridCss,
   monthBlockCss,
   applyPanelGridItemCss,
+  bodyContentCss,
 } from "./styles"
 import { CalendarDays } from "./calendar-days"
 import dayjs from "dayjs"
@@ -92,7 +93,7 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
   }
 
   return (
-    <div style={{ position: "relative", padding: "0 10px" }}>
+    <div css={bodyContentCss}>
       {!allowSelect && <div css={bodyCoverCss} />}
       {mode === "month" &&
         (panel ? (

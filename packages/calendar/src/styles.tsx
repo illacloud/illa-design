@@ -1,6 +1,11 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
+export const bodyContentCss = css`
+  position: "relative";
+  padding: "0 10px";
+`
+
 export const bodyCoverCss = css`
   position: absolute;
   width: 100%;

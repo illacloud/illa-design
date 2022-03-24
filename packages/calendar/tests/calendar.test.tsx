@@ -2,6 +2,7 @@ import "@testing-library/jest-dom"
 import { Calendar, CalendarDays } from "../src"
 import { render, screen, fireEvent } from "@testing-library/react"
 import dayjs from "dayjs"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 const curDay = dayjs().date()
 const curMonth = dayjs().month()
@@ -97,12 +98,12 @@ test("click one day", () => {
   render(<Calendar />)
   fireEvent.click(screen.getAllByText(27)[0])
   expect(screen.getByText(27)).toHaveStyle({
-    backgroundColor: "#1e6fff",
+    backgroundColor: globalColor(`--${illaPrefix}-blue-03`),
   })
 
   fireEvent.click(screen.getByText("today"))
   expect(screen.getByText(curDay)).toHaveStyle({
-    backgroundColor: "#1e6fff",
+    backgroundColor: globalColor(`--${illaPrefix}-blue-03`),
   })
 
   fireEvent.click(screen.getByTitle("PreIcon"))
@@ -129,7 +130,7 @@ test("Today on body", () => {
   render(<Calendar panel={true} mode={"day"} />)
   fireEvent.click(screen.getByText("Today"))
   expect(screen.getByText(curDay)).toHaveStyle({
-    backgroundColor: "#1e6fff",
+    backgroundColor: globalColor(`--${illaPrefix}-blue-03`),
   })
 })
 
@@ -137,13 +138,13 @@ test("panel month & year", () => {
   render(<Calendar panel={true} mode={"month"} />)
   fireEvent.click(screen.getByText("January"))
   expect(screen.getByText("January")).toHaveStyle({
-    backgroundColor: "#1e6fff",
+    backgroundColor: globalColor(`--${illaPrefix}-blue-03`),
   })
 
   render(<Calendar panel={true} mode={"year"} />)
   fireEvent.click(screen.getByText("2017"))
   expect(screen.getByText("2017")).toHaveStyle({
-    backgroundColor: "#1e6fff",
+    backgroundColor: globalColor(`--${illaPrefix}-blue-03`),
   })
 })
 
