@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef } from "react"
 import { PageNumProps } from "./interface"
 import {

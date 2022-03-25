@@ -1,9 +1,9 @@
-import * as React from "react"
 import {
   ReactNode,
   ChangeEvent,
   InputHTMLAttributes,
   TextareaHTMLAttributes,
+  KeyboardEvent,
   Ref,
 } from "react"
 
@@ -40,7 +40,7 @@ export interface InputElementProps
   textCenterHorizontal?: boolean
   onClear?: () => void
   onValueChange?: (value: string, e: ChangeEvent<HTMLInputElement>) => void
-  onPressEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
 }
 
 export interface InputProps
@@ -67,7 +67,7 @@ export interface InputProps
   requirePadding?: boolean
   textCenterHorizontal?: boolean
   onClear?: () => void
-  onPressEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   onChange?: (value: string, event: any) => void
 }
 
@@ -111,7 +111,7 @@ export interface SearchProps
   textCenterHorizontal?: boolean
   onClear?: () => void
   onSearch?: (value?: string) => void
-  onPressEnter?: (event: React.KeyboardEvent<HTMLInputElement>) => void
+  onPressEnter?: (event: KeyboardEvent<HTMLInputElement>) => void
 }
 
 export interface PasswordProps

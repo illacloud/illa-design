@@ -56,4 +56,3 @@ import { Alert } from "@illa-dedign/alert"
 ```jsx
 <Alert type="error" />
 ```
-

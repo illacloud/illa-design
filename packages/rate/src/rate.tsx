@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, useState } from "react"
+import { forwardRef, Fragment, useState } from "react"
 import NP from "number-precision"
 import { RateProps } from "./interface"
 import { StarIcon, HeartIcon } from "@illa-design/icon"
@@ -89,7 +88,7 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
             onClick: onClick.bind(this, index, false),
           }
     const tooltip = tooltips && tooltips[index]
-    const CharacterWrapper = tooltip ? Tooltip : React.Fragment
+    const CharacterWrapper = tooltip ? Tooltip : Fragment
     const tooltipProps = tooltip ? { content: tooltip } : {}
 
     return (

@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, Children, cloneElement, ReactElement } from "react"
+import { forwardRef, Children, cloneElement, ReactElement } from "react"
 import { CardGrid } from "./card-grid"
 import { Meta } from "./meta"
 import { CardProps } from "./interface"

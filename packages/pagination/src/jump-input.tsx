@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, useContext, useState } from "react"
 import { JumperInputProps } from "./interface"
 import {

@@ -1,9 +1,8 @@
-/** @jsxImportSource @emotion/react */
-import React from "react"
 import usePrevious from "./usePrevious"
 import { CountProps } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { applyBadgeNumberOrText, applyBadgeScale } from "./style"
+import { Key } from "react"
 
 const defaultColor = globalColor(`--${illaPrefix}-red-03`)
 export function Count(props: CountProps) {
@@ -21,7 +20,7 @@ export function Count(props: CountProps) {
       css={applyBadgeNumberOrText(color, hasChildren, (count as string).length)}
       {...restProps}
     >
-      <span key={count as React.Key} css={applyBadgeScale(isChanged)}>
+      <span key={count as Key} css={applyBadgeScale(isChanged)}>
         {count}
       </span>
     </span>

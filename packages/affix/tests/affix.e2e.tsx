@@ -1,7 +1,7 @@
-import * as React from "react"
 import { Affix, AffixProps } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
+import { useRef } from "react"
 
 const blockStyles = {
   height: 1000,
@@ -22,7 +22,7 @@ const TestAffix = (props: AffixProps) => {
 }
 
 const TestAffixTargetContainer = () => {
-  const container = React.useRef(null)
+  const container = useRef(null)
 
   return (
     <>

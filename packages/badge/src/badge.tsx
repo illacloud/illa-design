@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { CSSProperties, forwardRef } from "react"
+import { CSSProperties, forwardRef } from "react"
 import { BadgeProps } from "./interface"
 import { isObject } from "@illa-design/system"
 import {

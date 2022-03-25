@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Children, forwardRef, ReactNode } from "react"
 import { ButtonGroupContext } from "./button-group-context"
 import { ButtonGroupProps } from "./interface"
