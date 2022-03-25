@@ -16,7 +16,7 @@ const getObjectUrl = (file?: File) => {
   }
 }
 
-export const FileListTextItem = forwardRef<HTMLDivElement, FileListItemProps>(
+export const FileListPicItem = forwardRef<HTMLDivElement, FileListItemProps>(
   (props, ref) => {
     const { deleteUpload, item, reUpload, icons } = props
     const { name, percent, status, url, originFile } = item
