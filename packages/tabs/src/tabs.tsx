@@ -7,7 +7,7 @@ import {
 } from "./interface"
 import { TabPane } from "./tab-pane"
 import { TabContent } from "./tab-content"
-import { commonContainerCss, horizontalContainerCss } from "./styles"
+import { commonContainerCss, horizontalContainerCss } from "./style"
 import { TabCommonHeader } from "./headers/tab-common-header"
 import { isAhead, isHorizontalLayout } from "./utils"
 import { TabLineHeader } from "./headers/tab-line-header"

@@ -10,4 +10,5 @@ export interface Locale {
   pagination: Record<string, string>
   upload: Record<string, string>
   popConfirm: Record<string, string>
+  calendar: Record<string, string>
 }

@@ -1,11 +1,11 @@
-import { forwardRef, ReactNode, useMemo } from "react"
+import { forwardRef, useMemo } from "react"
 import { FileListItemProps } from "./interface"
 import {
   applyFileItemTitleCss,
+  fileIconCss,
   fileItemContainerCss,
   fileTextItemCss,
-} from "./styles"
-
+} from "./style"
 import {
   FileDefaultIcon,
   FileExcelIcon,
@@ -17,7 +17,7 @@ import {
   FileWordIcon,
   FileWPSIcon,
 } from "@illa-design/icon"
-import { getDeleteButton, getRightIcon } from "./file-list-util"
+import { getDeleteButton, getRightIcon } from "./file-list-utils"
 
 const checkFileType = (type: string, ...targetType: string[]) => {
   let flag = false
@@ -67,25 +67,36 @@ const getFileIcon = (file: File) => {
   if (checkFileType(fileName, "wps")) {
     return <FileWPSIcon />
   }
-  if (checkFileType(fileName, "word")) {
+  if (checkFileType(fileName, "doc", "docx")) {
     return <FileWordIcon />
   }
   return <FileDefaultIcon />
 }
 
-export const FileListTextItem = forwardRef<HTMLSpanElement, FileListItemProps>(
+export const FileListTextItem = forwardRef<HTMLDivElement, FileListItemProps>(
   (props, ref) => {
-    const { item, deleteUpload, reUpload } = props
+    const { item, deleteUpload, reUpload, icons } = props
     const { name, percent, status, originFile } = props.item
     const fileIcon = useMemo(() => {
-      return getFileIcon(originFile)
-    }, [originFile])
+      if (icons?.fileIcon) return icons?.fileIcon
+      return <span css={fileIconCss}>{getFileIcon(originFile)}</span>
+    }, [originFile, icons])
 
-    let rightView = getRightIcon(status, item, percent, reUpload)
-    const deleteButton = getDeleteButton(item, deleteUpload)
+    let rightView = getRightIcon(
+      status,
+      item,
+      percent,
+      reUpload,
+      icons?.reuploadIcon,
+    )
+    const deleteButton = icons?.removeIcon ? (
+      <span onClick={() => deleteUpload(item)}>{icons.removeIcon}</span>
+    ) : (
+      getDeleteButton(item, deleteUpload)
+    )
 
     return (
-      <div css={fileItemContainerCss}>
+      <div css={fileItemContainerCss} ref={ref}>
         <div css={fileTextItemCss}>
           {fileIcon}
           <span css={applyFileItemTitleCss(status == "error")}>{name}</span>

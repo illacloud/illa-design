@@ -1,14 +1,16 @@
 import { DeleteIcon, SuccessIcon } from "@illa-design/icon"
-import { deleteIconCss, rightIconCss, tryTextCss } from "./styles"
+import { deleteIconCss, rightIconCss, tryTextCss } from "./style"
 import { Progress } from "@illa-design/progress"
 
 import { UploadItem, UploadStatus } from "./interface"
+import { ReactNode } from "react"
 
 export const getRightIcon = (
   statusStr: UploadStatus,
   item: UploadItem,
   percent?: number,
   reUpload?: (file: UploadItem) => void,
+  retryIcon?: ReactNode,
 ) => {
   let rightView
   switch (statusStr) {
@@ -23,7 +25,7 @@ export const getRightIcon = (
             reUpload && reUpload(item)
           }}
         >
-          Click to retry
+          {retryIcon ? retryIcon : "Click to retry"}
         </span>
       )
       break
@@ -40,11 +42,12 @@ export const getDeleteButton = (
   deleteEvent?: (item: UploadItem) => void,
 ) => {
   return (
-    <DeleteIcon
-      onClick={() => {
-        deleteEvent && deleteEvent(item)
-      }}
-      css={deleteIconCss}
-    />
+    <span css={deleteIconCss}>
+      <DeleteIcon
+        onClick={() => {
+          deleteEvent && deleteEvent(item)
+        }}
+      />
+    </span>
   )
 }

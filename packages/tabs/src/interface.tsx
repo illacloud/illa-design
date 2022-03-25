@@ -54,8 +54,7 @@ export type TabHeaderChildProps = Pick<
 }
 
 export interface TabPaneProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "title" | "key"> {
-  key?: string
+  extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   title: string | ReactNode
   destroyOnHide?: boolean
   disabled?: boolean

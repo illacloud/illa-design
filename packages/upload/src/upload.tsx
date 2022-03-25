@@ -1,4 +1,5 @@
-import { forwardRef, useEffect, useMemo, useRef, useState } from "react"
+import * as React from "react"
+import { forwardRef, useRef, useState } from "react"
 import {
   UploadItem,
   UploadListProps,
@@ -6,16 +7,16 @@ import {
   UploadRefType,
 } from "./interface"
 import { UploadElement } from "./upload-element"
-import { fileListContainerCss, uploadContainerCss } from "./styles"
+import { fileListContainerCss, uploadContainerCss } from "./style"
 import { FileListTextItem } from "./file-list-text-item"
 import { FileListPicItem } from "./file-list-pic-item"
 import { List } from "@illa-design/list"
-import { isFunction } from "@illa-design/system"
+import { isFunction, isObject } from "@illa-design/system"
 
 export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   const {
     listType = "text",
-    showUploadList = true,
+    showUploadList,
     fileList,
     defaultFileList,
     customRequest,
@@ -84,9 +85,7 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     return Object.keys(obj).map((x) => obj[x as keyof UploadItem])
   }
 
-  const _fileList = useMemo(() => {
-    return getFileList(uploadState.current)
-  }, [innerUploadState])
+  const _fileList = getFileList(uploadState.current)
 
   const deleteUpload = (file: UploadItem) => {
     if (file) {
@@ -161,12 +160,14 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
               item={item}
               deleteUpload={deleteUpload}
               reUpload={(item) => reUploadFile(item)}
+              icons={isObject(showUploadList) ? showUploadList : undefined}
             />
           ) : (
             <FileListPicItem
               item={item}
               deleteUpload={deleteUpload}
               reUpload={(item) => reUploadFile(item)}
+              icons={isObject(showUploadList) ? showUploadList : undefined}
             />
           )
         }}
@@ -175,6 +176,10 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
         }}
       />
     )
+  }
+  let _showList = true
+  if (showUploadList === false) {
+    _showList = false
   }
 
   return (
@@ -203,7 +208,7 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
         customRequest={customRequest}
         {...rest}
       />
-      {showUploadList && pictureUpload !== true && <>{fileListView}</>}
+      {_showList && pictureUpload !== true && <>{fileListView}</>}
     </div>
   )
 })
