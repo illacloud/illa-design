@@ -6,10 +6,13 @@ import {
   stepType,
   labelPlacement,
   StepStyleConfig,
+  stepStatus,
 } from "./interface"
 import React, { CSSProperties } from "react"
-export * from "./style/icon"
 export * from "./style/steps"
+export * from "./style/icon"
+export * from "./style/content"
+export * from "./style/description"
 export * from "./style/title"
 
 export const statusColor = {
@@ -31,145 +34,69 @@ export const statusColor = {
   },
 }
 
-export function applyDescriptionStyle(size: stepSize): SerializedStyles {
-  return css([
-    {
-      color: globalColor(`--${illaPrefix}-gray-06`),
-    },
-    applyDescriptionSize(size),
-  ])
-}
-
-function applyDescriptionSize(size: stepSize): SerializedStyles {
-  let sizeCss: SerializedStyles
-  switch (size) {
-    default:
-    case "small":
-      sizeCss = css`
-        font-size: 12px;
-      `
-      break
-    case "large":
-      sizeCss = css`
-        font-size: 12px;
-      `
-      break
-  }
-  return sizeCss
-}
-
-export function applyContentStyle({
-  type,
-  labelPlacement,
-  direction,
-  hoverable,
-}: {
-  type: stepType
-  labelPlacement: labelPlacement
-  direction: labelPlacement
-  hoverable: boolean
-}): SerializedStyles {
-  return css([
-    applyContentDisplay({ type, labelPlacement, direction }),
-    applyContentWidth({ type, labelPlacement, direction }),
-    applyHover(hoverable),
-  ])
-}
-
-function applyContentDisplay({
-  type,
-  labelPlacement,
-  direction,
-}: {
-  type: stepType
-  labelPlacement: labelPlacement
-  direction: labelPlacement
-}): SerializedStyles {
-  // if type === dot, contents only show beside the icon
-  const verticalStyle = css`
-    display: block;
-    text-align: center;
-  `
-
-  if (type === "dot" && direction === "horizontal") {
-    return verticalStyle
-  }
-
-  if (labelPlacement === "vertical") {
-    return verticalStyle
-  }
-
-  return css`
-    display: inline-block;
-  `
-}
-
-function applyContentWidth({
-  type,
-  labelPlacement,
-  direction,
-}: {
-  labelPlacement: labelPlacement
-  direction: labelPlacement
-  type: stepType
-}) {
-  const width = 140
-  if (
-    (type === "dot" && direction === "horizontal") ||
-    labelPlacement === "vertical"
-  ) {
-    return css`
-      width: ${width}px;
-    `
-  }
-
-  return css``
-}
-
-function applyHover(hoverable: boolean): SerializedStyles {
-  if (!hoverable) {
-    return css``
-  }
-
-  const hoverColor = globalColor(`--${illaPrefix}-blue-05`)
-
-  return css`
-    &:hover > * {
-      cursor: pointer;
-      color: ${hoverColor};
-    }
-  `
-}
-
 export function applyWrapperStyle({
-  labelPlacement,
   direction,
   type,
+  status,
+  disabled
 }: {
-  labelPlacement: labelPlacement
   direction: labelPlacement
   type: stepType
+  status: stepStatus
+  disabled: boolean
 }): SerializedStyles {
   const overflow = type === "dot" ? "visible" : "hidden"
   const minHeight = direction === "vertical" ? 90 : "unset"
+  let navigactionProcessIndicator = css``
+  let style = css({
+    marginRight: 16,
+    minHeight,
+  })
+
+  if (type === "navigation") {
+    style = css({
+      paddingLeft: 20,
+      paddingRight: 10,
+      marginRight: 32,
+    })
+
+    if (status === "process") {
+      navigactionProcessIndicator = css`
+        &:after {
+          content: "";
+          position: absolute;
+          diplay: block;
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          right: 30px;
+          background-color: ${statusColor.process.backgroundColor};
+        }
+      `
+    }
+  }
 
   return css([
     css({
       flex: 1,
       whiteSpace: "nowrap",
       position: "relative",
-      marginRight: 16,
       overflow,
-      minHeight,
     }),
+    style,
+    navigactionProcessIndicator,
+    applyWrapperCursor(disabled)
   ])
+}
+
+function applyWrapperCursor(disabled: boolean): SerializedStyles {
+  return disabled ? css`cursor: not-allowed` : css``;
 }
 
 export function applyConnctionNodeStyle({
   type,
   direction,
-  labelPlacement,
-}: Omit<StepStyleConfig, "size">): SerializedStyles {
+}: Omit<StepStyleConfig, "size" | "labelPlacement">): SerializedStyles {
   let color = globalColor(`--${illaPrefix}-gray-08`)
 
   if (type === "dot") {
@@ -189,7 +116,7 @@ export function applyConnctionNodeStyle({
         display: "block",
         width: 1,
         left: 3.5,
-        top: 18, // cal by size
+        top: 18, // TODO: cal by size
         bottom: -5,
         backgroundColor: color,
       })

@@ -94,7 +94,8 @@ function applyConnectionStyle({
 }): SerializedStyles {
   let pseudoStyle: SerializedStyles = css``
   let position: SerializedStyles = css``
-  let color = globalColor(`--${illaPrefix}-gray-08`)
+  const defaultColor = globalColor(`--${illaPrefix}-gray-08`)
+  let color = defaultColor
 
   if (nextStepError) {
     color = statusColor.error.color
@@ -117,12 +118,12 @@ function applyConnectionStyle({
     pseudoStyle = css({
       width: 8,
       height: 8,
-      border: `3px solid ${color}`,
+      border: `3px solid ${defaultColor}`,
       borderLeft: "none",
       borderBottom: "none",
       transform: "rotate(45deg)",
-      top: 8,
-      right: 20,
+      top: 6,
+      right: 10,
     })
   }
 

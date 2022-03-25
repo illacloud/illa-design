@@ -26,7 +26,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     labelPlacement = "horizontal",
     description,
     status,
-    disabled,
+    disabled = false,
     icon,
     customDot,
     onClick,
@@ -38,7 +38,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
 
   let currentStatus: stepStatus = "wait"
 
-  const hoverable = !!onClick && !disabled && current !== index;
+  const hoverable = !!onClick && !disabled && current !== index
 
   function onClickStep() {
     onClick && !disabled && current !== index && onClick(index, id)
@@ -100,11 +100,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
       labelPlacement === "vertical" ||
       type === "dot"
     ) {
-      return (
-        <div
-          css={applyConnctionNodeStyle({ type, direction, labelPlacement })}
-        />
-      )
+      return <div css={applyConnctionNodeStyle({ type, direction })} />
     }
 
     return null
@@ -113,7 +109,12 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
   return (
     <div
       ref={ref}
-      css={applyWrapperStyle({ labelPlacement, direction, type })}
+      css={applyWrapperStyle({
+        direction,
+        type,
+        status: currentStatus,
+        disabled,
+      })}
       className={className}
       onClick={onClickStep}
       {...restProps}
