@@ -28,6 +28,7 @@ import { Input } from "@illa-design/input"
 import { CheckmarkIcon, ReduceIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import { RenderPickerProps } from "./interface"
+import { css } from "@emotion/react"
 
 export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
   (props, ref) => {
@@ -108,8 +109,9 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     }
 
     const setOpen = (visible: boolean, callback?: Function) => {
-      console.log(visible, "setOpen")
-      setCurrentPopupVisible(visible)
+      if (currentPopupVisible !== visible) {
+        setCurrentPopupVisible(visible)
+      }
       setInputValue(undefined)
       callback?.()
       if (!visible) {
@@ -181,7 +183,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         onClear?.()
       },
       onChange: (inputValue?: string) => {
-        if (!popupVisible) {
+        if (!currentPopupVisible) {
           setCurrentPopupVisible(true)
         }
         setInputValue(inputValue)
@@ -205,7 +207,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         }
       },
     }
-    console.log(inputValue, valueShow, currentValue, "input")
 
     let showValue = ""
     if (inputValue !== undefined) {
@@ -227,10 +228,9 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         position={position}
         disabled={disabled}
         onVisibleChange={(visible: boolean) => {
-          console.log(visible, "visible")
           if (visible) {
             setOpen(visible, () => {
-              //inputRef.current?.focus()
+              inputRef.current?.focus()
             })
           } else {
             setOpen(visible)
@@ -265,6 +265,10 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         ) : (
           <Input
             {...baseInputProps}
+            css={css`
+              width: unset;
+              display: inline-flex;
+            `}
             inputRef={inputRef}
             placeholder={inputPlaceHolder}
             value={showValue}
