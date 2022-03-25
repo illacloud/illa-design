@@ -8,7 +8,8 @@ import {
   applyIconStyle,
   applyTitleStyle,
   applyContentStyle,
-  stepWrapperStyle,
+  applyWrapperStyle,
+  applyConnctionNodeStyle,
 } from "./style"
 
 export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
@@ -28,10 +29,20 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     disabled,
     icon,
     customDot,
+    onClick,
+    lastStep = false,
+    nextStepError = false,
+    lineless = false,
     ...restProps
   } = props
 
   let currentStatus: stepStatus = "wait"
+
+  const hoverable = !!onClick && !disabled && current !== index;
+
+  function onClickStep() {
+    onClick && !disabled && current !== index && onClick(index, id)
+  }
 
   if (status) {
     currentStatus = status
@@ -63,7 +74,15 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
   }
 
   const iconNode = (
-    <div css={applyIconStyle({ size, status: currentStatus, type })}>
+    <div
+      css={applyIconStyle({
+        size,
+        status: currentStatus,
+        type,
+        direction,
+        labelPlacement,
+      })}
+    >
       {renderIcon(currentStatus)}
     </div>
   )
@@ -71,11 +90,53 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     ? customDot(iconNode, { index, status: currentStatus, title, description })
     : iconNode
 
+  function renderConnectionNode() {
+    if (lastStep || lineless) {
+      return null
+    }
+
+    if (
+      direction === "vertical" ||
+      labelPlacement === "vertical" ||
+      type === "dot"
+    ) {
+      return (
+        <div
+          css={applyConnctionNodeStyle({ type, direction, labelPlacement })}
+        />
+      )
+    }
+
+    return null
+  }
+
   return (
-    <div ref={ref} css={stepWrapperStyle} className={className} {...restProps}>
+    <div
+      ref={ref}
+      css={applyWrapperStyle({ labelPlacement, direction, type })}
+      className={className}
+      onClick={onClickStep}
+      {...restProps}
+    >
+      {renderConnectionNode()}
       {stepIconNode}
-      <div css={applyContentStyle({ type, labelPlacement })}>
-        <div css={applyTitleStyle(size, currentStatus)}>{title}</div>
+      <div
+        css={applyContentStyle({ type, labelPlacement, direction, hoverable })}
+      >
+        <div
+          css={applyTitleStyle({
+            size,
+            type,
+            lastStep,
+            lineless,
+            nextStepError,
+            direction,
+            labelPlacement,
+            status: currentStatus,
+          })}
+        >
+          {title}
+        </div>
         {description && (
           <div css={applyDescriptionStyle(size)}>{description}</div>
         )}

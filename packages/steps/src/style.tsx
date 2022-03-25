@@ -1,131 +1,37 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import { stepSize, stepStatus, stepType, labelPlacement } from "./interface"
+import {
+  stepSize,
+  stepType,
+  labelPlacement,
+  StepStyleConfig,
+} from "./interface"
 import React, { CSSProperties } from "react"
+export * from "./style/icon"
+export * from "./style/steps"
+export * from "./style/title"
 
-export function applyIconStyle({
-  size,
-  status,
-  type,
-}: {
-  size: stepSize
-  status: stepStatus
-  type: stepType
-}) {
-  return css(
-    css`
-      display: inline-block;
-      vertical-align: top;
-      border-radius: 50%;
-      box-sizing: border-box;
-      text-align: center;
-      margin-right: 16px;
-    `,
-    applyIconSize(size, type),
-    applyIconColor(status),
-  )
+export const statusColor = {
+  finish: {
+    color: globalColor(`--${illaPrefix}-blue-03`),
+    backgroundColor: globalColor(`--${illaPrefix}-blue-07`),
+  },
+  wait: {
+    color: globalColor(`--${illaPrefix}-gray-04`),
+    backgroundColor: globalColor(`--${illaPrefix}-gray-08`),
+  },
+  process: {
+    color: globalColor(`--${illaPrefix}-white-01`),
+    backgroundColor: globalColor(`--${illaPrefix}-blue-03`),
+  },
+  error: {
+    color: globalColor(`--${illaPrefix}-red-03`),
+    backgroundColor: globalColor(`--${illaPrefix}-red-07`),
+  },
 }
 
-function applyIconColor(status: stepStatus) {
-  let color, backgroundColor
-
-  switch (status) {
-    case "wait":
-      color = globalColor(`--${illaPrefix}-gray-04`)
-      backgroundColor = globalColor(`--${illaPrefix}-gray-08`)
-      break
-
-    case "process":
-      color = globalColor(`--${illaPrefix}-white-01`)
-      backgroundColor = globalColor(`--${illaPrefix}-blue-03`)
-      break
-
-    case "finish":
-      color = globalColor(`--${illaPrefix}-blue-03`)
-      backgroundColor = globalColor(`--${illaPrefix}-blue-07`)
-      break
-
-    case "error":
-      color = globalColor(`--${illaPrefix}-red-03`)
-      backgroundColor = globalColor(`--${illaPrefix}-red-07`)
-      break
-  }
-
-  return css({ background: backgroundColor, color })
-}
-
-function applyIconSize(size: stepSize, type: stepType) {
-  let sizeCss: SerializedStyles
-
-  if (type !== "dot") {
-    switch (size) {
-      default:
-      case "small":
-        sizeCss = css`
-          width: 24px;
-          height: 24px;
-          line-height: 24px;
-          font-size: 14px;
-
-          & svg {
-            font-size: 10px;
-          }
-        `
-        break
-      case "large":
-        sizeCss = css`
-          width: 20px;
-          height: 20px;
-        `
-        break
-    }
-  } else {
-    switch (size) {
-      default:
-      case "small":
-        sizeCss = css`
-          width: 8px;
-          height: 8px;
-        `
-        break
-      case "large":
-        sizeCss = css`
-          width: 10px;
-          height: 10px;
-        `
-        break
-    }
-  }
-
-  return sizeCss
-}
-
-export function applyTitleStyle(size: stepSize, status: stepStatus) {
-  return css(applyTitleSize(size))
-}
-
-function applyTitleSize(size: stepSize): SerializedStyles {
-  let sizeCss: SerializedStyles
-  switch (size) {
-    default:
-    case "small":
-      sizeCss = css`
-        line-height: 24px;
-        font-size: 16px;
-      `
-      break
-    case "large":
-      sizeCss = css`
-        line-height: 24px;
-        font-size: 16px;
-      `
-      break
-  }
-  return sizeCss
-}
-
-export const applyDescriptionStyle = (size: stepSize) => {
+export function applyDescriptionStyle(size: stepSize): SerializedStyles {
   return css([
     {
       color: globalColor(`--${illaPrefix}-gray-06`),
@@ -134,7 +40,7 @@ export const applyDescriptionStyle = (size: stepSize) => {
   ])
 }
 
-function applyDescriptionSize(size: stepSize) {
+function applyDescriptionSize(size: stepSize): SerializedStyles {
   let sizeCss: SerializedStyles
   switch (size) {
     default:
@@ -152,26 +58,45 @@ function applyDescriptionSize(size: stepSize) {
   return sizeCss
 }
 
-export function applyContentStyle({ type, labelPlacement }) {
-  return css([applyContentDisplay({ type, labelPlacement })])
+export function applyContentStyle({
+  type,
+  labelPlacement,
+  direction,
+  hoverable,
+}: {
+  type: stepType
+  labelPlacement: labelPlacement
+  direction: labelPlacement
+  hoverable: boolean
+}): SerializedStyles {
+  return css([
+    applyContentDisplay({ type, labelPlacement, direction }),
+    applyContentWidth({ type, labelPlacement, direction }),
+    applyHover(hoverable),
+  ])
 }
 
 function applyContentDisplay({
   type,
   labelPlacement,
+  direction,
 }: {
   type: stepType
   labelPlacement: labelPlacement
+  direction: labelPlacement
 }): SerializedStyles {
   // if type === dot, contents only show beside the icon
-  const verticalStyle = css`display: block; text-align: center`;
+  const verticalStyle = css`
+    display: block;
+    text-align: center;
+  `
 
-  if (type === "dot") {
-    return verticalStyle;
+  if (type === "dot" && direction === "horizontal") {
+    return verticalStyle
   }
 
   if (labelPlacement === "vertical") {
-    return verticalStyle;
+    return verticalStyle
   }
 
   return css`
@@ -179,12 +104,109 @@ function applyContentDisplay({
   `
 }
 
-export const stepDescriptionStyle = css({})
+function applyContentWidth({
+  type,
+  labelPlacement,
+  direction,
+}: {
+  labelPlacement: labelPlacement
+  direction: labelPlacement
+  type: stepType
+}) {
+  const width = 140
+  if (
+    (type === "dot" && direction === "horizontal") ||
+    labelPlacement === "vertical"
+  ) {
+    return css`
+      width: ${width}px;
+    `
+  }
 
-export function applySteps() { }
+  return css``
+}
 
-export const stepWrapperStyle = css`
-  white-space: nowrap;
-  overflow: hidden;
-  position: relative;
-`
+function applyHover(hoverable: boolean): SerializedStyles {
+  if (!hoverable) {
+    return css``
+  }
+
+  const hoverColor = globalColor(`--${illaPrefix}-blue-05`)
+
+  return css`
+    &:hover > * {
+      cursor: pointer;
+      color: ${hoverColor};
+    }
+  `
+}
+
+export function applyWrapperStyle({
+  labelPlacement,
+  direction,
+  type,
+}: {
+  labelPlacement: labelPlacement
+  direction: labelPlacement
+  type: stepType
+}): SerializedStyles {
+  const overflow = type === "dot" ? "visible" : "hidden"
+  const minHeight = direction === "vertical" ? 90 : "unset"
+
+  return css([
+    css({
+      flex: 1,
+      whiteSpace: "nowrap",
+      position: "relative",
+      marginRight: 16,
+      overflow,
+      minHeight,
+    }),
+  ])
+}
+
+export function applyConnctionNodeStyle({
+  type,
+  direction,
+  labelPlacement,
+}: Omit<StepStyleConfig, "size">): SerializedStyles {
+  let color = globalColor(`--${illaPrefix}-gray-08`)
+
+  if (type === "dot") {
+    if (direction === "horizontal") {
+      return css({
+        position: "absolute",
+        display: "block",
+        height: 1,
+        width: "100%",
+        left: 78,
+        top: 4,
+        backgroundColor: color,
+      })
+    } else if (direction === "vertical") {
+      return css({
+        position: "absolute",
+        display: "block",
+        width: 1,
+        left: 3.5,
+        top: 18, // cal by size
+        bottom: -5,
+        backgroundColor: color,
+      })
+    }
+  }
+
+  if (direction === "vertical") {
+    return css({
+      position: "absolute",
+      display: "block",
+      width: 1,
+      left: 12,
+      top: 28, // cal by size
+      bottom: 5,
+      backgroundColor: color,
+    })
+  }
+
+  return css``
+}
