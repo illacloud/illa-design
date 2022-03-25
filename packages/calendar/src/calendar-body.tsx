@@ -26,7 +26,6 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
     dayStartOfWeek,
     mode,
     disabledDate,
-    onChange,
     onPanelChange,
     dateRender,
     monthRender,
@@ -36,8 +35,7 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
     onClickDay,
     onToToday,
     locale,
-    monthListLocale,
-    ...rest
+    monthListLocale
   } = props
 
   // start of month data

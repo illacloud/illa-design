@@ -80,6 +80,7 @@
     "@illa-design/rate": "*",
     "@illa-design/affix": "*",
     "@illa-design/comment": "*",
-    "@illa-design/tabs": "*"
+    "@illa-design/tabs": "*",
+    "@illa-design/calendar": "*"
   }
 }

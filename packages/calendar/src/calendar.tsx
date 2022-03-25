@@ -177,7 +177,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
           dayStartOfWeek={dayStartOfWeek}
           mode={modeVal}
           disabledDate={disabledDate}
-          onChange={onChange}
           onPanelChange={onPanelChange}
           dateRender={dateRender}
           monthRender={monthRender}
@@ -193,3 +192,5 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
     )
   },
 )
+
+Calendar.displayName = "Calendar"

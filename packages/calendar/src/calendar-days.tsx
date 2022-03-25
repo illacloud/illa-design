@@ -118,3 +118,5 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
     )
   },
 )
+
+CalendarDays.displayName = "CalendarDays"

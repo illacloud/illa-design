@@ -27,7 +27,6 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
     panelTodayBtn,
     panelOperations,
     mode,
-    onChange = null,
     headerRender,
     currentDay,
     headerType,
@@ -36,8 +35,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
     onToToday,
     onChangeMode,
     locale,
-    monthListLocale,
-    ...rest
+    monthListLocale
   } = props
 
   const [currentYear, setCurrentYear] = useState<number>(-1)
