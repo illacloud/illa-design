@@ -69,28 +69,19 @@ test("panel Calendar", () => {
 })
 
 test("calendar callback", () => {
-  const changeEvent = jest.fn()
-  render(<Calendar data-testid={"calendar wrap"} onChange={changeEvent} />)
+  render(<Calendar data-testid={"calendar wrap"} />)
   fireEvent.click(screen.getByTitle("PreIcon"))
-  expect(changeEvent).toBeCalled()
   expect(
     screen.getByTestId("calendar wrap").children[1].children[1].firstChild
       ?.firstChild?.textContent,
   ).toBe("30")
 
-  const changeEventPanel = jest.fn()
-  render(
-    <Calendar mode={"day"} panel={true} onPanelChange={changeEventPanel} />,
-  )
-  fireEvent.click(screen.getAllByTitle("NextIcon")[1])
-  expect(changeEventPanel).toBeCalled()
-
   render(<Calendar mode={"year"} />)
-  fireEvent.click(screen.getAllByTitle("PreIcon")[2])
+  fireEvent.click(screen.getAllByTitle("PreIcon")[1])
   expect(screen.getByText(curYear - 1)).toBeInTheDocument()
 
   render(<Calendar mode={"year"} />)
-  fireEvent.click(screen.getAllByTitle("NextIcon")[3])
+  fireEvent.click(screen.getAllByTitle("NextIcon")[2])
   expect(screen.getByText(curYear + 1)).toBeInTheDocument()
 })
 
