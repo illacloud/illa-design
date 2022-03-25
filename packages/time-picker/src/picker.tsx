@@ -21,8 +21,6 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
   },
 )
 
-TimePicker.displayName = "TimePicker"
-
 export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
   (props, ref) => {
     return (
@@ -30,9 +28,11 @@ export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
         {...(props as RenderPickerProps)}
         ref={ref}
         picker={<div>TimePickerPopup</div>}
+        isRangePicker
       />
     )
   },
 )
 
+TimePicker.displayName = "TimePicker"
 RangePicker.displayName = "RangePicker"

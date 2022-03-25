@@ -4,8 +4,9 @@ import {
   InputHTMLAttributes,
   TextareaHTMLAttributes,
   KeyboardEvent,
-  Ref,
+  Ref, MutableRefObject,
 } from "react"
+import { Dayjs } from "dayjs"
 
 export type InputBoarderColor =
   | string
@@ -139,4 +140,37 @@ export interface StateValue {
   variant?: string
   size?: InputProps["size"]
   boarderColor?: InputProps["boarderColor"]
+}
+
+export interface RangeInputProps
+  extends Omit<
+    InputHTMLAttributes<HTMLDivElement>,
+    "disabled" | "size" | "placeholder" | "value"
+  > {
+  InputGroupRef?: MutableRefObject<{
+    input0?: HTMLInputElement | null
+    input1?: HTMLInputElement | null
+    focus: (index: number) => void
+    blur: () => void
+  }>
+  size?: InputSize
+  value?: Dayjs[]
+  placeholder?: string[]
+  popupVisible?: boolean
+  format?: string
+  allowClear?: boolean
+  editable?: boolean
+  error?: boolean
+  disabled?: boolean | boolean[]
+  suffixIcon?: ReactNode
+  inputValue?: string
+  separator?: ReactNode
+  focusedInputIndex?: number
+  isPlaceholder?: boolean
+  changeFocusedInputIndex?: (index: number) => void
+
+  // onChange?: (e: any) => void;
+  onClear?: () => void
+  onPressEnter?: () => void
+  onPressTab?: (e: any) => void
 }
