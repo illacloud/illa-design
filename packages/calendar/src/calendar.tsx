@@ -85,8 +85,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
 
       let result = currentDay + arithmetic * base * 24 * 60 * 60 * 1000
       setCurrentDay(result)
-
-      changeListenerFun(dayjs(result))
     }
     // select year or month
     const selectTime = (selectTimeProps: selectTimeProps) => {
@@ -126,6 +124,8 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       }
 
       setSelectDay(date.getTime())
+
+      changeListenerFun(date.getTime())
     }
 
     // jump to today
