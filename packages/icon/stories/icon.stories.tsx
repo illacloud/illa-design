@@ -46,6 +46,7 @@ import {
   PenIcon,
   PreDoubleIcon,
   NextDoubleIcon,
+  TimeIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -133,3 +134,4 @@ export const PreDouble: Story<IconProps> = (props) => (
 export const NextDouble: Story<IconProps> = (props) => (
   <NextDoubleIcon {...props} />
 )
+export const Time: Story<IconProps> = (props) => <TimeIcon {...props} />

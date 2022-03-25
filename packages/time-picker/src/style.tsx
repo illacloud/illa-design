@@ -72,6 +72,10 @@ export function applyCheckboxContainerVertical(
   `
 }
 
+export const triggerContentStyle: SerializedStyles = css`
+  border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+`
+
 export function applyTimepickerContent() {
   return css`
     display: flex;
@@ -88,6 +92,9 @@ export function applyTimepickerList() {
     &:hover {
       overflow-y: auto;
     }
+    &:not(:last-child){
+      border-right: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    }
   `
 }
 
@@ -103,5 +110,35 @@ export function applyTimeColumn() {
       width: 100%;
       height: 192px;
     }
+  `
+}
+
+export function applyColumnItem() {
+  return css`
+    padding: 4px 0;
+    //padding: 2px 24px;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+    }
+  `
+}
+export function applyColumnItemText() {
+  return css`
+    font-size: 12px;
+    line-height: 24px;
+    height: 24px;
+    &:hover {
+      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+    }
+  `
+}
+
+export function applyContentButton(): SerializedStyles {
+  return css`
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    border-top: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
   `
 }

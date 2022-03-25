@@ -25,10 +25,11 @@ import {
   def,
 } from "@illa-design/config-provider"
 import { Input } from "@illa-design/input"
-import { CheckmarkIcon, ReduceIcon } from "@illa-design/icon"
+import { TimeIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import { RenderPickerProps } from "./interface"
 import { css } from "@emotion/react"
+import { triggerContentStyle } from "./style"
 
 export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
   (props, ref) => {
@@ -48,7 +49,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       value: propsValue,
       popupVisible,
       onChange,
-      icons,
+      icons = { inputSuffix: <TimeIcon /> },
       size,
       scrollSticky = true,
       editable = true,
@@ -238,7 +239,10 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         }}
         popupVisible={currentPopupVisible}
         content={
-          <div onClick={() => inputRef.current?.focus()}>
+          <div
+            css={triggerContentStyle}
+            onClick={() => inputRef.current?.focus()}
+          >
             {React.cloneElement(picker as ReactElement, {
               ...props,
               format,

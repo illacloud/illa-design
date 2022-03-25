@@ -6,7 +6,7 @@ import React, {
   useImperativeHandle,
 } from "react"
 import debounce from "lodash/debounce"
-import { applyTimeColumn, applyTimepickerList } from "./style"
+import { applyColumnItem, applyColumnItemText, applyTimeColumn, applyTimepickerList } from "./style"
 
 type ListItem = {
   label?: string
@@ -109,6 +109,7 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
             return (
               <li
                 key={item.value}
+                css={applyColumnItem()}
                 onClick={() =>
                   !item.disabled && onHandleSelect?.(item.value, unit)
                 }
@@ -116,7 +117,7 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
                   if (item.value) lis.current?.set(item.value, element)
                 }}
               >
-                <div>{item.label}</div>
+                <div css={applyColumnItemText()}>{item.label}</div>
               </li>
             )
           })}

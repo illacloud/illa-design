@@ -10,7 +10,7 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
-import { applyTimepickerContent } from "./style"
+import { applyContentButton, applyTimepickerContent } from "./style"
 
 interface InnerTimePickerProps extends TimePickerProps {
   confirmBtnDisabled?: boolean
@@ -333,7 +333,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
       </div>
       {extra && <div>{extra}</div>}
       {!_hideFooter && (
-        <div>
+        <div css={applyContentButton()}>
           {!isRangePicker && showNowBtn ? (
             <Button colorScheme="gray" size="small" onClick={onSelectNow}>
               {locale.now}
