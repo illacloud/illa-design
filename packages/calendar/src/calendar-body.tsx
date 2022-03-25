@@ -35,7 +35,7 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
     onClickDay,
     onToToday,
     locale,
-    monthListLocale
+    monthListLocale,
   } = props
 
   // start of month data

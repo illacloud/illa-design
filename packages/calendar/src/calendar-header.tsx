@@ -35,7 +35,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
     onToToday,
     onChangeMode,
     locale,
-    monthListLocale
+    monthListLocale,
   } = props
 
   const [currentYear, setCurrentYear] = useState<number>(-1)
