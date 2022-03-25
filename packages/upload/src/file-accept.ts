@@ -1,6 +1,6 @@
 export const isAcceptFile = (file: File, accept?: string): boolean => {
   if (accept && file) {
-    let accepts: string[] = []
+    let accepts: string[]
 
     accepts = accept
       .split(",")

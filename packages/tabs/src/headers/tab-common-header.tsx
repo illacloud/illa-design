@@ -1,4 +1,11 @@
-import { forwardRef, useEffect, useMemo, useRef, useState } from "react"
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { TabHeaderChildProps, TabHeaderProps } from "../interface"
 import {
   addButtonCss,
@@ -10,11 +17,13 @@ import {
   tabCardHeaderContainerCss,
   tabHeaderContainerCss,
   tabLineHeaderContainerCss,
-} from "../styles"
+  lineCss,
+} from "../style"
 import { TabHeaderChild } from "./tab-header-child"
-import { MinusIcon, NextIcon, PreIcon } from "@illa-design/icon"
+import { AddIcon, NextIcon, PreIcon } from "@illa-design/icon"
 import useScrolling from "react-use/lib/useScrolling"
 import {
+  checkAndAdjustSelectedItemPosition,
   getChildrenWidthArr,
   getLeftTargetPosition,
   getTargetPosition,
@@ -30,10 +39,10 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       onAddTab,
       deleteIcon,
       size = "medium",
-      handleDeleteTab,
       handleSelectTab,
+      handleDeleteTab,
       tabBarSpacing,
-      addIcon = <MinusIcon />,
+      addIcon = <AddIcon />,
     } = props
 
     const containerCss = useMemo(() => {
@@ -51,28 +60,36 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     const [preDisable, setPreDisable] = useState(true)
     const [nextDisable, setNextDisable] = useState(false)
     const [needScroll, setNeedScroll] = useState(false)
-    const [leftDis, setLeftDis] = useState<number>(0)
+
+    const _handleSelectTab = useCallback((key: string, index: number) => {
+      const dist = checkAndAdjustSelectedItemPosition(
+        getChildrenWidthArr(childRef.current),
+        scrollRef?.current?.offsetWidth ?? 0,
+        scrollRef.current?.scrollLeft ?? 0,
+        index,
+      )
+      scrollRef.current?.scrollTo(dist, 0)
+      handleSelectTab(key)
+    }, [])
 
     useEffect(() => {
       if (!scrollRef?.current) return
       setNeedScroll(
         scrollRef?.current.scrollWidth > scrollRef?.current.offsetWidth,
       )
-      setLeftDis(scrollRef?.current.scrollLeft ?? 0)
-    }, [childRef, scrollRef, needScroll])
+    }, [childRef.current, scrollRef.current, needScroll])
 
     useEffect(() => {
-      setPreDisable(leftDis === 0)
-      const offsetWidth = scrollRef?.current?.offsetWidth ?? 0
-      const scrollWidth = scrollRef.current?.scrollWidth ?? 0
-      if (offsetWidth != 0 && scrollWidth != 0) {
-        setNextDisable(Math.abs(leftDis + offsetWidth - scrollWidth) < 1)
-      }
-    }, [leftDis])
-
-    useEffect(() => {
-      if (!scrolling) {
-        setLeftDis(scrollRef.current?.scrollLeft ?? 0)
+      if (!scrolling && scrollRef?.current) {
+        setPreDisable(scrollRef?.current?.scrollLeft === 0)
+        const [scrollLeft, offsetWidth, scrollWidth] = [
+          scrollRef.current.scrollLeft,
+          scrollRef.current.offsetWidth,
+          scrollRef.current.scrollWidth,
+        ]
+        if (offsetWidth != 0 && scrollWidth != 0) {
+          setNextDisable(Math.abs(scrollLeft + offsetWidth - scrollWidth) < 1)
+        }
       }
     }, [scrolling])
 
@@ -89,20 +106,20 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                 scrollRef.current?.scrollLeft ?? 0,
               )
               scrollRef.current?.scrollTo(dis, 0)
-              setLeftDis(dis)
             }}
             css={applyCommonPreNextIconCss(true, variant, preDisable)}
           >
             <PreIcon />
+            {variant === "card" && <span css={lineCss} />}
           </span>
         )}
         <div ref={scrollRef} css={containerHideScrollBarCss}>
           <div css={containerCss}>
             <div ref={childRef} css={tabHeaderContainerCss}>
               {tabHeaderChild &&
-                tabHeaderChild?.map((item, index) => {
+                tabHeaderChild?.map((item, index, array) => {
                   const childProps: TabHeaderChildProps = {
-                    handleSelectTab: handleSelectTab,
+                    handleSelectTab: (key) => _handleSelectTab(key, index),
                     title: item.title,
                     tabKey: item.tabKey,
                     isSelected: index == selectedIndex,
@@ -111,6 +128,8 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                     variant: variant,
                     closable: variant === "card" && editable,
                     deleteIcon: deleteIcon,
+                    needDivLine:
+                      variant === "text" && index !== array.length - 1,
                     handleDeleteTab: handleDeleteTab,
                     tabBarSpacing: tabBarSpacing,
                   }
@@ -148,6 +167,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             css={applyCommonPreNextIconCss(false, variant, nextDisable)}
           >
             <NextIcon />
+            {variant === "card" && <span css={lineCss} />}
           </span>
         )}
       </div>
