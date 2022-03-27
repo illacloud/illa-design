@@ -1,20 +1,24 @@
 import { HTMLAttributes, MouseEvent, ReactNode } from "react"
-import { Dayjs } from 'dayjs';
+import { Dayjs } from "dayjs"
 
-export type PickerPosition = 'top' | 'tl' | 'tr' | 'bottom' | 'bl' | 'br'
+export type PickerPosition = "top" | "tl" | "tr" | "bottom" | "bl" | "br"
 export type ShortcutType = {
-  text: ReactNode;
-  value: () => Dayjs | Dayjs[];
+  text: ReactNode
+  value: () => Dayjs | Dayjs[]
 } & Record<string, any>
-export type PickerSize = 'small' | 'medium' | 'large'
+export type PickerSize = "small" | "medium" | "large"
 export type CalendarValue = number | string | Date | Dayjs
 export type DisabledTimeProps = {
-  disabledHours?: () => number[];
-  disabledMinutes?: () => number[];
-  disabledSeconds?: () => number[];
-};
-export type RangePickerMode = 'date' | 'month' | 'week' | 'year' | 'quarter'
-export interface PickerProps extends Omit<HTMLAttributes<HTMLDivElement>, "placeholder" | "onChange" | "onSelect"> {
+  disabledHours?: () => number[]
+  disabledMinutes?: () => number[]
+  disabledSeconds?: () => number[]
+}
+export type RangePickerMode = "date" | "month" | "week" | "year" | "quarter"
+export interface PickerProps
+  extends Omit<
+    HTMLAttributes<HTMLDivElement>,
+    "placeholder" | "onChange" | "onSelect"
+  > {
   disabled?: boolean | boolean[]
   allowClear?: boolean
   position?: PickerPosition
@@ -50,31 +54,29 @@ export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {
   disabledTime?: (current?: Dayjs) => DisabledTimeProps
 }
 
-export interface WeekPickerProps extends Omit<PickerProps, "defaultValue"> {
+export interface MonthPickerProps extends Omit<PickerProps, "defaultValue"> {
   format?: string | ((value: Dayjs) => string)
   defaultValue?: CalendarValue
   value?: CalendarValue
 }
 
-export interface MonthPicker extends Omit<PickerProps, "defaultValue"> {
+export interface YearPickerProps extends Omit<PickerProps, "defaultValue"> {
   format?: string | ((value: Dayjs) => string)
   defaultValue?: CalendarValue
   value?: CalendarValue
 }
 
-export interface YearPicker extends Omit<PickerProps, "defaultValue"> {
+export interface QuarterPickerProps extends Omit<PickerProps, "defaultValue"> {
   format?: string | ((value: Dayjs) => string)
   defaultValue?: CalendarValue
   value?: CalendarValue
 }
 
-export interface QuarterPicker extends Omit<PickerProps, "defaultValue"> {
-  format?: string | ((value: Dayjs) => string)
-  defaultValue?: CalendarValue
-  value?: CalendarValue
-}
-
-export interface RangePicker extends Omit<PickerProps, "onChange" | "defaultValue" | "onOk" | "defaultPickerValue"> {
+export interface RangePickerProps
+  extends Omit<
+    PickerProps,
+    "onChange" | "defaultValue" | "onOk" | "defaultPickerValue"
+  > {
   disabled?: boolean | boolean[]
   format?: string | ((value: Dayjs) => string)
   onChange?: (dateString: string[], date: Dayjs[]) => void
@@ -85,7 +87,18 @@ export interface RangePicker extends Omit<PickerProps, "onChange" | "defaultValu
   placeholder?: string[]
   // timepickerProps?: TimePickerRangeProps
   onOk?: (dateString: string[], date: Dayjs[]) => void
-  disabledTime?: (current: Dayjs, type: 'start' | 'end') => DisabledTimeProps
+  disabledTime?: (current: Dayjs, type: "start" | "end") => DisabledTimeProps
   defaultPickerValue?: CalendarValue[]
   clearRangeOnReselect?: boolean
+}
+
+export interface CommonPickerProps {
+  pickerContent: ReactNode
+  size?: PickerSize
+  inputVal?: string
+  onClearDate?: () => void
+}
+
+export interface PickerContextProps {
+  inputVal?: string
 }
