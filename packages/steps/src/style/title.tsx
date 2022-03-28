@@ -112,6 +112,10 @@ function applyConnectionStyle({
       backgroundColor: color,
     })
   } else if (type === "navigation") {
+    const topMap = {
+      small: 6,
+      large: 10,
+    };
     pseudoStyle = css({
       width: 8,
       height: 8,
@@ -119,7 +123,7 @@ function applyConnectionStyle({
       borderLeft: "none",
       borderBottom: "none",
       transform: "rotate(45deg)",
-      top: 6,
+      top: topMap[size],
       right: 10,
     })
   }
