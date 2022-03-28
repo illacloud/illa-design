@@ -134,12 +134,19 @@ export interface PasswordProps
   onClear?: () => void
 }
 
+export type RangeInputRef = {
+  input0?: HTMLInputElement | null
+  input1?: HTMLInputElement | null
+  focus: (index: number) => void
+  blur: () => void
+}
+
 export interface RangeInputProps
   extends Omit<
     InputHTMLAttributes<HTMLDivElement>,
     "disabled" | "size" | "placeholder" | "value" | "onChange"
   > {
-  InputGroupRef?: MutableRefObject<{
+  inputGroupRef?: MutableRefObject<{
     input0?: HTMLInputElement | null
     input1?: HTMLInputElement | null
     focus: (index: number) => void
@@ -147,7 +154,8 @@ export interface RangeInputProps
   }>
   size?: InputSize
   boarderColor?: InputProps["boarderColor"]
-  value?: Dayjs[]
+  value?: string[]
+  inputValue?: string
   placeholder?: string[]
   popupVisible?: boolean
   format?: string
@@ -155,8 +163,7 @@ export interface RangeInputProps
   editable?: boolean
   error?: boolean
   disabled?: boolean | boolean[]
-  suffix?: ReactNode
-  inputValue?: string
+  suffix?: { custom?: boolean; render?: ReactNode }
   separator?: ReactNode
   focusedInputIndex?: number
   isPlaceholder?: boolean

@@ -29,7 +29,7 @@ import { TimeIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import { RenderPickerProps } from "./interface"
 import { triggerContentStyle } from "./style"
-import { RangeInput } from "../../input/src"
+import { RangeInput, RangeInputRef } from "../../input/src"
 
 export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
   (props, ref) => {
@@ -76,6 +76,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     const locale = configProviderProps?.locale?.timePicker ?? def.timePicker
     const [valueShow, setValueShow] = useState<Dayjs | Dayjs[]>()
     const [inputValue, setInputValue] = useState<string>()
+    const [rangeInputValue, setRangeInputValue] = useState<string[] | undefined>()
     const [focusedInputIndex, setFocusedInputIndex] = useState<number>(0)
 
     // controlled / uncontrolled
@@ -89,6 +90,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     })
 
     const inputRef = useRef<HTMLInputElement>(null)
+    const inputGroupRef = useRef({} as RangeInputRef)
 
     const rangeInputPlaceholder = isArray(placeholder)
       ? placeholder
@@ -105,8 +107,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
 
     function changeFocusedInputIndex(index: number) {
       setFocusedInputIndex(index)
-      // [todo] focus on index
-      // setTimeout(() => inputRef.current?.focus(index));
+      setTimeout(() => inputGroupRef.current?.focus(index))
     }
 
     const setOpen = (visible: boolean, callback?: Function) => {
@@ -114,6 +115,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         setCurrentPopupVisible(visible)
       }
       setInputValue(undefined)
+      setRangeInputValue(undefined)
       callback?.()
       if (!visible) {
         setValueShow(undefined)
@@ -183,11 +185,19 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         onClear?.()
       },
       onChange: (inputValue?: string) => {
+        console.log(inputValue, isValidTime(inputValue), "onChange")
         if (!currentPopupVisible) {
           setCurrentPopupVisible(true)
         }
-        setInputValue(inputValue)
         if (isRangePicker) {
+          if (!inputValue) {
+            setRangeInputValue(undefined)
+            return
+          }
+          const val = rangeInputValue || []
+          val[focusedInputIndex] = inputValue
+          console.log(val, rangeInputValue, 'val, rangeInputValue')
+          setRangeInputValue(val)
           const newValueShow = [
             ...(isArray(valueShow)
               ? valueShow
@@ -201,21 +211,28 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
             setValueShow(newValueShow)
             setInputValue(undefined)
           }
-        } else if (isValidTime(inputValue)) {
-          setValueShow(getDayjsValue(inputValue, format))
-          setInputValue(undefined)
+        } else {
+          setInputValue(inputValue)
+          if (isValidTime(inputValue)) {
+            setValueShow(getDayjsValue(inputValue, format))
+            setInputValue(undefined)
+          }
         }
       },
     }
 
-    let showValue = ""
-    if (inputValue !== undefined) {
-      showValue = inputValue
-    } else if (valueShow && !isArray(valueShow)) {
-      showValue = dayjs(valueShow)?.format(format)
-    } else if (currentValue && !isArray(currentValue)) {
-      showValue = dayjs(currentValue)?.format(format)
+    const formatTime = (str: Dayjs) => {
+      return dayjs(str)?.format(format)
     }
+
+    console.log(rangeInputValue
+      ? rangeInputValue
+      : isArray(valueShow) && valueShow.length
+        ? [formatTime(valueShow[0]), formatTime(valueShow?.[1])]
+        : isArray(currentValue) && currentValue.length
+          ? [formatTime(currentValue[0]), formatTime(currentValue?.[1])]
+          : [], 'show')
+    console.log(rangeInputValue, valueShow, currentValue)
 
     return (
       <Trigger
@@ -266,15 +283,33 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         {isRangePicker ? (
           <RangeInput
             {...baseInputProps}
+            inputGroupRef={inputGroupRef}
             focusedInputIndex={focusedInputIndex}
             changeFocusedInputIndex={changeFocusedInputIndex}
+            value={
+              rangeInputValue
+                ? rangeInputValue
+                : isArray(valueShow) && valueShow.length
+                ? [formatTime(valueShow[0]), formatTime(valueShow?.[1])]
+                : isArray(currentValue) && currentValue.length
+                ? [formatTime(currentValue[0]), formatTime(currentValue?.[1])]
+                : []
+            }
           />
         ) : (
           <Input
             {...baseInputProps}
             inputRef={inputRef}
             placeholder={inputPlaceHolder}
-            value={showValue}
+            value={
+              inputValue
+                ? inputValue
+                : valueShow && !isArray(valueShow)
+                ? formatTime(valueShow)
+                : currentValue && !isArray(currentValue)
+                ? formatTime(currentValue)
+                : ""
+            }
           />
         )}
       </Trigger>
