@@ -43,18 +43,18 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>(
       index += 1
 
       const childProps = {
-        type,
         index,
         current,
+        type,
+        size,
         status: current === index ? status : undefined,
         customDot,
-        labelPlacement,
         direction,
-        onClick: onChange,
+        labelPlacement,
         lineless,
         lastStep: index === arr.length,
-        size,
         nextStepError: status === "error" && current > index,
+        onClick: onChange,
         ...(child as ReactElement).props,
       }
 

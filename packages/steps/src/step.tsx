@@ -9,7 +9,8 @@ import {
   applyTitleStyle,
   applyContentStyle,
   applyWrapperStyle,
-  applyConnctionNodeStyle,
+  applyConnectionNodeStyle,
+  isVerticalLabel,
 } from "./style"
 
 export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
@@ -97,12 +98,11 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
 
     if (
       direction === "vertical" ||
-      labelPlacement === "vertical" ||
-      type === "dot"
+      isVerticalLabel({ type, direction, labelPlacement })
     ) {
       return (
         <div
-          css={applyConnctionNodeStyle({
+          css={applyConnectionNodeStyle({
             type,
             direction,
             size,
@@ -119,14 +119,15 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     <div
       ref={ref}
       css={applyWrapperStyle({
-        direction,
         type,
         status: currentStatus,
-        disabled,
+        direction,
         labelPlacement,
+        disabled,
       })}
-      className={className}
       onClick={onClickStep}
+      style={style}
+      className={className}
       {...restProps}
     >
       {renderConnectionNode()}
@@ -136,13 +137,13 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
       >
         <div
           css={applyTitleStyle({
-            size,
             type,
+            size,
             lastStep,
             lineless,
-            nextStepError,
             direction,
             labelPlacement,
+            nextStepError,
             status: currentStatus,
           })}
         >

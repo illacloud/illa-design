@@ -1,9 +1,9 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import { StepStyleConfig } from "../interface"
+import { LabelPlacement, StepSize, StepStyleConfig } from "../interface"
 
-export function applyConnctionNodeStyle({
+export function applyConnectionNodeStyle({
   size,
   type,
   direction,
@@ -12,51 +12,91 @@ export function applyConnctionNodeStyle({
   let color = globalColor(`--${illaPrefix}-gray-08`)
 
   if (type === "dot") {
-    if (direction === "horizontal") {
-      const topMap = {
-        small: 4,
-        large: 4.5,
-      }
-      return css({
-        position: "absolute",
-        display: "block",
-        height: 1,
-        width: "100%",
-        left: 78,
-        top: topMap[size],
-        backgroundColor: color,
-      })
-    } else if (direction === "vertical") {
-      const positionMap = {
-        small: {
-          left: 3.5,
-          top: 22,
-          bottom: -5,
-        },
-        large: {
-          left: 4.5,
-          top: 24,
-          bottom: -8,
-        },
-      }
-      return css({
-        position: "absolute",
-        display: "block",
-        width: 1,
-        ...positionMap[size],
-        backgroundColor: color,
-      })
-    }
+    return generateDotConnnector({ direction, size, color })
+  } else if (type === "line") {
+    return generateLineConnector({ direction, labelPlacement, size, color })
   }
 
+  return css``
+}
+
+function generateDotConnnector({
+  direction,
+  size,
+  color,
+}: {
+  direction: LabelPlacement
+  size: StepSize
+  color: string
+}): SerializedStyles {
   if (direction === "vertical") {
+    const positionMap = {
+      small: {
+        left: 3.5,
+        top: 22,
+        bottom: -5,
+      },
+      large: {
+        left: 4.5,
+        top: 24,
+        bottom: -8,
+      },
+    }
     return css({
       position: "absolute",
       display: "block",
       width: 1,
-      left: 12,
-      top: 28,
-      bottom: 5,
+      ...positionMap[size],
+      backgroundColor: color,
+    })
+  } else if (direction === "horizontal") {
+    const topMap = {
+      small: 4,
+      large: 4.5,
+    }
+    return css({
+      position: "absolute",
+      display: "block",
+      height: 1,
+      width: "100%",
+      left: 78,
+      top: topMap[size],
+      backgroundColor: color,
+    })
+  }
+
+  return css``;
+}
+
+function generateLineConnector({
+  direction,
+  labelPlacement,
+  size,
+  color,
+}: {
+  direction: LabelPlacement
+  labelPlacement: LabelPlacement
+  size: StepSize
+  color: string
+}): SerializedStyles {
+  if (direction === "vertical") {
+    const positionMap = {
+      small: {
+        left: 12,
+        top: 28,
+        bottom: 5,
+      },
+      large: {
+        left: 16,
+        top: 36,
+        bottom: 5,
+      },
+    }
+    return css({
+      position: "absolute",
+      display: "block",
+      width: 1,
+      ...positionMap[size],
       backgroundColor: color,
     })
   } else if (labelPlacement === "vertical") {
@@ -94,5 +134,5 @@ export function applyConnctionNodeStyle({
     )
   }
 
-  return css``
+  return css``;
 }
