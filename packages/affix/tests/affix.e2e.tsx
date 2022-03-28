@@ -58,7 +58,6 @@ it("Affix renders correctly", () => {
   unmount()
 })
 
-
 it("Affix renders with fixed 100px to window top", () => {
   mount(<TestAffix offsetTop={100} key="top"></TestAffix>)
 
@@ -71,10 +70,9 @@ it("Affix renders with fixed 100px to window top", () => {
   unmount()
 })
 
-
 it("Affix renders with fixed 100px to window bottom", () => {
   mount(<TestAffix offsetBottom={100} key="bottom"></TestAffix>)
-  cy.scrollTo("top");
+  cy.scrollTo("top")
   cy.findByText("Affix content")
     .parent()
     .should("have.css", "position", "fixed")
@@ -82,7 +80,6 @@ it("Affix renders with fixed 100px to window bottom", () => {
 
   unmount()
 })
-
 
 it("Affix renders with onChange event", () => {
   const onChangeEvent = cy.stub().as("onChangeEvent")
