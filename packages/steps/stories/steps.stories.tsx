@@ -112,6 +112,13 @@ export const CustomDot = () => {
 }
 
 export const Size = () => {
+  const steps = (
+    <>
+      <Step title="Succeeded" description="Read the message" />
+      <Step title="Processing" description="Please Confirm" />
+      <Step title="Pending" description="Commit it" />
+    </>
+  )
   return (
     <Space direction="vertical">
       <Steps style={{ width: 800 }}>
@@ -137,6 +144,20 @@ export const Size = () => {
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
       </Steps>
+
+      <Space>
+        <Steps direction="vertical">
+          <Step title="Succeeded" description="Read the message" />
+          <Step title="Processing" description="Please Confirm" />
+          <Step title="Pending" description="Commit it" />
+        </Steps>
+
+        <Steps size="large" direction="vertical">
+          <Step title="Succeeded" description="Read the message" />
+          <Step title="Processing" description="Please Confirm" />
+          <Step title="Pending" description="Commit it" />
+        </Steps>
+      </Space>
 
       <Steps style={{ width: 800 }} type="dot">
         <Step title="Succeeded" description="Read the message" />
