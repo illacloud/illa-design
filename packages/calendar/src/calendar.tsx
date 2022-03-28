@@ -85,6 +85,8 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
 
       let result = currentDay + arithmetic * base * 24 * 60 * 60 * 1000
       setCurrentDay(result)
+
+      onPanelChange && onPanelChange(dayjs(result))
     }
     // select year or month
     const selectTime = (selectTimeProps: selectTimeProps) => {
@@ -125,7 +127,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
 
       setSelectDay(date.getTime())
 
-      changeListenerFun(date.getTime())
+      onChange && onChange(dayjs(date.getTime()))
     }
 
     // jump to today
@@ -133,15 +135,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       setCurrentDay(Date.now())
       setSelectDay(new Date(new Date().toLocaleDateString()).getTime())
 
-      changeListenerFun(Date.now())
-    }
-
-    const changeListenerFun = (date: any) => {
-      if (panel) {
-        onPanelChange && onPanelChange(date)
-      } else {
-        onChange && onChange(dayjs(date))
-      }
+      onChange && onChange(dayjs(Date.now()))
     }
 
     return (
@@ -177,7 +171,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
           dayStartOfWeek={dayStartOfWeek}
           mode={modeVal}
           disabledDate={disabledDate}
-          onPanelChange={onPanelChange}
+          onChange={onChange}
           dateRender={dateRender}
           monthRender={monthRender}
           dateInnerContent={dateInnerContent}
