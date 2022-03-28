@@ -4,7 +4,8 @@ import {
   InputHTMLAttributes,
   TextareaHTMLAttributes,
   KeyboardEvent,
-  Ref, MutableRefObject,
+  Ref,
+  MutableRefObject,
 } from "react"
 import { Dayjs } from "dayjs"
 
@@ -133,19 +134,10 @@ export interface PasswordProps
   onClear?: () => void
 }
 
-export interface StateValue {
-  disabled?: boolean
-  error?: boolean
-  focus?: boolean
-  variant?: string
-  size?: InputProps["size"]
-  boarderColor?: InputProps["boarderColor"]
-}
-
 export interface RangeInputProps
   extends Omit<
     InputHTMLAttributes<HTMLDivElement>,
-    "disabled" | "size" | "placeholder" | "value"
+    "disabled" | "size" | "placeholder" | "value" | "onChange"
   > {
   InputGroupRef?: MutableRefObject<{
     input0?: HTMLInputElement | null
@@ -154,6 +146,7 @@ export interface RangeInputProps
     blur: () => void
   }>
   size?: InputSize
+  boarderColor?: InputProps["boarderColor"]
   value?: Dayjs[]
   placeholder?: string[]
   popupVisible?: boolean
@@ -162,15 +155,29 @@ export interface RangeInputProps
   editable?: boolean
   error?: boolean
   disabled?: boolean | boolean[]
-  suffixIcon?: ReactNode
+  suffix?: ReactNode
   inputValue?: string
   separator?: ReactNode
   focusedInputIndex?: number
   isPlaceholder?: boolean
   changeFocusedInputIndex?: (index: number) => void
 
-  // onChange?: (e: any) => void;
+  onChange?: (value: string, event: any) => void
   onClear?: () => void
   onPressEnter?: () => void
   onPressTab?: (e: any) => void
+}
+
+export interface StateValue {
+  disabled?: boolean
+  error?: boolean
+  focus?: boolean
+  variant?: string
+  size?: InputProps["size"]
+  boarderColor?: InputProps["boarderColor"]
+  // only RangeInput
+  focusedInput0?: boolean
+  focusedInput1?: boolean
+  disabled0?: boolean
+  disabled1?: boolean
 }

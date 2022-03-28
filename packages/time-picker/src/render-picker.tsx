@@ -28,8 +28,8 @@ import { Input } from "@illa-design/input"
 import { TimeIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import { RenderPickerProps } from "./interface"
-import { css } from "@emotion/react"
 import { triggerContentStyle } from "./style"
+import { RangeInput } from "../../input/src"
 
 export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
   (props, ref) => {
@@ -149,7 +149,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     const baseInputProps = {
       style,
       className,
-      // popupVisible: currentPopupVisible,
       format,
       disabled,
       error,
@@ -265,14 +264,14 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         {...triggerProps}
       >
         {isRangePicker ? (
-          <div>InputRange</div>
+          <RangeInput
+            {...baseInputProps}
+            focusedInputIndex={focusedInputIndex}
+            changeFocusedInputIndex={changeFocusedInputIndex}
+          />
         ) : (
           <Input
             {...baseInputProps}
-            css={css`
-              width: unset;
-              display: inline-flex;
-            `}
             inputRef={inputRef}
             placeholder={inputPlaceHolder}
             value={showValue}

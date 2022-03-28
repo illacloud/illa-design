@@ -41,6 +41,13 @@ export default {
       },
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        type: "code",
+      },
+    },
+  }
 } as Meta
 
 const Template: Story<InputProps> = (props) => {

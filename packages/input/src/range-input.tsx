@@ -10,11 +10,20 @@ import { css } from "@emotion/react"
 import { omit, isArray } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
 import { RangeInputProps } from "./interface"
-import { applyInputStyle, mirrorStyle, pointerStyle } from "./style"
+import {
+  applyInputStyle,
+  applyRangeContainer,
+  applyRangeInput,
+  mirrorStyle,
+  pointerStyle,
+  SeparatorStyle,
+} from "./style"
 
 export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
   (props, ref) => {
     const {
+      style,
+      className,
       InputGroupRef,
       allowClear,
       error,
@@ -22,27 +31,32 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
       placeholder,
       value,
       type,
+      boarderColor = "blue",
+      size = "medium",
       separator,
+      format,
+      suffix,
+      popupVisible,
       focusedInputIndex,
       // events
       onChange,
       onClear,
+      onFocus,
+      onBlur,
       onPressEnter,
       onPressTab,
+      changeFocusedInputIndex,
       ...otherProps
     } = props
 
     const disabled0 = isArray(disabled) ? disabled[0] : disabled
     const disabled1 = isArray(disabled) ? disabled[1] : disabled
 
+    const [focus0, setFocus0] = useState(false)
+    const [focus1, setFocus1] = useState(false)
+
     const inputRef = useRef<HTMLInputElement>(null)
     const input1Ref = useRef<HTMLInputElement>(null)
-    const mirrorInputRef = useRef<HTMLSpanElement>(null)
-
-    const isComposition = useRef(false)
-    const [compositionValue, setCompositionValue] = useState<
-      string | undefined
-    >("")
 
     if (InputGroupRef) {
       useImperativeHandle(
@@ -71,10 +85,26 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
       )
     }
 
+    const changeFocusedInput = (index: number) => {
+      if (focusedInputIndex !== index) {
+        changeFocusedInputIndex?.(index)
+      }
+    }
+
+    const stateValue = {
+      variant: 'outline',
+      boarderColor,
+      size,
+      error,
+      focus: focus0 || focus1,
+      disabled: disabled0 && disabled1,
+    }
+
     const inputProps = {
-      onChange: (e: any) => {
-        e?.stopPropagation()
-        onChange?.(e)
+      onChange: (event: any) => {
+        const value = event.target?.value
+        event?.stopPropagation()
+        onChange?.(value, event)
       },
       onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => {
         const keyCode = e.keyCode || e.which
@@ -90,23 +120,41 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
     }
 
     return (
-      <div {...otherProps}>
+      <div css={applyRangeContainer(stateValue)} style={style} className={className}>
         <input
           ref={inputRef}
-          css={applyInputStyle()}
+          css={css(applyInputStyle(), applyRangeInput())}
           placeholder={placeholder?.[0]}
-          disabled={isArray(disabled) ? disabled[0] : disabled}
+          disabled={disabled0}
+          onClick={() => changeFocusedInput(0)}
+          onFocus={(e) => {
+            setFocus0(true)
+            onFocus?.(e)
+          }}
+          onBlur={(e) => {
+            setFocus0(false)
+            onBlur?.(e)
+          }}
           {...inputProps}
-          {...(type ? { type } : {})}
+          {...otherProps}
         />
-        <span>{separator || "-"}</span>
+        <span css={css`padding: 0 8px;`}>{separator || <div css={SeparatorStyle} />}</span>
         <input
           ref={input1Ref}
-          css={applyInputStyle()}
+          css={css(applyInputStyle(), applyRangeInput())}
           placeholder={placeholder?.[1]}
-          disabled={isArray(disabled) ? disabled[1] : disabled}
+          disabled={disabled1}
+          onClick={() => changeFocusedInput(1)}
+          onFocus={(e) => {
+            setFocus1(true)
+            onFocus?.(e)
+          }}
+          onBlur={(e) => {
+            setFocus1(false)
+            onBlur?.(e)
+          }}
           {...inputProps}
-          {...(type ? { type } : {})}
+          {...otherProps}
         />
         {!disabled && allowClear && value ? (
           <span
