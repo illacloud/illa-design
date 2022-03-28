@@ -1,13 +1,7 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import {
-  labelPlacement,
-  stepSize,
-  stepStatus,
-  StepStyleConfig,
-  stepType,
-} from "../interface"
+import { StepStatus, StepStyleConfig, StepType } from "../interface"
 import { statusColor } from "../style"
 
 export function applyTitleStyle({
@@ -23,7 +17,7 @@ export function applyTitleStyle({
   lastStep: boolean
   nextStepError: boolean
   lineless: boolean
-  status: stepStatus
+  status: StepStatus
 } & StepStyleConfig): SerializedStyles {
   return css([
     applyTitleSize({ size, direction, type, labelPlacement }),
@@ -71,7 +65,7 @@ function applyTitleSize({
   return sizeCss
 }
 
-function applyTitleColor(status: stepStatus) {
+function applyTitleColor(status: StepStatus) {
   let color = globalColor(`--${illaPrefix}-gray-02`)
 
   if (status === "wait") {
@@ -88,8 +82,8 @@ function applyConnectionStyle({
   status,
   nextStepError = false,
 }: {
-  type: stepType
-  status?: stepStatus
+  type: StepType
+  status?: StepStatus
   nextStepError: boolean
 }): SerializedStyles {
   let pseudoStyle: SerializedStyles = css``

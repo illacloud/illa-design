@@ -1,32 +1,31 @@
 import { HTMLAttributes, ReactNode } from "react"
 
-export type labelPlacement = "vertical" | "horizontal"
-export type stepType = "line" | "dot" | "navigation"
-export type stepSize = "small" | "large"
-export type stepStatus = "wait" | "process" | "finish" | "error"
-
+export type LabelPlacement = "vertical" | "horizontal"
+export type StepType = "line" | "dot" | "navigation"
+export type StepSize = "small" | "large"
+export type StepStatus = "wait" | "process" | "finish" | "error"
 export type StepStyleConfig = {
-  type: stepType
-  size: stepSize
-  direction: labelPlacement
-  labelPlacement: labelPlacement
+  type: StepType
+  size: StepSize
+  direction: LabelPlacement
+  labelPlacement: LabelPlacement
 }
 
 type StepConfig = {
   index: number
-  status: stepStatus
+  status: StepStatus
   title: string | ReactNode
   description: string | ReactNode
 }
 
 export interface StepsProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  type?: stepType
+  type?: StepType
   current?: number
-  status?: stepStatus
-  direction?: labelPlacement
-  labelPlacement?: labelPlacement
-  size?: stepSize
+  status?: StepStatus
+  direction?: LabelPlacement
+  labelPlacement?: LabelPlacement
+  size?: StepSize
   lineless?: boolean
   customDot?: (icon: React.ReactNode, stepConfig: StepConfig) => React.ReactNode
   onChange?: (current: number, id: any) => void
@@ -37,15 +36,15 @@ export interface StepProps
   title: string | ReactNode
   id?: any
   description?: string | ReactNode
-  type?: stepType
-  status?: stepStatus
+  type?: StepType
+  status?: StepStatus
   icon?: ReactNode
   disabled?: boolean
   index?: number
   current?: number
-  size?: stepSize
-  labelPlacement?: labelPlacement
-  direction?: labelPlacement
+  size?: StepSize
+  labelPlacement?: LabelPlacement
+  direction?: LabelPlacement
   customDot?: (icon: React.ReactNode, stepConfig: StepConfig) => React.ReactNode
   onClick?: (index: number, id: any) => void
   nextStepError?: boolean

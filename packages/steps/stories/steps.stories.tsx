@@ -4,7 +4,9 @@ import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
 import { Button } from "@illa-design/button"
 import { HeartIcon, LikeIcon, ShareIcon } from "@illa-design/icon"
-import { Step, Steps, StepsProps } from "../src"
+import { Steps, StepsProps } from "../src"
+
+const { Step } = Steps;
 
 export default {
   title: "NAVIGATION/Steps",

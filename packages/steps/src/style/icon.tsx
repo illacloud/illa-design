@@ -1,7 +1,6 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import { stepSize, stepStatus, stepType, StepStyleConfig } from "../interface"
+import { StepSize, StepStatus, StepType, StepStyleConfig } from "../interface"
 import { statusColor } from "../style"
 
 export function applyIconStyle({
@@ -11,7 +10,7 @@ export function applyIconStyle({
   labelPlacement,
   direction,
 }: {
-  status: stepStatus
+  status: StepStatus
 } & StepStyleConfig): SerializedStyles {
   return css(
     css`
@@ -28,7 +27,7 @@ export function applyIconStyle({
   )
 }
 
-function applyIconColor(status: stepStatus): SerializedStyles {
+function applyIconColor(status: StepStatus): SerializedStyles {
   let color, backgroundColor
 
   switch (status) {
@@ -57,9 +56,9 @@ function applyIconSize({
   type,
   status,
 }: {
-  size: stepSize
-  type: stepType
-  status: stepStatus
+  size: StepSize
+  type: StepType
+  status: StepStatus
 }): SerializedStyles {
   let sizeCss: SerializedStyles
 

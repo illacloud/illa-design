@@ -1,11 +1,11 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
-import { labelPlacement } from "../interface"
+import { LabelPlacement } from "../interface"
 
 export function applyStepsStyle({
   direction,
 }: {
-  direction: labelPlacement
+  direction: LabelPlacement
 }): SerializedStyles {
   return css([
     css`
@@ -18,7 +18,7 @@ export function applyStepsStyle({
 function applyDirection({
   direction,
 }: {
-  direction: labelPlacement
+  direction: LabelPlacement
 }): SerializedStyles {
   return direction === "vertical"
     ? css`

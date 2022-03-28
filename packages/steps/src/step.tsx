@@ -2,7 +2,7 @@
 import React, { forwardRef } from "react"
 import { CloseIcon, SuccessIcon } from "@illa-design/icon"
 import { isFunction } from "@illa-design/system"
-import { StepProps, stepStatus } from "./interface"
+import { StepProps, StepStatus } from "./interface"
 import {
   applyDescriptionStyle,
   applyIconStyle,
@@ -36,7 +36,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     ...restProps
   } = props
 
-  let currentStatus: stepStatus = "wait"
+  let currentStatus: StepStatus = "wait"
 
   const hoverable = !!onClick && !disabled && current !== index
 
@@ -56,7 +56,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     }
   }
 
-  function renderIcon(status: stepStatus) {
+  function renderIcon(status: StepStatus) {
     if (type === "dot") {
       return null
     }

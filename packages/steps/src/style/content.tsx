@@ -1,13 +1,7 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import {
-  stepSize,
-  stepType,
-  labelPlacement,
-  StepStyleConfig,
-} from "../interface"
-import React, { CSSProperties } from "react"
+import { StepType, LabelPlacement } from "../interface"
 
 export function applyContentStyle({
   type,
@@ -15,9 +9,9 @@ export function applyContentStyle({
   direction,
   hoverable,
 }: {
-  type: stepType
-  labelPlacement: labelPlacement
-  direction: labelPlacement
+  type: StepType
+  labelPlacement: LabelPlacement
+  direction: LabelPlacement
   hoverable: boolean
 }): SerializedStyles {
   return css([
@@ -32,9 +26,9 @@ function applyContentDisplay({
   labelPlacement,
   direction,
 }: {
-  type: stepType
-  labelPlacement: labelPlacement
-  direction: labelPlacement
+  type: StepType
+  labelPlacement: LabelPlacement
+  direction: LabelPlacement
 }): SerializedStyles {
   // if type === dot, contents only show beside the icon
   const verticalStyle = css`
@@ -60,12 +54,12 @@ function applyContentSize({
   labelPlacement,
   direction,
 }: {
-  labelPlacement: labelPlacement
-  direction: labelPlacement
-  type: stepType
+  labelPlacement: LabelPlacement
+  direction: LabelPlacement
+  type: StepType
 }) {
-  let width = css``;
-  let margin = css``;
+  let width = css``
+  let margin = css``
 
   if (
     (type === "dot" && direction === "horizontal") ||
@@ -77,10 +71,12 @@ function applyContentSize({
   }
 
   if (type === "navigation") {
-    margin = css`margin-bottom: 16px;`;
+    margin = css`
+      margin-bottom: 16px;
+    `
   }
 
-  return css([width, margin]);
+  return css([width, margin])
 }
 
 function applyHover(hoverable: boolean): SerializedStyles {
@@ -91,9 +87,9 @@ function applyHover(hoverable: boolean): SerializedStyles {
   const hoverColor = globalColor(`--${illaPrefix}-blue-05`)
 
   return css`
-      &:hover > * {
+    &:hover > * {
       cursor: pointer;
       color: ${hoverColor};
-      }
+    }
   `
 }
