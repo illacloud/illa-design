@@ -10,7 +10,7 @@ export default {
 } as Meta
 
 const Template: Story<CalenderProps> = (props) => {
-  return <Calendar {...props} mode={'year'} panel />
+  return <Calendar {...props} mode={"year"} panel />
 }
 
 export const Basic = Template.bind({})
