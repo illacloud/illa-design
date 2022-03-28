@@ -1,7 +1,7 @@
-/** @jsxImportSource @emotion/react */
 import { Ellipsis, EllipsisBuilder } from "./ellipsis-config"
-import * as React from "react"
+
 import {
+  Children,
   FC,
   Fragment,
   MutableRefObject,
@@ -152,7 +152,7 @@ export const Base: FC<BaseProps> = (props) => {
     <span
       onClick={() => {
         setCopied(true)
-        copyToClipboard(mergedToString(React.Children.toArray(props.children)))
+        copyToClipboard(mergedToString(Children.toArray(props.children)))
         if (originCopyable.onCopy != undefined) {
           originCopyable.onCopy()
         }

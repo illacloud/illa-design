@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Radio, RadioProps } from "../src"
 import { BsFacebook } from "react-icons/bs"

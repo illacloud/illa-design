@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, useContext } from "react"
 import { Image } from "@illa-design/image"
 import { EmptyIcon } from "@illa-design/icon"

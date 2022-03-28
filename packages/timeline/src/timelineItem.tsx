@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { forwardRef } from "react"
 import { TimelineItemProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"

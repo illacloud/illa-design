@@ -1,7 +1,6 @@
 import { CheckboxGroup } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import * as React from "react"
 
 test("CheckboxGroup renders with text", () => {
   render(<CheckboxGroup options={["A", "B", "C"]} />)

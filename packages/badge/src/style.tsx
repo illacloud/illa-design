@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css, keyframes } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { isObject } from "@illa-design/system"

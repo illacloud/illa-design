@@ -1,9 +1,11 @@
-import React, {
+import {
   HTMLAttributes,
   PropsWithChildren,
   ReactNode,
   ReactElement,
+  FocusEvent,
   UIEventHandler,
+  JSXElementConstructor,
 } from "react"
 
 export interface OptionProps
@@ -38,10 +40,7 @@ export type LabeledValue = {
 }
 
 export interface OptionListProps<T> {
-  childrenList?: React.ReactElement<
-    any,
-    string | React.JSXElementConstructor<any>
-  >[]
+  childrenList?: ReactElement<any, string | JSXElementConstructor<any>>[]
   notFoundContent?: ReactNode
   render?: (data: T, index: number) => ReactNode
   onMouseMove?: () => void
@@ -102,8 +101,8 @@ export interface SelectProps
     value: string | number | LabeledValue,
     option: OptionInfo,
   ) => void
-  onFocus?: (e: React.FocusEvent<HTMLDivElement>) => void
-  onBlur?: (e: React.FocusEvent<HTMLDivElement>) => void
+  onFocus?: (e: FocusEvent<HTMLDivElement>) => void
+  onBlur?: (e: FocusEvent<HTMLDivElement>) => void
   onClear?: (visible?: boolean) => void
 }
 

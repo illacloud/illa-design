@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Children, forwardRef } from "react"
 import { ButtonProps } from "./interface"
 import { css } from "@emotion/react"

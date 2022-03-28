@@ -1,7 +1,6 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { CardSize } from "./interface"
-import React from "react"
 
 export function applyCard(bordered: boolean, hoverable: boolean) {
   const border = bordered

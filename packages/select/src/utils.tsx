@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react"
+import { Children, cloneElement, Key, ReactElement } from "react"
 import {
   OptionInfo,
   OptionInfoMap,
@@ -32,7 +32,7 @@ export function getHighlightText<T>({
   const transformNode = (node: any) => {
     if (node && node.props && typeof node.props.children === "string") {
       const { children } = node.props
-      return React.cloneElement(node, {
+      return cloneElement(node, {
         children: (() => {
           let indexOfNextRegTest = 0
           const result = []
@@ -94,7 +94,7 @@ export function flatChildren(
 
   const getChildKey = (
     { label, value }: any,
-    key?: React.Key | null,
+    key?: Key | null,
     isGroupTitle?: boolean,
   ) => {
     // Handle custom node key
@@ -123,7 +123,7 @@ export function flatChildren(
 
     if (!optionInfoMap.get(optionValue)) {
       if (!("_key" in child.props)) {
-        child = React.cloneElement(child, {
+        child = cloneElement(child, {
           _key: getChildKey(child.props, child.key),
         })
       }
@@ -184,12 +184,12 @@ export function flatChildren(
   }
 
   if (children) {
-    React.Children?.map(children as any, (child: React.ReactElement) => {
+    Children.map(children as any, (child: ReactElement) => {
       if (isSelectOption(child)) {
         handleOption(child, "children")
       } else if (isObject(child) && child.props) {
         childrenList.push(
-          React.cloneElement(child, {
+          cloneElement(child, {
             _key: getChildKey(child.props, child.key),
           }),
         )

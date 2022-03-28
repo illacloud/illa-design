@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { forwardRef, useState } from "react"
 import { TagProps } from "./interface"
 import { css } from "@emotion/react"
