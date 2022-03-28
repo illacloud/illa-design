@@ -6,7 +6,7 @@ import { Button } from "@illa-design/button"
 import { HeartIcon, LikeIcon, ShareIcon } from "@illa-design/icon"
 import { Steps, StepsProps } from "../src"
 
-const { Step } = Steps;
+const { Step } = Steps
 
 export default {
   title: "NAVIGATION/Steps",
@@ -27,6 +27,48 @@ const Template: Story<StepsProps> = (args) => {
 export const Basic = Template.bind({})
 Basic.args = {
   current: 2,
+}
+
+export const Size = () => {
+  return (
+    <Space direction="vertical">
+      <Steps style={{ width: 800 }}>
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} size="large">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} type="dot">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} type="dot" size="large">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} type="navigation">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} type="navigation" size="large">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+    </Space>
+  )
 }
 
 const TemplateWithDescription = (args) => (
