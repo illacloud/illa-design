@@ -1,4 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { StepType, LabelPlacement } from "./interface"
 export * from "./style/steps"
 export * from "./style/icon"
 export * from "./style/content"
@@ -24,4 +25,24 @@ export const statusColor = {
     color: globalColor(`--${illaPrefix}-red-03`),
     backgroundColor: globalColor(`--${illaPrefix}-red-07`),
   },
+}
+
+export function isVerticalLabel({
+  type,
+  direction,
+  labelPlacement,
+}: {
+  type: StepType
+  direction: LabelPlacement
+  labelPlacement: LabelPlacement
+}) {
+  if (labelPlacement === "vertical") {
+    return true
+  }
+  // if type === dot, contents should be vertical
+  if (type === "dot" && direction === "horizontal") {
+    return true
+  }
+
+  return false
 }

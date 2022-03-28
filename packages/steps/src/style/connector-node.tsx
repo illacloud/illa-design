@@ -26,7 +26,7 @@ export function applyConnctionNodeStyle({
         display: "block",
         width: 1,
         left: 3.5,
-        top: 18, // TODO: cal by size
+        top: 18,
         bottom: -5,
         backgroundColor: color,
       })
@@ -39,7 +39,7 @@ export function applyConnctionNodeStyle({
       display: "block",
       width: 1,
       left: 12,
-      top: 28, // cal by size
+      top: 28,
       bottom: 5,
       backgroundColor: color,
     })

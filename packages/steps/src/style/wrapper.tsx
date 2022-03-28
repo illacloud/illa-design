@@ -1,8 +1,8 @@
+// wrapper container that contains icon & title & description
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 import { StepType, LabelPlacement, StepStatus } from "../interface"
-import { statusColor } from "../style";
+import { statusColor } from "../style"
 
 export function applyWrapperStyle({
   direction,
@@ -17,21 +17,21 @@ export function applyWrapperStyle({
 }): SerializedStyles {
   const overflow = type === "dot" ? "visible" : "hidden"
   const minHeight = direction === "vertical" ? 90 : "unset"
-  let navigactionProcessIndicator = css``
-  let style = css({
+  let navigactionProcessStatusIndicator = css``
+  let boxStyle = css({
     marginRight: 16,
     minHeight,
   })
 
   if (type === "navigation") {
-    style = css({
+    boxStyle = css({
       paddingLeft: 20,
       paddingRight: 10,
       marginRight: 32,
     })
 
     if (status === "process") {
-      navigactionProcessIndicator = css`
+      navigactionProcessStatusIndicator = css`
         &:after {
           content: "";
           position: absolute;
@@ -53,8 +53,8 @@ export function applyWrapperStyle({
       position: "relative",
       overflow,
     }),
-    style,
-    navigactionProcessIndicator,
+    boxStyle,
+    navigactionProcessStatusIndicator,
     applyWrapperCursor(disabled),
   ])
 }

@@ -51,7 +51,7 @@ exports[`Steps render vertical label 1`] = `
 .emotion-5 {
   line-height: 24px;
   font-size: 16px;
-  padding-right: 0px;
+  padding-right: 0;
   color: #1f1f1f;
   position: relative;
 }
@@ -90,7 +90,7 @@ exports[`Steps render vertical label 1`] = `
 .emotion-9 {
   line-height: 24px;
   font-size: 16px;
-  padding-right: 0px;
+  padding-right: 0;
   color: #999;
 }
 
@@ -195,7 +195,7 @@ exports[`Steps render with dot type 1`] = `
 .emotion-5 {
   line-height: 24px;
   font-size: 16px;
-  padding-right: 0px;
+  padding-right: 0;
   color: #1f1f1f;
 }
 
@@ -222,7 +222,7 @@ exports[`Steps render with dot type 1`] = `
 .emotion-9 {
   line-height: 24px;
   font-size: 16px;
-  padding-right: 0px;
+  padding-right: 0;
   color: #999;
 }
 

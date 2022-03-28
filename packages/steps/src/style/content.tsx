@@ -1,7 +1,9 @@
+// content that contains title and description
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 import { StepType, LabelPlacement } from "../interface"
+import { isVerticalLabel } from "../style"
 
 export function applyContentStyle({
   type,
@@ -30,17 +32,12 @@ function applyContentDisplay({
   labelPlacement: LabelPlacement
   direction: LabelPlacement
 }): SerializedStyles {
-  // if type === dot, contents only show beside the icon
   const verticalStyle = css`
     display: block;
     text-align: center;
   `
 
-  if (type === "dot" && direction === "horizontal") {
-    return verticalStyle
-  }
-
-  if (labelPlacement === "vertical") {
+  if (isVerticalLabel({ type, direction, labelPlacement })) {
     return verticalStyle
   }
 
@@ -61,15 +58,13 @@ function applyContentSize({
   let width = css``
   let margin = css``
 
-  if (
-    (type === "dot" && direction === "horizontal") ||
-    labelPlacement === "vertical"
-  ) {
+  if (isVerticalLabel({ type, direction, labelPlacement })) {
     width = css`
       width: ${140}px;
     `
   }
 
+  // add some margin between content and navigationProcessStatusIndicator
   if (type === "navigation") {
     margin = css`
       margin-bottom: 16px;
@@ -88,6 +83,7 @@ function applyHover(hoverable: boolean): SerializedStyles {
 
   return css`
     &:hover > * {
+      transition: all 0.1s linear;
       cursor: pointer;
       color: ${hoverColor};
     }

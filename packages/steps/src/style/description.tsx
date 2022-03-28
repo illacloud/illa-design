@@ -13,19 +13,16 @@ export function applyDescriptionStyle(size: StepSize): SerializedStyles {
 }
 
 function applyDescriptionSize(size: StepSize): SerializedStyles {
-  let sizeCss: SerializedStyles
+  let fontSize: number
+
   switch (size) {
     default:
     case "small":
-      sizeCss = css`
-        font-size: 12px;
-      `
+      fontSize = 12
       break
     case "large":
-      sizeCss = css`
-        font-size: 12px;
-      `
+      fontSize = 14
       break
   }
-  return sizeCss
+  return css({ fontSize })
 }

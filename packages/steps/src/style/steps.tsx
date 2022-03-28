@@ -20,11 +20,8 @@ function applyDirection({
 }: {
   direction: LabelPlacement
 }): SerializedStyles {
-  return direction === "vertical"
-    ? css`
-        flex-direction: column;
-      `
-    : css`
-        flex-direction: row;
-      `
+  const flexDirection = direction === "vertical" ? "column" : "row"
+  return css`
+    flex-direction: ${flexDirection};
+  `
 }

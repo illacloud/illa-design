@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 import { StepStatus, StepStyleConfig, StepType } from "../interface"
-import { statusColor } from "../style"
+import { statusColor, isVerticalLabel } from "../style"
 
 export function applyTitleStyle({
   size,
@@ -35,34 +35,31 @@ function applyTitleSize({
   direction,
   labelPlacement,
 }: StepStyleConfig): SerializedStyles {
-  let sizeCss: SerializedStyles
+  let lineHeight: string
+  let fontSize: number
   let padding = 16
 
-  if (
-    (type === "dot" && direction === "horizontal") ||
-    labelPlacement === "vertical"
-  ) {
+  if (isVerticalLabel({ type, direction, labelPlacement })) {
     padding = 0
   }
 
   switch (size) {
     default:
     case "small":
-      sizeCss = css`
-        line-height: 24px;
-        font-size: 16px;
-        padding-right: ${padding}px;
-      `
+      lineHeight = `${24}px`
+      fontSize = 16
       break
     case "large":
-      sizeCss = css`
-        line-height: 24px;
-        font-size: 16px;
-        padding-right: ${padding}px;
-      `
+      lineHeight = `${32}px`
+      fontSize = 20
       break
   }
-  return sizeCss
+
+  return css({
+    lineHeight,
+    fontSize,
+    paddingRight: padding,
+  })
 }
 
 function applyTitleColor(status: StepStatus) {
@@ -112,7 +109,7 @@ function applyConnectionStyle({
     pseudoStyle = css({
       width: 8,
       height: 8,
-      border: `3px solid ${defaultColor}`,
+      border: `3px solid ${defaultColor} `,
       borderLeft: "none",
       borderBottom: "none",
       transform: "rotate(45deg)",

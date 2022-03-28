@@ -53,6 +53,7 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>(
         onClick: onChange,
         lineless,
         lastStep: index === arr.length,
+        size,
         nextStepError: status === "error" && current > index,
         ...(child as ReactElement).props,
       }

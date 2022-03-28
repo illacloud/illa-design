@@ -63,28 +63,37 @@ function applyIconSize({
   let sizeCss: SerializedStyles
 
   if (type !== "dot") {
+    let width: number
+    let fontSize: number
+    let svgIconSize: number
+
     switch (size) {
       default:
       case "small":
-        sizeCss = css`
-          width: 24px;
-          height: 24px;
-          line-height: 24px;
-          font-size: 14px;
+        width = 24
+        fontSize = 14
+        svgIconSize = 10
 
-          & svg {
-            font-size: 10px;
-          }
-        `
         break
       case "large":
-        sizeCss = css`
-          width: 20px;
-          height: 20px;
-        `
+        width = 32
+        fontSize = 20
+        svgIconSize = 14
         break
     }
+
+    sizeCss = css`
+      width: ${width}px;
+      height: ${width}px;
+      line-height: ${width}px;
+      font-size: ${fontSize}px;
+
+      & svg {
+        font-size: ${svgIconSize}px;
+      }
+    `
   } else {
+    // enlarge dot if is `process` status
     let dotSize = status === "process" ? 2 : 0
     switch (size) {
       default:
@@ -108,6 +117,7 @@ function applyIconSize({
   return sizeCss
 }
 
+// center align icon
 function applyIconOffset({
   type,
   labelPlacement,
