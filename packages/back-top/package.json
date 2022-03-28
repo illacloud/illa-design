@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/{{lowerCase name}}",
+  "name": "@illa-design/backtop",
   "version": "0.0.0",
-  "description": "Illa Design {{titleCase name}}.",
+  "description": "Illa Design BackTop.",
   "keywords": [
-    "{{lowerCase name}}",
+    "backtop",
     "react",
     "component"
   ],
@@ -30,17 +30,18 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/{{lowerCase name}}"
+    "directory": "packages/backtop"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "*",
     "@illa-design/system": "*",
-    "@illa-design/theme": "*"
+    "@illa-design/theme": "*",
+    "@illa-design/icon": "*",
+    "@illa-design/button": "*"
   }
 }

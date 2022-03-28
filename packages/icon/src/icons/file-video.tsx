@@ -2,7 +2,7 @@ import { createIcon } from "../create-icon"
 
 export const FileVideoIcon = createIcon({
   title: "FileVideoIcon",
-  viewBox: "0 0 12 16",
+  viewBox: "0 0 16 20",
   path: (
     <>
       <rect x="2" y="2" width="12" height="16" rx="1" fill="#A55BF5" />

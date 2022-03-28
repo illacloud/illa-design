@@ -7,17 +7,17 @@ export function applyPaddingSizeCss(size: TabsSize) {
   switch (size) {
     case "large":
       paddingSize = css`
-        padding: 9px 0;
+        margin: 8px 0;
       `
       break
     case "small":
       paddingSize = css`
-        padding: 5px 0;
+        margin: 4px 0;
       `
       break
     default:
       paddingSize = css`
-        padding: 7px 0;
+        margin: 6px 0;
       `
   }
 
@@ -38,7 +38,6 @@ export const horizontalContainerCss = css`
   height: 100%;
 `
 
-// header
 export const tabHeaderContainerCss = css`
   display: inline-flex;
   width: 100%;
@@ -53,7 +52,6 @@ export function applyHeaderContainerCss(isHorizontal: boolean) {
   `
 }
 
-// header
 export const tabHeaderHorizontalContainerCss = css`
   display: inline-flex;
   flex-direction: column;
@@ -83,6 +81,7 @@ export const tabCapsuleHeaderContainerCss = css`
 export const containerHideScrollBarCss = css`
   overflow-x: scroll;
   overflow-y: hidden;
+  scroll-behavior: smooth;
   width: 100%;
   position: relative;
 
@@ -116,10 +115,7 @@ export const tabCardHeaderContainerCss = css`
   box-sizing: border-box;
 `
 
-export function applyCapsuleHeaderChildCss(
-  spaceWidth: number,
-  isSelected?: boolean,
-) {
+export function applyCapsuleHeaderChildCss(isSelected?: boolean) {
   const selectedBoxCss =
     isSelected &&
     css`
@@ -128,16 +124,13 @@ export function applyCapsuleHeaderChildCss(
       transition: background-color 200ms;
     `
   return css`
-    ${applyCommonHeaderChildCss(spaceWidth)};
+    ${applyCommonHeaderChildCss()};
     ${selectedBoxCss};
-    margin: 4px;
+    margin: 4px 2px;
   `
 }
 
-export function applyCardHeaderChildCss(
-  spaceWidth: number,
-  isSelected?: boolean,
-) {
+export function applyCardHeaderChildCss(isSelected?: boolean) {
   const selectedBoxCss = isSelected
     ? css`
         border: solid ${globalColor(`--${illaPrefix}-gray-08`)};
@@ -149,10 +142,11 @@ export function applyCardHeaderChildCss(
   return css`
     position: relative;
     top: 1px;
-    ${applyCommonHeaderChildCss(spaceWidth)};
+    ${applyCommonHeaderChildCss()};
     ${selectedBoxCss};
     border-radius: 4px 4px 0 0;
     border-width: 1px;
+    border-bottom-width: 1.5px;
     z-index: 2;
   `
 }
@@ -163,6 +157,10 @@ export const addButtonCss = css`
   display: inline-flex;
   align-items: center;
   cursor: pointer;
+  color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  }
 `
 
 export const deleteButtonCss = css`
@@ -173,13 +171,15 @@ export const deleteButtonCss = css`
   align-items: center;
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  }
 `
 
-export function applyCommonHeaderChildCss(spaceWidth: number) {
+export function applyCommonHeaderChildCss() {
   return css`
     display: inline-flex;
     align-items: center;
-    padding: 0 ${spaceWidth}px;
     &:hover {
       cursor: pointer;
     }
@@ -189,15 +189,18 @@ export function applyCommonHeaderChildCss(spaceWidth: number) {
 export const verticalLineCss = css`
   width: 1px;
   height: 8px;
-  background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+  position: relative;
+  right: 0;
+  background-color: ${globalColor(`--${illaPrefix}-gray-03`)};
 `
 
 export function applyTextCss(
   size: TabsSize,
   isSelected?: boolean,
   disabled?: boolean,
-  noHoverStyle?: boolean,
+  tabBarSpacing: number = 0,
 ) {
+  const _tabBarSpacing = tabBarSpacing >= 0 ? tabBarSpacing : 0
   let textColorCss
   if (disabled) {
     textColorCss = css`
@@ -211,15 +214,11 @@ export function applyTextCss(
   } else {
     textColorCss = css`
       color: ${globalColor(`--${illaPrefix}-gray-03`)};
-    `
-  }
-  const hoverCss =
-    !!noHoverStyle &&
-    css`
       &:hover {
         background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
       }
     `
+  }
   return css`
     ${textColorCss};
     ${applyPaddingSizeCss(size)};
@@ -227,8 +226,11 @@ export function applyTextCss(
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 14px;
-    transition: color 200ms;
-    ${hoverCss}
+    padding: 1px 8px;
+    line-height: 22px;
+    margin-left: ${8 + _tabBarSpacing / 2}px;
+    margin-right: ${8 + _tabBarSpacing / 2}px;
+    transition: color 200ms, background-color 200ms;
   `
 }
 
@@ -250,11 +252,7 @@ export function applyDividerHorizontalLineCss(h: number) {
   `
 }
 
-export function applyCommonBlueLineCss(
-  width: number,
-  positon: number,
-  size?: TabsSize,
-) {
+export function applyCommonBlueLineCss(width: number, positon: number) {
   return css`
     width: ${width - 32}px;
     height: 2px;
@@ -301,14 +299,11 @@ export const cardDividerContainerCss = css`
   border-top: solid ${globalColor(`--${illaPrefix}-gray-08`)} 1px;
 `
 
-// content
-
 export const tabContentContainerCss = css`
   display: inline-flex;
   flex-direction: row;
   overflow: hidden;
   box-sizing: border-box;
-  //padding-top: 10px;
   width: 100%;
   height: 100%;
 `
@@ -352,13 +347,13 @@ export function applyHorizontalPreNextIconCss(
   variant?: Variant,
   disabled?: boolean,
 ) {
-  let verticallPaddingCss
+  let verticalPaddingCss
   if (isPre) {
-    verticallPaddingCss = css`
+    verticalPaddingCss = css`
       padding-bottom: 4px;
     `
   } else {
-    verticallPaddingCss = css`
+    verticalPaddingCss = css`
       padding-top: 4px;
     `
   }
@@ -366,14 +361,17 @@ export function applyHorizontalPreNextIconCss(
     disabled &&
     css`
       cursor: not-allowed;
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
     `
 
   return css`
+    display: inline-flex;
     font-size: 12px;
     cursor: pointer;
-    ${verticallPaddingCss}
+    ${verticalPaddingCss}
     ${colorCss}
+    position: relative;
+    width: 100%;
+    justify-content: center;
   `
 }
 
@@ -382,62 +380,69 @@ export function applyCommonPreNextIconCss(
   variant?: Variant,
   disabled?: boolean,
   tabPosition?: TabPosition,
-  size?: TabsSize,
 ) {
-  let horizontalPaddingCss
-  if (isPre) {
-    horizontalPaddingCss = css`
-      padding-right: 4px;
-    `
-  } else {
-    horizontalPaddingCss = css`
-      padding-left: 4px;
-    `
-  }
-
-  let paddingValue = 7
-  if (size === "large") {
-    paddingValue = 9
-  } else if (size === "small") {
-    paddingValue = 5
-  }
-  let paddingCss
-  if (variant === "line" && tabPosition === "top") {
-    paddingCss = css`
-      align-items: start;
-      padding-top: ${paddingValue + 3}px;
-    `
-  } else if (variant === "line" && tabPosition === "bottom") {
-    paddingCss = css`
-      align-items: end;
-      padding-bottom: ${paddingValue + 3}px;
-    `
-  }
-
-  let bottomCss
-  if (variant === "card") {
-    bottomCss = css`
-      border-bottom: solid ${globalColor(`--${illaPrefix}-gray-08`)} 1px;
-    `
-  }
   let colorCss =
     disabled &&
     css`
       cursor: not-allowed;
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
     `
   return css`
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    box-sizing: border-box;
+    justify-content: center;
     height: 100%;
+    width: 40px;
     font-size: 12px;
     text-align: center;
-    padding-bottom: ${variant === "capsule" ? 11 : 0}px;
-    ${bottomCss};
-    ${colorCss}
-    ${paddingCss}
-    ${horizontalPaddingCss}
+    padding: 0 12px ${variant === "capsule" ? 11 : 0}px 4px;
+    ${colorCss};
+    margin-top: ${variant === "line" && tabPosition === "bottom" ? 13 : 0}px;
+    position: relative;
   `
 }
+
+export function applyHorizontalIconLineCss(isLeft: boolean) {
+  const positionCss = isLeft
+    ? css`
+        right: 0;
+      `
+    : css`
+        left: 2px;
+      `
+  return css`
+    height: 100%;
+    width: 1px;
+    position: absolute;
+    ${positionCss};
+    top: 0;
+    background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+  `
+}
+
+export function applyCommonIconLineCss(isTop: boolean) {
+  const positionCss = isTop
+    ? css`
+        bottom: 4px;
+      `
+    : css`
+        top: 6.5px;
+      `
+  return css`
+    height: 0.5px;
+    width: 100%;
+    position: absolute;
+    ${positionCss};
+    left: 0;
+    background-color: ${globalColor(`--${illaPrefix}-gray-08`)}; ;
+  `
+}
+
+export const lineCss = css`
+  height: 0.5px;
+  width: 100%;
+  position: absolute;
+  bottom: 0.5px;
+  left: 0;
+  background-color: ${globalColor(`--${illaPrefix}-gray-08`)}; ;
+`

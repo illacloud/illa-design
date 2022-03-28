@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, useEffect, useRef, useState } from "react"
 import { CountDownProps } from "./interface"
 import dayjs from "dayjs"

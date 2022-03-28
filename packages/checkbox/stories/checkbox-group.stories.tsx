@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, ComponentStory } from "@storybook/react"
 import { CheckboxGroup } from "../src"
 

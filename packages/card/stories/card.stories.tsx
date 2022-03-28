@@ -1,11 +1,9 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Card, CardGrid, Meta as CardMeta, CardProps } from "../src"
+import { Card, CardGrid, CardProps, Meta as CardMeta } from "../src"
 import { Space } from "@illa-design/space"
 import { Link } from "@illa-design/link"
-import { Avatar } from "@illa-design/avatar"
-import { Typography } from "@illa-design/typography"
 import { LikeIcon, MoreIcon, ShareIcon } from "@illa-design/icon"
+import { Image } from "@illa-design/image"
 
 export default {
   title: "DATA DISPLAY/Card",
@@ -44,48 +42,42 @@ const Template: Story<CardProps> = (args) => {
         <Card style={{ width: 360 }} {...args} title={""}>
           圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。
         </Card>
-        <>
-          <Card
-            style={{ width: 360 }}
-            cover={
+        <Card
+          style={{ width: 360 }}
+          cover={
+            <Image
+              width="100%"
+              height="100%"
+              src="https://editor.analyticsvidhya.com/uploads/765900ba9-article-200807-github-gitguardbody-text.jpg"
+            />
+          }
+          {...args}
+        >
+          <CardMeta
+            title="圈圈圆圆圈圈"
+            avatar={
               <div
                 style={{
-                  height: 204,
-                  overflow: "hidden",
+                  display: "flex",
+                  alignItems: "center",
+                  color: "#1D2129",
                 }}
               >
-                <img
-                  style={{ width: "100%", transform: "translateY(-20px)" }}
-                  alt="dessert"
+                <Image
+                  width={"100%"}
+                  style={{ transform: "translateY(-20px)" }}
                   src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                 />
               </div>
             }
-            {...args}
-          >
-            <CardMeta
-              title="圈圈圆圆圈圈"
-              avatar={
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    color: "#1D2129",
-                  }}
-                >
-                  <Avatar style={{ marginRight: 8 }}>A</Avatar>
-                  <Typography>Username</Typography>
-                </div>
-              }
-              description={
-                <>
-                  圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。
-                </>
-              }
-            />
-          </Card>
-        </>
-        <Card bordered={true} style={{ width: "100%" }}>
+            description={
+              <>
+                圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。
+              </>
+            }
+          />
+        </Card>
+        <Card bordered={true} style={{ width: "100%", padding: "20px" }}>
           {new Array(7).fill(null).map((_, index) => {
             const hoverable = index % 2 === 0
             return (

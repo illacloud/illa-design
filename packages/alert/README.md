@@ -24,7 +24,7 @@ import { Alert } from "@illa-dedign/alert"
 | closable     | If true, the alert is closable      | `boolean`                                     | `-`      |
 | onClose      | When close the alert                | `(e) => void`                                 | `-`      |
 | afterClose   | When after close the alert          | `() => void`                                  | `-`      |
-| type         | The type of the alert               | `"info" \| "success"\|  "warning"\| "error" ` | `"info"` |
+| type         | The type of the alert               | `"info" \| "success" \|  "warning" \| "error" ` | `"info"` |
 | title        | The title of the alert              | `ReactNode`                                   | `-`      |
 | content      | The content of the alert            | `ReactNode`                                   | `-`      |
 | icon         | The icon of the alert               | `ReactNode`                                   | `-`      |
@@ -56,4 +56,3 @@ import { Alert } from "@illa-dedign/alert"
 ```jsx
 <Alert type="error" />
 ```
-

@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
 import { Select, SelectProps, Option } from "../src"
@@ -28,9 +27,14 @@ const options = [
 
 const Template: Story<SelectProps> = (args) => (
   <Space direction="vertical">
-    <Select {...args} />
-    <Select options={options} defaultValue={"Shenzhen"} {...args} />
-    <Select placeholder="Select items" {...args}>
+    <Select style={{ width: 280 }} {...args} />
+    <Select
+      style={{ width: 280 }}
+      options={options}
+      defaultValue={"Shenzhen"}
+      {...args}
+    />
+    <Select style={{ width: 280 }} placeholder="Select items" {...args}>
       <Option>Abc</Option>
       <Option>Bde</Option>
     </Select>

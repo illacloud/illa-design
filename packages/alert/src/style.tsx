@@ -1,7 +1,6 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { AlertType } from "./interface"
-import React from "react"
 
 export const colorMap = {
   info: `${globalColor(`--${illaPrefix}-blue-07`)}`,
