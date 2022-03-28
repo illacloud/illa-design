@@ -100,7 +100,16 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
       labelPlacement === "vertical" ||
       type === "dot"
     ) {
-      return <div css={applyConnctionNodeStyle({ type, direction })} />
+      return (
+        <div
+          css={applyConnctionNodeStyle({
+            type,
+            direction,
+            size,
+            labelPlacement,
+          })}
+        />
+      )
     }
 
     return null
@@ -114,6 +123,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
         type,
         status: currentStatus,
         disabled,
+        labelPlacement,
       })}
       className={className}
       onClick={onClickStep}

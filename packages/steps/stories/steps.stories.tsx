@@ -44,6 +44,18 @@ export const Size = () => {
         <Step title="Pending" description="Commit it" />
       </Steps>
 
+      <Steps style={{ width: 800 }} labelPlacement="vertical">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} size="large" labelPlacement="vertical">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
       <Steps style={{ width: 800 }} type="dot">
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
@@ -55,6 +67,20 @@ export const Size = () => {
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
       </Steps>
+
+      <Space>
+        <Steps type="dot" direction="vertical">
+          <Step title="Succeeded" description="Read the message" />
+          <Step title="Processing" description="Please Confirm" />
+          <Step title="Pending" description="Commit it" />
+        </Steps>
+
+        <Steps type="dot" size="large" direction="vertical">
+          <Step title="Succeeded" description="Read the message" />
+          <Step title="Processing" description="Please Confirm" />
+          <Step title="Pending" description="Commit it" />
+        </Steps>
+      </Space>
 
       <Steps style={{ width: 800 }} type="navigation">
         <Step title="Succeeded" description="Read the message" />

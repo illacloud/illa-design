@@ -1,7 +1,7 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import { StepStatus, StepStyleConfig, StepType } from "../interface"
+import { StepSize, StepStatus, StepStyleConfig, StepType } from "../interface"
 import { statusColor, isVerticalLabel } from "../style"
 
 export function applyTitleStyle({
@@ -24,8 +24,8 @@ export function applyTitleStyle({
     applyTitleColor(status),
     !lastStep &&
     !lineless &&
-    direction !== "vertical" &&
-    applyConnectionStyle({ type, status, nextStepError }),
+    direction !== "vertical" && labelPlacement !== "vertical" &&
+    applyConnectionStyle({ type, status, nextStepError, size }),
   ])
 }
 
@@ -78,10 +78,12 @@ function applyConnectionStyle({
   type,
   status,
   nextStepError = false,
+  size,
 }: {
   type: StepType
   status?: StepStatus
   nextStepError: boolean
+  size: StepSize
 }): SerializedStyles {
   let pseudoStyle: SerializedStyles = css``
   let position: SerializedStyles = css``
@@ -95,6 +97,10 @@ function applyConnectionStyle({
   }
 
   if (type === "line") {
+    const topMap = {
+      small: 10,
+      large: 14,
+    };
     position = css`
       position: relative;
     `
@@ -102,7 +108,7 @@ function applyConnectionStyle({
       height: 1,
       width: 9999,
       left: "100%",
-      top: 10,
+      top: topMap[size],
       backgroundColor: color,
     })
   } else if (type === "navigation") {

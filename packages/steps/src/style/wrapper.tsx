@@ -2,20 +2,22 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 import { StepType, LabelPlacement, StepStatus } from "../interface"
-import { statusColor } from "../style"
+import { statusColor, isVerticalLabel } from "../style"
 
 export function applyWrapperStyle({
   direction,
   type,
   status,
   disabled,
+  labelPlacement
 }: {
   direction: LabelPlacement
   type: StepType
   status: StepStatus
   disabled: boolean
+  labelPlacement: LabelPlacement
 }): SerializedStyles {
-  const overflow = type === "dot" ? "visible" : "hidden"
+  const overflow = isVerticalLabel({ type, direction, labelPlacement }) ? "visible" : "hidden"
   const minHeight = direction === "vertical" ? 90 : "unset"
   let navigactionProcessStatusIndicator = css``
   let boxStyle = css({
