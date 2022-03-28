@@ -27,4 +27,8 @@ export const zhCN = {
     confirm: "确认",
     cancel: "取消",
   },
+  modal: {
+    okText: "确定",
+    cancelText: "取消",
+  },
 } as Locale

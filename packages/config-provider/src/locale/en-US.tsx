@@ -27,4 +27,8 @@ export const enUS = {
     confirm: "Confirm",
     cancel: "Cancel",
   },
+  modal: {
+    okText: "OK",
+    cancelText: "Cancel",
+  },
 } as Locale
