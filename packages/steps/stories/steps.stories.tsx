@@ -29,74 +29,6 @@ Basic.args = {
   current: 2,
 }
 
-export const Size = () => {
-  return (
-    <Space direction="vertical">
-      <Steps style={{ width: 800 }}>
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Steps style={{ width: 800 }} size="large">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Steps style={{ width: 800 }} labelPlacement="vertical">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Steps style={{ width: 800 }} size="large" labelPlacement="vertical">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Steps style={{ width: 800 }} type="dot">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Steps style={{ width: 800 }} type="dot" size="large">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Space>
-        <Steps type="dot" direction="vertical">
-          <Step title="Succeeded" description="Read the message" />
-          <Step title="Processing" description="Please Confirm" />
-          <Step title="Pending" description="Commit it" />
-        </Steps>
-
-        <Steps type="dot" size="large" direction="vertical">
-          <Step title="Succeeded" description="Read the message" />
-          <Step title="Processing" description="Please Confirm" />
-          <Step title="Pending" description="Commit it" />
-        </Steps>
-      </Space>
-
-      <Steps style={{ width: 800 }} type="navigation">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Steps style={{ width: 800 }} type="navigation" size="large">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-    </Space>
-  )
-}
-
 const TemplateWithDescription = (args) => (
   <Steps {...args}>
     <Step title="Succeeded" description="Read the message" />
@@ -179,6 +111,74 @@ export const CustomDot = () => {
   )
 }
 
+export const Size = () => {
+  return (
+    <Space direction="vertical">
+      <Steps style={{ width: 800 }}>
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} size="large">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} labelPlacement="vertical">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} size="large" labelPlacement="vertical">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} type="dot">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} type="dot" size="large">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Space>
+        <Steps type="dot" direction="vertical">
+          <Step title="Succeeded" description="Read the message" />
+          <Step title="Processing" description="Please Confirm" />
+          <Step title="Pending" description="Commit it" />
+        </Steps>
+
+        <Steps type="dot" size="large" direction="vertical">
+          <Step title="Succeeded" description="Read the message" />
+          <Step title="Processing" description="Please Confirm" />
+          <Step title="Pending" description="Commit it" />
+        </Steps>
+      </Space>
+
+      <Steps style={{ width: 800 }} type="navigation">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
+      <Steps style={{ width: 800 }} type="navigation" size="large">
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+    </Space>
+  )
+}
+
 export const SwitchStep = () => {
   const [current, setCurrent] = useState(1)
 
@@ -237,7 +237,7 @@ export const Disabled = () => {
     <Steps onChange={onChange} current={current}>
       <Step title="Succeeded" description="Read the message" />
       <Step title="Processing" description="Please Confirm" />
-      <Step title="Pending" description="Commit it" disabled />
+      <Step title="Disabled" description="Click not work" disabled />
     </Steps>
   )
 }
