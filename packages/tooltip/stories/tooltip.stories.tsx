@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Tooltip } from "../src"
 import { Button } from "@illa-design/button"

@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Children, forwardRef } from "react"
 import { TimelineProps } from "./interface"
 import { Spin } from "@illa-design/spin"

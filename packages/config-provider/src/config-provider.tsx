@@ -1,4 +1,3 @@
-import * as React from "react"
 import { FC, useEffect } from "react"
 import { ConfigProviderProps } from "./interface"
 import { ConfigProviderContext } from "./config-provider-context"

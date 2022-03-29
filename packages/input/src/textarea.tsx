@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import {
   ChangeEvent,
   CSSProperties,
@@ -109,7 +107,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
       props.onChange && props.onChange(e)
     }
 
-    const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const onChange = (e: any) => {
       const newValue = e.target?.value
       if (!isComposition.current) {
         onValueChange(newValue, e)
@@ -119,9 +117,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
     }
 
     // Handle Chinese keyboard input
-    const onComposition = (
-      e: React.CompositionEvent & React.ChangeEvent<HTMLTextAreaElement>,
-    ) => {
+    const onComposition = (e: any) => {
       if (e.type === "compositionend") {
         isComposition.current = false
         setComposValue(undefined)

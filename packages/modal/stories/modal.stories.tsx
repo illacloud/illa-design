@@ -89,17 +89,13 @@ const Template: Story<ModalProps> = (args) => {
           >
             Confirm
           </Button>
-          <Button
-            onClick={() =>
-              Modal.warning({ content: "this is warning!", title: "Warning" })
-            }
-          >
+          <Button onClick={() => Modal.warning({ title: "Warning" })}>
             Warning
           </Button>
           <Button
             onClick={async () => {
               const modalIns = Modal.confirm({
-                title: "Submiting...",
+                title: "Submitting...",
                 icon: <InfoCircleIcon />,
                 content: <span>This modal will be successful after 1.5s.</span>,
                 footer: false,

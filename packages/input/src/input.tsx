@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
-import { forwardRef, useState, useMemo } from "react"
+import { forwardRef, ReactNode, useMemo, useState } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { InputProps } from "./interface"
 import {
@@ -17,10 +15,10 @@ import { formatForRule } from "./utils"
 import { SerializedStyles } from "@emotion/react"
 
 const inputAddon = (
-  node?: React.ReactNode,
+  node?: ReactNode,
   custom?: boolean,
   style?: SerializedStyles,
-): React.ReactNode | null => {
+): ReactNode | null => {
   return node ? custom ? <>{node}</> : <span css={style}>{node}</span> : null
 }
 

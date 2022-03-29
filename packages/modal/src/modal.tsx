@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { forwardRef, useContext, useRef } from "react"
 import {
   ModalProps,
@@ -196,7 +195,6 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
             {visible && mask ? (
               <motion.div
                 css={applyModalMask}
-                // style={{ display: `${visible ? "block" : "none"}` }}
                 variants={maskAnimation}
                 animate={"animate"}
                 exit={"exit"}
@@ -207,7 +205,6 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           </AnimatePresence>
           <div
             role="dialog"
-            // style={{ display: `${visible ? "block" : "none"}` }}
             css={applyModalWrapper(alignCenter, visible)}
             {...omit(otherProps, ["isNotice", "noticeType"])}
             onMouseDown={(e) => {
@@ -222,8 +219,6 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
     )
   },
 ) as ModalComponent
-
-Modal.displayName = "Modal"
 
 Modal.config = setModalConfig
 
@@ -252,3 +247,5 @@ Modal.destroyAll = () => {
 }
 
 Modal.useModal = useModal
+
+Modal.displayName = "Modal"

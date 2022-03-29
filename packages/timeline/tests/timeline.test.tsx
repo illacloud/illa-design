@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom"
 import { Timeline, TimelineItem } from "../src"
 import { render, screen, within } from "@testing-library/react"
-import * as React from "react"
 
 test("vertical Timeline", () => {
   render(

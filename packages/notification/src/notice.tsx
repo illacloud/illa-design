@@ -1,11 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, {
-  forwardRef,
-  useMemo,
-  useRef,
-  useEffect,
-  MouseEvent,
-} from "react"
+import { forwardRef, useMemo, useRef, useEffect, MouseEvent } from "react"
 import { NoticeProps } from "./interface"
 import {
   applyNotification,

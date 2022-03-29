@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, ReactText, useCallback, useState } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { CheckboxGroupProps } from "./interface"

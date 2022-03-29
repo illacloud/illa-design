@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { FC } from "react"
 import { createPortal } from "react-dom"
 import { css, SerializedStyles } from "@emotion/react"

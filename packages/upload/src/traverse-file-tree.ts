@@ -1,4 +1,3 @@
-import { UploadItem } from "./interface"
 import { isAcceptFile } from "./file-accept"
 
 interface InternalDataTransferItem extends DataTransferItem {

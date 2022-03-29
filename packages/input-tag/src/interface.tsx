@@ -1,5 +1,5 @@
-import * as React from "react"
 import { ReactNode, HTMLAttributes, Ref } from "react"
+import { SerializedStyles } from "@emotion/react"
 
 export type InputTagSize = "small" | "medium" | "large"
 
@@ -35,6 +35,8 @@ export interface InputTagProps<T = any>
   onRemove?: (value: T, index: number, event?: any) => void
   onInputChange?: (inputValue: string, event?: any) => void
   onPressEnter?: (e: any) => void
+
+  _css?: SerializedStyles
 }
 
 export type ObjectValueType = {
