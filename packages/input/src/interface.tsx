@@ -155,7 +155,6 @@ export interface RangeInputProps
   size?: InputSize
   boarderColor?: InputProps["boarderColor"]
   value?: string[]
-  inputValue?: string
   placeholder?: string[]
   popupVisible?: boolean
   format?: string
@@ -169,7 +168,7 @@ export interface RangeInputProps
   isPlaceholder?: boolean
   changeFocusedInputIndex?: (index: number) => void
 
-  onChange?: (value: string, event: any) => void
+  onChange?: (value: string[], event: any) => void
   onClear?: () => void
   onPressEnter?: () => void
   onPressTab?: (e: any) => void

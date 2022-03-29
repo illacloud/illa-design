@@ -7,19 +7,19 @@ import {
   useEffect,
 } from "react"
 import { css } from "@emotion/react"
-import { omit, isArray } from "@illa-design/system"
+import { isArray } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
 import { RangeInputProps } from "./interface"
 import {
   applyInputStyle,
   applyRangeContainer,
-  applyRangeInput, applySuffixCls,
-  mirrorStyle,
+  applyRangeInput,
+  applySuffixCls,
   pointerStyle,
   SeparatorStyle,
 } from "./style"
 
-export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
+export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
   (props, ref) => {
     const {
       style,
@@ -30,7 +30,6 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
       disabled,
       placeholder,
       value,
-      inputValue,
       boarderColor = "blue",
       size = "medium",
       separator,
@@ -38,6 +37,7 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
       suffix,
       popupVisible,
       focusedInputIndex,
+      readOnly,
       // events
       onChange,
       onClear,
@@ -54,7 +54,8 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
 
     const [focus0, setFocus0] = useState(false)
     const [focus1, setFocus1] = useState(false)
-    const [currentValue, setValue] = useState(value)
+    const [value0, setValue0] = useState(value?.[0] || "")
+    const [value1, setValue1] = useState(value?.[1] || "")
 
     const inputRef = useRef<HTMLInputElement>(null)
     const input1Ref = useRef<HTMLInputElement>(null)
@@ -92,14 +93,8 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
       }
     }
 
-    const getInputValue = (index: number) => {
-      const valueText = currentValue?.[index] ?? '';
-
-      return valueText;
-    };
-
     const stateValue = {
-      variant: 'outline',
+      variant: "outline",
       boarderColor,
       size,
       error,
@@ -108,19 +103,7 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
     }
 
     const inputProps = {
-      onChange: (event: any) => {
-        const value = event.target?.value
-        const arr = currentValue || []
-        if (focus0) {
-          arr[0] = value
-          setValue(arr)
-        } else if (focus1) {
-          arr[1] = value
-          setValue(arr)
-        }
-        event?.stopPropagation()
-        onChange?.(value, event)
-      },
+      readOnly,
       onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => {
         const keyCode = e.keyCode || e.which
         // Enter
@@ -133,14 +116,24 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
         }
       },
     }
-    console.log(value, 'input value')
+
+    useEffect(() => {
+      setValue0(value?.[0] || "")
+      setValue1(value?.[1] || "")
+    }, [value])
 
     return (
-      <div ref={ref} css={applyRangeContainer(stateValue)} style={style} className={className}>
+      <div
+        ref={ref}
+        css={applyRangeContainer(stateValue)}
+        style={style}
+        className={className}
+        {...otherProps}
+      >
         <input
           ref={inputRef}
           css={css(applyInputStyle(), applyRangeInput())}
-          value={currentValue?.[0] ?? ''}
+          value={value0}
           placeholder={placeholder?.[0]}
           disabled={disabled0}
           onFocus={(e) => {
@@ -152,14 +145,23 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
             setFocus0(false)
             onBlur?.(e)
           }}
+          onChange={(event: any) => {
+            const value = event.target?.value
+            if (!("value" in props)) {
+              setValue0(value)
+            }
+            event?.stopPropagation()
+            onChange?.([value, value1], event)
+          }}
           {...inputProps}
-          {...otherProps}
         />
-        <span css={css`padding: 0 8px;`}>{separator || <div css={SeparatorStyle} />}</span>
+        <span css={css({ padding: "0 8px" })}>
+          {separator || <div css={SeparatorStyle} />}
+        </span>
         <input
           ref={input1Ref}
           css={css(applyInputStyle(), applyRangeInput())}
-          value={currentValue?.[1] ?? ''}
+          value={value1}
           placeholder={placeholder?.[1]}
           disabled={disabled1}
           onFocus={(e) => {
@@ -171,8 +173,15 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
             setFocus1(false)
             onBlur?.(e)
           }}
+          onChange={(event: any) => {
+            const value = event.target?.value
+            if (!("value" in props)) {
+              setValue1(value)
+            }
+            event?.stopPropagation()
+            onChange?.([value0, value], event)
+          }}
           {...inputProps}
-          {...otherProps}
         />
         <span css={applySuffixCls(stateValue)}>
           {!disabled && allowClear && value ? (
@@ -187,8 +196,8 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
                 e.preventDefault()
               }}
             >
-            <ErrorIcon css={css(`margin-left: 10px;`)} />
-          </span>
+              <ErrorIcon css={css(`margin-left: 10px;`)} />
+            </span>
           ) : null}
           {suffix?.render ?? null}
         </span>

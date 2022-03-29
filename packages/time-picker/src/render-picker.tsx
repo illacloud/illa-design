@@ -184,8 +184,8 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         onChange && onChange(undefined, undefined)
         onClear?.()
       },
-      onChange: (inputValue?: string) => {
-        console.log(inputValue, isValidTime(inputValue), "onChange")
+      onChange: (inputValue?: string| string[]) => {
+        console.log(inputValue, "onChange")
         if (!currentPopupVisible) {
           setCurrentPopupVisible(true)
         }
@@ -194,16 +194,16 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
             setRangeInputValue(undefined)
             return
           }
-          const val = rangeInputValue || []
-          val[focusedInputIndex] = inputValue
-          console.log(val, rangeInputValue, 'val, rangeInputValue')
-          setRangeInputValue(val)
+          if (!isArray(inputValue)) return
+          const val = inputValue[focusedInputIndex]
+          console.log(val, isValidTime(val), 'val, rangeInputValue')
+          setRangeInputValue(inputValue)
           const newValueShow = [
             ...(isArray(valueShow)
               ? valueShow
               : (currentValue as Dayjs[]) || []),
           ]
-          if (isValidTime(inputValue)) {
+          if (isValidTime(val)) {
             newValueShow[focusedInputIndex] = getDayjsValue(
               inputValue,
               format,
@@ -212,6 +212,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
             setInputValue(undefined)
           }
         } else {
+          if (isArray(inputValue)) return
           setInputValue(inputValue)
           if (isValidTime(inputValue)) {
             setValueShow(getDayjsValue(inputValue, format))
@@ -224,15 +225,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     const formatTime = (str: Dayjs) => {
       return dayjs(str)?.format(format)
     }
-
-    console.log(rangeInputValue
-      ? rangeInputValue
-      : isArray(valueShow) && valueShow.length
-        ? [formatTime(valueShow[0]), formatTime(valueShow?.[1])]
-        : isArray(currentValue) && currentValue.length
-          ? [formatTime(currentValue[0]), formatTime(currentValue?.[1])]
-          : [], 'show')
-    console.log(rangeInputValue, valueShow, currentValue)
 
     return (
       <Trigger
