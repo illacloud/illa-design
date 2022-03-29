@@ -16,7 +16,7 @@ import { InputTag } from "@illa-dedign/inputTag"
 
 ## 组件接口（API）
 
-### Input 基础属性
+### InputTag 基础属性
 
 | Props        | Desc                                                      | Type                                                         | Default                                                      |
 | ------------ | --------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -35,9 +35,8 @@ import { InputTag } from "@illa-dedign/inputTag"
 | suffix       | 输入框内的后缀                                            | `ReactNode`                                                  | `-`                                                          |
 | validate     | 校验函数，默认在 按下enter时候触发。                      | `(inputValue: string, values: T[]) => boolean \| Promise<boolean> ` | `(inputValue, values) => inputValue && values.every((item) =>  item !== inputValue)` |
 
-### 
 
-### Input 事件
+### InputTag 事件
 
 | Props         | Desc                   | Type              | Default |
 | ------------- | ---------------------- | ----------------- | ------- |
