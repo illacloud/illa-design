@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { forwardRef, ReactElement } from "react"
 import { isObject } from "@illa-design/system"
 import {
   SkeletonProps,
@@ -38,7 +38,9 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
 
       const textProps = getProps(text) as SkeletonTextProps
 
-      return <Text css={skeletonTextStyle} {...textProps} animation={animation} />
+      return (
+        <Text css={skeletonTextStyle} {...textProps} animation={animation} />
+      )
     }
 
     function renderImage() {
@@ -47,7 +49,9 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       }
       const imageProps = getProps(image) as SkeletonImageProps
 
-      return <Image css={skeletonImageStyle} {...imageProps} animation={animation} />
+      return (
+        <Image css={skeletonImageStyle} {...imageProps} animation={animation} />
+      )
     }
 
     function renderSkeleton() {
@@ -65,7 +69,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       )
     }
 
-    return visible ? renderSkeleton() : children
+    return visible ? renderSkeleton() : (children as ReactElement)
   },
 )
 
