@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Button } from "@illa-design/button"
 import { mount, unmount } from "@cypress/react"
 import { Popover } from "../src"

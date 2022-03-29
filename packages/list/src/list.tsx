@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, ReactNode } from "react"
 import { ListProps } from "./interface"
 import { applyBarStyle, applyListContainer, applyListItemOuter } from "./style"

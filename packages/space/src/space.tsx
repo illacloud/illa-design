@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Children, forwardRef, Fragment } from "react"
 import { SpaceProps } from "./interface"
 import { Divider, DividerDirection } from "@illa-design/divider"

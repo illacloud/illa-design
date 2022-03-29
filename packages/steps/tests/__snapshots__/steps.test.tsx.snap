@@ -1,0 +1,1132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Steps render vertical label 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-1 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: visible;
+  margin-right: 16px;
+  min-height: unset;
+}
+
+.emotion-2 {
+  position: absolute;
+  display: block;
+  height: 1px;
+  width: 100%;
+  box-sizing: border-box;
+  top: 12px;
+  left: 88px;
+  padding-right: 24px;
+}
+
+.emotion-2::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #ebebeb;
+}
+
+.emotion-3 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #1e6fff;
+  color: #fff;
+  margin-left: 56px;
+}
+
+.emotion-3 svg {
+  font-size: 10px;
+}
+
+.emotion-4 {
+  display: block;
+  text-align: center;
+  width: 140px;
+}
+
+.emotion-5 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 0;
+  color: #1f1f1f;
+}
+
+.emotion-7 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #ebebeb;
+  color: #999;
+  margin-left: 56px;
+}
+
+.emotion-7 svg {
+  font-size: 10px;
+}
+
+.emotion-9 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 0;
+  color: #999;
+}
+
+<div
+  class="emotion-0"
+  data-testid="steps"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-2"
+    />
+    <div
+      class="emotion-3"
+    >
+      1
+    </div>
+    <div
+      class="emotion-4"
+    >
+      <div
+        class="emotion-5"
+      >
+        Succeed
+      </div>
+    </div>
+  </div>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-7"
+    >
+      2
+    </div>
+    <div
+      class="emotion-4"
+    >
+      <div
+        class="emotion-9"
+      >
+        Process
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps render with dot type 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-1 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: visible;
+  margin-right: 16px;
+  min-height: unset;
+}
+
+.emotion-2 {
+  position: absolute;
+  display: block;
+  height: 1px;
+  width: 100%;
+  left: 78px;
+  top: 4px;
+  background-color: #ebebeb;
+}
+
+.emotion-3 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 10px;
+  height: 10px;
+  background: #1e6fff;
+  color: #fff;
+  margin-left: 66px;
+}
+
+.emotion-4 {
+  display: block;
+  text-align: center;
+  width: 140px;
+}
+
+.emotion-5 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 0;
+  color: #1f1f1f;
+}
+
+.emotion-5::after {
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.emotion-7 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 8px;
+  height: 8px;
+  background: #ebebeb;
+  color: #999;
+  margin-left: 66px;
+}
+
+.emotion-9 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 0;
+  color: #999;
+}
+
+<div
+  class="emotion-0"
+  data-testid="steps"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-2"
+    />
+    <div
+      class="emotion-3"
+    />
+    <div
+      class="emotion-4"
+    >
+      <div
+        class="emotion-5"
+      >
+        Succeeded
+      </div>
+    </div>
+  </div>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-7"
+    />
+    <div
+      class="emotion-4"
+    >
+      <div
+        class="emotion-9"
+      >
+        Wait
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps render with dot type with vertical direction 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-1 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  margin-right: 16px;
+  min-height: 90px;
+}
+
+.emotion-2 {
+  position: absolute;
+  display: block;
+  width: 1px;
+  left: 3.5px;
+  top: 22px;
+  bottom: -5px;
+  background-color: #ebebeb;
+}
+
+.emotion-3 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 10px;
+  height: 10px;
+  background: #1e6fff;
+  color: #fff;
+  margin-top: 8px;
+}
+
+.emotion-4 {
+  display: inline-block;
+}
+
+.emotion-5 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #1f1f1f;
+}
+
+.emotion-7 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 8px;
+  height: 8px;
+  background: #ebebeb;
+  color: #999;
+  margin-top: 8px;
+}
+
+.emotion-9 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #999;
+}
+
+<div
+  class="emotion-0"
+  data-testid="steps"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-2"
+    />
+    <div
+      class="emotion-3"
+    />
+    <div
+      class="emotion-4"
+    >
+      <div
+        class="emotion-5"
+      >
+        Succeeded
+      </div>
+    </div>
+  </div>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-7"
+    />
+    <div
+      class="emotion-4"
+    >
+      <div
+        class="emotion-9"
+      >
+        Wait
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps render with error status 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-1 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  margin-right: 16px;
+  min-height: unset;
+}
+
+.emotion-2 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #fee;
+  color: #ff4747;
+}
+
+.emotion-2 svg {
+  font-size: 10px;
+}
+
+.emotion-3 {
+  vertical-align: middle;
+}
+
+.emotion-4 {
+  display: inline-block;
+}
+
+.emotion-5 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #1f1f1f;
+}
+
+<div
+  class="emotion-0"
+  data-testid="steps"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-2"
+    >
+      <svg
+        class="emotion-3"
+        color="currentColor"
+        height="1em"
+        viewBox="0 0 8 8"
+        width="1em"
+      >
+        <title>
+          CloseIcon
+        </title>
+        <path
+          d="M.168.168a.571.571 0 0 1 .809 0L4 3.192 7.023.168a.572.572 0 0 1 .81.809L4.807 4l3.024 3.023a.572.572 0 1 1-.809.81L4 4.807.977 7.832a.572.572 0 1 1-.81-.809L3.193 4 .168.977a.571.571 0 0 1 0-.81z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="emotion-4"
+    >
+      <div
+        class="emotion-5"
+      >
+        Error
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps render with finish status 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-1 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  margin-right: 16px;
+  min-height: unset;
+}
+
+.emotion-2 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #edf4ff;
+  color: #1e6fff;
+}
+
+.emotion-2 svg {
+  font-size: 10px;
+}
+
+.emotion-3 {
+  vertical-align: middle;
+}
+
+.emotion-4 {
+  display: inline-block;
+}
+
+.emotion-5 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #1f1f1f;
+}
+
+<div
+  class="emotion-0"
+  data-testid="steps"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-2"
+    >
+      <svg
+        class="emotion-3"
+        color="currentColor"
+        height="1em"
+        viewBox="0 0 8 8"
+        width="1em"
+      >
+        <title>
+          SuccessIcon
+        </title>
+        <path
+          clip-rule="evenodd"
+          d="M7.73 1.174a.75.75 0 0 1 .096 1.056l-3.75 4.5a.75.75 0 0 1-1.106.05L.72 4.53a.75.75 0 0 1 1.06-1.06l1.67 1.669 3.224-3.87a.75.75 0 0 1 1.056-.095z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div
+      class="emotion-4"
+    >
+      <div
+        class="emotion-5"
+      >
+        Finish
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps render with navigation type 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-1 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  padding-left: 20px;
+  padding-right: 10px;
+  margin-right: 32px;
+}
+
+.emotion-1:after {
+  content: "";
+  position: absolute;
+  diplay: block;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  right: 30px;
+  background-color: #1e6fff;
+}
+
+.emotion-2 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #1e6fff;
+  color: #fff;
+}
+
+.emotion-2 svg {
+  font-size: 10px;
+}
+
+.emotion-3 {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.emotion-4 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #1f1f1f;
+}
+
+.emotion-4::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 8px;
+  height: 8px;
+  border: 3px solid #ebebeb;
+  border-left: none;
+  border-bottom: none;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: 6px;
+  right: 10px;
+}
+
+.emotion-5 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  padding-left: 20px;
+  padding-right: 10px;
+  margin-right: 32px;
+}
+
+.emotion-6 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #ebebeb;
+  color: #999;
+}
+
+.emotion-6 svg {
+  font-size: 10px;
+}
+
+.emotion-8 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #999;
+}
+
+<div
+  class="emotion-0"
+  data-testid="steps"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-2"
+    >
+      1
+    </div>
+    <div
+      class="emotion-3"
+    >
+      <div
+        class="emotion-4"
+      >
+        Succeeded
+      </div>
+    </div>
+  </div>
+  <div
+    class="emotion-5"
+  >
+    <div
+      class="emotion-6"
+    >
+      2
+    </div>
+    <div
+      class="emotion-3"
+    >
+      <div
+        class="emotion-8"
+      >
+        Wait
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps render with no line 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-1 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  margin-right: 16px;
+  min-height: unset;
+}
+
+.emotion-2 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #1e6fff;
+  color: #fff;
+}
+
+.emotion-2 svg {
+  font-size: 10px;
+}
+
+.emotion-3 {
+  display: inline-block;
+}
+
+.emotion-4 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #1f1f1f;
+}
+
+<div
+  class="emotion-0"
+  data-testid="steps"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-2"
+    >
+      1
+    </div>
+    <div
+      class="emotion-3"
+    >
+      <div
+        class="emotion-4"
+      >
+        Error
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps render with process status 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-1 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  margin-right: 16px;
+  min-height: unset;
+}
+
+.emotion-2 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #1e6fff;
+  color: #fff;
+}
+
+.emotion-2 svg {
+  font-size: 10px;
+}
+
+.emotion-3 {
+  display: inline-block;
+}
+
+.emotion-4 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #1f1f1f;
+  position: relative;
+}
+
+.emotion-4::after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 1px;
+  width: 9999px;
+  left: 100%;
+  top: 10px;
+  background-color: #ebebeb;
+}
+
+.emotion-6 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #ebebeb;
+  color: #999;
+}
+
+.emotion-6 svg {
+  font-size: 10px;
+}
+
+.emotion-8 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #999;
+  position: relative;
+}
+
+.emotion-8::after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 1px;
+  width: 9999px;
+  left: 100%;
+  top: 10px;
+  background-color: #ebebeb;
+}
+
+.emotion-12 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #999;
+}
+
+<div
+  class="emotion-0"
+  data-testid="steps"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-2"
+    >
+      1
+    </div>
+    <div
+      class="emotion-3"
+    >
+      <div
+        class="emotion-4"
+      >
+        Finish
+      </div>
+    </div>
+  </div>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-6"
+    >
+      2
+    </div>
+    <div
+      class="emotion-3"
+    >
+      <div
+        class="emotion-8"
+      >
+        Process
+      </div>
+    </div>
+  </div>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-6"
+    >
+      3
+    </div>
+    <div
+      class="emotion-3"
+    >
+      <div
+        class="emotion-12"
+      >
+        Wait
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Steps render with vertical 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-1 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  margin-right: 16px;
+  min-height: 90px;
+}
+
+.emotion-2 {
+  position: absolute;
+  display: block;
+  width: 1px;
+  left: 12px;
+  top: 28px;
+  bottom: 5px;
+  background-color: #ebebeb;
+}
+
+.emotion-3 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #1e6fff;
+  color: #fff;
+}
+
+.emotion-3 svg {
+  font-size: 10px;
+}
+
+.emotion-4 {
+  display: inline-block;
+}
+
+.emotion-5 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #1f1f1f;
+}
+
+.emotion-7 {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  background: #ebebeb;
+  color: #999;
+}
+
+.emotion-7 svg {
+  font-size: 10px;
+}
+
+.emotion-9 {
+  line-height: 24px;
+  font-size: 16px;
+  padding-right: 16px;
+  color: #999;
+}
+
+<div
+  class="emotion-0"
+  data-testid="steps"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-2"
+    />
+    <div
+      class="emotion-3"
+    >
+      1
+    </div>
+    <div
+      class="emotion-4"
+    >
+      <div
+        class="emotion-5"
+      >
+        Succeeded
+      </div>
+    </div>
+  </div>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-7"
+    >
+      2
+    </div>
+    <div
+      class="emotion-4"
+    >
+      <div
+        class="emotion-9"
+      >
+        Wait
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, {
+import {
   forwardRef,
   useCallback,
   useEffect,

@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef } from "react"
+import { forwardRef } from "react"
 import { {{properCase name}}Props } from "./interface"
 
 export const {{properCase name}} = forwardRef<HTMLDivElement, {{properCase name}}Props>((props, ref) => {

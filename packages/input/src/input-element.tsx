@@ -1,11 +1,11 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import {
   forwardRef,
   useRef,
   useState,
   ChangeEvent,
   useImperativeHandle,
+  CompositionEvent,
+  KeyboardEvent,
   useEffect,
 } from "react"
 import { css } from "@emotion/react"
@@ -64,7 +64,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
 
     // Handle Chinese keyboard input
     const onComposition = (
-      e: React.CompositionEvent & React.ChangeEvent<HTMLInputElement>,
+      e: CompositionEvent & ChangeEvent<HTMLInputElement>,
     ) => {
       if (e.type === "compositionend") {
         isComposition.current = false
@@ -75,7 +75,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
       }
     }
 
-    const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
       const keyCode = e.keyCode || e.which
       if (isComposition.current) {
         return

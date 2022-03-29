@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, useState } from "react"
+import { forwardRef, MouseEventHandler, useState } from "react"
 import { SwitchProps } from "./interface"
 import {
   applySwitch,
@@ -29,9 +28,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     const [checked, setChecked] = useState<boolean>(defaultChecked)
     const mergedChecked = propsChecked !== void 0 ? propsChecked : checked
 
-    const onHandleClick: React.MouseEventHandler<HTMLButtonElement> = (
-      event,
-    ) => {
+    const onHandleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
       if (propsChecked === void 0) {
         setChecked(!mergedChecked)
         onChange && onChange(!mergedChecked, event)

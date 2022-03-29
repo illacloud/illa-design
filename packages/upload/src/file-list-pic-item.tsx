@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef } from "react"
 import { FileListItemProps } from "./interface"
 import {
@@ -6,10 +5,9 @@ import {
   fileItemContainerCss,
   filePicItemCss,
   imageSizeCss,
-} from "./styles"
+} from "./style"
 import { Image } from "@illa-design/image"
-import * as React from "react"
-import { getDeleteButton, getRightIcon } from "./file-list-util"
+import { getDeleteButton, getRightIcon } from "./file-list-utils"
 
 const getObjectUrl = (file?: File) => {
   if (file) {
@@ -18,15 +16,25 @@ const getObjectUrl = (file?: File) => {
   }
 }
 
-export const FileListPicItem = forwardRef<HTMLSpanElement, FileListItemProps>(
+export const FileListPicItem = forwardRef<HTMLDivElement, FileListItemProps>(
   (props, ref) => {
-    const { deleteUpload, item, reUpload } = props
+    const { deleteUpload, item, reUpload, icons } = props
     const { name, percent, status, url, originFile } = item
     const picUrl = url ? url : getObjectUrl(originFile)
-    let rightView = getRightIcon(status, item, percent, reUpload)
-    const deleteButton = getDeleteButton(item, deleteUpload)
+    let rightView = getRightIcon(
+      status,
+      item,
+      percent,
+      reUpload,
+      icons?.reuploadIcon,
+    )
+    const deleteButton = icons?.removeIcon ? (
+      <span onClick={() => deleteUpload(item)}>{icons.removeIcon}</span>
+    ) : (
+      getDeleteButton(item, deleteUpload)
+    )
     return (
-      <div css={fileItemContainerCss}>
+      <div css={fileItemContainerCss} ref={ref}>
         <div css={filePicItemCss}>
           <Image
             css={imageSizeCss}

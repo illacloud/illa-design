@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react"
+import { forwardRef } from "react"
 import { TFootProps } from "./interface"
 
 export const TFoot = forwardRef<HTMLTableSectionElement, TFootProps>(

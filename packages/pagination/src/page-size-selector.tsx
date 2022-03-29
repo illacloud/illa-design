@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, useContext, useState } from "react"
 import { PageSizeSelectorProps } from "./interface"
 import { applyPageSizeSelectorCss } from "./style"

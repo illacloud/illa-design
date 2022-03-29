@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react"
+import { forwardRef } from "react"
 import { THeadProps } from "./interface"
 
 export const Thead = forwardRef<HTMLTableSectionElement, THeadProps>(

@@ -1,5 +1,5 @@
 import { ConfigProviderProps } from "./interface"
-import * as React from "react"
+
 import { createContext } from "react"
 import { def } from "./locale/def"
 

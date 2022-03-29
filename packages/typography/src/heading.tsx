@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
-import { forwardRef } from "react"
+import { Children, forwardRef } from "react"
 import { HeadingProps } from "./interface"
 import { Base } from "./base"
 import { Tooltip } from "@illa-design/tooltip"
@@ -53,9 +51,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
 
     if (showTooltip) {
       return (
-        <Tooltip
-          content={mergedToString(React.Children.toArray(props.children))}
-        >
+        <Tooltip content={mergedToString(Children.toArray(props.children))}>
           {headingNode}
         </Tooltip>
       )

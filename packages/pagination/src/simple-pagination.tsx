@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, useEffect, useState } from "react"
 import { SimplePaginationProps } from "./interface"
 import {
@@ -8,7 +7,6 @@ import {
   simplePaginationSumCss,
 } from "./style"
 import { Input } from "@illa-design/input"
-import * as React from "react"
 
 export const SimplePagination = forwardRef<
   HTMLSpanElement,

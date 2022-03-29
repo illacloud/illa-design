@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react"
+import { forwardRef } from "react"
 import { TBodyProps } from "./interface"
 
 export const TBody = forwardRef<HTMLTableSectionElement, TBodyProps>(

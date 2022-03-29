@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { forwardRef } from "react"
 import { IllaTableProps } from "./interface"
 

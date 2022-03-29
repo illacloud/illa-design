@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react"
+import { forwardRef } from "react"
 import { TrProps } from "./interface"
 
 export const Tr = forwardRef<HTMLTableRowElement, TrProps>((props, ref) => {

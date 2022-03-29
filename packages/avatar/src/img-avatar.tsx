@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { FC } from "react"
 import { AvatarProps } from "./interface"
 import { applyAvatarSize, applyShape } from "./style"

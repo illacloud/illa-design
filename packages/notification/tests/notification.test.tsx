@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor, act } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import * as React from "react"
+
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { iconColorMap } from "@illa-design/alert"
 import userEvent from "@testing-library/user-event"
