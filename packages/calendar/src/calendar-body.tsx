@@ -26,7 +26,7 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
     dayStartOfWeek,
     mode,
     disabledDate,
-    onPanelChange,
+    onChange,
     dateRender,
     monthRender,
     dateInnerContent,
@@ -67,9 +67,13 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
   }
 
   const clickCmptItem = (value: number, type: "month" | "year") => {
-    type === "month" && setCmptSelectMonth(value)
-    type === "year" && setCmptSelectYear(value)
-    onPanelChange && onPanelChange(dayjs(value))
+    if (type === "month") {
+      setCmptSelectMonth(value)
+      onChange && onChange(dayjs(`${currentYear}-${value + 1}-1`))
+    } else if (type === "year") {
+      setCmptSelectYear(value)
+      onChange && onChange(dayjs(`${value}-${currentMonth}-1`))
+    }
   }
 
   // week title ele

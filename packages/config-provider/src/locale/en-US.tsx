@@ -59,4 +59,8 @@ export const enUS = {
     November: "November",
     December: "December",
   },
+  modal: {
+    okText: "OK",
+    cancelText: "Cancel",
+  },
 } as Locale

@@ -83,6 +83,8 @@
     "@illa-design/tabs": "*",
     "@illa-design/time-picker": "*",
     "@illa-design/calendar": "*",
+    "@illa-design/modal": "*",
+    "@illa-design/steps": "*",
     "react-use": "^17.3.1",
     "framer-motion": "^6.2.8",
     "@emotion/react": "^11.7.1"
