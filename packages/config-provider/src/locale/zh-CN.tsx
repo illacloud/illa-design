@@ -53,4 +53,8 @@ export const zhCN = {
     November: "十一月",
     December: "十二月",
   },
+  modal: {
+    okText: "确定",
+    cancelText: "取消",
+  },
 } as Locale

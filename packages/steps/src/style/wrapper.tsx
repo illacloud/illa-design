@@ -9,7 +9,7 @@ export function applyWrapperStyle({
   type,
   status,
   disabled,
-  labelPlacement
+  labelPlacement,
 }: {
   direction: LabelPlacement
   type: StepType
@@ -17,7 +17,9 @@ export function applyWrapperStyle({
   disabled: boolean
   labelPlacement: LabelPlacement
 }): SerializedStyles {
-  const overflow = isVerticalLabel({ type, direction, labelPlacement }) ? "visible" : "hidden"
+  const overflow = isVerticalLabel({ type, direction, labelPlacement })
+    ? "visible"
+    : "hidden"
   const minHeight = direction === "vertical" ? 90 : "unset"
   let navigactionProcessStatusIndicator = css``
   let boxStyle = css({

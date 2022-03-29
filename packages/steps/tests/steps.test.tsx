@@ -62,7 +62,6 @@ test("Steps render with current step 2", () => {
   expect(screen.getByText("Wait")).toBeInTheDocument()
 })
 
-
 test("Steps render vertical label", () => {
   render(
     <Steps data-testid="steps" labelPlacement="vertical">
@@ -208,8 +207,8 @@ test("Steps onChange should be triggered", () => {
     </Steps>,
   )
 
-  screen.getByText("Wait").click();
-  expect(clickEvent).toBeCalled();
+  screen.getByText("Wait").click()
+  expect(clickEvent).toBeCalled()
 })
 
 test("Steps onChange should be triggered if step is disabled", () => {
@@ -221,6 +220,6 @@ test("Steps onChange should be triggered if step is disabled", () => {
     </Steps>,
   )
 
-  screen.getByText("Wait").click();
-  expect(clickEvent).not.toBeCalled();
+  screen.getByText("Wait").click()
+  expect(clickEvent).not.toBeCalled()
 })

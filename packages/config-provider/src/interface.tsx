@@ -10,4 +10,5 @@ export interface Locale {
   upload: Record<string, string>
   popConfirm: Record<string, string>
   calendar: Record<string, string>
+  modal: Record<string, string>
 }
