@@ -81,6 +81,7 @@
     "@illa-design/affix": "*",
     "@illa-design/comment": "*",
     "@illa-design/tabs": "*",
-    "@illa-design/calendar": "*"
+    "@illa-design/calendar": "*",
+    "@illa-design/skeleton": "*"
   }
 }
