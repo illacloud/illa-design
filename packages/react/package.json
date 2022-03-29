@@ -82,6 +82,8 @@
     "@illa-design/comment": "*",
     "@illa-design/tabs": "*",
     "@illa-design/calendar": "*",
-    "@illa-design/skeleton": "*"
+    "@illa-design/skeleton": "*",
+    "@illa-design/modal": "*",
+    "@illa-design/steps": "*"
   }
 }
