@@ -72,6 +72,9 @@ it("Affix renders with fixed 100px to window top", () => {
 
 it("Affix renders with fixed 100px to window bottom", () => {
   mount(<TestAffix offsetBottom={100} />)
+
+  cy.scrollTo("top")
+
   cy.findByText("Affix content")
     .parent()
     .should("have.css", "position", "fixed")
