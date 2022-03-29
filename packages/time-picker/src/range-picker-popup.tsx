@@ -25,7 +25,7 @@ export function RangePickerPopup(props: InnerRangePickerProps) {
     valueShow = [],
     setValueShow,
     disableConfirm,
-
+    disabled,
     onSelect,
     onChange,
     onConfirmValue,

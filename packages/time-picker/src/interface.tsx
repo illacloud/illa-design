@@ -11,7 +11,6 @@ export interface PickerProps
   > {
   size?: TimePickerSize
   step?: { hour?: number; minute?: number; second?: number }
-  disabled?: boolean
   error?: boolean
   allowClear?: boolean
   disableConfirm?: boolean
@@ -37,6 +36,7 @@ export interface PickerProps
 export type CalendarValue = Dayjs | Date | string | number
 
 export interface TimePickerProps extends PickerProps {
+  disabled?: boolean
   defaultValue?: CalendarValue
   value?: CalendarValue
   showNowBtn?: boolean
@@ -45,6 +45,7 @@ export interface TimePickerProps extends PickerProps {
 }
 
 export interface RangePickerProps extends PickerProps {
+  disabled?: boolean | boolean[]
   defaultValue?: CalendarValue[]
   value?: CalendarValue[]
   placeholder?: string[]
@@ -54,6 +55,7 @@ export interface RangePickerProps extends PickerProps {
 }
 
 export interface RenderPickerProps extends PickerProps {
+  disabled?: boolean | boolean[]
   defaultValue?: CalendarValue | CalendarValue[]
   value?: CalendarValue | CalendarValue[]
   onSelect?: (value?: string | string[], dayjsValue?: Dayjs | Dayjs[]) => void

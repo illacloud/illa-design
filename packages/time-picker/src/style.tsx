@@ -1,6 +1,7 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
+import { columState } from "./time-column"
 
 export function applyCheckboxSize(checked?: boolean) {
   let checkedCss = css()
@@ -28,6 +29,7 @@ export function applyCheckboxSize(checked?: boolean) {
     border: solid 2px ${globalColor(`--${illaPrefix}-gray-08`)};
     cursor: pointer;
     transition: 0.15s all linear;
+
     &:hover {
       border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
     }
@@ -37,6 +39,7 @@ export function applyCheckboxSize(checked?: boolean) {
       border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
       background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
     }
+
     ${checkedCss}
   `
 }
@@ -88,21 +91,26 @@ export function applyTimepickerList() {
     height: 224px;
     overflow: hidden;
     box-sizing: border-box;
+
     &:hover {
       overflow-y: auto;
     }
-    &:not(:last-child){
+
+    &:not(:last-child) {
       border-right: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     }
   `
 }
 
+// time-column style
 export function applyTimeColumn() {
   return css`
     margin: 0;
     padding: 0;
     list-style: none;
     box-sizing: border-box;
+    font-size: 12px;
+    font-weight: 500;
     &:after {
       content: "";
       display: block;
@@ -112,24 +120,48 @@ export function applyTimeColumn() {
   `
 }
 
-export function applyColumnItem() {
+export function applyColumnItem(states: columState): SerializedStyles {
+  let stateStyle: SerializedStyles = css()
+  if (states?.disabled) {
+    stateStyle = css`
+      cursor: not-allowed;
+    `
+  } else if (states?.selected) {
+    stateStyle = css`
+      &:hover {
+        cursor: pointer;
+      }
+    `
+  }
+
   return css`
     padding: 4px 0;
-    //padding: 2px 24px;
     text-align: center;
-    &:hover {
-      cursor: pointer;
-    }
+    ${stateStyle}
   `
 }
-export function applyColumnItemText() {
+
+export function applyColumnItemText(states: columState): SerializedStyles {
+  let stateStyle: SerializedStyles = css()
+  if (states?.disabled) {
+    stateStyle = css`
+      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+    `
+  } else if (states?.selected) {
+    stateStyle = css`
+      color: ${globalColor(`--${illaPrefix}-blue-03`)};
+      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+    `
+  }
   return css`
-    font-size: 12px;
     line-height: 24px;
     height: 24px;
+
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
     }
+
+    ${stateStyle}
   `
 }
 

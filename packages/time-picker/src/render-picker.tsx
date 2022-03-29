@@ -74,7 +74,9 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     const locale = configProviderProps?.locale?.timePicker ?? def.timePicker
     const [valueShow, setValueShow] = useState<Dayjs | Dayjs[]>()
     const [inputValue, setInputValue] = useState<string>()
-    const [rangeInputValue, setRangeInputValue] = useState<string[] | undefined>()
+    const [rangeInputValue, setRangeInputValue] = useState<
+      string[] | undefined
+    >()
     const [focusedInputIndex, setFocusedInputIndex] = useState<number>(0)
 
     // controlled / uncontrolled
@@ -121,6 +123,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     }
 
     function onConfirmValue(vs?: Dayjs | Dayjs[]) {
+      const currentOrder = disabled
       const newValue =
         isRangePicker && order ? getSortedDayjsArray(vs as Dayjs[]) : vs
       setCurrentValue(newValue)
@@ -182,7 +185,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         onChange && onChange(undefined, undefined)
         onClear?.()
       },
-      onChange: (inputValue?: string| string[]) => {
+      onChange: (inputValue?: string | string[]) => {
         console.log(inputValue, "onChange")
         if (!currentPopupVisible) {
           setCurrentPopupVisible(true)
@@ -195,7 +198,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
           if (!isArray(inputValue)) return
           setRangeInputValue(inputValue)
           const val = inputValue[focusedInputIndex]
-          console.log(val, isValidTime(val), 'val, rangeInputValue')
+          console.log(val, isValidTime(val), "val, rangeInputValue")
           const newValueShow = [
             ...(isArray(valueShow)
               ? valueShow
@@ -233,7 +236,10 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         clickOutsideToClose
         withoutPadding
         position={position}
-        disabled={disabled}
+        disabled={
+          (isArray(disabled) && disabled.includes(true)) ||
+          (!isArray(disabled) && disabled)
+        }
         onVisibleChange={(visible: boolean) => {
           if (visible) {
             setOpen(visible, () => {

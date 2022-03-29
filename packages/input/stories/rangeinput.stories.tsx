@@ -5,8 +5,31 @@ import { PersonIcon } from "@illa-design/icon"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "DATA INPUT/RangeInput",
+  title: "DATA INPUT/Input",
   component: RangeInput,
+  argTypes: {
+    suffix: {
+      control: {
+        type: "text",
+      },
+    },
+    boarderColor: {
+      options: [
+        "gray",
+        "blue",
+        "purple",
+        "red",
+        "green",
+        "yellow",
+        "orange",
+        "cyan",
+        "white",
+      ],
+      control: {
+        type: "select",
+      },
+    },
+  },
   parameters: {
     docs: {
       source: {
@@ -16,7 +39,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<RangeInputProps> = (props) => {
+export const rangeInput: Story<RangeInputProps> = (props) => {
   return (
     <div>
       <Space direction={"vertical"} wrap>
@@ -25,5 +48,3 @@ const Template: Story<RangeInputProps> = (props) => {
     </div>
   )
 }
-
-export const Basic = Template.bind({})

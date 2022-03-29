@@ -2,7 +2,7 @@ import { useContext, useCallback, ReactNode } from "react"
 import { Dayjs } from "dayjs"
 import { TimePickerProps, CalendarValue } from "./interface"
 
-import { getDayjsValue, dayjs } from "@illa-design/system"
+import { getDayjsValue, dayjs, isFunction } from "@illa-design/system"
 import { Button } from "@illa-design/button"
 import { TimeColumn } from "./time-column"
 import {
@@ -227,7 +227,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
 
   function renderHours() {
     const hours =
-      hideDisabledOptions && typeof disabledHours === "function"
+      hideDisabledOptions && isFunction(disabledHours)
         ? HOURS.filter((h) => disabledHours().indexOf(h) === -1)
         : HOURS
     const list = hours.map((h) => ({
@@ -235,7 +235,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
       value: h,
       selected: selectedHour !== undefined && selectedHour === h,
       disabled:
-        typeof disabledHours === "function" &&
+        isFunction(disabledHours) &&
         disabledHours().indexOf(h) !== -1,
     }))
     return (
@@ -250,7 +250,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
 
   function renderMinutes() {
     const minutes =
-      hideDisabledOptions && typeof disabledMinutes === "function"
+      hideDisabledOptions && isFunction(disabledMinutes)
         ? MINUTES.filter((h) => disabledMinutes(selectedHour).indexOf(h) === -1)
         : MINUTES
     const list = minutes.map((m) => ({
@@ -258,7 +258,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
       value: m,
       selected: selectedHour !== undefined && selectedMinute === m,
       disabled:
-        typeof disabledMinutes === "function" &&
+        isFunction(disabledMinutes) &&
         disabledMinutes(selectedHour).indexOf(m) !== -1,
     }))
 
@@ -274,7 +274,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
 
   function renderSeconds() {
     const seconds =
-      hideDisabledOptions && typeof disabledSeconds === "function"
+      hideDisabledOptions && isFunction(disabledSeconds)
         ? SECONDS.filter(
             (h) =>
               disabledSeconds(selectedHour, selectedMinute).indexOf(h) === -1,
@@ -285,7 +285,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
       value: s,
       selected: selectedHour !== undefined && selectedSecond === s,
       disabled:
-        typeof disabledSeconds === "function" &&
+        isFunction(disabledSeconds) &&
         disabledSeconds(selectedHour, selectedMinute).indexOf(s) !== -1,
     }))
     return (

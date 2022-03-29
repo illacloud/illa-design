@@ -24,6 +24,9 @@ export default {
     addonBefore: {
       control: false,
     },
+    inputRef: {
+      control: false,
+    },
     boarderColor: {
       options: [
         "gray",
