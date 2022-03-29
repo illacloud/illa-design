@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { forwardRef } from "react"
 import { CloseIcon, SuccessIcon } from "@illa-design/icon"
 import { isFunction } from "@illa-design/system"
