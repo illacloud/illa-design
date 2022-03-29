@@ -23,9 +23,10 @@ export function applyTitleStyle({
     applyTitleSize({ size, direction, type, labelPlacement }),
     applyTitleColor(status),
     !lastStep &&
-    !lineless &&
-    direction !== "vertical" && labelPlacement !== "vertical" &&
-    applyConnectionStyle({ type, status, nextStepError, size }),
+      !lineless &&
+      direction !== "vertical" &&
+      labelPlacement !== "vertical" &&
+      applyConnectionStyle({ type, status, nextStepError, size }),
   ])
 }
 
@@ -100,7 +101,7 @@ function applyConnectionStyle({
     const topMap = {
       small: 10,
       large: 14,
-    };
+    }
     position = css`
       position: relative;
     `
@@ -115,7 +116,7 @@ function applyConnectionStyle({
     const topMap = {
       small: 6,
       large: 10,
-    };
+    }
     pseudoStyle = css({
       width: 8,
       height: 8,

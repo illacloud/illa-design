@@ -32,19 +32,19 @@ function applyIconColor(status: StepStatus): SerializedStyles {
 
   switch (status) {
     case "wait":
-      ; ({ color, backgroundColor } = statusColor.wait)
+      ;({ color, backgroundColor } = statusColor.wait)
       break
 
     case "process":
-      ; ({ color, backgroundColor } = statusColor.process)
+      ;({ color, backgroundColor } = statusColor.process)
       break
 
     case "finish":
-      ; ({ color, backgroundColor } = statusColor.finish)
+      ;({ color, backgroundColor } = statusColor.finish)
       break
 
     case "error":
-      ; ({ color, backgroundColor } = statusColor.error)
+      ;({ color, backgroundColor } = statusColor.error)
       break
   }
 

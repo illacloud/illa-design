@@ -65,7 +65,7 @@ function generateDotConnnector({
     })
   }
 
-  return css``;
+  return css``
 }
 
 function generateLineConnector({
@@ -134,5 +134,5 @@ function generateLineConnector({
     )
   }
 
-  return css``;
+  return css``
 }
