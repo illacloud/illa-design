@@ -1,12 +1,10 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import {
   forwardRef,
   ReactElement,
-  useEffect,
   useContext,
   useRef,
   useState,
+  cloneElement,
 } from "react"
 import { Dayjs } from "dayjs"
 import {
@@ -36,7 +34,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     const {
       style,
       className,
-      picker,
+      popup,
       isRangePicker,
       allowClear = true,
       disableConfirm,
@@ -251,7 +249,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
             css={triggerContentStyle}
             onClick={() => inputRef.current?.focus()}
           >
-            {React.cloneElement(picker as ReactElement, {
+            {cloneElement(popup as ReactElement, {
               ...props,
               format,
               inputValue,

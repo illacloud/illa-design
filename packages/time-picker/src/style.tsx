@@ -1,5 +1,4 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-//import { CheckboxProps } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 

@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactElement, ReactNode } from "react"
+import { HTMLAttributes, ReactElement, ReactNode } from "react"
 import { Dayjs } from "dayjs"
 import { TriggerProps } from "@illa-design/trigger"
 
@@ -59,7 +59,7 @@ export interface RenderPickerProps extends PickerProps {
   onSelect?: (value?: string | string[], dayjsValue?: Dayjs | Dayjs[]) => void
   onChange?: (value?: string | string[], dayjsValue?: Dayjs | Dayjs[]) => void
   isRangePicker?: boolean
-  picker?: ReactElement
+  popup?: ReactElement
   hideFooter?: boolean
   order?: boolean
 }

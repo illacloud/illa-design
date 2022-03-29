@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { forwardRef } from "react"
 import { Picker } from "./render-picker"
 import {
@@ -16,7 +14,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       <Picker
         {...(props as RenderPickerProps)}
         ref={ref}
-        picker={<TimePickerPopup />}
+        popup={<TimePickerPopup />}
       />
     )
   },
@@ -28,7 +26,7 @@ export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
       <Picker
         {...(props as RenderPickerProps)}
         ref={ref}
-        picker={<RangePickerPopup />}
+        popup={<RangePickerPopup />}
         isRangePicker
       />
     )
