@@ -195,9 +195,9 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
             return
           }
           if (!isArray(inputValue)) return
+          setRangeInputValue(inputValue)
           const val = inputValue[focusedInputIndex]
           console.log(val, isValidTime(val), 'val, rangeInputValue')
-          setRangeInputValue(inputValue)
           const newValueShow = [
             ...(isArray(valueShow)
               ? valueShow
@@ -205,11 +205,11 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
           ]
           if (isValidTime(val)) {
             newValueShow[focusedInputIndex] = getDayjsValue(
-              inputValue,
+              val,
               format,
             ) as Dayjs
             setValueShow(newValueShow)
-            setInputValue(undefined)
+            setRangeInputValue(undefined)
           }
         } else {
           if (isArray(inputValue)) return
