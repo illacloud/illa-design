@@ -1,16 +1,15 @@
 import { useContext, useCallback, ReactNode } from "react"
 import { Dayjs } from "dayjs"
-import { TimePickerProps, CalendarValue } from "./interface"
-
 import { getDayjsValue, dayjs, isFunction } from "@illa-design/system"
 import { Button } from "@illa-design/button"
-import { TimeColumn } from "./time-column"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
+import { TimeColumn } from "./time-column"
 import { applyContentButton, applyTimepickerContent } from "./style"
+import { TimePickerProps, CalendarValue, TimeColumnProps } from "./interface"
 
 interface InnerTimePickerProps extends TimePickerProps {
   confirmBtnDisabled?: boolean
@@ -28,7 +27,10 @@ interface InnerTimePickerProps extends TimePickerProps {
   hideFooter?: boolean
 }
 
-const AMPM = ["am", "pm"]
+type SelectUnit = Record<
+  "hour" | "minute" | "second" | "selectedAmpm",
+  string | number | undefined
+>
 
 export function getColumnsFromFormat(format?: string) {
   const units = ["H", "h", "m", "s", "a", "A"]
@@ -94,31 +96,22 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
   const ampm = valueShow && valueShow.hour() >= 12 ? "pm" : "am"
   const use12Hours = isUse12Hours(props)
 
+  const _hideFooter =
+    hideFooter ||
+    (isRangePicker && disableConfirm) ||
+    (!isRangePicker && disableConfirm && !showNowBtn)
+
   const getShowList = useCallback(
     (type: "hour" | "minute" | "second") => {
-      const stepHour = step.hour || 1
-      const stepMinute = step.minute || 1
-      const stepSecond = step.second || 1
+      const stepFormType = step[type] || 1
+      const duration = type === "hour" ? (use12Hours ? 12 : 24) : 60
       const list: number[] = []
-      if (type === "hour") {
-        for (let i = 0; i < (use12Hours ? 12 : 24); i += stepHour) {
-          list.push(i)
-        }
-        if (use12Hours) {
-          list[0] = 12
-        }
+      for (let i = 0; i < duration; i += stepFormType) {
+        list.push(i)
       }
-      if (type === "minute") {
-        for (let i = 0; i < 60; i += stepMinute) {
-          list.push(i)
-        }
+      if (type === "hour" && use12Hours) {
+        list[0] = 12
       }
-      if (type === "second") {
-        for (let i = 0; i < 60; i += stepSecond) {
-          list.push(i)
-        }
-      }
-
       return list
     },
     [step.hour, step.minute, step.second, use12Hours],
@@ -140,15 +133,19 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
   const selectedMinute = valueShow && valueShow.minute()
   const selectedSecond = valueShow && valueShow.second()
 
-  function onHandleSelect(selectedValue?: number | string, unit?: string) {
-    console.log(selectedValue, unit, dayjs(), "onHandleSelect")
+  function onHandleSelect(
+    selectedValue?: number | string,
+    unit?: TimeColumnProps["unit"],
+  ) {
     const isUpperCase = getColumnsFromFormat(format).list.indexOf("A") !== -1
     const _valueShow = valueShow || dayjs("00:00:00", "HH:mm:ss")
-    //console.log(_valueShow)
-    let hour = _valueShow?.hour?.()
-    const minute = _valueShow?.minute?.()
-    const second = _valueShow?.second?.()
-    const selectedAmpm = isUpperCase ? ampm.toUpperCase() : ampm
+    const timeData: SelectUnit = {
+      hour: _valueShow?.hour?.(),
+      minute: _valueShow?.minute?.(),
+      second: _valueShow?.second?.(),
+      selectedAmpm: isUpperCase ? ampm.toUpperCase() : ampm,
+    }
+
     let valueFormat = "HH:mm:ss"
     let newValue
     if (use12Hours) {
@@ -157,55 +154,33 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
       } else {
         valueFormat = `${valueFormat} a`
       }
-      hour = hour > 12 ? hour - 12 : hour
-    }
-    if (unit === "hour") {
-      newValue = dayjs(
-        `${selectedValue}:${minute}:${second} ${selectedAmpm}`,
-        valueFormat,
-        "en",
-      )
-    }
-    if (unit === "minute") {
-      newValue = dayjs(
-        `${hour}:${selectedValue}:${second} ${selectedAmpm}`,
-        valueFormat,
-        "en",
-      )
-    }
-    if (unit === "second") {
-      newValue = dayjs(
-        `${hour}:${minute}:${selectedValue} ${selectedAmpm}`,
-        valueFormat,
-        "en",
-      )
-    }
-    if (unit === "ampm") {
-      newValue = dayjs(
-        `${hour}:${minute}:${second} ${
-          isUpperCase ? (selectedValue as string).toUpperCase() : selectedValue
-        }`,
-        valueFormat,
-        "en",
-      )
+      const _hour = timeData.hour as number
+      timeData.hour = _hour > 12 ? _hour - 12 : _hour
     }
 
+    if (unit) {
+      if (unit === "ampm") {
+        timeData["selectedAmpm"] = isUpperCase
+          ? (selectedValue as string).toUpperCase()
+          : selectedValue
+      } else {
+        timeData[unit] = selectedValue
+      }
+      const { hour, minute, second, selectedAmpm } = timeData
+      newValue = dayjs(
+        `${hour}:${minute}:${second} ${selectedAmpm}`,
+        valueFormat,
+        "en",
+      )
+    }
     newValue = dayjs(newValue, valueFormat).locale(dayjs.locale())
-
-    onSelect && onSelect(newValue.format(format), newValue)
+    onSelect?.(newValue.format(format), newValue)
 
     if (!isRangePicker) {
       setValueShow && setValueShow(newValue)
-
       if (disableConfirm) {
         onConfirmValue?.(newValue)
       }
-    }
-  }
-
-  function onConfirmTime() {
-    if (valueShow) {
-      onConfirmValue?.(valueShow)
     }
   }
 
@@ -234,9 +209,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
       label: padStart(`${h}`, 2, "0"),
       value: h,
       selected: selectedHour !== undefined && selectedHour === h,
-      disabled:
-        isFunction(disabledHours) &&
-        disabledHours().indexOf(h) !== -1,
+      disabled: isFunction(disabledHours) && disabledHours().indexOf(h) !== -1,
     }))
     return (
       <TimeColumn
@@ -300,6 +273,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
 
   function renderAmPm() {
     const isUpperCase = getColumnsFromFormat(format).list.indexOf("A") !== -1
+    const AMPM = ["am", "pm"]
     const list = AMPM.map((a) => ({
       label: isUpperCase ? a.toUpperCase() : a,
       value: a,
@@ -316,11 +290,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
   }
 
   const { list } = getColumnsFromFormat(format)
-
-  const _hideFooter =
-    hideFooter ||
-    (disableConfirm && isRangePicker) ||
-    (!isRangePicker && disableConfirm && !showNowBtn)
+  console.log(format, getColumnsFromFormat(format))
 
   return (
     <>
@@ -332,7 +302,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
         {use12Hours && renderAmPm()}
       </div>
       {extra && <div>{extra}</div>}
-      {!_hideFooter && (
+      {!_hideFooter ? (
         <div css={applyContentButton()}>
           {!isRangePicker && showNowBtn ? (
             <Button colorScheme="gray" size="small" onClick={onSelectNow}>
@@ -344,14 +314,18 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
           {!disableConfirm && (
             <Button
               size="small"
-              onClick={onConfirmTime}
+              onClick={()=>{
+                if (valueShow) {
+                  onConfirmValue?.(valueShow)
+                }
+              }}
               disabled={confirmBtnDisabled || !valueShow}
             >
               {locale.ok}
             </Button>
           )}
         </div>
-      )}
+      ) : null}
     </>
   )
 }

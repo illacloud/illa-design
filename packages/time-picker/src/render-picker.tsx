@@ -153,7 +153,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       style,
       className,
       format,
-      disabled,
       error,
       size,
       readOnly: !editable,
@@ -279,6 +278,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         {isRangePicker ? (
           <RangeInput
             {...baseInputProps}
+            disabled={disabled}
             inputGroupRef={inputGroupRef}
             focusedInputIndex={focusedInputIndex}
             changeFocusedInputIndex={changeFocusedInputIndex}
@@ -296,6 +296,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
           <Input
             {...baseInputProps}
             inputRef={inputRef}
+            disabled={!isArray(disabled) && disabled}
             placeholder={inputPlaceHolder}
             value={
               inputValue

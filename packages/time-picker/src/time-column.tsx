@@ -12,87 +12,81 @@ import {
   applyTimeColumn,
   applyTimepickerList,
 } from "./style"
-
-type ListItem = {
-  label?: string
-  value?: number | string
-  disabled?: boolean
-  selected?: boolean
-}
+import { TimeColumnProps } from "./interface"
 
 export type columState = {
   disabled?: boolean
   selected?: boolean
 }
 
-export interface TimeColumnProps {
-  list?: ListItem[]
-  value?: number | string
-  onHandleSelect?: (value?: number | string, unit?: string) => void
-  unit?: "hour" | "minute" | "second" | "ampm"
-  popupVisible?: boolean
-  scrollSticky?: boolean
-}
-
 export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
   (props, ref) => {
-    const { list, value, onHandleSelect, unit, popupVisible, scrollSticky } =
-      props
+    const {
+      list,
+      value,
+      onHandleSelect,
+      unit,
+      popupVisible,
+      scrollSticky,
+      ...rest
+    } = props
 
-    const lis = useRef<Map<number | string, HTMLElement | null>>(new Map())
-    const wrapper = useRef<HTMLDivElement>(null)
-    const ul = useRef<HTMLUListElement>(null)
+    const wrapperRef = useRef<HTMLDivElement>(null)
+    const ulRef = useRef<HTMLUListElement>(null)
+    const listElement = useRef<Map<number | string, HTMLElement | null>>(
+      new Map(),
+    )
     const listItemHeight = useRef<number>(0)
-
     const prevPopupVisible = useRef<boolean>()
+    const currentScrollTop = useRef<number>(
+      wrapperRef?.current?.scrollTop as number,
+    )
+
     useEffect(() => {
       prevPopupVisible.current = popupVisible
     })
 
-    const prevScrollTop = useRef<number>(wrapper?.current?.scrollTop as number)
-
     useEffect(() => {
-      const li = value ? lis.current.get(value) : undefined
+      const li = value ? listElement.current.get(value) : undefined
       if (li && popupVisible && prevPopupVisible.current) {
-        // scrollTo(wrapper.current, li.offsetTop, 150)
-        wrapper.current?.scrollTo({ top: li.offsetTop })
-        prevScrollTop.current = li.offsetTop
+        // scrollTo(wrapperRef.current, li.offsetTop, 150)
+        wrapperRef.current?.scrollTo({ top: li.offsetTop })
+        currentScrollTop.current = li.offsetTop
       }
     }, [value])
 
     useEffect(() => {
       if (popupVisible && popupVisible !== prevPopupVisible.current) {
-        const li = value ? lis.current.get(value) : undefined
+        const li = value ? listElement.current.get(value) : undefined
         if (li) {
-          // scrollTo(wrapper.current, li.offsetTop, 0)
-          wrapper.current?.scrollTo({ top: li.offsetTop })
-          prevScrollTop.current = li.offsetTop
+          wrapperRef.current?.scrollTo({ top: li.offsetTop })
+          currentScrollTop.current = li.offsetTop
         }
       }
     }, [popupVisible, prevPopupVisible])
 
     useEffect(() => {
-      if (list && list.length <= 1) {
+      if (list && list?.length <= 1) {
         return
       }
-      if (ul.current && wrapper.current && list?.length) {
+      if (ulRef.current && wrapperRef.current && list?.length) {
         listItemHeight.current =
-          (ul.current.clientHeight - wrapper.current.clientHeight) /
+          (ulRef.current.clientHeight - wrapperRef.current.clientHeight) /
           (list.length - 1)
       }
     }, [list?.length])
 
     const onScrollList = useCallback(
       debounce(() => {
-        if (!wrapper.current) {
+        if (!wrapperRef.current) {
           return
         }
         const mathFunc =
-          wrapper.current.scrollTop - prevScrollTop.current > 0
+          wrapperRef.current.scrollTop - currentScrollTop.current > 0
             ? Math.ceil
             : Math.floor
         const index = mathFunc(
-          wrapper.current.scrollTop / listItemHeight.current,
+          wrapperRef.current.scrollTop / listItemHeight.current,
         )
 
         if (index !== value && list?.[index] && !list[index].disabled) {
@@ -102,11 +96,11 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
       [onHandleSelect],
     )
 
-    useImperativeHandle(ref, () => wrapper.current as HTMLDivElement, [])
+    useImperativeHandle(ref, () => wrapperRef.current as HTMLDivElement, [])
 
     return (
       <div
-        ref={wrapper}
+        ref={wrapperRef}
         css={applyTimepickerList()}
         onWheel={() => {
           if (scrollSticky) {
@@ -114,7 +108,7 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
           }
         }}
       >
-        <ul ref={ul} css={applyTimeColumn()}>
+        <ul ref={ulRef} css={applyTimeColumn()}>
           {list?.map((item) => {
             return (
               <li
@@ -126,7 +120,7 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
                   !item.disabled && onHandleSelect?.(item.value, unit)
                 }
                 ref={(element) => {
-                  if (item.value) lis.current?.set(item.value, element)
+                  if (item.value) listElement.current?.set(item.value, element)
                 }}
               >
                 <div

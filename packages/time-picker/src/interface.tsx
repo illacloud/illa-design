@@ -65,3 +65,20 @@ export interface RenderPickerProps extends PickerProps {
   hideFooter?: boolean
   order?: boolean
 }
+
+type ListItem = {
+  label?: string
+  value?: number | string
+  disabled?: boolean
+  selected?: boolean
+}
+type TimeColumnUnit = "hour" | "minute" | "second" | "ampm"
+
+export interface TimeColumnProps {
+  list?: ListItem[]
+  value?: number | string
+  onHandleSelect?: (value?: number | string, unit?: TimeColumnUnit) => void
+  unit?: TimeColumnUnit
+  popupVisible?: boolean
+  scrollSticky?: boolean
+}
