@@ -223,3 +223,39 @@ test("Steps onChange should be triggered if step is disabled", () => {
   screen.getByText("Wait").click()
   expect(clickEvent).not.toBeCalled()
 })
+
+test("Steps with vertical direction and error status should render error style", () => {
+  render(
+    <Steps data-testid="steps" direction="vertical" current={2} status="error">
+      <Step title="Succeeded"></Step>
+      <Step title="Error"></Step>
+      <Step title="Wait"></Step>
+    </Steps>,
+  )
+
+  expect(screen.getByTestId("steps")).toMatchSnapshot()
+})
+
+test("Only last step render error style", () => {
+  render(
+    <Steps data-testid="steps" direction="vertical" current={3} status="error">
+      <Step title="Succeeded"></Step>
+      <Step title="Error"></Step>
+      <Step title="Wait"></Step>
+    </Steps>,
+  )
+
+  expect(screen.getByTestId("steps")).toMatchSnapshot()
+})
+
+test("Steps with dot variant and error status should render error style", () => {
+  render(
+    <Steps data-testid="steps" variant="dot" direction="vertical" current={2} status="error">
+      <Step title="Succeeded"></Step>
+      <Step title="Error"></Step>
+      <Step title="Wait"></Step>
+    </Steps>,
+  )
+
+  expect(screen.getByTestId("steps")).toMatchSnapshot()
+})

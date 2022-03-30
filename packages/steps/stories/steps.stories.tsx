@@ -78,7 +78,7 @@ Vertical.args = {
 export const Dot = (args) => {
   const { onChange, ...restArgs } = args
   return (
-    <Space direction="vertical">
+    <Space direction="vertical" >
       <Steps {...restArgs}>
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
@@ -96,6 +96,7 @@ export const Dot = (args) => {
 Dot.args = {
   variant: "dot",
   current: 2,
+  status: "error"
 }
 
 export const CustomDot = () => {
@@ -146,7 +147,7 @@ export const Size = () => {
       </Steps>
 
       <Space>
-        <Steps direction="vertical">
+        <Steps direction="vertical" current={2} status="error">
           <Step title="Succeeded" description="Read the message" />
           <Step title="Processing" description="Please Confirm" />
           <Step title="Pending" description="Commit it" />
@@ -159,7 +160,7 @@ export const Size = () => {
         </Steps>
       </Space>
 
-      <Steps style={{ width: 800 }} variant="dot">
+      <Steps style={{ width: 800 }} variant="dot" current={3} status="error">
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
@@ -178,14 +179,14 @@ export const Size = () => {
           <Step title="Pending" description="Commit it" />
         </Steps>
 
-        <Steps variant="dot" size="large" direction="vertical">
+        <Steps variant="dot" size="large" direction="vertical" current={3} status="error">
           <Step title="Succeeded" description="Read the message" />
           <Step title="Processing" description="Please Confirm" />
           <Step title="Pending" description="Commit it" />
         </Steps>
       </Space>
 
-      <Steps style={{ width: 800 }} variant="navigation">
+      <Steps style={{ width: 800 }} variant="navigation" current={3} status="error">
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
