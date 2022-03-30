@@ -94,7 +94,7 @@ export const Dot = (args) => {
   )
 }
 Dot.args = {
-  type: "dot",
+  variant: "dot",
   current: 2,
 }
 
@@ -159,39 +159,39 @@ export const Size = () => {
         </Steps>
       </Space>
 
-      <Steps style={{ width: 800 }} type="dot">
+      <Steps style={{ width: 800 }} variant="dot">
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
       </Steps>
 
-      <Steps style={{ width: 800 }} type="dot" size="large">
+      <Steps style={{ width: 800 }} variant="dot" size="large">
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
       </Steps>
 
       <Space>
-        <Steps type="dot" direction="vertical">
+        <Steps variant="dot" direction="vertical">
           <Step title="Succeeded" description="Read the message" />
           <Step title="Processing" description="Please Confirm" />
           <Step title="Pending" description="Commit it" />
         </Steps>
 
-        <Steps type="dot" size="large" direction="vertical">
+        <Steps variant="dot" size="large" direction="vertical">
           <Step title="Succeeded" description="Read the message" />
           <Step title="Processing" description="Please Confirm" />
           <Step title="Pending" description="Commit it" />
         </Steps>
       </Space>
 
-      <Steps style={{ width: 800 }} type="navigation">
+      <Steps style={{ width: 800 }} variant="navigation">
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
       </Steps>
 
-      <Steps style={{ width: 800 }} type="navigation" size="large">
+      <Steps style={{ width: 800 }} variant="navigation" size="large">
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
@@ -236,7 +236,7 @@ export const OnChange = () => {
         <Step title="Pending" description="Commit it" />
       </Steps>
       <Steps
-        type="dot"
+        variant="dot"
         direction="vertical"
         onChange={onChange}
         current={current}
@@ -271,7 +271,7 @@ export const Navigation = () => {
   return (
     <Space direction="vertical">
       <Steps
-        type="navigation"
+        variant="navigation"
         current={current}
         style={{ width: 800, marginBottom: 20 }}
       >
@@ -280,7 +280,7 @@ export const Navigation = () => {
         <Step title="Pending" />
       </Steps>
       <Steps
-        type="navigation"
+        variant="navigation"
         onChange={onChange}
         current={current}
         style={{ width: 800 }}

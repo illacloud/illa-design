@@ -1,11 +1,11 @@
 import { HTMLAttributes, ReactNode } from "react"
 
 export type LabelPlacement = "vertical" | "horizontal"
-export type StepType = "line" | "dot" | "navigation"
+export type StepVariant = "line" | "dot" | "navigation"
 export type StepSize = "small" | "large"
 export type StepStatus = "wait" | "process" | "finish" | "error"
 export type StepStyleConfig = {
-  type: StepType
+  variant: StepVariant
   size: StepSize
   direction: LabelPlacement
   labelPlacement: LabelPlacement
@@ -20,7 +20,7 @@ type StepConfig = {
 
 export interface StepsProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  type?: StepType
+  variant?: StepVariant
   current?: number
   status?: StepStatus
   direction?: LabelPlacement
@@ -36,7 +36,7 @@ export interface StepProps
   title: string | ReactNode
   id?: any
   description?: string | ReactNode
-  type?: StepType
+  variant?: StepVariant
   status?: StepStatus
   icon?: ReactNode
   disabled?: boolean

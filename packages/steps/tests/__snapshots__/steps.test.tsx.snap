@@ -147,7 +147,7 @@ exports[`Steps render vertical label 1`] = `
 </div>
 `;
 
-exports[`Steps render with dot type 1`] = `
+exports[`Steps render with dot variant 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -221,7 +221,7 @@ exports[`Steps render with dot type 1`] = `
   margin-right: 16px;
   width: 8px;
   height: 8px;
-  background: #ebebeb;
+  background: #999;
   color: #999;
   margin-left: 66px;
 }
@@ -275,7 +275,7 @@ exports[`Steps render with dot type 1`] = `
 </div>
 `;
 
-exports[`Steps render with dot type with vertical direction 1`] = `
+exports[`Steps render with dot variant with vertical direction 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -341,7 +341,7 @@ exports[`Steps render with dot type with vertical direction 1`] = `
   margin-right: 16px;
   width: 8px;
   height: 8px;
-  background: #ebebeb;
+  background: #999;
   color: #999;
   margin-top: 8px;
 }
@@ -587,7 +587,7 @@ exports[`Steps render with finish status 1`] = `
 </div>
 `;
 
-exports[`Steps render with navigation type 1`] = `
+exports[`Steps render with navigation variant 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;

@@ -1,12 +1,12 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
-import { StepSize, StepStatus, StepType, StepStyleConfig } from "../interface"
+import { StepSize, StepStatus, StepVariant, StepStyleConfig } from "../interface"
 import { statusColor } from "../style"
 
 export function applyIconStyle({
   size,
   status,
-  type,
+  variant,
   labelPlacement,
   direction,
 }: {
@@ -21,40 +21,40 @@ export function applyIconStyle({
       text-align: center;
       margin-right: 16px;
     `,
-    applyIconSize({ size, type, status }),
-    applyIconColor({ type, status }),
-    applyIconOffset({ type, labelPlacement, direction }),
+    applyIconSize({ size, variant, status }),
+    applyIconColor({ variant, status }),
+    applyIconOffset({ variant, labelPlacement, direction }),
   )
 }
 
 function applyIconColor({
-  type,
+  variant,
   status,
 }: {
-  type: StepType
+  variant: StepVariant
   status: StepStatus
 }): SerializedStyles {
   let color, backgroundColor, dotColor
 
   switch (status) {
     case "wait":
-      ;({ color, backgroundColor, dotColor } = statusColor.wait)
+      ; ({ color, backgroundColor, dotColor } = statusColor.wait)
       break
 
     case "process":
-      ;({ color, backgroundColor, dotColor } = statusColor.process)
+      ; ({ color, backgroundColor, dotColor } = statusColor.process)
       break
 
     case "finish":
-      ;({ color, backgroundColor, dotColor } = statusColor.finish)
+      ; ({ color, backgroundColor, dotColor } = statusColor.finish)
       break
 
     case "error":
-      ;({ color, backgroundColor, dotColor } = statusColor.error)
+      ; ({ color, backgroundColor, dotColor } = statusColor.error)
       break
   }
 
-  if (type === "dot") {
+  if (variant === "dot") {
     backgroundColor = dotColor
   }
 
@@ -63,16 +63,16 @@ function applyIconColor({
 
 function applyIconSize({
   size,
-  type,
+  variant,
   status,
 }: {
   size: StepSize
-  type: StepType
+  variant: StepVariant
   status: StepStatus
 }): SerializedStyles {
   let sizeCss: SerializedStyles
 
-  if (type !== "dot") {
+  if (variant !== "dot") {
     let width: number
     let fontSize: number
     let svgIconSize: number
@@ -129,11 +129,11 @@ function applyIconSize({
 
 // center align icon
 function applyIconOffset({
-  type,
+  variant,
   labelPlacement,
   direction,
 }: Omit<StepStyleConfig, "size">): SerializedStyles {
-  if (type === "dot") {
+  if (variant === "dot") {
     return direction === "horizontal"
       ? css`
           margin-left: 66px;

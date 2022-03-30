@@ -10,7 +10,7 @@ import { getConnectorColor } from "../style"
 
 export function applyConnectionNodeStyle({
   size,
-  type,
+  variant,
   direction,
   labelPlacement,
   status,
@@ -21,9 +21,9 @@ export function applyConnectionNodeStyle({
 }): SerializedStyles {
   const color = getConnectorColor({ nextStepError, status })
 
-  if (type === "dot") {
+  if (variant === "dot") {
     return generateDotConnnector({ direction, size, color })
-  } else if (type === "line") {
+  } else if (variant === "line") {
     return generateLineConnector({ direction, labelPlacement, size, color })
   }
 
