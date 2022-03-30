@@ -106,6 +106,8 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
             direction,
             size,
             labelPlacement,
+            status: currentStatus,
+            nextStepError,
           })}
         />
       )

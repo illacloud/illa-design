@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 import { StepSize, StepStatus, StepStyleConfig, StepType } from "../interface"
-import { statusColor, isVerticalLabel } from "../style"
+import { statusColor, isVerticalLabel, getConnectorColor } from "../style"
 
 export function applyTitleStyle({
   size,
@@ -82,20 +82,13 @@ function applyConnectionStyle({
   size,
 }: {
   type: StepType
-  status?: StepStatus
+  status: StepStatus
   nextStepError: boolean
   size: StepSize
 }): SerializedStyles {
   let pseudoStyle: SerializedStyles = css``
   let position: SerializedStyles = css``
-  const defaultColor = globalColor(`--${illaPrefix}-gray-08`)
-  let color = defaultColor
-
-  if (nextStepError) {
-    color = statusColor.error.color
-  } else if (status === "finish") {
-    color = statusColor.finish.color
-  }
+  const color = getConnectorColor({ nextStepError, status })
 
   if (type === "line") {
     const topMap = {
@@ -120,7 +113,7 @@ function applyConnectionStyle({
     pseudoStyle = css({
       width: 8,
       height: 8,
-      border: `3px solid ${defaultColor} `,
+      border: `3px solid ${color} `,
       borderLeft: "none",
       borderBottom: "none",
       transform: "rotate(45deg)",

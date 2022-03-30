@@ -22,30 +22,40 @@ export function applyIconStyle({
       margin-right: 16px;
     `,
     applyIconSize({ size, type, status }),
-    applyIconColor(status),
+    applyIconColor({ type, status }),
     applyIconOffset({ type, labelPlacement, direction }),
   )
 }
 
-function applyIconColor(status: StepStatus): SerializedStyles {
-  let color, backgroundColor
+function applyIconColor({
+  type,
+  status,
+}: {
+  type: StepType
+  status: StepStatus
+}): SerializedStyles {
+  let color, backgroundColor, dotColor
 
   switch (status) {
     case "wait":
-      ;({ color, backgroundColor } = statusColor.wait)
+      ;({ color, backgroundColor, dotColor } = statusColor.wait)
       break
 
     case "process":
-      ;({ color, backgroundColor } = statusColor.process)
+      ;({ color, backgroundColor, dotColor } = statusColor.process)
       break
 
     case "finish":
-      ;({ color, backgroundColor } = statusColor.finish)
+      ;({ color, backgroundColor, dotColor } = statusColor.finish)
       break
 
     case "error":
-      ;({ color, backgroundColor } = statusColor.error)
+      ;({ color, backgroundColor, dotColor } = statusColor.error)
       break
+  }
+
+  if (type === "dot") {
+    backgroundColor = dotColor
   }
 
   return css({ background: backgroundColor, color })
