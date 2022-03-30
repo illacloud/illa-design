@@ -94,7 +94,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
 
     const rangeInputPlaceholder = isArray(placeholder)
       ? placeholder
-      : locale["placeholders"]
+      : (locale["placeholders"] as string[])
     const inputPlaceHolder = !isArray(placeholder)
       ? placeholder
       : (locale["placeholder"] as string)
@@ -279,6 +279,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
           <RangeInput
             {...baseInputProps}
             disabled={disabled}
+            placeholder={rangeInputPlaceholder}
             inputGroupRef={inputGroupRef}
             focusedInputIndex={focusedInputIndex}
             changeFocusedInputIndex={changeFocusedInputIndex}

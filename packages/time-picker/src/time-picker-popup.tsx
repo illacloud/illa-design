@@ -61,16 +61,13 @@ export function padStart(string: string, length: number, char = " "): string {
     : newString
 }
 
-function isUse12Hours(props: InnerTimePickerProps) {
-  return props.use12Hours || getColumnsFromFormat(props.format).use12Hours
-}
-
 export function TimePickerPopup(props: InnerTimePickerProps) {
   const {
     format = "HH:mm:ss",
     onSelect,
     popupVisible,
     step = {},
+    use12Hours,
     disabledHours,
     disabledMinutes,
     disabledSeconds,
@@ -94,8 +91,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
 
   const valueShow = getDayjsValue(propsValueShow, format) as Dayjs
   const ampm = valueShow && valueShow.hour() >= 12 ? "pm" : "am"
-  const use12Hours = isUse12Hours(props)
-
+  const _use12Hours = use12Hours || getColumnsFromFormat(format).use12Hours
   const _hideFooter =
     hideFooter ||
     (isRangePicker && disableConfirm) ||
@@ -104,17 +100,17 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
   const getShowList = useCallback(
     (type: "hour" | "minute" | "second") => {
       const stepFormType = step[type] || 1
-      const duration = type === "hour" ? (use12Hours ? 12 : 24) : 60
+      const duration = type === "hour" ? (_use12Hours ? 12 : 24) : 60
       const list: number[] = []
       for (let i = 0; i < duration; i += stepFormType) {
         list.push(i)
       }
-      if (type === "hour" && use12Hours) {
+      if (type === "hour" && _use12Hours) {
         list[0] = 12
       }
       return list
     },
-    [step.hour, step.minute, step.second, use12Hours],
+    [step.hour, step.minute, step.second, _use12Hours],
   )
 
   const HOURS = getShowList("hour")
@@ -122,12 +118,12 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
   const SECONDS = getShowList("second")
 
   let selectedHour = valueShow && valueShow.hour()
-  selectedHour = use12Hours
+  selectedHour = _use12Hours
     ? selectedHour > 12
       ? selectedHour - 12
       : selectedHour
     : selectedHour
-  if (use12Hours && selectedHour === 0 && ampm === "am") {
+  if (_use12Hours && selectedHour === 0 && ampm === "am") {
     selectedHour += 12
   }
   const selectedMinute = valueShow && valueShow.minute()
@@ -148,7 +144,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
 
     let valueFormat = "HH:mm:ss"
     let newValue
-    if (use12Hours) {
+    if (_use12Hours) {
       if (isUpperCase) {
         valueFormat = `${valueFormat} A`
       } else {
@@ -186,11 +182,11 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
 
   function onSelectNow() {
     const now = dayjs()
-    onSelect && onSelect(now.format(format), now)
+    onSelect?.(now.format(format), now)
     if (disableConfirm) {
       onConfirmValue?.(now)
     } else {
-      setValueShow && setValueShow(now)
+      setValueShow?.(now)
     }
   }
 
@@ -299,7 +295,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
           renderHours()}
         {list.indexOf("m") !== -1 && renderMinutes()}
         {list.indexOf("s") !== -1 && renderSeconds()}
-        {use12Hours && renderAmPm()}
+        {_use12Hours && renderAmPm()}
       </div>
       {extra && <div>{extra}</div>}
       {!_hideFooter ? (
@@ -314,7 +310,7 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
           {!disableConfirm && (
             <Button
               size="small"
-              onClick={()=>{
+              onClick={() => {
                 if (valueShow) {
                   onConfirmValue?.(valueShow)
                 }
