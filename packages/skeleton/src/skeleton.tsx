@@ -22,7 +22,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
     const {
       style,
       className,
-      animation = false,
+      animation,
       visible = true,
       image,
       text = true,

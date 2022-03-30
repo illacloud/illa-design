@@ -6,7 +6,7 @@ export function Image(props: SkeletonImageProps) {
   const {
     shape = "circle",
     size = "medium",
-    animation = false,
+    animation,
     ...restProps
   } = props
 

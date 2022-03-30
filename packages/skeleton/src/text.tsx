@@ -3,7 +3,7 @@ import { SkeletonTextProps } from "./interface"
 import { applyAnimation, applyLineStyle, textContainerStyle } from "./style"
 
 export function Text(props: SkeletonTextProps) {
-  const { rows = 3, width = "80%", animation = false, ...restProps } = props
+  const { rows = 3, width = "80%", animation, ...restProps } = props
 
   const lines = Array.from({ length: rows }, (_, idx) => {
     let lineWidth

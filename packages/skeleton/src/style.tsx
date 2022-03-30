@@ -4,7 +4,7 @@ import { SkeletonImageProps, ImageShape, ImageSize } from "./interface"
 
 const backgroundColor = globalColor(`--${illaPrefix}-gray-08`)
 
-export function applySkeletonStyle(animation: boolean): SerializedStyles {
+export function applySkeletonStyle(): SerializedStyles {
   return css([
     css`
       display: flex;
@@ -20,7 +20,7 @@ export const skeletonImageStyle = css`
   margin-right: 16px;
 `
 
-export function applyAnimation(animatin: boolean): SerializedStyles {
+export function applyAnimation(animatin?: boolean): SerializedStyles {
   if (!animatin) {
     return css``
   }
