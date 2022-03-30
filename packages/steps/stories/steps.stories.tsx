@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { ReactElement, useState } from "react"
 import { Tooltip } from "@illa-design/tooltip"
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
@@ -29,7 +29,7 @@ Basic.args = {
   current: 2,
 }
 
-const TemplateWithDescription = (args) => (
+const TemplateWithDescription = (args: StepsProps) => (
   <Steps {...args}>
     <Step title="Succeeded" description="Read the message" />
     <Step title="Processing" description="Please Confirm" />
@@ -42,7 +42,7 @@ Description.args = {
   current: 3,
 }
 
-export const CustomIcon = (args) => (
+export const CustomIcon = (args: StepsProps) => (
   <Steps {...args}>
     <Step
       icon={<LikeIcon />}
@@ -75,7 +75,7 @@ Vertical.args = {
   direction: "vertical",
 }
 
-export const Dot = (args) => {
+export const Dot = (args: StepsProps) => {
   const { onChange, ...restArgs } = args
   return (
     <Space direction="vertical" >
@@ -100,7 +100,7 @@ Dot.args = {
 }
 
 export const CustomDot = () => {
-  const customDot = (iconNode, { index }) => {
+  const customDot = (iconNode: ReactElement, { index }) => {
     return <Tooltip content={index}>{iconNode}</Tooltip>
   }
   return (
@@ -206,7 +206,7 @@ export const SwitchStep = () => {
 
   return (
     <Space direction="vertical">
-      <Steps current={current}>
+      <Steps current={current} style={{ minWidth: 500 }}>
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
