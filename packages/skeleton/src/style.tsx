@@ -4,13 +4,9 @@ import { SkeletonImageProps, ImageShape, ImageSize } from "./interface"
 
 const backgroundColor = globalColor(`--${illaPrefix}-gray-08`)
 
-export function applySkeletonStyle(): SerializedStyles {
-  return css([
-    css`
-      display: flex;
-    `,
-  ])
-}
+export const skeletonStyle = css`
+  display: flex;
+`
 
 export const skeletonTextStyle = css`
   flex-grow: 1;

@@ -8,7 +8,7 @@ import {
 import { Text } from "./text"
 import { Image } from "./image"
 import {
-  applySkeletonStyle,
+  skeletonStyle,
   skeletonImageStyle,
   skeletonTextStyle,
 } from "./style"
@@ -57,7 +57,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       return (
         <div
           ref={ref}
-          css={applySkeletonStyle(animation)}
+          css={skeletonStyle}
           className={className}
           style={style}
           {...restProps}
