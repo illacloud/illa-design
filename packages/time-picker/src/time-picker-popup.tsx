@@ -1,4 +1,4 @@
-import { useContext, useCallback, ReactNode } from "react"
+import { useContext, useCallback } from "react"
 import { Dayjs } from "dayjs"
 import { getDayjsValue, dayjs, isFunction } from "@illa-design/system"
 import { Button } from "@illa-design/button"
@@ -13,15 +13,8 @@ import { TimePickerProps, CalendarValue, TimeColumnProps } from "./interface"
 
 interface InnerTimePickerProps extends TimePickerProps {
   confirmBtnDisabled?: boolean
-  popupVisible?: boolean
-  step?: { hour?: number; minute?: number; second?: number }
-  disabledHours?: () => number[]
-  disabledMinutes?: (selectedHour?: number) => number[]
-  disabledSeconds?: (selectedHour?: number, selectedMinute?: number) => number[]
-  hideDisabledOptions?: boolean
   onConfirmValue?: (value: Dayjs) => void
   isRangePicker?: boolean
-  extra?: ReactNode
   valueShow?: CalendarValue
   setValueShow?: (valueShow: Dayjs) => void
   hideFooter?: boolean
@@ -77,7 +70,6 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
     confirmBtnDisabled,
     valueShow: propsValueShow,
     setValueShow,
-    extra,
     disableConfirm,
     hideFooter,
     showNowBtn = true,
@@ -286,7 +278,6 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
   }
 
   const { list } = getColumnsFromFormat(format)
-  console.log(format, getColumnsFromFormat(format))
 
   return (
     <>
@@ -297,7 +288,6 @@ export function TimePickerPopup(props: InnerTimePickerProps) {
         {list.indexOf("s") !== -1 && renderSeconds()}
         {_use12Hours && renderAmPm()}
       </div>
-      {extra && <div>{extra}</div>}
       {!_hideFooter ? (
         <div css={applyContentButton()}>
           {!isRangePicker && showNowBtn ? (

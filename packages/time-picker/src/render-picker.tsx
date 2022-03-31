@@ -44,7 +44,8 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       format = "HH:mm:ss",
       error,
       triggerProps,
-      value: propsValue,
+      value,
+      defaultValue,
       popupVisible,
       onChange,
       icons = { inputSuffix: <TimeIcon /> },
@@ -57,16 +58,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       onClear,
       ...otherProps
     } = props
-
-    const getDefaultValue = (): Dayjs | Dayjs[] | undefined => {
-      let value
-      if (props.value) {
-        value = getDayjsValue(props.value, format)
-      } else if (props.defaultValue) {
-        value = getDayjsValue(props.defaultValue, format)
-      }
-      return value
-    }
 
     const configProviderProps = useContext<ConfigProviderProps>(
       ConfigProviderContext,
@@ -84,10 +75,17 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       value: popupVisible,
       defaultValue: undefined,
     })
-    const [currentValue, setCurrentValue] = useMergeValue(getDefaultValue(), {
-      value: getDayjsValue(propsValue, format),
-      defaultValue: undefined,
-    })
+    const [currentValue, setCurrentValue] = useMergeValue(
+      value
+        ? getDayjsValue(value, format)
+        : defaultValue
+        ? getDayjsValue(defaultValue, format)
+        : undefined,
+      {
+        value: getDayjsValue(value, format),
+        defaultValue: undefined,
+      },
+    )
 
     const inputRef = useRef<HTMLInputElement>(null)
     const inputGroupRef = useRef({} as RangeInputRef)
@@ -185,7 +183,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         onClear?.()
       },
       onChange: (inputValue?: string | string[]) => {
-        console.log(inputValue, "onChange")
         if (!currentPopupVisible) {
           setCurrentPopupVisible(true)
         }
@@ -197,7 +194,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
           if (!isArray(inputValue)) return
           setRangeInputValue(inputValue)
           const val = inputValue[focusedInputIndex]
-          console.log(val, isValidTime(val), "val, rangeInputValue")
           const newValueShow = [
             ...(isArray(valueShow)
               ? valueShow
@@ -223,7 +219,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     }
 
     const formatTime = (str: Dayjs) => {
-      return dayjs(str)?.format(format)
+      return str ? dayjs(str)?.format(format) : ""
     }
 
     return (

@@ -2,6 +2,7 @@ import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { TimePicker, TimePickerProps } from "../src"
 import { RangePicker, RangePickerProps } from "../src"
+import { Space } from "@illa-design/space"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -9,7 +10,7 @@ export default {
   component: TimePicker,
   argTypes: {
     value: {
-      control: false,
+      type: 'string',
     },
   },
 } as Meta
@@ -24,8 +25,9 @@ export const timePicker: Story<TimePickerProps> = (args) => {
 
 export const rangePicker: Story<RangePickerProps> = (args) => {
   return (
-    <div>
+    <Space>
       <RangePicker {...args}>ILLA</RangePicker>
-    </div>
+      <RangePicker disabled={[true, false]} {...args}>ILLA</RangePicker>
+    </Space>
   )
 }

@@ -5,7 +5,6 @@ import { RangePickerProps } from "./interface"
 import { TimePickerPopup } from "./time-picker-popup"
 
 interface InnerRangePickerProps extends RangePickerProps {
-  popupVisible?: boolean
   focusedInputIndex?: number
   changeFocusedInputIndex?: (index: number) => void
   valueShow?: Dayjs[]
