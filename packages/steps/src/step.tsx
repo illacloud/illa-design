@@ -134,7 +134,12 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
       {renderConnectionNode()}
       {stepIconNode}
       <div
-        css={applyContentStyle({ variant, labelPlacement, direction, hoverable })}
+        css={applyContentStyle({
+          variant,
+          labelPlacement,
+          direction,
+          hoverable,
+        })}
       >
         <div
           css={applyTitleStyle({

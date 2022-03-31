@@ -1,7 +1,12 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import { StepSize, StepStatus, StepStyleConfig, StepVariant } from "../interface"
+import {
+  StepSize,
+  StepStatus,
+  StepStyleConfig,
+  StepVariant,
+} from "../interface"
 import { statusColor, isVerticalLabel, getConnectorColor } from "../style"
 
 export function applyTitleStyle({
@@ -23,10 +28,10 @@ export function applyTitleStyle({
     applyTitleSize({ size, direction, variant, labelPlacement }),
     applyTitleColor(status),
     !lastStep &&
-    !lineless &&
-    direction !== "vertical" &&
-    labelPlacement !== "vertical" &&
-    applyConnectionStyle({ variant, status, nextStepError, size }),
+      !lineless &&
+      direction !== "vertical" &&
+      labelPlacement !== "vertical" &&
+      applyConnectionStyle({ variant, status, nextStepError, size }),
   ])
 }
 

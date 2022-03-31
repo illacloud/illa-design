@@ -4,6 +4,7 @@ import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
 import { Button } from "@illa-design/button"
 import { HeartIcon, LikeIcon, ShareIcon } from "@illa-design/icon"
+import { css } from "@emotion/react"
 import { Steps, StepsProps } from "../src"
 
 const { Step } = Steps
@@ -78,7 +79,7 @@ Vertical.args = {
 export const Dot = (args: StepsProps) => {
   const { onChange, ...restArgs } = args
   return (
-    <Space direction="vertical" >
+    <Space direction="vertical">
       <Steps {...restArgs}>
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
@@ -96,7 +97,7 @@ export const Dot = (args: StepsProps) => {
 Dot.args = {
   variant: "dot",
   current: 2,
-  status: "error"
+  status: "error",
 }
 
 export const CustomDot = () => {
@@ -179,14 +180,25 @@ export const Size = () => {
           <Step title="Pending" description="Commit it" />
         </Steps>
 
-        <Steps variant="dot" size="large" direction="vertical" current={3} status="error">
+        <Steps
+          variant="dot"
+          size="large"
+          direction="vertical"
+          current={3}
+          status="error"
+        >
           <Step title="Succeeded" description="Read the message" />
           <Step title="Processing" description="Please Confirm" />
           <Step title="Pending" description="Commit it" />
         </Steps>
       </Space>
 
-      <Steps style={{ width: 800 }} variant="navigation" current={3} status="error">
+      <Steps
+        style={{ width: 800 }}
+        variant="navigation"
+        current={3}
+        status="error"
+      >
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
@@ -231,7 +243,13 @@ export const OnChange = () => {
   }
   return (
     <Space direction="vertical" align="start">
-      <Steps onChange={onChange} current={current}>
+      <Steps
+        onChange={onChange}
+        current={current}
+        css={css`
+          width: 500px;
+        `}
+      >
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
@@ -241,6 +259,9 @@ export const OnChange = () => {
         direction="vertical"
         onChange={onChange}
         current={current}
+        css={css`
+          width: 500px;
+        `}
       >
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
