@@ -197,6 +197,7 @@ export function applyInputContainer(
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: relative;
     font-size: inherit;
     line-height: inherit;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
@@ -213,6 +214,15 @@ export function applyInputContainer(
     &:last-of-type {
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
+    }
+    &:hover {
+      [title="InputClearIcon"] {
+        opacity: 1;
+        // input suffix hidden
+        // & ~ * {
+        //   visibility: hidden;
+        // }
+      }
     }
   `
 }
@@ -343,8 +353,6 @@ export function applyAddonCss(stateValue: StateValue) {
     border-width: 1px;
     border-style: solid;
     padding: 0 16px;
-    
-    height: initial;
     height: 100%;
 
     &:first-of-type {
@@ -380,6 +388,31 @@ export function applyLengthErrorStyle(error?: boolean) {
   `
 }
 
+// support when input hover, hide suffix
+export function applyClearStyle(size?: InputSize): SerializedStyles {
+  let sizeCss: SerializedStyles = css()
+  if (size == "small") {
+    sizeCss = css`
+      position: absolute;
+      right: 12px;
+    `
+  } else {
+    sizeCss = css`
+      position: absolute;
+      right: 16px;
+    `
+  }
+  return css`
+    opacity: 0;
+    ${sizeCss}
+  `
+}
+
+export const clearStyle = css`
+  opacity: 0;
+  margin-left: 8px;
+`
+
 export const pointerStyle = css`
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-gray-06`)};
@@ -405,6 +438,7 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
+    position: relative;
     font-size: 14px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
@@ -413,13 +447,20 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
     ${applyStatus(stateValue)}
     ${applySizeStyle(stateValue?.size)}
     ${applySizeCss(true, stateValue?.size)};
+    &:hover {
+      [title="InputClearIcon"] {
+        opacity: 1;
+        // input suffix hidden
+        & ~ * {
+          //margin-left: 2px;
+        }
+      }
+    }
   `
 }
 
 export function applyRangeInput(): SerializedStyles {
-
   return css`
-    
     &:focus {
       border-radius: 2px;
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};

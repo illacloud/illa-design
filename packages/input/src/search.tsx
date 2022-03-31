@@ -19,6 +19,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     loading,
     placeholder,
     defaultValue,
+    requirePadding = true,
     searchButton = false,
     boarderColor = "blue",
     size = "medium",
@@ -48,6 +49,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
 
   const searchProp = {
     ...rest,
+    size,
     disabled,
     allowClear,
     placeholder,
@@ -56,7 +58,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   return (
     <div ref={ref} style={style} className={className}>
       <span css={applyContainerCss(stateValue)}>
-        <span css={applyInputContainer(stateValue)}>
+        <span css={applyInputContainer(stateValue, requirePadding)}>
           <InputElement
             {...searchProp}
             ref={inputRef}

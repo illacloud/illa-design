@@ -103,6 +103,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           ref={inputRef}
           {...rest}
           value={value}
+          size={size}
           error={error}
           disabled={disabled}
           placeholder={placeholder}

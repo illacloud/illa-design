@@ -15,6 +15,7 @@ import {
   applyRangeContainer,
   applyRangeInput,
   applySuffixCls,
+  clearStyle,
   pointerStyle,
   SeparatorStyle,
 } from "./style"
@@ -183,24 +184,23 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
           }}
           {...inputProps}
         />
-        <span css={applySuffixCls(stateValue)}>
-          {!disabled && allowClear && value ? (
-            <span
-              css={pointerStyle}
-              onClick={(e) => {
-                e.stopPropagation()
-                inputRef?.current?.focus?.()
-                onClear?.()
-              }}
-              onMouseDown={(e) => {
-                e.preventDefault()
-              }}
-            >
-              <ErrorIcon css={css(`margin-left: 10px;`)} />
-            </span>
-          ) : null}
-          {suffix?.render ?? null}
-        </span>
+        {!disabled && allowClear && value?.length ? (
+          <span
+            title="InputClearIcon"
+            css={css(pointerStyle, clearStyle)}
+            onClick={(e) => {
+              e.stopPropagation()
+              inputRef?.current?.focus?.()
+              onClear?.()
+            }}
+            onMouseDown={(e) => {
+              e.preventDefault()
+            }}
+          >
+            <ErrorIcon />
+          </span>
+        ) : null}
+        <span css={applySuffixCls(stateValue)}>{suffix?.render ?? null}</span>
       </div>
     )
   },
