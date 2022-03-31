@@ -2,16 +2,16 @@ import React, { forwardRef, useMemo, useRef, useState } from "react"
 import { NodeProps } from "./interface"
 import {
   applyIndentBlockCss,
+  applyLeafIconCss,
   applyNodeContainerCss,
   applyNodeFoldSwitchIconCss,
   applyNodeTextContainerCss,
   dragContainerCss,
-  halfIndentCss,
   iconColorCss,
   indentContainerCss,
-  leafIconCss,
   loadingIconCss,
   nodeFoldSwitchCss,
+  switchIconCss,
 } from "./style"
 import {
   CaretDownIcon,
@@ -132,20 +132,18 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
               {loadingIcon ?? <LoadingIcon spin={true} />}
             </span>
           ) : (
-            <span css={applyNodeFoldSwitchIconCss(_isExpanding)}>
-              {switcherIcon ?? <CaretDownIcon />}
+            <span css={switchIconCss}>
+              {switcherIcon ?? (
+                <span css={applyNodeFoldSwitchIconCss(_isExpanding)}>
+                  <CaretDownIcon />
+                </span>
+              )}
             </span>
           )}
         </span>
       ) : (
-        <span>
-          {showLine ? (
-            <span css={leafIconCss}>
-              <LeafIcon />
-            </span>
-          ) : (
-            <span css={halfIndentCss} />
-          )}
+        <span css={applyLeafIconCss(showLine)}>
+          <LeafIcon />
         </span>
       )}
       <div
@@ -215,7 +213,14 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
             <span>{title}</span>
           )}
           {draggable && (
-            <span css={iconColorCss}>{dragIcon ?? <DragPointIcon />}</span>
+            <span>
+              {dragIcon ?? (
+                <span css={iconColorCss}>
+                  {" "}
+                  <DragPointIcon />
+                </span>
+              )}
+            </span>
           )}
         </span>
       </div>

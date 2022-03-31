@@ -43,7 +43,7 @@ export default {
 const Template: Story<TreeProps> = (args) => {
   const data = [
     {
-      title: "0-0",
+      title: "0-0-head",
       key: "0-0",
       children: [
         {
@@ -92,6 +92,7 @@ const Template: Story<TreeProps> = (args) => {
   ]
 
   const [treeData, setTreeData] = useState(data)
+  const [keys, setKeys] = useState(["0-0", "0-0-0-1"])
 
   const loadMore = (node: NodeInstance) => {
     return new Promise<void>((resolve) => {
@@ -108,17 +109,17 @@ const Template: Story<TreeProps> = (args) => {
   }
 
   return (
-    <Tree {...args}>
-      <TreeNode key={"node-0-0"} title={"0-0"} checkable={false} />
-      <TreeNode key={"node-0-1"} title={"0-1"}>
-        <TreeNode key={"node-0-1-0"} title={"0-1-0"} />
-        <TreeNode key={"node-0-1-1"} title={"0-1-1"} />
-        <TreeNode key={"node-0-1-2"} title={"0-1-2"}>
-          <TreeNode key={"node-0-1-2-0"} title={"0-1-2-0"} />
-          <TreeNode key={"node-0-1-2-1"} title={"0-1-2-1"} />
-        </TreeNode>
-      </TreeNode>
-      <TreeNode key={"node-0-2"} title={"0-2"} />
+    <Tree {...args} treeData={data} draggable={true}>
+      {/*<TreeNode key={"node-0-0"} title={"0-0"} checkable={false} />*/}
+      {/*<TreeNode key={"node-0-1"} title={"0-1"}>*/}
+      {/*  <TreeNode key={"node-0-1-0"} title={"0-1-0"} />*/}
+      {/*  <TreeNode key={"node-0-1-1"} title={"0-1-1"} />*/}
+      {/*  <TreeNode key={"node-0-1-2"} title={"0-1-2"}>*/}
+      {/*    <TreeNode key={"node-0-1-2-0"} title={"0-1-2-0"} />*/}
+      {/*    <TreeNode key={"node-0-1-2-1"} title={"0-1-2-1"} />*/}
+      {/*  </TreeNode>*/}
+      {/*</TreeNode>*/}
+      {/*<TreeNode key={"node-0-2"} title={"0-2"} />*/}
     </Tree>
   )
 }

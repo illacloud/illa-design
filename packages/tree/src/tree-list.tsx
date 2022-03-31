@@ -1,9 +1,9 @@
-import { FC, ReactElement } from "react"
-import { ListProps, NodeInstance } from "./interface"
+import { FC } from "react"
+import { TreeListProps, NodeInstance } from "./interface"
 import { TreeNode } from "./tree-node"
 import { List } from "@illa-design/list"
 
-export const TreeList: FC<ListProps> = (props) => {
+export const TreeList: FC<TreeListProps> = (props) => {
   const {
     listData = [],
     saveNodeCache,

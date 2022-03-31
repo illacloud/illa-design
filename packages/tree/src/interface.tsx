@@ -136,7 +136,7 @@ export interface NodeProps
   }) => void
 }
 
-export interface ListProps extends HTMLAttributes<HTMLDivElement> {
+export interface TreeListProps extends HTMLAttributes<HTMLDivElement> {
   listData: NodeProps[]
   handleExpand?: (key: string) => void
   handleSelect?: (key: string, e: Event) => void

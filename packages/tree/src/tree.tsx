@@ -14,7 +14,6 @@ import {
   checkChildrenChecked,
   checkParentChecked,
   getNodes,
-  loopNode,
   loopNodeWithState,
 } from "./utils"
 import { TreeList } from "./tree-list"
@@ -55,7 +54,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     defaultSelectedKeys,
     onSelect,
     selectedKeys,
-    multiple,
+    multiple = false,
     //  expand
     expandedKeys,
     defaultExpandedKeys,
@@ -88,6 +87,9 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
   const [checkKeysState, setCheckKeysState] = useState(
     defaultCheckedKeys ? new Set(defaultCheckedKeys) : new Set([]),
   )
+  const [halfCheckKeysState, setHalfCheckKeysState] = useState(
+    new Set<string>([]),
+  )
 
   const [treeData, setTreeData] = useState<NodeProps[]>([])
   const [loadMoreKeys, setLoadMoreKeys] = useState(new Set<string>())
@@ -96,6 +98,73 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
   const _defaultNodesList: TreeDataType[] = useMemo(() => {
     return defaultTreeData.concat(getNodes(children as ReactElement))
   }, [defaultTreeData])
+
+  useEffect(() => {
+    let data = loopNodeWithState(_defaultNodesList)
+    let _expandedKey
+    if (autoExpandParent && !defaultExpandedKeys) {
+      _expandedKey = data
+        .filter((item) => {
+          return !item.isLeaf
+        })
+        .map((item) => item.key)
+    } else {
+      _expandedKey = defaultExpandedKeys ?? []
+    }
+
+    setExpandedKeysState(_expandedKey)
+    let keys = new Set(defaultCheckedKeys)
+    let halfSet: Set<string> = new Set<string>([])
+    if (!checkStrictly) {
+      defaultCheckedKeys?.forEach((target) => {
+        keys = checkChildrenChecked(target, data, keys) ?? keys
+      })
+      halfSet = checkParentChecked(keys, data)
+      setHalfCheckKeysState(halfSet)
+    }
+    setCheckKeysState(keys)
+    if (!multiple && defaultSelectedKeys && defaultSelectedKeys.length > 0)
+      setSelectedKeys([defaultSelectedKeys[0]])
+  }, [])
+
+  useEffect(() => {
+    const newValue = loopNodeWithState(
+      _defaultNodesList,
+      expandedKeys ?? expandedKeysState,
+      selectedKeys ?? selectedKeysState,
+      checkedKeys ? new Set(checkedKeys) : checkKeysState,
+      halfCheckKeysState,
+    )
+    setTreeData(newValue)
+  }, [checkKeysState, selectedKeysState, expandedKeysState, halfCheckKeysState])
+
+  useMemo(() => {
+    let keys = new Set(defaultCheckedKeys)
+    let halfSet: Set<string> = new Set<string>([])
+    if (!checkStrictly) {
+      defaultCheckedKeys?.forEach((target) => {
+        keys = checkChildrenChecked(target, treeData, keys) ?? keys
+      })
+      halfSet = checkParentChecked(keys, treeData)
+    }
+    setHalfCheckKeysState(halfSet)
+    setCheckKeysState(keys)
+  }, [checkStrictly, defaultCheckedKeys])
+
+  useMemo(() => {
+    let data = loopNodeWithState(_defaultNodesList)
+    let _expandedKey
+    if (autoExpandParent && !defaultExpandedKeys) {
+      _expandedKey = data
+        .filter((item) => {
+          return !item.isLeaf
+        })
+        .map((item) => item.key)
+    } else {
+      _expandedKey = defaultExpandedKeys ?? []
+    }
+    setExpandedKeysState(_expandedKey)
+  }, [autoExpandParent, defaultExpandedKeys])
 
   const handleDragOver = useCallback(
     (e: DragEvent, key: string) => {
@@ -164,110 +233,77 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     [onDrop],
   )
 
-  useEffect(() => {
-    let data = loopNodeWithState(
-      _defaultNodesList,
-      defaultExpandedKeys,
-      defaultSelectedKeys,
-    )
-    let _expandedKey
-    if (autoExpandParent && !defaultExpandedKeys) {
-      _expandedKey = data
-        .filter((item) => {
-          return !item.isLeaf
-        })
-        .map((item) => item.key)
-    } else {
-      _expandedKey = defaultExpandedKeys ?? []
-    }
-    data = loopNodeWithState(
-      _defaultNodesList,
-      _expandedKey,
-      defaultSelectedKeys ?? [],
-    )
-    setTreeData(data)
-    setExpandedKeysState(_expandedKey)
-  }, [])
-
   function getNodeList(cache: { [key: string]: NodeInstance }) {
     return Object.keys(cache).map((x) => cache[x as keyof UploadItem])
   }
 
-  function handleSelect(targetKey: string, event: Event) {
-    const _selectedKeys = selectedKeys ?? selectedKeysState
-    if (!selectable) return
-    const keys = updateKeys(_selectedKeys, targetKey, multiple)
-    const newValue = loopNode(_defaultNodesList, keys)
-    setTreeData(newValue)
-    setSelectedKeys(keys)
-    const extra = {
-      selectedNodes: getNodeList(nodeCache.current).filter(
-        (item) => item.key && keys.includes(item.key.toString()),
-      ),
-      selected: keys.includes(targetKey),
-      node: nodeCache.current[targetKey],
-      e: event,
-    }
-    onSelect && onSelect(keys, extra)
-  }
+  const handleSelect = useCallback(
+    (targetKey: string, event: Event) => {
+      const _selectedKeys = selectedKeys ?? selectedKeysState
+      if (!selectable) return
+      const keys = updateKeys(
+        _selectedKeys,
+        targetKey,
+        selectedKeys !== undefined || multiple,
+      )
+      setSelectedKeys(keys)
+      const extra = {
+        selectedNodes: getNodeList(nodeCache.current).filter(
+          (item) => item.key && keys.includes(item.key.toString()),
+        ),
+        selected: keys.includes(targetKey),
+        node: nodeCache.current[targetKey],
+        e: event,
+      }
+      onSelect && onSelect(keys, extra)
+    },
+    [selectedKeysState, nodeCache.current],
+  )
 
-  function handleExpand(targetKey: string) {
-    const _expandedKeys = expandedKeys ?? expandedKeysState
-    const keys = updateKeys(_expandedKeys, targetKey, multiple)
-    setExpandedKeysState(keys)
-    const newValue = loopNodeWithState(
-      _defaultNodesList,
-      keys,
-      selectedKeys ?? selectedKeysState,
-      undefined,
-      undefined,
-    )
-    setTreeData(newValue)
-    const extra = {
-      expandedNodes: getNodeList(nodeCache.current).filter(
-        (item) => item.key && keys.includes(item.key.toString()),
-      ),
-      expanded: keys.includes(targetKey),
-      node: nodeCache.current[targetKey],
-    }
-    onExpand && onExpand(keys, extra)
-  }
+  const handleExpand = useCallback(
+    (targetKey: string) => {
+      const _expandedKeys = expandedKeys ?? expandedKeysState
+      const keys = updateKeys(_expandedKeys, targetKey, true)
+      setExpandedKeysState(keys)
+      const extra = {
+        expandedNodes: getNodeList(nodeCache.current).filter(
+          (item) => item.key && keys.includes(item.key.toString()),
+        ),
+        expanded: keys.includes(targetKey),
+        node: nodeCache.current[targetKey],
+      }
+      onExpand && onExpand(keys, extra)
+    },
+    [expandedKeysState, nodeCache.current],
+  )
 
-  function handleCheck(targetKey: string, event: Event) {
-    const _checkedKeys = checkedKeys ? new Set(checkedKeys) : checkKeysState
-    let keys = new Set(
-      updateKeys(Array.from(_checkedKeys), targetKey, multiple),
-    )
-    let halfSet: Set<string> = new Set()
-    if (!checkStrictly) {
-      keys = checkChildrenChecked(targetKey, treeData, keys) ?? keys
-      halfSet = checkParentChecked(keys, treeData)
-    }
-    setCheckKeysState(keys)
-    const newValue = loopNodeWithState(
-      _defaultNodesList,
-      undefined,
-      selectedKeys ?? selectedKeysState,
-      keys,
-      halfSet,
-    )
-    setTreeData(newValue)
-
-    const extra = {
-      checked: keys?.has(targetKey),
-      node: nodeCache.current[targetKey],
-      checkedNodes: getNodeList(nodeCache.current).filter(
-        (item) => item.key && keys.has(item.key.toString()),
-      ),
-      halfCheckedKeys: Array.from(halfSet ?? []),
-      halfCheckedNodes: getNodeList(nodeCache.current).filter(
-        (item) => item.key && halfSet?.has(item.key.toString()),
-      ),
-      e: event,
-    }
-    onCheck && onCheck(Array.from(keys), extra)
-  }
-
+  const handleCheck = useCallback(
+    (targetKey: string, event: Event) => {
+      const _checkedKeys = checkedKeys ? new Set(checkedKeys) : checkKeysState
+      let keys = new Set(updateKeys(Array.from(_checkedKeys), targetKey, true))
+      let halfSet: Set<string> = new Set<string>([])
+      if (!checkStrictly) {
+        keys = checkChildrenChecked(targetKey, treeData, keys) ?? keys
+        halfSet = checkParentChecked(keys, treeData)
+        setHalfCheckKeysState(halfSet)
+      }
+      setCheckKeysState(keys)
+      const extra = {
+        checked: keys?.has(targetKey),
+        node: nodeCache.current[targetKey],
+        checkedNodes: getNodeList(nodeCache.current).filter(
+          (item) => item.key && keys.has(item.key.toString()),
+        ),
+        halfCheckedKeys: Array.from(halfSet ?? []),
+        halfCheckedNodes: getNodeList(nodeCache.current).filter(
+          (item) => item.key && halfSet?.has(item.key.toString()),
+        ),
+        e: event,
+      }
+      onCheck && onCheck(Array.from(keys), extra)
+    },
+    [checkKeysState, nodeCache.current, treeData],
+  )
   const handleLoadMore = async (key: string) => {
     loadMoreKeys.add(key)
     setLoadMoreKeys(new Set([...loadMoreKeys]))
