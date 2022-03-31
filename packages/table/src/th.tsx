@@ -1,7 +1,12 @@
 import * as React from "react"
 import { forwardRef, useContext } from "react"
 import { ThProps } from "./interface"
-import { applyBorderStyle, applySizeStyle, applyThStyle } from "./style"
+import {
+  applyBorderStyle,
+  applyHeaderContainer,
+  applySizeStyle,
+  applyThStyle,
+} from "./style"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
 import { ThContext } from "./th-context"
@@ -14,6 +19,7 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
       striped,
       align,
       fixedHeader,
+      children,
       _css,
       ...otherProps
     } = props
@@ -34,7 +40,9 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
         )}
         ref={ref}
         {...otherProps}
-      />
+      >
+        <div css={applyHeaderContainer}>{children}</div>
+      </th>
     )
   },
 )

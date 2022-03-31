@@ -3,6 +3,7 @@ import { TableContextProps, TableProps, ThContextProps } from "./interface"
 import {
   applyContainerStyle,
   applyHeaderIconLeft,
+  applyPreContainer,
   applyTableStyle,
 } from "./style"
 import { TableContext } from "./table-context"
@@ -104,18 +105,22 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
                               column.getSortByToggleProps(),
                             )}
                           >
-                            {column.render("Header")}
-                            {column.isSorted ? (
-                              column.isSortedDesc ? (
-                                <SorterDownIcon _css={applyHeaderIconLeft} />
+                            <div css={applyPreContainer}>
+                              {column.render("Header")}
+                              {column.isSorted ? (
+                                column.isSortedDesc ? (
+                                  <SorterDownIcon _css={applyHeaderIconLeft} />
+                                ) : (
+                                  <SorterUpIcon _css={applyHeaderIconLeft} />
+                                )
                               ) : (
-                                <SorterUpIcon _css={applyHeaderIconLeft} />
-                              )
-                            ) : (
-                              !disableSortBy && (
-                                <SorterDefaultIcon _css={applyHeaderIconLeft} />
-                              )
-                            )}
+                                !disableSortBy && (
+                                  <SorterDefaultIcon
+                                    _css={applyHeaderIconLeft}
+                                  />
+                                )
+                              )}
+                            </div>
                             {column.canFilter &&
                               column.Filter != undefined &&
                               column.render("Filter")}

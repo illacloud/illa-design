@@ -93,6 +93,21 @@ export const applyNormalStyle: SerializedStyles = css`
 
 export const applyHeaderIconLeft = css`
   margin-left: 4px;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+`
+
+export const applyHeaderContainer = css`
+  display: flex;
+  flex-direction: row;
+`
+
+export const applyPreContainer = css`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-grow: 1;
 `
 
 export function applyTableStyle(
@@ -106,6 +121,7 @@ export function applyTableStyle(
   const commonStyle = css`
     width: 100%;
     box-sizing: border-box;
+    display: table;
     border-collapse: collapse;
     table-layout: ${tableLayout};
   `
