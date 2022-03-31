@@ -1,51 +1,54 @@
-import { Meta, Story } from "@storybook/react"
+import {Meta, Story} from "@storybook/react"
 import {
+  AddIcon,
   CheckmarkIcon,
   CloseIcon,
   CopyIcon,
+  DeleteIcon,
+  DownIcon,
   EmptyIcon,
   ErrorIcon,
+  ExpandIcon,
   EyeOffIcon,
   EyeOnIcon,
-  IconProps,
-  ImageDefaultIcon,
-  LinkIcon,
-  LoadingIcon,
-  LikeIcon,
-  ShareIcon,
-  PersonIcon,
-  RightIcon,
-  SearchIcon,
-  SuccessIcon,
-  ReduceIcon,
-  WarningCircleIcon,
-  WarningIcon,
-  PreIcon,
-  NextIcon,
-  UpIcon,
-  DownIcon,
-  MoreIcon,
-  ExpandIcon,
-  AddIcon,
-  InfoCircleIcon,
-  DeleteIcon,
-  MinusIcon,
-  PlusIcon,
-  UploadIcon,
-  FileWordIcon,
   FileDefaultIcon,
-  FileVideoIcon,
   FileExcelIcon,
   FileMusicIcon,
   FilePdfIcon,
   FilePictureIcon,
-  FileWPSIcon,
   FilePPTIcon,
-  StarIcon,
+  FileVideoIcon,
+  FileWordIcon,
+  FileWPSIcon,
   HeartIcon,
-  PenIcon,
-  PreDoubleIcon,
+  IconProps,
+  ImageDefaultIcon,
+  InfoCircleIcon,
+  LikeIcon,
+  LinkIcon,
+  LoadingIcon,
+  MinusIcon,
+  MoreIcon,
   NextDoubleIcon,
+  NextIcon,
+  PenIcon,
+  PersonIcon,
+  PlusIcon,
+  PreDoubleIcon,
+  PreIcon,
+  ReduceIcon,
+  RightIcon,
+  SearchIcon,
+  ShareIcon,
+  SorterDefaultIcon,
+  SorterDownIcon,
+  SorterUpIcon,
+  StarIcon,
+  SuccessIcon,
+  UpIcon,
+  UploadIcon,
+  WarningCircleIcon,
+  WarningIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -62,6 +65,9 @@ export default {
       control: {
         type: "text",
       },
+    },
+    _css: {
+      control: false,
     },
   },
 } as Meta
@@ -132,4 +138,12 @@ export const PreDouble: Story<IconProps> = (props) => (
 )
 export const NextDouble: Story<IconProps> = (props) => (
   <NextDoubleIcon {...props} />
+)
+
+export const SorterDefault: Story<IconProps> = (props) => (
+  <SorterDefaultIcon {...props} />
+)
+export const SorterUp: Story<IconProps> = (props) => <SorterUpIcon {...props} />
+export const SorterDown: Story<IconProps> = (props) => (
+  <SorterDownIcon {...props} />
 )

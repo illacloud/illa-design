@@ -1,22 +1,66 @@
-import {
-  HTMLAttributes,
-  TableHTMLAttributes,
-  TdHTMLAttributes,
-  ThHTMLAttributes,
-} from "react"
+import { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react"
 import { Column } from "react-table"
+import { SerializedStyles } from "@emotion/react"
 
-export interface IllaTableProps<D extends object>
-  extends TableHTMLAttributes<HTMLTableElement> {
-  columns: ReadonlyArray<Column<D>>
-  data: readonly D[]
+export type TableSize = "small" | "medium" | "large"
+
+export type TableLayout = "auto" | "fixed"
+
+export type TableAlign = "left" | "center" | "right" | "justify" | "char"
+
+export type TableFixed = "left" | "right"
+
+export interface TableProps<D extends object>
+  extends HTMLAttributes<HTMLDivElement>,
+    TableContextProps,
+    ThContextProps {
+  columns?: ReadonlyArray<Column<D>>
+  data?: readonly D[]
+  tableLayout?: TableLayout
+  bordered?: boolean
+  showHeader?: boolean
+  showFooter?: boolean
+  disableSortBy?: boolean
+  disableFilters?: boolean
+  _css?: SerializedStyles
 }
 
-export interface TableProps extends TableHTMLAttributes<HTMLTableElement> {}
-export interface TBodyProps extends HTMLAttributes<HTMLTableSectionElement> {}
-export interface TdProps extends TdHTMLAttributes<HTMLTableDataCellElement> {}
-export interface TFootProps extends HTMLAttributes<HTMLTableSectionElement> {}
-export interface ThProps extends ThHTMLAttributes<HTMLTableHeaderCellElement> {}
-export interface THeadProps extends HTMLAttributes<HTMLTableSectionElement> {}
+export interface TableContextProps {
+  borderedCell?: boolean
+  striped?: boolean
+  size?: TableSize
+  align?: TableAlign
+}
 
-export interface TrProps extends HTMLAttributes<HTMLTableRowElement> {}
+export interface ThContextProps {
+  fixedHeader?: boolean
+}
+
+export interface TBodyProps extends HTMLAttributes<HTMLTableSectionElement> {
+  _css?: SerializedStyles
+}
+
+export interface TrProps extends HTMLAttributes<HTMLTableRowElement> {
+  _css?: SerializedStyles
+}
+
+export interface TdProps
+  extends TdHTMLAttributes<HTMLTableDataCellElement>,
+    TableContextProps {
+  _css?: SerializedStyles
+}
+
+export interface TFootProps extends HTMLAttributes<HTMLTableSectionElement> {
+  _css?: SerializedStyles
+}
+
+export interface THeadProps extends HTMLAttributes<HTMLTableSectionElement> {
+  _css?: SerializedStyles
+}
+
+export interface ThProps
+  extends ThHTMLAttributes<HTMLTableHeaderCellElement>,
+    TableContextProps,
+    ThContextProps {
+  _css?: SerializedStyles
+}

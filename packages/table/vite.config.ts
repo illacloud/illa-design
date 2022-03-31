@@ -6,6 +6,7 @@ const path = require("path")
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  assetsInclude: "src/assets/*",
   plugins: [
     react({
       jsxImportSource: "@emotion/react",
@@ -26,6 +27,7 @@ export default defineConfig({
   ],
   build: {
     sourcemap: true,
+    minify: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/table",

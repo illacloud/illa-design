@@ -41,6 +41,7 @@
   "dependencies": {
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
+    "@illa-design/icon": "*",
     "react-table": "^7.7.0"
   },
   "devDependencies": {
