@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useRef } from "react"
 import { AnchorLinkProps } from "./interface"
-import { applyLinkStyle } from "./style"
+import { applyLinkStyle, linkOffsetStyle } from "./style"
 import { isString } from "@illa-design/system"
 import { ReactElement } from "react"
 
@@ -29,7 +29,7 @@ export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
     useImperativeHandle(ref, () => linkRef?.current as HTMLDivElement, [])
 
     return (
-      <div ref={linkRef}>
+      <div ref={linkRef} css={[linkOffsetStyle]}>
         <a
           css={applyLinkStyle()}
           href={href}

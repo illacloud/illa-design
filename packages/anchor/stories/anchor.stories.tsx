@@ -1,16 +1,20 @@
 import { Meta, Story } from "@storybook/react"
 import { Anchor, AnchorProps } from "../src"
-import { Link } from "../src/link"
+
+const { Link: AnchorLink } = Anchor
 
 export default {
   title: "OTHERS/Anchor",
   component: Anchor,
 } as Meta
 
-const Template: Story<AnchorProps> = (args) => {
-  return <Anchor {...args} />
-}
-
-export const Basic = Template.bind({})
-
-export const LinkBasic = () => <Link href="#hello" title="Hello" />
+export const Basic = (args: AnchorProps) => (
+  <Anchor>
+    <AnchorLink href="#link-1" title="link-1" />
+    <AnchorLink href="#link-2" title="link-2">
+      <AnchorLink href="#link-2-1" title="link-2-1" />
+      <AnchorLink href="#link-2-2" title="link-2-2" />
+    </AnchorLink>
+    <AnchorLink href="#link-3" title="link-3" />
+  </Anchor>
+)
