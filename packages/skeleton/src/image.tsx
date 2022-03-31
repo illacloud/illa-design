@@ -3,12 +3,7 @@ import { SkeletonImageProps } from "./interface"
 import { applyAnimation, applyImageStyle } from "./style"
 
 export function Image(props: SkeletonImageProps) {
-  const {
-    shape = "circle",
-    size = "medium",
-    animation,
-    ...restProps
-  } = props
+  const { shape = "circle", size = "medium", animation, ...restProps } = props
 
   return (
     <div

@@ -7,11 +7,7 @@ import {
 } from "./interface"
 import { Text } from "./text"
 import { Image } from "./image"
-import {
-  skeletonStyle,
-  skeletonImageStyle,
-  skeletonTextStyle,
-} from "./style"
+import { skeletonStyle, skeletonImageStyle, skeletonTextStyle } from "./style"
 
 function getProps(props: boolean | Object) {
   return isObject(props) ? props : {}

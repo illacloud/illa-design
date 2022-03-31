@@ -56,25 +56,24 @@ export const Animation = () => {
   const content = (
     <div
       css={css`
-          display: flex;
+        display: flex;
       `}
     >
       <Avatar
         size="medium"
         css={css`
-              margin-right: 16px;
-          `}
+          margin-right: 16px;
+        `}
       />
       <Typography>
         {Array.from({ length: 3 }, () => (
           <Paragraph
             css={css`
-                    margin-bottom: 16px;
-                `}
+              margin-bottom: 16px;
+            `}
           >
-            Nothing you can sing that can't be sung.
-            Nothing you can say but you can learn how to play the game.
-            It's easy.
+            Nothing you can sing that can't be sung. Nothing you can say but you
+            can learn how to play the game. It's easy.
           </Paragraph>
         ))}
       </Typography>
@@ -85,8 +84,8 @@ export const Animation = () => {
     <>
       <div
         css={css`
-              margin-bottom: 16px;
-          `}
+          margin-bottom: 16px;
+        `}
       >
         <label>Animation:</label>
         <Switch

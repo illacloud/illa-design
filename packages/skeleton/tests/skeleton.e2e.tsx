@@ -4,6 +4,10 @@ import "@testing-library/cypress"
 
 it("Skeleton renders with animation", () => {
   mount(<Skeleton className="skeleton" animation />)
-  cy.get(".skeleton li:first-child").should("have.css", "animation-timing-function", "linear")
+  cy.get(".skeleton li:first-child").should(
+    "have.css",
+    "animation-timing-function",
+    "linear",
+  )
   unmount()
 })
