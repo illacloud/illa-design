@@ -34,28 +34,37 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     const {
       style,
       className,
+      children,
       popup,
       isRangePicker,
-      allowClear = true,
       disableConfirm,
       placeholder,
       disabled,
-      position = "bl",
-      format = "HH:mm:ss",
       error,
       triggerProps,
       value,
       defaultValue,
       popupVisible,
-      onChange,
-      icons = { inputSuffix: <TimeIcon /> },
+      step,
       size,
+      prefix,
+      hideFooter,
+      use12Hours,
+      disabledHours,
+      disabledMinutes,
+      disabledSeconds,
+      hideDisabledOptions,
+      position = "bl",
+      format = "HH:mm:ss",
+      icons = { inputSuffix: <TimeIcon /> },
+      allowClear = true,
       scrollSticky = true,
       editable = true,
-      unmountOnExit,
       order = true,
       // events
+      onChange,
       onClear,
+      onSelect,
       ...otherProps
     } = props
 
@@ -121,9 +130,11 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     }
 
     function onConfirmValue(vs?: Dayjs | Dayjs[]) {
-      const currentOrder = disabled
+      //  when disabled = array, Deal with the problem of changing the time sequence
+      const currentOrder =
+        !(isArray(disabled) && (disabled[0] || disabled[1])) && order
       const newValue =
-        isRangePicker && order ? getSortedDayjsArray(vs as Dayjs[]) : vs
+        isRangePicker && currentOrder ? getSortedDayjsArray(vs as Dayjs[]) : vs
       setCurrentValue(newValue)
       setValueShow(undefined)
       setInputValue(undefined)
@@ -148,9 +159,9 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     }
 
     const baseInputProps = {
+      ...otherProps,
       style,
       className,
-      format,
       error,
       size,
       readOnly: !editable,

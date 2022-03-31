@@ -371,6 +371,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       autoAlignPopupWidth
       popupVisible={currentVisible}
       onVisibleChange={tryUpdatePopupVisible}
+
     >
       <SelectView
         {...props}

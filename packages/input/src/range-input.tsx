@@ -129,7 +129,6 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
         css={applyRangeContainer(stateValue)}
         style={style}
         className={className}
-        {...otherProps}
       >
         <input
           ref={inputRef}
@@ -154,6 +153,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
             event?.stopPropagation()
             onChange?.([value, value1], event)
           }}
+          {...otherProps}
           {...inputProps}
         />
         <span css={css({ padding: "0 8px" })}>
@@ -182,6 +182,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
             event?.stopPropagation()
             onChange?.([value0, value], event)
           }}
+          {...otherProps}
           {...inputProps}
         />
         {!disabled && allowClear && value?.length ? (

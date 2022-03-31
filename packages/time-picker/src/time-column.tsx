@@ -50,7 +50,7 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
       const li = value ? listElement.current.get(value) : undefined
       if (li && popupVisible && prevPopupVisible.current) {
         // scrollTo(wrapperRef.current, li.offsetTop, 150)
-        wrapperRef.current?.scrollTo({ top: li.offsetTop })
+        wrapperRef.current?.scrollTo?.({ top: li.offsetTop })
         currentScrollTop.current = li.offsetTop
       }
     }, [value])
@@ -59,7 +59,7 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
       if (popupVisible && popupVisible !== prevPopupVisible.current) {
         const li = value ? listElement.current.get(value) : undefined
         if (li) {
-          wrapperRef.current?.scrollTo({ top: li.offsetTop })
+          wrapperRef.current?.scrollTo?.({ top: li.offsetTop })
           currentScrollTop.current = li.offsetTop
         }
       }

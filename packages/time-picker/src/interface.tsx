@@ -24,7 +24,6 @@ export interface PickerProps
   scrollSticky?: boolean
   editable?: boolean
   icons?: { inputSuffix?: ReactNode }
-  unmountOnExit?: boolean
   hideDisabledOptions?: boolean
   disabledHours?: () => number[]
   disabledMinutes?: (selectedHour?: number) => number[]
