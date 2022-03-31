@@ -4,7 +4,7 @@ import { isArray, isDayjs } from "@illa-design/system"
 import { RangePickerProps } from "./interface"
 import { TimePickerPopup } from "./time-picker-popup"
 
-interface InnerRangePickerProps extends RangePickerProps {
+interface RangePickerPopupProps extends RangePickerProps {
   focusedInputIndex?: number
   changeFocusedInputIndex?: (index: number) => void
   valueShow?: Dayjs[]
@@ -12,7 +12,7 @@ interface InnerRangePickerProps extends RangePickerProps {
   onConfirmValue?: (value: Dayjs[]) => void
 }
 
-export function RangePickerPopup(props: InnerRangePickerProps) {
+export function RangePickerPopup(props: RangePickerPopupProps) {
   const {
     value,
     defaultValue,

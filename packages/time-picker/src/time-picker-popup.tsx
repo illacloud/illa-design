@@ -11,7 +11,7 @@ import { TimeColumn } from "./time-column"
 import { applyContentButton, applyTimepickerContent } from "./style"
 import { TimePickerProps, CalendarValue, TimeColumnProps } from "./interface"
 
-interface InnerTimePickerProps extends TimePickerProps {
+interface PickerPopupProps extends TimePickerProps {
   confirmBtnDisabled?: boolean
   onConfirmValue?: (value: Dayjs) => void
   isRangePicker?: boolean
@@ -25,7 +25,7 @@ type SelectUnit = Record<
   string | number | undefined
 >
 
-export function getColumnsFromFormat(format?: string) {
+function getColumnsFromFormat(format?: string) {
   const units = ["H", "h", "m", "s", "a", "A"]
   const list: string[] = []
   let use12Hours = false
@@ -43,7 +43,7 @@ export function getColumnsFromFormat(format?: string) {
   }
 }
 
-export function padStart(string: string, length: number, char = " "): string {
+function padStart(string: string, length: number, char = " "): string {
   const s = String(string)
   if (!length) {
     return s
@@ -54,7 +54,7 @@ export function padStart(string: string, length: number, char = " "): string {
     : newString
 }
 
-export function TimePickerPopup(props: InnerTimePickerProps) {
+export function TimePickerPopup(props: PickerPopupProps) {
   const {
     format = "HH:mm:ss",
     onSelect,
