@@ -165,9 +165,9 @@ test("Steps render with vertical", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps render with dot type", () => {
+test("Steps render with dot variant", () => {
   render(
-    <Steps data-testid="steps" type="dot">
+    <Steps data-testid="steps" variant="dot">
       <Step title="Succeeded"></Step>
       <Step title="Wait"></Step>
     </Steps>,
@@ -176,9 +176,9 @@ test("Steps render with dot type", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps render with dot type with vertical direction", () => {
+test("Steps render with dot variant with vertical direction", () => {
   render(
-    <Steps data-testid="steps" type="dot" direction="vertical">
+    <Steps data-testid="steps" variant="dot" direction="vertical">
       <Step title="Succeeded"></Step>
       <Step title="Wait"></Step>
     </Steps>,
@@ -187,9 +187,9 @@ test("Steps render with dot type with vertical direction", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps render with navigation type", () => {
+test("Steps render with navigation variant", () => {
   render(
-    <Steps data-testid="steps" type="navigation">
+    <Steps data-testid="steps" variant="navigation">
       <Step title="Succeeded"></Step>
       <Step title="Wait"></Step>
     </Steps>,
@@ -222,4 +222,46 @@ test("Steps onChange should be triggered if step is disabled", () => {
 
   screen.getByText("Wait").click()
   expect(clickEvent).not.toBeCalled()
+})
+
+test("Steps with vertical direction and error status should render error style", () => {
+  render(
+    <Steps data-testid="steps" direction="vertical" current={2} status="error">
+      <Step title="Succeeded"></Step>
+      <Step title="Error"></Step>
+      <Step title="Wait"></Step>
+    </Steps>,
+  )
+
+  expect(screen.getByTestId("steps")).toMatchSnapshot()
+})
+
+test("Only last step render error style", () => {
+  render(
+    <Steps data-testid="steps" direction="vertical" current={3} status="error">
+      <Step title="Succeeded"></Step>
+      <Step title="Error"></Step>
+      <Step title="Wait"></Step>
+    </Steps>,
+  )
+
+  expect(screen.getByTestId("steps")).toMatchSnapshot()
+})
+
+test("Steps with dot variant and error status should render error style", () => {
+  render(
+    <Steps
+      data-testid="steps"
+      variant="dot"
+      direction="vertical"
+      current={2}
+      status="error"
+    >
+      <Step title="Succeeded"></Step>
+      <Step title="Error"></Step>
+      <Step title="Wait"></Step>
+    </Steps>,
+  )
+
+  expect(screen.getByTestId("steps")).toMatchSnapshot()
 })

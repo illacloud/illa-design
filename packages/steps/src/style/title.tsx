@@ -1,12 +1,17 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import { StepSize, StepStatus, StepStyleConfig, StepType } from "../interface"
-import { statusColor, isVerticalLabel } from "../style"
+import {
+  StepSize,
+  StepStatus,
+  StepStyleConfig,
+  StepVariant,
+} from "../interface"
+import { statusColor, isVerticalLabel, getConnectorColor } from "../style"
 
 export function applyTitleStyle({
   size,
-  type,
+  variant,
   lastStep,
   lineless,
   nextStepError,
@@ -20,19 +25,19 @@ export function applyTitleStyle({
   status: StepStatus
 } & StepStyleConfig): SerializedStyles {
   return css([
-    applyTitleSize({ size, direction, type, labelPlacement }),
+    applyTitleSize({ size, direction, variant, labelPlacement }),
     applyTitleColor(status),
     !lastStep &&
       !lineless &&
       direction !== "vertical" &&
       labelPlacement !== "vertical" &&
-      applyConnectionStyle({ type, status, nextStepError, size }),
+      applyConnectionStyle({ variant, status, nextStepError, size }),
   ])
 }
 
 function applyTitleSize({
   size,
-  type,
+  variant,
   direction,
   labelPlacement,
 }: StepStyleConfig): SerializedStyles {
@@ -40,7 +45,7 @@ function applyTitleSize({
   let fontSize: number
   let padding = 16
 
-  if (isVerticalLabel({ type, direction, labelPlacement })) {
+  if (isVerticalLabel({ variant, direction, labelPlacement })) {
     padding = 0
   }
 
@@ -76,28 +81,21 @@ function applyTitleColor(status: StepStatus): SerializedStyles {
 }
 
 function applyConnectionStyle({
-  type,
+  variant,
   status,
   nextStepError = false,
   size,
 }: {
-  type: StepType
-  status?: StepStatus
+  variant: StepVariant
+  status: StepStatus
   nextStepError: boolean
   size: StepSize
 }): SerializedStyles {
   let pseudoStyle: SerializedStyles = css``
   let position: SerializedStyles = css``
-  const defaultColor = globalColor(`--${illaPrefix}-gray-08`)
-  let color = defaultColor
+  const color = getConnectorColor({ nextStepError, status })
 
-  if (nextStepError) {
-    color = statusColor.error.color
-  } else if (status === "finish") {
-    color = statusColor.finish.color
-  }
-
-  if (type === "line") {
+  if (variant === "line") {
     const topMap = {
       small: 10,
       large: 14,
@@ -112,7 +110,7 @@ function applyConnectionStyle({
       top: topMap[size],
       backgroundColor: color,
     })
-  } else if (type === "navigation") {
+  } else if (variant === "navigation") {
     const topMap = {
       small: 6,
       large: 10,
@@ -120,7 +118,7 @@ function applyConnectionStyle({
     pseudoStyle = css({
       width: 8,
       height: 8,
-      border: `3px solid ${defaultColor} `,
+      border: `3px solid ${color} `,
       borderLeft: "none",
       borderBottom: "none",
       transform: "rotate(45deg)",
