@@ -10,24 +10,27 @@ export default {
   component: TimePicker,
   argTypes: {
     value: {
-      type: 'string',
+      type: "string",
     },
   },
 } as Meta
 
 export const timePicker: Story<TimePickerProps> = (args) => {
   return (
-    <div>
-      <TimePicker {...args}>ILLA</TimePicker>
-    </div>
+    <Space direction={'vertical'} size={'25px'}>
+      <TimePicker {...args} />
+      <TimePicker use12Hours format="hh:mm:ss a" {...args} />
+      <TimePicker disabled {...args} />
+    </Space>
   )
 }
 
 export const rangePicker: Story<RangePickerProps> = (args) => {
   return (
-    <Space>
-      <RangePicker {...args}>ILLA</RangePicker>
-      <RangePicker disabled={[true, false]} {...args}>ILLA</RangePicker>
+    <Space wrap>
+      <RangePicker {...args} />
+      <RangePicker disabled={[true, false]} {...args} />
+      <RangePicker value={["10:00:00", "12:00:00"]} {...args} />
     </Space>
   )
 }
