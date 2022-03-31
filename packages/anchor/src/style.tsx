@@ -17,7 +17,13 @@ export const linkCss = css([
   }),
   css`
     &:hover {
-      color: ${globalColor(`--${illaPrefix}-gray-02`)}
+      color: ${globalColor(`--${illaPrefix}-gray-02`)};
     }
   `,
 ])
+
+export const linkOffsetStyle = css`
+  & > & {
+    margin-left: 16px;
+  }
+`

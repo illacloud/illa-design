@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@illa-design/system": "*",
-    "@illa-design/theme": "*"
+    "@illa-design/theme": "*",
+    "@illa-design/affix": "*"
   }
 }
