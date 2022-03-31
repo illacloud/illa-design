@@ -51,6 +51,7 @@ export const dragContainerCss = css`
   display: flex;
   align-items: center;
   height: 100%;
+  width: 100%;
   justify-content: start;
 `
 
@@ -76,13 +77,23 @@ export function applyNodeFoldSwitchIconCss(folding?: boolean) {
   `
 }
 
-export const leafIconCss = css`
+export function applyLeafIconCss(visible?: boolean) {
+  return css`
+    display: inline-flex;
+    align-items: center;
+    padding: 2px;
+    font-size: 12px;
+    visibility: ${visible === true ? "visible" : "hidden"};
+    margin-left: 8px;
+    color: ${globalColor(`--${illaPrefix}-gray-02`)}; ;
+  `
+}
+export const switchIconCss = css`
   display: inline-flex;
+  justify-content: center;
   align-items: center;
-  padding: 2px;
-  font-size: 12px;
-  margin-left: 8px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)}; ;
+  height: 16px;
+  width: 16px;
 `
 
 export function applyNodeTextContainerCss(
@@ -123,10 +134,6 @@ export const indentContainerCss = css`
   height: 100%;
 `
 
-export const halfIndentCss = css`
-  width: 8px;
-`
-
 export const checkboxCss = css`
   margin-left: 8px;
 `
@@ -138,7 +145,6 @@ export function applyIndentBlockCss(requireDivider?: boolean) {
     border-left: solid 1px
       ${requireDivider ? globalColor(`--${illaPrefix}-gray-08`) : "white"};
     box-sizing: border-box;
-    margin-left: 15.5px;
   `
 }
 export const loadingIconCss = css`
