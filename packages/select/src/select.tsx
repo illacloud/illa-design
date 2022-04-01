@@ -27,7 +27,6 @@ import { OptionList } from "./option-list"
 
 export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const {
-    mode,
     size = "medium",
     children,
     disabled,
