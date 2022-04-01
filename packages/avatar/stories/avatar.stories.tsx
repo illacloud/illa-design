@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Avatar, AvatarProps } from "../src"
 import { BsFacebook } from "react-icons/bs"

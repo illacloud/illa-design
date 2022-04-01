@@ -1,4 +1,3 @@
-import * as React from "react"
 import { fireEvent, render, screen } from "@testing-library/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Rate } from "../src"

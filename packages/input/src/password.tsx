@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { ChangeEvent, forwardRef, useState } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { EyeOnIcon, EyeOffIcon } from "@illa-design/icon"
@@ -30,7 +28,7 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       onBlur,
       requirePadding = true,
       invisibleButton = true,
-      boarderColor = "blue",
+      borderColor = "blue",
       size = "medium",
       variant = "outline",
       ...rest
@@ -43,10 +41,11 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       value: props.value ? props.value : undefined,
     })
 
-    const stateValue = { error, disabled, focus, variant, size, boarderColor }
+    const stateValue = { error, disabled, focus, variant, size, borderColor }
     const passwordProp = {
       ...rest,
       type: visibility ? "text" : "password",
+      size,
       disabled,
       placeholder,
       allowClear,

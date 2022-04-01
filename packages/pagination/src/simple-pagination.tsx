@@ -1,19 +1,15 @@
-/** @jsxImportSource @emotion/react */
-import { forwardRef, useEffect, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { SimplePaginationProps } from "./interface"
 import {
+  applyCommonItemCss,
   applyDefaultItemCss,
   applyInputCss,
+  applyDefaultItemWithMarginCss,
   paginationContainer,
-  simplePaginationSumCss,
 } from "./style"
 import { Input } from "@illa-design/input"
-import * as React from "react"
 
-export const SimplePagination = forwardRef<
-  HTMLSpanElement,
-  SimplePaginationProps
->((props, ref) => {
+export const SimplePagination: FC<SimplePaginationProps> = (props) => {
   const {
     onCurrentChange,
     pageSum,
@@ -22,7 +18,6 @@ export const SimplePagination = forwardRef<
     nextIcon,
     wholeDisabled,
     size,
-    ...otherProps
   } = props
 
   const [compositionValue, setCompositionValue] = useState<string>(
@@ -33,14 +28,17 @@ export const SimplePagination = forwardRef<
   )
 
   useEffect(() => {
-    onCurrentChange(currentPage)
+    onCurrentChange(currentPage + 1)
     setCompositionValue(`${currentPage + 1}`)
   }, [currentPage])
 
   return (
     <span css={paginationContainer}>
       <span
-        css={applyDefaultItemCss(size, currentPage == 0 || wholeDisabled)}
+        css={applyDefaultItemWithMarginCss(
+          size,
+          currentPage == 0 || wholeDisabled,
+        )}
         onClick={() => {
           if (currentPage - 1 < 0 || wholeDisabled) return
           setCurrentPage(currentPage - 1)
@@ -48,27 +46,29 @@ export const SimplePagination = forwardRef<
       >
         {prevIcon}
       </span>
-      <Input
-        css={applyInputCss(size, wholeDisabled)}
-        disabled={wholeDisabled}
-        value={compositionValue.toString()}
-        onChange={(val) => {
-          const value = val?.replace(/[^\d]/, "")
-          setCompositionValue(value)
-          if (value.length > 0) {
-            setCurrentPage(Number.parseInt(value) - 1)
-          }
-        }}
-        onBlur={() => {
-          if (Number.parseInt(compositionValue) > pageSum) {
-            setCurrentPage(pageSum - 1)
-          }
-        }}
-        textCenterHorizontal={true}
-        requirePadding={false}
-        variant={"fill"}
-      />
-      <span css={simplePaginationSumCss}> {`/ ${pageSum}`}</span>
+      <span css={applyInputCss(size, wholeDisabled)}>
+        <Input
+          disabled={wholeDisabled}
+          value={compositionValue.toString()}
+          onChange={(val) => {
+            const value = val?.replace(/[^\d]/, "")
+            setCompositionValue(value)
+            if (value.length > 0) {
+              setCurrentPage(Number.parseInt(value) - 1)
+            }
+          }}
+          onBlur={() => {
+            if (Number.parseInt(compositionValue) > pageSum) {
+              setCurrentPage(pageSum - 1)
+            }
+          }}
+          textCenterHorizontal={true}
+          requirePadding={false}
+          variant={"fill"}
+        />
+      </span>
+      <span css={applyCommonItemCss(size)}>/</span>
+      <span css={applyCommonItemCss(size, true)}>{pageSum}</span>
       <span
         css={applyDefaultItemCss(
           size,
@@ -83,4 +83,4 @@ export const SimplePagination = forwardRef<
       </span>
     </span>
   )
-})
+}

@@ -1,12 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
-import {
-  forwardRef,
-  ElementRef,
-  useState,
-  useRef,
-  useImperativeHandle,
-} from "react"
+import { forwardRef, useImperativeHandle, useRef, useState } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { InputElement } from "@illa-design/input"
 import { ErrorIcon } from "@illa-design/icon"
@@ -19,6 +11,7 @@ import {
 } from "./style"
 import { formatValue } from "./utils"
 import { RenderTags } from "./render-tag"
+import { css } from "@emotion/react"
 
 // default validate func
 const defaultValidate = (inputValue: string, values: ObjectValueType[]) =>
@@ -41,6 +34,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       disableInput,
       suffix,
       icon,
+      _css,
       validate = defaultValidate,
       labelInValue,
       size = "medium",
@@ -112,9 +106,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
 
     return (
       <div
-        css={applyInputContainer(stateValue)}
-        style={style}
-        className={className}
+        css={css(applyInputContainer(stateValue), _css)}
         ref={ref}
         onClick={(e) => {
           !focus && refInput?.current?.focus?.()

@@ -1,16 +1,21 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
-import { forwardRef, useRef, useState, useEffect, useReducer } from "react"
-import { InputElement, InputElementProps } from "@illa-design/input"
-import { isObject, omit, isNumber } from "@illa-design/system"
 import {
+  ClipboardEventHandler,
+  forwardRef,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react"
+import { InputElement, InputElementProps } from "@illa-design/input"
+import { isNumber, isObject, omit } from "@illa-design/system"
+import {
+  ErrorIcon,
+  ExpandIcon,
   LoadingIcon,
   SearchIcon,
-  ExpandIcon,
-  ErrorIcon,
 } from "@illa-design/icon"
 import { InputTag, ObjectValueType } from "@illa-design/input-tag"
-import { SelectViewProps, SelectStateValue } from "./interface"
+import { SelectStateValue, SelectViewProps } from "./interface"
 import {
   applyIconStyle,
   applySelectContent,
@@ -32,13 +37,12 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     const {
       children,
       value,
-      mode,
       size = "medium",
       inputValue,
       defaultValue,
       showSearch,
       placeholder,
-      isMultipleMode,
+      multiple,
       popupVisible,
       isEmptyValue,
       maxTagCount,
@@ -49,6 +53,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       options,
       labelInValue,
       allowClear,
+      allowCreate,
       removeIcon,
       // event
       onChange,
@@ -70,9 +75,9 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     const mergedFocused = focused || popupVisible
     const [searchStatus, setSearchStatus] = useState(SearchStatus.NONE)
 
-    const canFocusInput = showSearch || mode === "tags"
+    const canFocusInput = showSearch || allowCreate
     const renderedValue =
-      !isMultipleMode && value !== undefined ? renderText(value).text : ""
+      !multiple && value !== undefined ? renderText(value).text : ""
     const isRetainInputValueSearch =
       isObject(showSearch) && showSearch?.retainInputValue
 
@@ -129,9 +134,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     }
 
     const inputEventHandlers = {
-      paste: onPaste as
-        | React.ClipboardEventHandler<HTMLInputElement>
-        | undefined,
+      paste: onPaste as ClipboardEventHandler<HTMLInputElement> | undefined,
       keyDown: tryTriggerKeyDown,
       focus: (event: any) => {
         event.stopPropagation()
@@ -252,13 +255,13 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
 
       return (
         <InputTag
-          css={css`
-            width: 100% !important;
-            border: unset !important;
-            padding: unset !important;
-            box-shadow: unset !important;
+          _css={css`
+            width: 100%;
+            border: unset;
+            padding: unset;
+            box-shadow: unset;
           `}
-          disableInput={!(showSearch || isMultipleMode)}
+          disableInput={!(showSearch || multiple)}
           inputRef={inputRef}
           disabled={disabled}
           placeholder={placeholder}
@@ -297,7 +300,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
           css={applySelectContent(stateValue)}
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}
         >
-          {isMultipleMode ? renderMultiple() : renderSingle()}
+          {multiple ? renderMultiple() : renderSingle()}
           {!disabled && !isEmptyValue && allowClear ? (
             <span
               title="selectRemoveIcon"

@@ -15,7 +15,7 @@ interface CreateIconOptions {
   title: string
   /**
    * The `svg` path or group element
-   * @type React.ReactElement | React.ReactElement[]
+   * @type ReactElement | ReactElement[]
    */
   path?: ReactElement | ReactElement[]
   /**

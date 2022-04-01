@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef } from "react"
+import { forwardRef } from "react"
 import { CardMetaProps } from "./interface"
 import {
   applyCardMetaTitle,

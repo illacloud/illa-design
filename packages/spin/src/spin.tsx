@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, ReactElement } from "react"
+import { cloneElement, forwardRef, ReactElement } from "react"
 import { SpinProps } from "./interface"
 import { LoadingIcon } from "@illa-design/icon"
 import { isObject } from "@illa-design/system"
@@ -24,7 +23,7 @@ export const Spin = forwardRef<HTMLDivElement, SpinProps>((props, ref) => {
 
   let loadingIcon
   if (icon) {
-    loadingIcon = React.cloneElement(icon as ReactElement, {
+    loadingIcon = cloneElement(icon as ReactElement, {
       css: applySizeCss(size, loading),
     })
   } else if (element) {

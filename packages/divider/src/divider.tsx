@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { forwardRef } from "react"
 import { SerializedStyles } from "@emotion/react"
 import { DividerProps } from "./interface"

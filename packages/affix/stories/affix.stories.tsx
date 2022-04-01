@@ -1,10 +1,9 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { css } from "@emotion/react"
 import { Button } from "@illa-design/button"
 import { Notification } from "@illa-design/notification"
 import { Affix, AffixProps } from "../src"
+import { useRef } from "react"
 
 export default {
   title: "OTHERS /Affix",
@@ -29,11 +28,10 @@ const loremIpsum = Array(10)
   )
   .join("\n\n")
 
-export const Basic = (args) => {
-  const { text, ...affixProps } = args
+export const Basic: Story<AffixProps> = (args) => {
   return (
     <>
-      <Affix {...affixProps}>
+      <Affix {...args}>
         <Button>Affix Top</Button>
       </Affix>
       <div css={blockStyles}>{loremIpsum}</div>
@@ -66,7 +64,7 @@ export const Offset = () => {
 }
 
 export const targetContainer = () => {
-  const container = React.useRef(null)
+  const container = useRef(null)
 
   return (
     <>

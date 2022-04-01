@@ -5,7 +5,6 @@ import { Avatar } from "@illa-design/avatar"
 import { LikeIcon, MoreIcon, ShareIcon } from "@illa-design/icon"
 import "@testing-library/jest-dom"
 import { Link } from "@illa-design/link"
-import * as React from "react"
 
 test("Card renders with different size", () => {
   render(
