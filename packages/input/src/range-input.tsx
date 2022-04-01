@@ -50,8 +50,8 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
       ...otherProps
     } = props
 
-    const disabled0 = isArray(disabled) ? disabled[0] : disabled
-    const disabled1 = isArray(disabled) ? disabled[1] : disabled
+    const disabled0 = isArray(disabled) ? disabled?.[0] : disabled
+    const disabled1 = isArray(disabled) ? disabled?.[1] : disabled
 
     const [focus0, setFocus0] = useState(false)
     const [focus1, setFocus1] = useState(false)
@@ -119,8 +119,8 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
     }
 
     useEffect(() => {
-      setValue0(value?.[0] || "")
-      setValue1(value?.[1] || "")
+      setValue0(value?.[0] ?? "")
+      setValue1(value?.[1] ?? "")
     }, [value])
 
     return (

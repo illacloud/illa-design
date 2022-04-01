@@ -49,7 +49,6 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
     useEffect(() => {
       const li = value ? listElement.current.get(value) : undefined
       if (li && popupVisible && prevPopupVisible.current) {
-        // scrollTo(wrapperRef.current, li.offsetTop, 150)
         wrapperRef.current?.scrollTo?.({ top: li.offsetTop })
         currentScrollTop.current = li.offsetTop
       }
