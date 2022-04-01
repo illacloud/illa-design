@@ -11,17 +11,14 @@ export const applyDrawer = css`
   line-height: 1.5715;
 `
 
-export function applyDrawerWrapper(
-  isFixed?: boolean,
-  visible?: boolean,
-): SerializedStyles {
+export function applyDrawerWrapper(isFixed?: boolean): SerializedStyles {
   return css`
     position: ${isFixed ? "fixed" : "absolute"};
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    z-index: ${visible ? 1000 : -1000};
+    z-index: 1000;
   `
 }
 
