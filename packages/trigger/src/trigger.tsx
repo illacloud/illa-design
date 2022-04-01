@@ -8,6 +8,7 @@ import {
   ReactNode,
   Ref,
   RefObject,
+  SyntheticEvent,
   useEffect,
   useRef,
   useState,
@@ -37,7 +38,7 @@ import {
 import { Popup } from "./popup"
 import useClickAway from "react-use/lib/useClickAway"
 import useMeasure from "react-use/lib/useMeasure"
-import { isFunction, isObject } from "@illa-design/system"
+import { isFunction } from "@illa-design/system"
 
 type ReactRef<T> = Ref<T> | RefObject<T> | MutableRefObject<T>
 
@@ -369,27 +370,27 @@ export const Trigger: FC<TriggerProps> = (props) => {
   ])
 
   const newProps = {
-    onMouseEnter: () => {
+    onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "hover") {
         showTips()
       }
     },
-    onMouseLeave: () => {
+    onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "hover") {
         hideTips()
       }
     },
-    onFocus: () => {
+    onFocus: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "focus") {
         showTips()
       }
     },
-    onBlur: () => {
+    onBlur: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "focus") {
         hideTips()
       }
     },
-    onClick: () => {
+    onClick: (e: SyntheticEvent<Element, Event>) => {
       switch (trigger) {
         case "click":
           if (!disabled) {
@@ -409,6 +410,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           }
           break
       }
+      e.stopPropagation()
     },
   }
 
@@ -432,24 +434,24 @@ export const Trigger: FC<TriggerProps> = (props) => {
         measureRef,
         childrenRef,
       ),
-      onMouseEnter: (e: Event) => {
-        newProps.onMouseEnter()
+      onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onMouseEnter(e)
         ;(props.children as ReactElement).props?.onMouseEnter?.call(e)
       },
-      onMouseLeave: (e: Event) => {
-        newProps.onMouseLeave()
+      onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onMouseLeave(e)
         ;(props.children as ReactElement).props?.onMouseLeave?.call(e)
       },
-      onFocus: (e: Event) => {
-        newProps.onFocus()
+      onFocus: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onFocus(e)
         ;(props.children as ReactElement).props?.onFocus?.call(e)
       },
-      onBlur: (e: Event) => {
-        newProps.onBlur()
+      onBlur: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onBlur(e)
         ;(props.children as ReactElement).props?.onBlur?.call(e)
       },
-      onClick: (e: Event) => {
-        newProps.onClick()
+      onClick: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onClick(e)
         ;(props.children as ReactElement).props?.onClick?.call(e)
       },
     }

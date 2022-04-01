@@ -1,6 +1,7 @@
 export * from "./table"
 export * from "./interface"
 export * from "./style"
+export * from "./table-filter"
 export * from "./tbody"
 export * from "./td"
 export * from "./tfoot"

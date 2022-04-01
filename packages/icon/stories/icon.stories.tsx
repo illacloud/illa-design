@@ -20,6 +20,7 @@ import {
   FileVideoIcon,
   FileWordIcon,
   FileWPSIcon,
+  FilterIcon,
   HeartIcon,
   IconProps,
   ImageDefaultIcon,
@@ -147,3 +148,5 @@ export const SorterUp: Story<IconProps> = (props) => <SorterUpIcon {...props} />
 export const SorterDown: Story<IconProps> = (props) => (
   <SorterDownIcon {...props} />
 )
+
+export const Filter: Story<IconProps> = (props) => <FilterIcon {...props} />

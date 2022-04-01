@@ -1,5 +1,10 @@
-import { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react"
-import { Column } from "react-table"
+import {
+  HTMLAttributes,
+  ReactNode,
+  TdHTMLAttributes,
+  ThHTMLAttributes,
+} from "react"
+import { Column, UseFiltersInstanceProps } from "react-table"
 import { SerializedStyles } from "@emotion/react"
 
 export type TableSize = "small" | "medium" | "large"
@@ -22,6 +27,12 @@ export interface TableProps<D extends object>
   showFooter?: boolean
   disableSortBy?: boolean
   disableFilters?: boolean
+  _css?: SerializedStyles
+}
+
+export interface TableFilterProps<D extends object> {
+  renderFilterContent?: (columnProps: UseFiltersInstanceProps<D>) => ReactNode
+  columnProps: UseFiltersInstanceProps<D>
   _css?: SerializedStyles
 }
 

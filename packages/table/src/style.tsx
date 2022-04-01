@@ -100,6 +100,7 @@ export const applyHeaderIconLeft = css`
 
 export const applyHeaderContainer = css`
   display: flex;
+  align-items: center;
   flex-direction: row;
 `
 

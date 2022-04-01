@@ -1,6 +1,18 @@
 import { Meta, Story } from "@storybook/react"
-import { Table, TableProps, TBody, Td, TFoot, Th, Thead, Tr } from "../src"
-import { useMemo } from "react"
+import {
+  Table,
+  TableFilter,
+  TableProps,
+  TBody,
+  Td,
+  TFoot,
+  Th,
+  Thead,
+  Tr,
+} from "../src"
+import { useMemo, useState } from "react"
+import { Row, UseFiltersInstanceProps } from "react-table"
+import { Input } from "@illa-design/input"
 
 export default {
   title: "DATA DISPLAY/Table",
@@ -51,21 +63,26 @@ export const Basic: Story<TableProps<any>> = (args) => {
   )
 }
 
+interface DemoData {
+  col1: string
+  col2: string
+}
+
 export const InputData: Story<TableProps<any>> = (args) => {
   const data = useMemo(
     () => [
       {
         col1: "Hello",
         col2: "World",
-      },
+      } as DemoData,
       {
         col1: "react-table",
         col2: "rocks",
-      },
+      } as DemoData,
       {
         col1: "whatever",
         col2: "you want",
-      },
+      } as DemoData,
     ],
     [],
   )
@@ -76,14 +93,67 @@ export const InputData: Story<TableProps<any>> = (args) => {
         Header: "Column 1",
         Footer: "Footer 1",
         accessor: "col1", // accessor is the "key" in the data
-        Filter: () => {
-          return <span>123</span>
+        Filter: (columnProps: UseFiltersInstanceProps<DemoData>) => {
+          return (
+            <TableFilter
+              renderFilterContent={(
+                columnProps?: UseFiltersInstanceProps<DemoData>,
+              ) => {
+                return (
+                  <Input
+                    onChange={(value) => {
+                      columnProps?.setFilter("col1", value)
+                    }}
+                  />
+                )
+              }}
+              columnProps={columnProps}
+            />
+          )
         },
+        filter: "includes", // equals, between
       },
       {
         Header: "Column 2",
         Footer: "Footer 2",
         accessor: "col2",
+        Filter: (columnProps: UseFiltersInstanceProps<DemoData>) => {
+          const [currentInput, setCurrentInput] = useState<string>("")
+          return (
+            <TableFilter
+              renderFilterContent={(
+                columnProps?: UseFiltersInstanceProps<DemoData>,
+              ) => {
+                return (
+                  <Input
+                    value={currentInput}
+                    onChange={(value) => {
+                      setCurrentInput(value)
+                      columnProps?.setFilter("col2", value)
+                    }}
+                  />
+                )
+              }}
+              columnProps={columnProps}
+            />
+          )
+        },
+        filter: (
+          rows: Array<Row>,
+          columnIds: Array<String>, //
+          filterValue: string,
+        ) => {
+          if (filterValue == "") {
+            return rows
+          }
+          return rows.filter((value) => {
+            return (
+              (value.cells.find((value) => {
+                return columnIds.includes(value.column.id)
+              })?.value as string) ?? ""
+            ).includes(filterValue)
+          })
+        },
       },
     ],
     [],
