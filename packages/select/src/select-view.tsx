@@ -37,7 +37,6 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     const {
       children,
       value,
-      mode,
       size = "medium",
       inputValue,
       defaultValue,
@@ -54,6 +53,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       options,
       labelInValue,
       allowClear,
+      allowCreate,
       removeIcon,
       // event
       onChange,
@@ -75,7 +75,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     const mergedFocused = focused || popupVisible
     const [searchStatus, setSearchStatus] = useState(SearchStatus.NONE)
 
-    const canFocusInput = showSearch || mode === "tags"
+    const canFocusInput = showSearch || allowCreate
     const renderedValue =
       !multiple && value !== undefined ? renderText(value).text : ""
     const isRetainInputValueSearch =
