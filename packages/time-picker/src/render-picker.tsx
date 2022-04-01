@@ -22,12 +22,11 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
-import { Input } from "@illa-design/input"
+import { Input, RangeInput, RangeInputRef } from "@illa-design/input"
 import { TimeIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import { RenderPickerProps } from "./interface"
 import { triggerContentStyle } from "./style"
-import { RangeInput, RangeInputRef } from "../../input/src"
 
 export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
   (props, ref) => {
