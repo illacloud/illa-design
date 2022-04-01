@@ -1,4 +1,4 @@
-# @illa-design/select
+# @illa-design/cascader
 
 ## 0.0.0
 

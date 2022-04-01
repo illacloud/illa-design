@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/select",
+  "name": "@illa-design/cascader",
   "version": "0.0.0",
-  "description": "Illa Design Select.",
+  "description": "Illa Design Cascader.",
   "keywords": [
-    "select",
+    "cascader",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/select"
+    "directory": "packages/cascader"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"

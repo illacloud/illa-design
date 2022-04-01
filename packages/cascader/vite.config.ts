@@ -29,7 +29,7 @@ export default defineConfig({
     minify: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@illa-design/select",
+      name: "@illa-design/cascader",
       fileName: (format) => `${format}/index.js`,
     },
     rollupOptions: {
