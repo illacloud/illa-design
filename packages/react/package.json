@@ -85,6 +85,7 @@
     "@illa-design/skeleton": "*",
     "@illa-design/modal": "*",
     "@illa-design/steps": "*",
-    "@illa-design/back-top": "*"
+    "@illa-design/back-top": "*",
+    "@illa-design/drawer": "*"
   }
 }

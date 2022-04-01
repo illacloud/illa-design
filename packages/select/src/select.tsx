@@ -59,9 +59,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     getValidValue(defaultValue, multiple, labelInValue),
   )
   const currentValue =
-    "value" in props
-      ? getValidValue(value, multiple, labelInValue)
-      : stateValue
+    "value" in props ? getValidValue(value, multiple, labelInValue) : stateValue
 
   const isNoOptionSelected = isEmptyValue(currentValue, multiple)
   const [inputValue, setInputValue, stateInputValue] = useMergeValue("", {
