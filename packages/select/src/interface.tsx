@@ -93,7 +93,7 @@ export interface SelectProps
   filterOption?:
     | boolean
     | ((inputValue: string, option: ReactElement) => boolean)
-  triggerProps?: Partial<TriggerProps>;
+  triggerProps?: Partial<TriggerProps>
   // events
   onChange?: (value: any, option?: OptionInfo | OptionInfo[]) => void
   onSearch?: (value: string, reason: InputValueChangeReason) => void

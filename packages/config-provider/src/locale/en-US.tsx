@@ -63,4 +63,8 @@ export const enUS = {
     okText: "OK",
     cancelText: "Cancel",
   },
+  drawer: {
+    okText: "OK",
+    cancelText: "Cancel",
+  },
 } as Locale
