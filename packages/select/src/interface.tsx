@@ -65,7 +65,6 @@ export interface SelectProps
   value?: string | string[] | number | number[] | LabeledValue | LabeledValue[]
   inputValue?: string
   labelInValue?: boolean
-  mode?: "multiple" | "tags"
   multiple?: boolean
   allowCreate?: boolean
   notFoundContent?: ReactNode
