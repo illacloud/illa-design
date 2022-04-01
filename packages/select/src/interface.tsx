@@ -7,6 +7,7 @@ import {
   UIEventHandler,
   JSXElementConstructor,
 } from "react"
+import { TriggerProps } from "@illa-design/trigger"
 
 export interface OptionProps
   extends Omit<HTMLAttributes<HTMLLIElement>, "onMouseEnter" | "onMouseLeave"> {
@@ -93,7 +94,7 @@ export interface SelectProps
   filterOption?:
     | boolean
     | ((inputValue: string, option: ReactElement) => boolean)
-
+  triggerProps?: Partial<TriggerProps>;
   onChange?: (value: any, option?: OptionInfo | OptionInfo[]) => void
   onSearch?: (value: string, reason: InputValueChangeReason) => void
   onPopupScroll?: (element: any) => void

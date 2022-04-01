@@ -39,6 +39,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     showSearch,
     multiple,
     allowCreate,
+    triggerProps,
     // event
     onChange,
     onSearch,
@@ -372,6 +373,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       autoAlignPopupWidth
       popupVisible={currentVisible}
       onVisibleChange={tryUpdatePopupVisible}
+      {...triggerProps}
     >
       <SelectView
         {...props}
