@@ -31,7 +31,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
       disabled,
       placeholder,
       value,
-      boarderColor = "blue",
+      borderColor = "blue",
       size = "medium",
       separator,
       format,
@@ -96,7 +96,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
 
     const stateValue = {
       variant: "outline",
-      boarderColor,
+      borderColor,
       size,
       error,
       focus: focus0 || focus1,

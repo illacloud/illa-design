@@ -27,7 +27,7 @@ export default {
     inputRef: {
       control: false,
     },
-    boarderColor: {
+    borderColor: {
       options: [
         "gray",
         "blue",

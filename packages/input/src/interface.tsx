@@ -9,7 +9,7 @@ import {
 } from "react"
 import { Dayjs } from "dayjs"
 
-export type InputBoarderColor =
+export type InputBorderColor =
   | string
   | "gray"
   | "blue"
@@ -29,7 +29,7 @@ export interface InputElementProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   variant?: InputVariant
   placeholder?: string
-  boarderColor?: InputBoarderColor
+  borderColor?: InputBorderColor
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -53,7 +53,7 @@ export interface InputProps
   inputRef?: Ref<HTMLInputElement>
   variant?: InputVariant
   placeholder?: string
-  boarderColor?: InputBoarderColor
+  borderColor?: InputBorderColor
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -101,7 +101,7 @@ export interface SearchProps
   loading?: boolean
   variant?: InputVariant
   placeholder?: string
-  boarderColor?: InputBoarderColor
+  borderColor?: InputBorderColor
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -123,7 +123,7 @@ export interface PasswordProps
   loading?: boolean
   variant?: InputVariant
   placeholder?: string
-  boarderColor?: InputBoarderColor
+  borderColor?: InputBorderColor
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -153,7 +153,7 @@ export interface RangeInputProps
     blur: () => void
   }>
   size?: InputSize
-  boarderColor?: InputProps["boarderColor"]
+  borderColor?: InputProps["borderColor"]
   value?: string[]
   placeholder?: string[]
   popupVisible?: boolean
@@ -180,7 +180,7 @@ export interface StateValue {
   focus?: boolean
   variant?: string
   size?: InputProps["size"]
-  boarderColor?: InputProps["boarderColor"]
+  borderColor?: InputProps["borderColor"]
   // only RangeInput
   focusedInput0?: boolean
   focusedInput1?: boolean

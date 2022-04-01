@@ -13,7 +13,7 @@ export default {
         type: "text",
       },
     },
-    boarderColor: {
+    borderColor: {
       options: [
         "gray",
         "blue",
