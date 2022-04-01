@@ -27,7 +27,6 @@ import { OptionList } from "./option-list"
 
 export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const {
-    mode,
     size = "medium",
     children,
     disabled,
@@ -37,6 +36,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     options,
     filterOption = true,
     showSearch,
+    multiple,
+    allowCreate,
+    triggerProps,
     // event
     onChange,
     onSearch,
@@ -49,20 +51,19 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     onInputValueChange,
   } = props
 
-  const isMultipleMode = mode === "multiple" || mode === "tags"
   const [currentVisible, setCurrentVisible] = useState<boolean>()
   const refValueMap = useRef<
     { value: OptionProps["value"]; option: OptionInfo }[]
   >([])
   const [stateValue, setValue] = useState(
-    getValidValue(defaultValue, isMultipleMode, labelInValue),
+    getValidValue(defaultValue, multiple, labelInValue),
   )
   const currentValue =
     "value" in props
-      ? getValidValue(value, isMultipleMode, labelInValue)
+      ? getValidValue(value, multiple, labelInValue)
       : stateValue
 
-  const isNoOptionSelected = isEmptyValue(currentValue, isMultipleMode)
+  const isNoOptionSelected = isEmptyValue(currentValue, multiple)
   const [inputValue, setInputValue, stateInputValue] = useMergeValue("", {
     value: "inputValue" in props ? props.inputValue || "" : undefined,
   })
@@ -88,7 +89,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       {
         inputValue,
         userCreatedOptions,
-        userCreatingOption: mode === "tags" ? inputValue : "",
+        userCreatingOption: allowCreate ? inputValue : "",
       },
     )
   }, [children, options, filterOption, inputValue, userCreatedOptions])
@@ -164,7 +165,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   const getValueForCallbackParameter = (
     value: SelectInner,
     option: OptionInfo | Array<OptionInfo> | undefined,
-    isEmpty = isEmptyValue(value, isMultipleMode),
+    isEmpty = isEmptyValue(value, multiple),
   ) => {
     if (labelInValue && !isEmpty) {
       if (Array.isArray(value)) {
@@ -198,7 +199,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     }
   }
 
-  // isMultipleMode = true
+  // multiple = true
   const checkOption = (valueToAdd: any) => {
     const option = optionInfoMap.get(valueToAdd)
     if (option) {
@@ -225,7 +226,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
 
   // when mode change, format value
   useEffect(() => {
-    if (isMultipleMode) {
+    if (multiple) {
       if (!Array.isArray(currentValue)) {
         setValue(currentValue === undefined ? [] : [currentValue as any])
       }
@@ -234,25 +235,25 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         currentValue?.length === 0 ? undefined : (currentValue?.[0] as any),
       )
     }
-  }, [isMultipleMode, currentValue])
+  }, [multiple, currentValue])
 
   // update refValueMap
   useEffect(() => {
     refValueMap.current = refValueMap.current?.filter((x) => {
       if (x?.value) {
-        return isMultipleMode
+        return multiple
           ? isArray(currentValue) &&
               (currentValue as Array<string | number>)?.indexOf(x?.value) > -1
           : x?.value === currentValue
       }
       return false
     })
-  }, [currentValue, isMultipleMode])
+  }, [currentValue, multiple])
 
   // allowCreate = true, change optionValue
   useEffect(() => {
     // Treat the value without the corresponding option as custom tag, and remove the valueTag that don't exist in the value
-    if (mode === "tags" && Array.isArray(currentValue)) {
+    if (allowCreate && Array.isArray(currentValue)) {
       const newUseCreatedOptions = (currentValue as any[]).filter((v) => {
         const option = optionInfoMap.get(v)
         return !option || option._origin === "userCreatingOption"
@@ -275,7 +276,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     if (disabled) {
       return
     }
-    if (isMultipleMode) {
+    if (multiple) {
       ;(currentValue as Array<OptionProps["value"]>)?.indexOf(optionValue) ===
       -1
         ? checkOption(optionValue)
@@ -313,7 +314,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     },
     onClear: (event: any) => {
       event.stopPropagation()
-      if (isMultipleMode) {
+      if (multiple) {
         // Keep the value that has been selected but disabled
         const newValue = (currentValue as [])?.filter((v) => {
           const item = optionInfoMap?.get(v)
@@ -344,7 +345,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
                     size={size}
                     valueSelect={currentValue}
                     valueActive={valueActive}
-                    isMultipleMode={isMultipleMode}
+                    multiple={multiple}
                     onClickOption={handleOptionClick}
                     onMouseEnter={(value: any) => {
                       setValueActive(value)
@@ -371,7 +372,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       autoAlignPopupWidth
       popupVisible={currentVisible}
       onVisibleChange={tryUpdatePopupVisible}
-
+      {...triggerProps}
     >
       <SelectView
         {...props}
@@ -379,7 +380,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         value={currentValue}
         inputValue={inputValue}
         popupVisible={currentVisible}
-        isMultipleMode={isMultipleMode}
+        multiple={multiple}
         isEmptyValue={isNoOptionSelected}
         renderText={(value) => {
           const option = getOptionInfoByValue(value)
