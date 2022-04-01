@@ -1,8 +1,15 @@
-import React, { forwardRef, useImperativeHandle, useRef } from "react"
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useContext,
+  ReactElement,
+  useEffect,
+} from "react"
 import { AnchorLinkProps } from "./interface"
 import { applyLinkStyle, linkOffsetStyle } from "./style"
 import { isString } from "@illa-design/system"
-import { ReactElement } from "react"
+import { AnchorContext } from "./context"
 
 export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
   (props, ref) => {
@@ -15,6 +22,22 @@ export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
       ...restProps
     } = props
 
+    const { currentLink, addLink, removeLink, onClickLink } =
+      useContext(AnchorContext)
+
+    const isActive = currentLink === href;
+
+    const linkRef = useRef<HTMLDivElement>(null)
+    useImperativeHandle(ref, () => linkRef?.current as HTMLDivElement, [])
+
+    useEffect(() => {
+      addLink && href && addLink(href, (linkRef.current as HTMLElement));
+
+      return () => {
+        removeLink && href && removeLink(href);
+      }
+    }, [href])
+
     function renderNestedAnchorLink() {
       return React.Children.toArray(children).filter(
         (child) =>
@@ -25,15 +48,13 @@ export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
       )
     }
 
-    const linkRef = useRef<HTMLDivElement>(null)
-    useImperativeHandle(ref, () => linkRef?.current as HTMLDivElement, [])
-
     return (
       <div ref={linkRef} css={[linkOffsetStyle]}>
         <a
-          css={applyLinkStyle()}
+          css={applyLinkStyle(isActive)}
           href={href}
           title={isString(title) ? title : ""}
+          onClick={(e) => onClickLink && onClickLink(href, e)}
           style={style}
           className={className}
           {...restProps}

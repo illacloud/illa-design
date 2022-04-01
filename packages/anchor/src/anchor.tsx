@@ -1,7 +1,9 @@
-import { forwardRef } from "react"
+import { forwardRef, useState, useRef, MouseEvent } from "react"
+import { isFunction } from "@illa-design/system"
 import { Affix } from "@illa-design/affix"
 import { Link } from "./link"
 import { AnchorProps } from "./interface"
+import { AnchorContext } from "./context"
 
 export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
   (props, ref) => {
@@ -11,7 +13,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       animation,
       scrollContainer,
       boundary = "start",
-      hash = true,
+      hash: willModifyHash = false,
       affix = true,
       affixStyle,
       offsetTop,
@@ -23,9 +25,46 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       ...restProps
     } = props
 
+    const [currentLink, setCurrentLink] = useState("")
+    const [oldLink, setOldLink] = useState("")
+
+    const linkMap = useRef<Map<string, HTMLElement>>(new Map())
+
+    function addLink(link: string, element: HTMLElement) {
+      link && linkMap.current.set(link, element)
+    }
+
+    function removeLink(link: string) {
+      link && linkMap.current.delete(link)
+    }
+
+    function onClickLink(link: string, event: MouseEvent<HTMLAnchorElement>) {
+      if (!willModifyHash) {
+        event.preventDefault()
+      }
+
+      // set active link
+      setOldLink(currentLink)
+      setCurrentLink(link)
+
+      // scroll content into view
+
+      // callback
+      isFunction(onSelect) && onSelect(link, oldLink)
+    }
+
     const anchorList = (
       <div ref={ref} style={style} className={className} {...restProps}>
-        {children}
+        <AnchorContext.Provider
+          value={{
+            currentLink,
+            addLink,
+            removeLink,
+            onClickLink,
+          }}
+        >
+          {children}
+        </AnchorContext.Provider>
       </div>
     )
 
@@ -42,6 +81,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
     )
   },
 )
+
 export const Anchor = ForwardRefAnchor as typeof ForwardRefAnchor & {
   Link: typeof Link
 }
