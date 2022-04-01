@@ -7,6 +7,7 @@ import {
   UIEventHandler,
   JSXElementConstructor,
 } from "react"
+import { TriggerProps } from "@illa-design/trigger"
 
 export interface OptionProps
   extends Omit<HTMLAttributes<HTMLLIElement>, "onMouseEnter" | "onMouseLeave"> {
@@ -64,7 +65,8 @@ export interface SelectProps
   value?: string | string[] | number | number[] | LabeledValue | LabeledValue[]
   inputValue?: string
   labelInValue?: boolean
-  mode?: "multiple" | "tags"
+  multiple?: boolean
+  allowCreate?: boolean
   notFoundContent?: ReactNode
   placeholder?: string
   showSearch?:
@@ -91,7 +93,8 @@ export interface SelectProps
   filterOption?:
     | boolean
     | ((inputValue: string, option: ReactElement) => boolean)
-
+  triggerProps?: Partial<TriggerProps>;
+  // events
   onChange?: (value: any, option?: OptionInfo | OptionInfo[]) => void
   onSearch?: (value: string, reason: InputValueChangeReason) => void
   onPopupScroll?: (element: any) => void
@@ -107,7 +110,7 @@ export interface SelectProps
 }
 
 export interface SelectViewProps extends SelectProps {
-  isMultipleMode?: boolean
+  multiple?: boolean
   popupVisible?: boolean
   isEmptyValue?: boolean
   renderText: (value: any) => { text?: any; disabled?: boolean }
