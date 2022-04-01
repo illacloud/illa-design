@@ -95,6 +95,7 @@ export interface SelectProps
     | boolean
     | ((inputValue: string, option: ReactElement) => boolean)
   triggerProps?: Partial<TriggerProps>;
+  // events
   onChange?: (value: any, option?: OptionInfo | OptionInfo[]) => void
   onSearch?: (value: string, reason: InputValueChangeReason) => void
   onPopupScroll?: (element: any) => void
