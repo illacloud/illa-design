@@ -7,9 +7,7 @@ export default {
 } as Meta
 
 const Template: Story<CollapseProps> = (args) => {
-  return (
-      <Collapse {...args}  />
-  )
+  return <Collapse {...args} />
 }
 
 export const Basic = Template.bind({})
