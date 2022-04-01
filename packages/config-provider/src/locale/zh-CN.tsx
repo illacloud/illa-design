@@ -57,4 +57,8 @@ export const zhCN = {
     okText: "确定",
     cancelText: "取消",
   },
+  drawer: {
+    okText: "确定",
+    cancelText: "取消",
+  },
 } as Locale

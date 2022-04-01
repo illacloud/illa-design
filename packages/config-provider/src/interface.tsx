@@ -11,4 +11,5 @@ export interface Locale {
   popConfirm: Record<string, string>
   calendar: Record<string, string>
   modal: Record<string, string>
+  drawer: Record<string, string>
 }
