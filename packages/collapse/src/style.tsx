@@ -1,6 +1,4 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export function applyCollapse(){
-
-}
+export function applyCollapse() {}
