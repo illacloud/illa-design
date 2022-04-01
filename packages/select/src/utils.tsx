@@ -14,7 +14,7 @@ export function isSelectOption(child: ReactElement): boolean {
   return child.props?.isSelectOption ?? false
 }
 
-export function isEmptyValue(value: any, isMultiple: boolean) {
+export function isEmptyValue(value: any, isMultiple?: boolean) {
   // Illegal value is considered as unselected
   return isMultiple ? !isArray(value) || !value.length : value === undefined
 }
@@ -215,7 +215,7 @@ export type SelectInner = string | number | string[] | number[] | undefined
 
 export function getValidValue(
   value: any,
-  isMultiple: boolean,
+  isMultiple?: boolean,
   labelInValue?: boolean,
 ): SelectInner {
   // Compatible when labelInValue is set, value is passed in the object

@@ -65,6 +65,8 @@ export interface SelectProps
   inputValue?: string
   labelInValue?: boolean
   mode?: "multiple" | "tags"
+  multiple?: boolean
+  allowCreate?: boolean
   notFoundContent?: ReactNode
   placeholder?: string
   showSearch?:
@@ -107,7 +109,7 @@ export interface SelectProps
 }
 
 export interface SelectViewProps extends SelectProps {
-  isMultipleMode?: boolean
+  multiple?: boolean
   popupVisible?: boolean
   isEmptyValue?: boolean
   renderText: (value: any) => { text?: any; disabled?: boolean }
