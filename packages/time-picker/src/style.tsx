@@ -8,14 +8,14 @@ export const triggerContentStyle: SerializedStyles = css`
   border-radius: 2px;
 `
 
-export function applyTimepickerContent() {
+export function applyTimepickerContent(): SerializedStyles {
   return css`
     display: flex;
     box-sizing: border-box;
   `
 }
 
-export function applyTimepickerList() {
+export function applyTimepickerList(): SerializedStyles {
   return css`
     width: 64px;
     height: 252px;
@@ -38,7 +38,7 @@ export function applyTimepickerList() {
 }
 
 // time-column style
-export function applyTimeColumn() {
+export function applyTimeColumn(): SerializedStyles {
   return css`
     margin: 0;
     padding: 0;

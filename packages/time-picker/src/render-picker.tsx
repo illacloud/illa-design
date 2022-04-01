@@ -160,6 +160,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
 
     const baseInputProps = {
       ...otherProps,
+      ref,
       style,
       className,
       error,

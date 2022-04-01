@@ -5,7 +5,7 @@ import {
   forwardRef,
   useImperativeHandle,
 } from "react"
-import debounce from "lodash/debounce"
+import { debounce } from "@illa-design/system"
 import {
   applyColumnItem,
   applyColumnItemText,

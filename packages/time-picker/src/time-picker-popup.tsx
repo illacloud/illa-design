@@ -1,6 +1,6 @@
 import { useContext, useCallback } from "react"
 import { Dayjs } from "dayjs"
-import { getDayjsValue, dayjs, isFunction } from "@illa-design/system"
+import { getDayjsValue, dayjs, isFunction, padStart } from "@illa-design/system"
 import { Button } from "@illa-design/button"
 import {
   ConfigProviderContext,
@@ -10,6 +10,7 @@ import {
 import { TimeColumn } from "./time-column"
 import { applyContentButton, applyTimepickerContent } from "./style"
 import { TimePickerProps, CalendarValue, TimeColumnProps } from "./interface"
+import { getColumnsFromFormat } from "./utils"
 
 interface PickerPopupProps extends TimePickerProps {
   confirmBtnDisabled?: boolean
@@ -25,39 +26,9 @@ type SelectUnit = Record<
   string | number | undefined
 >
 
-function getColumnsFromFormat(format?: string) {
-  const units = ["H", "h", "m", "s", "a", "A"]
-  const list: string[] = []
-  let use12Hours = false
-  units.forEach((unit) => {
-    if (format?.indexOf(unit) !== -1) {
-      list.push(unit)
-      if (unit === "a" || unit === "A") {
-        use12Hours = true
-      }
-    }
-  })
-  return {
-    list,
-    use12Hours,
-  }
-}
-
-function padStart(string: string, length: number, char = " "): string {
-  const s = String(string)
-  if (!length) {
-    return s
-  }
-  const newString = s.length < length ? `${char}${s}` : s
-  return newString.length < length
-    ? padStart(newString, length, char)
-    : newString
-}
-
 export function TimePickerPopup(props: PickerPopupProps) {
   const {
     format = "HH:mm:ss",
-    onSelect,
     popupVisible,
     step = {},
     use12Hours,
@@ -74,6 +45,7 @@ export function TimePickerPopup(props: PickerPopupProps) {
     hideFooter,
     showNowBtn = true,
     scrollSticky,
+    onSelect,
   } = props
 
   const configProviderProps = useContext<ConfigProviderProps>(
