@@ -14,6 +14,18 @@ export default {
     moreIcon: {
       control: false,
     },
+    currentPage: {
+      control: false,
+    },
+    pageSize: { control: false },
+    showTotal: {
+      control: {
+        type: "boolean",
+      },
+    },
+    sizeOptions: {
+      control: false,
+    },
   },
 } as Meta
 

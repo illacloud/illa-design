@@ -11,7 +11,7 @@ yarn add @illa-design/timeline
 ## Import component
 
 ```jsx
-import { Timeline } from "@illa-dedign/timeline"
+import { Timeline } from "@illa-design/timeline"
 ```
 
 ## API
@@ -33,7 +33,7 @@ import { Timeline } from "@illa-dedign/timeline"
 | dotColor       | Color of the dot                   | `string `                        | `-`       |
 | dotType        | Type of the dot                    | `"hollow" \| "solid" `           | `"solid"` |
 | dot            | Custom dot                         | `string \| ReactNode `           | `-`       |
-| lineType       | Type of the line                   | `"solid" \| "dashed"\| "dotted ` | `"solid"` |
+| lineType       | Type of the line                   | `"solid" \| "dashed" \| "dotted ` | `"solid"` |
 | lineColor      | Color of the line                  | `string `                        | `-`       |
 | label          | The label                          | `string \| ReactNode `           | `-`       |
 | labelPosition  | The position of the label          | `"relative" \| "same" `          | `-`       |

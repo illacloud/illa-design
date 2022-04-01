@@ -26,10 +26,9 @@ export default defineConfig({
   ],
   build: {
     sourcemap: true,
-    minify: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@illa-design/back-top",
+      name: "@illa-design/skeleton",
       fileName: (format) => `${format}/index.js`,
     },
     rollupOptions: {
@@ -40,7 +39,6 @@ export default defineConfig({
           declaration: true,
           declarationDir: path.resolve(__dirname, "dist/types"),
           exclude: path.resolve(__dirname, "node_modules/**"),
-          allowSyntheticDefaultImports: true,
         }),
       ],
       external: ["react", "react-dom"],

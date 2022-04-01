@@ -1,2 +1,2 @@
-export * from "./steps"
+export * from "./skeleton"
 export * from "./interface"

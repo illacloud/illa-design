@@ -1,19 +1,29 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import { LabelPlacement, StepSize, StepStyleConfig } from "../interface"
+import {
+  LabelPlacement,
+  StepSize,
+  StepStyleConfig,
+  StepStatus,
+} from "../interface"
+import { getConnectorColor } from "../style"
 
 export function applyConnectionNodeStyle({
   size,
-  type,
+  variant,
   direction,
   labelPlacement,
-}: StepStyleConfig): SerializedStyles {
-  let color = globalColor(`--${illaPrefix}-gray-08`)
+  status,
+  nextStepError,
+}: StepStyleConfig & {
+  status: StepStatus
+  nextStepError: boolean
+}): SerializedStyles {
+  const color = getConnectorColor({ nextStepError, status })
 
-  if (type === "dot") {
+  if (variant === "dot") {
     return generateDotConnnector({ direction, size, color })
-  } else if (type === "line") {
+  } else if (variant === "line") {
     return generateLineConnector({ direction, labelPlacement, size, color })
   }
 
