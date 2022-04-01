@@ -1,10 +1,12 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
+const linkActiveColor = globalColor(`--${illaPrefix}-gray-02`);
+
 export function applyAnchor() { }
 
-export function applyLinkStyle(): SerializedStyles {
-  return css([linkCss])
+export function applyLinkStyle(isActive: boolean): SerializedStyles {
+  return css([linkCss, isActive && activeLinkCss])
 }
 
 export const linkCss = css([
@@ -17,10 +19,15 @@ export const linkCss = css([
   }),
   css`
     &:hover {
-      color: ${globalColor(`--${illaPrefix}-gray-02`)};
+      color: ${linkActiveColor};
     }
   `,
 ])
+
+const activeLinkCss = css`
+    font-weight: 500;
+    color: ${linkActiveColor}
+`
 
 export const linkOffsetStyle = css`
   & > & {
