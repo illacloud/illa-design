@@ -1,7 +1,5 @@
-import {
-  HTMLAttributes,
-  ReactNode,
-} from "react"
+import { HTMLAttributes, ReactNode } from "react"
+import { NodeProps } from "./node"
 
 export type CascaderSize = "small" | "medium" | "large"
 
@@ -19,7 +17,7 @@ export interface CascaderProps<T = any>
   allowCreate?: boolean
   expandTrigger?: "click" | "hover"
   notFoundContent?: ReactNode
-  //filterOption?: (inputValue: string, option: NodeProps<T>) => boolean
+  filterOption?: (inputValue: string, option?: NodeProps<T>) => boolean
   disabled?: boolean
   error?: boolean
   loading?: boolean
@@ -45,5 +43,18 @@ export interface OptionProps {
   disabled?: boolean
   children?: OptionProps[]
   isLeaf?: boolean
-  // [key: string]: any;
+  [key: string]: any;
+}
+
+export type FieldNamesType = {
+  /** 指定 label 在选项中对应的字段  */
+  label?: string
+  /** 指定 value 在选项中对应的字段  */
+  value?: string
+  /** 指定 children 在选项中对应的字段  */
+  children?: string
+  /** 指定 disabled 在选项中对应的字段  */
+  disabled?: string
+  /** 指定 isLeaf 在选项中对应的字段  */
+  isLeaf?: string
 }

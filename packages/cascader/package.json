@@ -41,14 +41,15 @@
     "e2e": "npx cypress open-ct --browser chrome"
   },
   "dependencies": {
-    "@illa-design/system": "*",
-    "@illa-design/theme": "*",
-    "@illa-design/icon": "*",
+    "@illa-design/checkbox": "*",
     "@illa-design/empty": "*",
-    "@illa-design/trigger": "*",
-    "@illa-design/list": "*",
+    "@illa-design/icon": "*",
     "@illa-design/input": "*",
     "@illa-design/input-tag": "*",
-    "@illa-design/checkbox": "*"
+    "@illa-design/list": "*",
+    "@illa-design/system": "*",
+    "@illa-design/theme": "*",
+    "@illa-design/trigger": "*",
+    "react-fast-compare": "^3.2.0"
   }
 }
