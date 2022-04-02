@@ -5,4 +5,5 @@ export const AnchorContext = createContext<AnchorContextType>({
   onClickLink: () => { },
   addLink: () => { },
   removeLink: () => { },
+  lineless: false
 })
