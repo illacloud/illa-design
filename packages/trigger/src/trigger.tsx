@@ -231,7 +231,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
       break
   }
 
-  const showTips = () => {
+  const showTips = (control?: boolean) => {
     delayTodo(async () => {
       if (childrenRef.current != null) {
         const result = await adjustLocation(
@@ -242,23 +242,35 @@ export const Trigger: FC<TriggerProps> = (props) => {
         )
         // async deal
         setAdjustResult(result)
-        if (popupVisible == undefined) {
+        if (popupVisible == undefined || control) {
           setTipsVisible(true)
         }
         if (onVisibleChange != undefined) {
-          onVisibleChange(true)
+          if (popupVisible != undefined) {
+            onVisibleChange(true)
+          } else {
+            if (!tipVisible) {
+              onVisibleChange(true)
+            }
+          }
         }
       }
     }, openDelay)
   }
 
-  const hideTips = () => {
+  const hideTips = (control?: boolean) => {
     delayTodo(() => {
-      if (popupVisible == undefined) {
+      if (popupVisible == undefined || control) {
         setTipsVisible(false)
       }
       if (onVisibleChange != undefined) {
-        onVisibleChange(false)
+        if (popupVisible != undefined) {
+          onVisibleChange(false)
+        } else {
+          if (tipVisible) {
+            onVisibleChange(false)
+          }
+        }
       }
     }, closeDelay)
   }
@@ -300,60 +312,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
   useEffect(() => {
     let isMount = true
     if (!disabled && childrenRef.current != null) {
-      if (tipVisible && popupVisible == undefined) {
-        adjustLocation(
-          tipsNode,
-          childrenRef.current,
-          position,
-          autoFitPosition,
-        ).then((result) => {
-          // async deal
-          if (isMount) {
-            setAdjustResult(result)
-            if (onVisibleChange != undefined) {
-              onVisibleChange(true)
-            }
-          }
-        })
-      } else if (
-        popupVisible ||
-        (popupVisible == undefined && defaultPopupVisible)
-      ) {
-        adjustLocation(
-          tipsNode,
-          childrenRef.current,
-          position,
-          autoFitPosition,
-        ).then((result) => {
-          // async deal
-          if (isMount) {
-            setAdjustResult(result)
-            if (!tipVisible) {
-              setTipsVisible(true)
-              if (onVisibleChange != undefined) {
-                onVisibleChange(true)
-              }
-            }
-          }
-        })
-      } else if (popupVisible == false) {
-        adjustLocation(
-          tipsNode,
-          childrenRef.current,
-          position,
-          autoFitPosition,
-        ).then((result) => {
-          // async deal
-          if (isMount) {
-            setAdjustResult(result)
-            if (tipVisible) {
-              setTipsVisible(false)
-              if (onVisibleChange != undefined) {
-                onVisibleChange(false)
-              }
-            }
-          }
-        })
+      if (popupVisible == undefined) {
+        if (tipVisible || defaultPopupVisible) {
+          showTips()
+        }
+      } else {
+        popupVisible ? showTips(true) : hideTips(true)
       }
     }
     return () => {
