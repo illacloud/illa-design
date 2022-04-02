@@ -37,13 +37,12 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     const {
       children,
       value,
-      mode,
       size = "medium",
       inputValue,
       defaultValue,
       showSearch,
       placeholder,
-      isMultipleMode,
+      multiple,
       popupVisible,
       isEmptyValue,
       maxTagCount,
@@ -54,6 +53,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       options,
       labelInValue,
       allowClear,
+      allowCreate,
       removeIcon,
       // event
       onChange,
@@ -75,9 +75,9 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     const mergedFocused = focused || popupVisible
     const [searchStatus, setSearchStatus] = useState(SearchStatus.NONE)
 
-    const canFocusInput = showSearch || mode === "tags"
+    const canFocusInput = showSearch || allowCreate
     const renderedValue =
-      !isMultipleMode && value !== undefined ? renderText(value).text : ""
+      !multiple && value !== undefined ? renderText(value).text : ""
     const isRetainInputValueSearch =
       isObject(showSearch) && showSearch?.retainInputValue
 
@@ -261,7 +261,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             padding: unset;
             box-shadow: unset;
           `}
-          disableInput={!(showSearch || isMultipleMode)}
+          disableInput={!(showSearch || multiple)}
           inputRef={inputRef}
           disabled={disabled}
           placeholder={placeholder}
@@ -300,7 +300,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
           css={applySelectContent(stateValue)}
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}
         >
-          {isMultipleMode ? renderMultiple() : renderSingle()}
+          {multiple ? renderMultiple() : renderSingle()}
           {!disabled && !isEmptyValue && allowClear ? (
             <span
               title="selectRemoveIcon"

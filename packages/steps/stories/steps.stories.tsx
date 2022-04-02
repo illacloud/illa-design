@@ -1,9 +1,10 @@
-import React, { useState } from "react"
+import React, { ReactElement, useState } from "react"
 import { Tooltip } from "@illa-design/tooltip"
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
 import { Button } from "@illa-design/button"
 import { HeartIcon, LikeIcon, ShareIcon } from "@illa-design/icon"
+import { css } from "@emotion/react"
 import { Steps, StepsProps } from "../src"
 
 const { Step } = Steps
@@ -29,7 +30,7 @@ Basic.args = {
   current: 2,
 }
 
-const TemplateWithDescription = (args) => (
+const TemplateWithDescription = (args: StepsProps) => (
   <Steps {...args}>
     <Step title="Succeeded" description="Read the message" />
     <Step title="Processing" description="Please Confirm" />
@@ -42,7 +43,7 @@ Description.args = {
   current: 3,
 }
 
-export const CustomIcon = (args) => (
+export const CustomIcon = (args: StepsProps) => (
   <Steps {...args}>
     <Step
       icon={<LikeIcon />}
@@ -75,7 +76,7 @@ Vertical.args = {
   direction: "vertical",
 }
 
-export const Dot = (args) => {
+export const Dot = (args: StepsProps) => {
   const { onChange, ...restArgs } = args
   return (
     <Space direction="vertical">
@@ -94,12 +95,13 @@ export const Dot = (args) => {
   )
 }
 Dot.args = {
-  type: "dot",
+  variant: "dot",
   current: 2,
+  status: "error",
 }
 
 export const CustomDot = () => {
-  const customDot = (iconNode, { index }) => {
+  const customDot = (iconNode: ReactElement, { index }) => {
     return <Tooltip content={index}>{iconNode}</Tooltip>
   }
   return (
@@ -146,7 +148,7 @@ export const Size = () => {
       </Steps>
 
       <Space>
-        <Steps direction="vertical">
+        <Steps direction="vertical" current={2} status="error">
           <Step title="Succeeded" description="Read the message" />
           <Step title="Processing" description="Please Confirm" />
           <Step title="Pending" description="Commit it" />
@@ -159,39 +161,50 @@ export const Size = () => {
         </Steps>
       </Space>
 
-      <Steps style={{ width: 800 }} type="dot">
+      <Steps style={{ width: 800 }} variant="dot" current={3} status="error">
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
       </Steps>
 
-      <Steps style={{ width: 800 }} type="dot" size="large">
+      <Steps style={{ width: 800 }} variant="dot" size="large">
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
       </Steps>
 
       <Space>
-        <Steps type="dot" direction="vertical">
+        <Steps variant="dot" direction="vertical">
           <Step title="Succeeded" description="Read the message" />
           <Step title="Processing" description="Please Confirm" />
           <Step title="Pending" description="Commit it" />
         </Steps>
 
-        <Steps type="dot" size="large" direction="vertical">
+        <Steps
+          variant="dot"
+          size="large"
+          direction="vertical"
+          current={3}
+          status="error"
+        >
           <Step title="Succeeded" description="Read the message" />
           <Step title="Processing" description="Please Confirm" />
           <Step title="Pending" description="Commit it" />
         </Steps>
       </Space>
 
-      <Steps style={{ width: 800 }} type="navigation">
+      <Steps
+        style={{ width: 800 }}
+        variant="navigation"
+        current={3}
+        status="error"
+      >
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
       </Steps>
 
-      <Steps style={{ width: 800 }} type="navigation" size="large">
+      <Steps style={{ width: 800 }} variant="navigation" size="large">
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
@@ -205,7 +218,7 @@ export const SwitchStep = () => {
 
   return (
     <Space direction="vertical">
-      <Steps current={current}>
+      <Steps current={current} style={{ minWidth: 500 }}>
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
@@ -230,16 +243,25 @@ export const OnChange = () => {
   }
   return (
     <Space direction="vertical" align="start">
-      <Steps onChange={onChange} current={current}>
+      <Steps
+        onChange={onChange}
+        current={current}
+        css={css`
+          width: 500px;
+        `}
+      >
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
         <Step title="Pending" description="Commit it" />
       </Steps>
       <Steps
-        type="dot"
+        variant="dot"
         direction="vertical"
         onChange={onChange}
         current={current}
+        css={css`
+          width: 500px;
+        `}
       >
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
@@ -271,7 +293,7 @@ export const Navigation = () => {
   return (
     <Space direction="vertical">
       <Steps
-        type="navigation"
+        variant="navigation"
         current={current}
         style={{ width: 800, marginBottom: 20 }}
       >
@@ -280,7 +302,7 @@ export const Navigation = () => {
         <Step title="Pending" />
       </Steps>
       <Steps
-        type="navigation"
+        variant="navigation"
         onChange={onChange}
         current={current}
         style={{ width: 800 }}

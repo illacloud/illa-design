@@ -6,6 +6,12 @@ export const zhCN = {
     copyToolTip: "复制",
     expandLabel: "展开",
   },
+  timePicker: {
+    ok: "确定",
+    placeholder: "请选择时间",
+    placeholders: ["开始时间", "结束时间"],
+    now: "此刻",
+  },
   popover: {
     close: "关闭",
   },
@@ -52,5 +58,13 @@ export const zhCN = {
     October: "十月",
     November: "十一月",
     December: "十二月",
+  },
+  modal: {
+    okText: "确定",
+    cancelText: "取消",
+  },
+  drawer: {
+    okText: "确定",
+    cancelText: "取消",
   },
 } as Locale

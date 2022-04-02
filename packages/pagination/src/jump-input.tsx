@@ -1,4 +1,4 @@
-import { forwardRef, useContext, useState } from "react"
+import { FC, useContext, useState } from "react"
 import { JumperInputProps } from "./interface"
 import {
   applyJumperInputCss,
@@ -12,24 +12,20 @@ import {
   def,
 } from "@illa-design/config-provider"
 
-export const JumperInput = forwardRef<HTMLSpanElement, JumperInputProps>(
-  (props, ref) => {
-    const { onEnterPress, wholeDisable, size } = props
+export const JumperInput: FC<JumperInputProps> = (props) => {
+  const { onEnterPress, wholeDisable, size } = props
+  const [compositionValue, setCompositionValue] = useState<string>("")
+  const configProviderProps = useContext<ConfigProviderProps>(
+    ConfigProviderContext,
+  )
+  const locale = configProviderProps?.locale?.pagination ?? def.pagination
+  const goToText = locale["go"]
 
-    const [compositionValue, setCompositionValue] = useState<string>("")
-
-    const configProviderProps = useContext<ConfigProviderProps>(
-      ConfigProviderContext,
-    )
-    const locale = configProviderProps?.locale?.pagination ?? def.pagination
-
-    const goToText = locale["go"]
-
-    return (
-      <span css={paginationContainer}>
-        <span css={jumperTitleCss}>{goToText}</span>
+  return (
+    <span css={paginationContainer}>
+      <span css={jumperTitleCss}>{goToText}</span>
+      <span css={applyJumperInputCss(size, wholeDisable)}>
         <Input
-          css={applyJumperInputCss(size, wholeDisable)}
           value={compositionValue}
           size={size}
           textCenterHorizontal={true}
@@ -45,6 +41,6 @@ export const JumperInput = forwardRef<HTMLSpanElement, JumperInputProps>(
           variant={"fill"}
         />
       </span>
-    )
-  },
-)
+    </span>
+  )
+}

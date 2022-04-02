@@ -28,7 +28,7 @@ export default defineConfig({
     minify: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@illa-design/backtop",
+      name: "@illa-design/back-top",
       fileName: (format) => `${format}/index.js`,
     },
     rollupOptions: {

@@ -46,6 +46,7 @@ import {
   SorterUpIcon,
   StarIcon,
   SuccessIcon,
+  TimeIcon,
   UpIcon,
   UploadIcon,
   WarningCircleIcon,
@@ -140,7 +141,6 @@ export const PreDouble: Story<IconProps> = (props) => (
 export const NextDouble: Story<IconProps> = (props) => (
   <NextDoubleIcon {...props} />
 )
-
 export const SorterDefault: Story<IconProps> = (props) => (
   <SorterDefaultIcon {...props} />
 )
@@ -150,3 +150,4 @@ export const SorterDown: Story<IconProps> = (props) => (
 )
 
 export const Filter: Story<IconProps> = (props) => <FilterIcon {...props} />
+export const Time: Story<IconProps> = (props) => <TimeIcon {...props} />

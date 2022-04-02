@@ -56,9 +56,10 @@
   ],
   "scripts": {
     "build-develop": "sh ./scripts/build-develop.sh",
-    "storybook": "yarn build-all-components && yarn start-storybook -p 6006",
-    "build-all-components": "NODE_OPTIONS=--max-old-space-size=8192 npx turbo run build",
+    "storybook": "yarn dev:build-all-components && yarn start-storybook -p 6006",
     "build-storybook": "yarn build-all-components && npx build-storybook",
+    "build-all-components": "NODE_OPTIONS=--max-old-space-size=11264 npx turbo run build",
+    "dev:build-all-components": "npx turbo run build --scope=\"!@illa-design/react\"  --include-dependencies --no-deps",
     "test": "npx patch-package && yarn build-all-components && npx jest && npx cypress run-ct -b chrome",
     "unit-test": "yarn build-all-components && npx jest",
     "lint": "prettier --write \"packages/**/*.{ts,tsx}\"",

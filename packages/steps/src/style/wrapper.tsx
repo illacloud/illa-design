@@ -1,23 +1,23 @@
 // wrapper container that contains icon & title & description
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
-import { StepType, LabelPlacement, StepStatus } from "../interface"
+import { StepVariant, LabelPlacement, StepStatus } from "../interface"
 import { statusColor, isVerticalLabel } from "../style"
 
 export function applyWrapperStyle({
   direction,
-  type,
+  variant,
   status,
   disabled,
   labelPlacement,
 }: {
   direction: LabelPlacement
-  type: StepType
+  variant: StepVariant
   status: StepStatus
   disabled: boolean
   labelPlacement: LabelPlacement
 }): SerializedStyles {
-  const overflow = isVerticalLabel({ type, direction, labelPlacement })
+  const overflow = isVerticalLabel({ variant, direction, labelPlacement })
     ? "visible"
     : "hidden"
   const minHeight = direction === "vertical" ? 90 : "unset"
@@ -27,7 +27,7 @@ export function applyWrapperStyle({
     minHeight,
   })
 
-  if (type === "navigation") {
+  if (variant === "navigation") {
     boxStyle = css({
       paddingLeft: 20,
       paddingRight: 10,

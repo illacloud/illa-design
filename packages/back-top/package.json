@@ -1,9 +1,10 @@
 {
-  "name": "@illa-design/backtop",
+  "name": "@illa-design/back-top",
   "version": "0.0.0",
   "description": "Illa Design BackTop.",
   "keywords": [
     "backtop",
+    "back-top",
     "react",
     "component"
   ],
@@ -30,7 +31,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/backtop"
+    "directory": "packages/back-top"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"

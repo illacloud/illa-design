@@ -19,7 +19,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     id,
     index = 1,
     current = 1,
-    type = "line",
+    variant = "line",
     size = "small",
     title,
     direction = "horizontal",
@@ -57,7 +57,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
   }
 
   function renderIcon(status: StepStatus) {
-    if (type === "dot") {
+    if (variant === "dot") {
       return null
     }
 
@@ -78,7 +78,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
       css={applyIconStyle({
         size,
         status: currentStatus,
-        type,
+        variant,
         direction,
         labelPlacement,
       })}
@@ -97,15 +97,17 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
 
     if (
       direction === "vertical" ||
-      isVerticalLabel({ type, direction, labelPlacement })
+      isVerticalLabel({ variant, direction, labelPlacement })
     ) {
       return (
         <div
           css={applyConnectionNodeStyle({
-            type,
+            variant,
             direction,
             size,
             labelPlacement,
+            status: currentStatus,
+            nextStepError,
           })}
         />
       )
@@ -118,7 +120,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     <div
       ref={ref}
       css={applyWrapperStyle({
-        type,
+        variant,
         status: currentStatus,
         direction,
         labelPlacement,
@@ -132,11 +134,16 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
       {renderConnectionNode()}
       {stepIconNode}
       <div
-        css={applyContentStyle({ type, labelPlacement, direction, hoverable })}
+        css={applyContentStyle({
+          variant,
+          labelPlacement,
+          direction,
+          hoverable,
+        })}
       >
         <div
           css={applyTitleStyle({
-            type,
+            variant,
             size,
             lastStep,
             lineless,

@@ -2,33 +2,33 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import { StepType, LabelPlacement } from "../interface"
+import { StepVariant, LabelPlacement } from "../interface"
 import { isVerticalLabel } from "../style"
 
 export function applyContentStyle({
-  type,
+  variant,
   labelPlacement,
   direction,
   hoverable,
 }: {
-  type: StepType
+  variant: StepVariant
   labelPlacement: LabelPlacement
   direction: LabelPlacement
   hoverable: boolean
 }): SerializedStyles {
   return css([
-    applyContentDisplay({ type, labelPlacement, direction }),
-    applyContentSize({ type, labelPlacement, direction }),
+    applyContentDisplay({ variant, labelPlacement, direction }),
+    applyContentSize({ variant, labelPlacement, direction }),
     applyHover(hoverable),
   ])
 }
 
 function applyContentDisplay({
-  type,
+  variant,
   labelPlacement,
   direction,
 }: {
-  type: StepType
+  variant: StepVariant
   labelPlacement: LabelPlacement
   direction: LabelPlacement
 }): SerializedStyles {
@@ -37,7 +37,7 @@ function applyContentDisplay({
     text-align: center;
   `
 
-  if (isVerticalLabel({ type, direction, labelPlacement })) {
+  if (isVerticalLabel({ variant, direction, labelPlacement })) {
     return verticalStyle
   }
 
@@ -47,25 +47,25 @@ function applyContentDisplay({
 }
 
 function applyContentSize({
-  type,
+  variant,
   labelPlacement,
   direction,
 }: {
   labelPlacement: LabelPlacement
   direction: LabelPlacement
-  type: StepType
+  variant: StepVariant
 }) {
   let width = css``
   let margin = css``
 
-  if (isVerticalLabel({ type, direction, labelPlacement })) {
+  if (isVerticalLabel({ variant, direction, labelPlacement })) {
     width = css`
       width: ${140}px;
     `
   }
 
   // add some margin between content and navigationProcessStatusIndicator
-  if (type === "navigation") {
+  if (variant === "navigation") {
     margin = css`
       margin-bottom: 16px;
     `

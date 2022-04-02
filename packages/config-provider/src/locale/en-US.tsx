@@ -6,6 +6,12 @@ export const enUS = {
     copyToolTip: "Copy",
     expandLabel: "Expand",
   },
+  timePicker: {
+    ok: "OK",
+    placeholder: "Select time",
+    placeholders: ["Start time", "End time"],
+    now: "Now",
+  },
   popover: {
     close: "Close",
   },
@@ -52,5 +58,13 @@ export const enUS = {
     October: "October",
     November: "November",
     December: "December",
+  },
+  modal: {
+    okText: "OK",
+    cancelText: "Cancel",
+  },
+  drawer: {
+    okText: "OK",
+    cancelText: "Cancel",
   },
 } as Locale
