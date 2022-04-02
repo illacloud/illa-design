@@ -24,7 +24,7 @@ import {
   getContainerElement,
   easingMethod,
 } from "./utils/index"
-import { applyAnchorListCss } from "./style"
+import { applyAnchorListCss, activeLineIndicatorCss } from "./style"
 
 export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
   (props, ref) => {
@@ -51,13 +51,14 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
     const [currentLink, setCurrentLink] = useState("")
     const [oldLink, setOldLink] = useState("")
     const isScrolling = useRef<boolean>(false)
-
+    const activeLineIndicator = useRef<HTMLDivElement>(null)
     const linkMap = useRef<Map<string, HTMLElement>>(new Map())
 
     const onScroll = useCallback(
       throttleByRaf(() => {
         if (isScrolling.current) return
 
+        console.log("onScroll")
         const element = getEleInViewport()
         element && element.id && setActiveLink(`#${element.id}`)
       }),
@@ -141,6 +142,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
             } else {
               caf(id)
               isScrolling.current = false
+              console.log("scroll finish")
             }
           }
 
@@ -164,13 +166,16 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
 
       setActiveLink(link)
       scrollIntoView(link)
-      isFunction(onSelect) && onSelect(currentLink, oldLink)
+      isFunction(onSelect) && onSelect(link, currentLink)
     }
 
     function setActiveLink(link: string) {
-      setOldLink(currentLink)
-      setCurrentLink(link)
-      isFunction(onChange) && onChange(currentLink, oldLink)
+      if (link === currentLink) {
+        return
+      }
+      setOldLink((oldLink) => (oldLink = currentLink))
+      setCurrentLink((currentLink) => (currentLink = link))
+      isFunction(onChange) && onChange(link, currentLink)
     }
 
     const getAffixTarget = useCallback(
@@ -185,6 +190,14 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
     useEffect(() => {
       onScroll()
     })
+
+    useEffect(() => {
+      const linkElement = linkMap.current.get(currentLink)
+
+      if (linkElement && !lineless && activeLineIndicator.current) {
+        activeLineIndicator.current.style.top = `${linkElement.offsetTop}px`
+      }
+    }, [currentLink, lineless])
 
     useEffect(() => {
       scrollContainer.current?.addEventListener("scroll", onScroll)
@@ -210,6 +223,9 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
         className={className}
         {...restProps}
       >
+        {!lineless && currentLink && (
+          <div css={activeLineIndicatorCss} ref={activeLineIndicator} />
+        )}
         <AnchorContext.Provider
           value={{
             currentLink,

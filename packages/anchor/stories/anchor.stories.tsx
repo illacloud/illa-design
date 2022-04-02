@@ -15,13 +15,41 @@ export default {
   component: Anchor,
 } as Meta
 
+const Article = () => (
+  <article>
+    <h1 id="title">Artical</h1>
+
+    <section id="section1">
+      <h2>Section1</h2>
+      <p>{loremIpsum}</p>
+    </section>
+
+    <section id="section2">
+      <h2>Section2</h2>
+      <p>{loremIpsum}</p>
+    </section>
+
+    <section id="section3">
+      <h2>Section3</h2>
+      <section id="section3-1">
+        <h2>Section3-1</h2>
+        <p>{loremIpsum}</p>
+      </section>
+      <section id="section3-2">
+        <h2>Section3-2</h2>
+        <p>{loremIpsum}</p>
+      </section>
+    </section>
+  </article>
+)
+
 const Template: Story<AnchorProps> = (args) => (
   <>
     <Anchor
       affixStyle={{
         right: 0,
         background: "white",
-        width: 80,
+        width: 100,
       }}
       style={{ width: 80 }}
       {...args}
@@ -29,26 +57,12 @@ const Template: Story<AnchorProps> = (args) => (
       <AnchorLink href="#title" title="title" />
       <AnchorLink href="#section1" title="Section1" />
       <AnchorLink href="#section2" title="Section2" />
-      <AnchorLink href="#section3" title="Section3" />
+      <AnchorLink href="#section3" title="Section3">
+        <AnchorLink href="#section3-1" title="Section3-1" />
+        <AnchorLink href="#section3-2" title="Section3-2" />
+      </AnchorLink>
     </Anchor>
-    <article>
-      <h1 id="title">Artical</h1>
-
-      <section id="section1">
-        <h2>Section1</h2>
-        <p>{loremIpsum}</p>
-      </section>
-
-      <section id="section2">
-        <h2>Section2</h2>
-        <p>{loremIpsum}</p>
-      </section>
-
-      <section id="section3">
-        <h2>Section3</h2>
-        <p>{loremIpsum}</p>
-      </section>
-    </article>
+    <Article />
   </>
 )
 

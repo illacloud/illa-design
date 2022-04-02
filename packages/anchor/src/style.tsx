@@ -18,43 +18,27 @@ export const linkCss = css([
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
+    display: "block",
     color: globalColor(`--${illaPrefix}-gray-04`),
   }),
   css`
     &:hover {
       color: ${linkActiveColor};
+      background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
     }
   `,
 ])
 
 function applyActiveLinkCss(lineless?: boolean): SerializedStyles {
-  const bgColor = globalColor(`--${illaPrefix}-blue-04`)
-  const activeLineCss = css`
-    position: relative;
-    transition: all 1s ease-in-out;
-    &:before {
-      content: "";
-      width: 3px;
-      height: 100%;
-      background-color: ${bgColor};
-      position: absolute;
-      left: -8px;
-    }
-  `
   return css`
     font-weight: 500;
     color: ${linkActiveColor};
-    ${!lineless && activeLineCss}
   `
 }
 
 export const linkOffsetStyle = css`
   & > & {
     margin-left: 16px;
-  }
-
-  &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
   }
 `
 
@@ -76,3 +60,12 @@ export function applyAnchorListCss(lineless?: boolean): SerializedStyles {
     ${!lineless && lineCss}
   `
 }
+
+export const activeLineIndicatorCss = css`
+  width: 3px;
+  height: 16px;
+  background-color: ${globalColor(`--${illaPrefix}-blue-04`)};
+  position: absolute;
+  left: -8px;
+  transition: all 0.5s fade;
+`
