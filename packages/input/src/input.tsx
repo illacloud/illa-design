@@ -37,7 +37,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     addonAfter,
     addonBefore,
     defaultValue,
-    boarderColor = "blue",
+    borderColor = "blue",
     size = "medium",
     variant = "outline",
     requirePadding = true,
@@ -73,7 +73,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     focus,
     variant,
     size,
-    boarderColor,
+    borderColor,
   }
 
   if (maxLength && showCount) {
@@ -103,6 +103,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           ref={inputRef}
           {...rest}
           value={value}
+          size={size}
           error={error}
           disabled={disabled}
           placeholder={placeholder}

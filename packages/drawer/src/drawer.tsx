@@ -118,7 +118,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
     <Portal container={getContainer()}>
       <AnimatePresence>
         {visible && (
-          <div ref={ref} css={applyDrawerWrapper(isFixed, visible)}>
+          <div ref={ref} css={applyDrawerWrapper(isFixed)}>
             {mask ? (
               <motion.div
                 variants={maskAnimation}

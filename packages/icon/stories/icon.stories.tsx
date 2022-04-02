@@ -46,6 +46,7 @@ import {
   PenIcon,
   PreDoubleIcon,
   NextDoubleIcon,
+  TimeIcon,
   CaretDownIcon,
   CaretLeftIcon,
   CaretRightIcon,
@@ -145,3 +146,4 @@ export const PreDouble: Story<IconProps> = (props) => (
 export const NextDouble: Story<IconProps> = (props) => (
   <NextDoubleIcon {...props} />
 )
+export const Time: Story<IconProps> = (props) => <TimeIcon {...props} />
