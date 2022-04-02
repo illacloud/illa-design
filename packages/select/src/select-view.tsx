@@ -50,13 +50,11 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       error,
       loading,
       disabled,
-      options,
       labelInValue,
       allowClear,
       allowCreate,
       removeIcon,
       // event
-      onChange,
       onClick,
       onFocus,
       onBlur,
@@ -290,7 +288,10 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         }}
         onBlur={(event) => tryTriggerFocusChange("blur", event)}
         {...omit(otherProps, [
+          "options",
+          "filterOption",
           "onSearch",
+          "onChange",
           "onPopupScroll",
           "onInputValueChange",
           "onDeselect",

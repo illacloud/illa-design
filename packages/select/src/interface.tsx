@@ -109,7 +109,10 @@ export interface SelectProps
   onClear?: (visible?: boolean) => void
 }
 
-export interface SelectViewProps extends SelectProps {
+export interface SelectViewProps
+  extends Omit<SelectProps, "options" | "filterOption" | "onChange"> {
+  value?: any
+  defaultValue?: any
   multiple?: boolean
   popupVisible?: boolean
   isEmptyValue?: boolean

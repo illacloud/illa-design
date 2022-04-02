@@ -1,7 +1,7 @@
 import isEqual from "react-fast-compare"
 import { isArray, isFunction, isString } from "@illa-design/system"
 import { FieldNamesType, CascaderProps } from "./interface"
-import Node, { NodeProps } from "./node"
+import { NodeProps, Node } from "./node"
 
 export type ConfigType<T> = {
   // 是否关联父子节点
@@ -73,7 +73,7 @@ class Store<T> {
    * 根据values更新节点状态。不包含在values的节点都设置为未选中状态
    * @memberof Store
    */
-  public setNodeCheckedByValue = (initValues: string[][]) => {
+  public setNodeCheckedByValue = (initValues?: string[][]) => {
     const values = initValues || []
 
     // 根据value设置节点初始选中状态
@@ -89,7 +89,7 @@ class Store<T> {
   /**
    * 为当前节点插入子节点。动态加载时候用到
    */
-  public appendOptionChildren = (node: Node<T>, children: NodeProps<T>[]) => {
+  public appendOptionChildren = (node: Node<T>, children?: NodeProps<T>[]) => {
     if (children && node) {
       // const checked = node._checked;
       // node.setCheckedProperty(false);
@@ -109,7 +109,7 @@ class Store<T> {
    * 通过 value 查找对应的node节点。
    * value: 是路径节点的value组成的数组
    */
-  public findNodeByValue = (value: string[]): Node<T> | null => {
+  public findNodeByValue = (value?: string[]): Node<T> | null => {
     let targetNode: Node<T>|null = null
     if (!value || !value.length) {
       return targetNode

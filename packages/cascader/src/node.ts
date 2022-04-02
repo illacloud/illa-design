@@ -1,5 +1,6 @@
 import { OptionProps } from "./interface"
 import { ConfigType } from "./store"
+import { isNumber } from "@illa-design/system"
 
 export const DefaultFieldNames = {
   label: "label",
@@ -32,37 +33,27 @@ export interface NodeProps<T> extends OptionProps {
   pathLabel: string[]
 }
 
-class Node<T> {
+export class Node<T> {
   value: string
   label: string
-
-  // 是否禁用
   disabled?: boolean
   _level?: number
   _index?: number
   isLeaf?: boolean
   disableCheckbox?: boolean
-
-  // 是否选中
   _checked: boolean = false
-  /** 是否半选 */
   _halfChecked: boolean = false
-
   /** 当前选项节点的父节点 */
   parent: Node<T> | null
-
   /** 当前选项节点路径的所有节点的值 */
   pathValue: string[] = []
   pathLabel: string[] = []
-
   /** 下一级选项 */
   children?: Node<T>[]
-  /** 是否在加载中 */
   loading?: boolean
   /** 是否加载完成 */
   loaded?: boolean
   config: ConfigType<T> = {}
-
   // 保存暴露给外部的属性
   _data?: NodeProps<T>
 
@@ -108,7 +99,7 @@ class Node<T> {
       parent: parent ?? null,
       pathValue: parent ? [...parent.pathValue, nodeValue] : [nodeValue],
       pathLabel: parent ? [...parent.pathLabel, nodeLabel] : [nodeLabel],
-      _level: parent && parent._level ? parent._level + 1 : 0,
+      _level: parent && isNumber(parent._level) ? parent._level + 1 : 0,
       _checked: false,
       _halfChecked: false,
     }
@@ -260,5 +251,3 @@ class Node<T> {
     }
   }
 }
-
-export default Node
