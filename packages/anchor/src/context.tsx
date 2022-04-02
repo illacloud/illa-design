@@ -3,7 +3,7 @@ import { AnchorContextType } from "./interface"
 export const AnchorContext = createContext<AnchorContextType>({
   currentLink: "",
   onClickLink: () => { },
-  addLink: () => { },
-  removeLink: () => { },
+  registerLink: () => { },
+  unregisterLink: () => { },
   lineless: false
 })
