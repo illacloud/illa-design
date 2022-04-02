@@ -1,10 +1,12 @@
-import { forwardRef } from "react"
+import { forwardRef, useState, useCallback } from "react"
+import { throttleByRaf } from "@illa-design/system"
 import { CalendarDaysProps } from "./interface"
 import dayjs from "dayjs"
 import {
   weekContainerCss,
   selectedDayStyle,
   applyContainerBlockCss,
+  applyRangeSelectCss,
   dayItemPanelCss,
   dayItemCss,
   disabledCss,
@@ -25,6 +27,10 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
       dateInnerContent,
       selectDay,
       onClickDay,
+      rangeValueFirst,
+      rangeValueSecond,
+      rangeValueHover,
+      handleRangeVal,
       ...restProps
     } = props
 
@@ -32,7 +38,6 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
     const currentMonth = Number.isInteger(componentMonth)
       ? componentMonth
       : dayjs().month()
-
     // each month data
     const thisMonthData = () => {
       // first day in the month
@@ -46,7 +51,8 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
       // calendar first day
       let calendarStart
       if (firstDayWeek === 0) {
-        calendarStart = +firstDayDate - 6 * 24 * 60 * 60 * 1000
+        calendarStart =
+          +firstDayDate - (dayStartOfWeek === 0 ? 0 : 6) * 24 * 60 * 60 * 1000
       } else {
         calendarStart =
           +firstDayDate -
@@ -68,7 +74,13 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
       month?: number | null,
       disabled?: boolean,
     ) => {
-      let showSelectedStyle = item.getTime() === selectDay
+      let showSelectedStyle =
+        (selectDay && dayjs(selectDay).isSame(dayjs(item), "date")) ||
+        (rangeValueFirst &&
+          dayjs(rangeValueFirst).isSame(dayjs(item), "date")) ||
+        (rangeValueSecond &&
+          dayjs(rangeValueSecond).isSame(dayjs(item), "date")) ||
+        (rangeValueHover && dayjs(rangeValueHover).isSame(dayjs(item), "date"))
       if (Number.isInteger(month)) {
         showSelectedStyle = showSelectedStyle && isCurrentMonth(item, month)
       }
@@ -86,6 +98,67 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
       )
     }
 
+    const handleDateHover = useCallback(
+      throttleByRaf((item) => {
+        if (!rangeValueFirst) return
+        if (rangeValueFirst && rangeValueSecond) return
+        handleRangeVal?.(dayjs(item).valueOf(), "hover")
+      }),
+      [rangeValueFirst, rangeValueSecond],
+    )
+
+    const isHover = (date: Date) => {
+      if (!rangeValueFirst || !rangeValueHover) return
+
+      let curDate = dayjs(date).valueOf()
+      let compareBase = rangeValueSecond || rangeValueHover
+      return (
+        (curDate <= rangeValueFirst &&
+          curDate >= compareBase &&
+          isCurrentMonth(date)) ||
+        (curDate >= rangeValueFirst &&
+          curDate <= compareBase &&
+          isCurrentMonth(date))
+      )
+    }
+
+    const rangeSelectStyle = (date: Date) => {
+      if (!rangeValueFirst) {
+        return
+      }
+      let curDate = dayjs(date).valueOf()
+      let compareBase
+      if (curDate === rangeValueFirst) {
+        compareBase = rangeValueSecond || rangeValueHover
+        if (!compareBase) return
+        if (curDate < compareBase) {
+          return applyRangeSelectCss("left")
+        } else if (curDate > compareBase) {
+          return applyRangeSelectCss("right")
+        } else if (curDate === compareBase) {
+          return applyRangeSelectCss("mid")
+        }
+      }
+      if (curDate === rangeValueHover) {
+        if (rangeValueHover > rangeValueFirst) {
+          return applyRangeSelectCss("right")
+        } else if (rangeValueHover < rangeValueFirst) {
+          return applyRangeSelectCss("left")
+        } else if (rangeValueHover === rangeValueFirst) {
+          return applyRangeSelectCss("mid")
+        }
+      }
+      if (curDate === rangeValueSecond) {
+        if (curDate < rangeValueFirst) {
+          return applyRangeSelectCss("left")
+        } else if (curDate > rangeValueFirst) {
+          return applyRangeSelectCss("right")
+        } else if (curDate === rangeValueFirst) {
+          return applyRangeSelectCss("mid")
+        }
+      }
+    }
+
     return (
       <div css={weekContainerCss} ref={ref} {...restProps}>
         {thisMonthData().map((item: any, index: number) => {
@@ -93,9 +166,19 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
             typeof disabledDate === "function" && disabledDate(item.date)
           return (
             <div
-              css={applyContainerBlockCss(componentMode, disabled)}
+              css={css(
+                applyContainerBlockCss(
+                  componentMode,
+                  disabled,
+                  isHover(item.date),
+                ),
+                rangeSelectStyle(item.date),
+              )}
               key={index}
-              onClick={() => !disabled && onClickDay && onClickDay(item.date)}
+              onClick={() => !disabled && onClickDay?.(item.date)}
+              onMouseEnter={() => {
+                handleDateHover(item.date)
+              }}
             >
               {dateRender ? (
                 dateRender

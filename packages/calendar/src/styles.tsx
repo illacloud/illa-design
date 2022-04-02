@@ -112,7 +112,7 @@ export const panelMonthTextCss = css`
 `
 
 export const dayBodyCss = css`
-  padding: 15px 0;
+  padding: 15px;
 `
 
 export const dayModeTodayButton = css`
@@ -135,6 +135,28 @@ export const panelGridCss = css`
 
 export const monthBlockCss = css`
   padding: 0 5px;
+`
+
+export const buttonHiddenCss = css`
+  visibility: hidden;
+`
+
+export const headerLeftBtnsCss = css`
+  button:nth-of-type(1) {
+    padding-right: 5px;
+  }
+  button:nth-of-type(2) {
+    padding-left: 5px;
+  }
+`
+
+export const headerRightBtnsCss = css`
+  button:nth-of-type(1) {
+    padding-right: 5px;
+  }
+  button:nth-of-type(2) {
+    padding-left: 5px;
+  }
 `
 
 export function applyPanelGridItemCss(selected: boolean): SerializedStyles {
@@ -255,7 +277,6 @@ export const dayItemPanelCss = css`
   font-weight: 500;
   margin: 0 auto;
   &:hover {
-    cursor: pointer;
     background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
   }
 `
@@ -269,20 +290,19 @@ export const dayItemCss = css`
   border-radius: 50%;
   font-size: 16px;
   font-weight: 600;
-  &:hover {
-    cursor: pointer;
-  }
 `
 
 export function applyContainerBlockCss(
   panel: boolean,
   disabled?: boolean,
+  hover?: boolean,
 ): SerializedStyles {
   let padStyle
   if (panel) {
     padStyle = css`
-      padding: 7px 0;
+      margin: 2px 0;
       text-align: center;
+      padding: 5px 0;
     `
   } else {
     padStyle = css`
@@ -291,13 +311,34 @@ export function applyContainerBlockCss(
       border-right: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
     `
   }
+  let bgColor
+  if (hover) {
+    bgColor = css`
+      background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+    `
+  }
+  if (disabled) {
+    bgColor = css`
+      background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    `
+  }
   return css`
     ${padStyle};
-    ${disabled &&
-    `background-color: ${globalColor(`--${illaPrefix}-gray-08`)}`};
+    ${bgColor};
+    &:hover {
+      cursor: pointer;
+    }
     &:nth-of-type(7n) {
       border-right: none;
     }
+  `
+}
+
+export function applyRangeSelectCss(type: string): SerializedStyles {
+  return css`
+    ${type === "right" && "border-radius: 0 50% 50% 0"};
+    ${type === "left" && "border-radius: 50% 0 0 50%"};
+    ${type === "mid" && "border-radius: 50%"};
   `
 }
 

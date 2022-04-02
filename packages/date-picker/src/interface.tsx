@@ -1,5 +1,6 @@
 import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { Dayjs } from "dayjs"
+import { SerializedStyles } from "@emotion/react"
 
 export type PickerPosition = "top" | "tl" | "tr" | "bottom" | "bl" | "br"
 export type ShortcutType = {
@@ -22,12 +23,10 @@ export interface PickerProps
   disabled?: boolean | boolean[]
   allowClear?: boolean
   position?: PickerPosition
-  getPopupContainer?: (node: HTMLElement) => Element
   placeholder?: string | string[]
   shortcuts?: ShortcutType[]
   shortcutsPlacementLeft?: boolean
   error?: boolean
-  unmountOnExit?: boolean
   size?: PickerSize
   popupVisible?: boolean
   onVisibleChange?: (visible?: boolean) => void
@@ -42,6 +41,7 @@ export interface PickerProps
   onOk?: (dateString: string, date: Dayjs) => void
   defaultPickerValue?: CalendarValue
   hideNotInViewDates?: boolean
+  _css?: SerializedStyles
 }
 
 export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {
@@ -61,12 +61,6 @@ export interface MonthPickerProps extends Omit<PickerProps, "defaultValue"> {
 }
 
 export interface YearPickerProps extends Omit<PickerProps, "defaultValue"> {
-  format?: string | ((value: Dayjs) => string)
-  defaultValue?: CalendarValue
-  value?: CalendarValue
-}
-
-export interface QuarterPickerProps extends Omit<PickerProps, "defaultValue"> {
   format?: string | ((value: Dayjs) => string)
   defaultValue?: CalendarValue
   value?: CalendarValue
@@ -92,11 +86,16 @@ export interface RangePickerProps
   clearRangeOnReselect?: boolean
 }
 
-export interface CommonPickerProps {
+export interface CommonSingleProps extends DatePickerProps {
+  type?: "day" | "month" | "year"
+}
+
+export interface CommonPickerProps extends PickerProps {
   pickerContent: ReactNode
   size?: PickerSize
   inputVal?: string
   onClearDate?: () => void
+  onChangeInputVal?: (value: string) => void
 }
 
 export interface PickerContextProps {

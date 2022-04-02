@@ -1,5 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
+import { SerializedStyles } from "@emotion/react"
 
 export type panelOperationsItem =
   | "left"
@@ -7,6 +8,7 @@ export type panelOperationsItem =
   | "right"
   | "double-right"
 export type defaultModeItem = "month" | "year" | "day"
+export type CalendarValue = number | string | Date | Dayjs
 
 export interface CalenderProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -34,10 +36,23 @@ export interface CalenderProps
   }) => ReactNode
   locale?: Record<string, any>
   headerType?: "button" | "select"
+  _css?: SerializedStyles
+
+  datepickerDay?: Dayjs
+  onChangeDatePickerDay?: (date: Dayjs) => void
+  usedByDatepicker?: boolean
+
+  rangeValueFirst?: number
+  rangeValueSecond?: number
+  rangeValueHover?: number
+  handleRangeVal?: (date: number, type: "first" | "second" | "hover") => void
+
+  selectDayFromProps?: Dayjs | Dayjs[] | "clear"
+  defaultPickerValue?: CalendarValue
 }
 
 export interface CalendarHeaderProps extends CalenderProps {
-  currentDay: string | number
+  currentDay: Dayjs
   onChangeTime: Function
   onSelectTime: Function
   onToToday: Function
@@ -46,7 +61,7 @@ export interface CalendarHeaderProps extends CalenderProps {
 }
 
 export interface CalendarBodyProps extends CalenderProps {
-  currentDay: string | number
+  currentDay: Dayjs
   selectDay: number
   onClickDay: Function
   onToToday: Function
