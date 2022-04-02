@@ -43,3 +43,12 @@ export function isFunction<T extends Function = Function>(
 ): value is T {
   return typeof value === "function"
 }
+
+// thx arco
+export const isServerRendering = (function () {
+  try {
+    return !(typeof window !== "undefined" && document !== undefined)
+  } catch (e) {
+    return true
+  }
+})()

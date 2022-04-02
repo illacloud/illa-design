@@ -77,7 +77,6 @@ export function applyContainerCss(stateValue: StateValue) {
     flex-direction: row;
     align-items: center;
     font-size: 14px;
-    line-height: 1.57;
     border-radius: 4px;
     vertical-align: middle;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
@@ -93,17 +92,20 @@ function applySizeStyle(size?: string) {
     case "large":
       sizeCss = css`
         height: 40px;
+        line-height: 22px;
       `
       break
     case "medium":
       sizeCss = css`
         height: 32px;
+        line-height: 22px;
       `
       break
     case "small":
       sizeCss = css`
         height: 24px;
         font-size: 12px;
+        line-height: 18px;
       `
       break
   }
@@ -137,11 +139,11 @@ function applyStatus(stateValue: StateValue) {
     `
   } else if (stateValue?.focus) {
     const boxShadowColor = globalColor(
-      `--${illaPrefix}-${stateValue.boarderColor}-01`,
+      `--${illaPrefix}-${stateValue.borderColor}-01`,
     )
     mainStyle = css`
       border-color: ${globalColor(
-        `--${illaPrefix}-${stateValue.boarderColor}-03`,
+        `--${illaPrefix}-${stateValue.borderColor}-03`,
       )};
       box-shadow: 0 0 8px 0
         ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
@@ -156,7 +158,7 @@ function applyStatus(stateValue: StateValue) {
     mainStyle = css`
       &:hover {
         border-color: ${globalColor(
-          `--${illaPrefix}-${stateValue.boarderColor}-06`,
+          `--${illaPrefix}-${stateValue.borderColor}-06`,
         )};
         ${hoverStyle}
       }
@@ -195,20 +197,32 @@ export function applyInputContainer(
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: 14px;
-    line-height: 1.57;
+    position: relative;
+    font-size: inherit;
+    line-height: inherit;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     transition: all 200ms ease-in-out;
     ${applySizeCss(requirePadding, stateValue?.size)};
+
     ${applyStatus(stateValue)}
     &:first-of-type {
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
     }
+
     &:last-of-type {
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
+    }
+    &:hover {
+      [title="InputClearIcon"] {
+        opacity: 1;
+        // input suffix hidden
+        // & ~ * {
+        //   visibility: hidden;
+        // }
+      }
     }
   `
 }
@@ -230,19 +244,20 @@ export function applyInputStyle(textCenterHorizontal?: boolean | undefined) {
     font-size: inherit;
     font-family: inherit;
     border-radius: 4px;
-    line-height: 20px;
+    line-height: inherit;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border: none;
     outline: unset;
     cursor: inherit;
     background-color: inherit;
-
+    padding: 1px 4px;
     ${textAlignCss}
     &::placeholder {
       color: ${globalColor(`--${illaPrefix}-gray-04`)};
     }
 
     &:disabled {
+      cursor: not-allowed;
       color: ${globalColor(`--${illaPrefix}-gray-05`)};
 
       &::placeholder {
@@ -338,8 +353,8 @@ export function applyAddonCss(stateValue: StateValue) {
     border-width: 1px;
     border-style: solid;
     padding: 0 16px;
-    line-height: initial;
     height: 100%;
+
     &:first-of-type {
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
@@ -373,6 +388,31 @@ export function applyLengthErrorStyle(error?: boolean) {
   `
 }
 
+// support when input hover, hide suffix
+export function applyClearStyle(size?: InputSize): SerializedStyles {
+  let sizeCss: SerializedStyles = css()
+  if (size == "small") {
+    sizeCss = css`
+      position: absolute;
+      right: 12px;
+    `
+  } else {
+    sizeCss = css`
+      position: absolute;
+      right: 16px;
+    `
+  }
+  return css`
+    opacity: 0;
+    ${sizeCss}
+  `
+}
+
+export const clearStyle = css`
+  opacity: 0;
+  margin-left: 8px;
+`
+
 export const pointerStyle = css`
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-gray-06`)};
@@ -388,4 +428,49 @@ export const mirrorStyle = css`
   left: 0;
   visibility: hidden;
   width: unset;
+`
+
+// rangeInput style
+
+export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
+
+  return css`
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    font-size: 14px;
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    transition: all 200ms ease-in-out;
+    border-radius: 4px;
+    ${applyStatus(stateValue)}
+    ${applySizeStyle(stateValue?.size)}
+    ${applySizeCss(true, stateValue?.size)};
+    &:hover {
+      [title="InputClearIcon"] {
+        opacity: 1;
+        // input suffix hidden
+        & ~ * {
+          //margin-left: 2px;
+        }
+      }
+    }
+  `
+}
+
+export function applyRangeInput(): SerializedStyles {
+  return css`
+    &:focus {
+      border-radius: 2px;
+      background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+    }
+  `
+}
+
+export const SeparatorStyle = css`
+  width: 8px;
+  height: 2px;
+  border-radius: 0.5px;
+  background-color: ${globalColor(`--${illaPrefix}-gray-05`)};
 `
