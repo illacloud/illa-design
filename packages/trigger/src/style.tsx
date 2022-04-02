@@ -111,12 +111,14 @@ export function applyTipsText(
     if (withoutPadding) {
       width = css`
         width: ${adjustResult?.childrenWidth}px;
+        max-width: unset;
       `
     } else {
       width = css`
         width: calc(
           ${adjustResult?.childrenWidth}px - ${paddingHor} - ${paddingHor}
         );
+        max-width: unset;
       `
     }
   }
