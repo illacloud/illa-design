@@ -15,16 +15,16 @@ export default {
   component: Anchor,
 } as Meta
 
-export const Basic = (args: AnchorProps) => (
+const Template: Story<AnchorProps> = (args) => (
   <>
     <Anchor
       affixStyle={{
         right: 0,
         background: "white",
-        width: 80
+        width: 80,
       }}
-      offsetTop={20}
       style={{ width: 80 }}
+      {...args}
     >
       <AnchorLink href="#title" title="title" />
       <AnchorLink href="#section1" title="Section1" />
@@ -51,3 +51,5 @@ export const Basic = (args: AnchorProps) => (
     </article>
   </>
 )
+
+export const Basic = Template.bind({})

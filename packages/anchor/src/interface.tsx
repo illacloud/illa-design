@@ -21,8 +21,8 @@ export interface AnchorLinkProps extends Omit<HTMLAttributes<HTMLAnchorElement>,
 }
 
 export interface AnchorContextType {
-  addLink: (link: string, element: HTMLElement) => void
-  removeLink: (link: string) => void
+  registerLink: (link: string, element: HTMLElement) => void
+  unregisterLink: (link: string) => void
   currentLink: string
   onClickLink: (link: string, event: MouseEvent<HTMLAnchorElement>) => void
   lineless?: boolean

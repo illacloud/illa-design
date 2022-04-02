@@ -6,12 +6,24 @@ import {
   useEffect,
   useCallback,
 } from "react"
-import { isFunction, isNumber, throttleByRaf } from "@illa-design/system"
+import computeScrollIntoView from "compute-scroll-into-view"
+import {
+  isFunction,
+  isNumber,
+  throttleByRaf,
+  raf,
+  caf,
+} from "@illa-design/system"
 import { Affix } from "@illa-design/affix"
 import { Link } from "./link"
 import { AnchorProps } from "./interface"
 import { AnchorContext } from "./context"
-import { findNode, getContainer, getContainerElement } from "./utils"
+import {
+  findNode,
+  getContainer,
+  getContainerElement,
+  easingMethod,
+} from "./utils/index"
 import { applyAnchorListCss } from "./style"
 
 export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
@@ -19,10 +31,10 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
     const {
       style,
       className,
-      animation,
+      animation = true,
       scrollContainer: scrollContainerProp,
       boundary = "start",
-      hash: willModifyHash = false,
+      hash: willModifyHash,
       affix = true,
       affixStyle,
       offsetTop,
@@ -34,13 +46,23 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       ...restProps
     } = props
 
-    let onScroll: () => void = () => { }
     const scrollContainer = useRef<HTMLElement | Window | null>(null)
 
     const [currentLink, setCurrentLink] = useState("")
     const [oldLink, setOldLink] = useState("")
+    const isScrolling = useRef<boolean>(false)
 
     const linkMap = useRef<Map<string, HTMLElement>>(new Map())
+
+    const onScroll = useCallback(
+      throttleByRaf(() => {
+        if (isScrolling.current) return
+
+        const element = getEleInViewport()
+        element && element.id && setActiveLink(`#${element.id}`)
+      }),
+      [],
+    )
 
     const getEleInViewport = useCallback(() => {
       let result
@@ -77,11 +99,61 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       return result
     }, [boundary])
 
-    function addLink(link: string, element: HTMLElement) {
+    function scrollIntoView(hash: string) {
+      if (!hash) return
+
+      const element = findNode(document, hash)
+
+      if (!element) return
+
+      const offset = isNumber(boundary) ? boundary : 0
+      const block = isNumber(boundary) ? "start" : boundary
+      const actions = computeScrollIntoView(element, {
+        scrollMode: "if-needed",
+        block,
+      })
+
+      isScrolling.current = true
+
+      actions.forEach(({ el, top }) => {
+        if (!animation) {
+          el.scrollTop = top - offset
+        } else {
+          const { scrollTop } = el
+          const duration = 200
+          const startTime = Date.now()
+          let id: number
+
+          function updateScrollTopPerFrame() {
+            const nowTime = Date.now()
+            const durationFromStart = nowTime - startTime
+            el.scrollTop =
+              scrollTop -
+              (scrollTop - (top - offset)) *
+              easingMethod["quadInOut"](
+                durationFromStart > duration
+                  ? 1
+                  : durationFromStart / duration,
+              )
+
+            if (durationFromStart < duration) {
+              id = raf(updateScrollTopPerFrame)
+            } else {
+              caf(id)
+              isScrolling.current = false
+            }
+          }
+
+          raf(updateScrollTopPerFrame)
+        }
+      })
+    }
+
+    function registerLink(link: string, element: HTMLElement) {
       link && linkMap.current.set(link, element)
     }
 
-    function removeLink(link: string) {
+    function unregisterLink(link: string) {
       link && linkMap.current.delete(link)
     }
 
@@ -101,14 +173,18 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       isFunction(onChange) && onChange(currentLink, oldLink)
     }
 
-    useEffect(() => {
-      scrollContainer.current = getContainer(scrollContainerProp)
-    }, [scrollContainerProp])
-
     const getAffixTarget = useCallback(
       () => getContainer(scrollContainerProp),
       [scrollContainerProp],
     )
+
+    useEffect(() => {
+      scrollContainer.current = getContainer(scrollContainerProp)
+    }, [scrollContainerProp])
+
+    useEffect(() => {
+      onScroll()
+    })
 
     useEffect(() => {
       scrollContainer.current?.addEventListener("scroll", onScroll)
@@ -118,28 +194,13 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       }
     }, [scrollContainerProp, onScroll])
 
-    onScroll = useCallback(
-      throttleByRaf(() => {
-        const element = getEleInViewport()
-
-        element && element.id && setActiveLink(`#${element.id}`)
-      }),
-      [],
-    )
-
-    function scrollIntoView(hash: string) {
-      if (!hash) return
-
-      const element = findNode(document, hash)
-
-      if (!element) return
-
-      const block = isNumber(boundary) ? "start" : boundary
-      element.scrollIntoView({
-        behavior: "smooth",
-        block,
-      })
-    }
+    useEffect(() => {
+      const hash = decodeURIComponent(location.hash)
+      if (hash) {
+        setActiveLink(hash)
+        scrollIntoView(hash)
+      }
+    }, [])
 
     const anchorList = (
       <div
@@ -152,8 +213,8 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
         <AnchorContext.Provider
           value={{
             currentLink,
-            addLink,
-            removeLink,
+            registerLink,
+            unregisterLink,
             onClickLink,
             lineless,
           }}
