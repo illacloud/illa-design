@@ -25,4 +25,5 @@ export interface AnchorContextType {
   removeLink: (link: string) => void
   currentLink: string
   onClickLink: (link: string, event: MouseEvent<HTMLAnchorElement>) => void
+  lineless?: boolean
 }

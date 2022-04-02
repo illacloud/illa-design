@@ -1,9 +1,18 @@
-import { forwardRef, useState, useRef, MouseEvent } from "react"
-import { isFunction } from "@illa-design/system"
+import {
+  forwardRef,
+  useState,
+  useRef,
+  MouseEvent,
+  useEffect,
+  useCallback,
+} from "react"
+import { isFunction, isNumber, throttleByRaf } from "@illa-design/system"
 import { Affix } from "@illa-design/affix"
 import { Link } from "./link"
 import { AnchorProps } from "./interface"
 import { AnchorContext } from "./context"
+import { findNode, getContainer, getContainerElement } from "./utils"
+import { applyAnchorListCss } from "./style"
 
 export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
   (props, ref) => {
@@ -11,7 +20,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       style,
       className,
       animation,
-      scrollContainer,
+      scrollContainer: scrollContainerProp,
       boundary = "start",
       hash: willModifyHash = false,
       affix = true,
@@ -25,10 +34,48 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       ...restProps
     } = props
 
+    let onScroll: () => void = () => { }
+    const scrollContainer = useRef<HTMLElement | Window | null>(null)
+
     const [currentLink, setCurrentLink] = useState("")
     const [oldLink, setOldLink] = useState("")
 
     const linkMap = useRef<Map<string, HTMLElement>>(new Map())
+
+    const getEleInViewport = useCallback(() => {
+      let result
+      const startTop = isNumber(boundary) ? boundary : 0
+      const container = scrollContainer.current
+      const containerElement = getContainerElement(
+        container as HTMLElement | Window,
+      )
+      const containerRect = (
+        containerElement as HTMLElement
+      ).getBoundingClientRect()
+      const documentHeight = document.documentElement.clientHeight
+
+      for (const hash of linkMap.current.keys()) {
+        const element = findNode(document, hash)
+        let inView = false
+
+        if (element) {
+          const { top } = element.getBoundingClientRect()
+
+          if (container === window) {
+            inView = top >= startTop && top <= documentHeight / 2
+          } else {
+            const offsetTop = top - containerRect.top - startTop
+            inView = offsetTop >= 0 && offsetTop <= containerRect.height / 2
+          }
+          if (inView) {
+            result = element
+            break
+          }
+        }
+      }
+
+      return result
+    }, [boundary])
 
     function addLink(link: string, element: HTMLElement) {
       link && linkMap.current.set(link, element)
@@ -43,24 +90,72 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
         event.preventDefault()
       }
 
-      // set active link
+      setActiveLink(link)
+      scrollIntoView(link)
+      isFunction(onSelect) && onSelect(currentLink, oldLink)
+    }
+
+    function setActiveLink(link: string) {
       setOldLink(currentLink)
       setCurrentLink(link)
+      isFunction(onChange) && onChange(currentLink, oldLink)
+    }
 
-      // scroll content into view
+    useEffect(() => {
+      scrollContainer.current = getContainer(scrollContainerProp)
+    }, [scrollContainerProp])
 
-      // callback
-      isFunction(onSelect) && onSelect(link, oldLink)
+    const getAffixTarget = useCallback(
+      () => getContainer(scrollContainerProp),
+      [scrollContainerProp],
+    )
+
+    useEffect(() => {
+      scrollContainer.current?.addEventListener("scroll", onScroll)
+
+      return () => {
+        scrollContainer.current?.removeEventListener("scroll", onScroll)
+      }
+    }, [scrollContainerProp, onScroll])
+
+    onScroll = useCallback(
+      throttleByRaf(() => {
+        const element = getEleInViewport()
+
+        element && element.id && setActiveLink(`#${element.id}`)
+      }),
+      [],
+    )
+
+    function scrollIntoView(hash: string) {
+      if (!hash) return
+
+      const element = findNode(document, hash)
+
+      if (!element) return
+
+      const block = isNumber(boundary) ? "start" : boundary
+      element.scrollIntoView({
+        behavior: "smooth",
+        block,
+      })
     }
 
     const anchorList = (
-      <div ref={ref} style={style} className={className} {...restProps}>
+      <div
+        ref={ref}
+        css={applyAnchorListCss(lineless)}
+        style={style}
+        className={className}
+        {...restProps}
+      >
         <AnchorContext.Provider
           value={{
             currentLink,
             addLink,
             removeLink,
             onClickLink,
+            lineless,
           }}
         >
           {children}
@@ -73,6 +168,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
         style={affixStyle}
         offsetBottom={offsetBottom}
         offsetTop={offsetTop}
+        target={getAffixTarget}
       >
         {anchorList}
       </Affix>

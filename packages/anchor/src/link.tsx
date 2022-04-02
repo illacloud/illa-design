@@ -22,7 +22,7 @@ export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
       ...restProps
     } = props
 
-    const { currentLink, addLink, removeLink, onClickLink } =
+    const { currentLink, addLink, removeLink, onClickLink, lineless } =
       useContext(AnchorContext)
 
     const isActive = currentLink === href;
@@ -51,7 +51,7 @@ export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
     return (
       <div ref={linkRef} css={[linkOffsetStyle]}>
         <a
-          css={applyLinkStyle(isActive)}
+          css={applyLinkStyle(isActive, lineless)}
           href={href}
           title={isString(title) ? title : ""}
           onClick={(e) => onClickLink && onClickLink(href, e)}
