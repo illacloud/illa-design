@@ -433,7 +433,6 @@ export const mirrorStyle = css`
 // rangeInput style
 
 export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
-
   return css`
     display: inline-flex;
     flex-direction: row;

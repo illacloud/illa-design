@@ -54,7 +54,7 @@ const TestAffixTargetContainer = () => {
 
 it("Affix renders correctly", () => {
   mount(<TestAffix />)
-  expect(cy.findByText("Affix content")).exist
+  cy.findByText("Affix content").should("exist")
   unmount()
 })
 

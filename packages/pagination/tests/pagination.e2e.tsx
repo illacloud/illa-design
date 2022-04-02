@@ -13,7 +13,7 @@ it("Pagination renders with sizeOptions", async () => {
     />,
   )
   cy.findByText("20/Page").click()
-  expect(cy.findAllByText("80/Page")).exist
+  cy.findAllByText("80/Page").should("exist")
   unmount()
 })
 
@@ -29,6 +29,6 @@ it("Pagination renders with pageSizeSelect", async () => {
   )
   cy.findByText("10/Page").click()
   cy.findByText("20/Page").click()
-  expect(cy.findAllByText("20/Page")).exist
+  cy.findAllByText("20/Page").should("exist")
   unmount()
 })

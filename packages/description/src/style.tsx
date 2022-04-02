@@ -3,7 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import {
   DescriptionLayout,
   DescriptionSize,
-  DescriptionTabLayout,
+  DescriptionTableLayout,
 } from "./interface"
 import { SerializedStyles } from "@storybook/theming"
 
@@ -177,7 +177,7 @@ export function applyBlockStyle(
 }
 
 export function applyTableStyle(
-  tableLayout: DescriptionTabLayout,
+  tableLayout: DescriptionTableLayout,
   bordered: boolean,
 ): SerializedStyles {
   const border = css`
