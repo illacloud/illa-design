@@ -43,6 +43,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
     const scrollContainer = useRef<HTMLElement | Window | null>(null)
     const [currentLink, setCurrentLink] = useState("")
     const isScrolling = useRef<boolean>(false)
+    const isScrollingTimer = useRef<number | null>(null)
     const activeLineIndicator = useRef<HTMLDivElement>(null)
     const linkMap = useRef<Map<string, HTMLElement>>(new Map())
 
@@ -71,6 +72,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
             const offsetTop = top - containerRect.top - startTop
             inView = offsetTop >= 0 && offsetTop <= containerRect.height / 2
           }
+
           if (inView) {
             result = element
             break
@@ -91,23 +93,26 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
     function scrollIntoView(hash: string) {
       if (!hash) return
 
+      if (isScrollingTimer.current) {
+        clearTimeout(isScrollingTimer.current)
+        isScrollingTimer.current = null
+      }
+
       const element = findNode(document, hash)
 
       if (!element) return
 
       const offset = isNumber(boundary) ? boundary : 0
       const block = isNumber(boundary) ? "start" : boundary
-      const actions = computeScrollIntoView(element, {
-        scrollMode: "if-needed",
-        block,
-      })
+      const actions = computeScrollIntoView(element, { block })
 
       isScrolling.current = true
 
       actions.forEach(({ el, top }) => {
+        const targetScrollTop = top - offset
         if (!animation) {
-          el.scrollTop = top - offset
-          isScrolling.current = true
+          el.scrollTop = targetScrollTop
+          isScrolling.current = false
         } else {
           const { scrollTop } = el
           const duration = 200
@@ -119,7 +124,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
             const durationFromStart = nowTime - startTime
             el.scrollTop =
               scrollTop -
-              (scrollTop - (top - offset)) *
+              (scrollTop - targetScrollTop) *
               easingMethod["quadInOut"](
                 durationFromStart > duration
                   ? 1
@@ -130,7 +135,11 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
               id = raf(updateScrollTopPerFrame)
             } else {
               caf(id)
-              isScrolling.current = false
+              isScrollingTimer.current = setTimeout(() => {
+                isScrolling.current = false
+                clearTimeout(isScrollingTimer.current as number)
+                isScrollingTimer.current = null
+              }, 200) as unknown as number
             }
           }
 
@@ -181,6 +190,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       onScroll()
     })
 
+    // set line indicator
     useEffect(() => {
       const linkElement = linkMap.current.get(currentLink)
 
