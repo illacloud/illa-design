@@ -7,13 +7,7 @@ import {
   useCallback,
 } from "react"
 import computeScrollIntoView from "compute-scroll-into-view"
-import {
-  isFunction,
-  isNumber,
-  throttleByRaf,
-  raf,
-  caf,
-} from "@illa-design/system"
+import { isFunction, isNumber, raf, caf } from "@illa-design/system"
 import { Affix } from "@illa-design/affix"
 import { Link } from "./link"
 import { AnchorProps } from "./interface"
@@ -47,23 +41,10 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
     } = props
 
     const scrollContainer = useRef<HTMLElement | Window | null>(null)
-
     const [currentLink, setCurrentLink] = useState("")
-    const [oldLink, setOldLink] = useState("")
     const isScrolling = useRef<boolean>(false)
     const activeLineIndicator = useRef<HTMLDivElement>(null)
     const linkMap = useRef<Map<string, HTMLElement>>(new Map())
-
-    const onScroll = useCallback(
-      throttleByRaf(() => {
-        if (isScrolling.current) return
-
-        console.log("onScroll")
-        const element = getEleInViewport()
-        element && element.id && setActiveLink(`#${element.id}`)
-      }),
-      [],
-    )
 
     const getEleInViewport = useCallback(() => {
       let result
@@ -100,6 +81,13 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       return result
     }, [boundary])
 
+    const onScroll = useCallback(() => {
+      if (isScrolling.current) return
+
+      const element = getEleInViewport()
+      element && element.id && setActiveLink(`#${element.id}`)
+    }, [getEleInViewport, setActiveLink])
+
     function scrollIntoView(hash: string) {
       if (!hash) return
 
@@ -119,6 +107,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       actions.forEach(({ el, top }) => {
         if (!animation) {
           el.scrollTop = top - offset
+          isScrolling.current = true
         } else {
           const { scrollTop } = el
           const duration = 200
@@ -142,7 +131,6 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
             } else {
               caf(id)
               isScrolling.current = false
-              console.log("scroll finish")
             }
           }
 
@@ -170,11 +158,13 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
     }
 
     function setActiveLink(link: string) {
-      if (link === currentLink) {
+      const node = linkMap.current.get(link)
+
+      if (!node || link === currentLink) {
         return
       }
-      setOldLink((oldLink) => (oldLink = currentLink))
-      setCurrentLink((currentLink) => (currentLink = link))
+
+      setCurrentLink(() => link)
       isFunction(onChange) && onChange(link, currentLink)
     }
 
