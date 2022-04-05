@@ -1,21 +1,31 @@
-import { forwardRef, useCallback, useState } from "react"
+import { forwardRef, useCallback, useEffect, useState } from "react"
 import { throttleByRaf } from "@illa-design/system"
+import { Button } from "@illa-design/button"
 import {
   DatePickerProps,
   MonthPickerProps,
   YearPickerProps,
-  CommonPickerProps,
   CommonSingleProps,
 } from "../interface"
 // import { Calendar } from "@illa-design/calendar"
 import { Calendar } from "../../../calendar/src/index"
 import dayjs from "dayjs"
+import utc from "dayjs/plugin/utc"
+import tz from "dayjs/plugin/timezone"
 import { Picker } from "../picker"
 import {
   applySinglePickerContentCss,
   triContentCommonCss,
   applyShortContainerCss,
   shortCutsCss,
+  selectersContainerCss,
+  showTimeContainerCss,
+  showTimeHeaderCss,
+  showTimeContentCss,
+  laneItemCss,
+  scrollItemCss,
+  applyPickerFooterCss,
+  okButtonCss,
 } from "../style"
 
 const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
@@ -27,11 +37,11 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       allowClear = true,
       position = "bl",
       placeholder = "",
-      // shortcuts,
+      shortcuts,
       shortcutsPlacementLeft = false,
       error,
       size = "medium",
-      popupVisible,
+      popupVisible = false,
       onVisibleChange,
       onChange,
       onSelect,
@@ -39,25 +49,34 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       editable = true,
       onSelectShortcut,
       disabledDate,
-      defaultPickerValue = "2021-09-10",
-
-      onOk, // TODO
+      defaultPickerValue,
+      showTime = true,
+      onOk,
+      format = "YYYY-MM-DD",
+      value,
       defaultValue,
+      showNowBtn = true,
+      // disabledTime, // TODO
+
       ...restProps
     } = props
 
-    const shortcuts = [
-      {
-        text: "a month later",
-        value: () => dayjs().add(1, "month"),
-      },
-    ]
-
-    const [inputVal, setInputVal] = useState<string>()
+    let initValue =
+      value || defaultValue
+        ? dayjs(value || defaultValue).format(format as string)
+        : ""
+    const [inputVal, setInputVal] = useState<string>(initValue)
     const [calendarShortCuts, setCalendarShortCuts] = useState<
       dayjs.Dayjs | "clear"
     >()
     const [shortcutSwitch, setShortcutSwitch] = useState<string>("")
+    const [showTrigger, setShowTrigger] = useState<boolean>(popupVisible)
+    const mergedDefaultValue = value || defaultPickerValue
+    const showTimeMerged = showTime && type === "day"
+
+    // dayjs.extend(utc)
+    // dayjs.extend(tz)
+    // dayjs.tz.setDefault("Asia/Tokyo")
 
     const changeDate = (date: dayjs.Dayjs) => {
       let fotmatDate = dayjs(date)
@@ -78,17 +97,21 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       setInputVal(val)
 
       onSelect?.(fotmatDate.format("YYYY-MM-DD hh:mm:ss"), fotmatDate)
-      onChange?.(fotmatDate.format("YYYY-MM-DD hh:mm:ss"), fotmatDate)
+      if (!showTimeMerged) {
+        onChange?.(fotmatDate.format("YYYY-MM-DD hh:mm:ss"), fotmatDate)
+        setShowTrigger(false)
+      }
     }
     const clearDate = () => {
       setInputVal("")
       setCalendarShortCuts("clear")
 
       onClear?.()
+      setShowTrigger(false)
     }
 
     const handleShortEnter = useCallback(
-      throttleByRaf((item) => {
+      throttleByRaf((item: any) => {
         if (item.text === shortcutSwitch) return
         setCalendarShortCuts(item.value())
       }),
@@ -104,6 +127,34 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       setInputVal(value)
     }
 
+    function ShortcutsCompt() {
+      return shortcuts ? (
+        <div css={applyShortContainerCss(shortcutsPlacementLeft)}>
+          {shortcuts.map((item, key) => {
+            return (
+              <div
+                css={shortCutsCss}
+                key={key}
+                onMouseEnter={() => handleShortEnter(item)}
+                onMouseLeave={() => handleShortLeave(item)}
+                onClick={() => {
+                  if (shortcutSwitch !== item.text) {
+                    setShortcutSwitch(
+                      typeof item.text === "string" ? item.text : "",
+                    )
+                  }
+                  changeDate(item.value() as dayjs.Dayjs)
+                  onSelectShortcut?.(item)
+                }}
+              >
+                {item.text}
+              </div>
+            )
+          })}
+        </div>
+      ) : null
+    }
+
     return (
       <div ref={ref} css={_css} {...restProps}>
         <Picker
@@ -115,48 +166,99 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
           onClearDate={clearDate}
           error={error}
           size={size}
-          popupVisible={popupVisible}
+          popupVisible={showTrigger}
+          onChangeVisible={setShowTrigger}
           onClear={onClear}
           onVisibleChange={onVisibleChange}
           editable={editable}
           onChangeInputVal={changeInputVal}
           pickerContent={
             <div css={applySinglePickerContentCss(shortcutsPlacementLeft)}>
-              <Calendar
-                panel={true}
-                mode={type}
-                panelTodayBtn={false}
-                css={triContentCommonCss}
-                onChange={(date: dayjs.Dayjs) => {
-                  changeDate(date)
-                  setShortcutSwitch("")
-                }}
-                selectDayFromProps={calendarShortCuts}
-                disabledDate={disabledDate}
-                defaultPickerValue={dayjs(defaultPickerValue)}
-              />
-              {shortcuts && (
-                <div css={applyShortContainerCss(shortcutsPlacementLeft)}>
-                  {shortcuts.map((item, key) => {
-                    return (
-                      <div
-                        css={shortCutsCss}
-                        key={key}
-                        onMouseEnter={() => handleShortEnter(item)}
-                        onMouseLeave={() => handleShortLeave(item)}
-                        onClick={() => {
-                          shortcutSwitch !== item.text &&
-                            setShortcutSwitch(item.text)
-                          changeDate(item.value())
-                          onSelectShortcut?.(item)
-                        }}
-                      >
-                        {item.text}
+              <div css={selectersContainerCss}>
+                {shortcutsPlacementLeft && <ShortcutsCompt />}
+                <Calendar
+                  panel={true}
+                  mode={type}
+                  panelTodayBtn={
+                    showNowBtn && shortcuts && !shortcutsPlacementLeft
+                  }
+                  css={triContentCommonCss}
+                  onChange={(date: dayjs.Dayjs) => {
+                    changeDate(date)
+                    setShortcutSwitch("")
+                  }}
+                  disabledDate={disabledDate}
+                  selectDayFromProps={calendarShortCuts}
+                  defaultPickerValue={dayjs(mergedDefaultValue)}
+                />
+                {showTimeMerged && (
+                  <div css={showTimeContainerCss}>
+                    <div css={showTimeHeaderCss}>time</div>
+                    <div css={showTimeContentCss}>
+                      <div css={laneItemCss}>
+                        {new Array(24).fill(1).map((item, idx) => {
+                          return (
+                            <div css={scrollItemCss} key={idx}>
+                              {idx < 9 && "0"}
+                              {idx + 1}
+                            </div>
+                          )
+                        })}
                       </div>
-                    )
-                  })}
+                      <div css={laneItemCss}>
+                        {new Array(60).fill(1).map((item, idx) => {
+                          return (
+                            <div css={scrollItemCss} key={idx}>
+                              {idx < 9 && "0"}
+                              {idx + 1}
+                            </div>
+                          )
+                        })}
+                      </div>
+                      <div css={laneItemCss}>
+                        {new Array(60).fill(1).map((item, idx) => {
+                          return (
+                            <div css={scrollItemCss} key={idx}>
+                              {idx < 9 && "0"}
+                              {idx + 1}
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {(shortcuts && !shortcutsPlacementLeft) ||
+              showTimeMerged ||
+              showNowBtn ? (
+                <div css={applyPickerFooterCss(showTimeMerged, showNowBtn)}>
+                  {shortcuts && !shortcutsPlacementLeft && <ShortcutsCompt />}
+                  {!(shortcuts && !shortcutsPlacementLeft) && showNowBtn && (
+                    <div
+                      css={shortCutsCss}
+                      onClick={() => {
+                        changeDate(dayjs())
+                        setShowTrigger(false)
+                      }}
+                    >
+                      Now
+                    </div>
+                  )}
+                  {showTimeMerged && (
+                    <Button
+                      css={okButtonCss}
+                      onClick={() => {
+                        onChange?.(inputVal, dayjs(inputVal))
+                        onOk?.(inputVal, dayjs(inputVal))
+                        setShowTrigger(false)
+                      }}
+                    >
+                      OK
+                    </Button>
+                  )}
                 </div>
-              )}
+              ) : null}
             </div>
           }
         />

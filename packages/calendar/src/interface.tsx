@@ -4,9 +4,9 @@ import { SerializedStyles } from "@emotion/react"
 
 export type panelOperationsItem =
   | "left"
-  | "double-left"
+  | "doubleLeft"
   | "right"
-  | "double-right"
+  | "doubleRight"
 export type defaultModeItem = "month" | "year" | "day"
 export type CalendarValue = number | string | Date | Dayjs
 

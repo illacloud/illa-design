@@ -1,14 +1,15 @@
 import { FC, useState } from "react"
-import { CommonPickerProps } from "./interface"
+import { RangePickerBodyProps } from "./interface"
 // import { Trigger } from "@illa-design/trigger"
 import { Trigger } from "../../trigger/src/index"
 import { Input } from "@illa-design/input"
 import { CalendarIcon } from "@illa-design/icon"
 
-export const Picker: FC<CommonPickerProps> = (props) => {
+export const PickerRange: FC<RangePickerBodyProps> = (props) => {
   const {
-    disabled,
-    allowClear,
+    disabled, // TODO
+    allowClear, // TODO
+
     position,
     placeholder,
     error,
@@ -20,12 +21,12 @@ export const Picker: FC<CommonPickerProps> = (props) => {
     pickerContent,
     inputVal,
     onClearDate,
-    onChangeVisible,
+    // onChangeVisible,
   } = props
 
   const tryUpdatePopupVisible = (value: boolean) => {
     if (popupVisible !== value) {
-      onChangeVisible?.(value)
+      //   onChangeVisible?.(value)
       onVisibleChange?.(value)
     }
   }
@@ -43,8 +44,8 @@ export const Picker: FC<CommonPickerProps> = (props) => {
       onVisibleChange={tryUpdatePopupVisible}
     >
       <Input
-        disabled={typeof disabled === "boolean" ? disabled : false}
-        placeholder={typeof placeholder === "string" ? placeholder : ""}
+        // disabled={typeof disabled === 'boolean' ? disabled : false}
+        // placeholder={typeof placeholder === "string" ? placeholder : ""}
         size={size}
         value={inputVal}
         style={{ width: 280 }}
@@ -62,3 +63,5 @@ export const Picker: FC<CommonPickerProps> = (props) => {
     </Trigger>
   )
 }
+
+PickerRange.displayName = "PickerRange"

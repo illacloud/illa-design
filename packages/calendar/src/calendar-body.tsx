@@ -56,7 +56,7 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
 
   const showPanelMode = panel || mode === "year"
   // week text
-  const [weekTitleText, setWeekTitleText] = useState<string[]>([
+  let weekTitleText = [
     locale?.Sunday,
     locale?.Monday,
     locale?.Tuesday,
@@ -64,12 +64,10 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
     locale?.Thursday,
     locale?.Friday,
     locale?.Saturday,
-  ])
+  ]
   if (dayStartOfWeek === 1) {
     // start with monday
-    let tempWeek = weekTitleText
-    tempWeek.push(tempWeek.shift() as string)
-    setWeekTitleText(tempWeek)
+    weekTitleText.push(weekTitleText.shift() as string)
   }
 
   const clickCmptItem = (value: number, type: "month" | "year") => {

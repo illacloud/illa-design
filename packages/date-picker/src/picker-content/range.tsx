@@ -3,7 +3,7 @@ import { RangePickerProps } from "../interface"
 // import { Calendar } from "@illa-design/calendar"
 import { Calendar } from "../../../calendar/src/index"
 import dayjs from "dayjs"
-import { Picker } from "../picker"
+import { PickerRange } from "../picker-range"
 import { css } from "@emotion/react"
 import {
   triContentCommonCss,
@@ -17,7 +17,8 @@ export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
       _css,
       disabled,
       allowClear = true,
-      placeholder = "",
+
+      placeholder = [],
       position = "bl",
       size = "medium",
       onChange,
@@ -99,7 +100,9 @@ export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
 
     return (
       <div ref={ref} css={_css} {...restProps}>
-        <Picker
+        <PickerRange
+          disabled={disabled}
+          allowClear={allowClear}
           inputVal={inputVal}
           onClearDate={clearDate}
           placeholder={placeholder}
@@ -113,7 +116,7 @@ export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
                   ${triContentCommonCss};
                   ${rangeLeftContentCss}
                 `}
-                panelOperations={["double-left", "left"]}
+                panelOperations={["doubleLeft", "left"]}
                 panelTodayBtn={false}
                 onPanelChange={(date: dayjs.Dayjs) => changeHeader(date)}
                 //
@@ -134,7 +137,7 @@ export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
                   ${triContentCommonCss};
                   ${rangeRightContentCss}
                 `}
-                panelOperations={["double-right", "right"]}
+                panelOperations={["doubleRight", "right"]}
                 panelTodayBtn={false}
                 onPanelChange={(date: dayjs.Dayjs) => changeHeader(date)}
                 //

@@ -17,8 +17,8 @@ export type DisabledTimeProps = {
 export type RangePickerMode = "date" | "month" | "week" | "year" | "quarter"
 export interface PickerProps
   extends Omit<
-    HTMLAttributes<HTMLDivElement>,
-    "placeholder" | "onChange" | "onSelect"
+  HTMLAttributes<HTMLDivElement>,
+  "placeholder" | "onChange" | "onSelect"
   > {
   disabled?: boolean | boolean[]
   allowClear?: boolean
@@ -40,8 +40,9 @@ export interface PickerProps
   disabledDate?: (current?: Dayjs) => boolean
   onOk?: (dateString: string, date: Dayjs) => void
   defaultPickerValue?: CalendarValue
-  hideNotInViewDates?: boolean
   _css?: SerializedStyles
+  utcOffset?: number
+  timezone?: string
 }
 
 export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {
@@ -49,7 +50,9 @@ export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {
   defaultValue?: CalendarValue
   value?: CalendarValue
   // showTime?: boolean | TimePickerProps
+  showTime?: boolean
   // timepickerProps?: TimePickerProps
+  timepickerProps?: any
   showNowBtn?: boolean
   disabledTime?: (current?: Dayjs) => DisabledTimeProps
 }
@@ -68,8 +71,8 @@ export interface YearPickerProps extends Omit<PickerProps, "defaultValue"> {
 
 export interface RangePickerProps
   extends Omit<
-    PickerProps,
-    "onChange" | "defaultValue" | "onOk" | "defaultPickerValue"
+  PickerProps,
+  "onChange" | "defaultValue" | "onOk" | "defaultPickerValue"
   > {
   disabled?: boolean | boolean[]
   format?: string | ((value: Dayjs) => string)
@@ -83,7 +86,6 @@ export interface RangePickerProps
   onOk?: (dateString: string[], date: Dayjs[]) => void
   disabledTime?: (current: Dayjs, type: "start" | "end") => DisabledTimeProps
   defaultPickerValue?: CalendarValue[]
-  clearRangeOnReselect?: boolean
 }
 
 export interface CommonSingleProps extends DatePickerProps {
@@ -96,8 +98,16 @@ export interface CommonPickerProps extends PickerProps {
   inputVal?: string
   onClearDate?: () => void
   onChangeInputVal?: (value: string) => void
+  onChangeVisible?: (visible: boolean) => void
 }
 
 export interface PickerContextProps {
   inputVal?: string
+}
+
+export interface RangePickerBodyProps extends RangePickerProps {
+  pickerContent: ReactNode
+  inputVal?: string
+  onClearDate?: () => void
+  onChangeInputVal?: (value: string) => void
 }

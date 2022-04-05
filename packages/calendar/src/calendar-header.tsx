@@ -143,7 +143,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                   variant={"text"}
                   colorScheme={"gray"}
                   css={
-                    !panelOperations?.includes("double-left") && buttonHiddenCss
+                    !panelOperations?.includes("doubleLeft") && buttonHiddenCss
                   }
                   onClick={() => onChangeTime("pre", "year")}
                 >
@@ -167,7 +167,6 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
               {mode === "day" && (
                 <div css={headerSmallTextCss}>
                   {currentYear} {monthListLocale[currentMonth - 1]}{" "}
-                  {currentMonth}
                 </div>
               )}
               {mode === "month" && (
@@ -199,8 +198,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                   variant={"text"}
                   colorScheme={"gray"}
                   css={
-                    !panelOperations?.includes("double-right") &&
-                    buttonHiddenCss
+                    !panelOperations?.includes("doubleRight") && buttonHiddenCss
                   }
                   onClick={() => onChangeTime("next", "year")}
                 >
