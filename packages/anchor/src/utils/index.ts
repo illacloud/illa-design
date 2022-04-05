@@ -1,4 +1,3 @@
-export * from "./easing"
 import { isString } from "@illa-design/system"
 
 // thx arco

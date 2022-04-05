@@ -7,7 +7,7 @@ import {
   useCallback,
 } from "react"
 import computeScrollIntoView from "compute-scroll-into-view"
-import { isFunction, isNumber, raf, caf } from "@illa-design/system"
+import { isFunction, isNumber, raf, caf, easingMethod } from "@illa-design/system"
 import { Affix } from "@illa-design/affix"
 import { Link } from "./link"
 import { AnchorProps } from "./interface"
@@ -16,7 +16,6 @@ import {
   findNode,
   getContainer,
   getContainerElement,
-  easingMethod,
 } from "./utils/index"
 import { applyAnchorListCss, activeLineIndicatorCss } from "./style"
 
@@ -47,6 +46,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
     const activeLineIndicator = useRef<HTMLDivElement>(null)
     const linkMap = useRef<Map<string, HTMLElement>>(new Map())
 
+    // thx arco
     const getEleInViewport = useCallback(() => {
       let result
       const startTop = isNumber(boundary) ? boundary : 0

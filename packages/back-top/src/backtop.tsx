@@ -9,8 +9,7 @@ import React, {
 import { css } from "@emotion/react"
 import { UpIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
-import { throttleByRaf, isFunction, raf, caf } from "@illa-design/system"
-import { easingMethod } from "./utils"
+import { throttleByRaf, isFunction, raf, caf, easingMethod } from "@illa-design/system"
 import { BackTopProps } from "./interface"
 import {
   applyFixedStyle,
@@ -58,9 +57,9 @@ export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
           scrollTarget.scrollTop =
             scrollTop -
             scrollTop *
-              easingMethod[easing](
-                durationFromStart > duration ? 1 : durationFromStart / duration,
-              )
+            easingMethod[easing](
+              durationFromStart > duration ? 1 : durationFromStart / duration,
+            )
         }
 
         durationFromStart < duration
