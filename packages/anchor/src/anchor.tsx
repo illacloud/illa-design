@@ -28,7 +28,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       animation = true,
       scrollContainer: scrollContainerProp,
       boundary = "start",
-      hash: willModifyHash,
+      hash: willModifyHash = true,
       affix = true,
       affixStyle,
       offsetTop,

@@ -12,7 +12,6 @@ export interface AnchorProps extends Omit<HTMLAttributes<HTMLDivElement>, "onCha
   onChange?: (newLink: string, oldLink: string) => void
   onSelect?: (newLink: string, oldLink: string) => void
   lineless?: boolean
-  /* targetOffset: number */
 }
 
 export interface AnchorLinkProps extends Omit<HTMLAttributes<HTMLAnchorElement>, "title"> {
