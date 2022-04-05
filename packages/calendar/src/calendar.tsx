@@ -73,7 +73,10 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       let finMode = modeProps || modeVal
 
       if (finMode === "month") {
-        base = dayjs(currentDay).daysInMonth()
+        base =
+          dayjs(currentDay).daysInMonth() > 28
+            ? 28
+            : dayjs(currentDay).daysInMonth()
       } else if (finMode === "year") {
         let curYear = dayjs(currentDay).year()
         // leap year or not

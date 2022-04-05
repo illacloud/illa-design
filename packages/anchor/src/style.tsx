@@ -3,7 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 const linkActiveColor = globalColor(`--${illaPrefix}-gray-02`)
 
-export function applyAnchor() { }
+export function applyAnchor() {}
 
 export function applyLinkStyle(
   isActive: boolean,

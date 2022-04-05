@@ -148,10 +148,16 @@ it("Anchor should NOT change hash", () => {
 
 it("Anchor render indicator line", () => {
   mount(renderAnchor())
-  cy.get("[data-testid='anchor']").children().first().should("have.css", "position", "absolute")
+  cy.get("[data-testid='anchor']")
+    .children()
+    .first()
+    .should("have.css", "position", "absolute")
 })
 
 it("Anchor render with lineless", () => {
   mount(renderAnchor({ lineless: true }))
-  cy.get("[data-testid='anchor']").children().first().should("not.have.css", "position", "absolute")
+  cy.get("[data-testid='anchor']")
+    .children()
+    .first()
+    .should("not.have.css", "position", "absolute")
 })

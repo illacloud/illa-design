@@ -19,8 +19,9 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     loading,
     placeholder,
     defaultValue,
+    requirePadding = true,
     searchButton = false,
-    boarderColor = "blue",
+    borderColor = "blue",
     size = "medium",
     variant = "outline",
     onChange,
@@ -37,7 +38,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     defaultValue: defaultValue ? defaultValue : undefined,
     value: props.value ? props.value : undefined,
   })
-  const stateValue = { error, disabled, focus, variant, size, boarderColor }
+  const stateValue = { error, disabled, focus, variant, size, borderColor }
 
   const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
     if (!("value" in props) || !props.value) {
@@ -48,6 +49,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
 
   const searchProp = {
     ...rest,
+    size,
     disabled,
     allowClear,
     placeholder,
@@ -56,7 +58,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   return (
     <div ref={ref} style={style} className={className}>
       <span css={applyContainerCss(stateValue)}>
-        <span css={applyInputContainer(stateValue)}>
+        <span css={applyInputContainer(stateValue, requirePadding)}>
           <InputElement
             {...searchProp}
             ref={inputRef}

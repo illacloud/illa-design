@@ -7,16 +7,18 @@ import {
   useCallback,
 } from "react"
 import computeScrollIntoView from "compute-scroll-into-view"
-import { isFunction, isNumber, raf, caf, easingMethod } from "@illa-design/system"
+import {
+  isFunction,
+  isNumber,
+  raf,
+  caf,
+  easingMethod,
+} from "@illa-design/system"
 import { Affix } from "@illa-design/affix"
 import { Link } from "./link"
 import { AnchorProps } from "./interface"
 import { AnchorContext } from "./context"
-import {
-  findNode,
-  getContainer,
-  getContainerElement,
-} from "./utils/index"
+import { findNode, getContainer, getContainerElement } from "./utils/index"
 import { applyAnchorListCss, activeLineIndicatorCss } from "./style"
 
 export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
@@ -125,11 +127,11 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
             el.scrollTop =
               scrollTop -
               (scrollTop - targetScrollTop) *
-              easingMethod["quadInOut"](
-                durationFromStart > duration
-                  ? 1
-                  : durationFromStart / duration,
-              )
+                easingMethod["quadInOut"](
+                  durationFromStart > duration
+                    ? 1
+                    : durationFromStart / duration,
+                )
 
             if (durationFromStart < duration) {
               id = raf(updateScrollTopPerFrame)

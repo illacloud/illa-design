@@ -13,6 +13,7 @@ export const totalTextCss = css`
   display: inline-flex;
   height: 100%;
   font-size: 14px;
+  margin-right: 8px;
   color: ${globalColor(`--${illaPrefix}-gray-02`)};
 `
 
@@ -26,10 +27,9 @@ export function applyInputCss(size: PaginationSize, disable?: boolean) {
     display: inline-flex;
     align-items: center;
     font-size: 14px;
-    //border-radius: 4px;
     ${applySizeCss(size)}
     border-width: 0;
-    margin-bottom: 0;
+    width: 40px;
     ${applyTextColor(disable)};
   `
 }
@@ -47,28 +47,57 @@ export const simplePaginationSumCss = css`
   color: ${globalColor(`--${illaPrefix}-gray-02`)}; ;
 `
 
-export function applyDefaultItemCss(size: PaginationSize, disable?: boolean) {
+export function applyCommonItemCss(
+  size: PaginationSize,
+  requireMargin?: boolean,
+) {
   return css`
     display: inline-flex;
     justify-content: center;
     border-radius: 4px;
     align-items: center;
     font-size: 14px;
+    cursor: default;
+    margin-right: ${requireMargin ? 8 : 0}px;
+    ${applySizeCss(size)}
+  `
+}
+
+export function applyDefaultItemCss(
+  size: PaginationSize,
+  disable?: boolean,
+  requirePadding?: boolean,
+) {
+  const paddindCss = requirePadding
+    ? css`
+        padding: 0 8px;
+      `
+    : css`
+        padding: 0;
+      `
+  return css`
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 4px;
+    align-items: center;
+    font-size: 14px;
+    ${paddindCss}
     ${applySizeCss(size)}
     ${applyTextColor(disable)}
-      ${applyCursor(disable)}
-      ${applyBackground(disable, false)}
-      ${applyTextColor(disable)}
+    ${applyCursor(disable)}
+    ${applyBackground(disable, false)}
+    ${applyTextColor(disable)}
   `
 }
 
 export function applyDefaultItemWithMarginCss(
   size: PaginationSize,
   disable?: boolean,
+  requirePadding?: boolean,
 ) {
   return css`
     margin-right: 8px;
-    ${applyDefaultItemCss(size, disable)}
+    ${applyDefaultItemCss(size, disable, requirePadding)}
   `
 }
 
@@ -86,11 +115,17 @@ export function applyBackground(
   if (disable && selected) {
     return css`
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+      &:hover {
+        background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+      }
     `
   }
   if (!disable && selected) {
     return css`
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+      &:hover {
+        background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+      }
     `
   }
 }
@@ -137,9 +172,10 @@ export function applyTextColor(
 export function applyPageNumItemSelectedCss(
   size: PaginationSize,
   disabled?: boolean,
+  requirePadding?: boolean,
 ): SerializedStyles {
   return css`
-    ${applyDefaultItemCss(size, disabled)};
+    ${applyDefaultItemCss(size, disabled, requirePadding)};
     margin-right: 8px;
     ${applyBackground(disabled, true)}
     ${applyTextColor(disabled, true)}
@@ -171,7 +207,6 @@ export function applyPageSizeSelectorCss(
     align-items: center;
     font-size: 14px;
     border-radius: 4px;
-    padding-left: 12px;
     ${applySelectorSizeCss(size)}
     margin-left: 16px;
     border-width: 0;
@@ -190,19 +225,19 @@ function applySizeCss(size: PaginationSize): SerializedStyles {
     default:
     case "small":
       sizeCss = css`
-        width: 22px;
+        min-width: 22px;
         height: 22px;
       `
       break
     case "medium":
       sizeCss = css`
-        width: 32px;
+        min-width: 32px;
         height: 32px;
       `
       break
     case "large":
       sizeCss = css`
-        width: 40px;
+        min-width: 40px;
         height: 40px;
       `
       break

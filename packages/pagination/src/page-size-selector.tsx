@@ -1,4 +1,4 @@
-import { forwardRef, useContext, useState } from "react"
+import { FC, useContext, useState } from "react"
 import { PageSizeSelectorProps } from "./interface"
 import { applyPageSizeSelectorCss } from "./style"
 import {
@@ -6,39 +6,37 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
+import { Select, Option } from "@illa-design/select"
 
-export const PageSizeSelector = forwardRef<
-  HTMLSpanElement,
-  PageSizeSelectorProps
->((props, ref) => {
+export const PageSizeSelector: FC<PageSizeSelectorProps> = (props) => {
   const { onPageSizeSelected, sizeOptions, wholeDisable, size } = props
-
-  const [compositionValue, setCompositionValue] = useState<string>("")
-
+  const [compositionValue, setCompositionValue] = useState<number>(
+    sizeOptions[0],
+  )
   const configProviderProps = useContext<ConfigProviderProps>(
     ConfigProviderContext,
   )
   const locale = configProviderProps?.locale?.pagination ?? def.pagination
-
   const unitText = locale["page"]
 
   return (
     <span>
-      <select
+      <Select
         css={applyPageSizeSelectorCss(size, wholeDisable)}
         value={compositionValue}
         disabled={wholeDisable}
-        onChange={(e) => {
-          setCompositionValue(e.target.value)
-          onPageSizeSelected(Number.parseInt(e.target.value))
+        size={size}
+        onChange={(value) => {
+          setCompositionValue(value)
+          onPageSizeSelected(value)
         }}
       >
         {sizeOptions.map((value) => (
-          <option key={value} value={value}>
+          <Option key={value} value={value}>
             {value + `/${unitText}`}
-          </option>
+          </Option>
         ))}
-      </select>
+      </Select>
     </span>
   )
-})
+}

@@ -178,7 +178,8 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
           size,
         })}
         ref={measureAffixRef}
-        style={style} className={className}
+        style={style}
+        className={className}
       >
         {children}
       </div>
