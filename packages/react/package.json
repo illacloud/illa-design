@@ -89,6 +89,7 @@
     "@illa-design/back-top": "*",
     "@illa-design/drawer": "*",
     "@illa-design/table": "*",
+    "@illa-design/anchor": "*",
     "react-use": "^17.3.1",
     "framer-motion": "^6.2.8",
     "@emotion/react": "^11.7.1"
