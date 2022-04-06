@@ -42,7 +42,7 @@ export function applyWrapperStyle({
           diplay: block;
           height: 2px;
           bottom: 0;
-          left: 0;
+          left: 20px;
           right: 30px;
           background-color: ${statusColor.process.backgroundColor};
         }
