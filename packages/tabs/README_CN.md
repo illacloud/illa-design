@@ -8,7 +8,7 @@ yarn add @illa-design/tabs
 ## 引用组件
 
 ```jsx
-import { Tabs } from "@illa-dedign/tabs"
+import { Tabs } from "@illa-design/tabs"
 ```
 
 ## 组件接口(API)

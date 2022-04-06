@@ -11,7 +11,7 @@ yarn add @illa-design/trigger
 ## 引用组件
 
 ```jsx
-import { Trigger } from "@illa-dedign/trigger"
+import { Trigger } from "@illa-design/trigger"
 ```
 
 ## 组件接口(API)

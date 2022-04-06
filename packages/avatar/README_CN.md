@@ -11,7 +11,7 @@ yarn add @illa-design/avatar
 ## 引用组件
 
 ```jsx
-import { Avatar } from "@illa-dedign/avatar"
+import { Avatar } from "@illa-design/avatar"
 ```
 
 ## 组件接口（API）

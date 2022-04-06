@@ -15,7 +15,7 @@ yarn add @illa-design/typography
 ## 引用组件
 
 ```jsx
-import { Typography } from "@illa-dedign/typography"
+import { Typography } from "@illa-design/typography"
 ```
 
 ## 组件接口(API)

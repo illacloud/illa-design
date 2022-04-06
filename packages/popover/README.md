@@ -11,7 +11,7 @@ yarn add @illa-design/popover
 ## Import component
 
 ```jsx
-import { Popover } from "@illa-dedign/popover"
+import { Popover } from "@illa-design/popover"
 ```
 
 ## API

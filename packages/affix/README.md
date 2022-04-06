@@ -11,7 +11,7 @@ yarn add @illa-design/affix
 ## Import component
 
 ```jsx
-import { Affix } from "@illa-dedign/affix"
+import { Affix } from "@illa-design/affix"
 ```
 
 ## API

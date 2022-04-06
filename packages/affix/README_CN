@@ -11,7 +11,7 @@ yarn add @illa-design/affix
 ## 引用组件
 
 ```jsx
-import { Affix } from "@illa-dedign/affix"
+import { Affix } from "@illa-design/affix"
 ```
 
 ## 组件接口（API）

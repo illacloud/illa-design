@@ -11,6 +11,6 @@ yarn add @illa-design/comment
 ## Import component
 
 ```jsx
-import { Comment } from "@illa-dedign/comment"
+import { Comment } from "@illa-design/comment"
 ```
 
