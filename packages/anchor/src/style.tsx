@@ -3,8 +3,6 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 const linkActiveColor = globalColor(`--${illaPrefix}-gray-02`)
 
-export function applyAnchor() { }
-
 export function applyLinkStyle(
   isActive: boolean,
   lineless?: boolean,
@@ -12,22 +10,18 @@ export function applyLinkStyle(
   return css([linkCss, isActive && applyActiveLinkCss(lineless)])
 }
 
-export const linkCss = css([
-  css({
-    textDecoration: "none",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    display: "block",
-    color: globalColor(`--${illaPrefix}-gray-04`),
-  }),
-  css`
-    &:hover {
-      color: ${linkActiveColor};
-      background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-    }
-  `,
-])
+export const linkCss = css`
+  textdecoration: none;
+  overflow: hidden;
+  textoverflow: ellipsis;
+  whitespace: "nowrap";
+  display: block;
+  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+  &:hover {
+    color: ${linkActiveColor};
+    background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+  }
+`
 
 function applyActiveLinkCss(lineless?: boolean): SerializedStyles {
   return css`
