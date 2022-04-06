@@ -117,9 +117,9 @@ function applyConnectionStyle({
       large: 10,
     }
     pseudoStyle = css({
-      width: 8,
-      height: 8,
-      border: `3px solid ${color} `,
+      width: 6,
+      height: 6,
+      border: `2px solid ${globalColor(`--${illaPrefix}-gray-06`)} `,
       borderLeft: "none",
       borderBottom: "none",
       transform: "rotate(45deg)",
