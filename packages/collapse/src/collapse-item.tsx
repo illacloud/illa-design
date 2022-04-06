@@ -6,12 +6,12 @@ import {
   applyCollapseItem,
   applyCollapseItemContent,
   applyCollapseItemContentBox,
+  applyCollapseItemExtra,
   applyCollapseItemHeader,
   applyCollapseItemHeaderIcon,
   applyCollapseItemHeaderTittle,
   CollapseItemAnimation,
 } from "./style"
-import { applyDrawerSlider } from "@illa-design/drawer/src/style"
 
 export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
   (props, ref) => {
@@ -33,7 +33,8 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
         ? expandIcon
         : ctx.expandIcon
       : null
-    const mount = destroyOnHide ?? ctx.destroyOnHide ? isExpanded : true
+    const unmountOnExit = destroyOnHide ?? ctx.destroyOnHide
+    const mount = unmountOnExit ? isExpanded : true
     return (
       <div ref={ref} css={applyCollapseItem} {...otherProps}>
         <div
@@ -63,6 +64,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
           </div>
           {extra && (
             <div
+              css={applyCollapseItemExtra}
               onClick={(e) => {
                 e.stopPropagation()
               }}
@@ -74,13 +76,13 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
         <AnimatePresence initial={false}>
           {mount && (
             <motion.div
-              css={applyCollapseItemContent(isExpanded)}
+              css={applyCollapseItemContent}
               role={"region"}
               variants={CollapseItemAnimation}
-              // animate={isExpanded || destroyOnHide ? "enter" : "exit"}
-              // exit={"exit"}
-              // initial={destroyOnHide ? "exit" : false}
-              transition={{ duration: 0.3 }}
+              animate={unmountOnExit ? "enter" : isExpanded ? "enter" : "exit"}
+              exit={"exit"}
+              initial={unmountOnExit ? "exit" : false}
+              transition={{ duration: 0.2 }}
             >
               <div css={applyCollapseItemContentBox}>{children}</div>
             </motion.div>

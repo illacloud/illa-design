@@ -42,7 +42,7 @@ export const Collapse: CollapseComponent = forwardRef<
     children,
     bordered,
     expandIcon,
-    expandIconPosition,
+    expandIconPosition = "left",
     destroyOnHide,
     accordion,
     onChange,

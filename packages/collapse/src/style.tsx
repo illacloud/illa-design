@@ -19,6 +19,9 @@ export function applyCollapse(bordered?: boolean) {
 export const applyCollapseItem = css`
   box-sizing: border-box;
   border-bottom: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+  &:last-of-type {
+    border-bottom: none;
+  }
 `
 
 export function applyCollapseItemHeader(
@@ -28,7 +31,9 @@ export function applyCollapseItemHeader(
 ): SerializedStyles {
   const paddingLeft =
     position === "left"
-      ? ""
+      ? css`
+          padding-right: 12px;
+        `
       : css`
           padding-left: 12px;
         `
@@ -92,22 +97,22 @@ export function applyCollapseItemHeaderTittle(
   `
 }
 
-export function applyCollapseItemContent(
-  isExpanded?: boolean,
-): SerializedStyles {
-  return css`
-    font-size: 14px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    position: relative;
-    overflow: hidden;
-  `
-}
+export const applyCollapseItemContent = css`
+  font-size: 14px;
+  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  position: relative;
+  overflow: hidden;
+`
 
 export const applyCollapseItemContentBox = css`
   padding: 9px 32px;
 `
 
+export const applyCollapseItemExtra = css`
+  font-size: 8px;
+`
+
 export const CollapseItemAnimation: Variants = {
-  enter: { height: 0, opacity: 0 },
-  exit: { height: "auto", opacity: 1 },
+  enter: { height: "auto", opacity: 1 },
+  exit: { height: 0, opacity: 0 },
 }
