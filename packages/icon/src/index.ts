@@ -54,4 +54,4 @@ export * from "./icons/sorter-up"
 export * from "./icons/sorter-down"
 export * from "./icons/filter"
 export * from "./icons/time"
-export * from './icons/calendar'
+export * from "./icons/calendar"

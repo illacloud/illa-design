@@ -51,7 +51,7 @@ import {
   UploadIcon,
   WarningCircleIcon,
   WarningIcon,
-  CalendarIcon
+  CalendarIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list

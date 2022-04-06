@@ -31,34 +31,33 @@ export const Picker: FC<CommonPickerProps> = (props) => {
   }
 
   return (
-    <Trigger
-      showArrow={false}
-      position={position}
-      trigger={"click"}
-      colorScheme={"white"}
-      popupVisible={popupVisible}
-      content={pickerContent}
-      closeOnClick={false}
-      clickOutsideToClose
-      onVisibleChange={tryUpdatePopupVisible}
-    >
-      <Input
-        disabled={typeof disabled === "boolean" ? disabled : false}
-        placeholder={typeof placeholder === "string" ? placeholder : ""}
-        size={size}
-        value={inputVal}
-        style={{ width: 280 }}
-        suffix={{ render: <CalendarIcon /> }}
-        allowClear={allowClear}
-        error={error}
-        onFocus={() => {
-          !popupVisible && tryUpdatePopupVisible(true)
-        }}
-        onClear={() => onClearDate?.()}
-        onChange={(value: string) => {
-          editable && onChangeInputVal?.(value)
-        }}
-      />
-    </Trigger>
+    <>
+      <Trigger
+        showArrow={false}
+        position={position}
+        trigger={"click"}
+        colorScheme={"white"}
+        popupVisible={popupVisible}
+        content={pickerContent}
+        closeOnClick={false}
+        clickOutsideToClose
+        onVisibleChange={tryUpdatePopupVisible}
+      >
+        <Input
+          disabled={typeof disabled === "boolean" ? disabled : false}
+          placeholder={typeof placeholder === "string" ? placeholder : ""}
+          size={size}
+          value={inputVal}
+          style={{ width: 280 }}
+          suffix={{ render: <CalendarIcon /> }}
+          allowClear={allowClear}
+          error={error}
+          onClear={() => onClearDate?.()}
+          onChange={(value: string) => {
+            editable && onChangeInputVal?.(value)
+          }}
+        />
+      </Trigger>
+    </>
   )
 }

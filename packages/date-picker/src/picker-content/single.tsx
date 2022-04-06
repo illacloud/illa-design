@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useState } from "react"
+import { forwardRef, useCallback, cloneElement, useState } from "react"
 import { throttleByRaf } from "@illa-design/system"
 import { Button } from "@illa-design/button"
 import {
@@ -9,23 +9,23 @@ import {
 } from "../interface"
 // import { Calendar } from "@illa-design/calendar"
 import { Calendar } from "../../../calendar/src/index"
-import dayjs from "dayjs"
+import { TimePickerPopup } from "../../../time-picker/src/time-picker-popup"
+import { Dayjs } from "dayjs"
+import { dayjs } from "@illa-design/system"
 import utc from "dayjs/plugin/utc"
 import tz from "dayjs/plugin/timezone"
 import { Picker } from "../picker"
 import {
-  applySinglePickerContentCss,
   triContentCommonCss,
   applyShortContainerCss,
   shortCutsCss,
-  selectersContainerCss,
+  singlePickerContentCss,
   showTimeContainerCss,
   showTimeHeaderCss,
-  showTimeContentCss,
-  laneItemCss,
-  scrollItemCss,
-  applyPickerFooterCss,
-  okButtonCss,
+  popupCss,
+  horShortcuts,
+  vertShortcuts,
+  nowButtonCss,
 } from "../style"
 
 const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
@@ -52,7 +52,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       defaultPickerValue,
       showTime = true,
       onOk,
-      format = "YYYY-MM-DD",
+      format,
       value,
       defaultValue,
       showNowBtn = true,
@@ -60,6 +60,10 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
 
       ...restProps
     } = props
+
+    // dayjs.extend(utc)
+    // dayjs.extend(tz)
+    // dayjs.tz.setDefault("Asia/Tokyo")
 
     let initValue =
       value || defaultValue
@@ -74,39 +78,60 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     const mergedDefaultValue = value || defaultPickerValue
     const showTimeMerged = showTime && type === "day"
 
-    // dayjs.extend(utc)
-    // dayjs.extend(tz)
-    // dayjs.tz.setDefault("Asia/Tokyo")
+    const [valueShow, setValueShow] = useState<Dayjs | Dayjs[]>()
 
-    const changeDate = (date: dayjs.Dayjs) => {
-      let fotmatDate = dayjs(date)
-      let val
+    const [calendarValue, setCalendarValue] = useState<Dayjs>(dayjs())
+
+    const initFormat = () => {
+      let result
       switch (type) {
         case "day":
-          val = fotmatDate.format("YYYY-MM-DD")
+          result = showTime ? "YYYY-MM-DD hh:mm:ss" : "YYYY-MM-DD"
           break
         case "month":
-          val = fotmatDate.format("YYYY-MM")
+          result = "YYYY-MM"
           break
         case "year":
-          val = fotmatDate.format("YYYY")
+          result = "YYYY"
           break
-        default:
-          val = fotmatDate.format("YYYY-MM-DD")
       }
-      setInputVal(val)
+      return result
+    }
+    let finalFormat = format || initFormat()
 
-      onSelect?.(fotmatDate.format("YYYY-MM-DD hh:mm:ss"), fotmatDate)
+    const finalValue = (calendar?: Dayjs | null, timePicker?: Dayjs | null) => {
+      calendar = calendar || calendarValue
+      timePicker = timePicker || dayjs()
+      return dayjs(
+        `${calendar.format("YYYY-MM-DD")} ${timePicker.format("hh:mm:ss")}`,
+      )
+    }
+
+    const changeDate = (date: dayjs.Dayjs) => {
+      let value = finalValue(date)
+      let valueFormat = value.format(finalFormat as string)
+      onSelect?.(valueFormat, value)
       if (!showTimeMerged) {
-        onChange?.(fotmatDate.format("YYYY-MM-DD hh:mm:ss"), fotmatDate)
+        onChange?.(valueFormat, value)
         setShowTrigger(false)
+        setInputVal(valueFormat)
+      } else {
+        setCalendarValue(date)
       }
     }
     const clearDate = () => {
       setInputVal("")
+      setCalendarValue(dayjs())
       setCalendarShortCuts("clear")
 
       onClear?.()
+      setShowTrigger(false)
+    }
+
+    const clickNow = () => {
+      let current = dayjs()
+      setInputVal(current.format(finalFormat as string))
+      onChange?.(current.format(finalFormat as string), current)
       setShowTrigger(false)
     }
 
@@ -125,6 +150,16 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
 
     const changeInputVal = (value: string) => {
       setInputVal(value)
+    }
+
+    const onConfirmValue = (time: Dayjs) => {
+      let value = finalValue(calendarValue, time)
+      let valueFormat = value.format(finalFormat as string)
+      onChange?.(valueFormat, value)
+      onOk?.(valueFormat, value)
+      setShowTrigger(false)
+      setInputVal(valueFormat)
+      setCalendarValue(dayjs())
     }
 
     function ShortcutsCompt() {
@@ -173,15 +208,17 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
           editable={editable}
           onChangeInputVal={changeInputVal}
           pickerContent={
-            <div css={applySinglePickerContentCss(shortcutsPlacementLeft)}>
-              <div css={selectersContainerCss}>
-                {shortcutsPlacementLeft && <ShortcutsCompt />}
+            <div css={singlePickerContentCss}>
+              {shortcutsPlacementLeft && (
+                <div css={vertShortcuts}>
+                  <ShortcutsCompt />
+                </div>
+              )}
+              <div>
                 <Calendar
                   panel={true}
                   mode={type}
-                  panelTodayBtn={
-                    showNowBtn && shortcuts && !shortcutsPlacementLeft
-                  }
+                  panelTodayBtn={false}
                   css={triContentCommonCss}
                   onChange={(date: dayjs.Dayjs) => {
                     changeDate(date)
@@ -191,74 +228,41 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                   selectDayFromProps={calendarShortCuts}
                   defaultPickerValue={dayjs(mergedDefaultValue)}
                 />
-                {showTimeMerged && (
-                  <div css={showTimeContainerCss}>
-                    <div css={showTimeHeaderCss}>time</div>
-                    <div css={showTimeContentCss}>
-                      <div css={laneItemCss}>
-                        {new Array(24).fill(1).map((item, idx) => {
-                          return (
-                            <div css={scrollItemCss} key={idx}>
-                              {idx < 9 && "0"}
-                              {idx + 1}
-                            </div>
-                          )
-                        })}
-                      </div>
-                      <div css={laneItemCss}>
-                        {new Array(60).fill(1).map((item, idx) => {
-                          return (
-                            <div css={scrollItemCss} key={idx}>
-                              {idx < 9 && "0"}
-                              {idx + 1}
-                            </div>
-                          )
-                        })}
-                      </div>
-                      <div css={laneItemCss}>
-                        {new Array(60).fill(1).map((item, idx) => {
-                          return (
-                            <div css={scrollItemCss} key={idx}>
-                              {idx < 9 && "0"}
-                              {idx + 1}
-                            </div>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-              {(shortcuts && !shortcutsPlacementLeft) ||
-              showTimeMerged ||
-              showNowBtn ? (
-                <div css={applyPickerFooterCss(showTimeMerged, showNowBtn)}>
-                  {shortcuts && !shortcutsPlacementLeft && <ShortcutsCompt />}
-                  {!(shortcuts && !shortcutsPlacementLeft) && showNowBtn && (
-                    <div
-                      css={shortCutsCss}
+                <div css={horShortcuts}>
+                  {shortcuts && !shortcutsPlacementLeft ? (
+                    <ShortcutsCompt />
+                  ) : showNowBtn ? (
+                    <Button
+                      colorScheme="gray"
+                      css={nowButtonCss}
                       onClick={() => {
-                        changeDate(dayjs())
-                        setShowTrigger(false)
+                        clickNow()
                       }}
                     >
                       Now
-                    </div>
-                  )}
-                  {showTimeMerged && (
-                    <Button
-                      css={okButtonCss}
-                      onClick={() => {
-                        onChange?.(inputVal, dayjs(inputVal))
-                        onOk?.(inputVal, dayjs(inputVal))
-                        setShowTrigger(false)
-                      }}
-                    >
-                      OK
                     </Button>
-                  )}
+                  ) : null}
+                  {shortcuts && !shortcutsPlacementLeft && <ShortcutsCompt />}
                 </div>
-              ) : null}
+              </div>
+
+              {showTimeMerged && (
+                <div css={showTimeContainerCss}>
+                  <div css={showTimeHeaderCss}>time</div>
+                  <div css={popupCss}>
+                    {cloneElement(<TimePickerPopup />, {
+                      isRangePicker: false,
+                      format: "hh:mm:ss",
+                      valueShow: valueShow,
+                      setValueShow,
+                      popupVisible: showTrigger,
+                      onConfirmValue,
+                      showNowBtn: false,
+                      ...restProps,
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           }
         />

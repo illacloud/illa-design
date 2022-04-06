@@ -2,8 +2,8 @@ import { FC, useState } from "react"
 import { RangePickerBodyProps } from "./interface"
 // import { Trigger } from "@illa-design/trigger"
 import { Trigger } from "../../trigger/src/index"
-import { Input } from "@illa-design/input"
 import { CalendarIcon } from "@illa-design/icon"
+import { Input, RangeInput } from "@illa-design/input"
 
 export const PickerRange: FC<RangePickerBodyProps> = (props) => {
   const {
@@ -43,7 +43,7 @@ export const PickerRange: FC<RangePickerBodyProps> = (props) => {
       clickOutsideToClose
       onVisibleChange={tryUpdatePopupVisible}
     >
-      <Input
+      {/* <Input
         // disabled={typeof disabled === 'boolean' ? disabled : false}
         // placeholder={typeof placeholder === "string" ? placeholder : ""}
         size={size}
@@ -59,7 +59,8 @@ export const PickerRange: FC<RangePickerBodyProps> = (props) => {
         onChange={(value: string) => {
           editable && onChangeInputVal?.(value)
         }}
-      />
+      /> */}
+      <RangeInput suffix={{ render: <CalendarIcon /> }} />
     </Trigger>
   )
 }

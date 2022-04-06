@@ -1,5 +1,5 @@
 import { forwardRef, useState } from "react"
-import { RangePickerProps } from "../interface"
+import { CommonRangeProps } from "../interface"
 // import { Calendar } from "@illa-design/calendar"
 import { Calendar } from "../../../calendar/src/index"
 import dayjs from "dayjs"
@@ -11,7 +11,7 @@ import {
   rangeRightContentCss,
 } from "../style"
 
-export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
+export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
   (props, ref) => {
     const {
       _css,
