@@ -5,13 +5,13 @@
 ## 安装
 
 ```jsx
-yarn add @illa-design/inputNumber	
+yarn add @illa-design/input-number	
 ```
 
 ## 引用组件
 
 ```bash
-import { InputNumber } from "@illa-design/inputNumber"
+import { InputNumber } from "@illa-design/input-number"
 ```
 
 ## 组件接口（API）

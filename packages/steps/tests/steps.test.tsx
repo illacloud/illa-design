@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { LikeIcon } from "@illa-design/icon"
 import { Steps } from "../src"
 import { ReactNode } from "react"
@@ -10,9 +9,9 @@ const { Step } = Steps
 test("Steps render with title", () => {
   render(
     <Steps>
-      <Step title="Succeed"></Step>
-      <Step title="Process"></Step>
-      <Step title="Wait"></Step>
+      <Step title="Succeed" />
+      <Step title="Process" />
+      <Step title="Wait" />
     </Steps>,
   )
 
@@ -24,8 +23,8 @@ test("Steps render with title", () => {
 test("Steps render with description", () => {
   render(
     <Steps>
-      <Step title="Succeed" description="This is a description"></Step>
-      <Step title="Process"></Step>
+      <Step title="Succeed" description="This is a description" />
+      <Step title="Process" />
     </Steps>,
   )
 
@@ -33,7 +32,7 @@ test("Steps render with description", () => {
 })
 
 test("Steps render without step components should render nothing", () => {
-  render(<Steps data-testid="steps"></Steps>)
+  render(<Steps data-testid="steps" />)
 
   expect(screen.getByTestId("steps").children.length).toBe(0)
 })
@@ -51,9 +50,9 @@ test("Steps render with only span element should render nothing", () => {
 test("Steps render with current step 2", () => {
   render(
     <Steps current={2}>
-      <Step title="Succeed"></Step>
-      <Step title="Process"></Step>
-      <Step title="Wait"></Step>
+      <Step title="Succeed" />
+      <Step title="Process" />
+      <Step title="Wait" />
     </Steps>,
   )
 
@@ -65,8 +64,8 @@ test("Steps render with current step 2", () => {
 test("Steps render vertical label", () => {
   render(
     <Steps data-testid="steps" labelPlacement="vertical">
-      <Step title="Succeed"></Step>
-      <Step title="Process"></Step>
+      <Step title="Succeed" />
+      <Step title="Process" />
     </Steps>,
   )
 
@@ -76,8 +75,8 @@ test("Steps render vertical label", () => {
 test("Steps render index", () => {
   render(
     <Steps>
-      <Step title="Succeed"></Step>
-      <Step title="Process"></Step>
+      <Step title="Succeed" />
+      <Step title="Process" />
     </Steps>,
   )
 
@@ -91,7 +90,7 @@ test("Steps render custom icon", () => {
         icon={<LikeIcon data-testid="link-icon" />}
         title="Succeed"
         description="This is a description"
-      ></Step>
+      />
     </Steps>,
   )
   expect(screen.getByTestId("link-icon")).toBeInTheDocument()
@@ -103,7 +102,7 @@ test("Steps render custom dot", () => {
   )
   render(
     <Steps customDot={customDot}>
-      <Step title="Succeed" description="This is a description"></Step>
+      <Step title="Succeed" description="This is a description" />
     </Steps>,
   )
   expect(screen.getByTitle("dot-index-1")).toBeInTheDocument()
@@ -112,9 +111,9 @@ test("Steps render custom dot", () => {
 test("Steps render with process status", () => {
   render(
     <Steps data-testid="steps">
-      <Step title="Finish"></Step>
-      <Step title="Process"></Step>
-      <Step title="Wait"></Step>
+      <Step title="Finish" />
+      <Step title="Process" />
+      <Step title="Wait" />
     </Steps>,
   )
   expect(screen.getByText("2")).toBeInTheDocument()
@@ -125,7 +124,7 @@ test("Steps render with process status", () => {
 test("Steps render with error status", () => {
   render(
     <Steps data-testid="steps" status="error">
-      <Step title="Error"></Step>
+      <Step title="Error" />
     </Steps>,
   )
 
@@ -136,7 +135,7 @@ test("Steps render with error status", () => {
 test("Steps render with finish status", () => {
   render(
     <Steps data-testid="steps" status="finish">
-      <Step title="Finish"></Step>
+      <Step title="Finish" />
     </Steps>,
   )
 
@@ -147,7 +146,7 @@ test("Steps render with finish status", () => {
 test("Steps render with no line", () => {
   render(
     <Steps data-testid="steps" lineless>
-      <Step title="Error"></Step>
+      <Step title="Error" />
     </Steps>,
   )
 
@@ -157,8 +156,8 @@ test("Steps render with no line", () => {
 test("Steps render with vertical", () => {
   render(
     <Steps data-testid="steps" direction="vertical">
-      <Step title="Succeeded"></Step>
-      <Step title="Wait"></Step>
+      <Step title="Succeeded" />
+      <Step title="Wait" />
     </Steps>,
   )
 
@@ -168,8 +167,8 @@ test("Steps render with vertical", () => {
 test("Steps render with dot variant", () => {
   render(
     <Steps data-testid="steps" variant="dot">
-      <Step title="Succeeded"></Step>
-      <Step title="Wait"></Step>
+      <Step title="Succeeded" />
+      <Step title="Wait" />
     </Steps>,
   )
 
@@ -179,8 +178,8 @@ test("Steps render with dot variant", () => {
 test("Steps render with dot variant with vertical direction", () => {
   render(
     <Steps data-testid="steps" variant="dot" direction="vertical">
-      <Step title="Succeeded"></Step>
-      <Step title="Wait"></Step>
+      <Step title="Succeeded" />
+      <Step title="Wait" />
     </Steps>,
   )
 
@@ -190,8 +189,8 @@ test("Steps render with dot variant with vertical direction", () => {
 test("Steps render with navigation variant", () => {
   render(
     <Steps data-testid="steps" variant="navigation">
-      <Step title="Succeeded"></Step>
-      <Step title="Wait"></Step>
+      <Step title="Succeeded" />
+      <Step title="Wait" />
     </Steps>,
   )
 
@@ -202,8 +201,8 @@ test("Steps onChange should be triggered", () => {
   const clickEvent = jest.fn()
   render(
     <Steps data-testid="steps" onChange={clickEvent} current={1}>
-      <Step title="Succeeded"></Step>
-      <Step title="Wait"></Step>
+      <Step title="Succeeded" />
+      <Step title="Wait" />
     </Steps>,
   )
 
@@ -215,8 +214,8 @@ test("Steps onChange should be triggered if step is disabled", () => {
   const clickEvent = jest.fn()
   render(
     <Steps data-testid="steps" onChange={clickEvent} current={1}>
-      <Step title="Succeeded"></Step>
-      <Step title="Wait" disabled></Step>
+      <Step title="Succeeded" />
+      <Step title="Wait" disabled />
     </Steps>,
   )
 
@@ -227,9 +226,9 @@ test("Steps onChange should be triggered if step is disabled", () => {
 test("Steps with vertical direction and error status should render error style", () => {
   render(
     <Steps data-testid="steps" direction="vertical" current={2} status="error">
-      <Step title="Succeeded"></Step>
-      <Step title="Error"></Step>
-      <Step title="Wait"></Step>
+      <Step title="Succeeded" />
+      <Step title="Error" />
+      <Step title="Wait" />
     </Steps>,
   )
 
@@ -239,9 +238,9 @@ test("Steps with vertical direction and error status should render error style",
 test("Only last step render error style", () => {
   render(
     <Steps data-testid="steps" direction="vertical" current={3} status="error">
-      <Step title="Succeeded"></Step>
-      <Step title="Error"></Step>
-      <Step title="Wait"></Step>
+      <Step title="Succeeded" />
+      <Step title="Error" />
+      <Step title="Wait" />
     </Steps>,
   )
 
@@ -257,9 +256,9 @@ test("Steps with dot variant and error status should render error style", () => 
       current={2}
       status="error"
     >
-      <Step title="Succeeded"></Step>
-      <Step title="Error"></Step>
-      <Step title="Wait"></Step>
+      <Step title="Succeeded" />
+      <Step title="Error" />
+      <Step title="Wait" />
     </Steps>,
   )
 

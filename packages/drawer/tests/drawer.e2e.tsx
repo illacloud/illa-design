@@ -82,7 +82,7 @@ it("Drawer renders with correctly", () => {
     </DemoDrawer>,
   )
   cy.findByText("Open Drawer").click()
-  expect(cy.findByText("Hello")).exist
+  cy.findByText("Hello").should("exist")
   unmount()
 })
 

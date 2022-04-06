@@ -17,7 +17,7 @@ export default {
 
 export const timePicker: Story<TimePickerProps> = (args) => {
   return (
-    <Space direction={'vertical'} size={'25px'}>
+    <Space direction={"vertical"} size={"25px"}>
       <TimePicker {...args} />
       <TimePicker use12Hours format="hh:mm:ss a" {...args} />
       <TimePicker disabled {...args} />
