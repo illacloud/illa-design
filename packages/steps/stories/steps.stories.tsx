@@ -17,11 +17,19 @@ export default {
 const Template: Story<StepsProps> = (args) => {
   const { onChange, ...restArgs } = args
   return (
-    <Steps {...restArgs}>
-      <Step title="Succeeded" />
-      <Step title="Processing" />
-      <Step title="Pending" />
-    </Steps>
+    <Space direction={"vertical"}>
+      <Steps {...restArgs}>
+        <Step title="Succeeded" />
+        <Step title="Processing" />
+        <Step title="Pending" />
+      </Steps>
+
+      <Steps labelPlacement={"vertical"} {...restArgs}>
+        <Step title="Succeeded" />
+        <Step title="Processing" />
+        <Step title="Pending" />
+      </Steps>
+    </Space>
   )
 }
 
