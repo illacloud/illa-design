@@ -68,9 +68,9 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     }
 
     if (status === "finish") {
-      return <SuccessIcon size={"8.9px"} />
+      return <SuccessIcon size={"12"} />
     } else if (status === "error") {
-      return <CloseIcon size={"7.5px"} />
+      return <CloseIcon size={"12"} />
     }
     return index
   }
