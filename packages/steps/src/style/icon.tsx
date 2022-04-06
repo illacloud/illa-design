@@ -45,19 +45,19 @@ function applyIconColor({
 
   switch (status) {
     case "wait":
-      ; ({ color, backgroundColor, dotColor } = statusColor.wait)
+      ;({ color, backgroundColor, dotColor } = statusColor.wait)
       break
 
     case "process":
-      ; ({ color, backgroundColor, dotColor } = statusColor.process)
+      ;({ color, backgroundColor, dotColor } = statusColor.process)
       break
 
     case "finish":
-      ; ({ color, backgroundColor, dotColor } = statusColor.finish)
+      ;({ color, backgroundColor, dotColor } = statusColor.finish)
       break
 
     case "error":
-      ; ({ color, backgroundColor, dotColor } = statusColor.error)
+      ;({ color, backgroundColor, dotColor } = statusColor.error)
       break
   }
 

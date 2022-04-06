@@ -38,7 +38,9 @@ export function applyWrapperStyle({
     })
 
     if (status === "process") {
-      const right = isVerticalLabel({ variant, direction, labelPlacement }) ? 10 : 30;
+      const right = isVerticalLabel({ variant, direction, labelPlacement })
+        ? 10
+        : 30
       navigactionProcessStatusIndicator = css`
         &:after {
           content: "";
