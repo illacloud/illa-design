@@ -20,7 +20,6 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     index = 1,
     current = 1,
     variant = "line",
-    size = "small",
     title,
     direction = "horizontal",
     labelPlacement = "horizontal",
@@ -35,6 +34,9 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     lineless = false,
     ...restProps
   } = props
+
+  // fix small size
+  const size = "small"
 
   let currentStatus: StepStatus = "wait"
 
@@ -66,9 +68,9 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     }
 
     if (status === "finish") {
-      return <SuccessIcon />
+      return <SuccessIcon size={"8.9px"} />
     } else if (status === "error") {
-      return <CloseIcon />
+      return <CloseIcon size={"7.5px"} />
     }
     return index
   }
