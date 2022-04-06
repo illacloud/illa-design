@@ -1,10 +1,17 @@
-import React, { useState, useEffect, useCallback, useRef, useReducer } from "react"
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useReducer,
+} from "react"
 import isEqual from "react-fast-compare"
 import { Option } from "./option"
 import { KeyCode, isFunction, isNumber } from "@illa-design/system"
 import { CascaderPanelProps, OptionProps } from "../interface"
 import { Node, NodeProps } from "../node"
 import useRefs from "../hooks"
+import { applyOptionStyle, optionListStyle, optionListWrapper } from "../style"
 
 const getLegalActiveNode = (options: any) => {
   for (let index = 0; index < options.length; index++) {
@@ -44,20 +51,27 @@ function useForceUpdate() {
   return dispatch
 }
 
-export const CascaderPanel = <T extends OptionProps>(props: CascaderPanelProps<T>) => {
-  const [activeOptionList, setActiveOptionList] = useRefs<HTMLLIElement|null>()
-  const [refWrapper, setRefWrapper] = useRefs<HTMLUListElement|null>()
+export const CascaderPanel = <T extends OptionProps>(
+  props: CascaderPanelProps<T>,
+) => {
+  const [activeOptionList, setActiveOptionList] =
+    useRefs<HTMLLIElement | null>()
+  const [refWrapper, setRefWrapper] = useRefs<HTMLUListElement | null>()
   const forceUpdate = useForceUpdate()
   const {
     store,
     prefixCls,
     value,
     multiple,
-    renderFooter,
-    renderOption,
+    popupVisible,
     showEmptyChildren,
     loadMore,
     renderEmpty,
+    expandTrigger,
+    changeOnSelect,
+    onDoubleClickOption,
+    onChange,
+    onEsc,
   } = props
 
   const [activeNode, setActiveNode] = useState(
@@ -65,9 +79,7 @@ export const CascaderPanel = <T extends OptionProps>(props: CascaderPanelProps<T
   )
 
   const options = store.getOptions()
-  const triggerChange = (newValue: string[][]) => {
-    props.onChange && props.onChange(newValue)
-  }
+
   const loadData = async (option: any) => {
     if (!option.isLeaf && isFunction(loadMore) && !option.children) {
       option.setLoading(true)
@@ -78,7 +90,7 @@ export const CascaderPanel = <T extends OptionProps>(props: CascaderPanelProps<T
           option.pathValue.length,
         )
         store.appendOptionChildren(option, options)
-        store.setNodeCheckedByValue(props.value)
+        store.setNodeCheckedByValue(value)
       } catch (e) {
         console.error(e)
       }
@@ -93,10 +105,10 @@ export const CascaderPanel = <T extends OptionProps>(props: CascaderPanelProps<T
     }
     setActiveNode(option)
     await loadData(option)
-    // 在键盘上下左右键操作时,isEnterClick 是false，不触发triggerChange
+    // 在键盘上下左右键操作时,isEnterClick 是false，不触发onChange
     if (!multiple && isEnterClick) {
-      if (props.changeOnSelect || option.isLeaf) {
-        triggerChange([option.pathValue])
+      if (changeOnSelect || option.isLeaf) {
+        onChange?.([option.pathValue])
       }
     }
   }
@@ -106,18 +118,18 @@ export const CascaderPanel = <T extends OptionProps>(props: CascaderPanelProps<T
     const beforeCheckedNodes = store
       .getCheckedNodes()
       .map((node) => JSON.stringify(node.pathValue))
-    const inexistenceValue = (props.value || []).filter(
+    const inexistenceValue = (value || []).filter(
       (x) => beforeCheckedNodes.indexOf(JSON.stringify(x)) === -1,
     )
     option.setCheckedState(checked)
     const checkedNodes = store.getCheckedNodes()
-    const value = checkedNodes.map((node) => node.pathValue)
-    const newValue = [...inexistenceValue, ...value]
+    const _value = checkedNodes.map((node) => node.pathValue)
+    const newValue = [...inexistenceValue, ..._value]
 
     // 按照当前props.value的顺序排序
     newValue.sort((a, b) => {
-      const aIndex = props.value?.findIndex((item) => isEqual(item, a))
-      const bIndex = props.value?.findIndex((item) => isEqual(item, b))
+      const aIndex = value?.findIndex((item) => isEqual(item, a))
+      const bIndex = value?.findIndex((item) => isEqual(item, b))
 
       if (aIndex === -1) {
         return 1
@@ -139,11 +151,11 @@ export const CascaderPanel = <T extends OptionProps>(props: CascaderPanelProps<T
     }
 
     setActiveNode(option)
-    if (!props.changeOnSelect) {
+    if (!changeOnSelect) {
       // 父子节点关联，选中复选框时执行loadMore，否则直接选中父节点
       loadData(option)
     }
-    triggerChange(newValue)
+    onChange?.(newValue)
   }
 
   const handleKeyDown = useCallback(
@@ -157,7 +169,7 @@ export const CascaderPanel = <T extends OptionProps>(props: CascaderPanelProps<T
       switch (keyCode) {
         case KeyCode.Esc: {
           e.preventDefault()
-          props?.onEsc?.()
+          onEsc?.()
           break
         }
         case KeyCode.ArrowDown:
@@ -251,7 +263,7 @@ export const CascaderPanel = <T extends OptionProps>(props: CascaderPanelProps<T
   }, [store])
 
   useEffect(() => {
-    if (props.popupVisible && options.length) {
+    if (popupVisible && options.length) {
       const scrollTo = () => {
         activeOptionList.forEach((activeOption: any, i: number) => {
           // activeOption &&
@@ -265,10 +277,10 @@ export const CascaderPanel = <T extends OptionProps>(props: CascaderPanelProps<T
         scrollTo()
       })
     }
-  }, [props.popupVisible, activeNode])
+  }, [popupVisible, activeNode])
 
   useEffect(() => {
-    if (props.popupVisible) {
+    if (popupVisible) {
       document.addEventListener("keydown", handleKeyDown)
     } else {
       document.removeEventListener("keydown", handleKeyDown)
@@ -276,7 +288,7 @@ export const CascaderPanel = <T extends OptionProps>(props: CascaderPanelProps<T
     return () => {
       document.removeEventListener("keydown", handleKeyDown)
     }
-  }, [props.popupVisible, handleKeyDown])
+  }, [popupVisible, handleKeyDown])
   const pathNodes = activeNode ? activeNode.getPathNodes() : []
   const menus = [options]
   pathNodes.forEach((option: Node<T>) => {
@@ -284,96 +296,79 @@ export const CascaderPanel = <T extends OptionProps>(props: CascaderPanelProps<T
   })
 
   return (
-    <React.Fragment>
+    <>
       {menus.map((list, level) => {
-        const footer = renderFooter
-          ? renderFooter(level, activeNode || null)
-          : null
-
         if (list.length === 0 && !showEmptyChildren && level === 0) {
           return renderEmpty?.()
         }
         return list.length === 0 && !showEmptyChildren ? null : (
-          <div key={level}>
-            <div style={{ zIndex: menus.length - level }}>
-              {/*dropdownColumnRender*/}
-              <div>
-                {list.length === 0 ? (
-                  renderEmpty && renderEmpty(120)
-                ) : (
-                  <ul ref={(node) => setRefWrapper(node, level)}>
-                    {list.map((option) => {
-                      let isActive = false
-                      if (activeNode) {
-                        isActive = activeNode.pathValue[level] === option.value
-                      }
-                      return (
-                        <li
-                          key={option.value}
-                          ref={(ref) => {
-                            if (isActive) {
-                              setActiveOptionList(ref, level)
-                            }
-                          }}
-                        >
-                          <Option
-                            prefixCls={prefixCls}
-                            multiple={multiple}
-                            option={option}
-                            // 叶子节点被选中
-                            selected={
-                              !multiple &&
-                              option.isLeaf &&
-                              isEqual(props.value, option.pathValue)
-                            }
-                            onMouseEnter={() => {
-                              if (props.expandTrigger === "hover") {
-                                setActiveNode(option)
-                                loadData(option)
-                              }
-                            }}
-                            renderOption={() => {
-                              if (renderOption) {
-                                return renderOption(option?._data, level)
-                              }
-                            }}
-                            onClickOption={() => {
-                              if (
-                                option.isLeaf &&
-                                multiple &&
-                                !option.disableCheckbox
-                              ) {
-                                onMultipleChecked(option, !option._checked)
-                              } else {
-                                onClickOption(option)
-                              }
-                            }}
-                            onMultipleChecked={(checked: boolean) => {
-                              onMultipleChecked(option, checked)
-                            }}
-                            onDoubleClickOption={props.onDoubleClickOption}
-                          />
-                        </li>
-                      )
-                    })}
-                  </ul>
-                )}
-                {footer && (
-                  <div
-                    onMouseDown={(e) => {
-                      // 这里是为了阻止冒泡到面板节点的onMousedown事件。因为弹出层会阻止默认行为，避免选择框失去焦点
-                      // 如果这里不阻止冒泡，footer里如果渲染了input标签，将无法被focus
-                      e.stopPropagation()
-                    }}
-                  >
-                    {footer}
-                  </div>
-                )}
-              </div>
-            </div>
+          <div
+            css={optionListWrapper}
+            key={level}
+            style={{ zIndex: menus.length - level }}
+          >
+            {list.length === 0 ? (
+              renderEmpty && renderEmpty(120)
+            ) : (
+              <ul
+                css={optionListStyle}
+                ref={(node) => setRefWrapper(node, level)}
+              >
+                {list.map((option) => {
+                  let isActive = false
+                  if (activeNode) {
+                    isActive = activeNode.pathValue[level] === option.value
+                  }
+                  return (
+                    <li
+                      css={applyOptionStyle()}
+                      key={option.value}
+                      ref={(ref) => {
+                        if (isActive) {
+                          setActiveOptionList(ref, level)
+                        }
+                      }}
+                    >
+                      <Option
+                        prefixCls={prefixCls}
+                        multiple={multiple}
+                        option={option}
+                        // 叶子节点被选中
+                        selected={
+                          !multiple &&
+                          option.isLeaf &&
+                          isEqual(value, option.pathValue)
+                        }
+                        onMouseEnter={() => {
+                          if (expandTrigger === "hover") {
+                            setActiveNode(option)
+                            loadData(option)
+                          }
+                        }}
+                        onClickOption={() => {
+                          if (
+                            option.isLeaf &&
+                            multiple &&
+                            !option.disableCheckbox
+                          ) {
+                            onMultipleChecked(option, !option._checked)
+                          } else {
+                            onClickOption(option)
+                          }
+                        }}
+                        onMultipleChecked={(checked: boolean) => {
+                          onMultipleChecked(option, checked)
+                        }}
+                        onDoubleClickOption={onDoubleClickOption}
+                      />
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
           </div>
         )
       })}
-    </React.Fragment>
+    </>
   )
 }

@@ -3,6 +3,7 @@ import { Checkbox } from "@illa-design/checkbox"
 import { NextIcon, CheckmarkIcon, LoadingIcon } from "@illa-design/icon"
 import { Node } from "../node"
 import { OptionProps } from "../interface"
+import { applyOptionLabelStyle, applyOptionStyle } from "../style"
 
 export interface CascaderOptionProps<T> {
   prefixCls?: string
@@ -10,7 +11,6 @@ export interface CascaderOptionProps<T> {
   selected?: boolean
   isLeaf?: boolean
   option: Node<T>
-  renderOption?: () => ReactNode
   onClickOption?: () => void
   onDoubleClickOption?: () => void
   onMouseEnter?: () => void
@@ -20,29 +20,19 @@ export interface CascaderOptionProps<T> {
 export const Option = <T extends OptionProps>(
   props: CascaderOptionProps<T>,
 ) => {
-  const { multiple, option, renderOption, selected } = props
+  const {
+    multiple,
+    option,
+    selected,
+    onMultipleChecked,
+    onMouseEnter,
+    onClickOption,
+    onDoubleClickOption,
+  } = props
 
   const checkboxDisabled =
     option.disabled || (multiple && option.disableCheckbox)
 
-  const dom = (
-    <div
-      onClick={option.disabled ? undefined : props.onClickOption}
-      onMouseEnter={
-        option.isLeaf || option.disabled ? undefined : props.onMouseEnter
-      }
-      onDoubleClick={checkboxDisabled ? undefined : props.onDoubleClickOption}
-    >
-      {renderOption ? renderOption() : option.label}
-      {option.isLeaf ? (
-        selected && <CheckmarkIcon />
-      ) : option.loading ? (
-        <LoadingIcon spin />
-      ) : (
-        <NextIcon />
-      )}
-    </div>
-  )
   return (
     <>
       {multiple ? (
@@ -50,11 +40,27 @@ export const Option = <T extends OptionProps>(
           disabled={checkboxDisabled}
           checked={option._checked}
           indeterminate={option._halfChecked}
-          onChange={props.onMultipleChecked}
+          onChange={onMultipleChecked}
           value={option.value}
         />
       ) : null}
-      {dom}
+      <div
+        css={applyOptionLabelStyle()}
+        onClick={option.disabled ? undefined : onClickOption}
+        onMouseEnter={
+          option.isLeaf || option.disabled ? undefined : onMouseEnter
+        }
+        onDoubleClick={checkboxDisabled ? undefined : onDoubleClickOption}
+      >
+        {option.label}
+        {option.isLeaf ? (
+          selected && <CheckmarkIcon />
+        ) : option.loading ? (
+          <LoadingIcon spin />
+        ) : (
+          <NextIcon />
+        )}
+      </div>
     </>
   )
 }

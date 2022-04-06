@@ -14,6 +14,7 @@ import { isArray, isFunction, isString } from "@illa-design/system"
 import { CascaderPanel } from "./cascader-panel"
 import Store from "./store"
 import isEqual from "react-fast-compare"
+import { applyPopupStyle } from "./style"
 
 function getConfig(props: any) {
   return {
@@ -144,7 +145,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       <Trigger
         trigger="click"
         content={
-          <div>
+          <div css={applyPopupStyle()}>
             {showSearchPanel ? (
               <div>SearchPanel</div>
             ) : (
@@ -163,7 +164,6 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         withoutPadding
         closeOnClick
         clickOutsideToClose
-        autoAlignPopupWidth
         popupVisible={currentVisible}
         onVisibleChange={handleVisibleChange}
       >

@@ -93,3 +93,46 @@ export function iconPointerStyle(size: string) {
   `
 }
 
+// popup
+export function applyPopupStyle(): SerializedStyles {
+  return css`
+    display: flex;
+    list-style: none;
+    height: 216px;
+    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-radius: 2px;
+  `
+}
+
+
+// panel
+export const optionListWrapper = css`
+  &:not(:last-child) {
+    border-right: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+  }
+`
+
+export const optionListStyle = css`
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  overflow-y: auto;
+`
+
+export function applyOptionStyle(): SerializedStyles {
+  return css`
+    height: 36px;
+    cursor: pointer;
+    box-sizing: border-box;
+  `
+}
+export function applyOptionLabelStyle(): SerializedStyles {
+  return css`
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  `
+}
+
