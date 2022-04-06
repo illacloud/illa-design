@@ -82,14 +82,22 @@ function applyHover(hoverable: boolean): SerializedStyles {
   const hoverColor = globalColor(`--${illaPrefix}-blue-05`)
 
   return css`
-    &:hover > div {
-    transition: all .2s ease-in-out;
-
-    &:first-child {
-    transition-duration: .15s
+    & > * {
+      transition: all 0.15s ease-in-out;
+      &:first-child {
+        transition-duration: 0.2s;
+      }
     }
-    cursor: pointer;
-    color: ${hoverColor};
+
+    &:hover > * {
+      transition: all 0.2s ease-in-out;
+
+      &:first-child {
+        transition-duration: 0.15s;
+      }
+
+      cursor: pointer;
+      color: ${hoverColor};
     }
   `
 }
