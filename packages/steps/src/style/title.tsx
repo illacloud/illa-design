@@ -132,6 +132,7 @@ function applyConnectionStyle({
   }
 
   return css`
+    display: inline-block;
     ${position}
     &::after {
       content: "";
