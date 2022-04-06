@@ -41,8 +41,9 @@ export function isVerticalLabel({
   labelPlacement: LabelPlacement
 }) {
   if (labelPlacement === "vertical") {
-    return true
+    return variant !== "navigation";
   }
+
   // if variant === dot, contents should be vertical
   if (variant === "dot" && direction === "horizontal") {
     return true

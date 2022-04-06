@@ -28,10 +28,10 @@ export function applyTitleStyle({
     applyTitleSize({ size, direction, variant, labelPlacement }),
     applyTitleColor(status),
     !lastStep &&
-      !lineless &&
-      direction !== "vertical" &&
-      labelPlacement !== "vertical" &&
-      applyConnectionStyle({ variant, status, nextStepError, size }),
+    !lineless &&
+    direction !== "vertical" &&
+    !isVerticalLabel({ variant, labelPlacement, direction }) &&
+    applyConnectionStyle({ variant, status, nextStepError, size }),
   ])
 }
 
@@ -48,7 +48,7 @@ function applyTitleSize({
 
   if (isVerticalLabel({ variant, direction, labelPlacement })) {
     padding = 0
-    marginTop = 8
+    variant !== "dot" && (marginTop = 8)
   }
 
   switch (size) {
