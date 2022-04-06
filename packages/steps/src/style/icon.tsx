@@ -87,7 +87,7 @@ function applyIconSize({
       default:
       case "small":
         width = 24
-        fontSize = 12
+        fontSize = 14
 
         break
       case "large":
