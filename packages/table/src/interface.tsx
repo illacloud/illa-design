@@ -27,6 +27,7 @@ export interface TableProps<D extends object>
   showFooter?: boolean
   disableSortBy?: boolean
   disableFilters?: boolean
+  disableResizing?: boolean
   _css?: SerializedStyles
 }
 

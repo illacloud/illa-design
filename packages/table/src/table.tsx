@@ -2,12 +2,20 @@ import { forwardRef } from "react"
 import { TableContextProps, TableProps, ThContextProps } from "./interface"
 import {
   applyContainerStyle,
+  applyFilterContainer,
   applyHeaderIconLeft,
   applyPreContainer,
+  applyResizing,
   applyTableStyle,
 } from "./style"
 import { TableContext } from "./table-context"
-import { useFilters, useSortBy, useTable } from "react-table"
+import {
+  useBlockLayout,
+  useFilters,
+  useResizeColumns,
+  useSortBy,
+  useTable,
+} from "react-table"
 import { Thead } from "./thead"
 import { Tr } from "./tr"
 import { Th } from "./th"
@@ -37,6 +45,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
       disableFilters,
       align = "left",
       showFooter,
+      disableResizing,
       showHeader = true,
       _css,
       ...otherProps
@@ -81,9 +90,12 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
           data,
           disableSortBy,
           disableFilters,
+          disableResizing,
         },
         useFilters,
         useSortBy,
+        useBlockLayout,
+        useResizeColumns,
       )
 
       return (
@@ -100,12 +112,11 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
                     {headerGroups.map((group) => (
                       <Tr {...group.getHeaderGroupProps()}>
                         {group.headers.map((column, index) => (
-                          <Th
-                            {...column.getHeaderProps(
-                              column.getSortByToggleProps(),
-                            )}
-                          >
-                            <div css={applyPreContainer}>
+                          <Th {...column.getHeaderProps()}>
+                            <div
+                              css={applyPreContainer}
+                              {...column.getSortByToggleProps()}
+                            >
                               {column.render("Header")}
                               {column.isSorted ? (
                                 column.isSortedDesc ? (
@@ -121,9 +132,19 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
                                 )
                               )}
                             </div>
-                            {column.canFilter &&
-                              column.Filter != undefined &&
-                              column.render("Filter")}
+                            <div css={applyFilterContainer}>
+                              {column.canFilter &&
+                                column.Filter != undefined &&
+                                column.render("Filter")}
+                            </div>
+                            {column.canResize &&
+                              group.headers.indexOf(column) !=
+                                group.headers.length - 1 && (
+                                <div
+                                  {...column.getResizerProps()}
+                                  css={applyResizing(column.canResize)}
+                                />
+                              )}
                           </Th>
                         ))}
                       </Tr>
