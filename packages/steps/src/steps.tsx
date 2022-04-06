@@ -25,7 +25,7 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
       child &&
       (child as ReactElement).type &&
       ((child as ReactElement).type as { displayName?: string }).displayName ===
-      "Step"
+        "Step"
     )
   }
 

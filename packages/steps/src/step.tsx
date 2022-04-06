@@ -127,6 +127,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
         direction,
         labelPlacement,
         disabled,
+        hoverable,
       })}
       onClick={onClickStep}
       style={style}
@@ -140,7 +141,6 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
           variant,
           labelPlacement,
           direction,
-          hoverable,
         })}
       >
         <div

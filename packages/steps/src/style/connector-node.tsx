@@ -43,8 +43,8 @@ function generateDotConnnector({
     const positionMap = {
       small: {
         left: 3.5,
-        top: 32,
-        bottom: 8,
+        top: 24,
+        bottom: 0,
       },
       large: {
         left: 4.5,
