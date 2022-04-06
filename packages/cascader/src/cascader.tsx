@@ -43,7 +43,7 @@ const formatValue = (
   return [value as string[]]
 }
 
-const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
+export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
   <T extends OptionProps>(
     props: CascaderProps<T>,
     ref: ForwardedRef<HTMLDivElement>,
@@ -81,7 +81,7 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     const showSearchPanel = !isFunction(onSearch) && !!inputValue
 
     const store = useRef<Store<T>>(getStore(props, mergeValue))
-    const stashNodes = useRef<Store<T>['nodes']>([]);
+    const stashNodes = useRef<Store<T>["nodes"]>([])
 
     useEffect(() => {
       store.current = getStore(props, mergeValue)
@@ -95,20 +95,21 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     }
 
     const getSelectedOptionsByValue = (values: string[][]): NodeProps<T>[] => {
-      const nodes = store.current.getCheckedNodes().concat(stashNodes.current);
-      const result:  NodeProps<T>[] = [];
+      const nodes = store.current.getCheckedNodes().concat(stashNodes.current)
+      const result: NodeProps<T>[] = []
 
       values.map((value) => {
-        const node = nodes.find((item) => isEqual(item.pathValue, value));
+        const node = nodes.find((item) => isEqual(item.pathValue, value))
         if (node) {
           //result.push(node.getPathNodes().map((x: Node<T>) => x._data));
         }
-      });
-      return result;
-    };
+      })
+      return result
+    }
 
     const renderText = useCallback(
       (value) => {
+        console.log(value, store, "renderText")
         // store 中不存在时，从stashNodes.current中找一下对应节点
         const options = getSelectedOptionsByValue([value])[0] || []
 
@@ -136,8 +137,8 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     // SelectView event handle
     const selectViewEventHandlers = {
       onFocus,
-
     }
+    console.log(store, mergeValue, "store")
 
     return (
       <Trigger
@@ -147,7 +148,11 @@ const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
             {showSearchPanel ? (
               <div>SearchPanel</div>
             ) : (
-              <CascaderPanel store={store.current} />
+              <CascaderPanel
+                multiple={multiple}
+                store={store.current}
+                value={mergeValue}
+              />
             )}
           </div>
         }

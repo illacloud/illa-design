@@ -17,17 +17,49 @@ export default {
 } as Meta
 
 const options = [
-  "Beijing",
-  "Shanghai",
-  "Guangzhou",
-  "Shenzhen",
-  "Chengdu",
-  "Wuhan",
-]
+  {
+    value: 'beijing',
+    label: 'Beijing',
+    children: [
+      {
+        value: 'Beijing',
+        label: 'Beijing',
+        children: [
+          {
+            value: 'chaoyang',
+            label: 'Chaoyang',
+            children: [
+              {
+                value: 'datunli',
+                label: 'Datunli',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'shanghai',
+    label: 'Shanghai',
+    children: [
+      {
+        value: 'shanghaishi',
+        label: 'Shanghai',
+        children: [
+          {
+            value: 'huangpu',
+            label: 'Huangpu',
+          },
+        ],
+      },
+    ],
+  },
+];
 
-const Template: Story<CascaderProps> = (args) => (
+const Template: Story<CascaderProps<any>> = (args) => (
   <Space direction="vertical">
-    <Cascader style={{ width: 280 }} {...args} />
+    <Cascader style={{ width: 280 }} options={options} {...args} />
     <Cascader style={{ width: 280 }} {...args} />
   </Space>
 )
