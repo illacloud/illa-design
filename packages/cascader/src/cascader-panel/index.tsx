@@ -7,9 +7,9 @@ import React, {
 } from "react"
 import isEqual from "react-fast-compare"
 import { Option } from "./option"
-import { KeyCode, isFunction, isNumber } from "@illa-design/system"
+import { KeyCode, isNumber } from "@illa-design/system"
 import { CascaderPanelProps, OptionProps } from "../interface"
-import { Node, NodeProps } from "../node"
+import { Node } from "../node"
 import useRefs from "../hooks"
 import { applyOptionStyle, optionListStyle, optionListWrapper } from "../style"
 
@@ -65,10 +65,8 @@ export const CascaderPanel = <T extends OptionProps>(
     multiple,
     popupVisible,
     showEmptyChildren,
-    loadMore,
     renderEmpty,
     expandTrigger,
-    changeOnSelect,
     onDoubleClickOption,
     onChange,
     onEsc,
@@ -80,34 +78,14 @@ export const CascaderPanel = <T extends OptionProps>(
 
   const options = store.getOptions()
 
-  const loadData = async (option: any) => {
-    if (!option.isLeaf && isFunction(loadMore) && !option.children) {
-      option.setLoading(true)
-      forceUpdate()
-      try {
-        const options = await loadMore(
-          option.pathValue,
-          option.pathValue.length,
-        )
-        store.appendOptionChildren(option, options)
-        store.setNodeCheckedByValue(value)
-      } catch (e) {
-        console.error(e)
-      }
-      option.setLoading(false)
-      forceUpdate()
-    }
-  }
-
   const onClickOption = async (option: any, isEnterClick = true) => {
     if (!option || option.disabled) {
       return
     }
     setActiveNode(option)
-    await loadData(option)
     // 在键盘上下左右键操作时,isEnterClick 是false，不触发onChange
     if (!multiple && isEnterClick) {
-      if (changeOnSelect || option.isLeaf) {
+      if (option.isLeaf) {
         onChange?.([option.pathValue])
       }
     }
@@ -151,10 +129,7 @@ export const CascaderPanel = <T extends OptionProps>(
     }
 
     setActiveNode(option)
-    if (!changeOnSelect) {
-      // 父子节点关联，选中复选框时执行loadMore，否则直接选中父节点
-      loadData(option)
-    }
+    // 父子节点关联，选中复选框时执行loadMore，否则直接选中父节点
     onChange?.(newValue)
   }
 
@@ -342,7 +317,6 @@ export const CascaderPanel = <T extends OptionProps>(
                         onMouseEnter={() => {
                           if (expandTrigger === "hover") {
                             setActiveNode(option)
-                            loadData(option)
                           }
                         }}
                         onClickOption={() => {

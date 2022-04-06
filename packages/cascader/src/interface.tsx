@@ -70,17 +70,14 @@ export interface CascaderPanelProps<T> {
   multiple?: boolean
   defaultValue?: string[][]
   value?: string[][]
-  changeOnSelect?: boolean
   popupVisible?: boolean
   expandTrigger?: "click" | "hover"
   trigger?: "click"
   prefixCls?: string
   showEmptyChildren?: boolean
-  renderOption?: (option?: NodeProps<T>, level?: number) => ReactNode
   onChange?: (value: string[][]) => void
   loadMore?: (activeValue: any, level: number) => NodeProps<T>[] | undefined
   renderEmpty?: (width?: number) => ReactNode
-  renderFooter?: (level: number, activeOption: NodeProps<T> | null) => ReactNode
   onDoubleClickOption?: () => void
   onEsc?: () => void
 }
