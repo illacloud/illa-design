@@ -86,6 +86,12 @@ export const Dot = (args: StepsProps) => {
         <Step title="Pending" description="Commit it" />
       </Steps>
 
+      <Steps variant={"dot"} current={2}>
+        <Step title="Succeeded" description="Read the message" />
+        <Step title="Processing" description="Please Confirm" />
+        <Step title="Pending" description="Commit it" />
+      </Steps>
+
       <Steps {...restArgs} direction="vertical">
         <Step title="Succeeded" description="Read the message" />
         <Step title="Processing" description="Please Confirm" />
@@ -113,6 +119,8 @@ export const CustomDot = () => {
   )
 }
 
+//  Size is not currently supported
+/*
 export const Size = () => {
   const steps = (
     <>
@@ -212,6 +220,7 @@ export const Size = () => {
     </Space>
   )
 }
+*/
 
 export const SwitchStep = () => {
   const [current, setCurrent] = useState(1)
