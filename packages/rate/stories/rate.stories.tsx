@@ -9,12 +9,6 @@ export default {
     character: {
       control: false,
     },
-    onChange: {
-      control: false,
-    },
-    onHoverChange: {
-      control: false,
-    },
   },
 } as Meta
 

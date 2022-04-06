@@ -70,7 +70,7 @@ const ContextModal = () => {
 it("Modal renders with correctly", () => {
   mount(<DemoTest />)
   cy.findByText("Open").trigger("click")
-  expect(cy.findByText("Title")).exist
+  cy.findByText("Title").should("exist")
   cy.findByText("Title").should("have.css", "color", "rgb(31, 31, 31)")
   unmount()
 })
@@ -109,6 +109,6 @@ it("Modal renders with delay ok", () => {
 it("Modal renders with useModal", () => {
   mount(<ContextModal />)
   cy.findByText("Get Context").click()
-  expect(cy.findByText("Current user: Jarvey")).exist
+  cy.findByText("Current user: Jarvey").should("exist")
   unmount()
 })

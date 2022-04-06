@@ -37,7 +37,7 @@ it("Tabs renders correctly", () => {
       })}
     </Tabs>,
   )
-  expect(cy.findByPlaceholderText("tabs")).exist
+  cy.findByPlaceholderText("tabs").should("exist")
   unmount()
 })
 
@@ -53,12 +53,13 @@ it("Tabs renders with next and pre", () => {
       })}
     </Tabs>,
   )
-  expect(cy.findByTitle("PreIcon")).exist
+
+  cy.findByTitle("PreIcon").should("exist")
   cy.findByTitle("PreIcon")
     .parent()
     .parent()
     .should("have.css", "cursor", "not-allowed")
-  expect(cy.findByTitle("NextIcon")).exist
+  cy.findByTitle("NextIcon").should("exist")
   cy.findByTitle("NextIcon").parent().trigger("click")
   cy.wait(2000)
   cy.findByTitle("NextIcon")
@@ -157,7 +158,7 @@ it("Tabs renders with editable", () => {
       })}
     </Tabs>,
   )
-  expect(cy.findByText("tab 02")).exist
+  cy.findByText("tab 02").should("exist")
   cy.findByText("tab 02").findByTitle("CloseIcon").parent().trigger("click")
   cy.findByPlaceholderText("tabs").should("not.contain", 'tab 02"')
   unmount()

@@ -1,5 +1,5 @@
 import { Meta, Story } from "@storybook/react"
-import { InputProps, Input } from "../src"
+import { Input, InputProps } from "../src"
 import { Space } from "@illa-design/space"
 import { PersonIcon } from "@illa-design/icon"
 
@@ -44,13 +44,6 @@ export default {
       },
     },
   },
-  parameters: {
-    docs: {
-      source: {
-        type: "code",
-      },
-    },
-  }
 } as Meta
 
 const Template: Story<InputProps> = (props) => {

@@ -7,6 +7,6 @@ it("onSelect", () => {
   mount(<Calendar headerType={"select"} />)
   cy.findByText(2022).click()
   cy.findByText(2021).click()
-  expect(cy.findByText(2021)).exist
+  cy.findByText(2021).should("exist")
   unmount()
 })

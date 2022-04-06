@@ -8,7 +8,7 @@ export type DescriptionLayout =
   | "inline-horizontal"
   | "inline-vertical"
 
-export type DescriptionTabLayout = "auto" | "fixed"
+export type DescriptionTableLayout = "auto" | "fixed"
 
 export interface DescriptionColumn {
   xs?: number
@@ -27,7 +27,7 @@ export interface DescriptionProps extends HTMLAttributes<HTMLDivElement> {
   size?: DescriptionSize
   layout?: DescriptionLayout
   title?: string
-  tableLayout?: DescriptionTabLayout
+  tableLayout?: DescriptionTableLayout
 }
 
 export interface DescriptionItem {
