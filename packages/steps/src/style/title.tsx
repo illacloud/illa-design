@@ -73,7 +73,7 @@ function applyTitleColor(status: StepStatus): SerializedStyles {
   let color = globalColor(`--${illaPrefix}-gray-02`)
 
   if (status === "wait") {
-    color = globalColor(`--${illaPrefix}-gray-04`)
+    color = globalColor(`--${illaPrefix}-gray-02`)
   }
 
   return css`
