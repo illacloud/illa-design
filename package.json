@@ -65,7 +65,8 @@
     "lint": "prettier --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
     "postinstall": "npx patch-package",
-    "plop": "plop new"
+    "plop": "plop new",
+    "import-docs": "node ./scripts/import-docs.js"
   },
   "packageManager": "yarn@1.22.17"
 }
