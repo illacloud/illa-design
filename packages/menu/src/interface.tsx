@@ -33,3 +33,9 @@ export interface ItemProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   disabled?: boolean
   level?: number
 }
+
+export interface SubMenuProps {
+  key: string
+  title?: string | ReactNode
+  level?: number
+}
