@@ -121,6 +121,8 @@ export const optionListStyle = css`
 
 export function applyOptionStyle(): SerializedStyles {
   return css`
+    padding: 0 16px;
+    display: flex;
     height: 36px;
     cursor: pointer;
     box-sizing: border-box;
@@ -128,7 +130,6 @@ export function applyOptionStyle(): SerializedStyles {
 }
 export function applyOptionLabelStyle(): SerializedStyles {
   return css`
-    padding: 0 16px;
     height: 100%;
     display: flex;
     align-items: center;

@@ -6,20 +6,12 @@ import React, {
   useReducer,
 } from "react"
 import isEqual from "react-fast-compare"
-import { Option } from "./option"
 import { KeyCode, isNumber } from "@illa-design/system"
 import { CascaderPanelProps, OptionProps } from "../interface"
+import { Option } from "./option"
 import { Node } from "../node"
 import useRefs from "../hooks"
 import { applyOptionStyle, optionListStyle, optionListWrapper } from "../style"
-
-const getLegalActiveNode = (options: any) => {
-  for (let index = 0; index < options.length; index++) {
-    if (!options[index].disabled) {
-      return options[index]
-    }
-  }
-}
 
 const getBaseActiveNode = (currentNode: any) => {
   if (currentNode && currentNode.disabled) {
@@ -51,7 +43,7 @@ function useForceUpdate() {
   return dispatch
 }
 
-export const CascaderPanel = <T extends OptionProps>(
+export const DefaultPopup = <T extends OptionProps>(
   props: CascaderPanelProps<T>,
 ) => {
   const [activeOptionList, setActiveOptionList] =
@@ -60,11 +52,9 @@ export const CascaderPanel = <T extends OptionProps>(
   const forceUpdate = useForceUpdate()
   const {
     store,
-    prefixCls,
     value,
     multiple,
     popupVisible,
-    showEmptyChildren,
     renderEmpty,
     expandTrigger,
     onDoubleClickOption,
@@ -150,7 +140,7 @@ export const CascaderPanel = <T extends OptionProps>(
         case KeyCode.ArrowDown:
         case KeyCode.ArrowUp: {
           if (!activeNode) {
-            nextActiveNode = getLegalActiveNode(options)
+            nextActiveNode = options.find((opt) => !opt.disabled)
           } else {
             const baseActiveNode = getBaseActiveNode(activeNode)
             const list =
@@ -241,6 +231,7 @@ export const CascaderPanel = <T extends OptionProps>(
     if (popupVisible && options.length) {
       const scrollTo = () => {
         activeOptionList.forEach((activeOption: any, i: number) => {
+          refWrapper[i]?.scrollIntoView({ block: "nearest" })
           // activeOption &&
           //   scrollIntoView(activeOption, {
           //     block: "nearest",
@@ -273,73 +264,66 @@ export const CascaderPanel = <T extends OptionProps>(
   return (
     <>
       {menus.map((list, level) => {
-        if (list.length === 0 && !showEmptyChildren && level === 0) {
+        if (list.length === 0 && level === 0) {
           return renderEmpty?.()
         }
-        return list.length === 0 && !showEmptyChildren ? null : (
+        return list.length === 0 ? null : (
           <div
             css={optionListWrapper}
             key={level}
             style={{ zIndex: menus.length - level }}
           >
-            {list.length === 0 ? (
-              renderEmpty && renderEmpty(120)
-            ) : (
-              <ul
-                css={optionListStyle}
-                ref={(node) => setRefWrapper(node, level)}
-              >
-                {list.map((option) => {
-                  let isActive = false
-                  if (activeNode) {
-                    isActive = activeNode.pathValue[level] === option.value
-                  }
-                  return (
-                    <li
-                      css={applyOptionStyle()}
-                      key={option.value}
-                      ref={(ref) => {
-                        if (isActive) {
-                          setActiveOptionList(ref, level)
+            <ul
+              css={optionListStyle}
+              ref={(node) => setRefWrapper(node, level)}
+            >
+              {list.map((option) => {
+                let isActive = false
+                if (activeNode) {
+                  isActive = activeNode.pathValue[level] === option.value
+                }
+                const selected =
+                  !multiple && option.isLeaf && isEqual(value, option.pathValue)
+
+                return (
+                  <li
+                    css={applyOptionStyle()}
+                    key={option.value}
+                    ref={(ref) => {
+                      if (isActive) {
+                        setActiveOptionList(ref, level)
+                      }
+                    }}
+                  >
+                    <Option
+                      multiple={multiple}
+                      option={option}
+                      selected={selected}
+                      onMouseEnter={() => {
+                        if (expandTrigger === "hover") {
+                          setActiveNode(option)
                         }
                       }}
-                    >
-                      <Option
-                        prefixCls={prefixCls}
-                        multiple={multiple}
-                        option={option}
-                        // 叶子节点被选中
-                        selected={
-                          !multiple &&
+                      onClickOption={() => {
+                        if (
                           option.isLeaf &&
-                          isEqual(value, option.pathValue)
+                          multiple &&
+                          !option.disableCheckbox
+                        ) {
+                          onMultipleChecked(option, !option._checked)
+                        } else {
+                          onClickOption(option)
                         }
-                        onMouseEnter={() => {
-                          if (expandTrigger === "hover") {
-                            setActiveNode(option)
-                          }
-                        }}
-                        onClickOption={() => {
-                          if (
-                            option.isLeaf &&
-                            multiple &&
-                            !option.disableCheckbox
-                          ) {
-                            onMultipleChecked(option, !option._checked)
-                          } else {
-                            onClickOption(option)
-                          }
-                        }}
-                        onMultipleChecked={(checked: boolean) => {
-                          onMultipleChecked(option, checked)
-                        }}
-                        onDoubleClickOption={onDoubleClickOption}
-                      />
-                    </li>
-                  )
-                })}
-              </ul>
-            )}
+                      }}
+                      onMultipleChecked={(checked: boolean) => {
+                        onMultipleChecked(option, checked)
+                      }}
+                      onDoubleClickOption={onDoubleClickOption}
+                    />
+                  </li>
+                )
+              })}
+            </ul>
           </div>
         )
       })}

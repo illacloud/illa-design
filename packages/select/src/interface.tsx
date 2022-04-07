@@ -117,7 +117,7 @@ export interface SelectViewProps
   popupVisible?: boolean
   isEmptyValue?: boolean
   renderText: (value: any) => { text?: any; disabled?: boolean }
-  onRemoveCheckedItem?: (item: any, index: number, e: any) => void
+  onRemoveCheckedItem?: (item: any, index: number, e?: any) => void
   onChangeInputValue?: (value: string, e: any) => void
   onClear?: (e: any) => void
 }

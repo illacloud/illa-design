@@ -8,8 +8,6 @@ export type ConfigType<T> = {
   changeOnSelect?: boolean
   // 是否是懒加载模式
   lazyload?: boolean
-  // 是否在children为[]时，渲染下一级菜单。
-  showEmptyChildren?: boolean
   // 自定义搜索逻辑
   filterOption?: CascaderProps<T>["filterOption"]
   // fieldNames

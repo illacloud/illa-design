@@ -1,12 +1,10 @@
-import React, { ReactNode } from "react"
 import { Checkbox } from "@illa-design/checkbox"
 import { NextIcon, CheckmarkIcon, LoadingIcon } from "@illa-design/icon"
 import { Node } from "../node"
 import { OptionProps } from "../interface"
-import { applyOptionLabelStyle, applyOptionStyle } from "../style"
+import { applyOptionLabelStyle } from "../style"
 
 export interface CascaderOptionProps<T> {
-  prefixCls?: string
   multiple?: boolean
   selected?: boolean
   isLeaf?: boolean

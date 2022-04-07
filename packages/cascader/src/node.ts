@@ -14,7 +14,6 @@ export interface NodeProps<T> extends OptionProps {
   value: string
   label: string
   isLeaf?: boolean
-  /** 是否选中 */
   _checked: boolean
   /** 层级 */
   _level?: number
@@ -26,7 +25,6 @@ export interface NodeProps<T> extends OptionProps {
   pathValue: string[]
   /** 下一级选项 */
   children?: NodeProps<T>[]
-  /** 是否在加载中 */
   loading?: boolean
   /** 是否加载完成 */
   loaded?: boolean
@@ -65,16 +63,14 @@ export class Node<T> {
     this.config = config || {}
     this.parent = parent ?? null
 
-    const { showEmptyChildren, lazyload } = this.config
+    const { lazyload } = this.config
 
     const fieldNames = { ...DefaultFieldNames, ...this.config.fieldNames }
 
     const children = option[fieldNames.children]
 
     let isLeaf = Array.isArray(children)
-      ? showEmptyChildren
-        ? false
-        : children.length === 0
+      ? children.length === 0
       : true
 
     if (lazyload) {

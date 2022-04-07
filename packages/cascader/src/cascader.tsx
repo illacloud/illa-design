@@ -6,29 +6,27 @@ import {
   useRef,
   useState,
 } from "react"
-import { Trigger } from "@illa-design/trigger"
-import { SelectView, SelectViewProps } from "@illa-design/select"
-import { CascaderProps, OptionProps } from "./interface"
-import { DefaultFieldNames, NodeProps, Node } from "./node"
-import { isArray, isFunction, isString, KeyCode } from "@illa-design/system"
-import { CascaderPanel } from "./cascader-panel"
-import Store from "./store"
 import isEqual from "react-fast-compare"
+import { isArray, isObject, isString, KeyCode } from "@illa-design/system"
+import { SelectView, SelectViewProps } from "@illa-design/select"
+import { Trigger } from "@illa-design/trigger"
+import { CascaderProps, OptionProps } from "./interface"
+import { DefaultFieldNames } from "./node"
+import { DefaultPopup } from "./default-popup"
+import { SearchPopup } from "./search-popup"
+import Store from "./store"
 import { applyPopupStyle } from "./style"
 
 function getConfig(props: any) {
   return {
-    showEmptyChildren: props.showEmptyChildren,
-    changeOnSelect: props.changeOnSelect,
-    lazyload: !!props.loadMore,
     fieldNames: props.fieldNames,
     filterOption: props.filterOption,
   }
 }
 
 function getStore(props: any, value: any) {
-  const tmp = value ? (Array.isArray(value[0]) ? value : [value]) : []
-  return new Store(props.options || [], tmp, getConfig(props))
+  const _value = value ? (isArray(value[0]) ? value : [value]) : []
+  return new Store(props.options || [], _value, getConfig(props))
 }
 
 const formatValue = (
@@ -79,7 +77,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     )
     const mergeValue = "value" in props ? propsValue : stateValue
     const fieldNames = DefaultFieldNames
-    const showSearchPanel = !isFunction(onSearch) && !!inputValue
+    const showSearchPanel = !!inputValue
 
     const timerRef = useRef<number | undefined>()
     const store = useRef<Store<T>>(getStore(props, mergeValue))
@@ -98,48 +96,44 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
 
     const handleChange = (newValue: string[][], isTouch?: boolean) => {
       console.log(newValue, inputValue)
-      setValue((mergeValue) => {
-        const isSame = isEqual(mergeValue, newValue)
+      if (isObject(showSearch) && !showSearch?.retainInputValueWhileSelect && multiple) {
+        setInputValue('');
+      }
+      const isSame = mergeValue === newValue;
+      if (isSame) {
+        return;
+      }
 
-        if (!isSame) {
-          if (isTouch || !multiple) {
-            store.current.setNodeCheckedByValue(newValue)
-          }
-        }
+      if (!multiple) {
+        store.current.setNodeCheckedByValue(newValue);
+      }
 
-        const nodes = store.current.getCheckedNodes()
-        if (!isSame) {
-          stashNodes.current = nodes.concat(stashNodes.current)
-        }
+      const nodes = store.current.getCheckedNodes()
+      stashNodes.current = Array.from(new Set(nodes.concat(stashNodes.current)));
+      const selectedOptions = getSelectedOptionsByValue(newValue);
+      const _value = multiple ? newValue : newValue[0];
+      const _selectedOptions = multiple ? selectedOptions : selectedOptions[0];
 
-        const selectedOptions = getSelectedOptionsByValue(newValue)
+      if (!multiple) {
+        if (inputValue) {
+          // 单选时选择搜索项，直接关闭面板
+          handleVisibleChange(false);
+        } else if (
+          (selectedOptions[0] && selectedOptions[0][selectedOptions[0].length - 1]?.isLeaf) ||
+          (expandTrigger === 'hover')
+        ) {
+          handleVisibleChange(false);
+        }
+      }
 
-        if (!isSame) {
-          const _value = multiple ? newValue : newValue[0]
-          const _selectedOptions = multiple
-            ? selectedOptions
-            : selectedOptions[0]
-          onChange?.(_value, _selectedOptions, {
-            dropdownVisible: currentVisible,
-          })
-        }
-        console.log(inputValue, selectedOptions,'change')
-        if (!multiple) {
-          if (inputValue) {
-            // 单选时选择搜索项，直接关闭面板
-            handleVisibleChange(false)
-          } else if (
-            (selectedOptions[0] &&
-              selectedOptions[0][selectedOptions[0].length - 1]?.isLeaf) ||
-            expandTrigger === "hover"
-          ) {
-            handleVisibleChange(false)
-          }
-        }
-        // 这里直接通过setValue修改stateValue是为了节省受控模式下，不断通过外部value查找节点，计算选中状态的操作。
-        // 和useUpdate配合，在statevalue和外部传入的value不相等的时候才进行计算。
-        return isSame ? mergeValue : newValue
-      })
+      if ('value' in props) {
+        store.current.setNodeCheckedByValue(mergeValue);
+      } else {
+        setValue(newValue);
+      }
+      onChange?.(_value, _selectedOptions, {
+        dropdownVisible: currentVisible,
+      });
     }
 
     const getSelectedOptionsByValue = (values: string[][]): OptionProps[][] => {
@@ -238,8 +232,8 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
           handleVisibleChange(true)
         }
       },
-      onRemoveCheckedItem: (item, index, e) => {
-        e.stopPropagation()
+      onRemoveCheckedItem: (item, index, event) => {
+        event?.stopPropagation()
         if (item.disabled) {
           return
         }
@@ -248,7 +242,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       },
     }
 
-    console.log(inputValue, mergeValue, "value")
+    console.log(inputValue, mergeValue, showSearchPanel, !!inputValue,"value")
 
     return (
       <Trigger
@@ -256,9 +250,18 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         content={
           <div css={applyPopupStyle()}>
             {showSearchPanel ? (
-              <div>SearchPanel</div>
+              <SearchPopup
+                multiple={multiple}
+                store={store.current}
+                value={mergeValue}
+                inputValue={inputValue}
+                onChange={handleChange}
+                onEsc={() => {
+                  handleVisibleChange(false)
+                }}
+              />
             ) : (
-              <CascaderPanel
+              <DefaultPopup
                 multiple={multiple}
                 store={store.current}
                 value={mergeValue}

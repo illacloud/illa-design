@@ -22,20 +22,34 @@ const options = [
     label: 'Beijing',
     children: [
       {
-        value: 'Beijing',
-        label: 'Beijing',
+        value: 'chaoyang',
+        label: 'Chaoyang',
         children: [
           {
-            value: 'chaoyang',
-            label: 'Chaoyang',
-            children: [
-              {
-                value: 'datunli',
-                label: 'Datunli',
-              },
-            ],
+            value: 'datunli',
+            label: 'Datunli',
           },
         ],
+      },
+      {
+        value: 'fengtai',
+        label: 'fengtai',
+      },
+      {
+        value: 'shijingshan',
+        label: 'Shijingshan',
+      },
+      {
+        value: 'mentougou',
+        label: 'Mentougou',
+      },
+      {
+        value: 'fangshan',
+        label: 'Fangshan',
+      },
+      {
+        value: 'tongzhou',
+        label: 'Tongzhou',
       },
     ],
   },
@@ -55,12 +69,29 @@ const options = [
       },
     ],
   },
+  {
+    value: 'guangdong',
+    label: 'Guangdong',
+    children: [
+      {
+        value: 'shenzhen',
+        label: 'Shenzhen',
+        children: [
+          {
+            value: 'nanshan',
+            label: 'Nanshan',
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 const Template: Story<CascaderProps<any>> = (args) => (
   <Space direction="vertical">
+    <Cascader style={{ width: 280 }} showSearch options={options} {...args} />
     <Cascader style={{ width: 280 }} options={options} {...args} />
-    <Cascader style={{ width: 280 }} {...args} />
+    <Cascader style={{ width: 280 }} options={options} {...args} multiple={false} />
   </Space>
 )
 

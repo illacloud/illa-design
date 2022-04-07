@@ -1,4 +1,4 @@
-import { CSSProperties, HTMLAttributes, ReactNode } from "react"
+import { CSSProperties, HTMLAttributes, ReactNode, SyntheticEvent } from "react"
 import { NodeProps } from "./node"
 import Store from "./store"
 import { TriggerProps } from "@illa-design/trigger"
@@ -74,7 +74,6 @@ export interface CascaderPanelProps<T> {
   expandTrigger?: "click" | "hover"
   trigger?: "click"
   prefixCls?: string
-  showEmptyChildren?: boolean
   onChange?: (value: string[][]) => void
   loadMore?: (activeValue: any, level: number) => NodeProps<T>[] | undefined
   renderEmpty?: (width?: number) => ReactNode
