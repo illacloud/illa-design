@@ -1,7 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { forwardRef, useState, useCallback, useEffect } from "react"
-import * as ReactDOM from "react-dom"
 import {
   NotificationProps,
   NoticeProps,
@@ -15,7 +12,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion"
 import { Notice } from "./notice"
 import { applyNotificationSlide, applyNotificationWrapper } from "./style"
-import * as _ from "lodash"
+import { render } from "react-dom"
 
 let maxCount: number
 let duration: number
@@ -171,7 +168,7 @@ export const Notification: NotificationComponent = forwardRef<
 
 Notification.remove = (id: string) => {
   notificationPositions.forEach((position) => {
-    ReactDOM.render(
+    render(
       <Notification removeId={id} position={position} />,
       notificationContainer[position] as HTMLDivElement,
     )
@@ -184,7 +181,7 @@ Notification.add = (notice: NoticeProps) => {
     duration,
     ...notice,
   }
-  ReactDOM.render(
+  render(
     <Notification notice={noticeProps} position={position as NoticePosition} />,
     notificationContainer[position as NoticePosition] as HTMLDivElement,
   )
@@ -194,7 +191,7 @@ Notification.config = (options: ConfigProps = {}) => {
   if (options.maxCount) {
     maxCount = options.maxCount
   }
-  if (_.isFinite(options.duration)) {
+  if (options.duration && isFinite(options.duration)) {
     duration = options.duration as number
   }
   if (options.getContainer && options.getContainer() !== container) {
@@ -205,7 +202,7 @@ Notification.config = (options: ConfigProps = {}) => {
 }
 Notification.clear = () => {
   notificationPositions.forEach((position) => {
-    ReactDOM.render(
+    render(
       <Notification shouldClear position={position} />,
       notificationContainer[position] as HTMLDivElement,
     )

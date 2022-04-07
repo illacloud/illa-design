@@ -1,10 +1,7 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import {
   forwardRef,
   useEffect,
   useImperativeHandle,
-  useMemo,
   useRef,
   useState,
 } from "react"
@@ -15,10 +12,10 @@ import {
   UploadRefType,
   UploadRequestReturn,
 } from "./interface"
-import { inputCss, uploadChildrenCss } from "./styles"
+import { inputCss, uploadChildrenCss } from "./style"
 import { sendUploadRequest } from "./request"
-import { ChildrenNode } from "./children-node"
 import { isAcceptFile } from "./file-accept"
+import { UploadInput } from "./upload-input"
 
 export type UploadElementState = {
   [key: string]: UploadRequestReturn | void
@@ -100,8 +97,7 @@ const doUpload = (
   }
 
   if (action) {
-    const request = sendUploadRequest({ ...options, action })
-    return request
+    return sendUploadRequest({ ...options, action })
   } else if (customRequest && file.uid) {
     return customRequest && { [file.uid]: customRequest({ ...options }) }
   }
@@ -187,7 +183,7 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
       [_uploadRequests],
     )
 
-    const doUploadWithProps = (item: UploadItem, autoUpload?: boolean) => {
+    const doUploadWithProps = (item: UploadItem) => {
       if (!item.uid) return
       const request = doUpload(
         item,
@@ -216,7 +212,7 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
           fileArr.forEach((file, index) => {
             const upload = getInitUploadItem(file, index)
             updateTargetItem(upload)
-            doUploadWithProps(upload, true)
+            doUploadWithProps(upload)
           })
         }
       }
@@ -224,7 +220,7 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
 
     const handleUploadWithoutAutoUpload = () => {
       fileList?.forEach((file) => {
-        doUploadWithProps(file, true)
+        doUploadWithProps(file)
       })
     }
 
@@ -255,14 +251,14 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
                         if (!isAcceptFile(newFile, accept)) return
                         const upload = getInitUploadItem(newFile as File, index)
                         updateTargetItem(upload)
-                        doUploadWithProps(upload, autoUpload && !pictureUpload)
+                        doUploadWithProps(upload)
                       }
                     })
                   } else {
                     if (!isAcceptFile(file, accept)) return
                     const upload = getInitUploadItem(file, index)
                     updateTargetItem(upload)
-                    doUploadWithProps(upload, autoUpload)
+                    doUploadWithProps(upload)
                   }
                 })
               } else {
@@ -276,7 +272,7 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
           type={"file"}
         />
         <div css={uploadChildrenCss}>
-          <ChildrenNode
+          <UploadInput
             onClick={() => {
               handleUploadButton()
             }}

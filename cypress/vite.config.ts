@@ -5,12 +5,17 @@ import react from "@vitejs/plugin-react"
 export default defineConfig({
   plugins: [
     react({
-      jsxRuntime: "classic",
+      jsxImportSource: "@emotion/react",
+      jsxRuntime: "automatic",
       babel: {
+        plugins: ["@emotion/babel-plugin"],
         compact: false,
       },
       exclude: [/\.stories\.([tj])sx?$/, /\.test\.([tj])sx?$/],
       include: ["**/**.tsx", "**/**.ts"],
     }),
   ],
+  optimizeDeps: {
+    include: ["@emotion/react/jsx-dev-runtime"],
+  },
 })

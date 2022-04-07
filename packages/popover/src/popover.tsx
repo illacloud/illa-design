@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { FC, useContext, useState } from "react"
 import { PopoverProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"

@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { forwardRef, useEffect, useContext, useCallback } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { CheckmarkIcon, ReduceIcon } from "@illa-design/icon"

@@ -1,4 +1,4 @@
-import { HTMLAttributes, CSSProperties, ReactNode } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 
 export type BadgeColorScheme =
   | "white"
@@ -12,6 +12,7 @@ export type BadgeColorScheme =
   | "cyan"
   | "purple"
   | "grayBlue"
+  | string
 
 export type BadgeStatus =
   | "default"
@@ -24,7 +25,6 @@ export interface BadgeProps extends HTMLAttributes<HTMLElement> {
   count?: number | ReactNode
   text?: string
   dot?: boolean
-  dotStyle?: CSSProperties
   maxCount?: number
   offset?: [number, number]
   colorScheme?: BadgeColorScheme
@@ -32,9 +32,8 @@ export interface BadgeProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode
 }
 
-export interface CountProps {
+export interface CountProps extends HTMLAttributes<HTMLElement> {
   count?: string | number
-  dotStyle?: CSSProperties
   color?: string
   hasChildren?: boolean
 }

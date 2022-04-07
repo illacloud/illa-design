@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { forwardRef, HTMLAttributes } from "react"
 import { motion } from "framer-motion"
 import { Tag } from "@illa-design/tag"

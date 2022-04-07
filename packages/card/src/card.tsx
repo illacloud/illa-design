@@ -1,6 +1,5 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, Children, cloneElement, ReactElement } from "react"
-import { Grid } from "./grid"
+import { forwardRef, Children, cloneElement, ReactElement } from "react"
+import { CardGrid } from "./card-grid"
 import { Meta } from "./meta"
 import { CardProps } from "./interface"
 import { Spin } from "@illa-design/spin"
@@ -22,8 +21,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     actions,
     extra,
     size = "medium",
-    headerStyle,
-    bodyStyle,
     hoverable = false,
     cover,
     loading = false,
@@ -37,7 +34,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
 
   Children.forEach(children, (element) => {
     if (element && (element as ReactElement).type) {
-      if ((element as ReactElement).type === Grid) {
+      if ((element as ReactElement).type === CardGrid) {
         isContainGrid = true
       } else if ((element as ReactElement).type === Meta) {
         isContainMeta = true
@@ -71,7 +68,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   return (
     <div ref={ref} css={applyCard(bordered, hoverable)} {...restProps}>
       {title || extra ? (
-        <div css={applyCardHeader(size)} style={headerStyle}>
+        <div css={applyCardHeader(size)}>
           {title && <div css={applyCardHeaderTitle}>{title}</div>}
           {extra && <div css={applyCardHeaderExtra}>{extra}</div>}
         </div>
@@ -79,7 +76,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
 
       {cover ? <div css={applyCardCover}>{cover}</div> : null}
 
-      <div css={applyCardBody(size, loading, isContainGrid)} style={bodyStyle}>
+      <div css={applyCardBody(size, loading, isContainGrid)}>
         {loading ? <Spin /> : handledChildren}
         {isContainMeta ? null : actionList}
       </div>

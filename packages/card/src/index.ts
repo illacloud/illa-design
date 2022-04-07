@@ -1,4 +1,4 @@
 export * from "./card"
 export * from "./interface"
-export * from "./grid"
+export * from "./card-grid"
 export * from "./meta"

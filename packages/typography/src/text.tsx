@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
-import { forwardRef } from "react"
+import { Children, forwardRef } from "react"
 import { TextProps } from "./interface"
 import { Base } from "./base"
 import { applyTextContainer } from "./text-style"
@@ -49,7 +47,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
 
   if (showTooltip) {
     return (
-      <Tooltip content={mergedToString(React.Children.toArray(props.children))}>
+      <Tooltip content={mergedToString(Children.toArray(props.children))}>
         {text}
       </Tooltip>
     )

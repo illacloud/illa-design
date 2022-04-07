@@ -2,7 +2,6 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { Pagination } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import userEvent from "@testing-library/user-event"
 
 test("Pagination render correctly", () => {
   render(<Pagination showTotal={true} placeholder={"pagination"} total={40} />)
@@ -23,7 +22,6 @@ test("Pagination render with defaultCurrent", () => {
 test("Pagination render with small size", () => {
   render(<Pagination size={"small"} total={100} />)
   expect(screen.getByText("2")).toHaveStyle({
-    width: `22px`,
     height: `22px`,
   })
 })
@@ -31,7 +29,6 @@ test("Pagination render with small size", () => {
 test("Pagination render with  large size", () => {
   render(<Pagination size={"large"} total={100} />)
   expect(screen.getByText("2")).toHaveStyle({
-    width: `40px`,
     height: `40px`,
   })
 })
@@ -87,18 +84,6 @@ test("Pagination render with page-selector", () => {
   expect(screen.getByText("10/Page")).toBeInTheDocument()
 })
 
-test("Pagination render with sizeOptions", () => {
-  render(
-    <Pagination
-      placeholder={"pagination"}
-      sizeCanChange={true}
-      sizeOptions={[20, 40, 60, 80]}
-      total={100}
-    />,
-  )
-  expect(screen.getByText("80/Page")).toBeInTheDocument()
-})
-
 test("Pagination render with onChange", () => {
   const changeEvent = jest.fn()
   render(<Pagination total={100} onChange={changeEvent} />)
@@ -108,26 +93,6 @@ test("Pagination render with onChange", () => {
   expect(targetPage).toHaveStyle({
     color: `${globalColor(`--${illaPrefix}-blue-01`)}`,
   })
-})
-
-test("Pagination render with onPageSizeChange", () => {
-  const changeEvent = jest.fn()
-  render(
-    <Pagination
-      total={100}
-      defaultCurrent={6}
-      onPageSizeChange={changeEvent}
-    />,
-  )
-  userEvent.selectOptions(
-    screen.getByRole("combobox"),
-    screen.getByRole("option", { name: "20/Page" }),
-  )
-  const targetOption = screen.getByRole("option", {
-    name: "20/Page",
-  }) as HTMLOptionElement
-  expect(changeEvent).toBeCalled()
-  expect(targetOption.selected).toBe(true)
 })
 
 test("Pagination render with click more", () => {
@@ -144,7 +109,7 @@ test("Pagination render with click more", () => {
 
 test("Pagination render with simple", () => {
   render(<Pagination total={99} simple={true} />)
-  expect(screen.getByText("/ 10")).toBeInTheDocument()
+  expect(screen.getByText("/")).toBeInTheDocument()
 })
 
 test("Pagination render with simple jumper", () => {
