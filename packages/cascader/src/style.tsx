@@ -116,6 +116,7 @@ export const optionListStyle = css`
   margin: 0;
   list-style: none;
   overflow-y: auto;
+  height: 100%;
 `
 
 export function applyOptionStyle(states: {

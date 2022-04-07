@@ -18,8 +18,8 @@ export default {
 
 const options = [
   {
-    value: 'beijing',
-    label: 'Beijing',
+    value: "beijing",
+    label: "Beijing",
     children: [
       {
         value: 'chaoyang',
@@ -30,6 +30,18 @@ const options = [
             label: 'Datunli',
           },
         ],
+      },
+      {
+        value: 'dongcheng',
+        label: 'Dongcheng',
+      },
+      {
+        value: 'xicheng',
+        label: 'Xicheng',
+      },
+      {
+        value: 'haidian',
+        label: 'Haidian',
       },
       {
         value: 'fengtai',
@@ -51,47 +63,56 @@ const options = [
         value: 'tongzhou',
         label: 'Tongzhou',
       },
+      {
+        value: 'shunyi',
+        label: 'Shunyi',
+      },
     ],
   },
   {
-    value: 'shanghai',
-    label: 'Shanghai',
+    value: "shanghai",
+    label: "Shanghai",
     children: [
       {
-        value: 'shanghaishi',
-        label: 'Shanghai',
+        value: "shanghaishi",
+        label: "Shanghai",
         children: [
           {
-            value: 'huangpu',
-            label: 'Huangpu',
+            value: "huangpu",
+            label: "Huangpu",
           },
         ],
       },
     ],
   },
   {
-    value: 'guangdong',
-    label: 'Guangdong',
+    value: "guangdong",
+    label: "Guangdong",
     children: [
       {
-        value: 'shenzhen',
-        label: 'Shenzhen',
+        value: "shenzhen",
+        label: "Shenzhen",
         children: [
           {
-            value: 'nanshan',
-            label: 'Nanshan',
+            value: "nanshan",
+            label: "Nanshan",
           },
         ],
       },
     ],
   },
-];
+]
 
 const Template: Story<CascaderProps<any>> = (args) => (
   <Space direction="vertical">
     <Cascader style={{ width: 280 }} showSearch options={options} {...args} />
     <Cascader style={{ width: 280 }} options={options} {...args} />
-    <Cascader style={{ width: 280 }} options={options} {...args} multiple={false} />
+    <Cascader
+      style={{ width: 280 }}
+      options={options}
+      {...args}
+      multiple={false}
+    />
   </Space>
 )
 
