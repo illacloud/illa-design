@@ -13,13 +13,13 @@ const i18nConfig = {
 const config = {
   title: 'My Site',
   tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://illa-family.github.io/illa-design',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'illa-family', // Usually your GitHub org/user name.
+  projectName: 'illa-design', // Usually your repo name.
   i18n: i18nConfig,
 
   presets: [

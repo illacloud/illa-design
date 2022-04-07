@@ -42,6 +42,28 @@ jobs:
           yarn install --frozen-lockfile
           yarn build-all-components    
 
+      - name: Install docs dependencies
+        run: |
+          cd ./docs
+          yarn install --frozen-lockfile
+          cd ..
+
+      - name: Init docs i18n
+        run: |
+          cd ./docs
+          yarn run write-translations -- --locale en
+          yarn run write-translations -- --locale zh-cn
+          cd ..
+
+      - name: Import docs i18n
+        run: yarn import-docs
+
+      - name: Build docs
+        run: |
+          cd ./docs
+          yarn build
+          cd ..
+
   build:
     needs:
       - install
@@ -86,3 +108,9 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: true
           exitOnceUploaded: true
+
+      - name: Deploy docs to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build
