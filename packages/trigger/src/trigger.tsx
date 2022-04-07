@@ -90,6 +90,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     autoAlignPopupWidth,
     closeOnClick = true,
     defaultPopupVisible,
+    maxWidth = "588px",
     withoutPadding,
     disabled,
     popupVisible,
@@ -137,6 +138,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div
             css={applyTipsText(
               colorScheme,
+              maxWidth,
               withoutPadding,
               adjustResult,
               autoAlignPopupWidth,
@@ -169,6 +171,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div
             css={applyTipsText(
               colorScheme,
+              maxWidth,
               withoutPadding,
               adjustResult,
               autoAlignPopupWidth,
@@ -187,6 +190,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div
             css={applyTipsText(
               colorScheme,
+              maxWidth,
               withoutPadding,
               adjustResult,
               autoAlignPopupWidth,
@@ -219,6 +223,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div
             css={applyTipsText(
               colorScheme,
+              maxWidth,
               withoutPadding,
               adjustResult,
               autoAlignPopupWidth,
@@ -330,6 +335,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     content,
     disabled,
     measureInfo,
+    maxWidth,
     autoAlignPopupWidth,
   ])
 

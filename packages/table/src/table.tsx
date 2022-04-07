@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { ChangeEvent, forwardRef, SyntheticEvent } from "react"
 import { TableContextProps, TableProps, ThContextProps } from "./interface"
 import {
   applyContainerStyle,
@@ -10,9 +10,10 @@ import {
 } from "./style"
 import { TableContext } from "./table-context"
 import {
-  useBlockLayout,
   useFilters,
+  useFlexLayout,
   useResizeColumns,
+  useRowSelect,
   useSortBy,
   useTable,
 } from "react-table"
@@ -28,6 +29,8 @@ import {
   SorterDownIcon,
   SorterUpIcon,
 } from "@illa-design/icon"
+import { Checkbox } from "@illa-design/checkbox"
+import { TableData } from "./table-data"
 
 export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
   (props, ref) => {
@@ -43,10 +46,12 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
       children,
       disableSortBy,
       disableFilters,
+      disableRowSelect,
       align = "left",
       showFooter,
       disableResizing,
       showHeader = true,
+      onRowSelectChange,
       _css,
       ...otherProps
     } = props
@@ -84,6 +89,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
         footerGroups,
         getTableProps,
         getTableBodyProps,
+        selectedFlatRows,
       } = useTable(
         {
           columns,
@@ -94,9 +100,60 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
         },
         useFilters,
         useSortBy,
-        useBlockLayout,
+        useRowSelect,
+        (hooks) => {
+          if (!disableRowSelect) {
+            hooks.visibleColumns.push((columns) => [
+              {
+                id: "selection",
+                Header: ({ getToggleAllRowsSelectedProps }) => (
+                  <Checkbox
+                    checked={getToggleAllRowsSelectedProps().checked}
+                    indeterminate={
+                      getToggleAllRowsSelectedProps().indeterminate
+                    }
+                    onChange={(_, event: SyntheticEvent) => {
+                      let changeEvent = getToggleAllRowsSelectedProps().onChange
+                      if (changeEvent != undefined) {
+                        changeEvent({
+                          target: event.target,
+                        } as ChangeEvent)
+                      }
+                    }}
+                  />
+                ),
+                disableSortBy: true,
+                disableResizing: true,
+                width: "0px",
+                Cell: ({ row }) => (
+                  <Checkbox
+                    disabled={(row.original as TableData).disableRowSelect}
+                    checked={row.getToggleRowSelectedProps().checked}
+                    indeterminate={
+                      row.getToggleRowSelectedProps().indeterminate
+                    }
+                    onChange={(checked: boolean, event: SyntheticEvent) => {
+                      let changeEvent = row.getToggleRowSelectedProps().onChange
+                      if (changeEvent != undefined) {
+                        changeEvent({
+                          target: event.target,
+                        } as ChangeEvent)
+                      }
+                    }}
+                  />
+                ),
+              },
+              ...columns,
+            ])
+          }
+        },
+        useFlexLayout,
         useResizeColumns,
       )
+
+      if (onRowSelectChange != undefined) {
+        onRowSelectChange(selectedFlatRows)
+      }
 
       return (
         <div css={applyContainerStyle(_css)} ref={ref}>
@@ -118,19 +175,20 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
                               {...column.getSortByToggleProps()}
                             >
                               {column.render("Header")}
-                              {column.isSorted ? (
-                                column.isSortedDesc ? (
-                                  <SorterDownIcon _css={applyHeaderIconLeft} />
+                              {column.canSort &&
+                                (column.isSorted ? (
+                                  column.isSortedDesc ? (
+                                    <SorterDownIcon
+                                      _css={applyHeaderIconLeft}
+                                    />
+                                  ) : (
+                                    <SorterUpIcon _css={applyHeaderIconLeft} />
+                                  )
                                 ) : (
-                                  <SorterUpIcon _css={applyHeaderIconLeft} />
-                                )
-                              ) : (
-                                !disableSortBy && (
                                   <SorterDefaultIcon
                                     _css={applyHeaderIconLeft}
                                   />
-                                )
-                              )}
+                                ))}
                             </div>
                             <div css={applyFilterContainer}>
                               {column.canFilter &&

@@ -123,6 +123,7 @@ export function applyThStyle(fixedHeader?: boolean): SerializedStyles {
 
 export const applyNormalStyle: SerializedStyles = css`
   font-size: 14px;
+  min-height: 22px;
   background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   color: ${globalColor(`--${illaPrefix}-gray-02`)};
 `
@@ -141,9 +142,10 @@ export const applyHeaderIconLeft = css`
   flex-wrap: wrap;
 `
 
-export const applyHeaderContainer = css`
+export const applyContentContainer = css`
   display: flex;
   overflow: auto;
+  min-height: 22px;
   align-items: center;
   flex-direction: row;
 `
