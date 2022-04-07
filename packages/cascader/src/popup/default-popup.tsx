@@ -8,10 +8,16 @@ import React, {
 import isEqual from "react-fast-compare"
 import { KeyCode, isNumber } from "@illa-design/system"
 import { CascaderPanelProps, OptionProps } from "../interface"
-import { Option } from "./option"
 import { Node } from "../node"
 import useRefs from "../hooks"
-import { applyOptionStyle, optionListStyle, optionListWrapper } from "../style"
+import {
+  applyOptionLabelStyle,
+  applyOptionStyle,
+  optionListStyle,
+  optionListWrapper,
+} from "../style"
+import { Checkbox } from "@illa-design/checkbox"
+import { CheckmarkIcon, LoadingIcon, NextIcon } from "@illa-design/icon"
 
 const getBaseActiveNode = (currentNode: any) => {
   if (currentNode && currentNode.disabled) {
@@ -284,10 +290,15 @@ export const DefaultPopup = <T extends OptionProps>(
                 }
                 const selected =
                   !multiple && option.isLeaf && isEqual(value, option.pathValue)
+                const checkboxDisabled =
+                  option.disabled || (multiple && option.disableCheckbox)
 
                 return (
                   <li
-                    css={applyOptionStyle()}
+                    css={applyOptionStyle({
+                      active: isActive,
+                      disabled: option.disabled,
+                    })}
                     key={option.value}
                     ref={(ref) => {
                       if (isActive) {
@@ -295,16 +306,21 @@ export const DefaultPopup = <T extends OptionProps>(
                       }
                     }}
                   >
-                    <Option
-                      multiple={multiple}
-                      option={option}
-                      selected={selected}
-                      onMouseEnter={() => {
-                        if (expandTrigger === "hover") {
-                          setActiveNode(option)
-                        }
-                      }}
-                      onClickOption={() => {
+                    {multiple && (
+                      <Checkbox
+                        disabled={checkboxDisabled}
+                        checked={option._checked}
+                        indeterminate={option._halfChecked}
+                        onChange={(checked: boolean) => {
+                          onMultipleChecked(option, checked)
+                        }}
+                        value={option.value}
+                      />
+                    )}
+                    <div
+                      css={applyOptionLabelStyle()}
+                      onClick={() => {
+                        if (option.disabled) return
                         if (
                           option.isLeaf &&
                           multiple &&
@@ -315,11 +331,26 @@ export const DefaultPopup = <T extends OptionProps>(
                           onClickOption(option)
                         }
                       }}
-                      onMultipleChecked={(checked: boolean) => {
-                        onMultipleChecked(option, checked)
+                      onMouseEnter={() => {
+                        if (!(option.isLeaf || option.disabled)) {
+                          if (expandTrigger === "hover") {
+                            setActiveNode(option)
+                          }
+                        }
                       }}
-                      onDoubleClickOption={onDoubleClickOption}
-                    />
+                      onDoubleClick={
+                        checkboxDisabled ? undefined : onDoubleClickOption
+                      }
+                    >
+                      {option.label}
+                      {option.isLeaf ? (
+                        selected && <CheckmarkIcon />
+                      ) : option.loading ? (
+                        <LoadingIcon spin />
+                      ) : (
+                        <NextIcon />
+                      )}
+                    </div>
                   </li>
                 )
               })}

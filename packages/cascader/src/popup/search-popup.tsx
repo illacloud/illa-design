@@ -9,9 +9,9 @@ import isEqual from "react-fast-compare"
 import { isString, KeyCode } from "@illa-design/system"
 import { Empty } from "@illa-design/empty"
 import { Checkbox } from "@illa-design/checkbox"
-import Store from "./store"
-import { Node } from "./node"
-import { OptionProps } from "./interface"
+import Store from "../store"
+import { Node } from "../node"
+import { OptionProps } from "../interface"
 import { getLegalIndex } from "./default-popup"
 
 export type SearchPopupProps<T> = {

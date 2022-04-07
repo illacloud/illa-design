@@ -104,7 +104,6 @@ export function applyPopupStyle(): SerializedStyles {
   `
 }
 
-
 // panel
 export const optionListWrapper = css`
   &:not(:last-child) {
@@ -119,15 +118,39 @@ export const optionListStyle = css`
   overflow-y: auto;
 `
 
-export function applyOptionStyle(): SerializedStyles {
+export function applyOptionStyle(states: {
+  active?: boolean
+  disabled?: boolean
+}): SerializedStyles {
+  let stateStyle: SerializedStyles = css()
+  if (states.active) {
+    stateStyle = css`
+      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+    `
+  }
+  if (states.disabled) {
+    stateStyle = css(stateStyle, css`
+      cursor: not-allowed;
+      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      &:hover {
+        background-color: unset;
+      }
+    `)
+  }
   return css`
     padding: 0 16px;
     display: flex;
     height: 36px;
     cursor: pointer;
     box-sizing: border-box;
+    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    &:hover {
+      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+    }
+    ${stateStyle}
   `
 }
+
 export function applyOptionLabelStyle(): SerializedStyles {
   return css`
     height: 100%;
@@ -136,4 +159,3 @@ export function applyOptionLabelStyle(): SerializedStyles {
     justify-content: space-between;
   `
 }
-
