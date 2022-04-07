@@ -131,7 +131,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           animate={"animate"}
           exit={"exit"}
           initial={"initial"}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.2 }}
           css={applyModal(alignCenter, simple)}
           style={style}
           className={className}
@@ -199,7 +199,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
                 animate={"animate"}
                 exit={"exit"}
                 initial={"initial"}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.2 }}
               />
             ) : null}
           </AnimatePresence>
