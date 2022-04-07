@@ -4,6 +4,11 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const i18nConfig = {
+  defaultLocale: 'en',
+  locales: ["en", "zh-cn"],
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'My Site',
@@ -15,6 +20,7 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
+  i18n: i18nConfig,
 
   presets: [
     [
@@ -55,11 +61,15 @@ const config = {
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/illa-family/illa-design',
             label: 'GitHub',
             position: 'right',
+          },
+          {
+            type: "localeDropdown",
+            position: "right",
           },
         ],
       },
@@ -113,6 +123,8 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+
+
 };
 
 module.exports = config;
