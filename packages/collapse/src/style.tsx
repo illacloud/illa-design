@@ -1,5 +1,7 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { CollapsePosition } from "./interface"
+import { Variants } from "framer-motion"
 
 export function applyCollapse(bordered?: boolean) {
   const borderCSS = bordered

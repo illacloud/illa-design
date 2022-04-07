@@ -90,9 +90,10 @@ it("Collapse renders with activeKey", () => {
 })
 
 it("Collapse renders with onChange", () => {
-  const onChangeEvent = cy.stub().as("onChangeEvent")
+  const onChangeEvent = cy.spy().as("onChangeEvent")
   mount(<DemoTest onChange={onChangeEvent} />)
-  cy.findByTestId("collapse-item-1").click()
-  cy.get("@onChangeEvent").should("to.be.called")
+  cy.findByTestId("collapse-item-3")
+    .click()
+    .then(() => cy.get("@onChangeEvent").should("to.be.called"))
   unmount()
 })

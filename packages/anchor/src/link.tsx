@@ -25,16 +25,16 @@ export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
     const { currentLink, registerLink, unregisterLink, onClickLink, lineless } =
       useContext(AnchorContext)
 
-    const isActive = currentLink === href;
+    const isActive = currentLink === href
 
     const linkRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => linkRef?.current as HTMLDivElement, [])
 
     useEffect(() => {
-      registerLink && href && registerLink(href, (linkRef.current as HTMLElement));
+      registerLink && href && registerLink(href, linkRef.current as HTMLElement)
 
       return () => {
-        unregisterLink && href && unregisterLink(href);
+        unregisterLink && href && unregisterLink(href)
       }
     }, [href])
 

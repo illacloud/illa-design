@@ -5,6 +5,17 @@ import { ShareIcon } from "@illa-design/icon"
 export default {
   title: "DATA DISPLAY/Collapse",
   component: Collapse,
+  argTypes: {
+    expandIcon: {
+      control: false,
+    },
+    activeKey: {
+      control: false,
+    },
+    defaultActiveKey: {
+      control: false,
+    },
+  },
 } as Meta
 
 const CollapseItem = Collapse.Item
@@ -80,5 +91,3 @@ export const Template: Story<CollapseProps> = (args) => {
     </>
   )
 }
-
-export const Basic = Template.bind({})

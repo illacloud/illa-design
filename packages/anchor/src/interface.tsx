@@ -1,21 +1,23 @@
 import { HTMLAttributes, ReactNode, CSSProperties, MouseEvent } from "react"
 
-export interface AnchorProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "onSelect"> {
+export interface AnchorProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "onSelect"> {
   animation?: boolean
   scrollContainer?: string | HTMLElement | Window
   boundary?: number | "start" | "center" | "end" | "nearest"
   hash?: boolean
   affix?: boolean
   affixStyle?: CSSProperties
-  offsetTop?: number,
+  offsetTop?: number
   offsetBottom?: number
   onChange?: (newLink: string, oldLink: string) => void
   onSelect?: (newLink: string, oldLink: string) => void
   lineless?: boolean
 }
 
-export interface AnchorLinkProps extends Omit<HTMLAttributes<HTMLAnchorElement>, "title"> {
-  href?: string,
+export interface AnchorLinkProps
+  extends Omit<HTMLAttributes<HTMLAnchorElement>, "title"> {
+  href?: string
   title?: string | ReactNode
 }
 

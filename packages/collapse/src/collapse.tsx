@@ -1,5 +1,27 @@
-import { forwardRef } from "react"
-import { CollapseProps } from "./interface"
+import { forwardRef, MouseEvent } from "react"
+import { CollapseProps, CollapseComponent } from "./interface"
+import { CollapseContext } from "./collapse-context"
+import { CollapseItem } from "./collapse-item"
+import { CaretRightIcon, CaretLeftIcon } from "@illa-design/icon"
+import { useMergeValue } from "@illa-design/system"
+import { applyCollapse } from "./style"
+
+const getActiveKeys = (
+  keys?: CollapseProps["activeKey"],
+  accordion?: boolean,
+): string[] => {
+  if (keys === void 0) {
+    return []
+  }
+  if (typeof keys === "string") {
+    keys = [keys]
+  }
+  const res = keys.map((item) => item)
+  if (accordion) {
+    return res.slice(0, 1)
+  }
+  return res
+}
 
 export const Collapse: CollapseComponent = forwardRef<
   HTMLDivElement,
