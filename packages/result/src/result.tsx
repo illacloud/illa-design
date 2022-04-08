@@ -1,10 +1,8 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { forwardRef } from "react"
 import { ResultProps } from "./interface"
 import { Icon, SuccessIcon, CloseIcon, WarningIcon } from "@illa-design/icon"
 import { IoInformation } from "react-icons/io5"
-import { wrapCss, titleCss, subTitleCss, applyIconContainer } from "./styles"
+import { wrapCss, titleCss, subTitleCss, applyIconContainer } from "./style"
 
 export const Result = forwardRef<HTMLDivElement, ResultProps>((props, ref) => {
   const {

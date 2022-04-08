@@ -8,10 +8,20 @@ const path = require("path")
 export default defineConfig({
   plugins: [
     react({
+      jsxImportSource: "@emotion/react",
+      jsxRuntime: "automatic",
+      babel: {
+        plugins: ["@emotion/babel-plugin"],
+        compact: false,
+      },
       // Exclude storybook stories
-      exclude: /\.stories\.([tj])sx?$/,
+      exclude: [
+        /\.stories\.([tj])sx?$/,
+        /\.e2e\.([tj])sx?$/,
+        /\.test\.([tj])sx?$/,
+      ],
       // Only .tsx files
-      include: "**/*.tsx",
+      include: ["**/*.tsx", "**/*.ts"],
     }),
   ],
   build: {
@@ -29,13 +39,13 @@ export default defineConfig({
           declaration: true,
           declarationDir: path.resolve(__dirname, "dist/types"),
           exclude: path.resolve(__dirname, "node_modules/**"),
-          allowSyntheticDefaultImports: true,
         }),
       ],
       external: ["react", "react-dom"],
       output: {
         globals: {
           react: "React",
+          "react-dom": "ReactDom",
         },
       },
     },

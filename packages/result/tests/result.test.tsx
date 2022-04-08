@@ -1,11 +1,10 @@
-import "@testing-library/jest-dom"
-import { render, screen } from "@testing-library/react"
-import * as React from "react"
 import { Result } from "../src"
+import { render, screen } from "@testing-library/react"
+import "@testing-library/jest-dom"
 import { LoadingIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 
-test("different status result", () => {
+test("Result1 renders with ", () => {
   // use icon
   render(<Result data-testid={"default Result"}></Result>)
   expect(screen.getByTestId("default Result")).toBeInTheDocument()
