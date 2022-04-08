@@ -1,47 +1,59 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import {
+  AddIcon,
   CheckmarkIcon,
   CloseIcon,
   CopyIcon,
+  DeleteIcon,
+  DownIcon,
   EmptyIcon,
   ErrorIcon,
+  ExpandIcon,
   EyeOffIcon,
   EyeOnIcon,
-  IconProps,
-  ImageDefaultIcon,
-  LinkIcon,
-  LoadingIcon,
-  LikeIcon,
-  ShareIcon,
-  PersonIcon,
-  RightIcon,
-  SearchIcon,
-  SuccessIcon,
-  ReduceIcon,
-  WarningCircleIcon,
-  WarningIcon,
-  PreIcon,
-  NextIcon,
-  UpIcon,
-  DownIcon,
-  MoreIcon,
-  ExpandIcon,
-  AddIcon,
-  InfoCircleIcon,
-  DeleteIcon,
-  MinusIcon,
-  PlusIcon,
-  UploadIcon,
-  FileWordIcon,
   FileDefaultIcon,
-  FileVideoIcon,
   FileExcelIcon,
   FileMusicIcon,
   FilePdfIcon,
   FilePictureIcon,
-  FileWPSIcon,
   FilePPTIcon,
+  FileVideoIcon,
+  FileWordIcon,
+  FileWPSIcon,
+  FilterIcon,
+  HeartIcon,
+  IconProps,
+  ImageDefaultIcon,
+  InfoCircleIcon,
+  LikeIcon,
+  LinkIcon,
+  LoadingIcon,
+  MinusIcon,
+  MoreIcon,
+  NextDoubleIcon,
+  NextIcon,
+  PenIcon,
+  PersonIcon,
+  PlusIcon,
+  PreDoubleIcon,
+  PreIcon,
+  ReduceIcon,
+  RightIcon,
+  SearchIcon,
+  ShareIcon,
+  SorterDefaultIcon,
+  SorterDownIcon,
+  SorterUpIcon,
+  StarIcon,
+  SuccessIcon,
+  TimeIcon,
+  UpIcon,
+  UploadIcon,
+  WarningCircleIcon,
+  WarningIcon,
+  CaretDownIcon,
+  CaretLeftIcon,
+  CaretRightIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -59,6 +71,9 @@ export default {
         type: "text",
       },
     },
+    _css: {
+      control: false,
+    },
   },
 } as Meta
 
@@ -70,6 +85,8 @@ export const ImageDefault: Story<IconProps> = (props) => (
 export const Loading: Story<IconProps> = (props) => <LoadingIcon {...props} />
 export const Like: Story<IconProps> = (props) => <LikeIcon {...props} />
 export const Share: Story<IconProps> = (props) => <ShareIcon {...props} />
+export const Star: Story<IconProps> = (props) => <StarIcon {...props} />
+export const Heart: Story<IconProps> = (props) => <HeartIcon {...props} />
 export const Person: Story<IconProps> = (props) => <PersonIcon {...props} />
 export const EyeOn: Story<IconProps> = (props) => <EyeOnIcon {...props} />
 export const EyeOff: Story<IconProps> = (props) => <EyeOffIcon {...props} />
@@ -94,6 +111,15 @@ export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
 export const Next: Story<IconProps> = (props) => <NextIcon {...props} />
 export const Up: Story<IconProps> = (props) => <UpIcon {...props} />
 export const Down: Story<IconProps> = (props) => <DownIcon {...props} />
+export const CaretDown: Story<IconProps> = (props) => (
+  <CaretDownIcon {...props} />
+)
+export const CaretLeft: Story<IconProps> = (props) => (
+  <CaretLeftIcon {...props} />
+)
+export const CaretRight: Story<IconProps> = (props) => (
+  <CaretRightIcon {...props} />
+)
 export const Expand: Story<IconProps> = (props) => <ExpandIcon {...props} />
 export const More: Story<IconProps> = (props) => <MoreIcon {...props} />
 export const Add: Story<IconProps> = (props) => <AddIcon {...props} />
@@ -120,3 +146,20 @@ export const FilePicture: Story<IconProps> = (props) => (
 )
 export const FileWPS: Story<IconProps> = (props) => <FileWPSIcon {...props} />
 export const FilePPT: Story<IconProps> = (props) => <FilePPTIcon {...props} />
+export const Pen: Story<IconProps> = (props) => <PenIcon {...props} />
+export const PreDouble: Story<IconProps> = (props) => (
+  <PreDoubleIcon {...props} />
+)
+export const NextDouble: Story<IconProps> = (props) => (
+  <NextDoubleIcon {...props} />
+)
+export const SorterDefault: Story<IconProps> = (props) => (
+  <SorterDefaultIcon {...props} />
+)
+export const SorterUp: Story<IconProps> = (props) => <SorterUpIcon {...props} />
+export const SorterDown: Story<IconProps> = (props) => (
+  <SorterDownIcon {...props} />
+)
+
+export const Filter: Story<IconProps> = (props) => <FilterIcon {...props} />
+export const Time: Story<IconProps> = (props) => <TimeIcon {...props} />

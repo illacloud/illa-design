@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Alert, AlertProps } from "../src"
 import { SearchIcon } from "@illa-design/icon"

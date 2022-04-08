@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ChangeEvent } from "react"
+import { HTMLAttributes, ChangeEvent, ReactNode } from "react"
 
 export type RadioColorScheme =
   | string
@@ -13,6 +13,8 @@ export type RadioColorScheme =
   | "blue"
   | "cyan"
   | "purple"
+
+export type RadioSize = "small" | "medium" | "large"
 
 export interface RadioProps
   extends Omit<HTMLAttributes<HTMLLabelElement>, "onChange"> {
@@ -34,13 +36,23 @@ export interface RadioGroupContextProps<T> {
   options?: (
     | string
     | number
-    | { label: React.ReactNode; value: any; disabled?: boolean }
+    | { label: ReactNode; value: any; disabled?: boolean }
   )[]
+  type?: "radio" | "button"
   direction?: "vertical" | "horizontal"
+  // only used in type="button"
+  size?: RadioSize
   spacing?: string | number
-  onChange?: (checked: boolean, event: ChangeEvent) => void
+  onChange?: (value: any, event: ChangeEvent) => void
 }
 
 export interface RadioGroupProps<T>
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue">,
     RadioGroupContextProps<T> {}
+
+export interface RadioStatus {
+  size?: RadioSize
+  checked?: boolean
+  disabled?: boolean
+  colorScheme: RadioColorScheme
+}

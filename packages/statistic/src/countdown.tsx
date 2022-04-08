@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, useEffect, useRef, useState } from "react"
 import { CountDownProps } from "./interface"
 import dayjs from "dayjs"
@@ -15,7 +14,6 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
     const {
       title,
       value = 0,
-      valueStyle,
       format = "HH:mm:ss",
       onFinish,
       onChange,
@@ -61,7 +59,7 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
     return (
       <div ref={ref} {...restProps} css={applyStatistic}>
         {title && <div css={applyStatisticTitle}>{title}</div>}
-        <div css={applyStatisticContent} style={valueStyle}>
+        <div css={applyStatisticContent}>
           {getDateString(valueShow, format)}
         </div>
       </div>

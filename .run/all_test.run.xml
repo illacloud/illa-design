@@ -1,14 +1,15 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="All Tests" type="JavaScriptTestRunnerJest" nameIsGenerated="true">
+  <configuration default="false" name="jest.config.js" type="JavaScriptTestRunnerJest" nameIsGenerated="true">
+    <config-file value="$PROJECT_DIR$/jest.config.js" />
     <node-interpreter value="project" />
     <node-options value="" />
-    <jest-package value="$PROJECT_DIR$/illa-design/node_modules/jest" />
-    <working-dir value="$PROJECT_DIR$/illa-design" />
+    <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+    <working-dir value="$PROJECT_DIR$" />
     <envs />
     <scope-kind value="ALL" />
     <method v="2">
       <option name="NpmBeforeRunTask" enabled="true">
-        <package-json value="$PROJECT_DIR$/illa-design/package.json" />
+        <package-json value="$PROJECT_DIR$/package.json" />
         <command value="run" />
         <scripts>
           <script value="build-all-components" />

@@ -2,7 +2,6 @@ import { Button, ButtonGroup } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { BsFacebook } from "react-icons/bs"
-import * as React from "react"
 
 test("Button Group renders attached with square shape", () => {
   render(

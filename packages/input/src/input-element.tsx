@@ -1,22 +1,22 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import {
   forwardRef,
   useRef,
   useState,
   ChangeEvent,
   useImperativeHandle,
+  CompositionEvent,
+  KeyboardEvent,
   useEffect,
 } from "react"
 import { css } from "@emotion/react"
 import { omit } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
-import { InputElementProps, InputRefType } from "./interface"
-import { applyInputStyle, mirrorStyle, pointerStyle } from "./style"
+import { InputElementProps } from "./interface"
+import { applyInputStyle, clearStyle, mirrorStyle, pointerStyle } from "./style"
 
-export const InputElement = forwardRef<InputRefType, InputElementProps>(
+export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
   (props, ref) => {
-    const inputRef = useRef<HTMLInputElement | null>(null)
+    const inputRef = useRef<HTMLInputElement>(null)
     const mirrorInputRef = useRef<HTMLSpanElement>(null)
 
     const isComposition = useRef(false)
@@ -34,6 +34,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
       maxLength,
       value,
       type,
+      size,
       onClear,
       autoFitWidth,
       textCenterHorizontal,
@@ -51,21 +52,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
       "onPressEnter",
     ])
 
-    useImperativeHandle(
-      ref,
-      () => {
-        return {
-          dom: inputRef.current,
-          focus: () => {
-            inputRef?.current?.focus?.()
-          },
-          blur: () => {
-            inputRef?.current?.blur?.()
-          },
-        }
-      },
-      [],
-    )
+    useImperativeHandle(ref, () => inputRef.current as HTMLInputElement, [])
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target?.value
@@ -78,7 +65,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
 
     // Handle Chinese keyboard input
     const onComposition = (
-      e: React.CompositionEvent & React.ChangeEvent<HTMLInputElement>,
+      e: CompositionEvent & ChangeEvent<HTMLInputElement>,
     ) => {
       if (e.type === "compositionend") {
         isComposition.current = false
@@ -89,7 +76,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
       }
     }
 
-    const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
       const keyCode = e.keyCode || e.which
       if (isComposition.current) {
         return
@@ -133,7 +120,8 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
         />
         {!disabled && allowClear && value ? (
           <span
-            css={pointerStyle}
+            title="InputClearIcon"
+            css={css(pointerStyle, clearStyle)}
             onClick={(e) => {
               e.stopPropagation()
               inputRef?.current?.focus?.()
@@ -143,7 +131,7 @@ export const InputElement = forwardRef<InputRefType, InputElementProps>(
               e.preventDefault()
             }}
           >
-            <ErrorIcon css={css(`margin-left: 10px;`)} />
+            <ErrorIcon />
           </span>
         ) : null}
         {autoFitWidth ? (

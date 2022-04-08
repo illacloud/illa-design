@@ -124,7 +124,6 @@ function applyStatus(stateValue: InputTagStateValue) {
 
 export function applyInputContainer(stateValue: InputTagStateValue) {
   return css`
-    width: 198px;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;

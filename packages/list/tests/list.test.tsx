@@ -3,7 +3,6 @@ import "@testing-library/jest-dom"
 import { List, ListItem, ListItemMeta } from "../src"
 import { Button } from "@illa-design/button"
 import { Image } from "@illa-design/image"
-import * as React from "react"
 
 test("List renders header and footer.", () => {
   render(

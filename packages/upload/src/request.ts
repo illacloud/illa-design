@@ -1,4 +1,5 @@
 import { RequestOptions, UploadRequestReturn } from "./index"
+import { isObject } from "@illa-design/system"
 
 export function sendUploadRequest(
   options: RequestOptions,
@@ -44,7 +45,7 @@ export function sendUploadRequest(
   }
   const formData = new FormData()
   formData.append(name || "file", file)
-  if (data && typeof data === "object") {
+  if (isObject(data)) {
     Object.keys(data).map((key: string) => {
       formData.append(key, data[key])
     })

@@ -1,8 +1,6 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, useMemo } from "react"
 import { StatisticProps } from "./interface"
 import dayjs from "dayjs"
-import * as _ from "lodash"
 
 import {
   applyStatistic,
@@ -11,13 +9,13 @@ import {
   applyStatisticTitle,
   applyStatisticValue,
 } from "./style"
+import { isObject } from "@illa-design/system"
 
 export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
   (props, ref) => {
     const {
       title,
       value = 0,
-      valueStyle,
       decimalSeparator = ".",
       format,
       groupSeparator = ",",
@@ -45,15 +43,15 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
     return (
       <div css={applyStatistic} ref={ref} {...restProps}>
         {title && <div css={applyStatisticTitle}>{title}</div>}
-        <div css={applyStatisticContent} style={valueStyle}>
+        <div css={applyStatisticContent}>
           {prefix && (
-            <span css={applyStatisticDecorator(true, !_.isObject(prefix))}>
+            <span css={applyStatisticDecorator(true, !isObject(prefix))}>
               {prefix}
             </span>
           )}
           <span css={applyStatisticValue}>{renderValue}</span>
           {suffix && (
-            <span css={applyStatisticDecorator(false, !_.isObject(suffix))}>
+            <span css={applyStatisticDecorator(false, !isObject(suffix))}>
               {suffix}
             </span>
           )}

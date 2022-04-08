@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 
 import {
@@ -19,7 +18,7 @@ export const Basic: Story<ConfigProviderProps> = (args) => {
     <ConfigProvider {...args} locale={zhCN}>
       <ConfigProviderContext.Consumer>
         {(value) => {
-          return <div>{value.locale?.trigger["close"]}</div>
+          return <div>{value.locale?.popover["close"]}</div>
         }}
       </ConfigProviderContext.Consumer>
     </ConfigProvider>

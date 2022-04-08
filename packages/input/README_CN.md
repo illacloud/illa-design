@@ -22,7 +22,7 @@ import { Input } from "@illa-design/input"
 |--------------|----------------|--------------------------------------------------------------------------------------------------|-------------|
 | variant      | 输入框的两种样式：填充、描边 | `"fill" ｜ "outline"`                                                                               | `"outline"` |
 | placeholder  | 输入框提示文字        | `string ｜ string[]`                                                                                | `-`         |
-| boarderColor | 输入框颜色          | `"white" ｜ "blackAlpha" ｜ "gray" ｜ "grayBlue" ｜ "red" ｜ "orange" ｜ "yellow" ｜ "green" ｜ "blue" ｜ "cyan" ｜ "purple" ` | `"blue"`    |
+| borderColor | 输入框颜色          | `"white" ｜ "blackAlpha" ｜ "gray" ｜ "grayBlue" ｜ "red" ｜ "orange" ｜ "yellow" ｜ "green" ｜ "blue" ｜ "cyan" ｜ "purple" ` | `"blue"`    |
 | defaultValue | 输入框默认内容        | `string ｜ string[]`                                                                                | `-`         |
 | disabled     | 是否禁用           | `boolean`                                                                                        | `false`     |
 | error        | 是否为错误状态        | `boolean`                                                                                        | `false`     |
@@ -59,7 +59,7 @@ import { Input } from "@illa-design/input"
 | placeholder  | 输入框提示文字        | `string ｜ string[]`                                                                                | `-`         |
 | defaultValue | 输入框默认内容        | `string ｜ string[]`                                                                                | `-`         |
 | disabled     | 是否为禁用状态        | `boolean`                                                                                        | `-`         |
-| boarderColor | 输入框颜色          | `"white" ｜ "blackAlpha" ｜ "gray" ｜ "grayBlue" ｜ "red" ｜ "orange" ｜ "yellow" ｜ "green" ｜ "blue" ｜ "cyan" ｜ "purple" ` | `"blue"`    |
+| borderColor | 输入框颜色          | `"white" ｜ "blackAlpha" ｜ "gray" ｜ "grayBlue" ｜ "red" ｜ "orange" ｜ "yellow" ｜ "green" ｜ "blue" ｜ "cyan" ｜ "purple" ` | `"blue"`    |
 | error        | 是否为错误状态        | `boolean`                                                                                        | `false`     |
 | size         | 输入框大小          | `"small" ｜ "medium" ｜ "large"`                                                                       | `"medium"`  |
 | value        | 输入框内容          | `string ｜ string[]`                                                                                | `-`         |
@@ -74,7 +74,7 @@ import { Input } from "@illa-design/input"
 | placeholder     | 输入框提示文字        | `string ｜ string[]`                                                                                | `-`         |
 | defaultValue    | 输入框默认内容        | `string ｜ string[]`                                                                                | `-`         |
 | disabled        | 是否为禁用状态        | `boolean`                                                                                        | `-`         |
-| boarderColor    | 输入框颜色          | `"white" ｜ "blackAlpha" ｜ "gray" ｜ "grayBlue" ｜ "red" ｜ "orange" ｜ "yellow" ｜ "green" ｜ "blue" ｜ "cyan" ｜ "purple" ` | `"blue"`    |
+| borderColor    | 输入框颜色          | `"white" ｜ "blackAlpha" ｜ "gray" ｜ "grayBlue" ｜ "red" ｜ "orange" ｜ "yellow" ｜ "green" ｜ "blue" ｜ "cyan" ｜ "purple" ` | `"blue"`    |
 | error           | 是否为错误状态        | `boolean`                                                                                        | `false`     |
 | size            | 输入框大小          | `"small" ｜ "medium" ｜ "large"  `                                                                     | `"medium"`  |
 | value           | 输入框内容          | `string ｜ string[]`                                                                                | `-`         |
