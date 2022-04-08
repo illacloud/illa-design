@@ -186,23 +186,23 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     )
 
     useEffect(() => {
-      // console.log('change')
-      // const clearTimer = () => {
-      //   clearTimeout(timerRef.current)
-      //   timerRef.current = undefined
-      // }
-      // if (!currentVisible && inputValue) {
-      //   if (timerRef.current) {
-      //     clearTimer()
-      //   }
-      //   timerRef.current = window.setTimeout(() => {
-      //     setInputValue("")
-      //     timerRef.current = undefined
-      //   }, 200)
-      // }
-      // return () => {
-      //   clearTimer()
-      // }
+      console.log('change')
+      const clearTimer = () => {
+        clearTimeout(timerRef.current)
+        timerRef.current = undefined
+      }
+      if (!currentVisible && inputValue) {
+        if (timerRef.current) {
+          clearTimer()
+        }
+        timerRef.current = window.setTimeout(() => {
+          setInputValue("")
+          timerRef.current = undefined
+        }, 200)
+      }
+      return () => {
+        clearTimer()
+      }
     }, [currentVisible])
 
     // SelectView event handle
@@ -275,6 +275,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
                 value={mergeValue}
                 popupVisible={currentVisible}
                 expandTrigger={expandTrigger}
+                onChange={handleChange}
               />
             )}
           </div>
