@@ -74,12 +74,22 @@ const COMPONENTS_MAP_CATEGORY = {
 
 const EXT_COMPONENT_LIST = ["react","system","theme"];
 
+function mkdirDir(dir) {
+  if (fs.existsSync(dir)) {
+    return true;
+  } else {
+    if (mkdirDir(path.dirname(dir))) {
+      fs.mkdirSync(dir);
+      return true;
+    }
+  }
+}
+
 function copyFile(source, target) {
   let targetDir = path.dirname(target);
-  if (!fs.existsSync(targetDir)) {
-    fs.mkdirSync(targetDir);
+  if (mkdirDir(targetDir)) {
+    fs.writeFileSync(target, fs.readFileSync(source));
   }
-  fs.writeFileSync(target, fs.readFileSync(source));
 }
 
 function getTargetPath(basePath, language, ...others) {
@@ -88,6 +98,8 @@ function getTargetPath(basePath, language, ...others) {
   }
   return path.join(basePath, ...others);
 }
+
+
 
 function run() {
   let componentDirList = fs.readdirSync(COMPONENT_BASE_PATH);

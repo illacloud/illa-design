@@ -13,8 +13,8 @@ const i18nConfig = {
 const config = {
   title: 'illa-design',
   tagline: 'Dinosaurs are cool',
-  url: 'https://illa-family.github.io/illa-design',
-  baseUrl: '/',
+  url: 'https://illa-family.github.io',
+  baseUrl: '/illa-design/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
