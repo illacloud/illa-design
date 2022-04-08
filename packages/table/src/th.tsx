@@ -3,7 +3,7 @@ import { forwardRef, useContext } from "react"
 import { ThProps } from "./interface"
 import {
   applyBorderStyle,
-  applyHeaderContainer,
+  applyContentContainer,
   applySizeStyle,
   applyThStyle,
 } from "./style"
@@ -41,7 +41,7 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
         ref={ref}
         {...otherProps}
       >
-        <div css={applyHeaderContainer}>{children}</div>
+        <div css={applyContentContainer}>{children}</div>
       </th>
     )
   },

@@ -17,7 +17,7 @@ export const statusColor = {
   wait: {
     color: globalColor(`--${illaPrefix}-gray-04`),
     backgroundColor: globalColor(`--${illaPrefix}-gray-08`),
-    dotColor: globalColor(`--${illaPrefix}-gray-04`),
+    dotColor: globalColor(`--${illaPrefix}-gray-06`),
   },
   process: {
     color: globalColor(`--${illaPrefix}-white-01`),
@@ -41,8 +41,9 @@ export function isVerticalLabel({
   labelPlacement: LabelPlacement
 }) {
   if (labelPlacement === "vertical") {
-    return true
+    return variant !== "navigation"
   }
+
   // if variant === dot, contents should be vertical
   if (variant === "dot" && direction === "horizontal") {
     return true
