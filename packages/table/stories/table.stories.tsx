@@ -196,9 +196,11 @@ export const CombineHeader: Story<TableProps<any>> = (args) => {
         Header: "Common",
         columns: [
           {
+            Header: "Header 1",
             accessor: "col1", // accessor is the "key" in the data
           },
           {
+            Header: "Header 2",
             accessor: "col2",
           },
         ],

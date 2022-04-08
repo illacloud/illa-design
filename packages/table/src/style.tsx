@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { TableLayout, TableSize } from "./interface"
+import { TableAlign, TableLayout, TableSize } from "./interface"
 
 export function applySizeStyle(size: TableSize): SerializedStyles {
   let paddingStyle
@@ -142,21 +142,27 @@ export const applyHeaderIconLeft = css`
   flex-wrap: wrap;
 `
 
-export const applyContentContainer = css`
-  display: inline-flex;
-  overflow: auto;
-  min-height: 22px;
-  align-items: center;
-  flex-direction: row;
-`
+export function applyContentContainer(align: TableAlign): SerializedStyles {
+  return css`
+    justify-content: ${align};
+    display: flex;
+    overflow: auto;
+    min-height: 22px;
+    align-items: center;
+    flex-direction: row;
+  `
+}
 
-export const applyPreContainer = css`
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  flex-direction: row;
-  flex-grow: 1;
-`
+export function applyPreContainer(align: TableAlign): SerializedStyles {
+  return css`
+    justify-content: ${align};
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    flex-direction: row;
+    flex-grow: 1;
+  `
+}
 
 export function applyTableStyle(
   tableLayout: TableLayout,

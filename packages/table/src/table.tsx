@@ -68,7 +68,6 @@ function renderDirectTable<D extends TableData>(
     disableRowSelect,
     align = "left",
     showFooter,
-    disableResizing,
     showHeader = true,
     onRowSelectChange,
     _css,
@@ -118,7 +117,6 @@ function renderDataDrivenTable<D extends TableData>(
     disableRowSelect,
     align = "left",
     showFooter,
-    disableResizing,
     showHeader = true,
     onRowSelectChange,
     _css,
@@ -151,7 +149,8 @@ function renderDataDrivenTable<D extends TableData>(
       data,
       disableSortBy,
       disableFilters,
-      disableResizing,
+      // TODO resizing
+      disableResizing: true,
     },
     useFilters,
     useSortBy,
@@ -232,7 +231,7 @@ function renderDataDrivenTable<D extends TableData>(
                     {group.headers.map((column, index) => (
                       <Th {...column.getHeaderProps()}>
                         <div
-                          css={applyPreContainer}
+                          css={applyPreContainer(align)}
                           {...column.getSortByToggleProps()}
                         >
                           {column.Header != undefined &&
