@@ -48,10 +48,21 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 
 ## Example
 
+```mdx-code-block
+import BrowserWindow from '@site/src/components/BrowserWindow';
+import { Button , ButtonGroup } from "@illa-design/button"
+```
+
 ### Basic usage
 
 ```jsx
 <Button>Hello</Button>
+```
+
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<Button>Hello</Button>
+</BrowserWindow>
 ```
 
 ### Set Button's size
@@ -63,6 +74,15 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 <Button size="large">Large</Button>
 ```
 
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<Button>Hello</Button>
+<Button size="small">Small</Button>
+<Button size="medium">Medium</Button>
+<Button size="large">Large</Button>
+</BrowserWindow>
+```
+
 ### Set Button's variant and background color
 
 ```jsx
@@ -70,11 +90,24 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 <Button variant="outline" colorScheme="cyan">Hello</Button>
 ```
 
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<Button>Hello</Button>
+<Button variant="outline" colorScheme="cyan">Hello</Button>
+</BrowserWindow>
+```
 ### Set Button's icons
 
 ```jsx
 <Button>Hello</Button>
 <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
+```
+
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<Button>Hello</Button>
+<Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
+</BrowserWindow>
 ```
 
 ### Set Button's disabled status or loading status
@@ -83,6 +116,14 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 <Button>Hello</Button>
 <Button disabled>Hello</Button>
 <Button loading loadingText="Loading">Hello</Button>
+```
+
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<Button>Hello</Button>
+<Button disabled>Hello</Button>
+<Button loading loadingText="Loading">Hello</Button>
+</BrowserWindow>
 ```
 
 ### Set ButtonGroup's variant and spacing
@@ -100,3 +141,17 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 </ButtonGroup>
 ```
 
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<ButtonGroup variant="outline" spacing="5px">
+  <Button>Hello</Button>
+  <Button disabled>Hello</Button>
+  <Button loading loadingText="Loading">Hello</Button>
+</ButtonGroup>
+<ButtonGroup variant="outline" attached>
+  <Button leftIcon={<BsArrowLeft />} />
+  <Button>Hello</Button>
+  <Button rightIcon={<BsArrowRight />} />
+</ButtonGroup>
+</BrowserWindow>
+```

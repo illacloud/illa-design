@@ -48,10 +48,21 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 
 ## 使用方法
 
+```mdx-code-block
+import BrowserWindow from '@site/src/components/BrowserWindow';
+import { Button , ButtonGroup } from "@illa-design/button"
+```
+
 ### 基础用法
 
 ```jsx
 <Button>Hello</Button>
+```
+
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<Button>Hello</Button>
+</BrowserWindow>
 ```
 
 ### 设置按钮大小
@@ -65,6 +76,15 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 <Button size="large">Large</Button>
 ```
 
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<Button>Hello</Button>
+<Button size="small">Small</Button>
+<Button size="medium">Medium</Button>
+<Button size="large">Large</Button>
+</BrowserWindow>
+```
+
 ### 设置按钮样式和颜色
 
 通过variant这个接口可以调整组件的样式,通过colorScheme个接口可以调整组件的背景颜色
@@ -72,6 +92,13 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 ```jsx
 <Button>Hello</Button>
 <Button variant="outline" colorScheme="cyan">Hello</Button>
+```
+
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<Button>Hello</Button>
+<Button variant="outline" colorScheme="cyan">Hello</Button>
+</BrowserWindow>
 ```
 
 ### 设置按钮icon
@@ -83,6 +110,13 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
 ```
 
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<Button>Hello</Button>
+<Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
+</BrowserWindow>
+```
+
 ### 设置按钮禁用状态和加载状态
 
 通过disabled和loading这两个接口可以分别设置按钮组件的禁用状态和加载状态
@@ -91,6 +125,14 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 <Button>Hello</Button>
 <Button disabled>Hello</Button>
 <Button loading loadingText="Loading">Hello</Button>
+```
+
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<Button>Hello</Button>
+<Button disabled>Hello</Button>
+<Button loading loadingText="Loading">Hello</Button>
+</BrowserWindow>
 ```
 
 ### 设置多个按钮样式和间隙
@@ -110,3 +152,17 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 </ButtonGroup>
 ```
 
+```mdx-code-block
+<BrowserWindow minHeight={240}>
+<ButtonGroup variant="outline" spacing="5px">
+  <Button>Hello</Button>
+  <Button disabled>Hello</Button>
+  <Button loading loadingText="Loading">Hello</Button>
+</ButtonGroup>
+<ButtonGroup variant="outline" attached>
+  <Button leftIcon={<BsArrowLeft />} />
+  <Button>Hello</Button>
+  <Button rightIcon={<BsArrowRight />} />
+</ButtonGroup>
+</BrowserWindow>
+```
