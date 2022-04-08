@@ -1,6 +1,7 @@
 import { Meta, Story } from "@storybook/react"
 import {
   Table,
+  TableData,
   TableFilter,
   TableProps,
   TBody,
@@ -63,7 +64,7 @@ export const Basic: Story<TableProps<any>> = (args) => {
   )
 }
 
-interface DemoData {
+interface DemoData extends TableData {
   col1: string
   col2: string
 }
@@ -78,6 +79,7 @@ export const InputData: Story<TableProps<any>> = (args) => {
       {
         col1: "react-table",
         col2: "rocks",
+        disableRowSelect: true,
       } as DemoData,
       {
         col1: "whatever",

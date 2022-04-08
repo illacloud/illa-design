@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/table",
+  "name": "@illa-design/dropdown",
   "version": "0.0.0",
-  "description": "Illa Design Table.",
+  "description": "Illa Design dropdown.",
   "keywords": [
-    "table",
+    "dropdown",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/table"
+    "directory": "packages/dropdown"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
@@ -41,12 +41,6 @@
   "dependencies": {
     "@illa-design/system": "*",
     "@illa-design/theme": "*",
-    "@illa-design/icon": "*",
-    "@illa-design/popover": "*",
-    "@illa-design/checkbox": "*",
-    "react-table": "^7.7.0"
-  },
-  "devDependencies": {
-    "@types/react-table": "^7.7.10"
+    "@illa-design/trigger": "*"
   }
 }
