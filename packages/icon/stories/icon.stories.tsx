@@ -55,7 +55,7 @@ import {
   WarningIcon,
   CaretLeftIcon,
   CaretRightIcon,
-  LeafIcon
+  LeafIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list

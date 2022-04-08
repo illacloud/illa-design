@@ -28,10 +28,10 @@ export function applyTitleStyle({
     applyTitleSize({ size, direction, variant, labelPlacement }),
     applyTitleColor(status),
     !lastStep &&
-    !lineless &&
-    direction !== "vertical" &&
-    labelPlacement !== "vertical" &&
-    applyConnectionStyle({ variant, status, nextStepError, size }),
+      !lineless &&
+      direction !== "vertical" &&
+      labelPlacement !== "vertical" &&
+      applyConnectionStyle({ variant, status, nextStepError, size }),
   ])
 }
 

@@ -83,13 +83,13 @@ function applyHover(hoverable: boolean): SerializedStyles {
 
   return css`
     &:hover > div {
-    transition: all .2s ease-in-out;
+      transition: all 0.2s ease-in-out;
 
-    &:first-child {
-    transition-duration: .15s
-    }
-    cursor: pointer;
-    color: ${hoverColor};
+      &:first-child {
+        transition-duration: 0.15s;
+      }
+      cursor: pointer;
+      color: ${hoverColor};
     }
   `
 }

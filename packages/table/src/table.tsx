@@ -19,7 +19,6 @@ import { TableContext } from "./table-context"
 import {
   Row,
   useFilters,
-  useFlexLayout,
   useResizeColumns,
   useRowSelect,
   useSortBy,
@@ -156,6 +155,7 @@ function renderDataDrivenTable<D extends TableData>(
     },
     useFilters,
     useSortBy,
+    useResizeColumns,
     useRowSelect,
     (hooks) => {
       // add selection
@@ -198,8 +198,6 @@ function renderDataDrivenTable<D extends TableData>(
         ...columns,
       ])
     },
-    useFlexLayout,
-    useResizeColumns,
   )
 
   // row select event
@@ -237,7 +235,8 @@ function renderDataDrivenTable<D extends TableData>(
                           css={applyPreContainer}
                           {...column.getSortByToggleProps()}
                         >
-                          {column.render("Header")}
+                          {column.Header != undefined &&
+                            column.render("Header")}
                           {column.canSort &&
                             (column.isSorted ? (
                               column.isSortedDesc ? (
@@ -288,7 +287,7 @@ function renderDataDrivenTable<D extends TableData>(
                   <Tr {...group.getFooterGroupProps()}>
                     {group.headers.map((column, index) => (
                       <Td {...column.getFooterProps()}>
-                        {column.render("Footer")}
+                        {column.Footer != undefined && column.render("Footer")}
                       </Td>
                     ))}
                   </Tr>

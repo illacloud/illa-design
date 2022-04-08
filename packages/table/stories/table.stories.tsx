@@ -14,6 +14,7 @@ import {
 import { useMemo, useState } from "react"
 import { Row, UseFiltersInstanceProps } from "react-table"
 import { Input } from "@illa-design/input"
+import { css } from "@emotion/react"
 
 export default {
   title: "DATA DISPLAY/Table",
@@ -69,7 +70,7 @@ interface DemoData extends TableData {
   col2: string
 }
 
-export const InputData: Story<TableProps<any>> = (args) => {
+export const DataDriven: Story<TableProps<any>> = (args) => {
   const data = useMemo(
     () => [
       {
@@ -98,6 +99,9 @@ export const InputData: Story<TableProps<any>> = (args) => {
         Filter: (columnProps: UseFiltersInstanceProps<DemoData>) => {
           return (
             <TableFilter
+              _css={css`
+                margin-left: 4px;
+              `}
               renderFilterContent={(
                 columnProps?: UseFiltersInstanceProps<DemoData>,
               ) => {
@@ -123,6 +127,9 @@ export const InputData: Story<TableProps<any>> = (args) => {
           const [currentInput, setCurrentInput] = useState<string>("")
           return (
             <TableFilter
+              _css={css`
+                margin-left: 4px;
+              `}
               renderFilterContent={(
                 columnProps?: UseFiltersInstanceProps<DemoData>,
               ) => {
@@ -156,6 +163,45 @@ export const InputData: Story<TableProps<any>> = (args) => {
             ).includes(filterValue)
           })
         },
+      },
+    ],
+    [],
+  )
+  return <Table data={data} columns={columns} {...args} />
+}
+
+export const CombineHeader: Story<TableProps<any>> = (args) => {
+  const data = useMemo(
+    () => [
+      {
+        col1: "Hello",
+        col2: "World",
+      } as DemoData,
+      {
+        col1: "react-table",
+        col2: "rocks",
+        disableRowSelect: true,
+      } as DemoData,
+      {
+        col1: "whatever",
+        col2: "you want",
+      } as DemoData,
+    ],
+    [],
+  )
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: "Common",
+        columns: [
+          {
+            accessor: "col1", // accessor is the "key" in the data
+          },
+          {
+            accessor: "col2",
+          },
+        ],
       },
     ],
     [],

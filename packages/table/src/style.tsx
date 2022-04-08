@@ -143,7 +143,7 @@ export const applyHeaderIconLeft = css`
 `
 
 export const applyContentContainer = css`
-  display: flex;
+  display: inline-flex;
   overflow: auto;
   min-height: 22px;
   align-items: center;
@@ -151,7 +151,7 @@ export const applyContentContainer = css`
 `
 
 export const applyPreContainer = css`
-  display: flex;
+  display: inline-flex;
   flex-shrink: 0;
   align-items: center;
   flex-direction: row;
