@@ -34,3 +34,30 @@ export const processChildren = (
       })
   })
 }
+
+export function isChildrenSelected(children, selectedKeys: string[]) {
+  let selected = false
+
+  function loop(_children) {
+    if (!_children || selected) {
+      return
+    }
+
+    React.Children.forEach(_children, (c) => {
+      if (c && c.props && c.type && !selected) {
+        const menuType = c.type.menuType
+        const selectable = c.props.selectable
+
+        if (menuType === "MenuItem" || (menuType === "SubMenu" && selectable)) {
+          selected = selectedKeys.includes(c.key)
+        }
+
+        if (!selected && c.props.children) {
+          loop(c.props.children)
+        }
+      }
+    })
+  }
+  loop(children)
+  return selected
+}

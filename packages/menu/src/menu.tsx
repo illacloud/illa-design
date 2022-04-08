@@ -19,7 +19,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     ellipsis = true,
     defaultSelectedKeys,
     defaultOpenKeys,
-    selectedKeys,
+    selectedKeys: selectedKeysProp,
     openKeys: openKeysProp,
     triggerProps,
     onClickMenuItem,
@@ -34,6 +34,11 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     defaultValue: defaultOpenKeys,
   })
 
+  const [selectedKeys, setSelectedKeys] = useMergeValue([], {
+    value: selectedKeysProp,
+    defaultValue: defaultSelectedKeys,
+  })
+
   function renderChildren() {
     return processChildren(children, { level: 1 })
   }
@@ -46,10 +51,14 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
           levelIndent,
           collapse,
           openKeys,
+          selectedKeys,
+          onClickMenuItem: (key, event) => {
+            selectable && setSelectedKeys([key]);
+            // TODO: pass keyPass
+            onClickMenuItem && onClickMenuItem(key, event, [])
+          },
           onClickSubMenu: (key, level, variant) => {
             let newOpenKeys: string[] = [...openKeys]
-
-            console.log({ key, level, variant })
 
             if (variant === "inline") {
               const isClickTopLevelSubMenuInAccordionMode =
@@ -66,8 +75,6 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
                   : newOpenKeys.concat(key)
               }
             }
-
-            console.log({ newOpenKeys })
 
             setOpenKeys(newOpenKeys)
             // TODO: pass keyPath

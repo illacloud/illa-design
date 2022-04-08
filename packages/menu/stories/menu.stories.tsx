@@ -31,24 +31,24 @@ const Template: Story<MenuProps> = (args) => {
           <Item title={"Menu-item-3"} key={"5sf"} />
         </SubMenu>
 
-        <SubMenu key={"2-2"} title={"SubMenu2"}>
-          <Item title={"Menu-item-2"} key={"1231234"} />
-          <Item title={"Menu-item-3"} key={"1231235"} />
-          <Item title={"Menu-item-2"} key={"12312311"} />
-          <Item title={"Menu-item-3"} key={"12312315"} />
-          <Item title={"Menu-item-2"} key={"12312314"} />
-          <Item title={"Menu-item-3"} key={"123123512"} />
-          <SubMenu title={"SubMenu2-1"} key={"2-3"}>
+        {/* <SubMenu key={"2-2"} title={"SubMenu2"}>
+            <Item title={"Menu-item-2"} key={"1231234"} />
+            <Item title={"Menu-item-3"} key={"1231235"} />
+            <Item title={"Menu-item-2"} key={"12312311"} />
+            <Item title={"Menu-item-3"} key={"12312315"} />
+            <Item title={"Menu-item-2"} key={"12312314"} />
+            <Item title={"Menu-item-3"} key={"123123512"} />
+            <SubMenu title={"SubMenu2-1"} key={"2-3"}>
             <Item title={"Menu-item-2"} key={"123123423"} />
             <Item title={"Menu-item-3"} key={"1231231205"} />
-          </SubMenu>
-          <SubMenu title={"SubMenu2-2"} key={"2-4"}>
+            </SubMenu>
+            <SubMenu title={"SubMenu2-2"} key={"2-4"}>
             <Item title={"Menu-item-2"} key={"1231234-92"} />
             <Item title={"Menu-item-3"} key={"1231235112"} />
             <Item title={"Menu-item-2"} key={"1231234900"} />
             <Item title={"Menu-item-3"} key={"1231235sf"} />
-          </SubMenu>
-        </SubMenu>
+            </SubMenu>
+            </SubMenu> */}
       </Menu>
     </>
   )
