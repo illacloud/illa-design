@@ -34,6 +34,7 @@ export interface TriggerProps {
   colorScheme?: TriggerColorScheme
   clickOutsideToClose?: boolean
   withoutPadding?: boolean
+  maxWidth?: string
   trigger?: TriggerTrigger
   content?: string | ReactNode
   position?: TriggerPosition
