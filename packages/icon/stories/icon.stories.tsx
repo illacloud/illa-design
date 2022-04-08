@@ -51,6 +51,9 @@ import {
   UploadIcon,
   WarningCircleIcon,
   WarningIcon,
+  CaretDownIcon,
+  CaretLeftIcon,
+  CaretRightIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -108,6 +111,15 @@ export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
 export const Next: Story<IconProps> = (props) => <NextIcon {...props} />
 export const Up: Story<IconProps> = (props) => <UpIcon {...props} />
 export const Down: Story<IconProps> = (props) => <DownIcon {...props} />
+export const CaretDown: Story<IconProps> = (props) => (
+  <CaretDownIcon {...props} />
+)
+export const CaretLeft: Story<IconProps> = (props) => (
+  <CaretLeftIcon {...props} />
+)
+export const CaretRight: Story<IconProps> = (props) => (
+  <CaretRightIcon {...props} />
+)
 export const Expand: Story<IconProps> = (props) => <ExpandIcon {...props} />
 export const More: Story<IconProps> = (props) => <MoreIcon {...props} />
 export const Add: Story<IconProps> = (props) => <AddIcon {...props} />

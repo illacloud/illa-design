@@ -6,7 +6,6 @@ exports[`List renders without border and split 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  min-width: 686px;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;

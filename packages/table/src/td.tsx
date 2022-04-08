@@ -1,12 +1,25 @@
 import { forwardRef, useContext } from "react"
 import { TdProps } from "./interface"
-import { applyBorderStyle, applyNormalStyle, applySizeStyle } from "./style"
+import {
+  applyBorderStyle,
+  applyContentContainer,
+  applyNormalStyle,
+  applySizeStyle,
+} from "./style"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
 
 export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
   (props, ref) => {
-    const { size, borderedCell, striped, align, _css, ...otherProps } = props
+    const {
+      size,
+      borderedCell,
+      striped,
+      align,
+      children,
+      _css,
+      ...otherProps
+    } = props
 
     const tableContext = useContext(TableContext)
 
@@ -24,7 +37,9 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
         )}
         ref={ref}
         {...otherProps}
-      />
+      >
+        <div css={applyContentContainer}>{children}</div>
+      </td>
     )
   },
 )

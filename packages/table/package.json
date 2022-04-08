@@ -43,6 +43,7 @@
     "@illa-design/theme": "*",
     "@illa-design/icon": "*",
     "@illa-design/popover": "*",
+    "@illa-design/checkbox": "*",
     "react-table": "^7.7.0"
   },
   "devDependencies": {
