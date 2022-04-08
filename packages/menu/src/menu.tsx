@@ -1,6 +1,8 @@
 import { forwardRef } from "react"
+import { useMergeValue, isFunction } from "@illa-design/system"
 import { MenuProps } from "./interface"
 import { MenuContext } from "./menu-context"
+import { processChildren } from "./util"
 
 export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const {
@@ -10,6 +12,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     levelIndent = 28,
     collapseIcons,
     autoOpen,
+    accordion,
     hasCollapseButton,
     collapse,
     selectable = true,
@@ -17,7 +20,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     defaultSelectedKeys,
     defaultOpenKeys,
     selectedKeys,
-    openKeys,
+    openKeys: openKeysProp,
     triggerProps,
     onClickMenuItem,
     onClickSubMenu,
@@ -26,6 +29,14 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     ...restProps
   } = props
 
+  const [openKeys, setOpenKeys] = useMergeValue([], {
+    value: openKeysProp,
+    defaultValue: defaultOpenKeys,
+  })
+
+  function renderChildren() {
+    return processChildren(children, { level: 1 })
+  }
 
   return (
     <div ref={ref} {...restProps}>
@@ -34,9 +45,37 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
           mode,
           levelIndent,
           collapse,
+          openKeys,
+          onClickSubMenu: (key, level, variant) => {
+            let newOpenKeys: string[] = [...openKeys]
+
+            console.log({ key, level, variant })
+
+            if (variant === "inline") {
+              const isClickTopLevelSubMenuInAccordionMode =
+                level === 1 && accordion
+              const isClickOnExpandedMenu = openKeys.includes(key)
+
+              if (isClickOnExpandedMenu) {
+                newOpenKeys = isClickTopLevelSubMenuInAccordionMode
+                  ? []
+                  : newOpenKeys.filter((k) => k !== key)
+              } else {
+                newOpenKeys = isClickTopLevelSubMenuInAccordionMode
+                  ? [key]
+                  : newOpenKeys.concat(key)
+              }
+            }
+
+            console.log({ newOpenKeys })
+
+            setOpenKeys(newOpenKeys)
+            // TODO: pass keyPath
+            isFunction(onClickSubMenu) && onClickSubMenu(key, newOpenKeys, [])
+          },
         }}
       >
-        {children}
+        {renderChildren()}
       </MenuContext.Provider>
     </div>
   )

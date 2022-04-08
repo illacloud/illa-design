@@ -1,11 +1,14 @@
-import { HTMLAttributes, MouseEvent, ReactNode } from "react"
+import { HTMLAttributes, MouseEvent, ReactElement, ReactNode } from "react"
 import { TriggerProps } from "@illa-design/trigger"
+
+export type MenuVariant = "inline" | "pop"
 
 export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
   theme?: "light" | "dark"
   mode?: "vertical" | "horizontal" | "popButton"
-  variant?: "inline" | "pop"
+  variant?: MenuVariant
   levelIndent?: number
+  accordion?: boolean
   collapseIcons?: ReactNode
   autoOpen?: boolean
   hasCollapseButton?: boolean
@@ -36,6 +39,10 @@ export interface ItemProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
 
 export interface SubMenuProps {
   key: string
+  _key?: string,
   title?: string | ReactNode
   level?: number
+  selectable?: boolean
+  children?: ReactNode
+  forwardedRef?: ReactElement
 }

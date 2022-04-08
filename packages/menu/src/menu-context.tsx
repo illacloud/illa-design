@@ -1,12 +1,14 @@
-import { createContext } from "react"
-import { MenuProps } from "./interface"
+import { createContext, MouseEvent } from "react"
+import { MenuProps, MenuVariant } from "./interface"
 
 export const MenuContext = createContext<
-  Pick<MenuProps, "mode" | "collapse" | "levelIndent"> & {
-    onClickMenuItem?: (key: string, event) => void
+  Pick<MenuProps, "mode" | "collapse" | "levelIndent" | "openKeys"> & {
+    onClickMenuItem?: (key: string, event: MouseEvent) => void
+    onClickSubMenu?: (key: string, level: number, variant: MenuVariant) => void
   }
 >({
   mode: "horizontal",
   collapse: false,
   levelIndent: 28,
+  openKeys: [],
 })
