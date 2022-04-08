@@ -9,13 +9,16 @@ const i18nConfig = {
   locales: ["en", "zh-cn"],
 }
 
+const isDev = process.env.NODE_ENV === 'development';
+const baseUrl = isDev ? '/' : '/illa-design/';
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'illa-design',
   tagline: 'Dinosaurs are cool',
   url: 'https://illa-family.github.io',
-  baseUrl: '/illa-design/',
-  onBrokenLinks: 'throw',
+  baseUrl,
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'illa-family', // Usually your GitHub org/user name.

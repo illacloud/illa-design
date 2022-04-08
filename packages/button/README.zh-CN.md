@@ -50,7 +50,7 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 
 ```mdx-code-block
 import BrowserWindow from '@site/src/components/BrowserWindow';
-import { Button , ButtonGroup } from "@illa-design/button"
+import BrowserOnly from '@docusaurus/BrowserOnly';
 ```
 
 ### 基础用法
@@ -61,10 +61,14 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<Button>Hello</Button>
+  <BrowserOnly>
+    {() => {
+      const { Button } = require("@illa-design/button")
+      return <Button>Hello</Button>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```
-
 ### 设置按钮大小
 
 通过size这个接口可以调整组件的大小
@@ -78,10 +82,17 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<Button>Hello</Button>
-<Button size="small">Small</Button>
-<Button size="medium">Medium</Button>
-<Button size="large">Large</Button>
+  <BrowserOnly>
+    {() => {
+      const { Button } = require("@illa-design/button")
+      return <>
+        <Button>Hello</Button>
+        <Button size="small">Small</Button>
+        <Button size="medium">Medium</Button>
+        <Button size="large">Large</Button>
+      </>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```
 
@@ -96,8 +107,15 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<Button>Hello</Button>
-<Button variant="outline" colorScheme="cyan">Hello</Button>
+  <BrowserOnly>
+    {() => {
+      const { Button } = require("@illa-design/button")
+      return <>
+        <Button>Hello</Button>
+        <Button variant="outline" colorScheme="cyan">Hello</Button>
+      </>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```
 
@@ -112,8 +130,15 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<Button>Hello</Button>
-<Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
+  <BrowserOnly>
+    {() => {
+      const { Button } = require("@illa-design/button")
+      return <>
+        <Button>Hello</Button>
+        <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
+      </>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```
 
@@ -129,9 +154,16 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<Button>Hello</Button>
-<Button disabled>Hello</Button>
-<Button loading loadingText="Loading">Hello</Button>
+  <BrowserOnly>
+    {() => {
+      const { Button } = require("@illa-design/button")
+      return <>
+        <Button>Hello</Button>
+        <Button disabled>Hello</Button>
+        <Button loading loadingText="Loading">Hello</Button>
+      </>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```
 
@@ -154,15 +186,22 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<ButtonGroup variant="outline" spacing="5px">
-  <Button>Hello</Button>
-  <Button disabled>Hello</Button>
-  <Button loading loadingText="Loading">Hello</Button>
-</ButtonGroup>
-<ButtonGroup variant="outline" attached>
-  <Button leftIcon={<BsArrowLeft />} />
-  <Button>Hello</Button>
-  <Button rightIcon={<BsArrowRight />} />
-</ButtonGroup>
+  <BrowserOnly>
+    {() => {
+      const { Button,ButtonGroup } = require("@illa-design/button")
+      return <>
+        <ButtonGroup variant="outline" spacing="5px">
+          <Button>Hello</Button>
+          <Button disabled>Hello</Button>
+          <Button loading loadingText="Loading">Hello</Button>
+        </ButtonGroup>
+        <ButtonGroup variant="outline" attached>
+          <Button leftIcon={<BsArrowLeft />} />
+          <Button>Hello</Button>
+          <Button rightIcon={<BsArrowRight />} />
+        </ButtonGroup>
+      </>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```

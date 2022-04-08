@@ -11,7 +11,7 @@ yarn add @illa-design/button
 ## Import component
 
 ```jsx
-import { Button } from "@illa-dedign/button"
+import { Button } from "@illa-design/button"
 ```
 
 ## API
@@ -50,7 +50,7 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 
 ```mdx-code-block
 import BrowserWindow from '@site/src/components/BrowserWindow';
-import { Button , ButtonGroup } from "@illa-design/button"
+import BrowserOnly from '@docusaurus/BrowserOnly';
 ```
 
 ### Basic usage
@@ -61,7 +61,12 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<Button>Hello</Button>
+  <BrowserOnly>
+    {() => {
+      const { Button } = require("@illa-design/button")
+      return <Button>Hello</Button>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```
 
@@ -76,10 +81,17 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<Button>Hello</Button>
-<Button size="small">Small</Button>
-<Button size="medium">Medium</Button>
-<Button size="large">Large</Button>
+  <BrowserOnly>
+    {() => {
+      const { Button } = require("@illa-design/button")
+      return <>
+        <Button>Hello</Button>
+        <Button size="small">Small</Button>
+        <Button size="medium">Medium</Button>
+        <Button size="large">Large</Button>
+      </>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```
 
@@ -92,8 +104,15 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<Button>Hello</Button>
-<Button variant="outline" colorScheme="cyan">Hello</Button>
+  <BrowserOnly>
+    {() => {
+      const { Button } = require("@illa-design/button")
+      return <>
+        <Button>Hello</Button>
+        <Button variant="outline" colorScheme="cyan">Hello</Button>
+      </>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```
 ### Set Button's icons
@@ -105,8 +124,15 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<Button>Hello</Button>
-<Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
+  <BrowserOnly>
+    {() => {
+      const { Button } = require("@illa-design/button")
+      return <>
+        <Button>Hello</Button>
+        <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
+      </>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```
 
@@ -120,9 +146,16 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<Button>Hello</Button>
-<Button disabled>Hello</Button>
-<Button loading loadingText="Loading">Hello</Button>
+  <BrowserOnly>
+    {() => {
+      const { Button } = require("@illa-design/button")
+      return <>
+        <Button>Hello</Button>
+        <Button disabled>Hello</Button>
+        <Button loading loadingText="Loading">Hello</Button>
+      </>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```
 
@@ -143,15 +176,22 @@ import { Button , ButtonGroup } from "@illa-design/button"
 
 ```mdx-code-block
 <BrowserWindow minHeight={240}>
-<ButtonGroup variant="outline" spacing="5px">
-  <Button>Hello</Button>
-  <Button disabled>Hello</Button>
-  <Button loading loadingText="Loading">Hello</Button>
-</ButtonGroup>
-<ButtonGroup variant="outline" attached>
-  <Button leftIcon={<BsArrowLeft />} />
-  <Button>Hello</Button>
-  <Button rightIcon={<BsArrowRight />} />
-</ButtonGroup>
+  <BrowserOnly>
+    {() => {
+      const { Button,ButtonGroup } = require("@illa-design/button")
+      return <>
+        <ButtonGroup variant="outline" spacing="5px">
+          <Button>Hello</Button>
+          <Button disabled>Hello</Button>
+          <Button loading loadingText="Loading">Hello</Button>
+        </ButtonGroup>
+        <ButtonGroup variant="outline" attached>
+          <Button leftIcon={<BsArrowLeft />} />
+          <Button>Hello</Button>
+          <Button rightIcon={<BsArrowRight />} />
+        </ButtonGroup>
+      </>
+    }}
+  </BrowserOnly>
 </BrowserWindow>
 ```
