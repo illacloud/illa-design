@@ -24,15 +24,51 @@ export function applySizeStyle(size: TableSize): SerializedStyles {
   return paddingStyle
 }
 
+export function applyHeaderSizeStyle(size: TableSize): SerializedStyles {
+  let paddingStyle
+  switch (size) {
+    case "small":
+      paddingStyle = css`
+        padding: 5px 0;
+      `
+      break
+    case "medium":
+      paddingStyle = css`
+        padding: 7px 0;
+      `
+      break
+    case "large":
+      paddingStyle = css`
+        padding: 9px 0;
+      `
+      break
+  }
+  return paddingStyle
+}
+
 export function applyContainerStyle(_css?: SerializedStyles): SerializedStyles {
   return css(
     css`
-      overflow: scroll;
+      overflow: auto;
       display: inline-flex;
       vertical-align: center;
     `,
     _css,
   )
+}
+
+export function applyResizing(canResize?: boolean): SerializedStyles {
+  if (canResize) {
+    return css`
+      width: 10px;
+      height: 100%;
+      z-index: 10;
+      position: absolute;
+      right: 0;
+      transform: translateX(50%);
+    `
+  }
+  return css``
 }
 
 export function applyBorderStyle(
@@ -87,25 +123,36 @@ export function applyThStyle(fixedHeader?: boolean): SerializedStyles {
 
 export const applyNormalStyle: SerializedStyles = css`
   font-size: 14px;
+  min-height: 22px;
   background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   color: ${globalColor(`--${illaPrefix}-gray-02`)};
+`
+
+export const applyFilterContainer = css`
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `
 
 export const applyHeaderIconLeft = css`
   margin-left: 4px;
   width: 16px;
   height: 16px;
-  font-size: 16px;
+  flex-wrap: wrap;
 `
 
-export const applyHeaderContainer = css`
+export const applyContentContainer = css`
   display: flex;
+  overflow: auto;
+  min-height: 22px;
   align-items: center;
   flex-direction: row;
 `
 
 export const applyPreContainer = css`
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   flex-direction: row;
   flex-grow: 1;

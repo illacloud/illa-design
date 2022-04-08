@@ -83,6 +83,7 @@ export function applyTipsContainer(
 
 export function applyTipsText(
   colorScheme: TriggerColorScheme,
+  maxWidth?: string,
   withoutPadding?: boolean,
   adjustResult?: AdjustResult,
   autoAlignPopupWidth?: boolean,
@@ -128,7 +129,7 @@ export function applyTipsText(
     background-color: ${bgColor};
     color: ${textColor};
     text-align: left;
-    max-width: 588px;
+    max-width: ${maxWidth};
     border-radius: 2px;
     font-size: 14px;
     ${padding};

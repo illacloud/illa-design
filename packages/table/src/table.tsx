@@ -1,13 +1,22 @@
-import { forwardRef } from "react"
+import { ChangeEvent, forwardRef, SyntheticEvent } from "react"
 import { TableContextProps, TableProps, ThContextProps } from "./interface"
 import {
   applyContainerStyle,
+  applyFilterContainer,
   applyHeaderIconLeft,
   applyPreContainer,
+  applyResizing,
   applyTableStyle,
 } from "./style"
 import { TableContext } from "./table-context"
-import { useFilters, useSortBy, useTable } from "react-table"
+import {
+  useFilters,
+  useFlexLayout,
+  useResizeColumns,
+  useRowSelect,
+  useSortBy,
+  useTable,
+} from "react-table"
 import { Thead } from "./thead"
 import { Tr } from "./tr"
 import { Th } from "./th"
@@ -20,6 +29,8 @@ import {
   SorterDownIcon,
   SorterUpIcon,
 } from "@illa-design/icon"
+import { Checkbox } from "@illa-design/checkbox"
+import { TableData } from "./table-data"
 
 export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
   (props, ref) => {
@@ -35,9 +46,12 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
       children,
       disableSortBy,
       disableFilters,
+      disableRowSelect,
       align = "left",
       showFooter,
+      disableResizing,
       showHeader = true,
+      onRowSelectChange,
       _css,
       ...otherProps
     } = props
@@ -75,16 +89,71 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
         footerGroups,
         getTableProps,
         getTableBodyProps,
+        selectedFlatRows,
       } = useTable(
         {
           columns,
           data,
           disableSortBy,
           disableFilters,
+          disableResizing,
         },
         useFilters,
         useSortBy,
+        useRowSelect,
+        (hooks) => {
+          if (!disableRowSelect) {
+            hooks.visibleColumns.push((columns) => [
+              {
+                id: "selection",
+                Header: ({ getToggleAllRowsSelectedProps }) => (
+                  <Checkbox
+                    checked={getToggleAllRowsSelectedProps().checked}
+                    indeterminate={
+                      getToggleAllRowsSelectedProps().indeterminate
+                    }
+                    onChange={(_, event: SyntheticEvent) => {
+                      let changeEvent = getToggleAllRowsSelectedProps().onChange
+                      if (changeEvent != undefined) {
+                        changeEvent({
+                          target: event.target,
+                        } as ChangeEvent)
+                      }
+                    }}
+                  />
+                ),
+                disableSortBy: true,
+                disableResizing: true,
+                width: "0px",
+                Cell: ({ row }) => (
+                  <Checkbox
+                    disabled={(row.original as TableData).disableRowSelect}
+                    checked={row.getToggleRowSelectedProps().checked}
+                    indeterminate={
+                      row.getToggleRowSelectedProps().indeterminate
+                    }
+                    onChange={(checked: boolean, event: SyntheticEvent) => {
+                      let changeEvent = row.getToggleRowSelectedProps().onChange
+                      if (changeEvent != undefined) {
+                        changeEvent({
+                          target: event.target,
+                        } as ChangeEvent)
+                      }
+                    }}
+                  />
+                ),
+              },
+              ...columns,
+            ])
+          }
+        },
+        useFlexLayout,
+        useResizeColumns,
       )
+
+      if (onRowSelectChange != undefined) {
+        onRowSelectChange(selectedFlatRows)
+      }
 
       return (
         <div css={applyContainerStyle(_css)} ref={ref}>
@@ -100,30 +169,40 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
                     {headerGroups.map((group) => (
                       <Tr {...group.getHeaderGroupProps()}>
                         {group.headers.map((column, index) => (
-                          <Th
-                            {...column.getHeaderProps(
-                              column.getSortByToggleProps(),
-                            )}
-                          >
-                            <div css={applyPreContainer}>
+                          <Th {...column.getHeaderProps()}>
+                            <div
+                              css={applyPreContainer}
+                              {...column.getSortByToggleProps()}
+                            >
                               {column.render("Header")}
-                              {column.isSorted ? (
-                                column.isSortedDesc ? (
-                                  <SorterDownIcon _css={applyHeaderIconLeft} />
+                              {column.canSort &&
+                                (column.isSorted ? (
+                                  column.isSortedDesc ? (
+                                    <SorterDownIcon
+                                      _css={applyHeaderIconLeft}
+                                    />
+                                  ) : (
+                                    <SorterUpIcon _css={applyHeaderIconLeft} />
+                                  )
                                 ) : (
-                                  <SorterUpIcon _css={applyHeaderIconLeft} />
-                                )
-                              ) : (
-                                !disableSortBy && (
                                   <SorterDefaultIcon
                                     _css={applyHeaderIconLeft}
                                   />
-                                )
-                              )}
+                                ))}
                             </div>
-                            {column.canFilter &&
-                              column.Filter != undefined &&
-                              column.render("Filter")}
+                            <div css={applyFilterContainer}>
+                              {column.canFilter &&
+                                column.Filter != undefined &&
+                                column.render("Filter")}
+                            </div>
+                            {column.canResize &&
+                              group.headers.indexOf(column) !=
+                                group.headers.length - 1 && (
+                                <div
+                                  {...column.getResizerProps()}
+                                  css={applyResizing(column.canResize)}
+                                />
+                              )}
                           </Th>
                         ))}
                       </Tr>
