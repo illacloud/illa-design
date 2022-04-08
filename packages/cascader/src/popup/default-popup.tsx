@@ -7,6 +7,8 @@ import React, {
 } from "react"
 import isEqual from "react-fast-compare"
 import { KeyCode, isNumber } from "@illa-design/system"
+import { LoadingIcon, NextIcon } from "@illa-design/icon"
+import { Checkbox } from "@illa-design/checkbox"
 import { CascaderPanelProps, OptionProps } from "../interface"
 import { Node } from "../node"
 import useRefs from "../hooks"
@@ -15,9 +17,7 @@ import {
   applyOptionStyle,
   optionListStyle,
   optionListWrapper,
-} from "../style"
-import { Checkbox } from "@illa-design/checkbox"
-import { CheckmarkIcon, LoadingIcon, NextIcon } from "@illa-design/icon"
+} from "./style"
 
 const getBaseActiveNode = (currentNode: any) => {
   if (currentNode && currentNode.disabled) {
@@ -305,6 +305,18 @@ export const DefaultPopup = <T extends OptionProps>(
                         setActiveOptionList(ref, level)
                       }
                     }}
+                    onClick={() => {
+                      if (option.disabled) return
+                      if (
+                        option.isLeaf &&
+                        multiple &&
+                        !option.disableCheckbox
+                      ) {
+                        onMultipleChecked(option, !option._checked)
+                      } else {
+                        onClickOption(option)
+                      }
+                    }}
                   >
                     {multiple && (
                       <Checkbox
@@ -319,18 +331,6 @@ export const DefaultPopup = <T extends OptionProps>(
                     )}
                     <div
                       css={applyOptionLabelStyle()}
-                      onClick={() => {
-                        if (option.disabled) return
-                        if (
-                          option.isLeaf &&
-                          multiple &&
-                          !option.disableCheckbox
-                        ) {
-                          onMultipleChecked(option, !option._checked)
-                        } else {
-                          onClickOption(option)
-                        }
-                      }}
                       onMouseEnter={() => {
                         if (!(option.isLeaf || option.disabled)) {
                           if (expandTrigger === "hover") {
@@ -343,9 +343,7 @@ export const DefaultPopup = <T extends OptionProps>(
                       }
                     >
                       {option.label}
-                      {option.isLeaf ? (
-                        selected && <CheckmarkIcon />
-                      ) : option.loading ? (
+                      {option.isLeaf ? null : option.loading ? (
                         <LoadingIcon spin />
                       ) : (
                         <NextIcon />

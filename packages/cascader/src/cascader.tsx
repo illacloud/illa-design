@@ -16,6 +16,7 @@ import { DefaultPopup } from "./popup/default-popup"
 import { SearchPopup } from "./popup/search-popup"
 import Store from "./store"
 import { applyPopupStyle } from "./style"
+import { logDOM } from "@testing-library/react"
 
 function getConfig(props: any) {
   return {
@@ -119,13 +120,13 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       const _selectedOptions = multiple ? selectedOptions : selectedOptions[0]
 
       if (!multiple) {
+        console.log(inputValue, )
         if (inputValue) {
           // 单选时选择搜索项，直接关闭面板
           handleVisibleChange(false)
         } else if (
           (selectedOptions[0] &&
-            selectedOptions[0][selectedOptions[0].length - 1]?.isLeaf) ||
-          expandTrigger === "hover"
+            selectedOptions[0][selectedOptions[0].length - 1]?.isLeaf)
         ) {
           handleVisibleChange(false)
         }
@@ -247,7 +248,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       },
     }
 
-    console.log(inputValue, mergeValue, showSearchPanel, !!inputValue, "value")
+    console.log(inputValue, mergeValue, !!inputValue, "value")
 
     return (
       <Trigger
@@ -273,10 +274,13 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
                 onChange={handleChange}
                 popupVisible={currentVisible}
                 expandTrigger={expandTrigger}
-                onEsc={() => {
+                onEsc={() =>
+                {
+                  console.log('onEsc')
                   handleVisibleChange(false)
                 }}
                 onDoubleClickOption={() => {
+                  console.log('onDoubleClickOption')
                   if (!multiple) {
                     handleVisibleChange(false)
                   }
@@ -288,6 +292,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         showArrow={false}
         colorScheme="white"
         position="bl"
+        maxWidth=""
         disabled={disabled}
         openDelay={0}
         closeDelay={0}
