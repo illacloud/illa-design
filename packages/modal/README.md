@@ -43,7 +43,7 @@ import { Modal } from "@illa-design/modal"
 | Props      | Desc                                 | Type                                      | Default |
 | ---------- | ------------------------------------ | ----------------------------------------- | ------- |
 | onCancel   | Callback for closing the pop-ups     | `() => void`                              | `-`     |
-| onOk       | Callback for confirm button click    | `(e?: MouseEvent) => Promise<any> | void` | `-`     |
+| onOk       | Callback for confirm button click    | `(e?: MouseEvent) => Promise<any> \| void` | `-`     |
 | afterOpen  | Callback after the pop-ups is opened | `() => void`                              | `-`     |
 | afterClose | Callback after the pop-ups is closed | `() => void`                              | `-`     |
 
