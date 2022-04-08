@@ -36,7 +36,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ github.run_id }}
 
-
       - name: Build
         run: |
           yarn install --frozen-lockfile
@@ -46,13 +45,6 @@ jobs:
         run: |
           cd ./docs
           yarn install --frozen-lockfile
-          cd ..
-
-      - name: Init docs i18n
-        run: |
-          cd ./docs
-          yarn run write-translations -- --locale en
-          yarn run write-translations -- --locale zh-cn
           cd ..
 
       - name: Import docs i18n
