@@ -219,6 +219,7 @@ export function getValidValue(
   labelInValue?: boolean,
 ): SelectInner {
   // Compatible when labelInValue is set, value is passed in the object
+  console.log("getValidValue", value, isMultiple, labelInValue)
   if (labelInValue) {
     if (isMultiple) {
       value = Array.isArray(value)
@@ -230,6 +231,12 @@ export function getValidValue(
       value = isObject(value) && "label" in value ? value.value : value
     }
   }
+
+  console.log(
+    "getValidValue",
+    isEmptyValue(value, isMultiple),
+    Array.isArray(value),
+  )
 
   return isEmptyValue(value, isMultiple)
     ? isMultiple

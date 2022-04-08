@@ -9,7 +9,6 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
     style,
     className,
     variant = "line",
-    size = "small",
     direction = "horizontal",
     labelPlacement = "horizontal",
     current = 1,
@@ -26,7 +25,7 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
       child &&
       (child as ReactElement).type &&
       ((child as ReactElement).type as { displayName?: string }).displayName ===
-        "Step"
+      "Step"
     )
   }
 
@@ -45,7 +44,6 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
       index,
       current,
       variant,
-      size,
       status: current === index ? status : undefined,
       customDot,
       direction,

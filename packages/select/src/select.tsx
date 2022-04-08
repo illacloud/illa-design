@@ -82,6 +82,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
     optionValueList,
     optionIndexListForArrowKey,
   } = useMemo(() => {
+    console.log("inputValue")
     return flatChildren(
       { children, options, filterOption },
       {

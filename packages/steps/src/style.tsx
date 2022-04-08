@@ -17,7 +17,7 @@ export const statusColor = {
   wait: {
     color: globalColor(`--${illaPrefix}-gray-04`),
     backgroundColor: globalColor(`--${illaPrefix}-gray-08`),
-    dotColor: globalColor(`--${illaPrefix}-gray-04`),
+    dotColor: globalColor(`--${illaPrefix}-gray-06`),
   },
   process: {
     color: globalColor(`--${illaPrefix}-white-01`),

@@ -32,6 +32,8 @@ import {
   MoreIcon,
   NextDoubleIcon,
   NextIcon,
+  CaretDownIcon,
+  DragPointIcon,
   PenIcon,
   PersonIcon,
   PlusIcon,
@@ -51,6 +53,9 @@ import {
   UploadIcon,
   WarningCircleIcon,
   WarningIcon,
+  CaretLeftIcon,
+  CaretRightIcon,
+  LeafIcon
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -108,6 +113,15 @@ export const Pre: Story<IconProps> = (props) => <PreIcon {...props} />
 export const Next: Story<IconProps> = (props) => <NextIcon {...props} />
 export const Up: Story<IconProps> = (props) => <UpIcon {...props} />
 export const Down: Story<IconProps> = (props) => <DownIcon {...props} />
+export const CaretDown: Story<IconProps> = (props) => (
+  <CaretDownIcon {...props} />
+)
+export const CaretLeft: Story<IconProps> = (props) => (
+  <CaretLeftIcon {...props} />
+)
+export const CaretRight: Story<IconProps> = (props) => (
+  <CaretRightIcon {...props} />
+)
 export const Expand: Story<IconProps> = (props) => <ExpandIcon {...props} />
 export const More: Story<IconProps> = (props) => <MoreIcon {...props} />
 export const Add: Story<IconProps> = (props) => <AddIcon {...props} />
@@ -151,3 +165,9 @@ export const SorterDown: Story<IconProps> = (props) => (
 
 export const Filter: Story<IconProps> = (props) => <FilterIcon {...props} />
 export const Time: Story<IconProps> = (props) => <TimeIcon {...props} />
+
+export const DragPoint: Story<IconProps> = (props) => (
+  <DragPointIcon {...props} />
+)
+
+export const Leaf: Story<IconProps> = (props) => <LeafIcon {...props} />

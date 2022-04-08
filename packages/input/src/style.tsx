@@ -200,6 +200,7 @@ export function applyInputContainer(
     position: relative;
     font-size: inherit;
     line-height: inherit;
+    box-sizing: border-box;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     transition: all 200ms ease-in-out;
@@ -354,6 +355,7 @@ export function applyAddonCss(stateValue: StateValue) {
     border-style: solid;
     padding: 0 16px;
     height: 100%;
+    box-sizing: border-box;
 
     &:first-of-type {
       border-top-left-radius: 4px;

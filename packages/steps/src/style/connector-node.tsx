@@ -43,8 +43,8 @@ function generateDotConnnector({
     const positionMap = {
       small: {
         left: 3.5,
-        top: 22,
-        bottom: -5,
+        top: 32,
+        bottom: 8,
       },
       large: {
         left: 4.5,
@@ -64,15 +64,27 @@ function generateDotConnnector({
       small: 4,
       large: 4.5,
     }
-    return css({
-      position: "absolute",
-      display: "block",
-      height: 1,
-      width: "100%",
-      left: 78,
-      top: topMap[size],
-      backgroundColor: color,
-    })
+    return css(
+      {
+        position: "absolute",
+        display: "block",
+        height: 1,
+        width: "100%",
+        left: 90,
+        paddingRight: 24,
+        boxSizing: "border-box",
+        top: topMap[size],
+      },
+      css`
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 100%;
+          background-color: ${color};
+        }
+      `,
+    )
   }
 
   return css``
@@ -93,8 +105,8 @@ function generateLineConnector({
     const positionMap = {
       small: {
         left: 12,
-        top: 28,
-        bottom: 5,
+        top: 32,
+        bottom: 8,
       },
       large: {
         left: 16,
@@ -113,8 +125,8 @@ function generateLineConnector({
     const positionMap = {
       small: {
         top: 12,
-        left: 88,
-        paddingRight: 24,
+        left: 96,
+        paddingRight: 40,
       },
       large: {
         top: 16,

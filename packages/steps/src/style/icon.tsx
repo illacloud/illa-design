@@ -19,12 +19,14 @@ export function applyIconStyle({
 } & StepStyleConfig): SerializedStyles {
   return css(
     css`
-      display: inline-block;
+      display: inline-flex;
       vertical-align: top;
       border-radius: 50%;
       box-sizing: border-box;
       text-align: center;
       margin-right: 16px;
+      justify-content: center;
+      align-items: center;
     `,
     applyIconSize({ size, variant, status }),
     applyIconColor({ variant, status }),
@@ -43,19 +45,19 @@ function applyIconColor({
 
   switch (status) {
     case "wait":
-      ;({ color, backgroundColor, dotColor } = statusColor.wait)
+      ; ({ color, backgroundColor, dotColor } = statusColor.wait)
       break
 
     case "process":
-      ;({ color, backgroundColor, dotColor } = statusColor.process)
+      ; ({ color, backgroundColor, dotColor } = statusColor.process)
       break
 
     case "finish":
-      ;({ color, backgroundColor, dotColor } = statusColor.finish)
+      ; ({ color, backgroundColor, dotColor } = statusColor.finish)
       break
 
     case "error":
-      ;({ color, backgroundColor, dotColor } = statusColor.error)
+      ; ({ color, backgroundColor, dotColor } = statusColor.error)
       break
   }
 
@@ -80,20 +82,17 @@ function applyIconSize({
   if (variant !== "dot") {
     let width: number
     let fontSize: number
-    let svgIconSize: number
 
     switch (size) {
       default:
       case "small":
         width = 24
-        fontSize = 14
-        svgIconSize = 10
+        fontSize = 12
 
         break
       case "large":
         width = 32
         fontSize = 20
-        svgIconSize = 14
         break
     }
 
@@ -102,14 +101,9 @@ function applyIconSize({
       height: ${width}px;
       line-height: ${width}px;
       font-size: ${fontSize}px;
-
-      & svg {
-        font-size: ${svgIconSize}px;
-      }
     `
   } else {
-    // enlarge dot if is `process` status
-    let dotSize = status === "process" ? 2 : 0
+    let dotSize = 0;
     switch (size) {
       default:
       case "small":
