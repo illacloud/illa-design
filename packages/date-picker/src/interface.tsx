@@ -74,11 +74,12 @@ export interface YearPickerProps extends Omit<PickerProps, "defaultValue"> {
 export interface CommonRangeProps
   extends Omit<
     PickerProps,
-    "onChange" | "defaultValue" | "onOk" | "defaultPickerValue"
+    "onChange" | "defaultValue" | "onOk" | "defaultPickerValue" | "onSelect"
   > {
   disabled?: boolean | boolean[]
   format?: string | ((value: Dayjs) => string)
   onChange?: (dateString: string[], date: Dayjs[]) => void
+  onSelect?: (dateString: string[], date: Dayjs[]) => void
   defaultValue?: CalendarValue[]
   value?: CalendarValue[]
   mode?: RangePickerMode
@@ -109,7 +110,8 @@ export interface PickerContextProps {
 
 export interface RangePickerBodyProps extends CommonRangeProps {
   pickerContent: ReactNode
-  inputVal?: string
+  inputVal?: string[]
   onClearDate?: () => void
-  onChangeInputVal?: (value: string) => void
+  onChangeInputVal?: (value: string[]) => void
+  onChangeVisible?: (visible: boolean) => void
 }

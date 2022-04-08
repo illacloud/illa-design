@@ -1,7 +1,6 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { CommonPickerProps } from "./interface"
-// import { Trigger } from "@illa-design/trigger"
-import { Trigger } from "../../trigger/src/index"
+import { Trigger } from "@illa-design/trigger"
 import { Input } from "@illa-design/input"
 import { CalendarIcon } from "@illa-design/icon"
 

@@ -1,6 +1,10 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
+export const wrapCss = css`
+  display: flex;
+`
+
 export const singlePickerContentCss = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
   border-bottom: none;
@@ -91,3 +95,47 @@ export function applyShortContainerCss(
     ${style};
   `
 }
+
+export const rangeBodyCss = css`
+  height: 336px;
+`
+
+export const rangeFooterCss = css`
+  
+`
+export function applyRangeFooterCss(
+  showTime: boolean,
+  showShortcuts: boolean
+): SerializedStyles {
+  let posStyle
+  if (showTime && !showShortcuts) {
+    posStyle = css`justify-content: end;`
+  }
+  if (showTime && showShortcuts) {
+    posStyle = css`justify-content: space-between;`
+  }
+  return css`
+    display: flex;
+    padding: 12px;
+    ${posStyle};
+    width: min-content;
+    min-width: calc(100% - 24px);
+    align-items: center;
+    &> button:first-of-type {
+      margin-right: 5px;
+    }
+  `
+}
+
+export const rangePickerCss = css`
+  display: flex;
+  padding: 10px 30px;
+  &> div:first-of-type {
+    margin-right: 40px;
+  }
+`
+
+export const buttonBoxCss = css`
+  width: 248px;
+  text-align: right;
+`

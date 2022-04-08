@@ -1,15 +1,13 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { RangePickerBodyProps } from "./interface"
-// import { Trigger } from "@illa-design/trigger"
-import { Trigger } from "../../trigger/src/index"
+import { Trigger } from "@illa-design/trigger"
 import { CalendarIcon } from "@illa-design/icon"
-import { Input, RangeInput } from "@illa-design/input"
+import { RangeInput } from "@illa-design/input"
 
 export const PickerRange: FC<RangePickerBodyProps> = (props) => {
   const {
-    disabled, // TODO
-    allowClear, // TODO
-
+    disabled,
+    allowClear,
     position,
     placeholder,
     error,
@@ -17,16 +15,18 @@ export const PickerRange: FC<RangePickerBodyProps> = (props) => {
     popupVisible,
     onVisibleChange,
     editable,
+    separator,
+
     onChangeInputVal,
     pickerContent,
     inputVal,
     onClearDate,
-    // onChangeVisible,
+    onChangeVisible,
   } = props
 
   const tryUpdatePopupVisible = (value: boolean) => {
     if (popupVisible !== value) {
-      //   onChangeVisible?.(value)
+      onChangeVisible?.(value)
       onVisibleChange?.(value)
     }
   }
@@ -43,24 +43,20 @@ export const PickerRange: FC<RangePickerBodyProps> = (props) => {
       clickOutsideToClose
       onVisibleChange={tryUpdatePopupVisible}
     >
-      {/* <Input
-        // disabled={typeof disabled === 'boolean' ? disabled : false}
-        // placeholder={typeof placeholder === "string" ? placeholder : ""}
-        size={size}
+      <RangeInput
+        disabled={disabled}
         value={inputVal}
-        style={{ width: 280 }}
-        suffix={{ render: <CalendarIcon /> }}
         allowClear={allowClear}
-        error={error}
-        onFocus={() => {
-          !popupVisible && tryUpdatePopupVisible(true)
-        }}
         onClear={() => onClearDate?.()}
-        onChange={(value: string) => {
+        placeholder={placeholder}
+        error={error}
+        size={size}
+        suffix={{ render: <CalendarIcon /> }}
+        separator={separator}
+        onChange={(value: string[]) => {
           editable && onChangeInputVal?.(value)
         }}
-      /> */}
-      <RangeInput suffix={{ render: <CalendarIcon /> }} />
+      />
     </Trigger>
   )
 }

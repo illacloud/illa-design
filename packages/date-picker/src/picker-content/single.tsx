@@ -7,7 +7,6 @@ import {
   YearPickerProps,
   CommonSingleProps,
 } from "../interface"
-// import { Calendar } from "@illa-design/calendar"
 import { Calendar } from "../../../calendar/src/index"
 import { TimePickerPopup } from "../../../time-picker/src/time-picker-popup"
 import { Dayjs } from "dayjs"
@@ -27,6 +26,7 @@ import {
   vertShortcuts,
   nowButtonCss,
 } from "../style"
+import { initFormat } from '../utils'
 
 const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
   (props, ref) => {
@@ -56,18 +56,18 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       value,
       defaultValue,
       showNowBtn = true,
-      // disabledTime, // TODO
-
+      disabledTime,
       ...restProps
     } = props
 
     // dayjs.extend(utc)
     // dayjs.extend(tz)
     // dayjs.tz.setDefault("Asia/Tokyo")
+    const finalFormat = format || initFormat(type as string, showTime as boolean)
 
     let initValue =
       value || defaultValue
-        ? dayjs(value || defaultValue).format(format as string)
+        ? dayjs(value || defaultValue).format(finalFormat as string)
         : ""
     const [inputVal, setInputVal] = useState<string>(initValue)
     const [calendarShortCuts, setCalendarShortCuts] = useState<
@@ -81,23 +81,6 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     const [valueShow, setValueShow] = useState<Dayjs | Dayjs[]>()
 
     const [calendarValue, setCalendarValue] = useState<Dayjs>(dayjs())
-
-    const initFormat = () => {
-      let result
-      switch (type) {
-        case "day":
-          result = showTime ? "YYYY-MM-DD hh:mm:ss" : "YYYY-MM-DD"
-          break
-        case "month":
-          result = "YYYY-MM"
-          break
-        case "year":
-          result = "YYYY"
-          break
-      }
-      return result
-    }
-    let finalFormat = format || initFormat()
 
     const finalValue = (calendar?: Dayjs | null, timePicker?: Dayjs | null) => {
       calendar = calendar || calendarValue
@@ -146,10 +129,6 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     const handleShortLeave = (item: any) => {
       if (item.text === shortcutSwitch) return
       setCalendarShortCuts("clear")
-    }
-
-    const changeInputVal = (value: string) => {
-      setInputVal(value)
     }
 
     const onConfirmValue = (time: Dayjs) => {
@@ -206,7 +185,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
           onClear={onClear}
           onVisibleChange={onVisibleChange}
           editable={editable}
-          onChangeInputVal={changeInputVal}
+          onChangeInputVal={setInputVal}
           pickerContent={
             <div css={singlePickerContentCss}>
               {shortcutsPlacementLeft && (
@@ -258,6 +237,9 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                       popupVisible: showTrigger,
                       onConfirmValue,
                       showNowBtn: false,
+                      disabledHours: disabledTime?.().disabledHours,
+                      disabledMinutes: disabledTime?.().disabledMinutes,
+                      disabledSeconds: disabledTime?.().disabledSeconds,
                       ...restProps,
                     })}
                   </div>
