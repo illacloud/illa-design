@@ -63,8 +63,6 @@ export class Node<T> {
     this.config = config || {}
     this.parent = parent ?? null
 
-    const { lazyload } = this.config
-
     const fieldNames = { ...DefaultFieldNames, ...this.config.fieldNames }
 
     const children = option[fieldNames.children]
@@ -72,14 +70,6 @@ export class Node<T> {
     let isLeaf = Array.isArray(children)
       ? children.length === 0
       : true
-
-    if (lazyload) {
-      if (fieldNames.isLeaf in option) {
-        isLeaf = !!option[fieldNames.isLeaf]
-      } else {
-        isLeaf = false
-      }
-    }
 
     const nodeValue = option[fieldNames.value]
     const nodeLabel = option[fieldNames.label]

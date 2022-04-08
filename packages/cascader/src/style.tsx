@@ -98,6 +98,8 @@ export function applyPopupStyle(): SerializedStyles {
   return css`
     display: flex;
     list-style: none;
+    white-space: nowrap;
+    padding: 4px 0;
     height: 216px;
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     border-radius: 2px;

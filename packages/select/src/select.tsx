@@ -360,6 +360,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
           onScroll={(e) => onPopupScroll?.(e.target)}
         />
       }
+      openDelay={0}
+      closeDelay={0}
       showArrow={false}
       colorScheme="white"
       position="bl"

@@ -6,8 +6,6 @@ import { NodeProps, Node } from "./node"
 export type ConfigType<T> = {
   // 是否关联父子节点
   changeOnSelect?: boolean
-  // 是否是懒加载模式
-  lazyload?: boolean
   // 自定义搜索逻辑
   filterOption?: CascaderProps<T>["filterOption"]
   // fieldNames

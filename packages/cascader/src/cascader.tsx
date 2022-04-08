@@ -96,44 +96,49 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
 
     const handleChange = (newValue: string[][], isTouch?: boolean) => {
       console.log(newValue, inputValue)
-      if (isObject(showSearch) && !showSearch?.retainInputValueWhileSelect && multiple) {
-        setInputValue('');
+      if (
+        isObject(showSearch) &&
+        !showSearch?.retainInputValueWhileSelect &&
+        multiple
+      ) {
+        setInputValue("")
       }
-      const isSame = mergeValue === newValue;
+      const isSame = mergeValue === newValue
       if (isSame) {
-        return;
+        return
       }
 
       if (!multiple) {
-        store.current.setNodeCheckedByValue(newValue);
+        store.current.setNodeCheckedByValue(newValue)
       }
 
       const nodes = store.current.getCheckedNodes()
-      stashNodes.current = Array.from(new Set(nodes.concat(stashNodes.current)));
-      const selectedOptions = getSelectedOptionsByValue(newValue);
-      const _value = multiple ? newValue : newValue[0];
-      const _selectedOptions = multiple ? selectedOptions : selectedOptions[0];
+      stashNodes.current = Array.from(new Set(nodes.concat(stashNodes.current)))
+      const selectedOptions = getSelectedOptionsByValue(newValue)
+      const _value = multiple ? newValue : newValue[0]
+      const _selectedOptions = multiple ? selectedOptions : selectedOptions[0]
 
       if (!multiple) {
         if (inputValue) {
           // 单选时选择搜索项，直接关闭面板
-          handleVisibleChange(false);
+          handleVisibleChange(false)
         } else if (
-          (selectedOptions[0] && selectedOptions[0][selectedOptions[0].length - 1]?.isLeaf) ||
-          (expandTrigger === 'hover')
+          (selectedOptions[0] &&
+            selectedOptions[0][selectedOptions[0].length - 1]?.isLeaf) ||
+          expandTrigger === "hover"
         ) {
-          handleVisibleChange(false);
+          handleVisibleChange(false)
         }
       }
 
-      if ('value' in props) {
-        store.current.setNodeCheckedByValue(mergeValue);
+      if ("value" in props) {
+        store.current.setNodeCheckedByValue(mergeValue)
       } else {
-        setValue(newValue);
+        setValue(newValue)
       }
       onChange?.(_value, _selectedOptions, {
         dropdownVisible: currentVisible,
-      });
+      })
     }
 
     const getSelectedOptionsByValue = (values: string[][]): OptionProps[][] => {
@@ -143,7 +148,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       values.map((value) => {
         const node = nodes.find((item) => isEqual(item.pathValue, value))
         if (node) {
-          result.push(node.getPathNodes()?.map((x) => x._data));
+          result.push(node.getPathNodes()?.map((x) => x._data))
         }
       })
       return result
@@ -159,7 +164,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         let valueShow = isArray(value) ? value.map((x) => String(x)) : []
 
         if (options.length) {
-          valueShow = options?.map((x: OptionProps) => x.label ?? '')
+          valueShow = options?.map((x: OptionProps) => x.label ?? "")
         }
         if (valueShow.every((v) => isString(v))) {
           text = valueShow.join(" / ")
@@ -242,7 +247,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       },
     }
 
-    console.log(inputValue, mergeValue, showSearchPanel, !!inputValue,"value")
+    console.log(inputValue, mergeValue, showSearchPanel, !!inputValue, "value")
 
     return (
       <Trigger
@@ -284,6 +289,8 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         colorScheme="white"
         position="bl"
         disabled={disabled}
+        openDelay={0}
+        closeDelay={0}
         withoutPadding
         closeOnClick
         clickOutsideToClose
@@ -298,6 +305,9 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
           value={multiple ? mergeValue : mergeValue && mergeValue[0]}
           popupVisible={currentVisible}
           multiple={multiple}
+          isEmptyValue={
+            !mergeValue || (isArray(mergeValue) && mergeValue.length === 0)
+          }
         />
       </Trigger>
     )

@@ -95,7 +95,7 @@ const options = [
         children: [
           {
             value: "nanshan",
-            label: "Nanshan",
+            label: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi distinctio dolorem earum excepturi fugiat id illo illum iure laboriosam minus modi, nam neque non odit officiis provident repudiandae sunt velit!",
           },
         ],
       },
