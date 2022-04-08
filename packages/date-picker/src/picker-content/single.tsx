@@ -26,7 +26,7 @@ import {
   vertShortcuts,
   nowButtonCss,
 } from "../style"
-import { initFormat } from '../utils'
+import { initFormat } from "../utils"
 
 const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
   (props, ref) => {
@@ -63,7 +63,8 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     // dayjs.extend(utc)
     // dayjs.extend(tz)
     // dayjs.tz.setDefault("Asia/Tokyo")
-    const finalFormat = format || initFormat(type as string, showTime as boolean)
+    const finalFormat =
+      format || initFormat(type as string, showTime as boolean)
 
     let initValue =
       value || defaultValue

@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { RangePickerBodyProps } from "./interface"
-import { Trigger } from "@illa-design/trigger"
+// import { Trigger } from "@illa-design/trigger"
+import { Trigger } from "../../trigger/src/index"
 import { CalendarIcon } from "@illa-design/icon"
 import { RangeInput } from "@illa-design/input"
 
@@ -37,6 +38,7 @@ export const PickerRange: FC<RangePickerBodyProps> = (props) => {
       position={position}
       trigger={"click"}
       colorScheme={"white"}
+      maxWidth={"700px"}
       popupVisible={popupVisible}
       content={pickerContent}
       closeOnClick={false}

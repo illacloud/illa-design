@@ -100,19 +100,21 @@ export const rangeBodyCss = css`
   height: 336px;
 `
 
-export const rangeFooterCss = css`
-  
-`
+export const rangeFooterCss = css``
 export function applyRangeFooterCss(
   showTime: boolean,
-  showShortcuts: boolean
+  showShortcuts: boolean,
 ): SerializedStyles {
   let posStyle
   if (showTime && !showShortcuts) {
-    posStyle = css`justify-content: end;`
+    posStyle = css`
+      justify-content: end;
+    `
   }
   if (showTime && showShortcuts) {
-    posStyle = css`justify-content: space-between;`
+    posStyle = css`
+      justify-content: space-between;
+    `
   }
   return css`
     display: flex;
@@ -121,7 +123,7 @@ export function applyRangeFooterCss(
     width: min-content;
     min-width: calc(100% - 24px);
     align-items: center;
-    &> button:first-of-type {
+    & > button:first-of-type {
       margin-right: 5px;
     }
   `
@@ -130,7 +132,7 @@ export function applyRangeFooterCss(
 export const rangePickerCss = css`
   display: flex;
   padding: 10px 30px;
-  &> div:first-of-type {
+  & > div:first-of-type {
     margin-right: 40px;
   }
 `
