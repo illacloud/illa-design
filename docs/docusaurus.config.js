@@ -11,7 +11,7 @@ const i18nConfig = {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
+  title: 'illa-design',
   tagline: 'Dinosaurs are cool',
   url: 'https://illa-family.github.io/illa-design',
   baseUrl: '/',
@@ -49,19 +49,18 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'illa-design',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'illa Logo',
+          src: 'img/illa_logo.svg',
         },
         items: [
           {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
           },
-          { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/illa-family/illa-design',
             label: 'GitHub',
