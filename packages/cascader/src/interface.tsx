@@ -78,5 +78,4 @@ export interface CascaderPanelProps<T> {
   loadMore?: (activeValue: any, level: number) => NodeProps<T>[] | undefined
   renderEmpty?: (width?: number) => ReactNode
   onDoubleClickOption?: () => void
-  onEsc?: () => void
 }

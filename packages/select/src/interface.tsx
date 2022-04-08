@@ -13,7 +13,7 @@ export interface OptionProps
   extends Omit<HTMLAttributes<HTMLLIElement>, "onMouseEnter" | "onMouseLeave"> {
   _key?: any
   disabled?: boolean
-  isMultipleMode?: boolean
+  multiple?: boolean
   value?: string | number
   title?: string
   extra?: any

@@ -13,7 +13,6 @@ export type SearchPopupProps<T> = {
   multiple?: boolean
   value?: string[][]
   inputValue?: string
-  onEsc?: () => void
   onChange?: (value: string[][]) => void
 }
 
@@ -27,7 +26,6 @@ export const SearchPopup = <T extends OptionProps>(
     inputValue,
     style,
     value = [],
-    onEsc,
   } = props
 
   const wrapperRef = useRef<HTMLDivElement>(null)

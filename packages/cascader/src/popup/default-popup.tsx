@@ -1,12 +1,11 @@
 import React, {
   useState,
   useEffect,
-  useCallback,
   useRef,
   useReducer,
 } from "react"
 import isEqual from "react-fast-compare"
-import { KeyCode, isNumber } from "@illa-design/system"
+import { isNumber } from "@illa-design/system"
 import { LoadingIcon, NextIcon } from "@illa-design/icon"
 import { Checkbox } from "@illa-design/checkbox"
 import { CascaderPanelProps, OptionProps } from "../interface"
@@ -18,21 +17,6 @@ import {
   optionListStyle,
   optionListWrapper,
 } from "./style"
-
-const getBaseActiveNode = (currentNode: any) => {
-  if (currentNode && currentNode.disabled) {
-    let node = currentNode
-    while (node.parent) {
-      if (node.parent.disabled) {
-        node = node.parent
-      } else {
-        break
-      }
-    }
-    return node
-  }
-  return currentNode
-}
 
 export const getLegalIndex = (currentIndex: number, maxIndex: number) => {
   if (currentIndex < 0) {
@@ -65,7 +49,6 @@ export const DefaultPopup = <T extends OptionProps>(
     expandTrigger,
     onDoubleClickOption,
     onChange,
-    onEsc,
   } = props
 
   const [activeNode, setActiveNode] = useState(
@@ -129,83 +112,6 @@ export const DefaultPopup = <T extends OptionProps>(
     onChange?.(newValue)
   }
 
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      e.stopPropagation()
-      // 使用keycode，避免中文输入法输入时，触发enter,space等事件。
-      // p.s 中文输入时，keycode 都是229
-      const keyCode = e.keyCode || e.which
-
-      let nextActiveNode
-      switch (keyCode) {
-        case KeyCode.Esc: {
-          e.preventDefault()
-          onEsc?.()
-          break
-        }
-        case KeyCode.ArrowDown:
-        case KeyCode.ArrowUp: {
-          if (!activeNode) {
-            nextActiveNode = options.find((opt) => !opt.disabled)
-          } else {
-            const baseActiveNode = getBaseActiveNode(activeNode)
-            const list =
-              (baseActiveNode.parent && baseActiveNode.parent.children) ||
-              options
-            const diff = keyCode === KeyCode.ArrowDown ? 1 : -1
-            let nextIndex = getLegalIndex(
-              baseActiveNode._index + diff,
-              list.length - 1,
-            )
-            while (nextIndex !== baseActiveNode._index) {
-              nextActiveNode = list[nextIndex]
-              if (nextActiveNode.disabled) {
-                nextIndex = getLegalIndex(nextIndex + diff, list.length - 1)
-              } else {
-                break
-              }
-            }
-          }
-          onClickOption(nextActiveNode, false)
-          e.preventDefault()
-          return false
-        }
-        case KeyCode.ArrowRight: {
-          if (activeNode && !activeNode.disabled) {
-            const list = activeNode.children || []
-            nextActiveNode = list[0] || activeNode
-            onClickOption(nextActiveNode, false)
-          }
-          e.preventDefault()
-          return false
-        }
-        case KeyCode.ArrowLeft: {
-          if (activeNode) {
-            const baseActiveNode = getBaseActiveNode(activeNode)
-
-            nextActiveNode = baseActiveNode.parent || baseActiveNode
-          }
-          onClickOption(nextActiveNode, false)
-          e.preventDefault()
-          return false
-        }
-        case KeyCode.Enter:
-          if (activeNode) {
-            if (multiple) {
-              onMultipleChecked(activeNode, !activeNode._checked)
-            } else {
-              onClickOption(activeNode)
-            }
-          }
-          e.preventDefault()
-          return false
-        default:
-          break
-      }
-    },
-    [activeNode],
-  )
-
   const isDidMount = useRef(false)
 
   useEffect(() => {
@@ -251,16 +157,6 @@ export const DefaultPopup = <T extends OptionProps>(
     }
   }, [popupVisible, activeNode])
 
-  useEffect(() => {
-    if (popupVisible) {
-      document.addEventListener("keydown", handleKeyDown)
-    } else {
-      document.removeEventListener("keydown", handleKeyDown)
-    }
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown)
-    }
-  }, [popupVisible, handleKeyDown])
   const pathNodes = activeNode ? activeNode.getPathNodes() : []
   const menus = [options]
   pathNodes.forEach((option: Node<T>) => {
@@ -277,9 +173,11 @@ export const DefaultPopup = <T extends OptionProps>(
           <div
             css={optionListWrapper}
             key={level}
-            style={{ zIndex: menus.length - level }}
           >
             <ul
+              onClick={(e) => {
+                e.preventDefault()
+              }}
               css={optionListStyle}
               ref={(node) => setRefWrapper(node, level)}
             >
@@ -305,7 +203,8 @@ export const DefaultPopup = <T extends OptionProps>(
                         setActiveOptionList(ref, level)
                       }
                     }}
-                    onClick={() => {
+                    onClick={(e) => {
+                      // e?.stopPropagation()
                       if (option.disabled) return
                       if (
                         option.isLeaf &&
