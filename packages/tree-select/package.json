@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/tree",
+  "name": "@illa-design/treeselect",
   "version": "0.0.0",
-  "description": "tree ",
+  "description": "Illa Design TreeSelect.",
   "keywords": [
-    "tree",
+    "treeselect",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/tree"
+    "directory": "packages/treeselect"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
@@ -39,6 +39,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/treecommon": "*"
+    "@illa-design/system": "*",
+    "@illa-design/theme": "*",
+    "@illa-design/tree": "*",
+    "@illa-design/select": "*",
+    "@illa-design/treecommon": "*",
+    "@illa-design/empty": "*"
   }
 }

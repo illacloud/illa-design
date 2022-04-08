@@ -1,4 +1,4 @@
-import { NodeProps, TreeDataType } from "./interface"
+import { NodeProps, TreeDataType, NodeInstance } from "./interface"
 import { Children, ReactElement } from "react"
 
 export function getNodes(children: ReactElement): TreeDataType[] {
@@ -134,4 +134,40 @@ export function checkParentChecked(
     })
   })
   return halfSet
+}
+
+export const updateKeys = (
+  keys: string[],
+  targetKey: string,
+  multiple?: boolean,
+) => {
+  const hasTarget = keys?.includes(targetKey)
+  if (hasTarget) {
+    keys = keys?.filter((key) => key !== targetKey)
+  } else {
+    keys = multiple ? [...keys].concat(targetKey) : [targetKey]
+  }
+  return keys
+}
+
+export function getNodeList(cache: { [key: string]: NodeInstance }) {
+  return Object.keys(cache).map((x) => cache[x as keyof NodeInstance])
+}
+
+export function loopItemData(nodeArr?: any[]): any[] {
+  if (!nodeArr) return []
+  const nodeList: any[] = []
+  const _loop = (nodeArr: any[], father: any) => {
+    nodeArr.map((node, index) => {
+      nodeList.push(node)
+      if ("children" in node) {
+        const { children } = node
+        if (children && children.length > 0) {
+          _loop(children, node)
+        }
+      }
+    })
+  }
+  _loop(nodeArr, { key: "" })
+  return nodeList
 }

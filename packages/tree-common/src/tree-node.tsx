@@ -22,17 +22,13 @@ import {
 import useThrottleFn from "react-use/lib/useThrottleFn"
 import { Checkbox } from "@illa-design/checkbox"
 
-export type DragState = {
-  isDragging: boolean
-}
-
 export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
   const {
     _key = "",
     title = "title",
     size = "medium",
-    disabled = false,
-    _isSelected = false,
+    disabled,
+    _isSelected,
     isLeaf,
     expanding = true,
     handleExpand,

@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/tree",
+  "name": "@illa-design/treecommon",
   "version": "0.0.0",
-  "description": "tree ",
+  "description": "Illa Design TreeCommon.",
   "keywords": [
-    "tree",
+    "treecommon",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illa-family/illa-design.git",
-    "directory": "packages/tree"
+    "directory": "packages/treecommon"
   },
   "bugs": {
     "url": "https://github.com/illa-family/illa-design/issues"
@@ -39,6 +39,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/treecommon": "*"
+    "@illa-design/theme": "*",
+    "@illa-design/list": "*",
+    "@illa-design/checkbox": "*"
   }
 }

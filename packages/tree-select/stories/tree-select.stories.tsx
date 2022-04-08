@@ -1,40 +1,11 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Tree, TreeProps } from "../src"
+import { TreeSelect, TreeSelectProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "DATA DISPLAY/Tree",
-  component: Tree,
-  argTypes: {
-    defaultCheckedKeys: {
-      control: false,
-    },
-    checkedKeys: {
-      control: false,
-    },
-    defaultExpandedKeys: {
-      control: false,
-    },
-    expandedKeys: {
-      control: false,
-    },
-    defaultSelectedKeys: {
-      control: false,
-    },
-    selectedKeys: {
-      control: false,
-    },
-    treeData: {
-      control: false,
-    },
-    allowDrop: {
-      control: false,
-    },
-    dragIcon: { control: false },
-    switcherIcon: { control: false },
-    loadingIcon: { control: false },
-  },
+  title: "DATA INPUT/TreeSelect",
+  component: TreeSelect,
   parameters: {
     docs: {
       source: {
@@ -44,33 +15,39 @@ export default {
   },
 } as Meta
 
-const Template: Story<TreeProps> = (args) => {
+const Template: Story<TreeSelectProps> = (args) => {
   const data = [
     {
       title: "0-0-head",
       key: "0-0",
+      value: "0-0",
       children: [
         {
           title: "0-0-0 ",
           key: "0-0-0",
+          value: "0-0-0",
           disabled: true,
           children: [
             {
               title: "aoao",
               key: "0-0-0-0",
+              value: "0-0-0-0",
               disableCheckbox: true,
             },
             {
               title: "aoao",
               key: "0-0-0-1",
+              value: "0-0-0-1",
               children: [
                 {
                   title: "toutou",
                   key: "0-0-0-0-0",
+                  value: "0-0-0-0-0",
                   disableCheckbox: true,
                 },
                 {
                   title: "toutou",
+                  value: "0-0-0-1-1",
                   key: "0-0-0-1-1",
                 },
               ],
@@ -80,22 +57,32 @@ const Template: Story<TreeProps> = (args) => {
         {
           title: "0-0-1",
           key: "0-0-1",
+          value: "0-0-1",
           children: [
             {
               title: <span>xixi</span>,
               key: "0-0-1-0",
+              value: "0-0-1-0",
             },
           ],
         },
       ],
     },
     {
-      title: "0-1",
+      title: "0-1-xixixixixix",
+      value: "0-1",
       key: "0-1",
     },
   ]
 
-  return <Tree {...args} treeData={data} />
+  return (
+    <TreeSelect
+      {...args}
+      style={{ width: 700 }}
+      showSearch={true}
+      treeData={data}
+    />
+  )
 }
 
 export const Basic = Template.bind({})

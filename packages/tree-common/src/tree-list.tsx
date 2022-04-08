@@ -2,6 +2,7 @@ import { FC } from "react"
 import { TreeListProps, NodeInstance } from "./interface"
 import { TreeNode } from "./tree-node"
 import { List } from "@illa-design/list"
+import { listCss } from "./style"
 
 export const TreeList: FC<TreeListProps> = (props) => {
   const {
@@ -15,6 +16,7 @@ export const TreeList: FC<TreeListProps> = (props) => {
   return (
     <div>
       <List
+        _css={listCss}
         data={listData}
         render={(data) => {
           let node: NodeInstance = (

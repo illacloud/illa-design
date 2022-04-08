@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import * as React from "react"
 import {
   forwardRef,
@@ -9,29 +8,20 @@ import {
   useRef,
   useState,
 } from "react"
-import { NodeInstance, NodeProps, TreeDataType, TreeProps } from "./interface"
+
 import {
+  TreeList,
   checkChildrenChecked,
   checkParentChecked,
   getNodes,
   loopNodeWithState,
-} from "./utils"
-import { TreeList } from "./tree-list"
-import { UploadItem } from "@illa-design/upload/src"
-
-export const updateKeys = (
-  keys: string[],
-  targetKey: string,
-  multiple?: boolean,
-) => {
-  const hasTarget = keys?.includes(targetKey)
-  if (hasTarget) {
-    keys = keys?.filter((key) => key !== targetKey)
-  } else {
-    keys = multiple ? [...keys].concat(targetKey) : [targetKey]
-  }
-  return keys
-}
+  getNodeList,
+  NodeInstance,
+  NodeProps,
+  TreeDataType,
+  updateKeys,
+} from "@illa-design/treecommon"
+import { TreeProps } from "./interface"
 
 // treeData is default
 export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
@@ -54,20 +44,20 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     defaultSelectedKeys,
     onSelect,
     selectedKeys,
-    multiple = false,
+    multiple,
     //  expand
     expandedKeys,
     defaultExpandedKeys,
     onExpand,
     autoExpandParent = true,
     // checkable
-    checkable = false,
+    checkable,
     checkedKeys,
     defaultCheckedKeys,
     checkStrictly,
     onCheck,
     // ui
-    showLine = false,
+    showLine,
     size,
     blockNode,
     renderTitle,
@@ -233,10 +223,6 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     [onDrop],
   )
 
-  function getNodeList(cache: { [key: string]: NodeInstance }) {
-    return Object.keys(cache).map((x) => cache[x as keyof UploadItem])
-  }
-
   const handleSelect = useCallback(
     (targetKey: string, event: Event) => {
       const _selectedKeys = selectedKeys ?? selectedKeysState
@@ -249,7 +235,8 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
       setSelectedKeys(keys)
       const extra = {
         selectedNodes: getNodeList(nodeCache.current).filter(
-          (item) => item.key && keys.includes(item.key.toString()),
+          (item: NodeInstance) =>
+            item.key && keys.includes(item.key.toString()),
         ),
         selected: keys.includes(targetKey),
         node: nodeCache.current[targetKey],

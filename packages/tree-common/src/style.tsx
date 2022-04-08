@@ -10,6 +10,9 @@ export const treeContainer = css`
   align-items: center;
   height: 100%;
 `
+export const listCss = css`
+  width: 100%;
+`
 
 export function applyNodeHeight(size: TreeSize) {
   switch (size) {
@@ -44,6 +47,7 @@ export function applyNodeContainerCss(size: TreeSize) {
     justify-content: start;
     align-items: center;
     height: ${height}px;
+    width: 100%;
   `
 }
 
