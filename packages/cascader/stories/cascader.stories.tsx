@@ -1,7 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
 import { Cascader, CascaderProps } from "../src"
-import { BsFacebook } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {

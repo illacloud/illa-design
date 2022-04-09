@@ -1,6 +1,5 @@
-import { CSSProperties, HTMLAttributes, ReactNode, SyntheticEvent } from "react"
-import { NodeProps } from "./node"
-import Store from "./store"
+import { CSSProperties, HTMLAttributes, ReactNode } from "react"
+import { NodeProps, Store } from "./node"
 import { TriggerProps } from "@illa-design/trigger"
 
 export type CascaderSize = "small" | "medium" | "large"
@@ -50,15 +49,10 @@ export interface OptionProps {
 }
 
 export type FieldNamesType = {
-  /** 指定 label 在选项中对应的字段  */
   label?: string
-  /** 指定 value 在选项中对应的字段  */
   value?: string
-  /** 指定 children 在选项中对应的字段  */
   children?: string
-  /** 指定 disabled 在选项中对应的字段  */
   disabled?: string
-  /** 指定 isLeaf 在选项中对应的字段  */
   isLeaf?: string
 }
 

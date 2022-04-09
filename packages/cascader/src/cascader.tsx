@@ -11,21 +11,20 @@ import { isArray, isObject, isString, KeyCode } from "@illa-design/system"
 import { SelectView, SelectViewProps } from "@illa-design/select"
 import { Trigger } from "@illa-design/trigger"
 import { CascaderProps, OptionProps } from "./interface"
-import { DefaultFieldNames } from "./node"
+import { Store } from "./node"
 import { DefaultPopup } from "./popup/default-popup"
 import { SearchPopup } from "./popup/search-popup"
-import Store from "./store"
 import { applyPopupStyle } from "./style"
-import { useCurrentRef, useUpdate } from "./hooks"
+import { useCurrentRef } from "./hooks"
 
-function getConfig(props: any) {
+function getConfig(props: CascaderProps<any>) {
   return {
-    fieldNames: props.fieldNames || DefaultFieldNames,
+    fieldNames: props.fieldNames,
     filterOption: props.filterOption,
   }
 }
 
-function getStore(props: any, value: any) {
+function getStore(props: any, value?: any) {
   const _value = value ? (isArray(value[0]) ? value : [value]) : []
   return new Store(props.options || [], _value, getConfig(props))
 }
@@ -72,7 +71,8 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     const [currentVisible, setCurrentVisible] = useState<boolean>()
     const [inputValue, setInputValue] = useState("")
 
-    const propsValue = 'value' in props ? formatValue(value, multiple) : undefined
+    const propsValue =
+      "value" in props ? formatValue(value, multiple) : undefined
     const [stateValue, setValue] = useState<string[][] | undefined>(
       propsValue || (defaultValue ? formatValue(defaultValue, multiple) : []),
     )
@@ -84,8 +84,8 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
 
     const store = useCurrentRef<Store<T>>(
       () => getStore(props, mergeValue),
-      [JSON.stringify(getConfig(props)), options]
-    );
+      [JSON.stringify(getConfig(props)), options],
+    )
 
     const handleVisibleChange = useCallback(
       (value) => {
@@ -96,7 +96,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
           }
         }
       },
-      [props.onVisibleChange, currentVisible],
+      [onVisibleChange, currentVisible],
     )
 
     const handleChange = (newValue: string[][]) => {
@@ -124,7 +124,6 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
 
       if (!multiple) {
         if (inputValue) {
-          // 单选时选择搜索项，直接关闭面板
           handleVisibleChange(false)
         } else if (
           selectedOptions[0] &&
@@ -183,7 +182,6 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     )
 
     useEffect(() => {
-      console.log('change')
       const clearTimer = () => {
         clearTimeout(timerRef.current)
         timerRef.current = undefined
@@ -203,14 +201,14 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     }, [currentVisible])
 
     useEffect(() => {
-      if ('value' in props) {
-        const newValue = formatValue(props.value, multiple);
+      if ("value" in props) {
+        const newValue = formatValue(value, multiple)
         if (!isEqual(stateValue, newValue)) {
-          store.setNodeCheckedByValue(newValue);
-          setValue(newValue);
+          store.setNodeCheckedByValue(newValue)
+          setValue(newValue)
         }
       }
-    }, [props.value, stateValue, multiple])
+    }, [value, stateValue, multiple])
 
     // SelectView event handle
     const selectViewEventHandlers: SelectViewProps = {

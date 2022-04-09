@@ -1,6 +1,7 @@
-import { OptionProps } from "./interface"
-import { ConfigType } from "./store"
-import { isNumber } from "@illa-design/system"
+// thx arco.design
+import { CascaderProps, FieldNamesType, OptionProps } from "./interface"
+import { isArray, isFunction, isNumber, isString } from "@illa-design/system"
+import isEqual from "react-fast-compare"
 
 export const DefaultFieldNames = {
   label: "label",
@@ -10,23 +11,26 @@ export const DefaultFieldNames = {
   disabled: "disabled",
 }
 
+export type ConfigType<T> = {
+  // Whether to associate parent and child nodes
+  changeOnSelect?: boolean
+  filterOption?: CascaderProps<T>["filterOption"]
+  fieldNames?: FieldNamesType
+}
+
 export interface NodeProps<T> extends OptionProps {
   value: string
   label: string
   isLeaf?: boolean
   _checked: boolean
-  /** 层级 */
   _level?: number
-  /** 是否半选 */
   _halfChecked: boolean
-  /** 当前选项节点的父节点 */
   parent: NodeProps<T> | null
-  /** 当前选项节点路径的所有节点的值 */
   pathValue: string[]
-  /** 下一级选项 */
+  // next node options
   children?: NodeProps<T>[]
   loading?: boolean
-  /** 是否加载完成 */
+  // Is loading complete
   loaded?: boolean
   pathLabel: string[]
 }
@@ -41,18 +45,14 @@ export class Node<T> {
   disableCheckbox?: boolean
   _checked: boolean = false
   _halfChecked: boolean = false
-  /** 当前选项节点的父节点 */
   parent: Node<T> | null
-  /** 当前选项节点路径的所有节点的值 */
   pathValue: string[] = []
   pathLabel: string[] = []
-  /** 下一级选项 */
   children?: Node<T>[]
   loading?: boolean
-  /** 是否加载完成 */
   loaded?: boolean
   config: ConfigType<T> = {}
-  // 保存暴露给外部的属性
+  // exposed to outside props
   _data?: NodeProps<T>
 
   constructor(
@@ -67,9 +67,7 @@ export class Node<T> {
 
     const children = option[fieldNames.children]
 
-    let isLeaf = Array.isArray(children)
-      ? children.length === 0
-      : true
+    let isLeaf = Array.isArray(children) ? children.length === 0 : true
 
     const nodeValue = option[fieldNames.value]
     const nodeLabel = option[fieldNames.label]
@@ -112,9 +110,10 @@ export class Node<T> {
   }
 
   /**
-   * 根据this.children 计算是否当前node半选状态
-   * 假设半选是 0.5，全选是1，不选是0。
-   * 那么只有当前节点的所有children加起来等于children.length，才是全选，否则和大于0，就是半选。
+   * Calculate is or not half-selected
+   * halfSelected = 0.5, selected = 1, doNotSelect = 0
+   * When all children of this node add up to children.length, is selected.
+   * When children.length > checkedLen > 0, is halfSelected.
    */
   private _isHalfChecked(): boolean {
     const checkedLen = this.children?.reduce((total, prev) => {
@@ -128,8 +127,8 @@ export class Node<T> {
 
   /**
    *
-   * @param checked 选中状态
-   * @param ignoreDisabled 是否忽略节点禁用设置选中状态，一般在初始化设置选中状态时传参为true
+   * @param checked
+   * @param ignoreDisabled
    */
   private _setNodeChildrenChecked = (
     checked: boolean,
@@ -158,13 +157,12 @@ export class Node<T> {
     this._checked = this._halfChecked ? false : checked
   }
 
-  // 直接设置选中状态
   public setCheckedProperty = (checked: boolean) => {
     this._checked = checked
     this._halfChecked = false
   }
 
-  // 设置当前节点选中状态
+  // set current node checked state
   public setCheckedState = (checked: boolean) => {
     if (this.disabled || checked === this._checked) {
       return
@@ -172,21 +170,17 @@ export class Node<T> {
 
     this.setCheckedProperty(checked)
 
-    // 父子节点关联
     if (!this.config.changeOnSelect) {
       this._setNodeChildrenChecked(checked)
 
       let parent = this.parent
       while (parent && !parent.disabled) {
-        // 当半选状态时，设置_checked为false。保证点击半选状态的节点时，执行选中操作。
         parent.updateHalfState(checked)
-
         parent = parent.parent
       }
     }
   }
 
-  // 忽略禁用设置选中状态
   public setCheckedStateIgnoreDisabled = (checked: boolean) => {
     if (checked === Boolean(this._checked)) {
       return
@@ -198,7 +192,7 @@ export class Node<T> {
 
       let parent = this.parent
       while (parent) {
-        // 当半选状态时，设置_checked为false。保证点击半选状态的节点时，执行选中操作。
+        // when halfSelected, _checked = false.
         parent.updateHalfState(checked)
 
         parent = parent.parent
@@ -207,7 +201,7 @@ export class Node<T> {
   }
 
   /**
-   * 遍历节点的parent，获取当前节点的路径节点。
+   * Traverse the parent of the node, to get the pathNode of the current node.
    * node: { label: '1-1-1', parent: { label: '1-1', parent: { label: '1' }, ... }, ...}
    * @return [node.parent.parent, node.parent, node]
    * @memberof Store
@@ -235,5 +229,124 @@ export class Node<T> {
     if (loading === false) {
       this.loaded = true
     }
+  }
+}
+
+export class Store<T> {
+  private nodes: Node<T>[] = []
+  private flatNodes: Node<T>[] = []
+  private config: ConfigType<T> = {}
+
+  constructor(
+    options: NodeProps<T>[],
+    value?: string[][],
+    config?: ConfigType<T>,
+  ) {
+    this.config = { ...config }
+
+    const values = Array.isArray(value) ? value : []
+
+    this.nodes = this._calcNodes(options, null)
+
+    // get selected value by nodes
+    this._updateFlatNodes()
+
+    this.setNodeCheckedByValue(values)
+  }
+
+  // Initialize node state, add _checked, _halfChecked, parent, disabled
+  private _calcNodes = (
+    options: NodeProps<T>[],
+    parent: Node<T> | null,
+  ): Node<T>[] => {
+    if (!options) {
+      return []
+    }
+    return options.map((option, index) => {
+      return new Node({ ...option, _index: index }, this.config, parent)
+    })
+  }
+
+  // this.flatNodes save all possible selected
+  private _updateFlatNodes = () => {
+    const leafOnly = !this.config.changeOnSelect
+    this.flatNodes = []
+
+    const traversal = (option: Node<T>) => {
+      if (!option) return
+      if (!leafOnly || option.isLeaf) {
+        this.flatNodes.push(option)
+      }
+      if (isArray(option.children)) {
+        ;(option.children as Node<T>[]).forEach((x) => {
+          traversal(x)
+        })
+      }
+    }
+
+    this.nodes.forEach((node) => {
+      traversal(node)
+    })
+  }
+
+  /**
+   * values: all selected values
+   * Set node status by values. nodes not included in values are set to unselected state.
+   */
+  public setNodeCheckedByValue = (initValues?: string[][]) => {
+    const values = initValues || []
+
+    // 根据value设置节点初始选中状态
+    this.flatNodes.forEach((node) => {
+      if (values.some((item) => isEqual(node.pathValue, item))) {
+        node.setCheckedStateIgnoreDisabled(true)
+      } else {
+        node.setCheckedStateIgnoreDisabled(false)
+      }
+    })
+  }
+
+  public findNodeByValue = (value?: string[]): Node<T> | null => {
+    let targetNode: Node<T> | null = null
+    if (!value || !value.length) {
+      return targetNode
+    }
+
+    this.flatNodes.some((node) => {
+      if (isEqual(node.pathValue, value)) {
+        targetNode = node
+      }
+    })
+    return targetNode
+  }
+
+  public searchNodeByLabel = (inputStr?: string): Node<T>[] => {
+    if (!inputStr) {
+      return this.flatNodes
+    }
+    const { filterOption } = this.config
+    const filterMethod = isFunction(filterOption)
+      ? filterOption
+      : (inputValue: string, node: NodeProps<T>) => {
+          return isString(node?.label) && node.label.indexOf(inputValue) > -1
+        }
+
+    return this.flatNodes?.filter((item) => {
+      const pathNodes = item.getPathNodes()
+      return pathNodes.some((node) => {
+        // ?
+        return node._data && filterMethod(inputStr, node._data)
+      })
+    })
+  }
+
+  public getOptions = (): Node<T>[] => {
+    return this.nodes
+  }
+
+  public getCheckedNodes = (): Node<T>[] => {
+    return this.flatNodes?.filter((node) => {
+      return node._checked
+    })
   }
 }
