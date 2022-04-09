@@ -1,5 +1,6 @@
 import { HTMLAttributes, MouseEvent, ReactElement, ReactNode } from "react"
 import { TriggerProps } from "@illa-design/trigger"
+import { SerializedStyles } from "@emotion/serialize"
 
 export type MenuVariant = "inline" | "pop"
 
@@ -40,6 +41,7 @@ export interface ItemProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
 export interface SubMenuProps {
   key: string
   _key?: string,
+  _css?: SerializedStyles
   title?: string | ReactNode
   level?: number
   selectable?: boolean

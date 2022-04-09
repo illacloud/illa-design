@@ -1,16 +1,24 @@
 import { forwardRef, useContext, MouseEvent, useState } from "react"
-import { NextIcon } from "@illa-design/icon"
+import { NextIcon, DownIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
-import { applySubMenuListCss, applySubMenuHeaderCss } from "../style"
+import { applySubMenuHeaderCss } from "../style"
 import { MenuContext } from "../menu-context"
 import { Indent } from "../indent"
 import { Menu } from "../menu"
 import { SubMenuProps } from "../interface"
-import { applySubMenuIconCss, expandIconCss } from "../styles"
-import { processChildren, isChildrenSelected } from "../util"
+import { applyPopSubMenuCss, applySubMenuIconCss, expandIconCss } from "../styles"
+import { isChildrenSelected } from "../util"
 
 export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
-  const { level = 1, title, children, _key = "", selectable } = props
+  const {
+    level = 1,
+    title,
+    children,
+    _key = "",
+    selectable,
+    _css,
+    ...restProps
+  } = props
 
   const {
     mode,
@@ -19,10 +27,11 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     onClickSubMenu,
     selectedKeys = [],
     triggerProps,
-    ...restProps
   } = useContext(MenuContext)
 
   const [popupVisible, setPopupVisible] = useState(false)
+
+  const isHorizontal = mode === "horizontal";
 
   const subMenuClickHandler = (event: MouseEvent) => {
     onClickSubMenu && onClickSubMenu(_key, level as number, "pop")
@@ -40,6 +49,16 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
 
   const needPopOnBottom = mode === "horizontal"
 
+  function renderIcon() {
+    const icon = needPopOnBottom ? <DownIcon /> : <NextIcon />;
+
+    return (
+      <span css={(applySubMenuIconCss(false), !needPopOnBottom && expandIconCss)}>
+        {icon}
+      </span>
+    )
+  }
+
   return (
     <Dropdown
       trigger="hover"
@@ -55,8 +74,6 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
       triggerProps={{
         position: needPopOnBottom ? "bl" : "rt",
         showArrow: true,
-        autoAlignPopupMinWidth: true,
-        duration: 100,
         popupVisible,
         ...triggerProps,
       }}
@@ -64,14 +81,12 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
       <div
         ref={ref}
         onClick={subMenuClickHandler}
+        css={[applySubMenuHeaderCss(isSelected), applyPopSubMenuCss(isHorizontal), _css]}
         {...restProps}
-        css={applySubMenuHeaderCss(isSelected)}
       >
         <Indent level={level} levelIndent={levelIndent} />
         <span>{title}</span>
-        <span css={(applySubMenuIconCss(false), expandIconCss)}>
-          <NextIcon />
-        </span>
+        {renderIcon()}
         <div></div>
       </div>
     </Dropdown>

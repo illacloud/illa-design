@@ -3,6 +3,8 @@ import { useMergeValue, isFunction } from "@illa-design/system"
 import { MenuProps } from "./interface"
 import { MenuContext } from "./menu-context"
 import { processChildren } from "./util"
+import { OverflowWrapper } from "./overflow-wrapper"
+import { applyMenuInnerCss } from "./style"
 
 export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const {
@@ -40,7 +42,22 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   })
 
   function renderChildren() {
-    return processChildren(children, { level: 1 })
+    const childrenList = processChildren(children, { level: 1 })
+    const isHorizontal = mode === "horizontal";
+    const isRenderWithOverflowWrapper =
+      isHorizontal && ellipsis !== false
+
+    return (
+      <>
+        <div css={applyMenuInnerCss(isHorizontal)}>
+          {isRenderWithOverflowWrapper ? (
+            <OverflowWrapper>{childrenList}</OverflowWrapper>
+          ) : (
+            childrenList
+          )}
+        </div>
+      </>
+    )
   }
 
   return (
@@ -53,7 +70,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
           openKeys,
           selectedKeys,
           onClickMenuItem: (key, event) => {
-            selectable && setSelectedKeys([key]);
+            selectable && setSelectedKeys([key])
             // TODO: pass keyPass
             onClickMenuItem && onClickMenuItem(key, event, [])
           },

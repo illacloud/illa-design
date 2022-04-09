@@ -46,3 +46,14 @@ export function applySubMenuHeaderCss(isSelected: boolean): SerializedStyles {
     line-height: 40px ${isSelected && selectedCss};
   `
 }
+
+export function applyPopSubMenuCss(isHorizontal: boolean): SerializedStyles {
+  if (isHorizontal) {
+    return css`
+      display: inline-block;
+      vertical-align: middle;
+    `;
+  }
+
+  return css``
+}

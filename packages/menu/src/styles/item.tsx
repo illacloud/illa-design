@@ -7,7 +7,14 @@ export const titleEllipsis = css`
   text-overflow: ellipsis;
 `
 
-export function applyItemCss(): SerializedStyles {
+export function applyItemCss(isHorizontal: boolean): SerializedStyles {
+  if (isHorizontal) {
+    return css`
+      display: inline-block;
+      vertical-align: middle;
+    `
+  }
+
   return css`
     display: flex;
   `

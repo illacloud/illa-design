@@ -7,12 +7,14 @@ import { Indent } from "./indent"
 import { applyItemCss, titleEllipsis } from "./style"
 
 const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
-  const { _key, title, disabled, level = 1, ...restProps } = props
+  const { _key, title, disabled, level = 1, _css, ...restProps } = props
+
 
   const { mode, collapse, levelIndent, onClickMenuItem } =
     useContext(MenuContext)
 
   const needIndent = mode === "vertical" && level > 1
+  const isHorizontal = mode === "horizontal";
   const needTooltip = collapse && level === 1
 
   const clickItemHandler = (event: MouseEvent) => {
@@ -20,7 +22,7 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   }
 
   const itemNode = (
-    <div ref={ref} css={applyItemCss()} {...restProps} onClick={clickItemHandler}>
+    <div ref={ref} css={[applyItemCss(isHorizontal), _css]} {...restProps} onClick={clickItemHandler}>
       {needIndent ? <Indent level={level} levelIndent={levelIndent} /> : null}
       <div css={titleEllipsis}>{title}</div>
     </div>

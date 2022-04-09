@@ -1,5 +1,9 @@
 import { css } from "@emotion/react"
 
+export const overflowWrapperCss = css`
+  width: 100%;
+`
+
 export const overflowMenuItemCss = css`
   position: absolute;
   visibility: hidden;
@@ -7,4 +11,5 @@ export const overflowMenuItemCss = css`
 
 export const subMenuPlaceholderCss = css`
   position: absolute;
+  visibility: hidden;
 `

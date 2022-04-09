@@ -9,7 +9,14 @@ import { applySubMenuIconCss, expandIconCss } from "../styles"
 import { processChildren, isChildrenSelected } from "../util"
 
 export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
-  const { level = 1, title, children, _key = "", selectable } = props
+  const {
+    level = 1,
+    title,
+    children,
+    _key = "",
+    selectable,
+    ...restProps
+  } = props
 
   const {
     levelIndent,
@@ -17,7 +24,6 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     onClickSubMenu,
     openKeys = [],
     selectedKeys = [],
-    ...restProps
   } = useContext(MenuContext)
 
   const subMenuClickHandler = (event: MouseEvent) => {

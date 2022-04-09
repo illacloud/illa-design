@@ -5,12 +5,13 @@ import React, {
   ReactNode,
   ReactElement,
 } from "react"
+import { css } from "@emotion/react"
 import { getStyle } from "@illa-design/system"
 import useMeasure from "react-use/lib/useMeasure"
 import { OverflowWrapperProps } from "./interface"
 import { SubMenu } from "./sub-menu"
 import { overflowMenuItemCss } from "./style"
-import { subMenuPlaceholderCss } from "./styles"
+import { overflowWrapperCss, subMenuPlaceholderCss } from "./styles"
 
 function getNodeWidth(node: HTMLElement) {
   if (!node) {
@@ -32,7 +33,6 @@ function px2Number(str: string): number {
 export const OverflowWrapper = (props: OverflowWrapperProps) => {
   const { children } = props
   const wrapperRef = useRef<HTMLDivElement | null>(null)
-  const subMenuPlaceholderRef = useRef<HTMLElement | null>(null)
   const [measureWrapperRef, measureWrapperInfo] = useMeasure<HTMLDivElement>()
   const [lastVisibleIndex, setLastVisibleIndex] = useState<number | null>(null)
 
@@ -51,13 +51,15 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
 
     let menuItemIndex = 0
     let currentMaxWidth = 0
-    let overflowSubMenuWidth = getNodeWidth(
-      subMenuPlaceholderRef.current as HTMLElement,
-    )
+    let overflowSubMenuWidth = 0
 
     for (const node of childrenNodeList) {
       if (node.getAttribute("data-sub-menu-marker") !== null) {
-        continue
+        if (node.getAttribute("data-sub-menu-placeholder-marker")) {
+          overflowSubMenuWidth = getNodeWidth(node as HTMLElement)
+        } else {
+          continue
+        }
       }
       const nodeWidth = getNodeWidth(node as HTMLElement)
       currentMaxWidth += nodeWidth
@@ -84,16 +86,13 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
     children: ReactNode,
     isPlaceholder: boolean,
   ) => {
-    3
     return (
       <SubMenu
         title={<span>...</span>}
-        key={"overflow-sub-menu"}
+        key={"overflow-sub-menu" + Math.random()}
         data-sub-menu-marker
+        data-sub-menu-placeholder-marker={isPlaceholder}
         css={isPlaceholder && subMenuPlaceholderCss}
-        ref={(el) => {
-          isPlaceholder && (subMenuPlaceholderRef.current = el as HTMLElement)
-        }}
         {...props}
         children={children}
       />
@@ -111,7 +110,7 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
         // set overflow item invisible
         if (index > lastVisibleIndex) {
           item = React.cloneElement(child as ReactElement, {
-            css: overflowMenuItemCss,
+            _css: overflowMenuItemCss,
           })
         }
 
@@ -143,6 +142,7 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
         wrapperRef.current = el
         measureWrapperRef(el as HTMLDivElement)
       }}
+      css={overflowWrapperCss}
     >
       {renderChildren()}
     </div>
