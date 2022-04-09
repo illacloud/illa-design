@@ -46,3 +46,7 @@ export interface SubMenuProps {
   children?: ReactNode
   forwardedRef?: ReactElement
 }
+
+export interface OverflowWrapperProps {
+  children?: ReactNode
+}
