@@ -37,6 +37,7 @@ import {
 } from "./adjust-tips-location"
 import { Popup } from "./popup"
 import useClickAway from "react-use/lib/useClickAway"
+import useMouse from "react-use/lib/useMouse"
 import useMeasure from "react-use/lib/useMeasure"
 import { isFunction } from "@illa-design/system"
 
@@ -288,11 +289,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
       initial="initial"
       animate="animate"
       exit="exit"
-      onClick={() => {
-        if (!disabled && trigger == "click" && clickOutsideToClose) {
-          showTips()
-        }
-      }}
       onMouseEnter={() => {
         if (!disabled && trigger == "hover") {
           showTips()
@@ -308,9 +304,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
     </motion.div>
   )
 
+  const tipsMouseLocation = useMouse(tipsRef)
+
   useClickAway(childrenRef, () => {
     if (!disabled && clickOutsideToClose) {
-      hideTips()
+      if (tipsRef.current != null) {
+        if (
+          tipsMouseLocation.elX < 0 ||
+          tipsMouseLocation.elX > tipsRef.current.clientWidth ||
+          tipsMouseLocation.elY < 0 ||
+          tipsMouseLocation.elY > tipsRef.current.clientHeight
+        ) {
+          hideTips()
+        }
+      } else {
+        hideTips()
+      }
     }
   })
 
