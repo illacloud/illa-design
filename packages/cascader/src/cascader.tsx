@@ -285,8 +285,6 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         position="bl"
         maxWidth=""
         disabled={disabled}
-        openDelay={0}
-        closeDelay={0}
         withoutPadding
         closeOnClick
         clickOutsideToClose

@@ -16,7 +16,6 @@ export interface CascaderProps<T>
     | { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean }
   size?: CascaderSize
   multiple?: boolean
-  allowCreate?: boolean
   trigger?: TriggerProps["trigger"]
   expandTrigger?: "click" | "hover"
   notFoundContent?: ReactNode

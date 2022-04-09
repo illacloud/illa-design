@@ -22,50 +22,51 @@ const options = [
     label: "Beijing",
     children: [
       {
-        value: 'chaoyang',
-        label: 'Chaoyang',
+        value: "chaoyang",
+        label: "Chaoyang",
         children: [
           {
-            value: 'datunli',
-            label: 'Datunli',
+            value: "datunli",
+            label: "Datunli",
           },
         ],
       },
       {
-        value: 'dongcheng',
-        label: 'Dongcheng',
+        value: "dongcheng",
+        label: "Dongcheng",
       },
       {
-        value: 'xicheng',
-        label: 'Xicheng',
+        value: "xicheng",
+        label: "Xicheng",
+        disabled: true,
       },
       {
-        value: 'haidian',
-        label: 'Haidian',
+        value: "haidian",
+        label: "Haidian",
       },
       {
-        value: 'fengtai',
-        label: 'fengtai',
+        value: "fengtai",
+        label: "fengtai",
       },
       {
-        value: 'shijingshan',
-        label: 'Shijingshan',
+        value: "shijingshan",
+        label: "Shijingshan",
       },
       {
-        value: 'mentougou',
-        label: 'Mentougou',
+        value: "mentougou",
+        label: "Mentougou",
       },
       {
-        value: 'fangshan',
-        label: 'Fangshan',
+        value: "fangshan",
+        label: "Fangshan",
       },
       {
-        value: 'tongzhou',
-        label: 'Tongzhou',
+        value: "tongzhou",
+        label: "Tongzhou",
       },
       {
-        value: 'shunyi',
-        label: 'Shunyi',
+        value: "shunyi",
+        label: "Shunyi",
       },
     ],
   },
@@ -95,7 +96,8 @@ const options = [
         children: [
           {
             value: "nanshan",
-            label: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi distinctio dolorem earum excepturi fugiat id illo illum iure laboriosam minus modi, nam neque non odit officiis provident repudiandae sunt velit!",
+            label:
+              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi distinctio dolorem earum excepturi fugiat id illo illum iure laboriosam minus modi, nam neque non odit officiis provident repudiandae sunt velit!",
           },
         ],
       },
@@ -103,19 +105,16 @@ const options = [
   },
 ]
 
-const Template: Story<CascaderProps<any>> = (args) => (
+export const Basic: Story<CascaderProps<any>> = (args) => (
   <Space direction="vertical">
     <Cascader style={{ width: 280 }} showSearch options={options} {...args} />
-    <Cascader style={{ width: 280 }} options={options} {...args} />
     <Cascader
       style={{ width: 280 }}
       options={options}
-      {...args}
       multiple={false}
+      allowClear
+      {...args}
     />
+    <Cascader style={{ width: 280 }} multiple options={options} {...args} />
   </Space>
 )
-
-export const Basic = Template.bind({
-  icon: <BsFacebook />,
-})

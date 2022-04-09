@@ -239,8 +239,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         colorScheme="white"
         closeOnClick={false}
         showArrow={false}
-        openDelay={0}
-        closeDelay={0}
         clickOutsideToClose
         withoutPadding
         position={position}
