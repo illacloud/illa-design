@@ -38,6 +38,11 @@ export interface ItemProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   level?: number
 }
 
+export interface ItemGroupProps {
+  title?: string | ReactNode
+  level?: number
+}
+
 export interface SubMenuProps {
   key: string
   _key?: string,

@@ -2,11 +2,14 @@ import { forwardRef } from "react"
 import { useMergeValue, isFunction } from "@illa-design/system"
 import { MenuProps } from "./interface"
 import { MenuContext } from "./menu-context"
+import { Item } from "./item"
+import { ItemGroup } from "./item-group"
+import { SubMenu } from "./sub-menu"
 import { processChildren } from "./util"
 import { OverflowWrapper } from "./overflow-wrapper"
 import { applyMenuInnerCss } from "./style"
 
-export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
+const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const {
     theme = "light",
     mode = "vertical",
@@ -43,9 +46,8 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
 
   function renderChildren() {
     const childrenList = processChildren(children, { level: 1 })
-    const isHorizontal = mode === "horizontal";
-    const isRenderWithOverflowWrapper =
-      isHorizontal && ellipsis !== false
+    const isHorizontal = mode === "horizontal"
+    const isRenderWithOverflowWrapper = isHorizontal && ellipsis !== false
 
     return (
       <>
@@ -104,5 +106,15 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     </div>
   )
 })
+const Menu = ForwardRefMenu as typeof ForwardRefMenu & {
+  Item: typeof Item
+  ItemGroup: typeof ItemGroup
+  SubMenu: typeof SubMenu
+}
 
+Menu.Item = Item
+Menu.ItemGroup = ItemGroup
+Menu.SubMenu = SubMenu
 Menu.displayName = "Menu"
+
+export { Menu }
