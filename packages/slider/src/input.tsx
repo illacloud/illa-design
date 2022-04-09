@@ -29,7 +29,11 @@ export default memo(function Input(props: InputProps) {
   }
 
   return (
-    <div onBlur={handleBlur} css={applySliderInput(vertical)}>
+    <div
+      onBlur={handleBlur}
+      css={applySliderInput(vertical)}
+      role={"input-number"}
+    >
       {range && [
         <InputNumber
           style={{

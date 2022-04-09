@@ -1,5 +1,5 @@
 import React, { useState, memo, useRef, useMemo, SyntheticEvent } from "react"
-import { Trigger, TriggerPosition } from "../../trigger/src/index"
+import { Trigger, TriggerPosition } from "@illa-design/trigger"
 import { useMergeValue, isServerRendering } from "@illa-design/system"
 import { SliderButtonProps } from "./interface"
 import { applySliderBtn } from "./style"

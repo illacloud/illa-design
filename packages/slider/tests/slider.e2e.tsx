@@ -35,9 +35,9 @@ function DemoMarkTest(args: SliderProps) {
           0: "0km",
           5: "5km",
           10: "10km",
-          15: "15km",
         }}
-        max={15}
+        style={{ width: "100%" }}
+        max={10}
       />
     </>
   )
@@ -77,4 +77,26 @@ it("Slider renders with slides exactly", () => {
     })
     .trigger("mouseup")
   unmount()
+})
+
+it("Slider renders with marks", () => {
+  mount(<DemoMarkTest />)
+  cy.findByTestId("mark").should("exist")
+  cy.findByText("0km").should("exist")
+  cy.findByText("5km").should("exist")
+  cy.findByText("10km").should("exist")
+  unmount()
+})
+
+it("slider renders with input-number", () => {
+  mount(<DemoTest showInput />)
+  cy.findByDisplayValue("0").should("exist")
+  cy.findByRole("input-number")
+    .children()
+    .children()
+    .children("div:first-of-type")
+    .children("span:first-of-type")
+    .click()
+    .click()
+  cy.findByDisplayValue("2").should("exist")
 })
