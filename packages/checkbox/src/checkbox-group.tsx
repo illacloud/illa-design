@@ -1,4 +1,10 @@
-import { forwardRef, ReactText, useCallback, useState } from "react"
+import {
+  forwardRef,
+  ReactText,
+  SyntheticEvent,
+  useCallback,
+  useState,
+} from "react"
 import { useMergeValue } from "@illa-design/system"
 import { CheckboxGroupProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"
@@ -45,7 +51,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
     }
 
     const onGroupChange = useCallback(
-      (optionValue, checked: boolean, e: Event) => {
+      (optionValue, checked: boolean, e: SyntheticEvent) => {
         const newVal = currentValue.slice()
         if (checked) {
           newVal.push(optionValue)

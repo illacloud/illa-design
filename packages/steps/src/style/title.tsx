@@ -30,7 +30,7 @@ export function applyTitleStyle({
     !lastStep &&
       !lineless &&
       direction !== "vertical" &&
-      labelPlacement !== "vertical" &&
+      !isVerticalLabel({ variant, labelPlacement, direction }) &&
       applyConnectionStyle({ variant, status, nextStepError, size }),
   ])
 }
@@ -44,9 +44,11 @@ function applyTitleSize({
   let lineHeight: string
   let fontSize: number
   let padding = 16
+  let marginTop = 0
 
   if (isVerticalLabel({ variant, direction, labelPlacement })) {
     padding = 0
+    variant !== "dot" && (marginTop = 8)
   }
 
   switch (size) {
@@ -62,8 +64,10 @@ function applyTitleSize({
   }
 
   return css({
+    fontWeight: 500,
     lineHeight,
     fontSize,
+    marginTop,
     paddingRight: padding,
   })
 }
@@ -72,7 +76,7 @@ function applyTitleColor(status: StepStatus): SerializedStyles {
   let color = globalColor(`--${illaPrefix}-gray-02`)
 
   if (status === "wait") {
-    color = globalColor(`--${illaPrefix}-gray-04`)
+    color = globalColor(`--${illaPrefix}-gray-02`)
   }
 
   return css`
@@ -116,9 +120,9 @@ function applyConnectionStyle({
       large: 10,
     }
     pseudoStyle = css({
-      width: 8,
-      height: 8,
-      border: `3px solid ${color} `,
+      width: 6,
+      height: 6,
+      border: `2px solid ${globalColor(`--${illaPrefix}-gray-06`)} `,
       borderLeft: "none",
       borderBottom: "none",
       transform: "rotate(45deg)",
@@ -128,6 +132,7 @@ function applyConnectionStyle({
   }
 
   return css`
+    display: inline-block;
     ${position}
     &::after {
       content: "";
