@@ -1,4 +1,4 @@
-import { CSSProperties, HTMLAttributes, MouseEvent, ReactNode } from "react"
+import { CSSProperties, HTMLAttributes, ReactNode } from "react"
 import { TriggerPosition } from "@illa-design/trigger"
 
 export interface SliderProps
@@ -30,6 +30,7 @@ export interface TicksProps {
   value: number[]
   vertical?: boolean
   reverse?: boolean
+  disabled?: boolean
 }
 
 export type MarkType = {
@@ -45,6 +46,7 @@ export interface MarkProps {
   onMouseDown?: (val: number) => void
   reverse?: boolean
   value?: number[]
+  disabled?: boolean
 }
 
 export interface InputProps {
@@ -54,6 +56,7 @@ export interface InputProps {
   value: number[]
   range?: boolean
   disabled?: boolean
+  vertical?: boolean
   onChange?: (val: [number, number]) => void
 }
 

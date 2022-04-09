@@ -4,7 +4,6 @@ import React, {
   useEffect,
   useMemo,
   CSSProperties,
-  MouseEventHandler,
   MouseEvent,
 } from "react"
 import { SliderProps } from "./interface"
@@ -88,7 +87,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 
   const beginOffset = getOffset(beginVal, [min, max])
   const endOffset = getOffset(endVal, [min, max])
-  // 标签数组
+
   const markList = useMemo(
     () =>
       Object.keys(marks)
@@ -100,7 +99,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         })),
     [marks],
   )
-  // 是否显示输入框
+
   const isShowInput = showInput && !onlyMarkValue
 
   const roadRef = useRef<HTMLDivElement>(null)
@@ -151,7 +150,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     if (range) return val >= range1 && val <= range2
     return val <= range2
   }
-  // 通过坐标获取值
+
   function getValueByCoords(x: number, y: number): number {
     const { left, top, width, height } = position.current
     let roadLength = width
@@ -209,7 +208,6 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     }
   }
 
-  // 点击某个位置，快速跳转
   function handleJumpClick(val: number) {
     if (disabled) return
 
@@ -227,13 +225,13 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     onMouseUp()
   }
 
-  // 拖动开始节点
+  // drag the begin node
   function handleBeginMove(x: number, y: number) {
     isDragging.current = true
     onChange([getValueByCoords(x, y), endVal])
   }
 
-  // 拖动结束节点
+  // drag the end node
   function handleEndMove(x: number, y: number) {
     isDragging.current = true
     onChange([beginVal, getValueByCoords(x, y)])
@@ -244,7 +242,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     onMouseUp()
   }
 
-  // bar 移动中
+  // bar moving
   function onBarMouseMove(e: any) {
     const newVal = getLegalValue(getValueByCoords(e.clientX, e.clientY))
     const offsetVal = newVal - barStartDragVal.current
@@ -256,7 +254,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     }
   }
 
-  // bar 停止移动
+  // bar stop moving
   function onBarMouseUp() {
     window.removeEventListener("mousemove", onBarMouseMove)
     window.removeEventListener("mouseup", onBarMouseUp)
@@ -274,7 +272,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         >
           <div
             role={"bar"}
-            css={applySliderBar(vertical)}
+            css={applySliderBar(vertical, disabled)}
             style={getBarStyle([beginOffset, endOffset])}
           />
           {showTicks && (
@@ -285,6 +283,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
               value={[beginVal, endVal]}
               vertical={vertical}
               reverse={reverse}
+              disabled={disabled}
             />
           )}
           <Dots
@@ -295,6 +294,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
             vertical={vertical}
             reverse={reverse}
             onMouseDown={handleJumpClick}
+            disabled={disabled}
           />
           <Marks
             data={markList}
@@ -337,6 +337,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           <SliderInput
             min={min}
             max={max}
+            vertical={vertical}
             step={step}
             value={[beginVal, endVal]}
             range={range}

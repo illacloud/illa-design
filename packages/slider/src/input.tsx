@@ -1,15 +1,19 @@
 import React, { memo, useEffect, useState } from "react"
 import { InputNumber } from "@illa-design/input-number"
 import { InputProps } from "./interface"
+import {
+  applySliderInput,
+  applySliderInputRange,
+  applySliderInputRangeContent,
+} from "./style"
 
 export default memo(function Input(props: InputProps) {
-  const { value, range, min, max, step, disabled, onChange } = props
+  const { value, range, min, max, step, disabled, vertical, onChange } = props
   const inputProps = {
     min,
     max,
     step,
     disabled,
-    hideControl: true,
   }
   const [innerValue, setInnerValue] = useState(value)
   useEffect(() => {
@@ -25,9 +29,15 @@ export default memo(function Input(props: InputProps) {
   }
 
   return (
-    <div onBlur={handleBlur}>
+    <div onBlur={handleBlur} css={applySliderInput(vertical)}>
       {range && [
         <InputNumber
+          style={{
+            width: `58px`,
+            height: `32px`,
+            lineHeight: `normal`,
+            overflow: `visible`,
+          }}
           value={innerValue[0]}
           key={0}
           {...inputProps}
@@ -35,11 +45,17 @@ export default memo(function Input(props: InputProps) {
             handleChange([val!, innerValue[1]])
           }}
         />,
-        <div key={1}>
-          <span />
+        <div css={applySliderInputRange} key={1}>
+          <span css={applySliderInputRangeContent} />
         </div>,
       ]}
       <InputNumber
+        style={{
+          width: `58px`,
+          height: `32px`,
+          lineHeight: `normal`,
+          overflow: `visible`,
+        }}
         key={2}
         value={innerValue[1]}
         {...inputProps}

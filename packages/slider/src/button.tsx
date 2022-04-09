@@ -1,16 +1,5 @@
-import React, {
-  ReactNode,
-  CSSProperties,
-  useState,
-  useContext,
-  memo,
-  useEffect,
-  useRef,
-  useMemo,
-  SyntheticEvent,
-  MouseEvent,
-} from "react"
-import { Trigger, TriggerPosition } from "@illa-design/trigger"
+import React, { useState, memo, useRef, useMemo, SyntheticEvent } from "react"
+import { Trigger, TriggerPosition } from "../../trigger/src/index"
 import { useMergeValue, isServerRendering } from "@illa-design/system"
 import { SliderButtonProps } from "./interface"
 import { applySliderBtn } from "./style"
@@ -42,7 +31,6 @@ const SliderButton = function (props: SliderButtonProps) {
   const delayTimer = useRef(null as any)
   const inButtonOrPopup = useRef(false)
   const isDragging = useRef(false)
-  const tooltip = useRef(null)
 
   function handleMouseDown(e: SyntheticEvent<Element, Event>) {
     e.stopPropagation()
@@ -152,10 +140,6 @@ const SliderButton = function (props: SliderButtonProps) {
     )
   }
 
-  // useEffect(() => {
-  //   tooltip && tooltip.current && tooltip.current.updatePopupPosition()
-  // }, [value])
-
   return (
     <Trigger
       showArrow
@@ -164,12 +148,14 @@ const SliderButton = function (props: SliderButtonProps) {
       position={position}
       closeOnClick={false}
       content={renderTooltipContent(position)}
+      openDelay={0}
     >
       <div
         onMouseDown={handleMouseDown}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        css={applySliderBtn(vertical, reverse)}
+        role={"button"}
+        css={applySliderBtn(vertical, reverse, disabled)}
         style={style}
       />
     </Trigger>
