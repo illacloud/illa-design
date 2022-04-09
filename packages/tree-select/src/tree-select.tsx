@@ -171,7 +171,6 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
       value: string,
       reason: InputValueChangeReason,
     ) => {
-      console.log("tryUpdateInputValue", value, reason)
       if (value !== refOnInputChangeCallbackValue.current) {
         setInputValue(value)
         refOnInputChangeCallbackValue.current = value
@@ -181,13 +180,11 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
 
     useEffect(() => {
       const { current } = refOnInputChangeCallbackValue
-      console.log("refOnInputChangeCallbackValue")
       if (current.length === 0) {
         setSearchReasonKeys([])
         return
       }
       const items = getSearchReason(current, _treeNodeArr)
-      console.log("keys", items)
       // setTreeData(newValue)
       const expandSet = new Set<string>()
       items.forEach((item) => {
@@ -236,7 +233,6 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         !currentVisible && tryUpdateInputValue("", "optionListHide")
       },
       onChangeInputValue: (value: string) => {
-        console.log("onChangeInputValue", value)
         tryUpdateInputValue(value, "manual")
         if (!currentVisible && value) {
           tryUpdatePopupVisible(true)
