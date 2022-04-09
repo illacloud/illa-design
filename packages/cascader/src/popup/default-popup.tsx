@@ -10,7 +10,7 @@ import { LoadingIcon, NextIcon } from "@illa-design/icon"
 import { Checkbox } from "@illa-design/checkbox"
 import { CascaderPanelProps, OptionProps } from "../interface"
 import { Node } from "../node"
-import useRefs from "../hooks"
+import useRefs, { useForceUpdate } from "../hooks"
 import {
   applyOptionLabelStyle,
   applyOptionStyle,
@@ -26,11 +26,6 @@ export const getLegalIndex = (currentIndex: number, maxIndex: number) => {
     return 0
   }
   return currentIndex
-}
-
-function useForceUpdate() {
-  const [, dispatch] = useReducer((v) => v + 1, 0)
-  return dispatch
 }
 
 export const DefaultPopup = <T extends OptionProps>(
@@ -75,7 +70,7 @@ export const DefaultPopup = <T extends OptionProps>(
     const beforeCheckedNodes = store
       .getCheckedNodes()
       .map((node) => JSON.stringify(node.pathValue))
-    const inexistenceValue = (value || []).filter(
+    const inexistenceValue = (value || [])?.filter(
       (x) => beforeCheckedNodes.indexOf(JSON.stringify(x)) === -1,
     )
     option.setCheckedState(checked)
@@ -144,11 +139,6 @@ export const DefaultPopup = <T extends OptionProps>(
       const scrollTo = () => {
         activeOptionList.forEach((activeOption: any, i: number) => {
           refWrapper[i]?.scrollIntoView({ block: "nearest" })
-          // activeOption &&
-          //   scrollIntoView(activeOption, {
-          //     block: "nearest",
-          //     boundary: refWrapper[i],
-          //   })
         })
       }
       setTimeout(() => {

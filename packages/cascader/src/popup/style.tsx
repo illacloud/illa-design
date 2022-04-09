@@ -61,6 +61,7 @@ export function applyOptionLabelStyle(): SerializedStyles {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-grow: 1;
     padding-right: 20px;
     & > svg {
       font-size: 12px;

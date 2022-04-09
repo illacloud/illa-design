@@ -52,9 +52,9 @@ export const SearchPopup = <T extends OptionProps>(
       option.setCheckedState(checked)
       let checkedValues
       if (checked) {
-        checkedValues = value.concat([option.pathValue])
+        checkedValues = value?.concat([option.pathValue])
       } else {
-        checkedValues = value.filter((item) => {
+        checkedValues = value?.filter((item) => {
           return !isEqual(item, option.pathValue)
         })
       }

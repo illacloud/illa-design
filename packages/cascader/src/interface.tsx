@@ -27,7 +27,7 @@ export interface CascaderProps<T>
   maxTagCount?: number
   arrowIcon?: ReactNode | null
   removeIcon?: ReactNode | null
-
+  fieldNames?: FieldNamesType
   // events
   onSearch?: (inputValue: string) => void
   onChange?: (

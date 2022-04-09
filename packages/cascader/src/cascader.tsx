@@ -16,11 +16,11 @@ import { DefaultPopup } from "./popup/default-popup"
 import { SearchPopup } from "./popup/search-popup"
 import Store from "./store"
 import { applyPopupStyle } from "./style"
-import { logDOM } from "@testing-library/react"
+import { useCurrentRef, useUpdate } from "./hooks"
 
 function getConfig(props: any) {
   return {
-    fieldNames: props.fieldNames,
+    fieldNames: props.fieldNames || DefaultFieldNames,
     filterOption: props.filterOption,
   }
 }
@@ -57,6 +57,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       showSearch,
       multiple,
       options = [],
+      fieldNames,
       trigger = "click",
       expandTrigger = "click",
       // event
@@ -71,7 +72,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     const [currentVisible, setCurrentVisible] = useState<boolean>()
     const [inputValue, setInputValue] = useState("")
 
-    const propsValue = value ? formatValue(value, multiple) : undefined
+    const propsValue = 'value' in props ? formatValue(value, multiple) : undefined
     const [stateValue, setValue] = useState<string[][] | undefined>(
       propsValue || (defaultValue ? formatValue(defaultValue, multiple) : []),
     )
@@ -79,12 +80,12 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     const showSearchPanel = !!inputValue
 
     const timerRef = useRef<number | undefined>()
-    const store = useRef<Store<T>>(getStore(props, mergeValue))
     const stashNodes = useRef<Store<T>["nodes"]>([])
 
-    useEffect(() => {
-      store.current = getStore(props, mergeValue)
-    }, [JSON.stringify(getConfig(props)), options])
+    const store = useCurrentRef<Store<T>>(
+      () => getStore(props, mergeValue),
+      [JSON.stringify(getConfig(props)), options]
+    );
 
     const handleVisibleChange = useCallback(
       (value) => {
@@ -99,7 +100,6 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     )
 
     const handleChange = (newValue: string[][]) => {
-      console.log(newValue, mergeValue, inputValue)
       if (
         isObject(showSearch) &&
         !showSearch?.retainInputValueWhileSelect &&
@@ -113,17 +113,16 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       }
 
       if (!multiple) {
-        store.current.setNodeCheckedByValue(newValue)
+        store.setNodeCheckedByValue(newValue)
       }
 
-      const nodes = store.current.getCheckedNodes()
+      const nodes = store.getCheckedNodes()
       stashNodes.current = Array.from(new Set(nodes.concat(stashNodes.current)))
       const selectedOptions = getSelectedOptionsByValue(newValue)
       const _value = multiple ? newValue : newValue[0]
       const _selectedOptions = multiple ? selectedOptions : selectedOptions[0]
 
       if (!multiple) {
-        console.log(inputValue)
         if (inputValue) {
           // 单选时选择搜索项，直接关闭面板
           handleVisibleChange(false)
@@ -136,7 +135,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       }
 
       if ("value" in props) {
-        store.current.setNodeCheckedByValue(mergeValue)
+        store.setNodeCheckedByValue(mergeValue)
       } else {
         setValue(newValue)
       }
@@ -146,9 +145,8 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     }
 
     const getSelectedOptionsByValue = (values: string[][]): OptionProps[][] => {
-      const nodes = store.current.getCheckedNodes().concat(stashNodes.current)
+      const nodes = store.getCheckedNodes().concat(stashNodes.current)
       const result: any[] = []
-
       values.map((value) => {
         const node = nodes.find((item) => isEqual(item.pathValue, value))
         if (node) {
@@ -160,7 +158,6 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
 
     const renderText = useCallback(
       (value) => {
-        console.log(value, store, "renderText")
         // store 中不存在时，从stashNodes.current中找一下对应节点
         const options = getSelectedOptionsByValue([value])[0] || []
 
@@ -205,6 +202,16 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       }
     }, [currentVisible])
 
+    useEffect(() => {
+      if ('value' in props) {
+        const newValue = formatValue(props.value, multiple);
+        if (!isEqual(stateValue, newValue)) {
+          store.setNodeCheckedByValue(newValue);
+          setValue(newValue);
+        }
+      }
+    }, [props.value, stateValue, multiple])
+
     // SelectView event handle
     const selectViewEventHandlers: SelectViewProps = {
       renderText,
@@ -214,11 +221,11 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         if (!multiple) {
           handleChange([])
         } else {
-          const nodes = store.current.getCheckedNodes()
+          const nodes = store.getCheckedNodes()
           const newValue = nodes
             .filter((x) => x.disabled)
             .map((x) => x.pathValue)
-          store.current.setNodeCheckedByValue(newValue)
+          store.setNodeCheckedByValue(newValue)
           handleChange(newValue)
         }
         onClear?.(!!currentVisible)
@@ -235,7 +242,6 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         }
       },
       onChangeInputValue: (v) => {
-        console.log("onChangeInputValue")
         setInputValue(v)
         onSearch?.(v)
         // tab键 focus 到输入框，此时下拉框未显示。如果输入值，展示下拉框
@@ -253,8 +259,6 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       },
     }
 
-    console.log(inputValue, mergeValue, "value")
-
     return (
       <Trigger
         trigger="click"
@@ -263,7 +267,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
             {showSearchPanel ? (
               <SearchPopup
                 multiple={multiple}
-                store={store.current}
+                store={store}
                 value={mergeValue}
                 inputValue={inputValue}
                 onChange={handleChange}
@@ -271,7 +275,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
             ) : (
               <DefaultPopup
                 multiple={multiple}
-                store={store.current}
+                store={store}
                 value={mergeValue}
                 popupVisible={currentVisible}
                 expandTrigger={expandTrigger}

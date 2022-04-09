@@ -183,7 +183,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         value: typeof !isObject(_inputValue) ? _inputValue : "",
         // Allow placeholder to display the selected value first when searching
         placeholder:
-          canFocusInput && renderedValue && !isObject(_inputValue)
+          canFocusInput && renderedValue && !isObject(renderedValue)
             ? renderedValue
             : placeholder,
         style: {

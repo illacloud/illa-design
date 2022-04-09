@@ -133,7 +133,7 @@ class Store<T> {
           return isString(node?.label) && node.label.indexOf(inputValue) > -1
         }
 
-    return this.flatNodes.filter((item) => {
+    return this.flatNodes?.filter((item) => {
       const pathNodes = item.getPathNodes()
       return pathNodes.some((node) => {
         // ?
@@ -149,7 +149,7 @@ class Store<T> {
 
   /** 获取所有选中状态的节点。 */
   public getCheckedNodes = (): Node<T>[] => {
-    return this.flatNodes.filter((node) => {
+    return this.flatNodes?.filter((node) => {
       return node._checked
     })
   }
