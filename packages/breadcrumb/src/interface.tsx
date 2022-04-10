@@ -1,4 +1,4 @@
-import { HTMLAttributes, MouseEvent, ReactNode } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 import { SerializedStyles } from "@emotion/react"
 
 export type RouteProps = {
