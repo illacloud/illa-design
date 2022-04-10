@@ -5,7 +5,7 @@ import { applySubMenuListCss, applySubMenuHeaderCss } from "../style"
 import { MenuContext } from "../menu-context"
 import { Indent } from "../indent"
 import { SubMenuProps } from "../interface"
-import { applySubMenuIconCss, expandIconCss } from "../styles"
+import { applySubMenuIconCss } from "../styles"
 import { processChildren, isChildrenSelected } from "../util"
 
 export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
@@ -45,7 +45,7 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     >
       <Indent level={level} levelIndent={levelIndent} />
       <span>{title}</span>
-      <span css={[applySubMenuIconCss(isOpen, collapse), expandIconCss]}>
+      <span css={applySubMenuIconCss(isOpen, collapse)}>
         <DownIcon />
       </span>
     </div >

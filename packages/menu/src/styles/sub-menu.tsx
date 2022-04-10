@@ -16,19 +16,20 @@ export function applySubMenuIconCss(
   const collapseCss = css`
     display: none;
   `
+
+  const expandIconCss = css`
+    position: absolute;
+    right: 24px;
+  `
   return css`
-    & > svg {
-      transition: all 0.2s ease-in-out;
+       & > svg {
+         transition: all 0.2s ease-in-out;
       ${isOpen && rotate};
     }
+    ${expandIconCss}
     ${isCollapse && collapseCss};
   `
 }
-
-export const expandIconCss = css`
-  position: absolute;
-  right: 24px;
-`
 
 export function applySubMenuListCss(isOpen: boolean): SerializedStyles {
   return css`

@@ -37,13 +37,14 @@ Basic.args = {
   mode: "horizontal"
 }
 
-export const VerticalMenu = (args) => {
+export const VerticalMenu = (args: MenuProps) => {
   return (
     <Menu
       style={{ width: 200, height: 600 }}
       hasCollapseButton
       defaultOpenKeys={['0']}
       defaultSelectedKeys={['0_1']}
+      {...args}
     >
       <SubMenu
         key='0'

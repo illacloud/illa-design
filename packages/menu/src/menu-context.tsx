@@ -4,7 +4,13 @@ import { MenuProps, MenuVariant } from "./interface"
 export const MenuContext = createContext<
   Pick<
     MenuProps,
-    "mode" | "collapse" | "levelIndent" | "openKeys" | "selectedKeys" | "triggerProps"
+    | "mode"
+    | "variant"
+    | "collapse"
+    | "levelIndent"
+    | "openKeys"
+    | "selectedKeys"
+    | "triggerProps"
   > & {
     onClickMenuItem?: (key: string, event: MouseEvent) => void
     onClickSubMenu?: (key: string, level: number, variant: MenuVariant) => void

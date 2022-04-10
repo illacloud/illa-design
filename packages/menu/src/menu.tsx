@@ -109,6 +109,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
       <MenuContext.Provider
         value={{
           mode,
+          variant,
           levelIndent,
           collapse,
           openKeys,
