@@ -9,6 +9,7 @@ export function applySubMenuCss(): SerializedStyles {
 export function applySubMenuIconCss(
   isOpen?: boolean,
   isCollapse?: boolean,
+  isHorizontal?: boolean
 ): SerializedStyles {
   const rotate = css`
     transform: rotate(-180deg);
@@ -17,7 +18,7 @@ export function applySubMenuIconCss(
     display: none;
   `
 
-  const expandIconCss = css`
+  const fixedToRightCss = css`
     position: absolute;
     right: 24px;
   `
@@ -26,7 +27,7 @@ export function applySubMenuIconCss(
          transition: all 0.2s ease-in-out;
       ${isOpen && rotate};
     }
-    ${expandIconCss}
+    ${!isHorizontal && fixedToRightCss}
     ${isCollapse && collapseCss};
   `
 }

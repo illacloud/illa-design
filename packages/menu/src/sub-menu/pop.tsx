@@ -58,7 +58,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     const icon = needPopOnBottom ? <DownIcon /> : <NextIcon />
 
     return (
-      <span css={applySubMenuIconCss(false, collapse)}>
+      <span css={applySubMenuIconCss(false, collapse, isHorizontal)}>
         {icon}
       </span>
     )
