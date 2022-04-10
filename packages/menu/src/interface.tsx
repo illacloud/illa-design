@@ -10,7 +10,8 @@ export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
   variant?: MenuVariant
   levelIndent?: number
   accordion?: boolean
-  collapseIcons?: ReactNode
+  collapseDefaultIcon?: ReactNode
+  collapseActiveIcon?: ReactNode
   autoOpen?: boolean
   hasCollapseButton?: boolean
   collapse?: boolean
@@ -23,7 +24,7 @@ export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
   triggerProps?: Partial<TriggerProps>
   onClickMenuItem?: (key: string, event, keyPath: string[]) => any
   onClickSubMenu?: (key: string, openKeys: string[], keyPath: string[]) => void
-  onCollapseChagne?: (collapse: boolean) => void
+  onCollapseChange?: (collapse: boolean) => void
 }
 
 export interface IndentProps {
@@ -41,6 +42,7 @@ export interface ItemProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
 export interface ItemGroupProps {
   title?: string | ReactNode
   level?: number
+  children?: ReactNode
 }
 
 export interface SubMenuProps {
@@ -51,7 +53,6 @@ export interface SubMenuProps {
   level?: number
   selectable?: boolean
   children?: ReactNode
-  forwardedRef?: ReactElement
 }
 
 export interface OverflowWrapperProps {

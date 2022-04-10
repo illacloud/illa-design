@@ -1,56 +1,92 @@
 import { Meta, Story } from "@storybook/react"
+import { ImageDefaultIcon } from "@illa-design/icon"
 import { Menu, MenuProps } from "../src"
-import { Indent } from "../src/indent"
-import { Item } from "../src/item"
-import { SubMenu } from "../src/sub-menu"
-
 export default {
   title: "NAVIGATION/Menu",
   component: Menu,
 } as Meta
 
+const { Item, ItemGroup, SubMenu } = Menu
+
 const Template: Story<MenuProps> = (args) => {
   return (
     <>
-      <Menu {...args} style={{ width: 200 }} accordion>
-        <Item title={"Menu-item-1"} key={"1"} />
-        <Item title={"Menu-item-2"} key={"2"} />
-        <Item title={"Menu-item-3"} key={"3"} />
-        <Item title={"Menu-item-2"} key={"4"} />
-        <Item title={"Menu-item-3"} key={"5"} />
-        <Item title={"Menu-item-2"} key={"11"} />
-        <Item title={"Menu-item-3"} key={"15"} />
-        <Item title={"Menu-item-2"} key={"14"} />
-        <Item title={"Menu-item-3"} key={"512"} />
-        <Item title={"Menu-item-2"} key={"423"} />
-        <Item title={"Menu-item-3"} key={"1205"} />
-        <Item title={"Menu-item-2"} key={"4-92"} />
-        <Item title={"Menu-item-3"} key={"5112"} />
-        <Item title={"Menu-item-2"} key={"4900"} />
-        <Item title={"Menu-item-3"} key={"5sf"} />
+      <p>Horizontal</p>
+      <Menu {...args}>
+        <Item title={"Blog"} key={"1"} disabled />
+        <Item title={"Tutorial"} key={"2"} />
+        <Item title={"Docs"} key={"3"} />
+        <Item title={"Community"} key={"4"} />
+        <Item title={"Github"} key={"5"} />
+      </Menu>
 
-
-        {/* <SubMenu key={"2-2"} title={"SubMenu2"}>
-            <Item title={"Menu-item-2"} key={"1231234"} />
-            <Item title={"Menu-item-3"} key={"1231235"} />
-            <Item title={"Menu-item-2"} key={"12312311"} />
-            <Item title={"Menu-item-3"} key={"12312315"} />
-            <Item title={"Menu-item-2"} key={"12312314"} />
-            <Item title={"Menu-item-3"} key={"123123512"} />
-            <SubMenu title={"SubMenu2-1"} key={"2-3"}>
-            <Item title={"Menu-item-2"} key={"123123423"} />
-            <Item title={"Menu-item-3"} key={"1231231205"} />
-            </SubMenu>
-            <SubMenu title={"SubMenu2-2"} key={"2-4"}>
-            <Item title={"Menu-item-2"} key={"1231234-92"} />
-            <Item title={"Menu-item-3"} key={"1231235112"} />
-            <Item title={"Menu-item-2"} key={"1231234900"} />
-            <Item title={"Menu-item-3"} key={"1231235sf"} />
-            </SubMenu>
-            </SubMenu> */}
+      <p>Horizontal overflow</p>
+      <Menu {...args} style={{ width: 200 }}>
+        <Item title={"Blog"} key={"1"} disabled />
+        <Item title={"Tutorial"} key={"2"} />
+        <Item title={"Docs"} key={"3"} />
+        <Item title={"Community"} key={"4"} />
+        <Item title={"Github"} key={"5"} />
       </Menu>
     </>
   )
 }
 
 export const Basic = Template.bind({})
+Basic.args = {
+  mode: "horizontal"
+}
+
+export const VerticalMenu = (args) => {
+  return (
+    <Menu
+      style={{ width: 200, height: 600 }}
+      hasCollapseButton
+      defaultOpenKeys={['0']}
+      defaultSelectedKeys={['0_1']}
+    >
+      <SubMenu
+        key='0'
+        title={
+          <>
+            <ImageDefaultIcon style={{ marginRight: 16 }} /> Navigation 1
+          </>
+        }
+      >
+        <Item key='0_0' title={"Menu 1"} />
+        <Item key='0_1' title={"Menu 2"} />
+        <Item key='0_2' title={"Menu 3"} disabled />
+      </SubMenu>
+      <SubMenu
+        key='1'
+        title={
+          <>
+            <ImageDefaultIcon style={{ marginRight: 16 }} /> Navigation 2
+          </>
+        }
+      >
+        <Item key='1_0' title={"Menu 1"} />
+        <Item key='1_1' title={"Menu 2"} />
+        <Item key='1_2' title={"Menu 3"} />
+      </SubMenu>
+      <SubMenu
+        key='2'
+        title={
+          <>
+            <ImageDefaultIcon style={{ marginRight: 16 }} /> Navigation 3
+          </>
+        }
+      >
+        <ItemGroup key='2_0' title='Menu Group 1'>
+          <Item key='2_0_0' title={"Menu 1"} />
+          <Item key='2_0_1' title={"Menu 2"} />
+        </ItemGroup>
+        <ItemGroup key='2_1' title='Menu Group 1'>
+          <Item key='2_1_0' title={"Menu 3"} />
+          <Item key='2_1_1' title={"Menu 4"} />
+        </ItemGroup>
+      </SubMenu>
+    </Menu>
+  )
+}
+VerticalMenu.args = {}

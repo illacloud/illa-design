@@ -6,7 +6,11 @@ import { MenuContext } from "../menu-context"
 import { Indent } from "../indent"
 import { Menu } from "../menu"
 import { SubMenuProps } from "../interface"
-import { applyPopSubMenuCss, applySubMenuIconCss, expandIconCss } from "../styles"
+import {
+  applyPopSubMenuCss,
+  applySubMenuIconCss,
+  expandIconCss,
+} from "../styles"
 import { isChildrenSelected } from "../util"
 
 export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
@@ -27,11 +31,12 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     onClickSubMenu,
     selectedKeys = [],
     triggerProps,
+    collapse,
   } = useContext(MenuContext)
 
   const [popupVisible, setPopupVisible] = useState(false)
 
-  const isHorizontal = mode === "horizontal";
+  const isHorizontal = mode === "horizontal"
 
   const subMenuClickHandler = (event: MouseEvent) => {
     onClickSubMenu && onClickSubMenu(_key, level as number, "pop")
@@ -50,10 +55,10 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   const needPopOnBottom = mode === "horizontal"
 
   function renderIcon() {
-    const icon = needPopOnBottom ? <DownIcon /> : <NextIcon />;
+    const icon = needPopOnBottom ? <DownIcon /> : <NextIcon />
 
     return (
-      <span css={(applySubMenuIconCss(false), !needPopOnBottom && expandIconCss)}>
+      <span css={applySubMenuIconCss(false, collapse)}>
         {icon}
       </span>
     )
@@ -81,7 +86,11 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
       <div
         ref={ref}
         onClick={subMenuClickHandler}
-        css={[applySubMenuHeaderCss(isSelected), applyPopSubMenuCss(isHorizontal), _css]}
+        css={[
+          applySubMenuHeaderCss(isSelected),
+          applyPopSubMenuCss(isHorizontal),
+          _css,
+        ]}
         {...restProps}
       >
         <Indent level={level} levelIndent={levelIndent} />

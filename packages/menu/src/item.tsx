@@ -9,20 +9,33 @@ import { applyItemCss, titleEllipsis } from "./style"
 const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   const { _key, title, disabled, level = 1, _css, ...restProps } = props
 
-
-  const { mode, collapse, levelIndent, onClickMenuItem } =
-    useContext(MenuContext)
+  const {
+    mode,
+    collapse,
+    levelIndent,
+    onClickMenuItem,
+    selectedKeys = [],
+  } = useContext(MenuContext)
 
   const needIndent = mode === "vertical" && level > 1
-  const isHorizontal = mode === "horizontal";
+  const isHorizontal = mode === "horizontal"
   const needTooltip = collapse && level === 1
+  const isSelected = selectedKeys.includes(_key)
 
   const clickItemHandler = (event: MouseEvent) => {
+    if (disabled) {
+      return
+    }
     isFunction(onClickMenuItem) && onClickMenuItem(_key, event)
   }
 
   const itemNode = (
-    <div ref={ref} css={[applyItemCss(isHorizontal), _css]} {...restProps} onClick={clickItemHandler}>
+    <div
+      ref={ref}
+      css={[applyItemCss(isHorizontal, disabled, isSelected), _css]}
+      {...restProps}
+      onClick={clickItemHandler}
+    >
       {needIndent ? <Indent level={level} levelIndent={levelIndent} /> : null}
       <div css={titleEllipsis}>{title}</div>
     </div>
@@ -39,7 +52,7 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
 
 const Item = ForwardRefItem as typeof ForwardRefItem & {
   menuType: string
-};
+}
 
 Item.displayName = "MenuItem"
 Item.menuType = "MenuItem"

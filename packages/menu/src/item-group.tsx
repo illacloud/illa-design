@@ -3,6 +3,7 @@ import { processChildren } from "./util"
 import { ItemGroupProps } from "./interface"
 import { MenuContext } from "./menu-context"
 import { Indent } from "./indent"
+import { applyItemGroupCss, itemGroupTitleCss } from "./style"
 
 const ForwardRefItemGroup = forwardRef<HTMLDivElement, ItemGroupProps>(
   (props, ref) => {
@@ -14,8 +15,8 @@ const ForwardRefItemGroup = forwardRef<HTMLDivElement, ItemGroupProps>(
     })
 
     return (
-      <div ref={ref} {...restProps}>
-        <div>
+      <div ref={ref} css={applyItemGroupCss()} {...restProps}>
+        <div css={itemGroupTitleCss}>
           <Indent level={level} levelIndent={levelIndent} />
           <span>{title}</span>
         </div>

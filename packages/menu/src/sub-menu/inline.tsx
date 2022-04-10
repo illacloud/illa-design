@@ -24,6 +24,7 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     onClickSubMenu,
     openKeys = [],
     selectedKeys = [],
+    collapse,
   } = useContext(MenuContext)
 
   const subMenuClickHandler = (event: MouseEvent) => {
@@ -38,13 +39,16 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   const childrenList = processChildren(children, { level: level + 1 })
 
   const header = (
-    <div onClick={subMenuClickHandler} css={applySubMenuHeaderCss(isSelected)}>
+    <div
+      onClick={subMenuClickHandler}
+      css={applySubMenuHeaderCss(isSelected)}
+    >
       <Indent level={level} levelIndent={levelIndent} />
       <span>{title}</span>
-      <span css={(applySubMenuIconCss(isOpen), expandIconCss)}>
+      <span css={[applySubMenuIconCss(isOpen, collapse), expandIconCss]}>
         <DownIcon />
       </span>
-    </div>
+    </div >
   )
 
   const content = (
