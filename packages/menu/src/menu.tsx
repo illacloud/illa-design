@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import { useMergeValue, isFunction } from "@illa-design/system"
 import { NextIcon, PreIcon } from "@illa-design/icon"
 import { MenuProps } from "./interface"
@@ -6,7 +6,7 @@ import { MenuContext } from "./menu-context"
 import { Item } from "./item"
 import { ItemGroup } from "./item-group"
 import { SubMenu } from "./sub-menu"
-import { processChildren } from "./util"
+import { processChildren, generateInfoMap } from "./util"
 import { OverflowWrapper } from "./overflow-wrapper"
 import { applyMenuCss, applyMenuInnerCss, collapseIconCss } from "./style"
 
@@ -53,9 +53,11 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
 
   const isPopButton = mode === "popButton"
   const mergedCollapse = collapse || isPopButton
-
   const isRenderCollapseButton =
     hasCollapseButton && !["horizontal", "popButton"].includes(mode)
+  const menuInfoMap = useMemo(() => {
+    return generateInfoMap(children)
+  }, [children])
 
   function renderCollapseButton() {
     const collapseIcon = collapse ? collapseActiveIcon : collapseDefaultIcon
@@ -117,8 +119,8 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
           selectedKeys,
           onClickMenuItem: (key, event) => {
             selectable && setSelectedKeys([key])
-            // TODO: pass keyPass
-            onClickMenuItem && onClickMenuItem(key, event, [])
+            onClickMenuItem &&
+              onClickMenuItem(key, event, menuInfoMap[key]?.keyPath)
           },
           onClickSubMenu: (key, level, variant) => {
             let newOpenKeys: string[] = [...openKeys]
@@ -140,8 +142,8 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
             }
 
             setOpenKeys(newOpenKeys)
-            // TODO: pass keyPath
-            isFunction(onClickSubMenu) && onClickSubMenu(key, newOpenKeys, [])
+            isFunction(onClickSubMenu) &&
+              onClickSubMenu(key, newOpenKeys, menuInfoMap[key]?.keyPath)
           },
         }}
       >
