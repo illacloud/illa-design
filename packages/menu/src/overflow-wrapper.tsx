@@ -64,13 +64,6 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
       const nodeWidth = getNodeWidth(node as HTMLElement)
       currentMaxWidth += nodeWidth
 
-      console.log({
-        menuItemIndex,
-        nodeWidth,
-        currentMaxWidth,
-        maxWidth,
-      })
-
       if (currentMaxWidth > maxWidth) {
         menuItemIndex--
         currentMaxWidth -= nodeWidth
@@ -79,7 +72,6 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
           menuItemIndex--
         }
 
-        console.log({ menuItemIndex })
         setLastVisibleIndex(menuItemIndex)
         return
       }
@@ -97,7 +89,7 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
     return (
       <SubMenu
         title={<span>...</span>}
-        key={"overflow-sub-menu" + Math.random()}
+        key={`overflow-sub-menu${isPlaceholder && "placeholder"}`}
         data-sub-menu-marker
         data-sub-menu-placeholder-marker={isPlaceholder}
         css={isPlaceholder && subMenuPlaceholderCss}
@@ -113,11 +105,6 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
 
     const originalMenuItems = React.Children.map(children, (child, index) => {
       let item = child
-
-      console.log({
-        child,
-        index,
-      })
 
       if (lastVisibleIndex !== null) {
         // set overflow item invisible

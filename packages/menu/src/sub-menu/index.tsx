@@ -8,8 +8,8 @@ const ForwardRefSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
   (props, ref) => {
     const { children, ...restProps } = props
     const { mode, collapse, variant } = useContext(MenuContext)
-
-    const MergedMenu = collapse || mode !== "vertical" || variant === "pop" ? Pop : Inline
+    const MergedMenu =
+      collapse || mode !== "vertical" || variant === "pop" ? Pop : Inline
 
     return (
       <MergedMenu ref={ref} {...restProps}>

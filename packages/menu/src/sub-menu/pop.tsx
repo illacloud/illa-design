@@ -9,7 +9,6 @@ import { SubMenuProps } from "../interface"
 import {
   applyPopSubMenuCss,
   applySubMenuIconCss,
-  expandIconCss,
 } from "../styles"
 import { isChildrenSelected } from "../util"
 
@@ -66,7 +65,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
 
   return (
     <Dropdown
-      trigger="hover"
+      trigger="click"
       onVisibleChange={(visible: boolean) => setPopupVisible(visible)}
       droplist={
         <Menu

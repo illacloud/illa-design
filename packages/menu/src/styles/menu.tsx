@@ -1,13 +1,16 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 
-export function applyMenuCss(isCollapse?: boolean): SerializedStyles {
+export function applyMenuCss(
+  isCollapse?: boolean,
+  isPopButton?: boolean,
+): SerializedStyles {
   const collapseCss = css`
     width: 48px;
   `
   return css`
     position: relative;
-    transition: width .2s ease-in-out;
+    transition: width 0.2s ease-in-out;
     ${isCollapse && collapseCss}
   `
 }

@@ -51,7 +51,8 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     value: collapseProp,
   })
 
-  const mergedCollapse = collapse || mode === "popButton"
+  const isPopButton = mode === "popButton"
+  const mergedCollapse = collapse || isPopButton
 
   const isRenderCollapseButton =
     hasCollapseButton && !["horizontal", "popButton"].includes(mode)
@@ -103,7 +104,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     <div
       ref={ref}
       style={usedStyle}
-      css={applyMenuCss(collapse)}
+      css={applyMenuCss(collapse, isPopButton)}
       {...restProps}
     >
       <MenuContext.Provider
@@ -111,7 +112,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
           mode,
           variant,
           levelIndent,
-          collapse,
+          collapse: mergedCollapse,
           openKeys,
           selectedKeys,
           onClickMenuItem: (key, event) => {

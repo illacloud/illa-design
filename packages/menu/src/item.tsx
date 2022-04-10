@@ -5,6 +5,7 @@ import { MenuContext } from "./menu-context"
 import { ItemProps } from "./interface"
 import { Indent } from "./indent"
 import { applyItemCss, titleEllipsis } from "./style"
+import { applyItemTitleCss } from "./styles"
 
 const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   const { _key, title, disabled, level = 1, _css, ...restProps } = props
@@ -19,6 +20,7 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
 
   const needIndent = mode === "vertical" && level > 1
   const isHorizontal = mode === "horizontal"
+  const isPopButton = mode === "popButton"
   const needTooltip = collapse && level === 1
   const isSelected = selectedKeys.includes(_key)
 
@@ -32,12 +34,12 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   const itemNode = (
     <div
       ref={ref}
-      css={[applyItemCss(isHorizontal, disabled, isSelected), _css]}
+      css={[applyItemCss(isHorizontal, disabled, isSelected, isPopButton), _css]}
       {...restProps}
       onClick={clickItemHandler}
     >
       {needIndent ? <Indent level={level} levelIndent={levelIndent} /> : null}
-      <div css={titleEllipsis}>{title}</div>
+      <div css={applyItemTitleCss(isPopButton)}>{title}</div>
     </div>
   )
 
