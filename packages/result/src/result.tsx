@@ -1,7 +1,12 @@
 import { forwardRef } from "react"
 import { ResultProps } from "./interface"
-import { Icon, SuccessIcon, CloseIcon, WarningIcon } from "@illa-design/icon"
-import { IoInformation } from "react-icons/io5"
+import {
+  Icon,
+  SuccessIcon,
+  CloseIcon,
+  WarningIcon,
+  InfoIcon,
+} from "@illa-design/icon"
 import { wrapCss, titleCss, subTitleCss, applyIconContainer } from "./style"
 
 export const Result = forwardRef<HTMLDivElement, ResultProps>((props, ref) => {
@@ -27,11 +32,7 @@ export const Result = forwardRef<HTMLDivElement, ResultProps>((props, ref) => {
       defaultIcon = <CloseIcon />
       break
     case "info":
-      defaultIcon = (
-        <Icon>
-          <IoInformation />
-        </Icon>
-      )
+      defaultIcon = <InfoIcon />
       break
     case "warning":
       defaultIcon = <WarningIcon />

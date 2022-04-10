@@ -54,6 +54,7 @@ import {
   CaretDownIcon,
   CaretLeftIcon,
   CaretRightIcon,
+  InfoIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -104,6 +105,7 @@ export const Empty: Story<IconProps> = (props) => <EmptyIcon {...props} />
 export const Checkmark: Story<IconProps> = (props) => (
   <CheckmarkIcon {...props} />
 )
+export const Info: Story<IconProps> = (props) => <InfoIcon {...props} />
 export const InfoCircle: Story<IconProps> = (props) => (
   <InfoCircleIcon {...props} />
 )
