@@ -10,30 +10,30 @@ test("base Breadcrumb ", () => {
       <BreadcrumbItem>Home</BreadcrumbItem>
       <BreadcrumbItem>Channel</BreadcrumbItem>
       <BreadcrumbItem>News</BreadcrumbItem>
-    </Breadcrumb>
+    </Breadcrumb>,
   )
-  expect(screen.getByText('Home')).toBeInTheDocument()
-  expect(screen.getByText('Channel')).toBeInTheDocument()
-  expect(screen.getByText('Channel')).toBeInTheDocument()
-  expect(screen.getAllByText('/')[1]).toHaveStyle({
-    color: globalColor(`--${illaPrefix}-gray-06`)
+  expect(screen.getByText("Home")).toBeInTheDocument()
+  expect(screen.getByText("Channel")).toBeInTheDocument()
+  expect(screen.getByText("Channel")).toBeInTheDocument()
+  expect(screen.getAllByText("/")[1]).toHaveStyle({
+    color: globalColor(`--${illaPrefix}-gray-06`),
   })
 })
 
 test("separator custom", () => {
   render(
-    <Breadcrumb separator={'>'}>
+    <Breadcrumb separator={">"}>
       <BreadcrumbItem>Home</BreadcrumbItem>
       <BreadcrumbItem>Channel</BreadcrumbItem>
-    </Breadcrumb>
+    </Breadcrumb>,
   )
-  expect(screen.getByText('>')).toBeInTheDocument()
+  expect(screen.getByText(">")).toBeInTheDocument()
 
   render(
     <Breadcrumb separator={<PreIcon />}>
       <BreadcrumbItem>Home</BreadcrumbItem>
       <BreadcrumbItem>Channel</BreadcrumbItem>
-    </Breadcrumb>
+    </Breadcrumb>,
   )
   expect(screen.getByTitle("PreIcon")).toBeInTheDocument()
 })
@@ -41,17 +41,17 @@ test("separator custom", () => {
 test("render from routes", () => {
   const routes = [
     {
-      path: '/',
-      breadcrumbName: 'Home',
+      path: "/",
+      breadcrumbName: "Home",
     },
     {
-      path: '/Channel',
-      breadcrumbName: 'Channel',
-    }
-  ];
+      path: "/Channel",
+      breadcrumbName: "Channel",
+    },
+  ]
   render(<Breadcrumb routes={routes} />)
-  expect(screen.getByText('Home')).toBeInTheDocument()
-  expect(screen.getByText('Channel')).toBeInTheDocument()
+  expect(screen.getByText("Home")).toBeInTheDocument()
+  expect(screen.getByText("Channel")).toBeInTheDocument()
 })
 
 test("maxCount", () => {
@@ -62,8 +62,8 @@ test("maxCount", () => {
       <BreadcrumbItem>All Channel</BreadcrumbItem>
       <BreadcrumbItem>Channel</BreadcrumbItem>
       <BreadcrumbItem>News</BreadcrumbItem>
-    </Breadcrumb>
+    </Breadcrumb>,
   )
-  expect(screen.queryByText('Sub Home')).not.toBeInTheDocument()
-  expect(screen.queryByText('All Channel')).not.toBeInTheDocument()
+  expect(screen.queryByText("Sub Home")).not.toBeInTheDocument()
+  expect(screen.queryByText("All Channel")).not.toBeInTheDocument()
 })
