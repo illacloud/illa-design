@@ -86,6 +86,26 @@ test("onClickMenuItem should be trigger", () => {
   expect(clickEvent).toBeCalled()
 })
 
+test("onClickMenuItem should NOT be trigger when item is disabled", () => {
+  const clickEvent = jest.fn()
+
+  render(
+    <Menu hasCollapseButton onClickMenuItem={clickEvent}>
+      <ItemGroup title={"Group"}>
+        <Item title={"Tutorial"} key={"2"} />
+        <Item title={"Docs"} key={"3"} disabled />
+      </ItemGroup>
+      <SubMenu title={"SubMenu"} key={"0"}>
+        <Item title={"Community"} key={"4"} />
+        <Item title={"Github"} key={"5"} />
+      </SubMenu>
+    </Menu>,
+  )
+
+  screen.getByText("Docs").click()
+  expect(clickEvent).not.toBeCalled()
+})
+
 test("onClickSubMenu should be trigger", () => {
   const clickEvent = jest.fn()
 
