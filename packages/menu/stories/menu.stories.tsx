@@ -94,10 +94,29 @@ export const VerticalMenu = (args: MenuProps) => {
           <Item key="2_1_1" title={"Menu 4"} />
         </ItemGroup>
       </SubMenu>
+      <SubMenu
+        key="3"
+        title={
+          <>
+            <ImageDefaultIcon style={{ marginRight: 16 }} /> Navigation 4
+          </>
+        }
+      >
+        <ItemGroup key="3_0" title="Menu Group 1">
+          <Item key="3_0_0" title={"Menu 1"} />
+          <Item key="3_0_1" title={"Menu 2"} />
+        </ItemGroup>
+        <ItemGroup key="3_1" title="Menu Group 1">
+          <Item key="3_1_0" title={"Menu 3"} />
+          <Item key="3_1_1" title={"Menu 4"} />
+        </ItemGroup>
+      </SubMenu>
     </Menu>
   )
 }
-VerticalMenu.args = {}
+VerticalMenu.args = {
+  defaultOpenKeys: ["0", "1", "2"]
+}
 
 export const PopButton = (args: MenuProps) => {
   const [visible, setVisible] = useState(false)

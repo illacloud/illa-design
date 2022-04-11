@@ -11,6 +11,9 @@ export const MenuContext = createContext<
     | "openKeys"
     | "selectedKeys"
     | "triggerProps"
+    | "theme"
+    | "collapseDefaultIcon"
+    | "collapseActiveIcon"
   > & {
     onClickMenuItem?: (key: string, event: MouseEvent) => void
     onClickSubMenu?: (key: string, level: number, variant: MenuVariant) => void

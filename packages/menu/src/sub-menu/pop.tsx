@@ -76,6 +76,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
         </Menu>
       }
       triggerProps={{
+        colorScheme: "white",
         position: needPopOnBottom ? "bl" : "rt",
         showArrow: true,
         popupVisible,

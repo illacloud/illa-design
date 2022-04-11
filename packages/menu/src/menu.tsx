@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from "react"
+import { forwardRef, useMemo, useContext } from "react"
 import { useMergeValue, isFunction } from "@illa-design/system"
 import { NextIcon, PreIcon } from "@illa-design/icon"
 import { MenuProps } from "./interface"
@@ -10,9 +10,11 @@ import { processChildren, generateInfoMap } from "./util"
 import { OverflowWrapper } from "./overflow-wrapper"
 import { applyMenuCss, applyMenuInnerCss, collapseIconCss } from "./style"
 
+const DEFAULT_THEME: MenuProps["theme"] = "light"
+
 const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const {
-    theme = "light",
+    theme: themeProp = "light",
     mode = "vertical",
     variant = "inline",
     levelIndent = 28,
@@ -50,7 +52,9 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const [collapse, setCollapse] = useMergeValue(false, {
     value: collapseProp,
   })
+  const { theme: themeContext } = useContext(MenuContext)
 
+  const theme = themeProp || themeContext || DEFAULT_THEME
   const isPopButton = mode === "popButton"
   const mergedCollapse = collapse || isPopButton
   const isRenderCollapseButton =
@@ -58,24 +62,6 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const menuInfoMap = useMemo(() => {
     return generateInfoMap(children)
   }, [children])
-
-  function renderCollapseButton() {
-    const collapseIcon = collapse ? collapseActiveIcon : collapseDefaultIcon
-    return (
-      <div
-        tabIndex={0}
-        role="button"
-        onClick={() => {
-          const newCollapse = !collapse
-          setCollapse(newCollapse)
-          onCollapseChange && onCollapseChange(newCollapse)
-        }}
-        css={collapseIconCss}
-      >
-        {collapseIcon}
-      </div>
-    )
-  }
 
   function renderChildren() {
     const childrenList = processChildren(children, { level: 1 })
@@ -96,6 +82,24 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     )
   }
 
+  function renderCollapseButton() {
+    const collapseIcon = collapse ? collapseActiveIcon : collapseDefaultIcon
+    return (
+      <div
+        tabIndex={0}
+        role="button"
+        onClick={() => {
+          const newCollapse = !collapse
+          setCollapse(newCollapse)
+          onCollapseChange && onCollapseChange(newCollapse)
+        }}
+        css={collapseIconCss}
+      >
+        {collapseIcon}
+      </div>
+    )
+  }
+
   const usedStyle = { ...style }
 
   if (mergedCollapse) {
@@ -112,11 +116,15 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
       <MenuContext.Provider
         value={{
           mode,
+          theme,
           variant,
-          levelIndent,
           collapse: mergedCollapse,
+          levelIndent,
           openKeys,
           selectedKeys,
+          collapseDefaultIcon,
+          collapseActiveIcon,
+          triggerProps,
           onClickMenuItem: (key, event) => {
             selectable && setSelectedKeys([key])
             onClickMenuItem &&
