@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext } from "react"
+import React, { forwardRef, ReactElement, useContext } from "react"
 import { processChildren } from "./util"
 import { ItemGroupProps } from "./interface"
 import { MenuContext } from "./menu-context"
@@ -10,7 +10,7 @@ const ForwardRefItemGroup = forwardRef<HTMLDivElement, ItemGroupProps>(
     const { children, title, level, ...restProps } = props
     const { levelIndent } = useContext(MenuContext)
 
-    const childrenList = processChildren(children, {
+    const childrenList = processChildren(children as ReactElement, {
       level: level === 1 ? level + 1 : level,
     })
 

@@ -1,5 +1,5 @@
 // thx arco
-import React, { ReactElement } from "react"
+import React, { ReactChildren, ReactElement, ReactNode } from "react"
 
 export type MenuInfo = {
   keyPath: string[]
@@ -11,11 +11,11 @@ export type MenuInfo = {
 }
 
 // Expand MenuGroup to get an array only contains MenuItem and SubMenu
-const flatMenuGroup = (children): ReactElement[] => {
-  let validMenuItems = []
+const flatMenuGroup = (children: ReactElement): ReactElement[] => {
+  let validMenuItems: ReactElement[] = []
 
   React.Children.forEach(children, (item) => {
-    const menuType = item?.type?.menuType
+    const menuType = (item?.type as unknown as { menuType: string }).menuType
     if (menuType === "MenuItem" || menuType === "SubMenu") {
       validMenuItems.push(item)
     } else if (menuType === "MenuGroup") {
@@ -27,8 +27,8 @@ const flatMenuGroup = (children): ReactElement[] => {
 }
 
 export const processChildren = (
-  children,
-  props,
+  children: ReactElement,
+  props: any,
 ): Array<Exclude<unknown, boolean | null | undefined>> => {
   return React.Children.map(children, (item, index) => {
     if (!item || !item.props) {
@@ -36,7 +36,8 @@ export const processChildren = (
     }
 
     const isHTMLElement = typeof item.type === "string"
-    const isMenuSubComponent = item.type && item.type.menuType
+    const isMenuSubComponent =
+      item.type && (item.type as unknown as { menuType: string }).menuType
 
     // Handling MenuSubComponent that may wrap by other element. e.g <div>
     if (!isMenuSubComponent && item.props.children) {
@@ -60,21 +61,24 @@ export const processChildren = (
   })
 }
 
-export function isChildrenSelected(children, selectedKeys: string[]) {
+export function isChildrenSelected(
+  children: ReactElement,
+  selectedKeys: string[],
+) {
   let selected = false
 
-  function loop(_children) {
+  function loop(_children: ReactElement) {
     if (!_children || selected) {
       return
     }
 
     React.Children.forEach(_children, (c) => {
       if (c && c.props && c.type && !selected) {
-        const menuType = c.type.menuType
+        const menuType = (c.type as unknown as { menuType: string }).menuType
         const selectable = c.props.selectable
 
         if (menuType === "MenuItem" || (menuType === "SubMenu" && selectable)) {
-          selected = selectedKeys.includes(c.key)
+          selected = selectedKeys.includes(c.key as string)
         }
 
         if (!selected && c.props.children) {
@@ -88,13 +92,13 @@ export function isChildrenSelected(children, selectedKeys: string[]) {
 }
 
 export const generateInfoMap = (
-  children,
+  children: ReactNode,
   keyPath: string[] = [],
   result: {
     [key: string]: MenuInfo
   } = {},
 ) => {
-  const validChildrenList: any[] = flatMenuGroup(children)
+  const validChildrenList: any[] = flatMenuGroup(children as ReactElement)
 
   validChildrenList.forEach((item, index) => {
     const key = item.key

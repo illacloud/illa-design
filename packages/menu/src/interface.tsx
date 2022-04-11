@@ -22,7 +22,7 @@ export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
   selectedKeys?: string[]
   openKeys?: string[]
   triggerProps?: Partial<TriggerProps>
-  onClickMenuItem?: (key: string, event, keyPath: string[]) => any
+  onClickMenuItem?: (key: string, event: MouseEvent, keyPath: string[]) => any
   onClickSubMenu?: (key: string, openKeys: string[], keyPath: string[]) => void
   onCollapseChange?: (collapse: boolean) => void
 }
@@ -34,6 +34,8 @@ export interface IndentProps {
 
 export interface ItemProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   key: string
+  _key?: string,
+  _css?: SerializedStyles
   title?: string | ReactNode
   disabled?: boolean
   level?: number

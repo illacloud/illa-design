@@ -1,4 +1,4 @@
-import { forwardRef, useContext, MouseEvent, useState } from "react"
+import { forwardRef, useContext, MouseEvent, useState, ReactElement } from "react"
 import { NextIcon, DownIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { applySubMenuHeaderCss } from "../style"
@@ -51,7 +51,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
 
   const isSelected =
     (selectable && selectedKeys.includes(_key)) ||
-    isChildrenSelected(children, selectedKeys)
+    isChildrenSelected(children as ReactElement, selectedKeys)
 
   const needPopOnBottom = mode === "horizontal"
 

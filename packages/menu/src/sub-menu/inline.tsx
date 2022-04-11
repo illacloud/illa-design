@@ -1,4 +1,4 @@
-import { forwardRef, useContext, MouseEvent } from "react"
+import { forwardRef, useContext, MouseEvent, ReactElement } from "react"
 import { motion } from "framer-motion"
 import { DownIcon } from "@illa-design/icon"
 import {
@@ -38,8 +38,8 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   const isOpen = openKeys.includes(_key)
   const isSelected =
     (selectable && selectedKeys.includes(_key)) ||
-    isChildrenSelected(children, selectedKeys)
-  const childrenList = processChildren(children, { level: level + 1 })
+    isChildrenSelected(children as ReactElement, selectedKeys)
+  const childrenList = processChildren(children as ReactElement, { level: level + 1 })
 
   const header = (
     <div onClick={subMenuClickHandler} css={applySubMenuHeaderCss(isSelected)}>

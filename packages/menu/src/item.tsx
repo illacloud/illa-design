@@ -4,11 +4,11 @@ import { isFunction } from "@illa-design/system"
 import { MenuContext } from "./menu-context"
 import { ItemProps } from "./interface"
 import { Indent } from "./indent"
-import { applyItemCss, titleEllipsis } from "./style"
+import { applyItemCss } from "./style"
 import { applyItemTitleCss } from "./styles"
 
 const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
-  const { _key, title, disabled, level = 1, _css, ...restProps } = props
+  const { _key = "", title, disabled, level = 1, _css, ...restProps } = props
 
   const {
     mode,
@@ -34,7 +34,10 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   const itemNode = (
     <div
       ref={ref}
-      css={[applyItemCss(isHorizontal, disabled, isSelected, isPopButton), _css]}
+      css={[
+        applyItemCss(isHorizontal, disabled, isSelected, isPopButton),
+        _css,
+      ]}
       {...restProps}
       onClick={clickItemHandler}
     >

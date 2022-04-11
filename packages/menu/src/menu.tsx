@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useContext } from "react"
+import { forwardRef, useMemo, useContext, ReactElement } from "react"
 import { useMergeValue, isFunction } from "@illa-design/system"
 import { NextIcon, PreIcon } from "@illa-design/icon"
 import { MenuProps } from "./interface"
@@ -64,7 +64,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   }, [children])
 
   function renderChildren() {
-    const childrenList = processChildren(children, { level: 1 })
+    const childrenList = processChildren(children as ReactElement, { level: 1 })
     const isHorizontal = mode === "horizontal"
     const isRenderWithOverflowWrapper = isHorizontal && ellipsis !== false
 
@@ -88,6 +88,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
       <div
         tabIndex={0}
         role="button"
+        data-menu-collapse-icon
         onClick={() => {
           const newCollapse = !collapse
           setCollapse(newCollapse)
