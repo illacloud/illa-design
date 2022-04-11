@@ -7,6 +7,7 @@ import { Indent } from "../indent"
 import { Menu } from "../menu"
 import { SubMenuProps } from "../interface"
 import {
+  applyPopSubMenuCollapseIconCss,
   applyPopSubMenuCss,
   applySubMenuIconCss,
 } from "../styles"
@@ -25,6 +26,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
 
   const {
     mode,
+    variant,
     levelIndent,
     onClickMenuItem,
     onClickSubMenu,
@@ -57,7 +59,12 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     const icon = needPopOnBottom ? <DownIcon /> : <NextIcon />
 
     return (
-      <span css={applySubMenuIconCss(false, collapse, isHorizontal)}>
+      <span
+        css={[
+          applySubMenuIconCss(false, collapse, isHorizontal),
+          applyPopSubMenuCollapseIconCss(collapse),
+        ]}
+      >
         {icon}
       </span>
     )
@@ -78,7 +85,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
       triggerProps={{
         colorScheme: "white",
         position: needPopOnBottom ? "bl" : "rt",
-        showArrow: true,
+        showArrow: variant !== "pop",
         popupVisible,
         ...triggerProps,
       }}
@@ -96,7 +103,6 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
         <Indent level={level} levelIndent={levelIndent} />
         <span>{title}</span>
         {renderIcon()}
-        <div></div>
       </div>
     </Dropdown>
   )

@@ -2,20 +2,13 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 
-export function applySubMenuCss(): SerializedStyles {
-  return css``
-}
-
 export function applySubMenuIconCss(
   isOpen?: boolean,
   isCollapse?: boolean,
-  isHorizontal?: boolean
+  isHorizontal?: boolean,
 ): SerializedStyles {
   const rotate = css`
     transform: rotate(-180deg);
-  `
-  const collapseCss = css`
-    display: none;
   `
 
   const fixedToRightCss = css`
@@ -23,12 +16,12 @@ export function applySubMenuIconCss(
     right: 24px;
   `
   return css`
-       & > svg {
-         transition: all 0.2s ease-in-out;
+    & > svg {
+      transition: all 0.2s ease-in-out;
       ${isOpen && rotate};
     }
-    ${!isHorizontal && fixedToRightCss}
-    ${isCollapse && collapseCss};
+    transition: all .2s ease-in-out;
+    ${!isHorizontal && fixedToRightCss};
   `
 }
 
@@ -74,4 +67,15 @@ export function applyPopSubMenuCss(isHorizontal: boolean): SerializedStyles {
   }
 
   return css``
+}
+
+export function applyPopSubMenuCollapseIconCss(isCollapse?: boolean) {
+  const collapseCss = css`
+    visibility: hidden;
+    opacity: 0;
+  `
+  return css`
+    ${isCollapse && collapseCss};
+    transition: all .2s ease-in-out;
+  `
 }

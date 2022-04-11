@@ -1,7 +1,10 @@
 import { forwardRef, useContext, MouseEvent } from "react"
 import { motion } from "framer-motion"
 import { DownIcon } from "@illa-design/icon"
-import { applySubMenuListCss, applySubMenuHeaderCss } from "../style"
+import {
+  applySubMenuListCss,
+  applySubMenuHeaderCss,
+} from "../style"
 import { MenuContext } from "../menu-context"
 import { Indent } from "../indent"
 import { SubMenuProps } from "../interface"
@@ -39,16 +42,13 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   const childrenList = processChildren(children, { level: level + 1 })
 
   const header = (
-    <div
-      onClick={subMenuClickHandler}
-      css={applySubMenuHeaderCss(isSelected)}
-    >
+    <div onClick={subMenuClickHandler} css={applySubMenuHeaderCss(isSelected)}>
       <Indent level={level} levelIndent={levelIndent} />
       <span>{title}</span>
       <span css={applySubMenuIconCss(isOpen, collapse)}>
         <DownIcon />
       </span>
-    </div >
+    </div>
   )
 
   const content = (
