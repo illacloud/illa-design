@@ -6,7 +6,7 @@ import {
   StepVariant,
   StepStyleConfig,
 } from "../interface"
-import { statusColor } from "../style"
+import { isVerticalLabel, statusColor } from "../style"
 
 export function applyIconStyle({
   size,
@@ -87,7 +87,7 @@ function applyIconSize({
       default:
       case "small":
         width = 24
-        fontSize = 12
+        fontSize = 14
 
         break
       case "large":
@@ -142,7 +142,7 @@ function applyIconOffset({
         `
   }
 
-  if (labelPlacement === "vertical") {
+  if (isVerticalLabel({ variant, labelPlacement, direction })) {
     return css`
       margin-left: 56px;
     `

@@ -18,13 +18,13 @@ const Template: Story<StepsProps> = (args) => {
   const { onChange, ...restArgs } = args
   return (
     <Space direction={"vertical"}>
-      <Steps {...restArgs}>
+      <Steps {...restArgs} style={{ width: 850 }}>
         <Step title="Succeeded" />
         <Step title="Processing" />
         <Step title="Pending" />
       </Steps>
 
-      <Steps labelPlacement={"vertical"} {...restArgs}>
+      <Steps labelPlacement={"vertical"} {...restArgs} style={{ width: 850 }}>
         <Step title="Succeeded" />
         <Step title="Processing" />
         <Step title="Pending" />
@@ -39,7 +39,7 @@ Basic.args = {
 }
 
 const TemplateWithDescription = (args: StepsProps) => (
-  <Steps {...args}>
+  <Steps {...args} style={{ width: 850 }}>
     <Step title="Succeeded" description="Read the message" />
     <Step title="Processing" description="Please Confirm" />
     <Step title="Pending" description="Commit it" />

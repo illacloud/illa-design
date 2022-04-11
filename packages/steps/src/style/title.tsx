@@ -30,7 +30,7 @@ export function applyTitleStyle({
     !lastStep &&
       !lineless &&
       direction !== "vertical" &&
-      labelPlacement !== "vertical" &&
+      !isVerticalLabel({ variant, labelPlacement, direction }) &&
       applyConnectionStyle({ variant, status, nextStepError, size }),
   ])
 }
@@ -44,9 +44,11 @@ function applyTitleSize({
   let lineHeight: string
   let fontSize: number
   let padding = 16
+  let marginTop = 0
 
   if (isVerticalLabel({ variant, direction, labelPlacement })) {
     padding = 0
+    variant !== "dot" && (marginTop = 8)
   }
 
   switch (size) {
@@ -65,6 +67,7 @@ function applyTitleSize({
     fontWeight: 500,
     lineHeight,
     fontSize,
+    marginTop,
     paddingRight: padding,
   })
 }
@@ -129,6 +132,7 @@ function applyConnectionStyle({
   }
 
   return css`
+    display: inline-block;
     ${position}
     &::after {
       content: "";

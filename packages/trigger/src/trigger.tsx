@@ -101,8 +101,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
 
-  const tipsRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
-
   const childrenRef = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
 
   const [adjustResult, setAdjustResult] = useState<AdjustResult>()
@@ -281,9 +279,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }, closeDelay)
   }
 
+  const tipsRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
+  const [tipsMeasureRef, tipsMeasureInfo] = useMeasure<HTMLDivElement>()
+
   tipsNode = (
     <motion.div
-      ref={tipsRef}
+      ref={mergeRefs(tipsMeasureRef, tipsRef)}
       css={applyMotionDiv()}
       variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
@@ -303,25 +304,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
       {centerNode}
     </motion.div>
   )
-
-  const tipsMouseLocation = useMouse(tipsRef)
-
-  useClickAway(childrenRef, () => {
-    if (!disabled && clickOutsideToClose) {
-      if (tipsRef.current != null) {
-        if (
-          tipsMouseLocation.elX < 0 ||
-          tipsMouseLocation.elX > tipsRef.current.clientWidth ||
-          tipsMouseLocation.elY < 0 ||
-          tipsMouseLocation.elY > tipsRef.current.clientHeight
-        ) {
-          hideTips()
-        }
-      } else {
-        hideTips()
-      }
-    }
-  })
 
   useEffect(() => {
     let isMount = true
@@ -347,6 +329,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
     maxWidth,
     autoAlignPopupWidth,
   ])
+
+  const tipsMouseLocation = useMouse(tipsRef)
+
+  useClickAway(childrenRef, () => {
+    if (!disabled && clickOutsideToClose) {
+      if (
+        tipsMouseLocation.elX < 0 ||
+        tipsMouseLocation.elX > tipsMeasureInfo.width ||
+        tipsMouseLocation.elY < 0 ||
+        tipsMouseLocation.elY > tipsMeasureInfo.height
+      ) {
+        console.log(tipsMeasureInfo.width, tipsMeasureInfo.height)
+        hideTips()
+      }
+    }
+  })
 
   const newProps = {
     onMouseEnter: (e: SyntheticEvent<Element, Event>) => {

@@ -53,7 +53,7 @@ exports[`Only last step render error style 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #edf4ff;
   color: #1e6fff;
 }
@@ -70,6 +70,7 @@ exports[`Only last step render error style 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -105,7 +106,7 @@ exports[`Only last step render error style 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #fee;
   color: #ff4747;
 }
@@ -285,7 +286,7 @@ exports[`Steps render vertical label 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #1e6fff;
   color: #fff;
   margin-left: 56px;
@@ -301,6 +302,7 @@ exports[`Steps render vertical label 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 8px;
   padding-right: 0;
   color: #1f1f1f;
 }
@@ -326,7 +328,7 @@ exports[`Steps render vertical label 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #ebebeb;
   color: #999;
   margin-left: 56px;
@@ -454,14 +456,9 @@ exports[`Steps render with dot variant 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 0;
   color: #1f1f1f;
-}
-
-.emotion-5::after {
-  content: "";
-  position: absolute;
-  display: block;
 }
 
 .emotion-7 {
@@ -487,14 +484,6 @@ exports[`Steps render with dot variant 1`] = `
   background: #d6d6d6;
   color: #999;
   margin-left: 66px;
-}
-
-.emotion-9 {
-  font-weight: 500;
-  line-height: 24px;
-  font-size: 16px;
-  padding-right: 0;
-  color: #1f1f1f;
 }
 
 <div
@@ -530,7 +519,7 @@ exports[`Steps render with dot variant 1`] = `
       class="emotion-4"
     >
       <div
-        class="emotion-9"
+        class="emotion-5"
       >
         Wait
       </div>
@@ -566,8 +555,8 @@ exports[`Steps render with dot variant with vertical direction 1`] = `
   display: block;
   width: 1px;
   left: 3.5px;
-  top: 32px;
-  bottom: 8px;
+  top: 24px;
+  bottom: 0;
   background-color: #ebebeb;
 }
 
@@ -604,6 +593,7 @@ exports[`Steps render with dot variant with vertical direction 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -718,7 +708,7 @@ exports[`Steps render with error status 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #fee;
   color: #ff4747;
 }
@@ -735,6 +725,7 @@ exports[`Steps render with error status 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -821,7 +812,7 @@ exports[`Steps render with finish status 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #edf4ff;
   color: #1e6fff;
 }
@@ -838,6 +829,7 @@ exports[`Steps render with finish status 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -938,7 +930,7 @@ exports[`Steps render with navigation variant 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #1e6fff;
   color: #fff;
 }
@@ -952,8 +944,10 @@ exports[`Steps render with navigation variant 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
+  display: inline-block;
 }
 
 .emotion-4::after {
@@ -1006,7 +1000,7 @@ exports[`Steps render with navigation variant 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #ebebeb;
   color: #999;
 }
@@ -1015,6 +1009,7 @@ exports[`Steps render with navigation variant 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -1105,7 +1100,7 @@ exports[`Steps render with no line 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #1e6fff;
   color: #fff;
 }
@@ -1118,6 +1113,7 @@ exports[`Steps render with no line 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -1190,7 +1186,7 @@ exports[`Steps render with process status 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #1e6fff;
   color: #fff;
 }
@@ -1203,8 +1199,10 @@ exports[`Steps render with process status 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
+  display: inline-block;
   position: relative;
 }
 
@@ -1240,7 +1238,7 @@ exports[`Steps render with process status 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #ebebeb;
   color: #999;
 }
@@ -1249,6 +1247,7 @@ exports[`Steps render with process status 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -1367,7 +1366,7 @@ exports[`Steps render with vertical 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #1e6fff;
   color: #fff;
 }
@@ -1380,6 +1379,7 @@ exports[`Steps render with vertical 1`] = `
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -1405,7 +1405,7 @@ exports[`Steps render with vertical 1`] = `
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #ebebeb;
   color: #999;
 }
@@ -1483,8 +1483,8 @@ exports[`Steps with dot variant and error status should render error style 1`] =
   display: block;
   width: 1px;
   left: 3.5px;
-  top: 32px;
-  bottom: 8px;
+  top: 24px;
+  bottom: 0;
   background-color: #ff4747;
 }
 
@@ -1521,6 +1521,7 @@ exports[`Steps with dot variant and error status should render error style 1`] =
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -1530,8 +1531,8 @@ exports[`Steps with dot variant and error status should render error style 1`] =
   display: block;
   width: 1px;
   left: 3.5px;
-  top: 32px;
-  bottom: 8px;
+  top: 24px;
+  bottom: 0;
   background-color: #ebebeb;
 }
 
@@ -1699,7 +1700,7 @@ exports[`Steps with vertical direction and error status should render error styl
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #edf4ff;
   color: #1e6fff;
 }
@@ -1716,6 +1717,7 @@ exports[`Steps with vertical direction and error status should render error styl
   font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -1751,7 +1753,7 @@ exports[`Steps with vertical direction and error status should render error styl
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #fee;
   color: #ff4747;
 }
@@ -1777,7 +1779,7 @@ exports[`Steps with vertical direction and error status should render error styl
   width: 24px;
   height: 24px;
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   background: #ebebeb;
   color: #999;
 }

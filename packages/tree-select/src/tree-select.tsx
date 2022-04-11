@@ -7,7 +7,7 @@ import {
   useMemo,
 } from "react"
 import { useMergeValue, isArray, isObject } from "@illa-design/system"
-import { Trigger } from "@illa-design/trigger"
+import { Trigger } from "../../trigger"
 import {
   OptionProps,
   OptionInfo,
@@ -185,6 +185,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         return
       }
       const items = getSearchReason(current, _treeNodeArr)
+      console.log("keys", items)
       // setTreeData(newValue)
       const expandSet = new Set<string>()
       items.forEach((item) => {
@@ -233,6 +234,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         !currentVisible && tryUpdateInputValue("", "optionListHide")
       },
       onChangeInputValue: (value: string) => {
+        console.log("onChangeInputValue", value)
         tryUpdateInputValue(value, "manual")
         if (!currentVisible && value) {
           tryUpdatePopupVisible(true)
@@ -346,7 +348,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         disabled={disabled}
         withoutPadding
         closeOnClick
-        clickOutsideToClose={false}
+        clickOutsideToClose
         autoAlignPopupWidth
         popupVisible={currentVisible}
         onVisibleChange={tryUpdatePopupVisible}
