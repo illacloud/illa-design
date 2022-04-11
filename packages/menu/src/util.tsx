@@ -15,7 +15,7 @@ const flatMenuGroup = (children: ReactElement): ReactElement[] => {
   let validMenuItems: ReactElement[] = []
 
   React.Children.forEach(children, (item) => {
-    const menuType = (item?.type as unknown as { menuType: string }).menuType
+    const menuType = item && item.type && (item.type as unknown as { menuType: string }).menuType
     if (menuType === "MenuItem" || menuType === "SubMenu") {
       validMenuItems.push(item)
     } else if (menuType === "MenuGroup") {
