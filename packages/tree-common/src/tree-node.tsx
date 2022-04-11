@@ -185,7 +185,6 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
             indeterminate={!_checked && _halfChecked}
             onChange={(_, e) => {
               handleCheck && handleCheck(_key, e)
-              e.stopPropagation()
             }}
             checked={_checked ?? false}
           />
@@ -199,7 +198,7 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
           )}
           onClick={(e) => {
             if (disabled) return
-            handleSelect && handleSelect(_key, e.nativeEvent)
+            handleSelect && handleSelect(_key, e)
           }}
         >
           {icon && <span>{icon}</span>}

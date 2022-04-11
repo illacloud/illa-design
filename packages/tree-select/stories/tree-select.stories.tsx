@@ -74,15 +74,7 @@ const Template: Story<TreeSelectProps> = (args) => {
       key: "0-1",
     },
   ]
-
-  return (
-    <TreeSelect
-      {...args}
-      style={{ width: 700 }}
-      showSearch={true}
-      treeData={data}
-    />
-  )
+  return <TreeSelect {...args} treeData={data} showSearch={true} />
 }
 
 export const Basic = Template.bind({})

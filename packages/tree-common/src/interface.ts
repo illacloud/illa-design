@@ -33,8 +33,8 @@ export interface NodeProps
   blockNode?: boolean
   draggable?: boolean
   handleExpand?: (key: string) => void
-  handleSelect?: (key: string, e: Event) => void
-  handleCheck?: (key: string, e: Event) => void
+  handleSelect?: (key: string, e: React.SyntheticEvent) => void
+  handleCheck?: (key: string, e: React.SyntheticEvent) => void
   saveNodeCache?: (key: string, node: NodeInstance) => void
   renderTitle?: (props: NodeProps) => ReactNode
   handleLoadMore?: (key: string) => void

@@ -42,19 +42,14 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
       placeholder,
       size,
       // select
-      loading,
-      error,
       disabled,
-      allowClear = true,
-      maxTagCount,
       arrowIcon,
-      notFoundContent,
       showSearch,
       onChange,
       onClear,
       onClick,
       // tree
-      treeCheckable = true,
+      treeCheckable,
       treeCheckStrictly,
       treeProps,
       loadMore,
@@ -65,13 +60,9 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
       triggerProps,
       onSearch,
       inputValue,
-      ...rest
     } = props
 
-    const [currentVisible, setCurrentVisible] = useState<boolean>()
-    const refValueMap = useRef<
-      { value: OptionProps["value"]; option: OptionInfo }[]
-    >([])
+    const [currentVisible, setCurrentVisible] = useState<boolean>(false)
     const [stateValue, setValue] = useState(() => {
       return getValidValue(defaultValue, multiple, labelInValue)
     })
@@ -138,10 +129,19 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
 
     useEffect(() => {
       if (options) {
-        const values = selectedKeysState.map((key) => {
-          return options.find((item) => item.key === key).value
-        })
-        setValue(getValidValue(values, multiple, labelInValue))
+        let values
+        if (multiple) {
+          values = selectedKeysState.map((key) => {
+            return options.find((item) => item.key === key).value
+          })
+        } else if (selectedKeysState[0]) {
+          values = options.find(
+            (item) => item.key === selectedKeysState[0],
+          ).value
+        }
+        const _value = getValidValue(values, multiple, labelInValue)
+        setValue(_value)
+        onChange && onChange(_value)
       }
     }, [selectedKeysState])
 
@@ -213,19 +213,6 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
       }
     }, [inputValue])
 
-    // update refValueMap
-    useEffect(() => {
-      refValueMap.current = refValueMap.current?.filter((x) => {
-        if (x?.value) {
-          return multiple
-            ? isArray(currentValue) &&
-                (currentValue as Array<string | number>)?.indexOf(x?.value) > -1
-            : x?.value === currentValue
-        }
-        return false
-      })
-    }, [currentValue, multiple])
-
     // SelectView event handle
     const selectViewEventHandlers = {
       onFocus: () => {},
@@ -281,6 +268,9 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         setSelectedKeys(keys)
         if (multiple && treeCheckable) {
           handleCheck(targetKey)
+        }
+        if (!multiple) {
+          setCurrentVisible(false)
         }
         if (!isObject(showSearch) || !showSearch.retainInputValueWhileSelect) {
           tryUpdateInputValue("", "optionChecked")
@@ -346,24 +336,19 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         disabled={disabled}
         withoutPadding
         closeOnClick
-        clickOutsideToClose={false}
+        clickOutsideToClose
         autoAlignPopupWidth
         popupVisible={currentVisible}
         onVisibleChange={tryUpdatePopupVisible}
         {...triggerProps}
-        {...rest}
       >
         <SelectView
           {...props}
           {...selectViewEventHandlers}
-          notFoundContent={notFoundContent}
-          placeholder={placeholder}
           value={currentValue}
           inputValue={_inputValue}
           popupVisible={currentVisible}
           multiple={multiple}
-          showSearch={showSearch}
-          allowClear={allowClear}
           isEmptyValue={isNoOptionSelected}
           renderText={(value: any) => {
             if (nodeCache.current && value) {
