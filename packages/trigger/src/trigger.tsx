@@ -342,10 +342,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
   useClickAway(childrenRef, () => {
     if (!disabled && clickOutsideToClose) {
       if (
-        elX - (adjustResult?.transX ?? 0) < 0 ||
-        elX - (adjustResult?.transX ?? 0) > tipsMeasureInfo.width ||
-        elY - (adjustResult?.transY ?? 0) < 0 ||
-        elY - (adjustResult?.transY ?? 0) > tipsMeasureInfo.height
+        elX - tipsMeasureInfo.left < 0 ||
+        elX - tipsMeasureInfo.left > tipsMeasureInfo.width ||
+        elY - tipsMeasureInfo.top < 0 ||
+        elY - tipsMeasureInfo.top > tipsMeasureInfo.height
       ) {
         hideTips()
       }
