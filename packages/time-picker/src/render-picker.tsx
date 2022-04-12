@@ -235,6 +235,8 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
 
     return (
       <Trigger
+        openDelay={0}
+        closeDelay={0}
         trigger="click"
         colorScheme="white"
         closeOnClick={false}
