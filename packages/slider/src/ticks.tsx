@@ -2,9 +2,10 @@ import React, { memo } from "react"
 import { plus } from "number-precision"
 import { formatPercent, getOffset, valueInRange } from "./util"
 import { TicksProps } from "./interface"
+import { applySliderTick } from "./style"
 
 export default memo(function Ticks(props: TicksProps) {
-  const { step, min, max, value, vertical, reverse } = props
+  const { step, min, max, value, vertical, reverse, disabled } = props
 
   const steps = []
   const stepsLength = Math.floor((max - min) / step)
@@ -20,6 +21,7 @@ export default memo(function Ticks(props: TicksProps) {
     <div>
       {steps.map((item, index) => (
         <div
+          css={applySliderTick(vertical, reverse, disabled, item.isActive)}
           key={index}
           style={
             vertical

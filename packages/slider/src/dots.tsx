@@ -1,6 +1,7 @@
 import React, { memo } from "react"
 import { formatPercent, getOffset, valueInRange } from "./util"
 import { MarkProps } from "./interface"
+import { applySliderDot, applySliderDotWrapper } from "./style"
 
 export default memo(function Dots(props: MarkProps) {
   const {
@@ -10,6 +11,7 @@ export default memo(function Dots(props: MarkProps) {
     value = [],
     vertical,
     reverse,
+    disabled,
     onMouseDown,
   } = props
 
@@ -17,11 +19,12 @@ export default memo(function Dots(props: MarkProps) {
 
   return (
     <div>
-      {data.map(({ key, content }) => {
+      {data.map(({ key }) => {
         const offset = formatPercent(getOffset(key, [min, max]))
         return (
           <div
             key={key}
+            css={applySliderDotWrapper(vertical, reverse)}
             style={{
               ...(vertical
                 ? { [reverse ? "top" : "bottom"]: offset }
@@ -30,11 +33,10 @@ export default memo(function Dots(props: MarkProps) {
             }}
             onMouseDown={(e) => {
               e.stopPropagation()
-
               onMouseDown && onMouseDown(parseFloat(key as string))
             }}
           >
-            <div />
+            <div css={applySliderDot(disabled, valueInRange(key, value))} />
           </div>
         )
       })}

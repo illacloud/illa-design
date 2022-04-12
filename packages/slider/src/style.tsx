@@ -67,7 +67,10 @@ export function applySliderRoad(vertical?: boolean): SerializedStyles {
   `
 }
 
-export function applySliderBar(vertical?: boolean): SerializedStyles {
+export function applySliderBar(
+  vertical?: boolean,
+  disabled?: boolean,
+): SerializedStyles {
   const verticalStyle = vertical
     ? css`
         width: 2px;
@@ -80,7 +83,9 @@ export function applySliderBar(vertical?: boolean): SerializedStyles {
   return css`
     position: absolute;
     height: 2px;
-    background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+    background-color: ${disabled
+      ? globalColor(`--${illaPrefix}-gray-08`)
+      : globalColor(`--${illaPrefix}-blue-03`)};
     border-radius: 2px;
     top: 50%;
     transform: translateY(-50%);
@@ -91,6 +96,7 @@ export function applySliderBar(vertical?: boolean): SerializedStyles {
 export function applySliderBtn(
   vertical?: boolean,
   reverse?: boolean,
+  disabled?: boolean,
 ): SerializedStyles {
   const verticalStyle = vertical
     ? css`
@@ -115,25 +121,171 @@ export function applySliderBtn(
     transform: translateX(-50%);
     ${verticalStyle};
     ${reverseStyle};
+    ${disabled ? "cursor:not-allowed" : ""};
     &::after {
       content: "";
       display: inline-block;
       width: 12px;
       height: 12px;
       background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-      border: 2px solid ${globalColor(`--${illaPrefix}-blue-03`)};
+      border: 2px solid ${
+        disabled
+          ? globalColor(`--${illaPrefix}-gray-08`)
+          : globalColor(`--${illaPrefix}-blue-03`)
+      };
       border-radius: 50%;
       box-sizing: border-box;
       position: absolute;
       left: 0;
-      transition: all 0.2s;
+      transition: all 0.15s ease-in-out;
       top: 0;
     }
     &:hover {
       &::after {
-        transform: scale(1.667);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
+        transform: scale(1.5);
+        box-shadow: 0 0 4px 0 ${globalColor(`--${illaPrefix}-blackAlpha-04`)};
     }
   `
 }
+
+export function applySliderTick(
+  vertical?: boolean,
+  reverse?: boolean,
+  disabled?: boolean,
+  active?: boolean,
+): SerializedStyles {
+  const verticalStyle = vertical
+    ? css`
+        width: 3px;
+        height: 1px;
+        top: unset;
+        margin-top: unset;
+        left: 50%;
+      `
+    : ""
+  return css`
+    position: absolute;
+    width: 1px;
+    height: 3px;
+    background-color: ${disabled
+      ? globalColor(`--${illaPrefix}-gray-08`)
+      : active
+      ? globalColor(`--${illaPrefix}-blue-03`)
+      : globalColor(`--${illaPrefix}-gray-08`)};
+    top: 50%;
+    transform: ${vertical && reverse
+      ? `translate(1px, -50%)`
+      : reverse
+      ? `translate(50%, -100%)`
+      : vertical
+      ? `translate(1px, 50%)`
+      : `translate(-50%, -100%)`};
+    margin-top: -1px;
+    ${verticalStyle}
+  `
+}
+
+export function applySliderDotWrapper(
+  vertical?: boolean,
+  reverse?: boolean,
+): SerializedStyles {
+  const verticalStyle = vertical
+    ? css`
+        top: unset;
+        left: 50%;
+      `
+    : ""
+  return css`
+    position: absolute;
+    top: 50%;
+    transform: ${vertical && reverse
+      ? `translate(-50%, -50%)`
+      : reverse
+      ? `translate(50%, -50%)`
+      : vertical
+      ? `translate(-50%, 50%)`
+      : `translate(-50%, -50%)`};
+    font-size: 12px;
+    ${verticalStyle}
+  `
+}
+
+export function applySliderDot(
+  disabled?: boolean,
+  active?: boolean,
+): SerializedStyles {
+  return css`
+    width: 8px;
+    height: 8px;
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 2px solid
+      ${disabled
+        ? globalColor(`--${illaPrefix}-gray-08`)
+        : active
+        ? globalColor(`--${illaPrefix}-blue-03`)
+        : globalColor(`--${illaPrefix}-gray-08`)};
+  `
+}
+
+export function applySliderMarks(vertical?: boolean): SerializedStyles {
+  const verticalStyle = vertical
+    ? css`
+        height: 100%;
+        left: 15px;
+        top: 0;
+      `
+    : ""
+  return css`
+    position: absolute;
+    top: 12px;
+    width: 100%;
+    ${verticalStyle}
+  `
+}
+
+export function applySliderMarkText(
+  vertical?: boolean,
+  reverse?: boolean,
+): SerializedStyles {
+  return css`
+    position: absolute;
+    cursor: pointer;
+    transform: ${vertical && reverse
+      ? `translateY(-50%)`
+      : reverse
+      ? `translateX(50%)`
+      : vertical
+      ? `translateY(50%)`
+      : `translateX(-50%)`};
+    font-size: 14px;
+    font-weight: 1.57;
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  `
+}
+
+export function applySliderInput(vertical?: boolean): SerializedStyles {
+  return css`
+    display: flex;
+    margin-left: ${vertical ? "0" : "20px"};
+    & input {
+      text-align: center;
+    }
+  `
+}
+
+export const applySliderInputRange = css`
+  width: 20px;
+  line-height: 32px;
+  height: 32px;
+  text-align: center;
+`
+
+export const applySliderInputRangeContent = css`
+  display: inline-block;
+  width: 8px;
+  height: 2px;
+  background-color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  transform: translateY(-100%);
+`
