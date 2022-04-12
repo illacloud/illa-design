@@ -19,7 +19,8 @@
     "@docusaurus/preset-classic": "2.0.0-beta.17",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
-    "prism-react-renderer": "^1.2.1"
+    "prism-react-renderer": "^1.2.1",
+    "react-expo-snack": "^1.0.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.0.0-beta.17",

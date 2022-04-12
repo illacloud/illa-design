@@ -46,6 +46,12 @@ import { Avatar } from "@illa-dedign/avatar"
 
 ## 使用方法
 
+
+```mdx-code-block
+import Snack from '@site/src/components/ExpoSnack';
+<Snack snackId="@illa-design/avatar" />
+```
+
 ### 基础用法
 
 ```jsx
