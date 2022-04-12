@@ -51,6 +51,7 @@ export function applyCheckState(checked: boolean) {
     transform: ${checked ? "scale(1);" : "scale(0);"};
     color: white;
     transition: 0.15s all linear;
+    pointer-events: none;
   `
 }
 
