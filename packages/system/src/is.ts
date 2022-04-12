@@ -25,6 +25,10 @@ export function isObject(obj: any): obj is { [key: string]: any } {
   return Object.prototype.toString.call(obj) === "[object Object]"
 }
 
+export function isEmptyObject(obj: any): boolean {
+  return isObject(obj) && Object.keys(obj).length === 0
+}
+
 export function isPromise(obj: any): obj is { [key: string]: any } {
   return Object.prototype.toString.call(obj) === "[object Promise]"
 }

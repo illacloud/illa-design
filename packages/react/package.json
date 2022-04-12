@@ -90,6 +90,7 @@
     "@illa-design/drawer": "*",
     "@illa-design/table": "*",
     "@illa-design/anchor": "*",
-    "@illa-design/collapse": "*"
+    "@illa-design/collapse": "*",
+    "@illa-design/slider": "*"
   }
 }

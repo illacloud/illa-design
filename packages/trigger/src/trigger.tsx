@@ -118,10 +118,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
     if (timeOutHandlerId != undefined) {
       window.clearTimeout(timeOutHandlerId)
     }
-    timeOutHandlerId = window.setTimeout(() => {
+    if (timeout <= 0) {
       todo()
-      timeOutHandlerId = undefined
-    }, timeout)
+    } else {
+      timeOutHandlerId = window.setTimeout(() => {
+        todo()
+        timeOutHandlerId = undefined
+      }, timeout)
+    }
   }
 
   let tipsNode: ReactNode
