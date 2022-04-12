@@ -98,7 +98,7 @@ it("Cascader rende with expandTrigger hover", () => {
   cy.findByPlaceholderText("test").parent().click()
   cy.wait(150)
   cy.findByText("Shanghai")
-    .trigger("mouseenter")
+    .trigger("mouseover")
     .then(() => {
       cy.findByText("Huangpu").click()
       cy.findByDisplayValue("Shanghai / Huangpu").should("exist")
