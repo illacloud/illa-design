@@ -2,7 +2,11 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { CardSize } from "./interface"
 
-export function applyCard(bordered: boolean, hoverable: boolean) {
+export function applyCard(
+  bordered: boolean,
+  hoverable: boolean,
+  isGridMode?: boolean,
+) {
   const border = bordered
     ? `border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)}`
     : ``
@@ -14,8 +18,11 @@ export function applyCard(bordered: boolean, hoverable: boolean) {
     position: relative;
     font-size: 14px;
     line-height: 1.57;
-    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    background-color: ${isGridMode
+      ? ""
+      : globalColor(`--${illaPrefix}-white-01`)};
     border-radius: 2px;
+    transition: box-shadow 0.2s ease-in-out;
     ${border};
     &:hover {
       ${boxShadow};
@@ -132,10 +139,14 @@ export function applyCardActionItem() {
 }
 
 export function applyCardGrid(hoverable: boolean) {
+  const borderColor = globalColor(`--${illaPrefix}-gray-08`)
   return css`
     position: relative;
     box-sizing: border-box;
     width: 33.33%;
+    box-shadow: 1px 0 0 0 ${borderColor}, 0 1px 0 0 ${borderColor},
+      1px 1px 0 0 ${borderColor}, 1px 0 0 0 ${borderColor} inset,
+      0 1px 0 0 ${borderColor} inset;
     &:hover {
       z-index: ${hoverable ? 1 : ""};
     }

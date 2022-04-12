@@ -3,6 +3,7 @@ import { InputNumber } from "@illa-design/input-number"
 import { InputProps } from "./interface"
 import {
   applySliderInput,
+  applySliderInputNumber,
   applySliderInputRange,
   applySliderInputRangeContent,
 } from "./style"
@@ -36,12 +37,7 @@ export default memo(function Input(props: InputProps) {
     >
       {range && [
         <InputNumber
-          style={{
-            width: `58px`,
-            height: `32px`,
-            lineHeight: `normal`,
-            overflow: `visible`,
-          }}
+          style={applySliderInputNumber}
           value={innerValue[0]}
           key={0}
           {...inputProps}
@@ -54,12 +50,7 @@ export default memo(function Input(props: InputProps) {
         </div>,
       ]}
       <InputNumber
-        style={{
-          width: `58px`,
-          height: `32px`,
-          lineHeight: `normal`,
-          overflow: `visible`,
-        }}
+        style={applySliderInputNumber}
         key={2}
         value={innerValue[1]}
         {...inputProps}

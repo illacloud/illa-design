@@ -77,7 +77,7 @@ const Template: Story<CardProps> = (args) => {
             }
           />
         </Card>
-        <Card bordered={true} style={{ width: "100%", padding: "20px" }}>
+        <Card bordered={false} style={{ width: "100%", padding: "20px" }}>
           {new Array(7).fill(null).map((_, index) => {
             const hoverable = index % 2 === 0
             return (
@@ -90,6 +90,7 @@ const Template: Story<CardProps> = (args) => {
                   style={{ width: "100%" }}
                   title="ILLA Card"
                   extra={<Link>More</Link>}
+                  bordered={false}
                 >
                   {new Array(2).fill(null).map((_, index) => (
                     <p style={{ margin: 0 }} key={index}>

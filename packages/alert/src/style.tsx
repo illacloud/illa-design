@@ -1,4 +1,4 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { AlertType } from "./interface"
 
@@ -18,18 +18,12 @@ export const iconColorMap = {
   normal: "",
 }
 
-export function applyAlertContainer(
-  type: AlertType,
-  hasContent: boolean,
-  showBanner: boolean,
-) {
-  const padding = hasContent ? `16px` : `9px 16px`
+export function applyAlertContainer(type: AlertType, showBanner?: boolean) {
   const radius = showBanner ? `` : `border-radius: 2px`
   return css`
     display: inline-flex;
     box-sizing: border-box;
     ${radius};
-    padding: ${padding};
     font-size: 14px;
     line-height: 1.57;
     overflow: hidden;
@@ -37,8 +31,13 @@ export function applyAlertContainer(
     background-color: ${colorMap[type]};
   `
 }
-export function applyAlert(hasContent: boolean) {
+export function applyAlert(
+  hasContent: boolean,
+  showIcon?: boolean,
+  closable?: boolean,
+) {
   const align = hasContent ? `flex-start` : `center`
+  const padding = hasContent ? `16px` : `9px 16px`
   return css`
     box-sizing: border-box;
     display: inline-flex;
@@ -46,21 +45,28 @@ export function applyAlert(hasContent: boolean) {
     overflow: hidden;
     width: 100%;
     word-break: break-all;
+    padding: ${padding};
+    ${showIcon
+      ? css`
+          padding-left: 40px;
+        `
+      : ""};
+    ${closable
+      ? css`
+          padding-right: 48px;
+        `
+      : ""}
   `
 }
 
-export function applyAlertIcon(type: AlertType, hasContent: boolean) {
-  const display = hasContent
-    ? ""
-    : `display: flex;
-    align-items: center;`
+export function applyAlertIcon(type: AlertType, hasContent?: boolean) {
   return css`
-    margin-right: 8px;
-    ${display};
-    svg {
-      color: ${iconColorMap[type]};
-      font-size: 16px;
-    }
+    position: absolute;
+    top: ${hasContent ? "20px" : "12px"};
+    left: 16px;
+    color: ${iconColorMap[type]};
+    font-size: 16px;
+    line-height: 0;
   `
 }
 
@@ -92,18 +98,19 @@ export function applyAlertContent() {
   `
 }
 
-export function applyAlertCloseBtn(type: AlertType) {
+export function applyAlertCloseBtn(
+  type: AlertType,
+  hasContent?: boolean,
+): SerializedStyles {
   return css`
-    box-sizing: border-box;
-    padding: 0;
+    position: absolute;
+    top: ${hasContent ? `24px` : `16px`};
+    right: 24px;
     font-size: 8px;
+    line-height: 0;
     cursor: pointer;
-    outline: none;
-    border: none;
-    margin-left: 8px;
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    color: ${iconColorMap[type]};
     background-color: ${colorMap[type]};
-    width: 8px;
   `
 }
 
