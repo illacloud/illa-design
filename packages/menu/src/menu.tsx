@@ -1,4 +1,12 @@
-import { forwardRef, useMemo, useContext, ReactElement, useEffect } from "react"
+import {
+  forwardRef,
+  useMemo,
+  useContext,
+  ReactElement,
+  useRef,
+  useEffect,
+  useReducer,
+} from "react"
 import { useMergeValue, isFunction } from "@illa-design/system"
 import { NextIcon, PreIcon } from "@illa-design/icon"
 import { MenuProps } from "./interface"
@@ -52,8 +60,8 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const [collapse, setCollapse] = useMergeValue(false, {
     value: collapseProp,
   })
+  const [_, dispatch] = useReducer((v) => v + 1, 0)
   const { theme: themeContext } = useContext(MenuContext)
-
   const theme = themeProp || themeContext || DEFAULT_THEME
   const isPopButton = mode === "popButton"
   const mergedCollapse = collapse || isPopButton
@@ -63,9 +71,22 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     return generateInfoMap(children)
   }, [children])
 
-  /* useEffect(() => {
-   *   setOpenKeys(accordion ? openKeys.slice(0, 1) : openKeys);
-   * }) */
+  const inlineMenuKeys = useRef<string[]>([])
+  const prevInlineMenuKeys = useRef<string[]>([])
+
+  useEffect(() => {
+    let validOpenKeys = openKeys.filter((key) =>
+      inlineMenuKeys.current.includes(key),
+    )
+    if (autoOpen) {
+      const keysAdded = inlineMenuKeys.current.filter((key) =>
+        prevInlineMenuKeys.current.includes(key),
+      )
+      validOpenKeys = openKeys.concat(keysAdded)
+    }
+    setOpenKeys(accordion ? validOpenKeys.slice(0, 1) : validOpenKeys)
+    prevInlineMenuKeys.current = inlineMenuKeys.current.slice()
+  }, [inlineMenuKeys.current.toString()])
 
   function renderChildren() {
     const childrenList = processChildren(children as ReactElement, { level: 1 })
@@ -130,6 +151,16 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
           collapseDefaultIcon,
           collapseActiveIcon,
           triggerProps,
+          collectInlineMenuKeys: (key, isUnmount) => {
+            if (isUnmount) {
+              inlineMenuKeys.current = inlineMenuKeys.current.filter(
+                (x) => x !== key,
+              )
+            } else {
+              inlineMenuKeys.current.push(key)
+            }
+            dispatch()
+          },
           onClickMenuItem: (key, event) => {
             selectable && setSelectedKeys([key])
             onClickMenuItem &&

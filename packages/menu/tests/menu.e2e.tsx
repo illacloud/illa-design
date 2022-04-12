@@ -69,11 +69,15 @@ it("Should overflow in horizontal mode when exceed width", () => {
   unmount()
 })
 
-// TODO: bug fix
-/* it("Only one submenu will be opened if is accordion", () => {
- *   mount(<TestMenuInline defaultOpenKeys={["0_0", "0_1"]} accordion />)
- * }); */
+it("Only one submenu will be opened if is accordion", () => {
+  mount(<TestMenuInline defaultOpenKeys={["0_0", "0_1"]} accordion />)
 
-/* it("Should overflow in horizontal mode when exceed width", () => {
- *   mount(<TestMenu style={{ width: 100 }} mode={"popButton"} />)
- * }) */
+  cy.get(`[data-testid='item']`).should("be.visible");
+  cy.get(`[data-testid='submenu-item']`).should("not.be.visible");
+
+  cy.get(`[data-testid='submenu-1']`).click()
+  cy.get(`[data-testid='item']`).should("not.be.visible");
+  cy.get(`[data-testid='submenu-item']`).should("be.visible");
+
+  unmount();
+});
