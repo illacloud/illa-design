@@ -31,7 +31,7 @@ it("Select renders with text", () => {
   unmount()
 })
 
-it("Select renders with multiple", async () => {
+it("Select renders with multiple", () => {
   const change = cy.spy()
   mount(
     <Select
