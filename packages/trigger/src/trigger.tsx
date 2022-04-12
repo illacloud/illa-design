@@ -284,14 +284,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }, closeDelay)
   }
 
-  const tipsRef = useRef<HTMLDivElement>(
-    null,
-  ) as MutableRefObject<HTMLDivElement>
   const [tipsMeasureRef, tipsMeasureInfo] = useMeasure<HTMLDivElement>()
 
   tipsNode = (
     <motion.div
-      ref={mergeRefs(tipsMeasureRef, tipsRef)}
+      ref={tipsMeasureRef}
       css={applyMotionDiv()}
       variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
@@ -337,15 +334,16 @@ export const Trigger: FC<TriggerProps> = (props) => {
     autoAlignPopupWidth,
   ])
 
-  const { elX, elY } = useMouse(tipsRef)
+  const protalRef = useRef<HTMLDivElement>(null)
+  const { elX, elY } = useMouse(protalRef)
 
   useClickAway(childrenRef, () => {
     if (!disabled && clickOutsideToClose) {
       if (
-        elX - tipsMeasureInfo.left < 0 ||
-        elX - tipsMeasureInfo.left > tipsMeasureInfo.width ||
-        elY - tipsMeasureInfo.top < 0 ||
-        elY - tipsMeasureInfo.top > tipsMeasureInfo.height
+        elX < 0 ||
+        elX > tipsMeasureInfo.width ||
+        elY < 0 ||
+        elY > tipsMeasureInfo.height
       ) {
         hideTips()
       }
@@ -401,6 +399,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     <AnimatePresence>
       {!disabled && tipVisible && childrenRef.current != null ? (
         <Popup
+          ref={protalRef}
           top={`${adjustResult?.transY}px`}
           left={`${adjustResult?.transX}px`}
         >
