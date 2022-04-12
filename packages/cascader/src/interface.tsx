@@ -72,3 +72,12 @@ export interface CascaderPanelProps<T> {
   renderEmpty?: (width?: number) => ReactNode
   onDoubleClickOption?: () => void
 }
+
+export type SearchPopupProps<T> = {
+  store?: Store<T>
+  style?: CSSProperties
+  multiple?: boolean
+  value?: string[][]
+  inputValue?: string
+  onChange?: (value: string[][]) => void
+}

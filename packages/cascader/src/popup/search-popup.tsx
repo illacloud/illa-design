@@ -1,19 +1,10 @@
-import React, { useEffect, useState, CSSProperties, useRef } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import isEqual from "react-fast-compare"
 import { Empty } from "@illa-design/empty"
 import { Checkbox } from "@illa-design/checkbox"
-import { Node, Store } from "../node"
-import { OptionProps } from "../interface"
+import { Node } from "../node"
+import { OptionProps, SearchPopupProps } from "../interface"
 import { applyOptionStyle, optionListStyle, searchListWrapper } from "./style"
-
-export type SearchPopupProps<T> = {
-  store?: Store<T>
-  style?: CSSProperties
-  multiple?: boolean
-  value?: string[][]
-  inputValue?: string
-  onChange?: (value: string[][]) => void
-}
 
 export const SearchPopup = <T extends OptionProps>(
   props: SearchPopupProps<T>,
