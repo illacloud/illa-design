@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useReducer,
-} from "react"
+import React, { useState, useEffect, useRef, useReducer } from "react"
 import isEqual from "react-fast-compare"
 import { isNumber } from "@illa-design/system"
 import { LoadingIcon, NextIcon } from "@illa-design/icon"
@@ -66,7 +61,7 @@ export const DefaultPopup = <T extends OptionProps>(
   }
 
   const onMultipleChecked = (option: any, checked: boolean) => {
-    // props.value 可能包含不存在对应option的选中值，不应该被清除掉。
+    // props.value may contain selected values for which there is no corresponding option
     const beforeCheckedNodes = store
       .getCheckedNodes()
       .map((node) => JSON.stringify(node.pathValue))
@@ -78,7 +73,6 @@ export const DefaultPopup = <T extends OptionProps>(
     const _value = checkedNodes.map((node) => node.pathValue)
     const newValue = [...inexistenceValue, ..._value]
 
-    // 按照当前props.value的顺序排序
     newValue.sort((a, b) => {
       const aIndex = value?.findIndex((item) => isEqual(item, a))
       const bIndex = value?.findIndex((item) => isEqual(item, b))
@@ -89,21 +83,18 @@ export const DefaultPopup = <T extends OptionProps>(
       if (bIndex === -1) {
         return -1
       }
-      // ?
       if (isNumber(aIndex) && isNumber(bIndex)) {
         return aIndex - bIndex
       }
-      // ?
       return 0
     })
 
     if (option === activeNode) {
-      // setActiveNode 不会执行rerender，需要forceupdate
+      // setActiveNode will not execute rerender
       forceUpdate()
     }
 
     setActiveNode(option)
-    // 父子节点关联，选中复选框时执行loadMore，否则直接选中父节点
     onChange?.(newValue)
   }
 
@@ -112,7 +103,6 @@ export const DefaultPopup = <T extends OptionProps>(
   useEffect(() => {
     if (isDidMount.current) {
       setActiveNode((activeNode: Node<T> | null) => {
-        // store 改变时候，更新下activeNode.如果当前activeNode不存在于store里了，就设置为null
         let newActiveNode
 
         if (activeNode && activeNode.pathValue && activeNode.pathValue.length) {
@@ -160,10 +150,7 @@ export const DefaultPopup = <T extends OptionProps>(
           return renderEmpty?.()
         }
         return list.length === 0 ? null : (
-          <div
-            css={optionListWrapper}
-            key={level}
-          >
+          <div css={optionListWrapper} key={level}>
             <ul
               onClick={(e) => {
                 e.preventDefault()
@@ -193,8 +180,7 @@ export const DefaultPopup = <T extends OptionProps>(
                         setActiveOptionList(ref, level)
                       }
                     }}
-                    onClick={(e) => {
-                      // e?.stopPropagation()
+                    onClick={() => {
                       if (option.disabled) return
                       if (
                         option.isLeaf &&

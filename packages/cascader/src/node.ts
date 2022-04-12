@@ -298,7 +298,7 @@ export class Store<T> {
 
     // 根据value设置节点初始选中状态
     this.flatNodes.forEach((node) => {
-      if (values.some((item) => isEqual(node.pathValue, item))) {
+      if (values?.some((item) => isEqual(node.pathValue, item))) {
         node.setCheckedStateIgnoreDisabled(true)
       } else {
         node.setCheckedStateIgnoreDisabled(false)

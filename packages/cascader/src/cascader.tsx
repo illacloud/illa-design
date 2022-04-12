@@ -157,7 +157,6 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
 
     const renderText = useCallback(
       (value) => {
-        // store 中不存在时，从stashNodes.current中找一下对应节点
         const options = getSelectedOptionsByValue([value])[0] || []
 
         let text
@@ -242,7 +241,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       onChangeInputValue: (v) => {
         setInputValue(v)
         onSearch?.(v)
-        // tab键 focus 到输入框，此时下拉框未显示。如果输入值，展示下拉框
+        // If enter value, popupVisible = true
         if (!currentVisible) {
           handleVisibleChange(true)
         }

@@ -18,31 +18,16 @@ export type SearchPopupProps<T> = {
 export const SearchPopup = <T extends OptionProps>(
   props: SearchPopupProps<T>,
 ) => {
-  const {
-    store,
-    multiple,
-    onChange,
-    inputValue,
-    style,
-    value = [],
-  } = props
+  const { store, multiple, onChange, inputValue, style, value = [] } = props
 
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [options, setOptions] = useState<Node<T>[]>(
     store?.searchNodeByLabel(inputValue) || [],
   )
-  const refActiveItem = useRef<HTMLLIElement | null>(null)
-  // 用来标示是否需要scrollIntoView。如果是鼠标hover，不需要滚动。
-  const isKeyboardHover = useRef<boolean>()
+  const activeItemRef = useRef<HTMLLIElement | null>(null)
   const isFirst = useRef<boolean>(true)
-  // 保存键盘操作的目标节点
-  const [currentHoverIndex, setCurrentHoverIndex] = useState<number>(-1)
 
-  const handleSearchOptionClick = (
-    option: Node<T>,
-    checked: boolean,
-    e: any,
-  ) => {
+  const clickOption = (option: Node<T>, checked: boolean, e: any) => {
     e?.stopPropagation()
     if (option.disabled) {
       return
@@ -57,10 +42,9 @@ export const SearchPopup = <T extends OptionProps>(
           return !isEqual(item, option.pathValue)
         })
       }
-
-      onChange && onChange(checkedValues)
+      onChange?.(checkedValues)
     } else {
-      onChange && onChange([option.pathValue])
+      onChange?.([option.pathValue])
     }
   }
 
@@ -86,40 +70,40 @@ export const SearchPopup = <T extends OptionProps>(
       css={searchListWrapper}
       onClick={(e) => e?.stopPropagation()}
     >
-      <ul
-        css={optionListStyle}
-        onMouseMove={() => {
-          isKeyboardHover.current = false
-        }}
-        style={style}
-      >
+      <ul css={optionListStyle} style={style}>
         {options.map((option, i) => {
           const pathNodes = option.getPathNodes()
           const label = pathNodes.map((x) => x.label).join(" / ")
 
-          const isChecked = value.some((x) => {
+          const checked = value.some((x) => {
             return isEqual(x, option.pathValue)
           })
 
           return (
             <li
               css={applyOptionStyle({
-                active: !multiple && isChecked,
+                active: !multiple && checked,
                 disabled: option.disabled,
               })}
               ref={(node) => {
-                if (isChecked && isFirst.current && !refActiveItem.current) {
+                if (checked && isFirst.current && !activeItemRef.current) {
                   node?.scrollIntoView()
-                  refActiveItem.current = node
+                  activeItemRef.current = node
                 }
               }}
               onClick={(e) => {
-                handleSearchOptionClick(option, !isChecked, e)
+                clickOption(option, !checked, e)
               }}
               key={i}
             >
               {multiple ? (
-                <Checkbox checked={isChecked} disabled={option.disabled}>
+                <Checkbox
+                  checked={checked}
+                  disabled={option.disabled}
+                  onChange={(checked, e) => {
+                    clickOption(option, checked, e)
+                  }}
+                >
                   {label}
                 </Checkbox>
               ) : (
