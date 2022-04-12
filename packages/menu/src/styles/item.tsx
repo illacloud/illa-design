@@ -1,6 +1,7 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { Theme } from "../interface"
 
 export function applyItemTitleCss(): SerializedStyles {
   const titleEllipsis = css`
@@ -17,7 +18,8 @@ export function applyItemCss(
   isDisabled?: boolean,
   isSelected?: boolean,
   isPopButton?: boolean,
-  isCollapse?: boolean
+  isCollapse?: boolean,
+  theme: Theme = "light"
 ): SerializedStyles {
   const horizontalCss = css`
     display: inline-block;
@@ -27,21 +29,40 @@ export function applyItemCss(
     padding: 0 16px;
   `
 
+  const themeColor = {
+    light: {
+      hoverBg: globalColor(`--${illaPrefix}-gray-09`),
+      disabledColor: globalColor(`--${illaPrefix}-gray-05`),
+      selectedColor: globalColor(`--${illaPrefix}-blue-01`),
+      selectedBg: globalColor(`--${illaPrefix}-gray-09`),
+      horizontalSelectedBg: globalColor(`--${illaPrefix}-blue-02`),
+      color: globalColor(`--${illaPrefix}-gray-03`),
+    },
+    dark: {
+      hoverBg: globalColor(`--${illaPrefix}-gray-03`),
+      disabledColor: globalColor(`--${illaPrefix}-gray-04`),
+      selectedColor: globalColor(`--${illaPrefix}-blue-04`),
+      selectedBg: globalColor(`--${illaPrefix}-gray-03`),
+      horizontalSelectedBg: globalColor(`--${illaPrefix}-blue-02`),
+      color: globalColor(`--${illaPrefix}-gray-08`),
+    },
+  }
+
   const hoverCss = css`
     &:hover {
       cursor: pointer;
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+      background-color: ${themeColor[theme].hoverBg};
     }
   `
 
   const disabledCss = css`
     cursor: not-allowed;
-    color: ${globalColor(`--${illaPrefix}-gray-05`)};
+    color: ${themeColor[theme].disabledColor};
   `
 
   const selectedCss = css`
-    color: ${globalColor(`--${illaPrefix}-blue-03`)};
-    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+    color: ${themeColor[theme].selectedColor};
+    background-color: ${themeColor[theme].selectedBg};
   `
 
   const popButtonCss = css`
@@ -54,29 +75,30 @@ export function applyItemCss(
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
+    background: ${theme === "dark" ? globalColor(`--${illaPrefix}-gray-02`) : "none"}
   `
 
   const horizontalSelectedCss = css`
     background: none;
     &:after {
-    content: "";
-    display: block;
-    height: 2px;
-    width: 100 %;
-    bottom: 0;
-    left: 0;
-    background - color: ${globalColor(`--${illaPrefix}-blue-02`)};
-    position: absolute;
-  }
-    `
+      content: "";
+      display: block;
+      height: 2px;
+      width: 100 %;
+      bottom: 0;
+      left: 0;
+      background-color: ${themeColor[theme].horizontalSelectedBg};
+      position: absolute;
+    }
+  `
 
-  const padding = isCollapse ? 16 : 24;
+  const padding = isCollapse ? 16 : 24
 
   return css`
     display: flex;
     padding: 0 ${padding}px;
     font-size: 14px;
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    color: ${themeColor[theme].color};
     line-height: 40px;
     ${isHorizontal && horizontalCss};
     ${isDisabled ? disabledCss : hoverCss};

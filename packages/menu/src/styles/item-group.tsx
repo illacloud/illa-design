@@ -1,17 +1,23 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { Theme } from "../interface"
 
-export function applyItemGroupCss(): SerializedStyles {
+export function applyItemGroupCss(theme: Theme = "light"): SerializedStyles {
+  const color =
+    theme === "dark"
+      ? globalColor(`--${illaPrefix}-gray-04`)
+      : globalColor(`--${illaPrefix}-gray-06`)
   return css`
-    color: ${globalColor(`--${illaPrefix}-gray-06`)};
+    color: ${color};
   `
 }
 
 export function applyGroupTitleCss(
   isHorizontal?: boolean,
   isPopButton?: boolean,
-  isCollapse?: boolean
+  isCollapse?: boolean,
+  theme: Theme = "light"
 ): SerializedStyles {
   const popButtonCss = css`
     width: 40px;
@@ -23,9 +29,12 @@ export function applyGroupTitleCss(
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
+    background: ${theme === "dark"
+      ? globalColor(`--${illaPrefix}-gray-02`)
+      : "none"};
   `
 
-  const padding = isCollapse ? 16 : 24;
+  const padding = isCollapse ? 16 : 24
 
   const itemGroupTitleCss = css`
     line-height: 40px;

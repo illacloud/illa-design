@@ -25,7 +25,7 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   } = props
 
   const {
-    mode,
+    theme,
     levelIndent,
     onClickMenuItem,
     onClickSubMenu,
@@ -56,7 +56,10 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   })
 
   const header = (
-    <div onClick={subMenuClickHandler} css={applySubMenuHeaderCss(isSelected)}>
+    <div
+      onClick={subMenuClickHandler}
+      css={applySubMenuHeaderCss(isSelected, false, false, theme)}
+    >
       <Indent level={level} levelIndent={levelIndent} />
       <span>{title}</span>
       <span css={applySubMenuIconCss(isOpen, collapse)}>

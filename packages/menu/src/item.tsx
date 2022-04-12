@@ -20,6 +20,7 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
 
   const {
     mode,
+    theme,
     collapse,
     levelIndent,
     onClickMenuItem,
@@ -43,7 +44,7 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
     <div
       ref={ref}
       css={[
-        applyItemCss(isHorizontal, disabled, isSelected, isPopButton, collapse),
+        applyItemCss(isHorizontal, disabled, isSelected, isPopButton, collapse, theme),
         _css,
       ]}
       {...restProps}

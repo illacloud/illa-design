@@ -26,6 +26,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
 
   const {
     mode,
+    theme,
     variant,
     levelIndent,
     onClickMenuItem,
@@ -78,12 +79,13 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
         <Menu
           selectedKeys={selectedKeys}
           onClickMenuItem={menuItemClickHandler}
+          theme={theme}
         >
           {children}
         </Menu>
       }
       triggerProps={{
-        colorScheme: "white",
+        colorScheme: theme === "light" ? "white" : "gray",
         position: isHorizontal ? "bl" : "rt",
         showArrow: variant !== "pop",
         popupVisible,
@@ -94,7 +96,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
         ref={ref}
         onClick={subMenuClickHandler}
         css={[
-          applySubMenuHeaderCss(isSelected, isPopButton, collapse),
+          applySubMenuHeaderCss(isSelected, isPopButton, collapse, theme),
           applyPopSubMenuCss(isHorizontal),
           _css,
         ]}

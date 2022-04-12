@@ -3,10 +3,12 @@ import { TriggerProps } from "@illa-design/trigger"
 import { SerializedStyles } from "@emotion/serialize"
 
 export type MenuVariant = "inline" | "pop"
+export type Theme = "light" | "dark"
+type Mode = "vertical" | "horizontal" | "popButton"
 
 export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
-  theme?: "light" | "dark"
-  mode?: "vertical" | "horizontal" | "popButton"
+  theme?: Theme
+  mode?: Mode
   variant?: MenuVariant
   levelIndent?: number
   accordion?: boolean

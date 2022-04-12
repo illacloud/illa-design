@@ -16,7 +16,7 @@ import { ItemGroup } from "./item-group"
 import { SubMenu } from "./sub-menu"
 import { processChildren, generateInfoMap } from "./util"
 import { OverflowWrapper } from "./overflow-wrapper"
-import { applyMenuCss, applyMenuInnerCss, collapseIconCss } from "./style"
+import { applyMenuCss, applyMenuInnerCss, applyCollapseIconCss } from "./style"
 
 const DEFAULT_THEME: MenuProps["theme"] = "light"
 
@@ -119,7 +119,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
           setCollapse(newCollapse)
           onCollapseChange && onCollapseChange(newCollapse)
         }}
-        css={collapseIconCss}
+        css={applyCollapseIconCss(mergedCollapse, theme)}
       >
         {collapseIcon}
       </div>
@@ -136,7 +136,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     <div
       ref={ref}
       style={usedStyle}
-      css={applyMenuCss(collapse, isPopButton)}
+      css={applyMenuCss(collapse, isPopButton, theme)}
       {...restProps}
     >
       <MenuContext.Provider
