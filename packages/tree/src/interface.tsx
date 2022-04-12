@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, ReactNode } from "react"
-import { NodeInstance, NodeProps } from "@illa-design/treecommon"
+import { NodeInstance, NodeProps } from "@illa-design/tree-common"
 
 export type TreeSize = "small" | "medium" | "large"
 

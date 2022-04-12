@@ -7,7 +7,7 @@ import {
   useMemo,
 } from "react"
 import { useMergeValue, isArray, isObject } from "@illa-design/system"
-import { Trigger } from "../../trigger"
+import { Trigger } from "@illa-design/trigger"
 import {
   OptionProps,
   OptionInfo,
@@ -28,7 +28,7 @@ import {
   TreeDataType,
   updateKeys,
   loopItemData,
-} from "@illa-design/treecommon"
+} from "@illa-design/tree-common"
 import * as React from "react"
 import { getSearchReason } from "./utils"
 import { css } from "@emotion/react"

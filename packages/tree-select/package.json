@@ -43,7 +43,7 @@
     "@illa-design/theme": "*",
     "@illa-design/tree": "*",
     "@illa-design/select": "*",
-    "@illa-design/treecommon": "*",
+    "@illa-design/tree-common": "*",
     "@illa-design/empty": "*"
   }
 }

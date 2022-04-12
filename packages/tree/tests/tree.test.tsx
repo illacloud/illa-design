@@ -4,7 +4,7 @@ import "@testing-library/jest-dom"
 import { act } from "react-dom/test-utils"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import * as React from "react"
-import { TreeNode, NodeInstance } from "@illa-design/treecommon"
+import { TreeNode, NodeInstance } from "@illa-design/tree-common"
 
 const data = [
   {

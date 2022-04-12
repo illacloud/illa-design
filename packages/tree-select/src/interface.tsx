@@ -1,7 +1,7 @@
 import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { TreeDataType, TreeProps } from "@illa-design/tree"
 import { TriggerProps } from "@illa-design/trigger"
-import { NodeProps } from "@illa-design/treecommon"
+import { NodeProps } from "@illa-design/tree-common"
 
 export type TreeSelectSize = "small" | "medium" | "large"
 

@@ -20,7 +20,7 @@ import {
   NodeProps,
   TreeDataType,
   updateKeys,
-} from "@illa-design/treecommon"
+} from "@illa-design/tree-common"
 import { TreeProps } from "./interface"
 
 // treeData is default

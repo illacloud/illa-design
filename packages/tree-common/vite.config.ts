@@ -25,10 +25,11 @@ export default defineConfig({
     }),
   ],
   build: {
-    sourcemap: true,
+    sourcemap: false,
+    minify: false,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@illa-design/treecommon",
+      name: "@illa-design/tree-common",
       fileName: (format) => `${format}/index.js`,
     },
     rollupOptions: {

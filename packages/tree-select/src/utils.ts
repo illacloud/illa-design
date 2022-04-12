@@ -1,5 +1,5 @@
 import { mergedToString } from "@illa-design/system"
-import { NodeProps } from "@illa-design/treecommon"
+import { NodeProps } from "@illa-design/tree-common"
 
 export function getSearchReason(input: string, options: NodeProps[]) {
   return options.filter((item) => {
