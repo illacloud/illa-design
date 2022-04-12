@@ -94,6 +94,12 @@ export const VerticalMenu = (args: MenuProps) => {
           <Item key="2_1_1" title={"Menu 4"} />
         </ItemGroup>
       </SubMenu>
+      <ItemGroup key="4_0_0" title="Menu Group">
+        <Item key="4_0_0" title={"Menu 1"} />
+        <Item key="4_0_1" title={"Menu 2"} />
+      </ItemGroup>
+      <Item key="5_0_0" title={"Menu 1"} />
+      <Item key="5_0_1" title={"Menu 2"} />
       <SubMenu
         key="3"
         title={

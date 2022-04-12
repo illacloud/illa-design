@@ -10,7 +10,7 @@ const TestMenu = (props: MenuProps = {}) => (
   <Menu {...props} data-testid={"menu"}>
     <Item title={"Blog"} key={"1"} disabled data-testid={"disabled-item"} />
     <Item title={"Tutorial"} key={"2"} data-testid={"item"} />
-    <ItemGroup>
+    <ItemGroup title={"Group"}>
       <Item title={"Docs"} key={"3"} />
       <Item title={"Community"} key={"4"} />
       <Item title={"Github"} key={"5"} />
@@ -27,6 +27,27 @@ const TestMenu = (props: MenuProps = {}) => (
   </Menu>
 )
 
+const TestMenuInline = (props: MenuProps = {}) => (
+  <Menu {...props} data-testid={"menu"}>
+    <SubMenu title={"SubMenu"} key={"0_0"} data-testid={"submenu-0"}>
+      <Item title={"Blog"} key={"1"} disabled data-testid={"disabled-item"} />
+      <Item title={"Tutorial"} key={"2"} data-testid={"item"} />
+      <Item title={"Docs"} key={"3"} />
+      <Item title={"Community"} key={"4"} />
+      <Item title={"Github"} key={"5"} />
+    </SubMenu>
+    <SubMenu title={"SubMenu-1"} key={"0_1"} data-testid={"submenu-1"}>
+      <Item
+        title={"sub-menu-item-1"}
+        key={"1_1"}
+        data-testid={"submenu-item"}
+      />
+      <Item title={"sub-menu-item-2"} key={"1_2"} />
+      <Item title={"sub-menu-item-3"} key={"1_3"} />
+    </SubMenu>
+  </Menu>
+)
+
 it("Click Submenu should expand", () => {
   mount(<TestMenu />)
 
@@ -37,6 +58,22 @@ it("Click Submenu should expand", () => {
   unmount()
 })
 
-it("Click item should be selected", () => {
-  mount(<TestMenu hasCollapseButton />)
+it("Should overflow in horizontal mode when exceed width", () => {
+  mount(<TestMenu style={{ width: 100 }} mode={"horizontal"} />)
+
+  cy.get(`[data-testid='item']`).should("not.be.visible")
+  cy.get(`[data-sub-menu-marker]:last-child`).should("be.visible")
+  cy.get(`[data-sub-menu-marker]:last-child`).trigger("mouseover")
+  cy.get(`[data-testid='item']`).should("be.visible")
+
+  unmount()
 })
+
+// TODO: bug fix
+/* it("Only one submenu will be opened if is accordion", () => {
+ *   mount(<TestMenuInline defaultOpenKeys={["0_0", "0_1"]} accordion />)
+ * }); */
+
+/* it("Should overflow in horizontal mode when exceed width", () => {
+ *   mount(<TestMenu style={{ width: 100 }} mode={"popButton"} />)
+ * }) */

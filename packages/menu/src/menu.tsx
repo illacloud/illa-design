@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useContext, ReactElement } from "react"
+import { forwardRef, useMemo, useContext, ReactElement, useEffect } from "react"
 import { useMergeValue, isFunction } from "@illa-design/system"
 import { NextIcon, PreIcon } from "@illa-design/icon"
 import { MenuProps } from "./interface"
@@ -62,6 +62,10 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const menuInfoMap = useMemo(() => {
     return generateInfoMap(children)
   }, [children])
+
+  /* useEffect(() => {
+   *   setOpenKeys(accordion ? openKeys.slice(0, 1) : openKeys);
+   * }) */
 
   function renderChildren() {
     const childrenList = processChildren(children as ReactElement, { level: 1 })

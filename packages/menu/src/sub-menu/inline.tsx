@@ -22,6 +22,7 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   } = props
 
   const {
+    mode,
     levelIndent,
     onClickMenuItem,
     onClickSubMenu,

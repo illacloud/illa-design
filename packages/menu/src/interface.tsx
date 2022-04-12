@@ -39,11 +39,13 @@ export interface ItemProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   title?: string | ReactNode
   disabled?: boolean
   level?: number
+  needTooltip?: boolean
 }
 
 export interface ItemGroupProps {
   title?: string | ReactNode
   level?: number
+  _css?: SerializedStyles
   children?: ReactNode
 }
 

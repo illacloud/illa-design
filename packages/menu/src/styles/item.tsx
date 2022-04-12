@@ -2,18 +2,14 @@ import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export function applyItemTitleCss(isPopButton?: boolean): SerializedStyles {
+export function applyItemTitleCss(): SerializedStyles {
   const titleEllipsis = css`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   `
 
-  const popButtonCss = css`
-    margin: 0 14px;
-  `
-
-  return css([titleEllipsis, isPopButton && popButtonCss])
+  return titleEllipsis
 }
 
 export function applyItemCss(
@@ -21,6 +17,7 @@ export function applyItemCss(
   isDisabled?: boolean,
   isSelected?: boolean,
   isPopButton?: boolean,
+  isCollapse?: boolean
 ): SerializedStyles {
   const horizontalCss = css`
     display: inline-block;
@@ -52,7 +49,8 @@ export function applyItemCss(
     height: 40px;
     border-radius: 50%;
     box-shadow: 0 4px 10px ${globalColor(`--${illaPrefix}-gray-09`)};
-    padding: 0;
+    padding: 0 13px;
+    box-sizing: border-box;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
@@ -72,9 +70,11 @@ export function applyItemCss(
   }
     `
 
+  const padding = isCollapse ? 16 : 24;
+
   return css`
     display: flex;
-    padding: 0 24px;
+    padding: 0 ${padding}px;
     font-size: 14px;
     color: ${globalColor(`--${illaPrefix}-gray-03`)};
     line-height: 40px;

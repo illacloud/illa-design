@@ -8,7 +8,15 @@ import { applyItemCss } from "./style"
 import { applyItemTitleCss } from "./styles"
 
 const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
-  const { _key = "", title, disabled, level = 1, _css, ...restProps } = props
+  const {
+    _key = "",
+    title,
+    disabled,
+    level = 1,
+    _css,
+    needTooltip,
+    ...restProps
+  } = props
 
   const {
     mode,
@@ -21,7 +29,7 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   const needIndent = mode === "vertical" && level > 1
   const isHorizontal = mode === "horizontal"
   const isPopButton = mode === "popButton"
-  const needTooltip = collapse && level === 1
+  const mergedNeedTooltip = (collapse && level === 1) || needTooltip
   const isSelected = selectedKeys.includes(_key)
 
   const clickItemHandler = (event: MouseEvent) => {
@@ -35,18 +43,18 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
     <div
       ref={ref}
       css={[
-        applyItemCss(isHorizontal, disabled, isSelected, isPopButton),
+        applyItemCss(isHorizontal, disabled, isSelected, isPopButton, collapse),
         _css,
       ]}
       {...restProps}
       onClick={clickItemHandler}
     >
       {needIndent ? <Indent level={level} levelIndent={levelIndent} /> : null}
-      <div css={applyItemTitleCss(isPopButton)}>{title}</div>
+      <div css={applyItemTitleCss()}>{title}</div>
     </div>
   )
 
-  return needTooltip ? (
+  return mergedNeedTooltip ? (
     <Tooltip content={title} trigger={"hover"} position={"right"}>
       {itemNode}
     </Tooltip>

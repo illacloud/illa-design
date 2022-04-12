@@ -4,7 +4,6 @@ import { SerializedStyles } from "@emotion/serialize"
 
 export function applySubMenuIconCss(
   isOpen?: boolean,
-  isCollapse?: boolean,
   isHorizontal?: boolean,
 ): SerializedStyles {
   const rotate = css`
@@ -15,12 +14,13 @@ export function applySubMenuIconCss(
     position: absolute;
     right: 24px;
   `
+
   return css`
     & > svg {
       transition: all 0.2s ease-in-out;
       ${isOpen && rotate};
     }
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     ${!isHorizontal && fixedToRightCss};
   `
 }
@@ -32,7 +32,11 @@ export function applySubMenuListCss(isOpen: boolean): SerializedStyles {
   `
 }
 
-export function applySubMenuHeaderCss(isSelected: boolean): SerializedStyles {
+export function applySubMenuHeaderCss(
+  isSelected?: boolean,
+  isPopButton?: boolean,
+  isCollapse?: boolean,
+): SerializedStyles {
   const selectedCss = css`
     color: ${globalColor(`--${illaPrefix}-blue-01`)};
   `
@@ -44,6 +48,19 @@ export function applySubMenuHeaderCss(isSelected: boolean): SerializedStyles {
     }
   `
 
+  const popButtonCss = css`
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px ${globalColor(`--${illaPrefix}-gray-09`)};
+    padding: 0 12px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  `
+  const padding = isCollapse ? 16 : 24
+
   return css`
     color: ${globalColor(`--${illaPrefix}-gray-03`)};
     position: relative;
@@ -51,9 +68,10 @@ export function applySubMenuHeaderCss(isSelected: boolean): SerializedStyles {
     white-space: nowrap;
     text-overflow: ellipsis;
     cursor: pointer;
-    padding: 0 24px;
+    padding: 0 ${padding}px;
     line-height: 40px;
     ${isSelected && selectedCss};
+    ${isPopButton && popButtonCss}
     ${hoverCss};
   `
 }
@@ -76,6 +94,6 @@ export function applyPopSubMenuCollapseIconCss(isCollapse?: boolean) {
   `
   return css`
     ${isCollapse && collapseCss};
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
   `
 }

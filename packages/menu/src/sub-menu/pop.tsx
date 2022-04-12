@@ -38,6 +38,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   const [popupVisible, setPopupVisible] = useState(false)
 
   const isHorizontal = mode === "horizontal"
+  const isPopButton = mode === "popButton"
 
   const subMenuClickHandler = (event: MouseEvent) => {
     onClickSubMenu && onClickSubMenu(_key, level as number, "pop")
@@ -53,15 +54,14 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     (selectable && selectedKeys.includes(_key)) ||
     isChildrenSelected(children as ReactElement, selectedKeys)
 
-  const needPopOnBottom = mode === "horizontal"
 
   function renderIcon() {
-    const icon = needPopOnBottom ? <DownIcon /> : <NextIcon />
+    const icon = isHorizontal ? <DownIcon /> : <NextIcon />
 
     return (
       <span
         css={[
-          applySubMenuIconCss(false, collapse, isHorizontal),
+          applySubMenuIconCss(false, isHorizontal),
           applyPopSubMenuCollapseIconCss(collapse),
         ]}
       >
@@ -84,7 +84,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
       }
       triggerProps={{
         colorScheme: "white",
-        position: needPopOnBottom ? "bl" : "rt",
+        position: isHorizontal ? "bl" : "rt",
         showArrow: variant !== "pop",
         popupVisible,
         ...triggerProps,
@@ -94,7 +94,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
         ref={ref}
         onClick={subMenuClickHandler}
         css={[
-          applySubMenuHeaderCss(isSelected),
+          applySubMenuHeaderCss(isSelected, isPopButton, collapse),
           applyPopSubMenuCss(isHorizontal),
           _css,
         ]}
