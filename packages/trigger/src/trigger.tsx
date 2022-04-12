@@ -40,6 +40,7 @@ import { Popup } from "./popup"
 import useMeasure from "react-use/lib/useMeasure"
 import { isFunction } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
+import useMouse from "react-use/lib/useMouse"
 
 type ReactRef<T> = Ref<T> | RefObject<T> | MutableRefObject<T>
 
@@ -75,24 +76,6 @@ function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
 function mergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
   return (node: T | null) => {
     refs.forEach((ref) => assignRef(ref, node))
-  }
-}
-
-function getMouseLocationInRef(
-  ref: RefObject<HTMLDivElement>,
-  event: MouseEvent<HTMLDivElement>,
-  result?: AdjustResult,
-): [number, number] {
-  if (ref && ref.current) {
-    const { left, top } = ref.current.getBoundingClientRect()
-    const posX = left + window.scrollX
-    const posY = top + window.scrollY
-    const elX = event.clientX - posX - (result?.transX ?? 0)
-    const elY = event.clientY - posY - (result?.transY ?? 0)
-    console.log(elX, elY)
-    return [elX, elY]
-  } else {
-    return [0, 0]
   }
 }
 
@@ -311,25 +294,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
       animate="animate"
       exit="exit"
       onMouseEnter={(event) => {
-        setTipsMouseLocation(
-          getMouseLocationInRef(tipsRef, event, adjustResult),
-        )
         if (!disabled && trigger == "hover") {
           showTips()
         }
       }}
       onMouseLeave={(event) => {
-        setTipsMouseLocation(
-          getMouseLocationInRef(tipsRef, event, adjustResult),
-        )
         if (!disabled && trigger == "hover") {
           hideTips()
         }
-      }}
-      onMouseMove={(event) => {
-        setTipsMouseLocation(
-          getMouseLocationInRef(tipsRef, event, adjustResult),
-        )
       }}
     >
       {centerNode}
@@ -361,15 +333,15 @@ export const Trigger: FC<TriggerProps> = (props) => {
     autoAlignPopupWidth,
   ])
 
-  const [tipsMouseLocation, setTipsMouseLocation] = useState<[number, number]>()
+  const { elX, elY } = useMouse(tipsRef)
 
   useClickAway(childrenRef, () => {
-    if (!disabled && clickOutsideToClose && tipsMouseLocation != undefined) {
+    if (!disabled && clickOutsideToClose) {
       if (
-        tipsMouseLocation[0] < 0 ||
-        tipsMouseLocation[0] > tipsMeasureInfo.width ||
-        tipsMouseLocation[1] < 0 ||
-        tipsMouseLocation[1] > tipsMeasureInfo.height
+        elX - (adjustResult?.transX ?? 0) < 0 ||
+        elX - (adjustResult?.transX ?? 0) > tipsMeasureInfo.width ||
+        elY - (adjustResult?.transY ?? 0) < 0 ||
+        elY - (adjustResult?.transY ?? 0) > tipsMeasureInfo.height
       ) {
         hideTips()
       }
