@@ -6,11 +6,9 @@ import {
   useCallback,
   useMemo,
 } from "react"
-import { useMergeValue, isArray, isObject } from "@illa-design/system"
+import { useMergeValue, isObject } from "@illa-design/system"
 import { Trigger } from "@illa-design/trigger"
 import {
-  OptionProps,
-  OptionInfo,
   InputValueChangeReason,
   getValidValue,
   isEmptyValue,
@@ -39,7 +37,6 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
     const {
       defaultValue,
       value,
-      placeholder,
       size,
       // select
       disabled,
@@ -51,7 +48,6 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
       // tree
       treeCheckable,
       treeCheckStrictly,
-      treeProps,
       loadMore,
       labelInValue,
       multiple,
@@ -60,6 +56,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
       triggerProps,
       onSearch,
       inputValue,
+      ...rest
     } = props
 
     const [currentVisible, setCurrentVisible] = useState<boolean>(false)
@@ -91,7 +88,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
     useEffect(() => {
       // init expand
       let data = loopNodeWithState(defaultTreeData as TreeDataType[])
-      let _expandedKey = data
+      const _expandedKey = data
         .filter((item) => {
           return !item.isLeaf
         })
@@ -151,16 +148,32 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
     })
 
     useEffect(() => {
-      if (multiple) {
-        if (!Array.isArray(currentValue)) {
-          setValue(currentValue === undefined ? [] : [currentValue as any])
+      let _selectedKey: string[] = []
+      if (currentValue) {
+        if (Array.isArray(currentValue)) {
+          _selectedKey = options
+            // @ts-ignore
+            .filter((item) => currentValue.includes(item.value))
+            .map((option) => option.key)
+        } else {
+          _selectedKey = options
+            .filter((item) => currentValue === item.value)
+            .map((option) => option.key)
         }
-      } else if (Array.isArray(currentValue)) {
-        setValue(
-          currentValue?.length === 0 ? undefined : (currentValue?.[0] as any),
-        )
       }
-    }, [multiple, currentValue])
+      let keys = new Set(_selectedKey)
+      let halfSet: Set<string> = new Set<string>([])
+      if (!treeCheckStrictly) {
+        keys?.forEach((target) => {
+          keys = checkChildrenChecked(target, _treeNodeArr, keys) ?? keys
+        })
+        halfSet = checkParentChecked(keys, _treeNodeArr)
+        setHalfCheckKeysState(halfSet)
+      }
+      setCheckKeysState(keys)
+      setHalfCheckKeysState(halfSet)
+      setSelectedKeys(_selectedKey)
+    }, [defaultValue])
 
     const nodeCache = useRef<{ [key: string]: NodeInstance }>({})
 
@@ -185,8 +198,6 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         return
       }
       const items = getSearchReason(current, _treeNodeArr)
-      console.log("keys", items)
-      // setTreeData(newValue)
       const expandSet = new Set<string>()
       items.forEach((item) => {
         item._fatherPath
@@ -221,7 +232,6 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         !currentVisible && tryUpdateInputValue("", "optionListHide")
       },
       onChangeInputValue: (value: string) => {
-        console.log("onChangeInputValue", value)
         tryUpdateInputValue(value, "manual")
         if (!currentVisible && value) {
           tryUpdatePopupVisible(true)
@@ -231,7 +241,11 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         event?.stopPropagation()
         const value = currentValue?.[index as never]
         const item = options.find((item) => item.value === value)
-        item && handleCheck(item.key)
+        if (treeCheckable) {
+          item && handleCheck(item.key)
+        } else {
+          item && handleSelect(item.key)
+        }
       },
       onClear: (event: any) => {
         event.stopPropagation()
@@ -265,7 +279,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
     )
 
     const handleSelect = useCallback(
-      (targetKey: string, event: Event) => {
+      (targetKey: string) => {
         const keys = updateKeys(selectedKeysState, targetKey, multiple)
         setSelectedKeys(keys)
         if (multiple && treeCheckable) {
@@ -345,9 +359,10 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         {...triggerProps}
       >
         <SelectView
-          {...props}
+          {...rest}
           {...selectViewEventHandlers}
           value={currentValue}
+          showSearch={showSearch}
           inputValue={_inputValue}
           popupVisible={currentVisible}
           multiple={multiple}
