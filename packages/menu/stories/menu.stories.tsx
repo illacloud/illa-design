@@ -76,6 +76,10 @@ export const VerticalMenu = (args: MenuProps) => {
         <Item key="1_0" title={"Menu 1"} />
         <Item key="1_1" title={"Menu 2"} />
         <Item key="1_2" title={"Menu 3"} />
+        <SubMenu key="0_0_0_0" title={"Second Sub Menu"}>
+          <Item key="0_0_1_1" title={"Menu 2"} />
+          <Item key="0_0_1_2" title={"Menu 3"} />
+        </SubMenu>
       </SubMenu>
       <SubMenu
         key="2"
@@ -117,7 +121,7 @@ export const VerticalMenu = (args: MenuProps) => {
           <Item key="3_1_1" title={"Menu 4"} />
         </ItemGroup>
       </SubMenu>
-    </Menu>
+    </Menu >
   )
 }
 VerticalMenu.args = {

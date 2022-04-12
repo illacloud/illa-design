@@ -12,6 +12,7 @@ export const MenuContext = createContext<
     | "selectedKeys"
     | "triggerProps"
     | "theme"
+    | "inDropdown"
     | "collapseDefaultIcon"
     | "collapseActiveIcon"
   > & {

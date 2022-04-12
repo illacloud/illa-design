@@ -22,6 +22,7 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
     mode,
     theme,
     collapse,
+    inDropdown,
     levelIndent,
     onClickMenuItem,
     selectedKeys = [],
@@ -30,7 +31,7 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   const needIndent = mode === "vertical" && level > 1
   const isHorizontal = mode === "horizontal"
   const isPopButton = mode === "popButton"
-  const mergedNeedTooltip = (collapse && level === 1) || needTooltip
+  const mergedNeedTooltip = (collapse && level === 1 && !inDropdown) || needTooltip
   const isSelected = selectedKeys.includes(_key)
 
   const clickItemHandler = (event: MouseEvent) => {

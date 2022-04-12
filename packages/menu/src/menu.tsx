@@ -30,6 +30,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     collapseActiveIcon = <NextIcon />,
     autoOpen,
     accordion,
+    inDropdown,
     hasCollapseButton,
     collapse: collapseProp,
     selectable = true,
@@ -64,9 +65,9 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const { theme: themeContext } = useContext(MenuContext)
   const theme = themeProp || themeContext || DEFAULT_THEME
   const isPopButton = mode === "popButton"
-  const mergedCollapse = collapse || isPopButton
+  const mergedCollapse = collapse || inDropdown || isPopButton
   const isRenderCollapseButton =
-    hasCollapseButton && !["horizontal", "popButton"].includes(mode)
+    hasCollapseButton && !["horizontal", "popButton"].includes(mode) && !inDropdown
   const menuInfoMap = useMemo(() => {
     return generateInfoMap(children)
   }, [children])
@@ -128,7 +129,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
 
   const usedStyle = { ...style }
 
-  if (mergedCollapse) {
+  if (mergedCollapse && !inDropdown) {
     delete usedStyle.width
   }
 
@@ -145,6 +146,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
           theme,
           variant,
           collapse: mergedCollapse,
+          inDropdown,
           levelIndent,
           openKeys,
           selectedKeys,

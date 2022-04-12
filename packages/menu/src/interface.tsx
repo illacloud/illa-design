@@ -19,6 +19,7 @@ export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
   collapse?: boolean
   selectable?: boolean
   ellipsis?: boolean
+  inDropdown?: boolean
   defaultSelectedKeys?: string[]
   defaultOpenKeys?: string[]
   selectedKeys?: string[]
