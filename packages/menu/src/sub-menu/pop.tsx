@@ -1,6 +1,7 @@
 import { forwardRef, useContext, MouseEvent, useState, ReactElement } from "react"
 import { NextIcon, DownIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
+import { TriggerProps } from "@illa-design/trigger"
 import { applySubMenuHeaderCss } from "../style"
 import { MenuContext } from "../menu-context"
 import { Indent } from "../indent"
@@ -34,6 +35,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     selectedKeys = [],
     triggerProps,
     collapse,
+    inDropdown,
   } = useContext(MenuContext)
 
   const [popupVisible, setPopupVisible] = useState(false)
@@ -63,12 +65,19 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
       <span
         css={[
           applySubMenuIconCss(false, isHorizontal),
-          applyPopSubMenuCollapseIconCss(collapse),
+          applyPopSubMenuCollapseIconCss(collapse, inDropdown),
         ]}
       >
         {icon}
       </span>
     )
+  }
+
+  const mergedTriggerProps = {
+    colorScheme: theme === "light" ? "white" : "gray",
+    position: (isHorizontal ? "bl" : "rt") as TriggerProps["position"],
+    showArrow: variant !== "pop",
+    ...triggerProps,
   }
 
   return (
@@ -80,17 +89,13 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
           selectedKeys={selectedKeys}
           onClickMenuItem={menuItemClickHandler}
           theme={theme}
+          isMenu={true}
+          triggerProps={mergedTriggerProps}
         >
           {children}
         </Menu>
       }
-      triggerProps={{
-        colorScheme: theme === "light" ? "white" : "gray",
-        position: isHorizontal ? "bl" : "rt",
-        showArrow: variant !== "pop",
-        popupVisible,
-        ...triggerProps,
-      }}
+      triggerProps={mergedTriggerProps}
     >
       <div
         ref={ref}

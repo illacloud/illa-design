@@ -24,6 +24,7 @@ export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
   defaultOpenKeys?: string[]
   selectedKeys?: string[]
   openKeys?: string[]
+  isMenu?: boolean
   triggerProps?: Partial<TriggerProps>
   onClickMenuItem?: (key: string, event: MouseEvent, keyPath: string[]) => any
   onClickSubMenu?: (key: string, openKeys: string[], keyPath: string[]) => void

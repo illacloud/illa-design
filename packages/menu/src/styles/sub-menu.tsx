@@ -104,13 +104,13 @@ export function applyPopSubMenuCss(isHorizontal: boolean): SerializedStyles {
   return css``
 }
 
-export function applyPopSubMenuCollapseIconCss(isCollapse?: boolean) {
+export function applyPopSubMenuCollapseIconCss(isCollapse?: boolean, inDropdown?: boolean) {
   const collapseCss = css`
     visibility: hidden;
     opacity: 0;
   `
   return css`
-    ${isCollapse && collapseCss};
+    ${isCollapse && !inDropdown && collapseCss};
     transition: all 0.2s ease-in-out;
   `
 }
