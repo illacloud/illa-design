@@ -49,7 +49,7 @@ export function applyItemCss(
     height: 40px;
     border-radius: 50%;
     box-shadow: 0 4px 10px ${globalColor(`--${illaPrefix}-gray-09`)};
-    padding: 0 13px;
+    padding: 0 14px;
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
