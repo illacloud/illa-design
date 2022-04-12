@@ -64,7 +64,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     return (
       <span
         css={[
-          applySubMenuIconCss(false, isHorizontal),
+          applySubMenuIconCss(false, isHorizontal, inDropdown),
           applyPopSubMenuCollapseIconCss(collapse, inDropdown),
         ]}
       >

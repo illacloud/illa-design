@@ -31,7 +31,8 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     onClickSubMenu,
     openKeys = [],
     selectedKeys = [],
-    collapse,
+    /* collapse, */
+    inDropdown,
     collectInlineMenuKeys,
   } = useContext(MenuContext)
 
@@ -62,7 +63,7 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     >
       <Indent level={level} levelIndent={levelIndent} />
       <span>{title}</span>
-      <span css={applySubMenuIconCss(isOpen, collapse)}>
+      <span css={applySubMenuIconCss(isOpen, false, inDropdown)}>
         <DownIcon />
       </span>
     </div>

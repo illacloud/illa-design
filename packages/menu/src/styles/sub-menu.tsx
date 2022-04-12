@@ -6,6 +6,7 @@ import { Theme } from "../interface"
 export function applySubMenuIconCss(
   isOpen?: boolean,
   isHorizontal?: boolean,
+  inDropdown?: boolean
 ): SerializedStyles {
   const rotate = css`
     transform: rotate(-180deg);
@@ -22,7 +23,7 @@ export function applySubMenuIconCss(
       ${isOpen && rotate};
     }
     transition: all 0.2s ease-in-out;
-    ${!isHorizontal && fixedToRightCss};
+    ${!isHorizontal && !inDropdown && fixedToRightCss};
   `
 }
 
