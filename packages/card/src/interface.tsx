@@ -11,6 +11,7 @@ export interface CardProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   title?: ReactNode
   actions?: ReactNode[]
   extra?: ReactNode
+  isGridMode?: boolean
 }
 
 export interface CardMetaProps

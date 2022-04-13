@@ -27,14 +27,14 @@ const Template: Story<SliderProps> = (args) => {
   const [value2, setValue2] = React.useState(0)
   const [value3, setValue3] = React.useState([0, 0])
   return (
-    <Space size={"large"}>
+    <Space size={"large"} direction={args.vertical ? "horizontal" : "vertical"}>
       <Slider
         {...args}
         value={value}
         onChange={(val: number | number[]) => {
           setValue(val as number)
         }}
-        style={{ width: 200 }}
+        style={{ width: 400 }}
       />
       <Slider
         {...args}
@@ -49,7 +49,7 @@ const Template: Story<SliderProps> = (args) => {
           15: "15km",
         }}
         max={15}
-        style={{ width: 200 }}
+        style={{ width: 400 }}
       />
       <Slider
         {...args}
@@ -59,7 +59,7 @@ const Template: Story<SliderProps> = (args) => {
           setValue3(val as number[])
         }}
         range
-        style={{ width: 200 }}
+        style={{ width: 400 }}
       />
     </Space>
   )

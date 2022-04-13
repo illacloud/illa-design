@@ -1,5 +1,6 @@
 import { Dayjs } from "dayjs"
 import * as _ from "lodash"
+import { ReactNode } from "react"
 
 // thx arco
 export function isDayjs(time: any): time is Dayjs {
@@ -56,3 +57,8 @@ export const isServerRendering = (function () {
     return true
   }
 })()
+
+/** merge multiple children to a string node */
+export const isSingleNode = (child: ReactNode) => {
+  return isString(child) || isNumber(child)
+}

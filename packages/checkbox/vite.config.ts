@@ -26,8 +26,8 @@ export default defineConfig({
     }),
   ],
   build: {
-    sourcemap: true,
-    minify: true,
+    sourcemap: false,
+    minify: false,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/checkbox",
