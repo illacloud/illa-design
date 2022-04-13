@@ -51,7 +51,8 @@
     "vite-plugin-istanbul": "^2.5.1"
   },
   "resolutions": {
-    "graceful-fs": "4.2.9"
+    "graceful-fs": "4.2.9",
+    "@babel/core": "7.17.8"
   },
   "workspaces": [
     "packages/*"
