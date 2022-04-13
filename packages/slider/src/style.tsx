@@ -278,6 +278,7 @@ export function applySliderInput(vertical?: boolean): SerializedStyles {
 export const applySliderInputNumber = {
   width: `58px`,
   height: `32px`,
+  fontSize: `14px`,
   overflow: `visible`,
 }
 
