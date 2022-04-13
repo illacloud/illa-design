@@ -49,7 +49,7 @@ export interface MarkProps {
   disabled?: boolean
 }
 
-export interface InputProps {
+export interface SliderInputProps {
   min?: number
   max?: number
   step?: number

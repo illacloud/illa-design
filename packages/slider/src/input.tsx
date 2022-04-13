@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from "react"
 import { InputNumber } from "@illa-design/input-number"
-import { InputProps } from "./interface"
+import { SliderInputProps } from "./interface"
 import {
   applySliderInput,
   applySliderInputNumber,
@@ -8,7 +8,7 @@ import {
   applySliderInputRangeContent,
 } from "./style"
 
-export default memo(function Input(props: InputProps) {
+export default memo(function Input(props: SliderInputProps) {
   const { value, range, min, max, step, disabled, vertical, onChange } = props
   const inputProps = {
     min,
