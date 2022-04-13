@@ -58,7 +58,7 @@ const Template: Story<SliderProps> = (args) => {
         onChange={(val: number | number[]) => {
           setValue3(val as number[])
         }}
-        range
+        range={{ draggableBar: true }}
         style={{ width: 400 }}
       />
     </Space>

@@ -40,6 +40,7 @@ export default memo(function Input(props: SliderInputProps) {
           style={applySliderInputNumber}
           value={innerValue[0]}
           key={0}
+          size={"small"}
           {...inputProps}
           onChange={(val) => {
             handleChange([val!, innerValue[1]])
@@ -52,6 +53,7 @@ export default memo(function Input(props: SliderInputProps) {
       <InputNumber
         style={applySliderInputNumber}
         key={2}
+        size={"small"}
         value={innerValue[1]}
         {...inputProps}
         onChange={(val) => {
