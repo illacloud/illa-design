@@ -187,7 +187,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             ? renderedValue
             : placeholder,
         style: {
-          pointerEvents: canFocusInput ? 'auto': 'none'
+          pointerEvents: canFocusInput ? "auto" : "none",
         },
       }
 

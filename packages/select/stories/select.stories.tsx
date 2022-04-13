@@ -29,6 +29,7 @@ const Template: Story<SelectProps> = (args) => (
   <Space direction="vertical">
     <Select style={{ width: 280 }} {...args} />
     <Select
+      showSearch={true}
       style={{ width: 280 }}
       options={options}
       defaultValue={"Shenzhen"}

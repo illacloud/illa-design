@@ -1,10 +1,10 @@
 import React, { memo } from "react"
 import { plus } from "number-precision"
 import { formatPercent, getOffset, valueInRange } from "./util"
-import { TicksProps } from "./interface"
+import { SliderTicksProps } from "./interface"
 import { applySliderTick } from "./style"
 
-export default memo(function Ticks(props: TicksProps) {
+export default memo(function Ticks(props: SliderTicksProps) {
   const { step, min, max, value, vertical, reverse, disabled } = props
 
   const steps = []
