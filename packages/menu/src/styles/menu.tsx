@@ -48,7 +48,7 @@ export function applyMenuInnerCss(isHorizontal: boolean): SerializedStyles {
 export function applyCollapseIconCss(
   isCollapse?: boolean,
   theme: Theme = "light",
-) {
+): SerializedStyles {
   const themeColor = {
     light: {
       bg: globalColor(`--${illaPrefix}-gray-09`),

@@ -7,7 +7,7 @@ import { applyPopButtonCss } from "../style"
 export function applySubMenuIconCss(
   isOpen?: boolean,
   isHorizontal?: boolean,
-  inDropdown?: boolean
+  inDropdown?: boolean,
 ): SerializedStyles {
   const rotate = css`
     transform: rotate(-180deg);
@@ -41,33 +41,32 @@ export function applySubMenuHeaderCss(
   isCollapse?: boolean,
   theme: Theme = "light",
 ): SerializedStyles {
-
   const themeColor = {
     light: {
       hoverBg: globalColor(`--${illaPrefix}-gray-09`),
       color: globalColor(`--${illaPrefix}-gray-03`),
-      selectedColor: globalColor(`--${illaPrefix}-blue-01`)
+      selectedColor: globalColor(`--${illaPrefix}-blue-01`),
     },
     dark: {
       hoverBg: globalColor(`--${illaPrefix}-gray-03`),
       color: globalColor(`--${illaPrefix}-gray-08`),
-      selectedColor: globalColor(`--${illaPrefix}-blue-04`)
+      selectedColor: globalColor(`--${illaPrefix}-blue-04`),
     },
   }
 
   const selectedCss = css`
     color: ${themeColor[theme].selectedColor};
-    `
+  `
 
   const hoverCss = css`
     &:hover {
-    cursor: pointer;
-    background-color: ${themeColor[theme].hoverBg};
+      cursor: pointer;
+      background-color: ${themeColor[theme].hoverBg};
     }
   `
 
   // add more padding to padding-right to avoid title overlap with icon
-  const padding = isCollapse ? `0 16px` : `0 32px 0 24px`;
+  const padding = isCollapse ? `0 16px` : `0 32px 0 24px`
 
   return css`
     color: ${themeColor[theme].color};
@@ -95,7 +94,10 @@ export function applyPopSubMenuCss(isHorizontal: boolean): SerializedStyles {
   return css``
 }
 
-export function applyPopSubMenuCollapseIconCss(isCollapse?: boolean, inDropdown?: boolean) {
+export function applyPopSubMenuCollapseIconCss(
+  isCollapse?: boolean,
+  inDropdown?: boolean,
+): SerializedStyles {
   const collapseCss = css`
     visibility: hidden;
     opacity: 0;
