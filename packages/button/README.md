@@ -11,7 +11,7 @@ yarn add @illa-design/button
 ## Import component
 
 ```jsx
-import { Button } from "@illa-design/button"
+import { Button } from "@illa-dedign/button"
 ```
 
 ## API
@@ -48,26 +48,10 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 
 ## Example
 
-```mdx-code-block
-import BrowserWindow from '@site/src/components/BrowserWindow';
-import BrowserOnly from '@docusaurus/BrowserOnly';
-```
-
 ### Basic usage
 
 ```jsx
 <Button>Hello</Button>
-```
-
-```mdx-code-block
-<BrowserWindow minHeight={240}>
-  <BrowserOnly>
-    {() => {
-      const { Button } = require("@illa-design/button")
-      return <Button>Hello</Button>
-    }}
-  </BrowserOnly>
-</BrowserWindow>
 ```
 
 ### Set Button's size
@@ -79,22 +63,6 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 <Button size="large">Large</Button>
 ```
 
-```mdx-code-block
-<BrowserWindow minHeight={240}>
-  <BrowserOnly>
-    {() => {
-      const { Button } = require("@illa-design/button")
-      return <>
-        <Button>Hello</Button>
-        <Button size="small">Small</Button>
-        <Button size="medium">Medium</Button>
-        <Button size="large">Large</Button>
-      </>
-    }}
-  </BrowserOnly>
-</BrowserWindow>
-```
-
 ### Set Button's variant and background color
 
 ```jsx
@@ -102,38 +70,11 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 <Button variant="outline" colorScheme="cyan">Hello</Button>
 ```
 
-```mdx-code-block
-<BrowserWindow minHeight={240}>
-  <BrowserOnly>
-    {() => {
-      const { Button } = require("@illa-design/button")
-      return <>
-        <Button>Hello</Button>
-        <Button variant="outline" colorScheme="cyan">Hello</Button>
-      </>
-    }}
-  </BrowserOnly>
-</BrowserWindow>
-```
 ### Set Button's icons
 
 ```jsx
 <Button>Hello</Button>
 <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
-```
-
-```mdx-code-block
-<BrowserWindow minHeight={240}>
-  <BrowserOnly>
-    {() => {
-      const { Button } = require("@illa-design/button")
-      return <>
-        <Button>Hello</Button>
-        <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
-      </>
-    }}
-  </BrowserOnly>
-</BrowserWindow>
 ```
 
 ### Set Button's disabled status or loading status
@@ -142,21 +83,6 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 <Button>Hello</Button>
 <Button disabled>Hello</Button>
 <Button loading loadingText="Loading">Hello</Button>
-```
-
-```mdx-code-block
-<BrowserWindow minHeight={240}>
-  <BrowserOnly>
-    {() => {
-      const { Button } = require("@illa-design/button")
-      return <>
-        <Button>Hello</Button>
-        <Button disabled>Hello</Button>
-        <Button loading loadingText="Loading">Hello</Button>
-      </>
-    }}
-  </BrowserOnly>
-</BrowserWindow>
 ```
 
 ### Set ButtonGroup's variant and spacing
@@ -174,24 +100,3 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 </ButtonGroup>
 ```
 
-```mdx-code-block
-<BrowserWindow minHeight={240}>
-  <BrowserOnly>
-    {() => {
-      const { Button,ButtonGroup } = require("@illa-design/button")
-      return <>
-        <ButtonGroup variant="outline" spacing="5px">
-          <Button>Hello</Button>
-          <Button disabled>Hello</Button>
-          <Button loading loadingText="Loading">Hello</Button>
-        </ButtonGroup>
-        <ButtonGroup variant="outline" attached>
-          <Button leftIcon={<BsArrowLeft />} />
-          <Button>Hello</Button>
-          <Button rightIcon={<BsArrowRight />} />
-        </ButtonGroup>
-      </>
-    }}
-  </BrowserOnly>
-</BrowserWindow>
-```
