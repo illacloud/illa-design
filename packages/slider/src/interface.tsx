@@ -38,7 +38,7 @@ export type SliderMarkType = {
   content: string
 }
 
-export interface MarkProps {
+export interface SliderMarkProps {
   data: SliderMarkType[]
   min: number
   max: number

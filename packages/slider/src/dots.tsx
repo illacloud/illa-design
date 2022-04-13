@@ -1,9 +1,9 @@
 import React, { memo } from "react"
 import { formatPercent, getOffset, valueInRange } from "./util"
-import { MarkProps } from "./interface"
+import { SliderMarkProps } from "./interface"
 import { applySliderDot, applySliderDotWrapper } from "./style"
 
-export default memo(function Dots(props: MarkProps) {
+export default memo(function Dots(props: SliderMarkProps) {
   const {
     data = [],
     min,
