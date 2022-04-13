@@ -125,7 +125,10 @@ export const VerticalMenu = (args: MenuProps) => {
   )
 }
 VerticalMenu.args = {
-  defaultOpenKeys: ["0", "1", "2"]
+  defaultOpenKeys: ["0", "1", "2"],
+  triggerProps: {
+    trigger: "click",
+  }
 }
 
 export const PopButton = (args: MenuProps) => {

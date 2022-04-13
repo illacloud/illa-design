@@ -84,6 +84,8 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     colorScheme: theme === "light" ? "white" : "gray",
     position: (needPopOnBottom ? "bl" : "rt") as TriggerProps["position"],
     showArrow: variant !== "pop",
+    withoutPadding: true,
+    clickOutsideToClose: true,
     ...triggerProps,
   }
 
@@ -91,6 +93,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     <Dropdown
       trigger="hover"
       onVisibleChange={(visible: boolean) => setPopupVisible(visible)}
+      popupVisible={popupVisible}
       droplist={
         <Menu
           selectedKeys={selectedKeys}
@@ -102,7 +105,9 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
           {children}
         </Menu>
       }
-      triggerProps={{ ...mergedTriggerProps, popupVisible }}
+      triggerProps={{
+        ...mergedTriggerProps,
+      }}
     >
       <div
         ref={ref}
