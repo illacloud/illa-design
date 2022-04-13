@@ -31,7 +31,6 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     onClickSubMenu,
     openKeys = [],
     selectedKeys = [],
-    /* collapse, */
     inDropdown,
     collectInlineMenuKeys,
   } = useContext(MenuContext)
