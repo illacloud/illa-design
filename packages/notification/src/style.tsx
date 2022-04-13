@@ -60,12 +60,10 @@ export function applyNotificationIcon(type: AlertType): SerializedStyles {
   `
 }
 
-export function applyNotificationContentWrapper(): SerializedStyles {
-  return css`
-    flex: 1;
-    word-break: break-all;
-  `
-}
+export const applyNotificationContentWrapper = css`
+  flex: 1;
+  word-break: break-all;
+`
 
 export const applyNotificationTitle = css`
   font-size: 16px;
@@ -83,17 +81,15 @@ export function applyNotificationContent(hasTitle: boolean): SerializedStyles {
   `
 }
 
-export function applyNotificationCloseBtn(): SerializedStyles {
-  return css`
-    position: absolute;
-    right: 16px;
-    top: 16px;
-    font-size: 8px;
-    line-height: 0;
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
-    cursor: pointer;
-  `
-}
+export const applyNotificationCloseBtn = css`
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  font-size: 8px;
+  line-height: 0;
+  color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  cursor: pointer;
+`
 
 export const applyNotificationAction = css`
   text-align: right;

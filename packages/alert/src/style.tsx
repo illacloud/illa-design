@@ -18,7 +18,10 @@ export const iconColorMap = {
   normal: "",
 }
 
-export function applyAlertContainer(type: AlertType, showBanner?: boolean) {
+export function applyAlertContainer(
+  type: AlertType,
+  showBanner?: boolean,
+): SerializedStyles {
   const radius = showBanner ? `` : `border-radius: 2px`
   return css`
     display: inline-flex;
@@ -35,7 +38,7 @@ export function applyAlert(
   hasContent: boolean,
   showIcon?: boolean,
   closable?: boolean,
-) {
+): SerializedStyles {
   const align = hasContent ? `flex-start` : `center`
   const padding = hasContent ? `16px` : `9px 16px`
   return css`
@@ -59,7 +62,10 @@ export function applyAlert(
   `
 }
 
-export function applyAlertIcon(type: AlertType, hasContent?: boolean) {
+export function applyAlertIcon(
+  type: AlertType,
+  hasContent?: boolean,
+): SerializedStyles {
   return css`
     position: absolute;
     top: ${hasContent ? "20px" : "12px"};
@@ -70,14 +76,12 @@ export function applyAlertIcon(type: AlertType, hasContent?: boolean) {
   `
 }
 
-export function applyAlertContentWrapper() {
-  return css`
-    position: relative;
-    flex: 1;
-  `
-}
+export const applyAlertContentWrapper = css`
+  position: relative;
+  flex: 1;
+`
 
-export function applyAlertTitle(hasContent: boolean) {
+export function applyAlertTitle(hasContent: boolean): SerializedStyles {
   const style = hasContent
     ? `
         margin-bottom: 4px;
@@ -92,11 +96,9 @@ export function applyAlertTitle(hasContent: boolean) {
   `
 }
 
-export function applyAlertContent() {
-  return css`
-    color: ${globalColor(`--${illaPrefix}-gray-04`)};
-  `
-}
+export const applyAlertContent = css`
+  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+`
 
 export function applyAlertCloseBtn(
   type: AlertType,
@@ -114,8 +116,6 @@ export function applyAlertCloseBtn(
   `
 }
 
-export function applyAlertAction() {
-  return css`
-    margin-left: 8px;
-  `
-}
+export const applyAlertAction = css`
+  margin-left: 8px;
+`

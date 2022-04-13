@@ -1,7 +1,9 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { MessagePosition } from "@illa-design/notification"
 
-export function applyMessageWrapper(position: MessagePosition) {
+export function applyMessageWrapper(
+  position: MessagePosition,
+): SerializedStyles {
   return css`
     display: flex;
     flex-direction: column;
