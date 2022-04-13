@@ -4,7 +4,7 @@ import { Empty } from "@illa-design/empty"
 import { Checkbox } from "@illa-design/checkbox"
 import { Node } from "../node"
 import { OptionProps, SearchPopupProps } from "../interface"
-import { applyOptionStyle, optionListStyle, searchListWrapper } from "./style"
+import { applyOptionStyle, flexCenterStyle, optionListStyle, searchListWrapper } from "./style"
 
 export const SearchPopup = <T extends OptionProps>(
   props: SearchPopupProps<T>,
@@ -106,6 +106,6 @@ export const SearchPopup = <T extends OptionProps>(
       </ul>
     </div>
   ) : (
-    <Empty />
+    <Empty css={flexCenterStyle} />
   )
 }

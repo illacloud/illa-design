@@ -413,9 +413,11 @@ export function applyClearStyle(size?: InputSize): SerializedStyles {
 export const clearStyle = css`
   opacity: 0;
   margin-left: 8px;
+  display: flex;
 `
 
 export const pointerStyle = css`
+  transition: all 200ms ease-in-out;
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-gray-06`)};
 
@@ -436,6 +438,7 @@ export const mirrorStyle = css`
 
 export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
   return css`
+    box-sizing: border-box;
     display: inline-flex;
     flex-direction: row;
     align-items: center;
@@ -462,6 +465,7 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
 
 export function applyRangeInput(): SerializedStyles {
   return css`
+    transition: all 200ms ease-in-out;
     &:focus {
       border-radius: 2px;
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};

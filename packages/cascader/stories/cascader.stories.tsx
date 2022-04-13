@@ -108,7 +108,6 @@ export const Basic: Story<CascaderProps<any>> = (args) => (
   <Space direction="vertical">
     <Cascader
       style={{ width: 280 }}
-      value={["beijing", "xicheng"]}
       showSearch
       options={options}
       {...args}

@@ -284,6 +284,8 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         showArrow={false}
         colorScheme="white"
         position="bl"
+        openDelay={0}
+        closeDelay={0}
         maxWidth=""
         disabled={disabled}
         withoutPadding
