@@ -77,7 +77,9 @@ export function applySubMenuHeaderCss(
     margin-bottom: 16px;
     background: ${theme === "dark" ? globalColor(`--${illaPrefix}-gray-02`) : "none"}
     `
-  const padding = isCollapse ? 16 : 24
+
+  // add more padding to padding-right to avoid title overlap with icon
+  const padding = isCollapse ? `0 16px` : `0 32px 0 24px`;
 
   return css`
     color: ${themeColor[theme].color};
@@ -86,7 +88,7 @@ export function applySubMenuHeaderCss(
     white-space: nowrap;
     text-overflow: ellipsis;
     cursor: pointer;
-    padding: 0 ${padding}px;
+    padding: ${padding};
     line-height: 40px;
     ${isSelected && selectedCss};
     ${isPopButton && popButtonCss}

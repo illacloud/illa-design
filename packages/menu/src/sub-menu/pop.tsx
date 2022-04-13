@@ -1,4 +1,10 @@
-import { forwardRef, useContext, MouseEvent, useState, ReactElement } from "react"
+import {
+  forwardRef,
+  useContext,
+  MouseEvent,
+  useState,
+  ReactElement,
+} from "react"
 import { NextIcon, DownIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { TriggerProps } from "@illa-design/trigger"
@@ -57,9 +63,10 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     (selectable && selectedKeys.includes(_key)) ||
     isChildrenSelected(children as ReactElement, selectedKeys)
 
+  const needPopOnBottom = mode === "horizontal" && !inDropdown
 
   function renderIcon() {
-    const icon = isHorizontal ? <DownIcon /> : <NextIcon />
+    const icon = needPopOnBottom ? <DownIcon /> : <NextIcon />
 
     return (
       <span
@@ -75,7 +82,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
 
   const mergedTriggerProps = {
     colorScheme: theme === "light" ? "white" : "gray",
-    position: (isHorizontal ? "bl" : "rt") as TriggerProps["position"],
+    position: (needPopOnBottom ? "bl" : "rt") as TriggerProps["position"],
     showArrow: variant !== "pop",
     ...triggerProps,
   }
@@ -95,7 +102,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
           {children}
         </Menu>
       }
-      triggerProps={mergedTriggerProps}
+      triggerProps={{ ...mergedTriggerProps, popupVisible }}
     >
       <div
         ref={ref}

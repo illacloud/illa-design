@@ -12,11 +12,12 @@ export function applyMenuCss(
     width: 48px;
   `
 
+  const bgColor = theme === "light" ? globalColor(`--${illaPrefix}-white-01`) : globalColor(`--${illaPrefix}-gray-02`);
+  const mergedBgColor = isPopButton ? "none" : bgColor;
+
   let themeCss = css``
   if (theme === "dark") {
-    const bgColor = isPopButton ? "none" : globalColor(`--${illaPrefix}-gray-02`);
     themeCss = css`
-      background: ${bgColor};
       color: ${globalColor(`--${illaPrefix}-white-02`)};
       `
   }
@@ -24,8 +25,9 @@ export function applyMenuCss(
   return css`
     position: relative;
     transition: width 0.2s ease-in-out;
-    ${isCollapse && collapseCss}
-    ${themeCss}
+    background-color: ${bgColor};
+    ${isCollapse && collapseCss};
+    ${themeCss};
   `
 }
 

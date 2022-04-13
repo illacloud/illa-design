@@ -67,7 +67,9 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const isPopButton = mode === "popButton"
   const mergedCollapse = collapse || inDropdown || isPopButton
   const isRenderCollapseButton =
-    hasCollapseButton && !["horizontal", "popButton"].includes(mode) && !inDropdown
+    hasCollapseButton &&
+    !["horizontal", "popButton"].includes(mode) &&
+    !inDropdown
   const menuInfoMap = useMemo(() => {
     return generateInfoMap(children)
   }, [children])
@@ -185,9 +187,10 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
                   ? [key]
                   : newOpenKeys.concat(key)
               }
+
+              setOpenKeys(newOpenKeys)
             }
 
-            setOpenKeys(newOpenKeys)
             isFunction(onClickSubMenu) &&
               onClickSubMenu(key, newOpenKeys, menuInfoMap[key]?.keyPath)
           },
