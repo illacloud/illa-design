@@ -92,7 +92,7 @@ export interface CommonRangeProps
 }
 
 export interface CommonSingleProps extends DatePickerProps {
-  type?: "day" | "month" | "year"
+  type: "day" | "month" | "year"
 }
 
 export interface CommonPickerProps extends PickerProps {

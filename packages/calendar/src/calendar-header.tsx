@@ -22,7 +22,6 @@ import {
   headerLeftBtnsCss,
   headerRightBtnsCss,
 } from "./styles"
-import dayjs from "dayjs"
 
 export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
   const {
@@ -44,7 +43,6 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
 
   const [currentYear, setCurrentYear] = useState<number>(-1)
   const [currentMonth, setCurrentMonth] = useState<number>(-1)
-  const [doSelect, setDoSelect] = useState<boolean>(false)
 
   useEffect(() => {
     setCurrentYear(currentDay.year())
@@ -53,18 +51,15 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
 
   const selectTime = (time: selectTimeProps) => {
     const { year, month } = time
-    year && setCurrentYear(year)
-    month && setCurrentMonth(month)
-    setDoSelect(true)
-  }
-
-  useEffect(() => {
-    if (!doSelect) {
-      return
+    if (year) {
+      setCurrentYear(year)
+      onSelectTime({ year: year })
     }
-    onSelectTime({ year: currentYear, month: currentMonth })
-    setDoSelect(false)
-  }, [doSelect])
+    if (month) {
+      setCurrentMonth(month)
+      onSelectTime({ month: month })
+    }
+  }
 
   function HeaderTypeButton() {
     return (
@@ -166,7 +161,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
 
               {mode === "day" && (
                 <div css={headerSmallTextCss}>
-                  {currentYear} {monthListLocale[currentMonth - 1]}{" "}
+                  {currentYear} {monthListLocale[currentMonth - 1]}
                 </div>
               )}
               {mode === "month" && (

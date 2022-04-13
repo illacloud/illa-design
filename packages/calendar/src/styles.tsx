@@ -2,8 +2,12 @@ import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const bodyContentCss = css`
-  position: "relative";
-  padding: "0 10px";
+  position: relative;
+  padding: 0 10px;
+  overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 export const bodyCoverCss = css`
@@ -67,7 +71,6 @@ export const blockPaddingCss = css`
 
 export const panelPaddingCss = css`
   ${weekTitleItemCommonCss};
-  padding: 5px;
   text-align: center;
 `
 

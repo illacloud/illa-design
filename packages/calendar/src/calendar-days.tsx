@@ -1,7 +1,7 @@
-import { forwardRef, useState, useCallback } from "react"
+import { forwardRef, useState, useCallback, useEffect } from "react"
 import { throttleByRaf } from "@illa-design/system"
 import { CalendarDaysProps } from "./interface"
-import dayjs from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
 import {
   weekContainerCss,
   selectedDayStyle,
@@ -38,8 +38,8 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
     const currentMonth = Number.isInteger(componentMonth)
       ? componentMonth
       : dayjs().month()
-    // each month data
-    const thisMonthData = () => {
+    // init data
+    const monthData = () => {
       // first day in the month
       let firstDayDate = new Date(
         currentYear as number,
@@ -62,7 +62,7 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
       let calendarArr: any = []
       for (let i = 0; i < 42; i++) {
         calendarArr.push({
-          date: new Date(calendarStart + i * 24 * 60 * 60 * 1000),
+          date: dayjs(calendarStart + i * 24 * 60 * 60 * 1000),
         })
       }
       return calendarArr
@@ -70,17 +70,15 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
 
     // each day style
     const handleMonthTypeDayText = (
-      item: Date,
+      item: Dayjs,
       month?: number | null,
       disabled?: boolean,
     ) => {
       let showSelectedStyle =
-        (selectDay && dayjs(selectDay).isSame(dayjs(item), "date")) ||
-        (rangeValueFirst &&
-          dayjs(rangeValueFirst).isSame(dayjs(item), "date")) ||
-        (rangeValueSecond &&
-          dayjs(rangeValueSecond).isSame(dayjs(item), "date")) ||
-        (rangeValueHover && dayjs(rangeValueHover).isSame(dayjs(item), "date"))
+        (selectDay && selectDay.isSame(item, "date")) ||
+        (rangeValueFirst && rangeValueFirst.isSame(item, "date")) ||
+        (rangeValueSecond && rangeValueSecond.isSame(item, "date")) ||
+        (rangeValueHover && rangeValueHover.isSame(item, "date"))
       if (Number.isInteger(month)) {
         showSelectedStyle = showSelectedStyle && isCurrentMonth(item, month)
       }
@@ -91,69 +89,57 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
         ${disabled && disabledCss};
       `
     }
-    const isCurrentMonth = (item: Date, month?: number | null) => {
+    const isCurrentMonth = (item: Dayjs, month?: number | null) => {
       let monthCount = Number.isInteger(month) ? month : currentMonth
-      return (
-        currentYear === item.getFullYear() && monthCount === item.getMonth()
-      )
+      return currentYear === item.year() && monthCount === item.month()
     }
 
     const handleDateHover = useCallback(
       throttleByRaf((item) => {
         if (!rangeValueFirst) return
         if (rangeValueFirst && rangeValueSecond) return
-        handleRangeVal?.(dayjs(item).valueOf(), "hover")
+        handleRangeVal?.(item, "hover")
       }),
       [rangeValueFirst, rangeValueSecond],
     )
 
-    const isHover = (date: Date) => {
+    const isHover = (date: Dayjs) => {
       if (!rangeValueFirst || !rangeValueHover) return
 
       let curDate = dayjs(date).valueOf()
-      let compareBase = rangeValueSecond || rangeValueHover
+      let compareBase = rangeValueSecond?.valueOf() || rangeValueHover.valueOf()
       return (
-        (curDate <= rangeValueFirst &&
+        (curDate <= rangeValueFirst.valueOf() &&
           curDate >= compareBase &&
           isCurrentMonth(date)) ||
-        (curDate >= rangeValueFirst &&
+        (curDate >= rangeValueFirst.valueOf() &&
           curDate <= compareBase &&
           isCurrentMonth(date))
       )
     }
 
-    const rangeSelectStyle = (date: Date) => {
+    const rangeSelectStyle = (date: Dayjs) => {
       if (!rangeValueFirst) {
         return
       }
-      let curDate = dayjs(date).valueOf()
       let compareBase
-      if (curDate === rangeValueFirst) {
+      if (date.isSame(rangeValueFirst, "date")) {
         compareBase = rangeValueSecond || rangeValueHover
         if (!compareBase) return
-        if (curDate < compareBase) {
+        if (date.isBefore(compareBase, "date")) {
           return applyRangeSelectCss("left")
-        } else if (curDate > compareBase) {
+        } else if (date.isAfter(compareBase, "date")) {
           return applyRangeSelectCss("right")
-        } else if (curDate === compareBase) {
+        } else if (date.isSame(compareBase, "date")) {
           return applyRangeSelectCss("mid")
         }
       }
-      if (curDate === rangeValueHover) {
-        if (rangeValueHover > rangeValueFirst) {
+      if (date.isSame(rangeValueHover, "date")) {
+        if (rangeValueHover?.isAfter(rangeValueFirst, "date")) {
           return applyRangeSelectCss("right")
-        } else if (rangeValueHover < rangeValueFirst) {
+        } else if (rangeValueHover?.isBefore(rangeValueFirst, "date")) {
           return applyRangeSelectCss("left")
-        } else if (rangeValueHover === rangeValueFirst) {
-          return applyRangeSelectCss("mid")
-        }
-      }
-      if (curDate === rangeValueSecond) {
-        if (curDate < rangeValueFirst) {
-          return applyRangeSelectCss("left")
-        } else if (curDate > rangeValueFirst) {
-          return applyRangeSelectCss("right")
-        } else if (curDate === rangeValueFirst) {
+        } else if ((rangeValueHover?.isSame(rangeValueFirst), "date")) {
           return applyRangeSelectCss("mid")
         }
       }
@@ -161,7 +147,7 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
 
     return (
       <div css={weekContainerCss} ref={ref} {...restProps}>
-        {thisMonthData().map((item: any, index: number) => {
+        {monthData().map((item: any, index: number) => {
           let disabled =
             typeof disabledDate === "function" && disabledDate(item.date)
           return (
@@ -190,7 +176,7 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
                     disabled,
                   )}
                 >
-                  {item.date.getDate()}
+                  {item.date.date()}
                   {dateInnerContent}
                 </div>
               )}

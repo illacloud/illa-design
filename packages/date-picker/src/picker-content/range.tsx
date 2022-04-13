@@ -1,8 +1,7 @@
-import { forwardRef, useEffect, useState, cloneElement } from "react"
+import { forwardRef, useEffect, useState, cloneElement, useMemo } from "react"
 import { CommonRangeProps } from "../interface"
 import { Calendar } from "../../../calendar/src/index"
-import { Dayjs } from "dayjs"
-import { dayjs } from "@illa-design/system"
+import dayjs, { Dayjs } from "dayjs"
 import { PickerRange } from "../picker-range"
 import { css } from "@emotion/react"
 import {
@@ -30,7 +29,7 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       allowClear = true,
       position = "bl",
       placeholder = [],
-      shortcuts,
+      // shortcuts,
       shortcutsPlacementLeft = false,
       size = "medium",
       error,
@@ -53,31 +52,36 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       ...restProps
     } = props
 
+    const shortcuts = [
+      {
+        text: "next 7 days",
+        value: () => [dayjs(), dayjs().add(1, "week")],
+      },
+      {
+        text: "next 30 days",
+        value: () => [dayjs(), dayjs().add(1, "month")],
+      },
+      {
+        text: "next 365 days",
+        value: () => [dayjs(), dayjs().add(1, "year")],
+      },
+    ]
+
     // cur cmpt value
-    const finalFormat = format || initFormat("day", showTime as boolean)
-    const [leftCalendarDate, setLeftCalendarDate] = useState<dayjs.Dayjs>(
-      defaultPickerValue
-        ? dayjs(defaultPickerValue[0])
-        : dayjs(
-            `${dayjs().year()}-${dayjs().month() + 1}-${
-              dayjs().date() > 28 ? 28 : dayjs().date()
-            }`,
-          ),
+    const finalFormat = format || initFormat("day", !!showTime)
+    const [leftCalendarDate, setLeftCalendarDate] = useState<Dayjs>(
+      defaultPickerValue?.[0] ? dayjs(defaultPickerValue[0]) : dayjs(),
     )
-    const [rightCalendarDate, setRightCalendarDate] = useState<dayjs.Dayjs>(
-      defaultPickerValue
+    const [rightCalendarDate, setRightCalendarDate] = useState<Dayjs>(
+      !defaultPickerValue?.[0] && defaultPickerValue?.[1]
         ? dayjs(defaultPickerValue[1])
-        : dayjs(
-            `${dayjs().year()}-${dayjs().month() + 2}-${
-              dayjs().date() > 28 ? 28 : dayjs().date()
-            }`,
-          ),
+        : dayjs().add(1, "month"),
     )
     const [preChangeValue, setPreChangeValue] = useState<number>(0)
     let initVal = defaultValue
       ? [
-          dayjs(defaultValue[0]).format(format as string),
-          dayjs(defaultValue[1]).format(format as string),
+          dayjs(defaultValue[0]).format(finalFormat as string),
+          dayjs(defaultValue[1]).format(finalFormat as string),
         ]
       : []
     const [inputVal, setInputVal] = useState<string[]>(initVal)
@@ -90,40 +94,39 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
     const shortcutsShowLeft = shortcuts?.length && shortcutsPlacementLeft
     const shortcutsShowBottom = shortcuts?.length && !shortcutsPlacementLeft
     // calendar range value
-    const [rangeValueFirst, setRangeValueFirst] = useState<number>(0)
-    const [rangeValueSecond, setRangeValueSecond] = useState<number>(0)
-    const [rangeValueHover, setRangeValueHover] = useState<number>(0)
+    const [rangeValueFirst, setRangeValueFirst] = useState<Dayjs | undefined>()
+    const [rangeValueSecond, setRangeValueSecond] = useState<
+      Dayjs | undefined
+    >()
+    const [rangeValueHover, setRangeValueHover] = useState<Dayjs | undefined>()
 
     const clearDate = () => {
       setInputVal([])
     }
 
-    const changeHeader = (date: dayjs.Dayjs) => {
+    const changeHeader = (date: Dayjs) => {
       let difValue = date.diff(dayjs(), "day")
       let result = difValue - preChangeValue
       if (result < 0) {
         // pre
-        if (result < -100) {
-          // pre year
-          setRightCalendarDate(date.add(1, "year"))
-        } else {
-          // pre month
-          setRightCalendarDate(date.add(1, "month"))
+        if (leftCalendarDate.isSame(date, "date")) {
+          return
         }
+        setLeftCalendarDate(date)
+        setRightCalendarDate(date.add(1, "month"))
       } else {
-        if (result < 100) {
-          // next month
-          setLeftCalendarDate(date.subtract(1, "month"))
-        } else {
-          // next year
-          setLeftCalendarDate(date.subtract(1, "year"))
+        // next
+        if (rightCalendarDate.isSame(date, "date")) {
+          return
         }
+        setRightCalendarDate(date)
+        setLeftCalendarDate(date.subtract(1, "month"))
       }
       setPreChangeValue(difValue)
     }
 
     const handleRangeVal = (
-      date: number,
+      date: Dayjs | undefined,
       type: "first" | "second" | "hover",
     ) => {
       if (type === "first") {
@@ -136,31 +139,26 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
     }
 
     useEffect(() => {
-      if (!rangeValueSecond) return
-      let format1 = dayjs(rangeValueFirst).format(finalFormat as string)
-      let format2 = dayjs(rangeValueSecond).format(finalFormat as string)
+      if (!rangeValueFirst || !rangeValueSecond) return
+      let format1 = rangeValueFirst.format(finalFormat as string)
+      let format2 = rangeValueSecond.format(finalFormat as string)
       if (showTime) {
-        onSelect?.(
-          [format1, format2],
-          [dayjs(rangeValueFirst), dayjs(rangeValueSecond)],
-        )
+        onSelect?.([format1, format2], [rangeValueFirst, rangeValueSecond])
         return
       }
       setInputVal([format1, format2])
       setShowTrigger(false)
-      onChange?.(
-        [format1, format2],
-        [dayjs(rangeValueFirst), dayjs(rangeValueSecond)],
-      )
+      onChange?.([format1, format2], [rangeValueFirst, rangeValueSecond])
     }, [rangeValueSecond])
 
     const showTimeConfirm = () => {
+      if (!rangeValueFirst || !rangeValueSecond) return
       let defaultTime = dayjs()
-      let calendar1 = (
-        dayjs(Math.min(rangeValueFirst, rangeValueSecond)) || defaultTime
+      let calendar1 = dayjs(
+        Math.min(rangeValueFirst.valueOf(), rangeValueSecond.valueOf()),
       ).format("YYYY-MM-DD")
-      let calendar2 = (
-        dayjs(Math.max(rangeValueFirst, rangeValueSecond)) || defaultTime
+      let calendar2 = dayjs(
+        Math.max(rangeValueFirst.valueOf(), rangeValueSecond.valueOf()),
       ).format("YYYY-MM-DD")
       let timePicker1 = (valueShowLeft || defaultTime).format("hh:mm:ss")
       let timePicker2 = (valueShowRight || defaultTime).format("hh:mm:ss")
@@ -194,8 +192,8 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                 css={shortCutsCss}
                 key={key}
                 onClick={() => {
-                  setRangeValueFirst(item.value()[0].valueOf())
-                  setRangeValueSecond(item.value()[1].valueOf())
+                  setRangeValueFirst(item.value()[0])
+                  setRangeValueSecond(item.value()[1])
                   onSelectShortcut?.(item)
                 }}
               >
@@ -284,16 +282,11 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         `}
                         panelOperations={["doubleLeft", "left"]}
                         panelTodayBtn={false}
-                        onPanelChange={(date: dayjs.Dayjs) =>
-                          changeHeader(date)
-                        }
+                        onPanelChange={(date: Dayjs) => changeHeader(date)}
                         disabledDate={disabledDate}
                         //
-                        datepickerDay={leftCalendarDate}
-                        onChangeDatePickerDay={(val: dayjs.Dayjs) =>
-                          setLeftCalendarDate(val)
-                        }
-                        usedByDatepicker={true}
+                        defaultDate={leftCalendarDate}
+                        rangepicker={true}
                         rangeValueFirst={rangeValueFirst}
                         rangeValueSecond={rangeValueSecond}
                         rangeValueHover={rangeValueHover}
@@ -308,16 +301,11 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         `}
                         panelOperations={["doubleRight", "right"]}
                         panelTodayBtn={false}
-                        onPanelChange={(date: dayjs.Dayjs) =>
-                          changeHeader(date)
-                        }
+                        onPanelChange={(date: Dayjs) => changeHeader(date)}
                         disabledDate={disabledDate}
                         //
-                        datepickerDay={rightCalendarDate}
-                        onChangeDatePickerDay={(val: dayjs.Dayjs) =>
-                          setRightCalendarDate(val)
-                        }
-                        usedByDatepicker={true}
+                        defaultDate={rightCalendarDate}
+                        rangepicker={true}
                         rangeValueFirst={rangeValueFirst}
                         rangeValueSecond={rangeValueSecond}
                         rangeValueHover={rangeValueHover}

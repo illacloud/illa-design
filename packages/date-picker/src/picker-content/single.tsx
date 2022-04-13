@@ -9,10 +9,7 @@ import {
 } from "../interface"
 import { Calendar } from "../../../calendar/src/index"
 import { TimePickerPopup } from "../../../time-picker/src/time-picker-popup"
-import { Dayjs } from "dayjs"
-import { dayjs } from "@illa-design/system"
-import utc from "dayjs/plugin/utc"
-import tz from "dayjs/plugin/timezone"
+import dayjs, { Dayjs } from "dayjs"
 import { Picker } from "../picker"
 import {
   triContentCommonCss,
@@ -55,16 +52,12 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       format,
       value,
       defaultValue,
-      showNowBtn = true,
+      showNowBtn = false,
       disabledTime,
       ...restProps
     } = props
 
-    // dayjs.extend(utc)
-    // dayjs.extend(tz)
-    // dayjs.tz.setDefault("Asia/Tokyo")
-    const finalFormat =
-      format || initFormat(type as string, showTime as boolean)
+    const finalFormat = format || initFormat(type, showTime as boolean)
 
     let initValue =
       value || defaultValue
@@ -72,9 +65,8 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
         : ""
     const [inputVal, setInputVal] = useState<string>(initValue)
     const [calendarShortCuts, setCalendarShortCuts] = useState<
-      dayjs.Dayjs | "clear"
+      Dayjs | "clear"
     >()
-    const [shortcutSwitch, setShortcutSwitch] = useState<string>("")
     const [showTrigger, setShowTrigger] = useState<boolean>(popupVisible)
     const mergedDefaultValue = value || defaultPickerValue
     const showTimeMerged = showTime && type === "day"
@@ -91,7 +83,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       )
     }
 
-    const changeDate = (date: dayjs.Dayjs) => {
+    const changeDate = (date: Dayjs) => {
       let value = finalValue(date)
       let valueFormat = value.format(finalFormat as string)
       onSelect?.(valueFormat, value)
@@ -121,14 +113,14 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
 
     const handleShortEnter = useCallback(
       throttleByRaf((item: any) => {
-        if (item.text === shortcutSwitch) return
+        if (item.value().isSame(calendarValue, "date")) return
         setCalendarShortCuts(item.value())
       }),
       [calendarShortCuts],
     )
 
     const handleShortLeave = (item: any) => {
-      if (item.text === shortcutSwitch) return
+      if (item.value().isSame(calendarValue, "date")) return
       setCalendarShortCuts("clear")
     }
 
@@ -153,12 +145,8 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                 onMouseEnter={() => handleShortEnter(item)}
                 onMouseLeave={() => handleShortLeave(item)}
                 onClick={() => {
-                  if (shortcutSwitch !== item.text) {
-                    setShortcutSwitch(
-                      typeof item.text === "string" ? item.text : "",
-                    )
-                  }
-                  changeDate(item.value() as dayjs.Dayjs)
+                  setCalendarValue(item.value() as Dayjs)
+                  changeDate(item.value() as Dayjs)
                   onSelectShortcut?.(item)
                 }}
               >
@@ -200,30 +188,28 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                   mode={type}
                   panelTodayBtn={false}
                   css={triContentCommonCss}
-                  onChange={(date: dayjs.Dayjs) => {
+                  onChange={(date: Dayjs) => {
                     changeDate(date)
-                    setShortcutSwitch("")
                   }}
                   disabledDate={disabledDate}
-                  selectDayFromProps={calendarShortCuts}
-                  defaultPickerValue={dayjs(mergedDefaultValue)}
+                  defaultDate={calendarValue || dayjs(mergedDefaultValue)}
+                  defaultSelectedDate={calendarShortCuts}
                 />
-                <div css={horShortcuts}>
-                  {shortcuts && !shortcutsPlacementLeft ? (
+                {shortcuts && !shortcutsPlacementLeft ? (
+                  <div css={horShortcuts}>
                     <ShortcutsCompt />
-                  ) : showNowBtn ? (
-                    <Button
-                      colorScheme="gray"
-                      css={nowButtonCss}
-                      onClick={() => {
-                        clickNow()
-                      }}
-                    >
-                      Now
-                    </Button>
-                  ) : null}
-                  {shortcuts && !shortcutsPlacementLeft && <ShortcutsCompt />}
-                </div>
+                  </div>
+                ) : showNowBtn ? (
+                  <Button
+                    colorScheme="gray"
+                    css={nowButtonCss}
+                    onClick={() => {
+                      clickNow()
+                    }}
+                  >
+                    Now
+                  </Button>
+                ) : null}
               </div>
 
               {showTimeMerged && (

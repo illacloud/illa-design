@@ -37,18 +37,19 @@ export interface CalenderProps
   locale?: Record<string, any>
   headerType?: "button" | "select"
   _css?: SerializedStyles
+  defaultDate?: Dayjs
+  rangepicker?: boolean
+  rangeValueFirst?: Dayjs | undefined
+  rangeValueSecond?: Dayjs | undefined
+  rangeValueHover?: Dayjs | undefined
+  handleRangeVal?: (
+    date: Dayjs | undefined,
+    type: "first" | "second" | "hover",
+  ) => void
+  defaultSelectedDate?: Dayjs | "clear"
 
-  datepickerDay?: Dayjs
-  onChangeDatePickerDay?: (date: Dayjs) => void
-  usedByDatepicker?: boolean
-
-  rangeValueFirst?: number
-  rangeValueSecond?: number
-  rangeValueHover?: number
-  handleRangeVal?: (date: number, type: "first" | "second" | "hover") => void
-
-  selectDayFromProps?: Dayjs | Dayjs[] | "clear"
-  defaultPickerValue?: CalendarValue
+  // selectDayFromProps?: Dayjs | Dayjs[] | "clear"
+  // defaultPickerValue?: CalendarValue
 }
 
 export interface CalendarHeaderProps extends CalenderProps {
@@ -62,7 +63,7 @@ export interface CalendarHeaderProps extends CalenderProps {
 
 export interface CalendarBodyProps extends CalenderProps {
   currentDay: Dayjs
-  selectDay: number
+  selectDay?: Dayjs
   onClickDay: Function
   onToToday: Function
   monthListLocale: string[]
@@ -77,6 +78,6 @@ export interface CalendarDaysProps extends CalenderProps {
   componentMode: boolean
   componentYear?: number
   componentMonth: number
-  selectDay?: number
+  selectDay?: Dayjs
   onClickDay?: Function
 }

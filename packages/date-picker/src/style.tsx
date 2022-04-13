@@ -31,7 +31,7 @@ export const vertShortcuts = css`
 
 export const popupCss = css`
   & > div:first-of-type {
-    padding: 20px 0;
+    padding: 15px 0;
   }
 `
 
@@ -39,6 +39,8 @@ export const triContentCommonCss = css`
   margin: 0;
   border: none;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+  display: flex;
+  flex-direction: column;
 `
 export const rangeLeftContentCss = css`
   border-right: none;
@@ -98,6 +100,7 @@ export function applyShortContainerCss(
 
 export const rangeBodyCss = css`
   height: 336px;
+  display: flex;
 `
 
 export const rangeFooterCss = css``
