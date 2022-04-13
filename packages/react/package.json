@@ -91,6 +91,7 @@
     "@illa-design/table": "*",
     "@illa-design/anchor": "*",
     "@illa-design/collapse": "*",
-    "@illa-design/slider": "*"
+    "@illa-design/slider": "*",
+    "@illa-design/menu": "*"
   }
 }
