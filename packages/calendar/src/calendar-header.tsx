@@ -53,11 +53,11 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
     const { year, month } = time
     if (year) {
       setCurrentYear(year)
-      onSelectTime({ year: year })
+      onSelectTime({ year: year, month: currentMonth })
     }
     if (month) {
       setCurrentMonth(month)
-      onSelectTime({ month: month })
+      onSelectTime({ year: currentYear, month: month })
     }
   }
 

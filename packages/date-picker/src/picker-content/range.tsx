@@ -1,4 +1,11 @@
-import { forwardRef, useEffect, useState, cloneElement, useMemo } from "react"
+import {
+  forwardRef,
+  useEffect,
+  useState,
+  cloneElement,
+  useMemo,
+  useCallback,
+} from "react"
 import { CommonRangeProps } from "../interface"
 import { Calendar } from "../../../calendar/src/index"
 import dayjs, { Dayjs } from "dayjs"
@@ -20,6 +27,7 @@ import {
 import { initFormat } from "../utils"
 import { Button } from "@illa-design/button"
 import { TimePickerPopup } from "../../../time-picker/src/time-picker-popup"
+import { throttleByRaf } from "@illa-design/system"
 
 export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
   (props, ref) => {
@@ -44,7 +52,7 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       defaultPickerValue,
       format,
       defaultValue,
-      showTime = true,
+      showTime = false,
       timepickerProps,
       disabledTime,
       onSelectShortcut,
@@ -284,7 +292,7 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         panelTodayBtn={false}
                         onPanelChange={(date: Dayjs) => changeHeader(date)}
                         disabledDate={disabledDate}
-                        //
+                        // extra
                         defaultDate={leftCalendarDate}
                         rangepicker={true}
                         rangeValueFirst={rangeValueFirst}
@@ -303,7 +311,7 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         panelTodayBtn={false}
                         onPanelChange={(date: Dayjs) => changeHeader(date)}
                         disabledDate={disabledDate}
-                        //
+                        // extra
                         defaultDate={rightCalendarDate}
                         rangepicker={true}
                         rangeValueFirst={rangeValueFirst}
@@ -319,15 +327,17 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                     css={applyRangeFooterCss(!!showTime, !!shortcutsShowBottom)}
                   >
                     {shortcutsShowBottom && <ShortcutsCompt />}
-                    <div css={buttonBoxCss}>
-                      <Button
-                        variant={"text"}
-                        onClick={() => setShowTimePicker(!showTimePicker)}
-                      >
-                        choose {showTimePicker ? "date" : "time"}
-                      </Button>
-                      <Button onClick={() => showTimeConfirm()}>ok</Button>
-                    </div>
+                    {showTime && (
+                      <div css={buttonBoxCss}>
+                        <Button
+                          variant={"text"}
+                          onClick={() => setShowTimePicker(!showTimePicker)}
+                        >
+                          choose {showTimePicker ? "date" : "time"}
+                        </Button>
+                        <Button onClick={() => showTimeConfirm()}>ok</Button>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

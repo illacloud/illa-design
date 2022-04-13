@@ -104,18 +104,30 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
     )
 
     const isHover = (date: Dayjs) => {
-      if (!rangeValueFirst || !rangeValueHover) return
+      if (!rangeValueFirst) return
 
-      let curDate = dayjs(date).valueOf()
-      let compareBase = rangeValueSecond?.valueOf() || rangeValueHover.valueOf()
-      return (
-        (curDate <= rangeValueFirst.valueOf() &&
-          curDate >= compareBase &&
-          isCurrentMonth(date)) ||
-        (curDate >= rangeValueFirst.valueOf() &&
-          curDate <= compareBase &&
-          isCurrentMonth(date))
-      )
+      let curDate = date.valueOf()
+      let compareBase = rangeValueSecond || rangeValueHover
+      if (!compareBase) return
+      if (
+        (date.isSame(rangeValueFirst, "date") ||
+          date.isBefore(rangeValueFirst, "date")) &&
+        (date.isSame(compareBase, "date") ||
+          date.isAfter(compareBase, "date")) &&
+        isCurrentMonth(date)
+      ) {
+        return true
+      }
+      if (
+        (date.isSame(rangeValueFirst, "date") ||
+          date.isAfter(rangeValueFirst, "date")) &&
+        (date.isSame(compareBase, "date") ||
+          date.isBefore(compareBase, "date")) &&
+        isCurrentMonth(date)
+      ) {
+        return true
+      }
+      return false
     }
 
     const rangeSelectStyle = (date: Dayjs) => {
@@ -140,6 +152,15 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
         } else if (rangeValueHover?.isBefore(rangeValueFirst, "date")) {
           return applyRangeSelectCss("left")
         } else if ((rangeValueHover?.isSame(rangeValueFirst), "date")) {
+          return applyRangeSelectCss("mid")
+        }
+      }
+      if (date.isSame(rangeValueSecond, "date")) {
+        if (rangeValueSecond?.isBefore("rangeValueFirst", "date")) {
+          return applyRangeSelectCss("left")
+        } else if (rangeValueSecond?.isAfter(rangeValueFirst, "date")) {
+          return applyRangeSelectCss("right")
+        } else if (rangeValueSecond?.isSame(rangeValueFirst, "date")) {
           return applyRangeSelectCss("mid")
         }
       }

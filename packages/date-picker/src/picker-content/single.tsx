@@ -118,11 +118,13 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       }),
       [calendarShortCuts],
     )
-
-    const handleShortLeave = (item: any) => {
-      if (item.value().isSame(calendarValue, "date")) return
-      setCalendarShortCuts("clear")
-    }
+    const handleShortLeave = useCallback(
+      throttleByRaf((item: any) => {
+        if (item.value().isSame(calendarValue, "date")) return
+        setCalendarShortCuts("clear")
+      }),
+      [calendarShortCuts],
+    )
 
     const onConfirmValue = (time: Dayjs) => {
       let value = finalValue(calendarValue, time)
