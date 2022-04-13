@@ -60,9 +60,6 @@ const Template: Story<NoticeProps> = (args) => {
             Message.info({
               ...args,
               style: { width: 500 },
-              onClose: () => {
-                console.log("closing")
-              },
             })
           }}
         >

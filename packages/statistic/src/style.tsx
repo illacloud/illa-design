@@ -1,32 +1,28 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export function applyStatistic() {
-  return css`
-    display: inline-block;
-    line-height: 1.33;
-  `
-}
+export const applyStatistic = css`
+  display: inline-block;
+  line-height: 1.33;
+`
 
-export function applyStatisticTitle() {
-  return css`
-    margin-bottom: 4px;
-    font-family: SFProDisplay;
-    font-size: 14px;
-    color: ${globalColor(`--${illaPrefix}-gray-04`)};
-  `
-}
+export const applyStatisticTitle = css`
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+`
 
-export function applyStatisticContent() {
-  return css`
-    font-family: HelveticaNeue;
-    font-size: 24px;
-    font-weight: 500;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-  `
-}
+export const applyStatisticContent = css`
+  font-family: HelveticaNeue;
+  font-size: 24px;
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+`
 
-export function applyStatisticDecorator(isPrefix: boolean, isText: boolean) {
+export function applyStatisticDecorator(
+  isPrefix: boolean,
+  isText: boolean,
+): SerializedStyles {
   const spacing = isText ? 4 : 8
   const margin = isPrefix
     ? `margin-right:${spacing}px;`
@@ -40,9 +36,7 @@ export function applyStatisticDecorator(isPrefix: boolean, isText: boolean) {
   `
 }
 
-export function applyStatisticValue() {
-  return css`
-    display: inline-block;
-    direction: ltr;
-  `
-}
+export const applyStatisticValue = css`
+  display: inline-block;
+  direction: ltr;
+`

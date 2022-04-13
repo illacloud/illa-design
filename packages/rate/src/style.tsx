@@ -1,5 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { css, keyframes } from "@emotion/react"
+import { css, keyframes, SerializedStyles } from "@emotion/react"
 
 export const rateScale = keyframes`
   0% {
@@ -14,7 +14,7 @@ export const rateScale = keyframes`
     transform: scale(1);
   }
 `
-export function applyRate(disabled: boolean) {
+export function applyRate(disabled: boolean): SerializedStyles {
   const cursor = disabled ? `cursor: not-allowed;` : ""
   return css`
     display: inline-block;
@@ -23,21 +23,19 @@ export function applyRate(disabled: boolean) {
   `
 }
 
-export function applyRateInner() {
-  return css`
-    display: flex;
-    align-items: center;
-    font-size: 24px;
-    line-height: 1;
-    min-height: 32px;
-  `
-}
+export const applyRateInner = css`
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  line-height: 1;
+  min-height: 32px;
+`
 
 export function applyRateCharacter(
   disabled: boolean,
   readonly: boolean,
   animate?: boolean,
-) {
+): SerializedStyles {
   const cursor = disabled || readonly ? `` : `cursor: pointer`
   const animation = animate
     ? css`
@@ -59,7 +57,10 @@ export function applyRateCharacter(
   `
 }
 
-export function applyRateCharacterLeft(isHalf?: boolean, isStar?: boolean) {
+export function applyRateCharacterLeft(
+  isHalf?: boolean,
+  isStar?: boolean,
+): SerializedStyles {
   const color = isStar
     ? `${globalColor(`--${illaPrefix}-yellow-04`)}`
     : `${globalColor(`--${illaPrefix}-red-03`)}`
@@ -79,7 +80,10 @@ export function applyRateCharacterLeft(isHalf?: boolean, isStar?: boolean) {
   `
 }
 
-export function applyRateCharacterRight(isFull?: boolean, isStar?: boolean) {
+export function applyRateCharacterRight(
+  isFull?: boolean,
+  isStar?: boolean,
+): SerializedStyles {
   const color = isStar
     ? `${globalColor(`--${illaPrefix}-yellow-04`)}`
     : `${globalColor(`--${illaPrefix}-red-03`)}`

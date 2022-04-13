@@ -68,7 +68,10 @@ export function applyModal(
   `
 }
 
-export function applyModalHeader(isSimple?: boolean): SerializedStyles {
+export function applyModalHeader(
+  isSimple?: boolean,
+  closable?: boolean,
+): SerializedStyles {
   const simpleCss = isSimple
     ? css`
         padding-top: 24px;
@@ -79,11 +82,11 @@ export function applyModalHeader(isSimple?: boolean): SerializedStyles {
     : ""
   return css`
     padding: 12px 16px;
+    ${closable ? "padding-right:40px" : ""};
     width: 100%;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    height: 48px;
     border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
     ${simpleCss}
   `
