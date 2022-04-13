@@ -12,7 +12,14 @@ export type TableSize = "small" | "medium" | "large"
 
 export type TableLayout = "auto" | "fixed"
 
-export type TableAlign = "left" | "center" | "right" | "justify" | "char"
+export type TableAlign =
+  | "left"
+  | "center"
+  | "right"
+  | "start"
+  | "end"
+  | "flex-start"
+  | "flex-end"
 
 export type TableFixed = "left" | "right"
 
@@ -28,7 +35,6 @@ export interface TableProps<D extends TableData>
   showFooter?: boolean
   disableSortBy?: boolean
   disableFilters?: boolean
-  disableResizing?: boolean
   disableRowSelect?: boolean
   onRowSelectChange?: (rows: Array<Row<D>>) => void
   _css?: SerializedStyles
@@ -60,7 +66,7 @@ export interface TrProps extends HTMLAttributes<HTMLTableRowElement> {
 }
 
 export interface TdProps
-  extends TdHTMLAttributes<HTMLTableDataCellElement>,
+  extends Omit<TdHTMLAttributes<HTMLTableDataCellElement>, "align">,
     TableContextProps {
   _css?: SerializedStyles
 }
@@ -74,7 +80,7 @@ export interface THeadProps extends HTMLAttributes<HTMLTableSectionElement> {
 }
 
 export interface ThProps
-  extends ThHTMLAttributes<HTMLTableHeaderCellElement>,
+  extends Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, "align">,
     TableContextProps,
     ThContextProps {
   _css?: SerializedStyles

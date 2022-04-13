@@ -293,6 +293,8 @@ exports[`Card renders with different hoverable 1`] = `
   line-height: 1.57;
   background-color: #fff;
   border-radius: 2px;
+  -webkit-transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out;
   border: solid 1px #ebebeb;
 }
 

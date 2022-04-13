@@ -12,6 +12,7 @@ import {
   useEffect,
   useRef,
   useState,
+  MouseEvent,
 } from "react"
 import { TriggerProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
@@ -36,9 +37,10 @@ import {
   getFinalPosition,
 } from "./adjust-tips-location"
 import { Popup } from "./popup"
-import useClickAway from "react-use/lib/useClickAway"
 import useMeasure from "react-use/lib/useMeasure"
 import { isFunction } from "@illa-design/system"
+import useClickAway from "react-use/lib/useClickAway"
+import useMouse from "react-use/lib/useMouse"
 
 type ReactRef<T> = Ref<T> | RefObject<T> | MutableRefObject<T>
 
@@ -100,9 +102,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
 
-  const tipsRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
-
-  const childrenRef = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
+  const childrenRef = useRef<HTMLElement>(null) as MutableRefObject<HTMLElement>
 
   const [adjustResult, setAdjustResult] = useState<AdjustResult>()
   const finalPosition = getFinalPosition(
@@ -118,10 +118,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
     if (timeOutHandlerId != undefined) {
       window.clearTimeout(timeOutHandlerId)
     }
-    timeOutHandlerId = window.setTimeout(() => {
+    if (timeout <= 0) {
       todo()
-      timeOutHandlerId = undefined
-    }, timeout)
+    } else {
+      timeOutHandlerId = window.setTimeout(() => {
+        todo()
+        timeOutHandlerId = undefined
+      }, timeout)
+    }
   }
 
   let tipsNode: ReactNode
@@ -280,25 +284,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }, closeDelay)
   }
 
+  const [tipsMeasureRef, tipsMeasureInfo] = useMeasure<HTMLDivElement>()
+
   tipsNode = (
     <motion.div
-      ref={tipsRef}
+      ref={tipsMeasureRef}
       css={applyMotionDiv()}
       variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
       animate="animate"
       exit="exit"
-      onClick={() => {
-        if (!disabled && trigger == "click" && clickOutsideToClose) {
-          showTips()
-        }
-      }}
-      onMouseEnter={() => {
+      onMouseEnter={(event) => {
         if (!disabled && trigger == "hover") {
           showTips()
         }
       }}
-      onMouseLeave={() => {
+      onMouseLeave={(event) => {
         if (!disabled && trigger == "hover") {
           hideTips()
         }
@@ -307,12 +308,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
       {centerNode}
     </motion.div>
   )
-
-  useClickAway(childrenRef, () => {
-    if (!disabled && clickOutsideToClose) {
-      hideTips()
-    }
-  })
 
   useEffect(() => {
     let isMount = true
@@ -338,6 +333,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
     maxWidth,
     autoAlignPopupWidth,
   ])
+
+  const protalRef = useRef<HTMLDivElement>(null)
+  const { elX, elY } = useMouse(protalRef)
+
+  useClickAway(childrenRef, () => {
+    if (!disabled && clickOutsideToClose) {
+      if (
+        elX < 0 ||
+        elX > tipsMeasureInfo.width ||
+        elY < 0 ||
+        elY > tipsMeasureInfo.height
+      ) {
+        hideTips()
+      }
+    }
+  })
 
   const newProps = {
     onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
@@ -388,6 +399,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     <AnimatePresence>
       {!disabled && tipVisible && childrenRef.current != null ? (
         <Popup
+          ref={protalRef}
           top={`${adjustResult?.transY}px`}
           left={`${adjustResult?.transX}px`}
         >

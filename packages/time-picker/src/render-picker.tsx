@@ -101,9 +101,10 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     const rangeInputPlaceholder = isArray(placeholder)
       ? placeholder
       : (locale["placeholders"] as string[])
-    const inputPlaceHolder = !isArray(placeholder)
+    const inputPlaceHolder = placeholder && !isArray(placeholder)
       ? placeholder
       : (locale["placeholder"] as string)
+    console.log(inputPlaceHolder, rangeInputPlaceholder)
 
     function isValidTime(time?: string): boolean {
       return (
@@ -142,14 +143,13 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         isArray(newValue) &&
         isDayjsArrayChange(currentValue as Dayjs[], newValue)
       ) {
-        onChange &&
-          onChange(
-            newValue.map((t) => t.format(format)),
-            newValue,
-          )
+        onChange?.(
+          newValue.map((t) => t.format(format)),
+          newValue,
+        )
       }
       if (isDayjs(newValue) && isDayjsChange(currentValue as Dayjs, newValue)) {
-        onChange && onChange(newValue.format(format), newValue)
+        onChange?.(newValue.format(format), newValue)
       }
 
       if (!disableConfirm) {
@@ -190,7 +190,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       onClear: (e?: any) => {
         e?.stopPropagation()
         onConfirmValue(undefined)
-        onChange && onChange(undefined, undefined)
+        onChange?.(undefined, undefined)
         onClear?.()
       },
       onChange: (inputValue?: string | string[]) => {
@@ -235,6 +235,8 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
 
     return (
       <Trigger
+        openDelay={0}
+        closeDelay={0}
         trigger="click"
         colorScheme="white"
         closeOnClick={false}
