@@ -25,7 +25,7 @@ export function applyMenuCss(
   return css`
     position: relative;
     transition: width 0.2s ease-in-out;
-    background-color: ${bgColor};
+    background-color: ${mergedBgColor};
     ${isCollapse && collapseCss};
     ${themeCss};
   `

@@ -2,6 +2,7 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 import { Theme } from "../interface"
+import { applyPopButtonCss } from "../style"
 
 export function applySubMenuIconCss(
   isOpen?: boolean,
@@ -65,19 +66,6 @@ export function applySubMenuHeaderCss(
     }
   `
 
-  const popButtonCss = css`
-    width: 40px;
-    height: 40px;
-    box-sizing: border-box;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px ${globalColor(`--${illaPrefix}-gray-09`)};
-    padding: 0 12px;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-    background: ${theme === "dark" ? globalColor(`--${illaPrefix}-gray-02`) : "none"}
-    `
-
   // add more padding to padding-right to avoid title overlap with icon
   const padding = isCollapse ? `0 16px` : `0 32px 0 24px`;
 
@@ -91,7 +79,7 @@ export function applySubMenuHeaderCss(
     padding: ${padding};
     line-height: 40px;
     ${isSelected && selectedCss};
-    ${isPopButton && popButtonCss}
+    ${isPopButton && applyPopButtonCss(theme)}
     ${hoverCss};
   `
 }
