@@ -116,7 +116,7 @@ export function applyNodeTextContainerCss(
     : css`
         &:hover {
           background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-          cursor: default;
+          cursor: not-allowed;
         }
       `
   return css`

@@ -1,7 +1,11 @@
 import React, { HTMLAttributes, ReactNode } from "react"
-import { NodeInstance, NodeProps } from "@illa-design/tree-common"
-
-export type TreeSize = "small" | "medium" | "large"
+import {
+  AllowDrop,
+  NodeInstance,
+  NodeProps,
+  TreeDataType,
+  TreeSize,
+} from "@illa-design/tree-common"
 
 export interface TreeProps
   extends Omit<
@@ -83,12 +87,3 @@ export interface TreeProps
   // other
   placeholder?: string
 }
-
-export interface TreeDataType extends Omit<NodeProps, "children"> {
-  children?: TreeDataType[]
-}
-
-export type AllowDrop = (options: {
-  node: NodeInstance
-  position: number
-}) => boolean

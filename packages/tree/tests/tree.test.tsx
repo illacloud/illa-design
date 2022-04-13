@@ -1,5 +1,5 @@
 import { Tree } from "../src"
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { act } from "react-dom/test-utils"
 import { globalColor, illaPrefix } from "@illa-design/theme"

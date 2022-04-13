@@ -27,7 +27,7 @@ import { TreeProps } from "./interface"
 export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
   const {
     // node data
-    treeData: defaultTreeData = [],
+    treeData,
     children,
     // loadMore
     loadMore,
@@ -81,19 +81,20 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     new Set<string>([]),
   )
 
-  const [treeData, setTreeData] = useState<NodeProps[]>([])
+  const [_treeData, setTreeData] = useState<NodeProps[]>([])
   const [loadMoreKeys, setLoadMoreKeys] = useState(new Set<string>())
 
   const nodeCache = useRef<{ [key: string]: NodeInstance }>({})
-  const _defaultNodesList: TreeDataType[] = useMemo(() => {
-    return defaultTreeData.concat(getNodes(children as ReactElement))
-  }, [defaultTreeData])
+  const [_defaultNodesList, treeNodeArr] = useMemo(() => {
+    if (!treeData) return [[], []]
+    const nodeList = [...treeData].concat(getNodes(children as ReactElement))
+    return [nodeList, loopNodeWithState(nodeList)]
+  }, [treeData])
 
   useEffect(() => {
-    let data = loopNodeWithState(_defaultNodesList)
     let _expandedKey
     if (autoExpandParent && !defaultExpandedKeys) {
-      _expandedKey = data
+      _expandedKey = treeNodeArr
         .filter((item) => {
           return !item.isLeaf
         })
@@ -107,15 +108,15 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     let halfSet: Set<string> = new Set<string>([])
     if (!checkStrictly) {
       defaultCheckedKeys?.forEach((target) => {
-        keys = checkChildrenChecked(target, data, keys) ?? keys
+        keys = checkChildrenChecked(target, treeNodeArr, keys) ?? keys
       })
-      halfSet = checkParentChecked(keys, data)
+      halfSet = checkParentChecked(keys, treeNodeArr)
       setHalfCheckKeysState(halfSet)
     }
     setCheckKeysState(keys)
     if (!multiple && defaultSelectedKeys && defaultSelectedKeys.length > 0)
       setSelectedKeys([defaultSelectedKeys[0]])
-  }, [])
+  }, [_defaultNodesList])
 
   useEffect(() => {
     const newValue = loopNodeWithState(
@@ -133,19 +134,18 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     let halfSet: Set<string> = new Set<string>([])
     if (!checkStrictly) {
       defaultCheckedKeys?.forEach((target) => {
-        keys = checkChildrenChecked(target, treeData, keys) ?? keys
+        keys = checkChildrenChecked(target, _treeData, keys) ?? keys
       })
-      halfSet = checkParentChecked(keys, treeData)
+      halfSet = checkParentChecked(keys, _treeData)
     }
     setHalfCheckKeysState(halfSet)
     setCheckKeysState(keys)
   }, [checkStrictly, defaultCheckedKeys])
 
   useMemo(() => {
-    let data = loopNodeWithState(_defaultNodesList)
     let _expandedKey
     if (autoExpandParent && !defaultExpandedKeys) {
-      _expandedKey = data
+      _expandedKey = treeNodeArr
         .filter((item) => {
           return !item.isLeaf
         })
@@ -220,7 +220,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
       }
       onDrop && onDrop(_info)
     },
-    [onDrop],
+    [onDrop, nodeCache.current, dragState],
   )
 
   const handleSelect = useCallback(
@@ -270,8 +270,8 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
       let keys = new Set(updateKeys(Array.from(_checkedKeys), targetKey, true))
       let halfSet: Set<string> = new Set<string>([])
       if (!checkStrictly) {
-        keys = checkChildrenChecked(targetKey, treeData, keys) ?? keys
-        halfSet = checkParentChecked(keys, treeData)
+        keys = checkChildrenChecked(targetKey, _treeData, keys) ?? keys
+        halfSet = checkParentChecked(keys, _treeData)
         setHalfCheckKeysState(halfSet)
       }
       setCheckKeysState(keys)
@@ -289,7 +289,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
       }
       onCheck && onCheck(Array.from(keys), extra)
     },
-    [checkKeysState, nodeCache.current, treeData],
+    [checkKeysState, nodeCache.current, _treeData],
   )
   const handleLoadMore = async (key: string) => {
     loadMoreKeys.add(key)
@@ -304,7 +304,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     <div ref={ref} {...rest}>
       <TreeList
         handleLoadMore={loadMore && handleLoadMore}
-        listData={treeData}
+        listData={_treeData}
         blockNode={blockNode}
         size={size}
         renderTitle={renderTitle}

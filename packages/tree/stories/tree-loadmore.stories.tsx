@@ -1,10 +1,13 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Tree, TreeProps } from "../src"
+import { NodeInstance, Tree, TreeProps } from "../src"
+import { useState } from "react"
+import { TreeDataType } from "../dist/types"
+import { infoAllow404 } from "@changesets/cli/dist/declarations/src/commands/publish/npm-utils"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "DATA DISPLAY/Tree",
+  title: "DATA DISPLAY/Tree/loadmore",
   component: Tree,
   argTypes: {
     defaultCheckedKeys: {
@@ -95,7 +98,24 @@ const Template: Story<TreeProps> = (args) => {
     },
   ]
 
-  return <Tree treeData={data} />
+  const [treeData, setTreeData] = useState(data)
+
+  const loadMore = (treeNode: NodeInstance) => {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        if (treeNode?.props?.dataRef) {
+          treeNode!.props!.dataRef!.children = [
+            { title: `leaf`, key: `${treeNode.props._key}-1`, isLeaf: true },
+          ]
+        }
+        setTreeData([...treeData])
+
+        resolve()
+      }, 1000)
+    })
+  }
+
+  return <Tree blockNode loadMore={loadMore} treeData={treeData} />
 }
 
 export const Basic = Template.bind({})
