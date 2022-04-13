@@ -57,12 +57,6 @@ const Template: Story<NoticeProps> = (args) => {
             Notification.info({
               ...args,
               style: { width: 500 },
-              afterClose: () => {
-                console.log("complete animate")
-              },
-              onClose: () => {
-                console.log("closing")
-              },
             })
           }}
         >

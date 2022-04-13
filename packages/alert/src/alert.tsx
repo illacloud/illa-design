@@ -82,7 +82,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     <AnimatePresence>
       {visible && (
         <motion.div
-          css={applyAlertContainer(type, !!content, !!banner)}
+          css={applyAlertContainer(type, banner)}
           style={style}
           className={className}
           variants={variants}
@@ -96,7 +96,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
             }
           }}
         >
-          <div css={applyAlert(!!content)} {...restProps}>
+          <div css={applyAlert(!!content, showIcon, closable)} {...restProps}>
             {showIcon && (
               <div css={applyAlertIcon(type, !!content)}>{renderIcon}</div>
             )}
@@ -106,9 +106,12 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
             </div>
             {action && <div css={applyAlertAction}>{action}</div>}
             {closable && (
-              <button css={applyAlertCloseBtn(type)} onClick={onHandleClose}>
+              <div
+                css={applyAlertCloseBtn(type, !!content)}
+                onClick={onHandleClose}
+              >
                 {closeElement || <CloseIcon />}
-              </button>
+              </div>
             )}
           </div>
         </motion.div>

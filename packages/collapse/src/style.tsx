@@ -3,7 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { CollapsePosition } from "./interface"
 import { Variants } from "framer-motion"
 
-export function applyCollapse(bordered?: boolean) {
+export function applyCollapse(bordered?: boolean): SerializedStyles {
   const borderCSS = bordered
     ? `border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)}`
     : ""

@@ -90,6 +90,7 @@ const Template: Story<CardProps> = (args) => {
                   style={{ width: "100%" }}
                   title="ILLA Card"
                   extra={<Link>More</Link>}
+                  bordered={false}
                 >
                   {new Array(2).fill(null).map((_, index) => (
                     <p style={{ margin: 0 }} key={index}>
