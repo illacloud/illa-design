@@ -23,7 +23,7 @@ export interface SliderProps
   onChange?: (val: number | number[]) => void
 }
 
-export interface TicksProps {
+export interface SliderTicksProps {
   step: number
   min: number
   max: number
@@ -33,13 +33,13 @@ export interface TicksProps {
   disabled?: boolean
 }
 
-export type MarkType = {
+export type SliderMarkType = {
   key: number | string
   content: string
 }
 
 export interface MarkProps {
-  data: MarkType[]
+  data: SliderMarkType[]
   min: number
   max: number
   vertical?: boolean

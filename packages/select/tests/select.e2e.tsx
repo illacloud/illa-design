@@ -4,14 +4,14 @@ import "@testing-library/cypress"
 
 it("Select renders correctly", () => {
   mount(<Select placeholder={"test select"} value={"test"} />)
-  cy.findByText("test").click()
+  cy.findByText("test").parent().click()
   cy.findByText("No data").should("exist")
   unmount()
 })
 
 it("Select renders correctly", () => {
   mount(<Select error value={"test"} />)
-  cy.findByText("test").click()
+  cy.findByText("test").parent().click()
   cy.findByText("No data").should("exist")
   unmount()
 })
@@ -25,7 +25,7 @@ it("Select renders with text", () => {
       onVisibleChange={change}
     />,
   )
-  cy.findByPlaceholderText("test").click()
+  cy.findByPlaceholderText("test").parent().click()
   cy.findByText("1").click()
   cy.findByText("1").should("exist")
   unmount()
@@ -40,7 +40,7 @@ it("Select renders with multiple", async () => {
       onVisibleChange={change}
     />,
   )
-  cy.findByPlaceholderText("test").click()
+  cy.findByPlaceholderText("test").parent().click()
   cy.findByText("1").click()
   cy.findByText("2").click()
   cy.findAllByText("1").should("exist")
