@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { TagColorScheme, TagVariant } from "./interface"
+import { TagColorScheme, TagVariant, TagSize } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
@@ -62,24 +62,62 @@ export const closeIcon = css`
   align-items: center;
   padding: 3px;
   border-radius: 50%;
+
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-gray-07`)};
     cursor: pointer;
   }
 `
-export function applyCloseIcon(color: TagColorScheme): SerializedStyles {
-  return css`
-  font-size: 7px;
-  margin-left: 4px;
-  display: inline-flex;
-  align-items: center;
-  padding: 3px;
-  border-radius: 50%;
-  &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-${color}-07`)};
-    cursor: pointer;
+
+export function applyCloseIcon(
+  color: TagColorScheme,
+  size: TagSize,
+  variant: TagVariant,
+): SerializedStyles {
+  let sizeCss: SerializedStyles
+  let variantCss: SerializedStyles = css()
+  if (size === "small") {
+    sizeCss = css({ padding: "2px" })
+  } else {
+    sizeCss = css({ padding: "4px" })
   }
-`
+  if (variant === "fill") {
+    variantCss = css`
+      &:hover {
+        background-color: ${globalColor(`--${illaPrefix}-white-07`)};
+      }
+    `
+  } else if (variant === "outline") {
+    if (color === "gray") {
+      variantCss = css`
+        &:hover {
+          background-color: ${globalColor(`--${illaPrefix}-${color}-08`)};
+        }
+      `
+    } else {
+      variantCss = css`
+        &:hover {
+          background-color: ${globalColor(`--${illaPrefix}-${color}-06`)};
+        }
+      `
+    }
+  }
+
+  return css`
+    margin-left: 4px;
+    display: inline-flex;
+    align-items: center;
+    padding: 3px;
+    border-radius: 50%;
+
+    &:hover {
+      background-color: ${globalColor(`--${illaPrefix}-${color}-07`)};
+      cursor: pointer;
+    }
+
+    ${sizeCss}
+    ${variantCss}
+  `
 }
 
 export const colors: TagColorScheme[] = [
@@ -99,13 +137,13 @@ export const colors: TagColorScheme[] = [
 export function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {
   if (color == "gray") {
     return css`
-      border-radius: 1px;
+      border-radius: 2px;
       border: solid 1px ${globalColor(`--${illaPrefix}-${color}-08`)};
       color: ${globalColor(`--${illaPrefix}-${color}-02`)};
     `
   } else {
     return css`
-      border-radius: 1px;
+      border-radius: 2px;
       border: solid 1px ${globalColor(`--${illaPrefix}-${color}-01`)};
       color: ${globalColor(`--${illaPrefix}-${color}-01`)};
     `
@@ -116,20 +154,20 @@ export function tagFillPrepare(color: TagColorScheme): SerializedStyles {
   return css`
     background-color: ${globalColor(`--${illaPrefix}-${color}-01`)};
     color: ${globalColor(`--${illaPrefix}-white-01`)};
-    border-radius: 1px;
+    border-radius: 2px;
   `
 }
 
 export function tagLightPrepare(color: TagColorScheme): SerializedStyles {
   if (color == "gray") {
     return css`
-      border-radius: 1px;
+      border-radius: 2px;
       background-color: ${globalColor(`--${illaPrefix}-${color}-08`)};
       color: ${globalColor(`--${illaPrefix}-${color}-02`)};
     `
   } else {
     return css`
-      border-radius: 1px;
+      border-radius: 2px;
       background-color: ${globalColor(`--${illaPrefix}-${color}-06`)};
       color: ${globalColor(`--${illaPrefix}-${color}-01`)};
     `
@@ -140,7 +178,7 @@ export function tagFillNormal(
   color: Extract<TagColorScheme, string>,
 ): SerializedStyles {
   return css`
-    border-radius: 1px;
+    border-radius: 2px;
     color: ${globalColor(`--${illaPrefix}-white-01`)};
     background-color: ${color};
   `
@@ -150,7 +188,7 @@ export function tagOutlineNormal(
   color: Extract<TagColorScheme, string>,
 ): SerializedStyles {
   return css`
-    border-radius: 1px;
+    border-radius: 2px;
     color: ${color};
     border: solid 1px ${color};
   `
