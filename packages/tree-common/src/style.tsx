@@ -106,6 +106,7 @@ export function applyNodeTextContainerCss(
   selected?: boolean,
   blockNode?: boolean,
 ) {
+  const fontSize = size === "small" ? 12 : 14
   const hoverCss = !disabled
     ? css`
         &:hover {
@@ -120,7 +121,7 @@ export function applyNodeTextContainerCss(
         }
       `
   return css`
-    size: 14px;
+    font-size: ${fontSize}px;
     flex-grow: ${blockNode ? 1 : 0};
     height: 100%;
     display: inline-flex;
