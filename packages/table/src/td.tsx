@@ -17,6 +17,8 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
       striped,
       align,
       children,
+      showFooter,
+      showHeader,
       _css,
       ...otherProps
     } = props
