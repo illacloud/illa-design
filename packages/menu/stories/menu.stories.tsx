@@ -121,14 +121,14 @@ export const VerticalMenu = (args: MenuProps) => {
           <Item key="3_1_1" title={"Menu 4"} />
         </ItemGroup>
       </SubMenu>
-    </Menu >
+    </Menu>
   )
 }
 VerticalMenu.args = {
   defaultOpenKeys: ["0", "1", "2"],
   triggerProps: {
     trigger: "click",
-  }
+  },
 }
 
 export const PopButton = (args: MenuProps) => {
@@ -194,7 +194,7 @@ export const PopButton = (args: MenuProps) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          cursor: "pointer"
+          cursor: "pointer",
         }}
       >
         {visible ? <SuccessIcon /> : <CloseIcon />}

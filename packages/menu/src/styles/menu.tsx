@@ -12,14 +12,17 @@ export function applyMenuCss(
     width: 48px;
   `
 
-  const bgColor = theme === "light" ? globalColor(`--${illaPrefix}-white-01`) : globalColor(`--${illaPrefix}-gray-02`);
-  const mergedBgColor = isPopButton ? "none" : bgColor;
+  const bgColor =
+    theme === "light"
+      ? globalColor(`--${illaPrefix}-white-01`)
+      : globalColor(`--${illaPrefix}-gray-02`)
+  const mergedBgColor = isPopButton ? "none" : bgColor
 
   let themeCss = css``
   if (theme === "dark") {
     themeCss = css`
       color: ${globalColor(`--${illaPrefix}-white-02`)};
-      `
+    `
   }
 
   return css`

@@ -7,9 +7,7 @@ export default {
 } as Meta
 
 const Template: Story<PageHeaderProps> = (args) => {
-  return (
-      <PageHeader {...args}  />
-  )
+  return <PageHeader {...args} />
 }
 
 export const Basic = Template.bind({})

@@ -20,7 +20,7 @@ export function applyItemCss(
   isSelected?: boolean,
   isPopButton?: boolean,
   isCollapse?: boolean,
-  theme: Theme = "light"
+  theme: Theme = "light",
 ): SerializedStyles {
   const horizontalCss = css`
     display: inline-block;
@@ -51,8 +51,8 @@ export function applyItemCss(
 
   const hoverCss = css`
     &:hover {
-    cursor: pointer;
-    background-color: ${themeColor[theme].hoverBg};
+      cursor: pointer;
+      background-color: ${themeColor[theme].hoverBg};
     }
   `
 
@@ -69,14 +69,14 @@ export function applyItemCss(
   const horizontalSelectedCss = css`
     background: none;
     &:after {
-    content: "";
-    display: block;
-    height: 2px;
-    width: 100 %;
-    bottom: 0;
-    left: 0;
-    background-color: ${themeColor[theme].horizontalSelectedBg};
-    position: absolute;
+      content: "";
+      display: block;
+      height: 2px;
+      width: 100 %;
+      bottom: 0;
+      left: 0;
+      background-color: ${themeColor[theme].horizontalSelectedBg};
+      position: absolute;
     }
   `
 

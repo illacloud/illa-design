@@ -97,7 +97,7 @@ it("Menu render with variant inline", () => {
   mount(<TestMenuInline />)
 
   cy.findByTestId("submenu-item-1").should("not.be.visible")
-  cy.get(`[data-testid='submenu-1']`).click();
+  cy.get(`[data-testid='submenu-1']`).click()
   cy.findByTestId("submenu-item-1").should("be.visible")
 
   unmount()
@@ -107,7 +107,7 @@ it("Menu render with variant pop", () => {
   mount(<TestMenuInline variant={"pop"} style={{ width: 150 }} />)
 
   cy.get(`[data-testid='submenu-item-1']`).should("not.exist")
-  cy.get(`[data-testid='submenu-1']`).trigger("mouseover");
+  cy.get(`[data-testid='submenu-1']`).trigger("mouseover")
   cy.get(`[data-testid='submenu-item-1']`).should("be.visible")
 
   unmount()

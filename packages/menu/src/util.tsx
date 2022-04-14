@@ -15,7 +15,10 @@ const flatMenuGroup = (children: ReactElement): ReactElement[] => {
   let validMenuItems: ReactElement[] = []
 
   React.Children.forEach(children, (item) => {
-    const menuType = item && item.type && (item.type as unknown as { menuType: string }).menuType
+    const menuType =
+      item &&
+      item.type &&
+      (item.type as unknown as { menuType: string }).menuType
     if (menuType === "MenuItem" || menuType === "SubMenu") {
       validMenuItems.push(item)
     } else if (menuType === "MenuGroup") {
@@ -53,11 +56,11 @@ export const processChildren = (
     return isHTMLElement
       ? item
       : React.cloneElement(item, {
-        ...props,
-        // Properties of the component itself have higher priority
-        ...item.props,
-        _key: item.key || `$menu-${index}`,
-      })
+          ...props,
+          // Properties of the component itself have higher priority
+          ...item.props,
+          _key: item.key || `$menu-${index}`,
+        })
   })
 }
 
