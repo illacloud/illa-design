@@ -1,7 +1,5 @@
 import { Meta, Story } from "@storybook/react"
 import { PageHeader, PageHeaderProps } from "../src"
-import { Button } from "@illa-design/button"
-import { Tag } from "@illa-design/tag"
 
 export default {
   title: "NAVIGATION/PageHeader",
@@ -16,9 +14,6 @@ const Template: Story<PageHeaderProps> = (args) => {
       subTitle={
         <>
           This is a description
-          <Tag color="red" size="small" style={{ marginLeft: 8 }}>
-            Default
-          </Tag>
         </>
       }
       backIcon
@@ -40,8 +35,7 @@ const Template: Story<PageHeaderProps> = (args) => {
       }}
       extra={
         <div>
-          <Button style={{ marginRight: 12 }}>Cancel</Button>
-          <Button>Save</Button>
+          save
         </div>
       }
       {...args}
