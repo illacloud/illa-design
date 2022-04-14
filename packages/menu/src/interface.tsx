@@ -38,7 +38,7 @@ export interface IndentProps {
 
 export interface ItemProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   key: string
-  _key?: string,
+  _key?: string
   _css?: SerializedStyles
   title?: string | ReactNode
   disabled?: boolean
@@ -55,7 +55,7 @@ export interface ItemGroupProps {
 
 export interface SubMenuProps {
   key: string
-  _key?: string,
+  _key?: string
   _css?: SerializedStyles
   title?: string | ReactNode
   level?: number
