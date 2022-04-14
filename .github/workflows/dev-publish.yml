@@ -40,7 +40,8 @@ jobs:
       - name: Build
         run: |
           yarn install --frozen-lockfile
-          yarn build-all-components    
+          yarn build-all-components
+          yarn build-storybook
 
   build:
     needs:
@@ -79,10 +80,12 @@ jobs:
           yarn cypress info
           yarn test
 
-      - name: Publish to Chromatic
-        uses: chromaui/action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          exitZeroOnChanges: true
-          exitOnceUploaded: true
+      - name: Publish storybook to server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SB_SERVER_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.SB_SERVER_HOST }}
+          REMOTE_USER: ${{ secrets.SB_SERVER_USER }}
+          REMOTE_PORT: ${{ secrets.SB_SERVER_PORT }}
+          SOURCE: "storybook-static/"
+          TARGET: ${{ secrets.SB_SERVER_TARGET }}/${{ github.ref_name }}
