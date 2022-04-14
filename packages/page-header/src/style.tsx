@@ -1,7 +1,5 @@
-import { css, SerializedStyles } from "@emotion/react"
+import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-
-export function applyPageHeader() {}
 
 export const headerCss = css`
   display: flex;
@@ -33,4 +31,3 @@ export const subTitleCss = css`
   color: ${globalColor(`--${illaPrefix}-gray-04`)};
   font-size: 14px;
 `
-export const extraCss = css``

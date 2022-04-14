@@ -12,7 +12,7 @@ import { css } from "@emotion/react"
 import { omit } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
 import { InputElementProps } from "./interface"
-import { applyInputStyle, clearStyle, mirrorStyle, pointerStyle } from "./style"
+import { applyClearStyle, applyInputStyle, clearStyle, mirrorStyle, pointerStyle } from "./style"
 
 export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
   (props, ref) => {
@@ -38,6 +38,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
       onClear,
       autoFitWidth,
       textCenterHorizontal,
+      iconAppearWithSuffix,
       ...rest
     } = props
 
@@ -121,7 +122,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
         {!disabled && allowClear && value ? (
           <span
             title="InputClearIcon"
-            css={css(pointerStyle, clearStyle)}
+            css={css(pointerStyle, applyClearStyle(size, iconAppearWithSuffix))}
             onClick={(e) => {
               e.stopPropagation()
               inputRef?.current?.focus?.()

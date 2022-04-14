@@ -308,6 +308,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
             inputRef={inputRef}
             disabled={!isArray(disabled) && disabled}
             placeholder={inputPlaceHolder}
+            iconAppearWithSuffix
             value={
               inputValue
                 ? inputValue

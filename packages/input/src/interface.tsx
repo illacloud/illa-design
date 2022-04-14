@@ -40,6 +40,7 @@ export interface InputElementProps
   allowClear?: boolean
   autoFitWidth?: boolean
   textCenterHorizontal?: boolean
+  iconAppearWithSuffix?: boolean
   onClear?: () => void
   onValueChange?: (value: string, e: ChangeEvent<HTMLInputElement>) => void
   onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
@@ -62,6 +63,7 @@ export interface InputProps
   maxLength?: number
   showCount?: boolean
   allowClear?: boolean
+  iconAppearWithSuffix?: boolean
   prefix?: { custom?: boolean; render?: ReactNode }
   suffix?: { custom?: boolean; render?: ReactNode }
   addonAfter?: { custom?: boolean; render?: ReactNode }
@@ -181,6 +183,7 @@ export interface StateValue {
   variant?: string
   size?: InputProps["size"]
   borderColor?: InputProps["borderColor"]
+  iconAppearWithSuffix?: boolean
   // only RangeInput
   focusedInput0?: boolean
   focusedInput1?: boolean
