@@ -56,6 +56,7 @@ import {
   CalendarIcon,
   CaretLeftIcon,
   CaretRightIcon,
+  InfoIcon,
   LeafIcon,
 } from "../src"
 
@@ -107,6 +108,7 @@ export const Empty: Story<IconProps> = (props) => <EmptyIcon {...props} />
 export const Checkmark: Story<IconProps> = (props) => (
   <CheckmarkIcon {...props} />
 )
+export const Info: Story<IconProps> = (props) => <InfoIcon {...props} />
 export const InfoCircle: Story<IconProps> = (props) => (
   <InfoCircleIcon {...props} />
 )

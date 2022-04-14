@@ -11,11 +11,11 @@ import { isArray } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
 import { RangeInputProps } from "./interface"
 import {
+  applyClearStyle,
   applyInputStyle,
   applyRangeContainer,
   applyRangeInput,
   applySuffixCls,
-  clearStyle,
   pointerStyle,
   SeparatorStyle,
 } from "./style"
@@ -156,7 +156,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
           {...otherProps}
           {...inputProps}
         />
-        <span css={css({ padding: "0 8px" })}>
+        <span css={css({ padding: size === "small" ? "0 8px" : "0 12px" })}>
           {separator || <div css={SeparatorStyle} />}
         </span>
         <input
@@ -188,7 +188,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
         {!disabled && allowClear && value?.length ? (
           <span
             title="InputClearIcon"
-            css={css(pointerStyle, clearStyle)}
+            css={css(pointerStyle, applyClearStyle(size, true))}
             onClick={(e) => {
               e.stopPropagation()
               inputRef?.current?.focus?.()

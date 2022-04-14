@@ -43,6 +43,7 @@
     "@illa-design/theme": "*",
     "@illa-design/icon": "*",
     "@illa-design/trigger": "*",
-    "@illa-design/select": "*"
+    "@illa-design/select": "*",
+    "@illa-design/calendar": "*"
   }
 }

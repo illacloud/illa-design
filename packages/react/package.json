@@ -92,6 +92,8 @@
     "@illa-design/anchor": "*",
     "@illa-design/collapse": "*",
     "@illa-design/date-picker": "*",
+    "@illa-design/result": "*",
+    "@illa-design/page-header": "*",
     "@illa-design/slider": "*",
     "@illa-design/menu": "*",
     "react-use": "^17.3.1",
