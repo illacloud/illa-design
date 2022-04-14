@@ -1,4 +1,10 @@
-import { HTMLAttributes, MouseEvent, ReactElement, ReactNode } from "react"
+import {
+  ForwardRefExoticComponent,
+  HTMLAttributes,
+  MouseEvent,
+  PropsWithChildren,
+  ReactNode,
+} from "react"
 import { TriggerProps } from "@illa-design/trigger"
 import { SerializedStyles } from "@emotion/serialize"
 
@@ -65,4 +71,11 @@ export interface SubMenuProps {
 
 export interface OverflowWrapperProps {
   children?: ReactNode
+}
+
+export interface MenuComponent
+  extends ForwardRefExoticComponent<PropsWithChildren<MenuProps>> {
+  Item: ForwardRefExoticComponent<ItemProps>
+  ItemGroup: ForwardRefExoticComponent<PropsWithChildren<ItemGroupProps>>
+  SubMenu: ForwardRefExoticComponent<PropsWithChildren<SubMenuProps>>
 }

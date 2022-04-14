@@ -9,7 +9,7 @@ import {
 } from "react"
 import { useMergeValue, isFunction, omit } from "@illa-design/system"
 import { NextIcon, PreIcon } from "@illa-design/icon"
-import { MenuProps } from "./interface"
+import { MenuComponent, MenuProps } from "./interface"
 import { MenuContext } from "./menu-context"
 import { Item } from "./item"
 import { ItemGroup } from "./item-group"
@@ -201,11 +201,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
     </div>
   )
 })
-const Menu = ForwardRefMenu as typeof ForwardRefMenu & {
-  Item: typeof Item
-  ItemGroup: typeof ItemGroup
-  SubMenu: typeof SubMenu
-}
+const Menu = ForwardRefMenu as MenuComponent
 
 Menu.Item = Item
 Menu.ItemGroup = ItemGroup
@@ -213,7 +209,7 @@ Menu.SubMenu = SubMenu
 Menu.displayName = "Menu"
 
 Menu.defaultProps = {
-  isMenu: true
+  isMenu: true,
 }
 
 export { Menu }
