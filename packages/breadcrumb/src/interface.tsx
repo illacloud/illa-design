@@ -1,5 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { SerializedStyles } from "@emotion/react"
+import { DropdownProps } from "../../dropdown/src/interface"
 
 export type RouteProps = {
   path?: string
@@ -19,8 +20,8 @@ export interface BreadcrumbProps extends HTMLAttributes<HTMLDivElement> {
 
 export interface BreadcrumbItemProps extends HTMLAttributes<HTMLDivElement> {
   _css?: SerializedStyles
-  // droplist?: Menu | ()=>Menu
-  // dropdownProps?: DropdownProps
+  droplist?: ReactNode
+  dropdownProps?: DropdownProps
 }
 
 export interface BreadcrumbContextProps {

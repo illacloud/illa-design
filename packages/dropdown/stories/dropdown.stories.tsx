@@ -30,17 +30,10 @@ const dropList = (
 
 export const Basic: Story<DropdownProps> = (args) => (
   <Space>
-    <Dropdown
-      droplist={dropList}
-      {...args}
-    >
+    <Dropdown droplist={dropList} {...args}>
       <Button>Hover me</Button>
     </Dropdown>
-    <Dropdown
-      droplist={dropList}
-      trigger={"click"}
-      {...args}
-    >
+    <Dropdown droplist={dropList} trigger={"click"} {...args}>
       <Button>Click me</Button>
     </Dropdown>
   </Space>

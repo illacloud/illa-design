@@ -5,6 +5,7 @@ export const BreadcrumbContext = createContext<BreadcrumbContextProps>({
   isCurrent: false,
   path: "",
   breadcrumbName: "",
+  children: [],
 })
 
 BreadcrumbContext.displayName = "BreadcrumbContext"

@@ -22,6 +22,7 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
                 isCurrent: idx === routes.length - 1,
                 path: item.path,
                 breadcrumbName: item.breadcrumbName,
+                children: item.children,
               }}
             >
               {maxCount && routes.length > maxCount ? (
