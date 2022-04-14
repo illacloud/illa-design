@@ -44,7 +44,7 @@ export function applyTimeColumn(): SerializedStyles {
     padding: 0;
     list-style: none;
     box-sizing: border-box;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     outline: 0;
 

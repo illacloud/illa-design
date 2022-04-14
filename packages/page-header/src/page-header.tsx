@@ -7,9 +7,8 @@ import {
   titleCss,
   separateCss,
   subTitleCss,
-  extraCss,
 } from "./style"
-import { Breadcrumb } from "../../breadcrumb"
+import { Breadcrumb } from "@illa-design/breadcrumb"
 import { PreIcon } from "@illa-design/icon"
 
 export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
@@ -45,7 +44,7 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
               </>
             )}
           </div>
-          {extra && <div css={extraCss}>{extra}</div>}
+          {extra}
         </div>
       </div>
     )
