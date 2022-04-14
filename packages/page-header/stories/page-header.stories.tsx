@@ -29,11 +29,7 @@ const Template: Story<PageHeaderProps> = (args) => {
           },
         ],
       }}
-      extra={
-        <div>
-          save
-        </div>
-      }
+      extra={<div>save</div>}
       {...args}
     ></PageHeader>
   )
