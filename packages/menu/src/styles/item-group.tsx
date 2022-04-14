@@ -18,9 +18,8 @@ export function applyGroupTitleCss(
   isHorizontal?: boolean,
   isPopButton?: boolean,
   isCollapse?: boolean,
-  theme: Theme = "light"
+  theme: Theme = "light",
 ): SerializedStyles {
-
   const padding = isCollapse ? 16 : 24
 
   const itemGroupTitleCss = css`

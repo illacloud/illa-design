@@ -88,7 +88,7 @@ function applyHover(hoverable: boolean): SerializedStyles {
   return css`
     & > div:last-child > div {
       transition: all 0.12s ease-in-out;
-      &:first-child {
+      &:first-of-type {
         transition-duration: 0.2s;
       }
     }
@@ -100,7 +100,7 @@ function applyHover(hoverable: boolean): SerializedStyles {
     &:hover > div:last-child > div {
       transition: all 0.2s ease-in-out;
 
-      &:first-child {
+      &:first-of-type {
         transition-duration: 0.12s;
       }
 
