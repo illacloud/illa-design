@@ -183,6 +183,7 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
       >
         {checkable && (
           <Checkbox
+            css={checkboxCss}
             indeterminate={!_checked && _halfChecked}
             onChange={(_, e) => {
               handleCheck && handleCheck(_key, e)
@@ -217,7 +218,6 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
                 </span>
               )}
             </span>
-              css={checkboxCss}
           )}
         </span>
       </div>
