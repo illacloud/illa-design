@@ -92,8 +92,11 @@
     "@illa-design/anchor": "*",
     "@illa-design/collapse": "*",
     "@illa-design/result": "*",
+    "@illa-design/page-header": "*",
     "react-use": "^17.3.1",
     "framer-motion": "^6.2.8",
-    "@emotion/react": "^11.7.1"
+    "@emotion/react": "^11.7.1",
+    "@illa-design/slider": "*",
+    "@illa-design/menu": "*"
   }
 }

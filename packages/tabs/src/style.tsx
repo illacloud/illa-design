@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { TabPosition, TabsSize, Variant } from "./interface"
+import { TabPosition, TabsSize, TabVariant } from "./interface"
 
 export function applyPaddingSizeCss(size: TabsSize) {
   let paddingSize
@@ -344,7 +344,7 @@ export const tabPaneContainerCss = css`
 
 export function applyHorizontalPreNextIconCss(
   isPre: boolean,
-  variant?: Variant,
+  variant?: TabVariant,
   disabled?: boolean,
 ) {
   let verticalPaddingCss
@@ -377,7 +377,7 @@ export function applyHorizontalPreNextIconCss(
 
 export function applyCommonPreNextIconCss(
   isPre: boolean,
-  variant?: Variant,
+  variant?: TabVariant,
   disabled?: boolean,
   tabPosition?: TabPosition,
 ) {

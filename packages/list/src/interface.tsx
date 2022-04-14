@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactNode, UIEventHandler } from "react"
+import { SerializedStyles } from "@storybook/theming"
 
 export type ListSize = "small" | "medium" | "large"
 
@@ -21,6 +22,7 @@ export interface ListProps<T>
   loader?: ReactNode
   endMessage?: ReactNode
   onScroll?: UIEventHandler<HTMLElement>
+  _css?: SerializedStyles
 }
 
 export interface ListItemProps extends HTMLAttributes<HTMLDivElement> {

@@ -2,9 +2,9 @@ import { Children, forwardRef } from "react"
 import { ParagraphProps } from "./interface"
 import { Base } from "./base"
 import { applyParagraphContainer, applyTextContainer } from "./paragraph-style"
-import mergedToString from "./measure-element"
 import { Tooltip } from "@illa-design/tooltip"
 import { css } from "@storybook/theming"
+import { mergedToString } from "@illa-design/system"
 
 export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
   (props, ref) => {
