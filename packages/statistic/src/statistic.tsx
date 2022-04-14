@@ -1,5 +1,7 @@
 import { forwardRef, useMemo } from "react"
 import { StatisticProps } from "./interface"
+import { Skeleton } from "@illa-design/skeleton"
+
 import dayjs from "dayjs"
 
 import {
@@ -44,17 +46,23 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
       <div css={applyStatistic} ref={ref} {...restProps}>
         {title && <div css={applyStatisticTitle}>{title}</div>}
         <div css={applyStatisticContent}>
-          {prefix && (
-            <span css={applyStatisticDecorator(true, !isObject(prefix))}>
-              {prefix}
-            </span>
-          )}
-          <span css={applyStatisticValue}>{renderValue}</span>
-          {suffix && (
-            <span css={applyStatisticDecorator(false, !isObject(suffix))}>
-              {suffix}
-            </span>
-          )}
+          <Skeleton
+            animation
+            visible={!!loading}
+            text={{ rows: 1, width: "100%" }}
+          >
+            {prefix && (
+              <span css={applyStatisticDecorator(true, !isObject(prefix))}>
+                {prefix}
+              </span>
+            )}
+            <span css={applyStatisticValue}>{renderValue}</span>
+            {suffix && (
+              <span css={applyStatisticDecorator(false, !isObject(suffix))}>
+                {suffix}
+              </span>
+            )}
+          </Skeleton>
         </div>
       </div>
     )

@@ -1,11 +1,4 @@
-import {
-  forwardRef,
-  useEffect,
-  useState,
-  cloneElement,
-  useMemo,
-  useCallback,
-} from "react"
+import { forwardRef, useEffect, useState, cloneElement } from "react"
 import { CommonRangeProps } from "../interface"
 import { Calendar } from "../../../calendar/src/index"
 import dayjs, { Dayjs } from "dayjs"
@@ -27,7 +20,6 @@ import {
 import { initFormat } from "../utils"
 import { Button } from "@illa-design/button"
 import { TimePickerPopup } from "../../../time-picker/src/time-picker-popup"
-import { throttleByRaf } from "@illa-design/system"
 
 export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
   (props, ref) => {
@@ -37,7 +29,7 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       allowClear = true,
       position = "bl",
       placeholder = [],
-      // shortcuts,
+      shortcuts,
       shortcutsPlacementLeft = false,
       size = "medium",
       error,
@@ -59,21 +51,6 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       onClear,
       ...restProps
     } = props
-
-    const shortcuts = [
-      {
-        text: "next 7 days",
-        value: () => [dayjs(), dayjs().add(1, "week")],
-      },
-      {
-        text: "next 30 days",
-        value: () => [dayjs(), dayjs().add(1, "month")],
-      },
-      {
-        text: "next 365 days",
-        value: () => [dayjs(), dayjs().add(1, "year")],
-      },
-    ]
 
     // cur cmpt value
     const finalFormat = format || initFormat("day", !!showTime)

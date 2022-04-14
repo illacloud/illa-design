@@ -11,13 +11,6 @@ const Template: Story<CountDownProps> = (args) => {
   return (
     <Space size={"large"}>
       <Countdown {...args} />
-      <Countdown
-        {...args}
-        onChange={(num) => console.log(num)}
-        onFinish={() => {
-          console.log("finish!")
-        }}
-      />
     </Space>
   )
 }

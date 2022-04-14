@@ -28,7 +28,6 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
 
     return (
       <th
-        align={align ?? tableContext?.align ?? "left"}
         css={css(
           applyThStyle(fixedHeader ?? thContext?.fixedHeader ?? true),
           applySizeStyle(size ?? tableContext?.size ?? "medium"),
@@ -41,7 +40,11 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
         ref={ref}
         {...otherProps}
       >
-        <div css={applyContentContainer}>{children}</div>
+        <div
+          css={applyContentContainer(align ?? tableContext?.align ?? "left")}
+        >
+          {children}
+        </div>
       </th>
     )
   },

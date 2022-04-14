@@ -5,6 +5,7 @@ import { CloseIcon } from "@illa-design/icon"
 import { SerializedStyles } from "@emotion/serialize"
 import { omit } from "@illa-design/system"
 import {
+  applyCloseIcon,
   applyTagSizeLarge,
   applyTagSizeMedium,
   applyTagSizeSmall,
@@ -12,6 +13,7 @@ import {
   colors,
   leftIcon,
   tagContainer,
+  tagContentStyle,
   tagFillNormal,
   tagFillPrepare,
   tagLightPrepare,
@@ -91,22 +93,11 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   return (visible == undefined ? realVisible : visible) ? (
     <div css={finalStyle} ref={ref} {...otherProps}>
       {props.icon && <span css={leftIcon}>{props.icon}</span>}
-      <span
-        css={css`
-          font-size: 14px;
-          line-height: 22px;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        `}
-      >
-        {props.children}
-      </span>
+      <span css={tagContentStyle}>{props.children}</span>
       {props.closable && (
-        <span>
+        <span css={applyCloseIcon(colorScheme, size, variant)}>
           <CloseIcon
-            size="7px"
-            css={closeIcon}
+            size="8px"
             onClick={() => {
               if (props.onClose != undefined) {
                 props.onClose()
