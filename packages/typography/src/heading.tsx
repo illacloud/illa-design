@@ -2,7 +2,7 @@ import { Children, forwardRef } from "react"
 import { HeadingProps } from "./interface"
 import { Base } from "./base"
 import { Tooltip } from "@illa-design/tooltip"
-import mergedToString from "./measure-element"
+import { mergedToString } from "@illa-design/system"
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   (props, ref) => {

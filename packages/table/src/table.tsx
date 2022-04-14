@@ -19,7 +19,6 @@ import { TableContext } from "./table-context"
 import {
   Row,
   useFilters,
-  useFlexLayout,
   useResizeColumns,
   useRowSelect,
   useSortBy,
@@ -69,7 +68,6 @@ function renderDirectTable<D extends TableData>(
     disableRowSelect,
     align = "left",
     showFooter,
-    disableResizing,
     showHeader = true,
     onRowSelectChange,
     _css,
@@ -119,7 +117,6 @@ function renderDataDrivenTable<D extends TableData>(
     disableRowSelect,
     align = "left",
     showFooter,
-    disableResizing,
     showHeader = true,
     onRowSelectChange,
     _css,
@@ -152,10 +149,12 @@ function renderDataDrivenTable<D extends TableData>(
       data,
       disableSortBy,
       disableFilters,
-      disableResizing,
+      // TODO resizing
+      disableResizing: true,
     },
     useFilters,
     useSortBy,
+    useResizeColumns,
     useRowSelect,
     (hooks) => {
       // add selection
@@ -198,8 +197,6 @@ function renderDataDrivenTable<D extends TableData>(
         ...columns,
       ])
     },
-    useFlexLayout,
-    useResizeColumns,
   )
 
   // row select event
@@ -234,10 +231,11 @@ function renderDataDrivenTable<D extends TableData>(
                     {group.headers.map((column, index) => (
                       <Th {...column.getHeaderProps()}>
                         <div
-                          css={applyPreContainer}
+                          css={applyPreContainer(align)}
                           {...column.getSortByToggleProps()}
                         >
-                          {column.render("Header")}
+                          {column.Header != undefined &&
+                            column.render("Header")}
                           {column.canSort &&
                             (column.isSorted ? (
                               column.isSortedDesc ? (
@@ -288,7 +286,7 @@ function renderDataDrivenTable<D extends TableData>(
                   <Tr {...group.getFooterGroupProps()}>
                     {group.headers.map((column, index) => (
                       <Td {...column.getFooterProps()}>
-                        {column.render("Footer")}
+                        {column.Footer != undefined && column.render("Footer")}
                       </Td>
                     ))}
                   </Tr>

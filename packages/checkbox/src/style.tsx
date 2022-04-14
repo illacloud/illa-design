@@ -23,7 +23,7 @@ export function applyCheckboxSize(checked?: boolean) {
     position: relative;
     appearance: none;
     border-radius: 2px;
-    margin: auto 8px auto auto;
+    margin: auto;
     width: 16px;
     height: 16px;
     border: solid 2px ${globalColor(`--${illaPrefix}-gray-08`)};
@@ -51,6 +51,7 @@ export function applyCheckState(checked: boolean) {
     transform: ${checked ? "scale(1);" : "scale(0);"};
     color: white;
     transition: 0.15s all linear;
+    pointer-events: none;
   `
 }
 
@@ -102,3 +103,7 @@ export function applyCheckboxContainerVertical(
     margin-bottom: ${currentSpacing};
   `
 }
+
+export const childrenContainerCss = css`
+  margin-left: 8px;
+`

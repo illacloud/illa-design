@@ -37,7 +37,6 @@ export const Dropdown: FC<DropdownProps> = (props) => {
 
   return (
     <Trigger
-      {...(triggerProps ? omit(triggerProps, ["onVisibleChange"]) : {})}
       trigger={trigger}
       disabled={disabled}
       position={position}
@@ -72,6 +71,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
           changePopupVisible(visible)
         }
       }}
+      {...(triggerProps ? omit(triggerProps, ["onVisibleChange"]) : {})}
       {...otherProps}
     >
       {isValidElement(children)
