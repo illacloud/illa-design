@@ -16,15 +16,19 @@ exports[`Tag renders with color and variant 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 1px;
+  box-sizing: border-box;
+  padding: 0 7px;
+  border-radius: 2px;
   background-color: #ebebeb;
   color: #1f1f1f;
-  padding: 1px 8px;
+  font-size: 12px;
+  line-height: 18px;
+  height: 18px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -58,15 +62,19 @@ exports[`Tag renders with color and variant 2`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 1px;
+  box-sizing: border-box;
+  padding: 0 7px;
+  border-radius: 2px;
   background-color: #a3f0d4;
   color: #007a41;
-  padding: 1px 8px;
+  font-size: 12px;
+  line-height: 18px;
+  height: 18px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -100,15 +108,19 @@ exports[`Tag renders with color and variant 3`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 1px;
+  box-sizing: border-box;
+  padding: 0 7px;
+  border-radius: 2px;
   color: #fff;
   background-color: #123321;
-  padding: 1px 8px;
+  font-size: 12px;
+  line-height: 18px;
+  height: 18px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -142,15 +154,19 @@ exports[`Tag renders with color and variant 4`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  box-sizing: border-box;
+  padding: 0 7px;
   background-color: #000;
   color: #fff;
-  border-radius: 1px;
-  padding: 1px 8px;
+  border-radius: 2px;
+  font-size: 12px;
+  line-height: 18px;
+  height: 18px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -184,15 +200,19 @@ exports[`Tag renders with color and variant 5`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  box-sizing: border-box;
+  padding: 0 7px;
   background-color: #007a41;
   color: #fff;
-  border-radius: 1px;
-  padding: 1px 8px;
+  border-radius: 2px;
+  font-size: 12px;
+  line-height: 18px;
+  height: 18px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -226,15 +246,19 @@ exports[`Tag renders with color and variant 6`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 1px;
+  box-sizing: border-box;
+  padding: 0 7px;
+  border-radius: 2px;
   color: #fff;
   background-color: #123321;
-  padding: 1px 8px;
+  font-size: 12px;
+  line-height: 18px;
+  height: 18px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -268,15 +292,19 @@ exports[`Tag renders with color and variant 7`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 1px;
+  box-sizing: border-box;
+  padding: 0 7px;
+  border-radius: 2px;
   border: solid 1px #ebebeb;
   color: #1f1f1f;
-  padding: 0px 7px;
+  font-size: 12px;
+  line-height: 18px;
+  height: 18px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -310,15 +338,19 @@ exports[`Tag renders with color and variant 8`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 1px;
+  box-sizing: border-box;
+  padding: 0 7px;
+  border-radius: 2px;
   border: solid 1px #007a41;
   color: #007a41;
-  padding: 0px 7px;
+  font-size: 12px;
+  line-height: 18px;
+  height: 18px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -352,15 +384,19 @@ exports[`Tag renders with color and variant 9`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 1px;
+  box-sizing: border-box;
+  padding: 0 7px;
+  border-radius: 2px;
   color: #123321;
   border: solid 1px #123321;
-  padding: 0px 7px;
+  font-size: 12px;
+  line-height: 18px;
+  height: 18px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -394,15 +430,19 @@ exports[`Tag renders with different size 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 1px;
+  box-sizing: border-box;
+  padding: 0 7px;
+  border-radius: 2px;
   background-color: #ebebeb;
   color: #1f1f1f;
-  padding: 1px 8px;
+  font-size: 12px;
+  line-height: 18px;
+  height: 18px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -436,15 +476,19 @@ exports[`Tag renders with different size 2`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 1px;
+  box-sizing: border-box;
+  padding: 0 7px;
+  border-radius: 2px;
   background-color: #ebebeb;
   color: #1f1f1f;
-  padding: 3px 8px;
+  font-size: 14px;
+  line-height: 22px;
+  height: 24px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -478,15 +522,19 @@ exports[`Tag renders with different size 3`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 1px;
+  box-sizing: border-box;
+  padding: 0 7px;
+  border-radius: 2px;
   background-color: #ebebeb;
   color: #1f1f1f;
-  padding: 5px 8px;
+  font-size: 14px;
+  line-height: 22px;
+  height: 32px;
 }
 
 .emotion-1 {
-  font-size: 14px;
-  line-height: 22px;
+  font-size: inherit;
+  line-height: inherit;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
