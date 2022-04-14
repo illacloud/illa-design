@@ -11,11 +11,7 @@ const Template: Story<PageHeaderProps> = (args) => {
   return (
     <PageHeader
       title="IllaDesign"
-      subTitle={
-        <>
-          This is a description
-        </>
-      }
+      subTitle="This is a description"
       backIcon
       breadcrumb={{
         routes: [
