@@ -1,5 +1,5 @@
 import { HTMLAttributes, MouseEvent, ReactNode } from "react"
-import { BreadcrumbProps } from "../../breadcrumb/src/interface"
+import { BreadcrumbProps } from "@illa-design/breadcrumb"
 import { SerializedStyles } from "@emotion/react"
 
 export interface PageHeaderProps
