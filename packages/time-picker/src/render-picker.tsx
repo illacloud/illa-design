@@ -101,11 +101,9 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     const rangeInputPlaceholder = isArray(placeholder)
       ? placeholder
       : (locale["placeholders"] as string[])
-    const inputPlaceHolder =
-      placeholder && !isArray(placeholder)
-        ? placeholder
-        : (locale["placeholder"] as string)
-    console.log(inputPlaceHolder, rangeInputPlaceholder)
+    const inputPlaceHolder = placeholder && !isArray(placeholder)
+      ? placeholder
+      : (locale["placeholder"] as string)
 
     function isValidTime(time?: string): boolean {
       return (
