@@ -18,6 +18,13 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     ...otherProps
   } = props
 
+  const triggerDefaultProps = {
+    colorScheme: "white",
+    withoutPadding: true,
+    clickOutsideToClose: true,
+    ...triggerProps,
+  }
+
   const [currentPopupVisible, setCurrentPopupVisible] = useMergeValue(false, {
     defaultValue: props.defaultPopupVisible,
     value: props.popupVisible,
@@ -30,7 +37,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
   const changePopupVisible = (visible: boolean) => {
     setCurrentPopupVisible(visible)
     onVisibleChange?.(visible)
-    triggerProps?.onVisibleChange?.(visible)
+    triggerDefaultProps?.onVisibleChange?.(visible)
   }
 
   const content = getContent()
@@ -44,26 +51,26 @@ export const Dropdown: FC<DropdownProps> = (props) => {
       content={
         content && content.props.isMenu
           ? cloneElement(content as ReactElement, {
-            inDropdown: true,
-            selectable: false,
-            onClickMenuItem: (key: string, event: any) => {
-              let clickMenuEventValue = null
+              inDropdown: true,
+              selectable: false,
+              onClickMenuItem: (key: string, event: any) => {
+                let clickMenuEventValue = null
 
-              const content = getContent()
-              if (content?.props?.onClickMenuItem) {
-                clickMenuEventValue = content.props?.onClickMenuItem(
-                  key,
-                  event,
-                )
-              }
+                const content = getContent()
+                if (content?.props?.onClickMenuItem) {
+                  clickMenuEventValue = content.props?.onClickMenuItem(
+                    key,
+                    event,
+                  )
+                }
 
-              if (clickMenuEventValue instanceof Promise) {
-                clickMenuEventValue?.finally(() => changePopupVisible(false))
-              } else if (clickMenuEventValue !== false) {
-                changePopupVisible(false)
-              }
-            },
-          })
+                if (clickMenuEventValue instanceof Promise) {
+                  clickMenuEventValue?.finally(() => changePopupVisible(false))
+                } else if (clickMenuEventValue !== false) {
+                  changePopupVisible(false)
+                }
+              },
+            })
           : content
       }
       onVisibleChange={(visible: boolean) => {
@@ -71,13 +78,15 @@ export const Dropdown: FC<DropdownProps> = (props) => {
           changePopupVisible(visible)
         }
       }}
-      {...(triggerProps ? omit(triggerProps, ["onVisibleChange"]) : {})}
+      {...(triggerDefaultProps
+        ? omit(triggerDefaultProps, ["onVisibleChange"])
+        : {})}
       {...otherProps}
     >
       {isValidElement(children)
         ? cloneElement(children, {
-          disabled,
-        })
+            disabled,
+          })
         : children}
     </Trigger>
   )
