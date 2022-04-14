@@ -44,26 +44,26 @@ export const Dropdown: FC<DropdownProps> = (props) => {
       content={
         content && content.props.isMenu
           ? cloneElement(content as ReactElement, {
-            inDropdown: true,
-            selectable: false,
-            onClickMenuItem: (key: string, event: any) => {
-              let clickMenuEventValue = null
+              inDropdown: true,
+              selectable: false,
+              onClickMenuItem: (key: string, event: any) => {
+                let clickMenuEventValue = null
 
-              const content = getContent()
-              if (content?.props?.onClickMenuItem) {
-                clickMenuEventValue = content.props?.onClickMenuItem(
-                  key,
-                  event,
-                )
-              }
+                const content = getContent()
+                if (content?.props?.onClickMenuItem) {
+                  clickMenuEventValue = content.props?.onClickMenuItem(
+                    key,
+                    event,
+                  )
+                }
 
-              if (clickMenuEventValue instanceof Promise) {
-                clickMenuEventValue?.finally(() => changePopupVisible(false))
-              } else if (clickMenuEventValue !== false) {
-                changePopupVisible(false)
-              }
-            },
-          })
+                if (clickMenuEventValue instanceof Promise) {
+                  clickMenuEventValue?.finally(() => changePopupVisible(false))
+                } else if (clickMenuEventValue !== false) {
+                  changePopupVisible(false)
+                }
+              },
+            })
           : content
       }
       onVisibleChange={(visible: boolean) => {
@@ -76,8 +76,8 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     >
       {isValidElement(children)
         ? cloneElement(children, {
-          disabled,
-        })
+            disabled,
+          })
         : children}
     </Trigger>
   )
