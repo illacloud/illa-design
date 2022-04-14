@@ -7,7 +7,7 @@ import {
   useEffect,
   useReducer,
 } from "react"
-import { useMergeValue, isFunction } from "@illa-design/system"
+import { useMergeValue, isFunction, omit } from "@illa-design/system"
 import { NextIcon, PreIcon } from "@illa-design/icon"
 import { MenuProps } from "./interface"
 import { MenuContext } from "./menu-context"
@@ -140,7 +140,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
       ref={ref}
       style={usedStyle}
       css={applyMenuCss(collapse, isPopButton, theme)}
-      {...restProps}
+      {...omit(restProps, ["isMenu"])}
     >
       <MenuContext.Provider
         value={{
@@ -211,5 +211,9 @@ Menu.Item = Item
 Menu.ItemGroup = ItemGroup
 Menu.SubMenu = SubMenu
 Menu.displayName = "Menu"
+
+Menu.defaultProps = {
+  isMenu: true
+}
 
 export { Menu }
