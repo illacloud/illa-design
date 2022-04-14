@@ -42,6 +42,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     variant = "outline",
     requirePadding = true,
     textCenterHorizontal = false,
+    iconAppearWithSuffix,
     onClear,
     onChange,
     onFocus,
@@ -74,6 +75,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     variant,
     size,
     borderColor,
+    iconAppearWithSuffix,
   }
 
   if (maxLength && showCount) {
@@ -109,6 +111,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           placeholder={placeholder}
           allowClear={allowClear}
           textCenterHorizontal={textCenterHorizontal}
+          iconAppearWithSuffix={iconAppearWithSuffix}
           onFocus={(e) => {
             setFocus(true)
             onFocus?.(e)
