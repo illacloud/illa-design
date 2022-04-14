@@ -105,21 +105,3 @@ it("TreeSelect renders with remove", () => {
   cy.get("@onChangeEvent").should("be.calledWith", [])
   unmount()
 })
-
-it("TreeSelect renders with remove", () => {
-  const onChangeEvent = cy.spy().as("onChangeEvent")
-  mount(
-    <TreeSelect
-      treeData={data}
-      allowClear={true}
-      multiple={true}
-      onChange={onChangeEvent}
-    />,
-  )
-  cy.findByTitle("ExpandIcon").parent().trigger("click")
-  cy.findByText("0-1-xixixixixix").trigger("click")
-  cy.get("@onChangeEvent").should("be.calledWith", ["0-1"])
-  cy.findByTitle("CloseIcon").parent().trigger("click")
-  cy.get("@onChangeEvent").should("be.calledWith", [])
-  unmount()
-})
