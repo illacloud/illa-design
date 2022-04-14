@@ -7,16 +7,18 @@ import {
   YearPicker,
   YearPickerProps,
   RangePicker,
-  RangePickerProps,
+  CommonRangeProps,
 } from "../src"
+import dayjs from "dayjs"
 
 export default {
   title: "DATA INPUT/DatePicker",
   component: DatePicker,
+  args: {},
 } as Meta
 
 const DateTemplate: Story<DatePickerProps> = (args) => {
-  return <DatePicker {...args} />
+  return <DatePicker popupVisible={true} {...args} />
 }
 
 const MonthTemplate: Story<MonthPickerProps> = (args) => {
@@ -27,7 +29,7 @@ const YearTemplate: Story<YearPickerProps> = (args) => {
   return <YearPicker {...args} />
 }
 
-const RangeTemplate: Story<RangePickerProps> = (args) => {
+const RangeTemplate: Story<CommonRangeProps> = (args) => {
   return <RangePicker {...args} />
 }
 

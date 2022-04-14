@@ -92,18 +92,6 @@ test("click one day", () => {
   expect(screen.getByText(15)).toHaveStyle({
     backgroundColor: globalColor(`--${illaPrefix}-blue-03`),
   })
-
-  // fireEvent.click(screen.getByText("today"))
-  // fireEvent.click(screen.getByTitle("PreIcon"))
-  // fireEvent.click(screen.getByTitle("PreIcon"))
-  // fireEvent.click(screen.getAllByText(26)[0])
-  // expect(screen.getByText(`${curYear - 1} December`)).toBeInTheDocument()
-
-  // fireEvent.click(screen.getByText("today"))
-  // fireEvent.click(screen.getAllByText(7)[1])
-  // expect(
-  //   screen.getByText(`${curYear} ${monthListLocale[curMonth + 1]}`),
-  // ).toBeInTheDocument()
 })
 
 test("change mode", () => {

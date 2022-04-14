@@ -47,7 +47,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       onSelectShortcut,
       disabledDate,
       defaultPickerValue,
-      showTime = true,
+      showTime = false,
       onOk,
       format,
       value,
@@ -197,23 +197,24 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                   defaultDate={calendarValue || dayjs(mergedDefaultValue)}
                   defaultSelectedDate={calendarShortCuts}
                 />
-                {shortcuts && !shortcutsPlacementLeft ? (
+                {(shortcuts || showTime) && (
                   <div css={horShortcuts}>
-                    <ShortcutsCompt />
+                    {shortcuts && !shortcutsPlacementLeft ? (
+                      <ShortcutsCompt />
+                    ) : showNowBtn ? (
+                      <Button
+                        colorScheme="gray"
+                        css={nowButtonCss}
+                        onClick={() => {
+                          clickNow()
+                        }}
+                      >
+                        Now
+                      </Button>
+                    ) : null}
                   </div>
-                ) : showNowBtn ? (
-                  <Button
-                    colorScheme="gray"
-                    css={nowButtonCss}
-                    onClick={() => {
-                      clickNow()
-                    }}
-                  >
-                    Now
-                  </Button>
-                ) : null}
+                )}
               </div>
-
               {showTimeMerged && (
                 <div css={showTimeContainerCss}>
                   <div css={showTimeHeaderCss}>time</div>

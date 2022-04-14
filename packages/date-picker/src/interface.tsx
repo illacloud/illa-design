@@ -1,10 +1,7 @@
 import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { Dayjs } from "dayjs"
 import { SerializedStyles } from "@emotion/react"
-import {
-  TimePickerProps,
-  RangePickerProps,
-} from "../../time-picker/src/interface"
+import { TimePickerProps, RangePickerProps } from "@illa-design/time-picker"
 
 export type PickerPosition = "top" | "tl" | "tr" | "bottom" | "bl" | "br"
 export type ShortcutType = {

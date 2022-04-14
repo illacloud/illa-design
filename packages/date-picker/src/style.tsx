@@ -33,6 +33,9 @@ export const popupCss = css`
   & > div:first-of-type {
     padding: 15px 0;
   }
+  & > li:first-of-type {
+    font-size: 12px;
+  }
 `
 
 export const triContentCommonCss = css`
@@ -103,7 +106,6 @@ export const rangeBodyCss = css`
   display: flex;
 `
 
-export const rangeFooterCss = css``
 export function applyRangeFooterCss(
   showTime: boolean,
   showShortcuts: boolean,
@@ -143,4 +145,8 @@ export const rangePickerCss = css`
 export const buttonBoxCss = css`
   width: 248px;
   text-align: right;
+`
+
+export const calendarBorderCss = css`
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
 `
