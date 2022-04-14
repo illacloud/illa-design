@@ -16,65 +16,64 @@ export default {
 } as Meta
 
 const Template: Story<TreeSelectProps> = (args) => {
-  const data = [
+  const treeData = [
     {
-      title: "0-0-head",
+      title: "Trunk 0-0",
+      value: "Trunk 0-0",
       key: "0-0",
-      value: "0-0",
       children: [
         {
-          title: "0-0-0 ",
-          key: "0-0-0",
-          value: "0-0-0",
-          disabled: true,
-          children: [
-            {
-              title: "aoao",
-              key: "0-0-0-0",
-              value: "0-0-0-0",
-              disableCheckbox: true,
-            },
-            {
-              title: "aoao",
-              key: "0-0-0-1",
-              value: "0-0-0-1",
-              children: [
-                {
-                  title: "toutou",
-                  key: "0-0-0-0-0",
-                  value: "0-0-0-0-0",
-                  disableCheckbox: true,
-                },
-                {
-                  title: "toutou",
-                  value: "0-0-0-1-1",
-                  key: "0-0-0-1-1",
-                },
-              ],
-            },
-          ],
+          title: "Leaf 0-0-1",
+          value: "Leaf 0-0-1",
+          key: "Leaf 0-0-1",
         },
         {
-          title: "0-0-1",
-          key: "0-0-1",
-          value: "0-0-1",
+          title: "Branch 0-0-2",
+          value: "Branch 0-0-2",
+          key: "0-0-2",
           children: [
             {
-              title: <span>xixi</span>,
-              key: "0-0-1-0",
-              value: "0-0-1-0",
+              title: "Leaf 0-0-2-1",
+              value: "Leaf 0-0-2-1",
+              key: "Leaf 0-0-2-1",
             },
           ],
         },
       ],
     },
     {
-      title: "0-1-xixixixixix",
-      value: "0-1",
+      title: "Trunk 0-1",
+      value: "Trunk 0-1",
       key: "0-1",
+      children: [
+        {
+          title: "Branch 0-1-1",
+          value: "Branch 0-1-1",
+          key: "0-1-1",
+          checkable: false,
+          children: [
+            {
+              title: "Leaf 0-1-1-1",
+              value: "Leaf 0-1-1-1",
+              key: "0-1-1-1",
+            },
+            {
+              title: "Leaf 0-1-1-2",
+              value: "Leaf 0-1-1-2",
+              key: "0-1-1-2",
+              disabled: true,
+            },
+          ],
+        },
+        {
+          title: "Leaf 0-1-2",
+          value: "Leaf 0-1-2",
+          key: "0-1-2",
+        },
+      ],
     },
   ]
-  return <TreeSelect {...args} treeData={data} showSearch={true} />
+  return <TreeSelect {...args} treeData={treeData} showSearch={true} />
 }
 
 export const Basic = Template.bind({})

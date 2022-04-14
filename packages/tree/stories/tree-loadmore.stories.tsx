@@ -2,8 +2,6 @@ import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { NodeInstance, Tree, TreeProps } from "../src"
 import { useState } from "react"
-import { TreeDataType } from "../dist/types"
-import { infoAllow404 } from "@changesets/cli/dist/declarations/src/commands/publish/npm-utils"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -115,7 +113,7 @@ const Template: Story<TreeProps> = (args) => {
     })
   }
 
-  return <Tree blockNode loadMore={loadMore} treeData={treeData} />
+  return <Tree blockNode loadMore={loadMore} treeData={treeData} {...args} />
 }
 
 export const Basic = Template.bind({})

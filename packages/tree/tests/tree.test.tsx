@@ -125,7 +125,7 @@ test("Tree renders with renderTitle", async () => {
   expect(screen.getAllByTestId("test-title").length).not.toBe(0)
 })
 
-test("Tree renders with checkbox", async () => {
+test("Tree renders with check parent", async () => {
   await act(async () => {
     render(<Tree placeholder="tree" treeData={data} checkable={true} />)
   })
@@ -137,11 +137,12 @@ test("Tree renders with checkbox", async () => {
     fireEvent.click(target)
   })
   expect(target).toBeChecked()
-  expect(nodeArr[1]).toBeChecked()
+  expect(nodeArr[1]).not.toBeChecked()
+  expect(nodeArr[6]).toBeChecked()
 })
 
 //checkbox
-test("Tree renders with checkbox", async () => {
+test("Tree renders with check child", async () => {
   await act(async () => {
     render(<Tree placeholder="tree" treeData={data} checkable={true} />)
   })

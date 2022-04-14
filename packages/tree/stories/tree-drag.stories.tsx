@@ -1,8 +1,7 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Tree, TreeProps } from "../src"
+import { Tree, TreeProps, TreeDataType } from "../src"
 import { useState } from "react"
-import { TreeDataType } from "../dist/types"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -143,6 +142,7 @@ const Template: Story<TreeProps> = (args) => {
         setTreeData([...data])
       }}
       treeData={treeData}
+      {...args}
     />
   )
 }

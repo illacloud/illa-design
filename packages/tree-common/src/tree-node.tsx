@@ -6,6 +6,7 @@ import {
   applyNodeContainerCss,
   applyNodeFoldSwitchIconCss,
   applyNodeTextContainerCss,
+  checkboxCss,
   dragContainerCss,
   iconColorCss,
   indentContainerCss,
@@ -216,6 +217,7 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
                 </span>
               )}
             </span>
+              css={checkboxCss}
           )}
         </span>
       </div>

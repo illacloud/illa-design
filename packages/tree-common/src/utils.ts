@@ -47,7 +47,6 @@ export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
             : [...(father._indentArr ?? [])].concat(!father._isLast),
         dataRef: node,
       }
-
       nodeList.push(nodeProps)
       if (node.children) {
         _loop(node.children, nodeProps)
@@ -98,16 +97,16 @@ export function checkChildrenChecked(
   while (childrenQueue.length) {
     const key = childrenQueue.pop()
     if (!key) continue
+    const targetNode = nodeArr?.find((item) => item.key === key)
+    if (targetNode?.disabled || targetNode?.checkable === true) continue
     if (checked) {
       checkedKeys.add(key)
     } else {
       checkedKeys.delete(key)
     }
-    nodeArr
-      ?.find((item) => item.key === key)
-      ?._children?.map((child) => {
-        childrenQueue.push(child)
-      })
+    targetNode?._children?.map((child) => {
+      childrenQueue.push(child)
+    })
   }
   node?._fatherPath?.reverse().map((father, _) => {
     if (father._children?.every((childKey) => checkedKeys.has(childKey))) {

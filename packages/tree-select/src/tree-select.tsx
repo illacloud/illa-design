@@ -80,6 +80,8 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
     )
 
     const [searchReasonKeys, setSearchReasonKeys] = useState<string[]>([])
+    // If treeCheckable is true, _multiple must be true
+    const _multiple = treeCheckable || multiple
 
     const [options, _treeNodeArr] = useMemo(() => {
       return [loopItemData(defaultTreeData), loopNodeWithState(defaultTreeData)]
@@ -127,7 +129,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
     useEffect(() => {
       if (options) {
         let values
-        if (multiple) {
+        if (_multiple) {
           values = selectedKeysState.map((key) => {
             return options.find((item) => item.key === key).value
           })
@@ -136,13 +138,13 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
             (item) => item.key === selectedKeysState[0],
           ).value
         }
-        const _value = getValidValue(values, multiple, labelInValue)
+        const _value = getValidValue(values, _multiple, labelInValue)
         setValue(_value)
         onChange && onChange(_value)
       }
     }, [selectedKeysState])
 
-    const isNoOptionSelected = isEmptyValue(currentValue, multiple)
+    const isNoOptionSelected = isEmptyValue(currentValue, _multiple)
     const [_inputValue, setInputValue, stateInputValue] = useMergeValue("", {
       value: "inputValue" in props ? props.inputValue || "" : undefined,
     })
@@ -249,7 +251,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
       },
       onClear: (event: any) => {
         event.stopPropagation()
-        if (multiple) {
+        if (_multiple) {
           // Keep the value that has been selected but disabled
           const newValue = (selectedKeysState as [])?.filter((v) => {
             const item = options.find((item) => item.value === v)
@@ -275,24 +277,24 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         const keys = updateKeys(expandedKeysState, targetKey, true)
         setExpandedKeysState(keys)
       },
-      [expandedKeysState, nodeCache.current],
+      [expandedKeysState],
     )
 
     const handleSelect = useCallback(
       (targetKey: string) => {
-        const keys = updateKeys(selectedKeysState, targetKey, multiple)
+        const keys = updateKeys(selectedKeysState, targetKey, _multiple)
         setSelectedKeys(keys)
-        if (multiple && treeCheckable) {
+        if (_multiple && treeCheckable) {
           handleCheck(targetKey)
         }
-        if (!multiple) {
+        if (!_multiple) {
           setCurrentVisible(false)
         }
         if (!isObject(showSearch) || !showSearch.retainInputValueWhileSelect) {
           tryUpdateInputValue("", "optionChecked")
         }
       },
-      [selectedKeysState, nodeCache.current, currentValue],
+      [selectedKeysState, currentValue],
     )
 
     const handleCheck = useCallback(
@@ -316,7 +318,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
           tryUpdateInputValue("", "optionChecked")
         }
       },
-      [checkKeysState, nodeCache.current, treeData],
+      [checkKeysState, treeData],
     )
 
     return (
@@ -332,11 +334,12 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
               handleSelect={handleSelect}
               handleCheck={handleCheck}
               saveNodeCache={(key: string, node: NodeInstance) => {
-                if (!Object.keys(nodeCache.current).includes(key)) {
-                  nodeCache.current[key] = node
+                const value = options.find((item) => item.key === key).value
+                if (!Object.keys(nodeCache.current).includes(value)) {
+                  nodeCache.current[value] = node
                 }
               }}
-              checkable={multiple && treeCheckable}
+              checkable={treeCheckable}
             />
           ) : (
             <Empty
@@ -361,11 +364,12 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         <SelectView
           {...rest}
           {...selectViewEventHandlers}
+          disabled={disabled}
           value={currentValue}
           showSearch={showSearch}
           inputValue={_inputValue}
           popupVisible={currentVisible}
-          multiple={multiple}
+          multiple={_multiple}
           isEmptyValue={isNoOptionSelected}
           renderText={(value: any) => {
             if (nodeCache.current && value) {
