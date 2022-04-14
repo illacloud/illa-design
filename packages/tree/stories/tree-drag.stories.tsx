@@ -102,7 +102,6 @@ const Template: Story<TreeProps> = (args) => {
     <Tree
       draggable
       blockNode
-      //checkable={checked}
       onDrop={(info) => {
         const loop = (
           data: TreeDataType[],
