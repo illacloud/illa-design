@@ -2,7 +2,7 @@ name: "Preview Publish"
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, feat/privatization_storybook ]
 
 env:
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -41,7 +41,7 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn build-all-components
-          yarn build-storybook
+          npx build-storybook
 
   build:
     needs:

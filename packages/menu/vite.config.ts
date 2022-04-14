@@ -25,6 +25,8 @@ export default defineConfig({
     }),
   ],
   build: {
+    sourcemap: false,
+    minify: false,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/menu",
