@@ -12,7 +12,13 @@ import { css } from "@emotion/react"
 import { omit } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
 import { InputElementProps } from "./interface"
-import { applyClearStyle, applyInputStyle, clearStyle, mirrorStyle, pointerStyle } from "./style"
+import {
+  applyClearStyle,
+  applyInputStyle,
+  clearStyle,
+  mirrorStyle,
+  pointerStyle,
+} from "./style"
 
 export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
   (props, ref) => {

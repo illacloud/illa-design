@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { SerializedStyles } from "@emotion/react"
-import { DropdownProps } from "../../dropdown/src/interface"
+import { DropdownProps } from "@illa-design/dropdown"
 
 export type RouteProps = {
   path?: string

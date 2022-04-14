@@ -4,7 +4,7 @@ import { Breadcrumb, BreadcrumbProps } from "../src"
 export default {
   title: "NAVIGATION/Breadcrumb",
   component: Breadcrumb,
-  args: {}
+  args: {},
 } as Meta
 
 const Template: Story<BreadcrumbProps> = (args) => {
@@ -32,9 +32,7 @@ const Template: Story<BreadcrumbProps> = (args) => {
       breadcrumbName: "News",
     },
   ]
-  return (
-    <Breadcrumb routes={routes} {...args} />
-  )
+  return <Breadcrumb routes={routes} {...args} />
 }
 
 export const Basic = Template.bind({})
