@@ -6,7 +6,6 @@ import { ListSize } from "./interface"
 export function applyListContainer(bordered?: boolean): SerializedStyles {
   let containerCss = css`
     display: inline-flex;
-    min-width: 686px;
     flex-direction: column;
   `
   if (bordered) {

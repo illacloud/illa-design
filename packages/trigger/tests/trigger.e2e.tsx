@@ -11,7 +11,7 @@ it("Trigger renders correctly", () => {
     </Trigger>,
   )
   cy.findByText("Hello Trigger Custom").trigger("mouseover")
-  expect(cy.findByText("Trigger Success Custom")).exist
+  cy.findByText("Trigger Success Custom").should("exist")
   unmount()
 })
 

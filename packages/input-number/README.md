@@ -5,13 +5,13 @@ The InputTag component is used to get users input number in it.
 ## Installation
 
 ```bash
-yarn add @illa-design/inputNumber	
+yarn add @illa-design/input-number	
 ```
 
 ## Import component
 
 ```jsx
-import { InputNumber } from "@illa-design/inputNumber"
+import { InputNumber } from "@illa-design/input-number"
 ```
 
 ## API

@@ -22,7 +22,7 @@ test("TimePicker renders with text", () => {
 test("TimePicker renders with error", () => {
   render(<TimePicker placeholder={"error"} error />)
   expect(screen.getByPlaceholderText("error").parentElement).toHaveStyle({
-    'border-color':` ${globalColor(`--${illaPrefix}-red-03`)}`,
+    "border-color": ` ${globalColor(`--${illaPrefix}-red-03`)}`,
   })
 })
 
@@ -52,15 +52,15 @@ test("TimePicker render with input event", async () => {
   )
   const testEvent = screen.getByPlaceholderText("test-input-event")
   fireEvent.change(testEvent, { target: { value: "123" } })
-  expect(testEvent).toHaveDisplayValue('123')
+  expect(testEvent).toHaveDisplayValue("123")
   await waitFor(() => {
     userEvent.type(testEvent, `{enter}`)
   })
-  expect(testEvent).toHaveDisplayValue('')
+  expect(testEvent).toHaveDisplayValue("")
   fireEvent.change(testEvent, { target: { value: "10:00:00" } })
   await waitFor(() => {
     userEvent.type(testEvent, `{enter}`)
   })
-  expect(testEvent).toHaveDisplayValue('10:00:00')
+  expect(testEvent).toHaveDisplayValue("10:00:00")
   expect(changeEvent).toBeCalled()
 })

@@ -200,6 +200,7 @@ export function applyInputContainer(
     position: relative;
     font-size: inherit;
     line-height: inherit;
+    box-sizing: border-box;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     transition: all 200ms ease-in-out;
@@ -215,13 +216,18 @@ export function applyInputContainer(
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
     }
+
     &:hover {
       [title="InputClearIcon"] {
         opacity: 1;
         // input suffix hidden
-        // & ~ * {
-        //   visibility: hidden;
-        // }
+        ${stateValue.iconAppearWithSuffix
+          ? css`
+              & ~ * {
+                visibility: hidden;
+              }
+            `
+          : ""}
       }
     }
   `
@@ -251,6 +257,7 @@ export function applyInputStyle(textCenterHorizontal?: boolean | undefined) {
     cursor: inherit;
     background-color: inherit;
     padding: 1px 4px;
+
     ${textAlignCss}
     &::placeholder {
       color: ${globalColor(`--${illaPrefix}-gray-04`)};
@@ -354,6 +361,7 @@ export function applyAddonCss(stateValue: StateValue) {
     border-style: solid;
     padding: 0 16px;
     height: 100%;
+    box-sizing: border-box;
 
     &:first-of-type {
       border-top-left-radius: 4px;
@@ -388,8 +396,31 @@ export function applyLengthErrorStyle(error?: boolean) {
   `
 }
 
-// support when input hover, hide suffix
-export function applyClearStyle(size?: InputSize): SerializedStyles {
+export const pointerStyle = css`
+  transition: color 200ms ease-in-out;
+  cursor: pointer;
+  color: ${globalColor(`--${illaPrefix}-gray-06`)};
+
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  }
+`
+export const clearStyle = css`
+  opacity: 0;
+  margin-left: 8px;
+  display: flex;
+`
+
+/**
+ * support when input hover, hide suffix
+ *
+ * @param size
+ * @param AppearWithSuffix Does it Appear at the same time with suffix
+ */
+export function applyClearStyle(
+  size?: InputSize,
+  AppearWithSuffix?: boolean,
+): SerializedStyles {
   let sizeCss: SerializedStyles = css()
   if (size == "small") {
     sizeCss = css`
@@ -402,25 +433,14 @@ export function applyClearStyle(size?: InputSize): SerializedStyles {
       right: 16px;
     `
   }
-  return css`
-    opacity: 0;
-    ${sizeCss}
-  `
+
+  return AppearWithSuffix
+    ? css`
+        opacity: 0;
+        ${sizeCss}
+      `
+    : clearStyle
 }
-
-export const clearStyle = css`
-  opacity: 0;
-  margin-left: 8px;
-`
-
-export const pointerStyle = css`
-  cursor: pointer;
-  color: ${globalColor(`--${illaPrefix}-gray-06`)};
-
-  &:hover {
-    color: ${globalColor(`--${illaPrefix}-gray-05`)};
-  }
-`
 
 export const mirrorStyle = css`
   position: absolute;
@@ -433,8 +453,8 @@ export const mirrorStyle = css`
 // rangeInput style
 
 export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
-
   return css`
+    box-sizing: border-box;
     display: inline-flex;
     flex-direction: row;
     align-items: center;
@@ -447,12 +467,14 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
     ${applyStatus(stateValue)}
     ${applySizeStyle(stateValue?.size)}
     ${applySizeCss(true, stateValue?.size)};
+
     &:hover {
       [title="InputClearIcon"] {
         opacity: 1;
         // input suffix hidden
         & ~ * {
           //margin-left: 2px;
+          visibility: hidden;
         }
       }
     }
@@ -461,6 +483,8 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
 
 export function applyRangeInput(): SerializedStyles {
   return css`
+    transition: all 200ms ease-in-out;
+
     &:focus {
       border-radius: 2px;
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};

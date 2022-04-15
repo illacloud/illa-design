@@ -1,5 +1,6 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
+import istanbul from "vite-plugin-istanbul"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,8 +15,14 @@ export default defineConfig({
       exclude: [/\.stories\.([tj])sx?$/, /\.test\.([tj])sx?$/],
       include: ["**/**.tsx", "**/**.ts"],
     }),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
+      exclude: ["node_modules", "cypress/","dist"],
+      extension: ["ts", "tsx"],
+    }),
   ],
   optimizeDeps: {
-    include: ["@emotion/react/jsx-dev-runtime"]
-  }
+    include: ["@emotion/react/jsx-dev-runtime"],
+  },
 })

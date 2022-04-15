@@ -40,12 +40,6 @@ const Template: Story<AlertProps> = (args) => {
             <Button size="small">Close</Button>
           </Space>
         }
-        onClose={() => {
-          console.log("close")
-        }}
-        afterClose={() => {
-          console.log("after close")
-        }}
       />
     </>
   )

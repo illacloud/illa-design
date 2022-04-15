@@ -27,28 +27,35 @@ exports[`Only last step render error style 1`] = `
   display: block;
   width: 1px;
   left: 12px;
-  top: 28px;
-  bottom: 5px;
+  top: 32px;
+  bottom: 8px;
   background-color: #1e6fff;
 }
 
 .emotion-3 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
   font-size: 14px;
   background: #edf4ff;
   color: #1e6fff;
-}
-
-.emotion-3 svg {
-  font-size: 10px;
 }
 
 .emotion-4 {
@@ -60,8 +67,10 @@ exports[`Only last step render error style 1`] = `
 }
 
 .emotion-6 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -71,28 +80,35 @@ exports[`Only last step render error style 1`] = `
   display: block;
   width: 1px;
   left: 12px;
-  top: 28px;
-  bottom: 5px;
+  top: 32px;
+  bottom: 8px;
   background-color: #ff4747;
 }
 
 .emotion-14 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
   font-size: 14px;
   background: #fee;
   color: #ff4747;
-}
-
-.emotion-14 svg {
-  font-size: 10px;
 }
 
 <div
@@ -111,9 +127,9 @@ exports[`Only last step render error style 1`] = `
       <svg
         class="emotion-4"
         color="currentColor"
-        height="1em"
+        height="12"
         viewBox="0 0 8 8"
-        width="1em"
+        width="12"
       >
         <title>
           SuccessIcon
@@ -148,9 +164,9 @@ exports[`Only last step render error style 1`] = `
       <svg
         class="emotion-4"
         color="currentColor"
-        height="1em"
+        height="12"
         viewBox="0 0 8 8"
-        width="1em"
+        width="12"
       >
         <title>
           SuccessIcon
@@ -182,15 +198,15 @@ exports[`Only last step render error style 1`] = `
       <svg
         class="emotion-4"
         color="currentColor"
-        height="1em"
+        height="12"
         viewBox="0 0 8 8"
-        width="1em"
+        width="12"
       >
         <title>
           CloseIcon
         </title>
         <path
-          d="M.168.168a.571.571 0 0 1 .809 0L4 3.192 7.023.168a.572.572 0 0 1 .81.809L4.807 4l3.024 3.023a.572.572 0 1 1-.809.81L4 4.807.977 7.832a.572.572 0 1 1-.81-.809L3.193 4 .168.977a.571.571 0 0 1 0-.81z"
+          d="M1.146 1.146a.5.5 0 0 1 .708 0L4 3.293l2.146-2.147a.5.5 0 1 1 .708.708L4.707 4l2.147 2.146a.5.5 0 1 1-.708.708L4 4.707 1.854 6.854a.5.5 0 1 1-.708-.708L3.293 4 1.146 1.854a.5.5 0 0 1 0-.708z"
           fill="currentColor"
         />
       </svg>
@@ -237,8 +253,8 @@ exports[`Steps render vertical label 1`] = `
   width: 100%;
   box-sizing: border-box;
   top: 12px;
-  left: 88px;
-  padding-right: 24px;
+  left: 96px;
+  padding-right: 40px;
 }
 
 .emotion-2::after {
@@ -250,12 +266,23 @@ exports[`Steps render vertical label 1`] = `
 }
 
 .emotion-3 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -265,10 +292,6 @@ exports[`Steps render vertical label 1`] = `
   margin-left: 56px;
 }
 
-.emotion-3 svg {
-  font-size: 10px;
-}
-
 .emotion-4 {
   display: block;
   text-align: center;
@@ -276,19 +299,32 @@ exports[`Steps render vertical label 1`] = `
 }
 
 .emotion-5 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 8px;
   padding-right: 0;
   color: #1f1f1f;
 }
 
 .emotion-7 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -296,17 +332,6 @@ exports[`Steps render vertical label 1`] = `
   background: #ebebeb;
   color: #999;
   margin-left: 56px;
-}
-
-.emotion-7 svg {
-  font-size: 10px;
-}
-
-.emotion-9 {
-  line-height: 24px;
-  font-size: 16px;
-  padding-right: 0;
-  color: #999;
 }
 
 <div
@@ -346,7 +371,7 @@ exports[`Steps render vertical label 1`] = `
       class="emotion-4"
     >
       <div
-        class="emotion-9"
+        class="emotion-5"
       >
         Process
       </div>
@@ -382,20 +407,40 @@ exports[`Steps render with dot variant 1`] = `
   display: block;
   height: 1px;
   width: 100%;
-  left: 78px;
+  left: 90px;
+  padding-right: 24px;
+  box-sizing: border-box;
   top: 4px;
+}
+
+.emotion-2::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
   background-color: #ebebeb;
 }
 
 .emotion-3 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
-  width: 10px;
-  height: 10px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 8px;
+  height: 8px;
   background: #1e6fff;
   color: #fff;
   margin-left: 66px;
@@ -408,37 +453,37 @@ exports[`Steps render with dot variant 1`] = `
 }
 
 .emotion-5 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 0;
   color: #1f1f1f;
 }
 
-.emotion-5::after {
-  content: "";
-  position: absolute;
-  display: block;
-}
-
 .emotion-7 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 8px;
   height: 8px;
-  background: #999;
+  background: #d6d6d6;
   color: #999;
   margin-left: 66px;
-}
-
-.emotion-9 {
-  line-height: 24px;
-  font-size: 16px;
-  padding-right: 0;
-  color: #999;
 }
 
 <div
@@ -474,7 +519,7 @@ exports[`Steps render with dot variant 1`] = `
       class="emotion-4"
     >
       <div
-        class="emotion-9"
+        class="emotion-5"
       >
         Wait
       </div>
@@ -510,20 +555,31 @@ exports[`Steps render with dot variant with vertical direction 1`] = `
   display: block;
   width: 1px;
   left: 3.5px;
-  top: 22px;
-  bottom: -5px;
+  top: 24px;
+  bottom: 0;
   background-color: #ebebeb;
 }
 
 .emotion-3 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
-  width: 10px;
-  height: 10px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 8px;
+  height: 8px;
   background: #1e6fff;
   color: #fff;
   margin-top: 8px;
@@ -534,31 +590,37 @@ exports[`Steps render with dot variant with vertical direction 1`] = `
 }
 
 .emotion-5 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
 
 .emotion-7 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 8px;
   height: 8px;
-  background: #999;
+  background: #d6d6d6;
   color: #999;
   margin-top: 8px;
-}
-
-.emotion-9 {
-  line-height: 24px;
-  font-size: 16px;
-  padding-right: 16px;
-  color: #999;
 }
 
 <div
@@ -594,7 +656,7 @@ exports[`Steps render with dot variant with vertical direction 1`] = `
       class="emotion-4"
     >
       <div
-        class="emotion-9"
+        class="emotion-5"
       >
         Wait
       </div>
@@ -626,22 +688,29 @@ exports[`Steps render with error status 1`] = `
 }
 
 .emotion-2 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
   font-size: 14px;
   background: #fee;
   color: #ff4747;
-}
-
-.emotion-2 svg {
-  font-size: 10px;
 }
 
 .emotion-3 {
@@ -653,8 +722,10 @@ exports[`Steps render with error status 1`] = `
 }
 
 .emotion-5 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -672,15 +743,15 @@ exports[`Steps render with error status 1`] = `
       <svg
         class="emotion-3"
         color="currentColor"
-        height="1em"
+        height="12"
         viewBox="0 0 8 8"
-        width="1em"
+        width="12"
       >
         <title>
           CloseIcon
         </title>
         <path
-          d="M.168.168a.571.571 0 0 1 .809 0L4 3.192 7.023.168a.572.572 0 0 1 .81.809L4.807 4l3.024 3.023a.572.572 0 1 1-.809.81L4 4.807.977 7.832a.572.572 0 1 1-.81-.809L3.193 4 .168.977a.571.571 0 0 1 0-.81z"
+          d="M1.146 1.146a.5.5 0 0 1 .708 0L4 3.293l2.146-2.147a.5.5 0 1 1 .708.708L4.707 4l2.147 2.146a.5.5 0 1 1-.708.708L4 4.707 1.854 6.854a.5.5 0 1 1-.708-.708L3.293 4 1.146 1.854a.5.5 0 0 1 0-.708z"
           fill="currentColor"
         />
       </svg>
@@ -721,22 +792,29 @@ exports[`Steps render with finish status 1`] = `
 }
 
 .emotion-2 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
   font-size: 14px;
   background: #edf4ff;
   color: #1e6fff;
-}
-
-.emotion-2 svg {
-  font-size: 10px;
 }
 
 .emotion-3 {
@@ -748,8 +826,10 @@ exports[`Steps render with finish status 1`] = `
 }
 
 .emotion-5 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -767,9 +847,9 @@ exports[`Steps render with finish status 1`] = `
       <svg
         class="emotion-3"
         color="currentColor"
-        height="1em"
+        height="12"
         viewBox="0 0 8 8"
-        width="1em"
+        width="12"
       >
         <title>
           SuccessIcon
@@ -824,18 +904,29 @@ exports[`Steps render with navigation variant 1`] = `
   diplay: block;
   height: 2px;
   bottom: 0;
-  left: 0;
+  left: 20px;
   right: 30px;
   background-color: #1e6fff;
 }
 
 .emotion-2 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -844,29 +935,28 @@ exports[`Steps render with navigation variant 1`] = `
   color: #fff;
 }
 
-.emotion-2 svg {
-  font-size: 10px;
-}
-
 .emotion-3 {
   display: inline-block;
   margin-bottom: 16px;
 }
 
 .emotion-4 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
+  display: inline-block;
 }
 
 .emotion-4::after {
   content: "";
   position: absolute;
   display: block;
-  width: 8px;
-  height: 8px;
-  border: 3px solid #ebebeb;
+  width: 6px;
+  height: 6px;
+  border: 2px solid #d6d6d6;
   border-left: none;
   border-bottom: none;
   -webkit-transform: rotate(45deg);
@@ -890,12 +980,23 @@ exports[`Steps render with navigation variant 1`] = `
 }
 
 .emotion-6 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -904,15 +1005,13 @@ exports[`Steps render with navigation variant 1`] = `
   color: #999;
 }
 
-.emotion-6 svg {
-  font-size: 10px;
-}
-
 .emotion-8 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
-  color: #999;
+  color: #1f1f1f;
 }
 
 <div
@@ -981,12 +1080,23 @@ exports[`Steps render with no line 1`] = `
 }
 
 .emotion-2 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -995,17 +1105,15 @@ exports[`Steps render with no line 1`] = `
   color: #fff;
 }
 
-.emotion-2 svg {
-  font-size: 10px;
-}
-
 .emotion-3 {
   display: inline-block;
 }
 
 .emotion-4 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -1058,12 +1166,23 @@ exports[`Steps render with process status 1`] = `
 }
 
 .emotion-2 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -1072,19 +1191,18 @@ exports[`Steps render with process status 1`] = `
   color: #fff;
 }
 
-.emotion-2 svg {
-  font-size: 10px;
-}
-
 .emotion-3 {
   display: inline-block;
 }
 
 .emotion-4 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
+  display: inline-block;
   position: relative;
 }
 
@@ -1100,12 +1218,23 @@ exports[`Steps render with process status 1`] = `
 }
 
 .emotion-6 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -1114,34 +1243,13 @@ exports[`Steps render with process status 1`] = `
   color: #999;
 }
 
-.emotion-6 svg {
-  font-size: 10px;
-}
-
-.emotion-8 {
-  line-height: 24px;
-  font-size: 16px;
-  padding-right: 16px;
-  color: #999;
-  position: relative;
-}
-
-.emotion-8::after {
-  content: "";
-  position: absolute;
-  display: block;
-  height: 1px;
-  width: 9999px;
-  left: 100%;
-  top: 10px;
-  background-color: #ebebeb;
-}
-
 .emotion-12 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
-  color: #999;
+  color: #1f1f1f;
 }
 
 <div
@@ -1178,7 +1286,7 @@ exports[`Steps render with process status 1`] = `
       class="emotion-3"
     >
       <div
-        class="emotion-8"
+        class="emotion-4"
       >
         Process
       </div>
@@ -1232,18 +1340,29 @@ exports[`Steps render with vertical 1`] = `
   display: block;
   width: 1px;
   left: 12px;
-  top: 28px;
-  bottom: 5px;
+  top: 32px;
+  bottom: 8px;
   background-color: #ebebeb;
 }
 
 .emotion-3 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -1252,44 +1371,42 @@ exports[`Steps render with vertical 1`] = `
   color: #fff;
 }
 
-.emotion-3 svg {
-  font-size: 10px;
-}
-
 .emotion-4 {
   display: inline-block;
 }
 
 .emotion-5 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
 
 .emotion-7 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
   font-size: 14px;
   background: #ebebeb;
-  color: #999;
-}
-
-.emotion-7 svg {
-  font-size: 10px;
-}
-
-.emotion-9 {
-  line-height: 24px;
-  font-size: 16px;
-  padding-right: 16px;
   color: #999;
 }
 
@@ -1330,7 +1447,7 @@ exports[`Steps render with vertical 1`] = `
       class="emotion-4"
     >
       <div
-        class="emotion-9"
+        class="emotion-5"
       >
         Wait
       </div>
@@ -1366,18 +1483,29 @@ exports[`Steps with dot variant and error status should render error style 1`] =
   display: block;
   width: 1px;
   left: 3.5px;
-  top: 22px;
-  bottom: -5px;
+  top: 24px;
+  bottom: 0;
   background-color: #ff4747;
 }
 
 .emotion-3 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 8px;
   height: 8px;
   background: #1e6fff;
@@ -1390,8 +1518,10 @@ exports[`Steps with dot variant and error status should render error style 1`] =
 }
 
 .emotion-5 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -1401,18 +1531,29 @@ exports[`Steps with dot variant and error status should render error style 1`] =
   display: block;
   width: 1px;
   left: 3.5px;
-  top: 22px;
-  bottom: -5px;
+  top: 24px;
+  bottom: 0;
   background-color: #ebebeb;
 }
 
 .emotion-8 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 8px;
   height: 8px;
   background: #ff4747;
@@ -1421,24 +1562,28 @@ exports[`Steps with dot variant and error status should render error style 1`] =
 }
 
 .emotion-12 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 8px;
   height: 8px;
-  background: #999;
+  background: #d6d6d6;
   color: #999;
   margin-top: 8px;
-}
-
-.emotion-14 {
-  line-height: 24px;
-  font-size: 16px;
-  padding-right: 16px;
-  color: #999;
 }
 
 <div
@@ -1493,7 +1638,7 @@ exports[`Steps with dot variant and error status should render error style 1`] =
       class="emotion-4"
     >
       <div
-        class="emotion-14"
+        class="emotion-5"
       >
         Wait
       </div>
@@ -1529,28 +1674,35 @@ exports[`Steps with vertical direction and error status should render error styl
   display: block;
   width: 1px;
   left: 12px;
-  top: 28px;
-  bottom: 5px;
+  top: 32px;
+  bottom: 8px;
   background-color: #ff4747;
 }
 
 .emotion-3 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
   font-size: 14px;
   background: #edf4ff;
   color: #1e6fff;
-}
-
-.emotion-3 svg {
-  font-size: 10px;
 }
 
 .emotion-4 {
@@ -1562,8 +1714,10 @@ exports[`Steps with vertical direction and error status should render error styl
 }
 
 .emotion-6 {
+  font-weight: 500;
   line-height: 24px;
   font-size: 16px;
+  margin-top: 0;
   padding-right: 16px;
   color: #1f1f1f;
 }
@@ -1573,18 +1727,29 @@ exports[`Steps with vertical direction and error status should render error styl
   display: block;
   width: 1px;
   left: 12px;
-  top: 28px;
-  bottom: 5px;
+  top: 32px;
+  bottom: 8px;
   background-color: #ebebeb;
 }
 
 .emotion-9 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -1593,33 +1758,29 @@ exports[`Steps with vertical direction and error status should render error styl
   color: #ff4747;
 }
 
-.emotion-9 svg {
-  font-size: 10px;
-}
-
 .emotion-14 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: top;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   margin-right: 16px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
   font-size: 14px;
   background: #ebebeb;
-  color: #999;
-}
-
-.emotion-14 svg {
-  font-size: 10px;
-}
-
-.emotion-16 {
-  line-height: 24px;
-  font-size: 16px;
-  padding-right: 16px;
   color: #999;
 }
 
@@ -1639,9 +1800,9 @@ exports[`Steps with vertical direction and error status should render error styl
       <svg
         class="emotion-4"
         color="currentColor"
-        height="1em"
+        height="12"
         viewBox="0 0 8 8"
-        width="1em"
+        width="12"
       >
         <title>
           SuccessIcon
@@ -1676,15 +1837,15 @@ exports[`Steps with vertical direction and error status should render error styl
       <svg
         class="emotion-4"
         color="currentColor"
-        height="1em"
+        height="12"
         viewBox="0 0 8 8"
-        width="1em"
+        width="12"
       >
         <title>
           CloseIcon
         </title>
         <path
-          d="M.168.168a.571.571 0 0 1 .809 0L4 3.192 7.023.168a.572.572 0 0 1 .81.809L4.807 4l3.024 3.023a.572.572 0 1 1-.809.81L4 4.807.977 7.832a.572.572 0 1 1-.81-.809L3.193 4 .168.977a.571.571 0 0 1 0-.81z"
+          d="M1.146 1.146a.5.5 0 0 1 .708 0L4 3.293l2.146-2.147a.5.5 0 1 1 .708.708L4.707 4l2.147 2.146a.5.5 0 1 1-.708.708L4 4.707 1.854 6.854a.5.5 0 1 1-.708-.708L3.293 4 1.146 1.854a.5.5 0 0 1 0-.708z"
           fill="currentColor"
         />
       </svg>
@@ -1711,7 +1872,7 @@ exports[`Steps with vertical direction and error status should render error styl
       class="emotion-5"
     >
       <div
-        class="emotion-16"
+        class="emotion-6"
       >
         Wait
       </div>

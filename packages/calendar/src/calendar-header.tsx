@@ -1,4 +1,5 @@
-import { FC, Fragment, useEffect, useState } from "react"
+import { FC, Fragment, useCallback, useEffect, useState } from "react"
+import { throttleByRaf } from "@illa-design/system"
 import { CalendarHeaderProps, selectTimeProps } from "./interface"
 import { Button } from "@illa-design/button"
 import {
@@ -17,8 +18,10 @@ import {
   selectCommonCss,
   applyHeaderWrapCss,
   applyModeButtonCss,
+  buttonHiddenCss,
+  headerLeftBtnsCss,
+  headerRightBtnsCss,
 } from "./styles"
-import dayjs from "dayjs"
 
 export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
   const {
@@ -40,27 +43,23 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
 
   const [currentYear, setCurrentYear] = useState<number>(-1)
   const [currentMonth, setCurrentMonth] = useState<number>(-1)
-  const [doSelect, setDoSelect] = useState<boolean>(false)
 
   useEffect(() => {
-    setCurrentYear(dayjs(currentDay).year())
-    setCurrentMonth(dayjs(currentDay).month() + 1)
+    setCurrentYear(currentDay.year())
+    setCurrentMonth(currentDay.month() + 1)
   }, [currentDay])
 
   const selectTime = (time: selectTimeProps) => {
     const { year, month } = time
-    year && setCurrentYear(year)
-    month && setCurrentMonth(month)
-    setDoSelect(true)
-  }
-
-  useEffect(() => {
-    if (!doSelect) {
-      return
+    if (year) {
+      setCurrentYear(year)
+      onSelectTime({ year: year, month: currentMonth })
     }
-    onSelectTime({ year: currentYear, month: currentMonth })
-    setDoSelect(false)
-  }, [doSelect])
+    if (month) {
+      setCurrentMonth(month)
+      onSelectTime({ year: currentYear, month: month })
+    }
+  }
 
   function HeaderTypeButton() {
     return (
@@ -107,7 +106,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
           size={"small"}
           css={selectCommonCss}
           style={{ width: 105 }}
-          onChange={(val) => selectTime({ year: val })}
+          onChange={(val: number) => selectTime({ year: val })}
         />
         {mode === "month" && (
           <Select
@@ -117,7 +116,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
             size={"small"}
             css={selectCommonCss}
             style={{ width: 90 }}
-            onChange={(val) => selectTime({ month: val })}
+            onChange={(val: number) => selectTime({ month: val })}
           />
         )}
       </div>
@@ -132,29 +131,32 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
         <div css={applyHeaderWrapCss(panel || false)}>
           {panel ? (
             <Fragment>
-              <div>
+              <div css={headerLeftBtnsCss}>
                 {/* double-pre button */}
-                {panelOperations?.includes("double-left") ? (
-                  <Button
-                    disabled={!allowSelect}
-                    variant={"text"}
-                    colorScheme={"gray"}
-                    onClick={() => onChangeTime("pre", "year")}
-                  >
-                    <PreDoubleIcon size={"12px"} />
-                  </Button>
-                ) : null}
+                <Button
+                  disabled={!allowSelect}
+                  variant={"text"}
+                  colorScheme={"gray"}
+                  css={
+                    !panelOperations?.includes("doubleLeft") && buttonHiddenCss
+                  }
+                  onClick={() => onChangeTime("pre", "year")}
+                >
+                  <PreDoubleIcon size={"12px"} />
+                </Button>
                 {/* pre button */}
-                {panelOperations?.includes("left") && mode === "day" ? (
-                  <Button
-                    disabled={!allowSelect}
-                    variant={"text"}
-                    colorScheme={"gray"}
-                    onClick={() => onChangeTime("pre", "month")}
-                  >
-                    <PreIcon size={"12px"} />
-                  </Button>
-                ) : null}
+                <Button
+                  disabled={!allowSelect}
+                  variant={"text"}
+                  colorScheme={"gray"}
+                  css={
+                    !(panelOperations?.includes("left") && mode === "day") &&
+                    buttonHiddenCss
+                  }
+                  onClick={() => onChangeTime("pre", "month")}
+                >
+                  <PreIcon size={"12px"} />
+                </Button>
               </div>
 
               {mode === "day" && (
@@ -171,29 +173,32 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                 </div>
               )}
 
-              <div>
+              <div css={headerRightBtnsCss}>
                 {/* next button */}
-                {panelOperations?.includes("right") && mode === "day" ? (
-                  <Button
-                    disabled={!allowSelect}
-                    variant={"text"}
-                    colorScheme={"gray"}
-                    onClick={() => onChangeTime("next", "month")}
-                  >
-                    <NextIcon size={"12px"} />
-                  </Button>
-                ) : null}
+                <Button
+                  disabled={!allowSelect}
+                  variant={"text"}
+                  colorScheme={"gray"}
+                  css={
+                    !(panelOperations?.includes("right") && mode === "day") &&
+                    buttonHiddenCss
+                  }
+                  onClick={() => onChangeTime("next", "month")}
+                >
+                  <NextIcon size={"12px"} />
+                </Button>
                 {/* double-next button */}
-                {panelOperations?.includes("double-right") ? (
-                  <Button
-                    disabled={!allowSelect}
-                    variant={"text"}
-                    colorScheme={"gray"}
-                    onClick={() => onChangeTime("next", "year")}
-                  >
-                    <NextDoubleIcon size={"12px"} />
-                  </Button>
-                ) : null}
+                <Button
+                  disabled={!allowSelect}
+                  variant={"text"}
+                  colorScheme={"gray"}
+                  css={
+                    !panelOperations?.includes("doubleRight") && buttonHiddenCss
+                  }
+                  onClick={() => onChangeTime("next", "year")}
+                >
+                  <NextDoubleIcon size={"12px"} />
+                </Button>
               </div>
             </Fragment>
           ) : (

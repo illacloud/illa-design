@@ -88,8 +88,20 @@
     "@illa-design/steps": "*",
     "@illa-design/back-top": "*",
     "@illa-design/drawer": "*",
+    "@illa-design/table": "*",
+    "@illa-design/anchor": "*",
+    "@illa-design/collapse": "*",
+    "@illa-design/date-picker": "*",
+    "@illa-design/result": "*",
+    "@illa-design/page-header": "*",
+    "@illa-design/slider": "*",
+    "@illa-design/menu": "*",
     "react-use": "^17.3.1",
     "framer-motion": "^6.2.8",
+    "@illa-design/tree-common": "*",
+    "@illa-design/tree": "*",
+    "@illa-design/tree-select": "*",
     "@emotion/react": "^11.7.1"
+
   }
 }

@@ -21,41 +21,39 @@ export type columState = {
 
 export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
   (props, ref) => {
-    const {
-      list,
-      value,
-      onHandleSelect,
-      unit,
-      popupVisible,
-      scrollSticky,
-      ...rest
-    } = props
+    const { list, value, onHandleSelect, unit, popupVisible, scrollSticky } =
+      props
 
     const wrapperRef = useRef<HTMLDivElement>(null)
     const ulRef = useRef<HTMLUListElement>(null)
+    const visibleRef = useRef<boolean>()
     const listElement = useRef<Map<number | string, HTMLElement | null>>(
       new Map(),
     )
     const listItemHeight = useRef<number>(0)
-    const prevPopupVisible = useRef<boolean>()
+
+    const prevPopupVisible = visibleRef.current
     const currentScrollTop = useRef<number>(
       wrapperRef?.current?.scrollTop as number,
     )
 
     useEffect(() => {
-      prevPopupVisible.current = popupVisible
+      visibleRef.current = popupVisible
     })
 
     useEffect(() => {
       const li = value ? listElement.current.get(value) : undefined
-      if (li && popupVisible && prevPopupVisible.current) {
-        wrapperRef.current?.scrollTo?.({ top: li.offsetTop })
+      if (li && popupVisible && prevPopupVisible) {
+        wrapperRef.current?.scrollTo?.({
+          top: li.offsetTop,
+          behavior: "smooth",
+        })
         currentScrollTop.current = li.offsetTop
       }
     }, [value])
 
     useEffect(() => {
-      if (popupVisible && popupVisible !== prevPopupVisible.current) {
+      if (popupVisible && popupVisible !== prevPopupVisible) {
         const li = value ? listElement.current.get(value) : undefined
         if (li) {
           wrapperRef.current?.scrollTo?.({ top: li.offsetTop })

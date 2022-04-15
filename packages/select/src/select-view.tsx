@@ -50,13 +50,11 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       error,
       loading,
       disabled,
-      options,
       labelInValue,
       allowClear,
       allowCreate,
       removeIcon,
       // event
-      onChange,
       onClick,
       onFocus,
       onBlur,
@@ -185,9 +183,12 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         value: typeof !isObject(_inputValue) ? _inputValue : "",
         // Allow placeholder to display the selected value first when searching
         placeholder:
-          canFocusInput && renderedValue && !isObject(_inputValue)
+          canFocusInput && renderedValue && !isObject(renderedValue)
             ? renderedValue
             : placeholder,
+        style: {
+          pointerEvents: canFocusInput ? "auto" : "none",
+        },
       }
 
       if (canFocusInput) {
@@ -199,9 +200,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       } else {
         // Avoid input getting focus by Tab
         inputProps.tabIndex = -1
-        if (inputProps.style) {
-          inputProps.style.pointerEvents = "none"
-        }
+        // inputProps['style']['pointerEvents'] = "none"
       }
       const needShowInput = (mergedFocused && canFocusInput) || isEmptyValue
 
@@ -223,6 +222,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       const usedMaxTagCount = isNumber(maxTagCount)
         ? Math.max(maxTagCount, 0)
         : usedValue.length
+      // console.log(usedValue, usedMaxTagCount, 'usedValue')
       const tagsToShow: ObjectValueType[] = usedValue
         .slice(0, usedMaxTagCount)
         .map((v) => {
@@ -261,7 +261,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             padding: unset;
             box-shadow: unset;
           `}
-          disableInput={!(showSearch || multiple)}
+          disableInput={!(showSearch ? showSearch : multiple)}
           inputRef={inputRef}
           disabled={disabled}
           placeholder={placeholder}
@@ -290,7 +290,10 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         }}
         onBlur={(event) => tryTriggerFocusChange("blur", event)}
         {...omit(otherProps, [
+          "options",
+          "filterOption",
           "onSearch",
+          "onChange",
           "onPopupScroll",
           "onInputValueChange",
           "onDeselect",

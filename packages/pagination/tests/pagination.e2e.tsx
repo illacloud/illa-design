@@ -3,7 +3,7 @@ import { Pagination } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
-it("Pagination renders with sizeOptions", async () => {
+it("Pagination renders with sizeOptions", () => {
   mount(
     <Pagination
       placeholder={"pagination"}
@@ -13,11 +13,11 @@ it("Pagination renders with sizeOptions", async () => {
     />,
   )
   cy.findByText("20/Page").click()
-  expect(cy.findAllByText("80/Page")).exist
+  cy.findAllByText("80/Page").should("exist")
   unmount()
 })
 
-it("Pagination renders with pageSizeSelect", async () => {
+it("Pagination renders with pageSizeSelect", () => {
   const change = cy.spy()
   mount(
     <Pagination
@@ -29,6 +29,6 @@ it("Pagination renders with pageSizeSelect", async () => {
   )
   cy.findByText("10/Page").click()
   cy.findByText("20/Page").click()
-  expect(cy.findAllByText("20/Page")).exist
+  cy.findAllByText("20/Page").should("exist")
   unmount()
 })

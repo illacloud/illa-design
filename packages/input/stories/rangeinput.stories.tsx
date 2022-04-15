@@ -36,7 +36,7 @@ export default {
         type: "code",
       },
     },
-  }
+  },
 } as Meta
 
 export const rangeInput: Story<RangeInputProps> = (props) => {

@@ -1,9 +1,10 @@
-import { forwardRef, useContext, useMemo, useState } from "react"
+import { forwardRef, useContext, useEffect, useMemo, useState } from "react"
 import { CalendarHeader } from "./calendar-header"
 import { CalendarBody } from "./calendar-body"
 import { CalenderProps, defaultModeItem, selectTimeProps } from "./interface"
 import { applyCalendarWrapCss } from "./styles"
-import dayjs from "dayjs"
+import { css } from "@emotion/react"
+import dayjs, { Dayjs } from "dayjs"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
@@ -13,11 +14,13 @@ import {
 export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
   (props, ref) => {
     const {
+      // base props
+      _css,
       allowSelect = true,
       panel = false,
       panelWidth = 265,
       panelTodayBtn = true,
-      panelOperations = ["left", "right", "double-left", "double-right"],
+      panelOperations = ["left", "right", "doubleLeft", "doubleRight"],
       dayStartOfWeek = 0,
       defaultMode = "month",
       mode = "",
@@ -29,13 +32,23 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       dateInnerContent,
       headerRender,
       headerType = "button",
+      // extra props
+      defaultDate,
+      defaultSelectedDate,
+      rangepicker = false,
+      rangeValueFirst,
+      rangeValueSecond,
+      rangeValueHover,
+      handleRangeVal,
+
+      // selectDayFromProps,
+      // defaultPickerValue,
       ...restProps
     } = props
 
     const configProviderProps = useContext<ConfigProviderProps>(
       ConfigProviderContext,
     )
-
     const locale = configProviderProps?.locale?.calendar ?? def.calendar
     const monthListLocale = [
       locale?.January,
@@ -52,104 +65,144 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       locale?.December,
     ]
 
-    const [currentDay, setCurrentDay] = useState(Date.now())
-    const [selectDay, setSelectDay] = useState<number>(0)
+    let defaultDayValue = defaultDate || dayjs()
+
+    const [selectDay, setSelectDay] = useState<Dayjs | undefined>()
     const [modeVal, setModeVal] = useState<defaultModeItem>(mode || defaultMode)
-    const finAllowSelect = useMemo(() => {
-      return panel === true ? true : allowSelect
-    }, [panel])
+    const [currentDay, setCurrentDay] = useState<Dayjs>(defaultDayValue)
+    const finPanel = modeVal === "day" ? true : panel
+    const finAllowSelect = finPanel === true ? true : allowSelect
+
+    // change from other compt
+    useEffect(() => {
+      if (!defaultDate) return
+      setCurrentDay(defaultDate)
+    }, [defaultDate])
+    useEffect(() => {
+      if (!defaultSelectedDate) return
+      if (defaultSelectedDate === "clear") {
+        setCurrentDay(defaultDayValue)
+        setSelectDay(undefined)
+        return
+      }
+      if (Array.isArray(defaultSelectedDate)) {
+      } else {
+        if (!dayjs.isDayjs(defaultSelectedDate)) {
+          return
+        }
+        setCurrentDay(defaultSelectedDate)
+        setSelectDay(defaultSelectedDate)
+      }
+    }, [defaultSelectedDate])
+
+    // useEffect(() => {
+    //   handleSelectDayFromProps()
+    // }, [selectDayFromProps])
 
     // click pre & next icon
     const changeTime = (type: string, modeProps?: defaultModeItem) => {
-      let base = 1
-      let arithmetic = 1
-
+      let result
+      let tempMode = modeProps || modeVal
       if (type === "pre") {
-        arithmetic = -1
+        result = currentDay.subtract(1, tempMode)
       } else if (type === "next") {
-        arithmetic = 1
+        result = currentDay.add(1, tempMode)
       }
-
-      let finMode = modeProps || modeVal
-
-      if (finMode === "month") {
-        base =
-          dayjs(currentDay).daysInMonth() > 28
-            ? 28
-            : dayjs(currentDay).daysInMonth()
-      } else if (finMode === "year") {
-        let curYear = dayjs(currentDay).year()
-        // leap year or not
-        base =
-          (curYear % 4 === 0 && curYear % 100 !== 0) || curYear % 400 === 0
-            ? 366
-            : 365
-      }
-
-      let result = currentDay + arithmetic * base * 24 * 60 * 60 * 1000
+      if (!result) return
       setCurrentDay(result)
-
-      onPanelChange && onPanelChange(dayjs(result))
+      onPanelChange?.(result)
     }
+
     // select year or month
     const selectTime = (selectTimeProps: selectTimeProps) => {
       const { year, month } = selectTimeProps
-
-      let setDate = dayjs()
-      if (Number.isInteger(year)) {
-        setDate = setDate.year(year as number)
-      }
-      if (Number.isInteger(month)) {
-        setDate = setDate.month((month as number) - 1)
-      }
-      setDate && setCurrentDay(setDate.valueOf())
+      let curDay = defaultDayValue.date() > 28 ? 28 : defaultDayValue.date()
+      setCurrentDay(dayjs(`${year}-${month}-${curDay}`))
     }
 
     // select day
-    const clickDay = (date: Date) => {
+    const clickDay = (date: Dayjs) => {
+      if (rangepicker) {
+        clickRangeDay(date)
+        return
+      }
+      if (selectDay?.isSame(date, "date")) return
       if (modeVal === "month" || modeVal === "day") {
         // if click pre or next month
-        // compare year
-        let sYear = dayjs(date).year()
-        let cYear = dayjs(currentDay).year()
-        if (sYear < cYear) {
+        !rangepicker && checkDifferentMonth(date)
+      }
+      setSelectDay(date)
+
+      onChange?.(date)
+    }
+    const clickRangeDay = (date: Dayjs) => {
+      if (!handleRangeVal) {
+        return
+      }
+      if (!rangeValueFirst && !rangeValueSecond) {
+        handleRangeVal(date, "first")
+      } else if (rangeValueFirst && !rangeValueSecond) {
+        handleRangeVal(date, "second")
+      } else if (rangeValueFirst && rangeValueSecond) {
+        handleRangeVal(date, "first")
+        handleRangeVal(undefined, "second")
+        handleRangeVal(undefined, "hover")
+      }
+    }
+
+    const checkDifferentMonth = (date: Dayjs) => {
+      // compare year
+      let sYear = date.year()
+      let cYear = currentDay.year()
+      if (sYear < cYear) {
+        changeTime("pre", "month")
+      } else if (sYear > cYear) {
+        changeTime("next", "month")
+      } else if (sYear === cYear) {
+        // compare month
+        let sMonth = date.month()
+        let cMonth = currentDay.month()
+        if (sMonth < cMonth) {
           changeTime("pre", "month")
-        } else if (sYear > cYear) {
+        } else if (sMonth > cMonth) {
           changeTime("next", "month")
-        } else if (sYear === cYear) {
-          // compare month
-          let sMonth = dayjs(date).month()
-          let cMonth = dayjs(currentDay).month()
-          if (sMonth < cMonth) {
-            changeTime("pre", "month")
-          } else if (sMonth > cMonth) {
-            changeTime("next", "month")
-          }
         }
       }
-
-      setSelectDay(date.getTime())
-
-      onChange && onChange(dayjs(date.getTime()))
     }
 
     // jump to today
     const toToday = () => {
-      setCurrentDay(Date.now())
-      setSelectDay(new Date(new Date().toLocaleDateString()).getTime())
+      setCurrentDay(dayjs())
+      setSelectDay(dayjs())
 
-      onChange && onChange(dayjs(Date.now()))
+      onChange?.(dayjs())
     }
+
+    // const handleSelectDayFromProps = () => {
+    //   if (!selectDayFromProps) return
+    //   if (selectDayFromProps === "clear") {
+    //     changeCurDate(defaultDayValue)
+    //     setSelectDay(0)
+    //   } else {
+    //     if (!Array.isArray(selectDayFromProps)) {
+    //       if (selectDayFromProps.isSame(dayjs(selectDay), "date")) {
+    //         return
+    //       }
+    //       changeCurDate(selectDayFromProps)
+    //       setSelectDay(selectDayFromProps.valueOf())
+    //     }
+    //   }
+    // }
 
     return (
       <div
-        css={applyCalendarWrapCss(panel, panelWidth)}
+        css={css(applyCalendarWrapCss(finPanel, panelWidth), _css)}
         ref={ref}
         {...restProps}
       >
         <CalendarHeader
           allowSelect={finAllowSelect}
-          panel={panel}
+          panel={finPanel}
           panelTodayBtn={panelTodayBtn}
           panelOperations={panelOperations}
           mode={modeVal}
@@ -169,7 +222,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
         />
         <CalendarBody
           allowSelect={finAllowSelect}
-          panel={panel}
+          panel={finPanel}
           panelTodayBtn={panelTodayBtn}
           dayStartOfWeek={dayStartOfWeek}
           mode={modeVal}
@@ -180,10 +233,14 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
           dateInnerContent={dateInnerContent}
           currentDay={currentDay}
           selectDay={selectDay}
-          onClickDay={(date: Date) => clickDay(date)}
+          onClickDay={(date: Dayjs) => clickDay(date)}
           onToToday={() => toToday()}
           locale={locale}
           monthListLocale={monthListLocale}
+          rangeValueFirst={rangeValueFirst}
+          rangeValueSecond={rangeValueSecond}
+          rangeValueHover={rangeValueHover}
+          handleRangeVal={handleRangeVal}
         />
       </div>
     )

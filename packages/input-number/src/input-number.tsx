@@ -218,6 +218,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         readOnly={readOnly}
         placeholder={placeholder}
         value={displayValue}
+        textCenterHorizontal={mode === "button"}
         prefix={{ render: prefix }}
         suffix={{
           render: (

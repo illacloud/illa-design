@@ -2,8 +2,8 @@ import { Children, forwardRef } from "react"
 import { TextProps } from "./interface"
 import { Base } from "./base"
 import { applyTextContainer } from "./text-style"
-import mergedToString from "./measure-element"
 import { Tooltip } from "@illa-design/tooltip"
+import { mergedToString } from "@illa-design/system"
 
 export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
   // get props
