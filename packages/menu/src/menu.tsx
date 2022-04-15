@@ -7,9 +7,9 @@ import {
   useEffect,
   useReducer,
 } from "react"
-import { useMergeValue, isFunction } from "@illa-design/system"
+import { useMergeValue, isFunction, omit } from "@illa-design/system"
 import { NextIcon, PreIcon } from "@illa-design/icon"
-import { MenuProps } from "./interface"
+import { MenuComponent, MenuProps } from "./interface"
 import { MenuContext } from "./menu-context"
 import { Item } from "./item"
 import { ItemGroup } from "./item-group"
@@ -20,7 +20,7 @@ import { applyMenuCss, applyMenuInnerCss, applyCollapseIconCss } from "./style"
 
 const DEFAULT_THEME: MenuProps["theme"] = "light"
 
-const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
+export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const {
     theme: themeProp = "light",
     mode = "vertical",
@@ -140,7 +140,7 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
       ref={ref}
       style={usedStyle}
       css={applyMenuCss(collapse, isPopButton, theme)}
-      {...restProps}
+      {...omit(restProps, ["isMenu"])}
     >
       <MenuContext.Provider
         value={{
@@ -200,16 +200,13 @@ const ForwardRefMenu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
       </MenuContext.Provider>
     </div>
   )
-})
-const Menu = ForwardRefMenu as typeof ForwardRefMenu & {
-  Item: typeof Item
-  ItemGroup: typeof ItemGroup
-  SubMenu: typeof SubMenu
-}
+}) as MenuComponent
 
 Menu.Item = Item
 Menu.ItemGroup = ItemGroup
 Menu.SubMenu = SubMenu
 Menu.displayName = "Menu"
 
-export { Menu }
+Menu.defaultProps = {
+  isMenu: true,
+}

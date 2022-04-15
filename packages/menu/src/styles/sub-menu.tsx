@@ -69,6 +69,7 @@ export function applySubMenuHeaderCss(
   const padding = isCollapse ? `0 16px` : `0 32px 0 24px`
 
   return css`
+    font-size: 14px;
     color: ${themeColor[theme].color};
     position: relative;
     overflow: hidden;

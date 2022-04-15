@@ -72,7 +72,7 @@ export function applyItemCss(
       content: "";
       display: block;
       height: 2px;
-      width: 100 %;
+      width: 100%;
       bottom: 0;
       left: 0;
       background-color: ${themeColor[theme].horizontalSelectedBg};
