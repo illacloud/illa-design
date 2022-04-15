@@ -9,15 +9,13 @@ const i18nConfig = {
   locales: ["en", "zh-cn"],
 }
 
-const isDev = process.env.NODE_ENV === 'development';
-const baseUrl = isDev ? '/' : '/illa-design/';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'illa-design',
   tagline: 'Dinosaurs are cool',
-  url: 'https://illa-family.github.io',
-  baseUrl,
+  url: 'https://design.illafamily.com',
+  baseUrl:"/",
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
