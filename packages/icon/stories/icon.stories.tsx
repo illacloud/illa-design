@@ -53,6 +53,7 @@ import {
   UploadIcon,
   WarningCircleIcon,
   WarningIcon,
+  CalendarIcon,
   CaretLeftIcon,
   CaretRightIcon,
   InfoIcon,
@@ -167,6 +168,7 @@ export const SorterDown: Story<IconProps> = (props) => (
 
 export const Filter: Story<IconProps> = (props) => <FilterIcon {...props} />
 export const Time: Story<IconProps> = (props) => <TimeIcon {...props} />
+export const Calendar: Story<IconProps> = (props) => <CalendarIcon {...props} />
 
 export const DragPoint: Story<IconProps> = (props) => (
   <DragPointIcon {...props} />
