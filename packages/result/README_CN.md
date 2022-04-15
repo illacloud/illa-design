@@ -20,11 +20,11 @@ import { Result } from "@illa-design/result"
 
 | Props    | Desc                       | Type                                                         | Default   |
 | -------- | -------------------------- | ------------------------------------------------------------ | --------- |
-| extra    | 操作区                     | ReactNode                                                    | `-`       |
-| icon     | 自定义 icon                | ReactNode                                                    | `-`       |
+| extra    | 操作区                     | `ReactNode`                                                   | `-`       |
+| icon     | 自定义 icon                | `ReactNode`                                                    | `-`       |
 | status   | 结果的状态，决定图标和颜色 | `"success" \| "error" \| "info" \| "warning" \| "404" \| "403" \| "500"` | `"error"` |
-| subTitle | 副标题文字                 | ReactNode                                                    | `-`       |
-| title    | 标题文字                  | ReactNode                                                    | `-`       |
+| subTitle | 副标题文字                 | `ReactNode`                                                    | `-`       |
+| title    | 标题文字                  | `ReactNode`                                                    | `-`       |
 
 ## 使用方法
 
