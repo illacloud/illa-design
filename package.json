@@ -70,13 +70,7 @@
     "prepare": "husky install",
     "postinstall": "npx patch-package",
     "plop": "plop new",
-    "mkdir:reports": "mkdir reports || true",
-    "precopy:reports": "yarn mkdir:reports",
-    "copy:reports": "cp cypress-coverage/coverage-final.json reports/from-cypress.json && cp jest-coverage/coverage-final.json reports/from-jest.json",
-    "precombine:reports": "yarn copy:reports && mkdir .nyc_output || true",
-    "combine:reports": "npx nyc merge reports && mv coverage.json .nyc_output/out.json",
-    "prereport:combined": "yarn combine:reports",
-    "report:combined": "npx nyc report --reporter lcov --reporter text --report-dir coverage"
+    "report:combined": "sh ./scripts/merge-coverage.sh"
   },
   "packageManager": "yarn@1.22.17",
   "nyc": {

@@ -25,11 +25,10 @@ export default defineConfig({
     }),
   ],
   build: {
-    sourcemap: false,
-    minify: false,
+    sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@illa-design/breadcrumb",
+      name: "@illa-design/result",
       fileName: (format) => `${format}/index.js`,
     },
     rollupOptions: {
