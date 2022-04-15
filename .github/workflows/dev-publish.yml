@@ -41,7 +41,6 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn build-all-components
-          NODE_OPTIONS=--max-old-space-size=11264 npx build-storybook
 
   build:
     needs:
@@ -80,6 +79,9 @@ jobs:
           yarn cypress info
           yarn test
 
+      - name: Build storybook
+        run: NODE_OPTIONS=--max-old-space-size=11264 npx build-storybook
+
       - name: Publish storybook to server
         uses: easingthemes/ssh-deploy@main
         env:
@@ -89,3 +91,4 @@ jobs:
           REMOTE_PORT: ${{ secrets.SB_SERVER_PORT }}
           SOURCE: "storybook-static/"
           TARGET: ${{ secrets.SB_SERVER_TARGET }}/${{ github.ref_name }}
+          AGRS: "-rlgoDzvc --delete"
