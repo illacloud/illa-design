@@ -8,7 +8,6 @@ test("Statistic renders with title", () => {
   expect(screen.getByText("Amount")).toBeInTheDocument()
   expect(screen.getByText("Amount")).toHaveStyle({
     "margin-bottom": "4px",
-    "font-family": "SFProDisplay",
     "font-size": "14px",
   })
 })

@@ -46,7 +46,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
             disabled={disabled}
             onChange={optionProps.onClick}
           />
-          <span>{children}</span>
+          <span css={{ "margin-left": "8px" }}>{children}</span>
         </li>
       ) : (
         <li css={applyOptionStyle(size)} ref={ref} {...optionProps}>

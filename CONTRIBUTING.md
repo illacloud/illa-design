@@ -64,6 +64,9 @@ $ npx cypress run-ct -b chrome
 
 # 创建新组件
 $ yarn plop
+
+# 合并 jest 与 cypress 覆盖率报告
+$ yarn report:combined
 ```
 
 ## 单元测试

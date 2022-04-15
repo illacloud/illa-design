@@ -1,9 +1,9 @@
 import React, { memo } from "react"
 import { formatPercent, getOffset } from "./util"
-import { MarkProps } from "./interface"
+import { SliderMarkProps } from "./interface"
 import { applySliderMarks, applySliderMarkText } from "./style"
 
-export default memo(function Marks(props: MarkProps) {
+export default memo(function Marks(props: SliderMarkProps) {
   const { data = [], min, max, vertical, reverse, onMouseDown } = props
 
   if (!data.length) return null

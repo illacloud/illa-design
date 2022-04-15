@@ -3,6 +3,7 @@ import { InputNumber } from "@illa-design/input-number"
 import { SliderInputProps } from "./interface"
 import {
   applySliderInput,
+  applySliderInputNumber,
   applySliderInputRange,
   applySliderInputRangeContent,
 } from "./style"
@@ -36,14 +37,10 @@ export default memo(function Input(props: SliderInputProps) {
     >
       {range && [
         <InputNumber
-          style={{
-            width: `58px`,
-            height: `32px`,
-            lineHeight: `normal`,
-            overflow: `visible`,
-          }}
+          style={applySliderInputNumber}
           value={innerValue[0]}
           key={0}
+          size={"small"}
           {...inputProps}
           onChange={(val) => {
             handleChange([val!, innerValue[1]])
@@ -54,13 +51,9 @@ export default memo(function Input(props: SliderInputProps) {
         </div>,
       ]}
       <InputNumber
-        style={{
-          width: `58px`,
-          height: `32px`,
-          lineHeight: `normal`,
-          overflow: `visible`,
-        }}
+        style={applySliderInputNumber}
         key={2}
+        size={"small"}
         value={innerValue[1]}
         {...inputProps}
         onChange={(val) => {

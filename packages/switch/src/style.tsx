@@ -1,5 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { SwitchColorScheme, SwitchSize } from "./interface"
 
 const innerColor = [
@@ -20,7 +20,7 @@ export function applySwitch(
   colorScheme: SwitchColorScheme,
   checked: boolean,
   size: SwitchSize,
-) {
+): SerializedStyles {
   const minWidth = size === "medium" ? "29px" : "40px"
   const height = size === "medium" ? "18px" : "24px"
   const isInnerColor: boolean = innerColor.indexOf(colorScheme) > -1
@@ -61,7 +61,7 @@ export function applySwitchDot(
   size: SwitchSize,
   checked: boolean,
   disabled: boolean,
-) {
+): SerializedStyles {
   const dotSize = size === "medium" ? "12px" : "16px"
   const dotSpacing = size === "medium" ? "3px" : "4px"
   const dotPosition = checked
@@ -91,7 +91,10 @@ export function applySwitchDot(
   `
 }
 
-export function applySwitchText(checked: boolean, size: SwitchSize) {
+export function applySwitchText(
+  checked: boolean,
+  size: SwitchSize,
+): SerializedStyles {
   const textSize =
     size === "medium"
       ? `
@@ -116,12 +119,10 @@ export function applySwitchText(checked: boolean, size: SwitchSize) {
   `
 }
 
-export function applySwitchIcon() {
-  return css`
-    width: 8px;
-    height: 8px;
-    font-size: 8px;
-    line-height: 6px;
-    overflow: hidden;
-  `
-}
+export const applySwitchIcon = css`
+  width: 8px;
+  height: 8px;
+  font-size: 8px;
+  line-height: 6px;
+  overflow: hidden;
+`

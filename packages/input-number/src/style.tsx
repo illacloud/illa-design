@@ -11,8 +11,7 @@ function baseFixCls(stateValue: InputNumberStateValue) {
         & > svg {
           font-size: 8px;
         }
-
-        padding: 0 8px;
+        padding: 0 7px;
       `
       break
     case "medium":
@@ -20,8 +19,7 @@ function baseFixCls(stateValue: InputNumberStateValue) {
         & > svg {
           font-size: 12px;
         }
-
-        padding: 0 10px;
+        padding: 0 9px;
       `
       break
     case "large":
@@ -29,8 +27,7 @@ function baseFixCls(stateValue: InputNumberStateValue) {
         & > svg {
           font-size: 12px;
         }
-
-        padding: 0 14px;
+        padding: 0 13px;
       `
       break
   }
@@ -54,7 +51,8 @@ export function applyAddonCss(stateValue: InputNumberStateValue) {
     border-style: solid;
     line-height: initial;
     height: 100%;
-
+    box-sizing: border-box;
+    text-align: center;
     &:hover {
       cursor: pointer;
       color: ${globalColor(`--${illaPrefix}-gray-02`)};

@@ -26,6 +26,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     loading = false,
     bordered = true,
     children,
+    isGridMode,
     ...restProps
   } = props
 
@@ -66,7 +67,11 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   )
 
   return (
-    <div ref={ref} css={applyCard(bordered, hoverable)} {...restProps}>
+    <div
+      ref={ref}
+      css={applyCard(bordered, hoverable, isGridMode)}
+      {...restProps}
+    >
       {title || extra ? (
         <div css={applyCardHeader(size)}>
           {title && <div css={applyCardHeaderTitle}>{title}</div>}

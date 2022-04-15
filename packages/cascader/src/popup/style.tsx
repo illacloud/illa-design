@@ -7,6 +7,7 @@ export const searchListWrapper = css`
   padding: 4px 0;
 `
 export const optionListWrapper = css`
+  padding: 4px 0;
   &:not(:last-child) {
     border-right: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
   }
@@ -18,6 +19,12 @@ export const optionListStyle = css`
   list-style: none;
   overflow-y: auto;
   height: 100%;
+`
+export const flexCenterStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `
 
 export function applyOptionStyle(states: {

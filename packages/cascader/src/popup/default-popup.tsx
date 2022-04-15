@@ -195,6 +195,7 @@ export const DefaultPopup = <T extends OptionProps>(
                   >
                     {multiple && (
                       <Checkbox
+                        css={{ "margin-right": "8px" }}
                         disabled={checkboxDisabled}
                         checked={option._checked}
                         indeterminate={option._halfChecked}

@@ -18,6 +18,13 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     ...otherProps
   } = props
 
+  const triggerDefaultProps = {
+    colorScheme: "white",
+    withoutPadding: true,
+    clickOutsideToClose: true,
+    ...triggerProps,
+  }
+
   const [currentPopupVisible, setCurrentPopupVisible] = useMergeValue(false, {
     defaultValue: props.defaultPopupVisible,
     value: props.popupVisible,
@@ -30,14 +37,13 @@ export const Dropdown: FC<DropdownProps> = (props) => {
   const changePopupVisible = (visible: boolean) => {
     setCurrentPopupVisible(visible)
     onVisibleChange?.(visible)
-    triggerProps?.onVisibleChange?.(visible)
+    triggerDefaultProps?.onVisibleChange?.(visible)
   }
 
   const content = getContent()
 
   return (
     <Trigger
-      {...(triggerProps ? omit(triggerProps, ["onVisibleChange"]) : {})}
       trigger={trigger}
       disabled={disabled}
       position={position}
@@ -72,6 +78,9 @@ export const Dropdown: FC<DropdownProps> = (props) => {
           changePopupVisible(visible)
         }
       }}
+      {...(triggerDefaultProps
+        ? omit(triggerDefaultProps, ["onVisibleChange"])
+        : {})}
       {...otherProps}
     >
       {isValidElement(children)

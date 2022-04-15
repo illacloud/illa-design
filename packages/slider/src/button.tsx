@@ -46,7 +46,6 @@ const SliderButton = function (props: SliderButtonProps) {
     }
   }
 
-  // 鼠标移入
   function handleMouseEnter() {
     inButtonOrPopup.current = true
     clearDelayTimer()
@@ -57,7 +56,6 @@ const SliderButton = function (props: SliderButtonProps) {
     }
   }
 
-  // 鼠标移出
   function handleMouseLeave() {
     inButtonOrPopup.current = false
     if (!isDragging.current) {
@@ -69,7 +67,7 @@ const SliderButton = function (props: SliderButtonProps) {
   }
 
   function moveStart(e: SyntheticEvent<Element, Event>) {
-    // 如果不阻止默认行为可能会在拖动时产生鼠标选中状态，所以手动处理元素失焦
+    // when dragging happens，mouse click event is unexpected,so we need prevent it and let the active element blur.
     e.preventDefault()
     const activeElement = document.activeElement as HTMLElement
     activeElement && activeElement.blur && activeElement.blur()
@@ -113,7 +111,7 @@ const SliderButton = function (props: SliderButtonProps) {
     }
   }
 
-  // 设置 tooltip 显示状态
+  // setup tooltip's visible
   function updatePopupVisible(value: boolean) {
     if (isDragging.current) return
 
