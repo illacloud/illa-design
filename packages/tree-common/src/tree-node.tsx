@@ -6,6 +6,7 @@ import {
   applyNodeContainerCss,
   applyNodeFoldSwitchIconCss,
   applyNodeTextContainerCss,
+  checkboxCss,
   dragContainerCss,
   iconColorCss,
   indentContainerCss,
@@ -21,6 +22,7 @@ import {
 } from "@illa-design/icon"
 import useThrottleFn from "react-use/lib/useThrottleFn"
 import { Checkbox } from "@illa-design/checkbox"
+import { motion, AnimatePresence } from "framer-motion"
 
 export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
   const {
@@ -30,7 +32,7 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
     disabled,
     _isSelected,
     isLeaf,
-    expanding = true,
+    expanding,
     handleExpand,
     handleSelect,
     handleCheck,
@@ -92,133 +94,154 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
 
   const _isLeaf = useMemo(() => {
     return isLeaf || (!handleLoadMore && (!_children || _children?.length == 0))
-  }, [isLeaf, handleLoadMore])
+  }, [isLeaf, handleLoadMore, _children])
 
   const _isExpanding = useMemo(() => {
     if (_children && _children.length > 0) {
       return expanding
     }
     return handleLoadMore === undefined
-  }, [expanding, handleLoadMore])
+  }, [expanding, handleLoadMore, _children])
+
+  const item = {
+    hidden: { height: 0 },
+    visible: {
+      height: "auto",
+    },
+    exit: {
+      height: 0,
+    },
+  }
 
   return (
-    <div css={applyNodeContainerCss(size)} ref={ref}>
-      <div css={indentContainerCss}>
-        {_indentArr?.map((requireDivider, index) => (
-          <div
-            key={_key + index}
-            css={applyIndentBlockCss(requireDivider && showLine)}
-          />
-        ))}
-      </div>
-
-      {!_isLeaf ? (
-        <span
-          css={nodeFoldSwitchCss}
-          onClick={() => {
-            if (_children?.length && _children?.length > 0) {
-              handleExpand && handleExpand(_key)
-            } else {
-              handleLoadMore && handleLoadMore(_key)
-            }
-          }}
-        >
-          {loadingMore ? (
-            <span css={loadingIconCss}>
-              {loadingIcon ?? <LoadingIcon spin={true} />}
-            </span>
-          ) : (
-            <span css={switchIconCss}>
-              {switcherIcon ?? (
-                <span css={applyNodeFoldSwitchIconCss(_isExpanding)}>
-                  <CaretDownIcon />
-                </span>
-              )}
-            </span>
-          )}
-        </span>
-      ) : (
-        <span css={applyLeafIconCss(showLine)}>
-          <LeafIcon />
-        </span>
-      )}
-      <div
-        ref={dragRef}
-        css={dragContainerCss}
-        draggable={draggable}
-        onDragOver={(event) => {
-          setDrag(event)
-          event.stopPropagation()
-          event.preventDefault()
-          event?.persist()
-        }}
-        onDragLeave={(event) => {
-          event.stopPropagation()
-          handleDragLeave && handleDragLeave(event, _key)
-        }}
-        onDragStart={(event) => {
-          handleDragStart && handleDragStart(event, _key)
-          setIsDragging(true)
-          setIsDragOver(true)
-          updateDragState &&
-            updateDragState({ dragNodeKey: _key, dropPosition: 0 })
-        }}
-        onDragEnd={(event) => {
-          event.stopPropagation()
-          setIsDragging(false)
-          handleDragEnd && handleDragEnd(event, _key)
-        }}
-        onDrop={(event) => {
-          event.stopPropagation()
-          setIsDragOver(false)
-          handleDrop && handleDrop(event)
-          updateDragState &&
-            updateDragState({
-              dragNodeKey: null,
-              dropNodeKey: null,
-              dropPosition: 0,
-            })
-        }}
+    <AnimatePresence initial={false}>
+      <motion.div
+        variants={item}
+        animate={"visible"}
+        initial={"hidden"}
+        exit={"exit"}
+        transition={{ duration: 0.2 }}
       >
-        {checkable && (
-          <Checkbox
-            indeterminate={!_checked && _halfChecked}
-            onChange={(_, e) => {
-              handleCheck && handleCheck(_key, e)
-            }}
-            checked={_checked ?? false}
-          />
-        )}
-        <span
-          css={applyNodeTextContainerCss(
-            size,
-            disabled,
-            _isSelected,
-            blockNode,
-          )}
-          onClick={(e) => {
-            if (disabled) return
-            handleSelect && handleSelect(_key, e)
-          }}
-        >
-          {icon && <span>{icon}</span>}
-          {renderTitle ? (
-            <span>{renderTitle(props)}</span>
-          ) : (
-            <span>{title}</span>
-          )}
-          {draggable && (
-            <span>
-              {dragIcon ?? (
-                <span css={iconColorCss}>
-                  {" "}
-                  <DragPointIcon />
+        <div css={applyNodeContainerCss(size)} ref={ref}>
+          <div css={indentContainerCss}>
+            {_indentArr?.map((requireDivider, index) => (
+              <div
+                key={_key + index}
+                css={applyIndentBlockCss(requireDivider && showLine)}
+              />
+            ))}
+          </div>
+
+          {!_isLeaf ? (
+            <span
+              css={nodeFoldSwitchCss}
+              onClick={() => {
+                if (_children?.length && _children?.length > 0) {
+                  handleExpand && handleExpand(_key)
+                } else {
+                  handleLoadMore && handleLoadMore(_key)
+                }
+              }}
+            >
+              {loadingMore ? (
+                <span css={loadingIconCss}>
+                  {loadingIcon ?? <LoadingIcon spin={true} />}
+                </span>
+              ) : (
+                <span css={switchIconCss}>
+                  {switcherIcon ?? (
+                    <span css={applyNodeFoldSwitchIconCss(_isExpanding)}>
+                      <CaretDownIcon />
+                    </span>
+                  )}
                 </span>
               )}
             </span>
+          ) : (
+            <span css={applyLeafIconCss(showLine)}>
+              <LeafIcon />
+            </span>
           )}
-        </span>
-      </div>
-    </div>
+          <div
+            ref={dragRef}
+            css={dragContainerCss}
+            draggable={draggable}
+            onDragOver={(event) => {
+              setDrag(event)
+              event.stopPropagation()
+              event.preventDefault()
+              event?.persist()
+            }}
+            onDragLeave={(event) => {
+              event.stopPropagation()
+              handleDragLeave && handleDragLeave(event, _key)
+            }}
+            onDragStart={(event) => {
+              handleDragStart && handleDragStart(event, _key)
+              setIsDragging(true)
+              setIsDragOver(true)
+              updateDragState &&
+                updateDragState({ dragNodeKey: _key, dropPosition: 0 })
+            }}
+            onDragEnd={(event) => {
+              event.stopPropagation()
+              setIsDragging(false)
+              handleDragEnd && handleDragEnd(event, _key)
+            }}
+            onDrop={(event) => {
+              event.stopPropagation()
+              setIsDragOver(false)
+              handleDrop && handleDrop(event)
+              updateDragState &&
+                updateDragState({
+                  dragNodeKey: null,
+                  dropNodeKey: null,
+                  dropPosition: 0,
+                })
+            }}
+          >
+            {checkable && (
+              <Checkbox
+                css={checkboxCss}
+                indeterminate={!_checked && _halfChecked}
+                onChange={(_, e) => {
+                  handleCheck && handleCheck(_key, e)
+                }}
+                checked={_checked ?? false}
+              />
+            )}
+            <span
+              css={applyNodeTextContainerCss(
+                size,
+                disabled,
+                _isSelected,
+                blockNode,
+              )}
+              onClick={(e) => {
+                if (disabled) return
+                handleSelect && handleSelect(_key, e)
+              }}
+            >
+              {icon && <span>{icon}</span>}
+              {renderTitle ? (
+                <span>{renderTitle(props)}</span>
+              ) : (
+                <span>{title}</span>
+              )}
+              {draggable && (
+                <span>
+                  {dragIcon ?? (
+                    <span css={iconColorCss}>
+                      {" "}
+                      <DragPointIcon />
+                    </span>
+                  )}
+                </span>
+              )}
+            </span>
+          </div>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   )
 })

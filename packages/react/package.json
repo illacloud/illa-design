@@ -98,7 +98,10 @@
     "@illa-design/menu": "*",
     "react-use": "^17.3.1",
     "framer-motion": "^6.2.8",
+    "@illa-design/tree-common": "*",
+    "@illa-design/tree": "*",
+    "@illa-design/tree-select": "*",
     "@emotion/react": "^11.7.1"
-    
+
   }
 }

@@ -1,10 +1,11 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { Tree, TreeProps } from "../src"
+import { Tree, TreeProps, TreeDataType } from "../src"
+import { useState } from "react"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "DATA DISPLAY/Tree",
+  title: "DATA DISPLAY/Tree/drag",
   component: Tree,
   argTypes: {
     defaultCheckedKeys: {
@@ -95,7 +96,54 @@ const Template: Story<TreeProps> = (args) => {
     },
   ]
 
-  return <Tree treeData={data} />
+  const [treeData, setTreeData] = useState(data)
+
+  return (
+    <Tree
+      draggable
+      blockNode
+      onDrop={(info) => {
+        const loop = (
+          data: TreeDataType[],
+          key?: string,
+          callback?: (
+            item: TreeDataType,
+            index: number,
+            arr: TreeDataType[],
+          ) => void,
+        ) => {
+          data.some((item, index, arr) => {
+            if (item.key === key) {
+              callback && callback(item, index, arr)
+              return true
+            }
+            if (item.children) {
+              return loop(item.children, key, callback)
+            }
+          })
+        }
+        const data = [...treeData]
+        let dragItem: TreeDataType
+        loop(data, info.dragNode.props._key, (item, index, arr) => {
+          arr.splice(index, 1)
+          dragItem = item
+        })
+        if (info.dropPosition === 0) {
+          loop(data, info.dropNode.props._key, (item, index, arr) => {
+            item.children = item.children || []
+            item.children.push(dragItem)
+          })
+        } else {
+          loop(data, info.dropNode.props._key, (item, index, arr) => {
+            arr.splice(info.dropPosition < 0 ? index : index + 1, 0, dragItem)
+          })
+        }
+        setTreeData([...data])
+      }}
+      treeData={treeData}
+      {...args}
+    />
+  )
 }
 
 export const Basic = Template.bind({})

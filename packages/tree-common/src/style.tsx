@@ -63,7 +63,7 @@ export const nodeFoldSwitchCss = css`
   display: flex;
   width: 16px;
   height: 16px;
-  margin-left: 8px;
+  margin-right: 4px;
   justify-content: center;
   align-items: center;
 `
@@ -106,6 +106,7 @@ export function applyNodeTextContainerCss(
   selected?: boolean,
   blockNode?: boolean,
 ) {
+  const fontSize = size === "small" ? 12 : 14
   const hoverCss = !disabled
     ? css`
         &:hover {
@@ -116,17 +117,18 @@ export function applyNodeTextContainerCss(
     : css`
         &:hover {
           background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-          cursor: default;
+          cursor: not-allowed;
         }
       `
   return css`
-    size: 14px;
+    font-size: ${fontSize}px;
     flex-grow: ${blockNode ? 1 : 0};
     height: 100%;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 8px;
+    padding: 0 4px;
+    border-radius: 2px;
     ${applyNodeTextColor(disabled, selected)};
     position: relative;
     ${hoverCss}
@@ -139,13 +141,13 @@ export const indentContainerCss = css`
 `
 
 export const checkboxCss = css`
-  margin-left: 8px;
+  margin-left: 4px;
 `
 
 export function applyIndentBlockCss(requireDivider?: boolean) {
   return css`
     height: 100%;
-    width: 16.5px;
+    width: 24.5px;
     border-left: solid 1px
       ${requireDivider ? globalColor(`--${illaPrefix}-gray-08`) : "white"};
     box-sizing: border-box;

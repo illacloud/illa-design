@@ -35,7 +35,7 @@ export const TreeList: FC<TreeListProps> = (props) => {
         renderRaw={true}
         bordered={false}
         renderKey={(data, index) => {
-          return data.key + index
+          return data.key
         }}
       />
     </div>
