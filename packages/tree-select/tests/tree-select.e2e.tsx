@@ -78,12 +78,12 @@ it("TreeSelect renders with onChangeEvent", () => {
   unmount()
 })
 
-it("TreeSelect renders with showSearch", () => {
-  mount(<TreeSelect treeData={data} showSearch={true} />)
-  cy.findByTitle("ExpandIcon").parent().trigger("click")
-  cy.findByTitle("SearchIcon").should("exist")
-  unmount()
-})
+// it("TreeSelect renders with showSearch", () => {
+//   mount(<TreeSelect treeData={data} showSearch={true} />)
+//   cy.findByTitle("ExpandIcon").parent().trigger("click")
+//   cy.findByTitle("SearchIcon").should("exist")
+//   unmount()
+// })
 
 it("TreeSelect renders with multiple", () => {
   const onChangeEvent = cy.spy().as("onChangeEvent")
