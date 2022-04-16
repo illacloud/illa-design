@@ -18,7 +18,6 @@ import {
   getNodeList,
   NodeInstance,
   NodeProps,
-  TreeDataType,
   updateKeys,
 } from "@illa-design/tree-common"
 import { TreeProps } from "./interface"
@@ -224,7 +223,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
   )
 
   const handleSelect = useCallback(
-    (targetKey: string, event: Event) => {
+    (targetKey: string, event?: Event) => {
       const _selectedKeys = selectedKeys ?? selectedKeysState
       if (!selectable) return
       const keys = updateKeys(
@@ -233,16 +232,18 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
         selectedKeys !== undefined || multiple,
       )
       setSelectedKeys(keys)
-      const extra = {
-        selectedNodes: getNodeList(nodeCache.current).filter(
-          (item: NodeInstance) =>
-            item.key && keys.includes(item.key.toString()),
-        ),
-        selected: keys.includes(targetKey),
-        node: nodeCache.current[targetKey],
-        e: event,
+      if (event) {
+        const extra = {
+          selectedNodes: getNodeList(nodeCache.current).filter(
+            (item: NodeInstance) =>
+              item.key && keys.includes(item.key.toString()),
+          ),
+          selected: keys.includes(targetKey),
+          node: nodeCache.current[targetKey],
+          e: event,
+        }
+        onSelect && onSelect(keys, extra)
       }
-      onSelect && onSelect(keys, extra)
     },
     [selectedKeysState, nodeCache.current],
   )
@@ -265,7 +266,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
   )
 
   const handleCheck = useCallback(
-    (targetKey: string, event: Event) => {
+    (targetKey: string, event?: Event) => {
       const _checkedKeys = checkedKeys ? new Set(checkedKeys) : checkKeysState
       let keys = new Set(updateKeys(Array.from(_checkedKeys), targetKey, true))
       let halfSet: Set<string> = new Set<string>([])
@@ -275,19 +276,21 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
         setHalfCheckKeysState(halfSet)
       }
       setCheckKeysState(keys)
-      const extra = {
-        checked: keys?.has(targetKey),
-        node: nodeCache.current[targetKey],
-        checkedNodes: getNodeList(nodeCache.current).filter(
-          (item) => item.key && keys.has(item.key.toString()),
-        ),
-        halfCheckedKeys: Array.from(halfSet ?? []),
-        halfCheckedNodes: getNodeList(nodeCache.current).filter(
-          (item) => item.key && halfSet?.has(item.key.toString()),
-        ),
-        e: event,
+      if (event) {
+        const extra = {
+          checked: keys?.has(targetKey),
+          node: nodeCache.current[targetKey],
+          checkedNodes: getNodeList(nodeCache.current).filter(
+            (item) => item.key && keys.has(item.key.toString()),
+          ),
+          halfCheckedKeys: Array.from(halfSet ?? []),
+          halfCheckedNodes: getNodeList(nodeCache.current).filter(
+            (item) => item.key && halfSet?.has(item.key.toString()),
+          ),
+          e: event,
+        }
+        onCheck && onCheck(Array.from(keys), extra)
       }
-      onCheck && onCheck(Array.from(keys), extra)
     },
     [checkKeysState, nodeCache.current, _treeData],
   )

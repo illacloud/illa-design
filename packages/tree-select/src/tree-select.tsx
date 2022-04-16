@@ -5,6 +5,7 @@ import {
   useEffect,
   useCallback,
   useMemo,
+  ForwardedRef,
 } from "react"
 import { useMergeValue, isObject } from "@illa-design/system"
 import { Trigger } from "@illa-design/trigger"
@@ -32,8 +33,8 @@ import { getSearchReason } from "./utils"
 import { Empty } from "@illa-design/empty"
 import { emptyCss, treeContainerCss } from "./style"
 
-export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
-  (props, ref) => {
+export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
+  (props, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       defaultValue,
       value,
@@ -230,7 +231,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
     // SelectView event handle
     const selectViewEventHandlers = {
       onFocus: () => {},
-      onBlur: (event: any) => {
+      onBlur: () => {
         !currentVisible && tryUpdateInputValue("", "optionListHide")
       },
       onChangeInputValue: (value: string) => {
@@ -364,6 +365,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
         {...triggerProps}
       >
         <SelectView
+          ref={ref}
           {...rest}
           {...selectViewEventHandlers}
           disabled={disabled}

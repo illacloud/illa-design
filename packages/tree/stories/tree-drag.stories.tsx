@@ -130,7 +130,7 @@ const Template: Story<TreeProps> = (args) => {
           dragItem = item
         })
         if (info.dropPosition === 0) {
-          loop(data, info.dropNode.props._key, (item, index, arr) => {
+          loop(data, info.dropNode.props._key, (item) => {
             item.children = item.children || []
             item.children.push(dragItem)
           })
