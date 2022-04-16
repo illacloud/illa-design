@@ -29,8 +29,8 @@ import {
 } from "@illa-design/tree-common"
 import * as React from "react"
 import { getSearchReason } from "./utils"
-import { css } from "@emotion/react"
 import { Empty } from "@illa-design/empty"
+import { emptyCss, treeContainerCss } from "./style"
 
 export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
   (props, ref) => {
@@ -258,8 +258,12 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
             return item && item.disabled
           })
           setSelectedKeys(newValue)
+          setCheckKeysState(new Set())
+          setHalfCheckKeysState(new Set())
         } else {
           setSelectedKeys([])
+          setCheckKeysState(new Set())
+          setHalfCheckKeysState(new Set())
         }
         tryUpdateInputValue("", "manual")
         onClear?.(currentVisible)
@@ -298,7 +302,7 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
     )
 
     const handleCheck = useCallback(
-      (targetKey: string, event?: Event) => {
+      (targetKey: string) => {
         let keys = new Set(
           updateKeys(Array.from(checkKeysState), targetKey, true),
         )
@@ -325,29 +329,27 @@ export const TreeSelect = forwardRef<HTMLElement, TreeSelectProps>(
       <Trigger
         trigger="click"
         content={
-          treeData.length > 0 ? (
-            <TreeList
-              listData={treeData}
-              size={size}
-              blockNode={true}
-              handleExpand={handleExpand}
-              handleSelect={handleSelect}
-              handleCheck={handleCheck}
-              saveNodeCache={(key: string, node: NodeInstance) => {
-                const value = options.find((item) => item.key === key).value
-                if (!Object.keys(nodeCache.current).includes(value)) {
-                  nodeCache.current[value] = node
-                }
-              }}
-              checkable={treeCheckable}
-            />
-          ) : (
-            <Empty
-              css={css`
-                padding: 16px 0;
-              `}
-            />
-          )
+          <div css={treeContainerCss}>
+            {treeData.length > 0 ? (
+              <TreeList
+                listData={treeData}
+                size={size}
+                blockNode={true}
+                handleExpand={handleExpand}
+                handleSelect={handleSelect}
+                handleCheck={handleCheck}
+                saveNodeCache={(key: string, node: NodeInstance) => {
+                  const value = options.find((item) => item.key === key).value
+                  if (!Object.keys(nodeCache.current).includes(value)) {
+                    nodeCache.current[value] = node
+                  }
+                }}
+                checkable={treeCheckable}
+              />
+            ) : (
+              <Empty css={emptyCss} />
+            )}
+          </div>
         }
         showArrow={false}
         colorScheme="white"

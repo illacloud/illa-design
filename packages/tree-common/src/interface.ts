@@ -58,8 +58,8 @@ export interface NodeProps
 export interface TreeListProps extends HTMLAttributes<HTMLDivElement> {
   listData: NodeProps[]
   handleExpand?: (key: string) => void
-  handleSelect?: (key: string, e: Event) => void
-  handleCheck?: (key: string, e: Event) => void
+  handleSelect?: (key: string, e?: React.SyntheticEvent) => void
+  handleCheck?: (key: string, e?: React.SyntheticEvent) => void
   handleLoadMore?: (key: string) => void
   size?: TreeSize
   blockNode?: boolean
@@ -72,11 +72,11 @@ export interface TreeListProps extends HTMLAttributes<HTMLDivElement> {
   dragIcon?: ReactNode
   switcherIcon?: ReactNode
   loadingIcon?: ReactNode
-  handleDragStart?: (e: DragEvent, key: string) => void
-  handleDragEnd?: (e: DragEvent, key: string) => void
-  handleDragLeave?: (e: DragEvent, key: string) => void
-  handleDragOver?: (e: DragEvent, key: string) => void
-  handleDrop?: (e: DragEvent) => void
+  handleDragStart?: (e: React.DragEvent<HTMLDivElement>, key: string) => void
+  handleDragEnd?: (e: React.DragEvent<HTMLDivElement>, key: string) => void
+  handleDragLeave?: (e: React.DragEvent<HTMLDivElement>, key: string) => void
+  handleDragOver?: (e: React.DragEvent<HTMLDivElement>, key: string) => void
+  handleDrop?: (e: React.DragEvent<HTMLDivElement>) => void
   updateDragState?: (props: {
     dragNodeKey?: string
     dropNodeKey?: string

@@ -113,7 +113,7 @@ const Template: Story<TreeProps> = (args) => {
     })
   }
 
-  return <Tree blockNode loadMore={loadMore} treeData={treeData} {...args} />
+  return <Tree blockNode {...args} loadMore={loadMore} treeData={treeData} />
 }
 
 export const Basic = Template.bind({})

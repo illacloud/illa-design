@@ -95,7 +95,7 @@ const Template: Story<TreeProps> = (args) => {
     },
   ]
 
-  return <Tree treeData={data} />
+  return <Tree {...args} treeData={data} />
 }
 
 export const Basic = Template.bind({})

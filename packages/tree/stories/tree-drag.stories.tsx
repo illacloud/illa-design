@@ -100,6 +100,7 @@ const Template: Story<TreeProps> = (args) => {
 
   return (
     <Tree
+      {...args}
       draggable
       blockNode
       onDrop={(info) => {
@@ -141,7 +142,6 @@ const Template: Story<TreeProps> = (args) => {
         setTreeData([...data])
       }}
       treeData={treeData}
-      {...args}
     />
   )
 }
