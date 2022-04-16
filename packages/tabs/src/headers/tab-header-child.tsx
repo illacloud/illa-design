@@ -28,9 +28,9 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
 
   const childCss = useMemo(() => {
     if (variant === "card") {
-      return applyCardHeaderChildCss(isSelected)
+      return applyCardHeaderChildCss(isSelected, disabled)
     } else if (variant === "capsule") {
-      return applyCapsuleHeaderChildCss(isSelected)
+      return applyCapsuleHeaderChildCss(isSelected, disabled)
     }
     return applyCommonHeaderChildCss()
   }, [variant, isSelected])
@@ -44,7 +44,9 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
         handleSelectTab(tabKey)
       }}
     >
-      <span css={applyTextCss(size, isSelected, disabled, tabBarSpacing)}>
+      <span
+        css={applyTextCss(size, isSelected, disabled, tabBarSpacing, variant)}
+      >
         {title}
         {closable && (
           <span
