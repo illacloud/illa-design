@@ -100,9 +100,9 @@ const Template: Story<TreeProps> = (args) => {
 
   return (
     <Tree
-      {...args}
       draggable
       blockNode
+      {...args}
       onDrop={(info) => {
         const loop = (
           data: TreeDataType[],
