@@ -156,7 +156,7 @@ test("onCollapse should be trigger", () => {
     </Menu>,
   )
 
-    ; (container.querySelector(`[data-menu-collapse-icon]`) as HTMLElement).click()
+  ;(container.querySelector(`[data-menu-collapse-icon]`) as HTMLElement).click()
 
   expect(event).toBeCalled()
 })
