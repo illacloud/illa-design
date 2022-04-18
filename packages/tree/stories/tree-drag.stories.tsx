@@ -102,6 +102,7 @@ const Template: Story<TreeProps> = (args) => {
     <Tree
       draggable
       blockNode
+      {...args}
       onDrop={(info) => {
         const loop = (
           data: TreeDataType[],
@@ -129,7 +130,7 @@ const Template: Story<TreeProps> = (args) => {
           dragItem = item
         })
         if (info.dropPosition === 0) {
-          loop(data, info.dropNode.props._key, (item, index, arr) => {
+          loop(data, info.dropNode.props._key, (item) => {
             item.children = item.children || []
             item.children.push(dragItem)
           })
@@ -141,7 +142,6 @@ const Template: Story<TreeProps> = (args) => {
         setTreeData([...data])
       }}
       treeData={treeData}
-      {...args}
     />
   )
 }

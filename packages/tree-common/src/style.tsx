@@ -88,7 +88,7 @@ export function applyLeafIconCss(visible?: boolean) {
     padding: 2px;
     font-size: 12px;
     visibility: ${visible === true ? "visible" : "hidden"};
-    margin-left: 8px;
+    margin-right: 4px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)}; ;
   `
 }
@@ -141,13 +141,14 @@ export const indentContainerCss = css`
 `
 
 export const checkboxCss = css`
-  margin-left: 4px;
+  margin: 0 4px;
 `
 
 export function applyIndentBlockCss(requireDivider?: boolean) {
   return css`
     height: 100%;
-    width: 24.5px;
+    width: 16.5px;
+    margin-left: 8px;
     border-left: solid 1px
       ${requireDivider ? globalColor(`--${illaPrefix}-gray-08`) : "white"};
     box-sizing: border-box;
