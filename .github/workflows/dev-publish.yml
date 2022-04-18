@@ -47,15 +47,6 @@ jobs:
           yarn install --frozen-lockfile
           cd ..
 
-      - name: Import docs i18n
-        run: yarn import-docs
-
-      - name: Build docs
-        run: |
-          cd ./docs
-          yarn build
-          cd ..
-
   build:
     needs:
       - install
@@ -98,6 +89,15 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage-final.json
+          
+      - name: Import docs i18n
+        run: yarn import-docs
+
+      - name: Build docs
+        run: |
+          cd ./docs
+          yarn build
+          cd ..
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
