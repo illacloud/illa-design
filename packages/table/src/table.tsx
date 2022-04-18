@@ -6,7 +6,7 @@ import {
   SyntheticEvent,
   useEffect,
 } from "react"
-import { TableContextProps, TableProps, ThContextProps } from "./interface"
+import { TableContextProps, TableProps } from "./interface"
 import {
   applyContainerStyle,
   applyFilterContainer,
@@ -30,7 +30,6 @@ import { Th } from "./th"
 import { TBody } from "./tbody"
 import { Td } from "./td"
 import { TFoot } from "./tfoot"
-import { ThContext } from "./th-context"
 import {
   SorterDefaultIcon,
   SorterDownIcon,
@@ -61,13 +60,12 @@ function renderDirectTable<D extends TableData>(
     bordered,
     borderedCell,
     striped,
-    fixedHeader = true,
     children,
     disableSortBy,
     disableFilters,
     disableRowSelect,
     align = "left",
-    showFooter,
+    showFooter = true,
     showHeader = true,
     onRowSelectChange,
     _css,
@@ -79,21 +77,17 @@ function renderDirectTable<D extends TableData>(
     borderedCell,
     striped,
     size,
+    showHeader,
+    showFooter,
   } as TableContextProps
-
-  const headerContextProps = {
-    fixedHeader,
-  } as ThContextProps
 
   return (
     <div css={applyContainerStyle(_css)} ref={ref}>
-      <ThContext.Provider value={headerContextProps}>
-        <TableContext.Provider value={contextProps}>
-          <table css={applyTableStyle(tableLayout, bordered)} {...otherProps}>
-            {children}
-          </table>
-        </TableContext.Provider>
-      </ThContext.Provider>
+      <TableContext.Provider value={contextProps}>
+        <table css={applyTableStyle(tableLayout, bordered)} {...otherProps}>
+          {children}
+        </table>
+      </TableContext.Provider>
     </div>
   )
 }
@@ -110,7 +104,6 @@ function renderDataDrivenTable<D extends TableData>(
     bordered,
     borderedCell,
     striped,
-    fixedHeader = true,
     children,
     disableSortBy,
     disableFilters,
@@ -128,11 +121,9 @@ function renderDataDrivenTable<D extends TableData>(
     borderedCell,
     striped,
     size,
+    showHeader,
+    showFooter,
   } as TableContextProps
-
-  const headerContextProps = {
-    fixedHeader,
-  } as ThContextProps
 
   const {
     headerGroups,
@@ -217,85 +208,82 @@ function renderDataDrivenTable<D extends TableData>(
 
   return (
     <div css={applyContainerStyle(_css)} ref={ref}>
-      <ThContext.Provider value={headerContextProps}>
-        <TableContext.Provider value={contextProps}>
-          <table
-            css={applyTableStyle(tableLayout, bordered)}
-            {...getTableProps()}
-            {...otherProps}
-          >
-            {showHeader && (
-              <Thead>
-                {headerGroups.map((group) => (
-                  <Tr {...group.getHeaderGroupProps()}>
-                    {group.headers.map((column, index) => (
-                      <Th {...column.getHeaderProps()}>
-                        <div
-                          css={applyPreContainer(align)}
-                          {...column.getSortByToggleProps()}
-                        >
-                          {column.Header != undefined &&
-                            column.render("Header")}
-                          {column.canSort &&
-                            (column.isSorted ? (
-                              column.isSortedDesc ? (
-                                <SorterDownIcon _css={applyHeaderIconLeft} />
-                              ) : (
-                                <SorterUpIcon _css={applyHeaderIconLeft} />
-                              )
+      <TableContext.Provider value={contextProps}>
+        <table
+          css={applyTableStyle(tableLayout, bordered)}
+          {...getTableProps()}
+          {...otherProps}
+        >
+          {showHeader && (
+            <Thead>
+              {headerGroups.map((group) => (
+                <Tr {...group.getHeaderGroupProps()}>
+                  {group.headers.map((column, index) => (
+                    <Th {...column.getHeaderProps()}>
+                      <div
+                        css={applyPreContainer(align)}
+                        {...column.getSortByToggleProps()}
+                      >
+                        {column.Header != undefined && column.render("Header")}
+                        {column.canSort &&
+                          (column.isSorted ? (
+                            column.isSortedDesc ? (
+                              <SorterDownIcon _css={applyHeaderIconLeft} />
                             ) : (
-                              <SorterDefaultIcon _css={applyHeaderIconLeft} />
-                            ))}
-                        </div>
-                        <div css={applyFilterContainer}>
-                          {column.canFilter &&
-                            column.Filter != undefined &&
-                            column.render("Filter")}
-                        </div>
-                        {column.canResize &&
-                          group.headers.indexOf(column) !=
-                            group.headers.length - 1 && (
-                            <div
-                              {...column.getResizerProps()}
-                              css={applyResizing(column.canResize)}
-                            />
-                          )}
-                      </Th>
-                    ))}
-                  </Tr>
-                ))}
-              </Thead>
-            )}
-            <TBody {...getTableBodyProps()}>
-              {rows.map((row) => {
-                prepareRow(row)
-                return (
-                  <Tr {...row.getRowProps()}>
-                    {row.cells.map((cell, index) => {
-                      return (
-                        <Td {...cell.getCellProps()}>{cell.render("Cell")}</Td>
-                      )
-                    })}
-                  </Tr>
-                )
-              })}
-            </TBody>
-            {showFooter && (
-              <TFoot>
-                {footerGroups.map((group) => (
-                  <Tr {...group.getFooterGroupProps()}>
-                    {group.headers.map((column, index) => (
-                      <Td {...column.getFooterProps()}>
-                        {column.Footer != undefined && column.render("Footer")}
-                      </Td>
-                    ))}
-                  </Tr>
-                ))}
-              </TFoot>
-            )}
-          </table>
-        </TableContext.Provider>
-      </ThContext.Provider>
+                              <SorterUpIcon _css={applyHeaderIconLeft} />
+                            )
+                          ) : (
+                            <SorterDefaultIcon _css={applyHeaderIconLeft} />
+                          ))}
+                      </div>
+                      <div css={applyFilterContainer}>
+                        {column.canFilter &&
+                          column.Filter != undefined &&
+                          column.render("Filter")}
+                      </div>
+                      {column.canResize &&
+                        group.headers.indexOf(column) !=
+                          group.headers.length - 1 && (
+                          <div
+                            {...column.getResizerProps()}
+                            css={applyResizing(column.canResize)}
+                          />
+                        )}
+                    </Th>
+                  ))}
+                </Tr>
+              ))}
+            </Thead>
+          )}
+          <TBody {...getTableBodyProps()}>
+            {rows.map((row) => {
+              prepareRow(row)
+              return (
+                <Tr {...row.getRowProps()}>
+                  {row.cells.map((cell, index) => {
+                    return (
+                      <Td {...cell.getCellProps()}>{cell.render("Cell")}</Td>
+                    )
+                  })}
+                </Tr>
+              )
+            })}
+          </TBody>
+          {showFooter && (
+            <TFoot>
+              {footerGroups.map((group) => (
+                <Tr {...group.getFooterGroupProps()}>
+                  {group.headers.map((column, index) => (
+                    <Td {...column.getFooterProps()}>
+                      {column.Footer != undefined && column.render("Footer")}
+                    </Td>
+                  ))}
+                </Tr>
+              ))}
+            </TFoot>
+          )}
+        </table>
+      </TableContext.Provider>
     </div>
   )
 }

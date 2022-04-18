@@ -56,9 +56,11 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
               isCurrent: idx === childLiItem.length - 1,
             }}
           >
-            {renderItem(childLiItem, idx)
-              ? <>{ele}</>
-              : idx === 1 && <span css={itemCss}>...</span>}
+            {renderItem(childLiItem, idx) ? (
+              <>{ele}</>
+            ) : (
+              idx === 1 && <span css={itemCss}>...</span>
+            )}
           </BreadcrumbContext.Provider>
           {idx < childLiItem.length - 1 &&
             (renderItem(childLiItem, idx) ? (

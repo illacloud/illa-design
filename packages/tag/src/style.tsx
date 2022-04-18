@@ -94,12 +94,6 @@ export function applyCloseIcon(
           background-color: ${globalColor(`--${illaPrefix}-${color}-08`)};
         }
       `
-    } else {
-      variantCss = css`
-        &:hover {
-          background-color: ${globalColor(`--${illaPrefix}-${color}-06`)};
-        }
-      `
     }
   }
 
@@ -111,7 +105,7 @@ export function applyCloseIcon(
     border-radius: 50%;
 
     &:hover {
-      background-color: ${globalColor(`--${illaPrefix}-${color}-07`)};
+      background-color: ${globalColor(`--${illaPrefix}-${color}-06`)};
       cursor: pointer;
     }
 
@@ -162,13 +156,13 @@ export function tagLightPrepare(color: TagColorScheme): SerializedStyles {
   if (color == "gray") {
     return css`
       border-radius: 2px;
-      background-color: ${globalColor(`--${illaPrefix}-${color}-08`)};
+      background-color: ${globalColor(`--${illaPrefix}-${color}-09`)};
       color: ${globalColor(`--${illaPrefix}-${color}-02`)};
     `
   } else {
     return css`
       border-radius: 2px;
-      background-color: ${globalColor(`--${illaPrefix}-${color}-06`)};
+      background-color: ${globalColor(`--${illaPrefix}-${color}-07`)};
       color: ${globalColor(`--${illaPrefix}-${color}-01`)};
     `
   }
