@@ -1,5 +1,5 @@
 import { SVGAttributes } from "react"
-import { SerializedStyles } from "@storybook/theming"
+import { SerializedStyles } from "@emotion/react"
 
 export interface IconProps extends SVGAttributes<SVGElement> {
   size?: string

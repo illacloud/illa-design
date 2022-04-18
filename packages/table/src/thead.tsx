@@ -1,11 +1,15 @@
-import { forwardRef } from "react"
+import { forwardRef, useContext } from "react"
 import { THeadProps } from "./interface"
 import { css } from "@emotion/react"
+import { TableContext } from "./table-context"
 
 export const Thead = forwardRef<HTMLTableSectionElement, THeadProps>(
   (props, ref) => {
     const { _css, ...otherProps } = props
-    return <thead css={css(_css)} ref={ref} {...otherProps} />
+    const tableContext = useContext(TableContext)
+    return tableContext?.showHeader ? (
+      <thead css={css(_css)} ref={ref} {...otherProps} />
+    ) : null
   },
 )
 

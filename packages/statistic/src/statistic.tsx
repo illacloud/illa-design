@@ -1,6 +1,8 @@
 import { forwardRef, useMemo } from "react"
 import { StatisticProps } from "./interface"
-import dayjs from "dayjs"
+import { Skeleton } from "@illa-design/skeleton"
+
+import dayjs, {Dayjs} from "dayjs"
 
 import {
   applyStatistic,
@@ -25,7 +27,7 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
       prefix,
       ...restProps
     } = props
-    const renderValue = useMemo(() => {
+    const renderValue = useMemo<string | number | Dayjs>(() => {
       if (format) {
         return dayjs(value).format(format)
       }
@@ -44,17 +46,23 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
       <div css={applyStatistic} ref={ref} {...restProps}>
         {title && <div css={applyStatisticTitle}>{title}</div>}
         <div css={applyStatisticContent}>
-          {prefix && (
-            <span css={applyStatisticDecorator(true, !isObject(prefix))}>
-              {prefix}
-            </span>
-          )}
-          <span css={applyStatisticValue}>{renderValue}</span>
-          {suffix && (
-            <span css={applyStatisticDecorator(false, !isObject(suffix))}>
-              {suffix}
-            </span>
-          )}
+          <Skeleton
+            animation
+            visible={!!loading}
+            text={{ rows: 1, width: "100%" }}
+          >
+            {prefix && (
+              <span css={applyStatisticDecorator(true, !isObject(prefix))}>
+                {prefix}
+              </span>
+            )}
+            <span css={applyStatisticValue}>{renderValue.toString()}</span>
+            {suffix && (
+              <span css={applyStatisticDecorator(false, !isObject(suffix))}>
+                {suffix}
+              </span>
+            )}
+          </Skeleton>
         </div>
       </div>
     )

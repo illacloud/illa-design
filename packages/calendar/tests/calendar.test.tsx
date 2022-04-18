@@ -69,39 +69,29 @@ test("panel Calendar", () => {
 })
 
 test("calendar callback", () => {
-  // render(<Calendar data-testid={"calendar wrap"} />)
-  // fireEvent.click(screen.getByTitle("PreIcon"))
-  // expect(
-  //   screen.getByTestId("calendar wrap").children[1].children[1].firstChild
-  //     ?.firstChild?.textContent,
-  // ).toBe("30")
-  // render(<Calendar mode={"year"} />)
-  // fireEvent.click(screen.getAllByTitle("PreIcon")[1])
-  // expect(screen.getByText(curYear - 1)).toBeInTheDocument()
-  //
-  // render(<Calendar mode={"year"} />)
-  // fireEvent.click(screen.getAllByTitle("NextIcon")[2])
-  // expect(screen.getByText(curYear + 1)).toBeInTheDocument()
+  render(<Calendar data-testid={"calendar wrap"} />)
+  fireEvent.click(screen.getByTitle("PreIcon"))
+  let result
+  if (curMonth === 0) {
+    result = `${curYear - 1} December}`
+  } else {
+    result = `${curYear} ${monthListLocale[curMonth - 1]}`
+  }
+  expect(screen.getByText(result)).toBeInTheDocument()
+  render(<Calendar mode={"year"} />)
+  fireEvent.click(screen.getAllByTitle("PreIcon")[1])
+  expect(screen.getByText(curYear - 1)).toBeInTheDocument()
+  render(<Calendar mode={"year"} />)
+  fireEvent.click(screen.getAllByTitle("NextIcon")[2])
+  expect(screen.getByText(curYear + 1)).toBeInTheDocument()
 })
 
 test("click one day", () => {
   render(<Calendar />)
-  fireEvent.click(screen.getByText(20))
-  expect(screen.getByText(20)).toHaveStyle({
+  fireEvent.click(screen.getByText(15))
+  expect(screen.getByText(15)).toHaveStyle({
     backgroundColor: globalColor(`--${illaPrefix}-blue-03`),
   })
-
-  // fireEvent.click(screen.getByText("today"))
-  // fireEvent.click(screen.getByTitle("PreIcon"))
-  // fireEvent.click(screen.getByTitle("PreIcon"))
-  // fireEvent.click(screen.getAllByText(26)[0])
-  // expect(screen.getByText(`${curYear - 1} December`)).toBeInTheDocument()
-
-  fireEvent.click(screen.getByText("today"))
-  fireEvent.click(screen.getAllByText(7)[1])
-  /*  expect(
-    screen.getByText(`${curYear} ${monthListLocale[curMonth + 1]}`),
-  ).toBeInTheDocument()*/
 })
 
 test("change mode", () => {
@@ -127,7 +117,7 @@ test("panel month & year", () => {
 })
 
 test("week start at Monday", () => {
-  render(<Calendar data-testid={"container"} dayStartOfWeek={1} />)
+  render(<Calendar data-testid="container" dayStartOfWeek={1} />)
   expect(
     screen.getByTestId("container").children[1].children[0].firstChild
       ?.textContent,
@@ -136,5 +126,5 @@ test("week start at Monday", () => {
 
 test("header type", () => {
   render(<Calendar headerType={"select"} />)
-  expect(screen.getByDisplayValue("2022")).toBeInTheDocument()
+  expect(screen.getByDisplayValue(`${curYear}`)).toBeInTheDocument()
 })

@@ -17,6 +17,8 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
       striped,
       align,
       children,
+      showFooter,
+      showHeader,
       _css,
       ...otherProps
     } = props
@@ -25,7 +27,6 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
 
     return (
       <td
-        align={align ?? tableContext?.align ?? "left"}
         css={css(
           applyNormalStyle,
           applySizeStyle(size ?? tableContext?.size ?? "medium"),
@@ -38,7 +39,11 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
         ref={ref}
         {...otherProps}
       >
-        <div css={applyContentContainer}>{children}</div>
+        <div
+          css={applyContentContainer(align ?? tableContext?.align ?? "left")}
+        >
+          {children}
+        </div>
       </td>
     )
   },

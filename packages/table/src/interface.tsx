@@ -12,23 +12,24 @@ export type TableSize = "small" | "medium" | "large"
 
 export type TableLayout = "auto" | "fixed"
 
-export type TableAlign = "left" | "center" | "right" | "justify" | "char"
-
-export type TableFixed = "left" | "right"
+export type TableAlign =
+  | "left"
+  | "center"
+  | "right"
+  | "start"
+  | "end"
+  | "flex-start"
+  | "flex-end"
 
 export interface TableProps<D extends TableData>
   extends HTMLAttributes<HTMLDivElement>,
-    TableContextProps,
-    ThContextProps {
+    TableContextProps {
   columns?: ReadonlyArray<Column<D>>
   data?: readonly D[]
   tableLayout?: TableLayout
   bordered?: boolean
-  showHeader?: boolean
-  showFooter?: boolean
   disableSortBy?: boolean
   disableFilters?: boolean
-  disableResizing?: boolean
   disableRowSelect?: boolean
   onRowSelectChange?: (rows: Array<Row<D>>) => void
   _css?: SerializedStyles
@@ -43,12 +44,10 @@ export interface TableFilterProps<D extends TableData> {
 export interface TableContextProps {
   borderedCell?: boolean
   striped?: boolean
+  showHeader?: boolean
+  showFooter?: boolean
   size?: TableSize
   align?: TableAlign
-}
-
-export interface ThContextProps {
-  fixedHeader?: boolean
 }
 
 export interface TBodyProps extends HTMLAttributes<HTMLTableSectionElement> {
@@ -60,7 +59,7 @@ export interface TrProps extends HTMLAttributes<HTMLTableRowElement> {
 }
 
 export interface TdProps
-  extends TdHTMLAttributes<HTMLTableDataCellElement>,
+  extends Omit<TdHTMLAttributes<HTMLTableDataCellElement>, "align">,
     TableContextProps {
   _css?: SerializedStyles
 }
@@ -74,8 +73,7 @@ export interface THeadProps extends HTMLAttributes<HTMLTableSectionElement> {
 }
 
 export interface ThProps
-  extends ThHTMLAttributes<HTMLTableHeaderCellElement>,
-    TableContextProps,
-    ThContextProps {
+  extends Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, "align">,
+    TableContextProps {
   _css?: SerializedStyles
 }

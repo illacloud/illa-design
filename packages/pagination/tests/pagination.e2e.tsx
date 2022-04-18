@@ -3,7 +3,7 @@ import { Pagination } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
-it("Pagination renders with sizeOptions", async () => {
+it("Pagination renders with sizeOptions", () => {
   mount(
     <Pagination
       placeholder={"pagination"}
@@ -17,7 +17,7 @@ it("Pagination renders with sizeOptions", async () => {
   unmount()
 })
 
-it("Pagination renders with pageSizeSelect", async () => {
+it("Pagination renders with pageSizeSelect", () => {
   const change = cy.spy()
   mount(
     <Pagination

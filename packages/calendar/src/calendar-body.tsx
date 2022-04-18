@@ -1,5 +1,5 @@
-import { FC, Fragment, useMemo, useState } from "react"
-import { CalendarBodyProps } from "./interface"
+import {FC, Fragment, useCallback, useEffect, useMemo, useState} from "react"
+import {CalendarBodyProps} from "./interface"
 import {
   bodyCoverCss,
   blockPaddingCss,
@@ -15,7 +15,7 @@ import {
   applyPanelGridItemCss,
   bodyContentCss,
 } from "./styles"
-import { CalendarDays } from "./calendar-days"
+import {CalendarDays} from "./calendar-days"
 import dayjs from "dayjs"
 
 export const CalendarBody: FC<CalendarBodyProps> = (props) => {
@@ -36,19 +36,23 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
     onToToday,
     locale,
     monthListLocale,
+    rangeValueFirst,
+    rangeValueSecond,
+    rangeValueHover,
+    handleRangeVal,
   } = props
 
   // start of month data
   const currentYear = useMemo(() => {
-    return dayjs(currentDay).year()
+    return currentDay.year()
   }, [currentDay])
   const currentMonth = useMemo(() => {
-    return dayjs(currentDay).month()
+    return currentDay.month()
   }, [currentDay])
 
   // month | year mode select value
-  const [cmptSelectYear, setCmptSelectYear] = useState<number>(currentYear)
-  const [cmptSelectMonth, setCmptSelectMonth] = useState<number>(currentMonth)
+  const [cmptSelectYear, setCmptSelectYear] = useState<number>()
+  const [cmptSelectMonth, setCmptSelectMonth] = useState<number>()
 
   const showPanelMode = panel || mode === "year"
   // week text
@@ -68,16 +72,17 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
 
   const clickCmptItem = (value: number, type: "month" | "year") => {
     if (type === "month") {
+      !cmptSelectYear && setCmptSelectYear(currentYear)
       setCmptSelectMonth(value)
-      onChange && onChange(dayjs(`${currentYear}-${value + 1}-1`))
+      onChange?.(dayjs(`${currentYear}-${value + 1}-1`))
     } else if (type === "year") {
       setCmptSelectYear(value)
-      onChange && onChange(dayjs(`${value}-${currentMonth}-1`))
+      onChange?.(dayjs(`${value}-${currentMonth}-1`))
     }
   }
 
   // week title ele
-  function WeekTitleContent() {
+  const WeekTitleContent = useCallback(() => {
     return (
       <div css={weekTitleCss}>
         {weekTitleText.map((item, key) => {
@@ -92,11 +97,11 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
         })}
       </div>
     )
-  }
+  }, [weekTitleText])
 
   return (
     <div css={bodyContentCss}>
-      {!allowSelect && <div css={bodyCoverCss} />}
+      {!allowSelect && <div css={bodyCoverCss}/>}
       {mode === "month" &&
         (panel ? (
           <div css={panelGridCss}>
@@ -106,9 +111,9 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
                 css={monthBlockCss}
                 key={idx}
               >
-                {monthRender ? (
-                  monthRender
-                ) : (
+                {monthRender != undefined ?
+                  monthRender(dayjs().set("month", idx))
+                  :
                   <div
                     css={applyPanelGridItemCss(
                       currentYear === cmptSelectYear && idx === cmptSelectMonth,
@@ -116,14 +121,15 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
                   >
                     {item}
                   </div>
-                )}
+                }
               </div>
             ))}
           </div>
         ) : (
           <Fragment>
-            <WeekTitleContent />
+            <WeekTitleContent/>
             <CalendarDays
+              componentYear={currentYear}
               componentMonth={currentMonth}
               componentMode={false}
               dayStartOfWeek={dayStartOfWeek}
@@ -162,8 +168,9 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
                 return (
                   <div css={panelMonthContainerCss} key={item}>
                     <div css={panelMonthTextCss}>{item + 1}月</div>
-                    <WeekTitleContent />
+                    <WeekTitleContent/>
                     <CalendarDays
+                      componentYear={currentYear}
                       componentMonth={+item}
                       componentMode={true}
                       dayStartOfWeek={dayStartOfWeek}
@@ -181,7 +188,7 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
       {mode === "day" && (
         <Fragment>
           <div css={dayBodyCss}>
-            <WeekTitleContent />
+            <WeekTitleContent/>
             <CalendarDays
               componentYear={currentYear}
               componentMonth={currentMonth}
@@ -191,6 +198,10 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
               onClickDay={onClickDay}
               disabledDate={disabledDate}
               dateRender={dateRender}
+              rangeValueFirst={rangeValueFirst}
+              rangeValueSecond={rangeValueSecond}
+              rangeValueHover={rangeValueHover}
+              handleRangeVal={handleRangeVal}
             />
           </div>
           {panelTodayBtn && (

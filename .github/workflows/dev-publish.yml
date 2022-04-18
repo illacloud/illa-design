@@ -93,6 +93,12 @@ jobs:
           yarn cypress info
           yarn test
 
+      - name: Publish to Codecov
+        uses: codecov/codecov-action@v2.1.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage-final.json
+
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         with:

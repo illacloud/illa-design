@@ -17,8 +17,8 @@ import {
   applyFontContentStyle,
   applyOperationSpan,
 } from "./base-style"
-import { css } from "@storybook/theming"
-import mergedToString, { measureElement } from "./measure-element"
+import { css } from "@emotion/react"
+import { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
 import useSize from "react-use/lib/useSize"
@@ -30,6 +30,7 @@ import {
 } from "@illa-design/config-provider"
 import { CopyIcon, RightIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { mergedToString } from "@illa-design/system"
 
 function getEllipsis(
   configProviderProps: ConfigProviderProps,

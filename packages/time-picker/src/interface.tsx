@@ -4,7 +4,7 @@ import { TriggerProps } from "@illa-design/trigger"
 
 export type TimePickerSize = "small" | "medium" | "large"
 
-export interface PickerProps
+interface PickerProps
   extends Omit<
     HTMLAttributes<HTMLElement>,
     "placeholder" | "defaultValue" | "onChange" | "onSelect"

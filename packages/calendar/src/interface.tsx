@@ -1,12 +1,14 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
+import { SerializedStyles } from "@emotion/react"
 
 export type panelOperationsItem =
   | "left"
-  | "double-left"
+  | "doubleLeft"
   | "right"
-  | "double-right"
+  | "doubleRight"
 export type defaultModeItem = "month" | "year" | "day"
+export type CalendarValue = number | string | Date | Dayjs
 
 export interface CalenderProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -34,10 +36,21 @@ export interface CalenderProps
   }) => ReactNode
   locale?: Record<string, any>
   headerType?: "button" | "select"
+  _css?: SerializedStyles
+  defaultDate?: Dayjs
+  rangepicker?: boolean
+  rangeValueFirst?: Dayjs | undefined
+  rangeValueSecond?: Dayjs | undefined
+  rangeValueHover?: Dayjs | undefined
+  handleRangeVal?: (
+    date: Dayjs | undefined,
+    type: "first" | "second" | "hover",
+  ) => void
+  defaultSelectedDate?: Dayjs | "clear"
 }
 
 export interface CalendarHeaderProps extends CalenderProps {
-  currentDay: string | number
+  currentDay: Dayjs
   onChangeTime: Function
   onSelectTime: Function
   onToToday: Function
@@ -46,8 +59,8 @@ export interface CalendarHeaderProps extends CalenderProps {
 }
 
 export interface CalendarBodyProps extends CalenderProps {
-  currentDay: string | number
-  selectDay: number
+  currentDay: Dayjs
+  selectDay?: Dayjs
   onClickDay: Function
   onToToday: Function
   monthListLocale: string[]
@@ -62,6 +75,6 @@ export interface CalendarDaysProps extends CalenderProps {
   componentMode: boolean
   componentYear?: number
   componentMonth: number
-  selectDay?: number
+  selectDay?: Dayjs
   onClickDay?: Function
 }

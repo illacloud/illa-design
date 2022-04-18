@@ -3,8 +3,8 @@ import { TriggerNodeProps } from "./interface"
 import useDrop from "react-use/lib/useDrop"
 import {
   applyDragUploadContainerCss,
+  applyDragUploadTitleCss,
   dragUploadTipCss,
-  dragUploadTitleCss,
 } from "./style"
 import { AddIcon } from "@illa-design/icon"
 import { traverseFileTree } from "./traverse-file-tree"
@@ -46,7 +46,7 @@ export const TriggerNode: FC<TriggerNodeProps> = (props) => {
     <>
       <span onClick={onClick} css={applyDragUploadContainerCss(disabled)}>
         <AddIcon />
-        <span css={dragUploadTitleCss}>{dragTip}</span>
+        <span css={applyDragUploadTitleCss(disabled)}>{dragTip}</span>
         {tipNode}
       </span>
     </>

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { forwardRef, useContext } from "react"
+import { forwardRef, useContext, useEffect, useRef, useState } from "react"
 import { ThProps } from "./interface"
 import {
   applyBorderStyle,
@@ -9,7 +9,7 @@ import {
 } from "./style"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
-import { ThContext } from "./th-context"
+import { mergeRefs } from "@illa-design/system"
 
 export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
   (props, ref) => {
@@ -18,19 +18,25 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
       borderedCell,
       striped,
       align,
-      fixedHeader,
       children,
+      showFooter,
+      showHeader,
       _css,
       ...otherProps
     } = props
     const tableContext = useContext(TableContext)
-    const thContext = useContext(ThContext)
+
+    const thRef = useRef<HTMLTableHeaderCellElement | null>()
+    const [thTop, setThTop] = useState(0)
+
+    useEffect(() => {
+      setThTop(thRef.current?.parentElement?.offsetTop ?? 0)
+    })
 
     return (
       <th
-        align={align ?? tableContext?.align ?? "left"}
         css={css(
-          applyThStyle(fixedHeader ?? thContext?.fixedHeader ?? true),
+          applyThStyle(),
           applySizeStyle(size ?? tableContext?.size ?? "medium"),
           applyBorderStyle(
             borderedCell ?? tableContext?.borderedCell,
@@ -38,10 +44,14 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
           ),
           _css,
         )}
-        ref={ref}
+        ref={mergeRefs(ref, thRef)}
         {...otherProps}
       >
-        <div css={applyContentContainer}>{children}</div>
+        <div
+          css={applyContentContainer(align ?? tableContext?.align ?? "left")}
+        >
+          {children}
+        </div>
       </th>
     )
   },

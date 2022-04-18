@@ -8,7 +8,6 @@ test("Countdown renders with title", () => {
   expect(screen.getByText("Deadline")).toBeInTheDocument()
   expect(screen.getByText("Deadline")).toHaveStyle({
     "margin-bottom": "4px",
-    "font-family": "SFProDisplay",
     "font-size": "14px",
   })
 })

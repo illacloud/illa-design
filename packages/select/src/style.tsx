@@ -98,6 +98,7 @@ export function applySelectView(
   stateValue: SelectStateValue,
 ): SerializedStyles {
   return css`
+    transition: all 200ms ease-in-out;
     box-sizing: border-box;
     width: 100%;
     line-height: 30px;
@@ -147,6 +148,7 @@ export function applySelectViewText(
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding: 0 4px;
     ${showInput ? "" : css({ display: "none !important" })};
   `
 }

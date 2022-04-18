@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table renders with different align. 1`] = `
+.emotion-0 {
+  width: 100%;
+  box-sizing: border-box;
+  display: table;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.emotion-3 {
+  font-size: 14px;
+  min-height: 22px;
+  background-color: #fff;
+  color: #1f1f1f;
+  padding: 7px 16px;
+}
+
+.emotion-4 {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+  min-height: 22px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-6 {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: end;
+  justify-content: end;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+  min-height: 22px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+<table
+  class="emotion-0"
+  data-testid="test-table"
+>
+  <tbody
+    class="emotion-1"
+  >
+    <tr
+      class="emotion-1"
+    >
+      <td
+        class="emotion-3"
+      >
+        <div
+          class="emotion-4"
+        >
+          1
+        </div>
+      </td>
+      <td
+        class="emotion-3"
+      >
+        <div
+          class="emotion-6"
+        >
+          2
+        </div>
+      </td>
+      <td
+        class="emotion-3"
+      >
+        <div
+          class="emotion-4"
+        >
+          3
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

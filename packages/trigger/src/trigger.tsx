@@ -6,8 +6,6 @@ import {
   MutableRefObject,
   ReactElement,
   ReactNode,
-  Ref,
-  RefObject,
   SyntheticEvent,
   useEffect,
   useRef,
@@ -36,46 +34,10 @@ import {
   getFinalPosition,
 } from "./adjust-tips-location"
 import { Popup } from "./popup"
-import useClickAway from "react-use/lib/useClickAway"
 import useMeasure from "react-use/lib/useMeasure"
-import { isFunction } from "@illa-design/system"
-
-type ReactRef<T> = Ref<T> | RefObject<T> | MutableRefObject<T>
-
-/**
- * Assigns a value to a ref function or object
- *
- * @param ref the ref to assign to
- * @param value the value
- */
-function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
-  if (ref == null) return
-
-  if (isFunction(ref)) {
-    ref(value)
-    return
-  }
-
-  try {
-    // @ts-ignore
-    ref.current = value
-  } catch (error) {
-    throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
-  }
-}
-
-/**
- * Combine multiple React refs into a single ref function.
- * This is used mostly when you need to allow consumers forward refs to
- * internal components
- *
- * @param refs refs to assign to value to
- */
-function mergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
-  return (node: T | null) => {
-    refs.forEach((ref) => assignRef(ref, node))
-  }
-}
+import { mergeRefs } from "@illa-design/system"
+import useClickAway from "react-use/lib/useClickAway"
+import useMouse from "react-use/lib/useMouse"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -100,9 +62,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
 
-  const tipsRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
-
-  const childrenRef = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
+  const childrenRef = useRef<HTMLElement>(null) as MutableRefObject<HTMLElement>
 
   const [adjustResult, setAdjustResult] = useState<AdjustResult>()
   const finalPosition = getFinalPosition(
@@ -118,10 +78,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
     if (timeOutHandlerId != undefined) {
       window.clearTimeout(timeOutHandlerId)
     }
-    timeOutHandlerId = window.setTimeout(() => {
+    if (timeout <= 0) {
       todo()
-      timeOutHandlerId = undefined
-    }, timeout)
+    } else {
+      timeOutHandlerId = window.setTimeout(() => {
+        todo()
+        timeOutHandlerId = undefined
+      }, timeout)
+    }
   }
 
   let tipsNode: ReactNode
@@ -280,25 +244,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }, closeDelay)
   }
 
+  const [tipsMeasureRef, tipsMeasureInfo] = useMeasure<HTMLDivElement>()
+
   tipsNode = (
     <motion.div
-      ref={tipsRef}
+      ref={tipsMeasureRef}
       css={applyMotionDiv()}
       variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
       animate="animate"
       exit="exit"
-      onClick={() => {
-        if (!disabled && trigger == "click" && clickOutsideToClose) {
-          showTips()
-        }
-      }}
-      onMouseEnter={() => {
+      onMouseEnter={(event) => {
         if (!disabled && trigger == "hover") {
           showTips()
         }
       }}
-      onMouseLeave={() => {
+      onMouseLeave={(event) => {
         if (!disabled && trigger == "hover") {
           hideTips()
         }
@@ -307,12 +268,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
       {centerNode}
     </motion.div>
   )
-
-  useClickAway(childrenRef, () => {
-    if (!disabled && clickOutsideToClose) {
-      hideTips()
-    }
-  })
 
   useEffect(() => {
     let isMount = true
@@ -338,6 +293,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
     maxWidth,
     autoAlignPopupWidth,
   ])
+
+  const protalRef = useRef<HTMLDivElement>(null)
+  const { elX, elY } = useMouse(protalRef)
+
+  useClickAway(childrenRef, () => {
+    if (!disabled && clickOutsideToClose) {
+      if (
+        elX < 0 ||
+        elX > tipsMeasureInfo.width ||
+        elY < 0 ||
+        elY > tipsMeasureInfo.height
+      ) {
+        hideTips()
+      }
+    }
+  })
 
   const newProps = {
     onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
@@ -388,6 +359,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     <AnimatePresence>
       {!disabled && tipVisible && childrenRef.current != null ? (
         <Popup
+          ref={protalRef}
           top={`${adjustResult?.transY}px`}
           left={`${adjustResult?.transX}px`}
         >

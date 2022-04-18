@@ -13,7 +13,7 @@ export interface OptionProps
   extends Omit<HTMLAttributes<HTMLLIElement>, "onMouseEnter" | "onMouseLeave"> {
   _key?: any
   disabled?: boolean
-  isMultipleMode?: boolean
+  multiple?: boolean
   value?: string | number
   title?: string
   extra?: any
@@ -109,12 +109,15 @@ export interface SelectProps
   onClear?: (visible?: boolean) => void
 }
 
-export interface SelectViewProps extends SelectProps {
+export interface SelectViewProps
+  extends Omit<SelectProps, "options" | "filterOption" | "onChange"> {
+  value?: any
+  defaultValue?: any
   multiple?: boolean
   popupVisible?: boolean
   isEmptyValue?: boolean
   renderText: (value: any) => { text?: any; disabled?: boolean }
-  onRemoveCheckedItem?: (item: any, index: number, e: any) => void
+  onRemoveCheckedItem?: (item: any, index: number, e?: any) => void
   onChangeInputValue?: (value: string, e: any) => void
   onClear?: (e: any) => void
 }

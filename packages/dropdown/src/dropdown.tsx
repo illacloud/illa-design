@@ -6,7 +6,7 @@ import { useMergeValue, omit } from "@illa-design/system"
 export const Dropdown: FC<DropdownProps> = (props) => {
   const {
     children,
-    droplist,
+    dropList,
     disabled,
     position = "bl",
     trigger = "hover",
@@ -18,26 +18,32 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     ...otherProps
   } = props
 
+  const triggerDefaultProps = {
+    colorScheme: "white",
+    withoutPadding: true,
+    clickOutsideToClose: true,
+    ...triggerProps,
+  }
+
   const [currentPopupVisible, setCurrentPopupVisible] = useMergeValue(false, {
     defaultValue: props.defaultPopupVisible,
     value: props.popupVisible,
   })
 
   const getContent = () => {
-    return Children.only(droplist || <span />) as ReactElement
+    return Children.only(dropList || <span />) as ReactElement
   }
 
   const changePopupVisible = (visible: boolean) => {
     setCurrentPopupVisible(visible)
     onVisibleChange?.(visible)
-    triggerProps?.onVisibleChange?.(visible)
+    triggerDefaultProps?.onVisibleChange?.(visible)
   }
 
   const content = getContent()
 
   return (
     <Trigger
-      {...(triggerProps ? omit(triggerProps, ["onVisibleChange"]) : {})}
       trigger={trigger}
       disabled={disabled}
       position={position}
@@ -72,6 +78,9 @@ export const Dropdown: FC<DropdownProps> = (props) => {
           changePopupVisible(visible)
         }
       }}
+      {...(triggerDefaultProps
+        ? omit(triggerDefaultProps, ["onVisibleChange"])
+        : {})}
       {...otherProps}
     >
       {isValidElement(children)

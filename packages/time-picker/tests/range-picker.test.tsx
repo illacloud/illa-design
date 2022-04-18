@@ -54,13 +54,23 @@ test("RangePicker render with input event", async () => {
   const testElement0 = screen.getAllByTestId("test-input-event")[0]
   const testElement1 = screen.getAllByTestId("test-input-event")[1]
   fireEvent.change(testElement0, { target: { value: "10:00:00" } })
-  await waitFor(() => {
-    userEvent.type(testElement0, `{enter}`)
-  })
+  await waitFor(
+    () => {
+      userEvent.type(testElement0, `{enter}`)
+    },
+    {
+      timeout: 1000,
+    },
+  )
   fireEvent.change(testElement1, { target: { value: "12:00:00" } })
-  await waitFor(() => {
-    userEvent.type(testElement1, `{enter}`)
-  })
+  await waitFor(
+    () => {
+      userEvent.type(testElement1, `{enter}`)
+    },
+    {
+      timeout: 1000,
+    },
+  )
   expect(testElement0).toHaveDisplayValue("10:00:00")
   expect(testElement1).toHaveDisplayValue("12:00:00")
   expect(changeEvent).toBeCalled()

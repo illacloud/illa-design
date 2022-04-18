@@ -1,8 +1,13 @@
-import { forwardRef, useEffect, useContext, useCallback } from "react"
+import {forwardRef, useEffect, useContext, useCallback, ChangeEvent} from "react"
 import { useMergeValue } from "@illa-design/system"
 import { CheckmarkIcon, ReduceIcon } from "@illa-design/icon"
 import { CheckboxProps } from "./interface"
-import { applyMergeCss, applyCheckboxSize, applyCheckState } from "./style"
+import {
+  applyMergeCss,
+  applyCheckboxSize,
+  applyCheckState,
+  childrenContainerCss,
+} from "./style"
 import { CheckboxGroupContext } from "./context"
 
 export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
@@ -47,7 +52,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
           checked={currentChecked}
           disabled={disabled}
           onChange={useCallback(
-            (e) => {
+            (e: ChangeEvent<HTMLInputElement>) => {
               e.persist()
               e.stopPropagation()
               setCurrentChecked(e?.target?.checked)
@@ -65,7 +70,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
         ) : (
           <CheckmarkIcon css={applyCheckState(currentChecked)} />
         )}
-        {children}
+        {children && <span css={childrenContainerCss}> {children}</span>}
       </label>
     )
   },
