@@ -1,7 +1,6 @@
 import { FC } from "react"
 import { RangePickerBodyProps } from "./interface"
-// import { Trigger } from "@illa-design/trigger"
-import { Trigger } from "../../trigger/src/index"
+import { Trigger } from "@illa-design/trigger"
 import { CalendarIcon } from "@illa-design/icon"
 import { RangeInput } from "@illa-design/input"
 

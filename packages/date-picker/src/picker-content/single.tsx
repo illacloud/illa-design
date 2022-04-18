@@ -7,8 +7,6 @@ import {
   YearPickerProps,
   CommonSingleProps,
 } from "../interface"
-import { Calendar } from "../../../calendar/src/index"
-import { TimePickerPopup } from "../../../time-picker/src/time-picker-popup"
 import dayjs, { Dayjs } from "dayjs"
 import { Picker } from "../picker"
 import {
@@ -24,6 +22,8 @@ import {
   nowButtonCss,
 } from "../style"
 import { initFormat } from "../utils"
+import { TimePickerPopup } from "@illa-design/time-picker"
+import { Calendar } from "@illa-design/calendar"
 
 const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
   (props, ref) => {

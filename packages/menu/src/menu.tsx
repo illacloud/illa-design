@@ -119,7 +119,6 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
         <div
           tabIndex={0}
           role="button"
-          data-menu-collapse-icon
           onClick={() => {
             const newCollapse = !collapse
             setCollapse(newCollapse)

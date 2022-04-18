@@ -8,7 +8,6 @@ export type panelOperationsItem =
   | "right"
   | "doubleRight"
 export type defaultModeItem = "month" | "year" | "day"
-export type CalendarValue = number | string | Date | Dayjs
 
 export interface CalenderProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -38,7 +37,7 @@ export interface CalenderProps
   headerType?: "button" | "select"
   _css?: SerializedStyles
   defaultDate?: Dayjs
-  rangepicker?: boolean
+  rangePicker?: boolean
   rangeValueFirst?: Dayjs | undefined
   rangeValueSecond?: Dayjs | undefined
   rangeValueHover?: Dayjs | undefined

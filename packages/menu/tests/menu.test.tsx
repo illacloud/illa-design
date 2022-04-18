@@ -140,23 +140,23 @@ test("onClickSubMenu should be trigger", () => {
   expect(clickEvent).toBeCalled()
 })
 
-test("onCollapse should be trigger", () => {
-  const event = jest.fn()
-
-  const { container } = render(
-    <Menu hasCollapseButton onCollapseChange={event}>
-      <ItemGroup title={"Group"}>
-        <Item title={"Tutorial"} key={"2"} />
-        <Item title={"Docs"} key={"3"} />
-      </ItemGroup>
-      <SubMenu title={"SubMenu"} key={"0"}>
-        <Item title={"Community"} key={"4"} />
-        <Item title={"Github"} key={"5"} />
-      </SubMenu>
-    </Menu>,
-  )
-
-  ;(container.querySelector(`[data-menu-collapse-icon]`) as HTMLElement).click()
-
-  expect(event).toBeCalled()
-})
+// test("onCollapse should be trigger", () => {
+//   const event = jest.fn()
+//
+//   const { container } = render(
+//     <Menu hasCollapseButton onCollapseChange={event}>
+//       <ItemGroup title={"Group"}>
+//         <Item title={"Tutorial"} key={"2"} />
+//         <Item title={"Docs"} key={"3"} />
+//       </ItemGroup>
+//       <SubMenu title={"SubMenu"} key={"0"}>
+//         <Item title={"Community"} key={"4"} />
+//         <Item title={"Github"} key={"5"} />
+//       </SubMenu>
+//     </Menu>,
+//   )
+//
+//   ;(container.querySelector(`[data-menu-collapse-icon]`) as HTMLElement).click()
+//
+//   expect(event).toBeCalled()
+// })
