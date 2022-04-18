@@ -188,7 +188,7 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
               }}
             >
               {dateRender ? (
-                dateRender
+                dateRender(item.date)
               ) : (
                 <div
                   css={handleMonthTypeDayText(

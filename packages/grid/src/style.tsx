@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { SerializedStyles } from "@storybook/theming"
+import { SerializedStyles } from "@emotion/react"
 import { ColSize, GridSize, RowAlign, RowJustify } from "./interface"
 
 export function applyRowContainer(

@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import {HTMLAttributes, ReactNode} from "react"
 
 export type TriggerColorScheme =
   | string
@@ -31,6 +31,7 @@ export type TriggerPosition =
 export type TriggerTrigger = "hover" | "click" | "focus"
 
 export interface TriggerProps {
+  children?: ReactNode
   colorScheme?: TriggerColorScheme
   clickOutsideToClose?: boolean
   withoutPadding?: boolean

@@ -84,7 +84,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     const mergedPrecision = getPrecision(precision, step)
 
     const getLegalValue = useCallback(
-      (changedValue) => {
+      (changedValue: any) => {
         let finalValue: string | number | undefined = Number(changedValue)
         if (!changedValue && changedValue !== 0) {
           finalValue = undefined

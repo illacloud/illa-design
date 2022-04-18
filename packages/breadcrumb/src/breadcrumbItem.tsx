@@ -8,7 +8,7 @@ import { Menu } from "@illa-design/menu"
 
 export const BreadcrumbItem = forwardRef<HTMLDivElement, BreadcrumbItemProps>(
   (props, ref) => {
-    const { _css, droplist, dropdownProps, ...restProps } = props
+    const { _css, dropList, dropdownProps, ...restProps } = props
 
     const { isCurrent, path, breadcrumbName, children } =
       useContext(BreadcrumbContext)
@@ -23,7 +23,7 @@ export const BreadcrumbItem = forwardRef<HTMLDivElement, BreadcrumbItemProps>(
       </Menu>
     )
 
-    const finalDrop = droplist || dropItem
+    const finalDrop = dropList || dropItem
 
     const handleItemCss = () => {
       return css`
@@ -40,7 +40,7 @@ export const BreadcrumbItem = forwardRef<HTMLDivElement, BreadcrumbItemProps>(
     )
 
     return finalDrop ? (
-      <Dropdown droplist={finalDrop} {...dropdownProps}>
+      <Dropdown dropList={finalDrop} {...dropdownProps}>
         {item}
       </Dropdown>
     ) : (

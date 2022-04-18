@@ -17,7 +17,7 @@ import {
   applyFontContentStyle,
   applyOperationSpan,
 } from "./base-style"
-import { css } from "@storybook/theming"
+import { css } from "@emotion/react"
 import { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"

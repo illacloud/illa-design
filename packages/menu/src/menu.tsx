@@ -97,7 +97,7 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
         level: 1,
       })
       const isHorizontal = mode === "horizontal"
-      const isRenderWithOverflowWrapper = isHorizontal && ellipsis !== false
+      const isRenderWithOverflowWrapper = isHorizontal && ellipsis
 
       return (
         <>

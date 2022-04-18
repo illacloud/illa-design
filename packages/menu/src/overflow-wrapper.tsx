@@ -1,17 +1,10 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  ReactNode,
-  ReactElement,
-} from "react"
-import { css } from "@emotion/react"
-import { getStyle } from "@illa-design/system"
+import React, {ReactElement, ReactNode, useEffect, useRef, useState,} from "react"
+import {getStyle} from "@illa-design/system"
 import useMeasure from "react-use/lib/useMeasure"
-import { OverflowWrapperProps } from "./interface"
-import { SubMenu } from "./sub-menu"
-import { overflowMenuItemCss } from "./style"
-import { overflowWrapperCss, subMenuPlaceholderCss } from "./styles"
+import {OverflowWrapperProps} from "./interface"
+import {SubMenu} from "./sub-menu"
+import {overflowMenuItemCss} from "./style"
+import {overflowWrapperCss, subMenuPlaceholderCss} from "./styles"
 
 function getNodeWidth(node: HTMLElement) {
   if (!node) {

@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from "@storybook/theming"
+import { css, SerializedStyles } from "@emotion/react"
 
 export function applyParagraphContainer(indent: boolean): SerializedStyles {
   if (indent) {

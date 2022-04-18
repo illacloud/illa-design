@@ -1,4 +1,7 @@
+import {ReactNode} from "react";
+
 export interface ConfigProviderProps {
+  children?: ReactNode
   locale?: Locale
 }
 
