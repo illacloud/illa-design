@@ -1,8 +1,6 @@
-import { DatePicker, MonthPicker, RangePicker, YearPicker } from "../src"
-import { render, screen, fireEvent } from "@testing-library/react"
+import { DatePicker, DPRangePicker, MonthPicker, YearPicker } from "../src"
+import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import dayjs from "dayjs"
 
 test("DatePicker renders with different types", () => {
   render(<DatePicker />)
@@ -11,7 +9,7 @@ test("DatePicker renders with different types", () => {
   expect(screen.getAllByTitle("CalendarIcon")[1]).toBeInTheDocument()
   render(<YearPicker />)
   expect(screen.getAllByTitle("CalendarIcon")[2]).toBeInTheDocument()
-  render(<RangePicker />)
+  render(<DPRangePicker />)
   expect(screen.getAllByTitle("CalendarIcon")[3]).toBeInTheDocument()
 })
 
