@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { TreeListProps, NodeInstance } from "./interface"
 import { TreeNode } from "./tree-node"
 import { List } from "@illa-design/list"
@@ -29,32 +29,9 @@ export const TreeList: FC<TreeListProps> = (props) => {
     },
   }
 
-  const [testList, setList] = useState([<div>test 01</div>, <div>test 02</div>])
-
   return (
     <div>
-      {/*<button*/}
-      {/*  onClick={() => {*/}
-      {/*    testList.length === 0*/}
-      {/*      ? setList([<div>test 01</div>, <div>test 02</div>])*/}
-      {/*      : setList([])*/}
-      {/*  }}*/}
-      {/*>*/}
-      {/*  click up*/}
-      {/*</button>*/}
       <AnimatePresence initial={false}>
-        {/*{testList?.map((item, index) => (*/}
-        {/*  <motion.div*/}
-        {/*    key={"test-id" + index}*/}
-        {/*    variants={variants}*/}
-        {/*    animate={"enter"}*/}
-        {/*    initial={"initial"}*/}
-        {/*    exit={"exit"}*/}
-        {/*    transition={{ duration: 0.7 }}*/}
-        {/*  >*/}
-        {/*    {item}*/}
-        {/*  </motion.div>*/}
-        {/*))}*/}
         <List
           _css={listCss}
           data={listData}
@@ -85,7 +62,7 @@ export const TreeList: FC<TreeListProps> = (props) => {
           }}
           renderRaw={true}
           bordered={false}
-          renderKey={(data, index) => {
+          renderKey={(data) => {
             return data.key
           }}
         />
