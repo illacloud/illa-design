@@ -82,7 +82,7 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
             _position = -1
           }
         }
-        event && handleDragOver && handleDragOver(event, _key)
+        event && handleDragOver && handleDragOver(event?.nativeEvent, _key)
         updateDragState &&
           updateDragState({ dropNodeKey: _key, dropPosition: _position })
       }
@@ -155,10 +155,10 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
         }}
         onDragLeave={(event) => {
           event.stopPropagation()
-          handleDragLeave && handleDragLeave(event, _key)
+          handleDragLeave && handleDragLeave(event?.nativeEvent, _key)
         }}
         onDragStart={(event) => {
-          handleDragStart && handleDragStart(event, _key)
+          handleDragStart && handleDragStart(event?.nativeEvent, _key)
           setIsDragging(true)
           setIsDragOver(true)
           updateDragState &&
@@ -167,12 +167,12 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
         onDragEnd={(event) => {
           event.stopPropagation()
           setIsDragging(false)
-          handleDragEnd && handleDragEnd(event, _key)
+          handleDragEnd && handleDragEnd(event?.nativeEvent, _key)
         }}
         onDrop={(event) => {
           event.stopPropagation()
           setIsDragOver(false)
-          handleDrop && handleDrop(event)
+          handleDrop && handleDrop(event?.nativeEvent)
           updateDragState &&
             updateDragState({
               dragNodeKey: null,
@@ -187,7 +187,7 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
             css={checkboxCss}
             indeterminate={!_checked && _halfChecked}
             onChange={(_, e) => {
-              handleCheck && handleCheck(_key, e)
+              handleCheck && handleCheck(_key, e?.nativeEvent)
             }}
             checked={_checked ?? false}
           />
@@ -201,7 +201,7 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
           )}
           onClick={(e) => {
             if (disabled) return
-            handleSelect && handleSelect(_key, e)
+            handleSelect && handleSelect(_key, e?.nativeEvent)
           }}
         >
           {icon && <span>{icon}</span>}
@@ -214,7 +214,6 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
             <span>
               {dragIcon ?? (
                 <span css={iconColorCss}>
-                  {" "}
                   <DragPointIcon />
                 </span>
               )}
