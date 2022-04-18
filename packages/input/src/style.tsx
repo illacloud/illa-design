@@ -399,6 +399,10 @@ export function applyLengthErrorStyle(error?: boolean) {
 export const pointerStyle = css`
   transition: color 200ms ease-in-out;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   color: ${globalColor(`--${illaPrefix}-gray-06`)};
 
   &:hover {

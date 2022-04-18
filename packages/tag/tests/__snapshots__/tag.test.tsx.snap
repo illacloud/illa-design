@@ -19,7 +19,7 @@ exports[`Tag renders with color and variant 1`] = `
   box-sizing: border-box;
   padding: 0 7px;
   border-radius: 2px;
-  background-color: #ebebeb;
+  background-color: #f5f5f5;
   color: #1f1f1f;
   font-size: 12px;
   line-height: 18px;
@@ -65,7 +65,7 @@ exports[`Tag renders with color and variant 2`] = `
   box-sizing: border-box;
   padding: 0 7px;
   border-radius: 2px;
-  background-color: #a3f0d4;
+  background-color: #ecfbf5;
   color: #007a41;
   font-size: 12px;
   line-height: 18px;
@@ -433,7 +433,7 @@ exports[`Tag renders with different size 1`] = `
   box-sizing: border-box;
   padding: 0 7px;
   border-radius: 2px;
-  background-color: #ebebeb;
+  background-color: #f5f5f5;
   color: #1f1f1f;
   font-size: 12px;
   line-height: 18px;
@@ -479,7 +479,7 @@ exports[`Tag renders with different size 2`] = `
   box-sizing: border-box;
   padding: 0 7px;
   border-radius: 2px;
-  background-color: #ebebeb;
+  background-color: #f5f5f5;
   color: #1f1f1f;
   font-size: 14px;
   line-height: 22px;
@@ -525,7 +525,7 @@ exports[`Tag renders with different size 3`] = `
   box-sizing: border-box;
   padding: 0 7px;
   border-radius: 2px;
-  background-color: #ebebeb;
+  background-color: #f5f5f5;
   color: #1f1f1f;
   font-size: 14px;
   line-height: 22px;
