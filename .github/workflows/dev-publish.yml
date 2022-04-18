@@ -99,14 +99,6 @@ jobs:
           yarn build
           cd ..
 
-      - name: Publish to Chromatic
-        uses: chromaui/action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          exitZeroOnChanges: true
-          exitOnceUploaded: true
-
       - name: Deploy docs to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
