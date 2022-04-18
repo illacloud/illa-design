@@ -5,9 +5,7 @@ export const CaretDownIcon = createIcon({
   viewBox: "0 0 8 8",
   path: (
     <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M1.273 1.954A.3.3 0 0 1 1.53 1.5h4.94a.3.3 0 0 1 .257.454L4.343 5.928a.4.4 0 0 1-.686 0L1.273 1.954z"
+      d="M1.273 2.454A.3.3 0 0 1 1.53 2h4.94a.3.3 0 0 1 .257.454L4.343 6.428a.4.4 0 0 1-.686 0L1.273 2.454z"
       fill="currentColor"
     />
   ),

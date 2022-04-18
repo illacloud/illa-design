@@ -75,11 +75,20 @@ export function applyDragUploadContainerCss(
   `
 }
 
-export const imageUploadTextCss = css`
-  font-size: 14px;
-  margin-top: 8px;
-  color: ${globalColor(`--${illaPrefix}-gray-04`)};
-`
+export function applyImageUploadTextCss(disabled?: boolean): SerializedStyles {
+  const colorCss = disabled
+    ? css`
+        color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      `
+    : css`
+        color: ${globalColor(`--${illaPrefix}-gray-04`)};
+      `
+  return css`
+    font-size: 14px;
+    margin-top: 8px;
+    ${colorCss}
+  `
+}
 
 export function applyDragUploadTitleCss(disabled?: boolean): SerializedStyles {
   const colorCss = disabled

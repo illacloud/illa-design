@@ -5,7 +5,7 @@ import {
   applyImageUploadContainerCss,
   picUploaded,
   picUploadedEditMask,
-  imageUploadTextCss,
+  applyImageUploadTextCss,
 } from "./style"
 import { AddIcon, PenIcon, UploadIcon } from "@illa-design/icon"
 import * as React from "react"
@@ -72,7 +72,7 @@ export const UploadInput: FC<ChildrenNodeProps> = (props) => {
         ) : (
           <span css={applyImageUploadContainerCss(disabled)}>
             <AddIcon />
-            <span css={imageUploadTextCss}>Upload</span>
+            <span css={applyImageUploadTextCss(disabled)}>Upload</span>
           </span>
         )}
       </span>
