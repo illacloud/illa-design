@@ -41,6 +41,21 @@ jobs:
           yarn install --frozen-lockfile
           yarn build-all-components
 
+      - name: Install docs dependencies
+        run: |
+          cd ./docs
+          yarn install --frozen-lockfile
+          cd ..
+
+      - name: Import docs i18n
+        run: yarn import-docs
+
+      - name: Build docs
+        run: |
+          cd ./docs
+          yarn build
+          cd ..
+
   test:
     needs:
       - install
