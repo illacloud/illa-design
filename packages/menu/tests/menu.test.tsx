@@ -156,7 +156,7 @@ test("onCollapse should be trigger", () => {
     </Menu>,
   )
 
-  screen.getByTitle("PreIcon").parentElement.parentElement.click();
+  screen.getByTitle("PreIcon").parentElement.parentElement.click()
 
   expect(event).toBeCalled()
 })
