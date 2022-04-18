@@ -25,13 +25,11 @@ test("Alert renders with different type", () => {
 
 test("Alert renders with closeBtn&closeEvent", async () => {
   const onCloseEvent = jest.fn()
-  const afterCloseEvent = jest.fn()
   render(
     <Alert
       data-testid="test-with-close"
       closable
       onClose={onCloseEvent}
-      afterClose={afterCloseEvent}
       closeElement={<LoadingIcon data-testid="test-with-closeElement" />}
     />,
   )
@@ -39,9 +37,6 @@ test("Alert renders with closeBtn&closeEvent", async () => {
   expect(closeBtn).toBeInTheDocument()
   fireEvent.click(closeBtn)
   expect(onCloseEvent).toBeCalled()
-  await waitFor(() => expect(afterCloseEvent).toBeCalled(), {
-    timeout: 1000,
-  })
 })
 
 test("Alert renders with title", () => {

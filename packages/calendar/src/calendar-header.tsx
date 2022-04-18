@@ -1,14 +1,14 @@
-import {FC, Fragment, useCallback, useEffect, useState} from "react"
-import {throttleByRaf} from "@illa-design/system"
-import {CalendarHeaderProps, selectTimeProps} from "./interface"
-import {Button} from "@illa-design/button"
+import { FC, Fragment, useCallback, useEffect, useState } from "react"
+import { throttleByRaf } from "@illa-design/system"
+import { CalendarHeaderProps, selectTimeProps } from "./interface"
+import { Button } from "@illa-design/button"
 import {
   PreIcon,
   NextIcon,
   PreDoubleIcon,
   NextDoubleIcon,
 } from "@illa-design/icon"
-import {Select} from "@illa-design/select"
+import { Select } from "@illa-design/select"
 import {
   headerLeftPartCss,
   headerRightPartCss,
@@ -50,14 +50,14 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
   }, [currentDay])
 
   const selectTime = (time: selectTimeProps) => {
-    const {year, month} = time
+    const { year, month } = time
     if (year) {
       setCurrentYear(year)
-      onSelectTime({year: year, month: currentMonth})
+      onSelectTime({ year: year, month: currentMonth })
     }
     if (month) {
       setCurrentMonth(month)
-      onSelectTime({year: currentYear, month: month})
+      onSelectTime({ year: currentYear, month: month })
     }
   }
 
@@ -74,7 +74,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
           colorScheme={"gray"}
           onClick={() => onChangeTime("pre")}
         >
-          <PreIcon size={"12px"}/>
+          <PreIcon size={"12px"} />
         </Button>
         <Button
           disabled={!allowSelect}
@@ -82,7 +82,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
           colorScheme={"gray"}
           onClick={() => onChangeTime("next")}
         >
-          <NextIcon size={"12px"}/>
+          <NextIcon size={"12px"} />
         </Button>
       </div>
     )
@@ -106,8 +106,8 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
           defaultValue={currentYear}
           size={"small"}
           css={selectCommonCss}
-          style={{width: 105}}
-          onChange={(val: number) => selectTime({year: val})}
+          style={{ width: 105 }}
+          onChange={(val: number) => selectTime({ year: val })}
         />
         {mode === "month" && (
           <Select
@@ -116,8 +116,8 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
             defaultValue={currentMonth}
             size={"small"}
             css={selectCommonCss}
-            style={{width: 90}}
-            onChange={(val: number) => selectTime({month: val})}
+            style={{ width: 90 }}
+            onChange={(val: number) => selectTime({ month: val })}
           />
         )}
       </div>
@@ -140,7 +140,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                 }
                 onClick={() => onChangeTime("pre", "year")}
               >
-                <PreDoubleIcon size={"12px"}/>
+                <PreDoubleIcon size={"12px"} />
               </Button>
               {/* pre button */}
               <Button
@@ -153,7 +153,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                 }
                 onClick={() => onChangeTime("pre", "month")}
               >
-                <PreIcon size={"12px"}/>
+                <PreIcon size={"12px"} />
               </Button>
             </div>
 
@@ -183,7 +183,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                 }
                 onClick={() => onChangeTime("next", "month")}
               >
-                <NextIcon size={"12px"}/>
+                <NextIcon size={"12px"} />
               </Button>
               {/* double-next button */}
               <Button
@@ -195,15 +195,15 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                 }
                 onClick={() => onChangeTime("next", "year")}
               >
-                <NextDoubleIcon size={"12px"}/>
+                <NextDoubleIcon size={"12px"} />
               </Button>
             </div>
           </Fragment>
         ) : (
           <Fragment>
             <div css={headerLeftPartCss}>
-              {headerType === "button" && <HeaderTypeButton/>}
-              {headerType === "select" && <HeaderTypeSelect/>}
+              {headerType === "button" && <HeaderTypeButton />}
+              {headerType === "select" && <HeaderTypeSelect />}
               {panelTodayBtn && (
                 <Button
                   disabled={!allowSelect}
