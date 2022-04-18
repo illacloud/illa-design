@@ -61,7 +61,7 @@ export const Notification: NotificationComponent = forwardRef<
     bottomLeft: [],
     bottomRight: [],
   })
-  const getRemoves = useCallback((id: string, notificationSet) => {
+  const getRemoves = useCallback((id: string, notificationSet: any) => {
     let removeIndex = -1,
       pos = "topRight"
     Object.keys(notificationSet).forEach((position) => {

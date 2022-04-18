@@ -2,7 +2,8 @@ import { ReactNode } from "react"
 import { TriggerProps } from "@illa-design/trigger"
 
 export interface DropdownProps {
-  droplist?: ReactNode
+  children?: ReactNode
+  dropList?: ReactNode
   position?: TriggerProps["position"]
   trigger?: TriggerProps["trigger"]
   disabled?: boolean

@@ -1,4 +1,8 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+export const treeContainerCss = css`
+  padding: 8px;
+`
 
-export function applyTreeSelect() {}
+export const emptyCss = css`
+  padding: 16px 0;
+`

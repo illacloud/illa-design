@@ -6,7 +6,7 @@ import { useMergeValue, omit } from "@illa-design/system"
 export const Dropdown: FC<DropdownProps> = (props) => {
   const {
     children,
-    droplist,
+    dropList,
     disabled,
     position = "bl",
     trigger = "hover",
@@ -31,7 +31,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
   })
 
   const getContent = () => {
-    return Children.only(droplist || <span />) as ReactElement
+    return Children.only(dropList || <span />) as ReactElement
   }
 
   const changePopupVisible = (visible: boolean) => {

@@ -81,7 +81,7 @@ test("label & relative position", () => {
   )
   expect(screen.getByText("test label")).toBeInTheDocument()
   expect(screen.getByText("test label")).toHaveStyle({
-    "font-size": "16px",
+    "font-size": "14px",
   })
 
   render(

@@ -108,6 +108,7 @@ it("Menu render with variant pop", () => {
 
   cy.get(`[data-testid='submenu-item-1']`).should("not.exist")
   cy.get(`[data-testid='submenu-1']`).trigger("mouseover")
+  cy.wait(200)
   cy.get(`[data-testid='submenu-item-1']`).should("be.visible")
 
   unmount()

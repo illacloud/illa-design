@@ -92,33 +92,13 @@ export function applyBorderStyle(
   return css(borderStyle, stripedStyle)
 }
 
-export const applyFixedHeaderStyle = css`
-  top: 0;
-  position: sticky;
-`
-
-export const applyFixedStyleLeft = css`
-  left: 0;
-  position: sticky;
-`
-
-export const applyFixedStyleRight = css`
-  right: 0;
-  position: sticky;
-`
-
-export function applyThStyle(fixedHeader?: boolean): SerializedStyles {
-  const commonStyle = css`
+export function applyThStyle(): SerializedStyles {
+  return css`
     font-size: 14px;
     font-weight: bold;
     background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   `
-  if (fixedHeader) {
-    return css(commonStyle, applyFixedHeaderStyle)
-  } else {
-    return commonStyle
-  }
 }
 
 export const applyNormalStyle: SerializedStyles = css`

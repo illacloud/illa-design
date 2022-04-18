@@ -1,4 +1,7 @@
+import {ReactNode} from "react";
+
 export interface ConfigProviderProps {
+  children?: ReactNode
   locale?: Locale
 }
 
@@ -13,4 +16,5 @@ export interface Locale {
   calendar: Record<string, string>
   modal: Record<string, string>
   drawer: Record<string, string>
+  datePicker: Record<string, string>
 }

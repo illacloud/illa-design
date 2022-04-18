@@ -5,7 +5,7 @@ import { LoadingIcon, NextIcon } from "@illa-design/icon"
 import { Checkbox } from "@illa-design/checkbox"
 import { CascaderPanelProps, OptionProps } from "../interface"
 import { Node } from "../node"
-import useRefs, { useForceUpdate } from "../hooks"
+import useRefs, { useForceUpdate, useUpdate } from "../hooks"
 import {
   applyOptionLabelStyle,
   applyOptionStyle,
@@ -98,30 +98,24 @@ export const DefaultPopup = <T extends OptionProps>(
     onChange?.(newValue)
   }
 
-  const isDidMount = useRef(false)
+  useUpdate(() => {
+    setActiveNode((activeNode: Node<T> | null) => {
+      let newActiveNode
 
-  useEffect(() => {
-    if (isDidMount.current) {
-      setActiveNode((activeNode: Node<T> | null) => {
-        let newActiveNode
-
-        if (activeNode && activeNode.pathValue && activeNode.pathValue.length) {
-          const values = activeNode.pathValue
-          let parent = { children: options } as Node<T>
-          values.map((value) => {
-            const list = parent.children || []
-            const item = list.find((x) => x.value === value)
-            if (item) {
-              parent = item
-              newActiveNode = item
-            }
-          })
-        }
-        return newActiveNode || null
-      })
-    } else {
-      isDidMount.current = true
-    }
+      if (activeNode?.pathValue?.length) {
+        const values = activeNode.pathValue
+        let parent = { children: options } as Node<T>
+        values.map((value) => {
+          const list = parent.children || []
+          const item = list.find((x) => x.value === value)
+          if (item) {
+            parent = item
+            newActiveNode = item
+          }
+        })
+      }
+      return newActiveNode || null
+    })
   }, [store])
 
   useEffect(() => {

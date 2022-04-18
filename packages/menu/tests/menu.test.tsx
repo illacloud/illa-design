@@ -19,6 +19,20 @@ test("Menu renders with item", () => {
   expect(screen.getByText("Docs")).toBeInTheDocument()
 })
 
+test("Menu renders with horizontal selected", () => {
+  render(
+    <Menu defaultSelectedKeys={["1"]} data-testid={"menu"}>
+      <Item title={"Blog"} key={"1"} disabled />
+      <Item title={"Tutorial"} key={"2"} />
+      <Item title={"Docs"} key={"3"} />
+      <Item title={"Community"} key={"4"} />
+      <Item title={"Github"} key={"5"} />
+    </Menu>,
+  )
+
+  expect(screen.getByTestId("menu")).toMatchSnapshot()
+})
+
 test("Menu renders with item group", () => {
   render(
     <Menu>

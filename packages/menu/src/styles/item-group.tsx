@@ -8,9 +8,10 @@ export function applyItemGroupCss(theme: Theme = "light"): SerializedStyles {
   const color =
     theme === "dark"
       ? globalColor(`--${illaPrefix}-gray-04`)
-      : globalColor(`--${illaPrefix}-gray-06`)
+      : globalColor(`--${illaPrefix}-gray-04`)
   return css`
     color: ${color};
+    font-size: 14px;
   `
 }
 

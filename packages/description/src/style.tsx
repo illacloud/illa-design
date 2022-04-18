@@ -1,11 +1,6 @@
-import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import {
-  DescriptionLayout,
-  DescriptionSize,
-  DescriptionTableLayout,
-} from "./interface"
-import { SerializedStyles } from "@storybook/theming"
+import {css, SerializedStyles} from "@emotion/react"
+import {globalColor, illaPrefix} from "@illa-design/theme"
+import {DescriptionLayout, DescriptionSize, DescriptionTableLayout,} from "./interface"
 
 export const applyDescContainerStyle = css`
   padding: 24px;

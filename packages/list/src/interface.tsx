@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactNode, UIEventHandler } from "react"
-import { SerializedStyles } from "@storybook/theming"
+import { SerializedStyles } from "@emotion/react"
 
 export type ListSize = "small" | "medium" | "large"
 

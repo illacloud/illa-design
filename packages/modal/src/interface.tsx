@@ -45,6 +45,7 @@ export interface ModalProps
 }
 
 export interface PortalProps {
+  children?: ReactNode
   container?: Element
 }
 
