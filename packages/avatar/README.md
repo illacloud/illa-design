@@ -46,6 +46,26 @@ import { Avatar } from "@illa-dedign/avatar"
 
 ## Example
 
+
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
+
+export const code = `
+    <>
+      <Avatar />
+      <Avatar size="small">Small</Avatar>
+      <Avatar shape="square" colorScheme="red">Small</Avatar>
+      <Avatar src='https://bit.ly/dan-abramov' />
+      <Avatar text="e" />
+    </>`
+
+export const importStatement = `import { Avatar } from '@illa-design/avatar'`
+
+export const packages = {"@illa-design/avatar":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
+
 ### Basic usage
 
 ```jsx

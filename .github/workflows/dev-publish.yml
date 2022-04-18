@@ -36,11 +36,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ github.run_id }}
 
-
       - name: Build
         run: |
           yarn install --frozen-lockfile
           yarn build-all-components
+
+      - name: Install docs dependencies
+        run: |
+          cd ./docs
+          yarn install --frozen-lockfile
+          cd ..
 
   build:
     needs:
@@ -78,6 +83,12 @@ jobs:
         run: |
           yarn cypress info
           yarn test
+          
+      - name: Publish to Codecov
+        uses: codecov/codecov-action@v2.1.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage-final.json
 
       - name: Build storybook
         run: NODE_OPTIONS=--max-old-space-size=11264 npx build-storybook
@@ -93,8 +104,17 @@ jobs:
           TARGET: ${{ secrets.SB_SERVER_TARGET }}/${{ github.ref_name }}
           AGRS: "-rlgoDzvc --delete"
 
-      - name: Publish to Codecov
-        uses: codecov/codecov-action@v2.1.0
+      - name: Import docs i18n
+        run: yarn import-docs
+
+      - name: Build docs
+        run: |
+          cd ./docs
+          yarn build
+          cd ..
+
+      - name: Deploy docs to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage-final.json
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build
