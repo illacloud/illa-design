@@ -70,6 +70,7 @@ export function applyCollapseIconCss(
     position: absolute;
     width: 24px;
     height: 24px;
+    font-size: 14px;
     background: ${themeColor[theme].bg};
     right: ${isCollapse ? 12 : 24}px;
     bottom: 24px;

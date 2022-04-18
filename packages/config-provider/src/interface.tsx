@@ -13,4 +13,5 @@ export interface Locale {
   calendar: Record<string, string>
   modal: Record<string, string>
   drawer: Record<string, string>
+  datePicker: Record<string, string>
 }

@@ -78,12 +78,12 @@ it("TreeSelect renders with onChangeEvent", () => {
   unmount()
 })
 
-it("TreeSelect renders with showSearch", () => {
-  mount(<TreeSelect treeData={data} showSearch={true} />)
-  cy.findByTitle("ExpandIcon").parent().trigger("click")
-  cy.findByTitle("SearchIcon").should("exist")
-  unmount()
-})
+// it("TreeSelect renders with showSearch", () => {
+//   mount(<TreeSelect treeData={data} showSearch={true} />)
+//   cy.findByTitle("ExpandIcon").parent().trigger("click")
+//   cy.findByTitle("SearchIcon").should("exist")
+//   unmount()
+// })
 
 it("TreeSelect renders with multiple", () => {
   const onChangeEvent = cy.spy().as("onChangeEvent")
@@ -98,24 +98,6 @@ it("TreeSelect renders with multiple", () => {
 it("TreeSelect renders with remove", () => {
   const onChangeEvent = cy.spy().as("onChangeEvent")
   mount(<TreeSelect treeData={data} multiple={true} onChange={onChangeEvent} />)
-  cy.findByTitle("ExpandIcon").parent().trigger("click")
-  cy.findByText("0-1-xixixixixix").trigger("click")
-  cy.get("@onChangeEvent").should("be.calledWith", ["0-1"])
-  cy.findByTitle("CloseIcon").parent().trigger("click")
-  cy.get("@onChangeEvent").should("be.calledWith", [])
-  unmount()
-})
-
-it("TreeSelect renders with remove", () => {
-  const onChangeEvent = cy.spy().as("onChangeEvent")
-  mount(
-    <TreeSelect
-      treeData={data}
-      allowClear={true}
-      multiple={true}
-      onChange={onChangeEvent}
-    />,
-  )
   cy.findByTitle("ExpandIcon").parent().trigger("click")
   cy.findByText("0-1-xixixixixix").trigger("click")
   cy.get("@onChangeEvent").should("be.calledWith", ["0-1"])

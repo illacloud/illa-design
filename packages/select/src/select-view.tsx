@@ -222,6 +222,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       const usedMaxTagCount = isNumber(maxTagCount)
         ? Math.max(maxTagCount, 0)
         : usedValue.length
+      // console.log(usedValue, usedMaxTagCount, 'usedValue')
       const tagsToShow: ObjectValueType[] = usedValue
         .slice(0, usedMaxTagCount)
         .map((v) => {
@@ -260,7 +261,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             padding: unset;
             box-shadow: unset;
           `}
-          disableInput={!(showSearch || multiple)}
+          disableInput={!(showSearch ? showSearch : multiple)}
           inputRef={inputRef}
           disabled={disabled}
           placeholder={placeholder}

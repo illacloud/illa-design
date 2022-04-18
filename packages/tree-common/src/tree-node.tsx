@@ -6,6 +6,7 @@ import {
   applyNodeContainerCss,
   applyNodeFoldSwitchIconCss,
   applyNodeTextContainerCss,
+  checkboxCss,
   dragContainerCss,
   iconColorCss,
   indentContainerCss,
@@ -30,7 +31,7 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
     disabled,
     _isSelected,
     isLeaf,
-    expanding = true,
+    expanding,
     handleExpand,
     handleSelect,
     handleCheck,
@@ -92,14 +93,14 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
 
   const _isLeaf = useMemo(() => {
     return isLeaf || (!handleLoadMore && (!_children || _children?.length == 0))
-  }, [isLeaf, handleLoadMore])
+  }, [isLeaf, handleLoadMore, _children])
 
   const _isExpanding = useMemo(() => {
     if (_children && _children.length > 0) {
       return expanding
     }
     return handleLoadMore === undefined
-  }, [expanding, handleLoadMore])
+  }, [expanding, handleLoadMore, _children])
 
   return (
     <div css={applyNodeContainerCss(size)} ref={ref}>
@@ -182,6 +183,8 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
       >
         {checkable && (
           <Checkbox
+            disabled={disabled}
+            css={checkboxCss}
             indeterminate={!_checked && _halfChecked}
             onChange={(_, e) => {
               handleCheck && handleCheck(_key, e)

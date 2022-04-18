@@ -7,6 +7,18 @@ import { css } from "@emotion/react"
 export default {
   title: "DATA DISPLAY/Comment",
   component: Comment,
+  argTypes: {
+    author: {
+      control: {
+        type: "text",
+      },
+    },
+    datetime: {
+      control: {
+        type: "text",
+      },
+    },
+  },
 } as Meta
 
 export const Basic: Story<CommentProps> = (args) => {
@@ -36,7 +48,46 @@ export const Basic: Story<CommentProps> = (args) => {
         author={<span>aoao</span>}
         content={<div>Comment body content.</div>}
         datetime="1 hour"
+        {...args}
       />
+
+      <Comment
+        align={{ actions: "right" }}
+        actions={actions}
+        avatar={<Avatar />}
+        author={"aoao"}
+        content={<div>Comment body content.</div>}
+        datetime="1 hour"
+        {...args}
+      >
+        <Comment
+          align={{ actions: "right" }}
+          actions={actions}
+          avatar={<Avatar />}
+          author={"aoao"}
+          content={<div>Comment body content.</div>}
+          datetime="1 hour"
+          {...args}
+        >
+          {" "}
+          <Comment
+            align={{ actions: "right" }}
+            actions={actions}
+            avatar={<Avatar />}
+            author={"aoao"}
+            content={<div>Comment body content.</div>}
+            datetime="1 hour"
+          />
+        </Comment>
+        <Comment
+          align={{ actions: "right" }}
+          actions={actions}
+          avatar={<Avatar />}
+          author={"aoao"}
+          content={<div>Comment body content.</div>}
+          datetime="1 hour"
+        />
+      </Comment>
     </div>
   )
 }

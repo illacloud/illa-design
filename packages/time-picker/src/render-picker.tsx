@@ -10,6 +10,7 @@ import { Dayjs } from "dayjs"
 import {
   dayjs,
   isArray,
+  isString,
   useMergeValue,
   getDayjsValue,
   isDayjs,
@@ -106,30 +107,43 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         ? placeholder
         : (locale["placeholder"] as string)
 
-    function isValidTime(time?: string): boolean {
+    const isValidTime = (time?: string): boolean => {
       return (
-        typeof time === "string" && dayjs(time, format)?.format(format) === time
+        typeof isString(time) && dayjs(time, format)?.format(format) === time
       )
     }
 
-    function changeFocusedInputIndex(index: number) {
+    const formatTime = (str: Dayjs) => {
+      return str ? dayjs(str)?.format(format) : ""
+    }
+
+    const changeFocusedInputIndex = (index: number) => {
       setFocusedInputIndex(index)
       setTimeout(() => inputGroupRef.current?.focus(index))
     }
 
-    const setOpen = (visible: boolean, callback?: Function) => {
+    const focusInput = (focus: boolean = true) => {
+      if (focus) {
+        inputRef.current?.focus()
+        inputGroupRef.current?.focus?.(focusedInputIndex)
+      } else {
+        inputRef.current?.blur()
+        inputGroupRef.current?.blur?.()
+      }
+    }
+
+    const setOpen = (visible: boolean) => {
       if (currentPopupVisible !== visible) {
         setCurrentPopupVisible(visible)
       }
       setInputValue(undefined)
       setRangeInputValue(undefined)
-      callback?.()
       if (!visible) {
         setValueShow(undefined)
       }
     }
 
-    function onConfirmValue(vs?: Dayjs | Dayjs[]) {
+    const onConfirmValue = (vs?: Dayjs | Dayjs[]) => {
       //  when disabled = array, Deal with the problem of changing the time sequence
       const currentOrder =
         !(isArray(disabled) && (disabled[0] || disabled[1])) && order
@@ -154,6 +168,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
 
       if (!disableConfirm) {
         setOpen(false)
+        setTimeout(() => focusInput(false))
       }
     }
 
@@ -229,10 +244,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       },
     }
 
-    const formatTime = (str: Dayjs) => {
-      return str ? dayjs(str)?.format(format) : ""
-    }
-
     return (
       <Trigger
         openDelay={0}
@@ -249,20 +260,14 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
           (!isArray(disabled) && disabled)
         }
         onVisibleChange={(visible: boolean) => {
+          setOpen(visible)
           if (visible) {
-            setOpen(visible, () => {
-              inputRef.current?.focus()
-            })
-          } else {
-            setOpen(visible)
+            setTimeout(() => focusInput())
           }
         }}
         popupVisible={currentPopupVisible}
         content={
-          <div
-            css={triggerContentStyle}
-            onClick={() => inputRef.current?.focus()}
-          >
+          <div css={triggerContentStyle} onClick={() => focusInput()}>
             {cloneElement(popup as ReactElement, {
               ...props,
               format,
