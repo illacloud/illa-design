@@ -35,7 +35,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       // extra props
       defaultDate,
       defaultSelectedDate,
-      rangepicker = false,
+      rangePicker = false,
       rangeValueFirst,
       rangeValueSecond,
       rangeValueHover,
@@ -122,14 +122,14 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
 
     // select day
     const clickDay = (date: Dayjs) => {
-      if (rangepicker) {
+      if (rangePicker) {
         clickRangeDay(date)
         return
       }
       if (selectDay?.isSame(date, "date")) return
       if (modeVal === "month" || modeVal === "day") {
         // if click pre or next month
-        !rangepicker && checkDifferentMonth(date)
+        !rangePicker && checkDifferentMonth(date)
       }
       setSelectDay(date)
 

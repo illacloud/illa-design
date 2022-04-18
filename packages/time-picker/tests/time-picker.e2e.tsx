@@ -1,10 +1,10 @@
-import { TimePicker } from "../src"
+import { TPTimePicker } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
 it("TimePicker render correctly", () => {
   const changeEvent = cy.stub().as("changeEvent")
-  mount(<TimePicker placeholder={"test"} onChange={changeEvent} />)
+  mount(<TPTimePicker placeholder={"test"} onChange={changeEvent} />)
 
   cy.findByPlaceholderText("test").should("exist")
   cy.findByPlaceholderText("test").click()
@@ -19,7 +19,7 @@ it("TimePicker render with clear event", () => {
   const changeEvent = cy.stub().as("changeEvent")
   const clearEvent = cy.stub().as("clearEvent")
   mount(
-    <TimePicker
+    <TPTimePicker
       placeholder={"test use12Hours"}
       onChange={changeEvent}
       onClear={clearEvent}
@@ -51,7 +51,7 @@ it("TimePicker render with clear event", () => {
 
 it("TimePicker test button Now", () => {
   const changeEvent = cy.stub().as("changeEvent")
-  mount(<TimePicker placeholder={"test-now"} onChange={changeEvent} />)
+  mount(<TPTimePicker placeholder={"test-now"} onChange={changeEvent} />)
 
   cy.findByPlaceholderText("test-now").should("exist")
   cy.findByPlaceholderText("test-now").click()

@@ -91,7 +91,7 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
         key={`overflow-sub-menu${isPlaceholder && "placeholder"}`}
         data-sub-menu-marker
         data-sub-menu-placeholder-marker={isPlaceholder}
-        css={isPlaceholder && subMenuPlaceholderCss}
+        _css={isPlaceholder ? subMenuPlaceholderCss : undefined}
         {...props}
         children={children}
       />
