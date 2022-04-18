@@ -143,7 +143,7 @@ test("onClickSubMenu should be trigger", () => {
 test("onCollapse should be trigger", () => {
   const event = jest.fn()
 
-  const { container } = render(
+  render(
     <Menu hasCollapseButton onCollapseChange={event}>
       <ItemGroup title={"Group"}>
         <Item title={"Tutorial"} key={"2"} />
@@ -156,7 +156,7 @@ test("onCollapse should be trigger", () => {
     </Menu>,
   )
 
-  ;(container.querySelector(`[data-menu-collapse-icon]`) as HTMLElement).click()
+  screen.getByTitle("PreIcon").parentElement.parentElement.click();
 
   expect(event).toBeCalled()
 })
