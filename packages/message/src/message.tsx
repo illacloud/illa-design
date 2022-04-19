@@ -58,7 +58,7 @@ export const Message: MessageComponent = forwardRef<
     top: [],
     bottom: [],
   })
-  const getRemoves = useCallback((id: string, messageSet: any) => {
+  const getRemoves = useCallback((id: string, messageSet: MessageSet) => {
     let removeIndex = -1,
       pos = "top"
     Object.keys(messageSet).forEach((position) => {

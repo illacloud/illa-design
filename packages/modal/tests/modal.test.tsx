@@ -15,7 +15,7 @@ test("Modal renders by modal api", () => {
     content: "A message",
   })
   expect(screen.getByText("Info").firstElementChild).toHaveStyle({
-    "margin-right": "8px",
+    position: "absolute",
   })
   const ele = screen.getByText("A message")
   expect(ele).toBeInTheDocument()
