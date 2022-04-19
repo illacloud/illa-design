@@ -11,7 +11,7 @@ yarn add @illa-design/link
 ## Import component
 
 ```jsx
-import { Link } from "@illa-dedign/link"
+import { Link } from "@illa-design/link"
 ```
 
 ## API

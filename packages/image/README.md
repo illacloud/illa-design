@@ -11,7 +11,7 @@ yarn add @illa-design/image
 ## Import component
 
 ```jsx
-import { Image } from "@illa-dedign/image"
+import { Image } from "@illa-design/image"
 ```
 
 ## API

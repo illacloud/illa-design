@@ -11,7 +11,7 @@ yarn add @illa-design/card
 ## 引用组件
 
 ```jsx
-import { Card } from "@illa-dedign/card"
+import { Card } from "@illa-design/card"
 ```
 
 ## 组件接口（API）

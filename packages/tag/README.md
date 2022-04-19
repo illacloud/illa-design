@@ -11,7 +11,7 @@ yarn add @illa-design/tag
 ## Import component
 
 ```jsx
-import { Tag } from "@illa-dedign/tag"
+import { Tag } from "@illa-design/tag"
 ```
 
 ## API

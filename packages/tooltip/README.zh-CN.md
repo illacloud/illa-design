@@ -11,7 +11,7 @@ yarn add @illa-design/tooltip
 ## 引用组件
 
 ```jsx
-import { Tooltip } from "@illa-dedign/tooltip"
+import { Tooltip } from "@illa-design/tooltip"
 ```
 
 ## 组件接口(API)

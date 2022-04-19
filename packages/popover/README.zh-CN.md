@@ -11,7 +11,7 @@ yarn add @illa-design/popover
 ## 引用组件
 
 ```jsx
-import { Popover } from "@illa-dedign/popover"
+import { Popover } from "@illa-design/popover"
 ```
 
 ## 组件接口(API)

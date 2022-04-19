@@ -11,7 +11,7 @@ yarn add @illa-design/select
 ## 引用组件
 
 ```jsx
-import { Select } from "@illa-dedign/select"
+import { Select } from "@illa-design/select"
 ```
 
 ## 组件接口（API）

@@ -11,7 +11,7 @@ yarn add @illa-design/inputTag
 ## Import component
 
 ```jsx
-import { InputTag } from "@illa-dedign/inputTag"
+import { InputTag } from "@illa-design/inputTag"
 ```
 
 ## API

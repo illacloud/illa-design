@@ -11,7 +11,7 @@ yarn add @illa-design/image
 ## 引用组件
 
 ```jsx
-import { Image } from "@illa-dedign/image"
+import { Image } from "@illa-design/image"
 ```
 
 ## 组件接口（API）

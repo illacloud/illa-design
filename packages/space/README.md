@@ -11,7 +11,7 @@ yarn add @illa-design/space
 ## Import component
 
 ```jsx
-import { Space } from "@illa-dedign/space"
+import { Space } from "@illa-design/space"
 ```
 
 ## API

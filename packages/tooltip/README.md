@@ -11,7 +11,7 @@ yarn add @illa-design/tooltip
 ## Import component
 
 ```jsx
-import { Tooltip } from "@illa-dedign/tooltip"
+import { Tooltip } from "@illa-design/tooltip"
 ```
 
 ## API

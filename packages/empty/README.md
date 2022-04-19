@@ -11,7 +11,7 @@ yarn add @illa-design/empty
 ## Import component
 
 ```jsx
-import { Empty } from "@illa-dedign/empty"
+import { Empty } from "@illa-design/empty"
 ```
 
 ## API

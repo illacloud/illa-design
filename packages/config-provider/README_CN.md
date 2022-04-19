@@ -11,7 +11,7 @@ yarn add @illa-design/config-provider
 ## 引用组件
 
 ```jsx
-import { ConfigProvider } from "@illa-dedign/config-provider"
+import { ConfigProvider } from "@illa-design/config-provider"
 ```
 
 ## 组件接口(API)

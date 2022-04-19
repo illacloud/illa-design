@@ -11,7 +11,7 @@ yarn add @illa-design/config-provider
 ## Import component
 
 ```jsx
-import { ConfigProvider } from "@illa-dedign/config-provider"
+import { ConfigProvider } from "@illa-design/config-provider"
 ```
 
 ## API
