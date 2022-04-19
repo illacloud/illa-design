@@ -29,9 +29,9 @@ export interface CalenderProps
     value?: Dayjs
     pageShowDate?: Dayjs
     mode?: string
-    onChange: () => void
-    onChangePageDate: () => void
-    onChangeMode: () => void
+    onChange: any
+    onChangePageDate: any
+    onChangeMode: any
   }) => ReactNode
   locale?: Record<string, any>
   headerType?: "button" | "select"

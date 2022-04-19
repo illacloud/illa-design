@@ -111,17 +111,13 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
                 css={monthBlockCss}
                 key={idx}
               >
-                {monthRender != undefined ? (
-                  monthRender(dayjs().set("month", idx))
-                ) : (
-                  <div
-                    css={applyPanelGridItemCss(
-                      currentYear === cmptSelectYear && idx === cmptSelectMonth,
-                    )}
-                  >
-                    {item}
-                  </div>
-                )}
+                <div
+                  css={applyPanelGridItemCss(
+                    currentYear === cmptSelectYear && idx === cmptSelectMonth,
+                  )}
+                >
+                  {monthRender ? monthRender(dayjs().set("month", idx)) : item}
+                </div>
               </div>
             ))}
           </div>

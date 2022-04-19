@@ -57,7 +57,10 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       ...restProps
     } = props
 
-    const finalFormat = format || initFormat(type, showTime as boolean)
+    const tpProps = typeof showTime === "object" ? showTime : {}
+    const isBooleanShowTime = typeof showTime === "boolean" ? showTime : false
+
+    const finalFormat = format || initFormat(type, isBooleanShowTime)
 
     let initValue =
       value || defaultValue
@@ -69,7 +72,8 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     >()
     const [showTrigger, setShowTrigger] = useState<boolean>(popupVisible)
     const mergedDefaultValue = value || defaultPickerValue
-    const showTimeMerged = showTime && type === "day"
+    const showTimeMerged =
+      (isBooleanShowTime || Object.keys(tpProps).length) && type === "day"
 
     const [valueShow, setValueShow] = useState<Dayjs | Dayjs[]>()
 
@@ -230,6 +234,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                       disabledHours: disabledTime?.().disabledHours,
                       disabledMinutes: disabledTime?.().disabledMinutes,
                       disabledSeconds: disabledTime?.().disabledSeconds,
+                      ...tpProps,
                       ...restProps,
                     })}
                   </div>

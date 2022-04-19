@@ -53,7 +53,10 @@ export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
     } = props
 
     // cur cmpt value
-    const finalFormat = format || initFormat("day", !!showTime)
+    const tpProps = typeof showTime === "object" ? showTime : {}
+    const isBooleanShowTime = typeof showTime === "boolean" ? showTime : false
+
+    const finalFormat = format || initFormat("day", isBooleanShowTime)
     const [leftCalendarDate, setLeftCalendarDate] = useState<Dayjs>(
       defaultPickerValue?.[0] ? dayjs(defaultPickerValue[0]) : dayjs(),
     )
@@ -231,6 +234,7 @@ export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                           disabledSeconds: disabledTime?.(dayjs(), "start")
                             .disabledSeconds,
                           ...timepickerProps,
+                          ...tpProps,
                           ...restProps,
                         })}
                       </div>
@@ -251,6 +255,7 @@ export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                           disabledSeconds: disabledTime?.(dayjs(), "end")
                             .disabledSeconds,
                           ...timepickerProps,
+                          ...tpProps,
                           ...restProps,
                         })}
                       </div>
