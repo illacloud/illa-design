@@ -46,9 +46,16 @@
     "@illa-design/icon": "0.0.0",
     "@illa-design/select": "0.0.0",
     "@illa-design/list": "0.0.0",
-    "@illa-design/system": "0.0.0",
+    "@illa-design/trigger": "0.0.0"
+  },
+  "peerDependencies": {
     "@illa-design/theme": "0.0.0",
-    "@illa-design/trigger": "0.0.0",
-    "react-fast-compare": "^3.2.0"
+    "@illa-design/system": "0.0.0",
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2"
+  },
+  "devDependencies": {
+    "@illa-design/system": "0.0.0",
+    "@illa-design/theme": "0.0.0"
   }
 }

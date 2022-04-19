@@ -39,11 +39,19 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/system": "0.0.0",
-    "@illa-design/theme": "0.0.0",
     "@illa-design/trigger": "0.0.0",
     "@illa-design/typography": "0.0.0",
     "@illa-design/button": "0.0.0",
     "@illa-design/config-provider": "0.0.0"
+  },
+  "peerDependencies": {
+    "@illa-design/theme": "0.0.0",
+    "@illa-design/system": "0.0.0",
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2"
+  },
+  "devDependencies": {
+    "@illa-design/system": "0.0.0",
+    "@illa-design/theme": "0.0.0"
   }
 }
