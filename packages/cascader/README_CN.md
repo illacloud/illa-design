@@ -49,15 +49,18 @@ import { Cascader } from "@illa-dedign/cascader"
 | onVisibleChange | 下拉弹窗展开和收起状态发生变化时的回调 | `(visible: boolean) => void`                            | `-`    |
 | onClick         | 点下拉框时的回调                       | `(e) => void`                                           | `-`    |
 
-### OptionProps 基础属性
+### OptionProps 
 
-| 参数名   | 描述             | 类型            | 默认值 |
-| -------- | :--------------- | --------------- | ------ |
-| value    | 选项值           | `string`        | `-`    |
-| label    | 选项标题         | `string`        | `-`    |
-| disabled | 选项是否被禁用   | `boolean`       | `-`    |
-| children | 设置选项的子选项 | `OptionProps[]` | `-`    |
-| isLeaf   | 是否是叶子节点   | `boolean`       | `-`    |
+```jsx
+OptionProps {
+  value?: string;
+  label?: string;
+  disabled?: boolean;
+  children?: OptionProps[];
+  isLeaf?: boolean;
+}
+```
+
 
 ### 使用方法
 
