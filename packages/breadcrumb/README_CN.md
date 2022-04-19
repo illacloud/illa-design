@@ -11,7 +11,7 @@ yarn add @illa-design/breadcrumb
 ## 引用组件
 
 ```jsx
-import { Breadcrumb } from "@illa-dedign/breadcrumb"
+import { Breadcrumb } from "@illa-design/breadcrumb"
 ```
 
 ## 组件接口(API)

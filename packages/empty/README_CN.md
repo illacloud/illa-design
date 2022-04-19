@@ -11,7 +11,7 @@ yarn add @illa-design/empty
 ## 引用组件
 
 ```jsx
-import { Empty } from "@illa-dedign/empty"
+import { Empty } from "@illa-design/empty"
 ```
 
 ## 组件接口（API）

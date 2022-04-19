@@ -11,7 +11,7 @@ yarn add @illa-design/alert
 ## Import component
 
 ```jsx
-import { Alert } from "@illa-dedign/alert"
+import { Alert } from "@illa-design/alert"
 ```
 
 ## API

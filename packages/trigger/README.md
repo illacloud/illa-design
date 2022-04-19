@@ -11,7 +11,7 @@ yarn add @illa-design/trigger
 ## Import
 
 ```jsx
-import { Trigger } from "@illa-dedign/trigger"
+import { Trigger } from "@illa-design/trigger"
 ```
 
 ## API

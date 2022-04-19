@@ -11,7 +11,7 @@ yarn add @illa-design/avatar
 ## Import component
 
 ```jsx
-import { Avatar } from "@illa-dedign/avatar"
+import { Avatar } from "@illa-design/avatar"
 ```
 
 ## API

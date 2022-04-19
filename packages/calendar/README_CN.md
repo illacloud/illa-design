@@ -11,7 +11,7 @@ yarn add @illa-design/calendar
 ## 引用组件
 
 ```jsx
-import { Calendar } from "@illa-dedign/calendar"
+import { Calendar } from "@illa-design/calendar"
 ```
 
 ## 组件接口(API)

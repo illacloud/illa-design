@@ -11,7 +11,7 @@ yarn add @illa-design/radio
 ## 引用组件
 
 ```jsx
-import { Radio } from "@illa-dedign/radio"
+import { Radio } from "@illa-design/radio"
 ```
 
 ## 组件接口(API)

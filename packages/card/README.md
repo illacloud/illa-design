@@ -11,7 +11,7 @@ yarn add @illa-design/card
 ## Import component
 
 ```jsx
-import { Card } from "@illa-dedign/card"
+import { Card } from "@illa-design/card"
 ```
 
 ## API

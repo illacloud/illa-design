@@ -1,4 +1,4 @@
-# Calendar 日历
+# Calendar
 
 The Calendar component is a container for displaying dates in calendar form.
 

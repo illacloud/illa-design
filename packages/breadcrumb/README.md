@@ -11,6 +11,6 @@ yarn add @illa-design/breadcrumb
 ## Import component
 
 ```jsx
-import { Breadcrumb } from "@illa-dedign/breadcrumb"
+import { Breadcrumb } from "@illa-design/breadcrumb"
 ```
 
