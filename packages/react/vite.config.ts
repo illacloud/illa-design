@@ -42,7 +42,10 @@ export default defineConfig({
           exclude: path.resolve(__dirname, "node_modules/**"),
         }),
       ],
-      external: ["react", "react-dom"],
+      external: [
+        "react",
+        "react-dom",
+      ],
       output: {
         globals: {
           react: "React",

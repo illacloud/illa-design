@@ -40,11 +40,18 @@ export default defineConfig({
           allowSyntheticDefaultImports: true,
         }),
       ],
-      external: ["react", "react-dom"],
+      external: [
+        "react",
+        "react-dom",
+        "@illa-design/system",
+        "@illa-design/theme",
+      ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
+          "@illa-design/system": "System",
+          "@illa-design/theme": "Theme",
         },
       },
     },
