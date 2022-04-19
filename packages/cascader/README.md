@@ -49,15 +49,18 @@ import { Cascader } from "@illa-dedign/cascader"
 | onVisibleChange | Callback when the visibility of the popup is changed | `(visible: boolean) => void`                            | `-`     |
 | onClick         | clicks on the drop-down box                          | `(e) => void`                                           | `-`     |
 
-### OptionProps Basic Properties
+### OptionProps 
 
-| 参数名   | 描述                         | 类型            | 默认值 |
-| -------- | :--------------------------- | --------------- | ------ |
-| value    | Set option's value           | `string`        | `-`    |
-| label    | Set option's title           | `string`        | `-`    |
-| disabled | Whether option is disabled   | `boolean`       | `-`    |
-| children | Set option's children option | `OptionProps[]` | `-`    |
-| isLeaf   | Whether option is leaf       | `boolean`       | `-`    |
+```jsx
+OptionProps {
+  value?: string;
+  label?: string;
+  disabled?: boolean;
+  children?: OptionProps[];
+  isLeaf?: boolean;
+}
+```
+
 
 
 
