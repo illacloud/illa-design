@@ -53,6 +53,19 @@ export function applyIconContainer(status?: string): SerializedStyles {
         color: ${globalColor(`--${illaPrefix}-orange-03`)};
       `
       break
+    case "403":
+    case "404":
+    case "500":
+      iconColor = css`
+        width: 96px;
+        height: 100%;
+        background-color: ${globalColor(`--${illaPrefix}-grayblue-09`)};
+        & > svg {
+          width: 96px;
+          height: 100%;
+        }
+      `
+      break
   }
   return css`
     display: flex;
