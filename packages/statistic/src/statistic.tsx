@@ -2,7 +2,7 @@ import { forwardRef, useMemo } from "react"
 import { StatisticProps } from "./interface"
 import { Skeleton } from "@illa-design/skeleton"
 
-import dayjs, {Dayjs} from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
 
 import {
   applyStatistic,

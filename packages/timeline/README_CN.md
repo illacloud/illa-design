@@ -11,7 +11,7 @@ yarn add @illa-design/timeline
 ## 引用组件
 
 ```jsx
-import { Timeline } from "@illa-dedign/timeline"
+import { Timeline } from "@illa-design/timeline"
 ```
 
 ## 组件接口（API）

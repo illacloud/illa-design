@@ -11,7 +11,7 @@ yarn add @illa-design/message
 ## Import component
 
 ```jsx
-import { Message } from "@illa-dedign/message"
+import { Message } from "@illa-design/message"
 ```
 
 ## API

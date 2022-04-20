@@ -1,5 +1,4 @@
 import { HTMLAttributes, ReactNode } from "react"
-import { ProgressProps } from "@illa-design/progress"
 
 export type UploadStatus = "init" | "uploading" | "done" | "error"
 export type ListType = "text" | "picture-list"

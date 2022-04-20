@@ -11,7 +11,7 @@ yarn add @illa-design/checkbox
 ## Import component
 
 ```jsx
-import { Checkbox } from "@illa-dedign/checkbox"
+import { Checkbox } from "@illa-design/checkbox"
 ```
 
 ## API

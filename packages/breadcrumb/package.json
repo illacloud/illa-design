@@ -39,10 +39,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/system": "*",
-    "@illa-design/theme": "*",
-    "@illa-design/icon": "*",
-    "@illa-design/dropdown": "*",
-    "@illa-design/menu": "*"
+    "@illa-design/icon": "0.0.0",
+    "@illa-design/dropdown": "0.0.0",
+    "@illa-design/menu": "0.0.0",
+    "@illa-design/system": "0.0.0",
+    "@illa-design/theme": "0.0.0"
   }
 }

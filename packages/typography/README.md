@@ -11,7 +11,7 @@ yarn add @illa-design/typography
 ## Import component
 
 ```jsx
-import { Typography } from "@illa-dedign/typography"
+import { Typography } from "@illa-design/typography"
 ```
 
 ## API

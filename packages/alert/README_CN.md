@@ -11,7 +11,7 @@ yarn add @illa-design/alert
 ## 引用组件
 
 ```jsx
-import { Alert } from "@illa-dedign/alert"
+import { Alert } from "@illa-design/alert"
 ```
 
 ## 组件接口（API）

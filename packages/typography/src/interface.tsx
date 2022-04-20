@@ -1,4 +1,4 @@
-import {HTMLAttributes, ReactNode} from "react"
+import { HTMLAttributes, ReactNode } from "react"
 import { Ellipsis } from "./ellipsis-config"
 import { Copyable } from "./copyable-config"
 

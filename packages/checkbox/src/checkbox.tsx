@@ -1,4 +1,10 @@
-import {forwardRef, useEffect, useContext, useCallback, ChangeEvent} from "react"
+import {
+  forwardRef,
+  useEffect,
+  useContext,
+  useCallback,
+  ChangeEvent,
+} from "react"
 import { useMergeValue } from "@illa-design/system"
 import { CheckmarkIcon, ReduceIcon } from "@illa-design/icon"
 import { CheckboxProps } from "./interface"

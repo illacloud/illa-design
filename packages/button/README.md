@@ -11,7 +11,7 @@ yarn add @illa-design/button
 ## Import component
 
 ```jsx
-import { Button } from "@illa-dedign/button"
+import { Button } from "@illa-design/button"
 ```
 
 ## API

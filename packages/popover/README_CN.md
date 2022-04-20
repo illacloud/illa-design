@@ -1,43 +1,41 @@
-# 触发器
+# 气泡卡片
 
-所有弹出框组件的基础组件， 能够交互式的展示更多信息。当鼠标悬停，聚焦，点击某个组件时，出现提示弹窗或气泡
+气泡卡片是一个悬浮在触发器周围的一个弹窗。 经常被用于展示更多背景信息
 
 ## 安装
 
 ```bash
-yarn add @illa-design/trigger
+yarn add @illa-design/popover
 ```
 
 ## 引用组件
 
 ```jsx
-import { Trigger } from "@illa-dedign/trigger"
+import { Popover } from "@illa-design/popover"
 ```
 
 ## 组件接口(API)
 
-### Trigger 基础属性
+### Popover 基础属性
 
 | 参数名              | 描述                                                    | 类型                                                         | 默认值  |
 | ------------------- | ------------------------------------------------------- | ------------------------------------------------------------ | ------- |
 | colorScheme         | 设置背景颜色                                            | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" \| string` | `gray`  |
-| content             | 气泡上展示的内容                                        | `string \| ReactNode`                                        | `-`     |
+| title               | 气泡弹窗上的标题                                        | `string`                                                     | `-`       |
+| content             | 气泡上展示的内容                                        | `string \| ReactNode`                                        | `- `      |
+| hasCloseIcon        | 设置是否有关闭icon                                      | `boolean`                                                    |   `- `       |
 | trigger             | 出发方式                                                | `"hover" \| "click" \| "focus"`                              | `hover` |
 | position            | 气泡出现的位置，有12个可选方向                          | `"top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br" \| "left" \| "lt" \| "lb" \| "right" \| "rt" \| "rb"` | `top`   |
 | showArrow           | 是否展示“箭头” “箭头”是个从气泡指向对应组件的等边三角形 | `boolean`                                                    | `true`  |
 | closeDelay          | 消失/关闭时的延时，单位毫秒（ms）                       | `number`                                                     | `150`   |
 | openDelay           | 展现/打开时的延时，单位毫秒（ms）                       | `number`                                                     | `150`   |
 | autoFitPosition     | 设置气泡被遮挡时自动调整气泡位置                        | `boolean`                                                    | `true`  |
-| autoAlignPopupWidth | 是否根据触发组件的宽度自动调整弹窗的宽度                | `boolean`                                                    | `-`     |
 | closeOnClick        | 设置当点击被包含的组件时是否关闭气泡                    | `boolean`                                                    | `true`  |
-| clickOutsideToClose | 设置当点击被包含的组件以及气泡外面时是否关闭气泡                    | `boolean`                                                    | `-`  |
 | defaultPopupVisible | 默认的弹出框状态                                        | `boolean`                                                    | `-`     |
 | popupVisible        | 弹出框是打开还是关闭状态                                | `boolean`                                                    | `-`     |
 | disabled            | 是否禁用弹出                                            | `boolean`                                                    | `-`     |
-| withoutPadding      | 是否没有填充色                                           | `boolean`                                                    | `-`     |
 
-
-### Trigger 事件
+### Popover 事件
 
 | 参数名          | 描述                   | 类型                         | 默认值 |
 | --------------- | ---------------------- | ---------------------------- | ------ |
@@ -50,9 +48,9 @@ import { Trigger } from "@illa-dedign/trigger"
 ### 基础用法
 
 ```jsx
-<Trigger content="Trigger">
-  <Button>Trigger</Button>
-</Trigger>
+<Popover title="This is title" content="Popover">
+  <Button>Popover</Button>
+</Popover>
 ```
 
 ### 设置气泡位置
@@ -60,9 +58,9 @@ import { Trigger } from "@illa-dedign/trigger"
 通过position这个接口可以设置气泡的弹出位置
 
 ```jsx
-<Trigger content="Trigger" position="bottom">
-  <Button>Trigger</Button>
-</Trigger>
+<Popover title="This is title" content="Popover" position="bottom">
+  <Button>Popover</Button>
+</Popover>
 ```
 
 ### 设置气泡背景颜色
@@ -70,9 +68,9 @@ import { Trigger } from "@illa-dedign/trigger"
 通过variant这个接口可以调整组件的样式,通过colorScheme个接口可以调整组件的背景颜色
 
 ```jsx
-<Trigger content="Trigger" position="top" colorScheme="cyan">
-  <Button>Trigger</Button>
-</Trigger>
+<Popover title="This is title" content="Popover" position="top" colorScheme="cyan">
+  <Button>Popover</Button>
+</Popover>
 ```
 
 ### 不展示箭头
@@ -80,9 +78,17 @@ import { Trigger } from "@illa-dedign/trigger"
 通过showArrow接口可以设置是否展示气泡上的箭头
 
 ```jsx
-<Trigger content="Trigger" position="top" colorScheme="cyan" showArrow={false}>
-  <Button>Trigger</Button>
-</Trigger>
+<Popover title="This is title" content="Popover" position="top" colorScheme="cyan" showArrow={false}>
+  <Button>Popover</Button>
+</Popover>
+```
+
+### 展示关闭图标/按钮
+
+```jsx
+<Popover title="This is title" content="Popover" position="top" colorScheme="cyan" hasCloseIcon>
+  <Button>Popover</Button>
+</Popover>
 ```
 
 ### 设置气泡默认展示状态
@@ -90,9 +96,9 @@ import { Trigger } from "@illa-dedign/trigger"
 通过defaultPopupVisible设置气泡的默认展示状态
 
 ```jsx
-<Trigger content="Trigger" position="top" colorScheme="cyan" defaultPopupVisible>
-  <Button>Trigger</Button>
-</Trigger>
+<Popover title="This is title" content="Popover" position="top" colorScheme="cyan" defaultPopupVisible>
+  <Button>Popover</Button>
+</Popover>
 ```
 
 ### 设置气泡展示和关闭延时
@@ -100,8 +106,8 @@ import { Trigger } from "@illa-dedign/trigger"
 通过openDelay和closeDelay这两个参数可以设置气泡展示和关闭的延时
 
 ```jsx
-<Trigger content="Trigger" position="top" colorScheme="cyan" openDelay={1000} closeDelay={1000}>
-  <Button>Trigger</Button>
-</Trigger>
+<Popover title="This is title" content="Popover" position="top" colorScheme="cyan" openDelay={1000} closeDelay={1000}>
+  <Button>Popover</Button>
+</Popover>
 ```
 

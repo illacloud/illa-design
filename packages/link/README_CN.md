@@ -11,7 +11,7 @@ yarn add @illa-design/link
 ## 引用组件
 
 ```jsx
-import { Link } from "@illa-dedign/link"
+import { Link } from "@illa-design/link"
 ```
 
 ## 组件接口（API）

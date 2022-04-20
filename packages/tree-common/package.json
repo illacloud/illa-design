@@ -39,8 +39,9 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/theme": "*",
-    "@illa-design/list": "*",
-    "@illa-design/checkbox": "*"
+    "@illa-design/list": "0.0.0",
+    "@illa-design/checkbox": "0.0.0",
+    "@illa-design/theme": "0.0.0",
+    "@illa-design/system": "0.0.0"
   }
 }

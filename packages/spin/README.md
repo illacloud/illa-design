@@ -11,6 +11,6 @@ yarn add @illa-design/spin
 ## Import component
 
 ```jsx
-import { spin } from "@illa-dedign/spin"
+import { spin } from "@illa-design/spin"
 ```
 

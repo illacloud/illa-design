@@ -9,14 +9,18 @@ import {
 } from "@illa-design/config-provider"
 import { TimeColumn } from "./time-column"
 import { applyContentButton, applyTimepickerContent } from "./style"
-import { TimePickerProps, CalendarValue, TimeColumnProps } from "./interface"
+import {
+  TimePickerProps,
+  TimePickerCalendarValue,
+  TimeColumnProps,
+} from "./interface"
 import { getColumnsFromFormat } from "./utils"
 
 interface PickerPopupProps extends TimePickerProps {
   confirmBtnDisabled?: boolean
   onConfirmValue?: (value: Dayjs) => void
   isRangePicker?: boolean
-  valueShow?: CalendarValue
+  valueShow?: TimePickerCalendarValue
   setValueShow?: (valueShow: Dayjs) => void
   hideFooter?: boolean
 }

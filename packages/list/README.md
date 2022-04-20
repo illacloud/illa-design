@@ -11,7 +11,7 @@ yarn add @illa-design/list
 ## Import component
 
 ```jsx
-import { List } from "@illa-dedign/list"
+import { List } from "@illa-design/list"
 ```
 
 ## API

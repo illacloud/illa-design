@@ -11,7 +11,7 @@ yarn add @illa-design/button
 ## 引用组件
 
 ```jsx
-import { Button } from "@illa-dedign/button"
+import { Button } from "@illa-design/button"
 ```
 
 ## 组件接口(API)
