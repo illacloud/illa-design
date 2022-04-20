@@ -50,6 +50,7 @@ export default defineConfig({
         "@illa-design/icon",
         "@illa-design/trigger",
         "@illa-design/input",
+        "dayjs",
       ],
       output: {
         globals: {
@@ -60,6 +61,7 @@ export default defineConfig({
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/trigger": "@illa-design/trigger",
           "@illa-design/input": "@illa-design/input",
+          dayjs: "dayjs",
         },
       },
     },
