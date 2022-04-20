@@ -11,7 +11,7 @@ yarn add @illa-design/statistics
 ## Import component
 
 ```jsx
-import { Statistics } from "@illa-dedign/statistics"
+import { Statistics } from "@illa-design/statistics"
 ```
 
 ## API

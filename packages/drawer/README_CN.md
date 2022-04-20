@@ -39,7 +39,7 @@ import { Drawer } from "@illa-design/drawer"
 | Props      | Desc               | Type                                      | Default |
 | ---------- | ------------------ | ----------------------------------------- | ------- |
 | onCancel   | 关闭弹出框的回调   | `() => void`                              | `-`     |
-| onOk       | 点击确认按钮的回调 | `(e?: MouseEvent) => Promise<any> | void` | `-`     |
+| onOk       | 点击确认按钮的回调 | `(e?: MouseEvent) => Promise<any> \| void` | `-`     |
 | afterOpen  | 抽屉打开之后的回调 | `() => void`                              | `-`     |
 | afterClose | 抽屉关闭之后的回调 | `() => void`                              | `-`     |
 

@@ -11,6 +11,6 @@ yarn add @illa-design/tree
 ## 引用组件
 
 ```jsx
-import { Tree } from "@illa-dedign/tree"
+import { Tree } from "@illa-design/tree"
 ```
 

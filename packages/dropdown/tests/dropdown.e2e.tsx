@@ -21,7 +21,7 @@ it("Dropdown renders correctly", () => {
   const visibleEvent = cy.stub().as("visibleEvent")
   mount(
     <Dropdown
-      droplist={dropList}
+      dropList={dropList}
       triggerProps={{ closeDelay: 0, openDelay: 0 }}
       onVisibleChange={visibleEvent}
     >
@@ -41,7 +41,7 @@ it("Dropdown renders correctly", () => {
   const visibleEvent = cy.stub().as("visibleEvent")
   mount(
     <Dropdown
-      droplist={dropList}
+      dropList={dropList}
       triggerProps={{ trigger: "click", closeDelay: 0, openDelay: 0 }}
       onVisibleChange={visibleEvent}
     >

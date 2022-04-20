@@ -116,13 +116,18 @@ export function applyNotificationSlide(position: NoticePosition): Variants {
   }
 }
 
-export function applyMessage(closable: boolean): SerializedStyles {
-  const padding = closable ? `padding-right:36px` : ""
+export function applyMessage(
+  closable?: boolean,
+  showIcon?: boolean,
+): SerializedStyles {
+  const paddingRight = closable ? `padding-right:46px` : ""
+  const paddingLeft = showIcon ? `padding-left:40px` : ""
   return css`
     margin-bottom: 24px;
     position: relative;
     padding: 9px 16px;
-    ${padding};
+    ${paddingRight};
+    ${paddingLeft};
     pointer-events: auto;
     overflow: hidden;
     box-sizing: border-box;
@@ -135,8 +140,11 @@ export function applyMessage(closable: boolean): SerializedStyles {
 
 export function applyMessageIcon(type: MessageType): SerializedStyles {
   return css`
-    margin-right: 8px;
+    position: absolute;
+    top: 12px;
+    left: 16px;
     font-size: 16px;
+    line-height: 0;
     color: ${iconColorMap[type]};
     display: inline-block;
   `
@@ -149,8 +157,9 @@ export const applyMessageContent = css`
 
 export const applyMessageCloseBtn = css`
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 16px;
+  line-height: 0;
+  right: 23px;
   font-size: 8px;
   display: inline-block;
   cursor: pointer;

@@ -11,7 +11,7 @@ yarn add @illa-design/pagination
 ## Import component
 
 ```jsx
-import { Pagination } from "@illa-dedign/pagination"
+import { Pagination } from "@illa-design/pagination"
 ```
 
 ## API

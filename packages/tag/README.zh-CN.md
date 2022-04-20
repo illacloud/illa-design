@@ -11,7 +11,7 @@ yarn add @illa-design/tag
 ## 引用组件
 
 ```jsx
-import { Tag } from "@illa-dedign/tag"
+import { Tag } from "@illa-design/tag"
 ```
 
 ## 组件接口(API)

@@ -43,7 +43,7 @@ export const applyDrawerHeader = css`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 40px;
+  min-height: 40px;
   box-sizing: border-box;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
   flex-shrink: 0;

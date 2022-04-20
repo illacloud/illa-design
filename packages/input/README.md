@@ -11,7 +11,7 @@ yarn add @illa-design/input
 ## Import component
 
 ```jsx
-import { Input } from "@illa-dedign/input"
+import { Input } from "@illa-design/input"
 ```
 
 ## API

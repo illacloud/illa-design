@@ -113,7 +113,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
         <div>
           {title && (
             <div css={applyModalHeader(simple, showCloseIcon)}>
-              <div css={applyModalTitle}>{title}</div>
+              <div css={applyModalTitle(simple)}>{title}</div>
             </div>
           )}
           <div css={applyModalContent(simple)}>{children}</div>

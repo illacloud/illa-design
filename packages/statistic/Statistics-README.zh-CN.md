@@ -11,7 +11,7 @@ yarn add @illa-design/statistics
 ## 引用组件
 
 ```jsx
-import { Statistics } from "@illa-dedign/statistics"
+import { Statistics } from "@illa-design/statistics"
 ```
 
 ## 组件接口（API）

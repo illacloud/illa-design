@@ -39,7 +39,7 @@ import { Drawer } from "@illa-design/drawer"
 | Props      | Desc                              | Type                                      | Default |
 | ---------- | --------------------------------- | ----------------------------------------- | ------- |
 | onCancel   | Callback for closing the popup    | `() => void`                              | `-`     |
-| onOk       | Callback for confirm button click | `(e?: MouseEvent) => Promise<any> | void` | `-`     |
+| onOk       | Callback for confirm button click | `(e?: MouseEvent) => Promise<any> \| void` | `-`     |
 | afterOpen  | Callback after drawer is opened   | `() => void`                              | `-`     |
 | afterClose | Callback after drawer is closed   | `() => void`                              | `-`     |
 
