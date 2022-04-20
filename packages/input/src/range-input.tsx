@@ -99,7 +99,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
       borderColor,
       size,
       error,
-      focus: focus0 || focus1,
+      focus: focus0 || focus1 || popupVisible,
       disabled: disabled0 && disabled1,
     }
 
@@ -132,7 +132,10 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
       >
         <input
           ref={inputRef}
-          css={css(applyInputStyle(), applyRangeInput())}
+          css={css(
+            applyInputStyle(),
+            applyRangeInput(popupVisible && focusedInputIndex === 0),
+          )}
           value={value0}
           placeholder={placeholder?.[0]}
           disabled={disabled0}
@@ -161,7 +164,10 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
         </span>
         <input
           ref={input1Ref}
-          css={css(applyInputStyle(), applyRangeInput())}
+          css={css(
+            applyInputStyle(),
+            applyRangeInput(popupVisible && focusedInputIndex === 1),
+          )}
           value={value1}
           placeholder={placeholder?.[1]}
           disabled={disabled1}
