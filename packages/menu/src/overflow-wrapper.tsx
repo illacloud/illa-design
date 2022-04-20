@@ -1,11 +1,10 @@
 import React, {
-  useState,
+  ReactElement,
+  ReactNode,
   useEffect,
   useRef,
-  ReactNode,
-  ReactElement,
+  useState,
 } from "react"
-import { css } from "@emotion/react"
 import { getStyle } from "@illa-design/system"
 import useMeasure from "react-use/lib/useMeasure"
 import { OverflowWrapperProps } from "./interface"
@@ -92,7 +91,7 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
         key={`overflow-sub-menu${isPlaceholder && "placeholder"}`}
         data-sub-menu-marker
         data-sub-menu-placeholder-marker={isPlaceholder}
-        css={isPlaceholder && subMenuPlaceholderCss}
+        _css={isPlaceholder ? subMenuPlaceholderCss : undefined}
         {...props}
         children={children}
       />

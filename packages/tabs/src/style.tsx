@@ -1,8 +1,8 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { TabPosition, TabsSize, TabVariant } from "./interface"
 
-export function applyPaddingSizeCss(size: TabsSize) {
+export function applyPaddingSizeCss(size: TabsSize): SerializedStyles {
   let paddingSize
   switch (size) {
     case "large":
@@ -44,7 +44,9 @@ export const tabHeaderContainerCss = css`
   align-items: center;
 `
 
-export function applyHeaderContainerCss(isHorizontal: boolean) {
+export function applyHeaderContainerCss(
+  isHorizontal: boolean,
+): SerializedStyles {
   return css`
     display: inline-flex;
     flex-direction: ${isHorizontal ? "column" : "row"};
@@ -75,6 +77,7 @@ export const tabCapsuleHeaderContainerCss = css`
   flex-direction: column;
   background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
   border-radius: 4px;
+  padding: 0 2px;
   margin-bottom: 10px;
 `
 
@@ -115,7 +118,10 @@ export const tabCardHeaderContainerCss = css`
   box-sizing: border-box;
 `
 
-export function applyCapsuleHeaderChildCss(isSelected?: boolean) {
+export function applyCapsuleHeaderChildCss(
+  isSelected?: boolean,
+  disabled?: boolean,
+): SerializedStyles {
   const selectedBoxCss =
     isSelected &&
     css`
@@ -127,10 +133,29 @@ export function applyCapsuleHeaderChildCss(isSelected?: boolean) {
     ${applyCommonHeaderChildCss()};
     ${selectedBoxCss};
     margin: 4px 2px;
+    border-radius: 4px;
+    ${applyCapsuleHoverBackgroundCss(isSelected, disabled)}
+    transition: background-color 200ms;
   `
 }
 
-export function applyCardHeaderChildCss(isSelected?: boolean) {
+export function applyCapsuleHoverBackgroundCss(
+  isSelected?: boolean,
+  disabled?: boolean,
+): SerializedStyles | undefined {
+  if (!isSelected && !disabled) {
+    return css`
+      &:hover {
+        background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+      }
+    `
+  }
+}
+
+export function applyCardHeaderChildCss(
+  isSelected?: boolean,
+  disabled?: boolean,
+): SerializedStyles {
   const selectedBoxCss = isSelected
     ? css`
         border: solid ${globalColor(`--${illaPrefix}-gray-08`)};
@@ -148,7 +173,23 @@ export function applyCardHeaderChildCss(isSelected?: boolean) {
     border-width: 1px;
     border-bottom-width: 1.5px;
     z-index: 2;
+    ${applyHoverBackgroundCss(isSelected, disabled)}
+    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    transition: background-color 200ms;
   `
+}
+
+export function applyHoverBackgroundCss(
+  isSelected?: boolean,
+  disabled?: boolean,
+): SerializedStyles | undefined {
+  if (!isSelected && !disabled) {
+    return css`
+      &:hover {
+        background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+      }
+    `
+  }
 }
 
 export const addButtonCss = css`
@@ -176,7 +217,7 @@ export const deleteButtonCss = css`
   }
 `
 
-export function applyCommonHeaderChildCss() {
+export function applyCommonHeaderChildCss(): SerializedStyles {
   return css`
     display: inline-flex;
     align-items: center;
@@ -191,7 +232,7 @@ export const verticalLineCss = css`
   height: 8px;
   position: relative;
   right: 0;
-  background-color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
 `
 
 export function applyTextCss(
@@ -199,7 +240,8 @@ export function applyTextCss(
   isSelected?: boolean,
   disabled?: boolean,
   tabBarSpacing: number = 0,
-) {
+  variant?: TabVariant,
+): SerializedStyles {
   const _tabBarSpacing = tabBarSpacing >= 0 ? tabBarSpacing : 0
   let textColorCss
   if (disabled) {
@@ -215,8 +257,11 @@ export function applyTextCss(
     textColorCss = css`
       color: ${globalColor(`--${illaPrefix}-gray-03`)};
       &:hover {
-        background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-      }
+        background-color: ${
+          variant !== "capsule"
+            ? globalColor(`--${illaPrefix}-gray-09`)
+            : undefined
+        }
     `
   }
   return css`
@@ -228,13 +273,14 @@ export function applyTextCss(
     font-size: 14px;
     padding: 1px 8px;
     line-height: 22px;
+    border-radius: 4px;
     margin-left: ${8 + _tabBarSpacing / 2}px;
     margin-right: ${8 + _tabBarSpacing / 2}px;
     transition: color 200ms, background-color 200ms;
   `
 }
 
-export function applyDividerCommonLineCss(w: number) {
+export function applyDividerCommonLineCss(w: number): SerializedStyles {
   return css`
     width: ${w}px;
     display: inline-flex;
@@ -244,7 +290,7 @@ export function applyDividerCommonLineCss(w: number) {
   `
 }
 
-export function applyDividerHorizontalLineCss(h: number) {
+export function applyDividerHorizontalLineCss(h: number): SerializedStyles {
   return css`
     height: ${h}px;
     display: inline-flex;
@@ -252,7 +298,10 @@ export function applyDividerHorizontalLineCss(h: number) {
   `
 }
 
-export function applyCommonBlueLineCss(width: number, positon: number) {
+export function applyCommonBlueLineCss(
+  width: number,
+  positon: number,
+): SerializedStyles {
   return css`
     width: ${width - 32}px;
     height: 2px;
@@ -269,7 +318,7 @@ export function applyHorizontalBlueLineCss(
   height: number,
   position: number,
   size?: TabsSize,
-) {
+): SerializedStyles {
   let padding = 7
   switch (size) {
     case "large":
@@ -317,7 +366,7 @@ export const tabCardContentContainerCss = css`
 export function applyTabContentWrapperCss(
   showPaneIndex: number,
   animated?: boolean,
-) {
+): SerializedStyles {
   const transitionCss =
     animated === true &&
     css`
@@ -346,7 +395,7 @@ export function applyHorizontalPreNextIconCss(
   isPre: boolean,
   variant?: TabVariant,
   disabled?: boolean,
-) {
+): SerializedStyles {
   let verticalPaddingCss
   if (isPre) {
     verticalPaddingCss = css`
@@ -380,7 +429,7 @@ export function applyCommonPreNextIconCss(
   variant?: TabVariant,
   disabled?: boolean,
   tabPosition?: TabPosition,
-) {
+): SerializedStyles {
   let colorCss =
     disabled &&
     css`
@@ -402,7 +451,7 @@ export function applyCommonPreNextIconCss(
   `
 }
 
-export function applyHorizontalIconLineCss(isLeft: boolean) {
+export function applyHorizontalIconLineCss(isLeft: boolean): SerializedStyles {
   const positionCss = isLeft
     ? css`
         right: 0;
@@ -420,7 +469,7 @@ export function applyHorizontalIconLineCss(isLeft: boolean) {
   `
 }
 
-export function applyCommonIconLineCss(isTop: boolean) {
+export function applyCommonIconLineCss(isTop: boolean): SerializedStyles {
   const positionCss = isTop
     ? css`
         bottom: 4px;

@@ -1,6 +1,5 @@
 import { forwardRef, useEffect, useState, cloneElement } from "react"
 import { CommonRangeProps } from "../interface"
-import { Calendar } from "../../../calendar/src/index"
 import dayjs, { Dayjs } from "dayjs"
 import { PickerRange } from "../picker-range"
 import { css } from "@emotion/react"
@@ -19,9 +18,10 @@ import {
 } from "../style"
 import { initFormat } from "../utils"
 import { Button } from "@illa-design/button"
-import { TimePickerPopup } from "../../../time-picker/src/time-picker-popup"
+import { TimePickerPopup } from "@illa-design/time-picker"
+import { Calendar } from "@illa-design/calendar"
 
-export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
+export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
   (props, ref) => {
     const {
       _css,
@@ -271,7 +271,7 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         disabledDate={disabledDate}
                         // extra
                         defaultDate={leftCalendarDate}
-                        rangepicker={true}
+                        rangePicker={true}
                         rangeValueFirst={rangeValueFirst}
                         rangeValueSecond={rangeValueSecond}
                         rangeValueHover={rangeValueHover}
@@ -290,7 +290,7 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         disabledDate={disabledDate}
                         // extra
                         defaultDate={rightCalendarDate}
-                        rangepicker={true}
+                        rangePicker={true}
                         rangeValueFirst={rangeValueFirst}
                         rangeValueSecond={rangeValueSecond}
                         rangeValueHover={rangeValueHover}
@@ -326,4 +326,4 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
   },
 )
 
-RangePicker.displayName = "RangePicker"
+DPRangePicker.displayName = "rangePicker"

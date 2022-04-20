@@ -11,7 +11,7 @@ yarn add @illa-design/switch
 ## 引用组件
 
 ```jsx
-import { Switch } from "@illa-dedign/switch"
+import { Switch } from "@illa-design/switch"
 ```
 
 ## 组件接口(API)

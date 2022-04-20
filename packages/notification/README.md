@@ -11,7 +11,7 @@ yarn add @illa-design/notification
 ## Import component
 
 ```jsx
-import { Notification } from "@illa-dedign/notification"
+import { Notification } from "@illa-design/notification"
 ```
 
 ## API

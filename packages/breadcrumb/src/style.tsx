@@ -1,10 +1,9 @@
-import { css, SerializedStyles } from "@emotion/react"
+import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const itemCss = css`
   display: inline-block;
   color: ${globalColor(`--${illaPrefix}-gray-04`)};
-  font-size: 14px;
   padding: 4px;
   border-radius: 4px;
   transition: all 0.2s;
@@ -29,4 +28,8 @@ export const separatorCss = css`
   top: 1.5px;
   transform: scale(0.7);
   display: inline-block;
+`
+
+export const wrapCss = css`
+  font-size: 14px;
 `

@@ -11,7 +11,7 @@ yarn add @illa-design/radio
 ## Import component
 
 ```jsx
-import { Radio } from "@illa-dedign/radio"
+import { Radio } from "@illa-design/radio"
 ```
 
 ## API

@@ -39,6 +39,6 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/tree-common": "*"
+    "@illa-design/tree-common": "0.0.0"
   }
 }

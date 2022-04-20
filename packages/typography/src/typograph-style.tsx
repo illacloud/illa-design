@@ -1,5 +1,5 @@
 import { HeadingLevel } from "./interface"
-import { css, SerializedStyles } from "@storybook/theming"
+import { css, SerializedStyles } from "@emotion/react"
 
 export function getHeadingSize(level: HeadingLevel): string[] {
   // font-size line-height

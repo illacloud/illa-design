@@ -4,7 +4,7 @@ import { TriggerProps } from "@illa-design/trigger"
 
 export type TimePickerSize = "small" | "medium" | "large"
 
-export interface PickerProps
+interface PickerProps
   extends Omit<
     HTMLAttributes<HTMLElement>,
     "placeholder" | "defaultValue" | "onChange" | "onSelect"
@@ -32,12 +32,12 @@ export interface PickerProps
   onClear?: () => void
 }
 
-export type CalendarValue = Dayjs | Date | string | number
+export type TimePickerCalendarValue = Dayjs | Date | string | number
 
 export interface TimePickerProps extends PickerProps {
   disabled?: boolean
-  defaultValue?: CalendarValue
-  value?: CalendarValue
+  defaultValue?: TimePickerCalendarValue
+  value?: TimePickerCalendarValue
   showNowBtn?: boolean
   onSelect?: (valueString: string, value: Dayjs) => void
   onChange?: (valueString: string, value: Dayjs) => void
@@ -45,8 +45,8 @@ export interface TimePickerProps extends PickerProps {
 
 export interface RangePickerProps extends PickerProps {
   disabled?: boolean | boolean[]
-  defaultValue?: CalendarValue[]
-  value?: CalendarValue[]
+  defaultValue?: TimePickerCalendarValue[]
+  value?: TimePickerCalendarValue[]
   placeholder?: string[]
   order?: boolean
   onSelect?: (valueString: string[], value: Dayjs[]) => void
@@ -55,8 +55,8 @@ export interface RangePickerProps extends PickerProps {
 
 export interface RenderPickerProps extends PickerProps {
   disabled?: boolean | boolean[]
-  defaultValue?: CalendarValue | CalendarValue[]
-  value?: CalendarValue | CalendarValue[]
+  defaultValue?: TimePickerCalendarValue | TimePickerCalendarValue[]
+  value?: TimePickerCalendarValue | TimePickerCalendarValue[]
   onSelect?: (value?: string | string[], dayjsValue?: Dayjs | Dayjs[]) => void
   onChange?: (value?: string | string[], dayjsValue?: Dayjs | Dayjs[]) => void
   isRangePicker?: boolean

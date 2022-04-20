@@ -11,7 +11,7 @@ yarn add @illa-design/spin
 ## 引用组件
 
 ```jsx
-import { Spin } from "@illa-dedign/spin"
+import { Spin } from "@illa-design/spin"
 ```
 
 ## 组件接口(API)

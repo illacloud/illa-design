@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from "@storybook/theming"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const uploadContainerCss = css`
@@ -22,10 +22,11 @@ export const inputCss = css`
   display: none;
 `
 
-export function applyBackgroundCss(disabled?: boolean) {
+export function applyBackgroundCss(disabled?: boolean): SerializedStyles {
   if (disabled) {
     return css`
       background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+      cursor: not-allowed;
     `
   } else {
     return css`
@@ -42,7 +43,9 @@ export function applyBackgroundCss(disabled?: boolean) {
   }
 }
 
-export function applyImageUploadContainerCss(disabled?: boolean) {
+export function applyImageUploadContainerCss(
+  disabled?: boolean,
+): SerializedStyles {
   return css`
     display: inline-flex;
     flex-direction: column;
@@ -56,7 +59,9 @@ export function applyImageUploadContainerCss(disabled?: boolean) {
   `
 }
 
-export function applyDragUploadContainerCss(disabled?: boolean) {
+export function applyDragUploadContainerCss(
+  disabled?: boolean,
+): SerializedStyles {
   return css`
     display: inline-flex;
     flex-direction: column;
@@ -66,26 +71,38 @@ export function applyDragUploadContainerCss(disabled?: boolean) {
     height: 194px;
     ${applyBackgroundCss(disabled)};
     transition: background-color 200ms;
+    ${applyTextColorCss(disabled)}
   `
 }
 
 export const imageUploadTextCss = css`
   font-size: 14px;
   margin-top: 8px;
+  color: ${globalColor(`--${illaPrefix}-gray-04`)};
 `
 
-export const dragUploadTitleCss = css`
-  margin-top: 24px;
-  font-size: 16px;
-  font-weight: 500;
-`
+export function applyDragUploadTitleCss(disabled?: boolean): SerializedStyles {
+  const colorCss = disabled
+    ? css`
+        color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      `
+    : css`
+        color: ${globalColor(`--${illaPrefix}-gray-03`)};
+      `
+  return css`
+    margin-top: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    ${colorCss}
+  `
+}
 
 export const dragUploadTipCss = css`
   margin-top: 4px;
   color: ${globalColor(`--${illaPrefix}-gray-04`)};
-  width: 239px;
   max-lines: 2;
   font-size: 14px;
+  padding: 0 16px;
   text-align: center;
 `
 
@@ -154,7 +171,7 @@ export const fileItemContainerCss = css`
   margin-top: 16px;
 `
 
-export function applyFileItemTitleCss(isFail?: boolean) {
+export function applyFileItemTitleCss(isFail?: boolean): SerializedStyles {
   let textColorCss
   if (isFail === true) {
     textColorCss = css`

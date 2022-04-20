@@ -92,13 +92,15 @@ export function applyModalHeader(
   `
 }
 
-export const applyModalTitle = css`
-  text-align: center;
-  flex: 1;
-  font-size: 16px;
-  font-weight: 600;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
-`
+export function applyModalTitle(isSimple?: boolean): SerializedStyles {
+  return css`
+    text-align: center;
+    flex: 1;
+    font-size: 16px;
+    font-weight: ${isSimple ? 500 : 600};
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  `
+}
 
 export function applyModalContent(isSimple?: boolean): SerializedStyles {
   const simpleCss = isSimple
@@ -150,10 +152,15 @@ export function applyModalConfirmTitle(
   type: keyof typeof iconColorMap,
 ): SerializedStyles {
   return css`
+    position: relative;
+    padding-left: 24px;
+    display: inline-block;
     > svg {
       color: ${iconColorMap[type]};
-      margin-right: 8px;
-      vertical-align: -1px;
+      position: absolute;
+      line-height: 0;
+      top: 4px;
+      left: 0;
     }
   `
 }

@@ -11,7 +11,7 @@ yarn add @illa-design/avatar
 ## 引用组件
 
 ```jsx
-import { Avatar } from "@illa-dedign/avatar"
+import { Avatar } from "@illa-design/avatar"
 ```
 
 ## 组件接口（API）
@@ -45,6 +45,26 @@ import { Avatar } from "@illa-dedign/avatar"
 | onClick | 点击回调 | `() => void` | `-`     |
 
 ## 使用方法
+
+
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
+
+export const code = `
+    <>
+      <Avatar />
+      <Avatar size="small">Small</Avatar>
+      <Avatar shape="square" colorScheme="red">Small</Avatar>
+      <Avatar src='https://bit.ly/dan-abramov' />
+      <Avatar text="e" />
+    </>`
+
+export const importStatement = `import { Avatar } from '@illa-design/avatar'`
+
+export const packages = {"@illa-design/avatar":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 
 ### 基础用法
 

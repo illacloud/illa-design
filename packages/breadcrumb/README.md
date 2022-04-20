@@ -11,7 +11,7 @@ yarn add @illa-design/breadcrumb
 ## Import component
 
 ```jsx
-import { Breadcrumb, BreadcrumbItem } from "@illa-dedign/breadcrumb"
+import { Breadcrumb, BreadcrumbItem } from "@illa-design/breadcrumb"
 ```
 
 ## API

@@ -1,4 +1,10 @@
-import { forwardRef, useEffect, useContext, useCallback } from "react"
+import {
+  forwardRef,
+  useEffect,
+  useContext,
+  useCallback,
+  ChangeEvent,
+} from "react"
 import { useMergeValue } from "@illa-design/system"
 import { CheckmarkIcon, ReduceIcon } from "@illa-design/icon"
 import { CheckboxProps } from "./interface"
@@ -52,7 +58,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
           checked={currentChecked}
           disabled={disabled}
           onChange={useCallback(
-            (e) => {
+            (e: ChangeEvent<HTMLInputElement>) => {
               e.persist()
               e.stopPropagation()
               setCurrentChecked(e?.target?.checked)

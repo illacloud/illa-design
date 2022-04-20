@@ -97,6 +97,7 @@ export const DataDriven: Story<TableProps<any>> = (args) => {
         Footer: "Footer 1",
         accessor: "col1", // accessor is the "key" in the data
         Filter: (columnProps: UseFiltersInstanceProps<DemoData>) => {
+          const [currentInput, setCurrentInput] = useState<string>("")
           return (
             <TableFilter
               _css={css`
@@ -107,7 +108,9 @@ export const DataDriven: Story<TableProps<any>> = (args) => {
               ) => {
                 return (
                   <Input
+                    value={currentInput}
                     onChange={(value) => {
+                      setCurrentInput(value)
                       columnProps?.setFilter("col1", value)
                     }}
                   />

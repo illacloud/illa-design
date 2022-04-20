@@ -11,7 +11,7 @@ yarn add @illa-design/pagination
 ## 引用组件
 
 ```jsx
-import { Pagination } from "@illa-dedign/pagination"
+import { Pagination } from "@illa-design/pagination"
 ```
 
 ## 组件接口(API)

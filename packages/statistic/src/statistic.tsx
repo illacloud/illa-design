@@ -2,7 +2,7 @@ import { forwardRef, useMemo } from "react"
 import { StatisticProps } from "./interface"
 import { Skeleton } from "@illa-design/skeleton"
 
-import dayjs from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
 
 import {
   applyStatistic,
@@ -27,7 +27,7 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
       prefix,
       ...restProps
     } = props
-    const renderValue = useMemo(() => {
+    const renderValue = useMemo<string | number | Dayjs>(() => {
       if (format) {
         return dayjs(value).format(format)
       }
@@ -56,7 +56,7 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
                 {prefix}
               </span>
             )}
-            <span css={applyStatisticValue}>{renderValue}</span>
+            <span css={applyStatisticValue}>{renderValue.toString()}</span>
             {suffix && (
               <span css={applyStatisticDecorator(false, !isObject(suffix))}>
                 {suffix}

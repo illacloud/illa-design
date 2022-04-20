@@ -11,7 +11,7 @@ yarn add @illa-design/tabs
 ## Import component
 
 ```jsx
-import { Tabs } from "@illa-dedign/tabs"
+import { Tabs } from "@illa-design/tabs"
 ```
 
 ## API

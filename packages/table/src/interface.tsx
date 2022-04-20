@@ -21,18 +21,13 @@ export type TableAlign =
   | "flex-start"
   | "flex-end"
 
-export type TableFixed = "left" | "right"
-
 export interface TableProps<D extends TableData>
   extends HTMLAttributes<HTMLDivElement>,
-    TableContextProps,
-    ThContextProps {
+    TableContextProps {
   columns?: ReadonlyArray<Column<D>>
   data?: readonly D[]
   tableLayout?: TableLayout
   bordered?: boolean
-  showHeader?: boolean
-  showFooter?: boolean
   disableSortBy?: boolean
   disableFilters?: boolean
   disableRowSelect?: boolean
@@ -49,12 +44,10 @@ export interface TableFilterProps<D extends TableData> {
 export interface TableContextProps {
   borderedCell?: boolean
   striped?: boolean
+  showHeader?: boolean
+  showFooter?: boolean
   size?: TableSize
   align?: TableAlign
-}
-
-export interface ThContextProps {
-  fixedHeader?: boolean
 }
 
 export interface TBodyProps extends HTMLAttributes<HTMLTableSectionElement> {
@@ -81,7 +74,6 @@ export interface THeadProps extends HTMLAttributes<HTMLTableSectionElement> {
 
 export interface ThProps
   extends Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, "align">,
-    TableContextProps,
-    ThContextProps {
+    TableContextProps {
   _css?: SerializedStyles
 }

@@ -1,13 +1,12 @@
 import { forwardRef } from "react"
 import { ResultProps } from "./interface"
 import {
-  Icon,
-  SuccessIcon,
   CloseIcon,
-  WarningIcon,
   InfoIcon,
+  SuccessIcon,
+  WarningIcon,
 } from "@illa-design/icon"
-import { wrapCss, titleCss, subTitleCss, applyIconContainer } from "./style"
+import { applyIconContainer, subTitleCss, titleCss, wrapCss } from "./style"
 
 export const Result = forwardRef<HTMLDivElement, ResultProps>((props, ref) => {
   const {
@@ -41,14 +40,16 @@ export const Result = forwardRef<HTMLDivElement, ResultProps>((props, ref) => {
 
   return (
     <div {...rest} ref={ref} css={wrapCss}>
-      {iconArr.includes(status) ? (
-        <div css={applyIconContainer(status)}>{icon || defaultIcon}</div>
-      ) : (
-        { defaultImg }
-      )}
-      {title && <div css={titleCss}>{title}</div>}
-      {subTitle && <div css={subTitleCss}>{subTitle}</div>}
-      {extra && <div>{extra}</div>}
+      <>
+        {iconArr.includes(status) ? (
+          <div css={applyIconContainer(status)}>{icon || defaultIcon}</div>
+        ) : (
+          { defaultImg }
+        )}
+        {title && <div css={titleCss}>{title}</div>}
+        {subTitle && <div css={subTitleCss}>{subTitle}</div>}
+        {extra && <div>{extra}</div>}
+      </>
     </div>
   )
 })

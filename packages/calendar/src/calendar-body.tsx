@@ -111,8 +111,8 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
                 css={monthBlockCss}
                 key={idx}
               >
-                {monthRender ? (
-                  monthRender
+                {monthRender != undefined ? (
+                  monthRender(dayjs().set("month", idx))
                 ) : (
                   <div
                     css={applyPanelGridItemCss(

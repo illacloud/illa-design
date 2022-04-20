@@ -94,7 +94,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
       trigger="hover"
       onVisibleChange={(visible: boolean) => setPopupVisible(visible)}
       popupVisible={popupVisible}
-      droplist={
+      dropList={
         <Menu
           selectedKeys={selectedKeys}
           onClickMenuItem={menuItemClickHandler}

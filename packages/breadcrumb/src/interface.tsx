@@ -20,7 +20,7 @@ export interface BreadcrumbProps extends HTMLAttributes<HTMLDivElement> {
 
 export interface BreadcrumbItemProps extends HTMLAttributes<HTMLDivElement> {
   _css?: SerializedStyles
-  droplist?: ReactNode
+  dropList?: ReactNode
   dropdownProps?: DropdownProps
 }
 

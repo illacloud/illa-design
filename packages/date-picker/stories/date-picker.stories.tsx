@@ -6,7 +6,7 @@ import {
   MonthPickerProps,
   YearPicker,
   YearPickerProps,
-  RangePicker,
+  DPRangePicker,
   CommonRangeProps,
 } from "../src"
 import dayjs from "dayjs"
@@ -30,7 +30,7 @@ const YearTemplate: Story<YearPickerProps> = (args) => {
 }
 
 const RangeTemplate: Story<CommonRangeProps> = (args) => {
-  return <RangePicker {...args} />
+  return <DPRangePicker {...args} />
 }
 
 export const date = DateTemplate.bind({})

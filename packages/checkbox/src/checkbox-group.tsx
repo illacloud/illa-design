@@ -51,7 +51,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
     }
 
     const onGroupChange = useCallback(
-      (optionValue, checked: boolean, e: SyntheticEvent) => {
+      (optionValue: any, checked: boolean, e: SyntheticEvent) => {
         const newVal = currentValue.slice()
         if (checked) {
           newVal.push(optionValue)

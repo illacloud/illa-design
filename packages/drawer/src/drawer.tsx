@@ -125,7 +125,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
                 animate={"animate"}
                 exit={"exit"}
                 initial={"initial"}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
                 css={applyDrawerMask}
                 onClick={(e) => {
                   maskClosable && onCancel && onCancel(e)
@@ -138,7 +138,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
               animate={"animate"}
               exit={"exit"}
               initial={"initial"}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
               style={Object.assign(
                 placement === "left" || placement === "right"
                   ? { width }
