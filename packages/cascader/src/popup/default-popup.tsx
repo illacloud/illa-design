@@ -14,16 +14,6 @@ import {
 } from "./style"
 import { Empty } from "@illa-design/empty"
 
-export const getLegalIndex = (currentIndex: number, maxIndex: number) => {
-  if (currentIndex < 0) {
-    return maxIndex
-  }
-  if (currentIndex > maxIndex) {
-    return 0
-  }
-  return currentIndex
-}
-
 export const DefaultPopup = <T extends OptionProps>(
   props: CascaderPanelProps<T>,
 ) => {
