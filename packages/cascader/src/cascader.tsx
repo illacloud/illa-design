@@ -138,6 +138,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         store.setNodeCheckedByValue(mergeValue)
       } else {
         setValue(newValue)
+        store.setNodeCheckedByValue(newValue)
       }
       onChange?.(_value, _selectedOptions, {
         dropdownVisible: currentVisible,
