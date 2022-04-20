@@ -8,7 +8,7 @@
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/typography
 ```
 
@@ -22,82 +22,77 @@ import { Typography } from "@illa-design/typography"
 
 ### Typograph 基础属性
 
-| 参数名    | 描述     | 类型               | 默认值 |
-| --------- | -------- | ------------------ | ------ |
-| style     | 节点样式 | CSSProperties      | -      |
-| className | 节点类名 | string \| string[] | -      |
+| 参数名    | 描述     | 类型                 | 默认值 |
+| --------- | -------- | -------------------- | ------ |
+| style     | 节点样式 | `CSSProperties`      | `-`    |
+| className | 节点类名 | `string \| string[]` | `-`    |
 
 ### Heading 基础属性
 
 | 参数名      | 描述                          | 类型                                                         | 默认值       |
 | ----------- | ----------------------------- | ------------------------------------------------------------ | ------------ |
-| colorScheme | 字体颜色                      | "white"\| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \|string | "blackAlpha" |
-| level       | 标题级别，与h1,h2,h3...h6等效 | "h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6"                 | "h2"         |
-| bold        | 粗体                          | boolean                                                      | -            |
-| disabled    | 禁用状态                      | boolean                                                      | -            |
-| mark        | 标记样式                      | boolean \| colorScheme                                       | -            |
-| underline   | 下划线样式                    | boolean                                                      | -            |
-| delete      | 删除线样式                    | boolean                                                      | -            |
-| code        | 代码块样式                    | boolean                                                      | -            |
-| copyable    | 开启复制功能                  | boolean \|copyableConfig                                     | -            |
-| ellipsis    | 自动溢出省略                  | boolean \| EllipsisConfig                                    | -            |
+| colorScheme | 字体颜色                      | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string` | `blackAlpha` |
+| level       | 标题级别                      | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6"`               | `h2`         |
+| bold        | 粗体                          | `boolean`                                                    | `-`          |
+| disabled    | 禁用状态                      | `boolean`                                                    | `-`          |
+| mark        | 标记样式                      | `boolean \| colorScheme`                                      | `-`          |
+| underline   | 下划线样式                    | `boolean`                                                    | `-`          |
+| delete      | 删除线样式                    | `boolean`                                                    | `-`          |
+| code        | 代码块样式                    | `boolean`                                                    | `-`          |
+| copyable    | 开启复制功能                  | `boolean \| copyableConfig`                                    | `-`          |
+| ellipsis    | 自动溢出省略                  | `boolean \| ellipsisConfig`                                   | `-`          |
 
 ### Text 基础属性
 
-| 参数名      | 描述         | 类型                                                         | 默认值       |
-| ----------- | ------------ | ------------------------------------------------------------ | ------------ |
-| colorScheme | 字体颜色     | "white"\| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" | "blackAlpha" |
-| fontSize    | 字体大小     | string                                                       | "14px"       |
-| bold        | 粗体         | boolean                                                      | -            |
-| disabled    | 禁用 状态    | boolean                                                      | -            |
-| mark        | 标记样式     | boolean \| colorScheme                                       | -            |
-| underline   | 下划线样式   | boolean                                                      | -            |
-| delete      | 删除线样式   | boolean                                                      | -            |
-| code        | 代码块样式   | boolean                                                      | -            |
-| copyable    | 开启复制功能 | boolean \|copyableConfig                                     | -            |
-| ellipsis    | 自动溢出省略 | boolean \| EllipsisConfig                                    | -            |
+| 参数名      | 描述         | 类型                                                         | 默认值         |
+| ----------- | ------------ | ------------------------------------------------------------ | -------------- |
+| colorScheme | 字体颜色                      | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string` | `blackAlpha` |
+| fontSize    | 字体大小     | `string`                                                     | `14px`       |
+| bold        | 粗体         | `boolean`                                                    | `-`            |
+| disabled    | 禁用 状态    | `boolean`                                                    | `-`            |
+| mark        | 标记样式     | `boolean \| colorScheme`                                      | `-`            |
+| underline   | 下划线样式   | `boolean`                                                    | `-`            |
+| delete      | 删除线样式   | `boolean`                                                    | `-`            |
+| code        | 代码块样式   | `boolean`                                                    | `-`            |
+| copyable    | 开启复制功能 | `boolean \| copyableConfig`                                    | `-`            |
+| ellipsis    | 自动溢出省略 | `boolean \| ellipsisConfig`                                   | `-`            |
 
 ### Paragraph 基础属性
 
-| 参数名      | 描述         | 类型                                                         | 默认值       |
-| ----------- | ------------ | ------------------------------------------------------------ | ------------ |
-| colorScheme | 字体颜色     | "white"\| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" | "blackAlpha" |
-| fontSize    | 字体大小     | string                                                       | "14px"       |
-| indent      | 文本缩进     | boolean                                                      | -            |
-| bold        | 粗体         | boolean                                                      | -            |
-| disabled    | 禁用状态     | boolean                                                      | -            |
-| mark        | 标记样式     | boolean \| colorScheme                                       | -            |
-| underline   | 下划线样式   | boolean                                                      | -            |
-| delete      | 删除线样式   | boolean                                                      | -            |
-| code        | 代码块样式   | boolean                                                      | -            |
-| copyable    | 开启复制功能 | boolean \|copyableConfig                                     | -            |
-| ellipsis    | 自动溢出省略 | boolean \| ellipsisConfig                                    | -            |
+| 参数名      | 描述         | 类型                                                         | 默认值         |
+| ----------- | ------------ | ------------------------------------------------------------ | -------------- |
+| colorScheme | 字体颜色                      | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string` | `blackAlpha` |
+| fontSize    | 字体大小     | `string`                                                     | `14px`       |
+| indent      | 文本缩进     | `boolean`                                                    | `-`            |
+| bold        | 粗体         | `boolean`                                                    | `-`            |
+| disabled    | 禁用状态     | `boolean`                                                    | `-`            |
+| mark        | 标记样式     | `boolean \| colorScheme`                                      | `-`            |
+| underline   | 下划线样式   | `boolean`                                                    | `-`            |
+| delete      | 删除线样式   | `boolean`                                                    | `-`            |
+| code        | 代码块样式   | `boolean`                                                    | `-`            |
+| copyable    | 开启复制功能 | `boolean \| copyableConfig `                                   | `-`            |
+| ellipsis    | 自动溢出省略 | `boolean \| ellipsisConfig`                                   | `-`            |
 
 ### ellipsisConfig 
 
-| 参数名      | 描述                             | 类型      | 默认值 |
-| ----------- | -------------------------------- | --------- | ------ |
-| expandable  | 是否可展开                       | boolean   | -      |
-| rows        | 最多显示的行数                   | number    | 2      |
-| suffix      | 自定义省略内容后缀               | string    | -      |
-| expandLabel | 自定义展开的标识，默认是省略icon | ReactNode | -      |
-| tooltip     | 省略时，展示提示信息             | boolean   | true   |
-
-### ellipsis 事件
-
-| 参数名   | 描述             | 类型       | 默认值 |
-| -------- | ---------------- | ---------- | ------ |
-| onExpand | 点击展开时的回调 | () => void | -      |
+| 参数名      | 描述                             | 类型        | 默认值 |
+| ----------- | -------------------------------- | ----------- | ------ |
+| expandable  | 是否可展开                       | `boolean`   | `-`    |
+| rows        | 最多显示的行数                   | `number`    | `2`    |
+| suffix      | 自定义省略内容后缀               | `string`    | `-`    |
+| expandLabel | 自定义展开的标识，默认是省略icon | `ReactNode` | `-`    |
+| tooltip     | 省略时，展示提示信息             | `boolean`   | `true` |
+| onExpand | 点击展开时的回调 | ` () => void` | `-`    |
 
 ### copyableConfig
 
-| 参数名        | 描述                                      | 类型       | 默认值   |
-| ------------- | ----------------------------------------- | ---------- | -------- |
-| copyIcon      | 自定义拷贝图标                            | ReactNode  | -        |
-| copiedIcon    | 自定义拷贝后图标                          | ReactNode  | -        |
-| copyTooltip   | 自定义拷贝提示文案，为 false 时隐藏文案   | ReactNode  | "复制"   |
-| copiedTooltip | 自定义拷贝后提示文案，为 false 时隐藏文案 | ReactNode  | "已复制" |
-| onCopy        | 拷贝成功的回调函数                        | () => void | -        |
+| 参数名        | 描述                                      | 类型         | 默认值     |
+| ------------- | ----------------------------------------- | ------------ | ---------- |
+| copyIcon      | 自定义拷贝图标                            | `ReactNode`  | `-`        |
+| copiedIcon    | 自定义拷贝后图标                          | `ReactNode`  | `-`        |
+| copyTooltip   | 自定义拷贝提示文案，为 false 时隐藏文案   | `ReactNode`  | `-`   |
+| copiedTooltip | 自定义拷贝后提示文案，为 false 时隐藏文案 | `ReactNode`  | `-` |
+| onCopy        | 拷贝成功的回调函数                        | `() => void` | `-`        |
 
 
 
@@ -107,8 +102,8 @@ import { Typography } from "@illa-design/typography"
 
 ```jsx
 <Typograph>
-	<Heading>I am a title</Heading>
-  <Paragraph>I am a paragraph </Paragraph>
+  <Heading>I am a title</Heading>
+  <Paragraph>I am a paragraph</Paragraph>
   <Text>I am text</Text>
 </Typograph>
 ```
@@ -117,28 +112,28 @@ import { Typography } from "@illa-design/typography"
 
 ```jsx
 <Text>
-	ILLA Design
+  ILLA Design
 </Text>
 <Text colorScheme="red">
-	ILLA Design
+  ILLA Design
 </Text>
 <Text bold>
-	Bold
+  Bold
 </Text>
 <Text disabled>
-	Disabled
+  Disabled
 </Text>
 <Text mark>
-	Mark
+  Mark
 </Text>
 <Text underline>
-	Underline
+  Underline
 </Text>
 <Text delete>
-	Line through
+  Line through
 </Text>
 <Text code>
-	Code snippet
+  Code snippet
 </Text>
 ```
 
@@ -146,7 +141,7 @@ import { Typography } from "@illa-design/typography"
 
 ```jsx
 <paragraph indent>
-I took her hand in mine, and we went out of the ruined place; and, as the morning mists had risen long ago when I first left the forge, so, the evening mists were rising now, and in all the broad expanse of tranquil light they showed to me, I saw no shadow of another parting from her.
+  I took her hand in mine, and we went out of the ruined place; and, as the morning mists had risen long ago when I first left the forge, so, the evening mists were rising now, and in all the broad expanse of tranquil light they showed to me, I saw no shadow of another parting from her.
 </paragraph>
 
 ```
@@ -155,7 +150,7 @@ I took her hand in mine, and we went out of the ruined place; and, as the mornin
 
 ```jsx
 <paragraph indent ellipsis={new EllipsisBuilder().rows(2).expandable(true).create()}>
-I took her hand in mine, and we went out of the ruined place; and, as the morning mists had risen long ago when I first left the forge, so, the evening mists were rising now, and in all the broad expanse of tranquil light they showed to me, I saw no shadow of another parting from her.
+  I took her hand in mine, and we went out of the ruined place; and, as the morning mists had risen long ago when I first left the forge, so, the evening mists were rising now, and in all the broad expanse of tranquil light they showed to me, I saw no shadow of another parting from her.
 </paragraph>
 ```
 
@@ -163,7 +158,7 @@ I took her hand in mine, and we went out of the ruined place; and, as the mornin
 
 ```jsx
 <paragraph copyable>
-I took her hand in mine, and we went out of the ruined place; and, as the morning mists had risen long ago when I first left the forge, so, the evening mists were rising now, and in all the broad expanse of tranquil light they showed to me, I saw no shadow of another parting from her.
+  I took her hand in mine, and we went out of the ruined place; and, as the morning mists had risen long ago when I first left the forge, so, the evening mists were rising now, and in all the broad expanse of tranquil light they showed to me, I saw no shadow of another parting from her.
 </paragraph>
 ```
 
