@@ -1,9 +1,7 @@
-import * as React from "react"
-
+import { ReactNode } from "react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import { ReactNode } from "react"
-import { TabPane, Tabs } from "@illa-design/tabs"
+import { TabPane, Tabs } from "../src"
 
 const tabArr: {
   key: string
@@ -39,7 +37,7 @@ it("Tabs renders correctly", () => {
       })}
     </Tabs>,
   )
-  expect(cy.findByPlaceholderText("tabs")).exist
+  cy.findByPlaceholderText("tabs").should("exist")
   unmount()
 })
 
@@ -55,12 +53,13 @@ it("Tabs renders with next and pre", () => {
       })}
     </Tabs>,
   )
-  expect(cy.findByTitle("PreIcon")).exist
+
+  cy.findByTitle("PreIcon").should("exist")
   cy.findByTitle("PreIcon")
     .parent()
     .parent()
-    .should("have.css", "color", "rgb(194, 194, 194)")
-  expect(cy.findByTitle("NextIcon")).exist
+    .should("have.css", "cursor", "not-allowed")
+  cy.findByTitle("NextIcon").should("exist")
   cy.findByTitle("NextIcon").parent().trigger("click")
   cy.wait(2000)
   cy.findByTitle("NextIcon")
@@ -95,7 +94,7 @@ it("Tabs renders with next and pre", () => {
   cy.findByTitle("NextIcon")
     .parent()
     .parent()
-    .should("have.css", "color", "rgb(194, 194, 194)")
+    .should("have.css", "cursor", "not-allowed")
   unmount()
 })
 
@@ -122,6 +121,45 @@ it("Tabs renders with scroll", () => {
   cy.findByTitle("NextIcon")
     .parent()
     .parent()
-    .should("have.css", "color", "rgb(194, 194, 194)")
+    .should("have.css", "cursor", "not-allowed")
+  unmount()
+})
+
+it("Tabs renders with changeEvent and clickEvent", () => {
+  const changeEvent = cy.stub().as("changeEvent")
+  const clickEvent = cy.stub().as("clickEvent")
+  mount(
+    <Tabs placeholder={"tabs"} onChange={changeEvent} onClickTab={clickEvent}>
+      {tabArr?.map((item) => {
+        return (
+          <TabPane title={item.title} key={item.key}>
+            {item.content}
+          </TabPane>
+        )
+      })}
+    </Tabs>,
+  )
+  cy.findByText("tab 02").trigger("click")
+  cy.findByText("tab 02").should("have.css", "color", "rgb(30, 111, 255)")
+  cy.get("@changeEvent").should("to.be.calledWith", "2")
+  cy.get("@clickEvent").should("to.be.calledWith", "2")
+  unmount()
+})
+
+it("Tabs renders with editable", () => {
+  mount(
+    <Tabs placeholder={"tabs"} variant={"card"} editable={true}>
+      {tabArr?.map((item) => {
+        return (
+          <TabPane title={item.title} key={item.key}>
+            {item.content}
+          </TabPane>
+        )
+      })}
+    </Tabs>,
+  )
+  cy.findByText("tab 02").should("exist")
+  cy.findByText("tab 02").findByTitle("CloseIcon").parent().trigger("click")
+  cy.findByPlaceholderText("tabs").should("not.contain", 'tab 02"')
   unmount()
 })

@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 import { Ellipsis } from "./ellipsis-config"
 import { Copyable } from "./copyable-config"
 
@@ -36,6 +36,7 @@ export interface HeadingProps
 }
 
 export interface BaseProps {
+  children?: ReactNode
   colorScheme?: TypographyColorScheme
   ellipsis?: boolean | Ellipsis
   bold?: boolean

@@ -3,7 +3,6 @@ import { render, screen, fireEvent } from "@testing-library/react"
 import { SuccessIcon, CloseIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import "@testing-library/jest-dom"
-import * as React from "react"
 
 test("Switch renders with different size", () => {
   render(<Switch data-testid="test-medium" />)

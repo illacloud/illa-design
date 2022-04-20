@@ -1,14 +1,12 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import {
   cloneElement,
   FC,
+  Fragment,
   isValidElement,
   MutableRefObject,
   ReactElement,
   ReactNode,
-  Ref,
-  RefObject,
+  SyntheticEvent,
   useEffect,
   useRef,
   useState,
@@ -36,46 +34,10 @@ import {
   getFinalPosition,
 } from "./adjust-tips-location"
 import { Popup } from "./popup"
-import useClickAway from "react-use/lib/useClickAway"
 import useMeasure from "react-use/lib/useMeasure"
-import { isFunction, isObject } from "@illa-design/system"
-
-type ReactRef<T> = Ref<T> | RefObject<T> | MutableRefObject<T>
-
-/**
- * Assigns a value to a ref function or object
- *
- * @param ref the ref to assign to
- * @param value the value
- */
-function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
-  if (ref == null) return
-
-  if (isFunction(ref)) {
-    ref(value)
-    return
-  }
-
-  try {
-    // @ts-ignore
-    ref.current = value
-  } catch (error) {
-    throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
-  }
-}
-
-/**
- * Combine multiple React refs into a single ref function.
- * This is used mostly when you need to allow consumers forward refs to
- * internal components
- *
- * @param refs refs to assign to value to
- */
-function mergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
-  return (node: T | null) => {
-    refs.forEach((ref) => assignRef(ref, node))
-  }
-}
+import { mergeRefs } from "@illa-design/system"
+import useClickAway from "react-use/lib/useClickAway"
+import useMouse from "react-use/lib/useMouse"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -90,6 +52,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     autoAlignPopupWidth,
     closeOnClick = true,
     defaultPopupVisible,
+    maxWidth = "588px",
     withoutPadding,
     disabled,
     popupVisible,
@@ -99,9 +62,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
 
-  const tipsRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
-
-  const childrenRef = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
+  const childrenRef = useRef<HTMLElement>(null) as MutableRefObject<HTMLElement>
 
   const [adjustResult, setAdjustResult] = useState<AdjustResult>()
   const finalPosition = getFinalPosition(
@@ -117,10 +78,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
     if (timeOutHandlerId != undefined) {
       window.clearTimeout(timeOutHandlerId)
     }
-    timeOutHandlerId = window.setTimeout(() => {
+    if (timeout <= 0) {
       todo()
-      timeOutHandlerId = undefined
-    }, timeout)
+    } else {
+      timeOutHandlerId = window.setTimeout(() => {
+        todo()
+        timeOutHandlerId = undefined
+      }, timeout)
+    }
   }
 
   let tipsNode: ReactNode
@@ -137,6 +102,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div
             css={applyTipsText(
               colorScheme,
+              maxWidth,
               withoutPadding,
               adjustResult,
               autoAlignPopupWidth,
@@ -169,6 +135,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div
             css={applyTipsText(
               colorScheme,
+              maxWidth,
               withoutPadding,
               adjustResult,
               autoAlignPopupWidth,
@@ -187,6 +154,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div
             css={applyTipsText(
               colorScheme,
+              maxWidth,
               withoutPadding,
               adjustResult,
               autoAlignPopupWidth,
@@ -219,6 +187,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div
             css={applyTipsText(
               colorScheme,
+              maxWidth,
               withoutPadding,
               adjustResult,
               autoAlignPopupWidth,
@@ -231,9 +200,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
       break
   }
 
-  const showTips = () => {
+  const showTips = (control?: boolean) => {
     delayTodo(async () => {
-      if (!tipVisible && childrenRef.current != null) {
+      if (childrenRef.current != null) {
         const result = await adjustLocation(
           tipsNode,
           childrenRef.current,
@@ -242,48 +211,54 @@ export const Trigger: FC<TriggerProps> = (props) => {
         )
         // async deal
         setAdjustResult(result)
-        if (popupVisible == undefined) {
+        if (popupVisible == undefined || control) {
           setTipsVisible(true)
         }
         if (onVisibleChange != undefined) {
-          onVisibleChange(true)
+          if (popupVisible != undefined) {
+            onVisibleChange(true)
+          } else {
+            if (!tipVisible) {
+              onVisibleChange(true)
+            }
+          }
         }
       }
     }, openDelay)
   }
 
-  const hideTips = () => {
+  const hideTips = (control?: boolean) => {
     delayTodo(() => {
-      if (tipVisible) {
-        if (popupVisible == undefined) {
-          setTipsVisible(false)
-        }
-        if (onVisibleChange != undefined) {
+      if (popupVisible == undefined || control) {
+        setTipsVisible(false)
+      }
+      if (onVisibleChange != undefined) {
+        if (popupVisible != undefined) {
           onVisibleChange(false)
+        } else {
+          if (tipVisible) {
+            onVisibleChange(false)
+          }
         }
       }
     }, closeDelay)
   }
 
+  const [tipsMeasureRef, tipsMeasureInfo] = useMeasure<HTMLDivElement>()
+
   tipsNode = (
     <motion.div
-      ref={tipsRef}
       css={applyMotionDiv()}
       variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
       animate="animate"
       exit="exit"
-      onClick={() => {
-        if (!disabled && trigger == "click" && clickOutsideToClose) {
-          showTips()
-        }
-      }}
-      onMouseEnter={() => {
+      onMouseEnter={(event) => {
         if (!disabled && trigger == "hover") {
           showTips()
         }
       }}
-      onMouseLeave={() => {
+      onMouseLeave={(event) => {
         if (!disabled && trigger == "hover") {
           hideTips()
         }
@@ -293,69 +268,15 @@ export const Trigger: FC<TriggerProps> = (props) => {
     </motion.div>
   )
 
-  useClickAway(childrenRef, () => {
-    if (!disabled && clickOutsideToClose) {
-      hideTips()
-    }
-  })
-
   useEffect(() => {
     let isMount = true
     if (!disabled && childrenRef.current != null) {
-      if (tipVisible && popupVisible == undefined) {
-        adjustLocation(
-          tipsNode,
-          childrenRef.current,
-          position,
-          autoFitPosition,
-        ).then((result) => {
-          // async deal
-          if (isMount) {
-            setAdjustResult(result)
-            if (onVisibleChange != undefined) {
-              onVisibleChange(true)
-            }
-          }
-        })
-      } else if (
-        popupVisible ||
-        (popupVisible == undefined && defaultPopupVisible)
-      ) {
-        adjustLocation(
-          tipsNode,
-          childrenRef.current,
-          position,
-          autoFitPosition,
-        ).then((result) => {
-          // async deal
-          if (isMount) {
-            setAdjustResult(result)
-            if (!tipVisible) {
-              setTipsVisible(true)
-              if (onVisibleChange != undefined) {
-                onVisibleChange(true)
-              }
-            }
-          }
-        })
-      } else if (popupVisible == false) {
-        adjustLocation(
-          tipsNode,
-          childrenRef.current,
-          position,
-          autoFitPosition,
-        ).then((result) => {
-          // async deal
-          if (isMount) {
-            setAdjustResult(result)
-            if (tipVisible) {
-              setTipsVisible(false)
-              if (onVisibleChange != undefined) {
-                onVisibleChange(false)
-              }
-            }
-          }
-        })
+      if (popupVisible == undefined) {
+        if (tipVisible || defaultPopupVisible) {
+          showTips()
+        }
+      } else {
+        popupVisible ? showTips(true) : hideTips(true)
       }
     }
     return () => {
@@ -367,32 +288,49 @@ export const Trigger: FC<TriggerProps> = (props) => {
     position,
     content,
     disabled,
-    autoAlignPopupWidth,
     measureInfo,
+    maxWidth,
+    autoAlignPopupWidth,
   ])
 
+  const protalRef = useRef<HTMLDivElement>(null)
+  const { elX, elY } = useMouse(protalRef)
+
+  useClickAway(childrenRef, () => {
+    if (!disabled && clickOutsideToClose) {
+      if (
+        elX < 0 ||
+        elX > tipsMeasureInfo.width ||
+        elY < 0 ||
+        elY > tipsMeasureInfo.height
+      ) {
+        hideTips()
+      }
+    }
+  })
+
   const newProps = {
-    onMouseEnter: () => {
+    onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "hover") {
         showTips()
       }
     },
-    onMouseLeave: () => {
+    onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "hover") {
         hideTips()
       }
     },
-    onFocus: () => {
+    onFocus: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "focus") {
         showTips()
       }
     },
-    onBlur: () => {
+    onBlur: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "focus") {
         hideTips()
       }
     },
-    onClick: () => {
+    onClick: (e: SyntheticEvent<Element, Event>) => {
       switch (trigger) {
         case "click":
           if (!disabled) {
@@ -412,6 +350,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           }
           break
       }
+      e.stopPropagation()
     },
   }
 
@@ -419,6 +358,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     <AnimatePresence>
       {!disabled && tipVisible && childrenRef.current != null ? (
         <Popup
+          ref={mergeRefs(protalRef, tipsMeasureRef)}
           top={`${adjustResult?.transY}px`}
           left={`${adjustResult?.transX}px`}
         >
@@ -435,32 +375,32 @@ export const Trigger: FC<TriggerProps> = (props) => {
         measureRef,
         childrenRef,
       ),
-      onMouseEnter: (e: Event) => {
-        newProps.onMouseEnter()
+      onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onMouseEnter(e)
         ;(props.children as ReactElement).props?.onMouseEnter?.call(e)
       },
-      onMouseLeave: (e: Event) => {
-        newProps.onMouseLeave()
+      onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onMouseLeave(e)
         ;(props.children as ReactElement).props?.onMouseLeave?.call(e)
       },
-      onFocus: (e: Event) => {
-        newProps.onFocus()
+      onFocus: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onFocus(e)
         ;(props.children as ReactElement).props?.onFocus?.call(e)
       },
-      onBlur: (e: Event) => {
-        newProps.onBlur()
+      onBlur: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onBlur(e)
         ;(props.children as ReactElement).props?.onBlur?.call(e)
       },
-      onClick: (e: Event) => {
-        newProps.onClick()
+      onClick: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onClick(e)
         ;(props.children as ReactElement).props?.onClick?.call(e)
       },
     }
     return (
-      <>
+      <Fragment>
         {cloneElement(props.children as ReactElement, { ...finalProps })}
         {protalContent}
-      </>
+      </Fragment>
     )
   } else {
     return (

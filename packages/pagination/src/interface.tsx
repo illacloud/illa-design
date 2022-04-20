@@ -26,7 +26,7 @@ export interface PaginationProps
 }
 
 export interface PageNumProps extends HTMLAttributes<HTMLSpanElement> {
-  index: number
+  index: number | string
   selected: boolean
   moreIcon?: ReactNode
   isMoreIndex: boolean | undefined

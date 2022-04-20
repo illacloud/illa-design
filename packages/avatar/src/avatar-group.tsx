@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { Children, CSSProperties, forwardRef, ReactNode } from "react"
 import { AvatarGroupProps } from "./interface"
 import { css } from "@emotion/react"

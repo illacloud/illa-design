@@ -1,97 +1,88 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
+import { css } from "@emotion/react"
 import { Button } from "@illa-design/button"
 import { Notification } from "@illa-design/notification"
 import { Affix, AffixProps } from "../src"
+import { useRef } from "react"
 
 export default {
-  title: "DATA DISPLAY/Affix",
+  title: "OTHERS /Affix",
   component: Affix,
 } as Meta
 
-interface AffixStoryProps extends AffixProps {
-  text: String
-}
+const blockStyles = css`
+  width: 500px;
+  white-space: pre-wrap;
+`
 
-const Template: Story<AffixStoryProps> = (args) => {
-  const { text, ...affixProps } = args
+const containerBlockStyles = css`
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+`
+
+const loremIpsum = Array(10)
+  .fill(0)
+  .map(
+    () =>
+      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+  )
+  .join("\n\n")
+
+export const Basic: Story<AffixProps> = (args) => {
   return (
     <>
-      {/* <div
-            style={{
-            height: "1000px",
-            width: "200px",
-            background: "linear-gradient(pink, orange)",
-            }}
-            >
-            Scroll up and down
-            </div> */}
-      <Affix {...affixProps}>
-        <Button>{text}</Button>
+      <Affix {...args}>
+        <Button>Affix Top</Button>
       </Affix>
-      <div
-        style={{
-          height: "1000px",
-          width: "200px",
-          background: "linear-gradient(orange, pink)",
-        }}
-      ></div>
+      <div css={blockStyles}>{loremIpsum}</div>
     </>
   )
 }
-const offset = 200
 
-export const Basic = Template.bind({})
-Basic.args = { text: "Affix Top" }
-
-export const OffsetTop = Template.bind({})
-OffsetTop.args = {
-  text: `${offset}px to affix top`,
-  offsetTop: offset,
-}
-
-export const OffsetBottom = Template.bind({})
-OffsetBottom.args = {
-  text: `${offset}px to affix bottom`,
-  offsetBottom: offset,
-}
-
-export const AffixCallback = Template.bind({})
-AffixCallback.args = {
-  text: `${offset}px to affix top`,
-  offsetTop: offset,
-  onChange: (isFixed: boolean) =>
-    Notification.info({ content: isFixed ? "Fixed!" : "Not fixed." }),
-}
-
-export const targetContainer = () => {
-  const container = React.useRef(null)
+export const Offset = () => {
+  const offset = 200
 
   return (
     <>
-      <div style={{ overflow: "auto", height: 300 }} ref={container}>
-        <div
-          style={{
-            height: 600,
-            background: "linear-gradient(pink, lightblue)",
-          }}
-        >
+      <div css={blockStyles}>{loremIpsum}</div>
+      <Affix
+        offsetTop={offset}
+        onChange={(isFixed: boolean) =>
+          Notification.info({
+            content: isFixed ? `Fixed ${offset}px from top!` : "Not fixed.",
+          })
+        }
+      >
+        <Button>{offset}px to affix top</Button>
+      </Affix>
+      <div css={blockStyles}>{loremIpsum}</div>
+      <Affix offsetBottom={offset}>
+        <Button>{offset}px to affix bottom</Button>
+      </Affix>
+    </>
+  )
+}
+
+export const targetContainer = () => {
+  const container = useRef(null)
+
+  return (
+    <>
+      <div
+        style={{ overflow: "auto", height: 300, width: 500 }}
+        ref={container}
+      >
+        <div css={containerBlockStyles}>
           <Affix
             target={() => container.current}
-            offsetTop={20}
             targetContainer={() => window}
           >
             <Button>Affix in scrolling container</Button>
           </Affix>
+          {loremIpsum}
         </div>
       </div>
-      <div
-        style={{
-          height: "1000px",
-          width: "200px",
-          background: "linear-gradient(orange, pink)",
-        }}
-      ></div>
+      <div css={blockStyles}>{loremIpsum}</div>
     </>
   )
 }

@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, useState, useMemo, MouseEvent } from "react"
+import { forwardRef, useState, useMemo, MouseEvent, ReactNode } from "react"
 import { AlertProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -69,7 +68,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     onClose,
     afterClose,
     ...restProps
-  }: AlertProps & { children?: React.ReactNode | undefined } = props
+  }: AlertProps & { children?: ReactNode | undefined } = props
   const [visible, setVisible] = useState<boolean>(true)
   const renderIcon = useMemo(() => {
     return icon ? icon : iconMap[type]
@@ -83,7 +82,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     <AnimatePresence>
       {visible && (
         <motion.div
-          css={applyAlertContainer(type, !!content, !!banner)}
+          css={applyAlertContainer(type, banner)}
           style={style}
           className={className}
           variants={variants}
@@ -97,7 +96,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
             }
           }}
         >
-          <div css={applyAlert(!!content)} {...restProps}>
+          <div css={applyAlert(!!content, showIcon, closable)} {...restProps}>
             {showIcon && (
               <div css={applyAlertIcon(type, !!content)}>{renderIcon}</div>
             )}
@@ -107,9 +106,12 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
             </div>
             {action && <div css={applyAlertAction}>{action}</div>}
             {closable && (
-              <button css={applyAlertCloseBtn(type)} onClick={onHandleClose}>
+              <div
+                css={applyAlertCloseBtn(type, !!content)}
+                onClick={onHandleClose}
+              >
                 {closeElement || <CloseIcon />}
-              </button>
+              </div>
             )}
           </div>
         </motion.div>

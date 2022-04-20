@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Tag, TagProps } from "../src"
 
@@ -13,9 +12,6 @@ export default {
 
   argTypes: {
     icon: {
-      control: false,
-    },
-    onClose: {
       control: false,
     },
   },

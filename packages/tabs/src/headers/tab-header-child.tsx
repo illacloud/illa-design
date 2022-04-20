@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import { forwardRef, useMemo } from "react"
+import { FC, useMemo } from "react"
 import { TabHeaderChildProps } from "../interface"
 import {
   applyCapsuleHeaderChildCss,
@@ -8,47 +7,47 @@ import {
   applyTextCss,
   deleteButtonCss,
   verticalLineCss,
-} from "../styles"
+} from "../style"
 import { CloseIcon } from "@illa-design/icon"
 
-export const TabHeaderChild = forwardRef<HTMLSpanElement, TabHeaderChildProps>(
-  (props, ref) => {
-    const {
-      title,
-      tabKey,
-      isSelected,
-      disabled,
-      handleSelectTab,
-      size = "medium",
-      needDivLine,
-      variant,
-      closable,
-      deleteIcon = <CloseIcon size={"8"} />,
-      handleDeleteTab,
-      tabBarSpacing = 16,
-    } = props
+export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
+  const {
+    title,
+    tabKey,
+    isSelected,
+    disabled,
+    handleSelectTab,
+    size = "medium",
+    needDivLine,
+    variant,
+    closable,
+    deleteIcon = <CloseIcon size={"8"} />,
+    handleDeleteTab,
+    tabBarSpacing,
+  } = props
 
-    const childCss = useMemo(() => {
-      if (variant === "card") {
-        return applyCardHeaderChildCss(tabBarSpacing, isSelected)
-      } else if (variant === "capsule") {
-        return applyCapsuleHeaderChildCss(tabBarSpacing, isSelected)
-      }
-      return applyCommonHeaderChildCss(tabBarSpacing)
-    }, [variant, isSelected])
+  const childCss = useMemo(() => {
+    if (variant === "card") {
+      return applyCardHeaderChildCss(isSelected, disabled)
+    } else if (variant === "capsule") {
+      return applyCapsuleHeaderChildCss(isSelected, disabled)
+    }
+    return applyCommonHeaderChildCss()
+  }, [variant, isSelected])
 
-    return (
+  return (
+    <span
+      css={childCss}
+      key={tabKey}
+      onClick={() => {
+        if (disabled) return
+        handleSelectTab(tabKey)
+      }}
+    >
       <span
-        css={childCss}
-        key={tabKey}
-        ref={ref}
-        onClick={() => {
-          if (disabled) return
-          handleSelectTab(tabKey)
-        }}
+        css={applyTextCss(size, isSelected, disabled, tabBarSpacing, variant)}
       >
-        <span css={applyTextCss(size, isSelected, disabled)}>{title}</span>
-        {needDivLine && !needDivLine && <div css={verticalLineCss} />}
+        {title}
         {closable && (
           <span
             css={deleteButtonCss}
@@ -61,6 +60,7 @@ export const TabHeaderChild = forwardRef<HTMLSpanElement, TabHeaderChildProps>(
           </span>
         )}
       </span>
-    )
-  },
-)
+      {needDivLine && <div css={verticalLineCss} />}
+    </span>
+  )
+}

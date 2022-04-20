@@ -1,9 +1,12 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { CardSize } from "./interface"
-import React from "react"
 
-export function applyCard(bordered: boolean, hoverable: boolean) {
+export function applyCard(
+  bordered: boolean,
+  hoverable: boolean,
+  isGridMode?: boolean,
+): SerializedStyles {
   const border = bordered
     ? `border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)}`
     : ``
@@ -15,8 +18,11 @@ export function applyCard(bordered: boolean, hoverable: boolean) {
     position: relative;
     font-size: 14px;
     line-height: 1.57;
-    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    background-color: ${isGridMode
+      ? ""
+      : globalColor(`--${illaPrefix}-white-01`)};
     border-radius: 2px;
+    transition: box-shadow 0.2s ease-in-out;
     ${border};
     &:hover {
       ${boxShadow};
@@ -24,7 +30,7 @@ export function applyCard(bordered: boolean, hoverable: boolean) {
   `
 }
 
-export function applyCardHeader(size: CardSize) {
+export function applyCardHeader(size: CardSize): SerializedStyles {
   const paddingSize = size === "small" ? `8px` : `16px`
   return css`
     position: relative;
@@ -37,33 +43,29 @@ export function applyCardHeader(size: CardSize) {
   `
 }
 
-export function applyCardHeaderTitle() {
-  return css`
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.5;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `
-}
+export const applyCardHeaderTitle = css`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`
 
-export function applyCardHeaderExtra() {
-  return css`
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `
-}
+export const applyCardHeaderExtra = css`
+  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`
 
 export function applyCardBody(
   size: CardSize,
   loading: boolean,
   isContainGrid: boolean,
-) {
+): SerializedStyles {
   const loadingStyle = loading
     ? css`
         text-align: center;
@@ -88,14 +90,12 @@ export function applyCardBody(
   `
 }
 
-export function applyCardCover() {
-  return css`
-    border-radius: 2px;
-    overflow: hidden;
-  `
-}
+export const applyCardCover = css`
+  border-radius: 2px;
+  overflow: hidden;
+`
 
-export function applyCardActions(isContainMeta: boolean) {
+export function applyCardActions(isContainMeta: boolean): SerializedStyles {
   const margin = isContainMeta ? `` : `margin-top: 20px`
   return css`
     ${margin};
@@ -105,71 +105,65 @@ export function applyCardActions(isContainMeta: boolean) {
   `
 }
 
-export function applyCardActionsRight() {
-  return css`
-    display: flex;
-    align-items: center;
-  `
-}
+export const applyCardActionsRight = css`
+  display: flex;
+  align-items: center;
+`
 
-export function applyCardActionItem() {
-  return css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    cursor: pointer;
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
-    transition: color 0.2s ease-in-out;
-    &:not(:last-child) {
-      margin-right: 24px;
-    }
-    &:hover {
-      color: ${globalColor(`--${illaPrefix}-blue-03`)};
-    }
-  `
-}
+export const applyCardActionItem = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  transition: color 0.2s ease-in-out;
+  &:not(:last-child) {
+    margin-right: 24px;
+  }
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-blue-03`)};
+  }
+`
 
-export function applyCardGrid(hoverable: boolean) {
+export function applyCardGrid(hoverable: boolean): SerializedStyles {
+  const borderColor = globalColor(`--${illaPrefix}-gray-08`)
   return css`
     position: relative;
     box-sizing: border-box;
     width: 33.33%;
+    box-shadow: 1px 0 0 0 ${borderColor}, 0 1px 0 0 ${borderColor},
+      1px 1px 0 0 ${borderColor}, 1px 0 0 0 ${borderColor} inset,
+      0 1px 0 0 ${borderColor} inset;
     &:hover {
       z-index: ${hoverable ? 1 : ""};
     }
   `
 }
 
-export function applyCardMetaTitle() {
-  return css`
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.5;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  `
-}
+export const applyCardMetaTitle = css`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`
 
-export function applyCardMetaDescription() {
-  return css`
-    &:not(:first-of-type) {
-      margin-top: 4px;
-    }
-  `
-}
+export const applyCardMetaDescription = css`
+  &:not(:first-of-type) {
+    margin-top: 4px;
+  }
+`
 
-export function applyCardMetaFooter() {
-  return css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    &:last-of-type {
-      margin-top: 16px;
-    }
-  `
-}
+export const applyCardMetaFooter = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:last-of-type {
+    margin-top: 16px;
+  }
+`

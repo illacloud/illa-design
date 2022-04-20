@@ -1,12 +1,10 @@
-import { css } from "@emotion/react"
-import { SerializedStyles } from "@storybook/theming"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { ListSize } from "./interface"
 
 export function applyListContainer(bordered?: boolean): SerializedStyles {
   let containerCss = css`
     display: inline-flex;
-    min-width: 686px;
     flex-direction: column;
   `
   if (bordered) {

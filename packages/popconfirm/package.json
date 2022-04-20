@@ -36,14 +36,14 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/system": "*",
-    "@illa-design/theme": "*",
-    "@illa-design/trigger": "*",
-    "@illa-design/typography": "*",
-    "@illa-design/button": "*",
-    "@illa-design/config-provider": "*"
+    "@illa-design/trigger": "0.0.0",
+    "@illa-design/typography": "0.0.0",
+    "@illa-design/button": "0.0.0",
+    "@illa-design/config-provider": "0.0.0",
+    "@illa-design/system": "0.0.0",
+    "@illa-design/theme": "0.0.0"
   }
 }

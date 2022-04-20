@@ -4,23 +4,23 @@
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/config-provider
 ```
 
 ## 引用组件
 
 ```jsx
-import { ConfigProvider } from "@illa-dedign/config-provider"
+import { ConfigProvider } from "@illa-design/config-provider"
 ```
 
 ## 组件接口(API)
 
 ### ConfigProvider 基础属性
 
-| 参数名 | 描述     | 类型   | 默认值 |
-| ------ | -------- | ------ | ------ |
-| locale | 设置语言 | Locale | -      |
+| 参数名 | 描述     | 类型     | 默认值 |
+| ------ | -------- | -------- | ------ |
+| locale | 设置语言 | `Locale` | `-`    |
 
 ## 使用方法
 

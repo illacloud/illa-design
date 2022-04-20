@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { CountDownProps, Countdown } from "../src"
 import { Space } from "@illa-design/space"
@@ -12,13 +11,6 @@ const Template: Story<CountDownProps> = (args) => {
   return (
     <Space size={"large"}>
       <Countdown {...args} />
-      <Countdown
-        {...args}
-        onChange={(num) => console.log(num)}
-        onFinish={() => {
-          console.log("finish!")
-        }}
-      />
     </Space>
   )
 }

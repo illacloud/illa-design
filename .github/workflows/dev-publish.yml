@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main, develop ]
 
+env:
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+
 jobs:
   install:
     runs-on: macos-latest
@@ -32,11 +36,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ github.run_id }}
 
-
       - name: Build
         run: |
           yarn install --frozen-lockfile
           yarn build-all-components    
+
+      - name: Install docs dependencies
+        run: |
+          cd ./docs
+          yarn install --frozen-lockfile
+          cd ..
 
   build:
     needs:
@@ -75,10 +84,23 @@ jobs:
           yarn cypress info
           yarn test
 
-      - name: Publish to Chromatic
-        uses: chromaui/action@v1
+      - name: Publish to Codecov
+        uses: codecov/codecov-action@v2.1.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          exitZeroOnChanges: true
-          exitOnceUploaded: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage-final.json
+          
+      - name: Import docs i18n
+        run: yarn import-docs
+
+      - name: Build docs
+        run: |
+          cd ./docs
+          yarn build
+          cd ..
+
+      - name: Deploy docs to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build

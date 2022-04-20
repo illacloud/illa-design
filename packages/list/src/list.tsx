@@ -1,10 +1,10 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, ReactNode } from "react"
 import { ListProps } from "./interface"
 import { applyBarStyle, applyListContainer, applyListItemOuter } from "./style"
 import { Divider } from "@illa-design/divider"
 import VirtualList from "rc-virtual-list"
 import { Text, Typography } from "@illa-design/typography"
+import { css } from "@emotion/react"
 
 export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
   const {
@@ -25,11 +25,16 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
     loader,
     endMessage,
     onScroll,
+    _css,
     ...otherProps
   } = props
 
   return (
-    <div css={applyListContainer(bordered)} ref={ref} {...otherProps}>
+    <div
+      css={css(applyListContainer(bordered), _css)}
+      ref={ref}
+      {...otherProps}
+    >
       {header && (
         <>
           {typeof header == "string" ? (

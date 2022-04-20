@@ -11,7 +11,7 @@ yarn add @illa-design/checkbox
 ## 引用组件
 
 ```jsx
-import { Checkbox } from "@illa-dedign/checkbox"
+import { Checkbox } from "@illa-design/checkbox"
 ```
 
 ## 组件接口（API）

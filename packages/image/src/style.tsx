@@ -1,5 +1,5 @@
-import { css } from "@emotion/core"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { css } from "@emotion/react"
 
 export function applyImageCss(
   objFit: "fill" | "container" | "cover" | "none" | "scale-down",

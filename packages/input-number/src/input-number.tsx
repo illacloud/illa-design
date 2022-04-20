@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import {
   forwardRef,
   useState,
@@ -86,7 +84,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     const mergedPrecision = getPrecision(precision, step)
 
     const getLegalValue = useCallback(
-      (changedValue) => {
+      (changedValue: any) => {
         let finalValue: string | number | undefined = Number(changedValue)
         if (!changedValue && changedValue !== 0) {
           finalValue = undefined
@@ -220,6 +218,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         readOnly={readOnly}
         placeholder={placeholder}
         value={displayValue}
+        textCenterHorizontal={mode === "button"}
         prefix={{ render: prefix }}
         suffix={{
           render: (

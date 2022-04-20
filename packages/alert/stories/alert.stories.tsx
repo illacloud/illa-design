@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Alert, AlertProps } from "../src"
 import { SearchIcon } from "@illa-design/icon"
@@ -41,12 +40,6 @@ const Template: Story<AlertProps> = (args) => {
             <Button size="small">Close</Button>
           </Space>
         }
-        onClose={() => {
-          console.log("close")
-        }}
-        afterClose={() => {
-          console.log("after close")
-        }}
       />
     </>
   )

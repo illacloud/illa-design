@@ -36,13 +36,13 @@
     "url": "https://github.com/illa-family/illa-design/issues"
   },
   "scripts": {
-    "build": "tsc && vite build"
+    "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/system": "*",
-    "@illa-design/theme": "*",
-    "@illa-design/typography": "*",
-    "@illa-design/avatar": "*",
+    "@illa-design/typography": "0.0.0",
+    "@illa-design/avatar": "0.0.0",
+    "@illa-design/system": "0.0.0",
+    "@illa-design/theme": "0.0.0",
     "rc-virtual-list": "^3.4.2"
   }
 }

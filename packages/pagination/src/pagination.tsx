@@ -1,13 +1,5 @@
-/** @jsxImportSource @emotion/react */
 import * as React from "react"
-import {
-  forwardRef,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react"
+import { forwardRef, ReactNode, useContext, useEffect, useState } from "react"
 import { PaginationProps } from "./interface"
 
 import { MoreIcon, NextIcon, PreIcon } from "@illa-design/icon"
@@ -111,7 +103,12 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     const _moreIcon: ReactNode = moreIcon ?? <MoreIcon />
 
     return (
-      <div css={paginationContainer} placeholder={placeholder} {...otherProps}>
+      <div
+        css={paginationContainer}
+        placeholder={placeholder}
+        ref={ref}
+        {...otherProps}
+      >
         {totalElement}
         {simple ? (
           <SimplePagination

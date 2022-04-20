@@ -1,4 +1,3 @@
-import * as React from "react"
 import { render } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { Heading, Paragraph, Text, Typography } from "../src"

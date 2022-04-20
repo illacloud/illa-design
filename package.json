@@ -2,7 +2,7 @@
   "name": "illa-design",
   "private": true,
   "version": "0.0.0",
-  "description": "Illa Ui Component",
+  "description": "illa UI Component",
   "repository": "git@github.com:illa-family/illa-design.git",
   "author": "illa Family",
   "license": "Apache-2.0",
@@ -12,27 +12,30 @@
     "@changesets/cli": "^2.18.1",
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
+    "@cypress/code-coverage": "^3.9.12",
     "@cypress/react": "^5.12.4",
     "@cypress/vite-dev-server": "^2.2.2",
     "@emotion/jest": "^11.7.1",
-    "@storybook/addon-a11y": "^6.4.18",
-    "@storybook/addon-actions": "^6.4.18",
-    "@storybook/addon-essentials": "^6.4.18",
-    "@storybook/addon-links": "^6.4.18",
-    "@storybook/addon-storysource": "^6.4.18",
-    "@storybook/addons": "^6.4.19",
-    "@storybook/react": "^6.4.18",
-    "@storybook/theming": "^6.4.18",
+    "@emotion/react": "^11.7.1",
+    "@storybook/addon-a11y": "^6.4.20",
+    "@storybook/addon-actions": "^6.4.20",
+    "@storybook/addon-essentials": "^6.4.20",
+    "@storybook/addon-links": "^6.4.20",
+    "@storybook/addon-storysource": "^6.4.20",
+    "@storybook/addons": "^6.4.20",
+    "@storybook/react": "^6.4.20",
+    "@storybook/theming": "^6.4.20",
+    "@mll-lab/react-components": "^8.12.3",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.4.0",
     "@vitejs/plugin-react": "^1.2.0",
     "babel-loader": "^8.2.3",
     "cypress": "^9.5.1",
     "husky": "^7.0.4",
     "jest": "^27.4.0",
+    "@types/jest": "^27.4.0",
     "jest-environment-jsdom": "^27.4.0",
     "plop": "^3.0.5",
     "prettier": "^2.5.1",
@@ -40,10 +43,16 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "sinon": "^13.0.1",
+    "@types/sinon": "^10.0.11",
     "ts-jest": "^27.1.3",
     "turbo": "^1.1.1",
     "typescript": "^4.5.2",
-    "vite": "^2.8.6"
+    "vite": "^2.8.6",
+    "vite-plugin-istanbul": "^2.5.1"
+  },
+  "resolutions": {
+    "graceful-fs": "4.2.9",
+    "@babel/core": "7.17.8"
   },
   "workspaces": [
     "packages/*"
@@ -52,14 +61,23 @@
     "build-develop": "sh ./scripts/build-develop.sh",
     "storybook": "yarn dev:build-all-components && yarn start-storybook -p 6006",
     "build-storybook": "yarn build-all-components && npx build-storybook",
-    "build-all-components": "NODE_OPTIONS=--max-old-space-size=7168 npx turbo run build",
+    "build-all-components": "npx turbo run build",
     "dev:build-all-components": "npx turbo run build --scope=\"!@illa-design/react\"  --include-dependencies --no-deps",
     "test": "npx patch-package && yarn build-all-components && npx jest && npx cypress run-ct -b chrome",
+    "posttest": "yarn report:combined",
     "unit-test": "yarn build-all-components && npx jest",
     "lint": "prettier --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
     "postinstall": "npx patch-package",
-    "plop": "plop new"
+    "plop": "plop new",
+    "import-docs": "node ./scripts/import-docs.js",
+    "report:combined": "sh ./scripts/merge-coverage.sh"
   },
-  "packageManager": "yarn@1.22.17"
+  "packageManager": "yarn@1.22.17",
+  "nyc": {
+    "report-dir": "cypress-coverage",
+    "reporter": [
+      "json"
+    ]
+  }
 }

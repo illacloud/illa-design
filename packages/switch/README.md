@@ -11,7 +11,7 @@ yarn add @illa-design/switch
 ## Importm component
 
 ```jsx
-import { Switch } from "@illa-dedign/switch"
+import { Switch } from "@illa-design/switch"
 ```
 
 ## API

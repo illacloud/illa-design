@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, Children, cloneElement, ReactElement } from "react"
+import { forwardRef, Children, cloneElement, ReactElement } from "react"
 import { CardGrid } from "./card-grid"
 import { Meta } from "./meta"
 import { CardProps } from "./interface"
@@ -27,6 +26,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     loading = false,
     bordered = true,
     children,
+    isGridMode,
     ...restProps
   } = props
 
@@ -67,7 +67,11 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   )
 
   return (
-    <div ref={ref} css={applyCard(bordered, hoverable)} {...restProps}>
+    <div
+      ref={ref}
+      css={applyCard(bordered, hoverable, isGridMode)}
+      {...restProps}
+    >
       {title || extra ? (
         <div css={applyCardHeader(size)}>
           {title && <div css={applyCardHeaderTitle}>{title}</div>}

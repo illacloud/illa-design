@@ -1,0 +1,38 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.COMPONENTS": {
+    "message": "COMPONENTS",
+    "description": "The label for category COMPONENTS in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.DATA-DISPLAY": {
+    "message": "DATA-DISPLAY",
+    "description": "The label for category DATA-DISPLAY in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.DATA-INPUT": {
+    "message": "DATA-INPUT",
+    "description": "The label for category DATA-INPUT in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.FEEDBACK": {
+    "message": "FEEDBACK",
+    "description": "The label for category FEEDBACK in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.GENERAL": {
+    "message": "GENERAL",
+    "description": "The label for category GENERAL in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.LAYOUT": {
+    "message": "LAYOUT",
+    "description": "The label for category LAYOUT in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.NAVIGATION": {
+    "message": "NAVIGATION",
+    "description": "The label for category NAVIGATION in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.OTHERS": {
+    "message": "OTHERS",
+    "description": "The label for category OTHERS in sidebar tutorialSidebar"
+  }
+}

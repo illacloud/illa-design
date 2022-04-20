@@ -1,7 +1,5 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { InputProps, Input } from "../src"
+import { Input, InputProps } from "../src"
 import { Space } from "@illa-design/space"
 import { PersonIcon } from "@illa-design/icon"
 
@@ -9,7 +7,6 @@ import { PersonIcon } from "@illa-design/icon"
 export default {
   title: "DATA INPUT/Input",
   component: Input,
-
   argTypes: {
     prefix: {
       control: {
@@ -27,7 +24,10 @@ export default {
     addonBefore: {
       control: false,
     },
-    boarderColor: {
+    inputRef: {
+      control: false,
+    },
+    borderColor: {
       options: [
         "gray",
         "blue",
@@ -41,13 +41,6 @@ export default {
       ],
       control: {
         type: "select",
-      },
-    },
-  },
-  parameters: {
-    docs: {
-      source: {
-        type: "code",
       },
     },
   },

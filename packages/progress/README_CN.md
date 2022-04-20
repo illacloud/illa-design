@@ -11,7 +11,7 @@ yarn add @illa-design/progress
 ## 引用组件
 
 ```jsx
-import { Progress } from "@illa-dedign/progress"
+import { Progress } from "@illa-design/progress"
 ```
 
 ## 组件接口（API）

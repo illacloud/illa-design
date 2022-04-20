@@ -1,13 +1,12 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, useState } from "react"
+import { forwardRef, MouseEventHandler, useState } from "react"
 import { SwitchProps } from "./interface"
-import * as _ from "lodash"
 import {
   applySwitch,
   applySwitchDot,
   applySwitchText,
   applySwitchIcon,
 } from "./style"
+import { isObject } from "@illa-design/system"
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (props, ref) => {
@@ -29,9 +28,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     const [checked, setChecked] = useState<boolean>(defaultChecked)
     const mergedChecked = propsChecked !== void 0 ? propsChecked : checked
 
-    const onHandleClick: React.MouseEventHandler<HTMLButtonElement> = (
-      event,
-    ) => {
+    const onHandleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
       if (propsChecked === void 0) {
         setChecked(!mergedChecked)
         onChange && onChange(!mergedChecked, event)
@@ -58,7 +55,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
           )}
         </div>
         <div css={applySwitchText(mergedChecked, size)}>
-          {_.isObject(renderText) ? (
+          {isObject(renderText) ? (
             <div css={applySwitchIcon}>{renderText}</div>
           ) : (
             renderText

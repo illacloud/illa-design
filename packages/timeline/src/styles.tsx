@@ -49,9 +49,9 @@ export function applyVertItemLineCss(
   return css`
     position: absolute;
     ${leftPositionStyle};
-    top: 10px;
+    top: 13px;
     width: 1px;
-    height: calc(100% - 20px);
+    height: calc(100% - 22px);
     border-left: 1px ${lineType};
     ${baseLineStyle(lineColor)};
   `
@@ -231,10 +231,10 @@ export function applyVertItemContentCss(
   }
   return css`
     position: relative;
-    top: -10px;
+    top: -9px;
     ${alignStyle};
-    margin-left: 20px;
-    ${autoFixDotSize && "font-size: 16px"};
+    margin-left: 16px;
+    ${autoFixDotSize && "font-size: 14px"};
   `
 }
 
