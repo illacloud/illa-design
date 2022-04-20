@@ -59,7 +59,8 @@ export interface ItemGroupProps {
   children?: ReactNode
 }
 
-export interface SubMenuProps {
+export interface SubMenuProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   key: string
   _key?: string
   _css?: SerializedStyles
