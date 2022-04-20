@@ -6,9 +6,8 @@ import {
   useState,
   cloneElement,
 } from "react"
-import { Dayjs } from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
 import {
-  dayjs,
   isArray,
   isString,
   useMergeValue,
@@ -182,6 +181,11 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       readOnly: !editable,
       allowClear,
       suffix: { render: icons && icons.inputSuffix },
+      onBlur: () => {
+        if (currentPopupVisible) {
+          inputRef.current?.focus()
+        }
+      },
       onPressEnter: () => {
         if (isRangePicker) {
           if (isArray(valueShow) && valueShow.length) {
@@ -267,7 +271,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         }}
         popupVisible={currentPopupVisible}
         content={
-          <div css={triggerContentStyle} onClick={() => focusInput()}>
+          <div css={triggerContentStyle}>
             {cloneElement(popup as ReactElement, {
               ...props,
               format,
@@ -297,6 +301,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
             inputGroupRef={inputGroupRef}
             focusedInputIndex={focusedInputIndex}
             changeFocusedInputIndex={changeFocusedInputIndex}
+            popupVisible={currentPopupVisible}
             value={
               rangeInputValue
                 ? rangeInputValue

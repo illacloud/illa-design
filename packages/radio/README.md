@@ -22,6 +22,7 @@ import { Radio } from "@illa-design/radio"
 | -------------- | ----------------------------------------- | ------------------------------------------------------------ | ------- |
 | colorScheme    | Set background color                      | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" \| string `| `blue`  |
 | value          | The value of radio                        | `T `                                                           | `-   `    |
+| variant          | The variant of radio                        | `"button" \| "radio" `                                   | `radio   `    |
 | disabled       | Whether the radio is disabled             | `boolean  `                                                    | `-   `    |
 | checked        | Whether the radio is checked (Controlled) | `boolean `                                                     |` -  `     |
 | defaultChecked | Whether the radio is initially selected   | `boolean `                                                     | `- `      |
@@ -38,6 +39,7 @@ import { Radio } from "@illa-design/radio"
 | ------------ | --------------------------------------------------- | ------------------------------------------------------------ | ------------ |
 | name         | The name of the input field in a radio              | `string   `                                                    | `-   `         |
 | value        | The value to be used in the radio button            | `T `                                                           | `-   `         |
+| variant          | The variant of radio                        | `"button" \| "radio" `                                   | `radio   `    |
 | colorScheme  | Set background color                                |` "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string `| `blue`       |
 | disabled     | Whether the radio is disabled                       | `boolean `                                                     |` - `           |
 | defaultValue | To set default value                                | `T  `                                                          |` -   `         |

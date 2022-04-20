@@ -1,7 +1,10 @@
+# 标签页
+
+标签页是将多个内容组织在同一视图中的组件，可以通过选择不同的标签切换视图
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/tabs
 ```
 
@@ -15,76 +18,126 @@ import { Tabs } from "@illa-design/tabs"
 
 ### Tabs 基础属性
 
-| 参数名    | 描述         | 类型                                               | 默认值       |
-| --------- | ------------ | -------------------------------------------------- | ------------ |
-| size      | 间距大小     | "mini" \| "small" \| "medium" \| "large" \| string         | "small"        |
-| align     | 组件对齐方式 | "start" \| "center" \| "end" \| "baseline" | "center"     |
-| direction | 组件排列方向 |  "vertical" \| "horizontal"                | "horizontal" |
-| divider   | 添加分割符   | boolean：                                          | -        |
-| wrap      | 自动换行     | boolean：                                          | -        |
+| 参数名           | 描述                                    | 类型                                                | 默认值   |
+| ---------------- | --------------------------------------- | --------------------------------------------------- | -------- |
+| tabPosition      | 选项卡位置                              | `"left" \| "right" \| "top" \| "bottom"`            | `top`    |
+| animated         | 是否使用动画切换 Tabs                   | `boolean \|{ tabPane?: boolean; inkBar?: boolean }` | `false`  |
+| size             | Tab 标签的大小                          | `"small" \| "medium" \| "large"`                    | `medium` |
+| variant          | 页签的基本样式                          | `"line" \| "text" \| "card" \| "capsule"`           | `line`   |
+| activeKey        | 当前激活 tab 面板的 key                 | `string`                                            | `-`      |
+| defaultActiveKey | 默认选中的标签选项卡                    | `string`                                            | `1`      |
+| editable         | 是否允许增减标签。                      | `boolean`                                           | `-`      |
+| addIcon          | 自定义增加tab按钮,当editable=true时展示 | `ReactNode`                                         | `-`      |
+| deleteIcon       | 自定义关闭tab按钮,当editable=true时展示 | `ReactNode`                                         | `-`      |
+| tabBarSpacing    | tabs 之间的间隙                         | `number`                                            | `-`      |
+
+### Tabs 事件
+
+| 参数名      | 描述                    | 类型                    | 默认值 |
+| ----------- | ----------------------- | ----------------------- | ------ |
+| onChange    | activeTab 改变的回调    | `(key: string) => void` | `-`    |
+| onClickTab  | 点击选项卡的回调        | `(key: string) => void` | `-`    |
+| onAddTab    | 点击新增 tab 按钮的回调 | `() => void`            | `-`    |
+| onDeleteTab | 点击删除按钮的回调      | `(key: string) => void` | `-`    |
+
+### TabPane 基础属性
+
+| 参数名        | 描述                                                         | 类型                   | 默认值 |
+| ------------- | ------------------------------------------------------------ | ---------------------- | ------ |
+| key           | 对应 activeKey                                               | `string`               | `-`    |
+| title         | 选项卡的标题显示 **(必填)**                                  | `string \| ReactNode ` | `-`    |
+| destroyOnHide | 选项卡隐藏的时候是否销毁标签页内的DOM结构，优先级高于 Tabs 的 destroyOnHide 属性 | `boolean`              | `true` |
+| disabled      | 是否禁用                                                     | `boolean`              | `-`    |
+| closable      | 动态增减标签页时是否允许关闭当前标签页                       | `boolean`              | `true` |
+
+
 
 ## 使用方法
 
 ### 基础用法
 
 ```jsx
-<Space />
+ <Tabs defaultActiveTab="1" >
+    <TabPane key="1" title="Tab 1">
+      <Paragraph>This is Tab Panel 1</Paragraph>
+    </TabPane>
+    <TabPane key="2" title="Tab 2" disabled>
+      <Paragraph>This is Tab Panel 2</Paragraph>
+    </TabPane>
+    <TabPane key="3" title="Tab 3">
+      <Paragraph>This is Tab Panel 3</Paragraph>
+    </TabPane>
+ </Tabs>
 ```
 
-### 设置间隙大小
+### 设置标签大小
+
+通过size接口可以设置Tabs标签大小
 
 ```jsx
-<Space size="large"/>
+<Tabs defaultActiveTab="1" size="large">
+    <TabPane key="1" title="Tab 1">
+      <Paragraph>This is Tab Panel 1</Paragraph>
+    </TabPane>
+    <TabPane key="2" title="Tab 2" disabled>
+      <Paragraph>This is Tab Panel 2</Paragraph>
+    </TabPane>
+    <TabPane key="3" title="Tab 3">
+      <Paragraph>This is Tab Panel 3</Paragraph>
+    </TabPane>
+ </Tabs>
 ```
 
-### 设置组件对齐方式
+### 设置选项卡位置
 
-通过align这个接口可以调整space中组件对齐方式
+通过tabPosition可以配置选项卡相对pane的位置
 
 ```jsx
-<Space alige="start">
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
-</Space>
+<Tabs defaultActiveTab="1" size="large" tabPosition="left">
+    <TabPane key="1" title="Tab 1">
+      <Paragraph>This is Tab Panel 1</Paragraph>
+    </TabPane>
+    <TabPane key="2" title="Tab 2" disabled>
+      <Paragraph>This is Tab Panel 2</Paragraph>
+    </TabPane>
+    <TabPane key="3" title="Tab 3">
+      <Paragraph>This is Tab Panel 3</Paragraph>
+    </TabPane>
+</Tabs>
 ```
 
-### 设置组件排列方向
+### 设置选项卡样式
 
-通过direction这个接口可以设置space中组件的排列方向
+通过variant接口配置选项卡的样式
 
 ```jsx
-<Space direction="vertical">
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
-</Space>
+<Tabs defaultActiveTab="1" size="large" variant="card">
+    <TabPane key="1" title="Tab 1">
+      <Paragraph>This is Tab Panel 1</Paragraph>
+    </TabPane>
+    <TabPane key="2" title="Tab 2" disabled>
+      <Paragraph>This is Tab Panel 2</Paragraph>
+    </TabPane>
+    <TabPane key="3" title="Tab 3">
+      <Paragraph>This is Tab Panel 3</Paragraph>
+    </TabPane>
+</Tabs>
 ```
 
-### 添加分隔符
+### 设置切换动画
 
-通过divider这个接口在组件间隙中添加分隔符
-
-```jsx
-<Space divider>
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
-</Space>
-```
-
-### 设置组件自动换行
-
-通过wrap这个接口可以space中的组件自动换行
+通过animated接口可以配置是否开启过渡效果
 
 ```jsx
-<Space wrap>
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
-</Space>
+<Tabs defaultActiveTab="1" size="large" variant="card" animated={false} >
+    <TabPane key="1" title="Tab 1">
+      <Paragraph>This is Tab Panel 1</Paragraph>
+    </TabPane>
+    <TabPane key="2" title="Tab 2" disabled>
+      <Paragraph>This is Tab Panel 2</Paragraph>
+    </TabPane>
+    <TabPane key="3" title="Tab 3">
+      <Paragraph>This is Tab Panel 3</Paragraph>
+    </TabPane>
+</Tabs>
 ```

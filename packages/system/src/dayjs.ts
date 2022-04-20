@@ -6,8 +6,6 @@ import CustomParseFormat from "dayjs/plugin/customParseFormat"
 dayjs.extend(AdvancedFormat)
 dayjs.extend(CustomParseFormat)
 
-export { dayjs }
-
 export function getDayjsValue(
   time: any,
   format: string,
