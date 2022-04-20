@@ -1,12 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
-import { css } from "@emotion/react"
+import { forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import { UpIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 import {
@@ -76,7 +68,7 @@ export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
       raf(updateScrollTopPerFrame)
 
       isFunction(onClick) && onClick()
-    }, [])
+    }, [duration])
 
     useEffect(() => {
       targetRef.current = target()
