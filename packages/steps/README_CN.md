@@ -58,7 +58,7 @@ import { Steps } from "@illa-dedign/steps"
 
 ### 设置节点描述
 
-通过<Step>中的description接口可以设置步骤的描述
+通过`<Step>`中的description接口可以设置步骤的描述
 
 ```jsx
 <Steps current={2}>
