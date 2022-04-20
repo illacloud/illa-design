@@ -39,12 +39,12 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/system": "0.0.0",
-    "@illa-design/theme": "0.0.0",
     "@illa-design/icon": "0.0.0",
     "@illa-design/trigger": "0.0.0",
     "@illa-design/select": "0.0.0",
     "@illa-design/calendar": "0.0.0",
-    "@illa-design/time-picker": "0.0.0"
+    "@illa-design/time-picker": "0.0.0",
+    "@illa-design/system": "0.0.0",
+    "@illa-design/theme": "0.0.0"
   }
 }

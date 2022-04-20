@@ -96,12 +96,8 @@
     "@illa-design/page-header": "0.0.0",
     "@illa-design/slider": "0.0.0",
     "@illa-design/menu": "0.0.0",
-    "react-use": "^17.3.1",
-    "framer-motion": "^6.2.8",
     "@illa-design/tree-common": "0.0.0",
     "@illa-design/tree": "0.0.0",
-    "@illa-design/tree-select": "0.0.0",
-    "@emotion/react": "^11.7.1"
-
+    "@illa-design/tree-select": "0.0.0"
   }
 }

@@ -248,7 +248,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         onBlur: inputEventHandlers.blur,
         onInputChange: inputEventHandlers.change,
         onRemove: (value: any, index: number, event: any) => {
-          maxTagCount && forceUpdate()
+          // maxTagCount && forceUpdate()
           onRemoveCheckedItem?.(value, index, event)
         },
       }

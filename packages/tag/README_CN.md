@@ -1,4 +1,4 @@
-# 标签 <TAG>
+# 标签
 
 标签组件一般被用于标记事物的属性、维度或者类别.
 
@@ -20,8 +20,8 @@ import { Tag } from "@illa-design/tag"
 
 | 参数名      | 描述               | 类型                                                         | 默认值    |
 | ----------- | ------------------ | ------------------------------------------------------------ | --------- |
-| colorScheme | 设置标签背景颜色   | `white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" \| string`| `gray`  |
-| size        | 设置标签尺寸       | `small" \| "medium" \| "large"`                  | `small` |
+| colorScheme | 设置标签背景颜色   | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" \| string`| `gray`  |
+| size        | 设置标签尺寸       | `"small" \| "medium" \| "large"`                  | `small` |
 | visible     | 设置标签是否隐藏   | `boolean`                                                    |`- `     |
 | closable    | 设置是否可关闭标签 | `boolean`                                                    | `-`      |
 | variant     | 设置标签的预置样式   | `"outline" \| "fill" \| "light"`                              | `light`    |
