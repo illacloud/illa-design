@@ -50,7 +50,7 @@ export default defineConfig({
         "@illa-design/trigger",
         "@illa-design/typography",
         "@illa-design/button",
-        "@illa-design/config-provider"
+        "@illa-design/config-provider",
       ],
       output: {
         globals: {
@@ -61,7 +61,7 @@ export default defineConfig({
           "@illa-design/trigger": "@illa-design/trigger",
           "@illa-design/typography": "@illa-design/typography",
           "@illa-design/button": "@illa-design/button",
-          "@illa-design/config-provider": "@illa-design/config-provider"
+          "@illa-design/config-provider": "@illa-design/config-provider",
         },
       },
     },

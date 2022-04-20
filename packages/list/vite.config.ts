@@ -49,7 +49,7 @@ export default defineConfig({
         "@illa-design/theme",
         "@illa-design/typography",
         "@illa-design/avatar",
-        "rc-virtual-list"
+        "rc-virtual-list",
       ],
       output: {
         globals: {
@@ -57,9 +57,9 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/typography":"@illa-design/typography",
-          "@illa-design/avatar":"@illa-design/avatar",
-          "rc-virtual-list":"rc-virtual-list"
+          "@illa-design/typography": "@illa-design/typography",
+          "@illa-design/avatar": "@illa-design/avatar",
+          "rc-virtual-list": "rc-virtual-list",
         },
       },
     },

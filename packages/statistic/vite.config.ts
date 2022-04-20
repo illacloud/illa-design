@@ -48,7 +48,7 @@ export default defineConfig({
         "@illa-design/system",
         "@illa-design/theme",
         "dayjs",
-        "@illa-design/icon"
+        "@illa-design/icon",
       ],
       output: {
         globals: {
@@ -56,8 +56,8 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "dayjs":"dayjs",
-          "@illa-design/icon":"@illa-design/icon"
+          dayjs: "dayjs",
+          "@illa-design/icon": "@illa-design/icon",
         },
       },
     },

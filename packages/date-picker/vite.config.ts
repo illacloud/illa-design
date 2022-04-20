@@ -53,7 +53,7 @@ export default defineConfig({
         "@illa-design/calendar",
         "@illa-design/time-picker",
         "@illa-design/system",
-        "@illa-design/theme"
+        "@illa-design/theme",
       ],
       output: {
         globals: {
@@ -62,10 +62,10 @@ export default defineConfig({
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
-          "@illa-design/trigger":"@illa-design/trigger",
-          "@illa-design/select":"@illa-design/select",
-          "@illa-design/calendar":"@illa-design/calendar",
-          "@illa-design/time-picker":"@illa-design/time-picker"
+          "@illa-design/trigger": "@illa-design/trigger",
+          "@illa-design/select": "@illa-design/select",
+          "@illa-design/calendar": "@illa-design/calendar",
+          "@illa-design/time-picker": "@illa-design/time-picker",
         },
       },
     },

@@ -51,7 +51,7 @@ export default defineConfig({
         "@illa-design/icon",
         "@illa-design/list",
         "@illa-design/progress",
-        "@illa-design/config-provider"
+        "@illa-design/config-provider",
       ],
       output: {
         globals: {
@@ -59,11 +59,11 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/image":"@illa-design/image",
-          "@illa-design/icon":"@illa-design/icon",
-          "@illa-design/list":"@illa-design/list",
-          "@illa-design/progress":"@illa-design/progress",
-          "@illa-design/config-provider":"@illa-design/config-provider"
+          "@illa-design/image": "@illa-design/image",
+          "@illa-design/icon": "@illa-design/icon",
+          "@illa-design/list": "@illa-design/list",
+          "@illa-design/progress": "@illa-design/progress",
+          "@illa-design/config-provider": "@illa-design/config-provider",
         },
       },
     },

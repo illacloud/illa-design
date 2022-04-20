@@ -47,7 +47,7 @@ export default defineConfig({
         "react-dom",
         "@illa-design/system",
         "@illa-design/theme",
-        "@illa-design/trigger"
+        "@illa-design/trigger",
       ],
       output: {
         globals: {
@@ -55,7 +55,7 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/trigger":"@illa-design/trigger"
+          "@illa-design/trigger": "@illa-design/trigger",
         },
       },
     },

@@ -47,7 +47,7 @@ export default defineConfig({
         "react-dom",
         "@illa-design/system",
         "@illa-design/theme",
-        "@illa-design/icon"
+        "@illa-design/icon",
       ],
       output: {
         globals: {

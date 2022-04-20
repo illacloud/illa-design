@@ -47,7 +47,7 @@ export default defineConfig({
         "@illa-design/system",
         "@illa-design/theme",
         "@illa-design/icon",
-        "@illa-design/button"
+        "@illa-design/button",
       ],
       output: {
         globals: {
@@ -55,8 +55,8 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/icon":"@illa-design/icon",
-          "@illa-design/button":"@illa-design/button"
+          "@illa-design/icon": "@illa-design/icon",
+          "@illa-design/button": "@illa-design/button",
         },
       },
     },

@@ -48,7 +48,7 @@ export default defineConfig({
         "@illa-design/system",
         "@illa-design/theme",
         "@illa-design/list",
-        "@illa-design/checkbox"
+        "@illa-design/checkbox",
       ],
       output: {
         globals: {
@@ -56,8 +56,8 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/list":"@illa-design/list",
-          "@illa-design/checkbox":"@illa-design/checkbox"
+          "@illa-design/list": "@illa-design/list",
+          "@illa-design/checkbox": "@illa-design/checkbox",
         },
       },
     },

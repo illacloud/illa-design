@@ -49,7 +49,7 @@ export default defineConfig({
         "@illa-design/theme",
         "@illa-design/icon",
         "@illa-design/tooltip",
-        "@illa-design/config-provider"
+        "@illa-design/config-provider",
       ],
       output: {
         globals: {
@@ -57,9 +57,9 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/icon":"@illa-design/icon",
-          "@illa-design/tooltip":"@illa-design/tooltip",
-          "@illa-design/config-provider":"@illa-design/config-provider"
+          "@illa-design/icon": "@illa-design/icon",
+          "@illa-design/tooltip": "@illa-design/tooltip",
+          "@illa-design/config-provider": "@illa-design/config-provider",
         },
       },
     },

@@ -51,7 +51,7 @@ export default defineConfig({
         "@illa-design/icon",
         "@illa-design/popover",
         "@illa-design/checkbox",
-        "react-table"
+        "react-table",
       ],
       output: {
         globals: {
@@ -59,10 +59,10 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/icon":"@illa-design/icon",
-          "@illa-design/popover":"@illa-design/popover",
-          "@illa-design/checkbox":"@illa-design/checkbox",
-          "react-table":"react-table"
+          "@illa-design/icon": "@illa-design/icon",
+          "@illa-design/popover": "@illa-design/popover",
+          "@illa-design/checkbox": "@illa-design/checkbox",
+          "react-table": "react-table",
         },
       },
     },

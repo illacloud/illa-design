@@ -50,7 +50,7 @@ export default defineConfig({
         "@illa-design/tree",
         "@illa-design/select",
         "@illa-design/tree-common",
-        "@illa-design/empty"
+        "@illa-design/empty",
       ],
       output: {
         globals: {
@@ -58,10 +58,10 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/tree":"@illa-design/tree",
-          "@illa-design/select":"@illa-design/select",
-          "@illa-design/tree-common":"@illa-design/tree-common",
-          "@illa-design/empty":"@illa-design/empty"
+          "@illa-design/tree": "@illa-design/tree",
+          "@illa-design/select": "@illa-design/select",
+          "@illa-design/tree-common": "@illa-design/tree-common",
+          "@illa-design/empty": "@illa-design/empty",
         },
       },
     },

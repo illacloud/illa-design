@@ -50,18 +50,18 @@ export default defineConfig({
         "number-precision",
         "react-focus-lock",
         "react-use",
-        "react-fast-compare"
+        "react-fast-compare",
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
           "@illa-design/theme": "@illa-design/theme",
-          "dayjs":"dayjs",
-          "number-precision":"number-precision",
-          "react-focus-lock":"react-focus-lock",
-          "react-use":"react-use",
-          "react-fast-compare":"react-fast-compare"
+          dayjs: "dayjs",
+          "number-precision": "number-precision",
+          "react-focus-lock": "react-focus-lock",
+          "react-use": "react-use",
+          "react-fast-compare": "react-fast-compare",
         },
       },
     },

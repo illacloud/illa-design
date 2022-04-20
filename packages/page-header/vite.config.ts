@@ -47,7 +47,7 @@ export default defineConfig({
         "@illa-design/system",
         "@illa-design/theme",
         "@illa-design/icon",
-    "@illa-design/breadcrumb",
+        "@illa-design/breadcrumb",
       ],
       output: {
         globals: {
