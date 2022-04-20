@@ -47,19 +47,14 @@ export default defineConfig({
         "react",
         "react-dom",
         "@illa-design/system",
-        "react-use/lib/useMeasure",
-        "react-use/lib/useIsomorphicLayoutEffect",
-        "@emotion/react",
+        "@illa-design/theme",
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
-          "@illa-design/system": "designSystem",
-          "react-use/lib/useMeasure": "reactUseLibUseMeasure",
-          "react-use/lib/useIsomorphicLayoutEffect":
-            "ReactUseLibUseIsomorphicLayoutEffect",
-          "@emotion/react": "emotionReact",
+          "@illa-design/system": "@illa-design/system",
+          "@illa-design/theme": "@illa-design/theme",
         },
       },
     },

@@ -8,10 +8,11 @@ import { Node } from "../node"
 import useRefs, { useForceUpdate, useUpdate } from "../hooks"
 import {
   applyOptionLabelStyle,
-  applyOptionStyle,
+  applyOptionStyle, flexCenterStyle,
   optionListStyle,
   optionListWrapper,
 } from "./style"
+import { Empty } from "@illa-design/empty"
 
 export const getLegalIndex = (currentIndex: number, maxIndex: number) => {
   if (currentIndex < 0) {
@@ -31,6 +32,7 @@ export const DefaultPopup = <T extends OptionProps>(
   const [refWrapper, setRefWrapper] = useRefs<HTMLUListElement | null>()
   const forceUpdate = useForceUpdate()
   const {
+    style,
     store,
     value,
     multiple,
@@ -141,7 +143,7 @@ export const DefaultPopup = <T extends OptionProps>(
     <>
       {menus.map((list, level) => {
         if (list.length === 0 && level === 0) {
-          return renderEmpty?.()
+          return <Empty css={flexCenterStyle} style={style} />
         }
         return list.length === 0 ? null : (
           <div css={optionListWrapper} key={level}>
