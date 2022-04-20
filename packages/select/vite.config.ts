@@ -1,7 +1,6 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import typescript from "@rollup/plugin-typescript"
-import visualizer from "rollup-plugin-visualizer"
 
 const path = require("path")
 
@@ -24,7 +23,6 @@ export default defineConfig({
       // Only .tsx files
       include: ["**/*.tsx", "**/*.ts"],
     }),
-    visualizer()
   ],
   build: {
     sourcemap: false,
@@ -55,7 +53,7 @@ export default defineConfig({
         "@illa-design/list",
         "@illa-design/input",
         "@illa-design/input-tag",
-        "@illa-design/checkbox"
+        "@illa-design/checkbox",
       ],
       output: {
         globals: {
@@ -63,13 +61,13 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/icon":"@illa-design/icon",
-          "@illa-design/empty":"@illa-design/empty",
-          "@illa-design/trigger":"@illa-design/trigger",
-          "@illa-design/list":"@illa-design/list",
-          "@illa-design/input":"@illa-design/input",
-          "@illa-design/input-tag":"@illa-design/input-tag",
-          "@illa-design/checkbox":"@illa-design/checkbox"
+          "@illa-design/icon": "@illa-design/icon",
+          "@illa-design/empty": "@illa-design/empty",
+          "@illa-design/trigger": "@illa-design/trigger",
+          "@illa-design/list": "@illa-design/list",
+          "@illa-design/input": "@illa-design/input",
+          "@illa-design/input-tag": "@illa-design/input-tag",
+          "@illa-design/checkbox": "@illa-design/checkbox",
         },
       },
     },
