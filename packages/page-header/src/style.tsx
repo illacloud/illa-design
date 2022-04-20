@@ -12,9 +12,18 @@ export const headerLeftCss = css`
   align-items: center;
 `
 export const backIconCss = css`
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
   font-size: 12px;
   margin-right: 14px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &: hover {
+    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+  }
 `
 export const titleCss = css`
   font-size: 20px;

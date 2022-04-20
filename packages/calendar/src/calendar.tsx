@@ -40,9 +40,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       rangeValueSecond,
       rangeValueHover,
       handleRangeVal,
-
-      // selectDayFromProps,
-      // defaultPickerValue,
       ...restProps
     } = props
 
@@ -94,10 +91,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
         setSelectDay(defaultSelectedDate)
       }
     }, [defaultSelectedDate])
-
-    // useEffect(() => {
-    //   handleSelectDayFromProps()
-    // }, [selectDayFromProps])
 
     // click pre & next icon
     const changeTime = (type: string, modeProps?: defaultModeItem) => {
@@ -177,22 +170,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
 
       onChange?.(dayjs())
     }
-
-    // const handleSelectDayFromProps = () => {
-    //   if (!selectDayFromProps) return
-    //   if (selectDayFromProps === "clear") {
-    //     changeCurDate(defaultDayValue)
-    //     setSelectDay(0)
-    //   } else {
-    //     if (!Array.isArray(selectDayFromProps)) {
-    //       if (selectDayFromProps.isSame(dayjs(selectDay), "date")) {
-    //         return
-    //       }
-    //       changeCurDate(selectDayFromProps)
-    //       setSelectDay(selectDayFromProps.valueOf())
-    //     }
-    //   }
-    // }
 
     return (
       <div
