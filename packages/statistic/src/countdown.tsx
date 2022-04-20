@@ -1,6 +1,6 @@
 import { forwardRef, useEffect, useRef, useState } from "react"
 import { CountDownProps } from "./interface"
-import { dayjs } from "@illa-design/system"
+import dayjs from "dayjs"
 import { getDateString } from "./util"
 
 import {
