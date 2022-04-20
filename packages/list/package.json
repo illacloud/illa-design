@@ -41,16 +41,8 @@
   "dependencies": {
     "@illa-design/typography": "0.0.0",
     "@illa-design/avatar": "0.0.0",
-    "rc-virtual-list": "^3.4.2"
-  },
-  "peerDependencies": {
+    "@illa-design/system": "0.0.0",
     "@illa-design/theme": "0.0.0",
-    "@illa-design/system": "0.0.0",
-    "react": ">=17.0.2",
-    "react-dom": ">=17.0.2"
-  },
-  "devDependencies": {
-    "@illa-design/system": "0.0.0",
-    "@illa-design/theme": "0.0.0"
+    "rc-virtual-list": "^3.4.2"
   }
 }

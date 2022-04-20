@@ -45,10 +45,6 @@
     "react-use": "^17.3.1",
     "react-fast-compare": "^3.2.0"
   },
-  "peerDependencies": {
-    "react": ">=17.0.2",
-    "react-dom": ">=17.0.2"
-  },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.0",
     "@types/lodash": "^4.14.178",

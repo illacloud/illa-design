@@ -46,12 +46,22 @@ export default defineConfig({
         "react",
         "react-dom",
         "@illa-design/system",
+        "@emotion/cache",
+        "@emotion/react",
+        "chroma-js",
+        "compute-scroll-into-view",
+        "framer-motion"
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
-          "@illa-design/system": "System",
+          "@illa-design/system": "@illa-design/system",
+          "@emotion/cache":"@emotion/cache",
+          "@emotion/react":"@emotion/react",
+          "chroma-js":"chroma-js",
+          "compute-scroll-into-view":"compute-scroll-into-view",
+          "framer-motion":"framer-motion"
         },
       },
     },

@@ -47,13 +47,25 @@ export default defineConfig({
         "react-dom",
         "@illa-design/system",
         "@illa-design/theme",
+        "@illa-design/icon",
+        "@illa-design/trigger",
+        "@illa-design/select",
+        "@illa-design/calendar",
+        "@illa-design/time-picker",
+        "@illa-design/system",
+        "@illa-design/theme"
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
-          "@illa-design/system": "System",
-          "@illa-design/theme": "Theme",
+          "@illa-design/system": "@illa-design/system",
+          "@illa-design/theme": "@illa-design/theme",
+          "@illa-design/icon": "@illa-design/icon",
+          "@illa-design/trigger":"@illa-design/trigger",
+          "@illa-design/select":"@illa-design/select",
+          "@illa-design/calendar":"@illa-design/calendar",
+          "@illa-design/time-picker":"@illa-design/time-picker"
         },
       },
     },

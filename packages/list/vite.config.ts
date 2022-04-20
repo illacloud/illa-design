@@ -47,13 +47,19 @@ export default defineConfig({
         "react-dom",
         "@illa-design/system",
         "@illa-design/theme",
+        "@illa-design/typography",
+        "@illa-design/avatar",
+        "rc-virtual-list"
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
-          "@illa-design/system": "System",
-          "@illa-design/theme": "Theme",
+          "@illa-design/system": "@illa-design/system",
+          "@illa-design/theme": "@illa-design/theme",
+          "@illa-design/typography":"@illa-design/typography",
+          "@illa-design/avatar":"@illa-design/avatar",
+          "rc-virtual-list":"rc-virtual-list"
         },
       },
     },

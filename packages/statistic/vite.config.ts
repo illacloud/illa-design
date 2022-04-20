@@ -47,13 +47,17 @@ export default defineConfig({
         "react-dom",
         "@illa-design/system",
         "@illa-design/theme",
+        "dayjs",
+        "@illa-design/icon"
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
-          "@illa-design/system": "System",
-          "@illa-design/theme": "Theme",
+          "@illa-design/system": "@illa-design/system",
+          "@illa-design/theme": "@illa-design/theme",
+          "dayjs":"dayjs",
+          "@illa-design/icon":"@illa-design/icon"
         },
       },
     },

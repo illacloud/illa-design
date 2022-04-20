@@ -46,13 +46,17 @@ export default defineConfig({
         "react-dom",
         "@illa-design/system",
         "@illa-design/theme",
+        "@illa-design/trigger",
+        "@illa-design/input-number"
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
-          "@illa-design/system": "System",
-          "@illa-design/theme": "Theme",
+          "@illa-design/system": "@illa-design/system",
+          "@illa-design/theme": "@illa-design/theme",
+          "@illa-design/trigger":"@illa-design/trigger",
+          "@illa-design/input-number":"@illa-design/input-number"
         },
       },
     },
