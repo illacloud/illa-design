@@ -6,9 +6,8 @@ import {
   useState,
   cloneElement,
 } from "react"
-import { Dayjs } from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
 import {
-  dayjs,
   isArray,
   isString,
   useMergeValue,
