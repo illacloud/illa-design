@@ -3,6 +3,7 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const localSearch = require.resolve("@cmfcmf/docusaurus-search-local");
 
 const i18nConfig = {
   defaultLocale: 'en',
@@ -15,7 +16,7 @@ const config = {
   title: 'illa-design',
   tagline: 'Dinosaurs are cool',
   url: 'https://design.illafamily.com',
-  baseUrl:"/",
+  baseUrl: "/",
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -124,6 +125,11 @@ const config = {
       },
     }),
 
+  plugins: [
+    [localSearch, {
+      language: ["en", "zh"]
+    }]
+  ]
 
 };
 
