@@ -111,6 +111,6 @@ export const SearchPopup = <T extends OptionProps>(
       </ul>
     </div>
   ) : (
-    <Empty css={flexCenterStyle} />
+    <Empty css={flexCenterStyle} style={style} />
   )
 }
