@@ -148,7 +148,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
             setFocus0(false)
             onBlur?.(e)
           }}
-          onChange={(event: any) => {
+          onChange={(event) => {
             const value = event.target?.value
             if (!("value" in props)) {
               setValue0(value)
@@ -180,7 +180,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
             setFocus1(false)
             onBlur?.(e)
           }}
-          onChange={(event: any) => {
+          onChange={(event) => {
             const value = event.target?.value
             if (!("value" in props)) {
               setValue1(value)

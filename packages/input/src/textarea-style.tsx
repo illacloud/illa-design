@@ -89,7 +89,6 @@ export function applyTextAreaStyle() {
     box-sizing: border-box;
     padding: 5px 17px 12px;
     font-size: 14px;
-    font-family: HelveticaNeue;
     line-height: 22px;
     min-height: 44px;
     height: 44px;

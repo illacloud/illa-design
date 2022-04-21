@@ -1,4 +1,4 @@
-import { CSSProperties, HTMLAttributes, ReactNode } from "react"
+import { CSSProperties, HTMLAttributes, ReactNode, SyntheticEvent } from "react"
 import { NodeProps, Store } from "./node"
 import { TriggerProps } from "@illa-design/trigger"
 
@@ -35,6 +35,8 @@ export interface CascaderProps<T>
     extra: { dropdownVisible?: boolean },
   ) => void
   onClear?: (visible?: boolean) => void
+  onFocus?: (e: SyntheticEvent) => void
+  onBlur?: (e: SyntheticEvent) => void
   onVisibleChange?: (visible: boolean) => void
 }
 

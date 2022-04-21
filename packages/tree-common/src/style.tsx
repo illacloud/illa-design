@@ -96,8 +96,13 @@ export const switchIconCss = css`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: 16px;
-  width: 16px;
+  height: 10px;
+  border-radius: 8px;
+  width: 10px;
+  margin: 3px;
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+  }
 `
 
 export function applyNodeTextContainerCss(

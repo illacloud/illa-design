@@ -8,7 +8,7 @@ import {
 } from "react"
 import { Dayjs } from "dayjs"
 import {
-  dayjs,
+  dayjsPro,
   isArray,
   isString,
   useMergeValue,
@@ -109,12 +109,12 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
 
     const isValidTime = (time?: string): boolean => {
       return (
-        typeof isString(time) && dayjs(time, format)?.format(format) === time
+        typeof isString(time) && dayjsPro(time, format)?.format(format) === time
       )
     }
 
     const formatTime = (str: Dayjs) => {
-      return str ? dayjs(str)?.format(format) : ""
+      return str ? dayjsPro(str)?.format(format) : ""
     }
 
     const changeFocusedInputIndex = (index: number) => {

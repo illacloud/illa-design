@@ -5,9 +5,8 @@ import {
   TextareaHTMLAttributes,
   KeyboardEvent,
   Ref,
-  MutableRefObject,
+  MutableRefObject, SyntheticEvent,
 } from "react"
-import { Dayjs } from "dayjs"
 
 export type InputBorderColor =
   | string
@@ -47,10 +46,8 @@ export interface InputElementProps
 }
 
 export interface InputProps
-  extends Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    "prefix" | "size" | "onChange"
-  > {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>,
+    "prefix" | "size" | "onChange"> {
   inputRef?: Ref<HTMLInputElement>
   variant?: InputVariant
   placeholder?: string
@@ -72,7 +69,7 @@ export interface InputProps
   textCenterHorizontal?: boolean
   onClear?: () => void
   onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
-  onChange?: (value: string, event: any) => void
+  onChange?: (value: string, event: SyntheticEvent) => void
 }
 
 export interface TextAreaProps
@@ -86,9 +83,9 @@ export interface TextAreaProps
   autoSize?:
     | boolean
     | {
-        minRows?: number
-        maxRows?: number
-      }
+    minRows?: number
+    maxRows?: number
+  }
   value?: string
   maxLength?: number
   showCount?: boolean
@@ -144,10 +141,8 @@ export type RangeInputRef = {
 }
 
 export interface RangeInputProps
-  extends Omit<
-    InputHTMLAttributes<HTMLDivElement>,
-    "disabled" | "size" | "placeholder" | "value" | "onChange"
-  > {
+  extends Omit<InputHTMLAttributes<HTMLDivElement>,
+    "disabled" | "size" | "placeholder" | "value" | "onChange"> {
   inputGroupRef?: MutableRefObject<{
     input0?: HTMLInputElement | null
     input1?: HTMLInputElement | null
@@ -170,7 +165,7 @@ export interface RangeInputProps
   isPlaceholder?: boolean
   changeFocusedInputIndex?: (index: number) => void
 
-  onChange?: (value: string[], event: any) => void
+  onChange?: (value: string[], event: SyntheticEvent) => void
   onClear?: () => void
   onPressEnter?: () => void
   onPressTab?: (e: any) => void

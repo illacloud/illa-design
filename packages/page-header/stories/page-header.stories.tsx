@@ -10,6 +10,7 @@ export default {
 const Template: Story<PageHeaderProps> = (args) => {
   return (
     <PageHeader
+      {...args}
       title="IllaDesign"
       subTitle="This is a description"
       backIcon
@@ -30,7 +31,6 @@ const Template: Story<PageHeaderProps> = (args) => {
         ],
       }}
       extra={<div>save</div>}
-      {...args}
     ></PageHeader>
   )
 }
