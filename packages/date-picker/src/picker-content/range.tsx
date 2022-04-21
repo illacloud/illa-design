@@ -261,7 +261,7 @@ export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                       <Calendar
                         panel={true}
                         mode={"day"}
-                        css={css`
+                        _css={css`
                           ${triContentCommonCss};
                           ${rangeLeftContentCss}
                         `}
@@ -280,7 +280,7 @@ export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                       <Calendar
                         panel={true}
                         mode={"day"}
-                        css={css`
+                        _css={css`
                           ${triContentCommonCss};
                           ${rangeRightContentCss}
                         `}

@@ -189,7 +189,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                   panel={true}
                   mode={type}
                   panelTodayBtn={false}
-                  css={triContentCommonCss}
+                  _css={triContentCommonCss}
                   onChange={(date: Dayjs) => {
                     changeDate(date)
                   }}
