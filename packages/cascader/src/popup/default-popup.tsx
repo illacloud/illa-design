@@ -14,6 +14,7 @@ import {
   optionListWrapper,
 } from "./style"
 import { Empty } from "@illa-design/empty"
+import { motion } from "framer-motion"
 
 export const DefaultPopup = <T extends OptionProps>(
   props: CascaderPanelProps<T>,
@@ -36,6 +37,14 @@ export const DefaultPopup = <T extends OptionProps>(
   const [activeNode, setActiveNode] = useState(
     store.findNodeByValue(value && value[value.length - 1]) || null,
   )
+
+  const [animate, setAnimate] = useState(false)
+
+  useEffect(() => {
+    if (popupVisible) {
+      setAnimate(true)
+    }
+  }, [popupVisible])
 
   const options = store.getOptions()
 
@@ -129,6 +138,11 @@ export const DefaultPopup = <T extends OptionProps>(
     option && option.children && menus.push(option.children)
   })
 
+  const variants = {
+    hidden: { width: 0, minWidth: 0, overflow: "hidden", opacity: 0 },
+    visible: { width: "auto", minWidth: 120, opacity: 1 },
+  }
+
   return (
     <>
       {menus.map((list, level) => {
@@ -137,7 +151,12 @@ export const DefaultPopup = <T extends OptionProps>(
         }
         return list.length === 0 ? null : (
           <div css={optionListWrapper} key={level}>
-            <ul
+            <motion.ul
+              initial={"hidden"}
+              animate={"visible"}
+              variants={!animate ? {} : variants}
+              transition={{ duration: 0.2 }}
+              key={level}
               onClick={(e) => {
                 e.preventDefault()
               }}
@@ -214,7 +233,7 @@ export const DefaultPopup = <T extends OptionProps>(
                   </li>
                 )
               })}
-            </ul>
+            </motion.ul>
           </div>
         )
       })}
