@@ -167,6 +167,7 @@ export default defineConfig({
           "@illa-design/menu": "@illa-design/menu",
           "@illa-design/tree": "@illa-design/tree",
           "@illa-design/tree-select": "@illa-design/tree-select",
+          "@illa-design/tree-common": "@illa-design/tree-common",
         },
       },
     },
