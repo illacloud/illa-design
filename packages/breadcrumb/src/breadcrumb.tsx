@@ -1,4 +1,4 @@
-import { Children, forwardRef } from "react"
+import { Children, forwardRef, Fragment } from "react"
 import { BreadcrumbProps } from "./interface"
 import { css } from "@emotion/react"
 import { separatorCss, itemCss, wrapCss } from "./style"
@@ -22,7 +22,7 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
       routes?.length &&
       routes.map((item, idx: number) => {
         return (
-          <>
+          <Fragment key={idx}>
             <BreadcrumbContext.Provider
               value={{
                 isCurrent: idx === routes.length - 1,
@@ -43,14 +43,14 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
               ) : idx === 1 ? (
                 <Separator />
               ) : null)}
-          </>
+          </Fragment>
         )
       })
 
     let childLiItem = Children.toArray(props.children)
     const normalItems = Children.map(childLiItem, (ele, idx) => {
       return (
-        <>
+        <Fragment key={idx}>
           <BreadcrumbContext.Provider
             value={{
               isCurrent: idx === childLiItem.length - 1,
@@ -68,7 +68,7 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
             ) : idx === 1 ? (
               <Separator />
             ) : null)}
-        </>
+        </Fragment>
       )
     })
 
