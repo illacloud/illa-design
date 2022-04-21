@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react"
+import { forwardRef, MouseEventHandler, useState } from "react"
 import { TagProps } from "./interface"
 import { css } from "@emotion/react"
 import { CloseIcon } from "@illa-design/icon"
@@ -20,6 +20,7 @@ import {
   tagOutlineNormal,
   tagOutlinePrepare,
 } from "./style"
+import * as events from "events"
 
 export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const {
@@ -98,9 +99,9 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
         <span css={applyCloseIcon(colorScheme, size, variant)}>
           <CloseIcon
             size="8px"
-            onClick={() => {
+            onClick={(e) => {
               if (props.onClose != undefined) {
-                props.onClose()
+                props.onClose(e)
               }
               if (visible == undefined) {
                 setRealVisible(false)
