@@ -1,5 +1,6 @@
 import { Dayjs } from "dayjs"
 import * as _ from "lodash"
+import { ReactNode } from "react"
 
 // thx arco
 export function isDayjs(time: any): time is Dayjs {
@@ -24,6 +25,10 @@ export function isObject(obj: any): obj is { [key: string]: any } {
   return Object.prototype.toString.call(obj) === "[object Object]"
 }
 
+export function isEmptyObject(obj: any): boolean {
+  return isObject(obj) && Object.keys(obj).length === 0
+}
+
 export function isPromise(obj: any): obj is { [key: string]: any } {
   return Object.prototype.toString.call(obj) === "[object Promise]"
 }
@@ -42,4 +47,18 @@ export function isFunction<T extends Function = Function>(
   value: any,
 ): value is T {
   return typeof value === "function"
+}
+
+// thx arco
+export const isServerRendering = (function () {
+  try {
+    return !(typeof window !== "undefined" && document !== undefined)
+  } catch (e) {
+    return true
+  }
+})()
+
+/** merge multiple children to a string node */
+export const isSingleNode = (child: ReactNode) => {
+  return isString(child) || isNumber(child)
 }

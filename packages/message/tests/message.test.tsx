@@ -1,6 +1,6 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react"
+import { render, screen, fireEvent, waitFor, act } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import * as React from "react"
+
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { iconColorMap } from "@illa-design/alert"
 import userEvent from "@testing-library/user-event"
@@ -9,8 +9,16 @@ import { Message } from "../src"
 import { MessageType } from "../../notification/src"
 
 describe("Open Message", () => {
+  beforeEach(() => {
+    act(() => {
+      jest.useFakeTimers()
+    })
+  })
   afterEach(() => {
     Message.clear()
+    act(() => {
+      jest.runAllTimers()
+    })
   })
   test("Message renders with different type", async () => {
     const types: MessageType[] = [
@@ -182,38 +190,38 @@ describe("Open Message", () => {
     await waitFor(() => {}, { timeout: 800 })
     expect(instance.innerHTML).toBe("After")
   })
-})
 
-test("Message renders with global config", async () => {
-  Message.info("Before")
-  render(<div data-testid="body" id={"container"} />)
-  Message.config({
-    maxCount: 1,
-    duration: 0,
-    getContainer: () => document.getElementById("container") as HTMLElement,
-  })
+  test("Message renders with global config", async () => {
+    Message.info("Before")
+    render(<div data-testid="body" id={"container"} />)
+    Message.config({
+      maxCount: 1,
+      duration: 0,
+      getContainer: () => document.getElementById("container") as HTMLElement,
+    })
 
-  Message.info({
-    content: "Old",
-    id: "old",
-  })
-  await waitFor(() => {}, { timeout: 800 })
-  expect(screen.getByTestId("body")).toBeInTheDocument()
-  expect(screen.getByTestId("body").firstChild).toBeInTheDocument()
+    Message.info({
+      content: "Old",
+      id: "old",
+    })
+    await waitFor(() => {}, { timeout: 800 })
+    expect(screen.getByTestId("body")).toBeInTheDocument()
+    expect(screen.getByTestId("body").firstChild).toBeInTheDocument()
 
-  const instance = screen.getByText("Old")
-  await waitFor(
-    () => {
-      expect(instance).toBeInTheDocument()
-    },
-    {
-      timeout: 3500,
-    },
-  )
-  Message.info({
-    content: "New",
-    id: "new",
+    const instance = screen.getByText("Old")
+    await waitFor(
+      () => {
+        expect(instance).toBeInTheDocument()
+      },
+      {
+        timeout: 3500,
+      },
+    )
+    Message.info({
+      content: "New",
+      id: "new",
+    })
+    await waitFor(() => {}, { timeout: 800 })
+    expect(screen.getByText("New")).toBeInTheDocument()
   })
-  await waitFor(() => {}, { timeout: 800 })
-  expect(screen.getByText("New")).toBeInTheDocument()
 })

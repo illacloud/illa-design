@@ -1,10 +1,6 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Spin, SpinProps } from "../src"
 import { css } from "@emotion/react"
-import { SiPandas } from "react-icons/all"
-import { SearchIcon } from "@illa-design/icon"
 
 //👇 This default export determines where your story goes in the story list
 export default {

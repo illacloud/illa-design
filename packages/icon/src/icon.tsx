@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef } from "react"
 import { IconProps } from "./interface"
 import { css } from "@emotion/react"
@@ -11,6 +10,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
     height = props.size ?? "1em",
     color = "currentColor",
     spin,
+    _css,
     ...rest
   } = props
 
@@ -28,7 +28,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
   return (
     <svg
       ref={ref}
-      css={finalCss}
+      css={css(finalCss, _css)}
       width={width}
       height={height}
       color={color}

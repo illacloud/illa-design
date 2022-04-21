@@ -1,27 +1,21 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import {
   forwardRef,
-  useRef,
-  useState,
+  SyntheticEvent,
   useEffect,
   useReducer,
-  useImperativeHandle,
+  useRef,
+  useState,
 } from "react"
+import { InputElement, InputElementProps } from "@illa-design/input"
+import { isNumber, isObject, omit } from "@illa-design/system"
 import {
-  InputElement,
-  InputRefType,
-  InputElementProps,
-} from "@illa-design/input"
-import { isObject, omit, isNumber } from "@illa-design/system"
-import {
+  ErrorIcon,
+  ExpandIcon,
   LoadingIcon,
   SearchIcon,
-  ExpandIcon,
-  ErrorIcon,
 } from "@illa-design/icon"
-import { InputTag, ObjectValueType } from "@illa-design/input-tag"
-import { SelectViewProps, SelectStateValue } from "./interface"
+import { InputTag, InputTagProps, ObjectValueType } from "@illa-design/input-tag"
+import { SelectStateValue, SelectViewProps } from "./interface"
 import {
   applyIconStyle,
   applySelectContent,
@@ -43,13 +37,12 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     const {
       children,
       value,
-      mode,
       size = "medium",
       inputValue,
       defaultValue,
       showSearch,
       placeholder,
-      isMultipleMode,
+      multiple,
       popupVisible,
       isEmptyValue,
       maxTagCount,
@@ -57,12 +50,11 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       error,
       loading,
       disabled,
-      options,
       labelInValue,
       allowClear,
+      allowCreate,
       removeIcon,
       // event
-      onChange,
       onClick,
       onFocus,
       onBlur,
@@ -76,14 +68,14 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     } = props
 
     const viewRef = useRef(null)
-    const inputRef = useRef<InputRefType>(null)
+    const inputRef = useRef<HTMLInputElement>(null)
     const [focused, setFocused] = useState(false)
     const mergedFocused = focused || popupVisible
     const [searchStatus, setSearchStatus] = useState(SearchStatus.NONE)
 
-    const canFocusInput = showSearch || mode === "tags"
+    const canFocusInput = showSearch || allowCreate
     const renderedValue =
-      !isMultipleMode && value !== undefined ? renderText(value).text : ""
+      !multiple && value !== undefined ? renderText(value).text : ""
     const isRetainInputValueSearch =
       isObject(showSearch) && showSearch?.retainInputValue
 
@@ -113,7 +105,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       return dispatch
     }
 
-    const tryTriggerFocusChange = (action: "focus" | "blur", event: any) => {
+    const tryTriggerFocusChange = (action: "focus" | "blur", event: SyntheticEvent) => {
       // The focus event at this time should be triggered by the input element
       if (canFocusInput && event.target === viewRef.current) {
         return
@@ -127,32 +119,17 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       }
     }
 
-    const tryTriggerKeyDown = (event: any) => {
-      if (canFocusInput && event.currentTarget === viewRef.current) {
-        return
-      }
-      // Prevent the default behavior of the browser when pressing Enter
-      const keyCode = event.keyCode || event.which
-      if (keyCode === 13) {
-        event.preventDefault()
-      }
-      onKeyDown && onKeyDown(event)
-    }
-
     const inputEventHandlers = {
-      paste: onPaste as
-        | React.ClipboardEventHandler<HTMLInputElement>
-        | undefined,
-      keyDown: tryTriggerKeyDown,
-      focus: (event: any) => {
+      paste: onPaste,
+      focus: (event: SyntheticEvent) => {
         event.stopPropagation()
         tryTriggerFocusChange("focus", event)
       },
-      blur: (event: any) => {
+      blur: (event: SyntheticEvent) => {
         event.stopPropagation()
         tryTriggerFocusChange("blur", event)
       },
-      change: (newValue: string, event: any) => {
+      change: (newValue: string, event?: SyntheticEvent) => {
         setSearchStatus(SearchStatus.EDITING)
         onChangeInputValue?.(newValue, event)
       },
@@ -193,23 +170,34 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         value: typeof !isObject(_inputValue) ? _inputValue : "",
         // Allow placeholder to display the selected value first when searching
         placeholder:
-          canFocusInput && renderedValue && !isObject(_inputValue)
+          canFocusInput && renderedValue && !isObject(renderedValue)
             ? renderedValue
             : placeholder,
+        style: {
+          pointerEvents: canFocusInput ? "auto" : "none",
+        },
       }
 
       if (canFocusInput) {
         inputProps.onPaste = inputEventHandlers.paste
-        inputProps.onKeyDown = inputEventHandlers.keyDown
+        inputProps.onKeyDown = (event) => {
+          if (canFocusInput && event.currentTarget === viewRef.current) {
+            return
+          }
+          // Prevent the default behavior of the browser when pressing Enter
+          const keyCode = event.keyCode || event.which
+          if (keyCode === 13) {
+            event.preventDefault()
+          }
+          onKeyDown && onKeyDown(event)
+        }
         inputProps.onFocus = inputEventHandlers.focus
         inputProps.onBlur = inputEventHandlers.blur
         inputProps.onValueChange = inputEventHandlers.change
       } else {
         // Avoid input getting focus by Tab
         inputProps.tabIndex = -1
-        if (inputProps.style) {
-          inputProps.style.pointerEvents = "none"
-        }
+        // inputProps['style']['pointerEvents'] = "none"
       }
       const needShowInput = (mergedFocused && canFocusInput) || isEmptyValue
 
@@ -249,28 +237,38 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         })
       }
 
-      const eventHandlers = {
+      const eventHandlers: InputTagProps = {
         onPaste: inputEventHandlers.paste,
-        onKeyDown: inputEventHandlers.keyDown,
         onFocus: inputEventHandlers.focus,
         onBlur: inputEventHandlers.blur,
         onInputChange: inputEventHandlers.change,
-        onRemove: (value: any, index: number, event: any) => {
-          maxTagCount && forceUpdate()
+        onKeyDown: (event) => {
+          if (canFocusInput && event.currentTarget === viewRef.current) {
+            return
+          }
+          // Prevent the default behavior of the browser when pressing Enter
+          const keyCode = event.keyCode || event.which
+          if (keyCode === 13) {
+            event.preventDefault()
+          }
+          onKeyDown && onKeyDown(event)
+        },
+        onRemove: (value, index, event) => {
+          // maxTagCount && forceUpdate()
           onRemoveCheckedItem?.(value, index, event)
         },
       }
 
       return (
         <InputTag
-          css={css`
-            width: 100% !important;
-            border: unset !important;
-            padding: unset !important;
-            box-shadow: unset !important;
+          _css={css`
+            width: 100%;
+            border: unset;
+            padding: unset;
+            box-shadow: unset;
           `}
-          disableInput={!(showSearch || isMultipleMode)}
-          ref={inputRef as any}
+          disableInput={!(showSearch ? showSearch : multiple)}
+          inputRef={inputRef}
           disabled={disabled}
           placeholder={placeholder}
           value={tagsToShow}
@@ -298,7 +296,10 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         }}
         onBlur={(event) => tryTriggerFocusChange("blur", event)}
         {...omit(otherProps, [
+          "options",
+          "filterOption",
           "onSearch",
+          "onChange",
           "onPopupScroll",
           "onInputValueChange",
           "onDeselect",
@@ -308,7 +309,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
           css={applySelectContent(stateValue)}
           onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}
         >
-          {isMultipleMode ? renderMultiple() : renderSingle()}
+          {multiple ? renderMultiple() : renderSingle()}
           {!disabled && !isEmptyValue && allowClear ? (
             <span
               title="selectRemoveIcon"

@@ -1,8 +1,5 @@
 import { Meta, Story } from "@storybook/react"
-import * as React from "react"
-import { Pagination } from "../src"
-import { PaginationProps } from "../src"
-import { ReactNode } from "react"
+import { Pagination, PaginationProps } from "../src"
 
 export default {
   title: "DATA DISPLAY/Pagination",
@@ -15,6 +12,18 @@ export default {
       control: false,
     },
     moreIcon: {
+      control: false,
+    },
+    currentPage: {
+      control: false,
+    },
+    pageSize: { control: false },
+    showTotal: {
+      control: {
+        type: "boolean",
+      },
+    },
+    sizeOptions: {
       control: false,
     },
   },

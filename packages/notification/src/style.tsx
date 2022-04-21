@@ -1,4 +1,4 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { MessageType, NoticePosition } from "./interface"
 import { AlertType, iconColorMap } from "@illa-design/alert"
@@ -11,7 +11,9 @@ export const positionMap = {
   bottomRight: "bottom:20px;right:20px",
 }
 
-export function applyNotificationWrapper(position: NoticePosition) {
+export function applyNotificationWrapper(
+  position: NoticePosition,
+): SerializedStyles {
   const align =
     position === "topRight" || position === "bottomRight"
       ? `align-items:end`
@@ -26,10 +28,16 @@ export function applyNotificationWrapper(position: NoticePosition) {
   `
 }
 
-export function applyNotification() {
+export function applyNotification(
+  showIcon?: boolean,
+  closable?: boolean,
+): SerializedStyles {
   return css`
     margin-bottom: 20px;
+    position: relative;
     padding: 16px;
+    padding-left: ${showIcon ? "40px" : "16px"};
+    padding-right: ${closable ? "40px" : "16px"};
     overflow: hidden;
     width: 320px;
     display: flex;
@@ -41,30 +49,30 @@ export function applyNotification() {
   `
 }
 
-export function applyNotificationIcon(type: AlertType) {
+export function applyNotificationIcon(type: AlertType): SerializedStyles {
   return css`
-    padding-right: 8px;
+    position: absolute;
+    left: 16px;
+    top: 20px;
+    line-height: 0;
     font-size: 16px;
     color: ${iconColorMap[type]};
   `
 }
-export function applyNotificationContentWrapper() {
-  return css`
-    flex: 1;
-    word-break: break-all;
-  `
-}
 
-export function applyNotificationTitle() {
-  return css`
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.5;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-  `
-}
+export const applyNotificationContentWrapper = css`
+  flex: 1;
+  word-break: break-all;
+`
 
-export function applyNotificationContent(hasTitle: boolean) {
+export const applyNotificationTitle = css`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+`
+
+export function applyNotificationContent(hasTitle: boolean): SerializedStyles {
   const fontSize = hasTitle ? `14px` : `16px`
   return css`
     font-size: ${fontSize};
@@ -73,20 +81,20 @@ export function applyNotificationContent(hasTitle: boolean) {
   `
 }
 
-export function applyNotificationCloseBtn() {
-  return css`
-    font-size: 8px;
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
-    cursor: pointer;
-  `
-}
+export const applyNotificationCloseBtn = css`
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  font-size: 8px;
+  line-height: 0;
+  color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  cursor: pointer;
+`
 
-export function applyNotificationAction() {
-  return css`
-    text-align: right;
-    margin-top: 16px;
-  `
-}
+export const applyNotificationAction = css`
+  text-align: right;
+  margin-top: 16px;
+`
 
 export function applyNotificationSlide(position: NoticePosition): Variants {
   const originX =
@@ -108,13 +116,18 @@ export function applyNotificationSlide(position: NoticePosition): Variants {
   }
 }
 
-export function applyMessage(closable: boolean) {
-  const padding = closable ? `padding-right:36px` : ""
+export function applyMessage(
+  closable?: boolean,
+  showIcon?: boolean,
+): SerializedStyles {
+  const paddingRight = closable ? `padding-right:46px` : ""
+  const paddingLeft = showIcon ? `padding-left:40px` : ""
   return css`
     margin-bottom: 24px;
     position: relative;
     padding: 9px 16px;
-    ${padding};
+    ${paddingRight};
+    ${paddingLeft};
     pointer-events: auto;
     overflow: hidden;
     box-sizing: border-box;
@@ -125,30 +138,30 @@ export function applyMessage(closable: boolean) {
   `
 }
 
-export function applyMessageIcon(type: MessageType) {
+export function applyMessageIcon(type: MessageType): SerializedStyles {
   return css`
-    margin-right: 8px;
+    position: absolute;
+    top: 12px;
+    left: 16px;
     font-size: 16px;
+    line-height: 0;
     color: ${iconColorMap[type]};
     display: inline-block;
   `
 }
-export function applyMessageContent() {
-  return css`
-    font-family: SFProDisplay;
-    font-size: 14px;
-    line-height: 1.57;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-  `
-}
-export function applyMessageCloseBtn() {
-  return css`
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    font-size: 8px;
-    display: inline-block;
-    cursor: pointer;
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
-  `
-}
+export const applyMessageContent = css`
+  font-size: 14px;
+  line-height: 1.57;
+  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+`
+
+export const applyMessageCloseBtn = css`
+  position: absolute;
+  top: 16px;
+  line-height: 0;
+  right: 23px;
+  font-size: 8px;
+  display: inline-block;
+  cursor: pointer;
+  color: ${globalColor(`--${illaPrefix}-gray-03`)};
+`

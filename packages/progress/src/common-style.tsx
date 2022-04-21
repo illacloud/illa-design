@@ -1,5 +1,5 @@
 import { ProgressColorScheme } from "./interface"
-import { SerializedStyles } from "@storybook/theming"
+import { SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { css } from "@emotion/react"
 

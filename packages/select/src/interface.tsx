@@ -1,16 +1,18 @@
-import React, {
+import {
   HTMLAttributes,
   PropsWithChildren,
   ReactNode,
   ReactElement,
   UIEventHandler,
+  JSXElementConstructor, SyntheticEvent,
 } from "react"
+import { TriggerProps } from "@illa-design/trigger"
 
 export interface OptionProps
   extends Omit<HTMLAttributes<HTMLLIElement>, "onMouseEnter" | "onMouseLeave"> {
   _key?: any
   disabled?: boolean
-  isMultipleMode?: boolean
+  multiple?: boolean
   value?: string | number
   title?: string
   extra?: any
@@ -18,6 +20,7 @@ export interface OptionProps
   valueSelect?: string | string[] | number | number[]
   isSelectOption?: boolean
   size?: SelectSize
+  onClick?: (value: SyntheticEvent) => void
   onMouseEnter?: (value: OptionProps["value"]) => void
   onMouseLeave?: () => void
   onClickOption?: (value: OptionProps["value"], disabled?: boolean) => void
@@ -38,10 +41,7 @@ export type LabeledValue = {
 }
 
 export interface OptionListProps<T> {
-  childrenList?: React.ReactElement<
-    any,
-    string | React.JSXElementConstructor<any>
-  >[]
+  childrenList?: ReactElement<any, string | JSXElementConstructor<any>>[]
   notFoundContent?: ReactNode
   render?: (data: T, index: number) => ReactNode
   onMouseMove?: () => void
@@ -51,10 +51,8 @@ export interface OptionListProps<T> {
 export type SelectSize = "small" | "medium" | "large"
 
 export interface SelectProps
-  extends Omit<
-    HTMLAttributes<HTMLDivElement>,
-    "defaultValue" | "onFocus" | "onBlur"
-  > {
+  extends Omit<HTMLAttributes<HTMLDivElement>,
+    "defaultValue" | "onFocus" | "onBlur"> {
   defaultValue?:
     | string
     | string[]
@@ -65,7 +63,8 @@ export interface SelectProps
   value?: string | string[] | number | number[] | LabeledValue | LabeledValue[]
   inputValue?: string
   labelInValue?: boolean
-  mode?: "multiple" | "tags"
+  multiple?: boolean
+  allowCreate?: boolean
   notFoundContent?: ReactNode
   placeholder?: string
   showSearch?:
@@ -83,16 +82,17 @@ export interface SelectProps
     | string
     | number
     | {
-        label: ReactNode | string
-        value: string | number
-        disabled?: boolean
-        extra?: any
-      }
-  )[]
+    label: ReactNode | string
+    value: string | number
+    disabled?: boolean
+    extra?: any
+  }
+    )[]
   filterOption?:
     | boolean
     | ((inputValue: string, option: ReactElement) => boolean)
-
+  triggerProps?: Partial<TriggerProps>
+  // events
   onChange?: (value: any, option?: OptionInfo | OptionInfo[]) => void
   onSearch?: (value: string, reason: InputValueChangeReason) => void
   onPopupScroll?: (element: any) => void
@@ -102,19 +102,22 @@ export interface SelectProps
     value: string | number | LabeledValue,
     option: OptionInfo,
   ) => void
-  onFocus?: (e: React.FocusEvent<HTMLDivElement>) => void
-  onBlur?: (e: React.FocusEvent<HTMLDivElement>) => void
+  onFocus?: (e: SyntheticEvent) => void
+  onBlur?: (e: SyntheticEvent) => void
   onClear?: (visible?: boolean) => void
 }
 
-export interface SelectViewProps extends SelectProps {
-  isMultipleMode?: boolean
+export interface SelectViewProps
+  extends Omit<SelectProps, "options" | "filterOption" | "onChange" | "onClear"> {
+  value?: any
+  defaultValue?: any
+  multiple?: boolean
   popupVisible?: boolean
   isEmptyValue?: boolean
   renderText: (value: any) => { text?: any; disabled?: boolean }
-  onRemoveCheckedItem?: (item: any, index: number, e: any) => void
-  onChangeInputValue?: (value: string, e: any) => void
-  onClear?: (e: any) => void
+  onRemoveCheckedItem?: (item: any, index: number, e?: SyntheticEvent) => void
+  onChangeInputValue?: (value: string, e?: SyntheticEvent) => void
+  onClear?: (e: SyntheticEvent) => void
 }
 
 // Reason：User manual input、Checked option、optionList Hide、auto word segmentation

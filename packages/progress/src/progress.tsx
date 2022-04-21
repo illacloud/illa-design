@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, ReactNode } from "react"
 import { ProgressProps } from "./interface"
 import { LineProgress } from "./line-progress"

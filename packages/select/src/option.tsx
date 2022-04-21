@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
-import { forwardRef } from "react"
+import { forwardRef, SyntheticEvent } from "react"
 import { OptionProps } from "./interface"
 import { applyOptionStyle } from "./style"
 import { omit } from "@illa-design/system"
@@ -15,7 +13,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
     disabled,
     valueActive,
     valueSelect,
-    isMultipleMode,
+    multiple,
     // events
     onChange,
     onMouseEnter,
@@ -25,14 +23,14 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
   } = props
 
   const currentValue = "value" in props ? value : children?.toString()
-  const isChecked = isMultipleMode
-    ? (valueSelect as any[]).indexOf(value) !== -1
+  const isChecked = multiple
+    ? (valueSelect as any[])?.indexOf(value) !== -1
     : valueSelect === value
 
   const optionProps = {
     onMouseEnter: () => onMouseEnter?.(value),
     onMouseLeave: () => onMouseLeave?.(),
-    onClick: (event: any) => {
+    onClick: (event: SyntheticEvent) => {
       onClickOption && onClickOption(currentValue, disabled)
       otherProps.onClick?.(event)
     },
@@ -41,14 +39,17 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
 
   return (
     <>
-      {isMultipleMode ? (
+      {multiple ? (
         <li css={applyOptionStyle(size)} ref={ref} {...optionProps}>
           <Checkbox
             checked={isChecked}
             disabled={disabled}
-            onChange={optionProps.onClick}
+            onChange={(_, event:SyntheticEvent) => {
+              onClickOption && onClickOption(currentValue, disabled)
+              otherProps.onClick?.(event)
+            }}
           />
-          <span>{children}</span>
+          <span css={{ "margin-left": "8px" }}>{children}</span>
         </li>
       ) : (
         <li css={applyOptionStyle(size)} ref={ref} {...optionProps}>

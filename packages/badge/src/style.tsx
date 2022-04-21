@@ -1,6 +1,16 @@
-/** @jsxImportSource @emotion/react */
-import { css, keyframes } from "@emotion/react"
+import { css, keyframes, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { isObject } from "@illa-design/system"
+import { BadgeColorScheme, BadgeStatus } from "./interface"
+import { ReactNode } from "react"
+
+const statusColor = {
+  default: `--${illaPrefix}-gray-06`,
+  processing: `--${illaPrefix}-blue-03`,
+  success: `--${illaPrefix}-green-03`,
+  warning: `--${illaPrefix}-yellow-03`,
+  error: `--${illaPrefix}-red-03`,
+}
 
 export const badgeScale = keyframes`
   from {
@@ -11,19 +21,17 @@ export const badgeScale = keyframes`
     transform: scale(1, 1);
   }
 `
-export function applyBadge() {
-  return css`
-    display: inline-block;
-    position: relative;
-    line-height: 1;
-  `
-}
+export const applyBadge = css`
+  display: inline-block;
+  position: relative;
+  line-height: 1;
+`
 
 export function applyBadgeDot(
   color: string,
   hasChildren: boolean,
   hasStatus?: boolean,
-) {
+): SerializedStyles {
   let position: string = ``
   if (!hasStatus && hasChildren) {
     position += `
@@ -49,7 +57,7 @@ export function applyBadgeNumberOrText(
   color: string,
   hasChildren: boolean,
   length: number,
-) {
+): SerializedStyles {
   const padding = length > 1 ? "padding: 0 6px;" : ""
   const position = hasChildren
     ? `
@@ -82,7 +90,7 @@ export function applyBadgeNumberOrText(
   `
 }
 
-export function applyBadgeScale(isChanged: boolean = false) {
+export function applyBadgeScale(isChanged: boolean = false): SerializedStyles {
   return isChanged
     ? css`
         animation-name: ${badgeScale};
@@ -94,18 +102,37 @@ export function applyBadgeScale(isChanged: boolean = false) {
     : css``
 }
 
-export function applyBadgeStatusWrapper() {
-  return css`
-    display: inline-flex;
-    align-items: center;
-  `
-}
+export const applyBadgeStatusWrapper = css`
+  display: inline-flex;
+  align-items: center;
+`
 
-export function applyBadgeStatusText() {
-  return css`
-    margin-left: 9px;
-    font-size: 12px;
-    line-height: 1.33;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-  `
+export const applyBadgeStatusText = css`
+  margin-left: 9px;
+  font-size: 12px;
+  line-height: 1.33;
+  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+`
+
+export function getDotColor(
+  count: number | ReactNode,
+  colorScheme?: BadgeColorScheme,
+  status?: BadgeStatus,
+): string {
+  let colorStyle
+  if (colorScheme) {
+    colorStyle = globalColor(`--${illaPrefix}-${colorScheme}-03`)
+    if (!colorStyle) {
+      colorStyle = colorScheme
+    }
+  }
+  if (status) {
+    colorStyle = globalColor(statusColor[status])
+  }
+  colorStyle = colorStyle
+    ? colorStyle
+    : isObject(count)
+    ? globalColor(`--${illaPrefix}-white-01`)
+    : globalColor(`--${illaPrefix}-red-03`)
+  return colorStyle
 }

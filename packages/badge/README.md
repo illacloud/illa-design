@@ -11,7 +11,7 @@ yarn add @illa-design/badge
 ## 引用组件
 
 ```jsx
-import { Badge } from "@illa-dedign/badge"
+import { Badge } from "@illa-design/badge"
 ```
 
 ## API

@@ -11,7 +11,7 @@ yarn add @illa-design/input
 ## Import component
 
 ```jsx
-import { Input } from "@illa-dedign/input"
+import { Input } from "@illa-design/input"
 ```
 
 ## API
@@ -22,7 +22,7 @@ import { Input } from "@illa-dedign/input"
 | ------------ | ------------------------------------------ | ------------------------------------------------------------ | ----------- |
 | variant      | Two styles of the input box                | `"fill" \| "outline"`                                         | `"outline"` |
 | placeholder  | The placeholder show on the input box      | `string \| string[]`                                          | `-`         |
-| boarderColor | Color of the box boarder                   | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`    |
+| borderColor | Color of the box boarder                   | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`    |
 | defaultValue | Default value                              | `string \| string[]`                                         | `-`         |
 | disabled     | If true, the input box status is disabled  | `boolean`                                                    | `false`     |
 | error        | If true, the input box status is error     | `boolean`                                                    | `false`     |
@@ -59,7 +59,7 @@ import { Input } from "@illa-dedign/input"
 | placeholder  | The placeholder show on the input box                  | `string \| string[]`                                          | `-`         |
 | defaultValue | Default value                                          | `string \| string[]`                                          | `-`         |
 | disabled     | If true, the input box status is disabled              | `boolean`                                                    | `-`         |
-| boarderColor | Color of the box boarder                               | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`    |
+| borderColor | Color of the box boarder                               | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`    |
 | error        | If true, the input box status is error                 | `boolean`                                                    | `false`     |
 | size         | Size of the box                                        | `"small" \| "medium" \| "large"  `                              | `"medium"`  |
 | value        | Value                                                  | `string \| string[]`                                          |   `-`       |
@@ -74,7 +74,7 @@ import { Input } from "@illa-dedign/input"
 | placeholder     | The placeholder show on the input bo                        | `string \| string[]`                                          |  `-`        |
 | defaultValue    | Default value                                               | `string \| string[]`                                          |  `-`       |
 | disabled        | If true, the input box status is disabled                   | `boolean`                                                    | `-`         |
-| boarderColor    | Color of the box boarder                                    | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`    |
+| borderColor    | Color of the box boarder                                    | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `"blue"`    |
 | error           | If true, the input box status is error                      | `boolean`                                                    | `false`     |
 | size            | Size of the box                                             | `"small" \| "medium" \| "large"  `                              | `"medium"`  |
 | value           | Value                                                       | `string \| string[]`                                          |   `-`       |

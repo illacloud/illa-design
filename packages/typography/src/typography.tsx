@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, HTMLAttributes } from "react"
 import { applyTypoContainer } from "./typograph-style"
 

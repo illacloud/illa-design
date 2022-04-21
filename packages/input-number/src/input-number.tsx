@@ -1,9 +1,14 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
-import { forwardRef, useState, useRef, useCallback, useEffect } from "react"
+import {
+  forwardRef,
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle, SyntheticEvent,
+} from "react"
 import NP from "number-precision"
 import { InputNumberProps } from "./interface"
-import { Input, InputRefType } from "@illa-design/input"
+import { Input } from "@illa-design/input"
 import { UpIcon, DownIcon, MinusIcon, PlusIcon } from "@illa-design/icon"
 import { isNumber } from "@illa-design/system"
 import {
@@ -24,11 +29,12 @@ const getPrecision = (precision?: number, step?: number) => {
   return null
 }
 
-export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
+export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
   (props, ref) => {
     const {
       style,
       className,
+      inputRef,
       defaultValue,
       value,
       error,
@@ -54,7 +60,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
       ...rest
     } = props
 
-    const inputRef = useRef<InputRefType>(null)
+    const refInput = useRef<HTMLInputElement>(null)
     const timerRef = useRef<any>(null)
     const hasOperateRef = useRef(false)
 
@@ -62,7 +68,6 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
     const renderStepButton = !hideControl && mode === "button"
     const [inputValue, setInputValue] = useState<string>("")
     const [displayValue, setDisplayValue] = useState<string>("")
-    const [isOutOfRange, setIsOutOfRange] = useState(false)
     const [isUserInputting, setIsUserInputting] = useState(false)
     const [currentValue, setCurrentValue] = useState<InputNumberProps["value"]>(
       "defaultValue" in props ? defaultValue : undefined,
@@ -78,7 +83,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
     const mergedPrecision = getPrecision(precision, step)
 
     const getLegalValue = useCallback(
-      (changedValue) => {
+      (changedValue: any) => {
         let finalValue: string | number | undefined = Number(changedValue)
         if (!changedValue && changedValue !== 0) {
           finalValue = undefined
@@ -112,7 +117,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
     }
 
     const handleArrowKey = (
-      event: any,
+      event: SyntheticEvent,
       method: StepMethods,
       needRepeat = false,
     ) => {
@@ -131,7 +136,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
       }
 
       setValue(getLegalValue(finalValue))
-      inputRef?.current?.focus?.()
+      refInput?.current?.focus?.()
 
       // auto change while holding
       if (needRepeat) {
@@ -152,10 +157,10 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
       return readOnly
         ? {}
         : {
-            onMouseDown: (e: any) => handleArrowKey(e, method, true),
-            onMouseLeave: stop,
-            onMouseUp: stop,
-          }
+          onMouseDown: (e: SyntheticEvent) => handleArrowKey(e, method, true),
+          onMouseLeave: stop,
+          onMouseUp: stop,
+        }
     }
 
     useEffect(() => {
@@ -180,14 +185,19 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
     useEffect(() => {
       const outOfRange = isNumber(mergedValue)
         ? (isNumber(min) && mergedValue < min) ||
-          (isNumber(max) && mergedValue > max)
+        (isNumber(max) && mergedValue > max)
         : false
       // Don't correct the illegal value caused by prop value. Wait for user to take actions.
       if (outOfRange && hasOperateRef.current) {
         setValue(getLegalValue(mergedValue))
       }
-      setIsOutOfRange(outOfRange)
     }, [min, max, mergedValue, getLegalValue])
+
+    useImperativeHandle(
+      inputRef,
+      () => refInput.current as HTMLInputElement,
+      [],
+    )
 
     const stateValue = {
       size,
@@ -197,7 +207,8 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
       <Input
         css={applyInputNumber}
         size={size}
-        ref={inputRef}
+        ref={ref}
+        inputRef={refInput}
         style={style}
         className={className}
         error={error}
@@ -205,6 +216,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
         readOnly={readOnly}
         placeholder={placeholder}
         value={displayValue}
+        textCenterHorizontal={mode === "button"}
         prefix={{ render: prefix }}
         suffix={{
           render: (
@@ -266,7 +278,7 @@ export const InputNumber = forwardRef<InputRefType, InputNumberProps>(
         }}
         onFocus={(e) => {
           hasOperateRef.current = true
-          setInputValue(inputRef?.current?.dom?.value as string)
+          setInputValue(refInput?.current?.value as string)
           onFocus && onFocus(e)
         }}
         onBlur={(e) => {

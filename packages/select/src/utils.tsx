@@ -1,5 +1,4 @@
-import React, { ReactElement } from "react"
-import get from "lodash/get"
+import { Children, cloneElement, Key, ReactElement } from "react"
 import {
   OptionInfo,
   OptionInfoMap,
@@ -12,10 +11,10 @@ import { isString, isObject, isArray, isNumber } from "@illa-design/system"
 type OptionsType = SelectProps["options"]
 
 export function isSelectOption(child: ReactElement): boolean {
-  return get(child, "props.isSelectOption")
+  return child.props?.isSelectOption ?? false
 }
 
-export function isEmptyValue(value: any, isMultiple: boolean) {
+export function isEmptyValue(value: any, isMultiple?: boolean) {
   // Illegal value is considered as unselected
   return isMultiple ? !isArray(value) || !value.length : value === undefined
 }
@@ -33,7 +32,7 @@ export function getHighlightText<T>({
   const transformNode = (node: any) => {
     if (node && node.props && typeof node.props.children === "string") {
       const { children } = node.props
-      return React.cloneElement(node, {
+      return cloneElement(node, {
         children: (() => {
           let indexOfNextRegTest = 0
           const result = []
@@ -89,13 +88,13 @@ export function flatChildren(
   let optionIndexListForArrowKey: Array<number> = []
 
   const getChildValue = (child: ReactElement) => {
-    const propValue = get(child, "props.value")
+    const propValue = child.props?.value
     return propValue === undefined ? child.props.children.toString() : propValue
   }
 
   const getChildKey = (
     { label, value }: any,
-    key?: React.Key | null,
+    key?: Key | null,
     isGroupTitle?: boolean,
   ) => {
     // Handle custom node key
@@ -124,7 +123,7 @@ export function flatChildren(
 
     if (!optionInfoMap.get(optionValue)) {
       if (!("_key" in child.props)) {
-        child = React.cloneElement(child, {
+        child = cloneElement(child, {
           _key: getChildKey(child.props, child.key),
         })
       }
@@ -185,12 +184,12 @@ export function flatChildren(
   }
 
   if (children) {
-    React.Children?.map(children as any, (child: React.ReactElement) => {
+    Children.map(children as any, (child: ReactElement) => {
       if (isSelectOption(child)) {
         handleOption(child, "children")
       } else if (isObject(child) && child.props) {
         childrenList.push(
-          React.cloneElement(child, {
+          cloneElement(child, {
             _key: getChildKey(child.props, child.key),
           }),
         )
@@ -216,7 +215,7 @@ export type SelectInner = string | number | string[] | number[] | undefined
 
 export function getValidValue(
   value: any,
-  isMultiple: boolean,
+  isMultiple?: boolean,
   labelInValue?: boolean,
 ): SelectInner {
   // Compatible when labelInValue is set, value is passed in the object

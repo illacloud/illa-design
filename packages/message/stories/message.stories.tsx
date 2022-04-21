@@ -1,9 +1,8 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
 import { Button } from "@illa-design/button"
 import { Message } from "../src"
-import { NoticeProps, Notice } from "@illa-design/notification"
+import { NoticeProps, Notice } from "../../notification/src"
 
 export default {
   title: "FEEDBACK/Message",
@@ -61,9 +60,6 @@ const Template: Story<NoticeProps> = (args) => {
             Message.info({
               ...args,
               style: { width: 500 },
-              onClose: () => {
-                console.log("closing")
-              },
             })
           }}
         >
@@ -85,7 +81,9 @@ const Template: Story<NoticeProps> = (args) => {
         </Button>
         <Button
           onClick={() => {
-            Message.loading("message is loading!")
+            Message.loading(
+              "LongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLongLong",
+            )
           }}
         >
           Open Message(Loading with string)

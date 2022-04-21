@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import { FC } from "react"
+import { forwardRef, HTMLAttributes } from "react"
 import { createPortal } from "react-dom"
 import { css, SerializedStyles } from "@emotion/react"
 
@@ -13,16 +12,17 @@ function applyPopupContainer(top: string, left: string): SerializedStyles {
   `
 }
 
-export interface PopupProps {
+export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
   top: string
   left: string
 }
 
-export const Popup: FC<PopupProps> = (props) => {
+export const Popup = forwardRef<HTMLDivElement, PopupProps>((props, ref) => {
+  const { top, left, children, ...otherProps } = props
   return createPortal(
-    <div css={applyPopupContainer(props.top, props.left)}>
-      {props.children}
+    <div ref={ref} css={applyPopupContainer(top, left)} {...otherProps}>
+      {children}
     </div>,
     document.body,
   )
-}
+})

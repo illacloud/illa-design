@@ -57,23 +57,19 @@ test("InputNumber render with mode button", async () => {
     screen.getByPlaceholderText("test-mode")?.parentElement
       ?.previousElementSibling
   if (addIcon) {
-    userEvent.click(addIcon)
-    userEvent.click(addIcon)
-    userEvent.click(addIcon)
-    userEvent.click(addIcon)
-    userEvent.click(addIcon)
-    await waitFor(() => {
-      expect(screen.getByDisplayValue("2.0")).toBeInTheDocument()
-    })
+    await userEvent.click(addIcon)
+    await userEvent.click(addIcon)
+    await userEvent.click(addIcon)
+    await userEvent.click(addIcon)
+    await userEvent.click(addIcon)
+    expect(screen.getByDisplayValue("2.0")).toBeInTheDocument()
   }
   if (minIcon) {
-    userEvent.click(minIcon)
-    userEvent.click(minIcon)
-    userEvent.click(minIcon)
-    userEvent.click(minIcon)
-    await waitFor(() => {
-      expect(screen.getByDisplayValue("-1.0")).toBeInTheDocument()
-    })
+    await userEvent.click(minIcon)
+    await userEvent.click(minIcon)
+    await userEvent.click(minIcon)
+    await userEvent.click(minIcon)
+    expect(screen.getByDisplayValue("-1.0")).toBeInTheDocument()
   }
   expect(changeEvent).toBeCalledTimes(7)
 })
@@ -89,11 +85,6 @@ test("InputNumber render with input", async () => {
     />,
   )
   const input = screen.getByPlaceholderText("test-mode")
-  const addIcon =
-    screen.getByPlaceholderText("test-mode")?.parentElement?.nextElementSibling
-  const minIcon =
-    screen.getByPlaceholderText("test-mode")?.parentElement
-      ?.previousElementSibling
   fireEvent.change(input, { target: { value: 1 } })
   fireEvent.blur(input)
   await waitFor(() => {

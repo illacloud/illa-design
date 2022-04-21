@@ -1,5 +1,5 @@
-import { ReactNode, HTMLAttributes } from "react"
-import * as React from "react"
+import { ReactNode, HTMLAttributes, Ref, SyntheticEvent } from "react"
+import { SerializedStyles } from "@emotion/react"
 
 export type InputTagSize = "small" | "medium" | "large"
 
@@ -8,10 +8,10 @@ export interface InputTagProps<T = any>
     HTMLAttributes<HTMLDivElement>,
     "size" | "value" | "defaultValue" | "onChange"
   > {
+  inputRef?: Ref<HTMLInputElement>
   inputValue?: string
   defaultValue?: T[]
   value?: T[]
-
   size?: InputTagSize
   placeholder?: string
   error?: boolean
@@ -27,14 +27,15 @@ export interface InputTagProps<T = any>
   validate?: (inputValue: string, values: T[]) => boolean | Promise<boolean>
 
   onClear?: () => void
-  onClick?: (e: any) => void
-  onFocus?: (e: any) => void
-  onBlur?: (e: any) => void
-  onPaste?: (e: any) => void
+  onClick?: (e: SyntheticEvent) => void
+  onFocus?: (e: SyntheticEvent) => void
+  onBlur?: (e: SyntheticEvent) => void
   onChange?: (value: T[]) => void
-  onRemove?: (value: T, index: number, event?: any) => void
-  onInputChange?: (inputValue: string, event?: any) => void
-  onPressEnter?: (e: any) => void
+  onRemove?: (value: T, index: number, event?: SyntheticEvent) => void
+  onInputChange?: (inputValue: string, event?: SyntheticEvent) => void
+  onPressEnter?: (e: SyntheticEvent) => void
+
+  _css?: SerializedStyles
 }
 
 export type ObjectValueType = {

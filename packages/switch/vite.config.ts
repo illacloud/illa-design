@@ -9,7 +9,10 @@ export default defineConfig({
   assetsInclude: "src/assets/*",
   plugins: [
     react({
+      jsxImportSource: "@emotion/react",
+      jsxRuntime: "automatic",
       babel: {
+        plugins: ["@emotion/babel-plugin"],
         compact: false,
       },
       // Exclude storybook stories
@@ -23,7 +26,8 @@ export default defineConfig({
     }),
   ],
   build: {
-    sourcemap: true,
+    sourcemap: false,
+    minify: false,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/switch",
@@ -37,14 +41,22 @@ export default defineConfig({
           declaration: true,
           declarationDir: path.resolve(__dirname, "dist/types"),
           exclude: path.resolve(__dirname, "node_modules/**"),
-          allowSyntheticDefaultImports: true,
         }),
       ],
-      external: ["react", "react-dom"],
+      external: [
+        "react",
+        "react-dom",
+        "@illa-design/system",
+        "@illa-design/theme",
+        "@illa-design/icon",
+      ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
+          "@illa-design/system": "@illa-design/system",
+          "@illa-design/theme": "@illa-design/theme",
+          "@illa-design/icon": "@illa-design/icon",
         },
       },
     },

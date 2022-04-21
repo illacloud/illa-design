@@ -14,7 +14,7 @@ exports[`Card renders with Cover 1`] = `
   >
     <img
       alt="dessert"
-      src="//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/3ee5f13fb09879ecb5185e440cef6eb9.png~tplv-uwbnlip3yd-webp.webp"
+      src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
       style="width: 100%; transform: translateY(-20px);"
     />
   </div>
@@ -101,10 +101,6 @@ exports[`Card renders with Meta 1`] = `
   width: 14px;
   font-size: 14px;
   height: 14px;
-}
-
-.emotion-6 {
-  vertical-align: middle;
 }
 
 .emotion-6 {
@@ -293,6 +289,8 @@ exports[`Card renders with different hoverable 1`] = `
   line-height: 1.57;
   background-color: #fff;
   border-radius: 2px;
+  -webkit-transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out;
   border: solid 1px #ebebeb;
 }
 

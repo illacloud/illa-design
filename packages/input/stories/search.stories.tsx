@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { SearchProps, Search } from "../src"
 
@@ -11,7 +10,7 @@ export default {
 export const search: Story<SearchProps> = (props) => {
   return (
     <div>
-      <Search {...props} />
+      <Search style={{ width: 280 }} {...props} />
     </div>
   )
 }

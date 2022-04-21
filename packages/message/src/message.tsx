@@ -1,6 +1,5 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef, useState, useCallback, useEffect } from "react"
-import ReactDOM from "react-dom"
+import { forwardRef, useState, useCallback, useEffect } from "react"
+
 import {
   MessageComponent,
   MessageProps,
@@ -15,9 +14,8 @@ import {
   ConfigProps,
   MessagePosition,
 } from "@illa-design/notification"
-
-import * as _ from "lodash"
 import { applyMessageSlide, applyMessageWrapper } from "./style"
+import { render } from "react-dom"
 
 let maxCount: number
 let duration: number
@@ -60,7 +58,7 @@ export const Message: MessageComponent = forwardRef<
     top: [],
     bottom: [],
   })
-  const getRemoves = useCallback((id: string, messageSet) => {
+  const getRemoves = useCallback((id: string, messageSet: MessageSet) => {
     let removeIndex = -1,
       pos = "top"
     Object.keys(messageSet).forEach((position) => {
@@ -159,7 +157,7 @@ export const Message: MessageComponent = forwardRef<
 
 Message.remove = (id: string) => {
   messagePosition.forEach((position) => {
-    ReactDOM.render(
+    render(
       <Message removeId={id} position={position} />,
       messageContainer[position] as HTMLDivElement,
     )
@@ -172,7 +170,7 @@ Message.add = (notice: NoticeProps) => {
     duration,
     ...notice,
   }
-  ReactDOM.render(
+  render(
     <Message notice={noticeProps} position={position as MessagePosition} />,
     messageContainer[position as MessagePosition] as HTMLDivElement,
   )
@@ -182,7 +180,7 @@ Message.config = (options: ConfigProps = {}) => {
   if (options.maxCount) {
     maxCount = options.maxCount
   }
-  if (_.isFinite(options.duration)) {
+  if (options.duration && isFinite(options.duration)) {
     duration = options.duration as number
   }
   if (options.getContainer && options.getContainer() !== container) {
@@ -193,7 +191,7 @@ Message.config = (options: ConfigProps = {}) => {
 }
 Message.clear = () => {
   messagePosition.forEach((position) => {
-    ReactDOM.render(
+    render(
       <Message shouldClear position={position} />,
       messageContainer[position] as HTMLDivElement,
     )

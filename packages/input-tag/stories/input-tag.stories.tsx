@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { InputTagProps, InputTag } from "../src"
 
@@ -19,7 +17,7 @@ export default {
 const Template: Story<InputTagProps> = (props) => {
   return (
     <div>
-      <InputTag {...props} />
+      <InputTag style={{ width: 280 }} {...props} />
     </div>
   )
 }

@@ -1,9 +1,7 @@
-/** @jsxImportSource @emotion/react */
-import * as React from "react"
-import { forwardRef, HTMLAttributes } from "react"
+import { forwardRef } from "react"
 import { motion } from "framer-motion"
 import { Tag } from "@illa-design/tag"
-import { ObjectValueType, RenderTagsProps } from "./interface"
+import { RenderTagsProps } from "./interface"
 import { tagStyle } from "./style"
 import { css } from "@emotion/react"
 
@@ -22,14 +20,6 @@ export const RenderTags = forwardRef<HTMLElement, RenderTagsProps>(
       valueChangeHandler,
       ...rest
     } = props
-
-    const tagCloseHandler = (itemValue: ObjectValueType, index: number) => {
-      onRemove?.(itemValue, index)
-      valueChangeHandler?.([
-        ...value?.slice(0, index),
-        ...value?.slice(index + 1),
-      ])
-    }
 
     return (
       <>
@@ -51,8 +41,12 @@ export const RenderTags = forwardRef<HTMLElement, RenderTagsProps>(
                 visible
                 size={size}
                 closable={closable}
-                onClose={() => {
-                  tagCloseHandler(item, index)
+                onClose={(event) => {
+                  onRemove?.(item, index, event)
+                  valueChangeHandler?.([
+                    ...value?.slice(0, index),
+                    ...value?.slice(index + 1),
+                  ])
                 }}
               >
                 <span>

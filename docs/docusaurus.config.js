@@ -3,18 +3,26 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const localSearch = require.resolve("@cmfcmf/docusaurus-search-local");
+
+const i18nConfig = {
+  defaultLocale: 'en',
+  locales: ["en", "zh-cn"],
+}
+
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
+  title: 'illa-design',
   tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
+  url: 'https://design.illafamily.com',
+  baseUrl: "/",
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'illa-family', // Usually your GitHub org/user name.
+  projectName: 'illa-design', // Usually your repo name.
+  i18n: i18nConfig,
 
   presets: [
     [
@@ -43,23 +51,26 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'illa-design',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'illa Logo',
+          src: 'img/illa_logo.svg',
         },
         items: [
           {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/illa-family/illa-design',
             label: 'GitHub',
             position: 'right',
+          },
+          {
+            type: "localeDropdown",
+            position: "right",
           },
         ],
       },
@@ -113,6 +124,13 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+
+  plugins: [
+    [localSearch, {
+      language: ["en", "zh"]
+    }]
+  ]
+
 };
 
 module.exports = config;

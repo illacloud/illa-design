@@ -11,7 +11,7 @@ yarn add @illa-design/avatar
 ## Import component
 
 ```jsx
-import { Avatar } from "@illa-dedign/avatar"
+import { Avatar } from "@illa-design/avatar"
 ```
 
 ## API
@@ -45,6 +45,26 @@ import { Avatar } from "@illa-dedign/avatar"
 | onClick | Callback when click the avatar | `() => void` | `-`     |
 
 ## Example
+
+
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
+
+export const code = `
+    <>
+      <Avatar />
+      <Avatar size="small">Small</Avatar>
+      <Avatar shape="square" colorScheme="red">Small</Avatar>
+      <Avatar src='https://bit.ly/dan-abramov' />
+      <Avatar text="e" />
+    </>`
+
+export const importStatement = `import { Avatar } from '@illa-design/avatar'`
+
+export const packages = {"@illa-design/avatar":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 
 ### Basic usage
 

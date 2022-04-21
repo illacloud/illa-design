@@ -11,7 +11,7 @@ yarn add @illa-design/progress
 ## Import component
 
 ```jsx
-import { Progress } from "@illa-dedign/progress"
+import { Progress } from "@illa-design/progress"
 ```
 
 ## API

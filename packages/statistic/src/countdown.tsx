@@ -1,8 +1,7 @@
-/** @jsxImportSource @emotion/react */
 import { forwardRef, useEffect, useRef, useState } from "react"
 import { CountDownProps } from "./interface"
 import dayjs from "dayjs"
-import { getDateString, getDayjsValue } from "./util"
+import { getDateString } from "./util"
 
 import {
   applyStatistic,
@@ -15,7 +14,6 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
     const {
       title,
       value = 0,
-      valueStyle,
       format = "HH:mm:ss",
       onFinish,
       onChange,
@@ -24,8 +22,15 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
       ...restProps
     } = props
 
-    const _now = getDayjsValue(now, format) as dayjs.Dayjs
-    const deadline = (getDayjsValue(value, format) as dayjs.Dayjs) || dayjs()
+    const _now = dayjs(now)
+    if (!_now.isValid()) {
+      console.warn("the now prop is not valid!")
+    }
+
+    const deadline = dayjs(value) || dayjs()
+    if (!deadline.isValid()) {
+      console.warn("the value prop is not valid!")
+    }
     const [valueShow, setValueShow] = useState(
       Math.max(deadline.diff(_now, "millisecond"), 0),
     )
@@ -61,7 +66,7 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
     return (
       <div ref={ref} {...restProps} css={applyStatistic}>
         {title && <div css={applyStatisticTitle}>{title}</div>}
-        <div css={applyStatisticContent} style={valueStyle}>
+        <div css={applyStatisticContent}>
           {getDateString(valueShow, format)}
         </div>
       </div>

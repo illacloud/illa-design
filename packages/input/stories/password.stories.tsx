@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Password, PasswordProps } from "../src"
 
@@ -11,7 +10,7 @@ export default {
 export const password: Story<PasswordProps> = (props) => {
   return (
     <div>
-      <Password {...props} />
+      <Password style={{ width: 280 }} {...props} />
     </div>
   )
 }

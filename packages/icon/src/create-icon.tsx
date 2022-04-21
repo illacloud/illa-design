@@ -1,4 +1,4 @@
-// thx charkra ui
+// thx chakra ui
 import { forwardRef, ReactElement } from "react"
 import { Icon } from "./icon"
 import { IconProps } from "./interface"
@@ -15,7 +15,7 @@ interface CreateIconOptions {
   title: string
   /**
    * The `svg` path or group element
-   * @type React.ReactElement | React.ReactElement[]
+   * @type ReactElement | ReactElement[]
    */
   path?: ReactElement | ReactElement[]
   /**

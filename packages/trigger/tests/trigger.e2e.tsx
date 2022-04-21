@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Trigger } from "../src"
 import { Button } from "@illa-design/button"
 import { mount, unmount } from "@cypress/react"
@@ -12,7 +11,7 @@ it("Trigger renders correctly", () => {
     </Trigger>,
   )
   cy.findByText("Hello Trigger Custom").trigger("mouseover")
-  expect(cy.findByText("Trigger Success Custom")).exist
+  cy.findByText("Trigger Success Custom").should("exist")
   unmount()
 })
 

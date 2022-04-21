@@ -1,7 +1,5 @@
-/** @jsxImportSource @emotion/react */
-import React, { forwardRef } from "react"
+import { CSSProperties, forwardRef } from "react"
 import { BadgeProps } from "./interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { isObject } from "@illa-design/system"
 import {
   applyBadge,
@@ -9,17 +7,10 @@ import {
   applyBadgeDot,
   applyBadgeStatusText,
   applyBadgeNumberOrText,
+  getDotColor,
 } from "./style"
 
 import { Count } from "./count"
-
-const statusColor = {
-  default: `--${illaPrefix}-gray-06`,
-  processing: `--${illaPrefix}-blue-03`,
-  success: `--${illaPrefix}-green-03`,
-  warning: `--${illaPrefix}-yellow-03`,
-  error: `--${illaPrefix}-red-03`,
-}
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   const {
@@ -28,7 +19,6 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     dot,
     maxCount = 99,
     colorScheme,
-    dotStyle: propsDotStyle,
     offset,
     status,
     children,
@@ -36,7 +26,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   } = props
 
   const [leftOffset, topOffset] = offset || []
-  const dotStyle = { ...(propsDotStyle || {}) }
+  const dotStyle: CSSProperties = {}
 
   if (leftOffset) {
     dotStyle.marginRight = -leftOffset
@@ -45,18 +35,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     dotStyle.marginTop = topOffset
   }
 
-  let colorStyle: string = ""
-  if (colorScheme) {
-    colorStyle = globalColor(`--${illaPrefix}-${colorScheme}-03`)
-  }
-  if (status) {
-    colorStyle = globalColor(statusColor[status])
-  }
-  colorStyle = colorStyle
-    ? colorStyle
-    : isObject(count)
-    ? globalColor(`--${illaPrefix}-white-01`)
-    : globalColor(`--${illaPrefix}-red-03`)
+  let colorStyle = getDotColor(count, colorScheme, status)
 
   const hasChildren = !!children
 
@@ -64,11 +43,8 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     // display status dot
     if (status) {
       return (
-        <span css={applyBadgeStatusWrapper}>
-          <span
-            css={applyBadgeDot(colorStyle, hasChildren, true)}
-            style={dotStyle}
-          />
+        <span css={applyBadgeStatusWrapper} style={dotStyle}>
+          <span css={applyBadgeDot(colorStyle, hasChildren, true)} />
           {text && <span css={applyBadgeStatusText}>{text}</span>}
         </span>
       )
@@ -77,8 +53,8 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     if (isObject(count)) {
       return (
         <span
-          style={dotStyle}
           css={applyBadgeNumberOrText(colorStyle, hasChildren, 0)}
+          style={dotStyle}
         >
           {count}
         </span>
@@ -88,8 +64,8 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     if (text) {
       return (
         <span
-          style={dotStyle}
           css={applyBadgeNumberOrText(colorStyle, hasChildren, text.length)}
+          style={dotStyle}
         >
           {text}
         </span>
@@ -98,17 +74,17 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     // display dot
     if (dot && count && count > 0) {
       return (
-        <span style={dotStyle} css={applyBadgeDot(colorStyle, hasChildren)} />
+        <span css={applyBadgeDot(colorStyle, hasChildren)} style={dotStyle} />
       )
     }
 
     let renderCount = count && count > maxCount ? `${maxCount}+` : `${count}`
     return count && count > 0 ? (
       <Count
-        dotStyle={dotStyle}
         count={renderCount}
         hasChildren={hasChildren}
         color={colorStyle}
+        style={dotStyle}
       />
     ) : null
   }

@@ -1,11 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, {
-  forwardRef,
-  useMemo,
-  useRef,
-  useEffect,
-  MouseEvent,
-} from "react"
+import { forwardRef, useMemo, useRef, useEffect, MouseEvent } from "react"
 import { NoticeProps } from "./interface"
 import {
   applyNotification,
@@ -103,27 +96,27 @@ export const Notice = forwardRef<HTMLDivElement, NoticeProps>((props, ref) => {
   if (noticeType === "Message") {
     return (
       <div
-        css={applyMessage(closable)}
+        css={applyMessage(closable, showIcon)}
         ref={ref}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         {...restProps}
       >
         {showIcon && renderIcon && (
-          <span css={applyMessageIcon(type)}>{renderIcon}</span>
+          <div css={applyMessageIcon(type)}>{renderIcon}</div>
         )}
-        <span css={applyMessageContent}>{content}</span>
+        <div css={applyMessageContent}>{content}</div>
         {closable && (
-          <span css={applyMessageCloseBtn} onClick={handleClose}>
+          <div css={applyMessageCloseBtn} onClick={handleClose}>
             {closeElement || <CloseIcon />}
-          </span>
+          </div>
         )}
       </div>
     )
   }
   return (
     <div
-      css={applyNotification}
+      css={applyNotification(showIcon, closable)}
       ref={ref}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

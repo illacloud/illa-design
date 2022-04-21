@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom"
 import { Timeline, TimelineItem } from "../src"
 import { render, screen, within } from "@testing-library/react"
-import * as React from "react"
 
 test("vertical Timeline", () => {
   render(
@@ -82,7 +81,7 @@ test("label & relative position", () => {
   )
   expect(screen.getByText("test label")).toBeInTheDocument()
   expect(screen.getByText("test label")).toHaveStyle({
-    "font-size": "16px",
+    "font-size": "14px",
   })
 
   render(
