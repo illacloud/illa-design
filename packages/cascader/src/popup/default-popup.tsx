@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useReducer } from "react"
+import React, { useState, useEffect } from "react"
 import isEqual from "react-fast-compare"
 import { isNumber } from "@illa-design/system"
 import { LoadingIcon, NextIcon } from "@illa-design/icon"

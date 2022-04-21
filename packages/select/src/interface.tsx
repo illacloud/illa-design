@@ -3,9 +3,8 @@ import {
   PropsWithChildren,
   ReactNode,
   ReactElement,
-  FocusEvent,
   UIEventHandler,
-  JSXElementConstructor,
+  JSXElementConstructor, SyntheticEvent,
 } from "react"
 import { TriggerProps } from "@illa-design/trigger"
 
@@ -21,6 +20,7 @@ export interface OptionProps
   valueSelect?: string | string[] | number | number[]
   isSelectOption?: boolean
   size?: SelectSize
+  onClick?: (value: SyntheticEvent) => void
   onMouseEnter?: (value: OptionProps["value"]) => void
   onMouseLeave?: () => void
   onClickOption?: (value: OptionProps["value"], disabled?: boolean) => void
@@ -51,10 +51,8 @@ export interface OptionListProps<T> {
 export type SelectSize = "small" | "medium" | "large"
 
 export interface SelectProps
-  extends Omit<
-    HTMLAttributes<HTMLDivElement>,
-    "defaultValue" | "onFocus" | "onBlur"
-  > {
+  extends Omit<HTMLAttributes<HTMLDivElement>,
+    "defaultValue" | "onFocus" | "onBlur"> {
   defaultValue?:
     | string
     | string[]
@@ -84,12 +82,12 @@ export interface SelectProps
     | string
     | number
     | {
-        label: ReactNode | string
-        value: string | number
-        disabled?: boolean
-        extra?: any
-      }
-  )[]
+    label: ReactNode | string
+    value: string | number
+    disabled?: boolean
+    extra?: any
+  }
+    )[]
   filterOption?:
     | boolean
     | ((inputValue: string, option: ReactElement) => boolean)
@@ -104,22 +102,22 @@ export interface SelectProps
     value: string | number | LabeledValue,
     option: OptionInfo,
   ) => void
-  onFocus?: (e: FocusEvent<HTMLDivElement>) => void
-  onBlur?: (e: FocusEvent<HTMLDivElement>) => void
+  onFocus?: (e: SyntheticEvent) => void
+  onBlur?: (e: SyntheticEvent) => void
   onClear?: (visible?: boolean) => void
 }
 
 export interface SelectViewProps
-  extends Omit<SelectProps, "options" | "filterOption" | "onChange"> {
+  extends Omit<SelectProps, "options" | "filterOption" | "onChange" | "onClear"> {
   value?: any
   defaultValue?: any
   multiple?: boolean
   popupVisible?: boolean
   isEmptyValue?: boolean
   renderText: (value: any) => { text?: any; disabled?: boolean }
-  onRemoveCheckedItem?: (item: any, index: number, e?: any) => void
-  onChangeInputValue?: (value: string, e: any) => void
-  onClear?: (e: any) => void
+  onRemoveCheckedItem?: (item: any, index: number, e?: SyntheticEvent) => void
+  onChangeInputValue?: (value: string, e?: SyntheticEvent) => void
+  onClear?: (e: SyntheticEvent) => void
 }
 
 // Reason：User manual input、Checked option、optionList Hide、auto word segmentation

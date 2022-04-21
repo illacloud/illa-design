@@ -425,7 +425,7 @@ export function applyClearStyle(
   size?: InputSize,
   AppearWithSuffix?: boolean,
 ): SerializedStyles {
-  let sizeCss: SerializedStyles = css()
+  let sizeCss: SerializedStyles
   if (size == "small") {
     sizeCss = css`
       position: absolute;

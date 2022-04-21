@@ -240,16 +240,6 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
           tryUpdatePopupVisible(true)
         }
       },
-      onRemoveCheckedItem: (_: any, index: number, event: Event) => {
-        event?.stopPropagation()
-        const value = currentValue?.[index as never]
-        const item = options.find((item) => item.value === value)
-        if (treeCheckable) {
-          item && handleCheck(item.key)
-        } else {
-          item && handleSelect(item.key)
-        }
-      },
       onClear: (event: any) => {
         event.stopPropagation()
         if (_multiple) {
@@ -385,6 +375,16 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
             }
             return {
               text: value,
+            }
+          }}
+          onRemoveCheckedItem={(_, index, event) => {
+            event?.stopPropagation()
+            const value = currentValue?.[index as never]
+            const item = options.find((item) => item.value === value)
+            if (treeCheckable) {
+              item && handleCheck(item.key)
+            } else {
+              item && handleSelect(item.key)
             }
           }}
         />
