@@ -196,6 +196,8 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
           onChangeMode={(mode: defaultModeItem) => setModeVal(mode)}
           locale={locale}
           monthListLocale={monthListLocale}
+          onChange={onChange}
+          onPanelChange={onPanelChange}
         />
         <CalendarBody
           allowSelect={finAllowSelect}
