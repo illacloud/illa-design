@@ -8,7 +8,8 @@ import { Node } from "../node"
 import useRefs, { useForceUpdate, useUpdate } from "../hooks"
 import {
   applyOptionLabelStyle,
-  applyOptionStyle, flexCenterStyle,
+  applyOptionStyle,
+  flexCenterStyle,
   optionListStyle,
   optionListWrapper,
 } from "./style"
