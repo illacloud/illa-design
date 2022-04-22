@@ -39,9 +39,13 @@ function applyStatus(stateValue: SelectStateValue) {
       ${disableOutlineStyle}
     `
   } else if (stateValue?.focus) {
-    const boxShadowColor = globalColor(`--${illaPrefix}-blue-01`)
+    const boxShadowColor = globalColor(
+      `--${illaPrefix}-${stateValue.borderColor}-01`,
+    )
     mainStyle = css`
-      border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+      border-color: ${globalColor(
+        `--${illaPrefix}-${stateValue.borderColor}-03`,
+      )};
       box-shadow: 0 0 8px 0
         ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
