@@ -58,7 +58,7 @@ const Template: Story<ModalProps> = (args) => {
         >
           I don't know if we each have a destiny, or if we're all just floating
           around accidentally―like on a breeze.
-        </Modal>{" "}
+        </Modal>
       </ConfigProvider>
 
       <ConfigContext.Provider value="Jarvey">
