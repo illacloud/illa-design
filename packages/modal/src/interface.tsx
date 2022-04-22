@@ -8,6 +8,7 @@ import {
 } from "react"
 import { ButtonProps } from "@illa-design/button"
 import { AlertType as ModalType } from "@illa-design/alert"
+import { SerializedStyles } from "@emotion/react"
 
 export type ModalReturnProps = {
   update: (newConfig: ConfirmProps) => void
@@ -22,6 +23,7 @@ export type HolderRef = {
 export interface ModalProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   visible?: boolean
+  _css?: SerializedStyles
   confirmLoading?: boolean
   mask?: boolean
   title?: ReactNode
