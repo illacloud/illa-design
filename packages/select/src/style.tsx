@@ -58,7 +58,9 @@ function applyStatus(stateValue: SelectStateValue) {
   } else {
     mainStyle = css`
       &:hover {
-        border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
+        border-color: ${globalColor(
+          `--${illaPrefix}-${stateValue.borderColor}-06`,
+        )};
       }
     `
   }
