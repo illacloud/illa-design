@@ -14,7 +14,11 @@ import {
   LoadingIcon,
   SearchIcon,
 } from "@illa-design/icon"
-import { InputTag, InputTagProps, ObjectValueType } from "@illa-design/input-tag"
+import {
+  InputTag,
+  InputTagProps,
+  ObjectValueType,
+} from "@illa-design/input-tag"
 import { SelectStateValue, SelectViewProps } from "./interface"
 import {
   applyIconStyle,
@@ -105,7 +109,10 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       return dispatch
     }
 
-    const tryTriggerFocusChange = (action: "focus" | "blur", event: SyntheticEvent) => {
+    const tryTriggerFocusChange = (
+      action: "focus" | "blur",
+      event: SyntheticEvent,
+    ) => {
       // The focus event at this time should be triggered by the input element
       if (canFocusInput && event.target === viewRef.current) {
         return

@@ -4,7 +4,8 @@ import {
   useRef,
   useCallback,
   useEffect,
-  useImperativeHandle, SyntheticEvent,
+  useImperativeHandle,
+  SyntheticEvent,
 } from "react"
 import NP from "number-precision"
 import { InputNumberProps } from "./interface"
@@ -157,10 +158,10 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       return readOnly
         ? {}
         : {
-          onMouseDown: (e: SyntheticEvent) => handleArrowKey(e, method, true),
-          onMouseLeave: stop,
-          onMouseUp: stop,
-        }
+            onMouseDown: (e: SyntheticEvent) => handleArrowKey(e, method, true),
+            onMouseLeave: stop,
+            onMouseUp: stop,
+          }
     }
 
     useEffect(() => {
@@ -185,7 +186,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     useEffect(() => {
       const outOfRange = isNumber(mergedValue)
         ? (isNumber(min) && mergedValue < min) ||
-        (isNumber(max) && mergedValue > max)
+          (isNumber(max) && mergedValue > max)
         : false
       // Don't correct the illegal value caused by prop value. Wait for user to take actions.
       if (outOfRange && hasOperateRef.current) {

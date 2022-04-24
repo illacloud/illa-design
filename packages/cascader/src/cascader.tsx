@@ -1,6 +1,7 @@
 import {
   ForwardedRef,
-  forwardRef, SyntheticEvent,
+  forwardRef,
+  SyntheticEvent,
   useCallback,
   useEffect,
   useRef,
