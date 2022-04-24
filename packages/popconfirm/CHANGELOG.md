@@ -1,4 +1,4 @@
-# @illa-design/system
+# @illa-design/popconfirm
 
 ## 0.0.1
 
@@ -7,14 +7,9 @@
 - release the first version
 
 - Updated dependencies []:
+  - @illa-design/button@0.0.1
   - @illa-design/config-provider@0.0.1
-  - @illa-design/icon@0.0.1
   - @illa-design/system@0.0.1
   - @illa-design/theme@0.0.1
-  - @illa-design/tooltip@0.0.1
-
-## 0.0.0
-
-### Patch Changes
-
-- init publish
+  - @illa-design/trigger@0.0.1
+  - @illa-design/typography@0.0.1
