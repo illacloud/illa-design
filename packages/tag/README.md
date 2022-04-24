@@ -1,4 +1,4 @@
-# TAG
+# Tag
 
 Tag is generally used to mark attributes, dimensions or categories of things.
 
