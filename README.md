@@ -12,9 +12,7 @@
 ![cover](https://devbo.cn/cover.png)
 
 [![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
-[![feishu](https://devbo.cn/feishu.svg)](https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=a8ck3dda-d44f-4897-8504-6775e8ff5e13)
-[![chromatic](https://devbo.cn/chromatic.svg)](https://chromatic.com/library?appId=618513c5ace06a003a5ed751&branch=main)
-[![storybook](https://devbo.cn/storybook.svg)](https://main--618513c5ace06a003a5ed751.chromatic.com)
+[![storybook](https://devbo.cn/storybook.svg)](https://storybook.illasoft.com/main)
 [![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](./LICENSE)
 [![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
 
@@ -31,15 +29,21 @@
 
 ## 💡 Components
 
-All components can be seen in Storybook 
+You can review all components in:
 
-[![storybook](https://devbo.cn/storybook.svg)](https://main--618513c5ace06a003a5ed751.chromatic.com)
+Doc
+
+[https://design.illafamily.com](https://design.illafamily.com)
+
+Storybook 
+
+[![storybook](https://devbo.cn/storybook.svg)](https://storybook.illasoft.com/main)
 
 ## 🖥 Fast Try
 
 You can quickly use ILLA Design on codesandbox.
 
-[![Edit compassionate-tdd-rxcco](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/compassionate-tdd-rxcco?fontsize=14&hidenavigation=1&theme=dark)
+[![Edit illa-design-demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/illa-design-demo-r1qyy2?fontsize=14&hidenavigation=1&theme=dark)
 
 ## 🚀 Get Started
 
@@ -91,11 +95,7 @@ Join ILLA Design community to share your ideas, suggestions or questions and con
 
 - [Github Discussion](https://github.com/illa-family/illa-design/discussions)
 
-<b>中文</b>
-
-[![feishu](https://devbo.cn/feishu.svg)](https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=a8ck3dda-d44f-4897-8504-6775e8ff5e13)
-
-<b>English</b>
+<b>Hangout together!</b>
 
 [![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
 
@@ -108,8 +108,10 @@ out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get in
 
 Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
 
-- Frontend Engineer(Beijing / Shenzhen)
-- Golang Engineer(Beijing / Shenzhen)
+- Frontend Engineer
+- Golang Engineer
+
+Contact Us: hr@illasoft.com
 
 ## License
 
