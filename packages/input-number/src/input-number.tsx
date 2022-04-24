@@ -4,7 +4,7 @@ import {
   useRef,
   useCallback,
   useEffect,
-  useImperativeHandle,
+  useImperativeHandle, SyntheticEvent,
 } from "react"
 import NP from "number-precision"
 import { InputNumberProps } from "./interface"
@@ -68,7 +68,6 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     const renderStepButton = !hideControl && mode === "button"
     const [inputValue, setInputValue] = useState<string>("")
     const [displayValue, setDisplayValue] = useState<string>("")
-    const [isOutOfRange, setIsOutOfRange] = useState(false)
     const [isUserInputting, setIsUserInputting] = useState(false)
     const [currentValue, setCurrentValue] = useState<InputNumberProps["value"]>(
       "defaultValue" in props ? defaultValue : undefined,
@@ -118,7 +117,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     }
 
     const handleArrowKey = (
-      event: any,
+      event: SyntheticEvent,
       method: StepMethods,
       needRepeat = false,
     ) => {
@@ -158,10 +157,10 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       return readOnly
         ? {}
         : {
-            onMouseDown: (e: any) => handleArrowKey(e, method, true),
-            onMouseLeave: stop,
-            onMouseUp: stop,
-          }
+          onMouseDown: (e: SyntheticEvent) => handleArrowKey(e, method, true),
+          onMouseLeave: stop,
+          onMouseUp: stop,
+        }
     }
 
     useEffect(() => {
@@ -186,13 +185,12 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     useEffect(() => {
       const outOfRange = isNumber(mergedValue)
         ? (isNumber(min) && mergedValue < min) ||
-          (isNumber(max) && mergedValue > max)
+        (isNumber(max) && mergedValue > max)
         : false
       // Don't correct the illegal value caused by prop value. Wait for user to take actions.
       if (outOfRange && hasOperateRef.current) {
         setValue(getLegalValue(mergedValue))
       }
-      setIsOutOfRange(outOfRange)
     }, [min, max, mergedValue, getLegalValue])
 
     useImperativeHandle(

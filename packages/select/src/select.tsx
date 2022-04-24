@@ -4,7 +4,7 @@ import {
   useState,
   useMemo,
   useEffect,
-  ReactText,
+  ReactText, SyntheticEvent,
 } from "react"
 import { useMergeValue, isArray, isObject } from "@illa-design/system"
 import { Trigger } from "@illa-design/trigger"
@@ -52,9 +52,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   } = props
 
   const [currentVisible, setCurrentVisible] = useState<boolean>()
-  const refValueMap = useRef<
-    { value: OptionProps["value"]; option: OptionInfo }[]
-  >([])
+  const refValueMap = useRef<{ value: OptionProps["value"]; option: OptionInfo }[]>([])
   const [stateValue, setValue] = useState(
     getValidValue(defaultValue, multiple, labelInValue),
   )
@@ -191,8 +189,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         value === undefined
           ? undefined
           : Array.isArray(value)
-          ? value.map(getOptionInfoByValue)
-          : getOptionInfoByValue(value)
+            ? value.map(getOptionInfoByValue)
+            : getOptionInfoByValue(value)
       onChange(getValueForCallbackParameter(value, option), option)
     }
   }
@@ -241,7 +239,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       if (x?.value) {
         return multiple
           ? isArray(currentValue) &&
-              (currentValue as Array<string | number>)?.indexOf(x?.value) > -1
+          (currentValue as Array<string | number>)?.indexOf(x?.value) > -1
           : x?.value === currentValue
       }
       return false
@@ -296,7 +294,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   // SelectView event handle
   const selectViewEventHandlers = {
     onFocus,
-    onBlur: (event: any) => {
+    onBlur: (event: SyntheticEvent) => {
       onBlur?.(event)
       !currentVisible && tryUpdateInputValue("", "optionListHide")
     },
@@ -306,11 +304,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         tryUpdatePopupVisible(true)
       }
     },
-    onRemoveCheckedItem: (_: any, index: number, event: Event) => {
-      event?.stopPropagation()
-      uncheckOption(currentValue?.[index as never])
-    },
-    onClear: (event: any) => {
+    onClear: (event: SyntheticEvent) => {
       event.stopPropagation()
       if (multiple) {
         // Keep the value that has been selected but disabled
@@ -390,6 +384,10 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
             text,
             disabled: option?.disabled,
           }
+        }}
+        onRemoveCheckedItem={(_, index, event) => {
+          event?.stopPropagation()
+          uncheckOption(currentValue?.[index as never])
         }}
       />
     </Trigger>

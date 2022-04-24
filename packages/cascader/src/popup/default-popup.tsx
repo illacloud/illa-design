@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useReducer } from "react"
+import React, { useState, useEffect } from "react"
 import isEqual from "react-fast-compare"
 import { isNumber } from "@illa-design/system"
 import { LoadingIcon, NextIcon } from "@illa-design/icon"
@@ -8,21 +8,13 @@ import { Node } from "../node"
 import useRefs, { useForceUpdate, useUpdate } from "../hooks"
 import {
   applyOptionLabelStyle,
-  applyOptionStyle, flexCenterStyle,
+  applyOptionStyle,
+  flexCenterStyle,
   optionListStyle,
   optionListWrapper,
 } from "./style"
 import { Empty } from "@illa-design/empty"
-
-export const getLegalIndex = (currentIndex: number, maxIndex: number) => {
-  if (currentIndex < 0) {
-    return maxIndex
-  }
-  if (currentIndex > maxIndex) {
-    return 0
-  }
-  return currentIndex
-}
+import { motion } from "framer-motion"
 
 export const DefaultPopup = <T extends OptionProps>(
   props: CascaderPanelProps<T>,
@@ -37,7 +29,6 @@ export const DefaultPopup = <T extends OptionProps>(
     value,
     multiple,
     popupVisible,
-    renderEmpty,
     expandTrigger,
     onDoubleClickOption,
     onChange,
@@ -46,6 +37,14 @@ export const DefaultPopup = <T extends OptionProps>(
   const [activeNode, setActiveNode] = useState(
     store.findNodeByValue(value && value[value.length - 1]) || null,
   )
+
+  const [animate, setAnimate] = useState(false)
+
+  useEffect(() => {
+    if (popupVisible) {
+      setAnimate(true)
+    }
+  }, [popupVisible])
 
   const options = store.getOptions()
 
@@ -139,6 +138,11 @@ export const DefaultPopup = <T extends OptionProps>(
     option && option.children && menus.push(option.children)
   })
 
+  const variants = {
+    hidden: { width: 0, minWidth: 0, overflow: "hidden", opacity: 0 },
+    visible: { width: "auto", minWidth: 120, opacity: 1 },
+  }
+
   return (
     <>
       {menus.map((list, level) => {
@@ -147,7 +151,12 @@ export const DefaultPopup = <T extends OptionProps>(
         }
         return list.length === 0 ? null : (
           <div css={optionListWrapper} key={level}>
-            <ul
+            <motion.ul
+              initial={"hidden"}
+              animate={"visible"}
+              variants={!animate ? {} : variants}
+              transition={{ duration: 0.2 }}
+              key={level}
               onClick={(e) => {
                 e.preventDefault()
               }}
@@ -224,7 +233,7 @@ export const DefaultPopup = <T extends OptionProps>(
                   </li>
                 )
               })}
-            </ul>
+            </motion.ul>
           </div>
         )
       })}

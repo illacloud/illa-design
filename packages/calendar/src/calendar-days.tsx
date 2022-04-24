@@ -187,20 +187,12 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
                 handleDateHover(item.date)
               }}
             >
-              {dateRender ? (
-                dateRender(item.date)
-              ) : (
-                <div
-                  css={handleMonthTypeDayText(
-                    item.date,
-                    currentMonth,
-                    disabled,
-                  )}
-                >
-                  {item.date.date()}
-                  {dateInnerContent}
-                </div>
-              )}
+              <div
+                css={handleMonthTypeDayText(item.date, currentMonth, disabled)}
+              >
+                {dateRender ? dateRender(item.date) : item.date.date()}
+                {dateInnerContent}
+              </div>
             </div>
           )
         })}

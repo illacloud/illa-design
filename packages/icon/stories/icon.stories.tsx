@@ -58,6 +58,9 @@ import {
   CaretRightIcon,
   InfoIcon,
   LeafIcon,
+  Result403Icon,
+  Result404Icon,
+  Result500Icon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -175,3 +178,12 @@ export const DragPoint: Story<IconProps> = (props) => (
 )
 
 export const Leaf: Story<IconProps> = (props) => <LeafIcon {...props} />
+export const Result403: Story<IconProps> = (props) => (
+  <Result403Icon {...props} />
+)
+export const Result404: Story<IconProps> = (props) => (
+  <Result404Icon {...props} />
+)
+export const Result500: Story<IconProps> = (props) => (
+  <Result500Icon {...props} />
+)

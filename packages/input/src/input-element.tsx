@@ -15,7 +15,6 @@ import { InputElementProps } from "./interface"
 import {
   applyClearStyle,
   applyInputStyle,
-  clearStyle,
   mirrorStyle,
   pointerStyle,
 } from "./style"

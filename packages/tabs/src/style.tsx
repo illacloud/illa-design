@@ -173,6 +173,7 @@ export function applyCardHeaderChildCss(
     border-width: 1px;
     border-bottom-width: 1.5px;
     z-index: 2;
+    margin: 0 2px;
     ${applyHoverBackgroundCss(isSelected, disabled)}
     color: ${globalColor(`--${illaPrefix}-gray-03`)};
     transition: background-color 200ms;
@@ -300,14 +301,14 @@ export function applyDividerHorizontalLineCss(h: number): SerializedStyles {
 
 export function applyCommonBlueLineCss(
   width: number,
-  positon: number,
+  position: number,
 ): SerializedStyles {
   return css`
     width: ${width - 32}px;
     height: 2px;
     position: relative;
     box-sizing: border-box;
-    left: ${positon}px;
+    left: ${position}px;
     transition: left 200ms, width 200ms;
     top: 1px;
     background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
