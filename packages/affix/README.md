@@ -37,6 +37,6 @@ import { Affix } from "@illa-design/affix"
 
 ```jsx
 <Affix>
-	<span>Hello</span>
+  <span>Hello</span>
 </Affix>
 ```
