@@ -18,77 +18,77 @@ import { Typography } from "@illa-design/typography"
 
 ### Typography Basic Properties
 
-| Props     | Desc                 | Type                 | Default |
-| --------- | -------------------- | -------------------- | ------- |
-| style     | Additional style     | `CSSProperties`      | `-`     |
-| className | Additional css class | `string \| string[]` | `-`     |
+| Props     | Desc                 | Type               | Default |
+| --------- | -------------------- | ------------------ | ------- |
+| style     | Additional style     | CSSProperties      | -       |
+| className | Additional css class | string \| string[] | -       |
 
 ### Heading Basic Properties
 
-| Props       | Desc                   | Type                                                         | Default        |
-| ----------- | ---------------------- | ------------------------------------------------------------ | -------------- |
-| colorScheme | Set font color         | `"white"\| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string` | `blackAlpha` |
-| level       | Heading level          | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6"`                    | `h2`         |
-| bold        | Set bold style         | `boolean`                                                    | `-`            |
-| disabled    | Set disable style      | `boolean`                                                    | `-`            |
-| mark        | Set mark style         | `boolean \| colorScheme`                                      | `-`            |
-| underline   | Underline  style       | `boolean`                                                    | `-`            |
-| delete      | Strikethrough style    | `boolean`                                                    | `-`            |
-| code        | Code block style       | `boolean`                                                    | `-`            |
-| copyable    | Whether to be copyable | `boolean \| copyableConfig`                                    | `-`            |
-| ellipsis    | Auto overflow omitted  | `boolean \| ellipsisConfig`                                   | `-`            |
+| Props       | Desc                   | Type                                                         | Default      |
+| ----------- | ---------------------- | ------------------------------------------------------------ | ------------ |
+| colorScheme | Set font color         | "white"\| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string | "blackAlpha" |
+| level       | Heading level          | "h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6"                 | "h2"         |
+| bold        | Set bold style         | boolean                                                      | -            |
+| disabled    | Set disable style      | boolean                                                      | -            |
+| mark        | Set mark style         | boolean \| colorScheme                                       | -            |
+| underline   | Underline  style       | boolean                                                      | -            |
+| delete      | Strikethrough style    | boolean                                                      | -            |
+| code        | Code block style       | boolean                                                      | -            |
+| copyable    | Whether to be copyable | boolean \| copyableConfig                                    | -            |
+| ellipsis    | Auto overflow omitted  | boolean \| ellipsisConfig                                    | -            |
 
 ### Text Basic Properties
 
-| Props       | Desc                   | Type                                                         | Default        |
-| ----------- | ---------------------- | ------------------------------------------------------------ | -------------- |
-| colorScheme | Set font color         | `"white"\| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string` | `blackAlpha` |
-| fontSize    | Font size              | `string`                                                     | `14px`       |
-| bold        | Set bold style         | `boolean`                                                    | `-`            |
-| disabled    | Set disable style      | `boolean`                                                    | `-`            |
-| mark        | Set mark style         | `boolean \| colorScheme`                                      | `-`            |
-| underline   | Underline  style       | `boolean`                                                    | `-`            |
-| delete      | Strikethrough style    | `boolean`                                                    | `-`            |
-| code        | Code block style       | `boolean`                                                    | `-`            |
-| copyable    | Whether to be copyable | `boolean \| copyableConfig`                                    | `-`            |
-| ellipsis    | Auto overflow omitted  | `boolean \| ellipsisConfig`                                   | `-`            |
+| Props       | Desc                   | Type                                                         | Default      |
+| ----------- | ---------------------- | ------------------------------------------------------------ | ------------ |
+| colorScheme | Set font color         | "white"\| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string | "blackAlpha" |
+| fontSize    | Font size              | string                                                       | "14px"       |
+| bold        | Set bold style         | boolean                                                      | -            |
+| disabled    | Set disable style      | boolean                                                      | -            |
+| mark        | Set mark style         | boolean \| colorScheme                                       | -            |
+| underline   | Underline  style       | boolean                                                      | -            |
+| delete      | Strikethrough style    | boolean                                                      | -            |
+| code        | Code block style       | boolean                                                      | -            |
+| copyable    | Whether to be copyable | boolean \| copyableConfig                                    | -            |
+| ellipsis    | Auto overflow omitted  | boolean \| ellipsisConfig                                    | -            |
 
 ### Paragraph Basic Properties
 
-| Props       | Desc                   | Type                                                         | Default        |
-| ----------- | ---------------------- | ------------------------------------------------------------ | -------------- |
-| colorScheme | Set font color         | `"white"\| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string` | `blackAlpha` |
-| fontSize    | Font size              | `string`                                                     | `14px`       |
-| indent      | Text indent            | `boolean`                                                    | `-`            |
-| bold        | Set bold style         | `boolean`                                                    | `-`            |
-| disabled    | Set disable style      | `boolean`                                                    | `-`            |
-| mark        | Set mark style         | `boolean \| colorScheme`                                      | `-`            |
-| underline   | Underline  style       | `boolean`                                                    | `-`            |
-| delete      | Strikethrough style    | `boolean`                                                    | `-`            |
-| code        | Code block style       | `boolean`                                                    | `-`            |
-| copyable    | Whether to be copyable | `boolean \| copyableConfig`                                    | `-`            |
-| ellipsis    | Auto overflow omitted  | `boolean \| EllipsisConfig`                                   | `-`            |
+| Props       | Desc                   | Type                                                         | Default      |
+| ----------- | ---------------------- | ------------------------------------------------------------ | ------------ |
+| colorScheme | Set font color         | "white"\| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green"  \| "blue" \| "cyan" \| "purple" \| string | "blackAlpha" |
+| fontSize    | Font size              | string                                                       | "14px"       |
+| indent      | Text indent            | boolean                                                      | -            |
+| bold        | Set bold style         | boolean                                                      | -            |
+| disabled    | Set disable style      | boolean                                                      | -            |
+| mark        | Set mark style         | boolean \| colorScheme                                       | -            |
+| underline   | Underline  style       | boolean                                                      | -            |
+| delete      | Strikethrough style    | boolean                                                      | -            |
+| code        | Code block style       | boolean                                                      | -            |
+| copyable    | Whether to be copyable | boolean \| copyableConfig                                    | -            |
+| ellipsis    | Auto overflow omitted  | boolean \| EllipsisConfig                                    | -            |
 
 ### ellipsisConfig 
 
-| Props       | Desc                                 | Type          | Default |
-| ----------- | ------------------------------------ | ------------- | ------- |
-| expandable  | whether to support expand            | `boolean`     | `-`     |
-| rows        | The number of omitted rows           | `number`      | `2`     |
-| suffix      | Suffix                               | `string`      | `-`     |
-| expandLabel | Configure expand elements            | `ReactNode`   | `-`     |
-| tooltip     | Show Tooltip when configure ellipsis | `boolean`     | `true`  |
-| onExpand    | Callback when expand omitted content | ` () => void` | `-`     |
+| Props       | Desc                                 | Type       | Default |
+| ----------- | ------------------------------------ | ---------- | ------- |
+| expandable  | whether to support expand            | boolean    | -       |
+| rows        | The number of omitted rows           | number     | 2       |
+| suffix      | Suffix                               | string     | -       |
+| expandLabel | Configure expand elements            | ReactNode  | -       |
+| tooltip     | Show Tooltip when configure ellipsis | boolean    | true    |
+| onExpand    | Callback when expand omitted content | () => void | -       |
 
 ### copyableConfig
 
-| Props         | Desc                            | Type         | Default    |
-| ------------- | ------------------------------- | ------------ | ---------- |
-| copyIcon      | Set copy icon                   | `ReactNode`  | `-`        |
-| copiedIcon    | Set copied icon                 | `ReactNode`  | `-`        |
-| copyTooltip   | Set copy tooltip                | `ReactNode`  | `-`   |
-| copiedTooltip | Set copied tooltip              | `ReactNode`  | `-` |
-| onCopy        | Callback when content is copied | `() => void` | `-`        |
+| Props         | Desc                            | Type       | Default |
+| ------------- | ------------------------------- | ---------- | ------- |
+| copyIcon      | Set copy icon                   | ReactNode  | -       |
+| copiedIcon    | Set copied icon                 | ReactNode  | -       |
+| copyTooltip   | Set copy tooltip                | ReactNode  | -       |
+| copiedTooltip | Set copied tooltip              | ReactNode  | -       |
+| onCopy        | Callback when content is copied | () => void | -       |
 
 
 
