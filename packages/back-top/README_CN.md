@@ -1,46 +1,46 @@
-# BackTop
+# 返回顶部 Backtop
 
-When scrolling to the height, a button to return to the top will appear in the lower right corner.
+当滚动到一定高度的时候，在右下角会出现一个返回顶部的按钮。
 
-## Installation
+## 安装
 
 ```bash
 yarn add @illa-design/backtop
 ```
 
-## Import component
+## 引用组件
 
 ```jsx
 import { Backtop } from "@illa-design/backtop"
 ```
 
-## API
+## 组件接口（API）
 
-### Backtop Basic Properties
+### Backtop 基础属性
 
-| Props         | Desc                                                         | Type                         | Default        |
-| ------------- | ------------------------------------------------------------ | ---------------------------- | -------------- |
-| visibleHeight | When scrolled to this height, the back to top button is visible. | `number`                     | `400`          |
-| target        | Set the element whose scroll event needs to be listened to   | `() => HTMLElement` | `Window` | `() => window` |
-| onClick       | Callback function when click returns to top.                 | `() => void`                 | `-`            |
-| easing        | Scroll to top easing type                                    | `string`                     | `quartOut`     |
-| duration      | Time to scroll to top.                                       | `number`                     | `400`          |
+| Props         | Desc                                                         | Type                        | Default      |
+| ------------- | ------------------------------------------------------------ | --------------------------- | ------------ |
+| visibleHeight | 当滚动到这个高度时，显示返回顶部按钮                         | number                      | 400          |
+| target        | 设置需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 | () => HTMLElement \| Window | () => window |
+| onClick       | 点击返回顶部时的回调函数                                     | () => void                  | -            |
+| easing        | 滚动到顶部的缓动方式类型                                     | string                      | quartOut     |
+| duration      | 滚动到顶部的时间                                             | number                      | 400          |
 
-## Examples
+## 使用方法
 
-### Basic usage
+### 基础用法
 
 ```jsx
 <Backtop />
 ```
 
-### Set visible height
+### 设置返回顶部按钮高度
 
 ```jsx
 <TestBackTop visibleHeight={400} />
 ```
 
-### Set duration to scroll to top
+### 设置滚动到顶部的时间
 
 ```jsx
 <TestBackTop duration={400} />
