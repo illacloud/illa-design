@@ -20,14 +20,14 @@ import { Badge } from "@illa-design/badge"
 
 | Props       | Desc                              | Type                                                         | Default |
 | ----------- | --------------------------------- | ------------------------------------------------------------ | ------- |
-| count       | The number show on the badge      | `number\| ReactNode `                                        | `0`     |
-| text        | The displayed text                | `string \| string[]`                                         | `-`     |
-| dot         | If true, the badge is a red dot   | `boolean`                                                    | `-`     |
-| dotStyle    | The style of the dot              | `object`                                                     | `-`     |
-| maxCount    | Max count of the number displayed | `number `                                                    | `9`     |
-| offset      | Offset the badge                  | `[number,number]`                                            | `-`     |
-| status      | The status of the badge           | `"default" \| "processing" \| "success" \| "warning" \| "error" ` | `-`     |
-| colorScheme | The color of the dot              | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" ` | `-`     |
+| count       | The number show on the badge      | number\| ReactNode                                           | 0       |
+| text        | The displayed text                | string \| string[]                                           | -       |
+| dot         | If true, the badge is a red dot   | boolean                                                      | -       |
+| dotStyle    | The style of the dot              | object                                                       | -       |
+| maxCount    | Max count of the number displayed | number                                                       | 9       |
+| offset      | Offset the badge                  | [number,number]                                              | -       |
+| status      | The status of the badge           | "default" \| "processing" \| "success" \| "warning" \| "error" | -       |
+| colorScheme | The color of the dot              | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" | -       |
 
 ## Example
 
