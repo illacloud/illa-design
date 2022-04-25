@@ -102,9 +102,9 @@ import { Typography } from "@illa-design/typography"
 
 ```jsx
 <Typograph>
-  <Heading>I am a title</Heading>
-  <Paragraph>I am a paragraph</Paragraph>
-  <Text>I am text</Text>
+  <Heading>I am a title.</Heading>
+  <Paragraph>I am a paragraph.</Paragraph>
+  <Text>I am text.</Text>
 </Typograph>
 ```
 
