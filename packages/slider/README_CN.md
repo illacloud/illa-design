@@ -23,7 +23,7 @@ import { Slider } from "@illa-dedign/slider"
 | showTicks       | 是否显示步长刻度线                                           | boolean                                                      | -      |
 | showInput       | 是否展示输入框。 滑动条根据输入框内容自动位移到对应的刻度 onlyMarkValue 为 true 时输入框始终隐藏 | boolean                                                      | -      |
 | reverse         | 反向坐标轴                                                   | boolean                                                      | -      |
-| marks           | 刻度标签。是一个对象。key 为在[min, max]内的整数。设置的刻度在滑动线 | Record<number, ReactNode>                                    | -      |
+| marks           | 刻度标签。是一个对象。key 为在[min, max]内的整数。设置的刻度在滑动线 | `Record<number, ReactNode>`                                    | -      |
 | vertical        | 是否竖直方向                                                 | boolean                                                      | -      |
 | tooltipVisible  | 控制 tooltip 的展示。设置为undefined时，鼠标在当前值停留或者拖动时展示tooltip，设置为 true 时，将一直展示 tooltip。设置为 false 时，将一直隐藏 tooltip。 | boolean                                                      | -      |
 | tooltipPosition | tooltip 的位置                                               | "top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br" \| "left" \| "lt" \| "lb" \| "right" \| "rt" \| "rb" | "top"  |
