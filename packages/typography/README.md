@@ -1,6 +1,6 @@
 # Typography
 
-Typography is used to show text information. It has 3 child component: Heading, Text, Paragraph
+Typography is used to show text information. It has 3 child component: Heading, Text, Paragraph.
 
 ## Installation
 
@@ -98,9 +98,9 @@ import { Typography } from "@illa-design/typography"
 
 ```jsx
 <Typograph>
-  <Heading>I am a title</Heading>
-  <Paragraph>I am a paragraph</Paragraph>
-  <Text>I am text</Text>
+  <Heading>I am a title.</Heading>
+  <Paragraph>I am a paragraph.</Paragraph>
+  <Text>I am text.</Text>
 </Typograph>
 ```
 
