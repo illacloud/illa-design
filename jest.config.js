@@ -1,7 +1,7 @@
 module.exports = {
   testEnvironment: "jsdom",
   coverageDirectory: "./jest-coverage/",
-  coverageReporters: ["json"],
+  coverageReporters: ["lcov"],
   collectCoverage: true,
   collectCoverageFrom: ["packages/**/src/**/*.(ts|tsx)", "!packages/react/src/*.(ts|tsx)", "!packages/**/src/index.(ts|tsx)", "!packages/table/src/types/*.(ts|tsx)", "!packages/**/src/**/*.d.ts"],
   moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
