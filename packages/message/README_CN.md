@@ -1,4 +1,4 @@
-# Message全局提示
+# 全局提示 Message
 
 由用户的操作触发的轻量级全局反馈。
 
@@ -16,42 +16,46 @@ import { Message } from "@illa-design/message"
 
 ## 组件接口（API）
 
-### Message基础属性
+### Message 基础属性
 
-| Props    | Desc                                        | Type                 | Default |
-| -------- | ------------------------------------------- | -------------------- | ------- |
-| content  | 消息内容                                    | `ReactNode \| string` | `-`     |
-| showIcon | 是否显示图标                                | `boolean`            | `true`  |
-| icon     | 自定义图标                                  | `ReactNode`          | `-`     |
-| duration | 自动关闭的时间，单位为ms                    | `number`             | `3000`  |
-| onClose  | 关闭时的回调                                | `() => void `        | `-`     |
-| id       | 当前消息的唯一标识，可以用来更新消息        | `string`             | `-`     |
-| position | 消息的位置，分为 `top` 上方和 `bottom` 下方 | `"top" \| "bottom" `  | `-`     |
-| closable | 是否显示关闭按钮                            | `boolean`            | `-`     |
+| Props    | Desc                                        | Type                | Default |
+| -------- | ------------------------------------------- | ------------------- | ------- |
+| content  | 消息内容                                    | ReactNode \| string | -       |
+| showIcon | 是否显示图标                                | boolean             | true    |
+| icon     | 自定义图标                                  | ReactNode           | -       |
+| duration | 自动关闭的时间，单位为 ms                   | number              | 3000    |
+| onClose  | 关闭时的回调                                | () => void          | -       |
+| id       | 当前消息的唯一标识，可以用来更新消息        | string              | -       |
+| position | 消息的位置，分为 `top` 上方和 `bottom` 下方 | "top" \| "bottom"   | -       |
+| closable | 是否显示关闭按钮                            | boolean             | -       |
 
 ### 使用方法
 
 ```jsx
-Message.info(content: String) / Message.info(config: Object)
-Message.success(content: String) / Message.success(config: Object)
-Message.warning(content: String) / Message.warning(config: Object)
-Message.error(content: String) / Message.error(config: Object)
-Message.normal(content: String) / Message.normal(config: Object)
-Message.loading(content: String) / Message.loading(config: Object)
+Message.info(content: string) / Message.info(config: Object)
+
+Message.success(content: string) / Message.success(config: Object)
+
+Message.warning(content: string) / Message.warning(config: Object)
+
+Message.error(content: string) / Message.error(config: Object)
+
+Message.normal(content: string) / Message.normal(config: Object)
+
+Message.loading(content: string) / Message.loading(config: Object)
+
 Message.clear()
 ```
 
 ### 全局设置
 
-```
-Message.config(options)
-```
+`Message.config(options)`
 
-| Props         | Desc               | Type                | Default               |
-| ------------- | ------------------ | ------------------- | --------------------- |
-| maxCount      | 最大通知数量       | `number`            | `-`                   |
-| get Container | 放置通知的容器     | `() => HTMLElement` | `() => document.body` |
-| duration      | 通知自动关闭的时间 | `number`            | `3000`                |
+| Props         | Desc               | Type              | Default             |
+| ------------- | ------------------ | ----------------- | ------------------- |
+| maxCount      | 最大通知数量       | number            | -                   |
+| get Container | 放置通知的容器     | () => HTMLElement | () => document.body |
+| duration      | 通知自动关闭的时间 | number            | 3000                |
 
 ## 使用方法
 

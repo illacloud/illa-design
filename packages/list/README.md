@@ -18,47 +18,45 @@ import { List } from "@illa-design/list"
 
 ### List Basic Properties
 
-| Props        | Desc                                   | Type                             | Default    |
-| ------------ | -------------------------------------- | -------------------------------- | ---------- |
-| data         | Data of the list item                  | `any[] `                         | `-`        |
-| size         | Size of the list                       | `"small" \| "medium" \| "large"` | `"medium"` |
-| bordered     | If true, the list is bordered          | `boolean`                        | `true`     |
-| split        | If true, show the split line           | `boolean`                        | `true`     |
-| loading      | If true, the list is on loading status | `boolean `                       | `false`    |
-| hasMore      | If true, the list can load more        | `boolean`                        | `-`        |
-| loader       | The load more area                     | `ReactNode`                      | `-`        |
-| endMessage   | When the loading ends                  | `ReactNode`                      | `-`        |
-| hoverable    | If true, the list is hoverable         | `boolean`                        | `false`    |
-| height       | Max height of the list                 | `number`                         | `0`        |
-| bottomOffset | The distance to the bottom             | `number`                         | `0`        |
-| header       | The header of the list                 | `ReactNode`                      | `-`        |
-| footer       | The footer of the list                 | `ReactNode`                      | `-`        |
-| render       | Render item                            | `ReactNode`                      | `-`        |
-| renderKey    | Render item key                        | `string`                         | `-`        |
+| Props        | Desc                                   | Type                           | Default  |
+| ------------ | -------------------------------------- | ------------------------------ | -------- |
+| data         | Data of the list item                  | any[]                          | -        |
+| size         | Size of the list                       | "small" \| "medium" \| "large" | "medium" |
+| bordered     | If true, the list is bordered          | boolean                        | true     |
+| split        | If true, show the split line           | boolean                        | true     |
+| loading      | If true, the list is on loading status | boolean                        | false    |
+| hasMore      | If true, the list can load more        | boolean                        | -        |
+| loader       | The load more area                     | ReactNode                      | -        |
+| endMessage   | When the loading ends                  | ReactNode                      | -        |
+| hoverable    | If true, the list is hoverable         | boolean                        | false    |
+| height       | Max height of the list                 | number                         | 0        |
+| bottomOffset | The distance to the bottom             | number                         | 0        |
+| header       | The header of the list                 | ReactNode                      | -        |
+| footer       | The footer of the list                 | ReactNode                      | -        |
+| render       | Render item                            | ReactNode                      | -        |
+| renderKey    | Render item key                        | string                         | -        |
 
 ### List Events
 
 | Props         | Desc                      | Type | Default |
 | ------------- | ------------------------- | ---- | ------- |
-| onScroll      | Callback when scroll      | `- ` | `-`     |
-| onReachBottom | Calback when reach bottom | `-`  | `-`     |
-
-
+| onScroll      | Callback when scroll      | -    | -       |
+| onReachBottom | Calback when reach bottom | -    | -       |
 
 ### List-item Basic Properties
 
-| Props   | Desc                               | Type        | Default |
-| ------- | ---------------------------------- | ----------- | ------- |
-| actions | The bottom action area             | `ReactNode` | `-`     |
-| extra   | The extra action area on the right | `ReactNode` | `-`     |
+| Props   | Desc                               | Type      | Default |
+| ------- | ---------------------------------- | --------- | ------- |
+| actions | The bottom action area             | ReactNode | -       |
+| extra   | The extra action area on the right | ReactNode | -       |
 
 ### List-item-meta Basic Properties
 
-| Props       | Desc                        | Type        | Default |
-| ----------- | --------------------------- | ----------- | ------- |
-| title       | The title of the list item  | `ReactNode` | `-`     |
-| avatar      | The avatar of the list item | `ReactNode` | `-`     |
-| description | The description of the item | `ReactNode` | `-`     |
+| Props       | Desc                        | Type      | Default |
+| ----------- | --------------------------- | --------- | ------- |
+| title       | The title of the list item  | ReactNode | -       |
+| avatar      | The avatar of the list item | ReactNode | -       |
+| description | The description of the item | ReactNode | -       |
 
 ## Examples
 

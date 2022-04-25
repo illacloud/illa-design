@@ -18,13 +18,13 @@ import { Result } from "@illa-design/result"
 
 ### Result Basic Properties
 
-| Props    | Desc                     | Type                                                         | Default   |
-| -------- | ------------------------ | ------------------------------------------------------------ | --------- |
-| extra    | Extra action area        | `ReactNode`                                                  | `-`       |
-| icon     | Custom icon              | `ReactNode`                                                  | `-`       |
-| status   | The status of the result | `"success" \| "error" \| "info" \| "warning" \| "404" \| "403" \| "500"` | `"error"` |
-| subTitle | Subtitle                 | `ReactNode`                                                  | `-`       |
-| title    | Title                    | `ReactNode`                                                  | `-`       |
+| Props    | Desc                     | Type                                                                   | Default |
+| -------- | ------------------------ | ---------------------------------------------------------------------- | ------- |
+| extra    | Extra action area        | ReactNode                                                              | -       |
+| icon     | Custom icon              | ReactNode                                                              | -       |
+| status   | The status of the result | "success" \| "error" \| "info" \| "warning" \| "404" \| "403" \| "500" | "error" |
+| subTitle | Subtitle                 | ReactNode                                                              | -       |
+| title    | Title                    | ReactNode                                                              | -       |
 
 ## Examples
 
@@ -43,7 +43,5 @@ import { Result } from "@illa-design/result"
 ### Set title and subtitle
 
 ```jsx
-<Result
-  title={"this is title"}
-  subTitle={"this is subTitle"}></Result>
+<Result title={"this is title"} subTitle={"this is subTitle"}></Result>
 ```

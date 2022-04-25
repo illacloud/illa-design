@@ -18,34 +18,34 @@ import { Modal } from "@illa-design/modal"
 
 ### Modal Basic Properties
 
-| Props             | Desc                                                    | Type            | Default                                   |
-| ----------------- | ------------------------------------------------------- | --------------- | ----------------------------------------- |
-| visible           | Whether the modal is visible                            | `boolean`       | `-`                                       |
-| getPopupContainer | Get pop-ups container                                   | `() => Element` | `() => document.body`                     |
-| mask              | Whether the mask is visible                             | `boolean`       | `true`                                    |
-| title             | Title                                                   | `string`        | `-`                                       |
-| alignCenter       | Whether the modal is centered                           | `boolean`       | `true`                                    |
-| maskClosable      | Whether modal is closable                               | `boolean`       | `true`                                    |
-| hideCancel        | Whether hide the cancel button                          | `boolean`       | `false`                                   |
-| simple            | Whether to enable simple mode                           | `boolean`       | `(props: any) => { return props.notice;}` |
-| closable          | Whether to show the close button                        | `boolean`       | `true`                                    |
-| okText            | Content of confirm button                               | `string`        | `-`                                       |
-| cancelText        | Content of cancel button                                | `string`        | `-`                                       |
-| confirmLoading    | Check if the confirm button is loading                  | `boolean`       | `false`                                   |
-| okButtonProps     | The props of confirm button                             | `ButtonProps`   | `-`                                       |
-| cancelButtonProps | The props of cancel button                              | `ButtonProps`   | `-`                                       |
-| footer            | Whether to show the footer section                      | `boolean`       | `true`                                    |
-| focusLock         | Whether to lock the focus inside the pop-ups            | `boolean`       | `true`                                    |
-| autoFocus         | Whether to focus the first focusable element by default | `boolean`       | `true`                                    |
+| Props             | Desc                                                    | Type          | Default                                 |
+| ----------------- | ------------------------------------------------------- | ------------- | --------------------------------------- |
+| visible           | Whether the modal is visible                            | boolean       | -                                       |
+| getPopupContainer | Get pop-ups container                                   | () => Element | () => document.body                     |
+| mask              | Whether the mask is visible                             | boolean       | true                                    |
+| title             | Title                                                   | string        | -                                       |
+| alignCenter       | Whether the modal is centered                           | boolean       | true                                    |
+| maskClosable      | Whether modal is closable                               | boolean       | true                                    |
+| hideCancel        | Whether hide the cancel button                          | boolean       | false                                   |
+| simple            | Whether to enable simple mode                           | boolean       | (props: any) => { return props.notice;} |
+| closable          | Whether to show the close button                        | boolean       | true                                    |
+| okText            | Content of confirm button                               | string        | -                                       |
+| cancelText        | Content of cancel button                                | string        | -                                       |
+| confirmLoading    | Check if the confirm button is loading                  | boolean       | false                                   |
+| okButtonProps     | The props of confirm button                             | ButtonProps   | -                                       |
+| cancelButtonProps | The props of cancel button                              | ButtonProps   | -                                       |
+| footer            | Whether to show the footer section                      | boolean       | true                                    |
+| focusLock         | Whether to lock the focus inside the pop-ups            | boolean       | true                                    |
+| autoFocus         | Whether to focus the first focusable element by default | boolean       | true                                    |
 
 ### Modal Event
 
-| Props      | Desc                                 | Type                                      | Default |
-| ---------- | ------------------------------------ | ----------------------------------------- | ------- |
-| onCancel   | Callback for closing the pop-ups     | `() => void`                              | `-`     |
-| onOk       | Callback for confirm button click    | `(e?: MouseEvent) => Promise<any> \| void` | `-`     |
-| afterOpen  | Callback after the pop-ups is opened | `() => void`                              | `-`     |
-| afterClose | Callback after the pop-ups is closed | `() => void`                              | `-`     |
+| Props      | Desc                                 | Type                                     | Default |
+| ---------- | ------------------------------------ | ---------------------------------------- | ------- |
+| onCancel   | Callback for closing the pop-ups     | () => void                               | -       |
+| onOk       | Callback for confirm button click    | `(e?: MouseEvent) => Promise<any>` \| void | -       |
+| afterOpen  | Callback after the pop-ups is opened | () => void                               | -       |
+| afterClose | Callback after the pop-ups is closed | () => void                               | -       |
 
 ## Examples
 

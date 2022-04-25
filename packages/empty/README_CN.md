@@ -1,4 +1,4 @@
-# Empty空状态
+# 空状态 Empty
 
 空状态时展示的内容。
 
@@ -18,11 +18,11 @@ import { Empty } from "@illa-design/empty"
 
 ### Empty 基础属性
 
-| Props       | Desc           | Type        | Default |
-| ----------- | -------------- | ----------- | ------- |
-| description | 展示文案       | `ReactNode` | `-`     |
-| icon        | 设置图标       | `ReactNode` | `-`     |
-| imgSrc      | 设置展示的图片 | `string`    | `-`     |
+| Props       | Desc           | Type      | Default |
+| ----------- | -------------- | --------- | ------- |
+| description | 展示文案       | ReactNode | -       |
+| icon        | 设置图标       | ReactNode | -       |
+| imgSrc      | 设置展示的图片 | string    | -       |
 
 ## 使用方法
 

@@ -1,6 +1,6 @@
-# Image图片
+# 图片 Image
 
-Image组件用于展示图片
+Image 组件用于展示图片。
 
 ## 安装
 
@@ -18,21 +18,21 @@ import { Image } from "@illa-design/image"
 
 ### Image 基础属性
 
-| Props        | Desc                                  | Type                                                       | Default  |
-| ------------ | ------------------------------------- | ---------------------------------------------------------- | -------- |
-| src          | 图片链接                              | `string \| string[]`                                        | `-`      |
-| width        | 图片宽度                              | `string \| string[]`                                        | `-`      |
-| height       | 图片高度                              | `string \| string[]`                                        | `-`      |
-| object-fit   | 图片缩放方式                          | `"fill" \| "container" \| "cover" \| "none" \| "scale-down"  ` | `"fill"` |
-| alt          | 图片描述                              | `ReactNode`                                                | `-`      |
-| fallbackIcon | 显示图像是否正在加载或失败            | `ReactNode`                                                | `-`      |
-| fallbackSrc  | 后备图像src显示图像是否正在加载或失败 | `string \| string[]`                                        | `-`      |
-| radius       | 图片圆角                              | `string \| string[]`                                        | `-`      |
+| Props        | Desc                                    | Type                                                       | Default |
+| ------------ | --------------------------------------- | ---------------------------------------------------------- | ------- |
+| src          | 图片链接                                | string \| string[]                                         | -       |
+| width        | 图片宽度                                | string \| string[]                                         | -       |
+| height       | 图片高度                                | string \| string[]                                         | -       |
+| object-fit   | 图片缩放方式                            | "fill" \| "container" \| "cover" \| "none" \| "scale-down" | "fill"  |
+| alt          | 图片描述                                | ReactNode                                                  | -       |
+| fallbackIcon | 显示图像是否正在加载或失败              | ReactNode                                                  | -       |
+| fallbackSrc  | 后备图像 src 显示图像是否正在加载或失败 | string \| string[]                                         | -       |
+| radius       | 图片圆角                                | string \| string[]                                         | -       |
 
 ## 使用示例
 
 ### 基础用法
 
 ```jsx
-<image src='https://via.placeholder.com/150' />
+<image src="https://via.placeholder.com/150" />
 ```

@@ -1,6 +1,6 @@
 # Grid
 
-Grid is used to create consistent page structures and responsive page layouts
+Grid is used to create consistent page structures and responsive page layouts.
 
 ## Installation
 
@@ -18,30 +18,28 @@ import { Row, Col } from "@illa-dedign/grid"
 
 ### Row Basic Properties
 
-| Props         | Desc                                                         | Type                                                         | Default |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------- |
-| horizontalGap | the size of the horizontal interval betweent grids, could be a string or an object like `{ xs: "4px", sm: "8px", md: "12px"}` | `string \| GridSize`                                          | `0px`   |
-| verticallGap  | The size of the vertical interval betweent grids, could be a string or an object like `{ xs: "4px", sm: "8px", md: "12px"}` | `string \|GridSize`                                           | `0px`   |
-| align         | Vertical alignment                                           | `"start" \| "center" \| "end" \| "stretch"`                     | `start` |
-| justify       | Horizontal alignment                                         | `"start" \| "center" \| "end" \| "space-around" \| "space-between"` | `start` |
+| Props         | Desc                                                                                                                          | Type                                                              | Default |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------- |
+| horizontalGap | the size of the horizontal interval betweent grids, could be a string or an object like `{ xs: "4px", sm: "8px", md: "12px"}` | string \| GridSize                                                | "0px"   |
+| verticallGap  | The size of the vertical interval betweent grids, could be a string or an object like `{ xs: "4px", sm: "8px", md: "12px"}`   | string \| GridSize                                                | "0px"   |
+| align         | Vertical alignment                                                                                                            | "start" \| "center" \| "end" \| "stretch"                         | "start" |
+| justify       | Horizontal alignment                                                                                                          | "start" \| "center" \| "end" \| "space-around" \| "space-between" | "start" |
 
 ### Col Basic Properties
 
-| Props  | Desc                                             | Type                              | Default |
-| ------ | ------------------------------------------------ | --------------------------------- | ------- |
-| span   | Raster number of cells to occupy                 | `number`                          | `24`    |
-| offset | The number of cells to offset Col from the left  | `number`                          | `0`     |
-| order  | Raster order                                     | `number`                          | `-`     |
-| push   | Move the raster to right                         | `number`                          | `-`     |
-| pull   | Move the raster to rleft                         | `number`                          | `-`     |
-| xs     | Responsive configuration when `screen< 576px `   | `number \| { [key: string]: any }` | `-`     |
-| sm     | Responsive configuration when `screen>= 576px`   | `number \| { [key: string]: any }` | `-`     |
-| md     | Responsive configuration when `screen>= 768px `  | `number \| { [key: string]: any }` | `-`     |
-| lg     | Responsive configuration when `screen>= 992px `  | `number \| { [key: string]: any }` | `-`     |
-| xl     | Responsive configuration when `screen>= 1200px ` | `number \| { [key: string]: any }` | `-`     |
-| xxl    | Responsive configuration when `screen>= 1600px ` | `number \| { [key: string]: any }` | `-`     |
-
-
+| Props  | Desc                                             | Type                             | Default |
+| ------ | ------------------------------------------------ | -------------------------------- | ------- |
+| span   | Raster number of cells to occupy                 | number                           | 24      |
+| offset | The number of cells to offset Col from the left  | number                           | 0       |
+| order  | Raster order                                     | number                           | -       |
+| push   | Move the raster to right                         | number                           | -       |
+| pull   | Move the raster to rleft                         | number                           | -       |
+| xs     | Responsive configuration when `screen< 576px `   | number \| { [key: string]: any } | -       |
+| sm     | Responsive configuration when `screen>= 576px`   | number \| { [key: string]: any } | -       |
+| md     | Responsive configuration when `screen>= 768px `  | number \| { [key: string]: any } | -       |
+| lg     | Responsive configuration when `screen>= 992px `  | number \| { [key: string]: any } | -       |
+| xl     | Responsive configuration when `screen>= 1200px ` | number \| { [key: string]: any } | -       |
+| xxl    | Responsive configuration when `screen>= 1600px ` | number \| { [key: string]: any } | -       |
 
 ## Example
 
@@ -105,8 +103,6 @@ import { Row, Col } from "@illa-dedign/grid"
     </div>
   </Col>
 </Row>
-
-
 ```
 
 ### Set interval of Grid

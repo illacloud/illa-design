@@ -16,28 +16,34 @@ import { Message } from "@illa-design/message"
 
 ## API
 
-### Message  Basic Properties
+### Message Basic Properties
 
-| Props    | Desc                           | Type                 | Default |
-| -------- | ------------------------------ | -------------------- | ------- |
-| content  | Content of the message         | `ReactNode \| string` | `-`     |
-| showIcon | If true, show the message icon | `boolean`            | `true`  |
-| icon     | Custom icon                    | `ReactNode`          | `-`     |
-| duration | The auto close time            | `number`             | `3000`  |
-| onClose  | Callback when close            | `() => void `        | `-`     |
-| id       | The id of the notification     | `string`             | `-`     |
-| position | The position of the message    | `"top" \| "bottom" `  | `-`     |
-| closable | If true, show the close button | `boolean`            | `-`     |
+| Props    | Desc                           | Type                | Default |
+| -------- | ------------------------------ | ------------------- | ------- |
+| content  | Content of the message         | ReactNode \| string | -       |
+| showIcon | If true, show the message icon | boolean             | true    |
+| icon     | Custom icon                    | ReactNode           | -       |
+| duration | The auto close time            | number              | 3000    |
+| onClose  | Callback when close            | () => void          | -       |
+| id       | The id of the notification     | string              | -       |
+| position | The position of the message    | "top" \| "bottom"   | -       |
+| closable | If true, show the close button | boolean             | -       |
 
 ### Method
 
 ```jsx
-Message.info(content: String) / Message.info(config: Object)
-Message.success(content: String) / Message.success(config: Object)
-Message.warning(content: String) / Message.warning(config: Object)
-Message.error(content: String) / Message.error(config: Object)
-Message.normal(content: String) / Message.normal(config: Object)
-Message.loading(content: String) / Message.loading(config: Object)
+Message.info(content: string) / Message.info(config: Object)
+
+Message.success(content: string) / Message.success(config: Object)
+
+Message.warning(content: string) / Message.warning(config: Object)
+
+Message.error(content: string) / Message.error(config: Object)
+
+Message.normal(content: string) / Message.normal(config: Object)
+
+Message.loading(content: string) / Message.loading(config: Object)
+
 Message.clear()
 ```
 
@@ -47,18 +53,18 @@ Message.clear()
 Message.config(options)
 ```
 
-| Props        | Desc                         | Type                | Default               |
-| ------------ | ---------------------------- | ------------------- | --------------------- |
-| maxCount     | Max number of messages       | `number`            | `-`                   |
-| getContainer | The container of the message | `() => HTMLElement` | `() => document.body` |
-| duration     | The auto close time          | `number`            | `3000`                |
+| Props        | Desc                         | Type              | Default             |
+| ------------ | ---------------------------- | ----------------- | ------------------- |
+| maxCount     | Max number of messages       | number            | -                   |
+| getContainer | The container of the message | () => HTMLElement | () => document.body |
+| duration     | The auto close time          | number            | 3000                |
 
 ## Examples
 
 ### Basic usage
 
 ```jsx
-Message.info({content:“ILLA Design”})
+Message.info({ content: "ILLA Design" })
 ```
 
 ### Set the message closable
