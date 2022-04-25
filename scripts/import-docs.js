@@ -7,6 +7,10 @@ const COMPONENT_BASE_PATH = path.resolve(__dirname, "../packages")
 
 const FILE_REG = /^README\w*.md$/
 
+const INTRO_HEADER = `---
+sidebar_position: 1
+---`
+
 const COMPONENTS_MAP_CATEGORY = {
   button: "GENERAL",
   icon: "GENERAL",
@@ -150,10 +154,13 @@ function run() {
       }
     })
   })
-  copyFile(
-    path.join(__dirname, "../README.md"),
-    path.join(TARGET_BASE_PATH, "docs", "intro.md")
-  )
+  const oldContent = fs.readFileSync(path.join(__dirname, "../README.md"), 'utf-8');
+
+  const newContent = `${INTRO_HEADER}
+
+${oldContent}
+`
+  fs.writeFileSync(path.join(TARGET_BASE_PATH, "docs", "Intro.md"), newContent)
 }
 
 run()

@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 
 <div align="center">
     <img alt="ILLA Design Logo" width="120px" height="120px" src="https://devbo.cn/logo.svg"/>
@@ -116,3 +120,4 @@ Contact Us: hr@illasoft.com
 ## License
 
 This project is [Apache License 2.0](./LICENSE).
+
