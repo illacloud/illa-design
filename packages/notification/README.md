@@ -1,6 +1,6 @@
 # Notification
 
-The Notification component is used to  notificate infomation to users. 
+The Notification component is used to notificate infomation to users.
 
 ## Installation
 
@@ -18,48 +18,48 @@ import { Notification } from "@illa-design/notification"
 
 ### Notification Basic Properties
 
-| Props        | Desc                                       | Type                                                        | Default |
-| ------------ | ------------------------------------------ | ----------------------------------------------------------- | ------- |
-| action       | Custom action area                         | `ReactNode`                                                 | `-`     |
-| closable     | If true, the notification is closable      | `boolean`                                                   | `-`     |
-| onClose      | Callback when close                        | `(e) => void`                                               | `-`     |
-| afterClose   | Callback when after close                  | `() => void`                                                | `-`     |
-| title        | Title of the notification                  | `ReactNode`                                                 | `-`     |
-| content      | Content of the notification                | `ReactNode`                                                 | `-`     |
-| icon         | Custom icon                                | `ReactNode`                                                 | `-`     |
-| closeElement | Custom close button                        | `ReactNode`                                                 | `-`     |
-| showIcon     | If true, show the icon of the notification | `boolean`                                                   | `true`  |
-| duration     | Auto close time in ms                      | `number`                                                    | `3000`  |
-| position     | The position of the notification           | `"topLeft" \| "topRight" \| "bottomLeft" \| "bottomRight" ` | `-`     |
-| id           | The id of the notification                 | `string`                                                    | `-`     |
+| Props        | Desc                                       | Type                                                     | Default |
+| ------------ | ------------------------------------------ | -------------------------------------------------------- | ------- |
+| action       | Custom action area                         | ReactNode                                                | -       |
+| closable     | If true, the notification is closable      | boolean                                                  | -       |
+| onClose      | Callback when close                        | (e) => void                                              | -       |
+| afterClose   | Callback when after close                  | () => void                                               | -       |
+| title        | Title of the notification                  | ReactNode                                                | -       |
+| content      | Content of the notification                | ReactNode                                                | -       |
+| icon         | Custom icon                                | ReactNode                                                | -       |
+| closeElement | Custom close button                        | ReactNode                                                | -       |
+| showIcon     | If true, show the icon of the notification | boolean                                                  | true    |
+| duration     | Auto close time in ms                      | number                                                   | 3000    |
+| position     | The position of the notification           | "topLeft" \| "topRight" \| "bottomLeft" \| "bottomRight" | -       |
+| id           | The id of the notification                 | string                                                   | -       |
 
 ### Method
 
 ```jsx
- `Notification.info(config)`
+Notification.info(config)
 
- `Notification.success(config)`
+Notification.success(config)
 
- `Notification.warning(config)`
+Notification.warning(config)
 
- `Notification.error(config)`
+Notification.error(config)
 
- `Notification.normal(config)`
+Notification.normal(config)
 
- `Notification.remove(id)`
+Notification.remove(id)
 
- `Notification.clear()`
+Notification.clear()
 ```
 
 ### Config Provider
 
 `Notification.config(options)`
 
-| Props         | Desc               | Type                | Default               |
-| ------------- | ------------------ | ------------------- | --------------------- |
-| maxCount      | 最大通知数量       | `number `           | `-`                   |
-| getCountainer | 放置通知的容器     | `() => HTMLElement` | `() => document.body` |
-| duration      | 通知自动关闭的时间 | `number `           | `3000`                |
+| Props         | Desc               | Type              | Default             |
+| ------------- | ------------------ | ----------------- | ------------------- |
+| maxCount      | 最大通知数量       | number            | -                   |
+| getCountainer | 放置通知的容器     | () => HTMLElement | () => document.body |
+| duration      | 通知自动关闭的时间 | number            | 3000                |
 
 ## Example
 
@@ -69,7 +69,7 @@ import { Notification } from "@illa-design/notification"
 Notification.info({content:“ILLA Design”})
 ```
 
-### Set the notification is closable 
+### Set the notification is closable
 
 ```jsx
 Notification.info({
@@ -81,7 +81,7 @@ Notification.info({
 })
 ```
 
-### Set the duration of the notification 
+### Set the duration of the notification
 
 ```jsx
 Notification.info({

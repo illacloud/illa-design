@@ -1,6 +1,6 @@
 # PageHeader
 
-Pageheader is located on top of page container. it is used to show common description and action of page
+Pageheader is located on top of page container. it is used to show common description and action of page.
 
 ## Installation
 
@@ -18,19 +18,19 @@ import { PageHeader } from "@illa-dedign/pageheader"
 
 ### PageHeader Basic Properties
 
-| Props      | Desc                            | Type                   | Default |
-| ---------- | ------------------------------- | ---------------------- | ------- |
-| title      | Set title of page               | `ReactNode`            | `-`     |
-| subTitle   | Set subtitle of page            | `ReactNode`            | `-`     |
-| breadcrumb | Set breadcrumb of page          | `BreadcrumbProps`      | `-`     |
-| backIcon   | Add back button"s icon          | `ReactNode \| boolean` | `-`     |
-| extra      | Set extra content on pageheader | `ReactNode`            | `-`     |
+| Props      | Desc                            | Type                 | Default |
+| ---------- | ------------------------------- | -------------------- | ------- |
+| title      | Set title of page               | ReactNode            | -       |
+| subTitle   | Set subtitle of page            | ReactNode            | -       |
+| breadcrumb | Set breadcrumb of page          | BreadcrumbProps      | -       |
+| backIcon   | Add back button"s icon          | ReactNode \| boolean | -       |
+| extra      | Set extra content on pageheader | ReactNode            | -       |
 
 ### PageHeader Events
 
-| Props  | Desc                            | Type                      | Default |
-| ------ | :------------------------------ | ------------------------- | ------- |
-| onBack | Callback when click bask button | `(e: MouseEvent) => void` | `-`     |
+| Props  | Desc                            | Type                    | Default |
+| ------ | :------------------------------ | ----------------------- | ------- |
+| onBack | Callback when click bask button | (e: MouseEvent) => void | -       |
 
 ## Example
 
@@ -51,18 +51,18 @@ import { PageHeader } from "@illa-dedign/pageheader"
   onBack={() => Message.info("Click back button")}
   breadcrumb={{
     routes: [
-    {
-      path: "/",
-      breadcrumbName: "Home",
-    },
-    {
-      path: "/channel",
-      breadcrumbName: "Channel",
-    },
-    {
-      path: "/news",
-      breadcrumbName: "News",
-    },
+      {
+        path: "/",
+        breadcrumbName: "Home",
+      },
+      {
+        path: "/channel",
+        breadcrumbName: "Channel",
+      },
+      {
+        path: "/news",
+        breadcrumbName: "News",
+      },
     ],
   }}
   extra={
@@ -74,6 +74,4 @@ import { PageHeader } from "@illa-dedign/pageheader"
     </div>
   }
 />
-
 ```
-

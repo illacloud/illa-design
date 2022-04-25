@@ -18,15 +18,15 @@ import { Empty } from "@illa-design/empty"
 
 ### Empty Basic Properties
 
-| Props       | Desc                | Type        | Default |
-| ----------- | ------------------- | ----------- | ------- |
-| description | The description     | `ReactNode` | `-`     |
-| icon        | The displayed icon  | `ReactNode` | `-`     |
-| imgSrc      | The displayed image | `string`    | `-`     |
+| Props       | Desc                | Type      | Default |
+| ----------- | ------------------- | --------- | ------- |
+| description | The description     | ReactNode | -       |
+| icon        | The displayed icon  | ReactNode | -       |
+| imgSrc      | The displayed image | string    | -       |
 
 ## Example
 
-### Basic Usage 
+### Basic Usage
 
 ```jsx
 <Empty />
