@@ -4,7 +4,7 @@ The Avatar component is used to represent a user and displays the pictures, text
 
 ## Installation
 
-```jsx
+```bash
 yarn add @illa-design/avatar
 ```
 
@@ -18,31 +18,31 @@ import { Avatar } from "@illa-design/avatar"
 
 ### Avatar Basic Properties
 
-| Props       | Desc                                                     | Type                                                         | Default    |
-| ----------- | -------------------------------------------------------- | ------------------------------------------------------------ | ---------- |
-| colorScheme | Color of avatar                                          | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \|"green" \|"blue" \|"cyan" \|"purple" ` | `"gray"`   |
-| src         | The image url of avatar                                  | `string \| string[]`                                         | `-`        |
-| size        | Size of the avatar                                       | `"small" \| "medium" \| "large"`                               | `"small"`  |
-| text        | The displayed  text of the avatar when src is not loaded | `string \| string[]`                                          | `-`        |
-| shape       | The shape of avatar                                      | `"circle" \| "square" `                                       | `"circle"` |
-| icon        | The default avatar when text and src is not specified    | `ReactNode`                                                  | `-`        |
+| Props       | Desc                                                     | Type                                                         | Default  |
+| ----------- | -------------------------------------------------------- | ------------------------------------------------------------ | -------- |
+| colorScheme | Color of avatar                                          | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \|"green" \|"blue" \|"cyan" \|"purple" | "gray"   |
+| src         | The image url of avatar                                  | string \| string[]                                           | -        |
+| size        | Size of the avatar                                       | "small" \| "medium" \| "large"                               | "small"  |
+| text        | The displayed  text of the avatar when src is not loaded | string \| string[]                                           | -        |
+| shape       | The shape of avatar                                      | "circle" \| "square"                                         | "circle" |
+| icon        | The default avatar when text and src is not specified    | ReactNode                                                    | -        |
 
 ### Avatar-group Basic Properties
 
-| Props        | Desc                                  | Type                                                         | Default   |
-| ------------ | ------------------------------------- | ------------------------------------------------------------ | --------- |
-| colorScheme  | Color of avatar group                 | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \|"cyan" \|"purple" ` | `"gray"`  |
-| size         | Size of avatar group                  | `"small" \| "medium" \| "large"`                               | `"small"` |
-| maxCount     | The max count of avatar group         | `number `                                                    | `-`       |
-| zIndexAscend | The avatars are z-index ascend or not | `boolean`                                                    | `false`   |
+| Props        | Desc                                  | Type                                                         | Default |
+| ------------ | ------------------------------------- | ------------------------------------------------------------ | ------- |
+| colorScheme  | Color of avatar group                 | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" | "gray"  |
+| size         | Size of avatar group                  | "small" \| "medium" \| "large"                               | "small" |
+| maxCount     | The max count of avatar group         | number                                                       | -       |
+| zIndexAscend | The avatars are z-index ascend or not | boolean                                                      | false   |
 
 
 
 ### Avatar Events
 
-| Props   | Desc                           | Type         | Default |
-| ------- | ------------------------------ | ------------ | ------- |
-| onClick | Callback when click the avatar | `() => void` | `-`     |
+| Props   | Desc                           | Type       | Default |
+| ------- | ------------------------------ | ---------- | ------- |
+| onClick | Callback when click the avatar | () => void | -       |
 
 ## Example
 
