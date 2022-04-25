@@ -1,6 +1,6 @@
 # Tree
 
-Tree is used to show the  hierarchy of content with more levels
+Tree is used to show the  hierarchy of content with more levels.
 
 ## Installation
 
