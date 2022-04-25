@@ -18,9 +18,8 @@ it("Countdown renders with onFinishEvent and onChangeEvent", () => {
       onFinish={onFinishEvent}
     />,
   )
-  cy.clock(Date.now() + 3000)
-  cy.tick(1000)
-  cy.tick(1000)
+  cy.clock(Date.now())
+  cy.tick(5000)
   cy.get("@onChangeEvent").should("be.called")
   cy.get("@onFinishEvent").should("be.called")
   unmount()
