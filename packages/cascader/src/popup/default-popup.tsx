@@ -48,16 +48,14 @@ export const DefaultPopup = <T extends OptionProps>(
 
   const options = store.getOptions()
 
-  const onClickOption = async (option: any, isEnterClick = true) => {
+  const onClickOption = async (option: any) => {
     if (!option || option.disabled) {
       return
     }
     setActiveNode(option)
     // 在键盘上下左右键操作时,isEnterClick 是false，不触发onChange
-    if (!multiple && isEnterClick) {
-      if (option.isLeaf) {
-        onChange?.([option.pathValue])
-      }
+    if (!multiple && option.isLeaf) {
+      onChange?.([option.pathValue])
     }
   }
 
@@ -155,7 +153,7 @@ export const DefaultPopup = <T extends OptionProps>(
               initial={"hidden"}
               animate={"visible"}
               variants={!animate ? {} : variants}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.15 }}
               key={level}
               onClick={(e) => {
                 e.preventDefault()

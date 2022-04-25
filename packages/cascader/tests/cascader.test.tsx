@@ -59,16 +59,25 @@ test("Cascader renders with options", () => {
   expect(screen.getByText("Beijing / Xicheng")).toBeInTheDocument()
 })
 
+test("Cascader renders with defaultValue", () => {
+  render(
+    <Cascader defaultValue={["beijing", "xicheng"]} options={options} size="small" />,
+  )
+  expect(screen.getByText("Beijing / Xicheng")).toBeInTheDocument()
+})
+
 test("Cascader renders with multiple", () => {
   render(
     <Cascader
-      value={[["beijing", "xicheng"]]}
+      value={[["beijing", "xicheng"], ["shanghai", "huangpu"]]}
       options={options}
       size="large"
       multiple
+      maxTagCount={1}
     />,
   )
   expect(screen.getByText("Beijing / Xicheng")).toBeInTheDocument()
+  expect(screen.getByText("+1...")).toBeInTheDocument()
 })
 
 test("Cascader renders with options", async () => {

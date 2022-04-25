@@ -32,6 +32,10 @@ const options = [
         value: "huangpu",
         label: "Huangpu",
       },
+      {
+        value: "pudong",
+        label: "Pudong",
+      },
     ],
   },
   {
@@ -81,6 +85,36 @@ it("Cascader render correctly", () => {
   unmount()
 })
 
+it("Cascader render with no data", () => {
+  mount(
+    <Cascader
+      options={[]}
+      placeholder={"test"}
+      value={undefined}
+    />,
+  )
+
+  cy.findByPlaceholderText("test").should("exist")
+  cy.findByPlaceholderText("test").parent().click()
+  cy.findByText("No data").should("exist")
+  unmount()
+})
+
+it("Cascader render with disabled", () => {
+  mount(
+    <Cascader
+      options={[]}
+      placeholder={"test"}
+      disabled
+    />,
+  )
+
+  cy.findByPlaceholderText("test").should("exist")
+  cy.findByPlaceholderText("test").parent().parent().should('have')
+  cy.findByText("No data").should("exist")
+  unmount()
+})
+
 it("Cascader rende with expandTrigger hover", () => {
   const changeEvent = cy.stub().as("changeEvent")
   const clearEvent = cy.stub().as("clearEvent")
@@ -96,7 +130,6 @@ it("Cascader rende with expandTrigger hover", () => {
   )
 
   cy.findByPlaceholderText("test").parent().click()
-  cy.wait(150)
   cy.findByText("Shanghai")
     .trigger("mouseover")
     .then(() => {
@@ -150,6 +183,62 @@ it("Cascader render with multiple", () => {
   unmount()
 })
 
+it("Cascader render with maxTagCount", () => {
+  const changeEvent = cy.stub().as("changeEvent")
+  mount(
+    <Cascader
+      multiple
+      options={options}
+      placeholder={"test"}
+      onChange={changeEvent}
+      maxTagCount={1}
+    />,
+  )
+
+  cy.findByPlaceholderText("test").should("exist")
+  cy.findByPlaceholderText("test").parent().click()
+  cy.findByText("Shanghai").click()
+  cy.findByText("Huangpu").click()
+  cy.findByText("Shanghai / Huangpu").should("exist")
+  cy.findByText("Pudong").click()
+  cy.findByText("+1...").should("exist")
+  cy.get("@changeEvent").should("be.calledWith", [["shanghai", "huangpu"]])
+
+  unmount()
+})
+
+it("Cascader in multiple mode Test clearEvent", () => {
+  const changeEvent = cy.stub().as("changeEvent")
+  const clearEvent = cy.stub().as("clearEvent")
+  mount(
+    <Cascader
+      multiple
+      defaultValue={[["beijing", "xicheng"], ["shanghai", "huangpu"]]}
+      options={options}
+      placeholder={"test"}
+      onChange={changeEvent}
+      onClear={clearEvent}
+      allowClear
+    />,
+  )
+
+  cy.findByTitle("selectRemoveIcon")
+    .click()
+    .then(() => {
+      cy.get("@clearEvent").should("be.calledOnce")
+      cy.get("@changeEvent").should("be.calledOnce")
+      cy.findByText("Shanghai / Huangpu").should("not.be.exist")
+    })
+  cy.get("input").click()
+  cy.findByText("Shanghai").click()
+  cy.findByText("Huangpu").click()
+  cy.findByText("Shanghai / Huangpu").should("exist")
+  cy.findByText("Huangpu").click()
+  cy.findByText("Shanghai / Huangpu").should("not.be.exist")
+
+  unmount()
+})
+
 it("Cascader render with input type", () => {
   const changeEvent = cy.stub().as("changeEvent")
   const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
@@ -175,5 +264,25 @@ it("Cascader render with input type", () => {
       cy.get("@changeEvent").should("be.calledOnce")
       cy.get("@visibleChangeEvent").should("be.calledTwice")
     })
+  unmount()
+})
+
+it("Cascader test with disable label", () => {
+  const changeEvent = cy.stub().as("changeEvent")
+  const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
+  mount(
+    <Cascader
+      options={options}
+      placeholder={"test"}
+      onChange={changeEvent}
+      onVisibleChange={visibleChangeEvent}
+      showSearch
+      allowClear
+    />,
+  )
+  cy.findByPlaceholderText("test").parent().click()
+  cy.findByText("Beijing").click()
+  cy.findByText("Xicheng").click()
+  cy.get("input").should("have.value", "")
   unmount()
 })
