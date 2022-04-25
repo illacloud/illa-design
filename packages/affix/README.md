@@ -22,8 +22,8 @@ import { Affix } from "@illa-design/affix"
 | --------------- | ------------------------------------------------------------ | ----------------------------------- | -------------- |
 | offsetTop       | `Triggered when the specified offset is reached from the top of the window` | `number`                            | `0`            |
 | offsetBottom    | `Triggered when the specified offset is reached from the bottom of the window` | `number`                            | `-`            |
-| target          | `scroll container`                                           | `() => HTMLElement` | null | Window` | `() => window` |
-| targetContainer | `The outer scrolling element of 'target'`                    | `() => HTMLElement` | null | Window` | `-`            |
+| target          | `scroll container`                                           | `() => HTMLElement \| null \| Window` | `() => window` |
+| targetContainer | `The outer scrolling element of 'target'`                    | `() => HTMLElement \| null \| Window` | `-`            |
 
 ### Affix Event
 
