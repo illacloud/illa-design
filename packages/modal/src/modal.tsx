@@ -51,6 +51,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       hideCancel,
       simple,
       closable,
+      closeElement,
       okText,
       cancelText,
       okButtonProps,
@@ -120,11 +121,14 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           )}
           <div css={applyModalContent(simple)}>{children}</div>
           {renderFooter()}
-          {showCloseIcon && (
-            <div css={applyModalCloseIcon} onClick={onCancel}>
-              <CloseIcon />
-            </div>
-          )}
+          {showCloseIcon &&
+            (closeElement ? (
+              closeElement
+            ) : (
+              <div css={applyModalCloseIcon} onClick={onCancel}>
+                <CloseIcon />
+              </div>
+            ))}
         </div>
       )
       return (

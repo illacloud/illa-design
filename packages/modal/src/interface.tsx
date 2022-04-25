@@ -32,6 +32,7 @@ export interface ModalProps
   hideCancel?: boolean
   simple?: boolean
   closable?: boolean
+  closeElement?: ReactNode
   okText?: string
   cancelText?: string
   okButtonProps?: ButtonProps
