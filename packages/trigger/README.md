@@ -1,6 +1,6 @@
 # Trigger
 
-The basic component of all popup component. it used to show more information by hovering, focusing, or clicking on a element
+The basic component of all popup component. it used to show more information by hovering, focusing, or clicking on a element.
 
 ## Installation
 
