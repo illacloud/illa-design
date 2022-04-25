@@ -1,6 +1,6 @@
-# 面包屑
+# 面包屑 Breadcrumb
 
-面包屑主要被用于展示当前页面在系统中的位置，并且提供快速导航的功能
+面包屑主要被用于展示当前页面在系统中的位置，并且提供快速导航的功能。
 
 ## 安装
 
@@ -18,26 +18,26 @@ import { Breadcrumb, BreadcrumbItem } from "@illa-design/breadcrumb"
 
 ### Breadcrumb 基础属性
 
-| 参数名    | 描述                     | 类型                  | 默认值 |
-| --------- | ------------------------ | --------------------- | ------ |
-| separator | 自定义分割符             | `string \| ReactNode` | `-`    |
-| routes    | 直接设置下拉菜单内容     | `RouteProps`          | `-`    |
-| maxCount  | 设置最多渲染的面包屑数量 | `number`              | `-`    |
+| 参数名    | 描述                     | 类型                | 默认值 |
+| --------- | ------------------------ | ------------------- | ------ |
+| separator | 自定义分割符             | string \| ReactNode | -      |
+| routes    | 直接设置下拉菜单内容     | RouteProps          | -      |
+| maxCount  | 设置最多渲染的面包屑数量 | number              | -      |
 
 ### BreadcrumbItem 基础属性
 
-| 参数名        | 描述               | 类型               | 默认值 |
-| ------------- | :----------------- | ------------------ | ------ |
-| droplist      | 设置下拉菜单的内容 | `Menu \| ()=>Menu` | `-`    |
-| dropdownProps | 设置下拉菜单的属性 | `DropdownProps`    | `-`    |
+| 参数名        | 描述               | 类型             | 默认值 |
+| ------------- | :----------------- | ---------------- | ------ |
+| droplist      | 设置下拉菜单的内容 | Menu \| ()=>Menu | -      |
+| dropdownProps | 设置下拉菜单的属性 | DropdownProps    | -      |
 
 ### RouteProps 基础属性
 
-| 参数名         | 描述                     | 类型                                            | 默认值 |
-| -------------- | :----------------------- | ----------------------------------------------- | ------ |
-| path           | 设置当前页面下的路由地址 | `string`                                        | `-`    |
-| breadcrumbName | 设置节点名称             | `string`                                        | `-`    |
-| children       | 设置节点下拉菜单中子项   | `Array<{path: string;breadcrumbName: string;}>` | `-`    |
+| 参数名         | 描述                     | 类型                                          | 默认值 |
+| -------------- | :----------------------- | --------------------------------------------- | ------ |
+| path           | 设置当前页面下的路由地址 | string                                        | -      |
+| breadcrumbName | 设置节点名称             | string                                        | -      |
+| children       | 设置节点下拉菜单中子项   | Array<{path: string;breadcrumbName: string;}> | -      |
 
 ### 使用方法
 
@@ -88,5 +88,3 @@ const routes = [
   <BreadcrumbItem>News</BreadcrumbItem>
 </Breadcrumb>
 ```
-
-### 
