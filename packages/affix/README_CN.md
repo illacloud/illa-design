@@ -22,8 +22,8 @@ import { Affix } from "@illa-design/affix"
 | --------------- | ------------------------------------------------------------ | ----------------------------------- | -------------- |
 | offsetTop       | 距离窗口顶部达到指定偏移量后触发                             | `number`                            | `0`            |
 | offsetBottom    | 距离窗口底部达到指定偏移量后触发                             | `number`                            | `-`            |
-| target          | 滚动容器                                                     | `() => HTMLElement | null | Window` | `() => window` |
-| targetContainer | `target` 的外层滚动元素。`Affix` 将会监听该元素的滚动事件，并实时更新固钉的位置。主要是为了解决 `target` 属性指定为非 `window` 元素时，如果外层元素滚动，可能会导致固钉跑出容器问题。 | `() => HTMLElement | null | Window` | `-`            |
+| target          | 滚动容器                                                     | `() => HTMLElement \| null \| Window` | `() => window` |
+| targetContainer | `target` 的外层滚动元素。`Affix` 将会监听该元素的滚动事件，并实时更新固钉的位置。主要是为了解决 `target` 属性指定为非 `window` 元素时，如果外层元素滚动，可能会导致固钉跑出容器问题。 | `() => HTMLElement \| null \| Window` | `-`            |
 
 ### Affix事件
 

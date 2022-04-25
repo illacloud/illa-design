@@ -20,16 +20,16 @@ import { Affix } from "@illa-design/affix"
 
 | Props           | Desc                                                         | Type                                | Default        |
 | --------------- | ------------------------------------------------------------ | ----------------------------------- | -------------- |
-| offsetTop       | `Triggered when the specified offset is reached from the top of the window` | `number`                            | `0`            |
-| offsetBottom    | `Triggered when the specified offset is reached from the bottom of the window` | `number`                            | `-`            |
-| target          | `scroll container`                                           | `() => HTMLElement | null | Window` | `() => window` |
-| targetContainer | `The outer scrolling element of 'target'`                    | `() => HTMLElement | null | Window` | `-`            |
+| offsetTop       | Triggered when the specified offset is reached from the top of the window | number                            | 0            |
+| offsetBottom    | Triggered when the specified offset is reached from the bottom of the window | number                            | -            |
+| target          | scroll container                                           | () => HTMLElement \| null \| Window | () => window |
+| targetContainer | The outer scrolling element of 'target'                   | () => HTMLElement \| null \| Window | -           |
 
 ### Affix Event
 
 | Props    | Desc                                   | Type                         | Default |
 | -------- | -------------------------------------- | ---------------------------- | ------- |
-| onChange | Triggered when the fixed state changes | `(affixed: boolean) => void` | `-`     |
+| onChange | Triggered when the fixed state changes | (affixed: boolean) => void | -    |
 
 ## Examples
 
@@ -37,6 +37,6 @@ import { Affix } from "@illa-design/affix"
 
 ```jsx
 <Affix>
-	<span>Hello</span>
+  <span>Hello</span>
 </Affix>
 ```
