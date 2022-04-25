@@ -1,6 +1,6 @@
 # TreeSelect
 
-It is a selector which displays options in a tree
+It is a selector which displays options in a tree.
 
 ## Installation
 
