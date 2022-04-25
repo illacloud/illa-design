@@ -2,13 +2,13 @@
 
 The badge component usually appears in the upper right corner of avatar or text to  provide important information alert.
 
-## 安装
+## Installation
 
 ```bash
 yarn add @illa-design/badge
 ```
 
-## 引用组件
+## Import Component
 
 ```jsx
 import { Badge } from "@illa-design/badge"
