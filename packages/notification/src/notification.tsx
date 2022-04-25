@@ -1,4 +1,4 @@
-import { forwardRef, useState, useCallback, useEffect } from "react"
+import { forwardRef, useState, useCallback, useLayoutEffect } from "react"
 import {
   NotificationProps,
   NoticeProps,
@@ -90,7 +90,7 @@ export const Notification: NotificationComponent = forwardRef<
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (shouldClear) {
       setNotificationSet({
         ...notificationSet,
@@ -112,7 +112,7 @@ export const Notification: NotificationComponent = forwardRef<
     setNotificationSet({ ...notificationSet, [position]: newNotices })
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (notice) {
       const isUpdate =
         notificationSet[position].findIndex((item) => item.id === notice.id) >

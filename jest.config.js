@@ -3,7 +3,7 @@ module.exports = {
   coverageDirectory: "./jest-coverage/",
   coverageReporters: ["json"],
   collectCoverage: true,
-  collectCoverageFrom: ["packages/**/src/**/*.(ts|tsx)"],
+  collectCoverageFrom: ["packages/**/src/**/*.(ts|tsx)", "!packages/react/src/*.(ts|tsx)", "!packages/**/src/index.(ts|tsx)", "!packages/table/src/types/*.(ts|tsx)", "!packages/**/src/**/*.d.ts"],
   moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
   modulePathIgnorePatterns: ["<rootDir>/examples"],
   snapshotSerializers: ["@emotion/jest/serializer"],

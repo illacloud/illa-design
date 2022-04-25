@@ -11,7 +11,7 @@ yarn add @illa-design/steps
 ## Import component
 
 ```jsx
-import { Steps } from "@illa-dedign/steps"
+import { Steps } from "@illa-design/steps"
 ```
 
 ## API
