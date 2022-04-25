@@ -121,8 +121,7 @@ function run() {
             getTargetPath(
               TARGET_I18N_PATH,
               lowerLanguage === "cn" ? "zh-cn" : language,
-              `docusaurus-plugin-content-docs/current/COMPONENTS/${
-                category ?? "OTHERS"
+              `docusaurus-plugin-content-docs/current/COMPONENTS/${category ?? "OTHERS"
               }`,
               `${compName}.md`,
             ),
@@ -143,8 +142,7 @@ function run() {
           getTargetPath(
             TARGET_I18N_PATH,
             "en",
-            `docusaurus-plugin-content-docs/current/COMPONENTS/${
-              category ?? "OTHERS"
+            `docusaurus-plugin-content-docs/current/COMPONENTS/${category ?? "OTHERS"
             }`,
             `${compName}.md`,
           ),
@@ -152,6 +150,10 @@ function run() {
       }
     })
   })
+  copyFile(
+    path.join(__dirname, "../README.md"),
+    path.join(TARGET_BASE_PATH, "docs", "intro.md")
+  )
 }
 
 run()
