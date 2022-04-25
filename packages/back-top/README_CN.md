@@ -1,4 +1,4 @@
-# Backtop
+# BackTop
 
 When scrolling to the height, a button to return to the top will appear in the lower right corner.
 
