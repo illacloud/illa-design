@@ -1,6 +1,6 @@
 # Breadcrumb
 
-Breadcrumb is  used to dislay the location of the current page and return previous page
+Breadcrumb is  used to dislay the location of the current page and return previous page.
 
 ## Installation
 
@@ -18,26 +18,26 @@ import { Breadcrumb, BreadcrumbItem } from "@illa-design/breadcrumb"
 
 ### Breadcrumb Basic Properties
 
-| Props     | Desc                            | Type                  | Default |
-| --------- | ------------------------------- | --------------------- | ------- |
-| separator | Set separator                   | `string \| ReactNode` | `-`     |
-| routes    | Set breadcrumb content          | `RouteProps`          | `-`     |
-| maxCount  | Set maximum show number of item | `number`              | `-`     |
+| Props     | Desc                            | Type                | Default |
+| --------- | ------------------------------- | ------------------- | ------- |
+| separator | Set separator                   | string \| ReactNode | -       |
+| routes    | Set breadcrumb content          | RouteProps          | -       |
+| maxCount  | Set maximum show number of item | number              | -       |
 
 ### BreadcrumbItem Basic Properties
 
-| Props         | Desc                           | Type               | Default |
-| ------------- | ------------------------------ | ------------------ | ------- |
-| droplist      | Set droplist of BreadcrumbItem | `Menu \| ()=>Menu` | `-`     |
-| dropdownProps | Set droplist properties        | `DropdownProps`    | `-`     |
+| Props         | Desc                           | Type             | Default |
+| ------------- | ------------------------------ | ---------------- | ------- |
+| droplist      | Set droplist of BreadcrumbItem | Menu \| ()=>Menu | -       |
+| dropdownProps | Set droplist properties        | DropdownProps    | -       |
 
 ### RouteProps Properties
 
-| Props          | Desc                            | Type                                                         | Default |
-| -------------- | ------------------------------- | ------------------------------------------------------------ | ------- |
-| path           | Set route path                  | `string`                                                     | `-`     |
-| breadcrumbName | Set  breadcrumb item's title    | `string`                                                     | `-`     |
-| children       | Set breadcrumb item 's children | `Array<{path: string;breadcrumbName: string;}>`              | `-`     |
+| Props          | Desc                            | Type                                          | Default |
+| -------------- | ------------------------------- | --------------------------------------------- | ------- |
+| path           | Set route path                  | string                                        | -       |
+| breadcrumbName | Set  breadcrumb item's title    | string                                        | -       |
+| children       | Set breadcrumb item 's children | Array<{path: string;breadcrumbName: string;}> | -       |
 
 ## Example
 
@@ -88,5 +88,3 @@ const routes = [
   <BreadcrumbItem>News</BreadcrumbItem>
 </Breadcrumb>
 ```
-
-### 
