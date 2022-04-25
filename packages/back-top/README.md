@@ -18,13 +18,13 @@ import { Backtop } from "@illa-design/backtop"
 
 ### Backtop Basic Properties
 
-| Props         | Desc                                                         | Type                         | Default        |
-| ------------- | ------------------------------------------------------------ | ---------------------------- | -------------- |
-| visibleHeight | When scrolled to this height, the back to top button is visible. | `number`                     | `400`          |
-| target        | Set the element whose scroll event needs to be listened to   | `() => HTMLElement` | `Window` | `() => window` |
-| onClick       | Callback function when click returns to top.                 | `() => void`                 | `-`            |
-| easing        | Scroll to top easing type                                    | `string`                     | `quartOut`     |
-| duration      | Time to scroll to top.                                       | `number`                     | `400`          |
+| Props         | Desc                                                         | Type              | Default  |
+| ------------- | ------------------------------------------------------------ | ----------------- | -------- |
+| visibleHeight | When scrolled to this height, the back to top button is visible. | number            | 400      |
+| target        | Set the element whose scroll event needs to be listened to   | () => HTMLElement | Window   |
+| onClick       | Callback function when click returns to top                  | () => void        | -        |
+| easing        | Scroll to top easing type                                    | string            | quartOut |
+| duration      | Time to scroll to top                                        | number            | 400      |
 
 ## Examples
 
