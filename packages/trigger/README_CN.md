@@ -1,6 +1,6 @@
 # 触发器 Trigger
 
-所有弹出框组件的基础组件， 能够交互式的展示更多信息。当鼠标悬停，聚焦，点击某个组件时，出现提示弹窗或气泡
+所有弹出框组件的基础组件， 能够交互式的展示更多信息。当鼠标悬停，聚焦，点击某个组件时，出现提示弹窗或气泡。
 
 ## 安装
 
@@ -57,7 +57,7 @@ import { Trigger } from "@illa-design/trigger"
 
 ### 设置气泡位置
 
-通过position这个接口可以设置气泡的弹出位置
+通过position这个接口可以设置气泡的弹出位置。
 
 ```jsx
 <Trigger content="Trigger" position="bottom">
@@ -67,7 +67,7 @@ import { Trigger } from "@illa-design/trigger"
 
 ### 设置气泡背景颜色
 
-通过variant这个接口可以调整组件的样式,通过colorScheme个接口可以调整组件的背景颜色
+通过variant这个接口可以调整组件的样式,通过colorScheme个接口可以调整组件的背景颜色。
 
 ```jsx
 <Trigger content="Trigger" position="top" colorScheme="cyan">
@@ -77,7 +77,7 @@ import { Trigger } from "@illa-design/trigger"
 
 ### 不展示箭头
 
-通过showArrow接口可以设置是否展示气泡上的箭头
+通过showArrow接口可以设置是否展示气泡上的箭头。
 
 ```jsx
 <Trigger content="Trigger" position="top" colorScheme="cyan" showArrow={false}>
@@ -87,7 +87,7 @@ import { Trigger } from "@illa-design/trigger"
 
 ### 设置气泡默认展示状态
 
-通过defaultPopupVisible设置气泡的默认展示状态
+通过defaultPopupVisible设置气泡的默认展示状态。
 
 ```jsx
 <Trigger content="Trigger" position="top" colorScheme="cyan" defaultPopupVisible>
@@ -97,7 +97,7 @@ import { Trigger } from "@illa-design/trigger"
 
 ### 设置气泡展示和关闭延时
 
-通过openDelay和closeDelay这两个参数可以设置气泡展示和关闭的延时
+通过openDelay和closeDelay这两个参数可以设置气泡展示和关闭的延时。
 
 ```jsx
 <Trigger content="Trigger" position="top" colorScheme="cyan" openDelay={1000} closeDelay={1000}>
