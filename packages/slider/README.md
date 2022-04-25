@@ -23,10 +23,10 @@ import { Slider } from "@illa-dedign/slider"
 | showTicks       | Whether show ticks                        | boolean                                                      | -       |
 | showInput       | Whether show number input                 | boolean                                                      | -       |
 | reverse         | Whether reverse ticks                     | boolean                                                      | -       |
-| marks           | set ticks‘ mark                           | Record<number, ReactNode>                                    | -       |
+| marks           | set ticks‘ mark                           | `Record<number, ReactNode>`                                  | -       |
 | vertical        | Whether make silder vertical              | boolean                                                      | -       |
 | tooltipVisible  | Whether always show tooltip               | boolean                                                      | -       |
-| tooltipPosition | Set the position of tooltip               | "top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br" \| "left" \| "lt" \| "lb" \| "right" \| "rt" \| "rb" | -       |
+| tooltipPosition | Set the position of tooltip               | "top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br" \| "left" \| "lt" \| "lb" \| "right" \| "rt" \| "rb" | "top"       |
 | disabled        | Whether disable the component             | boolean                                                      | -       |
 | min             | Set minimum value                         | number                                                       | 0       |
 | max             | Set maxmum value                          | number                                                       | 100     |
