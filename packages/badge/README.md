@@ -20,7 +20,7 @@ import { Badge } from "@illa-design/badge"
 
 | Props       | Desc                              | Type                                                         | Default |
 | ----------- | --------------------------------- | ------------------------------------------------------------ | ------- |
-| count       | The number show on the badge      | `number\| ReactNode `                                        | `0`     |
+| count       | The number show on the badge      | `number \| ReactNode`                                        | `0`     |
 | text        | The displayed text                | `string \| string[]`                                         | `-`     |
 | dot         | If true, the badge is a red dot   | `boolean`                                                    | `-`     |
 | dotStyle    | The style of the dot              | `object`                                                     | `-`     |
