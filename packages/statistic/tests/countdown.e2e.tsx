@@ -13,12 +13,14 @@ it("Countdown renders with onFinishEvent and onChangeEvent", () => {
   const onFinishEvent = cy.spy().as("onFinishEvent")
   mount(
     <Countdown
-      value={Date.now() + 18000}
+      value={Date.now() + 5000}
       onChange={onChangeEvent}
       onFinish={onFinishEvent}
     />,
   )
-  cy.clock(Date.now() + 18000)
+  cy.clock(Date.now() + 3000)
+  cy.tick(1000)
+  cy.tick(1000)
   cy.get("@onChangeEvent").should("be.called")
   cy.get("@onFinishEvent").should("be.called")
   unmount()

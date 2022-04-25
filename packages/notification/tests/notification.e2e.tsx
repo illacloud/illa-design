@@ -6,20 +6,25 @@ import "@testing-library/cypress"
 it("Notification renders with duration", () => {
   Notification.info({
     content: "Default",
-    duration: 500,
+    duration: 5000,
   })
+  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
   cy.contains("Default").should("be.visible")
+  cy.tick(5000)
   cy.contains("Default").should("not.exist")
 })
 
 it("Notification renders with mouse action", () => {
   Notification.info({
     content: "Content",
-    duration: 800,
+    duration: 5000,
   })
+  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
   cy.contains("Content").trigger("mouseenter")
-  cy.contains("Content").should("be.visible")
-  cy.contains("Content").trigger("mouseleave")
+  cy.tick(5000)
+
+  cy.contains("Content").should("be.visible").trigger("mouseleave")
+  cy.tick(5000)
   cy.contains("Content").should("not.exist")
 })
 
@@ -28,10 +33,14 @@ it("Notification renders with remove action and clear action", () => {
     content: "Remove",
     id: "remove",
   })
+  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
   cy.contains("Remove").should("be.visible")
   Notification.remove("remove")
   cy.contains("Remove").should("not.be.exist")
+  cy.tick(10000)
+})
 
+it("Notification renders with clear action", () => {
   Notification.info({
     content: "ItemA",
     id: "itemA",
@@ -42,6 +51,7 @@ it("Notification renders with remove action and clear action", () => {
     id: "itemB",
   })
 
+  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
   cy.contains("ItemA")
     .should("be.visible")
     .then(() => {
@@ -52,4 +62,5 @@ it("Notification renders with remove action and clear action", () => {
 
   cy.contains("ItemA").should("not.be.exist")
   cy.contains("ItemB").should("not.be.exist")
+  cy.tick(10000)
 })

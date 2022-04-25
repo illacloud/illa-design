@@ -6,32 +6,40 @@ import "@testing-library/cypress"
 it("Message renders with duration", () => {
   Message.info({
     content: "Default",
-    duration: 500,
+    duration: 5000,
   })
+  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
   cy.contains("Default").should("be.visible")
+  cy.tick(5000)
   cy.contains("Default").should("not.exist")
 })
 
 it("Message renders with mouse action", () => {
   Message.info({
     content: "Content",
-    duration: 800,
+    duration: 5000,
   })
+  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
   cy.contains("Content").trigger("mouseenter")
-  cy.contains("Content").should("be.visible")
-  cy.contains("Content").trigger("mouseleave")
+  cy.tick(5000)
+  cy.contains("Content").should("be.visible").trigger("mouseleave")
+  cy.tick(5000)
   cy.contains("Content").should("not.exist")
 })
 
-it("Message renders with remove action and clear action", () => {
+it("Message renders with remove action", () => {
   Message.info({
     content: "Remove",
     id: "remove",
   })
+  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
   cy.contains("Remove").should("be.visible")
   Message.remove("remove")
   cy.contains("Remove").should("not.be.exist")
+  cy.tick(10000)
+})
 
+it("Message renders with clear action", () => {
   Message.info({
     content: "ItemA",
     id: "itemA",
@@ -41,7 +49,7 @@ it("Message renders with remove action and clear action", () => {
     content: "ItemB",
     id: "itemB",
   })
-
+  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
   cy.contains("ItemA")
     .should("be.visible")
     .then(() => {
@@ -52,4 +60,5 @@ it("Message renders with remove action and clear action", () => {
 
   cy.contains("ItemA").should("not.be.exist")
   cy.contains("ItemB").should("not.be.exist")
+  cy.tick(10000)
 })
