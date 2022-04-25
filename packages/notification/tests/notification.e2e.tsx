@@ -37,7 +37,6 @@ it("Notification renders with remove action and clear action", () => {
   cy.contains("Remove").should("be.visible")
   Notification.remove("remove")
   cy.contains("Remove").should("not.be.exist")
-  cy.tick(10000)
 })
 
 it("Notification renders with clear action", () => {
@@ -62,5 +61,4 @@ it("Notification renders with clear action", () => {
 
   cy.contains("ItemA").should("not.be.exist")
   cy.contains("ItemB").should("not.be.exist")
-  cy.tick(10000)
 })

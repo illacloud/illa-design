@@ -36,7 +36,6 @@ it("Message renders with remove action", () => {
   cy.contains("Remove").should("be.visible")
   Message.remove("remove")
   cy.contains("Remove").should("not.be.exist")
-  cy.tick(10000)
 })
 
 it("Message renders with clear action", () => {
@@ -60,5 +59,4 @@ it("Message renders with clear action", () => {
 
   cy.contains("ItemA").should("not.be.exist")
   cy.contains("ItemB").should("not.be.exist")
-  cy.tick(10000)
 })
