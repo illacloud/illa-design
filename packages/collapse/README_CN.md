@@ -24,7 +24,7 @@ import { Collapse } from "@illa-design/collapse"
 | defaultActiveKey   | 默认展开的面板       | `string \| string[]` | `-`     |
 | accordion          | 是否是手风琴模式     | `boolean`            | `-`     |
 | expandIcon         | 自定义展开图标       | `ReactNode`          | `-`     |
-| expandIconPosition | 展开图标的位置       | `"left" | "right"`   | `left`  |
+| expandIconPosition | 展开图标的位置       | `"left" \| "right"`   | `"left"`  |
 | bordered           | 无边框样式           | `boolean`            | `true`  |
 | destroyOnHide      | 是否销毁被折叠的面板 | `boolean`            | `-`     |
 
