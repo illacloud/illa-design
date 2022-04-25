@@ -24,7 +24,7 @@ import { Collapse } from "@illa-design/collapse"
 | defaultActiveKey   | Default expanded panel                 | `string \| string[]` | `-`     |
 | accordion          | Whether it is in accordion mode        | `boolean`            | `-`     |
 | expandIcon         | Custom expand icon                     | `ReactNode`          | `-`     |
-| expandIconPosition | Position of the expand icon            | `"left" | "right"`   | `left`  |
+| expandIconPosition | Position of the expand icon            | `"left" \| "right"`   | `"left"`  |
 | bordered           | Whether it is bordered                 | `boolean`            | `true`  |
 | destroyOnHide      | Whether to destroy the collapsed panel | `boolean`            | `-`     |
 
