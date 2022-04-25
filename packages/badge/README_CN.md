@@ -20,7 +20,7 @@ import { Badge } from "@illa-design/badge"
 
 | Props       | Desc                                                         | Type                                                         | Default |
 | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------- |
-| count       | 徽标显示的数字                                               | `number\| ReactNode `                                        | `0`     |
+| count       | 徽标显示的数字                                               | `number \| ReactNode`                                        | `0`     |
 | text        | 自定义提示内容                                               | `string \| string[]`                                         | `-`     |
 | dot         | 显示为小红点                                                 | `boolean`                                                    | `-`     |
 | dotStyle    | 徽标的样式                                                   | `object`                                                     | `-`     |
