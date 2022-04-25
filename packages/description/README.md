@@ -31,9 +31,9 @@ import { Descriptions } from "@illa-design/descriptions"
 
 | Props | Desc                                             | Type      | Default |
 | ----- | ------------------------------------------------ | --------- | ------- |
-| label | 标签                                             | `string ` | `-`     |
-| value | 数据内容                                         | `string`  | `-`     |
-| span  | 头像组最多展示的头像数量，多余头像以+x的形式展示 | `number ` | 1       |
+| label | Label                                             | `string ` | `-`     |
+| value | Value                                         | `string`  | `-`     |
+| span  | span | `number ` | 1       |
 
 ## Examples
 
