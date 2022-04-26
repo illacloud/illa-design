@@ -49,7 +49,7 @@ type CalendarValue = number | string | Date | Dayjs
 
 | Props           | Desc                                                         | Type                                   | Default    |
 | --------------- | ------------------------------------------------------------ | -------------------------------------- | ---------- |
-| format          | 展示日期的格式，参考[dayjs](https://github.com/iamkun/dayjs) | string \| ((value: Dayjs) => string)   | YYYY-MM-DD |
+| format          | 展示日期的格式，参考[dayjs](https://github.com/iamkun/dayjs) | string \| ((value: Dayjs) => string)   | "YYYY-MM-DD" |
 | defaultValue    | 默认日期                                                     | CalendarValue                          | -          |
 | value           | 日历组件的值                                                 | CalendarValue                          | -          |
 | showTime        | 是否增加时间选择                                             | boolean \| TimePickerProps             | -          |
@@ -63,7 +63,7 @@ type CalendarValue = number | string | Date | Dayjs
 
 | Props        | Desc                                                         | Type          | Default |
 | ------------ | ------------------------------------------------------------ | ------------- | ------- |
-| format       | 展示日期的格式，参考[dayjs](https://github.com/iamkun/dayjs) | string        | YYYY-MM |
+| format       | 展示日期的格式，参考[dayjs](https://github.com/iamkun/dayjs) | string        | "YYYY-MM" |
 | defaultValue | 默认日期                                                     | CalendarValue | -       |
 | value        | 日历组件的值                                                 | CalendarValue | -       |
 
@@ -73,7 +73,7 @@ type CalendarValue = number | string | Date | Dayjs
 
 | Props        | Desc                                                         | Type          | Default |
 | ------------ | ------------------------------------------------------------ | ------------- | ------- |
-| format       | 展示日期的格式，参考[dayjs](https://github.com/iamkun/dayjs) | string        | YYYY    |
+| format       | 展示日期的格式，参考[dayjs](https://github.com/iamkun/dayjs) | string        | "YYYY"    |
 | defaultValue | 默认日期                                                     | CalendarValue | -       |
 | value        | 日历组件的值                                                 | CalendarValue | -       |
 
@@ -82,7 +82,7 @@ type CalendarValue = number | string | Date | Dayjs
 | Props              | Desc                                                         | Type                                                         | Default    |
 | ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------- |
 | disabled           | 是否禁用                                                     | boolean \| boolean[]                                         | -          |
-| format             | 展示日期的格式，参考[dayjs](https://github.com/iamkun/dayjs) | string                                                       | YYYY-MM-DD |
+| format             | 展示日期的格式，参考[dayjs](https://github.com/iamkun/dayjs) | string                                                       | "YYYY-MM-DD" |
 | onChange           | 日历组件值发生改变时的回调                                   | (dateString: string[], date: Dayjs[]) => void                | -          |
 | defaultValue       | 默认日期                                                     | CalendarValue[]                                              | -          |
 | value              | 日历组件的值                                                 | CalendarValue[]                                              | -          |
