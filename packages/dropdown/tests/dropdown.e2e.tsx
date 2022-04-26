@@ -21,7 +21,31 @@ it("Dropdown renders correctly", () => {
   const visibleEvent = cy.stub().as("visibleEvent")
   mount(
     <Dropdown
-      dropList={dropList}
+      triggerProps={{ closeDelay: 0, openDelay: 0 }}
+      onVisibleChange={visibleEvent}
+    >
+      <Button>Click</Button>
+    </Dropdown>,
+  )
+  cy.findByText("Click")
+    .click()
+    .then(() => {
+      cy.get("@visibleEvent").should("be.calledWith", true)
+    })
+  unmount()
+})
+
+it("Dropdown renders with dropList", () => {
+  const visibleEvent = cy.stub().as("visibleEvent")
+  const clickMenuItemEvent = cy.stub().as("clickMenuItemEvent")
+  mount(
+    <Dropdown
+      dropList={
+        <Menu onClickMenuItem={clickMenuItemEvent}>
+          <Item title={"Blog"} key={"1"} />
+          <Item title={"Tutorial"} key={"2"} />
+        </Menu>
+      }
       triggerProps={{ closeDelay: 0, openDelay: 0 }}
       onVisibleChange={visibleEvent}
     >
@@ -32,6 +56,11 @@ it("Dropdown renders correctly", () => {
     .trigger("mouseover")
     .then(() => {
       cy.findByText("Blog").should("exist")
+      cy.findByText("Blog")
+        .click()
+        .then(() => {
+          cy.get("@clickMenuItemEvent").should("be.calledWith", "1")
+        })
     })
 
   unmount()
@@ -56,10 +85,14 @@ it("Dropdown renders correctly", () => {
     })
   unmount()
 })
+
 it("Dropdown renders correctly", () => {
   const visibleEvent = cy.stub().as("visibleEvent")
   mount(
-    <Dropdown onVisibleChange={visibleEvent}>
+    <Dropdown
+      triggerProps={{ closeDelay: 0, openDelay: 0 }}
+      onVisibleChange={visibleEvent}
+    >
       <Button>Click</Button>
     </Dropdown>,
   )
