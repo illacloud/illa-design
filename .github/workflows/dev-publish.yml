@@ -2,7 +2,7 @@ name: "Preview Publish"
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, feat/privatization_storybook ]
 
 env:
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -107,11 +107,9 @@ jobs:
       - name: Import docs i18n
         run: yarn import-docs
 
-      - name: Build docs
+      - name: Deploy docs to sb-static branch
         run: |
-          cd ./docs
-          yarn build
-          cd ..
+          yarn deploy-storybook -- --branch=sb-static
 
       - name: Deploy docs to Github Pages
         uses: peaceiris/actions-gh-pages@v3
