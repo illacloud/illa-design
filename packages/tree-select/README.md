@@ -27,8 +27,8 @@ import { TreeSelect } from "@illa-dedign/treeselect"
 | labelInValue      | Set value's format                                           | boolean                                                      | -        |
 | treeCheckable     | Whether to add a Checkbox before the treeNodes               | boolean                                                      | -        |
 | treeCheckStrictly | Whether associate parent treeNode and children treeNode when they are checkable | boolean                                                      | -        |
-| treeProps         | Set tree's properties                                        | Partial<TreeProps>                                           | -        |
-| triggerProps      | Set trigger's properties                                     | Partial<TriggerProps>                                        | -        |
+| treeProps         | Set tree's properties                                        | `Partial<TreeProps>`                                           | -        |
+| triggerProps      | Set trigger's properties                                     | `Partial<TriggerProps>`                                        | -        |
 | notFoundContent   | Set the content when treeData is empty                       | ReactNode                                                    | -        |
 | placeholder       | Set placeholder                                              | string                                                       | -        |
 | showSearch        | Whether allow search                                         | boolean \| { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean } | -        |
