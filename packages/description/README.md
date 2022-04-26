@@ -36,7 +36,56 @@ import { Descriptions } from "@illa-design/descriptions"
 | span  | span  | number | 1       |
 
 ## Examples
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
 
+export const code = `
+    <>
+      <Description
+        data={[
+          {
+            label: "Name",
+            value: "ILLA",
+          },
+          {
+            label: "Mobile",
+            value: "123-1234-1234",
+          },
+          {
+            label: "Residence",
+            value: "Beijing",
+          },
+          {
+            label: "Hometown",
+            value: "Beijing",
+          },
+          {
+            label: "Date of Birth",
+            value: "2020-05-15",
+            span: 2,
+          },
+          {
+            label: "Address",
+            value: "Building, Road, Beijing",
+            span: 3,
+          },
+        ]}
+      />
+      <Description
+        align={"left"}
+        size={"large"}
+        layout="horizontal"
+        column={1}
+        data={dataList}
+      />
+    </>`
+
+export const importStatement = `import { Descriptions } from "@illa-design/descriptions"`
+
+export const packages = {"@illa-design/descriptions":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 ### Basic usage
 
 ```jsx
