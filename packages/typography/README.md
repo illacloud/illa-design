@@ -94,6 +94,60 @@ import { Typography } from "@illa-design/typography"
 
 ## Example
 
+
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
+
+export const code = `
+    <>
+      <Typograph>
+        <Heading>I am a title.</Heading>
+        <Paragraph>I am a paragraph.</Paragraph>
+        <Text>I am text.</Text>
+      </Typograph>
+      <Text>
+        ILLA Design 
+        </Text>
+      <Text colorScheme="red">
+        ILLA Design
+      </Text>
+      <Text bold>
+        Bold
+      </Text>
+      <Text disabled>
+        Disabled
+      </Text>
+      <Text mark>
+        Mark
+      </Text>
+      <Text underline>
+        Underline
+      </Text>
+      <Text delete>
+        Line through
+      </Text>
+      <Text code>
+        Code snippet
+      </Text>
+      <paragraph indent>
+         I took her hand in mine, and we went out of the ruined place; and, as the morning mists had risen long ago when I first left the forge, so, the evening mists were rising now, and in all the broad expanse of tranquil light they showed to me, I saw no shadow of another parting from her.
+      </paragraph>
+      <paragraph indent ellipsis={new EllipsisBuilder().rows(2).expandable(true).create()}>
+        I took her hand in mine, and we went out of the ruined place; and, as the morning mists had risen long ago when I first left the forge, so, the evening mists were rising now, and in all the broad expanse of tranquil light they showed to me, I saw no shadow of another parting from her.
+      </paragraph>
+      <Text copyable>
+        This is a copyable text.
+      </Text>
+    </>`
+    
+
+export const importStatement = `import { Typograph,Heading,Paragraph,Text } from "@illa-design/typograph"`
+
+export const packages = {"@illa-design/typograph":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
+
 ### Basic usage
 
 ```jsx
