@@ -95,7 +95,29 @@ type CalendarValue = number | string | Date | Dayjs
 | defaultPickerValue | 默认面板显示的日期                                           | CalendarValue[]                                              | -          |
 
 ## 使用方法
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
 
+export const code = `
+    <>
+      <DatePicker placeholder={"DatePicker"} />
+      <DatePicker placeholder={"DatePicker"} disabled />
+      <MonthPicker style={{ width: 200 }} />
+      <DatePicker
+        defaultValue='2019-06-03'
+        format={(value) => `custom format: ${value.format('YYYY-MM-DD')}`}
+        onSelect={onSelect}
+        onChange={onChange}
+        style={{ ...style, width: 240 }}
+      /> 
+    </>`
+
+export const importStatement = `import { Datepicker } from "@illa-dedign/datepicker"`
+
+export const packages = {"@illa-design/datepicker":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 ### 基础用法
 
 ```jsx
@@ -111,7 +133,7 @@ type CalendarValue = number | string | Date | Dayjs
 ### 设置月份选择器
 
 ```jsx
-ReactDOM.render(<MonthPicker style={{ width: 200 }} />, CONTAINER)
+<MonthPicker style={{ width: 200 }} />
 ```
 
 ### 设置默认值
