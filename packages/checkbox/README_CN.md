@@ -43,7 +43,25 @@ import { Checkbox } from "@illa-design/checkbox"
 | value        | 选中的选项（受控模式） | `string `                    | `-`            |
 
 ## 使用方法
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
 
+export const code = `
+    <>
+      <Checkbox>Hello</Checkbox>
+      <Checkbox disabled>Hello</Checkbox>
+      <Checkbox checked>Hello</Checkbox>
+      <CheckboxGroup options={["A", "B", "C"]} />
+      <CheckboxGroup options={["A", "B", "C"]} defaultValue={["A"]} />
+      <CheckboxGroup options={["A", "B", "C"]} direction="vertical" />
+    </>`
+
+export const importStatement = `import { Checkbox } from "@illa-design/checkbox"`
+
+export const packages = {"@illa-design/checkbox":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 ### 基础用法
 
 ```jsx
