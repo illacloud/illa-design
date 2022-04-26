@@ -5,6 +5,7 @@ import { Checkbox } from "@illa-design/checkbox"
 import { Node } from "../node"
 import { OptionProps, SearchPopupProps } from "../interface"
 import {
+  applyOptionLabelStyle,
   applyOptionStyle,
   flexCenterStyle,
   optionListStyle,
@@ -78,7 +79,7 @@ export const SearchPopup = <T extends OptionProps>(
           return (
             <li
               css={applyOptionStyle({
-                active: !multiple && checked,
+                active: checked,
                 disabled: option.disabled,
               })}
               ref={(node) => {
@@ -93,15 +94,18 @@ export const SearchPopup = <T extends OptionProps>(
               key={i}
             >
               {multiple ? (
-                <Checkbox
-                  checked={checked}
-                  disabled={option.disabled}
-                  onChange={(checked, e) => {
-                    clickOption(option, checked, e)
-                  }}
-                >
-                  {label}
-                </Checkbox>
+                <>
+                  <Checkbox
+                    css={{ "margin-right": "8px" }}
+                    checked={checked}
+                    value={option.value}
+                    disabled={option.disabled}
+                    onChange={(checked, e) => {
+                      clickOption(option, checked, e)
+                    }}
+                  ></Checkbox>
+                  <div css={applyOptionLabelStyle()}>{label}</div>
+                </>
               ) : (
                 label
               )}

@@ -18,9 +18,21 @@ const options = [
         ],
       },
       {
+        value: "dongcheng",
+        label: "Dongcheng",
+      },
+      {
         value: "xicheng",
         label: "Xicheng",
         disabled: true,
+      },
+      {
+        value: "haidian",
+        label: "Haidian",
+      },
+      {
+        value: "fengtai",
+        label: "Fengtai",
       },
     ],
   },
@@ -157,17 +169,18 @@ it("Cascader render with multiple", () => {
 
   cy.findByPlaceholderText("test").should("exist")
   cy.findByPlaceholderText("test").parent().click()
-  cy.findByText("Shanghai").click()
-  cy.findByText("Huangpu").click()
-  cy.findByText("Shanghai / Huangpu").should("exist")
-  cy.get("@changeEvent").should("be.calledWith", [["shanghai", "huangpu"]])
-
-  cy.findByText("Shanghai / Huangpu")
+  cy.findByText("Beijing").click()
+  cy.findByText("Haidian").click()
+  cy.findByText("Beijing / Haidian").should("exist")
+  cy.get("@changeEvent").should("be.calledWith", [["beijing", "haidian"]])
+  cy.findByText("Dongcheng").click()
+  cy.findByText("Fengtai").click()
+  cy.findByText("Beijing / Haidian")
     .parent()
     .next()
     .click()
     .then(() => {
-      cy.get("@changeEvent").should("be.calledTwice")
+      cy.get("@changeEvent").should("be.called")
       cy.get("input").should("have.value", "")
     })
   unmount()
@@ -256,6 +269,42 @@ it("Cascader render with input type", () => {
       cy.get("input").should("have.value", "Shanghai / Huangpu")
       cy.get("@changeEvent").should("be.calledOnce")
       cy.get("@visibleChangeEvent").should("be.calledTwice")
+    })
+  cy.findByText("Shanghai / Huangpu").click()
+  cy.get("input")
+    .type("i")
+    .then(() => {
+      cy.get("@visibleChangeEvent").should("be.calledThrice")
+    })
+  unmount()
+})
+
+it("Cascader render with search popup", () => {
+  const changeEvent = cy.stub().as("changeEvent")
+  const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
+  mount(
+    <Cascader
+      multiple
+      options={options}
+      placeholder={"test"}
+      onChange={changeEvent}
+      onVisibleChange={visibleChangeEvent}
+      data-testid={"cascader"}
+      showSearch
+      allowClear
+    />,
+  )
+  cy.get("input")
+    .type("i")
+    .then(() => {
+      cy.findByText("Beijing / Haidian").should("exist")
+      cy.findByText("Beijing / Haidian").click()
+      cy.get("@changeEvent").should("be.calledWith", [["beijing", "haidian"]])
+      cy.findAllByText("Beijing / Haidian").last().click()
+      cy.get("@changeEvent").should("be.calledTwice")
+      cy.findByText("Beijing / Xicheng").click()
+      cy.get("@changeEvent").should("be.calledTwice")
+      cy.get("@visibleChangeEvent").should("be.calledOnce")
     })
   unmount()
 })
