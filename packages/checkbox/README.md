@@ -43,7 +43,25 @@ import { Checkbox } from "@illa-design/checkbox"
 | value        | The options are checked                 | `string `                    | `-`            |
 
 ## Examples
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
 
+export const code = `
+    <>
+      <Checkbox>Hello</Checkbox>
+      <Checkbox disabled>Hello</Checkbox>
+      <Checkbox checked>Hello</Checkbox>
+      <CheckboxGroup options={["A", "B", "C"]} />
+      <CheckboxGroup options={["A", "B", "C"]} defaultValue={["A"]} />
+      <CheckboxGroup options={["A", "B", "C"]} direction="vertical" />
+    </>`
+
+export const importStatement = `import { Checkbox } from "@illa-design/checkbox"`
+
+export const packages = {"@illa-design/checkbox":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 ### Basic usage
 
 ```jsx
@@ -60,7 +78,6 @@ import { Checkbox } from "@illa-design/checkbox"
 
 ```jsx
 <Checkbox checked>Hello</Checkbox>
-
 ```
 
 ### Set multiple options
