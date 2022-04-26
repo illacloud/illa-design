@@ -39,7 +39,7 @@ import { Tree } from "@illa-design/tree"
 | checkedKeys         | Set checked treeNodes by treeNodes' key                      | string[]                              | -        |
 | defaultExpandedKeys | Set default expanded treeNodes by treeNodes' key             | string[]                              | -        |
 | expandedKeys        | Set default treeNodes by treeNodes' key                      | string[]                              | -        |
-| loadMore            | Callback when loaded data asynchronously, returning a Promise. | (node: NodeInstance) => Promise<void> | -        |
+| loadMore            | Callback when loaded data asynchronously, returning a Promise. | `(node: NodeInstance) => Promise<void>` | -        |
 
 ### Tree Events
 
@@ -48,11 +48,11 @@ import { Tree } from "@illa-design/tree"
 | onSelect    |            Callback when treeNode is selected             | (selectedKeys: string[],extra: {selected: boolean;selectedNodes: NodeInstance[];node: NodeInstance;e: Event;}) => void | -       |
 | onCheck     |             Callback when treeNode is checked             | (checkedKeys: string[],extra: {node: NodeInstance;checkedNodes: NodeInstance[];checked: boolean;halfCheckedKeys: string[];halfCheckedNodes: NodeInstance[];e: Event;}) => void | -       |
 | onExpand    |            Callback when treeNode is expanded             | (expandedKeys: string[],exra?: { expanded: boolean; node: NodeInstance; expandedNodes: NodeInstance[] }) => void | -       |
-| onDrop      |             Callback when treeNode is dropped             | (info: {e: DragEvent<HTMLSpanElement>;dragNode: NodeInstance \| null;dropNode: NodeInstance \| null;dropPosition: number;}) => void | -       |
-| onDragStart |         Callback when the treeNode starts dragged         | (e: DragEvent<HTMLSpanElement>, node: NodeInstance) => void  | -       |
-| onDragEnd   |          Callback when the treeNode ends dragged          | (e: DragEvent<HTMLSpanElement>, node: NodeInstance) => void  | -       |
-| onDragOver  | Callback when the treeNode is dragged onto a valid target | (e: DragEvent<HTMLSpanElement>, node: NodeInstance) => void  | -       |
-| onDragLeave |     Callback when the treeNode leaves a valid target      | (e: DragEvent<HTMLSpanElement>, node: NodeInstance) => void  | -       |
+| onDrop      |             Callback when treeNode is dropped             | `(info: {e: DragEvent<HTMLSpanElement>;dragNode: NodeInstance \| null;dropNode: NodeInstance \| null;dropPosition: number;}) => void` | -       |
+| onDragStart |         Callback when the treeNode starts dragged         | `(e: DragEvent<HTMLSpanElement>, node: NodeInstance) => void`  | -       |
+| onDragEnd   |          Callback when the treeNode ends dragged          | `(e: DragEvent<HTMLSpanElement>, node: NodeInstance) => void`  | -       |
+| onDragOver  | Callback when the treeNode is dragged onto a valid target | `(e: DragEvent<HTMLSpanElement>, node: NodeInstance) => void`  | -       |
+| onDragLeave |     Callback when the treeNode leaves a valid target      | `(e: DragEvent<HTMLSpanElement>, node: NodeInstance) => void`  | -       |
 
 ### TreeNode Basic Properties
 
