@@ -29,7 +29,29 @@ import { Comment } from "@illa-design/comment"
 | align    | 靠左/靠右 展示 datetime 和 actions | ` "left" \| "right" \| {datetime?: "left" \| "right";actions?: "left" \| "right";}` | `-`     |
 
 ## 使用方法
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
 
+export const code = `
+    <>
+      <Comment placeholder={"comment"} />
+      <Comment
+        placeholder={"comment"}
+        actions={<span>like</span>}
+        align={"right"}
+      />
+      <Comment
+        author={<span>ILLA</span>}
+        placeholder={"comment"}
+      />
+    </>`
+
+export const importStatement = `import { Comment } from "@illa-design/comment"`
+
+export const packages = {"@illa-design/comment":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 ### 基础用法
 
 ```jsx
