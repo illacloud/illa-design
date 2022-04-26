@@ -97,4 +97,4 @@ jobs:
         uses: codecov/codecov-action@v2.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/lcov.info
+          files: ./reports/from-jest.info,./reports/from-cypress.info
