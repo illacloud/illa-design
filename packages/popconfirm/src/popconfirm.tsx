@@ -4,7 +4,7 @@ import { Trigger } from "@illa-design/trigger"
 import { Heading, Typography } from "@illa-design/typography"
 import {
   applyButtonGroupStyle,
-  applyTitleColor,
+  applyHeaderStyle,
   applyTypographyContainer,
 } from "./style"
 import { Space } from "@illa-design/space"
@@ -17,7 +17,7 @@ import {
 import { InfoCircleIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const Popconfirm: FC<PopconfirmProps> = (props) => {
+export const PopConfirm: FC<PopconfirmProps> = (props) => {
   const {
     title,
     cancelText,
@@ -71,15 +71,7 @@ export const Popconfirm: FC<PopconfirmProps> = (props) => {
             {title && (
               <Space size="8px">
                 {icon}
-                <Heading
-                  css={applyTitleColor(colorScheme)}
-                  colorScheme={colorScheme == "white" ? "gray" : "white"}
-                  title={title}
-                  ellipsis={false}
-                  level="h6"
-                >
-                  {title}
-                </Heading>
+                <div css={applyHeaderStyle(colorScheme)}>{title}</div>
               </Space>
             )}
             <div style={{ height: "16px" }} />
@@ -127,4 +119,4 @@ export const Popconfirm: FC<PopconfirmProps> = (props) => {
   )
 }
 
-Popconfirm.displayName = "Popconfirm"
+PopConfirm.displayName = "PopConfirm"

@@ -191,6 +191,7 @@ exports[`Card renders with Meta 1`] = `
             <svg
               class="emotion-6"
               color="currentColor"
+              fill="none"
               height="14px"
               viewBox="0 0 16 16"
               width="14px"
@@ -219,6 +220,7 @@ exports[`Card renders with Meta 1`] = `
           <svg
             class="emotion-6"
             color="currentColor"
+            fill="none"
             height="1em"
             viewBox="0 0 16 16"
             width="1em"
@@ -240,6 +242,7 @@ exports[`Card renders with Meta 1`] = `
           <svg
             class="emotion-6"
             color="currentColor"
+            fill="none"
             height="1em"
             viewBox="0 0 16 16"
             width="1em"
@@ -261,6 +264,7 @@ exports[`Card renders with Meta 1`] = `
           <svg
             class="emotion-6"
             color="currentColor"
+            fill="none"
             height="1em"
             viewBox="0 0 12 12"
             width="1em"

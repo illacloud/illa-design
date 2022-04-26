@@ -18,26 +18,26 @@ import { Skeleton } from "@illa-dedign/skeleton"
 
 ### Skeleton Basic Properties
 
-| Props     | Desc                        | Type                            | Default |
-| --------- | --------------------------- | ------------------------------- | ------- |
-| animation | Whether show animation      | `boolean`                       | `-`     |
-| visible   | whether is visible          | `boolean`                       | `true`  |
-| image     | Whether show image skeleton | `SkeletonImageProps \| boolean` | `-`     |
-| text      | Whether show text skeleton  | `SkeletonTextProps \| boolean`  | `true`  |
+| Props     | Desc                        | Type                          | Default |
+| --------- | --------------------------- | ----------------------------- | ------- |
+| animation | Whether show animation      | boolean                       | -       |
+| visible   | whether is visible          | boolean                       | true    |
+| image     | Whether show image skeleton | SkeletonImageProps \| boolean | -       |
+| text      | Whether show text skeleton  | SkeletonTextProps \| boolean  | true    |
 
 ### SkeletonImageProps
 
-| Props | Desc                             | Type                                       | Default    |
-| ----- | :------------------------------- | ------------------------------------------ | ---------- |
-| shape | Set the shape of  image skeleton | `"circle" \| "square"`                     | `"circle"` |
-| size  | Set the size of image skeleton   | `number \| "large" \| "small" \| "medium"` | `"medium"` |
+| Props | Desc                             | Type                                     | Default  |
+| ----- | :------------------------------- | ---------------------------------------- | -------- |
+| shape | Set the shape of  image skeleton | "circle" \| "square"                     | "circle" |
+| size  | Set the size of image skeleton   | number \| "large" \| "small" \| "medium" | "medium" |
 
 ### SkeletonTextProps
 
-| Props | Desc                            | Type                                          | Default |
-| ----- | ------------------------------- | --------------------------------------------- | ------- |
-| rows  | Set row number of text skeleton | `number`                                      | `3`     |
-| width | Set rows' width                 | `number \| string \| Array<number \| string>` | `0.8`   |
+| Props | Desc                            | Type                                        | Default |
+| ----- | ------------------------------- | ------------------------------------------- | ------- |
+| rows  | Set row number of text skeleton | number                                      | 3       |
+| width | Set rows' width                 | number \| string \| Array<number \| string> | 0.8     |
 
 ## Example
 
@@ -82,4 +82,3 @@ import { Skeleton } from "@illa-dedign/skeleton"
 ```jsx
 <Skeleton image animation />
 ```
-
