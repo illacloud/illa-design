@@ -1,4 +1,4 @@
-# Descriptions 描述列表
+# 描述列表 Descriptions
 
 此组件用于详情页的只读字段信息展示。
 
@@ -18,22 +18,22 @@ import { Descriptions } from "@illa-design/descriptions"
 
 ### Descriptions 基础属性
 
-| Props    | Desc                                                         | Type                                                         | Default        |
-| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------- |
-| bordered | 是否展示边框                                                 | `boolean `                                                   | `false`        |
-| column   | 一行放置的数据数量                                           | `number`                                                     | `3`            |
-| align    | 文字对齐方式                                                 | `"left" \| "right" `                                          | `"left"`       |
-| layout   | 描述布局, 无边框样式的时候没有 "inline-horizontal" \| "inline-vertical" | `"horizontal" \| "vertical \| "inlineHorizontal" \| "inlineVertical"" ` | `"horizontal"` |
-| size     | 设置列表的尺寸大小                                           | `"small" \| "medium" \| "large"`                               | `"medium"`     |
-| title    | 描述列表的标题，显示在最顶部                                 | `ReactNode`                                                  | `-`            |
+| Props    | Desc                                                         | Type                                                         | Default      |
+| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------ |
+| bordered | 是否展示边框                                                 | boolean                                                      | false        |
+| column   | 一行放置的数据数量                                           | number                                                       | 3            |
+| align    | 文字对齐方式                                                 | "left" \| "right"                                            | "left"       |
+| layout   | 描述布局, 无边框样式的时候没有 "inline-horizontal" \| "inline-vertical" | "horizontal" \| "vertical \| "inlineHorizontal" \| "inlineVertical"" | "horizontal" |
+| size     | 设置列表的尺寸大小                                           | "small" \| "medium" \| "large"                               | "medium"     |
+| title    | 描述列表的标题，显示在最顶部                                 | ReactNode                                                    | -            |
 
 ### Descriptions-item 基础属性
 
-| Props | Desc                                             | Type      | Default |
-| ----- | ------------------------------------------------ | --------- | ------- |
-| label | 标签                                             | `string ` | `-`     |
-| value | 数据内容                                         | `string`  | `-`     |
-| span  | 头像组最多展示的头像数量，多余头像以+x的形式展示 | `number ` | 1       |
+| Props | Desc                                             | Type   | Default |
+| ----- | ------------------------------------------------ | ------ | ------- |
+| label | 标签                                             | string | -       |
+| value | 数据内容                                         | string | -       |
+| span  | 头像组最多展示的头像数量，多余头像以+x的形式展示 | number | 1       |
 
 ## 使用方法
 

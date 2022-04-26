@@ -1,4 +1,4 @@
-# Checkbox多选框
+# 多选框 Checkbox
 
 用户可通过多选框选择一个或多个数据。
 
@@ -18,29 +18,29 @@ import { Checkbox } from "@illa-design/checkbox"
 
 ### checkbox 基础属性
 
-| Props          | Desc             | Type            | Default  |
-| -------------- | ---------------- | --------------- | -------- |
-| autoFocus      | 自动获取焦点     | `boolean`       | `false`  |
-| checked        | 指定当前是否选中 | `boolean`       | `false`  |
-| defaultChecked | 初始默认是否选中 | `boolean`       | `false`  |
-| disabled       | 是否禁用         | `boolean`       | `false`  |
-| spacing        | 单选框之间的间距 | `string \|int ` | `"24px"` |
+| Props          | Desc             | Type         | Default |
+| -------------- | ---------------- | ------------ | ------- |
+| autoFocus      | 自动获取焦点     | boolean      | false   |
+| checked        | 指定当前是否选中 | boolean      | false   |
+| defaultChecked | 初始默认是否选中 | boolean      | false   |
+| disabled       | 是否禁用         | boolean      | false   |
+| spacing        | 单选框之间的间距 | string \|int | "24px"  |
 
 ### checkbox 事件
 
-| Props    | Desc           | Type                             | Default |
-| -------- | -------------- | -------------------------------- | ------- |
-| onChange | 变化时回调函数 | `(value: T[], e: Event) => void` | `-`     |
+| Props    | Desc           | Type                           | Default |
+| -------- | -------------- | ------------------------------ | ------- |
+| onChange | 变化时回调函数 | (value: T[], e: Event) => void | -       |
 
 ## checkbox-group 基础属性
 
-| Props        | Desc                   | Type                         | Default        |
-| ------------ | ---------------------- | ---------------------------- | -------------- |
-| disabled     | 整组禁用               | `boolean`                    | `false`        |
-| direction    | 排列方向               | `"horizontal" \| "vertical" ` | `"horizontal"` |
-| defaultValue | 默认选中的选项         | `string `                    | `-`            |
-| options      | 可选项                 | `string `                    | `-`            |
-| value        | 选中的选项（受控模式） | `string `                    | `-`            |
+| Props        | Desc                   | Type                       | Default      |
+| ------------ | ---------------------- | -------------------------- | ------------ |
+| disabled     | 整组禁用               | boolean                    | false        |
+| direction    | 排列方向               | "horizontal" \| "vertical" | "horizontal" |
+| defaultValue | 默认选中的选项         | string                     | -            |
+| options      | 可选项                 | string                     | -            |
+| value        | 选中的选项（受控模式） | string                     | -            |
 
 ## 使用方法
 

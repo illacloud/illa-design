@@ -1,6 +1,6 @@
-# 全局配置
+# 全局配置 ConfigProvider
 
-全局配置经常被用于设置全局属性，比如语言
+全局配置经常被用于设置全局属性，比如语言。
 
 ## 安装
 
@@ -18,9 +18,9 @@ import { ConfigProvider } from "@illa-design/config-provider"
 
 ### ConfigProvider 基础属性
 
-| 参数名 | 描述     | 类型     | 默认值 |
-| ------ | -------- | -------- | ------ |
-| locale | 设置语言 | `Locale` | `-`    |
+| 参数名 | 描述     | 类型   | 默认值 |
+| ------ | -------- | ------ | ------ |
+| locale | 设置语言 | Locale | -      |
 
 ## 使用方法
 
@@ -31,4 +31,3 @@ import { ConfigProvider } from "@illa-design/config-provider"
 	<Pagination total={200} showTotal />
 </ConfigProvider>
 ```
-

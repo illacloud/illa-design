@@ -1,6 +1,6 @@
 # Slider
 
-It is a number inpuit component that input value by slide
+It is a number inpuit component that input value by slide.
 
 ## Installation
 
@@ -20,27 +20,27 @@ import { Slider } from "@illa-dedign/slider"
 
 | Props           | Desc                                      | Type                                                         | Default |
 | --------------- | ----------------------------------------- | ------------------------------------------------------------ | ------- |
-| showTicks       | Whether show ticks                        | `boolean`                                                    | `-`     |
-| showInput       | Whether show number input                 | `boolean`                                                    | `-`     |
-| reverse         | Whether reverse ticks                     | `boolean`                                                    | `-`     |
-| marks           | set ticks‘ mark                           | `Record<number, ReactNode>`                                  | `-`     |
-| vertical        | Whether make silder vertical              | `boolean`                                                    | `-`     |
-| tooltipVisible  | Whether always show tooltip               | `boolean`                                                    | `-`     |
-| tooltipPosition | Set the position of tooltip               | `"top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br" \| "left" \| "lt" \| "lb" \| "right" \| "rt" \| "rb"` | `-`     |
-| disabled        | Whether disable the component             | `boolean`                                                    | `-`     |
-| min             | Set minimum value                         | `number`                                                     | `0`     |
-| max             | Set maxmum value                          | `number`                                                     | `100`   |
-| step            | Set step of every tick                    | `number`                                                     | `1`     |
-| onlyMarkValue   | whether only marked value can be selected | `boolean`                                                    | `-`     |
-| defaultValue    | Set defaultValue                          | `number \| number[]`                                         | `-`     |
-| formatTooltip   | Customize the tooltip                     | `(value: number) => string \| ReactNode`                      | `-`     |
+| showTicks       | Whether show ticks                        | boolean                                                      | -       |
+| showInput       | Whether show number input                 | boolean                                                      | -       |
+| reverse         | Whether reverse ticks                     | boolean                                                      | -       |
+| marks           | set ticks‘ mark                           | `Record<number, ReactNode>`                                  | -       |
+| vertical        | Whether make silder vertical              | boolean                                                      | -       |
+| tooltipVisible  | Whether always show tooltip               | boolean                                                      | -       |
+| tooltipPosition | Set the position of tooltip               | "top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br" \| "left" \| "lt" \| "lb" \| "right" \| "rt" \| "rb" | "top"       |
+| disabled        | Whether disable the component             | boolean                                                      | -       |
+| min             | Set minimum value                         | number                                                       | 0       |
+| max             | Set maxmum value                          | number                                                       | 100     |
+| step            | Set step of every tick                    | number                                                       | 1       |
+| onlyMarkValue   | whether only marked value can be selected | boolean                                                      | -       |
+| defaultValue    | Set defaultValue                          | number \| number[]                                           | -       |
+| formatTooltip   | Customize the tooltip                     | (value: number) => string \| ReactNode                       | -       |
 
 ### Slider Events
 
-| Props         | Desc                            | Type                                | Default |
-| ------------- | :------------------------------ | ----------------------------------- | ------- |
-| onAfterChange | Callback after value is changed | `(val: number \| number[]) => void` | `-`     |
-| onChange      | Callback when value is changed  | `(val: number \| number[]) => void` | `-`     |
+| Props         | Desc                            | Type                              | Default |
+| ------------- | :------------------------------ | --------------------------------- | ------- |
+| onAfterChange | Callback after value is changed | (val: number \| number[]) => void | -       |
+| onChange      | Callback when value is changed  | (val: number \| number[]) => void | -       |
 
 ## Example
 
