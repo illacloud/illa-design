@@ -44,7 +44,22 @@ import { Calendar } from "@illa-design/calendar"
 | onPanelChange | Callback when panel date change | (date: Dayjs) => void | -       |
 
 ## Examples
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
 
+export const code = `
+    <>
+      <Calendar />
+      <Calendar panel defaultValue={dayjs('2020-04-01')} panelTodayBtn style={{ marginRight: 50 }} />
+      <Calendar panel defaultValue='2020-03' mode='year' />
+    </>`
+
+export const importStatement = `import { Calendar } from "@illa-design/calendar`
+
+export const packages = {"@illa-design/calendar":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 ### Basic usage
 
 ```jsx
