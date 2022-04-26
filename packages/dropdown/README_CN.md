@@ -1,73 +1,31 @@
-# 下拉菜单 Dropdown
+null
 
-页面上的命令过多时，可将备选命令收纳到展开的浮层容器中。
+null
 
-## 安装
+null
 
-```bash
-yarn add @illa-design/dropdown
-```
+null
 
-## 引用组件
+null
 
-```jsx
-import { Dropdown } from "@illa-dedign/dropdown"
-```
+null
 
-## 组件接口(API)
+null
 
-### Dropdown 基础属性
+null
 
-| 参数名              | 描述                           | 类型                     | 默认值 |
-| ------------------- | ------------------------------ | ------------------------ | ------ |
-| droplist            | 下拉框的内容                   | ReactNode                | -      |
-| position            | 下拉框的弹出位置               | TriggerProps["position"] | bl     |
-| trigger             | 触发下拉框弹出的方式           | TriggerProps["trigger"]  | hover  |
-| disabled            | 是否禁用弹出                   | boolean                  | -      |
-| defaultPopupVisible | 控制下拉框是否默认打开         | boolean                  | -      |
-| popupVisible        | 控制下拉框是否打开（受控模式） | boolean                  | -      |
-| triggerProps        | 配置弹出框额外属性             | `Partial<TriggerProps>`  | -      |
+null
 
-### Dropdown 事件
+null
 
-| 参数名          | 描述                    | 类型                       | 默认值 |
-| --------------- | :---------------------- | -------------------------- | ------ |
-| onVisibleChange | 弹出框打开/关闭时会触发 | (visible: boolean) => void | -      |
+null
 
-### 使用方法
+null
 
-### 基础用法
+null
 
-```jsx
-const dropList = (
-  <Menu>
-    <Item title={"Blog"} key={"1"} disabled />
-    <Item title={"Tutorial"} key={"2"} />
-    <Item title={"Docs"} key={"3"} />
-    <Item title={"Community"} key={"4"} />
-    <Item title={"Github"} key={"5"} />
-  </Menu>
-)
-<Dropdown droplist={dropList}>
-  <Button>Hover me</Button>
-</Dropdown>
-```
+null
 
-### 设置下拉菜单的弹出位置
+null
 
-通过position接口可以设置步骤的描述
-
-```jsx
-const dropList = (
-  <Menu>
-    <Item title={"Blog"} key={"1"} disabled />
-    <Item title={"Tutorial"} key={"2"} />
-    <Item title={"Docs"} key={"3"} />
-    <Item title={"Community"} key={"4"} />
-    <Item title={"Github"} key={"5"} />
-  </Menu>
-)
-<Dropdown droplist={dropList} position="bl">
-  <Button>Hover me</Button>
-</Dropdown>
-```
+null

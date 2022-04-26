@@ -1,47 +1,31 @@
-# 返回顶部 Backtop
+null
 
-当滚动到一定高度的时候，在右下角会出现一个返回顶部的按钮。
+null
 
-## 安装
+null
 
-```bash
-yarn add @illa-design/backtop
-```
+null
 
-## 引用组件
+null
 
-```jsx
-import { Backtop } from "@illa-design/backtop"
-```
+null
 
-## 组件接口（API）
+null
 
-### Backtop 基础属性
+null
 
-| Props         | Desc                                                         | Type                        | Default      |
-| ------------- | ------------------------------------------------------------ | --------------------------- | ------------ |
-| visibleHeight | 当滚动到这个高度时，显示返回顶部按钮                         | number                      | 400          |
-| target        | 设置需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 | () => HTMLElement \| Window | () => window |
-| onClick       | 点击返回顶部时的回调函数                                     | () => void                  | -            |
-| easing        | 滚动到顶部的缓动方式类型                                     | string                      | quartOut     |
-| duration      | 滚动到顶部的时间                                             | number                      | 400          |
+null
 
-## 使用方法
+null
 
-### 基础用法
+null
 
-```jsx
-<Backtop />
-```
+null
 
-### 设置返回顶部按钮高度
+null
 
-```jsx
-<TestBackTop visibleHeight={400} />
-```
+null
 
-### 设置滚动到顶部的时间
+null
 
-```jsx
-<TestBackTop duration={400} />
-```
+null

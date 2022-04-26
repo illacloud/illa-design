@@ -1,6 +1,6 @@
-# Alert警告提示
+# Alert 警告
 
-向用户显示警告的信息时，通过警告提示，展现需要关注的信息。
+Alert组件是用来通过警告弹窗展示用户的警告信息
 
 ## 安装
 
@@ -8,51 +8,26 @@
 yarn add @illa-design/alert
 ```
 
-## 引用组件
+null
 
-```jsx
-import { Alert } from "@illa-design/alert"
-```
+null
 
-## 组件接口（API）
+null
 
-### Alert 基础属性
+null
 
-| Props        | Desc                                        | Type                                        | Default |
-| ------------ | ------------------------------------------- | ------------------------------------------- | ------- |
-| action       | 自定义操作项                                | ReactNode                                   | -       |
-| closable     | 是否可关闭                                  | boolean                                     | -       |
-| onClose      | 关闭的回调                                  | (e) => void                                 | -       |
-| afterClose   | 关闭动画结束后执行的回调                    | () => void                                  | -       |
-| type         | 警告的类型                                  | "info" \| "success" \| "warning" \| "error" | "info"  |
-| title        | 标题                                        | ReactNode                                   | -       |
-| content      | 内容                                        | ReactNode                                   | -       |
-| icon         | 可以指定自定义图标，showIcon 为 true 时生效 | ReactNode                                   | -       |
-| closeElement | 自定义关闭按钮                              | ReactNode                                   | -       |
-| showIcon     | 是否显示图标                                | boolean                                     | true    |
-| banner       | 是否用作顶部公告                            | boolean                                     | false   |
+null
 
-## 使用方法
+null
 
-### 基础用法
+null
 
-```jsx
-<Alert title="Alert Title" content="Alert Content" />
-```
+null
 
-### 设置关闭按钮
+null
 
-```jsx
-<Alert
-  closable
-  onClose={onCloseEvent}
-  afterClose={afterCloseEvent}
-  closeElement={<LoadingIcon/>}
-/>
-```
+null
 
-### 设置警告提示类型
+null
 
-```jsx
-<Alert type="error" />
-```
+null

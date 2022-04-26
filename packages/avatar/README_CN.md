@@ -1,115 +1,60 @@
-# 头像 Avatar
+null
 
-用作头像显示，可以为图片，图标或字符形式展示。
+null
 
-## 安装
+null
 
-```bash
-yarn add @illa-design/avatar
-```
+null
 
-## 引用组件
+null
 
-```jsx
-import { Avatar } from "@illa-design/avatar"
-```
+null
 
-## 组件接口（API）
+null
 
-### Avatar 基础属性
+null
 
-| Props       | Desc                         | Type                                                         | Default  |
-| ----------- | ---------------------------- | ------------------------------------------------------------ | -------- |
-| colorScheme | 头像为字符或icon时的背景颜色 | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" | "gray"   |
-| src         | 设置头像为图片的资源地址     | string \| string[]                                           | -        |
-| size        | 头像大小                     | "small" \| "medium" \| "large"                               | "small"  |
-| text        | 设置头像为字符               | string \| string[]                                           | -        |
-| shape       | 头像形状                     | "circle" \| "square"                                         | "circle" |
-| icon        | 设置头像为图标               | ReactNode                                                    | -        |
+null
 
-### Avatar-group 基础属性
+null
 
-| Props        | Desc                                             | Type                                                         | Default |
-| ------------ | ------------------------------------------------ | ------------------------------------------------------------ | ------- |
-| colorScheme  | 头像组颜色                                       | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" | "gray"  |
-| size         | 头像组大小                                       | "small" \| "medium" \| "large"                               | "small" |
-| maxCount     | 头像组最多展示的头像数量，多余头像以+x的形式展示 | number                                                       | -       |
-| zIndexAscend | 头像组内的头像z-index递增                        | boolean                                                      | false   |
+null
 
 
 
-### Avatar 事件
+null
 
-| Props   | Desc     | Type       | Default |
-| ------- | -------- | ---------- | ------- |
-| onClick | 点击回调 | () => void | -       |
-## 使用方法
+null
+
+null
 
 
-```mdx-code-block
-import Sandpack from '@site/src/components/Sandpack'
+null
 
-export const code = `
-    <>
-      <Avatar />
-      <Avatar size="small">Small</Avatar>
-      <Avatar shape="square" colorScheme="red">Small</Avatar>
-      <Avatar src='https://bit.ly/dan-abramov' />
-      <Avatar text="e" />
-    </>`
+null
 
-export const importStatement = `import { Avatar } from '@illa-design/avatar'`
+null
 
-export const packages = {"@illa-design/avatar":"latest"}
+null
 
-<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
-```
+null
 
-### 基础用法
+null
 
-```jsx
-<Avatar />
-```
+null
 
-### 设置头像大小
+null
 
-```jsx
-<Avatar size="small">Small</Avatar>
-```
+null
 
-### 设置头像的形状和颜色
+null
 
-```jsx
-<Avatar shape="saqure" colorScheme="red">Small</Avatar>
+null
 
-```
+null
 
-### 设置头像的图标
+null
 
-```jsx
-<Avatar icon={<CloseIcon />} />
-```
+null
 
-### 设置头像的图片
-
-```jsx
-<Avatar src='https://bit.ly/dan-abramov' />
-```
-
-### 设置头像的文字
-
-```jsx
-<Avatar text="e" />
-```
-
-### 设置头像组最多展示的头像数量
-
-```jsx
-<AvatarGroup maxCount={2}>
-  <Avatar text="I" />
-  <Avatar text="L" />
-  <Avatar text="L" />
-  <Avatar text="A" /> 
-</AvatarGroup>
-```
-
+null

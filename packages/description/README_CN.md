@@ -1,85 +1,31 @@
-# 描述列表 Descriptions
+null
 
-此组件用于详情页的只读字段信息展示。
+null
 
-## 安装
+null
 
-```bash
-yarn add @illa-design/Descriptions
-```
+null
 
-## 引用组件
+null
 
-```jsx
-import { Descriptions } from "@illa-design/descriptions"
-```
+null
 
-## 组件接口（API）
+null
 
-### Descriptions 基础属性
+null
 
-| Props    | Desc                                                         | Type                                                         | Default      |
-| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------ |
-| bordered | 是否展示边框                                                 | boolean                                                      | false        |
-| column   | 一行放置的数据数量                                           | number                                                       | 3            |
-| align    | 文字对齐方式                                                 | "left" \| "right"                                            | "left"       |
-| layout   | 描述布局, 无边框样式的时候没有 "inline-horizontal" \| "inline-vertical" | "horizontal" \| "vertical \| "inlineHorizontal" \| "inlineVertical"" | "horizontal" |
-| size     | 设置列表的尺寸大小                                           | "small" \| "medium" \| "large"                               | "medium"     |
-| title    | 描述列表的标题，显示在最顶部                                 | ReactNode                                                    | -            |
+null
 
-### Descriptions-item 基础属性
+null
 
-| Props | Desc                                             | Type   | Default |
-| ----- | ------------------------------------------------ | ------ | ------- |
-| label | 标签                                             | string | -       |
-| value | 数据内容                                         | string | -       |
-| span  | 头像组最多展示的头像数量，多余头像以+x的形式展示 | number | 1       |
+null
 
-## 使用方法
+null
 
-### 基础用法
+null
 
-```jsx
-<Description
-  data={[
-    {
-      label: "Name",
-      value: "ILLA",
-    },
-    {
-      label: "Mobile",
-      value: "123-1234-1234",
-    },
-    {
-      label: "Residence",
-      value: "Beijing",
-    },
-    {
-      label: "Hometown",
-      value: "Beijing",
-    },
-    {
-      label: "Date of Birth",
-      value: "2020-05-15",
-      span: 2,
-    },
-    {
-      label: "Address",
-      value: "Building, Road, Beijing",
-      span: 3,
-    },
-  ]}
-/>
-```
+null
 
-### 设置尺寸和对齐方式
+null
 
-```jsx
-<Description
-  align={"left"}
-  size={"large"}
-  layout="horizontal"
-  column={1}
-  data={dataList}
-/>
-```
+null

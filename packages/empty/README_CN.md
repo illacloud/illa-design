@@ -1,39 +1,27 @@
-# 空状态 Empty
+null
 
-空状态时展示的内容。
+null
 
-## 安装
+null
 
-```bash
-yarn add @illa-design/empty
-```
+null
 
-## 引用组件
+null
 
-```jsx
-import { Empty } from "@illa-design/empty"
-```
+null
 
-## 组件接口（API）
+null
 
-### Empty 基础属性
+null
 
-| Props       | Desc           | Type      | Default |
-| ----------- | -------------- | --------- | ------- |
-| description | 展示文案       | ReactNode | -       |
-| icon        | 设置图标       | ReactNode | -       |
-| imgSrc      | 设置展示的图片 | string    | -       |
+null
 
-## 使用方法
+null
 
-### 基础用法
+null
 
-```jsx
-<Empty />
-```
+null
 
-### 设置展示文案
+null
 
-```jsx
-<Empty description={"test description"} />
-```
+null

@@ -1,33 +1,23 @@
-# 全局配置 ConfigProvider
+null
 
-全局配置经常被用于设置全局属性，比如语言。
+null
 
-## 安装
+null
 
-```bash
-yarn add @illa-design/config-provider
-```
+null
 
-## 引用组件
+null
 
-```jsx
-import { ConfigProvider } from "@illa-design/config-provider"
-```
+null
 
-## 组件接口(API)
+null
 
-### ConfigProvider 基础属性
+null
 
-| 参数名 | 描述     | 类型   | 默认值 |
-| ------ | -------- | ------ | ------ |
-| locale | 设置语言 | Locale | -      |
+null
 
-## 使用方法
+null
 
-### 基础用法
+null
 
-```jsx
-<ConfigProvider locale={zhCN}>
-	<Pagination total={200} showTotal />
-</ConfigProvider>
-```
+null

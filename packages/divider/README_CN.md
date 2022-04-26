@@ -1,51 +1,31 @@
-# 分割线 Divider
+null
 
-用于对内容区域进行划分，分为横竖两个方向。
+null
 
-## 安装
+null
 
-```bash
-yarn add @illa-design/divider
-```
+null
 
-## 引用组件
+null
 
-```jsx
-import { Divider } from "@illa-design/divider"
-```
+null
 
-## 组件接口(API)
+null
 
-### Icon 基础属性
+null
 
-| 参数名    | 描述           | 类型                                        | 默认值       |
-| --------- | -------------- | ------------------------------------------- | ------------ |
-| direction | 设置分割线方向 | "vertical" \| "horizontal"                  | "horizontal" |
-| variant   | 分割线样式     | "solid" \| "dashed" \| "dotted" \| "double" | "solid"      |
+null
 
-## 使用方法
+null
 
-### 基础用法
+null
 
-添加一条横向分割线
+null
 
-```jsx
-<Divider />
-```
+null
 
-### 设置分割线方向
+null
 
-```jsx
-<Divider />
-<Divider direction="vertical" />
-```
+null
 
-### 设置分割线样式
-
-```jsx
-<Divider />
-<Divider direction="vertical" />
-<Divider variant="dashed" />
-<Divider variant="dotted" />
-<Divider variant="double" />
-```
+null
