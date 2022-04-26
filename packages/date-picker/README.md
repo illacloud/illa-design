@@ -49,7 +49,7 @@ type CalendarValue = number | string | Date | Dayjs
 
 | Props           | Desc                                                         | Type                                   | Default    |
 | --------------- | ------------------------------------------------------------ | -------------------------------------- | ---------- |
-| format          | The format of the display date, refer to[dayjs](https://github.com/iamkun/dayjs) | string \| ((value: Dayjs) => string)   | YYYY-MM-DD |
+| format          | The format of the display date, refer to[dayjs](https://github.com/iamkun/dayjs) | string \| ((value: Dayjs) => string)   | "YYYY-MM-DD" |
 | defaultValue    | Default value                                                | CalendarValue                          | -          |
 | value           | Value                                                        | CalendarValue                          | -          |
 | showTime        | Whether to add time selection                                | boolean \| TimePickerProps             | -          |
@@ -63,7 +63,7 @@ type CalendarValue = number | string | Date | Dayjs
 
 | Props        | Desc                                                         | Type          | Default |
 | ------------ | ------------------------------------------------------------ | ------------- | ------- |
-| format       | The format of the display date, refer to[dayjs](https://github.com/iamkun/dayjs) | string        | YYYY-MM |
+| format       | The format of the display date, refer to[dayjs](https://github.com/iamkun/dayjs) | string        | "YYYY-MM" |
 | defaultValue | Default value                                                | CalendarValue | -       |
 | value        | Value                                                        | CalendarValue | -       |
 
@@ -73,7 +73,7 @@ type CalendarValue = number | string | Date | Dayjs
 
 | Props        | Desc                                                         | Type          | Default |
 | ------------ | ------------------------------------------------------------ | ------------- | ------- |
-| format       | The format of the display date, refer to[dayjs](https://github.com/iamkun/dayjs) | string        | YYYY    |
+| format       | The format of the display date, refer to[dayjs](https://github.com/iamkun/dayjs) | string        | "YYYY"    |
 | defaultValue | Default value                                                | CalendarValue | -       |
 | value        | Value                                                        | CalendarValue | -       |
 
@@ -82,7 +82,7 @@ type CalendarValue = number | string | Date | Dayjs
 | Props              | Desc                                                         | Type                                                         | Default    |
 | ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------- |
 | disabled           | Whether is disabled                                          | boolean \| boolean[]                                         | -          |
-| format             | The format of the display date, refer to[dayjs](https://github.com/iamkun/dayjs) | string                                                       | YYYY-MM-DD |
+| format             | The format of the display date, refer to[dayjs](https://github.com/iamkun/dayjs) | string                                                       | "YYYY-MM-DD" |
 | onChange           | Callback when the value of the calendar component changes    | (dateString: string[], date: Dayjs[]) => void                | -          |
 | defaultValue       | Default value                                                | CalendarValue[]                                              | -          |
 | value              | Value                                                        | CalendarValue[]                                              | -          |
