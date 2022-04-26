@@ -7,7 +7,7 @@ import {
   applyRadioContainerHorizontal,
   applyRadioContainerVertical,
 } from "./style"
-import { useMergeValue } from "./hook"
+import { useMergeValue } from "@illa-design/system"
 import { RadioGroupContext } from "./radio-group-context"
 
 function isArray(obj: any) {
