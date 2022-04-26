@@ -27,8 +27,8 @@ import { TreeSelect } from "@illa-dedign/treeselect"
 | labelInValue      | 设置 value 格式。默认是 string，设置为 true 时候，value 格式为： { label: string, value: string } | boolean                                                      | -        |
 | treeCheckable     | 是否展示复选框                                               | boolean                                                      | -        |
 | treeCheckStrictly | 父子节点是否关联                                             | boolean                                                      | -        |
-| treeProps         | 可以接受所有 Tree 组件的参数                                 | Partial<TreeProps>                                           | -        |
-| triggerProps      | 可以接受所有 Trigger 组件的参数                              | Partial<TriggerProps>                                        | -        |
+| treeProps         | 可以接受所有 Tree 组件的参数                                 | `Partial<TreeProps>`                                           | -        |
+| triggerProps      | 可以接受所有 Trigger 组件的参数                              | `Partial<TriggerProps>`                                        | -        |
 | notFoundContent   | 没有数据时显示的内容                                         | ReactNode                                                    | -        |
 | placeholder       | 选择框默认文字。                                             | string                                                       | -        |
 | showSearch        | 使单选模式可搜索，传入 { retainInputValue: true } 在搜索框聚焦时保留现有内容传入 { retainInputValueWhileSelect: true } 在多选选择时保留输入框内容。 | boolean \| { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean } | -        |
