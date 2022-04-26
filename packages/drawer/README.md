@@ -44,7 +44,21 @@ import { Drawer } from "@illa-design/drawer"
 | afterClose | Callback after drawer is closed   | () => void               | -       |
 
 ## Examples
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
 
+export const code = `
+    <>
+      <Drawer visible={true} title={"Drawer title"} />
+      <Drawer visible={true} placement={"left"} />
+    </>`
+
+export const importStatement = `import { Drawer } from "@illa-design/drawer"`
+
+export const packages = {"@illa-design/drawer":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 ### Basic properties
 
 ```jsx
