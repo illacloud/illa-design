@@ -1,5 +1,3 @@
-
-
 # 表格 Table
 
 表格是用行列的形式，结构化展示信息的组件；方便用户查看、分析数据
@@ -46,7 +44,7 @@ import { Table } from "@illa-dedign/table"
 
 | 参数名              | 描述                     | 类型                                                     | 默认值 |
 | ------------------- | :----------------------- | -------------------------------------------------------- | ------ |
-| columnProps         | 设置当前页面下的路由地址 | `UseFiltersInstanceProps<D>`                             | -      |
+| columnProps         | 设置列的属性 | `UseFiltersInstanceProps<D>`                             | -      |
 | renderFilterContent | 设置过滤器的内容         | `(columnProps: UseFiltersInstanceProps<D>) => ReactNode` | -      |
 
 ### 使用方法
