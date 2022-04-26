@@ -40,6 +40,52 @@ import { Breadcrumb, BreadcrumbItem } from "@illa-design/breadcrumb"
 | children       | Set breadcrumb item 's children | Array<{path: string;breadcrumbName: string;}> | -       |
 
 ## Example
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
+
+export const code = `
+    <>
+            const routes = [
+        {
+          path: "/",
+          breadcrumbName: "Home",
+        },
+        {
+          path: "/Channel",
+          breadcrumbName: "Channel",
+          children: [
+            {
+              path: "/users",
+              breadcrumbName: "Users",
+            },
+            {
+              path: "/permission",
+              breadcrumbName: "Permission",
+            },
+          ],
+        },
+        {
+          path: "/news",
+          breadcrumbName: "News",
+        },
+      ]
+      <Breadcrumb routes={routes} />
+      <Breadcrumb routes={routes} separator={<RightIcon />} style={{ fontSize: 12 }}/>
+      <Breadcrumb maxCount={2}>
+        <BreadcrumbItem>Home</BreadcrumbItem>
+        <BreadcrumbItem>Sub Home</BreadcrumbItem>
+        <BreadcrumbItem>All Channel</BreadcrumbItem>
+        <BreadcrumbItem>Channel</BreadcrumbItem>
+        <BreadcrumbItem>News</BreadcrumbItem>
+      </Breadcrumb>
+    </>`
+
+export const importStatement = `import { Breadcrumb, BreadcrumbItem } from "@illa-design/breadcrumb"`
+
+export const packages = {"@illa-design/breadcrumb":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 
 ### Basic usage
 
