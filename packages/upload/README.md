@@ -40,7 +40,7 @@ import { Upload } from "@illa-design/upload"
 | name             | The file name                                         | string\|((any:any)=> string)                                 | -        |
 | withCredentials  | If true, upload request with cookies                  | boolean                                                      | -        |
 | renderUploadList | Custom the uploaded file list                         | (fileList: UploadItem[], uploadListProps: UploadListProps) => ReactNode | -        |
-| beforeUpload     | Call back before upload                               | (file: File, filesList: File[]) => boolean \| Promise<any>   | ()=>true |
+| beforeUpload     | Call back before upload                               | (file: File, filesList: File[]) => boolean \| `Promise<any>`   | ()=>true |
 
 ### Upload Events
 
