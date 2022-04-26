@@ -160,6 +160,7 @@ it("Cascader render with multiple", () => {
   mount(
     <Cascader
       multiple
+      size={"large"}
       options={options}
       placeholder={"test"}
       onChange={changeEvent}

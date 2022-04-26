@@ -28,6 +28,11 @@ test("Select renders with loading", () => {
   expect(screen.getByText("1").nextElementSibling).toBeInTheDocument()
 })
 
+test("Select renders with disabled", () => {
+  render(<Select value={1} options={[1, 2, 3]} disabled />)
+  expect(screen.getByDisplayValue("1")).toBeDisabled()
+})
+
 test("Select renders with error", () => {
   render(<Select value={1} options={[1, 2, 3]} error />)
   expect(screen.getByText("1").nextElementSibling).toBeInTheDocument()

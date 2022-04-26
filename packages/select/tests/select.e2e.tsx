@@ -16,11 +16,38 @@ it("Select render with error type", () => {
   unmount()
 })
 
+it("Select render with allowClear", () => {
+  const clearEvent = cy.stub().as("clearEvent")
+  const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
+  mount(
+    <Select
+      allowClear
+      placeholder={"test"}
+      options={[1, 2, 3]}
+      onClear={clearEvent}
+      onVisibleChange={visibleChangeEvent}
+    />,
+  )
+  cy.findByPlaceholderText("test").parent().click()
+  cy.findByText("1")
+    .click()
+    .then(() => {
+      cy.findByTitle("selectRemoveIcon")
+        .click()
+        .then(() => {
+          cy.get("@clearEvent").should("be.calledOnce")
+          cy.get("input").should("have.value", "")
+        })
+    })
+  unmount()
+})
+
 it("Select render with click options", () => {
   const changeEvent = cy.stub().as("changeEvent")
   const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
   mount(
     <Select
+      allowClear
       placeholder={"test"}
       options={[1, 2, 3]}
       onChange={changeEvent}
@@ -33,7 +60,6 @@ it("Select render with click options", () => {
     .then(() => {
       cy.get("@changeEvent").should("be.calledWith", 1)
     })
-  cy.get("@visibleChangeEvent").should("be.calledTwice")
   unmount()
 })
 
