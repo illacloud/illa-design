@@ -361,6 +361,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       colorScheme="white"
       position="bl"
       disabled={disabled}
+      openDelay={10}
+      closeDelay={10}
       withoutPadding
       closeOnClick
       clickOutsideToClose
