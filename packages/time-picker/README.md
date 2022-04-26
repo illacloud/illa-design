@@ -24,10 +24,10 @@ import { Timepicker, RangePicker } from "@illa-design/timepicker"
 | error             | Whether is error status               | boolean                                             | -        |
 | allowClear        | Whether to allow clear                | boolean                                             | true     |
 | disableConfirm    | Whether to confirm the disable status | boolean                                             | -        |
-| position          | The position of the picker            | 'top' \| 'tl' \| 'tr' \| 'bottom' \| 'bl' \| 'br'   | bl       |
+| position          | The position of the picker            | "top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br"   | "bl"       |
 | getPopupContainer | Get popup container                   | (node: HTMLElement) => Element                      | -        |
 | placeholder       | The placeholder                       | string \| string[]                                  | -        |
-| format            | Format of the time                    | string                                              | HH:mm:ss |
+| format            | Format of the time                    | string                                              | "HH:mm:ss" |
 | use12Hours        | Whether to use 12 hour time           | boolean                                             | -        |
 | onClear           | Callback when click clear button      | () => void                                          | -        |
 | popupVisible      | Whether to show the popup             | boolean                                             | -        |
