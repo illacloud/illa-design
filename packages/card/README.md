@@ -75,7 +75,7 @@ import { Card } from "@illa-design/card"
       <CardGrid key={index} hoverable={hoverable} style={{ width: "25%" }}>
         <Card
           style={{ width: "100%" }}
-          title={Card${index}}
+          title={`Card${index}`}
           extra={<Link>More</Link>}
         >
           {new Array(2).fill(null).map((_, index) => (
