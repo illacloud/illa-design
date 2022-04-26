@@ -47,7 +47,45 @@ import { Collapse } from "@illa-design/collapse"
 | destroyOnHide  | Whether to destroy the node when the panel is collapsed, the priority is higher than the `destroyOnHide` of `Collapse` | `boolean`         | `-`     |
 
 ## Examples
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
 
+export const code = `
+    <>
+      <Collapse
+        style={{ maxWidth: 1260, marginBottom: 20 }}
+       {...props}
+      >
+        <CollapseItem
+          header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
+          name="1"
+        >
+          Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
+        </CollapseItem>
+
+        <CollapseItem
+          header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
+          name="2"
+          disabled
+        >
+          Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
+        </CollapseItem>
+
+        <CollapseItem
+          header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
+          name="3"
+        >
+          Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
+        </CollapseItem>
+      </Collapse>
+    </>`
+
+export const importStatement = `import { Collapse } from "@illa-design/collapse"`
+
+export const packages = {"@illa-design/collapse":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 ### Basic usage
 
 ```jsx
