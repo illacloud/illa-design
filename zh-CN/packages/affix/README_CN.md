@@ -1,4 +1,4 @@
-# Affix
+# Affix 图钉
 
 The Affix component is used to pin page element to the visible range. When the content area is long and the page needs to be scrolled, affix can fix the content on the screen. Often used in side menus and button combinations.
 
