@@ -1,7 +1,3 @@
-```jsx
-
-```
-
 # 上传 Upload
 
 用户可通过此组件上传文件。
@@ -44,7 +40,7 @@ import { Upload } from "@illa-design/upload"
 | name             | The parameter name of file content at the time of request    | string\|((any:any)=> string)                                 | -        |
 | withCredentials  | 上传请求是否携带cookie                                       | boolean                                                      | -        |
 | renderUploadList | 自定义展示上传文件列表                                       | (fileList: UploadItem[], uploadListProps: UploadListProps) => ReactNode | -        |
-| beforeUpload     | 上传文件之前的回调。返回false或者promise抛出异常的时候会取消上传。 | (file: File, filesList: File[]) => boolean \| Promise<any>   | ()=>true |
+| beforeUpload     | 上传文件之前的回调。返回false或者promise抛出异常的时候会取消上传。 | (file: File, filesList: File[]) => boolean \| `Promise<any>`   | ()=>true |
 
 ### Upload事件
 
