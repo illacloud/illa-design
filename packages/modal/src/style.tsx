@@ -36,6 +36,7 @@ export function applyModalWrapper(
     position: fixed;
     left: 0;
     top: 0;
+    overflow: auto;
     width: 100%;
     height: 100%;
     z-index: ${visible ? 1000 : -1000};
@@ -59,6 +60,7 @@ export function applyModal(
     margin: 0 auto;
     width: ${isSimple ? "320px" : "520px"};
     text-align: left;
+    overflow: auto;
     white-space: initial;
     box-sizing: border-box;
     line-height: 1.5;
@@ -92,13 +94,15 @@ export function applyModalHeader(
   `
 }
 
-export const applyModalTitle = css`
-  text-align: center;
-  flex: 1;
-  font-size: 16px;
-  font-weight: 600;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
-`
+export function applyModalTitle(isSimple?: boolean): SerializedStyles {
+  return css`
+    text-align: center;
+    flex: 1;
+    font-size: 16px;
+    font-weight: ${isSimple ? 500 : 600};
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  `
+}
 
 export function applyModalContent(isSimple?: boolean): SerializedStyles {
   const simpleCss = isSimple
@@ -110,6 +114,7 @@ export function applyModalContent(isSimple?: boolean): SerializedStyles {
     position: relative;
     padding: 24px;
     font-size: 14px;
+    overflow: auto;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     ${simpleCss}
   `
@@ -150,10 +155,15 @@ export function applyModalConfirmTitle(
   type: keyof typeof iconColorMap,
 ): SerializedStyles {
   return css`
+    position: relative;
+    padding-left: 24px;
+    display: inline-block;
     > svg {
       color: ${iconColorMap[type]};
-      margin-right: 8px;
-      vertical-align: -1px;
+      position: absolute;
+      line-height: 0;
+      top: 4px;
+      left: 0;
     }
   `
 }

@@ -1,7 +1,7 @@
-import { HTMLAttributes, MouseEvent, ReactNode } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
 import { SerializedStyles } from "@emotion/react"
-import { TimePickerProps, RangePickerProps } from "@illa-design/time-picker"
+import { RangePickerProps, TimePickerProps } from "@illa-design/time-picker"
 
 export type PickerPosition = "top" | "tl" | "tr" | "bottom" | "bl" | "br"
 export type ShortcutType = {
@@ -9,7 +9,7 @@ export type ShortcutType = {
   value: () => Dayjs | Dayjs[]
 } & Record<string, any>
 export type PickerSize = "small" | "medium" | "large"
-export type CalendarValue = number | string | Date | Dayjs
+export type DatePickerCalendarValue = number | string | Date | Dayjs
 export type DisabledTimeProps = {
   disabledHours?: () => number[]
   disabledMinutes?: () => number[]
@@ -40,7 +40,7 @@ export interface PickerProps
   separator?: ReactNode
   disabledDate?: (current?: Dayjs) => boolean
   onOk?: (dateString: string, date: Dayjs) => void
-  defaultPickerValue?: CalendarValue
+  defaultPickerValue?: DatePickerCalendarValue
   _css?: SerializedStyles
   utcOffset?: number
   timezone?: string
@@ -48,8 +48,8 @@ export interface PickerProps
 
 export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {
   format?: string | ((value: Dayjs) => string)
-  defaultValue?: CalendarValue
-  value?: CalendarValue
+  defaultValue?: DatePickerCalendarValue
+  value?: DatePickerCalendarValue
   showTime?: boolean | TimePickerProps
   timepickerProps?: TimePickerProps
   showNowBtn?: boolean
@@ -58,14 +58,14 @@ export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {
 
 export interface MonthPickerProps extends Omit<PickerProps, "defaultValue"> {
   format?: string | ((value: Dayjs) => string)
-  defaultValue?: CalendarValue
-  value?: CalendarValue
+  defaultValue?: DatePickerCalendarValue
+  value?: DatePickerCalendarValue
 }
 
 export interface YearPickerProps extends Omit<PickerProps, "defaultValue"> {
   format?: string | ((value: Dayjs) => string)
-  defaultValue?: CalendarValue
-  value?: CalendarValue
+  defaultValue?: DatePickerCalendarValue
+  value?: DatePickerCalendarValue
 }
 
 export interface CommonRangeProps
@@ -77,15 +77,15 @@ export interface CommonRangeProps
   format?: string | ((value: Dayjs) => string)
   onChange?: (dateString: string[], date: Dayjs[]) => void
   onSelect?: (dateString: string[], date: Dayjs[]) => void
-  defaultValue?: CalendarValue[]
-  value?: CalendarValue[]
+  defaultValue?: DatePickerCalendarValue[]
+  value?: DatePickerCalendarValue[]
   mode?: RangePickerMode
   showTime?: boolean | RangePickerProps
   placeholder?: string[]
   timepickerProps?: RangePickerProps
   onOk?: (dateString: string[], date: Dayjs[]) => void
   disabledTime?: (current: Dayjs, type: "start" | "end") => DisabledTimeProps
-  defaultPickerValue?: CalendarValue[]
+  defaultPickerValue?: DatePickerCalendarValue[]
 }
 
 export interface CommonSingleProps extends DatePickerProps {

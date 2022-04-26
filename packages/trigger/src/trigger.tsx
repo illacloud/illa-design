@@ -248,7 +248,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   tipsNode = (
     <motion.div
-      ref={tipsMeasureRef}
       css={applyMotionDiv()}
       variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
@@ -359,7 +358,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     <AnimatePresence>
       {!disabled && tipVisible && childrenRef.current != null ? (
         <Popup
-          ref={protalRef}
+          ref={mergeRefs(protalRef, tipsMeasureRef)}
           top={`${adjustResult?.transY}px`}
           left={`${adjustResult?.transX}px`}
         >
@@ -399,7 +398,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }
     return (
       <Fragment>
-        {cloneElement(props.children as ReactElement, { ...finalProps })}
+        {cloneElement(props.children as ReactElement, {
+          key: "illa-trigger",
+          ...finalProps,
+        })}
         {protalContent}
       </Fragment>
     )

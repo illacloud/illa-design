@@ -6,8 +6,8 @@ import {
   KeyboardEvent,
   Ref,
   MutableRefObject,
+  SyntheticEvent,
 } from "react"
-import { Dayjs } from "dayjs"
 
 export type InputBorderColor =
   | string
@@ -72,7 +72,7 @@ export interface InputProps
   textCenterHorizontal?: boolean
   onClear?: () => void
   onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
-  onChange?: (value: string, event: any) => void
+  onChange?: (value: string, event: SyntheticEvent) => void
 }
 
 export interface TextAreaProps
@@ -170,7 +170,7 @@ export interface RangeInputProps
   isPlaceholder?: boolean
   changeFocusedInputIndex?: (index: number) => void
 
-  onChange?: (value: string[], event: any) => void
+  onChange?: (value: string[], event: SyntheticEvent) => void
   onClear?: () => void
   onPressEnter?: () => void
   onPressTab?: (e: any) => void

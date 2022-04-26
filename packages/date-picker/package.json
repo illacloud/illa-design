@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/date-picker",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Illa Design Date-Picker.",
   "keywords": [
     "date-picker",
@@ -39,11 +39,12 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/system": "*",
-    "@illa-design/theme": "*",
-    "@illa-design/icon": "*",
-    "@illa-design/trigger": "*",
-    "@illa-design/select": "*",
-    "@illa-design/calendar": "*"
+    "@illa-design/icon": "0.0.1",
+    "@illa-design/trigger": "0.0.1",
+    "@illa-design/select": "0.0.1",
+    "@illa-design/calendar": "0.0.1",
+    "@illa-design/time-picker": "0.0.1",
+    "@illa-design/system": "0.0.1",
+    "@illa-design/theme": "0.0.1"
   }
 }

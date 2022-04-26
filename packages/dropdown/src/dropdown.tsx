@@ -1,4 +1,11 @@
-import { FC, ReactElement, Children, isValidElement, cloneElement } from "react"
+import {
+  FC,
+  ReactElement,
+  Children,
+  isValidElement,
+  cloneElement,
+  SyntheticEvent,
+} from "react"
 import { DropdownProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"
 import { useMergeValue, omit } from "@illa-design/system"
@@ -53,7 +60,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
           ? cloneElement(content as ReactElement, {
               inDropdown: true,
               selectable: false,
-              onClickMenuItem: (key: string, event: any) => {
+              onClickMenuItem: (key: string, event: SyntheticEvent) => {
                 let clickMenuEventValue = null
 
                 const content = getContent()

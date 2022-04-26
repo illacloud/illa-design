@@ -88,21 +88,7 @@ jobs:
         uses: codecov/codecov-action@v2.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage-final.json
-
-      - name: Build storybook
-        run: NODE_OPTIONS=--max-old-space-size=11264 npx build-storybook
-
-      - name: Publish storybook to server
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SB_SERVER_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.SB_SERVER_HOST }}
-          REMOTE_USER: ${{ secrets.SB_SERVER_USER }}
-          REMOTE_PORT: ${{ secrets.SB_SERVER_PORT }}
-          SOURCE: "storybook-static/"
-          TARGET: ${{ secrets.SB_SERVER_TARGET }}/${{ github.ref_name }}
-          AGRS: "-rlgoDzvc --delete"
+          files: ./coverage/lcov.info
 
       - name: Import docs i18n
         run: yarn import-docs

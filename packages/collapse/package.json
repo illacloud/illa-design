@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/collapse",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Illa Design Collapse.",
   "keywords": [
     "collapse",
@@ -39,8 +39,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/system": "*",
-    "@illa-design/theme": "*",
-    "@illa-design/icon": "*"
+    "@illa-design/icon": "0.0.1",
+    "@illa-design/system": "0.0.1",
+    "@illa-design/theme": "0.0.1"
   }
 }

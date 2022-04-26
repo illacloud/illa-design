@@ -1,6 +1,6 @@
 # Card
 
- The Card component classifies information into titles and details
+The Card component classifies information into titles and details.
 
 ## Installation
 
@@ -11,39 +11,39 @@ yarn add @illa-design/card
 ## Import component
 
 ```jsx
-import { Card } from "@illa-dedign/card"
+import { Card } from "@illa-design/card"
 ```
 
 ## API
 
 ### Card Basic Properties
 
-| Props       | Desc                                   | Type                 | Default    |
-| ----------- | -------------------------------------- | -------------------- | ---------- |
-| bordered    | If true, the card is bordered          | `boolean `           | `true`     |
-| loading     | If true, the card is on loading status | `boolean `           | `false`    |
-| hoverable   | If true, the card is hoverable         | `boolean `           | `false`    |
-| size        | The size of the card                   | `"small" \| "medium"` | `"medium"` |
-| headerStyle | The header style                       | `object `            | `-`        |
-| bodyStyle   | The body style                         | `object `            | `-`        |
-| title       | The title of the card                  | `string `            | `-`        |
-| extra       | The extra actions area on the top      | `string `            | `-`        |
-| cover       | The cover of the card                  | `string `            | `-`        |
-| actions     | The action area on the bottom          | `string `            | `-`        |
+| Props       | Desc                                   | Type                | Default  |
+| ----------- | -------------------------------------- | ------------------- | -------- |
+| bordered    | If true, the card is bordered          | boolean             | true     |
+| loading     | If true, the card is on loading status | boolean             | false    |
+| hoverable   | If true, the card is hoverable         | boolean             | false    |
+| size        | The size of the card                   | "small" \| "medium" | "medium" |
+| headerStyle | The header style                       | object              | -        |
+| bodyStyle   | The body style                         | object              | -        |
+| title       | The title of the card                  | string              | -        |
+| extra       | The extra actions area on the top      | string              | -        |
+| cover       | The cover of the card                  | string              | -        |
+| actions     | The action area on the bottom          | string              | -        |
 
 ### cardMeta Basic Properties
 
-| Props       | Desc                        | Type                   | Default |
-| ----------- | --------------------------- | ---------------------- | ------- |
-| title       | The title of the card       | `string \| ReactNode ` | `-`     |
-| description | The description of the card | `string \| ReactNode `  | `-`     |
-| avatar      | The avatar of the card      | `ReactNode `           | `-`     |
+| Props       | Desc                        | Type                | Default |
+| ----------- | --------------------------- | ------------------- | ------- |
+| title       | The title of the card       | string \| ReactNode | -       |
+| description | The description of the card | string \| ReactNode | -       |
+| avatar      | The avatar of the card      | ReactNode           | -       |
 
 ### cardGrid Basic Properties
 
-| Props     | Desc                           | Type      | Default |
-| --------- | ------------------------------ | --------- | ------- |
-| hoverable | If true, the card is hoverable | `boolean` | `-`     |
+| Props     | Desc                           | Type    | Default |
+| --------- | ------------------------------ | ------- | ------- |
+| hoverable | If true, the card is hoverable | boolean | -       |
 
 ## Examples
 
@@ -57,7 +57,7 @@ import { Card } from "@illa-dedign/card"
 </Card>
 ```
 
-### Set cardMeta 
+### Set cardMeta
 
 ```jsx
 <Card actions={[<LikeIcon />, <ShareIcon />, <MoreIcon />]}>
@@ -89,4 +89,3 @@ import { Card } from "@illa-dedign/card"
   })}
 </Card>
 ```
-

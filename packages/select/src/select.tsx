@@ -5,6 +5,7 @@ import {
   useMemo,
   useEffect,
   ReactText,
+  SyntheticEvent,
 } from "react"
 import { useMergeValue, isArray, isObject } from "@illa-design/system"
 import { Trigger } from "@illa-design/trigger"
@@ -296,7 +297,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   // SelectView event handle
   const selectViewEventHandlers = {
     onFocus,
-    onBlur: (event: any) => {
+    onBlur: (event: SyntheticEvent) => {
       onBlur?.(event)
       !currentVisible && tryUpdateInputValue("", "optionListHide")
     },
@@ -306,11 +307,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         tryUpdatePopupVisible(true)
       }
     },
-    onRemoveCheckedItem: (_: any, index: number, event: Event) => {
-      event?.stopPropagation()
-      uncheckOption(currentValue?.[index as never])
-    },
-    onClear: (event: any) => {
+    onClear: (event: SyntheticEvent) => {
       event.stopPropagation()
       if (multiple) {
         // Keep the value that has been selected but disabled
@@ -390,6 +387,10 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
             text,
             disabled: option?.disabled,
           }
+        }}
+        onRemoveCheckedItem={(_, index, event) => {
+          event?.stopPropagation()
+          uncheckOption(currentValue?.[index as never])
         }}
       />
     </Trigger>

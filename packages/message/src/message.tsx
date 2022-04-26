@@ -1,4 +1,4 @@
-import { forwardRef, useState, useCallback, useEffect } from "react"
+import { forwardRef, useState, useCallback, useLayoutEffect } from "react"
 
 import {
   MessageComponent,
@@ -58,7 +58,7 @@ export const Message: MessageComponent = forwardRef<
     top: [],
     bottom: [],
   })
-  const getRemoves = useCallback((id: string, messageSet: any) => {
+  const getRemoves = useCallback((id: string, messageSet: MessageSet) => {
     let removeIndex = -1,
       pos = "top"
     Object.keys(messageSet).forEach((position) => {
@@ -84,7 +84,7 @@ export const Message: MessageComponent = forwardRef<
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (shouldClear) {
       setMessageSet({
         ...messageSet,
@@ -104,7 +104,7 @@ export const Message: MessageComponent = forwardRef<
     setMessageSet({ ...messageSet, [position]: newNotices })
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (notice) {
       const isUpdate =
         messageSet[position].findIndex((item) => item.id === notice.id) > -1

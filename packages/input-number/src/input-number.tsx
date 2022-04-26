@@ -5,6 +5,7 @@ import {
   useCallback,
   useEffect,
   useImperativeHandle,
+  SyntheticEvent,
 } from "react"
 import NP from "number-precision"
 import { InputNumberProps } from "./interface"
@@ -68,7 +69,6 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     const renderStepButton = !hideControl && mode === "button"
     const [inputValue, setInputValue] = useState<string>("")
     const [displayValue, setDisplayValue] = useState<string>("")
-    const [isOutOfRange, setIsOutOfRange] = useState(false)
     const [isUserInputting, setIsUserInputting] = useState(false)
     const [currentValue, setCurrentValue] = useState<InputNumberProps["value"]>(
       "defaultValue" in props ? defaultValue : undefined,
@@ -118,7 +118,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     }
 
     const handleArrowKey = (
-      event: any,
+      event: SyntheticEvent,
       method: StepMethods,
       needRepeat = false,
     ) => {
@@ -158,7 +158,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       return readOnly
         ? {}
         : {
-            onMouseDown: (e: any) => handleArrowKey(e, method, true),
+            onMouseDown: (e: SyntheticEvent) => handleArrowKey(e, method, true),
             onMouseLeave: stop,
             onMouseUp: stop,
           }
@@ -192,7 +192,6 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       if (outOfRange && hasOperateRef.current) {
         setValue(getLegalValue(mergedValue))
       }
-      setIsOutOfRange(outOfRange)
     }, [min, max, mergedValue, getLegalValue])
 
     useImperativeHandle(

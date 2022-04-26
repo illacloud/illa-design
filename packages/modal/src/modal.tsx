@@ -1,4 +1,5 @@
 import React, { forwardRef, useContext, useRef } from "react"
+import { css } from "@emotion/react"
 import {
   ModalProps,
   ModalComponent,
@@ -39,6 +40,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
     const {
       style,
       className,
+      _css,
       children,
       visible,
       mask = true,
@@ -49,6 +51,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       hideCancel,
       simple,
       closable,
+      closeElement,
       okText,
       cancelText,
       okButtonProps,
@@ -113,16 +116,19 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
         <div>
           {title && (
             <div css={applyModalHeader(simple, showCloseIcon)}>
-              <div css={applyModalTitle}>{title}</div>
+              <div css={applyModalTitle(simple)}>{title}</div>
             </div>
           )}
           <div css={applyModalContent(simple)}>{children}</div>
           {renderFooter()}
-          {showCloseIcon && (
-            <div css={applyModalCloseIcon} onClick={onCancel}>
-              <CloseIcon />
-            </div>
-          )}
+          {showCloseIcon &&
+            (closeElement ? (
+              closeElement
+            ) : (
+              <div css={applyModalCloseIcon} onClick={onCancel}>
+                <CloseIcon />
+              </div>
+            ))}
         </div>
       )
       return (
@@ -132,7 +138,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           exit={"exit"}
           initial={"initial"}
           transition={{ duration: 0.2 }}
-          css={applyModal(alignCenter, simple)}
+          css={css(applyModal(alignCenter, simple), _css)}
           style={style}
           className={className}
           onMouseDown={() => {

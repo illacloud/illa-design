@@ -1,6 +1,6 @@
 import {
-  ClipboardEventHandler,
   forwardRef,
+  SyntheticEvent,
   useEffect,
   useReducer,
   useRef,
@@ -14,7 +14,11 @@ import {
   LoadingIcon,
   SearchIcon,
 } from "@illa-design/icon"
-import { InputTag, ObjectValueType } from "@illa-design/input-tag"
+import {
+  InputTag,
+  InputTagProps,
+  ObjectValueType,
+} from "@illa-design/input-tag"
 import { SelectStateValue, SelectViewProps } from "./interface"
 import {
   applyIconStyle,
@@ -105,7 +109,10 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       return dispatch
     }
 
-    const tryTriggerFocusChange = (action: "focus" | "blur", event: any) => {
+    const tryTriggerFocusChange = (
+      action: "focus" | "blur",
+      event: SyntheticEvent,
+    ) => {
       // The focus event at this time should be triggered by the input element
       if (canFocusInput && event.target === viewRef.current) {
         return
@@ -119,30 +126,17 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       }
     }
 
-    const tryTriggerKeyDown = (event: any) => {
-      if (canFocusInput && event.currentTarget === viewRef.current) {
-        return
-      }
-      // Prevent the default behavior of the browser when pressing Enter
-      const keyCode = event.keyCode || event.which
-      if (keyCode === 13) {
-        event.preventDefault()
-      }
-      onKeyDown && onKeyDown(event)
-    }
-
     const inputEventHandlers = {
-      paste: onPaste as ClipboardEventHandler<HTMLInputElement> | undefined,
-      keyDown: tryTriggerKeyDown,
-      focus: (event: any) => {
+      paste: onPaste,
+      focus: (event: SyntheticEvent) => {
         event.stopPropagation()
         tryTriggerFocusChange("focus", event)
       },
-      blur: (event: any) => {
+      blur: (event: SyntheticEvent) => {
         event.stopPropagation()
         tryTriggerFocusChange("blur", event)
       },
-      change: (newValue: string, event: any) => {
+      change: (newValue: string, event?: SyntheticEvent) => {
         setSearchStatus(SearchStatus.EDITING)
         onChangeInputValue?.(newValue, event)
       },
@@ -193,7 +187,17 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
 
       if (canFocusInput) {
         inputProps.onPaste = inputEventHandlers.paste
-        inputProps.onKeyDown = inputEventHandlers.keyDown
+        inputProps.onKeyDown = (event) => {
+          if (canFocusInput && event.currentTarget === viewRef.current) {
+            return
+          }
+          // Prevent the default behavior of the browser when pressing Enter
+          const keyCode = event.keyCode || event.which
+          if (keyCode === 13) {
+            event.preventDefault()
+          }
+          onKeyDown && onKeyDown(event)
+        }
         inputProps.onFocus = inputEventHandlers.focus
         inputProps.onBlur = inputEventHandlers.blur
         inputProps.onValueChange = inputEventHandlers.change
@@ -222,7 +226,6 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       const usedMaxTagCount = isNumber(maxTagCount)
         ? Math.max(maxTagCount, 0)
         : usedValue.length
-      // console.log(usedValue, usedMaxTagCount, 'usedValue')
       const tagsToShow: ObjectValueType[] = usedValue
         .slice(0, usedMaxTagCount)
         .map((v) => {
@@ -241,14 +244,24 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         })
       }
 
-      const eventHandlers = {
+      const eventHandlers: InputTagProps = {
         onPaste: inputEventHandlers.paste,
-        onKeyDown: inputEventHandlers.keyDown,
         onFocus: inputEventHandlers.focus,
         onBlur: inputEventHandlers.blur,
         onInputChange: inputEventHandlers.change,
-        onRemove: (value: any, index: number, event: any) => {
-          maxTagCount && forceUpdate()
+        onKeyDown: (event) => {
+          if (canFocusInput && event.currentTarget === viewRef.current) {
+            return
+          }
+          // Prevent the default behavior of the browser when pressing Enter
+          const keyCode = event.keyCode || event.which
+          if (keyCode === 13) {
+            event.preventDefault()
+          }
+          onKeyDown && onKeyDown(event)
+        },
+        onRemove: (value, index, event) => {
+          // maxTagCount && forceUpdate()
           onRemoveCheckedItem?.(value, index, event)
         },
       }

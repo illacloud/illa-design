@@ -9,7 +9,6 @@ import {
   applyTagSizeLarge,
   applyTagSizeMedium,
   applyTagSizeSmall,
-  closeIcon,
   colors,
   leftIcon,
   tagContainer,
@@ -98,9 +97,9 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
         <span css={applyCloseIcon(colorScheme, size, variant)}>
           <CloseIcon
             size="8px"
-            onClick={() => {
+            onClick={(e) => {
               if (props.onClose != undefined) {
-                props.onClose()
+                props.onClose(e)
               }
               if (visible == undefined) {
                 setRealVisible(false)

@@ -35,14 +35,11 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       // extra props
       defaultDate,
       defaultSelectedDate,
-      rangepicker = false,
+      rangePicker = false,
       rangeValueFirst,
       rangeValueSecond,
       rangeValueHover,
       handleRangeVal,
-
-      // selectDayFromProps,
-      // defaultPickerValue,
       ...restProps
     } = props
 
@@ -95,10 +92,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       }
     }, [defaultSelectedDate])
 
-    // useEffect(() => {
-    //   handleSelectDayFromProps()
-    // }, [selectDayFromProps])
-
     // click pre & next icon
     const changeTime = (type: string, modeProps?: defaultModeItem) => {
       let result
@@ -122,14 +115,14 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
 
     // select day
     const clickDay = (date: Dayjs) => {
-      if (rangepicker) {
+      if (rangePicker) {
         clickRangeDay(date)
         return
       }
       if (selectDay?.isSame(date, "date")) return
       if (modeVal === "month" || modeVal === "day") {
         // if click pre or next month
-        !rangepicker && checkDifferentMonth(date)
+        !rangePicker && checkDifferentMonth(date)
       }
       setSelectDay(date)
 
@@ -178,22 +171,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       onChange?.(dayjs())
     }
 
-    // const handleSelectDayFromProps = () => {
-    //   if (!selectDayFromProps) return
-    //   if (selectDayFromProps === "clear") {
-    //     changeCurDate(defaultDayValue)
-    //     setSelectDay(0)
-    //   } else {
-    //     if (!Array.isArray(selectDayFromProps)) {
-    //       if (selectDayFromProps.isSame(dayjs(selectDay), "date")) {
-    //         return
-    //       }
-    //       changeCurDate(selectDayFromProps)
-    //       setSelectDay(selectDayFromProps.valueOf())
-    //     }
-    //   }
-    // }
-
     return (
       <div
         css={css(applyCalendarWrapCss(finPanel, panelWidth), _css)}
@@ -219,6 +196,8 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
           onChangeMode={(mode: defaultModeItem) => setModeVal(mode)}
           locale={locale}
           monthListLocale={monthListLocale}
+          onChange={onChange}
+          onPanelChange={onPanelChange}
         />
         <CalendarBody
           allowSelect={finAllowSelect}

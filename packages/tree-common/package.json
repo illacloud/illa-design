@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/tree-common",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Illa Design TreeCommon.",
   "keywords": [
     "treecommon",
@@ -39,8 +39,9 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/theme": "*",
-    "@illa-design/list": "*",
-    "@illa-design/checkbox": "*"
+    "@illa-design/list": "0.0.1",
+    "@illa-design/checkbox": "0.0.1",
+    "@illa-design/theme": "0.0.1",
+    "@illa-design/system": "0.0.1"
   }
 }

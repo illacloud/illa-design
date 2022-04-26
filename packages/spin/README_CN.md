@@ -1,93 +1,42 @@
-# 加载
+# 加载中 Spin
 
-用于设置组件之间的间距和排列方式.
+用于页面和区块的加载中状态。
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/spin
 ```
 
 ## 引用组件
 
 ```jsx
-import { Spin } from "@illa-dedign/spin"
+import { Spin } from "@illa-design/spin"
 ```
 
-## 组件接口(API)
+## 组件接口（API）
 
 ### Spin 基础属性
 
-| 参数名    | 描述         | 类型                                               | 默认值       |
-| --------- | ------------ | -------------------------------------------------- | ------------ |
-| size      | 间距大小     | "mini" \| "small" \| "medium" \| "large" \| string         | "small"        |
-| align     | 组件对齐方式 | "start" \| "center" \| "end" \| "baseline" | "center"     |
-| direction | 组件排列方向 |  "vertical" \| "horizontal"                | "horizontal" |
-| divider   | 添加分割符   | boolean：                                          | -        |
-| wrap      | 自动换行     | boolean：                                          | -        |
+| Props   | Desc                                                         | Type                           | Default |
+| ------- | ------------------------------------------------------------ | ------------------------------ | ------- |
+| loading | 是否为加载状态                                               | boolean                        | -       |
+| size    | 加载动画的尺寸                                               | "small" \| "medium" \| "large" | -       |
+| icon    | 自定义图标，会自动旋转。                                     | ReactNode                      | -       |
+| element | 自定义元素，非图标，不附带旋转效果。可用于设置为 gif 图片等。 | ReactNode                      | -       |
+| tip     | 加载的文案                                                   | string \| ReactNode            | -       |
+| dot     | 是否使用点类型的动画                                         | boolean                        | -       |
 
 ## 使用方法
 
 ### 基础用法
 
 ```jsx
-<Space />
+<Spin placeholder={"spin"} />
 ```
 
-### 设置间隙大小
+### 设置大尺寸
 
 ```jsx
-<Space size="large"/>
-```
-
-### 设置组件对齐方式
-
-通过align这个接口可以调整space中组件对齐方式
-
-```jsx
-<Space alige="start">
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
-</Space>
-```
-
-### 设置组件排列方向
-
-通过direction这个接口可以设置space中组件的排列方向
-
-```jsx
-<Space direction="vertical">
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
-</Space>
-```
-
-### 添加分隔符
-
-通过divider这个接口在组件间隙中添加分隔符
-
-```jsx
-<Space divider>
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
-</Space>
-```
-
-### 设置组件自动换行
-
-通过wrap这个接口可以space中的组件自动换行
-
-```jsx
-<Space wrap>
-	<Tag>Hello</Tag>
-	<Tag size="small">Small</Tag>
-	<Tag size="medium">Medium</Tag>
-	<Tag size="large">Large</Tag>
-</Space>
+<Spin size={"large"} placeholder={"spin"} />
 ```

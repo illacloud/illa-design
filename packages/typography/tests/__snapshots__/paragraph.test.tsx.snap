@@ -7,7 +7,6 @@ exports[`Paragraph renders with code style 1`] = `
 
 .emotion-1 {
   color: rgba(0, 0, 0, 0.64);
-  background-color: #f3f5f7;
 }
 
 <div

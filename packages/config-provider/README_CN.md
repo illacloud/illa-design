@@ -1,17 +1,17 @@
-# 全局配置
+# 全局配置 ConfigProvider
 
-全局配置经常被用于设置全局属性，比如语言
+全局配置经常被用于设置全局属性，比如语言。
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/config-provider
 ```
 
 ## 引用组件
 
 ```jsx
-import { ConfigProvider } from "@illa-dedign/config-provider"
+import { ConfigProvider } from "@illa-design/config-provider"
 ```
 
 ## 组件接口(API)
@@ -31,4 +31,3 @@ import { ConfigProvider } from "@illa-dedign/config-provider"
 	<Pagination total={200} showTotal />
 </ConfigProvider>
 ```
-

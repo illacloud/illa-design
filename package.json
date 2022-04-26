@@ -1,7 +1,6 @@
 {
   "name": "illa-design",
   "private": true,
-  "version": "0.0.0",
   "description": "illa UI Component",
   "repository": "git@github.com:illa-family/illa-design.git",
   "author": "illa Family",
@@ -48,7 +47,7 @@
     "ts-jest": "^27.1.3",
     "turbo": "^1.1.1",
     "typescript": "^4.5.2",
-    "vite": "^2.8.6",
+    "vite": "^2.9.5",
     "vite-plugin-istanbul": "^2.5.1"
   },
   "resolutions": {
@@ -62,7 +61,7 @@
     "build-develop": "sh ./scripts/build-develop.sh",
     "storybook": "yarn dev:build-all-components && yarn start-storybook -p 6006",
     "build-storybook": "yarn build-all-components && npx build-storybook",
-    "build-all-components": "NODE_OPTIONS=--max-old-space-size=14336 npx turbo run build",
+    "build-all-components": "npx turbo run build",
     "dev:build-all-components": "npx turbo run build --scope=\"!@illa-design/react\"  --include-dependencies --no-deps",
     "test": "npx patch-package && yarn build-all-components && npx jest && npx cypress run-ct -b chrome",
     "posttest": "yarn report:combined",
@@ -79,7 +78,8 @@
   "nyc": {
     "report-dir": "cypress-coverage",
     "reporter": [
-      "json"
+      "json",
+      "lcov"
     ]
   }
 }

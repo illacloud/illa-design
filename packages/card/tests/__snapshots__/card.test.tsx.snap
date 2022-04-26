@@ -107,10 +107,6 @@ exports[`Card renders with Meta 1`] = `
   vertical-align: middle;
 }
 
-.emotion-6 {
-  vertical-align: middle;
-}
-
 .emotion-7 {
   display: -webkit-box;
   display: -webkit-flex;

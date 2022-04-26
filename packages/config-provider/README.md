@@ -1,6 +1,6 @@
 # ConfigProvider
 
-ConfigProvider is used to set global params, like language
+ConfigProvider is used to set global params, like language.
 
 ## Installation
 
@@ -11,16 +11,16 @@ yarn add @illa-design/config-provider
 ## Import component
 
 ```jsx
-import { ConfigProvider } from "@illa-dedign/config-provider"
+import { ConfigProvider } from "@illa-design/config-provider"
 ```
 
 ## API
 
 ### ConfigProvider Basic Properties
 
-| Props  | Desc         | Type     | Default |
-| ------ | ------------ | -------- | ------- |
-| locale | Set language | `Locale` | `-`     |
+| Props  | Desc         | Type   | Default |
+| ------ | ------------ | ------ | ------- |
+| locale | Set language | Locale | -       |
 
 ## Example
 

@@ -425,7 +425,7 @@ export function applyClearStyle(
   size?: InputSize,
   AppearWithSuffix?: boolean,
 ): SerializedStyles {
-  let sizeCss: SerializedStyles = css()
+  let sizeCss: SerializedStyles
   if (size == "small") {
     sizeCss = css`
       position: absolute;
@@ -485,14 +485,15 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
   `
 }
 
-export function applyRangeInput(): SerializedStyles {
+export function applyRangeInput(focus?: boolean): SerializedStyles {
   return css`
     transition: all 200ms ease-in-out;
-
-    &:focus {
-      border-radius: 2px;
-      background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
-    }
+    ${focus
+      ? css`
+          border-radius: 2px;
+          background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+        `
+      : null}
   `
 }
 

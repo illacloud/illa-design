@@ -1,4 +1,4 @@
-import { forwardRef, useState, useCallback, useEffect } from "react"
+import { forwardRef, useState, useCallback, useLayoutEffect } from "react"
 import {
   NotificationProps,
   NoticeProps,
@@ -61,20 +61,23 @@ export const Notification: NotificationComponent = forwardRef<
     bottomLeft: [],
     bottomRight: [],
   })
-  const getRemoves = useCallback((id: string, notificationSet: any) => {
-    let removeIndex = -1,
-      pos = "topRight"
-    Object.keys(notificationSet).forEach((position) => {
-      const index = notificationSet[
-        position as keyof NotificationSet
-      ].findIndex((notice: NoticeProps) => notice.id === id)
-      if (index > -1) {
-        removeIndex = index
-        pos = position
-      }
-    })
-    return [removeIndex, pos]
-  }, [])
+  const getRemoves = useCallback(
+    (id: string, notificationSet: NotificationSet) => {
+      let removeIndex = -1,
+        pos = "topRight"
+      Object.keys(notificationSet).forEach((position) => {
+        const index = notificationSet[
+          position as keyof NotificationSet
+        ].findIndex((notice: NoticeProps) => notice.id === id)
+        if (index > -1) {
+          removeIndex = index
+          pos = position
+        }
+      })
+      return [removeIndex, pos]
+    },
+    [],
+  )
 
   if (removeId !== void 0) {
     const [index, pos] = getRemoves(removeId, notificationSet)
@@ -87,7 +90,7 @@ export const Notification: NotificationComponent = forwardRef<
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (shouldClear) {
       setNotificationSet({
         ...notificationSet,
@@ -109,7 +112,7 @@ export const Notification: NotificationComponent = forwardRef<
     setNotificationSet({ ...notificationSet, [position]: newNotices })
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (notice) {
       const isUpdate =
         notificationSet[position].findIndex((item) => item.id === notice.id) >

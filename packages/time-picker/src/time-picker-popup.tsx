@@ -1,6 +1,11 @@
 import { useContext, useCallback } from "react"
 import { Dayjs } from "dayjs"
-import { getDayjsValue, dayjs, isFunction, padStart } from "@illa-design/system"
+import {
+  getDayjsValue,
+  isFunction,
+  padStart,
+  dayjsPro,
+} from "@illa-design/system"
 import { Button } from "@illa-design/button"
 import {
   ConfigProviderContext,
@@ -9,14 +14,18 @@ import {
 } from "@illa-design/config-provider"
 import { TimeColumn } from "./time-column"
 import { applyContentButton, applyTimepickerContent } from "./style"
-import { TimePickerProps, CalendarValue, TimeColumnProps } from "./interface"
+import {
+  TimePickerProps,
+  TimePickerCalendarValue,
+  TimeColumnProps,
+} from "./interface"
 import { getColumnsFromFormat } from "./utils"
 
 interface PickerPopupProps extends TimePickerProps {
   confirmBtnDisabled?: boolean
   onConfirmValue?: (value: Dayjs) => void
   isRangePicker?: boolean
-  valueShow?: CalendarValue
+  valueShow?: TimePickerCalendarValue
   setValueShow?: (valueShow: Dayjs) => void
   hideFooter?: boolean
 }
@@ -98,7 +107,7 @@ export function TimePickerPopup(props: PickerPopupProps) {
     unit?: TimeColumnProps["unit"],
   ) {
     const isUpperCase = getColumnsFromFormat(format).list.indexOf("A") !== -1
-    const _valueShow = valueShow || dayjs("00:00:00", "HH:mm:ss")
+    const _valueShow = valueShow || dayjsPro("00:00:00", "HH:mm:ss")
     const timeData: SelectUnit = {
       hour: _valueShow?.hour?.(),
       minute: _valueShow?.minute?.(),
@@ -127,13 +136,13 @@ export function TimePickerPopup(props: PickerPopupProps) {
         timeData[unit] = selectedValue
       }
       const { hour, minute, second, selectedAmpm } = timeData
-      newValue = dayjs(
+      newValue = dayjsPro(
         `${hour}:${minute}:${second} ${selectedAmpm}`,
         valueFormat,
         "en",
       )
     }
-    newValue = dayjs(newValue, valueFormat).locale(dayjs.locale())
+    newValue = dayjsPro(newValue, valueFormat).locale(dayjsPro.locale())
     onSelect?.(newValue.format(format), newValue)
 
     if (!isRangePicker) {
@@ -145,7 +154,7 @@ export function TimePickerPopup(props: PickerPopupProps) {
   }
 
   function onSelectNow() {
-    const now = dayjs()
+    const now = dayjsPro()
     onSelect?.(now.format(format), now)
     if (disableConfirm) {
       onConfirmValue?.(now)

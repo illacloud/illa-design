@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { forwardRef, SyntheticEvent } from "react"
 import { OptionProps } from "./interface"
 import { applyOptionStyle } from "./style"
 import { omit } from "@illa-design/system"
@@ -30,7 +30,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
   const optionProps = {
     onMouseEnter: () => onMouseEnter?.(value),
     onMouseLeave: () => onMouseLeave?.(),
-    onClick: (event: any) => {
+    onClick: (event: SyntheticEvent) => {
       onClickOption && onClickOption(currentValue, disabled)
       otherProps.onClick?.(event)
     },
@@ -44,7 +44,10 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
           <Checkbox
             checked={isChecked}
             disabled={disabled}
-            onChange={optionProps.onClick}
+            onChange={(_, event: SyntheticEvent) => {
+              onClickOption && onClickOption(currentValue, disabled)
+              otherProps.onClick?.(event)
+            }}
           />
           <span css={{ "margin-left": "8px" }}>{children}</span>
         </li>

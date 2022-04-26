@@ -8,7 +8,7 @@ import {
 } from "react"
 import { Dayjs } from "dayjs"
 import {
-  dayjs,
+  dayjsPro,
   isArray,
   isString,
   useMergeValue,
@@ -109,12 +109,12 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
 
     const isValidTime = (time?: string): boolean => {
       return (
-        typeof isString(time) && dayjs(time, format)?.format(format) === time
+        typeof isString(time) && dayjsPro(time, format)?.format(format) === time
       )
     }
 
     const formatTime = (str: Dayjs) => {
-      return str ? dayjs(str)?.format(format) : ""
+      return str ? dayjsPro(str)?.format(format) : ""
     }
 
     const changeFocusedInputIndex = (index: number) => {
@@ -182,6 +182,11 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       readOnly: !editable,
       allowClear,
       suffix: { render: icons && icons.inputSuffix },
+      onBlur: () => {
+        if (currentPopupVisible) {
+          inputRef.current?.focus()
+        }
+      },
       onPressEnter: () => {
         if (isRangePicker) {
           if (isArray(valueShow) && valueShow.length) {
@@ -267,7 +272,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
         }}
         popupVisible={currentPopupVisible}
         content={
-          <div css={triggerContentStyle} onClick={() => focusInput()}>
+          <div css={triggerContentStyle}>
             {cloneElement(popup as ReactElement, {
               ...props,
               format,
@@ -297,6 +302,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
             inputGroupRef={inputGroupRef}
             focusedInputIndex={focusedInputIndex}
             changeFocusedInputIndex={changeFocusedInputIndex}
+            popupVisible={currentPopupVisible}
             value={
               rangeInputValue
                 ? rangeInputValue

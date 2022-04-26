@@ -1,6 +1,7 @@
 import {
   ForwardedRef,
   forwardRef,
+  SyntheticEvent,
   useCallback,
   useEffect,
   useRef,
@@ -8,7 +9,7 @@ import {
 } from "react"
 import isEqual from "react-fast-compare"
 import { isArray, isObject, isString, KeyCode } from "@illa-design/system"
-import { SelectView, SelectViewProps } from "@illa-design/select"
+import { SelectView } from "@illa-design/select"
 import { Trigger } from "@illa-design/trigger"
 import { CascaderProps, OptionProps } from "./interface"
 import { Store } from "./node"
@@ -68,6 +69,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       onVisibleChange,
     } = props
 
+    const selectViewRef = useRef<HTMLDivElement>(null)
     const [currentVisible, setCurrentVisible] = useState<boolean>()
     const [inputValue, setInputValue] = useState("")
 
@@ -137,6 +139,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         store.setNodeCheckedByValue(mergeValue)
       } else {
         setValue(newValue)
+        store.setNodeCheckedByValue(newValue)
       }
       onChange?.(_value, _selectedOptions, {
         dropdownVisible: currentVisible,
@@ -210,10 +213,10 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     }, [value, stateValue, multiple])
 
     // SelectView event handle
-    const selectViewEventHandlers: SelectViewProps = {
+    const selectViewEventHandlers = {
       renderText,
       onFocus,
-      onClear: (e) => {
+      onClear: (e: SyntheticEvent) => {
         e.stopPropagation()
         if (!multiple) {
           handleChange([])
@@ -227,32 +230,13 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         }
         onClear?.(!!currentVisible)
       },
-      onKeyDown: (e) => {
-        if (disabled) {
-          return
-        }
-        e.stopPropagation()
-        const keyCode = e.keyCode || e.which
-        if (keyCode === KeyCode.Enter && !currentVisible) {
-          handleVisibleChange(true)
-          e.preventDefault()
-        }
-      },
-      onChangeInputValue: (v) => {
+      onChangeInputValue: (v: string) => {
         setInputValue(v)
         onSearch?.(v)
         // If enter value, popupVisible = true
         if (!currentVisible) {
           handleVisibleChange(true)
         }
-      },
-      onRemoveCheckedItem: (item, index, event) => {
-        event?.stopPropagation()
-        if (item.disabled) {
-          return
-        }
-        const newValue = mergeValue?.filter((_, i) => i !== index) ?? []
-        handleChange(newValue)
       },
     }
 
@@ -263,6 +247,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
           <div css={applyPopupStyle()}>
             {showSearchPanel ? (
               <SearchPopup
+                style={{ minWidth: selectViewRef?.current?.offsetWidth }}
                 multiple={multiple}
                 store={store}
                 value={mergeValue}
@@ -271,6 +256,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
               />
             ) : (
               <DefaultPopup
+                style={{ minWidth: selectViewRef?.current?.offsetWidth }}
                 multiple={multiple}
                 store={store}
                 value={mergeValue}
@@ -294,18 +280,39 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         popupVisible={currentVisible}
         onVisibleChange={handleVisibleChange}
       >
-        <SelectView
-          {...props}
-          {...selectViewEventHandlers}
-          ref={ref}
-          inputValue={inputValue}
-          value={multiple ? mergeValue : mergeValue && mergeValue[0]}
-          popupVisible={currentVisible}
-          multiple={multiple}
-          isEmptyValue={
-            !mergeValue || (isArray(mergeValue) && mergeValue.length === 0)
-          }
-        />
+        <div ref={ref}>
+          <SelectView
+            {...props}
+            {...selectViewEventHandlers}
+            ref={selectViewRef}
+            inputValue={inputValue}
+            value={multiple ? mergeValue : mergeValue && mergeValue[0]}
+            popupVisible={currentVisible}
+            multiple={multiple}
+            isEmptyValue={
+              !mergeValue || (isArray(mergeValue) && mergeValue.length === 0)
+            }
+            onKeyDown={(e) => {
+              if (disabled) {
+                return
+              }
+              e.stopPropagation()
+              const keyCode = e.keyCode || e.which
+              if (keyCode === KeyCode.Enter && !currentVisible) {
+                handleVisibleChange(true)
+                e.preventDefault()
+              }
+            }}
+            onRemoveCheckedItem={(item, index, event) => {
+              event?.stopPropagation()
+              if (item.disabled) {
+                return
+              }
+              const newValue = mergeValue?.filter((_, i) => i !== index) ?? []
+              handleChange(newValue)
+            }}
+          />
+        </div>
       </Trigger>
     )
   },

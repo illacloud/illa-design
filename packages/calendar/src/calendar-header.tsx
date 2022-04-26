@@ -1,14 +1,14 @@
-import {FC, Fragment, useCallback, useEffect, useState} from "react"
-import {throttleByRaf} from "@illa-design/system"
-import {CalendarHeaderProps, selectTimeProps} from "./interface"
-import {Button} from "@illa-design/button"
+import { FC, Fragment, useCallback, useEffect, useState } from "react"
+import { throttleByRaf } from "@illa-design/system"
+import { CalendarHeaderProps, selectTimeProps } from "./interface"
+import { Button } from "@illa-design/button"
 import {
   PreIcon,
   NextIcon,
   PreDoubleIcon,
   NextDoubleIcon,
 } from "@illa-design/icon"
-import {Select} from "@illa-design/select"
+import { Select } from "@illa-design/select"
 import {
   headerLeftPartCss,
   headerRightPartCss,
@@ -39,6 +39,8 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
     onChangeMode,
     locale,
     monthListLocale,
+    onChange,
+    onPanelChange,
   } = props
 
   const [currentYear, setCurrentYear] = useState<number>(-1)
@@ -50,14 +52,14 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
   }, [currentDay])
 
   const selectTime = (time: selectTimeProps) => {
-    const {year, month} = time
+    const { year, month } = time
     if (year) {
       setCurrentYear(year)
-      onSelectTime({year: year, month: currentMonth})
+      onSelectTime({ year: year, month: currentMonth })
     }
     if (month) {
       setCurrentMonth(month)
-      onSelectTime({year: currentYear, month: month})
+      onSelectTime({ year: currentYear, month: month })
     }
   }
 
@@ -74,7 +76,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
           colorScheme={"gray"}
           onClick={() => onChangeTime("pre")}
         >
-          <PreIcon size={"12px"}/>
+          <PreIcon size={"12px"} />
         </Button>
         <Button
           disabled={!allowSelect}
@@ -82,7 +84,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
           colorScheme={"gray"}
           onClick={() => onChangeTime("next")}
         >
-          <NextIcon size={"12px"}/>
+          <NextIcon size={"12px"} />
         </Button>
       </div>
     )
@@ -106,8 +108,8 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
           defaultValue={currentYear}
           size={"small"}
           css={selectCommonCss}
-          style={{width: 105}}
-          onChange={(val: number) => selectTime({year: val})}
+          style={{ width: 105 }}
+          onChange={(val: number) => selectTime({ year: val })}
         />
         {mode === "month" && (
           <Select
@@ -116,8 +118,8 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
             defaultValue={currentMonth}
             size={"small"}
             css={selectCommonCss}
-            style={{width: 90}}
-            onChange={(val: number) => selectTime({month: val})}
+            style={{ width: 90 }}
+            onChange={(val: number) => selectTime({ month: val })}
           />
         )}
       </div>
@@ -126,112 +128,123 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
 
   return (
     <Fragment>
-      <div css={applyHeaderWrapCss(panel || false)}>
-        {panel ? (
-          <Fragment>
-            <div css={headerLeftBtnsCss}>
-              {/* double-pre button */}
-              <Button
-                disabled={!allowSelect}
-                variant={"text"}
-                colorScheme={"gray"}
-                css={
-                  !panelOperations?.includes("doubleLeft") && buttonHiddenCss
-                }
-                onClick={() => onChangeTime("pre", "year")}
-              >
-                <PreDoubleIcon size={"12px"}/>
-              </Button>
-              {/* pre button */}
-              <Button
-                disabled={!allowSelect}
-                variant={"text"}
-                colorScheme={"gray"}
-                css={
-                  !(panelOperations?.includes("left") && mode === "day") &&
-                  buttonHiddenCss
-                }
-                onClick={() => onChangeTime("pre", "month")}
-              >
-                <PreIcon size={"12px"}/>
-              </Button>
-            </div>
-
-            {mode === "day" && (
-              <div css={headerSmallTextCss}>
-                {currentYear} {monthListLocale[currentMonth - 1]}
-              </div>
-            )}
-            {mode === "month" && (
-              <div css={headerSmallTextCss}>{currentYear}</div>
-            )}
-            {mode === "year" && (
-              <div css={headerSmallTextCss}>
-                {currentYear - 10}-{currentYear}
-              </div>
-            )}
-
-            <div css={headerRightBtnsCss}>
-              {/* next button */}
-              <Button
-                disabled={!allowSelect}
-                variant={"text"}
-                colorScheme={"gray"}
-                css={
-                  !(panelOperations?.includes("right") && mode === "day") &&
-                  buttonHiddenCss
-                }
-                onClick={() => onChangeTime("next", "month")}
-              >
-                <NextIcon size={"12px"}/>
-              </Button>
-              {/* double-next button */}
-              <Button
-                disabled={!allowSelect}
-                variant={"text"}
-                colorScheme={"gray"}
-                css={
-                  !panelOperations?.includes("doubleRight") && buttonHiddenCss
-                }
-                onClick={() => onChangeTime("next", "year")}
-              >
-                <NextDoubleIcon size={"12px"}/>
-              </Button>
-            </div>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <div css={headerLeftPartCss}>
-              {headerType === "button" && <HeaderTypeButton/>}
-              {headerType === "select" && <HeaderTypeSelect/>}
-              {panelTodayBtn && (
+      {typeof headerRender === "function" ? (
+        headerRender({
+          value: currentDay,
+          pageShowDate: currentDay,
+          mode: mode,
+          onChange,
+          onChangePageDate: onPanelChange,
+          onChangeMode,
+        })
+      ) : (
+        <div css={applyHeaderWrapCss(panel || false)}>
+          {panel ? (
+            <Fragment>
+              <div css={headerLeftBtnsCss}>
+                {/* double-pre button */}
                 <Button
                   disabled={!allowSelect}
+                  variant={"text"}
                   colorScheme={"gray"}
-                  size={"medium"}
-                  onClick={() => onToToday()}
+                  css={
+                    !panelOperations?.includes("doubleLeft") && buttonHiddenCss
+                  }
+                  onClick={() => onChangeTime("pre", "year")}
                 >
-                  {locale?.today}
+                  <PreDoubleIcon size={"12px"} />
                 </Button>
+                {/* pre button */}
+                <Button
+                  disabled={!allowSelect}
+                  variant={"text"}
+                  colorScheme={"gray"}
+                  css={
+                    !(panelOperations?.includes("left") && mode === "day") &&
+                    buttonHiddenCss
+                  }
+                  onClick={() => onChangeTime("pre", "month")}
+                >
+                  <PreIcon size={"12px"} />
+                </Button>
+              </div>
+
+              {mode === "day" && (
+                <div css={headerSmallTextCss}>
+                  {currentYear} {monthListLocale[currentMonth - 1]}
+                </div>
               )}
-            </div>
-            <div css={headerRightPartCss}>
-              <div
-                css={applyModeButtonCss(mode === "month")}
-                onClick={() => onChangeMode("month")}
-              >
-                {locale?.month}
+              {mode === "month" && (
+                <div css={headerSmallTextCss}>{currentYear}</div>
+              )}
+              {mode === "year" && (
+                <div css={headerSmallTextCss}>
+                  {currentYear - 10}-{currentYear}
+                </div>
+              )}
+
+              <div css={headerRightBtnsCss}>
+                {/* next button */}
+                <Button
+                  disabled={!allowSelect}
+                  variant={"text"}
+                  colorScheme={"gray"}
+                  css={
+                    !(panelOperations?.includes("right") && mode === "day") &&
+                    buttonHiddenCss
+                  }
+                  onClick={() => onChangeTime("next", "month")}
+                >
+                  <NextIcon size={"12px"} />
+                </Button>
+                {/* double-next button */}
+                <Button
+                  disabled={!allowSelect}
+                  variant={"text"}
+                  colorScheme={"gray"}
+                  css={
+                    !panelOperations?.includes("doubleRight") && buttonHiddenCss
+                  }
+                  onClick={() => onChangeTime("next", "year")}
+                >
+                  <NextDoubleIcon size={"12px"} />
+                </Button>
               </div>
-              <div
-                css={applyModeButtonCss(mode === "year")}
-                onClick={() => onChangeMode("year")}
-              >
-                {locale?.year}
+            </Fragment>
+          ) : (
+            <Fragment>
+              <div css={headerLeftPartCss}>
+                {headerType === "button" && <HeaderTypeButton />}
+                {headerType === "select" && <HeaderTypeSelect />}
+                {panelTodayBtn && (
+                  <Button
+                    disabled={!allowSelect}
+                    colorScheme={"gray"}
+                    size={"medium"}
+                    onClick={() => onToToday()}
+                  >
+                    {locale?.today}
+                  </Button>
+                )}
               </div>
-            </div>
-          </Fragment>
-        )}
-      </div>
+              <div css={headerRightPartCss}>
+                <div
+                  css={applyModeButtonCss(mode === "month")}
+                  onClick={() => onChangeMode("month")}
+                >
+                  {locale?.month}
+                </div>
+                <div
+                  css={applyModeButtonCss(mode === "year")}
+                  onClick={() => onChangeMode("year")}
+                >
+                  {locale?.year}
+                </div>
+              </div>
+            </Fragment>
+          )}
+        </div>
+      )}
     </Fragment>
   )
 }
