@@ -86,7 +86,7 @@ type CalendarValue = number | string | Date | Dayjs
 | onChange           | 日历组件值发生改变时的回调                                   | (dateString: string[], date: Dayjs[]) => void                | -          |
 | defaultValue       | 默认日期                                                     | CalendarValue[]                                              | -          |
 | value              | 日历组件的值                                                 | CalendarValue[]                                              | -          |
-| mode               | 范围选择器的类型，可以是日期、月份。                         | 'date' \| 'month' \| 'week' \| 'year' \| 'quarter'           | date       |
+| mode               | 范围选择器的类型，可以是日期、月份。                         | "date" \| "month" \| "week" \| "year"           | "date"       |
 | showTime           | 是否增加时间选择，如果传入的是个对象，会把参数传给内置的 TimePicker。 | boolean \| TimePickerRangeProps                              | -          |
 | placeholder        | 提示文案                                                     | string[]                                                     | -          |
 | timepickerProps    | 时间显示的参数，参考 Timepicker作用同 showTime。             | TimePickerProps                                              | -          |
