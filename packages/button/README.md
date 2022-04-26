@@ -20,10 +20,10 @@ import { Button } from "@illa-design/button"
 
 | Props       | Desc                                                  | Type                                                         | Default |
 | ----------- | ----------------------------------------------------- | ------------------------------------------------------------ | ------- |
-| colorScheme | Set background color                                  | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" | blue    |
-| size        | Set size                                              | "small" \| "medium" \| "large"                               | small   |
-| variant     | Set style pattern                                     | "fill" \| "dashed" \| "outline" \| "text"                    | fill    |
-| shape       | Set shape                                             | "square" \| "round"                                          | square  |
+| colorScheme | Set background color                                  | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" | "blue"    |
+| size        | Set size                                              | "small" \| "medium" \| "large"                               | "small"   |
+| variant     | Set style pattern                                     | "fill" \| "dashed" \| "outline" \| "text"                    | "fill"    |
+| shape       | Set shape                                             | "square" \| "round"                                          | "square"  |
 | fullWidth   | Set the width of the button adapts with the container | boolean                                                      | -       |
 | loading     | Set loading status of the button                      | boolean                                                      | -       |
 | loadingText | Set button's text when loading status                 | string                                                       | -       |
@@ -43,7 +43,7 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 
 | Props    | Desc                    | Type             | Default |
 | -------- | ----------------------- | ---------------- | ------- |
-| spacing  | Set gap between buttons | number \| string | 8px     |
+| spacing  | Set gap between buttons | number \| string | "8px"     |
 | attached | Combine buttons         | boolean          | -       |
 
 ## Example
