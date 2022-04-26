@@ -86,7 +86,7 @@ type CalendarValue = number | string | Date | Dayjs
 | onChange           | Callback when the value of the calendar component changes    | (dateString: string[], date: Dayjs[]) => void                | -          |
 | defaultValue       | Default value                                                | CalendarValue[]                                              | -          |
 | value              | Value                                                        | CalendarValue[]                                              | -          |
-| mode               | The type of range selector, which can be date, month         | "date" \| "month" \| "week"' \| "year" \| "quarter"          | date       |
+| mode               | The type of range selector, which can be date, month         | "date" \| "month" \| "week"' \| "year"           | "date"       |
 | showTime           | Whether to add time selection                                | boolean \| TimePickerRangeProps                              | -          |
 | placeholder        | Placeholder                                                  | string[]                                                     | -          |
 | timepickerProps    | The parameters of time display, refer to Timepicker, the function is the same as showTime. | TimePickerProps                                              | -          |
