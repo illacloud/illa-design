@@ -26,7 +26,7 @@ import { Calendar } from "@illa-design/calendar"
 | panelTodayBtn    | 是否显示跳转到今天的按钮                                     | boolean                                                      | -        |
 | panelOperations  | 卡片模式下配置操作按钮                                       | Array<"left" \| "right" \| "doubleLeft" \| "doubleRight">    | -        |
 | dayStartOfWeek   | 每周的第一天开始于周几，0 - 周日，1 - 周一                   | 0 \|1                                                        | 0        |
-| defaultMode      | 选择日期的月日历和选择月份的年日历                           | "day" \| "month" \| "year"                                   | month    |
+| defaultMode      | 选择日期的月日历和选择月份的年日历                           | "day" \| "month" \| "year"                                   | "month"    |
 | mode             | 选择日期的月日历和选择月份的年日历，受控模式                 | "day" \|"month" \|"year"                                     | -        |
 | disabledDate     | 不可选取的时间                                               | (current?: Dayjs) => boolean                                 | -        |
 | dateRender       | 定制日期显示，会完全覆盖日期单元格                           | (currentDate: Dayjs) => ReactNode                            | -        |
