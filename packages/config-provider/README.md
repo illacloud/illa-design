@@ -23,7 +23,22 @@ import { ConfigProvider } from "@illa-design/config-provider"
 | locale | Set language | `Locale` | `-`     |
 
 ## Example
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
 
+export const code = `
+    <>
+      <ConfigProvider locale={zhCN}>
+        <Pagination total={200} showTotal />
+      </ConfigProvider>
+    </>`
+
+export const importStatement = `import { ConfigProvider } from "@illa-design/config-provider"`
+
+export const packages = {"@illa-design/config-provider":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 ### Basic usage
 
 ```jsx
