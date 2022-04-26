@@ -1,4 +1,4 @@
-import { omit, getStyle, easingMethod, raf, caf } from "../src"
+import { omit, getStyle, easingMethod, raf } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
@@ -35,7 +35,7 @@ test(`Test easingMethod`, () => {
 test(`Test raf in jsdom environment`, async () => {
   const fn = jest.fn()
 
-  new Promise(function (r) {
+  await new Promise(function(r) {
     raf(() => {
       fn()
       r("")
