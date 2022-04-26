@@ -24,10 +24,10 @@ import { Timepicker, RangePicker } from "@illa-design/timepicker"
 | error             | 报错样式                                                     | boolean                                             | -        |
 | allowClear        | 允许清除                                                     | boolean                                             | true     |
 | disableConfirm    | 禁用确认步骤，开启后直接点选时间不需要点击确认按钮。         | boolean                                             | -        |
-| position          | 弹出的框的位置                                               | 'top' \| 'tl' \| 'tr' \| 'bottom' \| 'bl' \| 'br'   | bl       |
+| position          | 弹出的框的位置                                               | "top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br"   | "bl"       |
 | getPopupContainer | 弹出框挂载的父节点                                           | (node: HTMLElement) => Element                      | -        |
 | placeholder       | 提示文案                                                     | string \| string[]                                  | -        |
-| format            | 展示日期的格式，参考[dayjs](https://github.com/iamkun/dayjs) | string                                              | HH:mm:ss |
+| format            | 展示日期的格式，参考[dayjs](https://github.com/iamkun/dayjs) | string                                              | "HH:mm:ss" |
 | use12Hours        | 12 小时制                                                    | boolean                                             | -        |
 | onClear           | 点击清除按钮的回调                                           | () => void                                          | -        |
 | popupVisible      | 控制弹出框打开或者关闭                                       | boolean                                             | -        |
