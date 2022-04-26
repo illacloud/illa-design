@@ -20,10 +20,10 @@ import { Button } from "@illa-design/button"
 
 | 参数名      | 描述                         | 类型                                                         | 默认值 |
 | ----------- | ---------------------------- | ------------------------------------------------------------ | ------ |
-| colorScheme | 设置背景颜色                 | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" | blue   |
-| size        | 设置尺寸大小                 | "small" \| "medium" \| "large"                               | small  |
-| variant     | 设置按钮样式                 | "fill" \| "dashed" \| "outline" \| "text"                    | fill   |
-| shape       | 设置按钮形状                 | "square" \| "round"                                          | square |
+| colorScheme | 设置背景颜色                 | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" | "blue"   |
+| size        | 设置尺寸大小                 | "small" \| "medium" \| "large"                               | "small"  |
+| variant     | 设置按钮样式                 | "fill" \| "dashed" \| "outline" \| "text"                    | "fill"   |
+| shape       | 设置按钮形状                 | "square" \| "round"                                          | "square" |
 | fullWidth   | 按钮的宽度是否随容器自适应。 | boolean                                                      | -      |
 | loading     | 设置按钮是否为加载中状态     | boolean                                                      | -      |
 | loadingText | 设置按钮加载中时的提示文案   | string                                                       | -      |
@@ -43,7 +43,7 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 
 | 参数名   | 描述               | 类型             | 默认值 |
 | -------- | ------------------ | ---------------- | ------ |
-| spacing  | 设置按钮之间的间隙 | number \| string | 8px    |
+| spacing  | 设置按钮之间的间隙 | number \| string | "8px"    |
 | attached | 设置按钮挨在一起   | boolean          | -      |
 
 ## 使用方法
