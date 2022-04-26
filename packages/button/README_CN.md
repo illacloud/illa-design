@@ -47,6 +47,38 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 | attached | 设置按钮挨在一起   | boolean          | -      |
 
 ## 使用方法
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
+export const code = `
+    <>
+      <Button>Hello</Button>   
+      <Button>Hello</Button>
+      <Button size="small">Small</Button>
+      <Button size="medium">Medium</Button>
+      <Button size="large">Large</Button>
+      <Button>Hello</Button>
+      <Button variant="outline" colorScheme="cyan">Hello</Button>
+      <Button>Hello</Button>
+      <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
+      <Button>Hello</Button>
+      <Button disabled>Hello</Button>
+      <Button loading loadingText="Loading">Hello</Button>
+      <ButtonGroup variant="outline" spacing="5px">
+        <Button>Hello</Button>
+        <Button disabled>Hello</Button>
+        <Button loading loadingText="Loading">Hello</Button>
+      </ButtonGroup>
+      <ButtonGroup variant="outline" attached>
+        <Button leftIcon={<BsArrowLeft />} />
+        <Button>Hello</Button>
+        <Button rightIcon={<BsArrowRight />} />
+      </ButtonGroup>
+    </>`
+export const importStatement = `import { Button } from "@illa-design/button`
+export const packages = {"@illa-design/button":"latest"}
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
+
 
 ### 基础用法
 
