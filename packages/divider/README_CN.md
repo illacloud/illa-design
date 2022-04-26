@@ -24,7 +24,27 @@ import { Divider } from "@illa-design/divider"
 | variant   | 分割线样式     | "solid" \| "dashed" \| "dotted" \| "double" | "solid"      |
 
 ## 使用方法
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
 
+export const code = `
+    <>
+      <Divider />
+      <Divider />
+      <Divider direction="vertical" />
+      <Divider />
+      <Divider direction="vertical" />
+      <Divider variant="dashed" />
+      <Divider variant="dotted" />
+      <Divider variant="double" />
+    </>`
+
+export const importStatement = `import { Divider } from "@illa-design/divider"`
+
+export const packages = {"@illa-design/divider":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
 ### 基础用法
 
 添加一条横向分割线
