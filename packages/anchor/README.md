@@ -38,7 +38,7 @@ import { Anchor } from "@illa-design/anchor"
 
 | Props | Desc                 | Type                       | Default |
 | ----- | -------------------- | -------------------------- | ------- |
-| href  | Link of the anchor   | string                   | #     |
+| href  | Link of the anchor   | string                   | "#"     |
 | title | Title of anchor link | string | React.ReactNode | -     |
 
 ## Example
