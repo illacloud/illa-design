@@ -53,8 +53,6 @@ const Template: Story<ModalProps> = (args) => {
           confirmLoading={confirmLoading}
           onCancel={() => setVisible(false)}
           onOk={onOk}
-          afterClose={() => console.log("close")}
-          afterOpen={() => console.log("open")}
         >
           I don't know if we each have a destiny, or if we're all just floating
           around accidentally―like on a breeze.

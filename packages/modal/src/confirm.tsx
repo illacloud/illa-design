@@ -119,6 +119,10 @@ export function confirm(
   modalConfig = normalizeConfig(modalConfig)
 
   modalConfig.visible = true
+  modalConfig.afterClose = () => {
+    config.afterClose && config.afterClose()
+    destroy()
+  }
   renderFunction(modalConfig)
 
   function destroy() {
@@ -138,10 +142,6 @@ export function confirm(
   function onCancel(isOnOk?: boolean) {
     !isOnOk && config.onCancel && config.onCancel()
     modalConfig.visible = false
-    modalConfig.afterClose = () => {
-      config.afterClose && config.afterClose()
-      destroy()
-    }
     renderFunction(modalConfig)
   }
 
@@ -158,10 +158,6 @@ export function confirm(
 
   function close() {
     modalConfig.visible = false
-    modalConfig.afterClose = () => {
-      config.afterClose && config.afterClose()
-      destroy()
-    }
     renderFunction(modalConfig)
   }
 
