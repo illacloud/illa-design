@@ -86,13 +86,7 @@ it("Cascader render correctly", () => {
 })
 
 it("Cascader render with no data", () => {
-  mount(
-    <Cascader
-      options={[]}
-      placeholder={"test"}
-      value={undefined}
-    />,
-  )
+  mount(<Cascader options={[]} placeholder={"test"} value={undefined} />)
 
   cy.findByPlaceholderText("test").should("exist")
   cy.findByPlaceholderText("test").parent().click()
@@ -101,17 +95,13 @@ it("Cascader render with no data", () => {
 })
 
 it("Cascader render with disabled", () => {
-  mount(
-    <Cascader
-      options={[]}
-      placeholder={"test"}
-      disabled
-    />,
-  )
+  mount(<Cascader options={[]} placeholder={"test"} disabled />)
 
   cy.findByPlaceholderText("test").should("exist")
-  cy.findByPlaceholderText("test").parent().parent().should('have')
-  cy.findByText("No data").should("exist")
+  cy.findByPlaceholderText("test")
+    .parent()
+    .parent()
+    .should("have.css", "cursor", "not-allowed")
   unmount()
 })
 
@@ -213,7 +203,10 @@ it("Cascader in multiple mode Test clearEvent", () => {
   mount(
     <Cascader
       multiple
-      defaultValue={[["beijing", "xicheng"], ["shanghai", "huangpu"]]}
+      defaultValue={[
+        ["beijing", "xicheng"],
+        ["shanghai", "huangpu"],
+      ]}
       options={options}
       placeholder={"test"}
       onChange={changeEvent}
