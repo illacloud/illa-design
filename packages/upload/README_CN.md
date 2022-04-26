@@ -80,6 +80,41 @@ import { Upload } from "@illa-design/upload"
 
 ## 使用方法
 
+```mdx-code-block
+import Sandpack from '@site/src/components/Sandpack'
+
+export const code = `
+    <>
+      <Upload placeholder={"upload"} />
+      <Upload
+        action={"/"}
+        withCredentials={true}
+        beforeUpload={() => true}
+        headers={{ secChUaArch: "arm" }}
+        onChange={(fileList, file) => {
+          files = fileList
+          curFile = file
+        }}
+        name={() => "test"}
+        data={{ test: "test" }}
+        placeholder={"upload"}
+      />
+      <Upload drag={true} placeholder={"upload"} />
+      <Upload autoUpload={false} placeholder={"upload"} />
+      <Upload
+        action={"/"}
+        placeholder={"upload"}
+        accept={".jpg, .jpeg, .png"}
+      />
+    </>`
+
+export const importStatement = `import { Upload } from "@illa-design/upload"`
+
+export const packages = {"@illa-design/upload":"latest"}
+
+<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
+```
+
 ### 基础用法
 
 ```jsx
