@@ -9,6 +9,8 @@ const FILE_REG = /^README\w*.md$/
 
 const INTRO_HEADER = `---
 sidebar_position: 1
+title: Introduction
+id: intro
 ---`
 
 const COMPONENTS_MAP_CATEGORY = {
@@ -20,39 +22,39 @@ const COMPONENTS_MAP_CATEGORY = {
   grid: "LAYOUT",
   space: "LAYOUT",
   layout: "LAYOUT",
-  tag: "DATA-DISPLAY",
-  image: "DATA-DISPLAY",
-  avatar: "DATA-DISPLAY",
-  tooltip: "DATA-DISPLAY",
-  description: "DATA-DISPLAY",
-  list: "DATA-DISPLAY",
-  tabs: "DATA-DISPLAY",
-  table: "DATA-DISPLAY",
-  popover: "DATA-DISPLAY",
-  statistic: "DATA-DISPLAY",
-  badge: "DATA-DISPLAY",
-  card: "DATA-DISPLAY",
-  tree: "DATA-DISPLAY",
-  calendar: "DATA-DISPLAY",
-  empty: "DATA-DISPLAY",
-  comment: "DATA-DISPLAY",
-  collapse: "DATA-DISPLAY",
-  timeline: "DATA-DISPLAY",
-  radio: "DATA-INPUT",
-  input: "DATA-INPUT",
-  checkbox: "DATA-INPUT",
-  select: "DATA-INPUT",
-  form: "DATA-INPUT",
-  cascader: "DATA-INPUT",
-  datepicker: "DATA-INPUT",
-  timepicker: "DATA-INPUT",
-  upload: "DATA-INPUT",
-  switch: "DATA-INPUT",
-  "input-number": "DATA-INPUT",
-  "input-tag": "DATA-INPUT",
-  "tree-select": "DATA-INPUT",
-  slider: "DATA-INPUT",
-  rate: "DATA-INPUT",
+  tag: "DATA DISPLAY",
+  image: "DATA DISPLAY",
+  avatar: "DATA DISPLAY",
+  tooltip: "DATA DISPLAY",
+  description: "DATA DISPLAY",
+  list: "DATA DISPLAY",
+  tabs: "DATA DISPLAY",
+  table: "DATA DISPLAY",
+  popover: "DATA DISPLAY",
+  statistic: "DATA DISPLAY",
+  badge: "DATA DISPLAY",
+  card: "DATA DISPLAY",
+  tree: "DATA DISPLAY",
+  calendar: "DATA DISPLAY",
+  empty: "DATA DISPLAY",
+  comment: "DATA DISPLAY",
+  collapse: "DATA DISPLAY",
+  timeline: "DATA DISPLAY",
+  radio: "DATA INPUT",
+  input: "DATA INPUT",
+  checkbox: "DATA INPUT",
+  select: "DATA INPUT",
+  form: "DATA INPUT",
+  cascader: "DATA INPUT",
+  datepicker: "DATA INPUT",
+  timepicker: "DATA INPUT",
+  upload: "DATA INPUT",
+  switch: "DATA INPUT",
+  "input-number": "DATA INPUT",
+  "input-tag": "DATA INPUT",
+  "tree-select": "DATA INPUT",
+  slider: "DATA INPUT",
+  rate: "DATA INPUT",
   alert: "FEEDBACK",
   drawer: "FEEDBACK",
   message: "FEEDBACK",
@@ -125,7 +127,8 @@ function run() {
             getTargetPath(
               TARGET_I18N_PATH,
               lowerLanguage === "cn" ? "zh-cn" : language,
-              `docusaurus-plugin-content-docs/current/COMPONENTS/${category ?? "OTHERS"
+              `docusaurus-plugin-content-docs/current/COMPONENTS/${
+                category ?? "OTHERS"
               }`,
               `${compName}.md`,
             ),
@@ -137,7 +140,7 @@ function run() {
           getTargetPath(
             TARGET_BASE_PATH,
             undefined,
-            `docs/COMPONENTS/${category ?? "OTHERS"}`,
+            `docs/Components/${category ?? "OTHERS"}`,
             `${compName}.md`,
           ),
         )
@@ -146,7 +149,8 @@ function run() {
           getTargetPath(
             TARGET_I18N_PATH,
             "en",
-            `docusaurus-plugin-content-docs/current/COMPONENTS/${category ?? "OTHERS"
+            `docusaurus-plugin-content-docs/current/COMPONENTS/${
+              category ?? "OTHERS"
             }`,
             `${compName}.md`,
           ),
@@ -154,13 +158,16 @@ function run() {
       }
     })
   })
-  const oldContent = fs.readFileSync(path.join(__dirname, "../README.md"), 'utf-8');
+  const oldContent = fs.readFileSync(
+    path.join(__dirname, "../README.md"),
+    "utf-8",
+  )
 
   const newContent = `${INTRO_HEADER}
 
 ${oldContent}
 `
-  fs.writeFileSync(path.join(TARGET_BASE_PATH, "docs", "Intro.md"), newContent)
+  fs.writeFileSync(path.join(TARGET_BASE_PATH, "docs", "intro.md"), newContent)
 }
 
 run()
