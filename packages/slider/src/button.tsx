@@ -36,9 +36,7 @@ const SliderButton = function (props: SliderButtonProps) {
     moveStart(e)
     if (!isServerRendering) {
       window.addEventListener("mousemove", moving)
-      window.addEventListener("touchmove", moving)
       window.addEventListener("mouseup", moveEnd)
-      window.addEventListener("touchend", moveEnd)
       window.addEventListener("contextmenu", moveEnd)
     }
   }
@@ -72,13 +70,8 @@ const SliderButton = function (props: SliderButtonProps) {
     onMoveBegin && onMoveBegin()
   }
 
-  function moving(e: SyntheticEvent<Element, TouchEvent | MouseEvent>) {
+  function moving(e: MouseEvent) {
     isDragging.current = true
-
-    if (e.type === "touchstart") {
-      e.clientY = e.touches[0].clientY
-      e.clientX = e.touches[0].clientX
-    }
     onMoving && onMoving(e.clientX, e.clientY)
   }
 
@@ -93,9 +86,7 @@ const SliderButton = function (props: SliderButtonProps) {
     clearDelayTimer()
     if (!isServerRendering) {
       window.removeEventListener("mousemove", moving)
-      window.removeEventListener("touchmove", moving)
       window.removeEventListener("mouseup", moveEnd)
-      window.removeEventListener("touchend", moveEnd)
       window.removeEventListener("contextmenu", moveEnd)
     }
   }

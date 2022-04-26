@@ -7,16 +7,13 @@ import { useMergeValue } from "@illa-design/system"
 import { applyCollapse } from "./style"
 
 const getActiveKeys = (
-  keys?: CollapseProps["activeKey"],
+  keys: CollapseProps["activeKey"],
   accordion?: boolean,
 ): string[] => {
-  if (keys === void 0) {
-    return []
-  }
   if (typeof keys === "string") {
     keys = [keys]
   }
-  const res = keys.map((item) => item)
+  const res = keys!.map((item) => item)
   if (accordion) {
     return res.slice(0, 1)
   }
@@ -45,6 +42,8 @@ export const Collapse: CollapseComponent = forwardRef<
     expandIconPosition = "left",
     destroyOnHide,
     accordion,
+    defaultActiveKey,
+    activeKey,
     onChange,
     ...otherProps
   } = props

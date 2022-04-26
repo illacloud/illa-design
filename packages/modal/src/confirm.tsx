@@ -42,8 +42,6 @@ export const normalizeConfig = (_config: ConfirmProps): ConfirmProps => {
         case "error":
           icon = <ErrorIcon />
           break
-        default:
-          break
       }
     }
     _config.title = (

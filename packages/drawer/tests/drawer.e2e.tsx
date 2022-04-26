@@ -40,22 +40,10 @@ const DemoDrawer = (props: DrawerProps) => {
 }
 
 const TemplateWithContainer = () => {
-  const [visibleInner, setVisibleInner] = React.useState(false)
+  const [visibleInner, setVisibleInner] = React.useState(true)
   const refWrapper = React.useRef(null)
   return (
-    <div
-      ref={refWrapper}
-      style={{
-        width: 1200,
-        height: 300,
-        backgroundColor: "gray",
-        position: "relative",
-        overflow: "hidden",
-        lineHeight: "300px",
-        textAlign: "center",
-      }}
-    >
-      <Button onClick={() => setVisibleInner(true)}>Open</Button>
+    <div>
       <Drawer
         data-testid={"DrawerContainer"}
         title="Basic"
@@ -71,6 +59,18 @@ const TemplateWithContainer = () => {
       >
         <div style={{ textAlign: "left" }}>Here is an example text.</div>
       </Drawer>
+      <div
+        ref={refWrapper}
+        style={{
+          width: 1200,
+          height: 300,
+          backgroundColor: "gray",
+          position: "relative",
+          overflow: "hidden",
+          lineHeight: "300px",
+          textAlign: "center",
+        }}
+      />
     </div>
   )
 }
@@ -105,7 +105,6 @@ it("Drawer renders with mask close & open event & close event", () => {
 
 it("Drawer renders with container", () => {
   mount(<TemplateWithContainer />)
-  cy.findByText("Open").click()
   cy.findByTestId("DrawerContainer")
     .parent()
     .parent()
