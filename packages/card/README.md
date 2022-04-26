@@ -49,7 +49,7 @@ import { Card } from "@illa-design/card"
 
 ### Basic usages
 
-```
+```jsx
 <Card size="small" title="small" extra={<Link>More</Link>}>
   <p>Hello</p>
   <p>Hello</p>
@@ -59,7 +59,7 @@ import { Card } from "@illa-design/card"
 
 ### Set cardMeta
 
-```
+```jsx
 <Card actions={[<LikeIcon />, <ShareIcon />, <MoreIcon />]}>
   <Meta title="CardMeta" description="MetaContent" avatar={<Avatar />} />
 </Card>
@@ -67,7 +67,7 @@ import { Card } from "@illa-design/card"
 
 ### Set CardGrid
 
-```
+```jsx
 <Card bordered={true} style={{ width: "100%" }}>
   {new Array(7).fill(null).map((_, index) => {
     const hoverable = index % 2 === 0
