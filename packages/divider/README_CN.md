@@ -1,6 +1,6 @@
-# 分割线
+# 分割线 Divider
 
-用于对内容区域进行划分，分为横竖两个方向
+用于对内容区域进行划分，分为横竖两个方向。
 
 ## 安装
 
@@ -18,10 +18,10 @@ import { Divider } from "@illa-design/divider"
 
 ### Icon 基础属性
 
-| 参数名    | 描述           | 类型                                                | 默认值       |
-| --------- | -------------- | --------------------------------------------------- | ------------ |
-| direction | 设置分割线方向 | `"vertical" \| "horizontal" `                | `horizontal` |
-| variant   | 分割线样式     | `"solid" \| "dashed" \| "dotted" \| "double"` | `solid`      |
+| 参数名    | 描述           | 类型                                        | 默认值       |
+| --------- | -------------- | ------------------------------------------- | ------------ |
+| direction | 设置分割线方向 | "vertical" \| "horizontal"                  | "horizontal" |
+| variant   | 分割线样式     | "solid" \| "dashed" \| "dotted" \| "double" | "solid"      |
 
 ## 使用方法
 
@@ -36,7 +36,6 @@ import { Divider } from "@illa-design/divider"
 ### 设置分割线方向
 
 ```jsx
-
 <Divider />
 <Divider direction="vertical" />
 ```

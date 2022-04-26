@@ -1,6 +1,6 @@
 # Switch
 
-Switch is used in mutual exclusivity selection scenarious
+Switch is used in mutual exclusivity selection scenarious.
 
 ## Installation
 
@@ -20,21 +20,21 @@ import { Switch } from "@illa-design/switch"
 
 | Props          | Desc                                                      | Type                                                         | Default  |
 | -------------- | --------------------------------------------------------- | ------------------------------------------------------------ | -------- |
-| colorScheme    | Set background color                                      | `"white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" \| string` | `blue`   |
-| disabled       | Whether to disable the switch                             | `boolean`                                                    | `-`      |
-| size           | Set switch size                                           | ` "medium" \| "large"`                                       | `medium` |
-| checkedText    | Set the text when switch's status is checked              | `string \| ReacNode`                                         | `-`      |
-| uncheckedText  | Set the text when switch's status is unchecked            | `string \| ReacNode`                                         | `-`      |
-| uncheckedIcon  | Set the icon of button  when switch's status is unchecked | `ReactNode`                                                  | `-`      |
-| checkedIcon    | Set the icon of button  when switch's status is checked   | `ReactNode`                                                  | `-`      |
-| defaultChecked | Set the default status is checked                         | `boolean`                                                    | `-`      |
-| checked        | Set switch's status is checked                            | `boolean`                                                    | `-`      |
+| colorScheme    | Set background color                                      | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue"  \| "cyan" \| "purple" \| string | "blue"   |
+| disabled       | Whether to disable the switch                             | boolean                                                      | -        |
+| size           | Set switch size                                           | "medium" \| "large"                                          | "medium" |
+| checkedText    | Set the text when switch's status is checked              | string \| ReacNode                                           | -        |
+| uncheckedText  | Set the text when switch's status is unchecked            | string \| ReacNode                                           | -        |
+| uncheckedIcon  | Set the icon of button  when switch's status is unchecked | ReactNode                                                    | -        |
+| checkedIcon    | Set the icon of button  when switch's status is checked   | ReactNode                                                    | -        |
+| defaultChecked | Set the default status is checked                         | boolean                                                      | -        |
+| checked        | Set switch's status is checked                            | boolean                                                      | -        |
 
 ### Switch Events
 
-| Props    | Desc                                             | Type                                          | Default |
-| -------- | ------------------------------------------------ | --------------------------------------------- | ------- |
-| onChange | Callback when the value of the switch is changed | `(value: boolean, event: MouseEvent) => void` | `-`     |
+| Props    | Desc                                             | Type                                        | Default |
+| -------- | ------------------------------------------------ | ------------------------------------------- | ------- |
+| onChange | Callback when the value of the switch is changed | (value: boolean, event: MouseEvent) => void | -       |
 
 
 
