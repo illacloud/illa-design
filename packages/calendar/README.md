@@ -26,7 +26,7 @@ import { Calendar } from "@illa-design/calendar"
 | panelTodayBtn    | Whether to show the jump to today button                    | boolean                                                      | -        |
 | panelOperations  | Action button in panel mode                                 | Array<"left" \| "right" \| "doubleLeft" \| "doubleRight">      | -        |
 | dayStartOfWeek   | The first day of the week starts on, 0 - Sunday, 1 - Monday | 0 \|1                                                        | 0        |
-| defaultMode      | Calendar for selected date, month and year                  | "day" \| "month"\| "year"                                    | month    |
+| defaultMode      | Calendar for selected date, month and year                  | "day" \| "month"\| "year"                                    | "month"    |
 | mode             | Calendar for selected date, month and year                  | "day" \|"month"\|"year"                                      | -        |
 | disabledDate     | Disabled date                                               | (current?: Dayjs) => boolean                                 | -        |
 | dateRender       | Custom date display                                         | (currentDate: Dayjs) => ReactNode                            | -        |
