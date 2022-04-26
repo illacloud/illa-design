@@ -5,7 +5,8 @@ import {
   TextareaHTMLAttributes,
   KeyboardEvent,
   Ref,
-  MutableRefObject, SyntheticEvent,
+  MutableRefObject,
+  SyntheticEvent,
 } from "react"
 
 export type InputBorderColor =
@@ -46,8 +47,10 @@ export interface InputElementProps
 }
 
 export interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>,
-    "prefix" | "size" | "onChange"> {
+  extends Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    "prefix" | "size" | "onChange"
+  > {
   inputRef?: Ref<HTMLInputElement>
   variant?: InputVariant
   placeholder?: string
@@ -83,9 +86,9 @@ export interface TextAreaProps
   autoSize?:
     | boolean
     | {
-    minRows?: number
-    maxRows?: number
-  }
+        minRows?: number
+        maxRows?: number
+      }
   value?: string
   maxLength?: number
   showCount?: boolean
@@ -141,8 +144,10 @@ export type RangeInputRef = {
 }
 
 export interface RangeInputProps
-  extends Omit<InputHTMLAttributes<HTMLDivElement>,
-    "disabled" | "size" | "placeholder" | "value" | "onChange"> {
+  extends Omit<
+    InputHTMLAttributes<HTMLDivElement>,
+    "disabled" | "size" | "placeholder" | "value" | "onChange"
+  > {
   inputGroupRef?: MutableRefObject<{
     input0?: HTMLInputElement | null
     input1?: HTMLInputElement | null

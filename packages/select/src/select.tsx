@@ -4,7 +4,8 @@ import {
   useState,
   useMemo,
   useEffect,
-  ReactText, SyntheticEvent,
+  ReactText,
+  SyntheticEvent,
 } from "react"
 import { useMergeValue, isArray, isObject } from "@illa-design/system"
 import { Trigger } from "@illa-design/trigger"
@@ -52,7 +53,9 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
   } = props
 
   const [currentVisible, setCurrentVisible] = useState<boolean>()
-  const refValueMap = useRef<{ value: OptionProps["value"]; option: OptionInfo }[]>([])
+  const refValueMap = useRef<
+    { value: OptionProps["value"]; option: OptionInfo }[]
+  >([])
   const [stateValue, setValue] = useState(
     getValidValue(defaultValue, multiple, labelInValue),
   )
@@ -189,8 +192,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
         value === undefined
           ? undefined
           : Array.isArray(value)
-            ? value.map(getOptionInfoByValue)
-            : getOptionInfoByValue(value)
+          ? value.map(getOptionInfoByValue)
+          : getOptionInfoByValue(value)
       onChange(getValueForCallbackParameter(value, option), option)
     }
   }
@@ -239,7 +242,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       if (x?.value) {
         return multiple
           ? isArray(currentValue) &&
-          (currentValue as Array<string | number>)?.indexOf(x?.value) > -1
+              (currentValue as Array<string | number>)?.indexOf(x?.value) > -1
           : x?.value === currentValue
       }
       return false

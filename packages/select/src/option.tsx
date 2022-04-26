@@ -44,7 +44,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
           <Checkbox
             checked={isChecked}
             disabled={disabled}
-            onChange={(_, event:SyntheticEvent) => {
+            onChange={(_, event: SyntheticEvent) => {
               onClickOption && onClickOption(currentValue, disabled)
               otherProps.onClick?.(event)
             }}

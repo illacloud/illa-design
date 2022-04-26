@@ -398,7 +398,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }
     return (
       <Fragment>
-        {cloneElement(props.children as ReactElement, { ...finalProps })}
+        {cloneElement(props.children as ReactElement, {
+          key: "illa-trigger",
+          ...finalProps,
+        })}
         {protalContent}
       </Fragment>
     )

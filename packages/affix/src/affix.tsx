@@ -25,8 +25,6 @@ function getTargetRect(target: HTMLElement | Window): DOMRect {
 
 export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   const {
-    style,
-    className,
     offsetTop = 0,
     offsetBottom,
     target = () => window,
@@ -79,7 +77,6 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
 
   useEffect(() => {
     mounted.current = true
-
     return () => {
       mounted.current = false
     }
@@ -178,8 +175,6 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
           size,
         })}
         ref={measureAffixRef}
-        style={style}
-        className={className}
       >
         {children}
       </div>
