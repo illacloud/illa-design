@@ -4,7 +4,7 @@ The comment component is used to display comment information.
 
 ## Installation
 
-```jsx
+```bash
 yarn add @illa-design/comment
 ```
 
@@ -20,13 +20,13 @@ import { Comment } from "@illa-design/comment"
 
 | Props    | Desc                      | Type                                                         | Default |
 | -------- | ------------------------- | ------------------------------------------------------------ | ------- |
-| actions  | Actions list              | `ReactNode`                                                  | `-`     |
-| author   | Display as comment author | `ReactNode`                                                  | `-`     |
-| avatar   | Display as comment avatar | `ReactNode`                                                  | `-`     |
-| children | Children of comments      | `ReactNode`                                                  | `-`     |
-| content  | Comment content           | `ReactNode`                                                  | `-`     |
-| datetime | Datetime display          | `ReactNode`                                                  | `-`     |
-| align    | Align method              | ` "left" \| "right" \| {datetime?: "left" \| "right";actions?: "left" \| "right";}` | `-`     |
+| actions  | Actions list              | ReactNode                                                    | -       |
+| author   | Display as comment author | ReactNode                                                    | -       |
+| avatar   | Display as comment avatar | ReactNode                                                    | -       |
+| children | Children of comments      | ReactNode                                                    | -       |
+| content  | Comment content           | ReactNode                                                    | -       |
+| datetime | Datetime display          | ReactNode                                                    | -       |
+| align    | Align method              | "left" \| "right" \| {datetime?: "left" \| "right";actions?: "left" \| "right";} | -       |
 
 ## Eaxample
 

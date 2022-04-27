@@ -1,4 +1,4 @@
-# Card卡片
+# 卡片 Card
 
 将信息分类后分标题、详情等区域聚合展现，一般作为简洁介绍或者信息的大盘和入口。
 
@@ -18,32 +18,32 @@ import { Card } from "@illa-design/card"
 
 ### Card 基础属性
 
-| Props       | Desc                 | Type                  | Default    |
-| ----------- | -------------------- | --------------------- | ---------- |
-| bordered    | 是否有边框           | `boolean `            | `true`     |
-| loading     | 是否为加载中         | `boolean `            | `false`    |
-| hoverable   | 是否可悬浮           | `boolean `            | `false`    |
-| size        | 卡片尺寸             | `"small" \| "medium"` | `"medium"` |
-| headerStyle | 自定义标题区域样式   | `object `             | `-`        |
-| bodyStyle   | 内容区域自定义样式   | `object `             | `-`        |
-| title       | 卡片标题             | `string `             | `-`        |
-| extra       | 卡片右上角的操作区域 | `string `             | `-`        |
-| cover       | 卡片封面             | `string `             | `-`        |
-| actions     | 卡片底部的操作组     | `string `             | `-`        |
+| Props       | Desc                 | Type                | Default  |
+| ----------- | -------------------- | ------------------- | -------- |
+| bordered    | 是否有边框           | boolean             | true     |
+| loading     | 是否为加载中         | boolean             | false    |
+| hoverable   | 是否可悬浮           | boolean             | false    |
+| size        | 卡片尺寸             | "small" \| "medium" | "medium" |
+| headerStyle | 自定义标题区域样式   | object              | -        |
+| bodyStyle   | 内容区域自定义样式   | object              | -        |
+| title       | 卡片标题             | string              | -        |
+| extra       | 卡片右上角的操作区域 | string              | -        |
+| cover       | 卡片封面             | string              | -        |
+| actions     | 卡片底部的操作组     | string              | -        |
 
 ### cardMeta基础属性
 
-| Props       | Desc | Type                   | Default |
-| ----------- | ---- | ---------------------- | ------- |
-| title       | 标题 | `string \| ReactNode ` | `-`     |
-| description | 描述 | `string \|ReactNode `  | `-`     |
-| avatar      | 头像 | `ReactNode `           | `-`     |
+| Props       | Desc | Type                | Default |
+| ----------- | ---- | ------------------- | ------- |
+| title       | 标题 | string \| ReactNode | -       |
+| description | 描述 | string \|ReactNode  | -       |
+| avatar      | 头像 | ReactNode           | -       |
 
 ### cardGrid 基础属性
 
-| Props     | Desc         | Type      | Default |
-| --------- | ------------ | --------- | ------- |
-| hoverable | 是否可以悬浮 | `boolean` | `-`     |
+| Props     | Desc         | Type    | Default |
+| --------- | ------------ | ------- | ------- |
+| hoverable | 是否可以悬浮 | boolean | -       |
 
 ## 使用方法
 
@@ -89,4 +89,3 @@ import { Card } from "@illa-design/card"
   })}
 </Card>
 ```
-

@@ -135,6 +135,7 @@ exports[`Avatar Avatar renders with colorScheme 1`] = `
           <svg
             class="emotion-3"
             color="currentColor"
+            fill="none"
             height="14px"
             viewBox="0 0 16 16"
             width="14px"
@@ -162,6 +163,7 @@ exports[`Avatar Avatar renders with colorScheme 1`] = `
           <svg
             class="emotion-3"
             color="currentColor"
+            fill="none"
             height="14px"
             viewBox="0 0 16 16"
             width="14px"
@@ -189,6 +191,7 @@ exports[`Avatar Avatar renders with colorScheme 1`] = `
           <svg
             class="emotion-3"
             color="currentColor"
+            fill="none"
             height="14px"
             viewBox="0 0 16 16"
             width="14px"
@@ -402,6 +405,7 @@ exports[`Avatar Avatar renders with shape 1`] = `
           <svg
             class="emotion-3"
             color="currentColor"
+            fill="none"
             height="14px"
             viewBox="0 0 16 16"
             width="14px"
@@ -429,6 +433,7 @@ exports[`Avatar Avatar renders with shape 1`] = `
           <svg
             class="emotion-3"
             color="currentColor"
+            fill="none"
             height="14px"
             viewBox="0 0 16 16"
             width="14px"
@@ -625,6 +630,7 @@ exports[`Avatar Avatar renders with size 1`] = `
           <svg
             class="emotion-3"
             color="currentColor"
+            fill="none"
             height="14px"
             viewBox="0 0 16 16"
             width="14px"
@@ -652,6 +658,7 @@ exports[`Avatar Avatar renders with size 1`] = `
           <svg
             class="emotion-3"
             color="currentColor"
+            fill="none"
             height="18px"
             viewBox="0 0 16 16"
             width="18px"
@@ -679,6 +686,7 @@ exports[`Avatar Avatar renders with size 1`] = `
           <svg
             class="emotion-3"
             color="currentColor"
+            fill="none"
             height="28px"
             viewBox="0 0 16 16"
             width="28px"
