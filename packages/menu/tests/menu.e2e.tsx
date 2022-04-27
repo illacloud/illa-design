@@ -2,7 +2,6 @@ import * as React from "react"
 import { Menu, MenuProps } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 
 const { Item, ItemGroup, SubMenu } = Menu
 
@@ -110,6 +109,29 @@ it("Menu render with variant pop", () => {
   cy.get(`[data-testid='submenu-1']`).trigger("mouseover")
   cy.wait(200)
   cy.get(`[data-testid='submenu-item-1']`).should("be.visible")
+
+  unmount()
+})
+
+it("Click on pop menu item, onClickMenuItem should be called", () => {
+  const onClickMenuItem = cy.spy().as("onClickMenuItem")
+  mount(
+    <TestMenuInline
+      variant={"pop"}
+      onClickMenuItem={onClickMenuItem}
+      style={{ width: 150 }}
+    />,
+  )
+
+  cy.get(`[data-testid='submenu-item-1']`).should("not.exist")
+  cy.get(`[data-testid='submenu-1']`).trigger("mouseover")
+  cy.wait(200)
+  cy.get(`[data-testid='submenu-item-1']`).should("be.visible")
+  cy.get(`[data-testid='submenu-item-1']`)
+    .click()
+    .then(() => {
+      cy.get("@onClickMenuItem").should("be.called")
+    })
 
   unmount()
 })
