@@ -42,7 +42,7 @@ import { Cascader } from "@illa-design/cascader"
 
 | Props           | Desc                                                 | Type                                                  | Default |
 | --------------- | ---------------------------------------------------- | ----------------------------------------------------- | ------- |
-| filterOption    | Filter data based on entered value                   | (inputValue: string, option: NodeProps<T>) => boolean | -       |
+| filterOption    | Filter data based on entered value                   | `(inputValue: string, option: NodeProps<T>) => boolean` | -       |
 | onChange        | Callback when value is changed                       | (value: any) => void                                  | -       |
 | onSearch        | Callback when search value is changed                | (inputValue: string) => void                          | -       |
 | onClear         | Callback when clicked clear                          | (visible: boolean) => void                            | -       |

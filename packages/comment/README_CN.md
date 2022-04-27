@@ -1,10 +1,10 @@
-# Comment评论
+# 评论 Comment
 
 用作展示评论信息。
 
 ## 安装
 
-```jsx
+```bash
 yarn add @illa-design/comment
 ```
 
@@ -20,13 +20,13 @@ import { Comment } from "@illa-design/comment"
 
 | Props    | Desc                               | Type                                                         | Default |
 | -------- | ---------------------------------- | ------------------------------------------------------------ | ------- |
-| actions  | 在评论内容下面呈现的操作项列表     | `ReactNode`                                                  | `-`      |
-| author   | 要显示为注释作者的元素             | `ReactNode`                                                  | `-`     |
-| avatar   | 要显示为评论头像的元素             | `ReactNode`                                                  | `-`       |
-| children | 嵌套注释应作为注释的子项提供       | `ReactNode`                                                  | `-`     |
-| content  | 评论内容                           | `ReactNode`                                                  | `-`      |
-| datetime | 展示时间                           | `ReactNode`                                                  | `-`      |
-| align    | 靠左/靠右 展示 datetime 和 actions | ` "left" \| "right" \| {datetime?: "left" \| "right";actions?: "left" \| "right";}` | `-`     |
+| actions  | 在评论内容下面呈现的操作项列表     | ReactNode                                                    | -       |
+| author   | 要显示为注释作者的元素             | ReactNode                                                    | -       |
+| avatar   | 要显示为评论头像的元素             | ReactNode                                                    | -       |
+| children | 嵌套注释应作为注释的子项提供       | ReactNode                                                    | -       |
+| content  | 评论内容                           | ReactNode                                                    | -       |
+| datetime | 展示时间                           | ReactNode                                                    | -       |
+| align    | 靠左/靠右 展示 datetime 和 actions | "left" \| "right" \| {datetime?: "left" \| "right";actions?: "left" \| "right";} | -       |
 
 ## 使用方法
 

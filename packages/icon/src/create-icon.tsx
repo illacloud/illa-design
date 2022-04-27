@@ -26,6 +26,11 @@ interface CreateIconOptions {
    * Default props automatically passed to the component; overwriteable
    */
   defaultProps?: IconProps
+  /**
+   * The icon `svg` fill color
+   * @default "none"
+   */
+  fill?: string
 }
 
 export function createIcon(options: CreateIconOptions) {
@@ -34,11 +39,12 @@ export function createIcon(options: CreateIconOptions) {
     d: pathDefinition,
     path,
     title,
+    fill = "none",
     defaultProps = {},
   } = options
 
   return forwardRef<SVGSVGElement, IconProps>((props, ref) => (
-    <Icon ref={ref} viewBox={viewBox} {...defaultProps} {...props}>
+    <Icon ref={ref} viewBox={viewBox} fill={fill} {...defaultProps} {...props}>
       <title>{title}</title>
       {path ?? <path fill="currentColor" d={pathDefinition} />}
     </Icon>

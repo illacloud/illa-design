@@ -543,6 +543,7 @@ exports[`Button Group renders attached with round shape 1`] = `
         <svg
           class="emotion-18"
           color="currentColor"
+          fill="none"
           height="1em"
           viewBox="0 0 12 12"
           width="1em"
@@ -576,6 +577,7 @@ exports[`Button Group renders attached with round shape 1`] = `
         <svg
           class="emotion-18"
           color="currentColor"
+          fill="none"
           height="1em"
           viewBox="0 0 12 12"
           width="1em"
@@ -609,6 +611,7 @@ exports[`Button Group renders attached with round shape 1`] = `
         <svg
           class="emotion-18"
           color="currentColor"
+          fill="none"
           height="1em"
           viewBox="0 0 12 12"
           width="1em"
@@ -1184,6 +1187,7 @@ exports[`Button Group renders attached with square shape 1`] = `
         <svg
           class="emotion-18"
           color="currentColor"
+          fill="none"
           height="1em"
           viewBox="0 0 12 12"
           width="1em"
@@ -1217,6 +1221,7 @@ exports[`Button Group renders attached with square shape 1`] = `
         <svg
           class="emotion-18"
           color="currentColor"
+          fill="none"
           height="1em"
           viewBox="0 0 12 12"
           width="1em"
@@ -1250,6 +1255,7 @@ exports[`Button Group renders attached with square shape 1`] = `
         <svg
           class="emotion-18"
           color="currentColor"
+          fill="none"
           height="1em"
           viewBox="0 0 12 12"
           width="1em"
@@ -1769,6 +1775,7 @@ exports[`Button Group renders with spacing 1`] = `
         <svg
           class="emotion-18"
           color="currentColor"
+          fill="none"
           height="1em"
           viewBox="0 0 12 12"
           width="1em"
@@ -1802,6 +1809,7 @@ exports[`Button Group renders with spacing 1`] = `
         <svg
           class="emotion-18"
           color="currentColor"
+          fill="none"
           height="1em"
           viewBox="0 0 12 12"
           width="1em"
@@ -1835,6 +1843,7 @@ exports[`Button Group renders with spacing 1`] = `
         <svg
           class="emotion-18"
           color="currentColor"
+          fill="none"
           height="1em"
           viewBox="0 0 12 12"
           width="1em"
