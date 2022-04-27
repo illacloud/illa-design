@@ -3,7 +3,7 @@ import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 import { Modal, ModalProps, ModalReturnProps } from "../src"
 import { Button } from "@illa-design/button"
-import { AlertType, AlertType as ConfirmType } from "@illa-design/alert"
+import { AlertType } from "@illa-design/alert"
 
 const confirmTypes = ["info", "success", "warning", "error", "confirm"]
 
@@ -45,7 +45,7 @@ const DemoTest = (props: ModalProps) => {
   )
 }
 
-const ContextModal = (props: ModalProps & { type?: ConfirmType }) => {
+const ContextModal = (props: ModalProps & { type?: AlertType }) => {
   const { type = "info" } = props
   const [modal, contextHolder] = Modal.useModal()
   const ConfigContext = React.createContext({})
