@@ -26,6 +26,7 @@ export default memo(function Input(props: SliderInputProps) {
   }
 
   const handleBlur = () => {
+    console.log("blur")
     setInnerValue([...value].sort((a, b) => a - b))
   }
 

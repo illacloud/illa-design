@@ -43,8 +43,25 @@ function DemoMarkTest(args: SliderProps) {
   )
 }
 
+function DemoRangeTest(args: SliderProps) {
+  const [value, setValue] = React.useState([0, 5])
+  return (
+    <Slider
+      {...args}
+      value={value}
+      data-testid={"range"}
+      onChange={(val: number | number[]) => {
+        setValue(val as number[])
+      }}
+      max={10}
+      range={{ draggableBar: true }}
+      style={{ width: "100%" }}
+    />
+  )
+}
+
 it("Slider renders with correctly", () => {
-  mount(<DemoTest />)
+  mount(<DemoTest reverse vertical showTicks />)
   cy.findByTestId("normal").should("exist")
   unmount()
 })
@@ -80,15 +97,49 @@ it("Slider renders with slides exactly", () => {
 })
 
 it("Slider renders with marks", () => {
-  mount(<DemoMarkTest />)
+  mount(<DemoMarkTest showTicks onlyMarkValue />)
   cy.findByTestId("mark").should("exist")
   cy.findByText("0km").should("exist")
   cy.findByText("5km").should("exist")
-  cy.findByText("10km").should("exist")
+  cy.findByText("10km").should("exist").click()
+  cy.findByRole("button")
+    .trigger("mouseover")
+    .then(() => {
+      cy.findByText("10").should("exist").click()
+    })
+  cy.findByRole("road")
+    .children("div:nth-of-type(3)")
+    .children("div:nth-of-type(2)")
+    .should("exist")
+    .click()
+  cy.findByRole("road").trigger("mousedown", 50, 0)
+  cy.findByText("0").should("exist")
+  cy.findByRole("road").trigger("mouseup")
   unmount()
 })
 
-it("slider renders with input-number", () => {
+it("Slider renders with range drag bar", () => {
+  mount(<DemoRangeTest />)
+  cy.findByRole("bar")
+    .should("exist")
+    .trigger("mousedown")
+    .trigger("mousemove", { clientX: 400 })
+  cy.findByRole("road")
+    .children("div:nth-of-type(3)")
+    .trigger("mouseover")
+    .then(() => {
+      cy.findByText("10").should("exist")
+    })
+    .trigger("mouseleave")
+  cy.findByRole("road")
+    .children("div:nth-of-type(2)")
+    .trigger("mouseover")
+    .trigger("mousedown")
+    .trigger("mousemove", { clientX: 0 })
+  unmount()
+})
+
+it("Slider renders with input-number", () => {
   mount(<DemoTest showInput />)
   cy.findByDisplayValue("0").should("exist")
   cy.findByRole("input-number")
@@ -99,4 +150,45 @@ it("slider renders with input-number", () => {
     .click()
     .click()
   cy.findByDisplayValue("2").should("exist")
+  unmount()
+})
+
+it("Slider renders with range input-number", () => {
+  mount(<DemoRangeTest vertical showInput />)
+  cy.findByDisplayValue("0").should("exist")
+  cy.findByRole("input-number")
+    .children("div:first-of-type")
+    .children()
+    .children("div:first-of-type")
+    .children("span:first-of-type")
+    .click()
+    .click()
+  cy.findByDisplayValue("2").should("exist")
+  cy.findByRole("input-number")
+    .children("div:last-of-type")
+    .children()
+    .children("div:first-of-type")
+    .children("span:last-of-type")
+    .click()
+    .click()
+    .click()
+    .click()
+  cy.findByDisplayValue("1").should("exist")
+  unmount()
+})
+
+it("Slider renders with vertical move", () => {
+  mount(<DemoRangeTest vertical showTicks />)
+  cy.findByRole("bar")
+    .should("exist")
+    .trigger("mousedown")
+    .trigger("mousemove", { clientY: 400 })
+  cy.findByRole("road")
+    .children("div:nth-of-type(3)")
+    .trigger("mouseover")
+    .then(() => {
+      cy.findByText("0").should("exist")
+    })
+    .trigger("mouseleave")
+  unmount()
 })
