@@ -1,9 +1,10 @@
-import * as React from "react"
+import { useRef } from "react"
 import { Anchor } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
 const { Link: AnchorLink } = Anchor
+const EASING_DURATION = 200
 const loremIpsum = Array(20)
   .fill(0)
   .map(
@@ -84,7 +85,7 @@ it("Section2 should show in viewport after click Section2 in anchor", () => {
 
   cy.get("[title='Section2']").click()
 
-  cy.wait(400)
+  cy.wait(EASING_DURATION)
 
   cy.window().then((w) => {
     const height = w.innerHeight
@@ -108,7 +109,7 @@ it("Anchor render with 100px boundary", () => {
 
   cy.get("[title='Section2']").click()
 
-  cy.wait(400)
+  cy.wait(EASING_DURATION)
 
   cy.get("#section2").then((section2) => {
     const rect = section2[0].getBoundingClientRect()
@@ -120,7 +121,7 @@ it("Anchor should fixed 100 to top", () => {
   mount(renderAnchor({ offsetTop: 100 }))
 
   cy.scrollTo(0, 200)
-  cy.wait(400)
+  cy.wait(EASING_DURATION)
 
   cy.get("[data-testid='anchor']").parent().should("have.css", "top", "100px")
 
@@ -131,7 +132,7 @@ it("Anchor should change hash", () => {
   mount(renderAnchor())
 
   cy.get("[title='Section2']").click()
-  cy.wait(100)
+  cy.wait(EASING_DURATION)
   cy.hash().should("eq", "#section2")
 
   unmount()
@@ -140,9 +141,10 @@ it("Anchor should change hash", () => {
 it("Anchor should NOT change hash", () => {
   mount(renderAnchor({ hash: false }))
 
-  // section2 had trigger before, you should trigger different hash to test hash change
+  // section2 had trigger before, and the url's hash had changed to `#section2`,
+  // you should trigger different hash to test hash change
   cy.get("[title='Section3']").click()
-  cy.wait(100)
+  cy.wait(EASING_DURATION)
   cy.hash().should("not.eq", "#section3")
 })
 
@@ -160,4 +162,43 @@ it("Anchor render with lineless", () => {
     .children()
     .first()
     .should("not.have.css", "position", "absolute")
+})
+
+const TestAnchorContainer = function() {
+  const container = useRef(null)
+
+  return (
+    <div style={{ overflow: "auto", height: 300 }} ref={container} data-testid={"container"}>
+      <Anchor data-testid="anchor" scrollContainer={"[data-testid='container']"}>
+        <AnchorLink href="#title" title="title" />
+        <AnchorLink href="#section1" title="Section1" />
+        <AnchorLink href="#section2" title="Section2" />
+        <AnchorLink href="#section3" title="Section3">
+          <AnchorLink href="#section3-1" title="Section3-1" />
+          <AnchorLink href="#section3-2" title="Section3-2" />
+        </AnchorLink>
+      </Anchor>
+      <Article />
+    </div>
+  )
+}
+
+it("Anchor render within scrollContainer", () => {
+  mount(<TestAnchorContainer />)
+
+  cy.get("[title='Section2']").click()
+
+  cy.wait(EASING_DURATION)
+
+  cy.findByTestId("container").then((container) => {
+    const containerHeight = container[0].clientHeight;
+
+    cy.get("#section2").then((section2) => {
+      const rect = section2[0].getBoundingClientRect()
+      console.log({ rect, containerHeight })
+      expect(rect.top).not.to.be.greaterThan(containerHeight)
+    })
+  })
+
+  unmount()
 })
