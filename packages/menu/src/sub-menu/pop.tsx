@@ -50,7 +50,6 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   const isPopButton = mode === "popButton"
 
   const subMenuClickHandler = (event: MouseEvent) => {
-    console.log("subMenuClickHandler")
     onClickSubMenu && onClickSubMenu(_key, level as number, "pop")
     selectable && onClickMenuItem && onClickMenuItem(_key, event)
   }

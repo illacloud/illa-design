@@ -50,11 +50,13 @@ const TestMenuInline = (props: MenuProps = {}) => (
 )
 
 it("Click Submenu should expand", () => {
-  mount(<TestMenu />)
+  mount(<TestMenuInline />)
 
-  cy.findByTestId("submenu-item").should("not.be.visible")
-  cy.findByTestId("submenu").click()
-  cy.findByTestId("submenu-item").should("be.visible")
+  cy.findByTestId("submenu-item-1").should("not.be.visible")
+  cy.findByTestId("submenu-1").click()
+  cy.findByTestId("submenu-item-1").should("be.visible")
+  cy.findByTestId("submenu-1").click("top")
+  cy.findByTestId("submenu-item-1").should("not.be.visible")
 
   unmount()
 })
@@ -89,6 +91,12 @@ it("Only one submenu will be opened if is accordion", () => {
   cy.findByTestId("submenu-item-1").should("not.be.visible")
   cy.findByTestId("submenu-item-2").should("be.visible")
 
+  cy.get(`[data-testid='submenu-2']`).click("top")
+  cy.findByTestId("submenu-item-2").should("not.be.visible")
+
+  cy.get(`[data-testid='submenu-1']`).click("top")
+  cy.findByTestId("submenu-item-1").should("be.visible")
+
   unmount()
 })
 
@@ -120,17 +128,19 @@ it("Click on pop menu item, onClickMenuItem should be called", () => {
       variant={"pop"}
       onClickMenuItem={onClickMenuItem}
       style={{ width: 150 }}
+      triggerProps={{ trigger: "click" }}
     />,
   )
 
   cy.get(`[data-testid='submenu-item-1']`).should("not.exist")
-  cy.get(`[data-testid='submenu-1']`).trigger("mouseover")
-  cy.wait(200)
+  cy.get(`[data-testid='submenu-1']`).click()
   cy.get(`[data-testid='submenu-item-1']`).should("be.visible")
   cy.get(`[data-testid='submenu-item-1']`)
-    .click()
+    .click("center")
     .then(() => {
       cy.get("@onClickMenuItem").should("be.called")
+      cy.get(`[data-testid='submenu-1']`).click("center")
+      cy.get(`[data-testid='submenu-item-1']`).should("not.exist")
     })
 
   unmount()
