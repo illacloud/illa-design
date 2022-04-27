@@ -31,7 +31,7 @@ it("BackTop should not be visible", () => {
 it("BackTop should be visible", () => {
   mount(<TestBackTop visibleHeight={400} />)
 
-  cy.scrollTo(0, 401)
+  cy.scrollTo(0, 500)
 
   cy.get(".backtop").should("be.visible")
 
@@ -41,7 +41,7 @@ it("BackTop should be visible", () => {
 it("BackTop should not be visible after back to top", () => {
   mount(<TestBackTop visibleHeight={400} duration={400} />)
 
-  cy.scrollTo(0, 401)
+  cy.scrollTo(0, 500)
   cy.get(".backtop").click()
   cy.wait(400)
 
@@ -57,7 +57,7 @@ it("BackTop should render custom content", () => {
     </TestBackTop>,
   )
 
-  cy.scrollTo(0, 401)
+  cy.window().scrollTo(0, 500)
   cy.findByText("Top").should("be.exist")
 
   unmount()
