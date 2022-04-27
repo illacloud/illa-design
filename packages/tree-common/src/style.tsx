@@ -2,18 +2,9 @@ import { css } from "@emotion/react"
 import { TreeSize } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const treeContainer = css`
-  display: inline-flex;
-  vertical-align: middle;
-  white-space: nowrap;
-  flex-direction: row;
-  align-items: center;
-  height: 100%;
-`
 export const listCss = css`
   width: 100%;
 `
-
 export function applyNodeHeight(size: TreeSize) {
   switch (size) {
     case "small":

@@ -78,12 +78,12 @@ it("TreeSelect renders with onChangeEvent", () => {
   unmount()
 })
 
-// it("TreeSelect renders with showSearch", () => {
-//   mount(<TreeSelect treeData={data} showSearch={true} />)
-//   cy.findByTitle("ExpandIcon").parent().trigger("click")
-//   cy.findByTitle("SearchIcon").should("exist")
-//   unmount()
-// })
+it("TreeSelect renders with showSearch", () => {
+  mount(<TreeSelect treeData={data} showSearch={true} />)
+  cy.findByTitle("ExpandIcon").parent().trigger("click")
+  cy.findByTitle("SearchIcon").should("exist")
+  unmount()
+})
 
 it("TreeSelect renders with multiple", () => {
   const onChangeEvent = cy.spy().as("onChangeEvent")
@@ -103,5 +103,75 @@ it("TreeSelect renders with remove", () => {
   cy.get("@onChangeEvent").should("be.calledWith", ["0-1"])
   cy.findByTitle("CloseIcon").parent().trigger("click")
   cy.get("@onChangeEvent").should("be.calledWith", [])
+  unmount()
+})
+
+it("TreeSelect renders with search", () => {
+  const onSearchEvent = cy.spy().as("onSearchEvent")
+  mount(<TreeSelect onSearch={onSearchEvent} treeData={data} multiple={true} />)
+  cy.get("input").type("0-0")
+  cy.findByText("0-1-xixixixixix").should("not.exist")
+  cy.findByText("0-0-0").should("exist")
+  cy.get("@onSearchEvent").should("be.called")
+  unmount()
+})
+
+it("TreeSelect search with nothing matched", () => {
+  const onSearchEvent = cy.spy().as("onSearchEvent")
+  mount(<TreeSelect onSelect={onSearchEvent} treeData={data} multiple={true} />)
+  cy.get("input").type("left")
+  cy.findByText("No data").should("exist")
+  unmount()
+})
+
+it("TreeSelect search with clear", () => {
+  const clearEvent = cy.spy().as("clearEvent")
+  mount(
+    <TreeSelect
+      onClear={clearEvent}
+      defaultValue={"0-0"}
+      allowClear
+      treeData={data}
+    />,
+  )
+  cy.findByText("0-0-head").should("exist")
+  cy.findByText("0-0-head").trigger("focus")
+  cy.findByTitle("ErrorIcon").parent().trigger("click")
+  cy.get("0-0-head").should("not.exist")
+  unmount()
+})
+
+it("TreeSelect renders correctly", () => {
+  mount(<TreeSelect treeData={data} />)
+  cy.findByTitle("ExpandIcon").parent().trigger("click")
+  cy.findByText("0-0-0").should("exist")
+  cy.findAllByTitle("CaretDownIcon").first().parent().trigger("click")
+  cy.findByText("0-0-0").should("not.exist")
+  unmount()
+})
+
+it("TreeSelect test with check ", () => {
+  mount(<TreeSelect treeData={data} multiple treeCheckable />)
+  cy.findByTitle("ExpandIcon").parent().trigger("click")
+  cy.findByText("0-0-1").parent().prev().trigger("click")
+  cy.findAllByTitle("CheckmarkIcon").should("exist")
+  unmount()
+})
+
+it("TreeSelect test with remove check ", () => {
+  const clearEvent = cy.spy().as("clearEvent")
+  mount(
+    <TreeSelect
+      onClear={clearEvent}
+      defaultValue={["0-0"]}
+      allowClear
+      multiple
+      treeCheckable
+      treeData={data}
+    />,
+  )
+  cy.findByText("0-0-head").should("exist")
+  cy.findByTitle("CloseIcon").parent().trigger("click")
+  cy.findByText("0-0-head").should("not.exist")
   unmount()
 })

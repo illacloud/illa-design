@@ -26,10 +26,9 @@ import {
   NodeProps,
   TreeDataType,
   updateKeys,
-  loopItemData,
 } from "@illa-design/tree-common"
 import * as React from "react"
-import { getSearchReason } from "./utils"
+import { getSearchReason, loopItemData } from "./utils"
 import { Empty } from "@illa-design/empty"
 import { emptyCss, treeContainerCss } from "./style"
 
@@ -220,13 +219,14 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
 
     useEffect(() => {
       const { current: reason } = refOnInputChangeCallbackReason
+      console.log("reason", reason)
       if (
-        stateInputValue === inputValue &&
+        stateInputValue === _inputValue &&
         (reason === "manual" || reason === "optionListHide")
       ) {
-        onSearch?.(inputValue)
+        onSearch?.(_inputValue)
       }
-    }, [inputValue])
+    }, [_inputValue])
 
     // SelectView event handle
     const selectViewEventHandlers = {
@@ -366,8 +366,8 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
           multiple={_multiple}
           isEmptyValue={isNoOptionSelected}
           renderText={(value: any) => {
-            if (nodeCache.current && value) {
-              const option = nodeCache?.current[value]?.props
+            if (options && value) {
+              const option = options.find((item) => item.value === value)
               return {
                 text: option?.title,
                 disabled: option?.disabled,

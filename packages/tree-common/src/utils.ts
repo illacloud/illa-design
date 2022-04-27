@@ -1,26 +1,4 @@
 import { NodeProps, TreeDataType, NodeInstance } from "./interface"
-import { Children, ReactElement } from "react"
-
-export function getNodes(children: ReactElement): TreeDataType[] {
-  const nodes: TreeDataType[] = []
-  Children.forEach(children, (child: ReactElement, index: number) => {
-    if (child && child.type && (child as ReactElement<NodeProps>)) {
-      if (child.props && (child.props as NodeProps) && child.key) {
-        const _props = child.props
-        const key = child?.key?.toString() ?? _props.title + index
-        const _children: TreeDataType[] = getNodes(
-          child?.props?.children as ReactElement,
-        )
-        nodes.push({
-          ..._props,
-          children: _children,
-          key: key,
-        } as TreeDataType)
-      }
-    }
-  })
-  return nodes
-}
 
 export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
   if (!nodeArr) return []
@@ -147,26 +125,4 @@ export const updateKeys = (
     keys = multiple ? [...keys].concat(targetKey) : [targetKey]
   }
   return keys
-}
-
-export function getNodeList(cache: { [key: string]: NodeInstance }) {
-  return Object.keys(cache).map((x) => cache[x as keyof NodeInstance])
-}
-
-export function loopItemData(nodeArr?: any[]): any[] {
-  if (!nodeArr) return []
-  const nodeList: any[] = []
-  const _loop = (nodeArr: any[], father: any) => {
-    nodeArr.map((node, index) => {
-      nodeList.push(node)
-      if ("children" in node) {
-        const { children } = node
-        if (children && children.length > 0) {
-          _loop(children, node)
-        }
-      }
-    })
-  }
-  _loop(nodeArr, { key: "" })
-  return nodeList
 }

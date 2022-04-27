@@ -13,14 +13,13 @@ import {
   TreeList,
   checkChildrenChecked,
   checkParentChecked,
-  getNodes,
   loopNodeWithState,
-  getNodeList,
   NodeInstance,
   NodeProps,
   updateKeys,
 } from "@illa-design/tree-common"
 import { TreeProps } from "./interface"
+import { getNodes, getNodeList } from "./utils"
 
 // treeData is default
 export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
