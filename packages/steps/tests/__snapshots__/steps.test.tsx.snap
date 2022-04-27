@@ -127,6 +127,7 @@ exports[`Only last step render error style 1`] = `
       <svg
         class="emotion-4"
         color="currentColor"
+        fill="none"
         height="12"
         viewBox="0 0 8 8"
         width="12"
@@ -164,6 +165,7 @@ exports[`Only last step render error style 1`] = `
       <svg
         class="emotion-4"
         color="currentColor"
+        fill="none"
         height="12"
         viewBox="0 0 8 8"
         width="12"
@@ -198,6 +200,7 @@ exports[`Only last step render error style 1`] = `
       <svg
         class="emotion-4"
         color="currentColor"
+        fill="none"
         height="12"
         viewBox="0 0 8 8"
         width="12"
@@ -743,6 +746,7 @@ exports[`Steps render with error status 1`] = `
       <svg
         class="emotion-3"
         color="currentColor"
+        fill="none"
         height="12"
         viewBox="0 0 8 8"
         width="12"
@@ -847,6 +851,7 @@ exports[`Steps render with finish status 1`] = `
       <svg
         class="emotion-3"
         color="currentColor"
+        fill="none"
         height="12"
         viewBox="0 0 8 8"
         width="12"
@@ -1800,6 +1805,7 @@ exports[`Steps with vertical direction and error status should render error styl
       <svg
         class="emotion-4"
         color="currentColor"
+        fill="none"
         height="12"
         viewBox="0 0 8 8"
         width="12"
@@ -1837,6 +1843,7 @@ exports[`Steps with vertical direction and error status should render error styl
       <svg
         class="emotion-4"
         color="currentColor"
+        fill="none"
         height="12"
         viewBox="0 0 8 8"
         width="12"
