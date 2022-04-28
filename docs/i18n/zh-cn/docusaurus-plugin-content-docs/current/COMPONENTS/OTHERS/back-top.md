@@ -30,7 +30,7 @@ import { Backtop } from "@illa-design/backtop"
 
 ### 基础用法
 
-```SnackPlayer name=基础用法&description=基础用法&platform=web&supportedPlatforms=web&dependencies=@illa-design/backtop
+```SnackPlayer dependencies=@illa-design/backtop
 import React from 'react';
 import { Backtop } from "@illa-design/backtop";
 
@@ -50,7 +50,7 @@ export default App;
 
 ### 设置返回顶部按钮高度
 
-```SnackPlayer name=设置返回顶部按钮高度&description=设置返回顶部按钮高度&platform=web&supportedPlatforms=web&dependencies=@illa-design/backtop
+```SnackPlayer dependencies=@illa-design/backtop
 import React from 'react';
 import { Backtop } from "@illa-design/backtop";
 
@@ -81,7 +81,7 @@ export default App;
 
 ### 设置滚动到顶部的时间
 
-```SnackPlayer name=设置滚动到顶部的时间&description=设置滚动到顶部的时间&platform=web&supportedPlatforms=web&dependencies=@illa-design/backtop
+```SnackPlayer dependencies=@illa-design/backtop
 import React from 'react';
 import { Backtop } from "@illa-design/backtop";
 

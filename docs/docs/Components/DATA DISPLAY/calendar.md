@@ -18,23 +18,23 @@ import { Calendar } from "@illa-design/calendar"
 
 ### Calendar Basic Properties
 
-| Props            | Desc                                                        | Type                                                         | Default  |
-| ---------------- | ----------------------------------------------------------- | ------------------------------------------------------------ | -------- |
-| allowSelect      | Whether to allow selection and switching of dates           | boolean                                                      | -        |
-| panel            | Whether to display in a container                           | boolean                                                      | -        |
-| panelWidth       | The width of the card mode                                  | number \| string                                             | 265      |
-| panelTodayBtn    | Whether to show the jump to today button                    | boolean                                                      | -        |
-| panelOperations  | Action button in panel mode                                 | Array<"left" \| "right" \| "doubleLeft" \| "doubleRight">      | -        |
-| dayStartOfWeek   | The first day of the week starts on, 0 - Sunday, 1 - Monday | 0 \|1                                                        | 0        |
-| defaultMode      | Calendar for selected date, month and year                  | "day" \| "month"\| "year"                                    | "month"    |
-| mode             | Calendar for selected date, month and year                  | "day" \|"month"\|"year"                                      | -        |
-| disabledDate     | Disabled date                                               | (current?: Dayjs) => boolean                                 | -        |
-| dateRender       | Custom date display                                         | (currentDate: Dayjs) => ReactNode                            | -        |
-| monthRender      | Custom month display                                        | (currentDate: Dayjs) => ReactNode                            | -        |
-| dateInnerContent | Customize the date cell                                     | (currentDate: Dayjs) => ReactNode                            | -        |
+| Props            | Desc                                                        | Type                                                                                                             | Default  |
+| ---------------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------- |
+| allowSelect      | Whether to allow selection and switching of dates           | boolean                                                                                                          | -        |
+| panel            | Whether to display in a container                           | boolean                                                                                                          | -        |
+| panelWidth       | The width of the card mode                                  | number \| string                                                                                                 | 265      |
+| panelTodayBtn    | Whether to show the jump to today button                    | boolean                                                                                                          | -        |
+| panelOperations  | Action button in panel mode                                 | Array<"left" \| "right" \| "doubleLeft" \| "doubleRight">                                                        | -        |
+| dayStartOfWeek   | The first day of the week starts on, 0 - Sunday, 1 - Monday | 0 \|1                                                                                                            | 0        |
+| defaultMode      | Calendar for selected date, month and year                  | "day" \| "month"\| "year"                                                                                        | "month"  |
+| mode             | Calendar for selected date, month and year                  | "day" \|"month"\|"year"                                                                                          | -        |
+| disabledDate     | Disabled date                                               | (current?: Dayjs) => boolean                                                                                     | -        |
+| dateRender       | Custom date display                                         | (currentDate: Dayjs) => ReactNode                                                                                | -        |
+| monthRender      | Custom month display                                        | (currentDate: Dayjs) => ReactNode                                                                                | -        |
+| dateInnerContent | Customize the date cell                                     | (currentDate: Dayjs) => ReactNode                                                                                | -        |
 | headerRender     | Custom header render                                        | (props: {value?: Dayjs;pageShowDate?: Dayjs;mode?: string;onChange;onChangePageDate;onChangeMode;}) => ReactNode | -        |
-| locale           | International configuration                                 | Record<string, any>                                          | -        |
-| headerType       | Two types of header                                         | "button" \|"select"                                          | "button" |
+| locale           | International configuration                                 | `Record<string, any>`                                                                                              | -        |
+| headerType       | Two types of header                                         | "button" \|"select"                                                                                              | "button" |
 
 ### Calendar Events
 
@@ -47,12 +47,42 @@ import { Calendar } from "@illa-design/calendar"
 
 ### Basic usage
 
+```SnackPlayer dependencies=@illa-design/calendar
+import React from 'react';
+import { Calendar } from "@illa-design/calendar";
+
+const App = () => {
+    return (
+      <Calendar defaultValue='2022-04-01' headerType='select'/>
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Calendar />
-defaultValue='2022-04-01' headerType='select'
+<Calendar defaultValue="2022-04-01" headerType="select" />
 ```
 
 ### Set panel calendar
+
+```SnackPlayer dependencies=@illa-design/calendar
+import React from 'react';
+import { Calendar } from "@illa-design/calendar";
+
+const App = () => {
+    return (
+      <>
+        <Calendar panel defaultValue='2020-04-01' panelTodayBtn style={{ marginRight: 50 }} />
+        <Calendar panel defaultValue='2020-03' mode='year' />
+      </>
+    );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Calendar panel defaultValue={dayjs('2020-04-01')} panelTodayBtn style={{ marginRight: 50 }} />

@@ -39,6 +39,50 @@ import { Descriptions } from "@illa-design/descriptions"
 
 ### Basic usage
 
+```SnackPlayer dependencies=@illa-dedign/descriptions
+import React from 'react';
+import { Descriptions } from "@illa-design/descriptions"
+
+
+const App = () => {
+  return (
+    <Description
+      data={[
+        {
+          label: "Name",
+          value: "ILLA",
+        },
+        {
+          label: "Mobile",
+          value: "123-1234-1234",
+        },
+        {
+          label: "Residence",
+          value: "Beijing",
+        },
+        {
+          label: "Hometown",
+          value: "Beijing",
+        },
+        {
+          label: "Date of Birth",
+          value: "2020-05-15",
+          span: 2,
+        },
+        {
+          label: "Address",
+          value: "Building, Road, Beijing",
+          span: 3,
+        },
+      ]}
+    />
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
 <Description
   data={[
@@ -74,10 +118,58 @@ import { Descriptions } from "@illa-design/descriptions"
 
 ### Set large size and left align
 
+```SnackPlayer dependencies=@illa-dedign/descriptions
+import React from 'react';
+import { Descriptions } from "@illa-design/descriptions"
+
+
+const App = () => {
+  return (
+    <Description
+      align="left"
+      size="large"
+      layout="horizontal"
+      column={1}
+      data={[
+        {
+          label: "Name",
+          value: "ILLA",
+        },
+        {
+          label: "Mobile",
+          value: "123-1234-1234",
+        },
+        {
+          label: "Residence",
+          value: "Beijing",
+        },
+        {
+          label: "Hometown",
+          value: "Beijing",
+        },
+        {
+          label: "Date of Birth",
+          value: "2020-05-15",
+          span: 2,
+        },
+        {
+          label: "Address",
+          value: "Building, Road, Beijing",
+          span: 3,
+        },
+      ]}
+    />
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
 <Description
-  align={"left"}
-  size={"large"}
+  align="left"
+  size="large"
   layout="horizontal"
   column={1}
   data={dataList}

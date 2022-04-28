@@ -31,7 +31,7 @@ import { Card } from "@illa-design/card"
 | cover       | 卡片封面             | string              | -        |
 | actions     | 卡片底部的操作组     | string              | -        |
 
-### cardMeta基础属性
+### cardMeta 基础属性
 
 | Props       | Desc | Type                | Default |
 | ----------- | ---- | ------------------- | ------- |
@@ -49,6 +49,25 @@ import { Card } from "@illa-design/card"
 
 ### 基础用法
 
+```SnackPlayer dependencies=@illa-design/card,@illa-design/link
+import React from 'react';
+import { Card } from "@illa-design/card";
+import { Link } from "@illa-design/link";
+
+const App = () => {
+    return (
+      <Card size="small" title="small" extra={<Link>More</Link>}>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+      </Card>
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
 <Card size="small" title="small" extra={<Link>More</Link>}>
   <p>Hello</p>
@@ -57,7 +76,25 @@ import { Card } from "@illa-design/card"
 </Card>
 ```
 
-### 设置cardMeta
+### 设置 cardMeta
+
+```SnackPlayer dependencies=@illa-design/card,@illa-design/avatar,@illa-design/icon
+import React from 'react';
+import { Card , Meta} from "@illa-design/card";
+import { Avatar } from "@illa-design/avatar";
+import { LikeIcon , ShareIcon , MoreIcon } from "@illa-design/icon";
+
+const App = () => {
+    return (
+      <Card actions={[<LikeIcon />, <ShareIcon />, <MoreIcon />]}>
+        <Meta title="CardMeta" description="MetaContent" avatar={<Avatar />} />
+      </Card>
+    );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Card actions={[<LikeIcon />, <ShareIcon />, <MoreIcon />]}>
@@ -65,7 +102,42 @@ import { Card } from "@illa-design/card"
 </Card>
 ```
 
-### 设置CardGrid
+### 设置 CardGrid
+
+```SnackPlayer dependencies=@illa-design/card,@illa-design/link,@illa-design/icon
+import React from 'react';
+import { Card , CardGrid} from "@illa-design/card";
+import { LikeIcon , ShareIcon , MoreIcon } from "@illa-design/icon";
+import { Link } from "@illa-design/link";
+
+const App = () => {
+    return (
+      <Card bordered style={{ width: "100%" }}>
+        {new Array(7).fill(null).map((_, index) => {
+          const hoverable = index % 2 === 0
+          return (
+            <CardGrid key={index} hoverable={hoverable} style={{ width: "25%" }}>
+              <Card
+                style={{ width: "100%" }}
+                title={`Card${index}`}
+                extra={<Link>More</Link>}
+              >
+                {new Array(2).fill(null).map((_, index) => (
+                  <p style={{ margin: 0 }} key={index}>
+                    {hoverable ? "Card allow to hover" : "Card content"}
+                  </p>
+                ))}
+              </Card>
+            </CardGrid>
+          )
+        })}
+      </Card>
+    );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Card bordered={true} style={{ width: "100%" }}>

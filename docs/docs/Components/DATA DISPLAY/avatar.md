@@ -108,7 +108,7 @@ export default App;
 
 ### Set Avatar's icon
 
-```SnackPlayer dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar,@illa-design/icon
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 import { CloseIcon } from "@illa-design/icon";

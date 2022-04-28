@@ -108,7 +108,7 @@ illa-design 支持非常方便的引用第三方图标库，比如 react-icons. 
 
 第二步：将想要的第三方 icon 通过传入 icon 组件 children 的方式引用。
 
-```SnackPlayer dependencies=@illa-design/icon,react-icons
+```SnackPlayer dependencies=@illa-design/icon,react-icons,react-icons/bs
 import * as React from "react";
 import { Icon } from "@illa-design/icon";
 import { BsTwitter } from "react-icons/bs";

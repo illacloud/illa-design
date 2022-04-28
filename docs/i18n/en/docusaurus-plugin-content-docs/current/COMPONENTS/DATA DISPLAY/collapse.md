@@ -36,25 +36,58 @@ import { Collapse } from "@illa-design/collapse"
 
 ### Collapse-item Basic Properties
 
-| Props          | Desc                                                         | Type            | Default |
-| -------------- | ------------------------------------------------------------ | --------------- | ------- |
-| header         | Collapse panel header content, allowing customization        | React.ReactNode | -       |
-| name           | Corresponding to activeKey, the unique identifier of the current panel component | string          | -       |
-| disabled       | Whether to disable                                           | boolean         | -       |
-| expandIcon     | Custom expand icon                                           | ReactNode       | -       |
-| showExpandIcon | Whether to show the expand button                            | boolean         | true    |
-| extra          | Extra node                                                   | ReactNode       | -       |
+| Props          | Desc                                                                                                               | Type            | Default |
+| -------------- | ------------------------------------------------------------------------------------------------------------------ | --------------- | ------- |
+| header         | Collapse panel header content, allowing customization                                                              | React.ReactNode | -       |
+| name           | Corresponding to activeKey, the unique identifier of the current panel component                                   | string          | -       |
+| disabled       | Whether to disable                                                                                                 | boolean         | -       |
+| expandIcon     | Custom expand icon                                                                                                 | ReactNode       | -       |
+| showExpandIcon | Whether to show the expand button                                                                                  | boolean         | true    |
+| extra          | Extra node                                                                                                         | ReactNode       | -       |
 | destroyOnHide  | Whether to destroy the node when the panel is collapsed, the priority is higher than the destroyOnHide of Collapse | boolean         | -       |
 
 ## Examples
 
 ### Basic usage
 
+```SnackPlayer dependencies=@illa-design/collapse
+import React from 'react';
+import { Collapse , CollapseItem } from "@illa-design/collapse"
+
+const App = () => {
+    return (
+      <Collapse style={{ maxWidth: 1260, marginBottom: 20 }} {...props}>
+        <CollapseItem
+          header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
+          name="1"
+        >
+          Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
+        </CollapseItem>
+
+        <CollapseItem
+          header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
+          name="2"
+          disabled
+        >
+          Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
+        </CollapseItem>
+
+        <CollapseItem
+          header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
+          name="3"
+        >
+          Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
+        </CollapseItem>
+      </Collapse>
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Collapse
-  style={{ maxWidth: 1260, marginBottom: 20 }}
- {...props}
->
+<Collapse style={{ maxWidth: 1260, marginBottom: 20 }} {...props}>
   <CollapseItem
     header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
     name="1"

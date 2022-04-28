@@ -33,7 +33,7 @@ import { Badge } from "@illa-design/badge"
 
 ### Basic usage
 
-```SnackPlayer name=Basic Usage&description=Basic Usage&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+```SnackPlayer dependencies=@illa-design/badge
 import React from 'react';
 import { Badge } from "@illa-design/badge";
 
@@ -53,7 +53,7 @@ export default App;
 
 ### Set Badge's status and text
 
-```SnackPlayer name=Set Badge's status and text&description=Set Badge's status and text&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+```SnackPlayer dependencies=@illa-design/badge
 import React from 'react';
 import { Badge } from "@illa-design/badge";
 
@@ -73,7 +73,7 @@ export default App;
 
 ### Set max count
 
-```SnackPlayer name=Set max count&description=Set max count&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+```SnackPlayer dependencies=@illa-design/badge
 import React from 'react';
 import { Badge } from "@illa-design/badge";
 
@@ -93,7 +93,7 @@ export default App;
 
 ### Set red dot style
 
-```SnackPlayer name=Set red dot style&description=Set red dot style&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+```SnackPlayer dependencies=@illa-design/badge
 import React from 'react';
 import { Badge } from "@illa-design/badge";
 
@@ -113,7 +113,7 @@ export default App;
 
 ### Set badge render with offset
 
-```SnackPlayer name=Set badge render with offset&description=Set badge render with offset&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+```SnackPlayer dependencies=@illa-design/badge
 import React from 'react';
 import { Badge } from "@illa-design/badge";
 

@@ -30,7 +30,7 @@ import { Backtop } from "@illa-design/backtop"
 
 ### Basic usage
 
-```SnackPlayer name=Basic usage&description=Basic usage&platform=web&supportedPlatforms=web&dependencies=@illa-design/backtop
+```SnackPlayer dependencies=@illa-design/backtop
 import React from 'react';
 import { Backtop } from "@illa-design/backtop";
 
@@ -50,7 +50,7 @@ export default App;
 
 ### Set visible height
 
-```SnackPlayer name=Set visible height&description=Set visible height&platform=web&supportedPlatforms=web&dependencies=@illa-design/backtop
+```SnackPlayer dependencies=@illa-design/backtop
 import React from 'react';
 import { Backtop } from "@illa-design/backtop";
 
@@ -82,7 +82,7 @@ export default App;
 
 ### Set duration to scroll to top
 
-```SnackPlayer name=Set duration to scroll to top&description=Set duration to scroll to top&platform=web&supportedPlatforms=web&dependencies=@illa-design/backtop
+```SnackPlayer dependencies=@illa-design/backtop
 import React from 'react';
 import { Backtop } from "@illa-design/backtop";
 

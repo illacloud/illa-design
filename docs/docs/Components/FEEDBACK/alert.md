@@ -36,7 +36,7 @@ import { Alert } from "@illa-design/alert"
 
 ### Basic usage
 
-```SnackPlayer name=Basic Usage&description=Basic Usage&platform=web&supportedPlatforms=web&dependencies=@illa-design/alert
+```SnackPlayer dependencies=@illa-design/alert
 import React from 'react';
 import { Alert } from "@illa-design/alert";
 
@@ -56,10 +56,10 @@ export default App;
 
 ### Set the close button
 
-```SnackPlayer name=Set the close button&description=Set the close button&platform=web&supportedPlatforms=web&dependencies=@illa-design/alert,@illa-design/icon
+```SnackPlayer dependencies=@illa-design/alert,@illa-design/icon
 import React from 'react';
 import { Alert } from "@illa-design/alert";
-import { CloseIcon } from "@illa-design/icon"
+import { CloseIcon } from "@illa-design/icon";
 
 const App = () => {
   const onCloseEvent = () => {
@@ -96,7 +96,7 @@ export default App;
 
 ### Set the alert type as error
 
-```SnackPlayer name=Set the alert type as error&description=Set the alert type as error&platform=web&supportedPlatforms=web&dependencies=@illa-design/alert
+```SnackPlayer dependencies=@illa-design/alert
 import React from 'react';
 import { Alert } from "@illa-design/alert";
 

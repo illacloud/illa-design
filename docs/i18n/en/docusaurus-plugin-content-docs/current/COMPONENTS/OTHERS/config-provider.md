@@ -26,6 +26,23 @@ import { ConfigProvider } from "@illa-design/config-provider"
 
 ### Basic usage
 
+```SnackPlayer dependencies=@illa-design/config-provider,@illa-design/pagination
+import React from 'react';
+import { ConfigProvider , zhCN } from "@illa-design/config-provider"
+import { Pagination } from "@illa-design/pagination"
+
+const App = () => {
+    return (
+      <ConfigProvider locale={"zhCN"}>
+        <Pagination total={200} showTotal />
+      </ConfigProvider>
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
 <ConfigProvider locale={zhCN}>
   <Pagination total={200} showTotal />

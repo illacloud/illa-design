@@ -117,7 +117,7 @@ export default App;
 ### Set Button's icons
 
 ```SnackPlayer dependencies=@illa-design/button,react-icons,react-icons/bs
-import React from 'react';
+import * as React from 'react';
 import { Button } from "@illa-design/button";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
 

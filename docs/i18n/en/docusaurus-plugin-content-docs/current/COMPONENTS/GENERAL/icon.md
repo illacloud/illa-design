@@ -100,7 +100,7 @@ export default App;
 
 illa-design supports third party icon library, like react-icons.
 
-```SnackPlayer dependencies=@illa-design/icon,react-icons
+```SnackPlayer dependencies=@illa-design/icon,react-icons,react-icons/bs
 import * as React from "react";
 import { Icon } from "@illa-design/icon";
 import { BsTwitter } from "react-icons/bs";
