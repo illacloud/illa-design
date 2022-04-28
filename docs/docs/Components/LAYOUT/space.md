@@ -20,11 +20,11 @@ import { Space } from "@illa-design/space"
 
 | Props     | Desc                                  | Type                                               | Default      |
 | --------- | ------------------------------------- | -------------------------------------------------- | ------------ |
-| size      | The space between the each child      | `"mini" \| "small" \| "medium" \| "large" \| string`     | `small`      |
-| align     | Setting alignment                     | `"start" \| "center" \| "end" \| "baseline"`         | `center`     |
-| direction | Setting arrangement direction         | `"vertical" \| "horizontal"`                         | `horizontal` |
-| divider   | Adding divider between the each child | `boolean `                                           | `- `       |
-| wrap      | setting wrap                          | `boolean`                                            |` -  `      |
+| size      | The space between the each child      | "mini" \| "small" \| "medium" \| "large" \| string | "small"      |
+| align     | Setting alignment                     | "start" \| "center" \| "end" \| "baseline"         | "center"     |
+| direction | Setting arrangement direction         | "vertical" \| "horizontal"                         | "horizontal" |
+| divider   | Adding divider between the each child | boolean                                            | -            |
+| wrap      | setting wrap                          | boolean                                            | -            |
 
 ## Example
 

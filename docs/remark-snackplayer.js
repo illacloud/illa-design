@@ -1,50 +1,51 @@
 // thx react-native
-"use strict";
-const visit = require("unist-util-visit-parents");
-const u = require("unist-builder");
-const dedent = require("dedent");
+"use strict"
+const visit = require("unist-util-visit-parents")
+const u = require("unist-builder")
+const dedent = require("dedent")
 
 function parseParams(paramString) {
-  let params = {};
+  let params = {}
 
   if (paramString) {
-    let pairs = paramString.split("&");
+    let pairs = paramString.split("&")
     for (let i = 0; i < pairs.length; i++) {
-      let pair = pairs[i].split("=");
-      params[pair[0]] = pair[1];
+      let pair = pairs[i].split("=")
+      params[pair[0]] = pair[1]
     }
   }
 
   if (!params.platform) {
-    params.platform = "web";
+    params.platform = "web"
   }
 
-  return params;
+  return params
 }
-
 
 function SnackPlayer() {
   return (tree) =>
     new Promise(async (resolve, reject) => {
-      const nodesToProcess = [];
+      const nodesToProcess = []
       // Parse all CodeBlocks
       visit(tree, "code", (node, parent) => {
         //Add SnackPlayer CodeBlocks to processing queue
-        if (node.lang == "SnackPlayer") {
+        if (node.lang === "SnackPlayer") {
           nodesToProcess.push(
             new Promise(async (resolve, reject) => {
               try {
-                let params = parseParams(node.meta);
+                let params = parseParams(node.meta)
 
                 // Gather necessary Params
                 const name = "illa-design"
                 const description = "Example usage"
-                const sampleCode = node.value;
-                const encodedSampleCode = encodeURIComponent(sampleCode);
-                const platform = "web";
+                const sampleCode = node.value
+                const encodedSampleCode = encodeURIComponent(sampleCode)
+                const platform = "web"
                 const supportedPlatforms = "web"
-                const dependencies = params.dependencies ? params.dependencies : "@illa-design/react"
-                const theme = params.theme ? params.theme : "light";
+                const dependencies = params.dependencies
+                  ? params.dependencies
+                  : "@illa-design/react"
+                const theme = params.theme ? params.theme : "light"
                 // Generate Node for SnackPlayer
                 const snackPlayerDiv = u("html", {
                   value: dedent`
@@ -63,35 +64,36 @@ function SnackPlayer() {
                   </div>
                 </div>
                 `,
-                });
+                })
 
                 // Replace code block with SnackPlayer Node
-                const index = parent[0].children.indexOf(node);
-                parent[0].children.splice(index, 1, snackPlayerDiv);
+                const index = parent[0].children.indexOf(node)
+                parent[0].children.splice(index, 1, snackPlayerDiv)
               } catch (e) {
-                return reject(e);
+                return reject(e)
               }
-              resolve();
-            })
-          );
+              resolve()
+            }),
+          )
         }
-      });
+      })
 
       // If there is one or more snackplayer(s) present
       if (nodesToProcess.length) {
         // To embed.js script
         const snackPlayerEmbed = u("html", {
           value: dedent`
-          <script async src="https://snack.expo.io/embed.js"></script>
+          <script async src="https://snack.expo.io/embed.js" />
           `,
+        })
 
-        });
-
-        tree.children.push(snackPlayerEmbed);
+        tree.children.push(snackPlayerEmbed)
       }
       // Wait for all promises to be resolved
-      Promise.all(nodesToProcess).then(resolve()).catch(reject());
-    });
+      Promise.all(nodesToProcess)
+        .then(() => resolve())
+        .catch(() => reject())
+    })
 }
 
-module.exports = SnackPlayer;
+module.exports = SnackPlayer

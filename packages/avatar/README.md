@@ -1,4 +1,4 @@
-# Avatar
+## Avatar
 
 The Avatar component is used to represent a user and displays the pictures, text or icon.
 
@@ -46,7 +46,7 @@ import { Avatar } from "@illa-design/avatar"
 
 ### Basic usage
 
-```SnackPlayer name=Basic usage&description=Basic usage&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 
@@ -66,7 +66,7 @@ export default App;
 
 ### Set Avatar's size
 
-```SnackPlayer name=Set Avatar's size&description=Set Avatar's size&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 
@@ -86,7 +86,7 @@ export default App;
 
 ### Set Avatar's shape and color
 
-```SnackPlayer name=Set Avatar's shape and color&description=Set Avatar's shape and color&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 
@@ -108,7 +108,7 @@ export default App;
 
 ### Set Avatar's icon
 
-```SnackPlayer name=Set Avatar's icon&description=Set Avatar's icon&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar,@illa-design/icon
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 import { CloseIcon } from "@illa-design/icon";
@@ -129,7 +129,7 @@ export default App;
 
 ### Set Avatar's image
 
-```SnackPlayer name=Set Avatar's image&description=Set Avatar's image&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 
@@ -149,7 +149,7 @@ export default App;
 
 ### Set Avatar's text
 
-```SnackPlayer name=Set Avatar's text&description=Set Avatar's text&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 
@@ -169,7 +169,7 @@ export default App;
 
 ### Set Avatar-group's max count
 
-```SnackPlayer name=Set Avatar-group's max count&description=Set Avatar-group's max count&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar , AvatarGroup } from "@illa-design/avatar";
 

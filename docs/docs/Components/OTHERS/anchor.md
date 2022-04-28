@@ -18,38 +18,69 @@ import { Anchor } from "@illa-design/anchor"
 
 ### Anchor Basic Properties
 
-| Props           | Desc                                                         | Type                                                | Default |
-| --------------- | ------------------------------------------------------------ | --------------------------------------------------- | ------- |
-| animation       | Whether to scroll smoothly                                   | `boolean`                                           | `true`  |
-| scrollContainer | The scroll container                                         | `string \| HTMLElement \| Window`                    | `-`     |
-| boundary        | The scroll boundary value. After setting this value to a number, it will stop scrolling when it is a distance from the scroll container boundary | `number \| "end" \| "start" \| "center" \| "nearest"` | `"start"` |
-| hash            | Whether to change the hash                                   | `boolean`                                           | `true`  |
-| affix           | Whether to used the `Affix`  component                       | `boolean`                                           | `true`  |
-| lineless        | Whether to show the left side line                           | `boolean`                                           | `-`     |
+| Props           | Desc                                                                                                                                             | Type                                                | Default |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- | ------- |
+| animation       | Whether to scroll smoothly                                                                                                                       | boolean                                             | true    |
+| scrollContainer | The scroll container                                                                                                                             | string \| HTMLElement \| Window                     | -       |
+| boundary        | The scroll boundary value. After setting this value to a number, it will stop scrolling when it is a distance from the scroll container boundary | number \| "end" \| "start" \| "center" \| "nearest" | "start" |
+| hash            | Whether to change the hash                                                                                                                       | boolean                                             | true    |
+| affix           | Whether to used the Affix component                                                                                                              | boolean                                             | true    |
+| lineless        | Whether to show the left side line                                                                                                               | boolean                                             | -       |
 
 ### Anchor Events
 
-| Props    | Desc                                            | Type                                         | Default |
-| -------- | ----------------------------------------------- | -------------------------------------------- | ------- |
-| onChange | Callback when the anchor changes when scrolling | `(newLink: string, oldLink: string) => void` | `-`     |
-| onSelect | Callback when the anchor is clicked             | `(newLink: string, oldLink: string) => void` | `-`     |
+| Props    | Desc                                            | Type                                       | Default |
+| -------- | ----------------------------------------------- | ------------------------------------------ | ------- |
+| onChange | Callback when the anchor changes when scrolling | (newLink: string, oldLink: string) => void | -       |
+| onSelect | Callback when the anchor is clicked             | (newLink: string, oldLink: string) => void | -       |
 
-### AnchorLink Basic Properties 
+### AnchorLink Basic Properties
 
-| Props | Desc                 | Type                       | Default |
-| ----- | -------------------- | -------------------------- | ------- |
-| href  | Link of the anchor   | `string`                   | `#`     |
-| title | Title of anchor link | `string` | `React.ReactNode` | `-`     |
+| Props | Desc                 | Type   | Default         |
+| ----- | -------------------- | ------ | --------------- | --- |
+| href  | Link of the anchor   | string | "#"             |
+| title | Title of anchor link | string | React.ReactNode | -   |
 
 ## Example
 
-### Basic usage 
+### Basic usage
+
+```SnackPlayer name=Basic usage&description=Basic usage&platform=web&supportedPlatforms=web&dependencies=@illa-design/anchor
+import React from 'react';
+import { Anchor } from "@illa-design/anchor";
+
+const App = () => {
+  return (
+    <Anchor />
+  );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Anchor />
 ```
 
 ### Set Anchor link
+
+```SnackPlayer name=Set Anchor link&description=Set Anchor link&platform=web&supportedPlatforms=web&dependencies=@illa-design/anchor
+import React from 'react';
+import { Anchor } from "@illa-design/anchor";
+
+const { Link: AnchorLink } = Anchor
+const App = () => {
+  return (
+    <Anchor>
+      <AnchorLink title="anchor" href="#anchor" />
+    </Anchor>
+  );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Anchor>

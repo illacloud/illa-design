@@ -1,6 +1,6 @@
 # Dropdown
 
-It used to collect multiple commands into a floating container
+It used to collect multiple commands into a floating container.
 
 ## Installation
 
@@ -18,21 +18,21 @@ import { Dropdown } from "@illa-dedign/dropdown"
 
 ### Dropdown Basic Properties
 
-| Props               | Desc                                      | Type                                                | Default |
-| ------------------- | ----------------------------------------- | --------------------------------------------------- | ------- |
-| droplist            | Set content of dropdown                   | `ReactNode`                                         | `-`     |
-| position            | Set the position of  dropdown             | `"top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br"` | `bl`    |
-| trigger             | Set the interaction type of show dropdown | `array<"hover" \| "click" > `                       | `hover` |
-| disabled            | Whether disable dropdown                  | `boolean`                                           | `-`     |
-| defaultPopupVisible | Whether open dropdown by default          | `boolean`                                           | `-`     |
-| popupVisible        | Whether open dropdown                     | `boolean`                                           | `-`     |
-| triggerProps        | set trigger's properties                  | `TriggerProps`                                      | `-`     |
+| Props               | Desc                                      | Type                     | Default |
+| ------------------- | ----------------------------------------- | ------------------------ | ------- |
+| droplist            | Set content of dropdown                   | ReactNode                | -       |
+| position            | Set the position of  dropdown             | TriggerProps["position"] | "bl"    |
+| trigger             | Set the interaction type of show dropdown | TriggerProps["trigger"]  | "hover" |
+| disabled            | Whether disable dropdown                  | boolean                  | -       |
+| defaultPopupVisible | Whether open dropdown by default          | boolean                  | -       |
+| popupVisible        | Whether open dropdown                     | boolean                  | -       |
+| triggerProps        | set trigger's properties                  | `Partial<TriggerProps>`  | -       |
 
 ### Dropdown Events
 
-| Props           | Desc                                           | Type                         | Default |
-| --------------- | :--------------------------------------------- | ---------------------------- | ------- |
-| onVisibleChange | Callback when dropdown‘s visible status change | `(visible: boolean) => void` | `-`     |
+| Props           | Desc                                           | Type                       | Default |
+| --------------- | :--------------------------------------------- | -------------------------- | ------- |
+| onVisibleChange | Callback when dropdown‘s visible status change | (visible: boolean) => void | -       |
 
 ## Example
 
@@ -69,4 +69,3 @@ const dropList = (
   <Button>Hover me</Button>
 </Dropdown>
 ```
-

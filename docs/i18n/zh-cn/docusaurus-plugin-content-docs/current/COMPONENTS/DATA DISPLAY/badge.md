@@ -18,20 +18,34 @@ import { Badge } from "@illa-design/badge"
 
 ### Badge 基础属性
 
-| Props       | Desc                                                         | Type                                                         | Default |
-| ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------- |
-| count       | 徽标显示的数字                                               | number \| ReactNode                                          | 0       |
-| text        | 自定义提示内容                                               | string \| string[]                                           | -       |
-| dot         | 显示为小红点                                                 | boolean                                                      | -       |
-| dotStyle    | 徽标的样式                                                   | object                                                       | -       |
-| maxCount    | 徽标最大显示数值，如果 count 超过这个数值会显示为 ${max-count}+ | number                                                       | 9       |
-| offset      | 设置徽标位置的偏移                                           | [number,number]                                              | -       |
-| status      | 徽标的状态类型                                               | "default" \| "processing" \| "success" \| "warning" \| "error" | -       |
-| colorScheme | 自定义小圆点的颜色                                           | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" | -       |
+| Props       | Desc                                                            | Type                                                                                                                        | Default |
+| ----------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
+| count       | 徽标显示的数字                                                  | number \| ReactNode                                                                                                         | 0       |
+| text        | 自定义提示内容                                                  | string \| string[]                                                                                                          | -       |
+| dot         | 显示为小红点                                                    | boolean                                                                                                                     | -       |
+| dotStyle    | 徽标的样式                                                      | object                                                                                                                      | -       |
+| maxCount    | 徽标最大显示数值，如果 count 超过这个数值会显示为 ${max-count}+ | number                                                                                                                      | 9       |
+| offset      | 设置徽标位置的偏移                                              | [number,number]                                                                                                             | -       |
+| status      | 徽标的状态类型                                                  | "default" \| "processing" \| "success" \| "warning" \| "error"                                                              | -       |
+| colorScheme | 自定义小圆点的颜色                                              | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" | -       |
 
 ## 使用方法
 
 ### 基础用法
+
+```SnackPlayer name=基础用法&description=基础用法&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+import React from 'react';
+import { Badge } from "@illa-design/badge";
+
+const App = () => {
+  return (
+    <Badge />
+  );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Badge />
@@ -39,27 +53,80 @@ import { Badge } from "@illa-design/badge"
 
 ### 设置徽标的状态和文字
 
-```jsx
-<Badge status="success" text={"success"}></Badge>
+```SnackPlayer name=设置徽标的状态和文字&description=设置徽标的状态和文字&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+import React from 'react';
+import { Badge } from "@illa-design/badge";
+
+const App = () => {
+  return (
+    <Badge status="success" text="success" />
+  );
+}
+
+export default App;
+
 ```
 
-### 设置最大值 
+```jsx
+<Badge status="success" text={"success"} />
+```
+
+### 设置最大值
+
+```SnackPlayer name=设置最大值&description=设置最大值&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+import React from 'react';
+import { Badge } from "@illa-design/badge";
+
+const App = () => {
+  return (
+    <Badge count={99} maxCount={50} />
+  );
+}
+
+export default App;
+
+```
 
 ```jsx
-<Badge count={99} maxCount={50}></Badge>
+<Badge count={99} maxCount={50} />
 ```
 
 ### 设置红点样式
 
+```SnackPlayer name=设置红点样式&description=设置红点样式&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+import React from 'react';
+import { Badge } from "@illa-design/badge";
+
+const App = () => {
+  return (
+    <Badge count={22} dotStyle={{ marginLeft: 3 }} />
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Badge
-  count={22}
-  dotStyle={{ marginLeft: 3 }}
-></Badge>
+<Badge count={22} dotStyle={{ marginLeft: 3 }} />
 ```
 
 ### 设置徽标的位移
 
+```SnackPlayer name=设置徽标的位移&description=设置徽标的位移&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+import React from 'react';
+import { Badge } from "@illa-design/badge";
+
+const App = () => {
+  return (
+    <Badge count={22} offset={[1, 2]} />
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Badge count={22} offset={[1, 2]}></Badge>
+<Badge count={22} offset={[1, 2]} />
 ```

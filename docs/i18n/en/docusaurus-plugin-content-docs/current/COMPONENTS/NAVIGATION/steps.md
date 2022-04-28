@@ -1,6 +1,6 @@
 # Steps
 
-It used for lead in user complete tasks step by step 
+It used for lead in user complete tasks step by step.
 
 ## Installation
 
@@ -18,31 +18,31 @@ import { Steps } from "@illa-design/steps"
 
 ### Steps Basic Properties
 
-| Props          | Desc                      | Type                                                         | Default        |
-| -------------- | ------------------------- | ------------------------------------------------------------ | -------------- |
-| variant        | Variant of step           | `"line" \| "dot" \| "navigation"`                            | `"line"`       |
-| size           | Size of step              | ` "small" \| "large"`                                        | `"small"`      |
-| direction      | Layout direction of nodes | `"vertical" \| "horizontal"`                                 | `"horizontal"` |
-| labelPlacement | Placement of label        | `"vertical" \| "horizontal"`                                 | `"horizontal"` |
-| current        | current step              | `number`                                                     | `1`            |
-| status         | current step status       | `"wait" \| "process" \| "finish" \| "error"`                 | `"process"`    |
-| customDot      | Customize node            | `(IconDot: React.ReactNode, stepConfig: CustomDotRecord) => React.ReactNode` | `-`            |
+| Props          | Desc                      | Type                                                         | Default      |
+| -------------- | ------------------------- | ------------------------------------------------------------ | ------------ |
+| variant        | Variant of step           | "line" \| "dot" \| "navigation"                              | "line"       |
+| size           | Size of step              | "small" \| "large"                                           | "small"      |
+| direction      | Layout direction of nodes | "vertical" \| "horizontal"                                   | "horizontal" |
+| labelPlacement | Placement of label        | "vertical" \| "horizontal"                                   | "horizontal" |
+| current        | current step              | number                                                       | 1            |
+| status         | current step status       | "wait" \| "process" \| "finish" \| "error"                   | "process"    |
+| customDot      | Customize node            | (IconDot: React.ReactNode, stepConfig: CustomDotRecord) => React.ReactNode | -            |
 
 ### Steps Events
 
-| Props    |                 Desc                  | Type                                | Default |
-| -------- | :-----------------------------------: | ----------------------------------- | ------- |
-| onChange | Callback when current step is changed | `(current: number, id: any)=> void` | `-`     |
+| Props    |                 Desc                  | Type                              | Default |
+| -------- | :-----------------------------------: | --------------------------------- | ------- |
+| onChange | Callback when current step is changed | (current: number, id: any)=> void | -       |
 
 ### Step Basic Properties
 
-| Props       | Desc                     | Type                                         | Default |
-| ----------- | ------------------------ | -------------------------------------------- | ------- |
-| id          | Id of step               | `any`                                        | `-`     |
-| title       | title of step            | `string \| ReactNode`                        | `-`     |
-| description | description of step      | `string \| ReactNode`                        | `-`     |
-| status      | status of step           | `"wait" \| "process" \| "finish" \| "error"` | `-`     |
-| disabled    | whether step is disabled | `boolean`                                    | `-`     |
+| Props       | Desc                     | Type                                       | Default |
+| ----------- | ------------------------ | ------------------------------------------ | ------- |
+| id          | Id of step               | any                                        | -       |
+| title       | title of step            | string \| ReactNode                        | -       |
+| description | description of step      | string \| ReactNode                        | -       |
+| status      | status of step           | "wait" \| "process" \| "finish" \| "error" | -       |
+| disabled    | whether step is disabled | boolean                                    | -       |
 
 ## Example
 
@@ -60,9 +60,9 @@ import { Steps } from "@illa-design/steps"
 
 ```jsx
 <Steps current={2}>
-  <Step title="Succeeded" description="This is a description" />
-  <Step title="Processing" description="This is a description" />
-  <Step title="Pending" description="This is a description" />
+  <Step title="Succeeded" description="This is a description." />
+  <Step title="Processing" description="This is a description." />
+  <Step title="Pending" description="This is a description." />
 </Steps>
 ```
 
@@ -70,9 +70,9 @@ import { Steps } from "@illa-design/steps"
 
 ```jsx
 <Steps current={2}>
-  <Step title="Succeeded" description="This is a description" status="finish" />
-  <Step title="Processing" description="This is a description" status="process" />
-  <Step title="Pending" description="This is a description" status="wait" />
+  <Step title="Succeeded" description="This is a description." status="finish" />
+  <Step title="Processing" description="This is a description." status="process" />
+  <Step title="Pending" description="This is a description." status="wait" />
 </Steps>
 ```
 
@@ -80,9 +80,9 @@ import { Steps } from "@illa-design/steps"
 
 ```jsx
 <Steps current={2} direction="vertical">
-  <Step title="Succeeded" description="This is a description" status="finish" />
-  <Step title="Processing" description="This is a description" status="process" />
-  <Step title="Pending" description="This is a description" status="wait" />
+  <Step title="Succeeded" description="This is a description." status="finish" />
+  <Step title="Processing" description="This is a description." status="process" />
+  <Step title="Pending" description="This is a description." status="wait" />
 </Steps>
 ```
 
@@ -90,9 +90,9 @@ import { Steps } from "@illa-design/steps"
 
 ```jsx
 <Steps current={2} labelPlacement="vertical" >
-  <Step title="Succeeded" description="This is a description" status="finish" />
-  <Step title="Processing" description="This is a description" status="process" />
-  <Step title="Pending" description="This is a description" status="wait" />
+  <Step title="Succeeded" description="This is a description." status="finish" />
+  <Step title="Processing" description="This is a description." status="process" />
+  <Step title="Pending" description="This is a description." status="wait" />
 </Steps>
 ```
 
@@ -103,9 +103,9 @@ const customDot = (iconNode, { index }) => {
   return <Tooltip content={index}>{iconNode}</Tooltip>
 }
 <Steps customDot={customDot} >
-  <Step title="Succeeded" description="This is a description" status="finish" />
-  <Step title="Processing" description="This is a description" status="process" />
-  <Step title="Pending" description="This is a description" status="wait" />
+  <Step title="Succeeded" description="This is a description." status="finish" />
+  <Step title="Processing" description="This is a description." status="process" />
+  <Step title="Pending" description="This is a description." status="wait" />
 </Steps>
 ```
 
@@ -120,9 +120,8 @@ const [current, setCurrent] = useState(1)
   onChange={onChange}
   current={current} 
 >
-  <Step title="Succeeded" description="This is a description" status="finish" />
-  <Step title="Processing" description="This is a description" status="process" />
-  <Step title="Pending" description="This is a description" status="wait" />
+  <Step title="Succeeded" description="This is a description." status="finish" />
+  <Step title="Processing" description="This is a description." status="process" />
+  <Step title="Pending" description="This is a description." status="wait" />
 </Steps>
 ```
-

@@ -28,12 +28,34 @@ import { Empty } from "@illa-design/empty"
 
 ### Basic Usage
 
+```SnackPlayer name=illa-design&platform=web&supportedPlatforms=web&dependencies=@illa-design/react
+import * as React from 'react';
+import { Empty } from '@illa-design/empty';
+
+const App = () => {
+  return <Empty />;
+};
+
+export default App;
+```
+
 ```jsx
 <Empty />
 ```
 
 ### Set the description
 
-```jsx
+```SnackPlayer
+import * as React from 'react';
+import { Empty } from '@illa-design/empty';
+
+const App = () => {
+  return <Empty description={"test description"} />;
+};
+
+export default App;
+```
+
+```SnackPlayer
 <Empty description={"test description"} />
 ```
