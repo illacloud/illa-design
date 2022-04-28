@@ -62,17 +62,17 @@ test("Tree renders correctly", () => {
 test("Tree renders with TreeNode", async () => {
   await act(async () => {
     render(
-      <Tree placeholder="tree" treeData={data} size={"large"}>
-        <TreeNode key={"node-0-0"} title={"0-0"} checkable={false} />
-        <TreeNode key={"node-0-1"} title={"0-1"}>
-          <TreeNode key={"node-0-1-0"} title={"0-1-0"} />
-          <TreeNode key={"node-0-1-1"} title={"0-1-1"} />
-          <TreeNode key={"node-0-1-2"} title={"0-1-2"}>
-            <TreeNode key={"node-0-1-2-0"} title={"0-1-2-0"} />
-            <TreeNode key={"node-0-1-2-1"} title={"0-1-2-1"} />
+      <Tree placeholder="tree" treeData={data} size="large">
+        <TreeNode key="node-0-0" title="0-0" checkable={false} />
+        <TreeNode key="node-0-1" title="0-1">
+          <TreeNode key="node-0-1-0" title="0-1-0" />
+          <TreeNode key="node-0-1-1" title="0-1-1" />
+          <TreeNode key="node-0-1-2" title="0-1-2">
+            <TreeNode key="node-0-1-2-0" title="0-1-2-0" />
+            <TreeNode key="node-0-1-2-1" title="0-1-2-1" />
           </TreeNode>
         </TreeNode>
-        <TreeNode key={"node-0-2"} title={"0-2"} />
+        <TreeNode key="node-0-2" title="0-2" />
       </Tree>,
     )
   })
@@ -81,7 +81,7 @@ test("Tree renders with TreeNode", async () => {
 
 test("Tree renders with large size", async () => {
   await act(async () => {
-    render(<Tree placeholder="tree" treeData={data} size={"large"} />)
+    render(<Tree placeholder="tree" treeData={data} size="large" />)
   })
   expect(
     screen.getByText("0-0-head").parentElement?.parentElement?.parentElement,
@@ -92,7 +92,7 @@ test("Tree renders with large size", async () => {
 
 test("Tree renders with small size", async () => {
   await act(async () => {
-    render(<Tree placeholder="tree" treeData={data} size={"small"} />)
+    render(<Tree placeholder="tree" treeData={data} size="small" />)
   })
   expect(
     screen.getByText("0-0-head").parentElement?.parentElement?.parentElement,
@@ -103,7 +103,7 @@ test("Tree renders with small size", async () => {
 
 test("Tree renders with blockNode", async () => {
   await act(async () => {
-    render(<Tree placeholder="tree" treeData={data} blockNode={true} />)
+    render(<Tree placeholder="tree" treeData={data} blockNode />)
   })
   expect(screen.getByText("0-0-head").parentElement).toHaveStyle({
     "flex-grow": 1,
@@ -127,7 +127,7 @@ test("Tree renders with renderTitle", async () => {
 
 test("Tree renders with check parent", async () => {
   await act(async () => {
-    render(<Tree placeholder="tree" treeData={data} checkable={true} />)
+    render(<Tree placeholder="tree" treeData={data} checkable />)
   })
   const nodeArr = screen.getAllByRole("checkbox")
   expect(nodeArr.length).not.toBe(0)
@@ -144,7 +144,7 @@ test("Tree renders with check parent", async () => {
 //checkbox
 test("Tree renders with check child", async () => {
   await act(async () => {
-    render(<Tree placeholder="tree" treeData={data} checkable={true} />)
+    render(<Tree placeholder="tree" treeData={data} checkable />)
   })
   const nodeArr = screen.getAllByRole("checkbox")
   // check child
@@ -158,14 +158,7 @@ test("Tree renders with check child", async () => {
 
 test("Tree renders with checkStrictly", async () => {
   await act(async () => {
-    render(
-      <Tree
-        placeholder="tree"
-        treeData={data}
-        checkable={true}
-        checkStrictly={true}
-      />,
-    )
+    render(<Tree placeholder="tree" treeData={data} checkable checkStrictly />)
   })
   const nodeArr = screen.getAllByRole("checkbox")
   const target = nodeArr[7]
@@ -183,7 +176,7 @@ test("Tree renders with defaultCheckedKeys", async () => {
         placeholder="tree"
         treeData={data}
         defaultCheckedKeys={["0-0-0-0-0", "0-0-0-1-1"]}
-        checkable={true}
+        checkable
       />,
     )
   })
@@ -208,7 +201,7 @@ test("Tree renders with control check", async () => {
         onCheck={(checkedKeys) => {
           keys = checkedKeys
         }}
-        checkable={true}
+        checkable
       />,
     )
   })
@@ -266,7 +259,7 @@ test("Tree renders with control expand", async () => {
 
 test("Tree renders with showLine", async () => {
   await act(async () => {
-    render(<Tree placeholder="tree" treeData={data} showLine={true} />)
+    render(<Tree placeholder="tree" treeData={data} showLine />)
   })
 
   expect(screen.getAllByTitle("LeafIcon").length).not.toBe(0)
@@ -309,7 +302,7 @@ test("Tree renders with select multiple", async () => {
       <Tree
         placeholder="tree"
         treeData={data}
-        multiple={true}
+        multiple
         defaultSelectedKeys={["0-0", "0-0-0-1"]}
         onSelect={selectEvent}
       />,
@@ -415,10 +408,10 @@ test("Tree renders with icons", async () => {
         placeholder="tree"
         treeData={data}
         loadMore={loadMore}
-        draggable={true}
-        loadingIcon={<span data-testid={"loadingIcon"}>loadingIcon</span>}
-        switcherIcon={<span data-testid={"switcherIcon"}>switcherIcon</span>}
-        dragIcon={<span data-testid={"dragIcon"}>dragIcon</span>}
+        draggable
+        loadingIcon={<span data-testid="loadingIcon">loadingIcon</span>}
+        switcherIcon={<span data-testid="switcherIcon">switcherIcon</span>}
+        dragIcon={<span data-testid="dragIcon">dragIcon</span>}
       />,
     )
   })

@@ -1,7 +1,8 @@
 import { mount, unmount } from "@cypress/react"
 import * as React from "react"
-import { Tree } from "../src"
+import { TreeList } from "../src"
 import "@testing-library/cypress"
+import { loopNodeWithState } from "../src"
 
 const data = [
   {
@@ -51,21 +52,21 @@ const data = [
   },
 ]
 
-it("Tree renders draggable", () => {
+it("TreeList renders draggable", () => {
   const dragLeaveEvent = cy.stub().as("dragLeaveEvent")
   const dragStartEvent = cy.stub().as("dragStartEvent")
   const dragEndEvent = cy.stub().as("dragEndEvent")
   const dragOverEvent = cy.stub().as("dragOverEvent")
   const dropEvent = cy.stub().as("dropEvent")
   mount(
-    <Tree
-      treeData={data}
+    <TreeList
+      listData={loopNodeWithState(data)}
       draggable
-      onDragLeave={dragLeaveEvent}
-      onDragOver={dragOverEvent}
-      onDragStart={dragStartEvent}
-      onDragEnd={dragEndEvent}
-      onDrop={dropEvent}
+      handleDragLeave={dragLeaveEvent}
+      handleDragOver={dragOverEvent}
+      handleDragStart={dragStartEvent}
+      handleDragEnd={dragEndEvent}
+      handleDrop={dropEvent}
     />,
   )
 
