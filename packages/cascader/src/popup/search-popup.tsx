@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useState, useRef, SyntheticEvent } from "react"
 import isEqual from "react-fast-compare"
 import { Empty } from "@illa-design/empty"
 import { Checkbox } from "@illa-design/checkbox"
@@ -24,7 +24,11 @@ export const SearchPopup = <T extends OptionProps>(
   const activeItemRef = useRef<HTMLLIElement | null>(null)
   const isFirst = useRef<boolean>(true)
 
-  const clickOption = (option: Node<T>, checked: boolean, e: any) => {
+  const clickOption = (
+    option: Node<T>,
+    checked: boolean,
+    e: SyntheticEvent,
+  ) => {
     e?.stopPropagation()
     if (option.disabled) {
       return
