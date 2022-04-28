@@ -14,13 +14,13 @@ test("System test omit function", () => {
   })
 })
 
-test(`GetStyle should work`, () => {
+test("GetStyle should work", () => {
   render(<div style={{ color: "red" }} data-testid={"test"}></div>)
   expect(getStyle(screen.getByTestId("test"), "color")).toBe("red")
   expect(getStyle(screen.getByTestId("test"), "")).toBe("")
 })
 
-test(`Test easingMethod`, () => {
+test("Test easingMethod", () => {
   const expected = Object.values(easingMethod).every((fn) => {
     return (
       fn(0) === 0 &&
@@ -32,7 +32,7 @@ test(`Test easingMethod`, () => {
   expect(expected).toBe(true)
 })
 
-test(`Test raf in jsdom environment`, async () => {
+test("Test raf in jsdom environment", async () => {
   const fn = jest.fn()
 
   await new Promise(function(resolve) {
