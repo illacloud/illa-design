@@ -13,8 +13,8 @@
 
 [![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
 [![storybook](https://devbo.cn/storybook.svg)](https://storybook.illasoft.com/main)
-[![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](./LICENSE)
-[![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
+[![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](https://github.com/illa-family/illa-design/blob/main/LICENSE)
+[![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](https://github.com/illa-family/illa-design/blob/main/CONTRIBUTING.md)
 
 ## ✨ Features
 
@@ -102,7 +102,7 @@ Join ILLA Design community to share your ideas, suggestions or questions and con
 ## 🌱 Contributing
 
 Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check
-out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
+out [Contributing Guide](https://github.com/illa-family/illa-design/blob/main/CONTRIBUTING.md) for details about how you can get involved.
 
 ## 🔥 We're Hiring
 
@@ -115,4 +115,4 @@ Contact Us: hr@illasoft.com
 
 ## License
 
-This project is [Apache License 2.0](./LICENSE).
+This project is [Apache License 2.0](https://github.com/illa-family/illa-design/blob/main/LICENSE).

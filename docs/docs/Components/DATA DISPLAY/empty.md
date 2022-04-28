@@ -28,7 +28,7 @@ import { Empty } from "@illa-design/empty"
 
 ### Basic Usage
 
-```SnackPlayer name=illa-design&platform=web&supportedPlatforms=web&dependencies=@illa-design/react
+```SnackPlayer dependencies=@illa-design/empty
 import * as React from 'react';
 import { Empty } from '@illa-design/empty';
 
@@ -45,7 +45,7 @@ export default App;
 
 ### Set the description
 
-```SnackPlayer
+```SnackPlayer dependencies=@illa-design/empty
 import * as React from 'react';
 import { Empty } from '@illa-design/empty';
 
@@ -56,6 +56,6 @@ const App = () => {
 export default App;
 ```
 
-```SnackPlayer
+```jsx
 <Empty description={"test description"} />
 ```

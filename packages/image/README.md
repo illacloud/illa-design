@@ -33,6 +33,19 @@ import { Image } from "@illa-design/image"
 
 ### Basic usage
 
+```SnackPlayer dependencies=@illa-design/image
+import * as React from "react";
+import { Image } from "@illa-design/image";
+
+const App = () => {
+  return (
+    <Image src="https://via.placeholder.com/150" />
+  );
+};
+
+export default App;
+```
+
 ```jsx
-<image src="https://via.placeholder.com/150" />
+<Image src="https://via.placeholder.com/150" />
 ```

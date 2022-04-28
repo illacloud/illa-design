@@ -28,11 +28,33 @@ import { Empty } from "@illa-design/empty"
 
 ### 基础用法
 
+```SnackPlayer dependencies=@illa-design/empty
+import * as React from 'react';
+import { Empty } from '@illa-design/empty';
+
+const App = () => {
+  return <Empty />;
+};
+
+export default App;
+```
+
 ```jsx
 <Empty />
 ```
 
 ### 设置展示文案
+
+```SnackPlayer dependencies=@illa-design/empty
+import * as React from 'react';
+import { Empty } from '@illa-design/empty';
+
+const App = () => {
+  return <Empty description={"test description"} />;
+};
+
+export default App;
+```
 
 ```jsx
 <Empty description={"test description"} />

@@ -45,6 +45,44 @@ import { Row, Col } from "@illa-dedign/grid"
 
 ### Basic usage
 
+```SnackPlayer dependencies=@illa-design/grid
+import * as React from "react";
+import { Row, Col } from "@illa-design/grid";
+
+const App = () => {
+  return (
+    <Row>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-1-span-8
+        </div>
+      </Col>
+      <Col span={16}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-2-span-16
+        </div>
+      </Col>
+    </Row>
+  );
+};
+
+export default App;
+```
+
 ```jsx
 <Row>
   <Col span={8}>
@@ -52,8 +90,8 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "80px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-02`),
-        color: "white",
+        backgroundColor: "pink",
+        color: "white"
       }}
     >
       Col-1-span-8
@@ -64,8 +102,8 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "80px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-06`),
-        color: "white",
+        backgroundColor: "blue",
+        color: "white"
       }}
     >
       Col-2-span-16
@@ -76,6 +114,44 @@ import { Row, Col } from "@illa-dedign/grid"
 
 ### Set offset of Col
 
+```SnackPlayer dependencies=@illa-design/grid
+import * as React from "react";
+import { Row, Col } from "@illa-design/grid";
+
+const App = () => {
+  return (
+    <Row>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-1-span-8
+        </div>
+      </Col>
+      <Col span={8} offset={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-2-offset-8
+        </div>
+      </Col>
+    </Row>
+  );
+};
+
+export default App;
+```
+
 ```jsx
 <Row>
   <Col span={8}>
@@ -83,8 +159,8 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "80px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-02`),
-        color: "white",
+        backgroundColor: "pink",
+        color: "white"
       }}
     >
       Col-1-span-8
@@ -95,8 +171,8 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "80px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-06`),
-        color: "white",
+        backgroundColor: "blue",
+        color: "white"
       }}
     >
       Col-2-offset-8
@@ -107,6 +183,44 @@ import { Row, Col } from "@illa-dedign/grid"
 
 ### Set interval of Grid
 
+```SnackPlayer dependencies=@illa-design/grid
+import * as React from "react";
+import { Row, Col } from "@illa-design/grid";
+
+const App = () => {
+  return (
+    <Row horizontalGap="24px" verticalGap="24px">
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-1-span-8
+        </div>
+      </Col>
+      <Col span={16}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-2-span-16
+        </div>
+      </Col>
+    </Row>
+  );
+};
+
+export default App;
+```
+
 ```jsx
 <Row horizontalGap="24px" verticalGap="24px">
   <Col span={8}>
@@ -114,8 +228,8 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "80px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-02`),
-        color: "white",
+        backgroundColor: "pink",
+        color: "white"
       }}
     >
       Col-1-span-8
@@ -126,8 +240,8 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "80px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-06`),
-        color: "white",
+        backgroundColor: "blue",
+        color: "white"
       }}
     >
       Col-2-span-16
@@ -138,6 +252,68 @@ import { Row, Col } from "@illa-dedign/grid"
 
 ### Set horizontal and vertical layout
 
+```SnackPlayer dependencies=@illa-design/grid
+import * as React from "react";
+import { Row, Col } from "@illa-design/grid";
+
+const App = () => {
+  return (
+    <Row justify="center" align="end">
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "50px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-1-span-8
+        </div>
+      </Col>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-2-span-8
+        </div>
+      </Col>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-1-span-8
+        </div>
+      </Col>
+      <Col span={16}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-2-span-16
+        </div>
+      </Col>
+    </Row>
+  );
+};
+
+export default App;
+```
+
 ```jsx
 <Row justify="center" align="end">
   <Col span={8}>
@@ -145,8 +321,8 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "50px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-02`),
-        color: "white",
+        backgroundColor: "blue",
+        color: "white"
       }}
     >
       Col-1-span-8
@@ -157,17 +333,127 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "80px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-06`),
-        color: "white",
+        backgroundColor: "pink",
+        color: "white"
       }}
     >
       Col-2-span-8
+    </div>
+  </Col>
+  <Col span={8}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "80px",
+        backgroundColor: "pink",
+        color: "white"
+      }}
+    >
+      Col-1-span-8
+    </div>
+  </Col>
+  <Col span={16}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "80px",
+        backgroundColor: "blue",
+        color: "white"
+      }}
+    >
+      Col-2-span-16
     </div>
   </Col>
 </Row>
 ```
 
 ### Set order of Col
+
+```SnackPlayer dependencies=@illa-design/grid
+import * as React from "react";
+import { Row, Col } from "@illa-design/grid";
+
+const App = () => {
+  return (
+    <Row>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-1-order-2
+        </div>
+      </Col>
+      <Col span={16}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-2-order-1
+        </div>
+      </Col>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "50px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-1-span-8
+        </div>
+      </Col>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-2-span-8
+        </div>
+      </Col>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-1-span-8
+        </div>
+      </Col>
+      <Col span={16}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-2-span-16
+        </div>
+      </Col>
+    </Row>
+  );
+};
+
+export default App;
+```
 
 ```jsx
 <Row>
@@ -176,8 +462,8 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "80px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-02`),
-        color: "white",
+        backgroundColor: "blue",
+        color: "white"
       }}
     >
       Col-1-order-2
@@ -188,17 +474,175 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "80px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-06`),
-        color: "white",
+        backgroundColor: "pink",
+        color: "white"
       }}
     >
       Col-2-order-1
+    </div>
+  </Col>
+  <Col span={8}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "50px",
+        backgroundColor: "blue",
+        color: "white"
+      }}
+    >
+      Col-1-span-8
+    </div>
+  </Col>
+  <Col span={8}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "80px",
+        backgroundColor: "pink",
+        color: "white"
+      }}
+    >
+      Col-2-span-8
+    </div>
+  </Col>
+  <Col span={8}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "80px",
+        backgroundColor: "pink",
+        color: "white"
+      }}
+    >
+      Col-1-span-8
+    </div>
+  </Col>
+  <Col span={16}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "80px",
+        backgroundColor: "blue",
+        color: "white"
+      }}
+    >
+      Col-2-span-16
     </div>
   </Col>
 </Row>
 ```
 
 ### Set responsive layout
+
+```SnackPlayer dependencies=@illa-design/grid
+import * as React from "react";
+import { Row, Col } from "@illa-design/grid";
+
+const App = () => {
+  return (
+    <Row>
+      <Col xs={4} sm={8} md={12} lg={16} xl={20}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "50px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-1
+        </div>
+      </Col>
+      <Col xs={20} sm={16} md={12} lg={8} xl={4}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-2
+        </div>
+      </Col>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-1-order-2
+        </div>
+      </Col>
+      <Col span={16}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-2-order-1
+        </div>
+      </Col>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "50px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-1-span-8
+        </div>
+      </Col>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-2-span-8
+        </div>
+      </Col>
+      <Col span={8}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "pink",
+            color: "white"
+          }}
+        >
+          Col-1-span-8
+        </div>
+      </Col>
+      <Col span={16}>
+        <div
+          style={{
+            borderRadius: "6px",
+            height: "80px",
+            backgroundColor: "blue",
+            color: "white"
+          }}
+        >
+          Col-2-span-16
+        </div>
+      </Col>
+    </Row>
+  );
+};
+
+export default App;
+```
 
 ```jsx
 <Row>
@@ -207,8 +651,8 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "50px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-02`),
-        color: "white",
+        backgroundColor: "pink",
+        color: "white"
       }}
     >
       Col-1
@@ -219,11 +663,83 @@ import { Row, Col } from "@illa-dedign/grid"
       style={{
         borderRadius: "6px",
         height: "80px",
-        backgroundColor: globalColor(`--${illaPrefix}-blue-06`),
-        color: "white",
+        backgroundColor: "blue",
+        color: "white"
       }}
     >
       Col-2
+    </div>
+  </Col>
+  <Col span={8}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "80px",
+        backgroundColor: "blue",
+        color: "white"
+      }}
+    >
+      Col-1-order-2
+    </div>
+  </Col>
+  <Col span={16}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "80px",
+        backgroundColor: "pink",
+        color: "white"
+      }}
+    >
+      Col-2-order-1
+    </div>
+  </Col>
+  <Col span={8}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "50px",
+        backgroundColor: "blue",
+        color: "white"
+      }}
+    >
+      Col-1-span-8
+    </div>
+  </Col>
+  <Col span={8}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "80px",
+        backgroundColor: "pink",
+        color: "white"
+      }}
+    >
+      Col-2-span-8
+    </div>
+  </Col>
+  <Col span={8}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "80px",
+        backgroundColor: "pink",
+        color: "white"
+      }}
+    >
+      Col-1-span-8
+    </div>
+  </Col>
+  <Col span={16}>
+    <div
+      style={{
+        borderRadius: "6px",
+        height: "80px",
+        backgroundColor: "blue",
+        color: "white"
+      }}
+    >
+      Col-2-span-16
     </div>
   </Col>
 </Row>
