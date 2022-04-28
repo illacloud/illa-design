@@ -5,12 +5,12 @@ const u = require("unist-builder");
 const dedent = require("dedent");
 
 function parseParams(paramString) {
-  var params = {};
+  let params = {};
 
   if (paramString) {
-    var pairs = paramString.split("&");
-    for (var i = 0; i < pairs.length; i++) {
-      var pair = pairs[i].split("=");
+    let pairs = paramString.split("&");
+    for (let i = 0; i < pairs.length; i++) {
+      let pair = pairs[i].split("=");
       params[pair[0]] = pair[1];
     }
   }
@@ -37,19 +37,13 @@ function SnackPlayer() {
                 let params = parseParams(node.meta);
 
                 // Gather necessary Params
-                const name = params.name
-                  ? decodeURIComponent(params.name)
-                  : "Example";
-                const description = params.description
-                  ? decodeURIComponent(params.description)
-                  : "Example usage";
+                const name = "illa-design"
+                const description = "Example usage"
                 const sampleCode = node.value;
                 const encodedSampleCode = encodeURIComponent(sampleCode);
-                const platform = params.platform ? params.platform : "web";
-                const supportedPlatforms = params.supportedPlatforms
-                  ? params.supportedPlatforms
-                  : "web";
-                const dependencies = params.dependencies ? params.dependencies : "";
+                const platform = "web";
+                const supportedPlatforms = "web"
+                const dependencies = "@illa-design/react"
                 const theme = params.theme ? params.theme : "light";
                 // Generate Node for SnackPlayer
                 const snackPlayerDiv = u("html", {
