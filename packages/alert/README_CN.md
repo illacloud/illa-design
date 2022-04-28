@@ -36,11 +36,55 @@ import { Alert } from "@illa-design/alert"
 
 ### 基础用法
 
+```SnackPlayer name=基础用法&description=基础用法&platform=web&supportedPlatforms=web&dependencies=@illa-design/alert
+import React from 'react';
+import { Alert } from "@illa-design/alert";
+
+const App = () => {
+  return (
+   <Alert title="Alert Title" content="Alert Content" />
+  );
+}
+
+export default App;
+
+```
+
+
 ```jsx
 <Alert title="Alert Title" content="Alert Content" />
 ```
 
 ### 设置关闭按钮
+
+```SnackPlayer name=设置关闭按钮&description=设置关闭按钮&platform=web&supportedPlatforms=web&dependencies=@illa-design/alert,@illa-design/icon
+import React from 'react';
+import { Alert } from "@illa-design/alert";
+import { CloseIcon } from "@illa-design/icon"
+
+const App = () => {
+  const onCloseEvent = () => {
+    console.log("onClose")
+  }
+  const afterCloseEvent = () => {
+    console.log("afterClose")
+  }
+
+  return (
+    <Alert
+      title="Alert Title"
+      content="Alert Content"
+      closable
+      onClose={onCloseEvent}
+      afterClose={afterCloseEvent}
+      closeElement={<CloseIcon/>}
+    />
+  );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Alert
@@ -52,6 +96,23 @@ import { Alert } from "@illa-design/alert"
 ```
 
 ### 设置警告提示类型
+
+```SnackPlayer name=设置警告提示类型&description=设置警告提示类型&platform=web&supportedPlatforms=web&dependencies=@illa-design/alert
+import React from 'react';
+import { Alert } from "@illa-design/alert";
+
+const App = () => {
+  return (
+    <Alert
+      title="Alert Title"
+      content="Alert Content"
+      type="error" />
+  );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Alert type="error" />
