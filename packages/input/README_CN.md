@@ -102,11 +102,33 @@ import { Input } from "@illa-design/input"
 
 ### 基础用法
 
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Input } from "@illa-design/input";
+
+const App = () => {
+  return <Input />;
+};
+
+export default App;
+```
+
 ```jsx
-<Input placeholder="test-disabled" disabled />
+<Input />
 ```
 
 ### 设置输入框样式和大小
+
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Input } from "@illa-design/input";
+
+const App = () => {
+  return <Input variant="fill" size="small" />;
+};
+
+export default App;
+```
 
 ```jsx
 <Input variant="fill" size="small" />
@@ -114,15 +136,43 @@ import { Input } from "@illa-design/input"
 
 ### 设置输入框默认提示文案和前后缀
 
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Input } from "@illa-design/input";
+
+const App = () => {
+  return (
+    <Input
+      placeholder="variant-fill"
+      prefix={{ render: "prefix" }}
+      addonBefore={{ render: "addonBefore" }}
+    />
+  );
+};
+
+export default App;
+```
+
 ```jsx
 <Input
   placeholder="variant-fill"
-  prefix={"prefix"}
-  addonBefore={"addonBefore"}
+  prefix={{ render: "prefix" }}
+  addonBefore={{ render: "addonBefore" }}
 />
 ```
 
 ### 设置输入框默认内容和最大字符数
+
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Input } from "@illa-design/input";
+
+const App = () => {
+  return <Input defaultValue="test maxLength" maxLength={4} />;
+};
+
+export default App;
+```
 
 ```jsx
 <Input defaultValue="test maxLength" maxLength={4} />
@@ -130,11 +180,33 @@ import { Input } from "@illa-design/input"
 
 ### 设置输入框字数统计
 
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Input } from "@illa-design/input";
+
+const App = () => {
+  return <Input placeholder="showCount" maxLength={4} showCount />;
+};
+
+export default App;
+```
+
 ```jsx
 <Input placeholder="showCount" maxLength={4} showCount />
 ```
 
 ### 设置密码输入框
+
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Password } from "@illa-design/input";
+
+const App = () => {
+  return <Password placeholder="variant-fill" variant="fill" />;
+};
+
+export default App;
+```
 
 ```jsx
 <Password placeholder="variant-fill" variant="fill" />
@@ -142,11 +214,35 @@ import { Input } from "@illa-design/input"
 
 ### 设置搜索输入框
 
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Search } from "@illa-design/input";
+
+const App = () => {
+  return <Search placeholder="variant-fill" variant="fill" />;
+};
+
+export default App;
+```
+
 ```jsx
 <Search placeholder="variant-fill" variant="fill" />
 ```
 
 ### 设置文本输入框
+
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { TextArea } from "@illa-design/input";
+
+const App = () => {
+  return (
+    <TextArea placeholder="defaultValue" defaultValue="test defaultValue" />
+  );
+};
+
+export default App;
+```
 
 ```jsx
 <TextArea placeholder="defaultValue" defaultValue="test defaultValue" />

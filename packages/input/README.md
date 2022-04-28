@@ -102,12 +102,33 @@ import { Input } from "@illa-design/input"
 
 ### Basic usage
 
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Input } from "@illa-design/input";
+
+const App = () => {
+  return <Input />;
+};
+
+export default App;
+```
+
 ```jsx
 <Input />
-<Input placeholder="test-disabled" disabled />
 ```
 
 ### Set input box's size
+
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Input } from "@illa-design/input";
+
+const App = () => {
+  return <Input variant="fill" size="small" />;
+};
+
+export default App;
+```
 
 ```jsx
 <Input variant="fill" size="small" />
@@ -115,15 +136,43 @@ import { Input } from "@illa-design/input"
 
 ### Set prefix and add-on
 
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Input } from "@illa-design/input";
+
+const App = () => {
+  return (
+    <Input
+      placeholder="variant-fill"
+      prefix={{ render: "prefix" }}
+      addonBefore={{ render: "addonBefore" }}
+    />
+  );
+};
+
+export default App;
+```
+
 ```jsx
 <Input
   placeholder="variant-fill"
-  prefix={"prefix"}
-  addonBefore={"addonBefore"}
+  prefix={{ render: "prefix" }}
+  addonBefore={{ render: "addonBefore" }}
 />
 ```
 
 ### Set default value and max length
+
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Input } from "@illa-design/input";
+
+const App = () => {
+  return <Input defaultValue="test maxLength" maxLength={4} />;
+};
+
+export default App;
+```
 
 ```jsx
 <Input defaultValue="test maxLength" maxLength={4} />
@@ -131,11 +180,33 @@ import { Input } from "@illa-design/input"
 
 ### Set word count
 
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Input } from "@illa-design/input";
+
+const App = () => {
+  return <Input placeholder="showCount" maxLength={4} showCount />;
+};
+
+export default App;
+```
+
 ```jsx
 <Input placeholder="showCount" maxLength={4} showCount />
 ```
 
 ### Set password input box
+
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Password } from "@illa-design/input";
+
+const App = () => {
+  return <Password placeholder="variant-fill" variant="fill" />;
+};
+
+export default App;
+```
 
 ```jsx
 <Password placeholder="variant-fill" variant="fill" />
@@ -143,11 +214,35 @@ import { Input } from "@illa-design/input"
 
 ### Set search input box
 
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { Search } from "@illa-design/input";
+
+const App = () => {
+  return <Search placeholder="variant-fill" variant="fill" />;
+};
+
+export default App;
+```
+
 ```jsx
 <Search placeholder="variant-fill" variant="fill" />
 ```
 
 ### Set text area input box
+
+```SnackPlayer dependencies=@illa-design/input
+import * as React from "react";
+import { TextArea } from "@illa-design/input";
+
+const App = () => {
+  return (
+    <TextArea placeholder="defaultValue" defaultValue="test defaultValue" />
+  );
+};
+
+export default App;
+```
 
 ```jsx
 <TextArea placeholder="defaultValue" defaultValue="test defaultValue" />
