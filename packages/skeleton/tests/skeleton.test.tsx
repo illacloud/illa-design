@@ -2,7 +2,7 @@ import { Skeleton } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
-test("Skeleton renders with 3 rows", () => {
+test("Skeleton should render with 3 rows", () => {
   render(<Skeleton data-testid="skeleton" />)
   expect(screen.getByTestId("skeleton").querySelectorAll("li")).toHaveLength(3)
 })
@@ -44,7 +44,7 @@ test("Skeleton renders with custom size image", () => {
   expect(screen.getByTestId("skeleton")).toMatchSnapshot()
 })
 
-test("Skeleton renders with visible:false, content should be visible", () => {
+test("Content should be visible when skeleton is invisible", () => {
   render(<Skeleton data-testid="skeleton" visible={false}>hello</Skeleton >)
   expect(screen.getByText("hello")).toBeVisible();
 })
