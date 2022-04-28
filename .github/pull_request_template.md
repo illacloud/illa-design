@@ -1,6 +1,6 @@
 ## 📝 Description
 
-> Add a brief description
+Add a brief description.
 
 ## 💣 Is this a breaking change (Yes/No):
 
@@ -9,8 +9,8 @@
 
 ## 🚧 How to migrate?
 
-> 
+Don't need.
 
 ## 📝 Additional Information
 
-> 
+lol

@@ -42,7 +42,7 @@ import { Cascader } from "@illa-design/cascader"
 
 | 参数名          | 描述                                   | 类型                                                  | 默认值 |
 | --------------- | :------------------------------------- | ----------------------------------------------------- | ------ |
-| filterOption    | 自定义搜索逻辑                         | (inputValue: string, option: NodeProps<T>) => boolean | -      |
+| filterOption    | 自定义搜索逻辑                         | `(inputValue: string, option: NodeProps<T>) => boolean` | -      |
 | onChange        | 当选择的值发生改变时的回调函数         | (value: any) => void                                  | -      |
 | onSearch        | 搜索时的回调                           | (inputValue: string) => void                          | -      |
 | onClear         | 点击清除输入时的回调                   | (visible: boolean) => void                            | -      |
