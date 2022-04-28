@@ -76,8 +76,8 @@ export function applyTextAreaContainer(stateValue: StateValue) {
     font-size: 14px;
     line-height: 22px;
     border-radius: 4px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${applyStatus(stateValue)}
   `
 }
@@ -92,7 +92,7 @@ export function applyTextAreaStyle() {
     line-height: 22px;
     min-height: 44px;
     height: 44px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     border-radius: 4px;
     border: 1px solid transparent;
     outline: unset;
@@ -102,7 +102,7 @@ export function applyTextAreaStyle() {
     overflow: auto;
 
     &::placeholder {
-      color: ${globalColor(`--${illaPrefix}-gray-04`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     }
   `
 }
@@ -112,7 +112,7 @@ export function applyPrefixCls() {
     margin-top: 4px;
     text-align: end;
     font-size: 14px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 

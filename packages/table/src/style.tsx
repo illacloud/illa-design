@@ -78,15 +78,15 @@ export function applyBorderStyle(
   let borderStyle: SerializedStyles = css()
   if (borderCell) {
     borderStyle = css`
-      border-left: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
-      border-right: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+      border-left: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     `
   }
   let stripedStyle: SerializedStyles = css()
   if (striped) {
     stripedStyle = css`
-      border-top: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
-      border-bottom: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+      border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     `
   }
   return css(borderStyle, stripedStyle)
@@ -96,8 +96,8 @@ export function applyThStyle(): SerializedStyles {
   return css`
     font-size: 14px;
     font-weight: bold;
-    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
@@ -105,7 +105,7 @@ export const applyNormalStyle: SerializedStyles = css`
   font-size: 14px;
   min-height: 22px;
   background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const applyFilterContainer = css`
@@ -149,7 +149,7 @@ export function applyTableStyle(
   bordered?: boolean,
 ): SerializedStyles {
   const border = css`
-    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 
   const commonStyle = css`

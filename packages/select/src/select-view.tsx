@@ -146,7 +146,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       <LoadingIcon
         spin
         css={css`
-          color: ${globalColor(`--${illaPrefix}-gray-07`)};
+          color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
         `}
       />
     ) : showSearch && popupVisible ? (

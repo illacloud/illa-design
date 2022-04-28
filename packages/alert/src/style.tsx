@@ -91,13 +91,13 @@ export function applyAlertTitle(hasContent: boolean): SerializedStyles {
       `
     : ``
   return css`
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${style}
   `
 }
 
 export const applyAlertContent = css`
-  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export function applyAlertCloseBtn(

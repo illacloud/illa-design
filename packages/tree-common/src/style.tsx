@@ -22,7 +22,7 @@ export function applyNodeTextColor(
 ): SerializedStyles {
   if (disabled) {
     return css`
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     `
   } else if (selected) {
     return css`
@@ -30,7 +30,7 @@ export function applyNodeTextColor(
     `
   }
   return css`
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
@@ -85,7 +85,7 @@ export function applyLeafIconCss(visible?: boolean): SerializedStyles {
     font-size: 12px;
     visibility: ${visible === true ? "visible" : "hidden"};
     margin-right: 4px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)}; ;
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}; ;
   `
 }
 export const switchIconCss = css`
@@ -97,7 +97,7 @@ export const switchIconCss = css`
   width: 10px;
   margin: 3px;
   &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
 `
 
@@ -111,13 +111,13 @@ export function applyNodeTextContainerCss(
   const hoverCss = !disabled
     ? css`
         &:hover {
-          background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+          background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
           cursor: pointer;
         }
       `
     : css`
         &:hover {
-          background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+          background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
           cursor: not-allowed;
         }
       `
@@ -153,7 +153,7 @@ export function applyIndentBlockCss(
     width: 16.5px;
     margin-left: 8px;
     border-left: solid 1px
-      ${requireDivider ? globalColor(`--${illaPrefix}-gray-08`) : "white"};
+      ${requireDivider ? globalColor(`--${illaPrefix}-grayBlue-08`) : "white"};
     box-sizing: border-box;
   `
 }

@@ -32,7 +32,7 @@ export function applyTitleStyle(size: DescriptionSize): SerializedStyles {
 
   return css`
     font-weight: bold;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     font-size: 16px;
     line-height: 24px;
     margin-bottom: ${marginBottom};
@@ -59,14 +59,14 @@ export function applyLabelStyle(
         return css`
           line-height: 22px;
           font-size: 14px;
-          color: ${globalColor(`--${illaPrefix}-gray-04`)};
-          background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+          color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+          background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
         `
       } else {
         return css`
           line-height: 22px;
           font-size: 14px;
-          color: ${globalColor(`--${illaPrefix}-gray-04`)};
+          color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
         `
       }
     case "vertical":
@@ -74,28 +74,28 @@ export function applyLabelStyle(
         return css`
           line-height: 22px;
           font-size: 14px;
-          background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-          color: ${globalColor(`--${illaPrefix}-gray-04`)};
+          background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+          color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
         `
       } else {
         return css`
           line-height: 22px;
           font-size: 14px;
-          color: ${globalColor(`--${illaPrefix}-gray-04`)};
+          color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
         `
       }
     case "inline-horizontal":
       return css`
         line-height: 22px;
         font-size: 14px;
-        color: ${globalColor(`--${illaPrefix}-gray-04`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
         margin-right: 16px;
       `
     case "inline-vertical":
       return css`
         line-height: 22px;
         font-size: 14px;
-        color: ${globalColor(`--${illaPrefix}-gray-04`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
         margin-bottom: 4px;
       `
   }
@@ -105,7 +105,7 @@ export function applyValueStyle(): SerializedStyles {
   return css`
     line-height: 22px;
     font-size: 14px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
@@ -160,7 +160,7 @@ export function applyBlockStyle(
   `
 
   const borderStyle = css`
-    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 
   if (bordered) {
@@ -180,7 +180,7 @@ export function applyTableStyle(
   bordered: boolean,
 ): SerializedStyles {
   const border = css`
-    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 
   const commonStyle = css`

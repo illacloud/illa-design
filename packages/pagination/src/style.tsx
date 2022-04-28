@@ -14,7 +14,7 @@ export const totalTextCss = css`
   height: 100%;
   font-size: 14px;
   margin-right: 8px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const jumperTitleCss = css`
@@ -44,7 +44,7 @@ export function applyJumperInputCss(size: PaginationSize, disable?: boolean) {
 
 export const simplePaginationSumCss = css`
   font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)}; ;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}; ;
 `
 
 export function applyCommonItemCss(
@@ -108,7 +108,7 @@ export function applyBackground(
   if (!disable && !selected) {
     return css`
       &:hover {
-        background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+        background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
       }
     `
   }
@@ -149,11 +149,11 @@ export function applyTextColor(
   if (!selected) {
     if (disabled) {
       return css`
-        color: ${globalColor(`--${illaPrefix}-gray-05`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
       `
     } else {
       return css`
-        color: ${globalColor(`--${illaPrefix}-gray-02`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
       `
     }
   } else {
@@ -190,7 +190,7 @@ export function applyPageSizeSelectorCss(
     if (!disabled) {
       return css`
         &:hover {
-          background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+          background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
         }
 
         &:active {
@@ -210,8 +210,8 @@ export function applyPageSizeSelectorCss(
     ${applySelectorSizeCss(size)}
     margin-left: 16px;
     border-width: 0;
-    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 
     ${applyTextColor(disabled)}
     ${applyCursor(disabled)}

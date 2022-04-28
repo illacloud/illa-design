@@ -301,7 +301,7 @@ describe("Upload", () => {
     )
     expect(screen.getByPlaceholderText("upload")).toBeInTheDocument()
     expect(screen.getByText("Upload")).toHaveStyle({
-      "background-color": "${globalColor(`--${illaPrefix}-gray-09`)}",
+      "background-color": "${globalColor(`--${illaPrefix}-grayBlue-09`)}",
     })
   })
 

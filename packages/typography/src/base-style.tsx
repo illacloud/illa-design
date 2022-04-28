@@ -87,7 +87,7 @@ export function applyFontContentStyle(
     finalCss = css`
       ${finalCss};
       cursor: not-allowed;
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
       user-select: none;
     `
   }
@@ -108,7 +108,7 @@ export function applyCopyableContainerSize(): SerializedStyles {
   return css`
     cursor: pointer;
     margin-left: 4px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
@@ -116,7 +116,7 @@ export const applyCopyableIconSize = css`
   cursor: pointer;
   font-size: 0.75em;
   margin-left: 4px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   display: inline-flex;
   align-items: center;
 `

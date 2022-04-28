@@ -13,7 +13,7 @@ export const titleCss = css`
   font-weight: 600;
   font-size: 14px;
   line-height: 22px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const subTitleCss = css`
@@ -21,7 +21,7 @@ export const subTitleCss = css`
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
-  color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 `
 
 export function applyIconContainer(status?: string): SerializedStyles {
@@ -59,7 +59,7 @@ export function applyIconContainer(status?: string): SerializedStyles {
       iconColor = css`
         width: 96px;
         height: 100%;
-        background-color: ${globalColor(`--${illaPrefix}-grayblue-09`)};
+        background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
         & > svg {
           width: 96px;
           height: 100%;
