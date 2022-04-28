@@ -66,5 +66,4 @@ test("System test isFunction function", () => {
     return "asyncFun"
   })
   expect(isPromise(asyncFun)).toEqual(true)
-  expect(isFunction(asyncFun)).toEqual(true)
 })
