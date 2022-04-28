@@ -57,7 +57,7 @@ export default App;
 
 ### 设置关闭按钮
 
-```SnackPlayer name=设置关闭按钮&description=设置关闭按钮&platform=web&supportedPlatforms=web&dependencies=@illa-design/alert,@illa-design/icon
+```SnackPlayer dependencies=@illa-design/alert,@illa-design/icon
 import React from 'react';
 import { Alert } from "@illa-design/alert";
 import { CloseIcon } from "@illa-design/icon"

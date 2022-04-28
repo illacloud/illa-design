@@ -43,6 +43,45 @@ import { Breadcrumb, BreadcrumbItem } from "@illa-design/breadcrumb"
 
 ### 基础用法
 
+```SnackPlayer dependencies=@illa-design/breadcrumb
+import React from 'react';
+import { Breadcrumb } from "@illa-design/breadcrumb";
+
+const App = () => {
+  const routes = [
+    {
+      path: "/",
+      breadcrumbName: "Home",
+    },
+    {
+      path: "/Channel",
+      breadcrumbName: "Channel",
+      children: [
+        {
+          path: "/users",
+          breadcrumbName: "Users",
+        },
+        {
+          path: "/permission",
+          breadcrumbName: "Permission",
+        },
+      ],
+    },
+    {
+      path: "/news",
+      breadcrumbName: "News",
+    },
+  ]
+
+  return (
+    <Breadcrumb routes={routes} />
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
 const routes = [
   {
@@ -73,11 +112,75 @@ const routes = [
 
 ### 自定义分隔符和大小
 
+```SnackPlayer dependencies=@illa-design/breadcrumb,@illa-design/icon
+import React from 'react';
+import { Breadcrumb } from "@illa-design/breadcrumb";
+import { RightIcon } from "@illa-design/icon";
+
+const App = () => {
+  const routes = [
+    {
+      path: "/",
+      breadcrumbName: "Home",
+    },
+    {
+      path: "/Channel",
+      breadcrumbName: "Channel",
+      children: [
+        {
+          path: "/users",
+          breadcrumbName: "Users",
+        },
+        {
+          path: "/permission",
+          breadcrumbName: "Permission",
+        },
+      ],
+    },
+    {
+      path: "/news",
+      breadcrumbName: "News",
+    },
+  ]
+
+  return (
+    <Breadcrumb routes={routes} separator={<RightIcon />} style={{ fontSize: 12 }}/>
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Breadcrumb routes={routes} separator={<RightIcon />} style={{ fontSize: 12 }}/>
+<Breadcrumb
+  routes={routes}
+  separator={<RightIcon />}
+  style={{ fontSize: 12 }}
+/>
 ```
 
 ### 设置最大渲染的面包屑数量
+
+```SnackPlayer dependencies=@illa-design/breadcrumb
+import React from 'react';
+import { Breadcrumb, BreadcrumbItem } from "@illa-design/breadcrumb";
+
+const App = () => {
+  return (
+    <Breadcrumb maxCount={2}>
+      <BreadcrumbItem>Home</BreadcrumbItem>
+      <BreadcrumbItem>Sub Home</BreadcrumbItem>
+      <BreadcrumbItem>All Channel</BreadcrumbItem>
+      <BreadcrumbItem>Channel</BreadcrumbItem>
+      <BreadcrumbItem>News</BreadcrumbItem>
+    </Breadcrumb>
+  );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Breadcrumb maxCount={2}>

@@ -33,7 +33,7 @@ import { Badge } from "@illa-design/badge"
 
 ### 基础用法
 
-```SnackPlayer name=基础用法&description=基础用法&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+```SnackPlayer dependencies=@illa-design/badge
 import React from 'react';
 import { Badge } from "@illa-design/badge";
 
@@ -53,7 +53,7 @@ export default App;
 
 ### 设置徽标的状态和文字
 
-```SnackPlayer name=设置徽标的状态和文字&description=设置徽标的状态和文字&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+```SnackPlayer dependencies=@illa-design/badge
 import React from 'react';
 import { Badge } from "@illa-design/badge";
 
@@ -73,7 +73,7 @@ export default App;
 
 ### 设置最大值
 
-```SnackPlayer name=设置最大值&description=设置最大值&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+```SnackPlayer dependencies=@illa-design/badge
 import React from 'react';
 import { Badge } from "@illa-design/badge";
 
@@ -93,7 +93,7 @@ export default App;
 
 ### 设置红点样式
 
-```SnackPlayer name=设置红点样式&description=设置红点样式&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+```SnackPlayer dependencies=@illa-design/badge
 import React from 'react';
 import { Badge } from "@illa-design/badge";
 
@@ -113,7 +113,7 @@ export default App;
 
 ### 设置徽标的位移
 
-```SnackPlayer name=设置徽标的位移&description=设置徽标的位移&platform=web&supportedPlatforms=web&dependencies=@illa-design/badge
+```SnackPlayer dependencies=@illa-design/badge
 import React from 'react';
 import { Badge } from "@illa-design/badge";
 

@@ -45,7 +45,7 @@ import { Anchor } from "@illa-design/anchor"
 
 ### 基础用法
 
-```SnackPlayer name=基础用法&description=基础用法&platform=web&supportedPlatforms=web&dependencies=@illa-design/anchor
+```SnackPlayer dependencies=@illa-design/anchor
 import React from 'react';
 import { Anchor } from "@illa-design/anchor";
 
@@ -65,7 +65,7 @@ export default App;
 
 ### 设置锚点链接
 
-```SnackPlayer name=设置锚点链接&description=设置锚点链接&platform=web&supportedPlatforms=web&dependencies=@illa-design/anchor
+```SnackPlayer dependencies=@illa-design/anchor
 import React from 'react';
 import { Anchor } from "@illa-design/anchor";
 

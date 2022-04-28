@@ -45,7 +45,7 @@ import { Anchor } from "@illa-design/anchor"
 
 ### Basic usage
 
-```SnackPlayer name=Basic usage&description=Basic usage&platform=web&supportedPlatforms=web&dependencies=@illa-design/anchor
+```SnackPlayer dependencies=@illa-design/anchor
 import React from 'react';
 import { Anchor } from "@illa-design/anchor";
 
@@ -65,7 +65,7 @@ export default App;
 
 ### Set Anchor link
 
-```SnackPlayer name=Set Anchor link&description=Set Anchor link&platform=web&supportedPlatforms=web&dependencies=@illa-design/anchor
+```SnackPlayer dependencies=@illa-design/anchor
 import React from 'react';
 import { Anchor } from "@illa-design/anchor";
 

@@ -18,39 +18,81 @@ import { Comment } from "@illa-design/comment"
 
 ### Comment Basic Properties
 
-| Props    | Desc                      | Type                                                         | Default |
-| -------- | ------------------------- | ------------------------------------------------------------ | ------- |
-| actions  | Actions list              | ReactNode                                                    | -       |
-| author   | Display as comment author | ReactNode                                                    | -       |
-| avatar   | Display as comment avatar | ReactNode                                                    | -       |
-| children | Children of comments      | ReactNode                                                    | -       |
-| content  | Comment content           | ReactNode                                                    | -       |
-| datetime | Datetime display          | ReactNode                                                    | -       |
+| Props    | Desc                      | Type                                                                             | Default |
+| -------- | ------------------------- | -------------------------------------------------------------------------------- | ------- |
+| actions  | Actions list              | ReactNode                                                                        | -       |
+| author   | Display as comment author | ReactNode                                                                        | -       |
+| avatar   | Display as comment avatar | ReactNode                                                                        | -       |
+| children | Children of comments      | ReactNode                                                                        | -       |
+| content  | Comment content           | ReactNode                                                                        | -       |
+| datetime | Datetime display          | ReactNode                                                                        | -       |
 | align    | Align method              | "left" \| "right" \| {datetime?: "left" \| "right";actions?: "left" \| "right";} | -       |
 
 ## Eaxample
 
 ### Basic usage
 
+```SnackPlayer dependencies=@illa-design/comment
+import React from 'react';
+import { Comment } from "@illa-design/comment"
+
+const App = () => {
+    return (
+      <Comment placeholder="comment" />
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Comment placeholder={"comment"} />
+<Comment placeholder="comment" />
 ```
 
 ### Set align
 
+```SnackPlayer dependencies=@illa-design/comment
+import React from 'react';
+import { Comment } from "@illa-design/comment"
+
+const App = () => {
+    return (
+      <Comment
+        placeholder="comment"
+        actions={<span>like</span>}
+        align="right"
+      />
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Comment
-  placeholder={"comment"}
-  actions={<span>like</span>}
-  align={"right"}
-/>
+<Comment placeholder="comment" actions={<span>like</span>} align="right" />
 ```
 
 ### Set author
 
+```SnackPlayer dependencies=@illa-design/comment
+import React from 'react';
+import { Comment } from "@illa-design/comment"
+
+const App = () => {
+    return (
+      <Comment
+        author={<span>ILLA</span>}
+        placeholder="comment"
+      />
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Comment
-  author={<span>ILLA</span>}
-  placeholder={"comment"}
-/>
+<Comment author={<span>ILLA</span>} placeholder="comment" />
 ```

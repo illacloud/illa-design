@@ -50,7 +50,7 @@ ButtonGroup can combine multiple buttons and setting the basic properties of mul
 
 ### Basic usage
 
-```SnackPlayer name=Set Button's size&description=Set Button's size&platform=web&supportedPlatforms=web&dependencies=@illa-design/button
+```SnackPlayer dependencies=@illa-design/button
 import React from 'react';
 import { Button } from "@illa-design/button";
 
@@ -70,7 +70,7 @@ export default App;
 
 ### Set Button's size
 
-```SnackPlayer name=Set Button's size&description=Set Button's size&platform=web&supportedPlatforms=web&dependencies=@illa-design/button
+```SnackPlayer dependencies=@illa-design/button
 import React from 'react';
 import { Button } from "@illa-design/button";
 
@@ -89,7 +89,6 @@ export default App;
 ```
 
 ```jsx
-<Button>Hello</Button>
 <Button size="small">Small</Button>
 <Button size="medium">Medium</Button>
 <Button size="large">Large</Button>
@@ -97,7 +96,7 @@ export default App;
 
 ### Set Button's variant and background color
 
-```SnackPlayer name=Set Button's size&description=Set Button's size&platform=web&supportedPlatforms=web&dependencies=@illa-design/button
+```SnackPlayer dependencies=@illa-design/button
 import React from 'react';
 import { Button } from "@illa-design/button";
 
@@ -112,13 +111,12 @@ export default App;
 ```
 
 ```jsx
-<Button>Hello</Button>
 <Button variant="outline" colorScheme="cyan">Hello</Button>
 ```
 
 ### Set Button's icons
 
-```SnackPlayer name=Set Button's size&description=Set Button's size&platform=web&supportedPlatforms=web&dependencies=@illa-design/button,@react-icons
+```SnackPlayer dependencies=@illa-design/button,react-icons,react-icons/bs
 import React from 'react';
 import { Button } from "@illa-design/button";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
@@ -134,13 +132,12 @@ export default App;
 ```
 
 ```jsx
-<Button>Hello</Button>
 <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
 ```
 
 ### Set Button's disabled status or loading status
 
-```SnackPlayer name=Set Button's size&description=Set Button's size&platform=web&supportedPlatforms=web&dependencies=@illa-design/button
+```SnackPlayer dependencies=@illa-design/button
 import React from 'react';
 import { Button } from "@illa-design/button";
 
@@ -158,14 +155,13 @@ export default App;
 ```
 
 ```jsx
-<Button>Hello</Button>
 <Button disabled>Hello</Button>
 <Button loading loadingText="Loading">Hello</Button>
 ```
 
 ### Set ButtonGroup's variant and spacing
 
-```SnackPlayer name=Set Button's size&description=Set Button's size&platform=web&supportedPlatforms=web&dependencies=@illa-design/button,@react-icons
+```SnackPlayer dependencies=@illa-design/button,react-icons,react-icons/bs
 import React from 'react';
 import { Button , ButtonGroup } from "@illa-design/button";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
