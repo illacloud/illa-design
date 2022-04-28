@@ -23,7 +23,7 @@ test("Alert renders with different type", () => {
   })
 })
 
-test("Alert renders with closeBtn&closeEvent", async () => {
+test("Alert renders with closeBtn and closeEvent", () => {
   const onCloseEvent = jest.fn()
   render(
     <Alert

@@ -1,0 +1,2681 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the slider styles in vertical or reverse Slider renders with reverse 1`] = `
+.emotion-0 {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  min-width: 22px;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-2 {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  position: relative;
+}
+
+.emotion-2::before {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background-color: #ebebeb;
+}
+
+.emotion-3 {
+  position: absolute;
+  height: 2px;
+  background-color: #ebebeb;
+  border-radius: 2px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.emotion-4 {
+  position: absolute;
+  width: 1px;
+  height: 3px;
+  background-color: #ebebeb;
+  top: 50%;
+  -webkit-transform: translate(50%, -100%);
+  -moz-transform: translate(50%, -100%);
+  -ms-transform: translate(50%, -100%);
+  transform: translate(50%, -100%);
+  margin-top: -1px;
+}
+
+.emotion-103 {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(50%, -50%);
+  -moz-transform: translate(50%, -50%);
+  -ms-transform: translate(50%, -50%);
+  transform: translate(50%, -50%);
+  font-size: 12px;
+}
+
+.emotion-104 {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid #ebebeb;
+}
+
+.emotion-109 {
+  position: absolute;
+  top: 12px;
+  width: 100%;
+}
+
+.emotion-110 {
+  position: absolute;
+  cursor: pointer;
+  -webkit-transform: translateX(50%);
+  -moz-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+  font-size: 14px;
+  font-weight: 1.57;
+  color: #1f1f1f;
+}
+
+.emotion-113 {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  -webkit-transform: translateX(50%);
+  -moz-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+  left: unset;
+  right: 0;
+  cursor: not-allowed;
+}
+
+.emotion-113::after {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border: 2px solid #ebebeb;
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  top: 0;
+}
+
+.emotion-113:hover::after {
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.24);
+}
+
+.emotion-114 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 20px;
+}
+
+.emotion-114 input {
+  text-align: center;
+}
+
+.emotion-115 {
+  position: relative;
+}
+
+.emotion-115:hover [title="inputStepEmbed"] {
+  visibility: visible;
+  opacity: 1;
+}
+
+.emotion-116 {
+  width: 100%;
+  position: relative;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  color: #1f1f1f;
+  border-color: #ebebeb;
+  height: 24px;
+  line-height: 18px;
+}
+
+.emotion-117 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  font-size: inherit;
+  line-height: inherit;
+  box-sizing: border-box;
+  color: #c2c2c2;
+  border: solid 1px #ebebeb;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  padding: 0 12px;
+  border-color: #ebebeb;
+  cursor: not-allowed;
+}
+
+.emotion-117:first-of-type {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.emotion-117:last-of-type {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.emotion-117:hover [title="InputClearIcon"] {
+  opacity: 1;
+}
+
+.emotion-118 {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  font-size: inherit;
+  font-family: inherit;
+  border-radius: 4px;
+  line-height: inherit;
+  color: #1f1f1f;
+  border: none;
+  outline: unset;
+  cursor: inherit;
+  background-color: inherit;
+  padding: 1px 4px;
+  text-align: start;
+}
+
+.emotion-118::-webkit-input-placeholder {
+  color: #999;
+}
+
+.emotion-118::-moz-placeholder {
+  color: #999;
+}
+
+.emotion-118:-ms-input-placeholder {
+  color: #999;
+}
+
+.emotion-118::placeholder {
+  color: #999;
+}
+
+.emotion-118:disabled {
+  cursor: not-allowed;
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled::-webkit-input-placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled::-moz-placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled:-ms-input-placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled::placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-119 {
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  opacity: 0;
+  position: absolute;
+  right: 2px;
+  font-size: 10px;
+}
+
+.emotion-120 {
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0 3px;
+  color: #999;
+  background-color: #f5f5f5;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+.emotion-120:hover {
+  cursor: pointer;
+  background-color: #e0e0e0;
+}
+
+.emotion-120:first-of-type {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.emotion-120:last-of-type {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.emotion-121 {
+  vertical-align: middle;
+}
+
+<div
+  class="emotion-0"
+  data-testid="reverse"
+>
+  <div
+    class="emotion-1"
+    role="wrapper"
+  >
+    <div
+      class="emotion-2"
+      role="road"
+    >
+      <div
+        class="emotion-3"
+        role="bar"
+        style="right: 0%; left: 100%;"
+      />
+      <div>
+        <div
+          class="emotion-4"
+          style="right: 1%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 2%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 3%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 4%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 5%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 6%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 7.000000000000001%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 8%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 9%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 10%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 11%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 12%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 13%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 14.000000000000002%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 15%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 16%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 17%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 18%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 19%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 20%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 21%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 22%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 23%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 24%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 25%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 26%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 27%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 28.000000000000004%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 28.999999999999996%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 30%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 31%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 32%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 33%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 34%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 35%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 36%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 37%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 38%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 39%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 40%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 41%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 42%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 43%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 44%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 45%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 46%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 47%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 48%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 49%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 50%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 51%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 52%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 53%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 54%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 55.00000000000001%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 56.00000000000001%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 56.99999999999999%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 57.99999999999999%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 59%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 60%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 61%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 62%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 63%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 64%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 65%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 66%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 67%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 68%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 69%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 70%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 71%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 72%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 73%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 74%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 75%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 76%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 77%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 78%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 79%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 80%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 81%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 82%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 83%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 84%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 85%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 86%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 87%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 88%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 89%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 90%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 91%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 92%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 93%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 94%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 95%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 96%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 97%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 98%;"
+        />
+        <div
+          class="emotion-4"
+          style="right: 99%;"
+        />
+      </div>
+      <div>
+        <div
+          class="emotion-103"
+          style="right: 0%; visibility: hidden;"
+        >
+          <div
+            class="emotion-104"
+          />
+        </div>
+        <div
+          class="emotion-103"
+          style="right: 5%;"
+        >
+          <div
+            class="emotion-104"
+          />
+        </div>
+        <div
+          class="emotion-103"
+          style="right: 10%;"
+        >
+          <div
+            class="emotion-104"
+          />
+        </div>
+      </div>
+      <div
+        class="emotion-109"
+      >
+        <div
+          class="emotion-110"
+          style="right: 0%;"
+        >
+          0km
+        </div>
+        <div
+          class="emotion-110"
+          style="right: 5%;"
+        >
+          5km
+        </div>
+        <div
+          class="emotion-110"
+          style="right: 10%;"
+        >
+          10km
+        </div>
+      </div>
+      <div
+        class="emotion-113"
+        role="button"
+        style="right: 0%;"
+      />
+    </div>
+    <div
+      class="emotion-114"
+      role="input-number"
+    >
+      <div
+        class="emotion-115 emotion-116"
+        style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
+      >
+        <span
+          class="emotion-117"
+        >
+          <input
+            class="emotion-118"
+            disabled=""
+            value="0"
+          />
+          <div
+            class="emotion-119"
+            title="inputStepEmbed"
+          >
+            <span
+              class="emotion-120"
+            >
+              <svg
+                class="emotion-121"
+                color="currentColor"
+                fill="none"
+                height="1em"
+                viewBox="0 0 12 12"
+                width="1em"
+              >
+                <title>
+                  UpIcon
+                </title>
+                <path
+                  clip-rule="evenodd"
+                  d="M2.24 8.3a.75.75 0 0 0 1.06-.04L6 5.352 8.7 8.26a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L2.2 7.24a.75.75 0 0 0 .04 1.06z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+            <span
+              class="emotion-120"
+            >
+              <svg
+                class="emotion-121"
+                color="currentColor"
+                fill="none"
+                height="1em"
+                viewBox="0 0 12 12"
+                width="1em"
+              >
+                <title>
+                  DownIcon
+                </title>
+                <path
+                  clip-rule="evenodd"
+                  d="M9.76 3.7a.75.75 0 0 0-1.06.04L6 6.648 3.3 3.74a.75.75 0 1 0-1.1 1.02l3.25 3.5a.75.75 0 0 0 1.1 0l3.25-3.5a.75.75 0 0 0-.04-1.06z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Test the slider styles in vertical or reverse Slider renders with vertical 1`] = `
+.emotion-0 {
+  display: inline-block;
+  width: 100%;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-2 {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  position: relative;
+  width: 12px;
+  max-width: 12px;
+  height: 100%;
+  min-height: 200px;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  margin-right: 0;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.emotion-2::before {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background-color: #ebebeb;
+  width: 2px;
+  height: 100%;
+  top: unset;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.emotion-3 {
+  position: absolute;
+  height: 2px;
+  background-color: #ebebeb;
+  border-radius: 2px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 2px;
+  height: unset;
+  top: unset;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.emotion-4 {
+  position: absolute;
+  width: 1px;
+  height: 3px;
+  background-color: #ebebeb;
+  top: 50%;
+  -webkit-transform: translate(1px, 50%);
+  -moz-transform: translate(1px, 50%);
+  -ms-transform: translate(1px, 50%);
+  transform: translate(1px, 50%);
+  margin-top: -1px;
+  width: 3px;
+  height: 1px;
+  top: unset;
+  margin-top: unset;
+  left: 50%;
+}
+
+.emotion-103 {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%, 50%);
+  -moz-transform: translate(-50%, 50%);
+  -ms-transform: translate(-50%, 50%);
+  transform: translate(-50%, 50%);
+  font-size: 12px;
+  top: unset;
+  left: 50%;
+}
+
+.emotion-104 {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid #ebebeb;
+}
+
+.emotion-109 {
+  position: absolute;
+  top: 12px;
+  width: 100%;
+  height: 100%;
+  left: 15px;
+  top: 0;
+}
+
+.emotion-110 {
+  position: absolute;
+  cursor: pointer;
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  transform: translateY(50%);
+  font-size: 14px;
+  font-weight: 1.57;
+  color: #1f1f1f;
+}
+
+.emotion-113 {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: unset;
+  bottom: 0;
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  transform: translateY(50%);
+  cursor: not-allowed;
+}
+
+.emotion-113::after {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border: 2px solid #ebebeb;
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  top: 0;
+}
+
+.emotion-113:hover::after {
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.24);
+}
+
+.emotion-114 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 0;
+}
+
+.emotion-114 input {
+  text-align: center;
+}
+
+.emotion-115 {
+  position: relative;
+}
+
+.emotion-115:hover [title="inputStepEmbed"] {
+  visibility: visible;
+  opacity: 1;
+}
+
+.emotion-116 {
+  width: 100%;
+  position: relative;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  color: #1f1f1f;
+  border-color: #ebebeb;
+  height: 24px;
+  line-height: 18px;
+}
+
+.emotion-117 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  font-size: inherit;
+  line-height: inherit;
+  box-sizing: border-box;
+  color: #c2c2c2;
+  border: solid 1px #ebebeb;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  padding: 0 12px;
+  border-color: #ebebeb;
+  cursor: not-allowed;
+}
+
+.emotion-117:first-of-type {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.emotion-117:last-of-type {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.emotion-117:hover [title="InputClearIcon"] {
+  opacity: 1;
+}
+
+.emotion-118 {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  font-size: inherit;
+  font-family: inherit;
+  border-radius: 4px;
+  line-height: inherit;
+  color: #1f1f1f;
+  border: none;
+  outline: unset;
+  cursor: inherit;
+  background-color: inherit;
+  padding: 1px 4px;
+  text-align: start;
+}
+
+.emotion-118::-webkit-input-placeholder {
+  color: #999;
+}
+
+.emotion-118::-moz-placeholder {
+  color: #999;
+}
+
+.emotion-118:-ms-input-placeholder {
+  color: #999;
+}
+
+.emotion-118::placeholder {
+  color: #999;
+}
+
+.emotion-118:disabled {
+  cursor: not-allowed;
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled::-webkit-input-placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled::-moz-placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled:-ms-input-placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled::placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-119 {
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  opacity: 0;
+  position: absolute;
+  right: 2px;
+  font-size: 10px;
+}
+
+.emotion-120 {
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0 3px;
+  color: #999;
+  background-color: #f5f5f5;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+.emotion-120:hover {
+  cursor: pointer;
+  background-color: #e0e0e0;
+}
+
+.emotion-120:first-of-type {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.emotion-120:last-of-type {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.emotion-121 {
+  vertical-align: middle;
+}
+
+<div
+  class="emotion-0"
+  data-testid="vertical"
+>
+  <div
+    class="emotion-1"
+    role="wrapper"
+  >
+    <div
+      class="emotion-2"
+      role="road"
+    >
+      <div
+        class="emotion-3"
+        role="bar"
+        style="bottom: 0%; top: 100%;"
+      />
+      <div>
+        <div
+          class="emotion-4"
+          style="bottom: 1%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 2%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 3%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 4%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 5%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 6%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 7.000000000000001%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 8%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 9%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 10%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 11%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 12%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 13%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 14.000000000000002%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 15%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 16%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 17%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 18%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 19%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 20%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 21%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 22%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 23%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 24%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 25%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 26%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 27%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 28.000000000000004%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 28.999999999999996%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 30%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 31%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 32%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 33%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 34%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 35%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 36%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 37%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 38%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 39%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 40%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 41%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 42%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 43%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 44%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 45%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 46%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 47%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 48%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 49%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 50%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 51%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 52%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 53%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 54%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 55.00000000000001%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 56.00000000000001%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 56.99999999999999%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 57.99999999999999%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 59%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 60%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 61%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 62%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 63%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 64%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 65%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 66%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 67%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 68%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 69%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 70%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 71%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 72%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 73%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 74%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 75%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 76%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 77%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 78%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 79%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 80%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 81%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 82%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 83%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 84%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 85%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 86%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 87%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 88%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 89%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 90%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 91%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 92%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 93%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 94%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 95%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 96%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 97%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 98%;"
+        />
+        <div
+          class="emotion-4"
+          style="bottom: 99%;"
+        />
+      </div>
+      <div>
+        <div
+          class="emotion-103"
+          style="bottom: 0%; visibility: hidden;"
+        >
+          <div
+            class="emotion-104"
+          />
+        </div>
+        <div
+          class="emotion-103"
+          style="bottom: 5%;"
+        >
+          <div
+            class="emotion-104"
+          />
+        </div>
+        <div
+          class="emotion-103"
+          style="bottom: 10%;"
+        >
+          <div
+            class="emotion-104"
+          />
+        </div>
+      </div>
+      <div
+        class="emotion-109"
+      >
+        <div
+          class="emotion-110"
+          style="bottom: 0%;"
+        >
+          0km
+        </div>
+        <div
+          class="emotion-110"
+          style="bottom: 5%;"
+        >
+          5km
+        </div>
+        <div
+          class="emotion-110"
+          style="bottom: 10%;"
+        >
+          10km
+        </div>
+      </div>
+      <div
+        class="emotion-113"
+        role="button"
+        style="bottom: 0%;"
+      />
+    </div>
+    <div
+      class="emotion-114"
+      role="input-number"
+    >
+      <div
+        class="emotion-115 emotion-116"
+        style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
+      >
+        <span
+          class="emotion-117"
+        >
+          <input
+            class="emotion-118"
+            disabled=""
+            value="0"
+          />
+          <div
+            class="emotion-119"
+            title="inputStepEmbed"
+          >
+            <span
+              class="emotion-120"
+            >
+              <svg
+                class="emotion-121"
+                color="currentColor"
+                fill="none"
+                height="1em"
+                viewBox="0 0 12 12"
+                width="1em"
+              >
+                <title>
+                  UpIcon
+                </title>
+                <path
+                  clip-rule="evenodd"
+                  d="M2.24 8.3a.75.75 0 0 0 1.06-.04L6 5.352 8.7 8.26a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L2.2 7.24a.75.75 0 0 0 .04 1.06z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+            <span
+              class="emotion-120"
+            >
+              <svg
+                class="emotion-121"
+                color="currentColor"
+                fill="none"
+                height="1em"
+                viewBox="0 0 12 12"
+                width="1em"
+              >
+                <title>
+                  DownIcon
+                </title>
+                <path
+                  clip-rule="evenodd"
+                  d="M9.76 3.7a.75.75 0 0 0-1.06.04L6 6.648 3.3 3.74a.75.75 0 1 0-1.1 1.02l3.25 3.5a.75.75 0 0 0 1.1 0l3.25-3.5a.75.75 0 0 0-.04-1.06z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Test the slider styles in vertical or reverse Slider renders with vertical and reverse 1`] = `
+.emotion-0 {
+  display: inline-block;
+  width: 100%;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-2 {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  position: relative;
+  width: 12px;
+  max-width: 12px;
+  height: 100%;
+  min-height: 200px;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  margin-right: 0;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.emotion-2::before {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background-color: #ebebeb;
+  width: 2px;
+  height: 100%;
+  top: unset;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.emotion-3 {
+  position: absolute;
+  height: 2px;
+  background-color: #ebebeb;
+  border-radius: 2px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 2px;
+  height: unset;
+  top: unset;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.emotion-4 {
+  position: absolute;
+  width: 1px;
+  height: 3px;
+  background-color: #ebebeb;
+  top: 50%;
+  -webkit-transform: translate(1px, -50%);
+  -moz-transform: translate(1px, -50%);
+  -ms-transform: translate(1px, -50%);
+  transform: translate(1px, -50%);
+  margin-top: -1px;
+  width: 3px;
+  height: 1px;
+  top: unset;
+  margin-top: unset;
+  left: 50%;
+}
+
+.emotion-103 {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  top: unset;
+  left: 50%;
+}
+
+.emotion-104 {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid #ebebeb;
+}
+
+.emotion-109 {
+  position: absolute;
+  top: 12px;
+  width: 100%;
+  height: 100%;
+  left: 15px;
+  top: 0;
+}
+
+.emotion-110 {
+  position: absolute;
+  cursor: pointer;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-weight: 1.57;
+  color: #1f1f1f;
+}
+
+.emotion-113 {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: unset;
+  bottom: 0;
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  transform: translateY(50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: unset;
+  right: 0;
+  cursor: not-allowed;
+}
+
+.emotion-113::after {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border: 2px solid #ebebeb;
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  top: 0;
+}
+
+.emotion-113:hover::after {
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.24);
+}
+
+.emotion-114 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 0;
+}
+
+.emotion-114 input {
+  text-align: center;
+}
+
+.emotion-115 {
+  position: relative;
+}
+
+.emotion-115:hover [title="inputStepEmbed"] {
+  visibility: visible;
+  opacity: 1;
+}
+
+.emotion-116 {
+  width: 100%;
+  position: relative;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  color: #1f1f1f;
+  border-color: #ebebeb;
+  height: 24px;
+  line-height: 18px;
+}
+
+.emotion-117 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  font-size: inherit;
+  line-height: inherit;
+  box-sizing: border-box;
+  color: #c2c2c2;
+  border: solid 1px #ebebeb;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  padding: 0 12px;
+  border-color: #ebebeb;
+  cursor: not-allowed;
+}
+
+.emotion-117:first-of-type {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.emotion-117:last-of-type {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.emotion-117:hover [title="InputClearIcon"] {
+  opacity: 1;
+}
+
+.emotion-118 {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  font-size: inherit;
+  font-family: inherit;
+  border-radius: 4px;
+  line-height: inherit;
+  color: #1f1f1f;
+  border: none;
+  outline: unset;
+  cursor: inherit;
+  background-color: inherit;
+  padding: 1px 4px;
+  text-align: start;
+}
+
+.emotion-118::-webkit-input-placeholder {
+  color: #999;
+}
+
+.emotion-118::-moz-placeholder {
+  color: #999;
+}
+
+.emotion-118:-ms-input-placeholder {
+  color: #999;
+}
+
+.emotion-118::placeholder {
+  color: #999;
+}
+
+.emotion-118:disabled {
+  cursor: not-allowed;
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled::-webkit-input-placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled::-moz-placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled:-ms-input-placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-118:disabled::placeholder {
+  color: #c2c2c2;
+}
+
+.emotion-119 {
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  opacity: 0;
+  position: absolute;
+  right: 2px;
+  font-size: 10px;
+}
+
+.emotion-120 {
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0 3px;
+  color: #999;
+  background-color: #f5f5f5;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+.emotion-120:hover {
+  cursor: pointer;
+  background-color: #e0e0e0;
+}
+
+.emotion-120:first-of-type {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.emotion-120:last-of-type {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.emotion-121 {
+  vertical-align: middle;
+}
+
+<div
+  class="emotion-0"
+  data-testid="reverse and vertical"
+>
+  <div
+    class="emotion-1"
+    role="wrapper"
+  >
+    <div
+      class="emotion-2"
+      role="road"
+    >
+      <div
+        class="emotion-3"
+        role="bar"
+        style="top: 0%; bottom: 100%;"
+      />
+      <div>
+        <div
+          class="emotion-4"
+          style="top: 1%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 2%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 3%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 4%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 5%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 6%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 7.000000000000001%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 8%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 9%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 10%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 11%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 12%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 13%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 14.000000000000002%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 15%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 16%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 17%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 18%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 19%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 20%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 21%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 22%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 23%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 24%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 25%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 26%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 27%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 28.000000000000004%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 28.999999999999996%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 30%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 31%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 32%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 33%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 34%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 35%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 36%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 37%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 38%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 39%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 40%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 41%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 42%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 43%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 44%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 45%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 46%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 47%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 48%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 49%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 50%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 51%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 52%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 53%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 54%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 55.00000000000001%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 56.00000000000001%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 56.99999999999999%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 57.99999999999999%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 59%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 60%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 61%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 62%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 63%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 64%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 65%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 66%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 67%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 68%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 69%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 70%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 71%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 72%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 73%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 74%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 75%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 76%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 77%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 78%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 79%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 80%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 81%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 82%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 83%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 84%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 85%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 86%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 87%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 88%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 89%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 90%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 91%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 92%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 93%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 94%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 95%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 96%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 97%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 98%;"
+        />
+        <div
+          class="emotion-4"
+          style="top: 99%;"
+        />
+      </div>
+      <div>
+        <div
+          class="emotion-103"
+          style="top: 0%; visibility: hidden;"
+        >
+          <div
+            class="emotion-104"
+          />
+        </div>
+        <div
+          class="emotion-103"
+          style="top: 5%;"
+        >
+          <div
+            class="emotion-104"
+          />
+        </div>
+        <div
+          class="emotion-103"
+          style="top: 10%;"
+        >
+          <div
+            class="emotion-104"
+          />
+        </div>
+      </div>
+      <div
+        class="emotion-109"
+      >
+        <div
+          class="emotion-110"
+          style="top: 0%;"
+        >
+          0km
+        </div>
+        <div
+          class="emotion-110"
+          style="top: 5%;"
+        >
+          5km
+        </div>
+        <div
+          class="emotion-110"
+          style="top: 10%;"
+        >
+          10km
+        </div>
+      </div>
+      <div
+        class="emotion-113"
+        role="button"
+        style="top: 0%;"
+      />
+    </div>
+    <div
+      class="emotion-114"
+      role="input-number"
+    >
+      <div
+        class="emotion-115 emotion-116"
+        style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
+      >
+        <span
+          class="emotion-117"
+        >
+          <input
+            class="emotion-118"
+            disabled=""
+            value="0"
+          />
+          <div
+            class="emotion-119"
+            title="inputStepEmbed"
+          >
+            <span
+              class="emotion-120"
+            >
+              <svg
+                class="emotion-121"
+                color="currentColor"
+                fill="none"
+                height="1em"
+                viewBox="0 0 12 12"
+                width="1em"
+              >
+                <title>
+                  UpIcon
+                </title>
+                <path
+                  clip-rule="evenodd"
+                  d="M2.24 8.3a.75.75 0 0 0 1.06-.04L6 5.352 8.7 8.26a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L2.2 7.24a.75.75 0 0 0 .04 1.06z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+            <span
+              class="emotion-120"
+            >
+              <svg
+                class="emotion-121"
+                color="currentColor"
+                fill="none"
+                height="1em"
+                viewBox="0 0 12 12"
+                width="1em"
+              >
+                <title>
+                  DownIcon
+                </title>
+                <path
+                  clip-rule="evenodd"
+                  d="M9.76 3.7a.75.75 0 0 0-1.06.04L6 6.648 3.3 3.74a.75.75 0 1 0-1.1 1.02l3.25 3.5a.75.75 0 0 0 1.1 0l3.25-3.5a.75.75 0 0 0-.04-1.06z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

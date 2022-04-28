@@ -1,5 +1,4 @@
 import { forwardRef, useState, useCallback, useLayoutEffect } from "react"
-
 import {
   MessageComponent,
   MessageProps,
@@ -180,8 +179,8 @@ Message.config = (options: ConfigProps = {}) => {
   if (options.maxCount) {
     maxCount = options.maxCount
   }
-  if (options.duration && isFinite(options.duration)) {
-    duration = options.duration as number
+  if (options.duration !== void 0 && isFinite(options.duration)) {
+    duration = options.duration
   }
   if (options.getContainer && options.getContainer() !== container) {
     container = options.getContainer()

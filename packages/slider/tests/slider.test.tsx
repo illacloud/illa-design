@@ -12,3 +12,60 @@ test("Slider renders with normal", () => {
     "min-width": "22px",
   })
 })
+
+describe("Test the slider styles in vertical or reverse", () => {
+  test("Slider renders with vertical", () => {
+    render(
+      <Slider
+        marks={{
+          0: "0km",
+          5: "5km",
+          10: "10km",
+        }}
+        data-testid={"vertical"}
+        showTicks
+        showInput
+        vertical
+        disabled
+      />,
+    )
+    expect(screen.getByTestId("vertical")).toMatchSnapshot()
+  })
+
+  test("Slider renders with reverse", () => {
+    render(
+      <Slider
+        marks={{
+          0: "0km",
+          5: "5km",
+          10: "10km",
+        }}
+        data-testid={"reverse"}
+        showTicks
+        showInput
+        reverse
+        disabled
+      />,
+    )
+    expect(screen.getByTestId("reverse")).toMatchSnapshot()
+  })
+
+  test("Slider renders with vertical and reverse", () => {
+    render(
+      <Slider
+        marks={{
+          0: "0km",
+          5: "5km",
+          10: "10km",
+        }}
+        data-testid={"reverse and vertical"}
+        showTicks
+        showInput
+        reverse
+        vertical
+        disabled
+      />,
+    )
+    expect(screen.getByTestId("reverse and vertical")).toMatchSnapshot()
+  })
+})
