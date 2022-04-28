@@ -102,7 +102,7 @@ it("BackTop should render in target", () => {
     <div style={{ position: "relative" }}>
       <BackTop
         className="backtop"
-        target={() => document.getElementById("target")}
+        target={() => document.getElementById("target") as HTMLElement}
         style={{ position: "absolute" }}
       ></BackTop>
       <div
