@@ -48,7 +48,7 @@ export const DefaultPopup = <T extends OptionProps>(
 
   const options = store.getOptions()
 
-  const onClickOption = async (option: any) => {
+  const onClickOption = async (option: Node<T>) => {
     if (!option || option.disabled) {
       return
     }
@@ -58,7 +58,7 @@ export const DefaultPopup = <T extends OptionProps>(
     }
   }
 
-  const onMultipleChecked = (option: any, checked: boolean) => {
+  const onMultipleChecked = (option: Node<T>, checked: boolean) => {
     // props.value may contain selected values for which there is no corresponding option
     const beforeCheckedNodes = store
       .getCheckedNodes()
