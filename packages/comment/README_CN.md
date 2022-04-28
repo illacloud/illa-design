@@ -32,25 +32,74 @@ import { Comment } from "@illa-design/comment"
 
 ### 基础用法
 
+```SnackPlayer dependencies=@illa-design/comment
+import React from 'react';
+import { Comment } from "@illa-design/comment"
+
+const App = () => {
+    return (
+      <Comment placeholder="comment" />
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Comment placeholder={"comment"} />
+<Comment placeholder="comment" />
 ```
 
 ### 设置对齐
 
+```SnackPlayer dependencies=@illa-design/comment
+import React from 'react';
+import { Comment } from "@illa-design/comment"
+
+const App = () => {
+    return (
+      <Comment
+        placeholder="comment"
+        actions={<span>like</span>}
+        align="right"
+      />
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
 <Comment
-  placeholder={"comment"}
+  placeholder="comment"
   actions={<span>like</span>}
-  align={"right"}
+  align="right"
 />
 ```
 
 ### 设置显示作者
 
+```SnackPlayer dependencies=@illa-design/comment
+import React from 'react';
+import { Comment } from "@illa-design/comment"
+
+const App = () => {
+    return (
+      <Comment
+        author={<span>ILLA</span>}
+        placeholder="comment"
+      />
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
 <Comment
   author={<span>ILLA</span>}
-  placeholder={"comment"}
+  placeholder="comment"
 />
 ```

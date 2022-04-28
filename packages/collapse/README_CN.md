@@ -36,25 +36,58 @@ import { Collapse } from "@illa-design/collapse"
 
 ### Collapse-item 基础属性
 
-| Props          | Desc                                                         | Type            | Default |
-| -------------- | ------------------------------------------------------------ | --------------- | ------- |
-| header         | 折叠面板头部内容，允许自定义                                 | React.ReactNode | -       |
-| name           | 对应 activeKey，当前面板组件的的唯一标识                     | string          | -       |
-| disabled       | 是否禁用                                                     | boolean         | -       |
-| expandIcon     | 自定义展开图标                                               | ReactNode       | -       |
-| showExpandIcon | 是否展示展开按钮                                             | boolean         | true    |
-| extra          | 额外节点                                                     | ReactNode       | -       |
+| Props          | Desc                                                           | Type            | Default |
+| -------------- | -------------------------------------------------------------- | --------------- | ------- |
+| header         | 折叠面板头部内容，允许自定义                                   | React.ReactNode | -       |
+| name           | 对应 activeKey，当前面板组件的的唯一标识                       | string          | -       |
+| disabled       | 是否禁用                                                       | boolean         | -       |
+| expandIcon     | 自定义展开图标                                                 | ReactNode       | -       |
+| showExpandIcon | 是否展示展开按钮                                               | boolean         | true    |
+| extra          | 额外节点                                                       | ReactNode       | -       |
 | destroyOnHide  | 面板被折叠时是否销毁节点，优先级高于 Collapse 的 destroyOnHide | boolean         | -       |
 
 ## 使用方法
 
 ### 基础用法
 
+```SnackPlayer dependencies=@illa-design/collapse
+import React from 'react';
+import { Collapse , CollapseItem } from "@illa-design/collapse"
+
+const App = () => {
+    return (
+      <Collapse style={{ maxWidth: 1260, marginBottom: 20 }} {...props}>
+        <CollapseItem
+          header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
+          name="1"
+        >
+          Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
+        </CollapseItem>
+
+        <CollapseItem
+          header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
+          name="2"
+          disabled
+        >
+          Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
+        </CollapseItem>
+
+        <CollapseItem
+          header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
+          name="3"
+        >
+          Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
+        </CollapseItem>
+      </Collapse>
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Collapse
-  style={{ maxWidth: 1260, marginBottom: 20 }}
- {...props}
->
+<Collapse style={{ maxWidth: 1260, marginBottom: 20 }} {...props}>
   <CollapseItem
     header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
     name="1"

@@ -35,11 +35,11 @@ import { Affix } from "@illa-design/affix"
 
 ### 基础用法
 
-```SnackPlayer name=Basic Usage&description=Basic Usage with Affix&platform=web&supportedPlatforms=web&dependencies=@illa-design/affix
+```SnackPlayer dependencies=@illa-design/affix
 import React from 'react';
 import { Affix } from "@illa-design/affix";
 
-const Basic = () => {
+const App = () => {
     return (
      <Affix>
         <span>Hello</span>
@@ -47,7 +47,7 @@ const Basic = () => {
     );
 }
 
-export default Basic;
+export default App;
 
 ```
 

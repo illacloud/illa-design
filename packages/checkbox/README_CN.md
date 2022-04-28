@@ -46,11 +46,39 @@ import { Checkbox } from "@illa-design/checkbox"
 
 ### 基础用法
 
+```SnackPlayer dependencies=@illa-design/checkbox
+import React from 'react';
+import { Checkbox } from "@illa-design/checkbox"
+
+const App = () => {
+    return (
+      <Checkbox>Hello</Checkbox>
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
 <Checkbox>Hello</Checkbox>
 ```
 
 ### 设置禁用状态
+
+```SnackPlayer dependencies=@illa-design/checkbox
+import React from 'react';
+import { Checkbox } from "@illa-design/checkbox"
+
+const App = () => {
+    return (
+      <Checkbox disabled>Hello</Checkbox>
+    );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Checkbox disabled>Hello</Checkbox>
@@ -58,12 +86,39 @@ import { Checkbox } from "@illa-design/checkbox"
 
 ### 设置选中受控状态
 
-```jsx
-<Checkbox checked>Hello</Checkbox>
+```SnackPlayer dependencies=@illa-design/checkbox
+import React from 'react';
+import { Checkbox } from "@illa-design/checkbox"
+
+const App = () => {
+    return (
+      <Checkbox checked>Hello</Checkbox>
+    );
+}
+
+export default App;
 
 ```
 
+```jsx
+<Checkbox checked>Hello</Checkbox>
+```
+
 ### 设置多选项
+
+```SnackPlayer dependencies=@illa-design/checkbox
+import React from 'react';
+import { CheckboxGroup } from "@illa-design/checkbox"
+
+const App = () => {
+    return (
+      <CheckboxGroup options={["A", "B", "C"]} />
+    );
+}
+
+export default App;
+
+```
 
 ```jsx
 <CheckboxGroup options={["A", "B", "C"]} />
@@ -71,11 +126,39 @@ import { Checkbox } from "@illa-design/checkbox"
 
 ### 设置默认选中项
 
+```SnackPlayer dependencies=@illa-design/checkbox
+import React from 'react';
+import { CheckboxGroup } from "@illa-design/checkbox"
+
+const App = () => {
+    return (
+      <CheckboxGroup options={["A", "B", "C"]} defaultValue={["A"]} />
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
 <CheckboxGroup options={["A", "B", "C"]} defaultValue={["A"]} />
 ```
 
 ### 设置多选项垂直排列
+
+```SnackPlayer dependencies=@illa-design/checkbox
+import React from 'react';
+import { CheckboxGroup } from "@illa-design/checkbox"
+
+const App = () => {
+    return (
+      <CheckboxGroup options={["A", "B", "C"]} direction="vertical" />
+    );
+}
+
+export default App;
+
+```
 
 ```jsx
 <CheckboxGroup options={["A", "B", "C"]} direction="vertical" />

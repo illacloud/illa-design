@@ -50,6 +50,20 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 
 ### 基础用法
 
+```SnackPlayer dependencies=@illa-design/button
+import React from 'react';
+import { Button } from "@illa-design/button";
+
+const App = () => {
+    return (
+     <Button>Hello</Button>
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
 <Button>Hello</Button>
 ```
@@ -58,8 +72,25 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 
 通过size这个接口可以调整组件的大小。
 
+```SnackPlayer dependencies=@illa-design/button
+import React from 'react';
+import { Button } from "@illa-design/button";
+
+const App = () => {
+    return (
+      <>
+        <Button size="small">Small</Button>
+        <Button size="medium">Medium</Button>
+        <Button size="large">Large</Button>
+      </>
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Button>Hello</Button>
 <Button size="small">Small</Button>
 <Button size="medium">Medium</Button>
 <Button size="large">Large</Button>
@@ -69,8 +100,21 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 
 通过variant这个接口可以调整组件的样式,通过colorScheme个接口可以调整组件的背景颜色。
 
+```SnackPlayer dependencies=@illa-design/button
+import React from 'react';
+import { Button } from "@illa-design/button";
+
+const App = () => {
+    return (
+      <Button variant="outline" colorScheme="cyan">Hello</Button>
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Button>Hello</Button>
 <Button variant="outline" colorScheme="cyan">Hello</Button>
 ```
 
@@ -78,8 +122,22 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 
 通过leftIcon 和 rightIcon 这两个接口可以分别设置按钮左侧的icon和右侧的icon。
 
+```SnackPlayer dependencies=@illa-design/button,react-icons,react-icons/bs
+import React from 'react';
+import { Button } from "@illa-design/button";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
+
+const App = () => {
+    return (
+      <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Button>Hello</Button>
 <Button variant="fill" colorScheme="red" leftIcon={<BsArrowLeft />} rightIcon={<BsArrowRight />}>Hello</Button>
 ```
 
@@ -87,8 +145,24 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 
 通过disabled和loading这两个接口可以分别设置按钮组件的禁用状态和加载状态。
 
+```SnackPlayer dependencies=@illa-design/button
+import React from 'react';
+import { Button } from "@illa-design/button";
+
+const App = () => {
+    return (
+      <>
+        <Button disabled>Hello</Button>
+        <Button loading loadingText="Loading">Hello</Button>
+      </>
+    );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Button>Hello</Button>
 <Button disabled>Hello</Button>
 <Button loading loadingText="Loading">Hello</Button>
 ```
@@ -96,6 +170,32 @@ ButtonGroup 可以使多个Button组合起来，除了可以统一设置多个Bu
 ### 设置多个按钮样式和间隙
 
 通过ButtonGroup这组件可以统一设置多个按钮组件的样式以及间隙。
+
+```SnackPlayer dependencies=@illa-design/button,react-icons,react-icons/bs
+import React from 'react';
+import { Button , ButtonGroup } from "@illa-design/button";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
+
+const App = () => {
+    return (
+      <>
+        <ButtonGroup variant="outline" spacing="5px">
+          <Button>Hello</Button>
+            <Button disabled>Hello</Button>
+            <Button loading loadingText="Loading">Hello</Button>
+          </ButtonGroup>
+        <ButtonGroup variant="outline" attached>
+          <Button leftIcon={<BsArrowLeft />} />
+          <Button>Hello</Button>
+          <Button rightIcon={<BsArrowRight />} />
+        </ButtonGroup>
+      </>
+    );
+}
+
+export default App;
+
+```
 
 ```jsx
 <ButtonGroup variant="outline" spacing="5px">

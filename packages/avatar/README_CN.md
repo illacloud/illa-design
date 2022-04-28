@@ -46,7 +46,7 @@ import { Avatar } from "@illa-design/avatar"
 
 ### 基础用法
 
-```SnackPlayer name=基础用法&description=基础用法&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 
@@ -66,7 +66,7 @@ export default App;
 
 ### 设置头像大小
 
-```SnackPlayer name=设置头像大小&description=设置头像大小&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 
@@ -86,7 +86,7 @@ export default App;
 
 ### 设置头像的形状和颜色
 
-```SnackPlayer name=设置头像的形状和颜色&description=设置头像的形状和颜色&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 
@@ -108,7 +108,7 @@ export default App;
 
 ### 设置头像的图标
 
-```SnackPlayer name=设置头像的图标&description=设置头像的图标&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar,@illa-design/icon
+```SnackPlayer dependencies=@illa-design/avatar,@illa-design/icon
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 import { CloseIcon } from "@illa-design/icon";
@@ -129,7 +129,7 @@ export default App;
 
 ### 设置头像的图片
 
-```SnackPlayer name=设置头像的图片&description=设置头像的图片&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 
@@ -149,7 +149,7 @@ export default App;
 
 ### 设置头像的文字
 
-```SnackPlayer name=设置头像的文字&description=设置头像的文字&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar } from "@illa-design/avatar";
 
@@ -169,7 +169,7 @@ export default App;
 
 ### 设置头像组最多展示的头像数量
 
-```SnackPlayer name=设置头像组最多展示的头像数量&description=设置头像组最多展示的头像数量&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+```SnackPlayer dependencies=@illa-design/avatar
 import React from 'react';
 import { Avatar , AvatarGroup } from "@illa-design/avatar";
 
