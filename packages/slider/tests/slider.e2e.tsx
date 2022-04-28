@@ -169,25 +169,21 @@ it("Slider renders with input-number", () => {
 it("Slider renders with range input-number", () => {
   mount(<RangeSlider vertical showInput />)
   cy.findByDisplayValue("0").should("exist")
-  // Find the left input-number and increase the number from 0 to 2.
-  cy.findByRole("input-number")
+  const leftInput = cy
+    .findByRole("input-number")
     .children("div:first-of-type")
     .children()
     .children("div:first-of-type")
     .children("span:first-of-type")
-    .click()
-    .click()
+  leftInput.click().click()
   cy.findByDisplayValue("2").should("exist")
-  // Find the right input-number and decrease the number from 5 to 1.
-  cy.findByRole("input-number")
+  const rightInput = cy
+    .findByRole("input-number")
     .children("div:last-of-type")
     .children()
     .children("div:first-of-type")
     .children("span:last-of-type")
-    .click()
-    .click()
-    .click()
-    .click()
+  rightInput.click().click().click().click()
   cy.findByDisplayValue("1").should("exist")
   unmount()
 })
