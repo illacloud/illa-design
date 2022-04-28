@@ -1,7 +1,6 @@
 import { Collapse } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import React from "react"
 import { CollapseProps } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { ShareIcon } from "@illa-design/icon"

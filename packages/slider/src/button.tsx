@@ -1,4 +1,4 @@
-import React, { memo, useRef, useMemo, SyntheticEvent } from "react"
+import { memo, useRef, useMemo, SyntheticEvent } from "react"
 import { Trigger } from "@illa-design/trigger"
 import { useMergeValue, isServerRendering } from "@illa-design/system"
 import { SliderButtonProps } from "./interface"

@@ -1,5 +1,5 @@
 import { Countdown } from "../src"
-import { render, screen, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 test("Countdown renders with title", () => {

@@ -1,6 +1,5 @@
 import { Message } from "../src"
 import { mount, unmount } from "@cypress/react"
-import * as React from "react"
 import "@testing-library/cypress"
 
 it("Message renders with duration", () => {

@@ -3,7 +3,7 @@ import React from "react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
-function DemoTest(args: SliderProps) {
+function NormalSlider(args: SliderProps) {
   const [value, setValue] = React.useState(0)
   return (
     <>
@@ -20,7 +20,7 @@ function DemoTest(args: SliderProps) {
   )
 }
 
-function DemoMarkTest(args: SliderProps) {
+function MarkSlider(args: SliderProps) {
   const [value, setValue] = React.useState(0)
   return (
     <>
@@ -43,7 +43,7 @@ function DemoMarkTest(args: SliderProps) {
   )
 }
 
-function DemoRangeTest(args: SliderProps) {
+function RangeSlider(args: SliderProps) {
   const [value, setValue] = React.useState([0, 5])
   return (
     <Slider
@@ -61,14 +61,14 @@ function DemoRangeTest(args: SliderProps) {
 }
 
 it("Slider renders with correctly", () => {
-  mount(<DemoTest reverse vertical showTicks />)
+  mount(<NormalSlider reverse vertical showTicks />)
   cy.findByTestId("normal").should("exist")
   unmount()
 })
 
 it("Slider renders with afterChangeEvent", () => {
   const afterChangeEvent = cy.stub().as("afterChangeEvent")
-  mount(<DemoTest onAfterChange={afterChangeEvent} />)
+  mount(<NormalSlider onAfterChange={afterChangeEvent} />)
   cy.findByRole("button")
     .trigger("mousedown")
     .then(() => {
@@ -80,7 +80,7 @@ it("Slider renders with afterChangeEvent", () => {
 })
 
 it("Slider renders with slides exactly", () => {
-  mount(<DemoTest />)
+  mount(<NormalSlider />)
   cy.findByRole("button")
     .trigger("mouseover")
     .then(() => {
@@ -92,12 +92,11 @@ it("Slider renders with slides exactly", () => {
       cy.findByTestId("normal").trigger("mousemove", "right")
       cy.findByText("100").should("exist")
     })
-    .trigger("mouseup")
   unmount()
 })
 
 it("Slider renders with marks", () => {
-  mount(<DemoMarkTest showTicks onlyMarkValue />)
+  mount(<MarkSlider showTicks onlyMarkValue />)
   cy.findByTestId("mark").should("exist")
   cy.findByText("0km").should("exist")
   cy.findByText("5km").should("exist")
@@ -114,33 +113,47 @@ it("Slider renders with marks", () => {
     .click()
   cy.findByRole("road").trigger("mousedown", 50, 0)
   cy.findByText("0").should("exist")
-  cy.findByRole("road").trigger("mouseup")
   unmount()
 })
 
-it("Slider renders with range drag bar", () => {
-  mount(<DemoRangeTest />)
+it("Slider renders with range and drag bar", () => {
+  mount(<RangeSlider />)
   cy.findByRole("bar")
     .should("exist")
     .trigger("mousedown")
     .trigger("mousemove", { clientX: 400 })
+    .trigger("mouseup")
+
   cy.findByRole("road")
     .children("div:nth-of-type(3)")
     .trigger("mouseover")
     .then(() => {
       cy.findByText("10").should("exist")
     })
-    .trigger("mouseleave")
+
+  unmount()
+})
+
+it("Slider renders with range and drag left button", () => {
+  mount(<RangeSlider />)
   cy.findByRole("road")
     .children("div:nth-of-type(2)")
     .trigger("mouseover")
+    .then(() => {
+      cy.findByText("0").should("exist")
+    })
+  cy.findByRole("road")
+    .children("div:nth-of-type(2)")
     .trigger("mousedown")
-    .trigger("mousemove", { clientX: 0 })
+    .then(() => {
+      cy.findByTestId("range").trigger("mousemove", "right")
+      cy.findByText("5").should("exist")
+    })
   unmount()
 })
 
 it("Slider renders with input-number", () => {
-  mount(<DemoTest showInput />)
+  mount(<NormalSlider showInput />)
   cy.findByDisplayValue("0").should("exist")
   cy.findByRole("input-number")
     .children()
@@ -154,8 +167,9 @@ it("Slider renders with input-number", () => {
 })
 
 it("Slider renders with range input-number", () => {
-  mount(<DemoRangeTest vertical showInput />)
+  mount(<RangeSlider vertical showInput />)
   cy.findByDisplayValue("0").should("exist")
+  // Find the left input-number and increase the number from 0 to 2.
   cy.findByRole("input-number")
     .children("div:first-of-type")
     .children()
@@ -164,6 +178,7 @@ it("Slider renders with range input-number", () => {
     .click()
     .click()
   cy.findByDisplayValue("2").should("exist")
+  // Find the right input-number and decrease the number from 5 to 1.
   cy.findByRole("input-number")
     .children("div:last-of-type")
     .children()
@@ -178,7 +193,7 @@ it("Slider renders with range input-number", () => {
 })
 
 it("Slider renders with vertical move", () => {
-  mount(<DemoRangeTest vertical showTicks />)
+  mount(<RangeSlider vertical showTicks />)
   cy.findByRole("bar")
     .should("exist")
     .trigger("mousedown")
@@ -189,6 +204,5 @@ it("Slider renders with vertical move", () => {
     .then(() => {
       cy.findByText("0").should("exist")
     })
-    .trigger("mouseleave")
   unmount()
 })

@@ -1,5 +1,4 @@
 import { Collapse, CollapseProps } from "../src"
-import React from "react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 

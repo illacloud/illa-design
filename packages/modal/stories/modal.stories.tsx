@@ -6,7 +6,6 @@ import { Button } from "@illa-design/button"
 import { Input } from "@illa-design/input"
 import { Message } from "@illa-design/message"
 import { InfoCircleIcon, SuccessIcon } from "@illa-design/icon"
-
 import { ConfigProvider, zhCN, enUS } from "@illa-design/config-provider"
 
 export default {

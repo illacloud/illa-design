@@ -14,7 +14,7 @@ const loremIpsum = Array(50)
 const TestBackTop = (props: BackTopProps) => {
   return (
     <>
-      <BackTop className="backtop" {...props}></BackTop>
+      <BackTop className="backtop" {...props} />
       <div>{loremIpsum}</div>
     </>
   )
@@ -104,7 +104,7 @@ it("BackTop should render in target", () => {
         className="backtop"
         target={() => document.getElementById("target")}
         style={{ position: "absolute" }}
-      ></BackTop>
+      />
       <div
         id="target"
         style={{

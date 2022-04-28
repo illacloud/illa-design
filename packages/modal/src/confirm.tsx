@@ -1,4 +1,3 @@
-import React from "react"
 import ReactDOM from "react-dom"
 import { Modal } from "./modal"
 import { ConfirmProps, ModalReturnProps } from "./interface"
@@ -42,6 +41,8 @@ export const normalizeConfig = (_config: ConfirmProps): ConfirmProps => {
         case "error":
           icon = <ErrorIcon />
           break
+        default:
+          console.warn("The notice type is illegal")
       }
     }
     _config.title = (
