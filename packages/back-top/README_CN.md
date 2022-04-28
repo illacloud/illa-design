@@ -30,18 +30,82 @@ import { Backtop } from "@illa-design/backtop"
 
 ### 基础用法
 
+```SnackPlayer name=基础用法&description=基础用法&platform=web&supportedPlatforms=web&dependencies=@illa-design/backtop
+import React from 'react';
+import { Backtop } from "@illa-design/backtop";
+
+const App = () => {
+  return (
+    <Backtop />
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
 <Backtop />
 ```
 
 ### 设置返回顶部按钮高度
 
+```SnackPlayer name=设置返回顶部按钮高度&description=设置返回顶部按钮高度&platform=web&supportedPlatforms=web&dependencies=@illa-design/backtop
+import React from 'react';
+import { Backtop } from "@illa-design/backtop";
+
+const App = () => {
+  const loremIpsum = Array(50)
+  .fill(0)
+  .map(
+    () =>
+      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+  )
+  .join("\n");
+
+  return (
+    <>
+      <BackTop visibleHeight={400} />
+      <div>{loremIpsum}</div>
+    </>
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
-<TestBackTop visibleHeight={400} />
+<BackTop visibleHeight={400} />
 ```
 
 ### 设置滚动到顶部的时间
 
+```SnackPlayer name=设置滚动到顶部的时间&description=设置滚动到顶部的时间&platform=web&supportedPlatforms=web&dependencies=@illa-design/backtop
+import React from 'react';
+import { Backtop } from "@illa-design/backtop";
+
+const App = () => {
+  const loremIpsum = Array(50)
+  .fill(0)
+  .map(
+    () =>
+      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+  )
+  .join("\n");
+
+  return (
+    <>
+      <BackTop duration={400} />
+      <div>{loremIpsum}</div>
+    </>
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
-<TestBackTop duration={400} />
+<BackTop duration={400} />
 ```
