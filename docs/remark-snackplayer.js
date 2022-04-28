@@ -43,7 +43,7 @@ function SnackPlayer() {
                 const encodedSampleCode = encodeURIComponent(sampleCode);
                 const platform = "web";
                 const supportedPlatforms = "web"
-                const dependencies = "@illa-design/react"
+                const dependencies = params.dependencies ? params.dependencies : "@illa-design/react"
                 const theme = params.theme ? params.theme : "light";
                 // Generate Node for SnackPlayer
                 const snackPlayerDiv = u("html", {
