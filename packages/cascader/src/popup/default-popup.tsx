@@ -53,7 +53,6 @@ export const DefaultPopup = <T extends OptionProps>(
       return
     }
     setActiveNode(option)
-    // 在键盘上下左右键操作时,isEnterClick 是false，不触发onChange
     if (!multiple && option.isLeaf) {
       onChange?.([option.pathValue])
     }
