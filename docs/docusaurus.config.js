@@ -22,14 +22,16 @@ const config = {
   organizationName: "illa-family",
   projectName: "illa-design",
   i18n: i18nConfig,
+  scripts: [{ src: 'https://snack.expo.dev/embed.js', defer: true }],
 
   presets: [
     [
-      "classic",
+      '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
+          remarkPlugins: [require("./remark-snackplayer")],
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

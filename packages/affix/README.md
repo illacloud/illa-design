@@ -35,6 +35,22 @@ import { Affix } from "@illa-design/affix"
 
 ### Basic Usage
 
+```SnackPlayer name=Basic Usage&description=Basic Usage with Affix&platform=web&supportedPlatforms=web&dependencies=@illa-design/affix
+import React from 'react';
+import { Affix } from "@illa-design/affix";
+
+const Basic = () => {
+    return (
+     <Affix>
+        <span>Hello</span>
+      </Affix>
+    );
+}
+
+export default Basic;
+
+```
+
 ```jsx
 <Affix>
   <span>Hello</span>
