@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 name=""
 
 if test $1; then name=$1;

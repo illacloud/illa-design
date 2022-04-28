@@ -286,7 +286,9 @@ export const applySliderInputRange = css`
   width: 20px;
   line-height: 32px;
   height: 32px;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const applySliderInputRangeContent = css`
@@ -294,5 +296,4 @@ export const applySliderInputRangeContent = css`
   width: 8px;
   height: 2px;
   background-color: ${globalColor(`--${illaPrefix}-gray-03`)};
-  transform: translateY(-100%);
 `

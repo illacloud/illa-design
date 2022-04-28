@@ -1,9 +1,10 @@
 /**
  * @jest-environment node
  */
-import { raf, caf, throttleByRaf } from "../src"
 
-test(`Test raf in node environment`, async () => {
+import { raf, caf, throttleByRaf, isServerRendering } from "../src"
+
+test("Test raf in node environment", async () => {
   const fn = jest.fn()
   jest.useFakeTimers()
   const timer = raf(fn)
@@ -13,7 +14,7 @@ test(`Test raf in node environment`, async () => {
   expect(fn).toBeCalled()
 })
 
-test(`Test throttleByRaf`, async () => {
+test("Test throttleByRaf", async () => {
   jest.useFakeTimers()
   let count = 0
   const fn = jest.fn(() => (count += 1))
@@ -29,4 +30,7 @@ test(`Test throttleByRaf`, async () => {
 
   jest.runAllTimers()
   expect(count).toBeGreaterThanOrEqual(60)
-})
+
+  test("Test isServerRendering in node environment", async () => {
+    expect(isServerRendering).toEqual(true)
+  })

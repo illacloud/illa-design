@@ -1,4 +1,4 @@
-import React, { memo } from "react"
+import { memo } from "react"
 import { plus } from "number-precision"
 import { formatPercent, getOffset, valueInRange } from "./util"
 import { SliderTicksProps } from "./interface"

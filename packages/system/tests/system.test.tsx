@@ -1,5 +1,6 @@
-import { omit, getStyle, easingMethod, raf } from "../src"
+import { omit, getStyle, easingMethod, raf, isDayjs, isServerRendering } from "../src"
 import { render, screen } from "@testing-library/react"
+import dayjs from "dayjs"
 import "@testing-library/jest-dom"
 
 test("System test omit function", () => {
@@ -13,6 +14,7 @@ test("System test omit function", () => {
     three: 3,
   })
 })
+
 
 test("GetStyle should work", () => {
   render(<div style={{ color: "red" }} data-testid={"test"}></div>)
@@ -43,4 +45,12 @@ test("Test raf in jsdom environment", async () => {
   }).then(() => {
     expect(fn).toBeCalled()
   })
-})
+
+  test("System test isDayjs function", () => {
+    expect(isDayjs(dayjs())).toEqual(true)
+    expect(isDayjs(new Date())).toEqual(false)
+  })
+
+  test("System test isServerRendering in js-dom environment", () => {
+    expect(isServerRendering).toEqual(false)
+  })

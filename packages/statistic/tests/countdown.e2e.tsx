@@ -4,7 +4,9 @@ import "@testing-library/cypress"
 import { Countdown } from "../src"
 
 it("Countdown renders with correctly", () => {
-  mount(<Countdown value={Date.now() + 1000} title={"Deadline"} />)
+  mount(<Countdown value={Date.now() + 10000} title={"Deadline"} />)
+  cy.clock(Date.now())
+  cy.tick(10000)
   cy.contains("00:00:00").should("be.visible")
 })
 
