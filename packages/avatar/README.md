@@ -18,25 +18,23 @@ import { Avatar } from "@illa-design/avatar"
 
 ### Avatar Basic Properties
 
-| Props       | Desc                                                     | Type                                                         | Default  |
-| ----------- | -------------------------------------------------------- | ------------------------------------------------------------ | -------- |
-| colorScheme | Color of avatar                                          | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \|"green" \|"blue" \|"cyan" \|"purple" | "gray"   |
-| src         | The image url of avatar                                  | string \| string[]                                           | -        |
-| size        | Size of the avatar                                       | "small" \| "medium" \| "large"                               | "small"  |
-| text        | The displayed  text of the avatar when src is not loaded | string \| string[]                                           | -        |
-| shape       | The shape of avatar                                      | "circle" \| "square"                                         | "circle" |
-| icon        | The default avatar when text and src is not specified    | ReactNode                                                    | -        |
+| Props       | Desc                                                    | Type                                                                                                                    | Default  |
+| ----------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------- |
+| colorScheme | Color of avatar                                         | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \|"green" \|"blue" \|"cyan" \|"purple" | "gray"   |
+| src         | The image url of avatar                                 | string \| string[]                                                                                                      | -        |
+| size        | Size of the avatar                                      | "small" \| "medium" \| "large"                                                                                          | "small"  |
+| text        | The displayed text of the avatar when src is not loaded | string \| string[]                                                                                                      | -        |
+| shape       | The shape of avatar                                     | "circle" \| "square"                                                                                                    | "circle" |
+| icon        | The default avatar when text and src is not specified   | ReactNode                                                                                                               | -        |
 
 ### Avatar-group Basic Properties
 
-| Props        | Desc                                  | Type                                                         | Default |
-| ------------ | ------------------------------------- | ------------------------------------------------------------ | ------- |
+| Props        | Desc                                  | Type                                                                                                                        | Default |
+| ------------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
 | colorScheme  | Color of avatar group                 | "white" \| "blackAlpha" \| "gray" \| "grayBlue" \| "red" \| "orange" \| "yellow" \| "green" \| "blue" \| "cyan" \| "purple" | "gray"  |
-| size         | Size of avatar group                  | "small" \| "medium" \| "large"                               | "small" |
-| maxCount     | The max count of avatar group         | number                                                       | -       |
-| zIndexAscend | The avatars are z-index ascend or not | boolean                                                      | false   |
-
-
+| size         | Size of avatar group                  | "small" \| "medium" \| "large"                                                                                              | "small" |
+| maxCount     | The max count of avatar group         | number                                                                                                                      | -       |
+| zIndexAscend | The avatars are z-index ascend or not | boolean                                                                                                                     | false   |
 
 ### Avatar Events
 
@@ -46,27 +44,21 @@ import { Avatar } from "@illa-design/avatar"
 
 ## Example
 
-
-```mdx-code-block
-import Sandpack from '@site/src/components/Sandpack'
-
-export const code = `
-    <>
-      <Avatar />
-      <Avatar size="small">Small</Avatar>
-      <Avatar shape="square" colorScheme="red">Small</Avatar>
-      <Avatar src='https://bit.ly/dan-abramov' />
-      <Avatar text="e" />
-    </>`
-
-export const importStatement = `import { Avatar } from '@illa-design/avatar'`
-
-export const packages = {"@illa-design/avatar":"latest"}
-
-<Sandpack code={code} packages={packages} importStatement={importStatement} template="react-ts"/>
-```
-
 ### Basic usage
+
+```SnackPlayer name=Basic usage&description=Basic usage&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+import React from 'react';
+import { Avatar } from "@illa-design/avatar";
+
+const App = () => {
+  return (
+    <Avatar />
+  );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Avatar />
@@ -74,17 +66,62 @@ export const packages = {"@illa-design/avatar":"latest"}
 
 ### Set Avatar's size
 
+```SnackPlayer name=Set Avatar's size&description=Set Avatar's size&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+import React from 'react';
+import { Avatar } from "@illa-design/avatar";
+
+const App = () => {
+  return (
+    <Avatar size="small">Small</Avatar>
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
 <Avatar size="small">Small</Avatar>
 ```
 
 ### Set Avatar's shape and color
 
+```SnackPlayer name=Set Avatar's shape and color&description=Set Avatar's shape and color&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+import React from 'react';
+import { Avatar } from "@illa-design/avatar";
+
+const App = () => {
+  return (
+    <Avatar shape="saqure" colorScheme="red">Small</Avatar>
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Avatar shape="saqure" colorScheme="red">Small</Avatar>
+<Avatar shape="saqure" colorScheme="red">
+  Small
+</Avatar>
 ```
 
 ### Set Avatar's icon
+
+```SnackPlayer name=Set Avatar's icon&description=Set Avatar's icon&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar,@illa-design/icon
+import React from 'react';
+import { Avatar } from "@illa-design/avatar";
+import { CloseIcon } from "@illa-design/icon";
+
+const App = () => {
+  return (
+    <Avatar icon={<CloseIcon />} />
+  );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Avatar icon={<CloseIcon />} />
@@ -92,11 +129,39 @@ export const packages = {"@illa-design/avatar":"latest"}
 
 ### Set Avatar's image
 
+```SnackPlayer name=Set Avatar's image&description=Set Avatar's image&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+import React from 'react';
+import { Avatar } from "@illa-design/avatar";
+
+const App = () => {
+  return (
+    <Avatar src="https://bit.ly/dan-abramov" />
+  );
+}
+
+export default App;
+
+```
+
 ```jsx
-<Avatar src='https://bit.ly/dan-abramov' />
+<Avatar src="https://bit.ly/dan-abramov" />
 ```
 
 ### Set Avatar's text
+
+```SnackPlayer name=Set Avatar's text&description=Set Avatar's text&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+import React from 'react';
+import { Avatar } from "@illa-design/avatar";
+
+const App = () => {
+  return (
+    <Avatar text="e" />
+  );
+}
+
+export default App;
+
+```
 
 ```jsx
 <Avatar text="e" />
@@ -104,12 +169,30 @@ export const packages = {"@illa-design/avatar":"latest"}
 
 ### Set Avatar-group's max count
 
-```jsx
-      <AvatarGroup maxCount={2}>
-        <Avatar text="I" />
-        <Avatar text="L" />
-        <Avatar text="L" />
-        <Avatar text="A" /> 
-      </AvatarGroup>
+```SnackPlayer name=Set Avatar-group's max count&description=Set Avatar-group's max count&platform=web&supportedPlatforms=web&dependencies=@illa-design/avatar
+import React from 'react';
+import { Avatar , AvatarGroup } from "@illa-design/avatar";
+
+const App = () => {
+  return (
+    <AvatarGroup maxCount={2}>
+      <Avatar text="I" />
+      <Avatar text="L" />
+      <Avatar text="L" />
+      <Avatar text="A" />
+    </AvatarGroup>
+  );
+}
+
+export default App;
+
 ```
 
+```jsx
+<AvatarGroup maxCount={2}>
+  <Avatar text="I" />
+  <Avatar text="L" />
+  <Avatar text="L" />
+  <Avatar text="A" />
+</AvatarGroup>
+```
