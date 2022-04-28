@@ -58,6 +58,8 @@ import { InputNumber } from "@illa-design/input-number"
 
 ### Basic usage
 
+
+
 ```jsx
 <InputNumber placeholder={"input-tag"} />
 ```

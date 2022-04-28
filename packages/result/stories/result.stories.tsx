@@ -20,13 +20,6 @@ export default {
       control: false,
     },
   },
-  parameters: {
-    docs: {
-      source: {
-        type: "code",
-      },
-    },
-  },
 } as Meta
 
 const Template: Story<ResultProps> = (props) => {

@@ -6,13 +6,6 @@ import { TreeSelect, TreeSelectProps } from "../src"
 export default {
   title: "DATA INPUT/TreeSelect",
   component: TreeSelect,
-  parameters: {
-    docs: {
-      source: {
-        type: "code",
-      },
-    },
-  },
 } as Meta
 
 const Template: Story<TreeSelectProps> = (args) => {

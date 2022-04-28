@@ -31,7 +31,12 @@ const Template: Story<CardProps> = (args) => {
   return (
     <>
       <Space size="large" direction="vertical">
-        <Card style={{ width: 360 }} extra={<Link>More</Link>} {...args}>
+        <Card
+          style={{ width: 360 }}
+          extra={<Link>More</Link>}
+          {...args}
+          actions={[<div>1</div>, <div>2</div>]}
+        >
           France is a land, the British are a nation, and America is the passion
           in our hearts.People all over the world carrying a Santa Claus came to
           the United States to chase their ideas of American dreams, but in the

@@ -29,6 +29,7 @@
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "storybook-addon-export-to-codesandbox": "^0.6.4",
     "@vitejs/plugin-react": "^1.2.0",
     "babel-loader": "^8.2.3",
     "cypress": "^9.5.1",

@@ -35,13 +35,6 @@ export default {
     switcherIcon: { control: false },
     loadingIcon: { control: false },
   },
-  parameters: {
-    docs: {
-      source: {
-        type: "code",
-      },
-    },
-  },
 } as Meta
 
 const Template: Story<TreeProps> = (args) => {
