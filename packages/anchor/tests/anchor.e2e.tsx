@@ -62,9 +62,7 @@ it("Anchor should be fixed to top", () => {
   mount(renderAnchor())
 
   cy.scrollTo(0, 10)
-  cy.get("[data-testid='anchor']")
-    .parent()
-    .should("have.css", "position", "fixed")
+  cy.findByTestId("anchor").parent().should("have.css", "position", "fixed")
 
   unmount()
 })
@@ -73,9 +71,7 @@ it("Anchor should NOT be fixed to top", () => {
   mount(renderAnchor({ affix: false }))
 
   cy.scrollTo(0, 10)
-  cy.get("[data-testid='anchor']")
-    .parent()
-    .should("not.have.css", "position", "fixed")
+  cy.findByTestId("anchor").parent().should("not.have.css", "position", "fixed")
 
   unmount()
 })
@@ -123,7 +119,7 @@ it("Anchor should fixed 100 to top", () => {
   cy.scrollTo(0, 200)
   cy.wait(EASING_DURATION)
 
-  cy.get("[data-testid='anchor']").parent().should("have.css", "top", "100px")
+  cy.findByTestId("anchor").parent().should("have.css", "top", "100px")
 
   unmount()
 })
@@ -150,7 +146,7 @@ it("Anchor should NOT change hash", () => {
 
 it("Anchor render indicator line", () => {
   mount(renderAnchor())
-  cy.get("[data-testid='anchor']")
+  cy.findByTestId("anchor")
     .children()
     .first()
     .should("have.css", "position", "absolute")
@@ -158,7 +154,7 @@ it("Anchor render indicator line", () => {
 
 it("Anchor render with lineless", () => {
   mount(renderAnchor({ lineless: true }))
-  cy.get("[data-testid='anchor']")
+  cy.findByTestId("anchor")
     .children()
     .first()
     .should("not.have.css", "position", "absolute")
@@ -168,8 +164,15 @@ const TestAnchorContainer = function() {
   const container = useRef(null)
 
   return (
-    <div style={{ overflow: "auto", height: 300 }} ref={container} data-testid={"container"}>
-      <Anchor data-testid="anchor" scrollContainer={"[data-testid='container']"}>
+    <div
+      style={{ overflow: "auto", height: 300 }}
+      ref={container}
+      data-testid={"container"}
+    >
+      <Anchor
+        data-testid="anchor"
+        scrollContainer={"[data-testid='container']"}
+      >
         <AnchorLink href="#title" title="title" />
         <AnchorLink href="#section1" title="Section1" />
         <AnchorLink href="#section2" title="Section2" />
@@ -191,11 +194,10 @@ it("Anchor render within scrollContainer", () => {
   cy.wait(EASING_DURATION)
 
   cy.findByTestId("container").then((container) => {
-    const containerHeight = container[0].clientHeight;
+    const containerHeight = container[0].clientHeight
 
     cy.get("#section2").then((section2) => {
       const rect = section2[0].getBoundingClientRect()
-      console.log({ rect, containerHeight })
       expect(rect.top).not.to.be.greaterThan(containerHeight)
     })
   })
