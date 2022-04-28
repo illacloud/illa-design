@@ -62,9 +62,9 @@ test("System test isFunction function", () => {
 })
 
 test("System test isFunction function", () => {
-  const asyncFun = async () => {
+  const asyncFun = new Promise(function () {
     return "asyncFun"
-  }
+  })
   expect(isPromise(asyncFun)).toEqual(true)
   expect(isFunction(asyncFun)).toEqual(true)
 })
