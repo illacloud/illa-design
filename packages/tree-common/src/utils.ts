@@ -1,4 +1,4 @@
-import { NodeProps, TreeDataType, NodeInstance } from "./interface"
+import { NodeProps, TreeDataType } from "./interface"
 
 export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
   if (!nodeArr) return []

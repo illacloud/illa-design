@@ -219,7 +219,6 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
 
     useEffect(() => {
       const { current: reason } = refOnInputChangeCallbackReason
-      console.log("reason", reason)
       if (
         stateInputValue === _inputValue &&
         (reason === "manual" || reason === "optionListHide")
