@@ -1,7 +1,6 @@
-import * as React from "react"
 import { Menu, MenuProps } from "../src"
-import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
+import { mount, unmount } from "@cypress/react"
 
 const { Item, ItemGroup, SubMenu } = Menu
 
@@ -12,6 +11,7 @@ const TestMenu = (props: MenuProps = {}) => (
     <ItemGroup title={"Group"}>
       <Item title={"Docs"} key={"3"} />
       <Item title={"Community"} key={"4"} />
+
       <Item title={"Github"} key={"5"} />
     </ItemGroup>
     <SubMenu title={"SubMenu"} key={"0_0"} data-testid={"submenu"}>
@@ -64,13 +64,10 @@ it("Click Submenu should expand", () => {
 it("Should overflow in horizontal mode when exceed width", () => {
   mount(<TestMenu style={{ width: 100 }} mode={"horizontal"} />)
 
-  cy.findByTestId("item").should("not.be.visible")
+  cy.get(`[data-testid='item']`).should("not.be.visible")
   cy.get(`[data-sub-menu-marker]:last-child`).should("be.visible")
   cy.get(`[data-sub-menu-marker]:last-child`).trigger("mouseover")
-  cy.findAllByTestId("item").spread((invisibleItem, visibleItem) => {
-    cy.wrap(invisibleItem).should("not.be.visible")
-    cy.wrap(visibleItem).should("be.visible")
-  })
+  cy.get(`[data-testid='item']`).should("be.visible")
 
   unmount()
 })
