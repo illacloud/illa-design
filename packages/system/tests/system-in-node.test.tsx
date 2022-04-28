@@ -30,7 +30,8 @@ test("Test throttleByRaf", async () => {
 
   jest.runAllTimers()
   expect(count).toBeGreaterThanOrEqual(60)
+})
 
-  test("Test isServerRendering in node environment", async () => {
-    expect(isServerRendering).toEqual(true)
-  })
+test("Test isServerRendering in node environment", async () => {
+  expect(isServerRendering).toEqual(true)
+})

@@ -46,11 +46,12 @@ test("Test raf in jsdom environment", async () => {
     expect(fn).toBeCalled()
   })
 
-  test("System test isDayjs function", () => {
-    expect(isDayjs(dayjs())).toEqual(true)
-    expect(isDayjs(new Date())).toEqual(false)
-  })
+})
+test("System test isDayjs function", () => {
+  expect(isDayjs(dayjs())).toEqual(true)
+  expect(isDayjs(new Date())).toEqual(false)
+})
 
-  test("System test isServerRendering in js-dom environment", () => {
-    expect(isServerRendering).toEqual(false)
-  })
+test("System test isServerRendering in js-dom environment", () => {
+  expect(isServerRendering).toEqual(false)
+})
