@@ -35,10 +35,10 @@ test(`Test easingMethod`, () => {
 test(`Test raf in jsdom environment`, async () => {
   const fn = jest.fn()
 
-  await new Promise(function(r) {
+  await new Promise(function(resolve) {
     raf(() => {
       fn()
-      r("")
+      resolve("")
     })
   }).then(() => {
     expect(fn).toBeCalled()
