@@ -1,4 +1,4 @@
-# 下拉菜单
+# 下拉菜单 Dropdown
 
 页面上的命令过多时，可将备选命令收纳到展开的浮层容器中。
 
@@ -18,21 +18,21 @@ import { Dropdown } from "@illa-dedign/dropdown"
 
 ### Dropdown 基础属性
 
-| 参数名              | 描述                           | 类型                                                | 默认值  |
-| ------------------- | ------------------------------ | --------------------------------------------------- | ------- |
-| droplist            | 下拉框的内容                   | `ReactNode`                                         | `-`     |
-| position            | 下拉框的弹出位置               | `"top" \| "tl" \| "tr" \| "bottom" \| "bl" \| "br"` | `bl`    |
-| trigger             | 触发下拉框弹出的方式           | `array<"hover" \| "click" > `                        | `hover` |
-| disabled            | 是否禁用弹出                   | `boolean`                                           | `-`     |
-| defaultPopupVisible | 控制下拉框是否默认打开         | `boolean`                                           | `-`     |
-| popupVisible        | 控制下拉框是否打开（受控模式） | `boolean`                                           | `-`     |
-| triggerProps        | 配置弹出框额外属性             | `TriggerProps`                                      | `-`     |
+| 参数名              | 描述                           | 类型                     | 默认值 |
+| ------------------- | ------------------------------ | ------------------------ | ------ |
+| droplist            | 下拉框的内容                   | ReactNode                | -      |
+| position            | 下拉框的弹出位置               | TriggerProps["position"] | bl     |
+| trigger             | 触发下拉框弹出的方式           | TriggerProps["trigger"]  | hover  |
+| disabled            | 是否禁用弹出                   | boolean                  | -      |
+| defaultPopupVisible | 控制下拉框是否默认打开         | boolean                  | -      |
+| popupVisible        | 控制下拉框是否打开（受控模式） | boolean                  | -      |
+| triggerProps        | 配置弹出框额外属性             | `Partial<TriggerProps>`  | -      |
 
 ### Dropdown 事件
 
-| 参数名          | 描述                    | 类型                         | 默认值 |
-| --------------- | :---------------------- | ---------------------------- | ------ |
-| onVisibleChange | 弹出框打开/关闭时会触发 | `(visible: boolean) => void` | `-`    |
+| 参数名          | 描述                    | 类型                       | 默认值 |
+| --------------- | :---------------------- | -------------------------- | ------ |
+| onVisibleChange | 弹出框打开/关闭时会触发 | (visible: boolean) => void | -      |
 
 ### 使用方法
 

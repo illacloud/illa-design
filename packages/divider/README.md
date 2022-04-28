@@ -1,6 +1,6 @@
 # Divider
 
-Divider is used to visually separate content
+Divider is used to visually separate content.
 
 ## Installation
 
@@ -20,8 +20,8 @@ import { Divider } from "@illa-design/divider"
 
 | Props     | Desc                         | Type                                        | Default      |
 | --------- | ---------------------------- | ------------------------------------------- | ------------ |
-| direction | setting direction of divider |  `"vertical" \| "horizontal"`                 | `horizontal` |
-| variant   | setting divider's variant    | ` "solid" \| "dashed" \| "dotted" \| "double"` |` solid `     |
+| direction | setting direction of divider | "vertical" \| "horizontal"                  | "horizontal" |
+| variant   | setting divider's variant    | "solid" \| "dashed" \| "dotted" \| "double" | "solid"      |
 
 ## Example
 
@@ -47,4 +47,3 @@ import { Divider } from "@illa-design/divider"
 <Divider variant="dotted" />
 <Divider variant="double" />
 ```
-
