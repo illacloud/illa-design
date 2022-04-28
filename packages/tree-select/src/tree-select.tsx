@@ -325,7 +325,7 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
               <TreeList
                 listData={treeData}
                 size={size}
-                blockNode={true}
+                blockNode
                 handleExpand={handleExpand}
                 handleSelect={handleSelect}
                 handleCheck={handleCheck}

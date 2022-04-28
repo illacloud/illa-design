@@ -61,7 +61,7 @@ it("TreeList renders draggable", () => {
   mount(
     <TreeList
       listData={loopNodeWithState(data)}
-      draggable={true}
+      draggable
       handleDragLeave={dragLeaveEvent}
       handleDragOver={dragOverEvent}
       handleDragStart={dragStartEvent}

@@ -63,17 +63,13 @@ const data = [
 ]
 
 test("TreeSelect renders correctly ", () => {
-  render(<TreeSelect data-testid={"TreeSelect"} treeData={data} />)
+  render(<TreeSelect data-testid="TreeSelect" treeData={data} />)
   expect(screen.getByTestId("TreeSelect")).toBeInTheDocument()
 })
 
 test("TreeSelect renders with defaultValue ", () => {
   render(
-    <TreeSelect
-      data-testid={"TreeSelect"}
-      defaultValue={"0-0"}
-      treeData={data}
-    />,
+    <TreeSelect data-testid="TreeSelect" defaultValue="0-0" treeData={data} />,
   )
   expect(screen.getByText("0-0-head")).toBeInTheDocument()
 })
@@ -81,9 +77,9 @@ test("TreeSelect renders with defaultValue ", () => {
 test("TreeSelect renders with multiple defaultValue ", () => {
   render(
     <TreeSelect
-      data-testid={"TreeSelect"}
+      data-testid="TreeSelect"
       defaultValue={["0-0"]}
-      multiple={true}
+      multiple
       treeData={data}
     />,
   )

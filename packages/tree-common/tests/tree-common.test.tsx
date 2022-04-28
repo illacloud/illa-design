@@ -69,7 +69,7 @@ test("TreeList renders correctly", () => {
 
 test("TreeList renders with large size", async () => {
   await act(async () => {
-    render(<TreeList listData={data} size={"large"} />)
+    render(<TreeList listData={data} size="large" />)
   })
   expect(
     screen.getByText("0-0-head").parentElement?.parentElement?.parentElement,
@@ -80,7 +80,7 @@ test("TreeList renders with large size", async () => {
 
 test("TreeList renders with small size", async () => {
   await act(async () => {
-    render(<TreeList listData={data} size={"small"} />)
+    render(<TreeList listData={data} size="small" />)
   })
   expect(
     screen.getByText("0-0-head").parentElement?.parentElement?.parentElement,
@@ -91,7 +91,7 @@ test("TreeList renders with small size", async () => {
 
 test("TreeList renders with blockNode", async () => {
   await act(async () => {
-    render(<TreeList listData={listData} blockNode={true} />)
+    render(<TreeList listData={listData} blockNode />)
   })
   expect(screen.getByText("0-0-head").parentElement).toHaveStyle({
     "flex-grow": 1,
@@ -114,7 +114,7 @@ test("TreeList renders with renderTitle", async () => {
 
 test("TreeList renders with showLine", async () => {
   await act(async () => {
-    render(<TreeList listData={listData} showLine={true} />)
+    render(<TreeList listData={listData} showLine />)
   })
 
   expect(screen.getAllByTitle("LeafIcon").length).not.toBe(0)
@@ -146,10 +146,10 @@ test("TreeList renders with icons", async () => {
       <TreeList
         listData={listData}
         loadingMoreKeys={loadMoreKeys}
-        draggable={true}
-        loadingIcon={<span data-testid={"loadingIcon"}>loadingIcon</span>}
-        switcherIcon={<span data-testid={"switcherIcon"}>switcherIcon</span>}
-        dragIcon={<span data-testid={"dragIcon"}>dragIcon</span>}
+        draggable
+        loadingIcon={<span data-testid="loadingIcon">loadingIcon</span>}
+        switcherIcon={<span data-testid="switcherIcon">switcherIcon</span>}
+        dragIcon={<span data-testid="dragIcon">dragIcon</span>}
       />,
     )
   })

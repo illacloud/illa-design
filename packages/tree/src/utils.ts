@@ -1,9 +1,5 @@
 import { Children, ReactElement } from "react"
-import {
-  NodeInstance,
-  NodeProps,
-  TreeDataType,
-} from "@illa-design/tree-common/src"
+import { NodeInstance, NodeProps, TreeDataType } from "@illa-design/tree-common"
 
 export function getNodes(children: ReactElement): TreeDataType[] {
   const nodes: TreeDataType[] = []

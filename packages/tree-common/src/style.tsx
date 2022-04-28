@@ -1,4 +1,4 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { TreeSize } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
@@ -16,7 +16,10 @@ export function applyNodeHeight(size: TreeSize) {
   }
 }
 
-export function applyNodeTextColor(disabled?: boolean, selected?: boolean) {
+export function applyNodeTextColor(
+  disabled?: boolean,
+  selected?: boolean,
+): SerializedStyles {
   if (disabled) {
     return css`
       color: ${globalColor(`--${illaPrefix}-gray-05`)};
@@ -31,7 +34,7 @@ export function applyNodeTextColor(disabled?: boolean, selected?: boolean) {
   `
 }
 
-export function applyNodeContainerCss(size: TreeSize) {
+export function applyNodeContainerCss(size: TreeSize): SerializedStyles {
   const height = applyNodeHeight(size)
   return css`
     display: flex;
@@ -59,7 +62,9 @@ export const nodeFoldSwitchCss = css`
   align-items: center;
 `
 
-export function applyNodeFoldSwitchIconCss(folding?: boolean) {
+export function applyNodeFoldSwitchIconCss(
+  folding?: boolean,
+): SerializedStyles {
   const rotate = folding ? 0 : -90
   return css`
     display: flex;
@@ -72,7 +77,7 @@ export function applyNodeFoldSwitchIconCss(folding?: boolean) {
   `
 }
 
-export function applyLeafIconCss(visible?: boolean) {
+export function applyLeafIconCss(visible?: boolean): SerializedStyles {
   return css`
     display: inline-flex;
     align-items: center;
@@ -101,7 +106,7 @@ export function applyNodeTextContainerCss(
   disabled?: boolean,
   selected?: boolean,
   blockNode?: boolean,
-) {
+): SerializedStyles {
   const fontSize = size === "small" ? 12 : 14
   const hoverCss = !disabled
     ? css`
@@ -140,7 +145,9 @@ export const checkboxCss = css`
   margin: 0 4px;
 `
 
-export function applyIndentBlockCss(requireDivider?: boolean) {
+export function applyIndentBlockCss(
+  requireDivider?: boolean,
+): SerializedStyles {
   return css`
     height: 100%;
     width: 16.5px;
