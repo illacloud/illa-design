@@ -22,6 +22,7 @@ const config = {
   organizationName: "illa-family",
   projectName: "illa-design",
   i18n: i18nConfig,
+  clientModules: [require.resolve('./snackPlayerInitializer.js')],
   scripts: [{ src: 'https://snack.expo.dev/embed.js', defer: true }],
 
   presets: [
