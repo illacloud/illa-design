@@ -1,7 +1,8 @@
 import { Select, Option } from "../src"
-import { render, screen } from "@testing-library/react"
+import { render, screen, fireEvent } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import userEvent from "@testing-library/user-event"
+import { useRef } from "react"
 
 test("Select renders with text", () => {
   render(<Select placeholder={"test"} />)
@@ -30,7 +31,8 @@ test("Select renders with loading", () => {
 })
 
 test("Select renders with disabled", () => {
-  render(<Select value={1} options={[1, 2, 3]} disabled />)
+  render(<Select data-testid={'test'} value={1} options={[1, 2, 3]} disabled />)
+  fireEvent.focus(screen.getByTestId('test'))
   expect(screen.getByDisplayValue("1")).toBeDisabled()
 })
 

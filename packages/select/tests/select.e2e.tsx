@@ -10,9 +10,18 @@ it("Select render correctly", () => {
 })
 
 it("Select render with error type", () => {
-  mount(<Select error value={"test"} />)
+  const focusEvent = cy.stub().as("focusEvent")
+  mount(
+    <Select
+      error
+      value={"test"}
+      data-testid={"test-select"}
+      onFocus={focusEvent}
+    />,
+  )
   cy.findByText("test").parent().click()
   cy.findByText("No data").should("exist")
+  cy.findByTestId("test-select").trigger("focus")
   unmount()
 })
 
@@ -63,9 +72,34 @@ it("Select render with click options", () => {
   unmount()
 })
 
+it("Select test with click checkbox", () => {
+  const changeEvent = cy.stub().as("changeEvent")
+
+    mount(
+    <Select
+      multiple
+      placeholder={"test"}
+      options={[1, 2, 3]}
+      onChange={changeEvent}
+    />,
+  )
+  cy.findByPlaceholderText("test").parent().click()
+  cy.findAllByRole("checkbox")
+    .first()
+    .click()
+    .then(() => {
+      cy.get("@changeEvent").should("be.calledWith", [1])
+      cy.findAllByRole("checkbox").first().click()
+      cy.get("@changeEvent").should("be.calledWith", [])
+    })
+  unmount()
+})
+
 it("Select render with multiple", () => {
   const changeEvent = cy.stub().as("changeEvent")
   const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
+  const onDeselectEvent = cy.stub().as("onDeselectEvent")
+
   mount(
     <Select
       multiple
@@ -73,6 +107,7 @@ it("Select render with multiple", () => {
       options={[1, 2, 3]}
       maxTagCount={2}
       onChange={changeEvent}
+      onDeselect={onDeselectEvent}
       onVisibleChange={visibleChangeEvent}
     />,
   )
@@ -85,8 +120,15 @@ it("Select render with multiple", () => {
   cy.findByText("2").click()
   cy.findByText("3").click()
   cy.findByText("+1...").should("exist")
+  cy.findAllByTitle("CloseIcon")
+    .first()
+    .parent()
+    .click()
+    .then(() => {
+      cy.get("@changeEvent").should("be.calledWith", [2, 3])
+    })
   cy.get("@visibleChangeEvent").should("be.calledOnce")
-  unmount()
+    unmount()
 })
 
 it("Select render with input typing", () => {
