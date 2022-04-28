@@ -26,18 +26,26 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
     tabBarSpacing,
   } = props
 
-  const childCss = useMemo(() => {
+  const [applyChildCss, applyTabTextCss] = useMemo(() => {
+    let _childCss, _textCss
     if (variant === "card") {
-      return applyCardHeaderChildCss(isSelected, disabled)
+      _childCss = applyCardHeaderChildCss
     } else if (variant === "capsule") {
-      return applyCapsuleHeaderChildCss(isSelected, disabled)
+      _childCss = applyCapsuleHeaderChildCss
+    } else {
+      _childCss = applyCommonHeaderChildCss
     }
-    return applyCommonHeaderChildCss()
+    if (variant === "text") {
+      _textCss = applyTextCss
+    } else {
+      _textCss = applyTextCss
+    }
+    return [_childCss, _textCss]
   }, [variant, isSelected])
 
   return (
     <span
-      css={childCss}
+      css={applyChildCss(isSelected, disabled)}
       key={tabKey}
       onClick={() => {
         if (disabled) return
@@ -45,7 +53,13 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
       }}
     >
       <span
-        css={applyTextCss(size, isSelected, disabled, tabBarSpacing, variant)}
+        css={applyTabTextCss(
+          size,
+          isSelected,
+          disabled,
+          tabBarSpacing,
+          variant,
+        )}
       >
         {title}
         {closable && (
@@ -60,7 +74,6 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
           </span>
         )}
       </span>
-      {needDivLine && <div css={verticalLineCss} />}
     </span>
   )
 }

@@ -236,14 +236,11 @@ export const verticalLineCss = css`
   background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
 `
 
-export function applyTextCss(
-  size: TabsSize,
-  isSelected?: boolean,
+export function applyTextColorCss(
   disabled?: boolean,
-  tabBarSpacing: number = 0,
+  isSelected?: boolean,
   variant?: TabVariant,
-): SerializedStyles {
-  const _tabBarSpacing = tabBarSpacing >= 0 ? tabBarSpacing : 0
+) {
   let textColorCss
   if (disabled) {
     textColorCss = css`
@@ -265,8 +262,35 @@ export function applyTextCss(
         }
     `
   }
+  if (!disabled && variant === "text") {
+    if (isSelected) {
+      textColorCss = css`
+        color: ${globalColor(`--${illaPrefix}-grayblue-02`)};
+        font-weight: 500;
+      `
+    } else {
+      textColorCss = css`
+        color: ${globalColor(`--${illaPrefix}-grayblue-04`)};
+        &:hover {
+          background-color: 
+                  ${globalColor(`--${illaPrefix}-gray-09`)}
+      `
+    }
+  }
+  return textColorCss
+}
+
+export function applyTextCss(
+  size: TabsSize,
+  isSelected?: boolean,
+  disabled?: boolean,
+  tabBarSpacing: number = 0,
+  variant?: TabVariant,
+): SerializedStyles {
+  const _tabBarSpacing = tabBarSpacing >= 0 ? tabBarSpacing : 0
+
   return css`
-    ${textColorCss};
+    ${applyTextColorCss(disabled, isSelected, variant)};
     ${applyPaddingSizeCss(size)};
     white-space: nowrap;
     overflow: hidden;
