@@ -7,11 +7,11 @@ import { CascaderPanelProps, OptionProps } from "../interface"
 import { Node } from "../node"
 import useRefs, { useForceUpdate, useUpdate } from "../hooks"
 import {
-  applyOptionLabelStyle,
   applyOptionStyle,
   flexCenterStyle,
   optionListStyle,
   optionListWrapper,
+  optionLabelStyle,
   textMargin,
 } from "./style"
 import { Empty } from "@illa-design/empty"
@@ -209,7 +209,7 @@ export const DefaultPopup = <T extends OptionProps>(
                       />
                     )}
                     <div
-                      css={applyOptionLabelStyle()}
+                      css={optionLabelStyle}
                       onMouseEnter={() => {
                         if (!(option.isLeaf || option.disabled)) {
                           if (expandTrigger === "hover") {

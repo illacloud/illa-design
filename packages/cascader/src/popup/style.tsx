@@ -70,23 +70,21 @@ export function applyOptionStyle(states: {
   `
 }
 
-export function applyOptionLabelStyle(): SerializedStyles {
-  return css`
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-grow: 1;
-    padding-right: 20px;
+export const optionLabelStyle = css`
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding-right: 20px;
 
-    & > svg {
-      font-size: 12px;
-      position: absolute;
-      right: 0;
-    }
-  `
-}
+  & > svg {
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+  }
+`
 
 export const textMargin = css`
   margin-right: 8px;

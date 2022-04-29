@@ -5,9 +5,9 @@ import { Checkbox } from "@illa-design/checkbox"
 import { Node } from "../node"
 import { OptionProps, SearchPopupProps } from "../interface"
 import {
-  applyOptionLabelStyle,
   applyOptionStyle,
   flexCenterStyle,
+  optionLabelStyle,
   optionListStyle,
   searchListWrapper,
   textMargin,
@@ -109,7 +109,7 @@ export const SearchPopup = <T extends OptionProps>(
                       clickOption(option, checked, e)
                     }}
                   />
-                  <div css={applyOptionLabelStyle()}>{label}</div>
+                  <div css={optionLabelStyle}>{label}</div>
                 </>
               ) : (
                 label

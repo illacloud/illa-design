@@ -58,7 +58,7 @@ test("RangeInput render with disabled", () => {
   expect(focusEvent).toBeCalledTimes(0)
 })
 
-test("RangeInput render with change event", async () => {
+test("RangeInput render with change event", () => {
   const changeEvent = jest.fn()
   render(
     <RangeInput
