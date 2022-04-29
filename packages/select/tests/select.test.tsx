@@ -2,7 +2,6 @@ import { Select, Option } from "../src"
 import { render, screen, fireEvent } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import userEvent from "@testing-library/user-event"
-import { useRef } from "react"
 
 test("Select renders with text", () => {
   render(<Select placeholder={"test"} />)

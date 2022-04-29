@@ -21,7 +21,6 @@ it("Select render with error type", () => {
   )
   cy.findByText("test").parent().click()
   cy.findByText("No data").should("exist")
-  cy.findByTestId("test-select").trigger("focus")
   unmount()
 })
 

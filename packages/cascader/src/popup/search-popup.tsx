@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, SyntheticEvent } from "react"
+import { useEffect, useState, useRef, SyntheticEvent } from "react"
 import isEqual from "react-fast-compare"
 import { Empty } from "@illa-design/empty"
 import { Checkbox } from "@illa-design/checkbox"
