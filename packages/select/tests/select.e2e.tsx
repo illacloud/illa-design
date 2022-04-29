@@ -125,6 +125,7 @@ it("Select render with multiple", () => {
       cy.get("@changeEvent").should("be.calledWith", [2, 3])
     })
   cy.get("@visibleChangeEvent").should("be.calledOnce")
+  cy.get("@onDeselectEvent").should("be.calledOnce")
     unmount()
 })
 

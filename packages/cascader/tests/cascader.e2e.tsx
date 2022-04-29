@@ -214,7 +214,7 @@ it("Cascader render with maxTagCount", () => {
   unmount()
 })
 
-it("Cascader in multiple mode Test clearEvent", () => {
+it("Cascader test onClear should be triggered in multiple mode", () => {
   const changeEvent = cy.stub().as("changeEvent")
   const clearEvent = cy.stub().as("clearEvent")
   mount(
