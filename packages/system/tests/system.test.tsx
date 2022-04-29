@@ -14,6 +14,7 @@ import {
   raf,
   debounce,
   useMergeValue,
+  mergedToString,
 } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
@@ -91,6 +92,13 @@ test("System test isDayjs function", () => {
 
 test("System test isServerRendering in js-dom environment", () => {
   expect(isServerRendering).toEqual(false)
+})
+
+// test utils.ts
+test("Merge to string test case", () => {
+  expect(mergedToString(<div data-testid="test-div">Div Test Case</div>)).toBe(
+      "Div Test Case",
+  )
 })
 
 // test style.ts
