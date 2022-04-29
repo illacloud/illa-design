@@ -12,8 +12,10 @@ import {
   isServerRendering,
   easingMethod,
   raf,
+  debounce,
+  useMergeValue,
 } from "../src"
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import dayjs from "dayjs"
 
@@ -125,3 +127,51 @@ test("Test raf in jsdom environment", async () => {
   })
 })
 
+// test debounce.ts
+test("mock timers to test debounce", function () {
+  jest.useFakeTimers()
+  const test = jest.fn()
+  const debounced = debounce(test, 1000)
+
+  debounced()
+  debounced()
+
+  jest.runAllTimers()
+
+  expect(test).toHaveBeenCalledTimes(1)
+})
+
+// test useMergeValue.ts
+describe("test useMergeValue", function () {
+  const Test = (props: {
+    defaultValue?: string
+    value?: string
+    onClick?: (value?: string) => void
+  }) => {
+    const [value, setValue] = useMergeValue("", {
+      defaultValue: props.defaultValue ? props.defaultValue : undefined,
+      value: props.value ? props.value : undefined,
+    })
+    return (
+      <div
+        onClick={() => {
+          setValue("test setValue")
+          props.onClick?.(value)
+        }}
+      >
+        {value}
+      </div>
+    )
+  }
+
+  test("test useMergeValue hook with defaultValue", function () {
+    render(<Test defaultValue={"test useMergeValue"} />)
+    fireEvent.click(screen.getByText("test useMergeValue"))
+    expect(screen.getByText("test setValue")).toBeInTheDocument()
+  })
+
+  test("test useMergeValue hook with value", function () {
+    render(<Test value={"test useMergeValue"} />)
+    expect(screen.getByText("test useMergeValue")).toBeInTheDocument()
+  })
+})
