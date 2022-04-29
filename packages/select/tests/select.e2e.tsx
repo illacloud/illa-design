@@ -52,14 +52,12 @@ it("Select render with allowClear", () => {
 
 it("Select render with click options", () => {
   const changeEvent = cy.stub().as("changeEvent")
-  const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
   mount(
     <Select
       allowClear
       placeholder={"test"}
       options={[1, 2, 3]}
       onChange={changeEvent}
-      onVisibleChange={visibleChangeEvent}
     />,
   )
   cy.findByPlaceholderText("test").parent().click()
