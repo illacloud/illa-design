@@ -61,7 +61,11 @@ test("Cascader renders with options", () => {
 
 test("Cascader renders with defaultValue", () => {
   render(
-    <Cascader defaultValue={["beijing", "xicheng"]} options={options} size="small" />,
+    <Cascader
+      defaultValue={["beijing", "xicheng"]}
+      options={options}
+      size="small"
+    />,
   )
   expect(screen.getByText("Beijing / Xicheng")).toBeInTheDocument()
 })
@@ -69,7 +73,10 @@ test("Cascader renders with defaultValue", () => {
 test("Cascader renders with multiple", () => {
   render(
     <Cascader
-      value={[["beijing", "xicheng"], ["shanghai", "huangpu"]]}
+      value={[
+        ["beijing", "xicheng"],
+        ["shanghai", "huangpu"],
+      ]}
       options={options}
       size="large"
       multiple

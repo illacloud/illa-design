@@ -178,11 +178,11 @@ test("RadioGroup render with button type and large size", () => {
 
 test("RadioGroup render with button type and click", () => {
   render(
-      <RadioGroup
-          data-testid="radio-group-button"
-          options={["A", "B", "C"]}
-          type={"button"}
-      />,
+    <RadioGroup
+      data-testid="radio-group-button"
+      options={["A", "B", "C"]}
+      type={"button"}
+    />,
   )
   fireEvent.click(screen.getByText("A"))
   expect(screen.getByText("A").parentNode).toHaveStyle(`

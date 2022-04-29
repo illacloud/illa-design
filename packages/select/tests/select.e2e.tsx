@@ -72,7 +72,7 @@ it("Select render with click options", () => {
 it("Select test with click checkbox", () => {
   const changeEvent = cy.stub().as("changeEvent")
 
-    mount(
+  mount(
     <Select
       multiple
       placeholder={"test"}
@@ -126,7 +126,7 @@ it("Select render with multiple", () => {
     })
   cy.get("@visibleChangeEvent").should("be.calledOnce")
   cy.get("@onDeselectEvent").should("be.calledOnce")
-    unmount()
+  unmount()
 })
 
 it("Select render with input typing", () => {

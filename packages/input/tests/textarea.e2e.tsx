@@ -13,8 +13,7 @@ it("TextArea test with minRows", () => {
 it("TextArea test with maxRows", () => {
   mount(<TextArea placeholder="test" autoSize={{ maxRows: 3 }} />)
 
-  cy.findByPlaceholderText("test")
-    .should("have.css", "height", "44px")
+  cy.findByPlaceholderText("test").should("have.css", "height", "44px")
 
   cy.findByPlaceholderText("test")
     .type("1{enter}2")

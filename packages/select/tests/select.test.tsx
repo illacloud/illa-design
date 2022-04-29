@@ -30,8 +30,8 @@ test("Select renders with loading", () => {
 })
 
 test("Select renders with disabled", () => {
-  render(<Select data-testid={'test'} value={1} options={[1, 2, 3]} disabled />)
-  fireEvent.focus(screen.getByTestId('test'))
+  render(<Select data-testid={"test"} value={1} options={[1, 2, 3]} disabled />)
+  fireEvent.focus(screen.getByTestId("test"))
   expect(screen.getByDisplayValue("1")).toBeDisabled()
 })
 
@@ -51,7 +51,7 @@ test("Select renders with size", () => {
   if (container) {
     userEvent.hover(container)
     expect(screen.getByTitle("selectRemoveIcon")).toHaveStyle({
-      right: '16px',
+      right: "16px",
     })
   }
   const containerA =
@@ -59,7 +59,7 @@ test("Select renders with size", () => {
   if (containerA) {
     userEvent.hover(containerA)
     expect(screen.getByTitle("selectRemoveIcon")).toHaveStyle({
-      right: '12px',
+      right: "12px",
     })
   }
 })
