@@ -14,11 +14,14 @@ it("TextArea test with maxRows", () => {
   mount(<TextArea placeholder="test" autoSize={{ maxRows: 3 }} />)
 
   cy.findByPlaceholderText("test")
+    .should("have.css", "height", "44px")
+
+  cy.findByPlaceholderText("test")
     .type("1{enter}2")
     .should("have.css", "height", "63px")
 
   cy.findByPlaceholderText("test")
-    .type("2{enter}333{enter}")
+    .type("2{enter}3{enter}4{enter}5{enter}")
     .should("have.css", "height", "85px")
   unmount()
 })
