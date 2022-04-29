@@ -94,7 +94,7 @@ test("TextArea render with focus and blur", () => {
 
 test("TextArea render with input event", async () => {
   const changeEvent = jest.fn()
-  render(<TextArea placeholder="test-input-event" onChange={changeEvent} />)
+  render(<TextArea placeholder="test-input-event" onChange={changeEvent} autoSize />)
   const testTextAreaEvent = screen.getByPlaceholderText("test-input-event")
 
   fireEvent.change(testTextAreaEvent, { target: { value: "123" } })

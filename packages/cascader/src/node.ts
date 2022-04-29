@@ -219,17 +219,6 @@ export class Node<T> {
   public getChildren = (): Node<T>[] | undefined => {
     return this.children
   }
-
-  public setLoading = (loading?: boolean) => {
-    this.loading = loading
-
-    if (loading || loading === undefined) {
-      this.loaded = false
-    }
-    if (loading === false) {
-      this.loaded = true
-    }
-  }
 }
 
 export class Store<T> {

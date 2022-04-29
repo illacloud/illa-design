@@ -70,22 +70,16 @@ export function applySizeStyle(size?: SelectProps["size"]) {
     default:
     case "large":
       sizeStyle = css`
-        //width: 132px;
-        //height: 40px;
         padding: 9px 16px;
       `
       break
     case "medium":
       sizeStyle = css`
-        //width: 132px;
-        //height: 32px;
         padding: 5px 16px;
       `
       break
     case "small":
       sizeStyle = css`
-        //width: 120px;
-        //height: 24px;
         padding: 1px 12px;
       `
       break
@@ -184,7 +178,6 @@ export function iconPointerStyle(size: string) {
       break
   }
   return css`
-    // background-color: white;
     position: absolute;
     right: 12px;
     opacity: 0;

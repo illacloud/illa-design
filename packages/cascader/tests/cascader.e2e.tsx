@@ -18,9 +18,21 @@ const options = [
         ],
       },
       {
+        value: "dongcheng",
+        label: "Dongcheng",
+      },
+      {
         value: "xicheng",
         label: "Xicheng",
         disabled: true,
+      },
+      {
+        value: "haidian",
+        label: "Haidian",
+      },
+      {
+        value: "fengtai",
+        label: "Fengtai",
       },
     ],
   },
@@ -31,6 +43,10 @@ const options = [
       {
         value: "huangpu",
         label: "Huangpu",
+      },
+      {
+        value: "pudong",
+        label: "Pudong",
       },
     ],
   },
@@ -81,6 +97,26 @@ it("Cascader render correctly", () => {
   unmount()
 })
 
+it("Cascader render with no data", () => {
+  mount(<Cascader options={[]} placeholder={"test"} value={undefined} />)
+
+  cy.findByPlaceholderText("test").should("exist")
+  cy.findByPlaceholderText("test").parent().click()
+  cy.findByText("No data").should("exist")
+  unmount()
+})
+
+it("Cascader render with disabled", () => {
+  mount(<Cascader options={[]} placeholder={"test"} disabled />)
+
+  cy.findByPlaceholderText("test").should("exist")
+  cy.findByPlaceholderText("test")
+    .parent()
+    .parent()
+    .should("have.css", "cursor", "not-allowed")
+  unmount()
+})
+
 it("Cascader rende with expandTrigger hover", () => {
   const changeEvent = cy.stub().as("changeEvent")
   const clearEvent = cy.stub().as("clearEvent")
@@ -96,7 +132,6 @@ it("Cascader rende with expandTrigger hover", () => {
   )
 
   cy.findByPlaceholderText("test").parent().click()
-  cy.wait(150)
   cy.findByText("Shanghai")
     .trigger("mouseover")
     .then(() => {
@@ -125,10 +160,45 @@ it("Cascader render with multiple", () => {
   mount(
     <Cascader
       multiple
+      size={"large"}
       options={options}
       placeholder={"test"}
       onChange={changeEvent}
       allowClear
+    />,
+  )
+
+  cy.findByPlaceholderText("test").parent().click()
+  cy.findByText("Beijing").click()
+  cy.findByText("Haidian").click()
+  cy.findByText("Beijing / Haidian").should("exist")
+  cy.get("@changeEvent").should("be.calledWith", [["beijing", "haidian"]])
+
+  cy.findByText("Dongcheng").click()
+  cy.findByText("Beijing / Dongcheng").should("exist")
+  cy.findByText("Fengtai").click()
+  cy.findByText("Beijing / Fengtai").should("exist")
+
+  // test clear option
+  cy.findByText("Beijing / Haidian")
+    .parent()
+    .next()
+    .click()
+    .then(() => {
+      cy.get("@changeEvent").should("be.called")
+    })
+  unmount()
+})
+
+it("Cascader render with maxTagCount", () => {
+  const changeEvent = cy.stub().as("changeEvent")
+  mount(
+    <Cascader
+      multiple
+      options={options}
+      placeholder={"test"}
+      onChange={changeEvent}
+      maxTagCount={1}
     />,
   )
 
@@ -137,16 +207,45 @@ it("Cascader render with multiple", () => {
   cy.findByText("Shanghai").click()
   cy.findByText("Huangpu").click()
   cy.findByText("Shanghai / Huangpu").should("exist")
+  cy.findByText("Pudong").click()
+  cy.findByText("+1...").should("exist")
   cy.get("@changeEvent").should("be.calledWith", [["shanghai", "huangpu"]])
 
-  cy.findByText("Shanghai / Huangpu")
-    .parent()
-    .next()
+  unmount()
+})
+
+it("Cascader test onClear should be triggered in multiple mode", () => {
+  const changeEvent = cy.stub().as("changeEvent")
+  const clearEvent = cy.stub().as("clearEvent")
+  mount(
+    <Cascader
+      multiple
+      defaultValue={[
+        ["beijing", "xicheng"],
+        ["shanghai", "huangpu"],
+      ]}
+      options={options}
+      placeholder={"test"}
+      onChange={changeEvent}
+      onClear={clearEvent}
+      allowClear
+    />,
+  )
+
+  cy.findByTitle("selectRemoveIcon")
     .click()
     .then(() => {
-      cy.get("@changeEvent").should("be.calledTwice")
-      cy.get("input").should("have.value", "")
+      cy.get("@clearEvent").should("be.calledOnce")
+      cy.get("@changeEvent").should("be.calledOnce")
+      cy.findByText("Shanghai / Huangpu").should("not.be.exist")
     })
+  cy.get("input").click()
+  cy.findByText("Shanghai").click()
+  cy.findByText("Huangpu").click()
+  cy.findByText("Shanghai / Huangpu").should("exist")
+  cy.findByText("Huangpu").click()
+  cy.findByText("Shanghai / Huangpu").should("not.be.exist")
+
   unmount()
 })
 
@@ -175,5 +274,61 @@ it("Cascader render with input type", () => {
       cy.get("@changeEvent").should("be.calledOnce")
       cy.get("@visibleChangeEvent").should("be.calledTwice")
     })
+  cy.findByText("Shanghai / Huangpu").click()
+  cy.get("input")
+    .type("i")
+    .then(() => {
+      cy.get("@visibleChangeEvent").should("be.calledThrice")
+    })
+  unmount()
+})
+
+it("Cascader render with search popup", () => {
+  const changeEvent = cy.stub().as("changeEvent")
+  const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
+  mount(
+    <Cascader
+      multiple
+      options={options}
+      placeholder={"test"}
+      onChange={changeEvent}
+      onVisibleChange={visibleChangeEvent}
+      data-testid={"cascader"}
+      showSearch
+      allowClear
+    />,
+  )
+  cy.get("input")
+    .type("i")
+    .then(() => {
+      cy.findByText("Beijing / Haidian").should("exist")
+      cy.findByText("Beijing / Haidian").click()
+      cy.get("@changeEvent").should("be.calledWith", [["beijing", "haidian"]])
+      cy.findAllByText("Beijing / Haidian").last().click()
+      cy.get("@changeEvent").should("be.calledTwice")
+      cy.findByText("Beijing / Xicheng").click()
+      cy.get("@changeEvent").should("be.calledTwice")
+      cy.get("@visibleChangeEvent").should("be.calledOnce")
+    })
+  unmount()
+})
+
+it("Cascader test with click disabled label", () => {
+  const changeEvent = cy.stub().as("changeEvent")
+  const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
+  mount(
+    <Cascader
+      options={options}
+      placeholder={"test"}
+      onChange={changeEvent}
+      onVisibleChange={visibleChangeEvent}
+      showSearch={{ retainInputValue: true }}
+      allowClear
+    />,
+  )
+  cy.findByPlaceholderText("test").parent().click()
+  cy.findByText("Beijing").click()
+  cy.findByText("Xicheng").click()
+  cy.get("input").should("have.value", "")
   unmount()
 })

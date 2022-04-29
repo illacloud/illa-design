@@ -21,7 +21,31 @@ it("Dropdown renders correctly", () => {
   const visibleEvent = cy.stub().as("visibleEvent")
   mount(
     <Dropdown
-      dropList={dropList}
+      triggerProps={{ closeDelay: 0, openDelay: 0 }}
+      onVisibleChange={visibleEvent}
+    >
+      <Button>Click</Button>
+    </Dropdown>,
+  )
+  cy.findByText("Click")
+    .click()
+    .then(() => {
+      cy.get("@visibleEvent").should("be.calledWith", true)
+    })
+  unmount()
+})
+
+it("Dropdown renders with dropList", () => {
+  const visibleEvent = cy.stub().as("visibleEvent")
+  const clickMenuItemEvent = cy.stub().as("clickMenuItemEvent")
+  mount(
+    <Dropdown
+      dropList={
+        <Menu onClickMenuItem={clickMenuItemEvent}>
+          <Item title={"Blog"} key={"1"} />
+          <Item title={"Tutorial"} key={"2"} />
+        </Menu>
+      }
       triggerProps={{ closeDelay: 0, openDelay: 0 }}
       onVisibleChange={visibleEvent}
     >
@@ -31,7 +55,12 @@ it("Dropdown renders correctly", () => {
   cy.findByText("Hover")
     .trigger("mouseover")
     .then(() => {
-      cy.findByText("Blog").should("exist")
+      cy.findByText("Blog")
+        .should("exist")
+        .click()
+        .then(() => {
+          cy.get("@clickMenuItemEvent").should("be.calledWith", "1")
+        })
     })
 
   unmount()
@@ -56,10 +85,14 @@ it("Dropdown renders correctly", () => {
     })
   unmount()
 })
+
 it("Dropdown renders correctly", () => {
   const visibleEvent = cy.stub().as("visibleEvent")
   mount(
-    <Dropdown onVisibleChange={visibleEvent}>
+    <Dropdown
+      triggerProps={{ closeDelay: 0, openDelay: 0 }}
+      onVisibleChange={visibleEvent}
+    >
       <Button>Click</Button>
     </Dropdown>,
   )
@@ -70,60 +103,3 @@ it("Dropdown renders correctly", () => {
     })
   unmount()
 })
-
-// it("Dropdown renders with different button text", () => {
-//   mount(
-//     <Dropdown
-//       position={"bl"}
-//     >
-//       <Button>Click</Button>
-//     </Dropdown>,
-//   )
-//   cy.findByText("Click").click()
-//   cy.findByText("ok-test").should("exist")
-//   cy.findByText("cancel-text").should("exist")
-//   unmount()
-// })
-//
-// it("Dropdown renders with different icon", () => {
-//   mount(
-//     <Dropdown position={"bl"} icon={<SearchIcon />}>
-//       <Button>Click</Button>
-//     </Dropdown>,
-//   )
-//   cy.findByText("Click").click()
-//   cy.findByTitle("SearchIcon").should("exist")
-//   unmount()
-// })
-//
-// it("Dropdown triggers ok event", () => {
-//   const okEvent = cy.stub().as("okEvent")
-//   const visibleEvent = cy.stub().as("visibleEvent")
-//   mount(
-//     <Dropdown
-//       position={"bl"}
-//       onVisibleChange={visibleEvent}
-//       onOk={okEvent}
-//     >
-//       <Button>Click</Button>
-//     </Dropdown>,
-//   )
-//   cy.findByText("Click").click()
-//   cy.get("@visibleEvent").should("be.calledWith", true)
-//   cy.findByText("Confirm").click()
-//   cy.get("@okEvent").should("be.called")
-//   unmount()
-// })
-//
-// it("Dropdown triggers cancel event", () => {
-//   const cancelEvent = cy.stub().as("cancelEvent")
-//   mount(
-//     <Dropdown position={"bl"} onCancel={cancelEvent}>
-//       <Button>Click</Button>
-//     </Dropdown>,
-//   )
-//   cy.findByText("Click").click()
-//   cy.findByText("Cancel").click()
-//   cy.get("@cancelEvent").should("be.called")
-//   unmount()
-// })
