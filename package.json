@@ -67,7 +67,6 @@
     "lint": "prettier --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
     "plop": "plop new",
-    "import-docs": "node ./scripts/import-docs.js",
     "report:combined": "sh ./scripts/merge-coverage.sh",
     "report:component": "sh ./scripts/coverage-component.sh"
   },
@@ -75,7 +74,6 @@
   "nyc": {
     "report-dir": "cypress-coverage",
     "reporter": [
-      "json",
       "lcov"
     ]
   }
