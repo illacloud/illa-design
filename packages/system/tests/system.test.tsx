@@ -6,6 +6,7 @@ import {
   mergedToString,
   omit,
   raf,
+  padStart,
 } from "../src"
 import { render, screen } from "@testing-library/react"
 import dayjs from "dayjs"
@@ -66,4 +67,11 @@ test("System test isDayjs function", () => {
 
 test("System test isServerRendering in js-dom environment", () => {
   expect(isServerRendering).toEqual(false)
+})
+
+test("System test padStart function", () => {
+  expect(padStart("23.61", 8, "0")).toBe("00023.61")
+  expect(padStart("23.61", 2, "0")).toBe("23.61")
+  expect(padStart("23.61", 8, "00")).toBe("000023.61")
+  expect(padStart("23.61", NaN, "00")).toBe("23.61")
 })
