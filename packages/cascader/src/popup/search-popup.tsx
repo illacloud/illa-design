@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, SyntheticEvent } from "react"
 import isEqual from "react-fast-compare"
 import { Empty } from "@illa-design/empty"
 import { Checkbox } from "@illa-design/checkbox"
@@ -7,8 +7,10 @@ import { OptionProps, SearchPopupProps } from "../interface"
 import {
   applyOptionStyle,
   flexCenterStyle,
+  optionLabelStyle,
   optionListStyle,
   searchListWrapper,
+  textMargin,
 } from "./style"
 
 export const SearchPopup = <T extends OptionProps>(
@@ -23,7 +25,11 @@ export const SearchPopup = <T extends OptionProps>(
   const activeItemRef = useRef<HTMLLIElement | null>(null)
   const isFirst = useRef<boolean>(true)
 
-  const clickOption = (option: Node<T>, checked: boolean, e: any) => {
+  const clickOption = (
+    option: Node<T>,
+    checked: boolean,
+    e: SyntheticEvent,
+  ) => {
     e?.stopPropagation()
     if (option.disabled) {
       return
@@ -78,7 +84,7 @@ export const SearchPopup = <T extends OptionProps>(
           return (
             <li
               css={applyOptionStyle({
-                active: !multiple && checked,
+                active: checked,
                 disabled: option.disabled,
               })}
               ref={(node) => {
@@ -93,15 +99,18 @@ export const SearchPopup = <T extends OptionProps>(
               key={i}
             >
               {multiple ? (
-                <Checkbox
-                  checked={checked}
-                  disabled={option.disabled}
-                  onChange={(checked, e) => {
-                    clickOption(option, checked, e)
-                  }}
-                >
-                  {label}
-                </Checkbox>
+                <>
+                  <Checkbox
+                    css={textMargin}
+                    checked={checked}
+                    value={option.value}
+                    disabled={option.disabled}
+                    onChange={(checked, e) => {
+                      clickOption(option, checked, e)
+                    }}
+                  />
+                  <div css={optionLabelStyle}>{label}</div>
+                </>
               ) : (
                 label
               )}

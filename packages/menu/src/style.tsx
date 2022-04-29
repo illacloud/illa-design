@@ -9,14 +9,14 @@ export function applyPopButtonCss(theme: Theme = "light"): SerializedStyles {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    box-shadow: 0 4px 10px ${globalColor(`--${illaPrefix}-gray-09`)};
+    box-shadow: 0 4px 10px ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     padding: 0 12px;
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
     background: ${theme === "dark"
-      ? globalColor(`--${illaPrefix}-gray-02`)
+      ? globalColor(`--${illaPrefix}-grayBlue-02`)
       : "none"};
   `
 }

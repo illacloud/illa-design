@@ -8,7 +8,7 @@ export function applyDividerContainerHorizontal(
   return css`
     display: inline-flex;
     vertical-align: middle;
-    border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-style: ${variant};
     border-width: 0 0 ${variant == "double" ? "3px" : "1px"} 0;
     width: 100%;
@@ -23,7 +23,7 @@ export function applyDividerContainerVertical(
     vertical-align: middle;
     border-width: 0 0 0 ${variant == "double" ? "3px" : "1px"};
     border-image: initial;
-    border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-style: ${variant};
     height: 1em;
   `

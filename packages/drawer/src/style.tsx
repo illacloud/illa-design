@@ -45,7 +45,7 @@ export const applyDrawerHeader = css`
   width: 100%;
   min-height: 40px;
   box-sizing: border-box;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   flex-shrink: 0;
   flex-grow: 0;
 `
@@ -55,7 +55,7 @@ export const applyDrawerTitle = css`
   line-height: 1.5;
   font-weight: 500;
   text-align: center;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const applyDrawerCloseIcon = css`
@@ -64,7 +64,7 @@ export const applyDrawerCloseIcon = css`
   top: 18px;
   right: 20px;
   font-size: 8px;
-  color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   line-height: 0;
 `
 
@@ -82,7 +82,7 @@ export const applyDrawerFooter = css`
   flex-shrink: 0;
   text-align: right;
   padding: 8px 24px;
-  border-top: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
 export const applyModalCancelBtn = css`

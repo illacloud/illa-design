@@ -16,7 +16,7 @@ test("base Breadcrumb ", () => {
   expect(screen.getByText("Channel")).toBeInTheDocument()
   expect(screen.getByText("Channel")).toBeInTheDocument()
   expect(screen.getAllByText("/")[1]).toHaveStyle({
-    color: globalColor(`--${illaPrefix}-gray-06`),
+    color: globalColor(`--${illaPrefix}-grayBlue-06`),
   })
 })
 

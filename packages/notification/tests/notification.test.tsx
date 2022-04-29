@@ -60,7 +60,7 @@ describe("Open Notification", () => {
     expect(closBtn).toBeInTheDocument()
     expect(closBtn).toHaveStyle({
       fontSize: 8,
-      color: `${globalColor(`--${illaPrefix}-gray-03`)}`,
+      color: `${globalColor(`--${illaPrefix}-grayBlue-03`)}`,
       cursor: "pointer",
     })
     await userEvent.click(closBtn as Element)
@@ -89,7 +89,9 @@ describe("Open Notification", () => {
     })
     let instance = screen.getByText("Default")
     fireEvent.mouseEnter(instance)
-    jest.advanceTimersByTime(800)
+    act(() => {
+      jest.advanceTimersByTime(800)
+    })
     expect(instance).toBeInTheDocument()
     fireEvent.mouseLeave(instance)
   })

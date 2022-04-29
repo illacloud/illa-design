@@ -16,7 +16,7 @@ export const applyButtonGroupStyle = css`
 export function applyHeaderStyle(colorScheme: TriggerColorScheme) {
   const textColor =
     colorScheme == "white"
-      ? globalColor(`--${illaPrefix}-gray-02`)
+      ? globalColor(`--${illaPrefix}-grayBlue-02`)
       : globalColor(`--${illaPrefix}-white-02`)
   return css`
     color: ${textColor};

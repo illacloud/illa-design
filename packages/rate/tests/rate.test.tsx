@@ -41,7 +41,7 @@ test("Rate renders with click", () => {
     screen.getByTestId("test-click").children[0].children[0],
   )
   expect(screen.getByTestId("test-click").children[0].children[2]).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-gray-08`)}`,
+    color: `${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
   })
 })
 

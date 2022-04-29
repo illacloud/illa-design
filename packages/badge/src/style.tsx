@@ -5,7 +5,7 @@ import { BadgeColorScheme, BadgeStatus } from "./interface"
 import { ReactNode } from "react"
 
 const statusColor = {
-  default: `--${illaPrefix}-gray-06`,
+  default: `--${illaPrefix}-grayBlue-06`,
   processing: `--${illaPrefix}-blue-03`,
   success: `--${illaPrefix}-green-03`,
   warning: `--${illaPrefix}-yellow-03`,
@@ -111,7 +111,7 @@ export const applyBadgeStatusText = css`
   margin-left: 9px;
   font-size: 12px;
   line-height: 1.33;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export function getDotColor(

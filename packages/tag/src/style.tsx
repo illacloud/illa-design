@@ -64,7 +64,7 @@ export const closeIcon = css`
   border-radius: 50%;
 
   &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-gray-07`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
     cursor: pointer;
   }
 `

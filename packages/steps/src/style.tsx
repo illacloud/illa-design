@@ -15,9 +15,9 @@ export const statusColor = {
     dotColor: globalColor(`--${illaPrefix}-blue-03`),
   },
   wait: {
-    color: globalColor(`--${illaPrefix}-gray-04`),
-    backgroundColor: globalColor(`--${illaPrefix}-gray-08`),
-    dotColor: globalColor(`--${illaPrefix}-gray-06`),
+    color: globalColor(`--${illaPrefix}-grayBlue-04`),
+    backgroundColor: globalColor(`--${illaPrefix}-grayBlue-08`),
+    dotColor: globalColor(`--${illaPrefix}-grayBlue-06`),
   },
   process: {
     color: globalColor(`--${illaPrefix}-white-01`),
@@ -59,7 +59,7 @@ export function getConnectorColor({
   nextStepError: boolean
   status: StepStatus
 }) {
-  const defaultColor = globalColor(`--${illaPrefix}-gray-08`)
+  const defaultColor = globalColor(`--${illaPrefix}-grayBlue-08`)
   let color = defaultColor
 
   if (nextStepError) {

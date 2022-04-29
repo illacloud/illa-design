@@ -43,13 +43,13 @@ export function applySubMenuHeaderCss(
 ): SerializedStyles {
   const themeColor = {
     light: {
-      hoverBg: globalColor(`--${illaPrefix}-gray-09`),
-      color: globalColor(`--${illaPrefix}-gray-03`),
+      hoverBg: globalColor(`--${illaPrefix}-grayBlue-09`),
+      color: globalColor(`--${illaPrefix}-grayBlue-03`),
       selectedColor: globalColor(`--${illaPrefix}-blue-01`),
     },
     dark: {
-      hoverBg: globalColor(`--${illaPrefix}-gray-03`),
-      color: globalColor(`--${illaPrefix}-gray-08`),
+      hoverBg: globalColor(`--${illaPrefix}-grayBlue-03`),
+      color: globalColor(`--${illaPrefix}-grayBlue-08`),
       selectedColor: globalColor(`--${illaPrefix}-blue-04`),
     },
   }

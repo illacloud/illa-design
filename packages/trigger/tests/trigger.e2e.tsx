@@ -114,7 +114,7 @@ it("Trigger renders with equal width", () => {
     .parent()
     .parent()
     .invoke("width")
-    .should("equal", 484)
+    .should("equal", 984)
   unmount()
 })
 
