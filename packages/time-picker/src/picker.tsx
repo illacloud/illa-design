@@ -8,7 +8,7 @@ import {
 import { TimePickerPopup } from "./time-picker-popup"
 import { RangePickerPopup } from "./range-picker-popup"
 
-export const TPTimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
+export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
   (props, ref) => {
     return (
       <Picker
@@ -20,7 +20,7 @@ export const TPTimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
   },
 )
 
-export const TPRangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
+export const TimeRangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
   (props, ref) => {
     return (
       <Picker
@@ -33,5 +33,5 @@ export const TPRangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
   },
 )
 
-TPTimePicker.displayName = "TPTimePicker"
-TPRangePicker.displayName = "TPRangePicker"
+TimePicker.displayName = "TimePicker"
+TimeRangePicker.displayName = "TimeRangePicker"

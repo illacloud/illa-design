@@ -1,27 +1,27 @@
-import { TPRangePicker } from "../src"
+import { TimeRangePicker } from "../src"
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import userEvent from "@testing-library/user-event"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 test("RangePicker renders with text", () => {
-  render(<TPRangePicker placeholder={["test0", "test1"]} />)
+  render(<TimeRangePicker placeholder={["test0", "test1"]} />)
   expect(screen.getByPlaceholderText("test0")).toBeInTheDocument()
   expect(screen.getByPlaceholderText("test1")).toBeInTheDocument()
 })
 
 test("RangePicker renders with disabled", () => {
-  render(<TPRangePicker placeholder={["disabled"]} disabled />)
+  render(<TimeRangePicker placeholder={["disabled"]} disabled />)
   expect(screen.getByPlaceholderText("disabled")).toBeDisabled()
 })
 
 test("RangePicker renders with text", () => {
-  render(<TPRangePicker value={["10:00:00", "12:00:00"]} />)
+  render(<TimeRangePicker value={["10:00:00", "12:00:00"]} />)
   expect(screen.getByDisplayValue("10:00:00")).toBeInTheDocument()
 })
 
 test("RangePicker renders with error", () => {
-  render(<TPRangePicker placeholder={["error"]} error />)
+  render(<TimeRangePicker placeholder={["error"]} error />)
   expect(screen.getByPlaceholderText("error").parentElement).toHaveStyle({
     "border-color": ` ${globalColor(`--${illaPrefix}-red-03`)}`,
   })
@@ -30,8 +30,8 @@ test("RangePicker renders with error", () => {
 test("RangePicker renders with size", () => {
   render(
     <div>
-      <TPRangePicker data-testid="large" size="large" />
-      <TPRangePicker data-testid="small" size="small" />
+      <TimeRangePicker data-testid="large" size="large" />
+      <TimeRangePicker data-testid="small" size="small" />
     </div>,
   )
   expect(screen.getAllByTestId("large")[0]?.parentElement).toHaveStyle({
@@ -45,7 +45,7 @@ test("RangePicker renders with size", () => {
 test("RangePicker render with input event", async () => {
   const changeEvent = jest.fn()
   render(
-    <TPRangePicker
+    <TimeRangePicker
       data-testid="test-input-event"
       onChange={changeEvent}
       allowClear
