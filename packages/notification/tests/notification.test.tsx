@@ -1,4 +1,4 @@
-import { render, screen, act } from "@testing-library/react"
+import { render, screen, act, fireEvent } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { iconColorMap } from "@illa-design/alert"
@@ -60,7 +60,7 @@ describe("Open Notification", () => {
     expect(closBtn).toBeInTheDocument()
     expect(closBtn).toHaveStyle({
       fontSize: 8,
-      color: `${globalColor(`--${illaPrefix}-gray-03`)}`,
+      color: `${globalColor(`--${illaPrefix}-grayBlue-03`)}`,
       cursor: "pointer",
     })
     await userEvent.click(closBtn as Element)
@@ -79,6 +79,21 @@ describe("Open Notification", () => {
       textAlign: "right",
       marginTop: 16,
     })
+  })
+
+  test("Notification renders with mouse action", async () => {
+    Notification.info({
+      title: `Default`,
+      content: "Content",
+      duration: 800,
+    })
+    let instance = screen.getByText("Default")
+    fireEvent.mouseEnter(instance)
+    act(() => {
+      jest.advanceTimersByTime(800)
+    })
+    expect(instance).toBeInTheDocument()
+    fireEvent.mouseLeave(instance)
   })
 
   test("Notification renders with update", async () => {

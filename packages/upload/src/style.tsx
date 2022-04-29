@@ -5,7 +5,7 @@ export const uploadContainerCss = css`
   display: inline-flex;
   flex-direction: column;
   min-width: 503px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)}; ;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}; ;
 `
 
 export const uploadChildrenCss = css`
@@ -25,14 +25,14 @@ export const inputCss = css`
 export function applyBackgroundCss(disabled?: boolean): SerializedStyles {
   if (disabled) {
     return css`
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
       cursor: not-allowed;
     `
   } else {
     return css`
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
       &:hover {
-        background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+        background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
         cursor: pointer;
       }
 
@@ -78,10 +78,10 @@ export function applyDragUploadContainerCss(
 export function applyImageUploadTextCss(disabled?: boolean): SerializedStyles {
   const colorCss = disabled
     ? css`
-        color: ${globalColor(`--${illaPrefix}-gray-05`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
       `
     : css`
-        color: ${globalColor(`--${illaPrefix}-gray-04`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
       `
   return css`
     font-size: 14px;
@@ -93,10 +93,10 @@ export function applyImageUploadTextCss(disabled?: boolean): SerializedStyles {
 export function applyDragUploadTitleCss(disabled?: boolean): SerializedStyles {
   const colorCss = disabled
     ? css`
-        color: ${globalColor(`--${illaPrefix}-gray-05`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
       `
     : css`
-        color: ${globalColor(`--${illaPrefix}-gray-03`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
       `
   return css`
     margin-top: 24px;
@@ -108,7 +108,7 @@ export function applyDragUploadTitleCss(disabled?: boolean): SerializedStyles {
 
 export const dragUploadTipCss = css`
   margin-top: 4px;
-  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   max-lines: 2;
   font-size: 14px;
   padding: 0 16px;
@@ -118,11 +118,11 @@ export const dragUploadTipCss = css`
 export function applyTextColorCss(disable?: boolean): SerializedStyles {
   if (disable) {
     return css`
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     `
   }
   return css`
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     &:active {
       color: ${globalColor(`--${illaPrefix}-blue-03`)};
     }
@@ -132,11 +132,11 @@ export function applyTextColorCss(disable?: boolean): SerializedStyles {
 export function applyIconCss(disable?: boolean): SerializedStyles {
   if (disable) {
     return css`
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     `
   }
   return css`
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     &:active {
       color: ${globalColor(`--${illaPrefix}-blue-03`)};
     }
@@ -150,7 +150,7 @@ export const fileTextItemCss = css`
   display: inline-flex;
   align-items: center;
   flex-grow: 1;
-  background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 
 export const filePicItemCss = css`
@@ -159,7 +159,7 @@ export const filePicItemCss = css`
   height: 64px;
   display: inline-flex;
   align-items: center;
-  background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 
 export const imageSizeCss = css`
@@ -214,9 +214,9 @@ export const tryTextCss = css`
 export const deleteIconCss = css`
   margin-left: 12px;
   font-size: 12px;
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   &:hover {
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: pointer;
   }
   transition: color 200ms;

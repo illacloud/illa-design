@@ -1,4 +1,4 @@
-import React, { createRef, ReactElement } from "react"
+import { createRef, ReactElement } from "react"
 import { ContextHolderElement } from "./contextHolder"
 import { HookModal } from "./hookModal"
 import { normalizeConfig } from "../confirm"

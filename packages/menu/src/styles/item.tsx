@@ -32,20 +32,20 @@ export function applyItemCss(
 
   const themeColor = {
     light: {
-      hoverBg: globalColor(`--${illaPrefix}-gray-09`),
-      disabledColor: globalColor(`--${illaPrefix}-gray-05`),
+      hoverBg: globalColor(`--${illaPrefix}-grayBlue-09`),
+      disabledColor: globalColor(`--${illaPrefix}-grayBlue-05`),
       selectedColor: globalColor(`--${illaPrefix}-blue-01`),
-      selectedBg: globalColor(`--${illaPrefix}-gray-09`),
+      selectedBg: globalColor(`--${illaPrefix}-grayBlue-09`),
       horizontalSelectedBg: globalColor(`--${illaPrefix}-blue-02`),
-      color: globalColor(`--${illaPrefix}-gray-03`),
+      color: globalColor(`--${illaPrefix}-grayBlue-03`),
     },
     dark: {
-      hoverBg: globalColor(`--${illaPrefix}-gray-03`),
-      disabledColor: globalColor(`--${illaPrefix}-gray-04`),
+      hoverBg: globalColor(`--${illaPrefix}-grayBlue-03`),
+      disabledColor: globalColor(`--${illaPrefix}-grayBlue-04`),
       selectedColor: globalColor(`--${illaPrefix}-blue-04`),
-      selectedBg: globalColor(`--${illaPrefix}-gray-03`),
+      selectedBg: globalColor(`--${illaPrefix}-grayBlue-03`),
       horizontalSelectedBg: globalColor(`--${illaPrefix}-blue-02`),
-      color: globalColor(`--${illaPrefix}-gray-08`),
+      color: globalColor(`--${illaPrefix}-grayBlue-08`),
     },
   }
 

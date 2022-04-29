@@ -1,19 +1,10 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { TreeSize } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const treeContainer = css`
-  display: inline-flex;
-  vertical-align: middle;
-  white-space: nowrap;
-  flex-direction: row;
-  align-items: center;
-  height: 100%;
-`
 export const listCss = css`
   width: 100%;
 `
-
 export function applyNodeHeight(size: TreeSize) {
   switch (size) {
     case "small":
@@ -25,10 +16,13 @@ export function applyNodeHeight(size: TreeSize) {
   }
 }
 
-export function applyNodeTextColor(disabled?: boolean, selected?: boolean) {
+export function applyNodeTextColor(
+  disabled?: boolean,
+  selected?: boolean,
+): SerializedStyles {
   if (disabled) {
     return css`
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     `
   } else if (selected) {
     return css`
@@ -36,11 +30,11 @@ export function applyNodeTextColor(disabled?: boolean, selected?: boolean) {
     `
   }
   return css`
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
-export function applyNodeContainerCss(size: TreeSize) {
+export function applyNodeContainerCss(size: TreeSize): SerializedStyles {
   const height = applyNodeHeight(size)
   return css`
     display: flex;
@@ -68,7 +62,9 @@ export const nodeFoldSwitchCss = css`
   align-items: center;
 `
 
-export function applyNodeFoldSwitchIconCss(folding?: boolean) {
+export function applyNodeFoldSwitchIconCss(
+  folding?: boolean,
+): SerializedStyles {
   const rotate = folding ? 0 : -90
   return css`
     display: flex;
@@ -81,7 +77,7 @@ export function applyNodeFoldSwitchIconCss(folding?: boolean) {
   `
 }
 
-export function applyLeafIconCss(visible?: boolean) {
+export function applyLeafIconCss(visible?: boolean): SerializedStyles {
   return css`
     display: inline-flex;
     align-items: center;
@@ -89,7 +85,7 @@ export function applyLeafIconCss(visible?: boolean) {
     font-size: 12px;
     visibility: ${visible === true ? "visible" : "hidden"};
     margin-right: 4px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)}; ;
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}; ;
   `
 }
 export const switchIconCss = css`
@@ -101,7 +97,7 @@ export const switchIconCss = css`
   width: 10px;
   margin: 3px;
   &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
 `
 
@@ -110,18 +106,18 @@ export function applyNodeTextContainerCss(
   disabled?: boolean,
   selected?: boolean,
   blockNode?: boolean,
-) {
+): SerializedStyles {
   const fontSize = size === "small" ? 12 : 14
   const hoverCss = !disabled
     ? css`
         &:hover {
-          background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+          background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
           cursor: pointer;
         }
       `
     : css`
         &:hover {
-          background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+          background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
           cursor: not-allowed;
         }
       `
@@ -149,13 +145,15 @@ export const checkboxCss = css`
   margin: 0 4px;
 `
 
-export function applyIndentBlockCss(requireDivider?: boolean) {
+export function applyIndentBlockCss(
+  requireDivider?: boolean,
+): SerializedStyles {
   return css`
     height: 100%;
     width: 16.5px;
     margin-left: 8px;
     border-left: solid 1px
-      ${requireDivider ? globalColor(`--${illaPrefix}-gray-08`) : "white"};
+      ${requireDivider ? globalColor(`--${illaPrefix}-grayBlue-08`) : "white"};
     box-sizing: border-box;
   `
 }

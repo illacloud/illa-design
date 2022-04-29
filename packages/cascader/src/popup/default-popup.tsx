@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import isEqual from "react-fast-compare"
 import { isNumber } from "@illa-design/system"
 import { LoadingIcon, NextIcon } from "@illa-design/icon"
@@ -7,11 +7,12 @@ import { CascaderPanelProps, OptionProps } from "../interface"
 import { Node } from "../node"
 import useRefs, { useForceUpdate, useUpdate } from "../hooks"
 import {
-  applyOptionLabelStyle,
   applyOptionStyle,
   flexCenterStyle,
   optionListStyle,
   optionListWrapper,
+  optionLabelStyle,
+  textMargin,
 } from "./style"
 import { Empty } from "@illa-design/empty"
 import { motion } from "framer-motion"
@@ -48,20 +49,17 @@ export const DefaultPopup = <T extends OptionProps>(
 
   const options = store.getOptions()
 
-  const onClickOption = async (option: any, isEnterClick = true) => {
+  const onClickOption = async (option: Node<T>) => {
     if (!option || option.disabled) {
       return
     }
     setActiveNode(option)
-    // 在键盘上下左右键操作时,isEnterClick 是false，不触发onChange
-    if (!multiple && isEnterClick) {
-      if (option.isLeaf) {
-        onChange?.([option.pathValue])
-      }
+    if (!multiple && option.isLeaf) {
+      onChange?.([option.pathValue])
     }
   }
 
-  const onMultipleChecked = (option: any, checked: boolean) => {
+  const onMultipleChecked = (option: Node<T>, checked: boolean) => {
     // props.value may contain selected values for which there is no corresponding option
     const beforeCheckedNodes = store
       .getCheckedNodes()
@@ -155,7 +153,7 @@ export const DefaultPopup = <T extends OptionProps>(
               initial={"hidden"}
               animate={"visible"}
               variants={!animate ? {} : variants}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.15 }}
               key={level}
               onClick={(e) => {
                 e.preventDefault()
@@ -200,7 +198,7 @@ export const DefaultPopup = <T extends OptionProps>(
                   >
                     {multiple && (
                       <Checkbox
-                        css={{ "margin-right": "8px" }}
+                        css={textMargin}
                         disabled={checkboxDisabled}
                         checked={option._checked}
                         indeterminate={option._halfChecked}
@@ -211,7 +209,7 @@ export const DefaultPopup = <T extends OptionProps>(
                       />
                     )}
                     <div
-                      css={applyOptionLabelStyle()}
+                      css={optionLabelStyle}
                       onMouseEnter={() => {
                         if (!(option.isLeaf || option.disabled)) {
                           if (expandTrigger === "hover") {

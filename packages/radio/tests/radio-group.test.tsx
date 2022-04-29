@@ -1,6 +1,7 @@
 import { Radio, RadioGroup } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 test("RadioGroup renders correctly", () => {
   render(
@@ -90,6 +91,7 @@ test("RadioGroup options render with direction", () => {
       data-testid="radio-group-direction"
       options={["directionA", "directionB", "directionC"]}
       direction="horizontal"
+      size={"large"}
     />,
   )
   expect(screen.getByTestId("radio-group-direction")).toBeInTheDocument()
@@ -109,6 +111,82 @@ test("RadioGroup options render with direction vertical", () => {
   expect(screen.getByTestId("radio-group-vertical")).toBeInTheDocument()
   expect(screen.getByTestId("radio-group-vertical")).toHaveStyle(`
     flex-direction: column;
+  `)
+})
+
+test("RadioGroup render with button type", () => {
+  render(
+    <RadioGroup
+      data-testid="radio-group-button"
+      options={["A", "B", "C"]}
+      type={"button"}
+      value={"A"}
+    />,
+  )
+  expect(screen.getByTestId("radio-group-button")).toBeInTheDocument()
+  expect(screen.getByText("A").parentNode).toHaveStyle(`
+    padding: 5px 12px;
+  `)
+})
+
+test("RadioGroup render with disabled style", () => {
+  render(
+    <RadioGroup
+      data-testid="radio-group-button"
+      options={["A", "B", "C"]}
+      type={"button"}
+      value={"A"}
+      disabled
+    />,
+  )
+  expect(screen.getByTestId("radio-group-button")).toBeInTheDocument()
+  expect(screen.getByText("A").parentNode).toHaveStyle(`
+    cursor: not-allowed;
+  `)
+})
+
+test("RadioGroup render with button type and small size", () => {
+  render(
+    <RadioGroup
+      data-testid="radio-group-button"
+      options={["A", "B", "C"]}
+      size={"small"}
+      type={"button"}
+      value={"A"}
+    />,
+  )
+  expect(screen.getByTestId("radio-group-button")).toBeInTheDocument()
+  expect(screen.getByText("A").parentNode).toHaveStyle(`
+    padding: 1px 8px;
+  `)
+})
+
+test("RadioGroup render with button type and large size", () => {
+  render(
+    <RadioGroup
+      data-testid="radio-group-button"
+      options={["A", "B", "C"]}
+      size={"large"}
+      type={"button"}
+    />,
+  )
+  expect(screen.getByTestId("radio-group-button")).toBeInTheDocument()
+  expect(screen.getByText("A").parentNode).toHaveStyle(`
+    padding: 9px 16px;
+  `)
+})
+
+test("RadioGroup render with button type and click", () => {
+  render(
+    <RadioGroup
+      data-testid="radio-group-button"
+      options={["A", "B", "C"]}
+      type={"button"}
+    />,
+  )
+  fireEvent.click(screen.getByText("A"))
+  expect(screen.getByText("A").parentNode).toHaveStyle(`
+    color: ${globalColor(`--${illaPrefix}-blue-03`)};
   `)
 })
 

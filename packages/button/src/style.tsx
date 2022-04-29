@@ -103,7 +103,7 @@ export function getDifferentStatusColor(
           }
         case "text":
           return [
-            globalColor(`--${illaPrefix}-gray-09`),
+            globalColor(`--${illaPrefix}-grayBlue-09`),
             globalColor(`--${illaPrefix}-${colorScheme}-02`),
           ]
       }
@@ -136,7 +136,7 @@ export function getDifferentStatusColor(
           }
         case "text":
           return [
-            globalColor(`--${illaPrefix}-gray-08`),
+            globalColor(`--${illaPrefix}-grayBlue-08`),
             globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
           ]
       }

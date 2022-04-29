@@ -1,26 +1,26 @@
-import { TPTimePicker } from "../src"
+import { TimePicker } from "../src"
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import userEvent from "@testing-library/user-event"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 test("TimePicker renders with text", () => {
-  render(<TPTimePicker placeholder={"test"} />)
+  render(<TimePicker placeholder={"test"} />)
   expect(screen.getByPlaceholderText("test")).toBeInTheDocument()
 })
 
 test("TimePicker renders with disabled", () => {
-  render(<TPTimePicker placeholder={"disabled"} disabled />)
+  render(<TimePicker placeholder={"disabled"} disabled />)
   expect(screen.getByPlaceholderText("disabled")).toBeDisabled()
 })
 
 test("TimePicker renders with text", () => {
-  render(<TPTimePicker value={"10:00:00"} />)
+  render(<TimePicker value={"10:00:00"} />)
   expect(screen.getByDisplayValue("10:00:00")).toBeInTheDocument()
 })
 
 test("TimePicker renders with error", () => {
-  render(<TPTimePicker placeholder={"error"} error />)
+  render(<TimePicker placeholder={"error"} error />)
   expect(screen.getByPlaceholderText("error").parentElement).toHaveStyle({
     "border-color": ` ${globalColor(`--${illaPrefix}-red-03`)}`,
   })
@@ -29,8 +29,8 @@ test("TimePicker renders with error", () => {
 test("TimePicker renders with size", () => {
   render(
     <div>
-      <TPTimePicker placeholder="large" size="large" />
-      <TPTimePicker placeholder="small" size="small" />
+      <TimePicker placeholder="large" size="large" />
+      <TimePicker placeholder="small" size="small" />
     </div>,
   )
   expect(screen.getByPlaceholderText("large")?.parentElement).toHaveStyle({
@@ -44,7 +44,7 @@ test("TimePicker renders with size", () => {
 test("TimePicker render with input event", async () => {
   const changeEvent = jest.fn()
   render(
-    <TPTimePicker
+    <TimePicker
       placeholder="test-input-event"
       onChange={changeEvent}
       allowClear

@@ -1,10 +1,10 @@
-import { TPRangePicker } from "../src"
+import { TimeRangePicker } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
 it("RangePicker render correctly", () => {
   const changeEvent = cy.stub().as("changeEvent")
-  mount(<TPRangePicker placeholder={["test"]} onChange={changeEvent} />)
+  mount(<TimeRangePicker placeholder={["test"]} onChange={changeEvent} />)
   cy.findByPlaceholderText("test").should("exist")
   cy.findByPlaceholderText("test").click()
   cy.findAllByText("01").first().click()
@@ -25,7 +25,7 @@ it("RangePicker render with clearEvent and selectEvent", () => {
   const clearEvent = cy.stub().as("clearEvent")
   const selectEvent = cy.stub().as("selectEvent")
   mount(
-    <TPRangePicker
+    <TimeRangePicker
       placeholder={["use12Hours"]}
       onChange={changeEvent}
       onClear={clearEvent}

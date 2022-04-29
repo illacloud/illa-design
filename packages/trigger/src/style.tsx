@@ -95,7 +95,7 @@ export function applyTipsText(
     : colorScheme
   const textColor =
     colorScheme == "white"
-      ? globalColor(`--${illaPrefix}-gray-02`)
+      ? globalColor(`--${illaPrefix}-grayBlue-02`)
       : globalColor(`--${illaPrefix}-white-01`)
 
   let paddingHor = "12px"

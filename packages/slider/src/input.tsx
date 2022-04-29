@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react"
+import { memo, useEffect, useState } from "react"
 import { InputNumber } from "@illa-design/input-number"
 import { SliderInputProps } from "./interface"
 import {

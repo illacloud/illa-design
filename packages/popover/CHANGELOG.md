@@ -1,5 +1,18 @@
 # @illa-design/popover
 
+## 0.0.2
+
+### Patch Changes
+
+- update all components version
+
+- Updated dependencies []:
+  - @illa-design/link@0.0.2
+  - @illa-design/system@0.0.2
+  - @illa-design/theme@0.0.2
+  - @illa-design/trigger@0.0.2
+  - @illa-design/typography@0.0.2
+
 ## 0.0.1
 
 ### Patch Changes
