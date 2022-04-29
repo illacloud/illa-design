@@ -40,7 +40,7 @@ test("Click on anchor should trigger onSelect", () => {
   expect(onSelect).toBeCalled()
 })
 
-test("Click on anchor should trigger onSelect", () => {
+test("Click on anchor should trigger onChange", () => {
   const onChange = jest.fn()
   render(
     <Anchor onChange={onChange}>

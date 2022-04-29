@@ -1,4 +1,3 @@
-import React from "react"
 import ReactDOM from "react-dom"
 import { Modal } from "./modal"
 import { ConfirmProps, ModalReturnProps } from "./interface"
@@ -43,7 +42,7 @@ export const normalizeConfig = (_config: ConfirmProps): ConfirmProps => {
           icon = <ErrorIcon />
           break
         default:
-          break
+          console.warn("The notice type is illegal")
       }
     }
     _config.title = (
@@ -119,6 +118,10 @@ export function confirm(
   modalConfig = normalizeConfig(modalConfig)
 
   modalConfig.visible = true
+  modalConfig.afterClose = () => {
+    config.afterClose && config.afterClose()
+    destroy()
+  }
   renderFunction(modalConfig)
 
   function destroy() {
@@ -138,10 +141,6 @@ export function confirm(
   function onCancel(isOnOk?: boolean) {
     !isOnOk && config.onCancel && config.onCancel()
     modalConfig.visible = false
-    modalConfig.afterClose = () => {
-      config.afterClose && config.afterClose()
-      destroy()
-    }
     renderFunction(modalConfig)
   }
 
@@ -158,10 +157,6 @@ export function confirm(
 
   function close() {
     modalConfig.visible = false
-    modalConfig.afterClose = () => {
-      config.afterClose && config.afterClose()
-      destroy()
-    }
     renderFunction(modalConfig)
   }
 

@@ -2,7 +2,6 @@ import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Variants } from "framer-motion"
 import { iconColorMap } from "@illa-design/alert"
-import React from "react"
 
 export const applyModalMask = css`
   position: fixed;

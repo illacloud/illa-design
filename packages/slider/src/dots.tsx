@@ -1,4 +1,4 @@
-import React, { memo } from "react"
+import { memo } from "react"
 import { formatPercent, getOffset, valueInRange } from "./util"
 import { SliderMarkProps } from "./interface"
 import { applySliderDot, applySliderDotWrapper } from "./style"

@@ -47,54 +47,24 @@ export default {
 const Template: Story<TreeProps> = (args) => {
   const data = [
     {
-      title: "0-0-head",
-      key: "0-0",
+      title: "toutou 01",
+      key: "0-0-0-0-0",
       children: [
         {
-          title: "0-0-0 ",
-          key: "0-0-0",
-          disabled: true,
-          children: [
-            {
-              title: "aoao",
-              key: "0-0-0-0",
-              disableCheckbox: true,
-            },
-            {
-              title: "aoao",
-              key: "0-0-0-1",
-              children: [
-                {
-                  title: "toutou",
-                  key: "0-0-0-0-0",
-                  disableCheckbox: true,
-                },
-                {
-                  title: "toutou",
-                  key: "0-0-0-1-1",
-                },
-              ],
-            },
-          ],
+          title: "leaf-1",
+          key: "0-0-0-0-0-0",
         },
         {
-          title: "0-0-1",
-          key: "0-0-1",
-          children: [
-            {
-              title: <span>xixi</span>,
-              key: "0-0-1-0",
-            },
-          ],
+          title: "leaf-2",
+          key: "0-0-0-0-0-1",
         },
       ],
     },
     {
-      title: "0-1",
-      key: "0-1",
+      title: "toutou 02",
+      key: "0-0-0-1-1",
     },
   ]
-
   return <Tree {...args} treeData={data} />
 }
 

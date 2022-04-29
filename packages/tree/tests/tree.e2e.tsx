@@ -60,7 +60,7 @@ it("Tree renders draggable", () => {
   mount(
     <Tree
       treeData={data}
-      draggable={true}
+      draggable
       onDragLeave={dragLeaveEvent}
       onDragOver={dragOverEvent}
       onDragStart={dragStartEvent}

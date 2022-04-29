@@ -1,9 +1,8 @@
 import { Skeleton } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 
-test("Skeleton renders with 3 rows", () => {
+test("Skeleton should render with 3 rows", () => {
   render(<Skeleton data-testid="skeleton" />)
   expect(screen.getByTestId("skeleton").querySelectorAll("li")).toHaveLength(3)
 })
@@ -43,4 +42,9 @@ test("Skeleton renders with squrare shape image", () => {
 test("Skeleton renders with custom size image", () => {
   render(<Skeleton data-testid="skeleton" image={{ size: 100 }} />)
   expect(screen.getByTestId("skeleton")).toMatchSnapshot()
+})
+
+test("Content should be visible when skeleton is invisible", () => {
+  render(<Skeleton data-testid="skeleton" visible={false}>hello</Skeleton >)
+  expect(screen.getByText("hello")).toBeVisible();
 })

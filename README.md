@@ -29,8 +29,6 @@
 
 ## 💡 Components
 
-You can review all components in:
-
 Doc
 
 [https://design.illafamily.com](https://design.illafamily.com)

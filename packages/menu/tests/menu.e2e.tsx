@@ -1,8 +1,6 @@
-import * as React from "react"
 import { Menu, MenuProps } from "../src"
-import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { mount, unmount } from "@cypress/react"
 
 const { Item, ItemGroup, SubMenu } = Menu
 
@@ -13,6 +11,7 @@ const TestMenu = (props: MenuProps = {}) => (
     <ItemGroup title={"Group"}>
       <Item title={"Docs"} key={"3"} />
       <Item title={"Community"} key={"4"} />
+
       <Item title={"Github"} key={"5"} />
     </ItemGroup>
     <SubMenu title={"SubMenu"} key={"0_0"} data-testid={"submenu"}>
@@ -51,11 +50,13 @@ const TestMenuInline = (props: MenuProps = {}) => (
 )
 
 it("Click Submenu should expand", () => {
-  mount(<TestMenu />)
+  mount(<TestMenuInline />)
 
-  cy.findByTestId("submenu-item").should("not.be.visible")
-  cy.findByTestId("submenu").click()
-  cy.findByTestId("submenu-item").should("be.visible")
+  cy.findByTestId("submenu-item-1").should("not.be.visible")
+  cy.findByTestId("submenu-1").click()
+  cy.findByTestId("submenu-item-1").should("be.visible")
+  cy.findByTestId("submenu-1").click("top")
+  cy.findByTestId("submenu-item-1").should("not.be.visible")
 
   unmount()
 })
@@ -63,10 +64,10 @@ it("Click Submenu should expand", () => {
 it("Should overflow in horizontal mode when exceed width", () => {
   mount(<TestMenu style={{ width: 100 }} mode={"horizontal"} />)
 
-  cy.get(`[data-testid="item"]`).should("not.be.visible")
+  cy.get(`[data-testid='item']`).should("not.be.visible")
   cy.get(`[data-sub-menu-marker]:last-child`).should("be.visible")
   cy.get(`[data-sub-menu-marker]:last-child`).trigger("mouseover")
-  cy.get(`[data-testid="item"]`).should("be.visible")
+  cy.get(`[data-testid='item']`).should("be.visible")
 
   unmount()
 })
@@ -86,9 +87,15 @@ it("Only one submenu will be opened if is accordion", () => {
   cy.findByTestId("submenu-item-1").should("be.visible")
   cy.findByTestId("submenu-item-2").should("not.be.visible")
 
-  cy.get(`[data-testid='submenu-2']`).click()
+  cy.findByTestId("submenu-2").click()
   cy.findByTestId("submenu-item-1").should("not.be.visible")
   cy.findByTestId("submenu-item-2").should("be.visible")
+
+  cy.findByTestId("submenu-2").click("top")
+  cy.findByTestId("submenu-item-2").should("not.be.visible")
+
+  cy.findByTestId("submenu-1").click("top")
+  cy.findByTestId("submenu-item-1").should("be.visible")
 
   unmount()
 })
@@ -97,7 +104,7 @@ it("Menu render with variant inline", () => {
   mount(<TestMenuInline />)
 
   cy.findByTestId("submenu-item-1").should("not.be.visible")
-  cy.get(`[data-testid='submenu-1']`).click()
+  cy.findByTestId("submenu-1").click()
   cy.findByTestId("submenu-item-1").should("be.visible")
 
   unmount()
@@ -106,10 +113,36 @@ it("Menu render with variant inline", () => {
 it("Menu render with variant pop", () => {
   mount(<TestMenuInline variant={"pop"} style={{ width: 150 }} />)
 
-  cy.get(`[data-testid='submenu-item-1']`).should("not.exist")
-  cy.get(`[data-testid='submenu-1']`).trigger("mouseover")
+  cy.findByTestId("submenu-item-1").should("not.exist")
+  cy.findByTestId("submenu-1").trigger("mouseover")
   cy.wait(200)
-  cy.get(`[data-testid='submenu-item-1']`).should("be.visible")
+  cy.findByTestId("submenu-item-1").should("be.visible")
+
+  unmount()
+})
+
+it("Click on pop menu item, onClickMenuItem should be called", () => {
+  const onClickMenuItem = cy.spy().as("onClickMenuItem")
+  mount(
+    <TestMenuInline
+      variant={"pop"}
+      onClickMenuItem={onClickMenuItem}
+      style={{ width: 150 }}
+      triggerProps={{ trigger: "click" }}
+    />,
+  )
+
+  cy.findByTestId("submenu-item-1").should("not.exist")
+  cy.findByTestId("submenu-1").click()
+
+  cy.findByTestId("submenu-item-1").should("be.visible")
+  cy.findByTestId("submenu-item-1")
+    .click("center")
+    .then(() => {
+      cy.get("@onClickMenuItem").should("be.called")
+      cy.findByTestId("submenu-1").click("center")
+      cy.findByTestId("submenu-item-1").should("not.exist")
+    })
 
   unmount()
 })

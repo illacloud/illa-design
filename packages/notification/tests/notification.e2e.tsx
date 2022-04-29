@@ -1,6 +1,5 @@
 import { Notification } from "../src"
 import { mount, unmount } from "@cypress/react"
-import * as React from "react"
 import "@testing-library/cypress"
 
 it("Notification renders with duration", () => {
@@ -33,7 +32,6 @@ it("Notification renders with remove action and clear action", () => {
     content: "Remove",
     id: "remove",
   })
-  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
   cy.contains("Remove").should("be.visible")
   Notification.remove("remove")
   cy.contains("Remove").should("not.be.exist")
@@ -50,7 +48,6 @@ it("Notification renders with clear action", () => {
     id: "itemB",
   })
 
-  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
   cy.contains("ItemA")
     .should("be.visible")
     .then(() => {

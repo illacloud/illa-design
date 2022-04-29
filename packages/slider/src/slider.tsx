@@ -4,7 +4,6 @@ import React, {
   useEffect,
   useMemo,
   CSSProperties,
-  MouseEvent,
 } from "react"
 import { SliderProps } from "./interface"
 import {
@@ -196,7 +195,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     }
   }
 
-  function onRoadMouseDown(e: MouseEvent<HTMLDivElement>) {
+  function onRoadMouseDown(e: React.MouseEvent<HTMLDivElement>) {
     getPosition()
     const val = getValueByCoords(e.clientX, e.clientY)
     if (rangeConfig.draggableBar && inRange(val)) {
@@ -243,7 +242,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   }
 
   // bar moving
-  function onBarMouseMove(e: any) {
+  function onBarMouseMove(e: MouseEvent) {
     const newVal = getLegalValue(getValueByCoords(e.clientX, e.clientY))
     const offsetVal = newVal - barStartDragVal.current
     const newBeginVal = beginVal + offsetVal

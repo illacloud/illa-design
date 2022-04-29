@@ -21,10 +21,6 @@ export function getOffset(val: number | string, range?: number[]) {
   return 0
 }
 
-export function isNotEmpty(val: any): boolean {
-  return val || val === 0
-}
-
 export function isSameOrder(
   firstNums: [number, number],
   secondNums: [number, number],
