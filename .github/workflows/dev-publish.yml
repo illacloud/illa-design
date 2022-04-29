@@ -91,7 +91,7 @@ jobs:
           files: ./coverage/lcov.info
 
       - name: Build storybook
-        run: npx build-storybook
+        run: yarn build-storybook
 
       - name: Deploy storybook to Github Pages
         uses: peaceiris/actions-gh-pages@v3
