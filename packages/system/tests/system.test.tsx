@@ -104,16 +104,8 @@ test("Merge to string test case", () => {
 })
 
 test("Test is single node", () => {
-  expect(
-    isSingleNode(<div data-testid="test-div">Div Test Case</div>),
-  ).toBeTruthy()
-  expect(
-    isSingleNode(
-      <div data-testid="test-div">
-        <div>1000</div>
-      </div>,
-    ),
-  ).not.toBeTruthy()
+  expect(isSingleNode("Div Test Case")).toBeTruthy()
+  expect(isSingleNode(1000)).toBeTruthy()
 })
 
 test("System test padStart function", () => {
