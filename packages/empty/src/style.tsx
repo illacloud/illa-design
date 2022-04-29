@@ -3,7 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const emptyContainerCss = css`
   vertical-align: middle;
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   text-align: center;
 `
 
@@ -13,6 +13,6 @@ export const iconCss = css`
 `
 
 export const descriptionCss = css`
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   font-size: 14px;
 `

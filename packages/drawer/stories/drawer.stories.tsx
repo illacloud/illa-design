@@ -34,22 +34,10 @@ Basic.args = {
 }
 
 const TemplateWithContainer = () => {
-  const [visibleInner, setVisibleInner] = React.useState(false)
+  const [visibleInner, setVisibleInner] = React.useState(true)
   const refWrapper = React.useRef(null)
   return (
-    <div
-      ref={refWrapper}
-      style={{
-        width: 1200,
-        height: 300,
-        backgroundColor: "gray",
-        position: "relative",
-        overflow: "hidden",
-        lineHeight: "300px",
-        textAlign: "center",
-      }}
-    >
-      <Button onClick={() => setVisibleInner(true)}>Open</Button>
+    <>
       <Drawer
         title="Basic"
         visible={visibleInner}
@@ -64,7 +52,21 @@ const TemplateWithContainer = () => {
       >
         <div style={{ textAlign: "left" }}>Here is an example text.</div>
       </Drawer>
-    </div>
+      <div
+        ref={refWrapper}
+        style={{
+          width: 1200,
+          height: 300,
+          backgroundColor: "gray",
+          position: "relative",
+          overflow: "hidden",
+          lineHeight: "300px",
+          textAlign: "center",
+        }}
+      >
+        <Button onClick={() => setVisibleInner(true)}>Open</Button>
+      </div>
+    </>
   )
 }
 

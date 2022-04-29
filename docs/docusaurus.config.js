@@ -1,47 +1,38 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const localSearch = require.resolve("@cmfcmf/docusaurus-search-local");
+const lightCodeTheme = require("prism-react-renderer/themes/github")
+const darkCodeTheme = require("prism-react-renderer/themes/dracula")
+const localSearch = require.resolve("@cmfcmf/docusaurus-search-local")
 
 const i18nConfig = {
-  defaultLocale: 'en',
+  defaultLocale: "en",
   locales: ["en", "zh-cn"],
 }
 
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'illa-design',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://design.illafamily.com',
+  title: "illa-design",
+  tagline: "A fully responsive UI Library for React, Vue 3, and Svelte.",
+  url: "https://design.illafamily.com",
   baseUrl: "/",
-  onBrokenLinks: 'ignore',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'illa-family', // Usually your GitHub org/user name.
-  projectName: 'illa-design', // Usually your repo name.
+  onBrokenLinks: "ignore",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.ico",
+  organizationName: "illa-family",
+  projectName: "illa-design",
   i18n: i18nConfig,
 
   presets: [
     [
-      'classic',
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          sidebarPath: require.resolve("./sidebars.js"),
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       }),
     ],
@@ -51,22 +42,22 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'illa-design',
+        title: "illa-design",
         logo: {
-          alt: 'illa Logo',
-          src: 'img/illa_logo.svg',
+          alt: "illa Logo",
+          src: "img/illa_logo.svg",
         },
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Docs',
+            type: "doc",
+            docId: "intro",
+            position: "left",
+            label: "Docs",
           },
           {
-            href: 'https://github.com/illa-family/illa-design',
-            label: 'GitHub',
-            position: 'right',
+            href: "https://github.com/illa-family/illa-design",
+            label: "GitHub",
+            position: "right",
           },
           {
             type: "localeDropdown",
@@ -75,49 +66,28 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
+        style: "dark",
         links: [
           {
-            title: 'Docs',
+            title: "Community",
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: "Discord",
+                href: "https://discord.gg/2tGBuJkgd6",
               },
             ],
           },
           {
-            title: 'Community',
+            title: "More",
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: "GitHub",
+                href: "https://github.com/illa-family/illa-design",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} ILLA, Inc. Create with ❤︎ by contributors`,
       },
       prism: {
         theme: lightCodeTheme,
@@ -126,11 +96,13 @@ const config = {
     }),
 
   plugins: [
-    [localSearch, {
-      language: ["en", "zh"]
-    }]
-  ]
+    [
+      localSearch,
+      {
+        language: ["en", "zh"],
+      },
+    ],
+  ],
+}
 
-};
-
-module.exports = config;
+module.exports = config

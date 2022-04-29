@@ -2,7 +2,7 @@ import { css, SerializedStyles, keyframes } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SkeletonImageProps, ImageShape, ImageSize } from "./interface"
 
-const backgroundColor = globalColor(`--${illaPrefix}-gray-08`)
+const backgroundColor = globalColor(`--${illaPrefix}-grayBlue-08`)
 
 export const skeletonStyle = css`
   display: flex;
@@ -30,8 +30,8 @@ export function applyAnimation(animatin?: boolean): SerializedStyles {
     background-position: 0 50%
   }
   `
-  const gray = globalColor(`--${illaPrefix}-gray-08`)
-  const darkGray = globalColor(`--${illaPrefix}-gray-06`)
+  const gray = globalColor(`--${illaPrefix}-grayBlue-08`)
+  const darkGray = globalColor(`--${illaPrefix}-grayBlue-06`)
 
   return css({
     background: `linear-gradient(90deg, ${gray} 20%, ${darkGray} 35%, ${gray} 65%)`,

@@ -13,12 +13,14 @@ export const applyButtonGroupStyle = css`
   align-self: end;
 `
 
-export function applyTitleColor(colorScheme: TriggerColorScheme) {
+export function applyHeaderStyle(colorScheme: TriggerColorScheme) {
   const textColor =
     colorScheme == "white"
-      ? globalColor(`--${illaPrefix}-gray-02`)
+      ? globalColor(`--${illaPrefix}-grayBlue-02`)
       : globalColor(`--${illaPrefix}-white-02`)
   return css`
     color: ${textColor};
+    font-size: 16px;
+    font-weight: 500;
   `
 }

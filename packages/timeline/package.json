@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/timeline",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Illa Design timeline.",
   "keywords": [
     "timeline",
@@ -39,9 +39,9 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.1",
-    "@illa-design/spin": "0.0.1",
-    "@illa-design/theme": "0.0.1",
-    "@illa-design/system": "0.0.1"
+    "@illa-design/icon": "0.0.2",
+    "@illa-design/spin": "0.0.2",
+    "@illa-design/theme": "0.0.2",
+    "@illa-design/system": "0.0.2"
   }
 }

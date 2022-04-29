@@ -23,19 +23,19 @@ export const headerLeftPartCss = css`
 export const headerRightPartCss = css`
   padding: 5px;
   border-radius: 4px;
-  background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 export const headerTextCss = css`
   vertical-align: middle;
   font-weight: 500;
   font-size: 20px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const headerSmallTextCss = css`
   font-weight: 500;
   font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const preNextIconsCss = css`
@@ -47,8 +47,8 @@ export const modeButtonCss = css`
   font-size: 14px;
   border-radius: 4px;
   border: none;
-  background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 export const selectCommonCss = css`
   display: inline-block;
@@ -61,7 +61,7 @@ export const weekTitleItemCommonCss = css`
   flex: 1;
   font-weight: 400;
   font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 `
 
 export const blockPaddingCss = css`
@@ -96,8 +96,8 @@ export const weekContainerCss = css`
 
 export const panelMonthContainerCss = css`
   padding: 10px 0;
-  border-top: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
-  border-right: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   &:nth-of-type(4n) {
     border-right: none;
   }
@@ -111,7 +111,7 @@ export const panelMonthTextCss = css`
   padding: 5px 20px 15px;
   font-weight: 500;
   font-size: 16px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const dayBodyCss = css`
@@ -119,8 +119,8 @@ export const dayBodyCss = css`
 `
 
 export const dayModeTodayButton = css`
-  border-top: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
-  color: 1px solid ${globalColor(`--${illaPrefix}-gray-02`)};
+  border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  color: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   font-size: 14px;
   font-weight: 500;
   text-align: center;
@@ -173,7 +173,7 @@ export function applyPanelGridItemCss(selected: boolean): SerializedStyles {
     padding: 0 5px;
     &:hover {
       cursor: pointer;
-      background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     }
     ${selected &&
     css`
@@ -192,7 +192,7 @@ export function applyCalendarWrapCss(
 ): SerializedStyles {
   return css`
     margin: 40px;
-    border: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+    border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${panel && `display: inline-block;width: ${+panelWidth}px`};
   `
 }
@@ -202,7 +202,7 @@ export function applyHeaderWrapCss(smallHeader: boolean): SerializedStyles {
   if (smallHeader) {
     style = css`
       padding: 9px 8px;
-      border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+      border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     `
   } else {
     style = css`
@@ -229,10 +229,10 @@ export function applyModeButtonCss(click?: boolean): SerializedStyles {
     `
   } else {
     colors = css`
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-      color: ${globalColor(`--${illaPrefix}-gray-04`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
       &:hover {
-        color: ${globalColor(`--${illaPrefix}-gray-04`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
       }
     `
   }
@@ -259,11 +259,11 @@ export function applyCurrentColorCss(
   let color
   if (isCurrentMonth) {
     color = css`
-      color: ${globalColor(`--${illaPrefix}-gray-02`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     `
   } else {
     color = css`
-      color: ${globalColor(`--${illaPrefix}-gray-06`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
     `
   }
   return css`
@@ -280,7 +280,7 @@ export const dayItemPanelCss = css`
   font-weight: 500;
   margin: 0 auto;
   &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
 `
 
@@ -310,8 +310,8 @@ export function applyContainerBlockCss(
   } else {
     padStyle = css`
       padding: 15px 15px 40% 15px;
-      border-top: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
-      border-right: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+      border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     `
   }
   let bgColor
@@ -322,7 +322,7 @@ export function applyContainerBlockCss(
   }
   if (disabled) {
     bgColor = css`
-      background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     `
   }
   return css`

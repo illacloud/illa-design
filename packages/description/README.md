@@ -18,22 +18,22 @@ import { Descriptions } from "@illa-design/descriptions"
 
 ### Descriptions Basic Properties
 
-| Props    | Desc                         | Type                                                         | Default        |
-| -------- | ---------------------------- | ------------------------------------------------------------ | -------------- |
-| bordered | If true, show the border     | `boolean `                                                   | `false`        |
-| column   | Number of data in one column | `number`                                                     | `3`            |
-| align    | Left align or right align    | `"left" \| "right" `                                         | `"left"`       |
-| layout   | The layout of description    | `"horizontal" \| "vertical \|  "inlineHorizontal" \| "inlineVertical"" ` | `"horizontal"` |
-| size     | The size of description      | `"small" \| "medium" \| "large"`                             | `"medium"`     |
-| title    | The title of description     | `ReactNode`                                                  | `-`            |
+| Props    | Desc                         | Type                                                         | Default      |
+| -------- | ---------------------------- | ------------------------------------------------------------ | ------------ |
+| bordered | If true, show the border     | boolean                                                      | false        |
+| column   | Number of data in one column | number                                                       | 3            |
+| align    | Left align or right align    | "left" \| "right"                                            | "left"       |
+| layout   | The layout of description    | "horizontal" \| "vertical \|  "inlineHorizontal" \| "inlineVertical"" | "horizontal" |
+| size     | The size of description      | "small" \| "medium" \| "large"                               | "medium"     |
+| title    | The title of description     | ReactNode                                                    | -            |
 
 ### Descriptions-item Basic Properties
 
-| Props | Desc                                             | Type      | Default |
-| ----- | ------------------------------------------------ | --------- | ------- |
-| label | 标签                                             | `string ` | `-`     |
-| value | 数据内容                                         | `string`  | `-`     |
-| span  | 头像组最多展示的头像数量，多余头像以+x的形式展示 | `number ` | 1       |
+| Props | Desc  | Type   | Default |
+| ----- | ----- | ------ | ------- |
+| label | Label | string | -       |
+| value | Value | string | -       |
+| span  | span  | number | 1       |
 
 ## Examples
 

@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/react"
-import { Popconfirm, PopconfirmProps } from "../src"
+import { PopConfirm, PopconfirmProps } from "../src"
 import { Button } from "@illa-design/button"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "FEEDBACK/Popconfirm",
-  component: Popconfirm,
+  title: "FEEDBACK/PopConfirm",
+  component: PopConfirm,
   argTypes: {
     icon: {
       control: false,
@@ -15,8 +15,8 @@ export default {
 
 export const Basic: Story<PopconfirmProps> = (args) => (
   <div style={{ margin: "200px" }}>
-    <Popconfirm {...args}>
+    <PopConfirm {...args}>
       <Button>Click</Button>
-    </Popconfirm>
+    </PopConfirm>
   </div>
 )

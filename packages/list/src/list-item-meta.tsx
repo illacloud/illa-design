@@ -34,8 +34,8 @@ export const ListItemMeta = forwardRef<HTMLDivElement, ListItemMetaProps>(
             <Paragraph
               colorScheme={
                 title == undefined
-                  ? globalColor(`--${illaPrefix}-gray-02`)
-                  : globalColor(`--${illaPrefix}-gray-04`)
+                  ? globalColor(`--${illaPrefix}-grayBlue-02`)
+                  : globalColor(`--${illaPrefix}-grayBlue-04`)
               }
               fontSize="14px"
             >

@@ -1,6 +1,5 @@
 import { forwardRef } from "react"
 import { TimelineItemProps } from "./interface"
-import { SerializedStyles } from "@emotion/react"
 import { TimelineContext } from "./timeline-context"
 import {
   applyItemCss,
@@ -14,7 +13,7 @@ import {
   applyHorItemContentCss,
 } from "./styles"
 
-export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
+const Item = forwardRef<HTMLDivElement, TimelineItemProps>(
   (props, ref) => {
     return (
       <TimelineContext.Consumer>
@@ -42,22 +41,17 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
             )
             return mode === "alternate" ? classArr[classIdx] : mode
           }
+          let handleLineCss, handleDotCss, handleContentCss, handlePropDotCss
 
-          let handleLineCss: SerializedStyles = applyVertItemLineCss(
-              mode,
-              lineColor,
-              lineType,
-            ),
-            handleDotCss: SerializedStyles = applyVertItemDotCss(
-              mode,
-              dotColor,
-              dotType,
-            ),
-            handleContentCss: SerializedStyles = applyVertItemContentCss(
+          if (direction === 'vertical') {
+            handleLineCss = applyVertItemLineCss(mode, lineColor, lineType)
+            handleDotCss = applyVertItemDotCss(mode, dotColor, dotType)
+            handlePropDotCss = applyVertPropDotCss(mode)
+            handleContentCss = applyVertItemContentCss(
               modehandle(mode, index),
               autoFixDotSize,
-            ),
-            handlePropDotCss: SerializedStyles = applyVertPropDotCss(mode)
+            )
+          }
           if (direction === "horizontal") {
             handleLineCss = applyHorItemLineCss(mode, lineColor, lineType)
             handleDotCss = applyHorItemDotCss(mode, dotColor, dotType)
@@ -69,7 +63,7 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
           }
 
           return (
-            <div css={applyItemCss(direction, mode)} ref={ref} {...rest}>
+            <div css={applyItemCss(direction)} ref={ref} {...rest}>
               {!dot && <div css={handleLineCss}></div>}
               {dot ? (
                 <div css={handlePropDotCss}>{dot}</div>
@@ -84,3 +78,12 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
     )
   },
 )
+
+const TimelineItem = Item as typeof Item & {
+  isTimelineItem?: boolean
+}
+
+TimelineItem.displayName = "TimelineItem"
+TimelineItem.isTimelineItem = true
+
+export { TimelineItem }

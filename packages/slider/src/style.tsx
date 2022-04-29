@@ -61,7 +61,7 @@ export function applySliderRoad(vertical?: boolean): SerializedStyles {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       ${verticalBeforeStyle}
     }
   `
@@ -84,7 +84,7 @@ export function applySliderBar(
     position: absolute;
     height: 2px;
     background-color: ${disabled
-      ? globalColor(`--${illaPrefix}-gray-08`)
+      ? globalColor(`--${illaPrefix}-grayBlue-08`)
       : globalColor(`--${illaPrefix}-blue-03`)};
     border-radius: 2px;
     top: 50%;
@@ -130,7 +130,7 @@ export function applySliderBtn(
       background-color: ${globalColor(`--${illaPrefix}-white-01`)};
       border: 2px solid ${
         disabled
-          ? globalColor(`--${illaPrefix}-gray-08`)
+          ? globalColor(`--${illaPrefix}-grayBlue-08`)
           : globalColor(`--${illaPrefix}-blue-03`)
       };
       border-radius: 50%;
@@ -168,10 +168,10 @@ export function applySliderTick(
     width: 1px;
     height: 3px;
     background-color: ${disabled
-      ? globalColor(`--${illaPrefix}-gray-08`)
+      ? globalColor(`--${illaPrefix}-grayBlue-08`)
       : active
       ? globalColor(`--${illaPrefix}-blue-03`)
-      : globalColor(`--${illaPrefix}-gray-08`)};
+      : globalColor(`--${illaPrefix}-grayBlue-08`)};
     top: 50%;
     transform: ${vertical && reverse
       ? `translate(1px, -50%)`
@@ -222,10 +222,10 @@ export function applySliderDot(
     border-radius: 50%;
     border: 2px solid
       ${disabled
-        ? globalColor(`--${illaPrefix}-gray-08`)
+        ? globalColor(`--${illaPrefix}-grayBlue-08`)
         : active
         ? globalColor(`--${illaPrefix}-blue-03`)
-        : globalColor(`--${illaPrefix}-gray-08`)};
+        : globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 }
 
@@ -261,7 +261,7 @@ export function applySliderMarkText(
       : `translateX(-50%)`};
     font-size: 14px;
     font-weight: 1.57;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
@@ -286,13 +286,14 @@ export const applySliderInputRange = css`
   width: 20px;
   line-height: 32px;
   height: 32px;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const applySliderInputRangeContent = css`
   display: inline-block;
   width: 8px;
   height: 2px;
-  background-color: ${globalColor(`--${illaPrefix}-gray-03`)};
-  transform: translateY(-100%);
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 `

@@ -73,10 +73,10 @@ function applyTitleSize({
 }
 
 function applyTitleColor(status: StepStatus): SerializedStyles {
-  let color = globalColor(`--${illaPrefix}-gray-02`)
+  let color = globalColor(`--${illaPrefix}-grayBlue-02`)
 
   if (status === "wait") {
-    color = globalColor(`--${illaPrefix}-gray-02`)
+    color = globalColor(`--${illaPrefix}-grayBlue-02`)
   }
 
   return css`
@@ -122,7 +122,7 @@ function applyConnectionStyle({
     pseudoStyle = css({
       width: 6,
       height: 6,
-      border: `2px solid ${globalColor(`--${illaPrefix}-gray-06`)} `,
+      border: `2px solid ${globalColor(`--${illaPrefix}-grayBlue-06`)} `,
       borderLeft: "none",
       borderBottom: "none",
       transform: "rotate(45deg)",

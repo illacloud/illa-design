@@ -1,6 +1,6 @@
 # ConfigProvider
 
-ConfigProvider is used to set global params, like language
+ConfigProvider is used to set global params, like language.
 
 ## Installation
 
@@ -18,9 +18,9 @@ import { ConfigProvider } from "@illa-design/config-provider"
 
 ### ConfigProvider Basic Properties
 
-| Props  | Desc         | Type     | Default |
-| ------ | ------------ | -------- | ------- |
-| locale | Set language | `Locale` | `-`     |
+| Props  | Desc         | Type   | Default |
+| ------ | ------------ | ------ | ------- |
+| locale | Set language | Locale | -       |
 
 ## Example
 

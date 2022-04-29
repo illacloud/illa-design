@@ -1,6 +1,7 @@
 import { Meta, Story } from "@storybook/react"
 import { Timeline, TimelineProps, TimelineItem } from "../src"
 
+
 export default {
   title: "DATA DISPLAY/Timeline",
   component: Timeline,
@@ -16,7 +17,7 @@ export default {
 
 const Template: Story<TimelineProps> = (props) => {
   return (
-    <Timeline {...props}>
+    <Timeline pending {...props}>
       <TimelineItem>The first milestone</TimelineItem>
       <TimelineItem>The second milestone</TimelineItem>
       <TimelineItem>The third milestone</TimelineItem>

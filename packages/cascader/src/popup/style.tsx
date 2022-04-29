@@ -10,7 +10,7 @@ export const optionListWrapper = css`
   padding: 4px 0;
 
   &:not(:last-child) {
-    border-right: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
 `
 
@@ -36,8 +36,8 @@ export function applyOptionStyle(states: {
   let stateStyle: SerializedStyles = css()
   if (states.active) {
     stateStyle = css`
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-      color: ${globalColor(`--${illaPrefix}-gray-02`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     `
   }
   if (states.disabled) {
@@ -45,7 +45,7 @@ export function applyOptionStyle(states: {
       stateStyle,
       css`
         cursor: not-allowed;
-        color: ${globalColor(`--${illaPrefix}-gray-05`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 
         &:hover {
           background-color: unset;
@@ -60,30 +60,32 @@ export function applyOptionStyle(states: {
     height: 36px;
     cursor: pointer;
     box-sizing: border-box;
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 
     &:hover {
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     }
 
     ${stateStyle}
   `
 }
 
-export function applyOptionLabelStyle(): SerializedStyles {
-  return css`
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-grow: 1;
-    padding-right: 20px;
+export const optionLabelStyle = css`
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding-right: 20px;
 
-    & > svg {
-      font-size: 12px;
-      position: absolute;
-      right: 0;
-    }
-  `
-}
+  & > svg {
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+  }
+`
+
+export const textMargin = css`
+  margin-right: 8px;
+`

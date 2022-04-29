@@ -1,4 +1,4 @@
-import { forwardRef, MouseEventHandler, useState } from "react"
+import { forwardRef, useState } from "react"
 import { TagProps } from "./interface"
 import { css } from "@emotion/react"
 import { CloseIcon } from "@illa-design/icon"
@@ -9,7 +9,6 @@ import {
   applyTagSizeLarge,
   applyTagSizeMedium,
   applyTagSizeSmall,
-  closeIcon,
   colors,
   leftIcon,
   tagContainer,
@@ -20,7 +19,6 @@ import {
   tagOutlineNormal,
   tagOutlinePrepare,
 } from "./style"
-import * as events from "events"
 
 export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const {

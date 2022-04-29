@@ -67,7 +67,7 @@ test("Menu renders with submenu", () => {
 })
 
 test("Menu renders with overflow wrap", () => {
-  const { container } = render(
+  render(
     <Menu hasCollapseButton mode={"horizontal"}>
       <Item title={"Tutorial"} key={"2"} />
       <Item title={"Docs"} key={"3"} />
@@ -120,11 +120,16 @@ test("onClickMenuItem should NOT be trigger when item is disabled", () => {
   expect(clickEvent).not.toBeCalled()
 })
 
-test("onClickSubMenu should be trigger", () => {
+test("onClickSubMenu should be trigger in pop submenu", () => {
   const clickEvent = jest.fn()
 
   render(
-    <Menu hasCollapseButton onClickSubMenu={clickEvent}>
+    <Menu
+      hasCollapseButton
+      onClickSubMenu={clickEvent}
+      variant={"pop"}
+      selectable
+    >
       <ItemGroup title={"Group"}>
         <Item title={"Tutorial"} key={"2"} />
         <Item title={"Docs"} key={"3"} />
@@ -159,4 +164,44 @@ test("onCollapse should be trigger", () => {
   screen.getByTitle("PreIcon").parentElement?.parentElement?.click()
 
   expect(event).toBeCalled()
+})
+
+test("When submenu is selectale, onClickMenuItem should be trggered ", () => {
+  const clickItemEvent = jest.fn()
+
+  render(
+    <Menu hasCollapseButton onClickMenuItem={clickItemEvent} variant={"pop"}>
+      <ItemGroup title={"Group"}>
+        <Item title={"Tutorial"} key={"2"} />
+        <Item title={"Docs"} key={"3"} />
+      </ItemGroup>
+      <SubMenu title={"SubMenu"} key={"0"} selectable={true}>
+        <Item title={"Community"} key={"4"} />
+        <Item title={"Github"} key={"5"} />
+      </SubMenu>
+    </Menu>,
+  )
+
+  screen.getByText("SubMenu").click()
+  expect(clickItemEvent).toBeCalled()
+})
+
+test("onClickSubMenu should be trigger", () => {
+  const clickEvent = jest.fn()
+
+  render(
+    <Menu hasCollapseButton onClickSubMenu={clickEvent}>
+      <ItemGroup title={"Group"}>
+        <Item title={"Tutorial"} key={"2"} />
+        <Item title={"Docs"} key={"3"} />
+      </ItemGroup>
+      <SubMenu title={"SubMenu"} key={"0"}>
+        <Item title={"Community"} key={"4"} />
+        <Item title={"Github"} key={"5"} />
+      </SubMenu>
+    </Menu>,
+  )
+
+  screen.getByText("SubMenu").click()
+  expect(clickEvent).toBeCalled()
 })

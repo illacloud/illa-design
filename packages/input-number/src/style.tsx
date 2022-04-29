@@ -45,8 +45,8 @@ function baseFixCls(stateValue: InputNumberStateValue) {
 export function applyAddonCss(stateValue: InputNumberStateValue) {
   return css`
     ${baseFixCls(stateValue)}
-    color: ${globalColor(`--${illaPrefix}-gray-04`)};
-    border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+    border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-width: 1px;
     border-style: solid;
     line-height: initial;
@@ -55,7 +55,7 @@ export function applyAddonCss(stateValue: InputNumberStateValue) {
     text-align: center;
     &:hover {
       cursor: pointer;
-      color: ${globalColor(`--${illaPrefix}-gray-02`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     }
 
     &:first-of-type {
@@ -120,12 +120,12 @@ export function applyStepEmbed() {
     flex-direction: column;
     box-sizing: border-box;
     padding: 0 3px;
-    color: ${globalColor(`--${illaPrefix}-gray-04`)};
-    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     transition: 0.2s ease-in-out;
     &:hover {
       cursor: pointer;
-      background-color: ${globalColor(`--${illaPrefix}-gray-07`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
     }
     &:first-of-type {
       border-top-left-radius: 4px;

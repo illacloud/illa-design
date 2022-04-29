@@ -7,12 +7,8 @@ import {
   applyRadioContainerHorizontal,
   applyRadioContainerVertical,
 } from "./style"
-import { useMergeValue } from "./hook"
+import { isArray, useMergeValue } from "@illa-design/system"
 import { RadioGroupContext } from "./radio-group-context"
-
-function isArray(obj: any) {
-  return Object.prototype.toString.call(obj) === "[object Array]"
-}
 
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
   (props, ref) => {

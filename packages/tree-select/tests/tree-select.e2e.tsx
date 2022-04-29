@@ -5,35 +5,35 @@ import { TreeSelect } from "../src"
 
 const data = [
   {
-    title: "0-0-head",
+    title: "0-0",
     key: "0-0",
     value: "0-0",
     children: [
       {
-        title: "0-0-0 ",
+        title: "0-0-0",
         key: "0-0-0",
         value: "0-0-0",
         disabled: true,
         children: [
           {
-            title: "aoao",
+            title: "leaf-01",
             key: "0-0-0-0",
             value: "0-0-0-0",
             disableCheckbox: true,
           },
           {
-            title: "aoao",
+            title: "0-0-0-1",
             key: "0-0-0-1",
             value: "0-0-0-1",
             children: [
               {
-                title: "toutou",
+                title: "leaf-02",
                 key: "0-0-0-0-0",
                 value: "0-0-0-0-0",
                 disableCheckbox: true,
               },
               {
-                title: "toutou",
+                title: "leaf-03",
                 value: "0-0-0-1-1",
                 key: "0-0-0-1-1",
               },
@@ -47,7 +47,7 @@ const data = [
         value: "0-0-1",
         children: [
           {
-            title: <span>xixi</span>,
+            title: <span>leaf-04</span>,
             key: "0-0-1-0",
             value: "0-0-1-0",
           },
@@ -56,52 +56,16 @@ const data = [
     ],
   },
   {
-    title: "0-1-xixixixixix",
+    title: "leaf-05",
     value: "0-1",
     key: "0-1",
   },
 ]
 
 it("TreeSelect renders correctly", () => {
-  mount(<TreeSelect treeData={data} />)
-  cy.findByTitle("ExpandIcon").parent().trigger("click")
-  cy.findByText("0-1-xixixixixix").should("exist")
+  mount(<TreeSelect data-testId="TreeSelect" treeData={data} />)
+  cy.findByTestId("TreeSelect").should("exist")
   unmount()
 })
 
-it("TreeSelect renders with onChangeEvent", () => {
-  const onChangeEvent = cy.spy().as("onChangeEvent")
-  mount(<TreeSelect treeData={data} onChange={onChangeEvent} />)
-  cy.findByTitle("ExpandIcon").parent().trigger("click")
-  cy.findByText("0-1-xixixixixix").trigger("click")
-  cy.get("@onChangeEvent").should("be.calledWith", "0-1")
-  unmount()
-})
-
-// it("TreeSelect renders with showSearch", () => {
-//   mount(<TreeSelect treeData={data} showSearch={true} />)
-//   cy.findByTitle("ExpandIcon").parent().trigger("click")
-//   cy.findByTitle("SearchIcon").should("exist")
-//   unmount()
-// })
-
-it("TreeSelect renders with multiple", () => {
-  const onChangeEvent = cy.spy().as("onChangeEvent")
-  mount(<TreeSelect treeData={data} multiple={true} onChange={onChangeEvent} />)
-  cy.findByTitle("ExpandIcon").parent().trigger("click")
-  cy.findByText("0-1-xixixixixix").trigger("click")
-  cy.findByText("0-0-head").trigger("click")
-  cy.get("@onChangeEvent").should("be.calledWith", ["0-1", "0-0"])
-  unmount()
-})
-
-it("TreeSelect renders with remove", () => {
-  const onChangeEvent = cy.spy().as("onChangeEvent")
-  mount(<TreeSelect treeData={data} multiple={true} onChange={onChangeEvent} />)
-  cy.findByTitle("ExpandIcon").parent().trigger("click")
-  cy.findByText("0-1-xixixixixix").trigger("click")
-  cy.get("@onChangeEvent").should("be.calledWith", ["0-1"])
-  cy.findByTitle("CloseIcon").parent().trigger("click")
-  cy.get("@onChangeEvent").should("be.calledWith", [])
-  unmount()
-})
+// [Todo] Supplementary TreeSelect test case

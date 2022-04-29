@@ -23,7 +23,7 @@ export function applyLinkContainer(
   const hoverBgColor =
     colorScheme == "white"
       ? globalColor(`--${illaPrefix}-white-06`)
-      : globalColor(`--${illaPrefix}-gray-09`)
+      : globalColor(`--${illaPrefix}-grayBlue-09`)
   let hoverCss
   if (hoverable) {
     hoverCss = css`

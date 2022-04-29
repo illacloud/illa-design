@@ -1,13 +1,13 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { TPTimePicker, TimePickerProps } from "../src"
-import { TPRangePicker, RangePickerProps } from "../src"
+import { TimePicker, TimePickerProps } from "../src"
+import { TimeRangePicker, RangePickerProps } from "../src"
 import { Space } from "@illa-design/space"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "DATA INPUT/TimePicker",
-  component: TPTimePicker,
+  component: TimePicker,
   argTypes: {
     value: {
       type: "string",
@@ -18,9 +18,9 @@ export default {
 export const timePicker: Story<TimePickerProps> = (args) => {
   return (
     <Space direction={"vertical"} size={"25px"}>
-      <TPTimePicker {...args} />
-      <TPTimePicker use12Hours format="hh:mm:ss a" {...args} />
-      <TPTimePicker disabled {...args} />
+      <TimePicker {...args} />
+      <TimePicker use12Hours format="hh:mm:ss a" {...args} />
+      <TimePicker disabled {...args} />
     </Space>
   )
 }
@@ -28,9 +28,9 @@ export const timePicker: Story<TimePickerProps> = (args) => {
 export const rangePicker: Story<RangePickerProps> = (args) => {
   return (
     <Space wrap>
-      <TPRangePicker {...args} />
-      <TPRangePicker disabled={[true, false]} {...args} />
-      <TPRangePicker value={["10:00:00", "12:00:00"]} {...args} />
+      <TimeRangePicker {...args} />
+      <TimeRangePicker disabled={[true, false]} {...args} />
+      <TimeRangePicker value={["10:00:00", "12:00:00"]} {...args} />
     </Space>
   )
 }

@@ -27,7 +27,7 @@ export const TableFilter = forwardRef<SVGSVGElement, TableFilterProps<any>>(
           color={
             highlight
               ? globalColor(`--${illaPrefix}-blue-03`)
-              : globalColor(`--${illaPrefix}-gray-03`)
+              : globalColor(`--${illaPrefix}-grayBlue-03`)
           }
           size={"16px"}
           css={css(
