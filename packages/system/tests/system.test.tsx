@@ -215,12 +215,12 @@ test("test getDayjsValue", function () {
   const dayFormat1 = formatTime(day1)
   expect(dayFormat1).toEqual("08:00:00")
 
-  // when time type is dayjs
+  // when time type is array
   const dayArr = getDayjsValue(["06:00:00", "08:00:00"], "HH:mm:ss") as Dayjs[]
   const dayArrFormat = [formatTime(dayArr[0]), formatTime(dayArr[1])]
   expect(dayArrFormat).toEqual(["06:00:00", "08:00:00"])
 
-  // when time type is dayjs
+  // when time type is undefined
   expect(getDayjsValue(undefined, "HH:mm:ss")).toEqual(void 0)
 })
 
