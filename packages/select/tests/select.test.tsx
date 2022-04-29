@@ -1,6 +1,7 @@
 import { Select, Option } from "../src"
-import { render, screen } from "@testing-library/react"
+import { render, screen, fireEvent } from "@testing-library/react"
 import "@testing-library/jest-dom"
+import userEvent from "@testing-library/user-event"
 
 test("Select renders with text", () => {
   render(<Select placeholder={"test"} />)
@@ -28,20 +29,39 @@ test("Select renders with loading", () => {
   expect(screen.getByText("1").nextElementSibling).toBeInTheDocument()
 })
 
+test("Select renders with disabled", () => {
+  render(<Select data-testid={'test'} value={1} options={[1, 2, 3]} disabled />)
+  fireEvent.focus(screen.getByTestId('test'))
+  expect(screen.getByDisplayValue("1")).toBeDisabled()
+})
+
 test("Select renders with error", () => {
   render(<Select value={1} options={[1, 2, 3]} error />)
   expect(screen.getByText("1").nextElementSibling).toBeInTheDocument()
 })
 
 test("Select renders with size", () => {
-  render(<Select value={1} options={[1, 2, 3]} size="large" />)
-  render(<Select value={"a"} options={["a", "b", "c"]} size="small" />)
-  expect(
-    screen.getByText("1")?.parentElement?.parentElement,
-  ).toBeInTheDocument()
-  expect(
-    screen.getByText("a")?.parentElement?.parentElement,
-  ).toBeInTheDocument()
+  render(
+    <div>
+      <Select value={1} options={[1, 2, 3]} size="large" allowClear />
+      <Select value={"a"} options={["a", "b", "c"]} size="small" allowClear />
+    </div>,
+  )
+  const container = screen.getByText("1")?.parentElement?.previousElementSibling
+  if (container) {
+    userEvent.hover(container)
+    expect(screen.getByTitle("selectRemoveIcon")).toHaveStyle({
+      right: '16px',
+    })
+  }
+  const containerA =
+    screen.getByText("a")?.parentElement?.previousElementSibling
+  if (containerA) {
+    userEvent.hover(containerA)
+    expect(screen.getByTitle("selectRemoveIcon")).toHaveStyle({
+      right: '12px',
+    })
+  }
 })
 
 test("Select renders with mode", () => {

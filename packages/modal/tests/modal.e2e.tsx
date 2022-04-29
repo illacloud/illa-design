@@ -152,7 +152,7 @@ it("Modal renders with correctly", () => {
   mount(<NormalModal />)
   cy.findByText("Open").trigger("click")
   cy.findByText("Title").should("exist")
-  cy.findByText("Title").should("have.css", "color", "rgb(31, 31, 31)")
+  cy.findByText("Title").should("have.css", "color", "rgb(29, 33, 41)")
   unmount()
 })
 

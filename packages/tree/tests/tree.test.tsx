@@ -283,14 +283,14 @@ test("Tree renders with select", async () => {
     color: ` ${globalColor(`--${illaPrefix}-blue-05`)}`,
   })
   expect(screen.getByText("0-0-0").parentNode?.parentNode).toHaveStyle({
-    color: ` ${globalColor(`--${illaPrefix}-gray-05`)}`,
+    color: ` ${globalColor(`--${illaPrefix}-grayBlue-05`)}`,
   })
   fireEvent.click(screen.getByText("toutou 01"))
   expect(screen.getByText("toutou 01").parentNode?.parentNode).toHaveStyle({
     color: ` ${globalColor(`--${illaPrefix}-blue-03`)}`,
   })
   expect(screen.getByText("0-0-head").parentNode?.parentNode).toHaveStyle({
-    color: ` ${globalColor(`--${illaPrefix}-gray-02`)}`,
+    color: ` ${globalColor(`--${illaPrefix}-grayBlue-02`)}`,
   })
   expect(selectEvent).toBeCalled()
 })
@@ -317,7 +317,7 @@ test("Tree renders with select multiple", async () => {
   })
   fireEvent.click(screen.getByText("0-0-head"))
   expect(screen.getByText("0-0-head").parentNode?.parentNode).toHaveStyle({
-    color: ` ${globalColor(`--${illaPrefix}-gray-02`)}`,
+    color: ` ${globalColor(`--${illaPrefix}-grayBlue-02`)}`,
   })
   expect(selectEvent).toBeCalled()
 })

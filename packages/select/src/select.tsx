@@ -26,7 +26,7 @@ import {
 } from "./utils"
 import { OptionList } from "./option-list"
 
-export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
+export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const {
     size = "medium",
     children,
@@ -361,6 +361,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       colorScheme="white"
       position="bl"
       disabled={disabled}
+      openDelay={10}
+      closeDelay={10}
       withoutPadding
       closeOnClick
       clickOutsideToClose
@@ -372,6 +374,7 @@ export const Select = forwardRef<HTMLElement, SelectProps>((props, ref) => {
       <SelectView
         {...props}
         {...selectViewEventHandlers}
+        ref={ref}
         value={currentValue}
         inputValue={inputValue}
         popupVisible={currentVisible}

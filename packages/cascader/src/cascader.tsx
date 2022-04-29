@@ -90,7 +90,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     )
 
     const handleVisibleChange = useCallback(
-      (value: any) => {
+      (value: boolean) => {
         if (value !== currentVisible) {
           onVisibleChange?.(value)
           if (!("popupVisible" in props)) {
@@ -177,7 +177,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         }
         return {
           text: text || "",
-          disabled: options[options.length - 1]?.disabled,
+          disabled: options?.[options.length - 1]?.disabled,
         }
       },
       [store],

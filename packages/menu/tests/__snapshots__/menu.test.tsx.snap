@@ -21,12 +21,12 @@ exports[`Menu renders with horizontal selected 1`] = `
   display: flex;
   padding: 0 24px;
   font-size: 14px;
-  color: #5c5c5c;
+  color: #272e3b;
   line-height: 40px;
   cursor: not-allowed;
-  color: #c2c2c2;
+  color: #86909c;
   color: #134ae0;
-  background-color: #f5f5f5;
+  background-color: #f2f3f5;
 }
 
 .emotion-3 {
@@ -42,13 +42,13 @@ exports[`Menu renders with horizontal selected 1`] = `
   display: flex;
   padding: 0 24px;
   font-size: 14px;
-  color: #5c5c5c;
+  color: #272e3b;
   line-height: 40px;
 }
 
 .emotion-4:hover {
   cursor: pointer;
-  background-color: #f5f5f5;
+  background-color: #f2f3f5;
 }
 
 <div

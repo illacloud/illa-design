@@ -5,7 +5,7 @@ import {
   useCallback,
   useState,
 } from "react"
-import { useMergeValue } from "@illa-design/system"
+import { isArray, useMergeValue } from "@illa-design/system"
 import { CheckboxGroupProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"
 import { Checkbox } from "./checkbox"
@@ -14,10 +14,6 @@ import {
   applyCheckboxContainerVertical,
 } from "./style"
 import { CheckboxGroupContext } from "./context"
-
-function isArray(obj: any) {
-  return Object.prototype.toString.call(obj) === "[object Array]"
-}
 
 export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
   (props, ref) => {

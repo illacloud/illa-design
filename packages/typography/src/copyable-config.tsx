@@ -4,7 +4,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export class Copyable {
   copyIcon: ReactNode = (
-    <CopyIcon color={globalColor(`--${illaPrefix}-gray-01`)} />
+    <CopyIcon color={globalColor(`--${illaPrefix}-grayBlue-01`)} />
   )
   copiedIcon: ReactNode = (
     <RightIcon color={globalColor(`--${illaPrefix}-green-03`)} />

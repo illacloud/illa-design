@@ -14,7 +14,7 @@ export const singleCommentContainerCss = css`
 
 export const contentCss = css`
   margin-top: 4px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   font-size: 14px;
   font-family: SFProDisplay;
   margin-bottom: 11px;
@@ -53,14 +53,14 @@ export const authorTextCss = css`
   align-items: flex-end;
   font-size: 14px;
   margin-right: 8px;
-  color: ${globalColor(`--${illaPrefix}-gray-04`)}; ;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)}; ;
 `
 
 export const dateTimeTextCss = css`
   display: inline-flex;
   align-items: flex-end;
   font-size: 12px;
-  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export function applyActionCss(align: string) {
@@ -73,7 +73,7 @@ export function applyActionCss(align: string) {
   return css`
     ${alignCss};
     font-size: 14px;
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   `
 }
 

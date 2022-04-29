@@ -10,7 +10,7 @@ export function applyListContainer(bordered?: boolean): SerializedStyles {
   if (bordered) {
     containerCss = css`
       ${containerCss};
-      border: solid 1px ${globalColor(`--${illaPrefix}-gray-09`)};
+      border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-09`)};
       border-radius: 2px;
     `
   }
@@ -43,7 +43,7 @@ export function applyListItemOuter(
   if (hoverable) {
     hoverableCss = css`
       &:hover {
-        background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+        background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
       }
     `
   }

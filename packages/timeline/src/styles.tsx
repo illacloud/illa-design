@@ -23,7 +23,7 @@ export function applyItemCss(
 }
 
 export function baseLineStyle(lineColor?: string): SerializedStyles {
-  let color = lineColor ? lineColor : globalColor(`--${illaPrefix}-gray-08`)
+  let color = lineColor ? lineColor : globalColor(`--${illaPrefix}-grayBlue-08`)
   return css`
     border-color: ${color};
   `

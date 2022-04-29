@@ -8,7 +8,7 @@ export function applyCard(
   isGridMode?: boolean,
 ): SerializedStyles {
   const border = bordered
-    ? `border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)}`
+    ? `border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`
     : ``
 
   const boxShadow = hoverable
@@ -38,7 +38,7 @@ export function applyCardHeader(size: CardSize): SerializedStyles {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    border-bottom: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     padding: ${paddingSize};
   `
 }
@@ -47,7 +47,7 @@ export const applyCardHeaderTitle = css`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -55,7 +55,7 @@ export const applyCardHeaderTitle = css`
 `
 
 export const applyCardHeaderExtra = css`
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -84,7 +84,7 @@ export function applyCardBody(
   return css`
     box-sizing: border-box;
     padding: ${paddingSize};
-    color: ${globalColor(`--${illaPrefix}-gray-04`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     ${loadingStyle};
     ${gridCss}
   `
@@ -118,7 +118,7 @@ export const applyCardActionItem = css`
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
-  color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   transition: color 0.2s ease-in-out;
   &:not(:last-child) {
     margin-right: 24px;
@@ -129,7 +129,7 @@ export const applyCardActionItem = css`
 `
 
 export function applyCardGrid(hoverable: boolean): SerializedStyles {
-  const borderColor = globalColor(`--${illaPrefix}-gray-08`)
+  const borderColor = globalColor(`--${illaPrefix}-grayBlue-08`)
   return css`
     position: relative;
     box-sizing: border-box;
@@ -147,7 +147,7 @@ export const applyCardMetaTitle = css`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

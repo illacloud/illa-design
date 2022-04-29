@@ -39,10 +39,10 @@ test("Tabs renders with defaultActivityKey and disabled", () => {
     </Tabs>,
   )
   expect(screen.getByText("tab 01")).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-gray-03`)}`,
+    color: `${globalColor(`--${illaPrefix}-grayBlue-03`)}`,
   })
   expect(screen.getByText("tab 02")).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-gray-05`)}`,
+    color: `${globalColor(`--${illaPrefix}-grayBlue-05`)}`,
   })
   expect(screen.getByText("tab 03")).toHaveStyle({
     color: `${globalColor(`--${illaPrefix}-blue-03`)}`,
@@ -79,7 +79,7 @@ test("Tabs renders with variant is card", () => {
     </Tabs>,
   )
   expect(screen.getByText("tab 01").parentElement).toHaveStyle({
-    border: "solid #ebebeb",
+    border: `solid ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
   })
 })
 

@@ -29,7 +29,7 @@
 
 ## 💡 Components
 
-Storybook
+You can review all components in Storybook.
 
 [![storybook](https://devbo.cn/storybook.svg)](https://design.illasoft.com)
 

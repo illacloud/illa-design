@@ -8,8 +8,8 @@ test("TextArea render correctly", () => {
   expect(screen.getByPlaceholderText("textArea")).toBeInTheDocument()
 
   expect(screen.getByPlaceholderText("textArea").parentElement).toHaveStyle({
-    borderColor: `${globalColor(`--${illaPrefix}-gray-08`)}`,
-    color: `${globalColor(`--${illaPrefix}-gray-02`)}`,
+    borderColor: `${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
+    color: `${globalColor(`--${illaPrefix}-grayBlue-02`)}`,
   })
 })
 
@@ -17,9 +17,9 @@ test("TextArea render with variant fill", () => {
   render(<TextArea placeholder="variant-fill" variant="fill" />)
   expect(screen.getByPlaceholderText("variant-fill").parentElement).toHaveStyle(
     {
-      backgroundColor: `${globalColor(`--${illaPrefix}-gray-09`)}`,
-      borderColor: `${globalColor(`--${illaPrefix}-gray-09`)}`,
-      color: `${globalColor(`--${illaPrefix}-gray-02`)}`,
+      backgroundColor: `${globalColor(`--${illaPrefix}-grayBlue-09`)}`,
+      borderColor: `${globalColor(`--${illaPrefix}-grayBlue-09`)}`,
+      color: `${globalColor(`--${illaPrefix}-grayBlue-02`)}`,
     },
   )
 })
@@ -94,7 +94,7 @@ test("TextArea render with focus and blur", () => {
 
 test("TextArea render with input event", async () => {
   const changeEvent = jest.fn()
-  render(<TextArea placeholder="test-input-event" onChange={changeEvent} />)
+  render(<TextArea placeholder="test-input-event" onChange={changeEvent} autoSize />)
   const testTextAreaEvent = screen.getByPlaceholderText("test-input-event")
 
   fireEvent.change(testTextAreaEvent, { target: { value: "123" } })
