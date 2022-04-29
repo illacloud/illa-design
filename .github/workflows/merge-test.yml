@@ -74,7 +74,7 @@ jobs:
             ${{ runner.os }}-build-${{ github.run_id }}
 
       - name: Build storybook
-        run: npx build-storybook
+        run: yarn build-storybook
 
       - name: Run Test
         run: |
