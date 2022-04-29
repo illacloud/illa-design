@@ -71,7 +71,7 @@
     "plop": "plop new",
     "import-docs": "node ./scripts/import-docs.js",
     "report:combined": "sh ./scripts/merge-coverage.sh",
-    "cc": "sh ./scripts/coverage-component.sh"
+    "report:component": "sh ./scripts/coverage-component.sh"
   },
   "packageManager": "yarn@1.22.17",
   "nyc": {
