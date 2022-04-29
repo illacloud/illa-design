@@ -160,7 +160,7 @@ it("Anchor render with lineless", () => {
     .should("not.have.css", "position", "absolute")
 })
 
-const TestAnchorContainer = function() {
+const TestAnchorContainer = function () {
   const container = useRef(null)
 
   return (

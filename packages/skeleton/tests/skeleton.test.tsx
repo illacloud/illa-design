@@ -45,6 +45,10 @@ test("Skeleton renders with custom size image", () => {
 })
 
 test("Content should be visible when skeleton is invisible", () => {
-  render(<Skeleton data-testid="skeleton" visible={false}>hello</Skeleton >)
-  expect(screen.getByText("hello")).toBeVisible();
+  render(
+    <Skeleton data-testid="skeleton" visible={false}>
+      hello
+    </Skeleton>,
+  )
+  expect(screen.getByText("hello")).toBeVisible()
 })

@@ -145,8 +145,6 @@ test("onClickSubMenu should be trigger in pop submenu", () => {
   expect(clickEvent).toBeCalled()
 })
 
-
-
 test("onCollapse should be trigger", () => {
   const event = jest.fn()
 
@@ -168,16 +166,11 @@ test("onCollapse should be trigger", () => {
   expect(event).toBeCalled()
 })
 
-
 test("When submenu is selectale, onClickMenuItem should be trggered ", () => {
   const clickItemEvent = jest.fn()
 
   render(
-    <Menu
-      hasCollapseButton
-      onClickMenuItem={clickItemEvent}
-      variant={"pop"}
-    >
+    <Menu hasCollapseButton onClickMenuItem={clickItemEvent} variant={"pop"}>
       <ItemGroup title={"Group"}>
         <Item title={"Tutorial"} key={"2"} />
         <Item title={"Docs"} key={"3"} />
