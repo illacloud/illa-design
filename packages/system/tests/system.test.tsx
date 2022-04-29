@@ -16,10 +16,15 @@ import {
   useMergeValue,
   mergedToString,
   padStart,
+  getDayjsValue,
+  isDayjsChange,
+  isDayjsArrayChange,
+  getSortedDayjsArray,
+  dayjsPro,
 } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import dayjs from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
 
 // test omit.ts
 test("System test omit function", () => {
@@ -190,4 +195,60 @@ describe("test useMergeValue", function () {
     render(<Test value={"test useMergeValue"} />)
     expect(screen.getByText("test useMergeValue")).toBeInTheDocument()
   })
+})
+
+// test dayjs.ts
+test("test getDayjsValue", function () {
+  const formatTime = (str: Dayjs) => {
+    return str ? dayjsPro(str)?.format("HH:mm:ss") : ""
+  }
+  // when time type is string
+  const day = getDayjsValue("06:00:00", "HH:mm:ss") as Dayjs
+  const dayFormat = formatTime(day)
+  expect(dayFormat).toEqual("06:00:00")
+
+  // when time type is dayjs
+  const day1 = getDayjsValue(
+    dayjsPro("08:00:00", "HH:mm:ss"),
+    "HH:mm:ss",
+  ) as Dayjs
+  const dayFormat1 = formatTime(day1)
+  expect(dayFormat1).toEqual("08:00:00")
+
+  // when time type is dayjs
+  const dayArr = getDayjsValue(["06:00:00", "08:00:00"], "HH:mm:ss") as Dayjs[]
+  const dayArrFormat = [formatTime(dayArr[0]), formatTime(dayArr[1])]
+  expect(dayArrFormat).toEqual(["06:00:00", "08:00:00"])
+
+  // when time type is dayjs
+  expect(getDayjsValue(undefined, "HH:mm:ss")).toEqual(void 0)
+})
+
+test("test isDayjsChange", function () {
+  const day1 = dayjsPro("06:00:00", "HH:mm:ss")
+  const day2 = dayjsPro("08:00:00", "HH:mm:ss")
+
+  expect(isDayjsChange(day1, day2)).toEqual(true)
+  expect(isDayjsChange(day1, day1)).toEqual(false)
+  expect(isDayjsChange(undefined, undefined)).toEqual(false)
+})
+
+test("test isDayjsArrayChange", function () {
+  const dayArr1 = [dayjsPro(), dayjsPro("06:00:00", "HH:mm:ss")]
+  const dayArr2 = [dayjsPro(), dayjsPro("08:00:00", "HH:mm:ss")]
+
+  expect(isDayjsArrayChange(dayArr1, dayArr2)).toEqual(true)
+  expect(isDayjsArrayChange(dayArr1, dayArr1)).toEqual(false)
+  expect(isDayjsArrayChange(undefined, undefined)).toEqual(false)
+})
+
+test("test getSortedDayjsArray", function () {
+  const dayArr = [
+    dayjsPro("08:00:00", "HH:mm:ss"),
+    dayjsPro("06:00:00", "HH:mm:ss"),
+  ]
+  const excArr = dayArr.reverse()
+  expect(getSortedDayjsArray(dayArr)).toEqual(excArr)
+  const errorCase = [dayjsPro("06:00:00", "HH:mm:ss")]
+  expect(getSortedDayjsArray(errorCase)).toEqual(errorCase)
 })
