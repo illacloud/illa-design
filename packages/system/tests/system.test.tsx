@@ -15,6 +15,7 @@ import {
   debounce,
   useMergeValue,
   mergedToString,
+  padStart,
 } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
@@ -97,8 +98,15 @@ test("System test isServerRendering in js-dom environment", () => {
 // test utils.ts
 test("Merge to string test case", () => {
   expect(mergedToString(<div data-testid="test-div">Div Test Case</div>)).toBe(
-      "Div Test Case",
+    "Div Test Case",
   )
+})
+
+test("System test padStart function", () => {
+  expect(padStart("23.61", 8, "0")).toBe("00023.61")
+  expect(padStart("23.61", 2, "0")).toBe("23.61")
+  expect(padStart("23.61", 8, "00")).toBe("000023.61")
+  expect(padStart("23.61", NaN, "00")).toBe("23.61")
 })
 
 // test style.ts

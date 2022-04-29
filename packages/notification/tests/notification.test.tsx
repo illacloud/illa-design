@@ -89,7 +89,9 @@ describe("Open Notification", () => {
     })
     let instance = screen.getByText("Default")
     fireEvent.mouseEnter(instance)
-    jest.advanceTimersByTime(800)
+    act(() => {
+      jest.advanceTimersByTime(800)
+    })
     expect(instance).toBeInTheDocument()
     fireEvent.mouseLeave(instance)
   })
