@@ -12,9 +12,9 @@
 ![cover](https://devbo.cn/cover.png)
 
 [![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
-[![storybook](https://devbo.cn/storybook.svg)](https://storybook.illasoft.com/main)
-[![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](https://github.com/illa-family/illa-design/blob/main/LICENSE)
-[![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](https://github.com/illa-family/illa-design/blob/main/CONTRIBUTING.md)
+[![storybook](https://devbo.cn/storybook.svg)](https://design.illasoft.com)
+[![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](./LICENSE)
+[![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
 
 ## ✨ Features
 
@@ -29,15 +29,9 @@
 
 ## 💡 Components
 
-You can review all components in:
+Storybook
 
-Doc
-
-[https://design.illafamily.com](https://design.illafamily.com)
-
-Storybook 
-
-[![storybook](https://devbo.cn/storybook.svg)](https://storybook.illasoft.com/main)
+[![storybook](https://devbo.cn/storybook.svg)](https://design.illasoft.com)
 
 ## 🖥 Fast Try
 

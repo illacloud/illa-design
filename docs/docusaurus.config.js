@@ -13,7 +13,7 @@ const i18nConfig = {
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "illa-design",
-  tagline: "A fully responsive UI Library for React, Vue 3 and Svelte.",
+  tagline: "A fully responsive UI Library for React, Vue 3, and Svelte.",
   url: "https://design.illafamily.com",
   baseUrl: "/",
   onBrokenLinks: "ignore",

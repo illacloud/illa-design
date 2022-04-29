@@ -66,7 +66,7 @@ const Template: Story<TreeSelectProps> = (args) => {
       ],
     },
   ]
-  return <TreeSelect {...args} treeData={treeData} showSearch={true} />
+  return <TreeSelect {...args} treeData={treeData} showSearch />
 }
 
 export const Basic = Template.bind({})

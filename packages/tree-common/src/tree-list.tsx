@@ -51,16 +51,16 @@ export const TreeList: FC<TreeListProps> = (props) => {
               <motion.div
                 key={data.key}
                 variants={variants}
-                animate={"enter"}
-                initial={"initial"}
-                exit={"exit"}
+                animate="enter"
+                initial="initial"
+                exit="exit"
                 transition={{ duration: 0.2 }}
               >
                 {node}
               </motion.div>
             )
           }}
-          renderRaw={true}
+          renderRaw
           bordered={false}
           renderKey={(data) => {
             return data.key

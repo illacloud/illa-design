@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useImperativeHandle,
-  forwardRef,
-  ReactElement,
-} from "react"
+import { useState, useImperativeHandle, forwardRef, ReactElement } from "react"
 import { HolderRef } from "../interface"
 
 export const ContextHolderElement = forwardRef<HolderRef>((_props, ref) => {

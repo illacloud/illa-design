@@ -126,7 +126,7 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
         >
           {loadingMore ? (
             <span css={loadingIconCss}>
-              {loadingIcon ?? <LoadingIcon spin={true} />}
+              {loadingIcon ?? <LoadingIcon spin />}
             </span>
           ) : (
             <span css={switchIconCss}>

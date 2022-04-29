@@ -18,11 +18,15 @@ export default defineConfig({
     istanbul({
       cypress: true,
       requireEnv: false,
-      exclude: ["node_modules", "cypress/","dist"],
+      exclude: ["node_modules", "cypress/", "dist"],
       extension: ["ts", "tsx"],
     }),
   ],
   optimizeDeps: {
     include: ["@emotion/react/jsx-dev-runtime"],
   },
+  // cypress coverage need sourcemap
+  build: {
+    sourcemap: true
+  }
 })

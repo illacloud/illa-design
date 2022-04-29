@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext } from "react"
+import { forwardRef, useContext } from "react"
 import { CollapseItemProps } from "./interface"
 import { CollapseContext } from "./collapse-context"
 import { motion, AnimatePresence } from "framer-motion"
