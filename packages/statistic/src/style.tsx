@@ -9,14 +9,14 @@ export const applyStatistic = css`
 export const applyStatisticTitle = css`
   margin-bottom: 4px;
   font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export const applyStatisticContent = css`
   font-family: HelveticaNeue;
   font-size: 24px;
   font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export function applyStatisticDecorator(

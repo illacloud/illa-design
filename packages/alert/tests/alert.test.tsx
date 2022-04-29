@@ -43,7 +43,7 @@ test("Alert renders with title", () => {
   render(<Alert data-testid="test-with-title" title="Alert Title" />)
   expect(screen.getByText("Alert Title")).toBeInTheDocument()
   expect(screen.getByText("Alert Title")).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-gray-02`)}`,
+    color: `${globalColor(`--${illaPrefix}-grayBlue-02`)}`,
   })
   expect(screen.getByText("Alert Title")).not.toHaveStyle({
     marginBottom: 4,

@@ -28,7 +28,7 @@ export const applyProgressText = css`
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export const applyStatusIcon = css`

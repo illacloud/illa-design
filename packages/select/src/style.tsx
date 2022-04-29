@@ -6,11 +6,11 @@ import chroma from "chroma-js"
 
 // default select
 export const inputOutlineStyle = css`
-  border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 export const disableOutlineStyle = css`
-  border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `
 export const errorFocusStyle = css`
   background-color: unset;
@@ -104,8 +104,8 @@ export function applySelectView(
     line-height: 30px;
     font-size: 14px;
     border-radius: 4px;
-    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: pointer;
 
     &:hover {
@@ -159,7 +159,7 @@ export function applyIconStyle(): SerializedStyles {
       font-size: 12px;
     }
 
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
@@ -189,10 +189,10 @@ export function iconPointerStyle(size: string) {
     right: 12px;
     opacity: 0;
     cursor: pointer;
-    color: ${globalColor(`--${illaPrefix}-gray-06`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
 
     &:hover {
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     }
 
     & > svg {

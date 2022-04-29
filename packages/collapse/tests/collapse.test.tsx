@@ -46,7 +46,7 @@ function DemoTest(props: CollapseProps) {
 test("Collapse renders with border", () => {
   render(<DemoTest />)
   expect(screen.getByTestId("collapse-wrapper")).toHaveStyle({
-    border: `border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)}`,
+    border: `border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
   })
 })
 

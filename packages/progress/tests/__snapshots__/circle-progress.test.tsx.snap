@@ -52,7 +52,7 @@ exports[`Progress renders with colors 1`] = `
   position: absolute;
   line-height: 22px;
   font-size: 14px;
-  color: #999;
+  color: #6b7785;
 }
 
 <div
@@ -140,7 +140,7 @@ exports[`Progress renders with colors 2`] = `
   position: absolute;
   line-height: 22px;
   font-size: 14px;
-  color: #999;
+  color: #6b7785;
 }
 
 <div
@@ -228,7 +228,7 @@ exports[`Progress renders with colors 3`] = `
   position: absolute;
   line-height: 22px;
   font-size: 14px;
-  color: #999;
+  color: #6b7785;
 }
 
 <div
@@ -316,7 +316,7 @@ exports[`Progress renders with custom width 1`] = `
   position: absolute;
   line-height: 22px;
   font-size: 14px;
-  color: #999;
+  color: #6b7785;
 }
 
 <div
@@ -404,7 +404,7 @@ exports[`Progress renders with steps 1`] = `
   position: absolute;
   line-height: 22px;
   font-size: 14px;
-  color: #999;
+  color: #6b7785;
 }
 
 <div

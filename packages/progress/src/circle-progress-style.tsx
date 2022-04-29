@@ -11,5 +11,5 @@ export const applyProgressText = css`
   position: absolute;
   line-height: 22px;
   font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `

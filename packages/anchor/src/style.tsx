@@ -1,7 +1,7 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-const linkActiveColor = globalColor(`--${illaPrefix}-gray-02`)
+const linkActiveColor = globalColor(`--${illaPrefix}-grayBlue-02`)
 
 export function applyLinkStyle(
   isActive: boolean,
@@ -16,10 +16,10 @@ export const linkCss = css`
   textoverflow: ellipsis;
   whitespace: "nowrap";
   display: block;
-  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   &:hover {
     color: ${linkActiveColor};
-    background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
 `
 
@@ -37,7 +37,7 @@ export const linkOffsetStyle = css`
 `
 
 export function applyAnchorListCss(lineless?: boolean): SerializedStyles {
-  const bgColor = globalColor(`--${illaPrefix}-gray-06`)
+  const bgColor = globalColor(`--${illaPrefix}-grayBlue-06`)
   const lineCss = css`
     &:before {
       content: "";

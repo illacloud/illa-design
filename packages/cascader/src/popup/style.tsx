@@ -10,7 +10,7 @@ export const optionListWrapper = css`
   padding: 4px 0;
 
   &:not(:last-child) {
-    border-right: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
 `
 
@@ -36,8 +36,8 @@ export function applyOptionStyle(states: {
   let stateStyle: SerializedStyles = css()
   if (states.active) {
     stateStyle = css`
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-      color: ${globalColor(`--${illaPrefix}-gray-02`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     `
   }
   if (states.disabled) {
@@ -45,7 +45,7 @@ export function applyOptionStyle(states: {
       stateStyle,
       css`
         cursor: not-allowed;
-        color: ${globalColor(`--${illaPrefix}-gray-05`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 
         &:hover {
           background-color: unset;
@@ -60,10 +60,10 @@ export function applyOptionStyle(states: {
     height: 36px;
     cursor: pointer;
     box-sizing: border-box;
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 
     &:hover {
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     }
 
     ${stateStyle}

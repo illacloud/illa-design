@@ -128,7 +128,7 @@ it("Slider renders with range and drag bar", () => {
     .children("div:nth-of-type(3)")
     .trigger("mouseover")
     .then(() => {
-      cy.findByText("10").should("exist")
+      cy.findByText("6").should("exist")
     })
 
   unmount()

@@ -88,7 +88,7 @@ export function applyModalHeader(
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${simpleCss}
   `
 }
@@ -99,7 +99,7 @@ export function applyModalTitle(isSimple?: boolean): SerializedStyles {
     flex: 1;
     font-size: 16px;
     font-weight: ${isSimple ? 500 : 600};
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
@@ -114,7 +114,7 @@ export function applyModalContent(isSimple?: boolean): SerializedStyles {
     padding: 24px;
     font-size: 14px;
     overflow: auto;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${simpleCss}
   `
 }
@@ -126,7 +126,7 @@ export const applyModalCloseIcon = css`
   font-size: 8px;
   cursor: pointer;
   line-height: 0;
-  color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 `
 
 export function applyModalFooter(isSimple?: boolean): SerializedStyles {
@@ -141,7 +141,7 @@ export function applyModalFooter(isSimple?: boolean): SerializedStyles {
     width: 100%;
     box-sizing: border-box;
     padding: 16px 24px;
-    border-top: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${simpleCss}
   `
 }
