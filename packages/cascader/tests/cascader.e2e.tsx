@@ -168,21 +168,24 @@ it("Cascader render with multiple", () => {
     />,
   )
 
-  cy.findByPlaceholderText("test").should("exist")
   cy.findByPlaceholderText("test").parent().click()
   cy.findByText("Beijing").click()
   cy.findByText("Haidian").click()
   cy.findByText("Beijing / Haidian").should("exist")
   cy.get("@changeEvent").should("be.calledWith", [["beijing", "haidian"]])
+
   cy.findByText("Dongcheng").click()
+  cy.findByText("Beijing / Dongcheng").should("exist")
   cy.findByText("Fengtai").click()
+  cy.findByText("Beijing / Fengtai").should("exist")
+
+  // test clear option
   cy.findByText("Beijing / Haidian")
     .parent()
     .next()
     .click()
     .then(() => {
       cy.get("@changeEvent").should("be.called")
-      cy.get("input").should("have.value", "")
     })
   unmount()
 })
@@ -310,7 +313,7 @@ it("Cascader render with search popup", () => {
   unmount()
 })
 
-it("Cascader test with disable label", () => {
+it("Cascader test with click disabled label", () => {
   const changeEvent = cy.stub().as("changeEvent")
   const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
   mount(
@@ -319,7 +322,7 @@ it("Cascader test with disable label", () => {
       placeholder={"test"}
       onChange={changeEvent}
       onVisibleChange={visibleChangeEvent}
-      showSearch
+      showSearch={{ retainInputValue: true }}
       allowClear
     />,
   )

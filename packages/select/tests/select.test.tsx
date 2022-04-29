@@ -50,13 +50,17 @@ test("Select renders with size", () => {
   const container = screen.getByText("1")?.parentElement?.previousElementSibling
   if (container) {
     userEvent.hover(container)
-    expect(screen.getByTitle("selectRemoveIcon")).toBeInTheDocument()
+    expect(screen.getByTitle("selectRemoveIcon")).toHaveStyle({
+      right: '16px',
+    })
   }
   const containerA =
     screen.getByText("a")?.parentElement?.previousElementSibling
   if (containerA) {
     userEvent.hover(containerA)
-    expect(screen.getByTitle("selectRemoveIcon")).toBeInTheDocument()
+    expect(screen.getByTitle("selectRemoveIcon")).toHaveStyle({
+      right: '12px',
+    })
   }
 })
 

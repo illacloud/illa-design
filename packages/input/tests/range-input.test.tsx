@@ -78,25 +78,7 @@ test("RangeInput render with change event", () => {
   expect(input1).toHaveDisplayValue("456")
 })
 
-test("RangeInput render with search event", async () => {
-  const pressEnterEvent = jest.fn()
-  const pressTabEvent = jest.fn()
-  render(
-    <RangeInput
-      placeholder={["input0", "input1"]}
-      onPressEnter={pressEnterEvent}
-      onPressTab={pressTabEvent}
-    />,
-  )
-  const input0 = screen.getByPlaceholderText("input0")
-
-  fireEvent.keyDown(input0, { keyCode: 13 })
-  expect(pressEnterEvent).toBeCalled()
-  fireEvent.keyDown(input0, { keyCode: 9 })
-  expect(pressTabEvent).toBeCalled()
-})
-
-test("RangeInput render with clear event", async () => {
+test("RangeInput render with clear event", () => {
   const clearEvent = jest.fn()
   render(
     <RangeInput
@@ -112,7 +94,7 @@ test("RangeInput render with clear event", async () => {
   expect(clearEvent).toBeCalledTimes(1)
 })
 
-test("RangeInput render with pressEnter and pressTab event", async () => {
+test("RangeInput render with pressEnter and pressTab event", () => {
   const pressEnterEvent = jest.fn()
   const pressTabEvent = jest.fn()
   render(
