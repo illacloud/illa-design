@@ -51,6 +51,18 @@ export interface OptionListProps<T> {
 
 export type SelectSize = "small" | "medium" | "large"
 
+export type SelectBorderColor =
+  | string
+  | "gray"
+  | "blue"
+  | "purple"
+  | "red"
+  | "green"
+  | "yellow"
+  | "orange"
+  | "cyan"
+  | "white"
+
 export interface SelectProps
   extends Omit<
     HTMLAttributes<HTMLDivElement>,
@@ -95,6 +107,7 @@ export interface SelectProps
     | boolean
     | ((inputValue: string, option: ReactElement) => boolean)
   triggerProps?: Partial<TriggerProps>
+  borderColor?: SelectBorderColor
   // events
   onChange?: (value: any, option?: OptionInfo | OptionInfo[]) => void
   onSearch?: (value: string, reason: InputValueChangeReason) => void
@@ -138,4 +151,5 @@ export interface SelectStateValue {
   error?: boolean
   focus?: boolean
   size?: SelectViewProps["size"]
+  borderColor?: SelectProps["borderColor"]
 }

@@ -58,6 +58,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       allowClear,
       allowCreate,
       removeIcon,
+      borderColor = "blue",
       // event
       onClick,
       onFocus,
@@ -88,6 +89,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       disabled,
       focus: mergedFocused,
       size,
+      borderColor
     }
 
     const handleFocus = (action: "focus" | "blur") => {
