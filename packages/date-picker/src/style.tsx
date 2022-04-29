@@ -55,7 +55,7 @@ export const rangeRightContentCss = css`
 export const shortCutsCss = css`
   display: inline-block;
   margin: 5px 10px;
-  padding: 2px 16px;
+  padding: 4px 16px;
   background: ${globalColor(`--${illaPrefix}-gray-09`)};
   border-radius: 4px;
   color: ${globalColor(`--${illaPrefix}-gray-02`)};
@@ -96,7 +96,7 @@ export function applyShortContainerCss(
     `
   }
   return css`
-    padding: 5px 0;
+    padding: 7px 0;
     ${style};
   `
 }

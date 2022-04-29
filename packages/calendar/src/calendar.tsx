@@ -84,9 +84,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       }
       if (Array.isArray(defaultSelectedDate)) {
       } else {
-        if (!dayjs.isDayjs(defaultSelectedDate)) {
-          return
-        }
         setCurrentDay(defaultSelectedDate)
         setSelectDay(defaultSelectedDate)
       }
