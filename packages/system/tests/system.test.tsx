@@ -1,4 +1,12 @@
-import { omit, getStyle, easingMethod, raf, isDayjs, isServerRendering } from "../src"
+import {
+  easingMethod,
+  getStyle,
+  isDayjs,
+  isServerRendering,
+  mergedToString,
+  omit,
+  raf,
+} from "../src"
 import { render, screen } from "@testing-library/react"
 import dayjs from "dayjs"
 import "@testing-library/jest-dom"
@@ -15,6 +23,11 @@ test("System test omit function", () => {
   })
 })
 
+test("Merge to string test case", () => {
+  expect(mergedToString(<div data-testid="test-div">Div Test Case</div>)).toBe(
+    "Div Test Case",
+  )
+})
 
 test("GetStyle should work", () => {
   render(<div style={{ color: "red" }} data-testid={"test"}></div>)
@@ -37,7 +50,7 @@ test("Test easingMethod", () => {
 test("Test raf in jsdom environment", async () => {
   const fn = jest.fn()
 
-  await new Promise(function(resolve) {
+  await new Promise(function (resolve) {
     raf(() => {
       fn()
       resolve("")
@@ -45,7 +58,6 @@ test("Test raf in jsdom environment", async () => {
   }).then(() => {
     expect(fn).toBeCalled()
   })
-
 })
 test("System test isDayjs function", () => {
   expect(isDayjs(dayjs())).toEqual(true)
