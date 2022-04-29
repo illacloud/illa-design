@@ -87,3 +87,7 @@ export function applyOptionLabelStyle(): SerializedStyles {
     }
   `
 }
+
+export const textMargin = css`
+  margin-right: 8px;
+`

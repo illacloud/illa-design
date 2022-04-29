@@ -33,8 +33,13 @@ test("System test isObject function", () => {
 })
 
 test("System test isEmptyObject function", () => {
-  const obj = {}
-  expect(isEmptyObject(obj)).toEqual(true)
+  const emptyObj = {}
+  const obj = {
+    one: 1,
+    two: 2,
+  }
+  expect(isEmptyObject(emptyObj)).toEqual(true)
+  expect(isEmptyObject(obj)).toEqual(false)
 })
 
 test("System test isArray function", () => {
@@ -45,6 +50,7 @@ test("System test isArray function", () => {
 test("System test isNumber function", () => {
   const number = 1
   expect(isNumber(number)).toEqual(true)
+  expect(isNumber(NaN)).toEqual(false)
 })
 
 test("System test isString function", () => {

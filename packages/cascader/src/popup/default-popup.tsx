@@ -12,6 +12,7 @@ import {
   flexCenterStyle,
   optionListStyle,
   optionListWrapper,
+  textMargin,
 } from "./style"
 import { Empty } from "@illa-design/empty"
 import { motion } from "framer-motion"
@@ -197,7 +198,7 @@ export const DefaultPopup = <T extends OptionProps>(
                   >
                     {multiple && (
                       <Checkbox
-                        css={{ "margin-right": "8px" }}
+                        css={textMargin}
                         disabled={checkboxDisabled}
                         checked={option._checked}
                         indeterminate={option._halfChecked}

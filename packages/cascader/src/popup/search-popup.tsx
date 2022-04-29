@@ -10,6 +10,7 @@ import {
   flexCenterStyle,
   optionListStyle,
   searchListWrapper,
+  textMargin,
 } from "./style"
 
 export const SearchPopup = <T extends OptionProps>(
@@ -100,14 +101,14 @@ export const SearchPopup = <T extends OptionProps>(
               {multiple ? (
                 <>
                   <Checkbox
-                    css={{ "margin-right": "8px" }}
+                    css={textMargin}
                     checked={checked}
                     value={option.value}
                     disabled={option.disabled}
                     onChange={(checked, e) => {
                       clickOption(option, checked, e)
                     }}
-                  ></Checkbox>
+                  />
                   <div css={applyOptionLabelStyle()}>{label}</div>
                 </>
               ) : (
