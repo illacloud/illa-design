@@ -3,6 +3,7 @@ import {
   getStyle,
   isDayjs,
   isServerRendering,
+  isSingleNode,
   mergedToString,
   omit,
   raf,
@@ -27,6 +28,19 @@ test("Merge to string test case", () => {
   expect(mergedToString(<div data-testid="test-div">Div Test Case</div>)).toBe(
     "Div Test Case",
   )
+})
+
+test("Test is single node", () => {
+  expect(
+    isSingleNode(<div data-testid="test-div">Div Test Case</div>),
+  ).toBeTruthy()
+  expect(
+    isSingleNode(
+      <div data-testid="test-div">
+        <div>1000</div>
+      </div>,
+    ),
+  ).not.toBeTruthy()
 })
 
 test("GetStyle should work", () => {
