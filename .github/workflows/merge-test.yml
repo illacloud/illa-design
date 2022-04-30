@@ -75,5 +75,6 @@ jobs:
 
       - name: Run Test
         run: |
+          yarn build-all-components
           yarn cypress info
           yarn cypress run-ct -b chrome -s packages/tree-select/tests/*.e2e.tsx
