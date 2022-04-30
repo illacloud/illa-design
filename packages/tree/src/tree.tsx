@@ -293,13 +293,25 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     },
     [checkKeysState, nodeCache.current, _treeData],
   )
+
+  let isMountedRef = useRef(false)
+  useEffect(() => {
+    isMountedRef.current = true
+    return () => {
+      isMountedRef.current = false
+    }
+  }, [])
   const handleLoadMore = async (key: string) => {
     loadMoreKeys.add(key)
-    setLoadMoreKeys(new Set([...loadMoreKeys]))
+    if (isMountedRef.current) {
+      setLoadMoreKeys(new Set([...loadMoreKeys]))
+    }
     const node = nodeCache.current[key]
     loadMore && (await loadMore(node))
     loadMoreKeys.delete(key)
-    setLoadMoreKeys(new Set([...loadMoreKeys]))
+    if (isMountedRef.current) {
+      setLoadMoreKeys(new Set([...loadMoreKeys]))
+    }
   }
 
   return (
