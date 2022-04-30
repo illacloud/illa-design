@@ -73,8 +73,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ github.run_id }}
 
+      - name: Build storybook
+        run: yarn build-storybook
+
       - name: Run Test
         run: |
-          yarn build-all-components
           yarn cypress info
-          yarn cypress run-ct -b chrome -s packages/tree-select/tests/*.e2e.tsx
+          yarn test
+
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-video
+          path: cypress/video
+
+      - name: Publish to Codecov
+        uses: codecov/codecov-action@v2.1.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
