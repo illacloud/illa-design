@@ -41,12 +41,6 @@ jobs:
           yarn install --frozen-lockfile
           yarn build-all-components
 
-      - name: Install docs dependencies
-        run: |
-          cd ./docs
-          yarn install --frozen-lockfile
-          cd ..
-
   build:
     needs:
       - install
