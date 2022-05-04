@@ -1,5 +1,5 @@
-import React, { useState, memo, useRef, useMemo, SyntheticEvent } from "react"
-import { Trigger, TriggerPosition } from "@illa-design/trigger"
+import { memo, useRef, useMemo, SyntheticEvent } from "react"
+import { Trigger } from "@illa-design/trigger"
 import { useMergeValue, isServerRendering } from "@illa-design/system"
 import { SliderButtonProps } from "./interface"
 import { applySliderBtn } from "./style"
@@ -19,8 +19,6 @@ const SliderButton = function (props: SliderButtonProps) {
     onMoveBegin,
   } = props
 
-  // state
-  const [isActive, setIsActive] = useState(false)
   const [popupVisible, setPopupVisible] = useMergeValue(false, {
     value: tooltipVisible,
   })
@@ -28,7 +26,7 @@ const SliderButton = function (props: SliderButtonProps) {
     () => tooltipPosition || (vertical ? "right" : "top"),
     [tooltipPosition, vertical],
   )
-  const delayTimer = useRef(null as any)
+  const delayTimer = useRef<number | null>(null)
   const inButtonOrPopup = useRef(false)
   const isDragging = useRef(false)
 
@@ -36,12 +34,9 @@ const SliderButton = function (props: SliderButtonProps) {
     e.stopPropagation()
     if (disabled) return
     moveStart(e)
-    setIsActive(true)
     if (!isServerRendering) {
       window.addEventListener("mousemove", moving)
-      window.addEventListener("touchmove", moving)
       window.addEventListener("mouseup", moveEnd)
-      window.addEventListener("touchend", moveEnd)
       window.addEventListener("contextmenu", moveEnd)
     }
   }
@@ -50,7 +45,7 @@ const SliderButton = function (props: SliderButtonProps) {
     inButtonOrPopup.current = true
     clearDelayTimer()
     if (!popupVisible) {
-      delayTimer.current = setTimeout(() => {
+      delayTimer.current = window.setTimeout(() => {
         updatePopupVisible(true)
       }, 50)
     }
@@ -60,7 +55,7 @@ const SliderButton = function (props: SliderButtonProps) {
     inButtonOrPopup.current = false
     if (!isDragging.current) {
       clearDelayTimer()
-      delayTimer.current = setTimeout(() => {
+      delayTimer.current = window.setTimeout(() => {
         updatePopupVisible(false)
       }, 200)
     }
@@ -75,19 +70,13 @@ const SliderButton = function (props: SliderButtonProps) {
     onMoveBegin && onMoveBegin()
   }
 
-  function moving(e: any) {
+  function moving(e: MouseEvent) {
     isDragging.current = true
-
-    if (e.type === "touchstart") {
-      e.clientY = e.touches[0].clientY
-      e.clientX = e.touches[0].clientX
-    }
     onMoving && onMoving(e.clientX, e.clientY)
   }
 
   function moveEnd() {
     isDragging.current = false
-    setIsActive(false)
     offEvents()
     updatePopupVisible(inButtonOrPopup.current)
     onMoveEnd && onMoveEnd()
@@ -97,16 +86,14 @@ const SliderButton = function (props: SliderButtonProps) {
     clearDelayTimer()
     if (!isServerRendering) {
       window.removeEventListener("mousemove", moving)
-      window.removeEventListener("touchmove", moving)
       window.removeEventListener("mouseup", moveEnd)
-      window.removeEventListener("touchend", moveEnd)
       window.removeEventListener("contextmenu", moveEnd)
     }
   }
 
   function clearDelayTimer() {
     if (delayTimer.current) {
-      clearTimeout(delayTimer.current)
+      window.clearTimeout(delayTimer.current)
       delayTimer.current = null
     }
   }
@@ -124,7 +111,7 @@ const SliderButton = function (props: SliderButtonProps) {
     clearDelayTimer()
   }
 
-  function renderTooltipContent(position: TriggerPosition) {
+  function renderTooltipContent() {
     return (
       <div
         onMouseLeave={handleMouseLeave}
@@ -145,7 +132,7 @@ const SliderButton = function (props: SliderButtonProps) {
       disabled={tooltipVisible === false}
       position={position}
       closeOnClick={false}
-      content={renderTooltipContent(position)}
+      content={renderTooltipContent()}
       openDelay={0}
     >
       <div

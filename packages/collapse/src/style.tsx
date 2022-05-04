@@ -5,12 +5,12 @@ import { Variants } from "framer-motion"
 
 export function applyCollapse(bordered?: boolean): SerializedStyles {
   const borderCSS = bordered
-    ? `border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)}`
+    ? `border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`
     : ""
   return css`
     overflow: hidden;
     border-radius: 2px;
-    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     line-height: 1.57;
     ${borderCSS}
   `
@@ -18,7 +18,7 @@ export function applyCollapse(bordered?: boolean): SerializedStyles {
 
 export const applyCollapseItem = css`
   box-sizing: border-box;
-  border-bottom: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   &:last-of-type {
     border-bottom: none;
   }
@@ -72,8 +72,8 @@ export function applyCollapseItemHeaderIcon(
     font-size: 8px;
     line-height: 0;
     color: ${disabled
-      ? globalColor(`--${illaPrefix}-gray-05`)
-      : globalColor(`--${illaPrefix}-gray-03`)};
+      ? globalColor(`--${illaPrefix}-grayBlue-05`)
+      : globalColor(`--${illaPrefix}-grayBlue-03`)};
     transition: transform 200ms;
     ${rotate}
   `
@@ -90,8 +90,8 @@ export function applyCollapseItemHeaderTittle(
     : ""
   return css`
     color: ${disabled
-      ? globalColor(`--${illaPrefix}-gray-05`)
-      : globalColor(`--${illaPrefix}-gray-02`)};
+      ? globalColor(`--${illaPrefix}-grayBlue-05`)
+      : globalColor(`--${illaPrefix}-grayBlue-02`)};
     transition: font-weight 200ms;
     ${expandedCSS}
   `
@@ -99,7 +99,7 @@ export function applyCollapseItemHeaderTittle(
 
 export const applyCollapseItemContent = css`
   font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   position: relative;
   overflow: hidden;
 `

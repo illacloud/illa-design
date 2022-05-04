@@ -45,7 +45,7 @@ export function applyRateCharacter(
   return css`
     position: relative;
     transition: transform 0.15s ease-in-out;
-    color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${cursor};
     ${animation};
     &:not(:last-of-type) {

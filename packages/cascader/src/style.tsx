@@ -9,7 +9,7 @@ export function applyPopupStyle(): SerializedStyles {
     list-style: none;
     white-space: nowrap;
     height: 216px;
-    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-radius: 2px;
   `
 }

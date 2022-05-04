@@ -44,7 +44,7 @@ export function applyNotification(
     box-sizing: border-box;
     box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
     border-radius: 2px;
-    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   `
 }
@@ -69,7 +69,7 @@ export const applyNotificationTitle = css`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export function applyNotificationContent(hasTitle: boolean): SerializedStyles {
@@ -77,7 +77,7 @@ export function applyNotificationContent(hasTitle: boolean): SerializedStyles {
   return css`
     font-size: ${fontSize};
     line-height: 1.57;
-    color: ${globalColor(`--${illaPrefix}-gray-04`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   `
 }
 
@@ -87,7 +87,7 @@ export const applyNotificationCloseBtn = css`
   top: 16px;
   font-size: 8px;
   line-height: 0;
-  color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   cursor: pointer;
 `
 
@@ -133,7 +133,7 @@ export function applyMessage(
     box-sizing: border-box;
     box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
     border-radius: 2px;
-    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   `
 }
@@ -152,7 +152,7 @@ export function applyMessageIcon(type: MessageType): SerializedStyles {
 export const applyMessageContent = css`
   font-size: 14px;
   line-height: 1.57;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const applyMessageCloseBtn = css`
@@ -163,5 +163,5 @@ export const applyMessageCloseBtn = css`
   font-size: 8px;
   display: inline-block;
   cursor: pointer;
-  color: ${globalColor(`--${illaPrefix}-gray-03`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 `

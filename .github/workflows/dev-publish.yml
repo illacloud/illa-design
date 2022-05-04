@@ -2,7 +2,7 @@ name: "Preview Publish"
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 env:
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 16.x ]
+        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -39,13 +39,7 @@ jobs:
       - name: Build
         run: |
           yarn install --frozen-lockfile
-          yarn build-all-components    
-
-      - name: Install docs dependencies
-        run: |
-          cd ./docs
-          yarn install --frozen-lockfile
-          cd ..
+          yarn build-all-components
 
   build:
     needs:
@@ -55,7 +49,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 16.x ]
+        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -88,19 +82,13 @@ jobs:
         uses: codecov/codecov-action@v2.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage-final.json
-          
-      - name: Import docs i18n
-        run: yarn import-docs
+          files: ./coverage/lcov.info
 
-      - name: Build docs
-        run: |
-          cd ./docs
-          yarn build
-          cd ..
+      - name: Build storybook
+        run: yarn build-storybook
 
-      - name: Deploy docs to Github Pages
+      - name: Deploy storybook to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/build
+          publish_dir: ./storybook-static

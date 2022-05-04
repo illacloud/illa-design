@@ -17,13 +17,3 @@ test("Trigger renders without arrow", async () => {
     },
   )
 })
-
-test("Trigger renders disabled", async () => {
-  render(
-    <Trigger content="Trigger Success" position="top" disabled>
-      <Button>Hello Trigger</Button>
-    </Trigger>,
-  )
-  fireEvent.mouseEnter(screen.getByText("Hello Trigger"))
-  expect(screen.queryAllByText("Trigger Success").length).toEqual(0)
-})

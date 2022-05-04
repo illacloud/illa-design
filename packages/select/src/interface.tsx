@@ -4,7 +4,8 @@ import {
   ReactNode,
   ReactElement,
   UIEventHandler,
-  JSXElementConstructor, SyntheticEvent,
+  JSXElementConstructor,
+  SyntheticEvent,
 } from "react"
 import { TriggerProps } from "@illa-design/trigger"
 
@@ -51,8 +52,10 @@ export interface OptionListProps<T> {
 export type SelectSize = "small" | "medium" | "large"
 
 export interface SelectProps
-  extends Omit<HTMLAttributes<HTMLDivElement>,
-    "defaultValue" | "onFocus" | "onBlur"> {
+  extends Omit<
+    HTMLAttributes<HTMLDivElement>,
+    "defaultValue" | "onFocus" | "onBlur"
+  > {
   defaultValue?:
     | string
     | string[]
@@ -82,12 +85,12 @@ export interface SelectProps
     | string
     | number
     | {
-    label: ReactNode | string
-    value: string | number
-    disabled?: boolean
-    extra?: any
-  }
-    )[]
+        label: ReactNode | string
+        value: string | number
+        disabled?: boolean
+        extra?: any
+      }
+  )[]
   filterOption?:
     | boolean
     | ((inputValue: string, option: ReactElement) => boolean)
@@ -108,7 +111,10 @@ export interface SelectProps
 }
 
 export interface SelectViewProps
-  extends Omit<SelectProps, "options" | "filterOption" | "onChange" | "onClear"> {
+  extends Omit<
+    SelectProps,
+    "options" | "filterOption" | "onChange" | "onClear"
+  > {
   value?: any
   defaultValue?: any
   multiple?: boolean

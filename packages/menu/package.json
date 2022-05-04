@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/menu",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Illa Design Menu.",
   "keywords": [
     "menu",
@@ -39,10 +39,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.1",
-    "@illa-design/dropdown": "0.0.1",
-    "@illa-design/trigger": "0.0.1",
-    "@illa-design/system": "0.0.1",
-    "@illa-design/theme": "0.0.1"
+    "@illa-design/icon": "0.0.3",
+    "@illa-design/dropdown": "0.0.3",
+    "@illa-design/trigger": "0.0.3",
+    "@illa-design/system": "0.0.3",
+    "@illa-design/theme": "0.0.3"
   }
 }

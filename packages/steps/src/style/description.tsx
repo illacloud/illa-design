@@ -6,7 +6,7 @@ import { StepSize } from "../interface"
 export function applyDescriptionStyle(size: StepSize): SerializedStyles {
   return css([
     {
-      color: globalColor(`--${illaPrefix}-gray-04`),
+      color: globalColor(`--${illaPrefix}-grayBlue-04`),
       marginTop: 4,
       whiteSpace: "normal",
       maxWidth: 140,

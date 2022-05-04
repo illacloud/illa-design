@@ -140,6 +140,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
           placeholder={placeholder?.[0]}
           disabled={disabled0}
           onFocus={(e) => {
+            if (disabled0) return
             changeFocusedInput(0)
             setFocus0(true)
             onFocus?.(e)
@@ -172,6 +173,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
           placeholder={placeholder?.[1]}
           disabled={disabled1}
           onFocus={(e) => {
+            if (disabled1) return
             changeFocusedInput(1)
             setFocus1(true)
             onFocus?.(e)

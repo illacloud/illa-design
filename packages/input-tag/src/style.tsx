@@ -4,11 +4,11 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { InputTagStateValue } from "./interface"
 
 export const inputOutlineStyle = css`
-  border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 export const disableOutlineStyle = css`
-  border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `
 
 export const errorFocusStyle = css`
@@ -131,8 +131,8 @@ export function applyInputContainer(stateValue: InputTagStateValue) {
     font-size: 14px;
     line-height: 1.57;
     cursor: text;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-radius: 4px;
     transition: all 200ms ease-in-out;
     ${applySizeStyle(stateValue?.size)};
@@ -174,10 +174,10 @@ export function applySuffixCls(stateValue: InputTagStateValue) {
 
 export const pointerStyle = css`
   cursor: pointer;
-  color: ${globalColor(`--${illaPrefix}-gray-06`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
 
   &:hover {
-    color: ${globalColor(`--${illaPrefix}-gray-05`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   }
 `
 

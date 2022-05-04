@@ -1,5 +1,5 @@
 import { Alert } from "../src"
-import { render, screen, fireEvent, waitFor } from "@testing-library/react"
+import { render, screen, fireEvent } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { LoadingIcon } from "@illa-design/icon"
@@ -23,7 +23,7 @@ test("Alert renders with different type", () => {
   })
 })
 
-test("Alert renders with closeBtn&closeEvent", async () => {
+test("Alert renders with closeBtn and closeEvent", () => {
   const onCloseEvent = jest.fn()
   render(
     <Alert
@@ -43,7 +43,7 @@ test("Alert renders with title", () => {
   render(<Alert data-testid="test-with-title" title="Alert Title" />)
   expect(screen.getByText("Alert Title")).toBeInTheDocument()
   expect(screen.getByText("Alert Title")).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-gray-02`)}`,
+    color: `${globalColor(`--${illaPrefix}-grayBlue-02`)}`,
   })
   expect(screen.getByText("Alert Title")).not.toHaveStyle({
     marginBottom: 4,

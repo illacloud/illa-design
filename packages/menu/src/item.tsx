@@ -35,7 +35,7 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
     (collapse && level === 1 && !inDropdown) || needTooltip
   const isSelected = selectedKeys.includes(_key)
 
-  const clickItemHandler = (event: MouseEvent) => {
+  function clickItemHandler(event: MouseEvent) {
     if (disabled) {
       return
     }

@@ -1,5 +1,4 @@
-import { forwardRef, useState, useCallback, useEffect } from "react"
-
+import { forwardRef, useState, useCallback, useLayoutEffect } from "react"
 import {
   MessageComponent,
   MessageProps,
@@ -84,7 +83,7 @@ export const Message: MessageComponent = forwardRef<
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (shouldClear) {
       setMessageSet({
         ...messageSet,
@@ -104,7 +103,7 @@ export const Message: MessageComponent = forwardRef<
     setMessageSet({ ...messageSet, [position]: newNotices })
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (notice) {
       const isUpdate =
         messageSet[position].findIndex((item) => item.id === notice.id) > -1
@@ -180,8 +179,8 @@ Message.config = (options: ConfigProps = {}) => {
   if (options.maxCount) {
     maxCount = options.maxCount
   }
-  if (options.duration && isFinite(options.duration)) {
-    duration = options.duration as number
+  if (options.duration !== void 0 && isFinite(options.duration)) {
+    duration = options.duration
   }
   if (options.getContainer && options.getContainer() !== container) {
     container = options.getContainer()

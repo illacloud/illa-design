@@ -26,7 +26,7 @@ exports[`Card renders with Meta 1`] = `
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  color: #1f1f1f;
+  color: #1d2129;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -149,7 +149,7 @@ exports[`Card renders with Meta 1`] = `
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
-  color: #5c5c5c;
+  color: #272e3b;
   -webkit-transition: color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out;
 }
@@ -191,6 +191,7 @@ exports[`Card renders with Meta 1`] = `
             <svg
               class="emotion-6"
               color="currentColor"
+              fill="none"
               height="14px"
               viewBox="0 0 16 16"
               width="14px"
@@ -219,6 +220,7 @@ exports[`Card renders with Meta 1`] = `
           <svg
             class="emotion-6"
             color="currentColor"
+            fill="none"
             height="1em"
             viewBox="0 0 16 16"
             width="1em"
@@ -240,6 +242,7 @@ exports[`Card renders with Meta 1`] = `
           <svg
             class="emotion-6"
             color="currentColor"
+            fill="none"
             height="1em"
             viewBox="0 0 16 16"
             width="1em"
@@ -261,6 +264,7 @@ exports[`Card renders with Meta 1`] = `
           <svg
             class="emotion-6"
             color="currentColor"
+            fill="none"
             height="1em"
             viewBox="0 0 12 12"
             width="1em"
@@ -291,7 +295,7 @@ exports[`Card renders with different hoverable 1`] = `
   border-radius: 2px;
   -webkit-transition: box-shadow 0.2s ease-in-out;
   transition: box-shadow 0.2s ease-in-out;
-  border: solid 1px #ebebeb;
+  border: solid 1px #e5e6eb;
 }
 
 .emotion-0:hover {
@@ -312,7 +316,7 @@ exports[`Card renders with different hoverable 1`] = `
   -ms-flex-align: center;
   align-items: center;
   box-sizing: border-box;
-  border-bottom: solid 1px #ebebeb;
+  border-bottom: solid 1px #e5e6eb;
   padding: 16px;
 }
 
@@ -320,7 +324,7 @@ exports[`Card renders with different hoverable 1`] = `
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  color: #1f1f1f;
+  color: #1d2129;
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -332,7 +336,7 @@ exports[`Card renders with different hoverable 1`] = `
 .emotion-3 {
   box-sizing: border-box;
   padding: 16px;
-  color: #999;
+  color: #6b7785;
 }
 
 <div

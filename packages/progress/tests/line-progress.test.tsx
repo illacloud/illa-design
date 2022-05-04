@@ -40,7 +40,7 @@ test("Progress renders with colors", () => {
         trailColor="red"
       />
       <Progress
-        data-testid="test-progress-gray-step"
+        data-testid="test-progress-grayBlue-step"
         type="line"
         steps={3}
         color="gray"
@@ -59,7 +59,7 @@ test("Progress renders with colors", () => {
   expect(screen.getByTestId("test-progress-gray")).toMatchSnapshot()
   expect(screen.getByTestId("test-progress-custom")).toMatchSnapshot()
   expect(screen.getByTestId("test-progress-red-step")).toMatchSnapshot()
-  expect(screen.getByTestId("test-progress-gray-step")).toMatchSnapshot()
+  expect(screen.getByTestId("test-progress-grayBlue-step")).toMatchSnapshot()
   expect(screen.getByTestId("test-progress-custom-step")).toMatchSnapshot()
 })
 
