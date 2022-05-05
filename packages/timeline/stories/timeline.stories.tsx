@@ -1,7 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Timeline, TimelineProps, TimelineItem } from "../src"
 
-
 export default {
   title: "DATA DISPLAY/Timeline",
   component: Timeline,
