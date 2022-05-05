@@ -58,9 +58,11 @@ const TimeContainer = forwardRef<HTMLDivElement, TimelineProps>(
     )
   },
 )
+
 const Timeline = TimeContainer as typeof TimeContainer & {
   Item: typeof TimelineItem
 }
+
 Timeline.displayName = "Timeline"
 Timeline.Item = TimelineItem
 
