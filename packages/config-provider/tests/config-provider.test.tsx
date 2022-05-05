@@ -7,10 +7,10 @@ import {
   zhCN,
   enUS,
 } from "../src"
-import * as React from "react"
+import { useState } from "react"
 
 const ConfigComponent = () => {
-  const [locale, setLocale] = React.useState(enUS)
+  const [locale, setLocale] = useState(enUS)
   return (
     <ConfigProvider locale={locale}>
       <button onClick={() => setLocale(zhCN)}>Locale</button>
