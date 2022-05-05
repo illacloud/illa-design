@@ -8,9 +8,7 @@ export function applyWrapCss(direction: string): SerializedStyles {
   `
 }
 
-export function applyItemCss(
-  direction: string
-): SerializedStyles {
+export function applyItemCss(direction: string): SerializedStyles {
   return css`
     ${direction === "horizontal" && "display: inline-block"};
     position: relative;

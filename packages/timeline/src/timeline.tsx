@@ -19,29 +19,35 @@ const TimeContainer = forwardRef<HTMLDivElement, TimelineProps>(
       ...rest
     } = props
 
-    const items = Children.map(children as ReactElement, (ele: ReactElement, index) => {
-      if (ele?.type && (ele.type as typeof TimelineItem).isTimelineItem) {
-        return (
-          <TimelineContext.Provider
-            value={{
-              direction,
-              mode,
-              index,
-            }}
-          >
-            {ele}
-          </TimelineContext.Provider>
-        )
-      } else {
-        return null
-      }
-    }) || []
+    const items =
+      Children.map(children as ReactElement, (ele: ReactElement, index) => {
+        if (ele?.type && (ele.type as typeof TimelineItem).isTimelineItem) {
+          return (
+            <TimelineContext.Provider
+              value={{
+                direction,
+                mode,
+                index,
+              }}
+            >
+              {ele}
+            </TimelineContext.Provider>
+          )
+        } else {
+          return null
+        }
+      }) || []
 
     if (reverse) items.reverse()
 
     const pendingNode = typeof pending === "boolean" ? null : pending
     const pendingItem = pending ? (
-      <TimelineItem dot={pendingDot || pendingNode} mode={mode} direction={direction} key={items.length}></TimelineItem>
+      <TimelineItem
+        dot={pendingDot || pendingNode}
+        mode={mode}
+        direction={direction}
+        key={items.length}
+      ></TimelineItem>
     ) : null
     pending && items.push(pendingItem as ReactElement)
 
@@ -52,7 +58,9 @@ const TimeContainer = forwardRef<HTMLDivElement, TimelineProps>(
     )
   },
 )
-const Timeline = TimeContainer as typeof TimeContainer & { Item: typeof TimelineItem }
+const Timeline = TimeContainer as typeof TimeContainer & {
+  Item: typeof TimelineItem
+}
 Timeline.displayName = "Timeline"
 Timeline.Item = TimelineItem
 
