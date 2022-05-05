@@ -9,14 +9,14 @@ export function applyWrapperStyle({
   direction,
   variant,
   status,
-  disabled,
+  disabled = false,
   labelPlacement,
   hoverable,
 }: {
   direction: LabelPlacement
   variant: StepVariant
   status: StepStatus
-  disabled: boolean
+  disabled?: boolean
   labelPlacement: LabelPlacement
   hoverable: boolean
 }): SerializedStyles {

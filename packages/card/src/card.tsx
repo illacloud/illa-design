@@ -21,9 +21,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     actions,
     extra,
     size = "medium",
-    hoverable = false,
+    hoverable,
     cover,
-    loading = false,
+    loading,
     bordered = true,
     children,
     isGridMode,
@@ -69,7 +69,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   return (
     <div
       ref={ref}
-      css={applyCard(bordered, hoverable, isGridMode)}
+      css={applyCard(bordered, hoverable ?? false, isGridMode)}
       {...restProps}
     >
       {title || extra ? (
@@ -81,7 +81,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
 
       {cover ? <div css={applyCardCover}>{cover}</div> : null}
 
-      <div css={applyCardBody(size, loading, isContainGrid)}>
+      <div css={applyCardBody(size, loading ?? false, isContainGrid)}>
         {loading ? <Spin /> : handledChildren}
         {isContainMeta ? null : actionList}
       </div>

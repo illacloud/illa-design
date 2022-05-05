@@ -40,7 +40,7 @@ export function getValueUtils(props: {
   isRange: boolean
   min: number
   max: number
-  onlyMarkValue: boolean
+  onlyMarkValue?: boolean
   step: number
   marks: Record<number, ReactNode>
 }) {

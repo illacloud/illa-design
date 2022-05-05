@@ -20,7 +20,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     placeholder,
     defaultValue,
     requirePadding = true,
-    searchButton = false,
+    searchButton,
     borderColor = "blue",
     size = "medium",
     variant = "outline",

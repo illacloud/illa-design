@@ -17,7 +17,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       // base props
       _css,
       allowSelect = true,
-      panel = false,
+      panel,
       panelWidth = 265,
       panelTodayBtn = true,
       panelOperations = ["left", "right", "doubleLeft", "doubleRight"],
@@ -35,7 +35,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       // extra props
       defaultDate,
       defaultSelectedDate,
-      rangePicker = false,
+      rangePicker,
       rangeValueFirst,
       rangeValueSecond,
       rangeValueHover,
@@ -173,7 +173,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
 
     return (
       <div
-        css={css(applyCalendarWrapCss(finPanel, panelWidth), _css)}
+        css={css(applyCalendarWrapCss(finPanel ?? false, panelWidth), _css)}
         ref={ref}
         {...restProps}
       >

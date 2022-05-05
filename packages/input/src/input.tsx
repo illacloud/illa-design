@@ -41,7 +41,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     size = "medium",
     variant = "outline",
     requirePadding = true,
-    textCenterHorizontal = false,
+    textCenterHorizontal,
     iconAppearWithSuffix,
     onClear,
     onChange,

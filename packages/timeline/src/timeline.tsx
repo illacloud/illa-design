@@ -10,7 +10,7 @@ const TimeContainer = forwardRef<HTMLDivElement, TimelineProps>(
   (props, ref) => {
     const {
       _css,
-      reverse = false,
+      reverse,
       mode = "left",
       direction = "vertical",
       pending,

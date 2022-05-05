@@ -32,6 +32,7 @@ export const PopConfirm: FC<PopconfirmProps> = (props) => {
     icon = <InfoCircleIcon color={globalColor(`--${illaPrefix}-blue-03`)} />,
     colorScheme = "white",
     trigger = "click",
+    // must be false
     closeOnClick = false,
     popupVisible,
     onVisibleChange,

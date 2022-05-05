@@ -12,16 +12,16 @@ import { statusColor, isVerticalLabel, getConnectorColor } from "../style"
 export function applyTitleStyle({
   size,
   variant,
-  lastStep,
-  lineless,
-  nextStepError,
+  lastStep = false,
+  lineless = false,
+  nextStepError = false,
   direction,
   labelPlacement,
   status,
 }: {
-  lastStep: boolean
-  nextStepError: boolean
-  lineless: boolean
+  lastStep?: boolean
+  nextStepError?: boolean
+  lineless?: boolean
   status: StepStatus
 } & StepStyleConfig): SerializedStyles {
   return css([
@@ -87,7 +87,7 @@ function applyTitleColor(status: StepStatus): SerializedStyles {
 function applyConnectionStyle({
   variant,
   status,
-  nextStepError = false,
+  nextStepError,
   size,
 }: {
   variant: StepVariant

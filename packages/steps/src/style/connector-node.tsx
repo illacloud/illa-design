@@ -14,10 +14,10 @@ export function applyConnectionNodeStyle({
   direction,
   labelPlacement,
   status,
-  nextStepError,
+  nextStepError = false,
 }: StepStyleConfig & {
   status: StepStatus
-  nextStepError: boolean
+  nextStepError?: boolean
 }): SerializedStyles {
   const color = getConnectorColor({ nextStepError, status })
 
