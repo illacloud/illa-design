@@ -23,7 +23,6 @@ test("vertical Timeline", () => {
       <TimelineItem>The alternate mode right text</TimelineItem>
     </Timeline>,
   )
-  // todo: wrap position
   expect(screen.getByText("The alternate mode left text")).toHaveStyle({
     left: "50%",
   })

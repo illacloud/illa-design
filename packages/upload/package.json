@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/upload",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Illa Design Upload.",
   "keywords": [
     "upload",
@@ -39,12 +39,12 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.2",
-    "@illa-design/image": "0.0.2",
-    "@illa-design/list": "0.0.2",
-    "@illa-design/progress": "0.0.2",
-    "@illa-design/theme": "0.0.2",
-    "@illa-design/system": "0.0.2",
-    "@illa-design/config-provider": "0.0.2"
+    "@illa-design/icon": "0.0.3",
+    "@illa-design/image": "0.0.3",
+    "@illa-design/list": "0.0.3",
+    "@illa-design/progress": "0.0.3",
+    "@illa-design/theme": "0.0.3",
+    "@illa-design/system": "0.0.3",
+    "@illa-design/config-provider": "0.0.3"
   }
 }
