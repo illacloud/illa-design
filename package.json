@@ -61,7 +61,7 @@
     "storybook": "yarn build-all-components  && yarn start-storybook -p 6006",
     "build-storybook": "yarn build-all-components && npx build-storybook",
     "build-all-components": "npx turbo run build",
-    "test": "npx patch-package && yarn build-all-components && npx jest && npx cypress run-ct -b chromium",
+    "test": "npx patch-package && yarn build-all-components && npx jest && npx cypress run-ct -b chrome",
     "posttest": "yarn report:combined",
     "unit-test": "yarn build-all-components && npx jest",
     "lint": "prettier --write \"packages/**/*.{ts,tsx}\"",
