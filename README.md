@@ -13,6 +13,7 @@
 
 [![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
 [![storybook](https://devbo.cn/storybook.svg)](https://design.illasoft.com)
+[![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
 [![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](./LICENSE)
 [![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
 
