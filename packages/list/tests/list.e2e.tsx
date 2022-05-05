@@ -1,6 +1,8 @@
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import { ListItem, ListItemMeta, List } from "../src"
+import "cypress-real-events"
+import { List } from "../src"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 it("List renders raw.", () => {
   mount(
@@ -32,7 +34,7 @@ it("List renders with scroll event.", () => {
         { title: "Title E", description: "Desc E" },
       ]}
       render={(data, index) => {
-        return <span>{data.title}qq</span>
+        return <span>{data.title}</span>
       }}
       renderKey={(data, index) => {
         return index.toString()
@@ -57,7 +59,7 @@ it("List renders with loader.", () => {
         { title: "Title B", description: "Desc B" },
       ]}
       render={(data, index) => {
-        return <span>{data.title}qq</span>
+        return <span>{data.title}</span>
       }}
       renderKey={(data, index) => {
         return index.toString()
@@ -70,6 +72,58 @@ it("List renders with loader.", () => {
   unmount()
 })
 
+it("List renders with different size.", () => {
+  mount(
+    <>
+      <List
+        data={[{ title: "A" }]}
+        render={(data, index) => {
+          return <span>{data.title}</span>
+        }}
+        renderKey={(data, index) => {
+          return index.toString()
+        }}
+        size="large"
+      />
+      <List
+        data={[{ title: "B" }]}
+        render={(data, index) => {
+          return <span>{data.title}</span>
+        }}
+        renderKey={(data, index) => {
+          return index.toString()
+        }}
+        size="small"
+      />
+      ,
+    </>,
+  )
+  cy.findByText("A").should("exist")
+  cy.findByText("B").should("exist")
+  cy.findByText("A").parent().should("have.css", "padding", "16px 24px")
+  cy.findByText("B").parent().should("have.css", "padding", "8px 24px")
+  unmount()
+})
+
+// cypress not support test real hover state,so only can test render.
+it("List renders with hoverable.", () => {
+  mount(
+    <List
+      data={[{ title: "A" }]}
+      render={(data, index) => {
+        return <span>{data.title}</span>
+      }}
+      renderKey={(data, index) => {
+        return index.toString()
+      }}
+      hoverable
+      size="large"
+    />,
+  )
+  cy.findByText("A").should("exist")
+  unmount()
+})
+
 it("List renders with end message.", () => {
   mount(
     <List
@@ -78,7 +132,7 @@ it("List renders with end message.", () => {
         { title: "Title B", description: "Desc B" },
       ]}
       render={(data, index) => {
-        return <span>{data.title}qq</span>
+        return <span>{data.title}</span>
       }}
       renderKey={(data, index) => {
         return index.toString()

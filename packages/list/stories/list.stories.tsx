@@ -56,7 +56,7 @@ export const Normal: Story<ListProps<any>> = (args) => (
       { title: "Title E", description: "Desc E" },
     ]}
     render={(data, index) => {
-      return <span>{data.title}qq</span>
+      return <span>{data.title}</span>
     }}
     renderKey={(data, index) => {
       return index.toString()
