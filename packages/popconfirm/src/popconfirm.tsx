@@ -1,7 +1,7 @@
 import { FC, useContext, useState } from "react"
 import { PopconfirmProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"
-import { Heading, Typography } from "@illa-design/typography"
+import { Typography } from "@illa-design/typography"
 import {
   applyButtonGroupStyle,
   applyHeaderStyle,

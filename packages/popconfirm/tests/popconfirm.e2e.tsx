@@ -60,6 +60,7 @@ it("PopConfirm triggers ok event", () => {
   cy.get("@visibleEvent").should("be.calledWith", true)
   cy.findByText("Confirm").click()
   cy.get("@okEvent").should("be.called")
+  cy.get("@visibleEvent").should("be.calledWith", false)
   unmount()
 })
 

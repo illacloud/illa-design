@@ -45,7 +45,7 @@ export const Basic: Story<ListProps<any>> = (args) => (
     }}
   />
 )
-export const AAA: Story<ListProps<any>> = (args) => (
+export const Normal: Story<ListProps<any>> = (args) => (
   <List
     {...args}
     data={[
