@@ -4,5 +4,6 @@
   "component": {
     "testFiles": "**/tests/*.e2e.{ts,tsx}",
     "componentFolder": "packages"
-  }
+  },
+  "video": false
 }
