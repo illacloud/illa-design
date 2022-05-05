@@ -94,18 +94,18 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
       {props.icon && <span css={leftIcon}>{props.icon}</span>}
       <span css={tagContentStyle}>{props.children}</span>
       {props.closable && (
-        <span css={applyCloseIcon(colorScheme, size, variant)}>
-          <CloseIcon
-            size="8px"
-            onClick={(e) => {
-              if (props.onClose != undefined) {
-                props.onClose(e)
-              }
-              if (visible == undefined) {
-                setRealVisible(false)
-              }
-            }}
-          />
+        <span
+          css={applyCloseIcon(colorScheme, size, variant)}
+          onClick={(e) => {
+            if (props.onClose != undefined) {
+              props.onClose(e)
+            }
+            if (visible == undefined) {
+              setRealVisible(false)
+            }
+          }}
+        >
+          <CloseIcon size="8px" />
         </span>
       )}
     </div>

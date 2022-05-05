@@ -302,15 +302,16 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     }
   }, [])
   const handleLoadMore = async (key: string) => {
-    loadMoreKeys.add(key)
+    const newValue = new Set([...loadMoreKeys])
+    newValue.add(key)
     if (isMountedRef.current) {
-      setLoadMoreKeys(new Set([...loadMoreKeys]))
+      setLoadMoreKeys(newValue)
     }
     const node = nodeCache.current[key]
     loadMore && (await loadMore(node))
-    loadMoreKeys.delete(key)
+    newValue.delete(key)
     if (isMountedRef.current) {
-      setLoadMoreKeys(new Set([...loadMoreKeys]))
+      setLoadMoreKeys(new Set([...newValue]))
     }
   }
 
