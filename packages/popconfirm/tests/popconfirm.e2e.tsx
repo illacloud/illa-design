@@ -6,7 +6,13 @@ import { SearchIcon } from "@illa-design/icon"
 
 it("PopConfirm renders correctly", () => {
   mount(
-    <PopConfirm title="Visible" closeDelay={0} openDelay={0} position={"bl"}>
+    <PopConfirm
+      title="Visible"
+      closeDelay={0}
+      openDelay={0}
+      position={"bl"}
+      colorScheme="blue"
+    >
       <Button>Click</Button>
     </PopConfirm>,
   )
