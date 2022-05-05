@@ -66,7 +66,7 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
               if (
                 onReachBottom != undefined &&
                 e.currentTarget.scrollHeight -
-                  (e.currentTarget.scrollTop + height) ==
+                  (e.currentTarget.scrollTop + height) <=
                   bottomOffset
               ) {
                 onReachBottom()
