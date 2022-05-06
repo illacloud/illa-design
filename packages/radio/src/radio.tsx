@@ -6,7 +6,7 @@ import {
   applyRadioSize,
   disappear,
 } from "./style"
-import { useMergeValue } from "./hook"
+import { useMergeValue } from "@illa-design/system"
 import { omit } from "@illa-design/system"
 import { RadioGroupContext } from "./radio-group-context"
 

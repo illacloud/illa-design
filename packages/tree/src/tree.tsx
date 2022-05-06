@@ -13,14 +13,13 @@ import {
   TreeList,
   checkChildrenChecked,
   checkParentChecked,
-  getNodes,
   loopNodeWithState,
-  getNodeList,
   NodeInstance,
   NodeProps,
   updateKeys,
 } from "@illa-design/tree-common"
 import { TreeProps } from "./interface"
+import { getNodes, getNodeList } from "./utils"
 
 // treeData is default
 export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
@@ -294,13 +293,26 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     },
     [checkKeysState, nodeCache.current, _treeData],
   )
+
+  let isMountedRef = useRef(false)
+  useEffect(() => {
+    isMountedRef.current = true
+    return () => {
+      isMountedRef.current = false
+    }
+  }, [])
   const handleLoadMore = async (key: string) => {
-    loadMoreKeys.add(key)
-    setLoadMoreKeys(new Set([...loadMoreKeys]))
+    const newValue = new Set([...loadMoreKeys])
+    newValue.add(key)
+    if (isMountedRef.current) {
+      setLoadMoreKeys(newValue)
+    }
     const node = nodeCache.current[key]
     loadMore && (await loadMore(node))
-    loadMoreKeys.delete(key)
-    setLoadMoreKeys(new Set([...loadMoreKeys]))
+    newValue.delete(key)
+    if (isMountedRef.current) {
+      setLoadMoreKeys(new Set([...newValue]))
+    }
   }
 
   return (

@@ -75,7 +75,7 @@ export const tabLineHeaderHorizontalContainerCss = css`
 export const tabCapsuleHeaderContainerCss = css`
   display: inline-flex;
   flex-direction: column;
-  background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   border-radius: 4px;
   padding: 0 2px;
   margin-bottom: 10px;
@@ -158,7 +158,7 @@ export function applyCardHeaderChildCss(
 ): SerializedStyles {
   const selectedBoxCss = isSelected
     ? css`
-        border: solid ${globalColor(`--${illaPrefix}-gray-08`)};
+        border: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
         border-bottom: solid white;
       `
     : css`
@@ -175,7 +175,7 @@ export function applyCardHeaderChildCss(
     z-index: 2;
     margin: 0 2px;
     ${applyHoverBackgroundCss(isSelected, disabled)}
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     transition: background-color 200ms;
   `
 }
@@ -187,7 +187,7 @@ export function applyHoverBackgroundCss(
   if (!isSelected && !disabled) {
     return css`
       &:hover {
-        background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+        background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
       }
     `
   }
@@ -199,9 +199,9 @@ export const addButtonCss = css`
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   &:hover {
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
 `
 
@@ -212,9 +212,9 @@ export const deleteButtonCss = css`
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   &:hover {
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
 `
 
@@ -233,7 +233,7 @@ export const verticalLineCss = css`
   height: 8px;
   position: relative;
   right: 0;
-  background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
 export function applyTextColorCss(
@@ -244,7 +244,7 @@ export function applyTextColorCss(
   let textColorCss
   if (disabled) {
     textColorCss = css`
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
       cursor: not-allowed;
     `
   } else if (isSelected) {
@@ -253,11 +253,11 @@ export function applyTextColorCss(
     `
   } else {
     textColorCss = css`
-      color: ${globalColor(`--${illaPrefix}-gray-03`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
       &:hover {
         background-color: ${
           variant !== "capsule"
-            ? globalColor(`--${illaPrefix}-gray-09`)
+            ? globalColor(`--${illaPrefix}-grayBlue-09`)
             : undefined
         }
     `
@@ -311,7 +311,7 @@ export function applyDividerCommonLineCss(w: number): SerializedStyles {
     display: inline-flex;
     position: relative;
     bottom: 4px;
-    border-bottom: solid ${globalColor(`--${illaPrefix}-gray-08`)} 1px;
+    border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
   `
 }
 
@@ -319,7 +319,7 @@ export function applyDividerHorizontalLineCss(h: number): SerializedStyles {
   return css`
     height: ${h}px;
     display: inline-flex;
-    border-right: solid ${globalColor(`--${illaPrefix}-gray-08`)} 1px;
+    border-right: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
   `
 }
 
@@ -370,7 +370,7 @@ export const cardDividerContainerCss = css`
   width: 100%;
   display: inline-flex;
   position: relative;
-  border-top: solid ${globalColor(`--${illaPrefix}-gray-08`)} 1px;
+  border-top: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
 `
 
 export const tabContentContainerCss = css`
@@ -384,7 +384,7 @@ export const tabContentContainerCss = css`
 
 export const tabCardContentContainerCss = css`
   ${tabContentContainerCss};
-  border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+  border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-top: 0;
 `
 
@@ -490,7 +490,7 @@ export function applyHorizontalIconLineCss(isLeft: boolean): SerializedStyles {
     position: absolute;
     ${positionCss};
     top: 0;
-    background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 }
 
@@ -508,7 +508,7 @@ export function applyCommonIconLineCss(isTop: boolean): SerializedStyles {
     position: absolute;
     ${positionCss};
     left: 0;
-    background-color: ${globalColor(`--${illaPrefix}-gray-08`)}; ;
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)}; ;
   `
 }
 
@@ -518,5 +518,5 @@ export const lineCss = css`
   position: absolute;
   bottom: 0.5px;
   left: 0;
-  background-color: ${globalColor(`--${illaPrefix}-gray-08`)}; ;
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)}; ;
 `

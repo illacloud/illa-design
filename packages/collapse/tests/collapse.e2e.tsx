@@ -1,5 +1,4 @@
 import { Collapse, CollapseProps } from "../src"
-import React from "react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
@@ -53,6 +52,8 @@ it("Collapse renders with expanded", () => {
   cy.findByText("Item-3").should("not.be.visible")
   cy.findByTestId("collapse-item-3").click()
   cy.findByText("Item-3").should("be.visible")
+  cy.findByTestId("collapse-item-3").click()
+  cy.findByText("Item-3").should("not.be.visible")
   unmount()
 })
 

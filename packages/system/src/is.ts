@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 
 // thx arco
 export function isDayjs(time: any): time is Dayjs {
-  // dayjs.isDayjs 在实际应用场景，比如多个版本的 dayjs 会失效
+  // dayjs.isDayjs in practical application scenarios, such as multiple versions of dayjs may fail
   return (
     isObject(time) &&
     "$y" in time &&

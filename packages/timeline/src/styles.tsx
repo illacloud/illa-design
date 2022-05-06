@@ -8,10 +8,7 @@ export function applyWrapCss(direction: string): SerializedStyles {
   `
 }
 
-export function applyItemCss(
-  direction: string,
-  mode?: string,
-): SerializedStyles {
+export function applyItemCss(direction: string): SerializedStyles {
   return css`
     ${direction === "horizontal" && "display: inline-block"};
     position: relative;
@@ -23,7 +20,7 @@ export function applyItemCss(
 }
 
 export function baseLineStyle(lineColor?: string): SerializedStyles {
-  let color = lineColor ? lineColor : globalColor(`--${illaPrefix}-gray-08`)
+  let color = lineColor ? lineColor : globalColor(`--${illaPrefix}-grayBlue-08`)
   return css`
     border-color: ${color};
   `
@@ -69,6 +66,7 @@ export function applyHorItemLineCss(
     `
   } else if (mode === "bottom") {
     otherModePosition = css`
+      top: auto;
       bottom: calc(0px + 2.5px);
     `
   } else if (mode === "alternate") {
@@ -78,12 +76,13 @@ export function applyHorItemLineCss(
   }
   return css`
     position: absolute;
-    ${otherModePosition};
-    left: 10px;
+    top: 2.5px;
+    left: 12px;
     width: calc(100% - 20px);
     height: 1px;
     border-top: 1px ${lineType};
     ${baseLineStyle(lineColor)};
+    ${otherModePosition};
   `
 }
 
@@ -179,7 +178,7 @@ export function applyVertPropDotCss(mode: string): SerializedStyles {
   return css`
     position: absolute;
     ${posStyle};
-    top: -50%;
+    top: -40%;
   `
 }
 
@@ -188,17 +187,17 @@ export function applyHorPropDotCss(mode: string): SerializedStyles {
   if (mode === "top") {
     posStyle = css`
       top: 0%;
-      transform: translate(0px, calc(-50% - 5px));
+      transform: translate(3px, calc(-50% - 5px));
     `
   } else if (mode === "bottom") {
     posStyle = css`
       bottom: 0%;
-      transform: translate(0px, calc(50% - 11px));
+      transform: translate(3px, calc(50% - 11px));
     `
   } else if (mode === "alternate") {
     posStyle = css`
       top: 50%;
-      transform: translate(0px, calc(-50% - 5px));
+      transform: translate(3px, calc(-50% - 5px));
     `
   }
   return css`
@@ -231,7 +230,7 @@ export function applyVertItemContentCss(
   }
   return css`
     position: relative;
-    top: -9px;
+    top: -7.5px;
     ${alignStyle};
     margin-left: 16px;
     ${autoFixDotSize && "font-size: 14px"};
@@ -248,6 +247,6 @@ export function applyHorItemContentCss(
     left: -10px;
     ${mode === "alternate-relative" && "top: 50%;margin-top: 30px;"};
     ${mode === "alternate-same" && "top: -50%;"}
-    ${autoFixDotSize && "font-size: 16px"};
+    ${autoFixDotSize && "font-size: 14px"};
   `
 }

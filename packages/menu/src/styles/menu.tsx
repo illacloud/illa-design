@@ -15,7 +15,7 @@ export function applyMenuCss(
   const bgColor =
     theme === "light"
       ? globalColor(`--${illaPrefix}-white-01`)
-      : globalColor(`--${illaPrefix}-gray-02`)
+      : globalColor(`--${illaPrefix}-grayBlue-02`)
   const mergedBgColor = isPopButton ? "none" : bgColor
 
   let themeCss = css``
@@ -54,12 +54,12 @@ export function applyCollapseIconCss(
 ): SerializedStyles {
   const themeColor = {
     light: {
-      bg: globalColor(`--${illaPrefix}-gray-09`),
-      hoverBg: globalColor(`--${illaPrefix}-gray-08`),
+      bg: globalColor(`--${illaPrefix}-grayBlue-09`),
+      hoverBg: globalColor(`--${illaPrefix}-grayBlue-08`),
     },
     dark: {
-      bg: globalColor(`--${illaPrefix}-gray-03`),
-      hoverBg: globalColor(`--${illaPrefix}-gray-04`),
+      bg: globalColor(`--${illaPrefix}-grayBlue-03`),
+      hoverBg: globalColor(`--${illaPrefix}-grayBlue-04`),
     },
   }
 

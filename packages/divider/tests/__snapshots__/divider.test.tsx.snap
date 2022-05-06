@@ -8,7 +8,7 @@ exports[`Divider renders default 1`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
-  border-color: #ebebeb;
+  border-color: #e5e6eb;
   border-style: solid;
   border-width: 0 0 1px 0;
   width: 100%;
@@ -28,7 +28,7 @@ exports[`Divider renders horizontal 1`] = `
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
-  border-color: #ebebeb;
+  border-color: #e5e6eb;
   border-style: solid;
   border-width: 0 0 1px 0;
   width: 100%;
@@ -50,7 +50,7 @@ exports[`Divider renders vertical 1`] = `
   vertical-align: middle;
   border-width: 0 0 0 1px;
   border-image: initial;
-  border-color: #ebebeb;
+  border-color: #e5e6eb;
   border-style: dashed;
   height: 1em;
 }

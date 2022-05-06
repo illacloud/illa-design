@@ -21,7 +21,7 @@ export function applyDefaultFallback(
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     border-radius: ${radius};
     width: ${width};
     height: ${height};

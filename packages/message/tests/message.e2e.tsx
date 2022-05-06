@@ -1,6 +1,5 @@
 import { Message } from "../src"
 import { mount, unmount } from "@cypress/react"
-import * as React from "react"
 import "@testing-library/cypress"
 
 it("Message renders with duration", () => {
@@ -32,7 +31,6 @@ it("Message renders with remove action", () => {
     content: "Remove",
     id: "remove",
   })
-  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
   cy.contains("Remove").should("be.visible")
   Message.remove("remove")
   cy.contains("Remove").should("not.be.exist")
@@ -48,7 +46,7 @@ it("Message renders with clear action", () => {
     content: "ItemB",
     id: "itemB",
   })
-  cy.clock(Date.now(), ["setTimeout", "clearTimeout"])
+
   cy.contains("ItemA")
     .should("be.visible")
     .then(() => {

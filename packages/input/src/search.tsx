@@ -97,7 +97,9 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
           {!searchButton ? (
             <span css={applySuffixCls(stateValue)}>
               <SearchIcon
-                css={css(`color: ${globalColor(`--${illaPrefix}-gray-05`)};`)}
+                css={css(
+                  `color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};`,
+                )}
               />
             </span>
           ) : null}

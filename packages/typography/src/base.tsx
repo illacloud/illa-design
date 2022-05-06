@@ -88,7 +88,7 @@ function getCopyable(
   }
   if (originCopyable.copyIcon == undefined) {
     originCopyable.copyIcon = (
-      <CopyIcon color={globalColor(`--${illaPrefix}-gray-01`)} />
+      <CopyIcon color={globalColor(`--${illaPrefix}-grayBlue-01`)} />
     )
   }
   if (originCopyable.copiedIcon == undefined) {

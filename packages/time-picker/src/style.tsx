@@ -4,7 +4,7 @@ import { css } from "@emotion/react"
 import { columState } from "./time-column"
 
 export const triggerContentStyle: SerializedStyles = css`
-  border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+  border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-radius: 2px;
 `
 
@@ -28,7 +28,7 @@ export function applyTimepickerList(): SerializedStyles {
     }
 
     &:not(:last-child) {
-      border-right: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+      border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     }
 
     &::-webkit-scrollbar {
@@ -82,12 +82,12 @@ export function applyColumnItemText(states: columState): SerializedStyles {
   let stateStyle: SerializedStyles = css()
   if (states?.disabled) {
     stateStyle = css`
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     `
   } else if (states?.selected) {
     stateStyle = css`
       color: ${globalColor(`--${illaPrefix}-blue-03`)};
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     `
   }
   return css`
@@ -95,7 +95,7 @@ export function applyColumnItemText(states: columState): SerializedStyles {
     height: 24px;
 
     &:hover {
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     }
 
     ${stateStyle}
@@ -107,6 +107,6 @@ export function applyContentButton(): SerializedStyles {
     display: flex;
     justify-content: space-between;
     padding: 12px;
-    border-top: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 }

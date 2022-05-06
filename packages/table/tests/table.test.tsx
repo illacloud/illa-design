@@ -69,13 +69,13 @@ test("Table renders with borders.", () => {
     </Table>,
   )
   const itemCss = {
-    borderLeft: `solid 1px ${globalColor(`--${illaPrefix}-gray-08`)}`,
-    borderRight: `solid 1px ${globalColor(`--${illaPrefix}-gray-08`)}`,
-    borderTop: `solid 1px ${globalColor(`--${illaPrefix}-gray-08`)}`,
-    borderBottom: `solid 1px ${globalColor(`--${illaPrefix}-gray-08`)}`,
+    borderLeft: `solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
+    borderRight: `solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
+    borderTop: `solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
+    borderBottom: `solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
   }
   expect(screen.getByTestId("test-table")).toHaveStyle({
-    border: `solid 1px ${globalColor(`--${illaPrefix}-gray-08`)}`,
+    border: `solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
   })
   expect(screen.getByTestId("test-th")).toHaveStyle(itemCss)
   expect(screen.getByTestId("test-td")).toHaveStyle(itemCss)

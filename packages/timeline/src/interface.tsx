@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactNode } from "react"
+import { SerializedStyles } from "@emotion/react"
 
 export type TimelineDirection = "horizontal" | "vertical"
 export type TimelineMode = "left" | "right" | "alternate" | "top" | "bottom"
@@ -7,6 +8,7 @@ export type TimelineItemDotType = "hollow" | "solid"
 export type TimelineItemLineType = "solid" | "dashed" | "dotted"
 
 export interface TimelineProps extends HTMLAttributes<HTMLDivElement> {
+  _css?: SerializedStyles
   reverse?: boolean
   direction?: TimelineDirection
   mode?: TimelineMode

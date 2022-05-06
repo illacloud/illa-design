@@ -4,24 +4,24 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { InputSize, StateValue } from "./interface"
 
 export const inputFillStyle = css`
-  background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-  border-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  border-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 export const inputOutlineStyle = css`
-  border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 export const disableOutlineStyle = css`
-  border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `
 export const disableFillStyle = css`
-  border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
-  background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+  border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 export const hoverFillStyle = css`
-  background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-  border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
 export const errorFocusStyle = css`
@@ -56,13 +56,13 @@ export function applyVariantStyle(variant?: string) {
     default:
     case "fill":
       inputStyle = css`
-        background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-        border-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+        background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+        border-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
       `
       break
     case "outline":
       inputStyle = css`
-        border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+        border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       `
       break
   }
@@ -79,7 +79,7 @@ export function applyContainerCss(stateValue: StateValue) {
     font-size: 14px;
     border-radius: ${stateValue.radius};
     vertical-align: middle;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${applyVariantStyle(stateValue?.variant)}
     ${applySizeStyle(stateValue?.size)}
   `
@@ -217,8 +217,8 @@ export function applyInputContainer(
     font-size: inherit;
     line-height: inherit;
     box-sizing: border-box;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    border: solid 1px;
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     transition: all 200ms ease-in-out;
     ${applySizeCss(requirePadding, stateValue?.size)};
 
@@ -267,7 +267,7 @@ export function applyInputStyle(textCenterHorizontal?: boolean | undefined) {
     font-family: inherit;
     border-radius: 4px;
     line-height: inherit;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     border: none;
     outline: unset;
     cursor: inherit;
@@ -276,15 +276,15 @@ export function applyInputStyle(textCenterHorizontal?: boolean | undefined) {
 
     ${textAlignCss}
     &::placeholder {
-      color: ${globalColor(`--${illaPrefix}-gray-04`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     }
 
     &:disabled {
       cursor: not-allowed;
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 
       &::placeholder {
-        color: ${globalColor(`--${illaPrefix}-gray-05`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
       }
     }
   `
@@ -341,8 +341,8 @@ export function applyAddonCss(stateValue: StateValue) {
     default:
     case "fill":
       inputStyle = css`
-        background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-        border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+        background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+        border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
         border-top: 0;
         border-bottom: 0;
 
@@ -357,7 +357,7 @@ export function applyAddonCss(stateValue: StateValue) {
       break
     case "outline":
       inputStyle = css`
-        border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+        border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 
         &:first-of-type {
           border-right: 0;
@@ -371,8 +371,8 @@ export function applyAddonCss(stateValue: StateValue) {
   }
   return css`
     ${baseFixCls(stateValue)}
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-width: 1px;
     border-style: solid;
     padding: 0 16px;
@@ -398,7 +398,7 @@ export const applyCountLimitStyle = css`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `
 
 export function applyLengthErrorStyle(error?: boolean) {
@@ -408,7 +408,7 @@ export function applyLengthErrorStyle(error?: boolean) {
     `
   }
   return css`
-    color: ${globalColor(`--${illaPrefix}-gray-05`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   `
 }
 
@@ -419,10 +419,10 @@ export const pointerStyle = css`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: ${globalColor(`--${illaPrefix}-gray-06`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
 
   &:hover {
-    color: ${globalColor(`--${illaPrefix}-gray-05`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   }
 `
 export const clearStyle = css`
@@ -480,8 +480,8 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
     align-items: center;
     position: relative;
     font-size: 14px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
-    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     transition: all 200ms ease-in-out;
     border-radius: 4px;
     ${applyStatus(stateValue)}
@@ -517,5 +517,5 @@ export const SeparatorStyle = css`
   width: 8px;
   height: 2px;
   border-radius: 0.5px;
-  background-color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `

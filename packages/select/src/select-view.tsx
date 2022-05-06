@@ -106,11 +106,6 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       }
     }, [popupVisible])
 
-    function forceUpdate() {
-      const [, dispatch] = useReducer((v) => v + 1, 0)
-      return dispatch
-    }
-
     const tryTriggerFocusChange = (
       action: "focus" | "blur",
       event: SyntheticEvent,
@@ -148,7 +143,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       <LoadingIcon
         spin
         css={css`
-          color: ${globalColor(`--${illaPrefix}-gray-07`)};
+          color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
         `}
       />
     ) : showSearch && popupVisible ? (

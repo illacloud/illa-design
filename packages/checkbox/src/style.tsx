@@ -26,7 +26,7 @@ export function applyCheckboxSize(checked?: boolean) {
     margin: auto;
     width: 16px;
     height: 16px;
-    border: solid 2px ${globalColor(`--${illaPrefix}-gray-08`)};
+    border: solid 2px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     cursor: pointer;
     transition: 0.15s all linear;
     &:hover {
@@ -35,8 +35,8 @@ export function applyCheckboxSize(checked?: boolean) {
 
     &:disabled {
       cursor: not-allowed;
-      border-color: ${globalColor(`--${illaPrefix}-gray-08`)};
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+      border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     }
     ${checkedCss}
   `
@@ -69,7 +69,7 @@ export function applyMergeCss(props: CheckboxProps): SerializedStyles {
     justify-content: center;
     font-size: 14px;
     line-height: 22px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: ${currentDisabled ? "not-allowed" : "pointer"};
   `
 }

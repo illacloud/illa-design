@@ -195,7 +195,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
           >
             <ErrorIcon
               css={css`
-                color: ${globalColor(`--${illaPrefix}-gray-07`)};
+                color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
                 width: 12px;
                 height: 12px;
               `}

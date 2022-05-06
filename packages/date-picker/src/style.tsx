@@ -6,21 +6,21 @@ export const wrapCss = css`
 `
 
 export const singlePickerContentCss = css`
-  border: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-bottom: none;
   display: flex;
 `
 
 export const horShortcuts = css`
   min-height: 48px;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   width: min-content;
   min-width: 100%;
 `
 
 export const vertShortcuts = css`
-  border-right: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   max-height: 384px;
   overflow: auto;
 
@@ -41,7 +41,7 @@ export const popupCss = css`
 export const triContentCommonCss = css`
   margin: 0;
   border: none;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   display: flex;
   flex-direction: column;
 `
@@ -58,7 +58,7 @@ export const shortCutsCss = css`
   padding: 2px 16px;
   background: ${globalColor(`--${illaPrefix}-gray-09`)};
   border-radius: 4px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   font-size: 12px;
   font-weight: 400;
   &:hover {
@@ -72,14 +72,14 @@ export const nowButtonCss = css`
 
 export const showTimeContainerCss = css`
   width: 144px;
-  border-left: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-left: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
 export const showTimeHeaderCss = css`
   height: 42px;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   font-size: 14px;
   font-weight: 500;
   text-align: center;
@@ -96,7 +96,7 @@ export function applyShortContainerCss(
     `
   }
   return css`
-    padding: 5px 0;
+    padding: 7px 0;
     ${style};
   `
 }
@@ -148,5 +148,5 @@ export const buttonBoxCss = css`
 `
 
 export const calendarBorderCss = css`
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
