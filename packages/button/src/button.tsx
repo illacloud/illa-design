@@ -61,6 +61,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             borderColor,
             backgroundColor,
             textColor,
+            autoFullHorizontal,
+            autoFullVertically,
             ...otherProps
           } = props
 
