@@ -85,7 +85,9 @@ jobs:
           files: ./coverage/lcov.info
 
       - name: Build storybook
-        run: yarn build-storybook
+        run: |
+          yarn build-storybook
+          echo "design.illafamily.com" > "storybook-static/CNAME"
 
       - name: Deploy storybook to Github Pages
         uses: peaceiris/actions-gh-pages@v3
