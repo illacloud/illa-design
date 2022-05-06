@@ -61,7 +61,6 @@ import {
   Result403Icon,
   Result404Icon,
   Result500Icon,
-  EmptyStateIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -187,8 +186,4 @@ export const Result404: Story<IconProps> = (props: IconProps) => (
 )
 export const Result500: Story<IconProps> = (props: IconProps) => (
   <Result500Icon {...props} />
-)
-
-export const EmptyState: Story<IconProps> = (props: IconProps) => (
-  <EmptyStateIcon {...props} />
 )
