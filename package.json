@@ -67,6 +67,7 @@
     "lint": "prettier --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
     "plop": "plop new",
+    "plop-icon": "plop new-icon",
     "report:combined": "sh ./scripts/merge-coverage.sh",
     "report:component": "sh ./scripts/coverage-component.sh"
   },

@@ -47,8 +47,49 @@ module.exports = (plop) => {
       {
         type: "addMany",
         destination: "packages/{{dashCase name}}",
-        templateFiles: "./plop-templates/**",
+        base: "./plop-templates/component",
+        templateFiles: "./plop-templates/component/*/**",
+        globOptions: {
+          expandDirectories: false,
+        }
       },
     ],
   });
-}
+
+  plop.setGenerator("new-icon", {
+    description: "Create a new icon",
+    prompts: [
+      {
+        type: "input",
+        name: "name",
+        message: "Icon name(e.g. EmptyState, FileWorld, NextDouble):",
+      },
+    ],
+    actions: [
+      {
+        type: "add",
+        path: "packages/icon/src/icons/{{dashCase name}}.tsx",
+        templateFile: "./plop-templates/icon/icon.tsx"
+      },
+      {
+        type: "append",
+        pattern: new RegExp(/(?=\} from "..\/src")/),
+        path: "packages/icon/stories/icon.stories.tsx",
+        separator: "",
+        // put 2 space before
+        template: "  {{properCase name}}Icon,\n"
+      },
+      {
+        type: "append",
+        path: "packages/icon/stories/icon.stories.tsx",
+        templateFile: "./plop-templates/icon/story.tsx"
+      },
+      {
+        type: "append",
+        path: "packages/icon/src/index.ts",
+        separator: "",
+        template: 'export * from "./icons/{{dashCase name}}"'
+      },
+    ]
+  });
+};
