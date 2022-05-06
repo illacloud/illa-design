@@ -8,8 +8,8 @@ export const {{ properCase name }}Icon = createIcon({
     * You should remove this comment.
     *
     * 1. Copy all paths from svg icon into here
-    * 2. rename kebabCase to camelCase. e.g. stroke-width -> strokeWidth
-    * 3. check in storybook
+    * 2. Rename `kebabCase` to `camelCase`. e.g. stroke-width -> strokeWidth
+    * 3. check this icon in storybook
     *
     * Done!
     */
