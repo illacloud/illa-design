@@ -14,6 +14,8 @@ const innerColor = [
   "cyan",
   "purple",
   "grayBlue",
+  "brand-purple",
+  "brand-pink",
 ]
 
 export function applySwitch(
@@ -26,9 +28,9 @@ export function applySwitch(
   const isInnerColor: boolean = innerColor.indexOf(colorScheme) > -1
   let bgc = checked
     ? isInnerColor
-      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
+      ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
       : colorScheme
-    : globalColor(`--${illaPrefix}-grayBlue-06`)
+    : globalColor(`--${illaPrefix}-gray-06`)
   return css`
     position: relative;
     border-radius: 16px;
@@ -49,10 +51,10 @@ export function applySwitch(
       cursor: not-allowed;
       background-color: ${isInnerColor && checked
         ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
-        : globalColor(`--${illaPrefix}-grayBlue-08`)};
+        : globalColor(`--${illaPrefix}-gray-08`)};
       color: ${isInnerColor && checked
         ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
-        : globalColor(`--${illaPrefix}-grayBlue-08`)};
+        : globalColor(`--${illaPrefix}-gray-08`)};
     }
   `
 }

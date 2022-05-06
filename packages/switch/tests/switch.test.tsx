@@ -44,7 +44,7 @@ test("Switch renders with different colorScheme in different status", () => {
     />,
   )
   expect(screen.getByTestId("test-innerColor")).toHaveStyle({
-    "background-color": `${globalColor(`--${illaPrefix}-blackAlpha-03`)}`,
+    "background-color": `${globalColor(`--${illaPrefix}-blackAlpha-01`)}`,
   })
   render(
     <Switch
@@ -59,7 +59,7 @@ test("Switch renders with different colorScheme in different status", () => {
 
   render(<Switch data-testid="test-unchecked" colorScheme={"black"} />)
   expect(screen.getByTestId("test-unchecked")).toHaveStyle({
-    "background-color": globalColor(`--${illaPrefix}-grayBlue-06`),
+    "background-color": globalColor(`--${illaPrefix}-gray-06`),
   })
 })
 
@@ -74,12 +74,12 @@ test("Switch renders with status changed", () => {
     />,
   )
   expect(screen.getByTestId("test-status-changed")).toHaveStyle({
-    "background-color": globalColor(`--${illaPrefix}-grayBlue-06`),
+    "background-color": globalColor(`--${illaPrefix}-gray-06`),
   })
   const target = screen.getByTestId("test-status-changed")
   fireEvent.click(target)
   expect(target).toHaveStyle({
-    "background-color": `${globalColor(`--${illaPrefix}-blue-03`)}`,
+    "background-color": `${globalColor(`--${illaPrefix}-blue-01`)}`,
   })
   expect(onClickEvent).toBeCalled()
   expect(onChangeEvent).toBeCalled()
@@ -135,7 +135,7 @@ test("Switch renders with disabled", () => {
   )
   expect(screen.getByTestId("test-disabled")).toHaveStyle({
     cursor: "not-allowed",
-    "background-color": globalColor(`--${illaPrefix}-grayBlue-08`),
+    "background-color": globalColor(`--${illaPrefix}-gray-08`),
   })
   fireEvent.click(screen.getByTestId("test-disabled"))
   expect(onChangeEvent).not.toBeCalled()
