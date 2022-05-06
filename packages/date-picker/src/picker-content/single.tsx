@@ -87,12 +87,9 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       )
     }
 
-    const showCalendarTodayButton = () => {
-      if (showNowBtn && !isBooleanShowTime && !shortcuts?.length) {
-        return true
-      }
-      return false
-    }
+    const showCalendarTodayButton = Boolean(
+      showNowBtn && !isBooleanShowTime && !shortcuts?.length,
+    )
 
     const changeDate = (date: Dayjs) => {
       let value = finalValue(date)
@@ -199,7 +196,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                 <Calendar
                   panel={true}
                   mode={type}
-                  panelTodayBtn={showCalendarTodayButton()}
+                  panelTodayBtn={showCalendarTodayButton}
                   _css={triContentCommonCss}
                   onChange={(date: Dayjs) => {
                     changeDate(date)

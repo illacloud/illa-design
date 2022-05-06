@@ -73,6 +73,6 @@ it("click Today button", () => {
       cy.findByDisplayValue(dayjs().format("YYYY-MM-DD HH:mm:ss")).should(
         "exist",
       )
-      unmount()
     })
+  unmount()
 })

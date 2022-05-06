@@ -32,9 +32,10 @@ const YearTemplate: Story<YearPickerProps> = (args) => {
 const RangeTemplate: Story<CommonRangeProps> = (args) => {
   return (
     <DateRangePicker
-      placeholder={["test change header"]}
-      defaultPickerValue={["2022-04-01"]}
       {...args}
+      popupVisible
+      placeholder={["", "date-2"]}
+      defaultPickerValue={["2022-05-01"]}
     />
   )
 }
