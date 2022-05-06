@@ -16,7 +16,6 @@ export const PickerRange: FC<RangePickerBodyProps> = (props) => {
     onVisibleChange,
     editable,
     separator,
-
     onChangeInputVal,
     pickerContent,
     inputVal,

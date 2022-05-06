@@ -21,16 +21,16 @@ import { Button } from "@illa-design/button"
 import { TimePickerPopup } from "@illa-design/time-picker"
 import { Calendar } from "@illa-design/calendar"
 
-export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
+export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
   (props, ref) => {
     const {
       _css,
-      disabled = false,
+      disabled,
       allowClear = true,
       position = "bl",
       placeholder = [],
       shortcuts,
-      shortcutsPlacementLeft = false,
+      shortcutsPlacementLeft,
       size = "medium",
       error,
       popupVisible,
@@ -44,7 +44,7 @@ export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       defaultPickerValue,
       format,
       defaultValue,
-      showTime = false,
+      showTime,
       timepickerProps,
       disabledTime,
       onSelectShortcut,
@@ -148,8 +148,8 @@ export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       let calendar2 = dayjs(
         Math.max(rangeValueFirst.valueOf(), rangeValueSecond.valueOf()),
       ).format("YYYY-MM-DD")
-      let timePicker1 = (valueShowLeft || defaultTime).format("hh:mm:ss")
-      let timePicker2 = (valueShowRight || defaultTime).format("hh:mm:ss")
+      let timePicker1 = (valueShowLeft || defaultTime).format("HH:mm:ss")
+      let timePicker2 = (valueShowRight || defaultTime).format("HH:mm:ss")
       setInputVal([
         `${calendar1} ${timePicker1}`,
         `${calendar2} ${timePicker2}`,
@@ -222,7 +222,7 @@ export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         {cloneElement(<TimePickerPopup />, {
                           isRangePicker: false,
                           disableConfirm: true,
-                          format: "hh:mm:ss",
+                          format: "HH:mm:ss",
                           valueShow: valueShowLeft,
                           setValueShow: setValueShowLeft,
                           popupVisible: showTrigger,
@@ -243,7 +243,7 @@ export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         {cloneElement(<TimePickerPopup />, {
                           isRangePicker: false,
                           disableConfirm: true,
-                          format: "hh:mm:ss",
+                          format: "HH:mm:ss",
                           valueShow: valueShowRight,
                           setValueShow: setValueShowRight,
                           popupVisible: showTrigger,
@@ -331,4 +331,4 @@ export const DPRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
   },
 )
 
-DPRangePicker.displayName = "rangePicker"
+DateRangePicker.displayName = "rangePicker"
