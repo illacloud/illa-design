@@ -1,8 +1,6 @@
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import "cypress-real-events"
 import { List } from "../src"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 
 it("List renders raw.", () => {
   mount(
