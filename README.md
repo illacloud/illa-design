@@ -12,7 +12,7 @@
 ![cover](https://devbo.cn/cover.png)
 
 [![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
-[![storybook](https://devbo.cn/storybook.svg)](https://design.illasoft.com)
+[![storybook](https://devbo.cn/storybook.svg)](https://design.illafamily.com)
 [![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](./LICENSE)
 [![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
 
@@ -31,7 +31,7 @@
 
 You can review all components in Storybook.
 
-[![storybook](https://devbo.cn/storybook.svg)](https://design.illasoft.com)
+[![storybook](https://devbo.cn/storybook.svg)](https://design.illafamily.com)
 
 ## 🖥 Fast Try
 
