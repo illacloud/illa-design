@@ -30,6 +30,12 @@ exports[`Button renders fullwidth 1`] = `
   border-radius: 4px;
   color: #fff;
   background-color: #134ae0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .emotion-0:hover {
@@ -106,6 +112,12 @@ exports[`Button renders round 1`] = `
   border-radius: 999px;
   color: #fff;
   background-color: #134ae0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .emotion-0:hover {

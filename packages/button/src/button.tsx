@@ -1,4 +1,4 @@
-import { Children, forwardRef } from "react"
+import { Children, forwardRef, useMemo } from "react"
 import { ButtonProps } from "./interface"
 import { css } from "@emotion/react"
 import { LoadingIcon } from "@illa-design/icon"
@@ -19,6 +19,28 @@ import { ButtonGroupContext } from "."
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
+    const widthCss = useMemo(() => {
+      return props.autoFullHorizontal
+        ? css`
+            width: 100%;
+            justify-content: center;
+          `
+        : css`
+            width: fit-content;
+          `
+    }, [props.autoFullHorizontal])
+
+    const heightCss = useMemo(() => {
+      return props.autoFullHorizontal
+        ? css`
+            height: 100%;
+            align-items: center;
+          `
+        : css`
+            height: fit-content;
+          `
+    }, [props.autoFullVertically])
+
     return (
       <ButtonGroupContext.Consumer>
         {(value) => {
@@ -36,6 +58,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             disabled,
             rightIcon,
             buttonRadius,
+            borderColor,
+            backgroundColor,
+            textColor,
             ...otherProps
           } = props
 
@@ -54,14 +79,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 first ?? false,
                 last ?? false,
               )};
-              ${applyElementColor(variant, colorScheme)};
-              ${applyBg(variant, colorScheme)};
+              ${applyElementColor(variant, colorScheme, textColor)};
+              ${applyBg(variant, colorScheme, backgroundColor, borderColor)};
             `
 
             return (
               <button
                 ref={ref}
-                css={finalContainer}
+                css={css(finalContainer, widthCss, heightCss)}
                 disabled={disabled || loading}
                 {...otherProps}
               >
@@ -89,8 +114,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 first ?? false,
                 last ?? false,
               )};
-              ${applyElementColor(variant, colorScheme)};
-              ${applyBg(variant, colorScheme)};
+              ${applyElementColor(variant, colorScheme, textColor)};
+              ${applyBg(variant, colorScheme, backgroundColor, borderColor)};
               ${buttonRadius ? `border-radius: ${buttonRadius};` : ""}
             `
 
