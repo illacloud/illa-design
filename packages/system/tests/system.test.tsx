@@ -27,7 +27,7 @@ import {
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import dayjs, { Dayjs } from "dayjs"
-import { RefObject, useRef } from "react"
+import { RefObject } from "react"
 
 // test omit.ts
 test("System test omit function", () => {
