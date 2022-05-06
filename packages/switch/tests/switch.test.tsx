@@ -44,7 +44,7 @@ test("Switch renders with different colorScheme in different status", () => {
     />,
   )
   expect(screen.getByTestId("test-innerColor")).toHaveStyle({
-    "background-color": `${globalColor(`--${illaPrefix}-blackAlpha-03`)}`,
+    "background-color": `${globalColor(`--${illaPrefix}-blackAlpha-01`)}`,
   })
   render(
     <Switch
@@ -79,7 +79,7 @@ test("Switch renders with status changed", () => {
   const target = screen.getByTestId("test-status-changed")
   fireEvent.click(target)
   expect(target).toHaveStyle({
-    "background-color": `${globalColor(`--${illaPrefix}-blue-03`)}`,
+    "background-color": `${globalColor(`--${illaPrefix}-blue-01`)}`,
   })
   expect(onClickEvent).toBeCalled()
   expect(onChangeEvent).toBeCalled()
