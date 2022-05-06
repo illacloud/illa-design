@@ -1,4 +1,4 @@
-import { Children, forwardRef, Fragment, ReactElement } from "react"
+import { Children, forwardRef, ReactElement } from "react"
 import { TimelineProps } from "./interface"
 import { Spin } from "@illa-design/spin"
 import { TimelineItem } from "./timelineItem"
@@ -6,7 +6,7 @@ import { TimelineContext } from "./timeline-context"
 import { applyWrapCss } from "./styles"
 import { css } from "@emotion/react"
 
-const TimeContainer = forwardRef<HTMLDivElement, TimelineProps>(
+export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
   (props, ref) => {
     const {
       _css,
@@ -21,21 +21,17 @@ const TimeContainer = forwardRef<HTMLDivElement, TimelineProps>(
 
     const items =
       Children.map(children as ReactElement, (ele: ReactElement, index) => {
-        if (ele?.type && (ele.type as typeof TimelineItem).isTimelineItem) {
-          return (
-            <TimelineContext.Provider
-              value={{
-                direction,
-                mode,
-                index,
-              }}
-            >
-              {ele}
-            </TimelineContext.Provider>
-          )
-        } else {
-          return null
-        }
+        return (
+          <TimelineContext.Provider
+            value={{
+              direction,
+              mode,
+              index,
+            }}
+          >
+            {ele}
+          </TimelineContext.Provider>
+        )
       }) || []
 
     if (reverse) items.reverse()
@@ -58,10 +54,5 @@ const TimeContainer = forwardRef<HTMLDivElement, TimelineProps>(
     )
   },
 )
-const Timeline = TimeContainer as typeof TimeContainer & {
-  Item: typeof TimelineItem
-}
-Timeline.displayName = "Timeline"
-Timeline.Item = TimelineItem
 
-export { Timeline }
+Timeline.displayName = "Timeline"
