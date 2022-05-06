@@ -73,7 +73,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     const [showTrigger, setShowTrigger] = useState<boolean>(popupVisible)
     const mergedDefaultValue = value || defaultPickerValue
     const showTimeMerged =
-      (isBooleanShowTime || Object.keys(tpProps).length) && type === "day"
+      (isBooleanShowTime || Object.keys(tpProps).length > 0) && type === "day"
 
     const [valueShow, setValueShow] = useState<Dayjs | Dayjs[]>()
 
@@ -83,8 +83,15 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       calendar = calendar || calendarValue
       timePicker = timePicker || dayjs()
       return dayjs(
-        `${calendar.format("YYYY-MM-DD")} ${timePicker.format("hh:mm:ss")}`,
+        `${calendar.format("YYYY-MM-DD")} ${timePicker.format("HH:mm:ss")}`,
       )
+    }
+
+    const showCalendarTodayButton = () => {
+      if (showNowBtn && !isBooleanShowTime && !shortcuts?.length) {
+        return true
+      }
+      return false
     }
 
     const changeDate = (date: Dayjs) => {
@@ -192,7 +199,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                 <Calendar
                   panel={true}
                   mode={type}
-                  panelTodayBtn={false}
+                  panelTodayBtn={showCalendarTodayButton()}
                   _css={triContentCommonCss}
                   onChange={(date: Dayjs) => {
                     changeDate(date)
@@ -219,13 +226,13 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                   </div>
                 )}
               </div>
-              {showTimeMerged && (
+              {showTimeMerged &&
                 <div css={showTimeContainerCss}>
                   <div css={showTimeHeaderCss}>time</div>
                   <div css={popupCss}>
                     {cloneElement(<TimePickerPopup />, {
                       isRangePicker: false,
-                      format: "hh:mm:ss",
+                      format: "HH:mm:ss",
                       valueShow: valueShow,
                       setValueShow,
                       popupVisible: showTrigger,
@@ -239,7 +246,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                     })}
                   </div>
                 </div>
-              )}
+              }
             </div>
           }
         />
