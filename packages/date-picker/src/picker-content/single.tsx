@@ -226,7 +226,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                   </div>
                 )}
               </div>
-              {showTimeMerged &&
+              {showTimeMerged && (
                 <div css={showTimeContainerCss}>
                   <div css={showTimeHeaderCss}>time</div>
                   <div css={popupCss}>
@@ -246,7 +246,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                     })}
                   </div>
                 </div>
-              }
+              )}
             </div>
           }
         />

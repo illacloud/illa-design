@@ -19,11 +19,11 @@ it("use shortcuts", () => {
       placeholder={"shortcuts DatePicker"}
       shortcuts={[
         {
-          text: 'target day',
-          value: () => dayjs('2022-04-15'),
+          text: "target day",
+          value: () => dayjs("2022-04-15"),
         },
       ]}
-    />
+    />,
   )
   cy.findByPlaceholderText("shortcuts DatePicker").click()
   cy.findByText("target day").click()
@@ -32,12 +32,12 @@ it("use shortcuts", () => {
 })
 
 it("show time picker, typeof showTime is boolean", () => {
-  mount(
-    <DatePicker showTime popupVisible />
-  )
+  mount(<DatePicker showTime popupVisible />)
   cy.findAllByText("01").first().click()
   cy.findByText("OK").click()
-  cy.findByDisplayValue(`${dayjs().format("YYYY-MM-DD")} 01:00:00`).should("exist")
+  cy.findByDisplayValue(`${dayjs().format("YYYY-MM-DD")} 01:00:00`).should(
+    "exist",
+  )
   unmount()
 })
 
@@ -45,31 +45,34 @@ it("show time picker, typeof showTime is Object, extends of TimePickerProps", ()
   const disabledHours = () => {
     return [1]
   }
-  mount(
-    <DatePicker showTime={{ disabledHours: disabledHours }} popupVisible />
-  )
+  mount(<DatePicker showTime={{ disabledHours: disabledHours }} popupVisible />)
   cy.findAllByText("01").first().should("have.css", "cursor", "not-allowed")
   unmount()
 })
 
 it("clear data", () => {
-  mount(
-    <DatePicker placeholder={"clear data"} value="2021-01-01" />
-  )
-  cy.findByDisplayValue("2021-01-01").parent().trigger("mouseenter").then(() => {
-    cy.findByTitle("InputClearIcon").click().then(() => {
-      cy.findByDisplayValue("").should("exist")
+  mount(<DatePicker placeholder={"clear data"} value="2021-01-01" />)
+  cy.findByDisplayValue("2021-01-01")
+    .parent()
+    .trigger("mouseenter")
+    .then(() => {
+      cy.findByTitle("InputClearIcon")
+        .click()
+        .then(() => {
+          cy.findByDisplayValue("").should("exist")
+        })
     })
-  })
   unmount()
 })
 
 it("click Today button", () => {
-  mount(
-    <DatePicker showNowBtn showTime popupVisible />
-  )
-  cy.findByText("Now").click().then(() => {
-    cy.findByDisplayValue(dayjs().format('YYYY-MM-DD HH:mm:ss')).should("exist")
-    unmount()
-  })
+  mount(<DatePicker showNowBtn showTime popupVisible />)
+  cy.findByText("Now")
+    .click()
+    .then(() => {
+      cy.findByDisplayValue(dayjs().format("YYYY-MM-DD HH:mm:ss")).should(
+        "exist",
+      )
+      unmount()
+    })
 })
