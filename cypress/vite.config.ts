@@ -22,11 +22,20 @@ export default defineConfig({
       extension: ["ts", "tsx"],
     }),
   ],
+  server: {
+    watch: {
+      ignored: [
+        "**/cypress-coverage/**",
+        "**/jest-coverage/**",
+        "**/coverage/**",
+      ],
+    },
+  },
   optimizeDeps: {
     include: ["@emotion/react/jsx-dev-runtime"],
   },
   // cypress coverage need sourcemap
   build: {
-    sourcemap: true
-  }
+    sourcemap: true,
+  },
 })
