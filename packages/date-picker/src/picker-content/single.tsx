@@ -30,15 +30,15 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     const {
       type,
       _css,
-      disabled = false,
+      disabled,
       allowClear = true,
       position = "bl",
       placeholder = "",
       shortcuts,
-      shortcutsPlacementLeft = false,
+      shortcutsPlacementLeft,
       error,
       size = "medium",
-      popupVisible = false,
+      popupVisible,
       onVisibleChange,
       onChange,
       onSelect,
@@ -47,12 +47,12 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       onSelectShortcut,
       disabledDate,
       defaultPickerValue,
-      showTime = false,
+      showTime,
       onOk,
       format,
       value,
       defaultValue,
-      showNowBtn = false,
+      showNowBtn,
       disabledTime,
       ...restProps
     } = props
@@ -70,7 +70,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     const [calendarShortCuts, setCalendarShortCuts] = useState<
       Dayjs | "clear"
     >()
-    const [showTrigger, setShowTrigger] = useState<boolean>(popupVisible)
+    const [showTrigger, setShowTrigger] = useState<boolean>(popupVisible || false)
     const mergedDefaultValue = value || defaultPickerValue
     const showTimeMerged =
       (isBooleanShowTime || Object.keys(tpProps).length > 0) && type === "day"

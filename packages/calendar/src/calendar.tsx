@@ -17,7 +17,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       // base props
       _css,
       allowSelect = true,
-      panel = false,
+      panel,
       panelWidth = 265,
       panelTodayBtn = true,
       panelOperations = ["left", "right", "doubleLeft", "doubleRight"],
@@ -35,7 +35,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       // extra props
       defaultDate,
       defaultSelectedDate,
-      rangePicker = false,
+      rangePicker,
       rangeValueFirst,
       rangeValueSecond,
       rangeValueHover,
@@ -67,7 +67,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
     const [selectDay, setSelectDay] = useState<Dayjs | undefined>()
     const [modeVal, setModeVal] = useState<defaultModeItem>(mode || defaultMode)
     const [currentDay, setCurrentDay] = useState<Dayjs>(defaultDayValue)
-    const finPanel = modeVal === "day" ? true : panel
+    const finPanel = modeVal === "day" ? true : !!panel
     const finAllowSelect = finPanel === true ? true : allowSelect
 
     // change from other compt
