@@ -25,13 +25,13 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     labelPlacement = "horizontal",
     description,
     status,
-    disabled = false,
+    disabled,
     icon,
     customDot,
     onClick,
-    lastStep = false,
-    nextStepError = false,
-    lineless = false,
+    lastStep,
+    nextStepError,
+    lineless,
     ...restProps
   } = props
 

@@ -138,7 +138,7 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     const wrapperRect = getTargetRect(wrapperRef.current)
     const targetRect = getTargetRect(targetRef.current)
 
-    let newIsFixed = false
+    let newIsFixed
     let offset
 
     if (type === "top") {

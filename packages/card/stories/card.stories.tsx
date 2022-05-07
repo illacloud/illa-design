@@ -40,7 +40,7 @@ const Template: Story<CardProps> = (args) => {
           society. So, sad stories undoubtedly happen in the most brilliant era
         </Card>
         <Card style={{ width: 360 }} {...args} title={""}>
-          圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。
+          France is a land
         </Card>
         <Card
           style={{ width: 360 }}
@@ -54,7 +54,7 @@ const Template: Story<CardProps> = (args) => {
           {...args}
         >
           <CardMeta
-            title="圈圈圆圆圈圈"
+            title="France is a land"
             avatar={
               <div
                 style={{
@@ -70,11 +70,7 @@ const Template: Story<CardProps> = (args) => {
                 />
               </div>
             }
-            description={
-              <>
-                圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。圈圈圆圆圈圈，天天年年天天。
-              </>
-            }
+            description={<>France is a land</>}
           />
         </Card>
         <Card bordered={true} style={{ width: "100%", padding: "20px" }}>

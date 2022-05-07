@@ -70,7 +70,9 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     const [calendarShortCuts, setCalendarShortCuts] = useState<
       Dayjs | "clear"
     >()
-    const [showTrigger, setShowTrigger] = useState<boolean>(!!popupVisible)
+    const [showTrigger, setShowTrigger] = useState<boolean>(
+      popupVisible ?? false,
+    )
     const mergedDefaultValue = value || defaultPickerValue
     const showTimeMerged =
       (isBooleanShowTime || Object.keys(tpProps).length > 0) && type === "day"

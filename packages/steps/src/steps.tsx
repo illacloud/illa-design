@@ -13,7 +13,7 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
     labelPlacement = "horizontal",
     current = 1,
     status = "process",
-    lineless = false,
+    lineless,
     customDot,
     onChange,
     children,

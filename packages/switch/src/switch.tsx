@@ -12,20 +12,20 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (props, ref) => {
     const {
       colorScheme = "blue",
-      disabled = false,
+      disabled,
       size = "medium",
       checkedText = "",
       uncheckedText = "",
       checkedIcon,
       uncheckedIcon,
       checked: propsChecked,
-      defaultChecked = false,
+      defaultChecked,
       onChange,
       onClick,
       ...restProps
     } = props
 
-    const [checked, setChecked] = useState<boolean>(defaultChecked)
+    const [checked, setChecked] = useState<boolean>(defaultChecked ?? false)
     const mergedChecked = propsChecked !== void 0 ? propsChecked : checked
 
     const onHandleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
@@ -47,7 +47,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         type="button"
         {...restProps}
       >
-        <div css={applySwitchDot(size, mergedChecked, disabled)}>
+        <div css={applySwitchDot(size, mergedChecked, disabled ?? false)}>
           {(checkedIcon || uncheckedIcon) && (
             <div css={applySwitchIcon}>
               {mergedChecked ? checkedIcon : uncheckedIcon}

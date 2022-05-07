@@ -36,7 +36,7 @@ export const Notice = forwardRef<HTMLDivElement, NoticeProps>((props, ref) => {
   const {
     title,
     action,
-    closable = false,
+    closable,
     type = "info",
     noticeType = "Notification",
     content,

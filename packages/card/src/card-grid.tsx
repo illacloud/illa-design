@@ -4,7 +4,7 @@ import { applyCardGrid } from "./style"
 
 export const CardGrid = forwardRef<HTMLDivElement, CardGridProps>(
   (props, ref) => {
-    const { hoverable = false, children, ...restProps } = props
+    const { hoverable, children, ...restProps } = props
     const renderChildren = Children.map(
       children as ReactElement,
       (element: JSX.Element) => {
@@ -15,7 +15,7 @@ export const CardGrid = forwardRef<HTMLDivElement, CardGridProps>(
       },
     )
     return (
-      <div ref={ref} css={applyCardGrid(hoverable)} {...restProps}>
+      <div ref={ref} css={applyCardGrid(hoverable ?? false)} {...restProps}>
         {renderChildren}
       </div>
     )

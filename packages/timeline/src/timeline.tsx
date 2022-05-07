@@ -43,7 +43,7 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
         mode={mode}
         direction={direction}
         key={items.length}
-      ></TimelineItem>
+      />
     ) : null
     pending && items.push(pendingItem as ReactElement)
 
