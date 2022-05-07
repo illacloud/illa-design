@@ -67,7 +67,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
     const [selectDay, setSelectDay] = useState<Dayjs | undefined>()
     const [modeVal, setModeVal] = useState<defaultModeItem>(mode || defaultMode)
     const [currentDay, setCurrentDay] = useState<Dayjs>(defaultDayValue)
-    const finPanel = modeVal === "day" ? true : panel
+    const finPanel = modeVal === "day" ? true : !!panel
     const finAllowSelect = finPanel === true ? true : allowSelect
 
     // change from other compt
@@ -84,9 +84,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       }
       if (Array.isArray(defaultSelectedDate)) {
       } else {
-        if (!dayjs.isDayjs(defaultSelectedDate)) {
-          return
-        }
         setCurrentDay(defaultSelectedDate)
         setSelectDay(defaultSelectedDate)
       }
