@@ -54,15 +54,5 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
     )
   },
 )
-<<<<<<< HEAD
-
-const Timeline = TimeContainer as typeof TimeContainer & {
-  Item: typeof TimelineItem
-}
-
-Timeline.displayName = "Timeline"
-Timeline.Item = TimelineItem
-=======
->>>>>>> develop
 
 Timeline.displayName = "Timeline"
