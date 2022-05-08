@@ -20,7 +20,8 @@ export type SwitchSize = "medium" | "large"
 
 export interface SwitchProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onChange"> {
-  colorScheme?: SwitchColorScheme
+  uncheckedBackgroundColor?: SwitchColorScheme
+  checkedBackgroundColor?: SwitchColorScheme
   disabled?: boolean
   size?: SwitchSize
   checkedText?: string | ReactNode

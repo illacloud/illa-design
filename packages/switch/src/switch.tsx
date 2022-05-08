@@ -11,7 +11,8 @@ import { isObject } from "@illa-design/system"
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (props, ref) => {
     const {
-      colorScheme = "blue",
+      uncheckedBackgroundColor = "grayBlue",
+      checkedBackgroundColor = "blue",
       disabled,
       size = "medium",
       checkedText = "",
@@ -40,7 +41,12 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
 
     return (
       <button
-        css={applySwitch(colorScheme, mergedChecked, size)}
+        css={applySwitch(
+          uncheckedBackgroundColor,
+          checkedBackgroundColor,
+          mergedChecked,
+          size,
+        )}
         ref={ref}
         onClick={onHandleClick}
         disabled={disabled}

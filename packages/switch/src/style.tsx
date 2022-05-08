@@ -19,18 +19,25 @@ const innerColor = [
 ]
 
 export function applySwitch(
-  colorScheme: SwitchColorScheme,
+  uncheckedBackgroundColor: SwitchColorScheme,
+  checkedBackgroundColor: SwitchColorScheme,
   checked: boolean,
   size: SwitchSize,
 ): SerializedStyles {
   const minWidth = size === "medium" ? "29px" : "40px"
   const height = size === "medium" ? "18px" : "24px"
-  const isInnerColor: boolean = innerColor.indexOf(colorScheme) > -1
-  let bgc = checked
-    ? isInnerColor
-      ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
-      : colorScheme
-    : globalColor(`--${illaPrefix}-gray-06`)
+  const isInnerColorWhenChecked: boolean =
+    innerColor.indexOf(checkedBackgroundColor) > -1
+  const isInnerColorWhenUnchecked: boolean =
+    innerColor.indexOf(uncheckedBackgroundColor) > -1
+  const checkedBgc = isInnerColorWhenChecked
+    ? globalColor(`--${illaPrefix}-${checkedBackgroundColor}-01`)
+    : checkedBackgroundColor
+  const uncheckedBgc = isInnerColorWhenUnchecked
+    ? globalColor(`--${illaPrefix}-${uncheckedBackgroundColor}-06`)
+    : uncheckedBackgroundColor
+  const bgc = checked ? checkedBgc : uncheckedBgc
+
   return css`
     position: relative;
     border-radius: 16px;
@@ -47,13 +54,14 @@ export function applySwitch(
     padding: 0;
     outline: none;
     transition: background-color 0.2s ease-in-out;
+
     &:disabled {
       cursor: not-allowed;
-      background-color: ${isInnerColor && checked
-        ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
+      background-color: ${isInnerColorWhenChecked && checked
+        ? globalColor(`--${illaPrefix}-${checkedBackgroundColor}-06`)
         : globalColor(`--${illaPrefix}-gray-08`)};
-      color: ${isInnerColor && checked
-        ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
+      color: ${isInnerColorWhenChecked && checked
+        ? globalColor(`--${illaPrefix}-${checkedBackgroundColor}-06`)
         : globalColor(`--${illaPrefix}-gray-08`)};
     }
   `

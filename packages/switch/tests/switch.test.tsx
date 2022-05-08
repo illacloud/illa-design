@@ -40,7 +40,7 @@ test("Switch renders with different colorScheme in different status", () => {
     <Switch
       data-testid="test-innerColor"
       defaultChecked
-      colorScheme="blackAlpha"
+      checkedBackgroundColor="blackAlpha"
     />,
   )
   expect(screen.getByTestId("test-innerColor")).toHaveStyle({
@@ -50,14 +50,16 @@ test("Switch renders with different colorScheme in different status", () => {
     <Switch
       data-testid="test-customizedColor"
       defaultChecked
-      colorScheme={"black"}
+      checkedBackgroundColor="black"
     />,
   )
   expect(screen.getByTestId("test-customizedColor")).toHaveStyle({
     "background-color": "black",
   })
 
-  render(<Switch data-testid="test-unchecked" colorScheme={"black"} />)
+  render(
+    <Switch data-testid="test-unchecked" uncheckedBackgroundColor="gray" />,
+  )
   expect(screen.getByTestId("test-unchecked")).toHaveStyle({
     "background-color": globalColor(`--${illaPrefix}-gray-06`),
   })
@@ -74,7 +76,7 @@ test("Switch renders with status changed", () => {
     />,
   )
   expect(screen.getByTestId("test-status-changed")).toHaveStyle({
-    "background-color": globalColor(`--${illaPrefix}-gray-06`),
+    "background-color": globalColor(`--${illaPrefix}-grayBlue-06`),
   })
   const target = screen.getByTestId("test-status-changed")
   fireEvent.click(target)
