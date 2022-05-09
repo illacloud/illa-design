@@ -54,11 +54,11 @@ function applyStatus(stateValue: SelectStateValue) {
   } else if (stateValue?.focus) {
     const boxShadowColor = isInnerolor
       ? globalColor(`--${illaPrefix}-${borderColor}-01`)
-      : borderColor
+      : chroma.mix(borderColor, "white", 0.1).hex()
     mainStyle = css`
       border-color: ${isInnerolor
         ? globalColor(`--${illaPrefix}-${borderColor}-03`)
-        : borderColor};
+        : chroma.mix(borderColor, "white", 0.3).hex()};
       box-shadow: 0 0 8px 0
         ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
@@ -73,7 +73,7 @@ function applyStatus(stateValue: SelectStateValue) {
       &:hover {
         border-color: ${isInnerolor
           ? globalColor(`--${illaPrefix}-${borderColor}-06`)
-          : borderColor};
+          : chroma.mix(borderColor, "white", 0.6).hex()};
       }
     `
   }
