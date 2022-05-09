@@ -1,6 +1,6 @@
 
 <div align="center">
-    <img alt="ILLA Design Logo" width="120px" height="120px" src="https://devbo.cn/logo.svg"/>
+    <img alt="ILLA Design Logo" width="120px" height="120px" src="https://cdn.illafamily.com/logo.svg"/>
 </div>
 
 <h1 align="center">ILLA Design</h1>
@@ -9,10 +9,10 @@
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-design/graphs/contributors">contributors</a></p>
 </div>
 
-![cover](https://devbo.cn/cover.png)
+![cover](https://cdn.illafamily.com/cover.png)
 
-[![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
-[![storybook](https://devbo.cn/storybook.svg)](https://design.illafamily.com)
+[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/2tGBuJkgd6)
+[![storybook](https://cdn.illafamily.com/storybook.svg)](https://design.illafamily.com)
 [![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
 [![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](./LICENSE)
 [![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
@@ -32,7 +32,7 @@
 
 You can review all components in Storybook.
 
-[![storybook](https://devbo.cn/storybook.svg)](https://design.illafamily.com)
+[![storybook](https://cdn.illafamily.com/storybook.svg)](https://design.illafamily.com)
 
 ## 🖥 Fast Try
 
@@ -84,15 +84,15 @@ Then your can open storybook in your browser.
 
 ## 💬 Community
 
-Join ILLA Design community to share your ideas, suggestions or questions and connect with other users and contributors.
+Join ILLA Community to share your ideas, suggestions or questions and connect with other users and contributors.
 
 <b>Discussion</b>
 
-- [Github Discussion](https://github.com/illa-family/illa-design/discussions)
+[![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illa-family/discussions)
 
 <b>Hangout together!</b>
 
-[![discord](https://img.shields.io/discord/912270459574292500.svg?&label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/2tGBuJkgd6)
+[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/2tGBuJkgd6)
 
 ## 🌱 Contributing
 
