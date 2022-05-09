@@ -16,30 +16,15 @@ import {
   applyWithoutTextSize,
 } from "./style"
 import { ButtonGroupContext } from "."
+import { getSizeCssByAutoFullProps } from "@illa-design/system"
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const widthCss = useMemo(() => {
-      return props.autoFullHorizontal
-        ? css`
-            width: 100%;
-            justify-content: center;
-          `
-        : css`
-            width: fit-content;
-          `
-    }, [props.autoFullHorizontal])
-
-    const heightCss = useMemo(() => {
-      return props.autoFullHorizontal
-        ? css`
-            height: 100%;
-            align-items: center;
-          `
-        : css`
-            height: fit-content;
-          `
-    }, [props.autoFullVertically])
+    const { autoFullHorizontal, autoFullVertically } = props
+    const sizeCss = useMemo(
+      () => getSizeCssByAutoFullProps(autoFullHorizontal, autoFullVertically),
+      [autoFullHorizontal, autoFullVertically],
+    )
 
     return (
       <ButtonGroupContext.Consumer>
@@ -88,7 +73,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             return (
               <button
                 ref={ref}
-                css={css(finalContainer, widthCss, heightCss)}
+                css={css(finalContainer, sizeCss)}
                 disabled={disabled || loading}
                 {...otherProps}
               >
