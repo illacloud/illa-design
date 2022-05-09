@@ -45,7 +45,6 @@ export type TabHeaderChildProps = Pick<
   isSelected?: boolean
   tabKey: string
   handleSelectTab: (key: string) => void
-  needDivLine?: boolean
   variant?: TabVariant
   deleteIcon?: ReactNode
   size?: TabsSize

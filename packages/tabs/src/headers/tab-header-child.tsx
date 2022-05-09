@@ -6,7 +6,6 @@ import {
   applyCommonHeaderChildCss,
   applyTextCss,
   deleteButtonCss,
-  verticalLineCss,
 } from "../style"
 import { CloseIcon } from "@illa-design/icon"
 
@@ -18,7 +17,6 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
     disabled,
     handleSelectTab,
     size = "medium",
-    needDivLine,
     variant,
     closable,
     deleteIcon = <CloseIcon size={"8"} />,
@@ -26,7 +24,7 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
     tabBarSpacing,
   } = props
 
-  const [applyChildCss, applyTabTextCss] = useMemo(() => {
+  const [applyChildCss] = useMemo(() => {
     let _childCss, _textCss
     if (variant === "card") {
       _childCss = applyCardHeaderChildCss
@@ -34,11 +32,6 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
       _childCss = applyCapsuleHeaderChildCss
     } else {
       _childCss = applyCommonHeaderChildCss
-    }
-    if (variant === "text") {
-      _textCss = applyTextCss
-    } else {
-      _textCss = applyTextCss
     }
     return [_childCss, _textCss]
   }, [variant, isSelected])
@@ -53,13 +46,7 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
       }}
     >
       <span
-        css={applyTabTextCss(
-          size,
-          isSelected,
-          disabled,
-          tabBarSpacing,
-          variant,
-        )}
+        css={applyTextCss(size, isSelected, disabled, tabBarSpacing, variant)}
       >
         {title}
         {closable && (

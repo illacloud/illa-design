@@ -128,8 +128,6 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                     variant: variant,
                     closable: variant === "card" && editable,
                     deleteIcon: deleteIcon,
-                    needDivLine:
-                      variant === "text" && index !== array.length - 1,
                     handleDeleteTab: handleDeleteTab,
                     tabBarSpacing: tabBarSpacing,
                   }

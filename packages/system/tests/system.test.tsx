@@ -22,6 +22,7 @@ import {
   isDayjsArrayChange,
   getSortedDayjsArray,
   dayjsPro,
+  getSizeCssByAutoFullProps,
 } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
@@ -257,4 +258,10 @@ test("test getSortedDayjsArray", function () {
   expect(getSortedDayjsArray(dayArr)).toEqual(excArr)
   const errorCase = [dayjsPro("06:00:00", "HH:mm:ss")]
   expect(getSortedDayjsArray(errorCase)).toEqual(errorCase)
+})
+
+test("test getAutoFullSizeCss", function () {
+  const res = getSizeCssByAutoFullProps(true, true)
+  expect(res.styles.includes("width: 100%")).toEqual(true)
+  expect(res.styles.includes("height: 100%")).toEqual(true)
 })
