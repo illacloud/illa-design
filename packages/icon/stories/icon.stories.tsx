@@ -62,6 +62,7 @@ import {
   Result404Icon,
   Result500Icon,
   EmptyStateIcon,
+  RestApiIcon,
   PaginationPreIcon,
 } from "../src"
 
@@ -270,6 +271,11 @@ export const Result500: Story<IconProps> = (props: IconProps) => (
 
 export const EmptyState: Story<IconProps> = (props: IconProps) => (
   <EmptyStateIcon {...props} />
+)
+
+
+export const RestApi: Story<IconProps> = (props: IconProps) => (
+  <RestApiIcon {...props} />
 )
 
 export const PaginationPre: Story<IconProps> = (props: IconProps) => (
