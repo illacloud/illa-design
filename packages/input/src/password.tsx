@@ -31,6 +31,8 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       borderColor = "blue",
       size = "medium",
       variant = "outline",
+      withoutNormalBorder,
+      radius = "4px",
       ...rest
     } = props
 
@@ -41,7 +43,16 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       value: props.value ? props.value : undefined,
     })
 
-    const stateValue = { error, disabled, focus, variant, size, borderColor }
+    const stateValue = {
+      error,
+      disabled,
+      focus,
+      variant,
+      size,
+      borderColor,
+      withoutNormalBorder,
+      radius,
+    }
     const passwordProp = {
       ...rest,
       type: visibility ? "text" : "password",

@@ -77,7 +77,7 @@ export function applyContainerCss(stateValue: StateValue) {
     flex-direction: row;
     align-items: center;
     font-size: 14px;
-    border-radius: 4px;
+    border-radius: ${stateValue.radius};
     vertical-align: middle;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${applyVariantStyle(stateValue?.variant)}
@@ -164,6 +164,22 @@ function applyStatus(stateValue: StateValue) {
       }
     `
   }
+
+  if (stateValue.withoutNormalBorder) {
+    const _activeCss = stateValue.focus
+      ? css``
+      : css`
+          &:hover {
+            border-color: transparent;
+          }
+        `
+    return css`
+      ${inputStyle};
+      border-color: transparent;
+      ${mainStyle};
+      ${_activeCss}
+    `
+  }
   return css`
     ${inputStyle};
     ${mainStyle};
@@ -208,13 +224,13 @@ export function applyInputContainer(
 
     ${applyStatus(stateValue)}
     &:first-of-type {
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
+      border-top-left-radius: ${stateValue.radius};
+      border-bottom-left-radius: ${stateValue.radius};
     }
 
     &:last-of-type {
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
+      border-top-right-radius: ${stateValue.radius};
+      border-bottom-right-radius: ${stateValue.radius};
     }
 
     &:hover {

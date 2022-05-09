@@ -13,6 +13,22 @@ export default {
         type: "array",
       },
     },
+    borderColor: {
+      options: [
+        "gray",
+        "blue",
+        "purple",
+        "red",
+        "green",
+        "yellow",
+        "orange",
+        "cyan",
+        "white",
+      ],
+      control: {
+        type: "select",
+      },
+    },
   },
 } as Meta
 

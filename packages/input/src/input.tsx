@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, useMemo, useState } from "react"
+import { forwardRef, ReactNode, useMemo } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { InputProps } from "./interface"
 import {
@@ -48,10 +48,18 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     onFocus,
     onBlur,
     onPressEnter,
+    withoutNormalBorder,
+    radius = "4px",
+    focus: propFocus,
+    onFocusChange,
     ...rest
   } = props
 
-  const [focus, setFocus] = useState(false)
+  const [focus, setFocus] = useMergeValue(false, {
+    defaultValue: false,
+    value: propFocus ? propFocus : undefined,
+  })
+
   const [value, setValue] = useMergeValue("", {
     defaultValue: defaultValue
       ? formatForRule(defaultValue, maxLength)
@@ -76,6 +84,8 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     size,
     borderColor,
     iconAppearWithSuffix,
+    withoutNormalBorder,
+    radius,
   }
 
   if (maxLength && showCount) {
@@ -114,10 +124,12 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           iconAppearWithSuffix={iconAppearWithSuffix}
           onFocus={(e) => {
             setFocus(true)
+            onFocusChange && onFocusChange(true)
             onFocus?.(e)
           }}
           onBlur={(e) => {
             setFocus(false)
+            onFocusChange && onFocusChange(false)
             onBlur?.(e)
           }}
           onClear={() => {

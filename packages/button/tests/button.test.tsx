@@ -135,3 +135,16 @@ test("Button renders disabled", () => {
   )
   expect(screen.getByTestId("test-button")).toBeDisabled()
 })
+
+test("Button renders with colors", () => {
+  render(
+    <Button borderColor="#ff4d4d" backgroundColor="#ffcccc" textColor="#ffffff">
+      Hello
+    </Button>,
+  )
+  expect(screen.getByText("Hello").parentElement).toHaveStyle({
+    color: "#ffffff",
+    "border-color": "#ff4d4d",
+    "background-color": "#ffcccc",
+  })
+})

@@ -30,6 +30,8 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     onBlur,
     onSearch,
     onPressEnter,
+    withoutNormalBorder,
+    radius = "4px",
     ...rest
   } = props
 
@@ -38,7 +40,16 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     defaultValue: defaultValue ? defaultValue : undefined,
     value: props.value ? props.value : undefined,
   })
-  const stateValue = { error, disabled, focus, variant, size, borderColor }
+  const stateValue = {
+    error,
+    disabled,
+    focus,
+    variant,
+    size,
+    borderColor,
+    withoutNormalBorder,
+    radius,
+  }
 
   const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {
     if (!("value" in props) || !props.value) {

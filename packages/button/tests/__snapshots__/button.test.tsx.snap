@@ -30,6 +30,8 @@ exports[`Button renders fullwidth 1`] = `
   border-radius: 4px;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-0:hover {
@@ -106,6 +108,8 @@ exports[`Button renders round 1`] = `
   border-radius: 999px;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-0:hover {

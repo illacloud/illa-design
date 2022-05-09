@@ -68,6 +68,8 @@ exports[`Button Group renders attached with round shape 1`] = `
   border-bottom-left-radius: 999px;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-2:hover {
@@ -143,6 +145,8 @@ exports[`Button Group renders attached with round shape 1`] = `
   border-radius: 0;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-5:hover {
@@ -215,6 +219,8 @@ exports[`Button Group renders attached with round shape 1`] = `
   border-radius: 0;
   color: #134ae0;
   border: solid 1px #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-12:hover {
@@ -269,6 +275,8 @@ exports[`Button Group renders attached with round shape 1`] = `
   border-radius: 0;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-16:hover {
@@ -410,6 +418,8 @@ exports[`Button Group renders attached with round shape 1`] = `
   border-bottom-right-radius: 999px;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-30:hover {
@@ -712,6 +722,8 @@ exports[`Button Group renders attached with square shape 1`] = `
   border-bottom-left-radius: 4px;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-2:hover {
@@ -787,6 +799,8 @@ exports[`Button Group renders attached with square shape 1`] = `
   border-radius: 0;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-5:hover {
@@ -859,6 +873,8 @@ exports[`Button Group renders attached with square shape 1`] = `
   border-radius: 0;
   color: #134ae0;
   border: solid 1px #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-12:hover {
@@ -913,6 +929,8 @@ exports[`Button Group renders attached with square shape 1`] = `
   border-radius: 0;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-16:hover {
@@ -1054,6 +1072,8 @@ exports[`Button Group renders attached with square shape 1`] = `
   border-bottom-right-radius: 4px;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-30:hover {
@@ -1355,6 +1375,8 @@ exports[`Button Group renders with spacing 1`] = `
   border-radius: 4px;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-2:hover {
@@ -1448,6 +1470,8 @@ exports[`Button Group renders with spacing 1`] = `
   border-radius: 4px;
   color: #134ae0;
   border: solid 1px #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-12:hover {
@@ -1502,6 +1526,8 @@ exports[`Button Group renders with spacing 1`] = `
   border-radius: 4px;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-16:hover {
@@ -1642,6 +1668,8 @@ exports[`Button Group renders with spacing 1`] = `
   border-radius: 4px;
   color: #fff;
   background-color: #134ae0;
+  width: auto;
+  height: auto;
 }
 
 .emotion-30:hover {

@@ -4,7 +4,7 @@ import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
 const { Link: AnchorLink } = Anchor
-const EASING_DURATION = 200
+const EASING_DURATION = 210
 const loremIpsum = Array(20)
   .fill(0)
   .map(
@@ -117,7 +117,6 @@ it("Anchor should fixed 100 to top", () => {
   mount(renderAnchor({ offsetTop: 100 }))
 
   cy.scrollTo(0, 200)
-  cy.wait(EASING_DURATION)
 
   cy.findByTestId("anchor").parent().should("have.css", "top", "100px")
 
@@ -128,7 +127,6 @@ it("Anchor should change hash", () => {
   mount(renderAnchor())
 
   cy.get("[title='Section2']").click()
-  cy.wait(EASING_DURATION)
   cy.hash().should("eq", "#section2")
 
   unmount()
@@ -140,7 +138,6 @@ it("Anchor should NOT change hash", () => {
   // section2 had trigger before, and the url's hash had changed to `#section2`,
   // you should trigger different hash to test hash change
   cy.get("[title='Section3']").click()
-  cy.wait(EASING_DURATION)
   cy.hash().should("not.eq", "#section3")
 })
 

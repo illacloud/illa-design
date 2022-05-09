@@ -4,6 +4,18 @@ import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 import chroma from "chroma-js"
 
+const innerColor = [
+  "gray",
+  "blue",
+  "purple",
+  "red",
+  "green",
+  "yellow",
+  "orange",
+  "cyan",
+  "white",
+]
+
 // default select
 export const inputOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
@@ -32,16 +44,21 @@ export const errorOutlineStyle = css`
 function applyStatus(stateValue: SelectStateValue) {
   let mainStyle: SerializedStyles
   let inputStyle = inputOutlineStyle
-
+  const { borderColor = "blue" } = stateValue
+  const isInnerolor = innerColor.indexOf(borderColor) > -1
   if (stateValue?.disabled) {
     mainStyle = css`
       cursor: not-allowed;
       ${disableOutlineStyle}
     `
   } else if (stateValue?.focus) {
-    const boxShadowColor = globalColor(`--${illaPrefix}-blue-01`)
+    const boxShadowColor = isInnerolor
+      ? globalColor(`--${illaPrefix}-${borderColor}-01`)
+      : chroma.mix(borderColor, "white", 0.1).hex()
     mainStyle = css`
-      border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+      border-color: ${isInnerolor
+        ? globalColor(`--${illaPrefix}-${borderColor}-03`)
+        : chroma.mix(borderColor, "white", 0.3).hex()};
       box-shadow: 0 0 8px 0
         ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
@@ -54,7 +71,9 @@ function applyStatus(stateValue: SelectStateValue) {
   } else {
     mainStyle = css`
       &:hover {
-        border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
+        border-color: ${isInnerolor
+          ? globalColor(`--${illaPrefix}-${borderColor}-06`)
+          : chroma.mix(borderColor, "white", 0.6).hex()};
       }
     `
   }
