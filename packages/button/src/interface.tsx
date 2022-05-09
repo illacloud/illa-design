@@ -28,6 +28,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   leftIcon?: ReactNode
   rightIcon?: ReactNode
   buttonRadius?: string
+  autoFullVertically?: boolean
+  autoFullHorizontal?: boolean
+  borderColor?: string
+  backgroundColor?: string
+  textColor?: string
 }
 
 export interface ButtonGroupProps

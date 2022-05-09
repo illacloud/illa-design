@@ -39,6 +39,8 @@ export function getDifferentStatusColor(
   colorScheme: ButtonColorScheme,
   variant: ButtonVariant,
   state: State,
+  backgroundColor?: string,
+  borderColor?: string,
 ): string[] {
   switch (state) {
     case State.DEFAULT:
@@ -179,7 +181,31 @@ export function getDifferentStatusColor(
 export function applyBg(
   variant: ButtonVariant,
   colorScheme: ButtonColorScheme,
+  backgroundColor?: string,
+  borderColor?: string,
 ): SerializedStyles {
+  const borderCss = borderColor
+    ? css`
+        border: solid 1px ${borderColor};
+        &:hover {
+          border: solid 1px ${borderColor};
+        }
+        &:active {
+          border: solid 1px ${borderColor};
+        }
+      `
+    : css``
+  const backgroundCss = backgroundColor
+    ? css`
+        background-color: ${backgroundColor};
+        &:hover {
+          background-color: ${backgroundColor};
+        }
+        &:active {
+          background-color: ${backgroundColor};
+        }
+      `
+    : css``
   switch (variant) {
     case "text":
       return css`
@@ -253,6 +279,8 @@ export function applyBg(
             State.DISABLE,
           )[0]};
         }
+        ${borderCss}
+        ${backgroundCss}
       `
     case "outline":
       return css`
@@ -274,6 +302,7 @@ export function applyBg(
           border: solid 1px
             ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
         }
+        ${borderCss}
       `
   }
 }
@@ -300,7 +329,13 @@ export function applyCursor(
 export function applyElementColor(
   variant: ButtonVariant,
   colorScheme: ButtonColorScheme,
+  textColor?: string,
 ): SerializedStyles {
+  if (textColor) {
+    return css`
+      color: ${textColor};
+    `
+  }
   switch (variant) {
     case "text":
       return css`

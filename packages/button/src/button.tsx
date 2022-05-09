@@ -1,4 +1,4 @@
-import { Children, forwardRef } from "react"
+import { Children, forwardRef, useMemo } from "react"
 import { ButtonProps } from "./interface"
 import { css } from "@emotion/react"
 import { LoadingIcon } from "@illa-design/icon"
@@ -16,9 +16,16 @@ import {
   applyWithoutTextSize,
 } from "./style"
 import { ButtonGroupContext } from "."
+import { getSizeCssByAutoFullProps } from "@illa-design/system"
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
+    const { autoFullHorizontal, autoFullVertically } = props
+    const sizeCss = useMemo(
+      () => getSizeCssByAutoFullProps(autoFullHorizontal, autoFullVertically),
+      [autoFullHorizontal, autoFullVertically],
+    )
+
     return (
       <ButtonGroupContext.Consumer>
         {(value) => {
@@ -36,6 +43,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             disabled,
             rightIcon,
             buttonRadius,
+            borderColor,
+            backgroundColor,
+            textColor,
+            autoFullHorizontal,
+            autoFullVertically,
             ...otherProps
           } = props
 
@@ -54,14 +66,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 first ?? false,
                 last ?? false,
               )};
-              ${applyElementColor(variant, colorScheme)};
-              ${applyBg(variant, colorScheme)};
+              ${applyElementColor(variant, colorScheme, textColor)};
+              ${applyBg(variant, colorScheme, backgroundColor, borderColor)};
             `
 
             return (
               <button
                 ref={ref}
-                css={finalContainer}
+                css={css(finalContainer, sizeCss)}
                 disabled={disabled || loading}
                 {...otherProps}
               >
@@ -89,8 +101,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 first ?? false,
                 last ?? false,
               )};
-              ${applyElementColor(variant, colorScheme)};
-              ${applyBg(variant, colorScheme)};
+              ${applyElementColor(variant, colorScheme, textColor)};
+              ${applyBg(variant, colorScheme, backgroundColor, borderColor)};
               ${buttonRadius ? `border-radius: ${buttonRadius};` : ""}
             `
 
