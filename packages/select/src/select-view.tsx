@@ -89,7 +89,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       disabled,
       focus: mergedFocused,
       size,
-      borderColor
+      borderColor,
     }
 
     const handleFocus = (action: "focus" | "blur") => {

@@ -32,9 +32,9 @@ jobs:
           path: |
             **/node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-build-${{ github.run_id }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ github.run_id }}
+            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
 
       - name: Build
         run: |
@@ -69,9 +69,9 @@ jobs:
           path: |
             **/node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-build-${{ github.run_id }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ github.run_id }}
+            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
 
       - name: Build storybook
         run: yarn build-storybook
@@ -82,7 +82,8 @@ jobs:
           yarn test
 
       - name: Publish to Codecov
-        uses: codecov/codecov-action@v2.1.0
+        uses: codecov/codecov-action@v3.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          target: 90%
           files: ./coverage/lcov.info

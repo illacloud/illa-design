@@ -32,7 +32,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     step = 1,
     showTicks,
     marks = {},
-    onlyMarkValue = false,
+    onlyMarkValue,
     vertical,
     showInput,
     reverse,

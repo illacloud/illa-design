@@ -45,7 +45,7 @@ export const Basic: Story<ListProps<any>> = (args) => (
     }}
   />
 )
-export const AAA: Story<ListProps<any>> = (args) => (
+export const Normal: Story<ListProps<any>> = (args) => (
   <List
     {...args}
     data={[
@@ -56,7 +56,7 @@ export const AAA: Story<ListProps<any>> = (args) => (
       { title: "Title E", description: "Desc E" },
     ]}
     render={(data, index) => {
-      return <span>{data.title}qq</span>
+      return <span>{data.title}</span>
     }}
     renderKey={(data, index) => {
       return index.toString()

@@ -1,7 +1,7 @@
 import { FC, useContext, useState } from "react"
 import { PopconfirmProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"
-import { Heading, Typography } from "@illa-design/typography"
+import { Typography } from "@illa-design/typography"
 import {
   applyButtonGroupStyle,
   applyHeaderStyle,
@@ -32,6 +32,7 @@ export const PopConfirm: FC<PopconfirmProps> = (props) => {
     icon = <InfoCircleIcon color={globalColor(`--${illaPrefix}-blue-03`)} />,
     colorScheme = "white",
     trigger = "click",
+    // must be false
     closeOnClick = false,
     popupVisible,
     onVisibleChange,

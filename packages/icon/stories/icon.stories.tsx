@@ -62,6 +62,7 @@ import {
   Result404Icon,
   Result500Icon,
   EmptyStateIcon,
+  PaginationPreIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -269,4 +270,8 @@ export const Result500: Story<IconProps> = (props: IconProps) => (
 
 export const EmptyState: Story<IconProps> = (props: IconProps) => (
   <EmptyStateIcon {...props} />
+)
+
+export const PaginationPre: Story<IconProps> = (props: IconProps) => (
+  <PaginationPreIcon {...props} />
 )

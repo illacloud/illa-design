@@ -11,14 +11,7 @@ it("Select render correctly", () => {
 
 it("Select render with error type", () => {
   const focusEvent = cy.stub().as("focusEvent")
-  mount(
-    <Select
-      error
-      value={"test"}
-      data-testid={"test-select"}
-      onFocus={focusEvent}
-    />,
-  )
+  mount(<Select error value={"test"} onFocus={focusEvent} />)
   cy.findByText("test").parent().click()
   cy.findByText("No data").should("exist")
   unmount()

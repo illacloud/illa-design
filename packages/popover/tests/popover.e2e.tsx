@@ -32,3 +32,22 @@ it("Popover renders with close button", () => {
   cy.findByText("Visible").should("not.exist")
   unmount()
 })
+
+it("Popover renders with visible event", () => {
+  const onVisibleChange = cy.stub().as("onVisibleChange")
+  mount(
+    <Popover
+      hasCloseIcon
+      trigger="click"
+      content="Visible"
+      onVisibleChange={onVisibleChange}
+    >
+      <Button>Button</Button>
+    </Popover>,
+  )
+  cy.findByText("Button").click()
+  cy.get("@onVisibleChange").should("be.calledWith", true)
+  cy.findByText("Close").click()
+  cy.get("@onVisibleChange").should("be.calledWith", false)
+  unmount()
+})

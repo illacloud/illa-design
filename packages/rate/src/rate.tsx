@@ -20,8 +20,8 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
     tooltips,
     allowHalf,
     allowClear,
-    disabled = false,
-    readonly = false,
+    disabled,
+    readonly,
     heart,
     onChange,
     onHoverChange,
@@ -95,8 +95,8 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
       <CharacterWrapper key={index} {...tooltipProps}>
         <div
           css={applyRateCharacter(
-            disabled,
-            readonly,
+            disabled ?? false,
+            readonly ?? false,
             animation && index + 1 < mergedValue,
           )}
           style={animation ? { animationDelay: `${50 * index}ms` } : {}}
@@ -129,7 +129,7 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
   return (
     <div
       ref={ref}
-      css={applyRate(disabled)}
+      css={applyRate(disabled ?? false)}
       {...restProps}
       onMouseLeave={resetHoverIndex}
     >

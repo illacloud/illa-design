@@ -1,32 +1,34 @@
 import {
+  dayjsPro,
+  debounce,
+  easingMethod,
+  getDayjsValue,
+  getSortedDayjsArray,
   getStyle,
-  omit,
-  isString,
   isArray,
-  isObject,
-  isEmptyObject,
-  isNumber,
-  isFunction,
-  isPromise,
   isDayjs,
+  isDayjsArrayChange,
+  isDayjsChange,
+  isEmptyObject,
+  isFunction,
+  isNumber,
+  isObject,
+  isPromise,
   isServerRendering,
   isSingleNode,
-  easingMethod,
-  raf,
-  debounce,
-  useMergeValue,
+  isString,
   mergedToString,
+  mergeRefs,
+  omit,
   padStart,
-  getDayjsValue,
-  isDayjsChange,
-  isDayjsArrayChange,
-  getSortedDayjsArray,
-  dayjsPro,
   getSizeCssByAutoFullProps,
+  raf,
+  useMergeValue,
 } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import dayjs, { Dayjs } from "dayjs"
+import { RefObject } from "react"
 
 // test omit.ts
 test("System test omit function", () => {
@@ -87,7 +89,7 @@ test("System test isFunction function", () => {
 })
 
 test("System test isFunction function", () => {
-  const asyncFun = new Promise(function () {
+  const asyncFun = new Promise(() => {
     return "asyncFun"
   })
   expect(isPromise(asyncFun)).toEqual(true)
@@ -156,7 +158,7 @@ test("Test raf in jsdom environment", async () => {
 })
 
 // test debounce.ts
-test("mock timers to test debounce", function () {
+test("mock timers to test debounce", () => {
   jest.useFakeTimers()
   const test = jest.fn()
   const debounced = debounce(test, 1000)
@@ -170,7 +172,7 @@ test("mock timers to test debounce", function () {
 })
 
 // test useMergeValue.ts
-describe("test useMergeValue", function () {
+describe("test useMergeValue", () => {
   const Test = (props: {
     defaultValue?: string
     value?: string
@@ -192,20 +194,20 @@ describe("test useMergeValue", function () {
     )
   }
 
-  test("test useMergeValue hook with defaultValue", function () {
+  test("test useMergeValue hook with defaultValue", () => {
     render(<Test defaultValue={"test useMergeValue"} />)
     fireEvent.click(screen.getByText("test useMergeValue"))
     expect(screen.getByText("test setValue")).toBeInTheDocument()
   })
 
-  test("test useMergeValue hook with value", function () {
+  test("test useMergeValue hook with value", () => {
     render(<Test value={"test useMergeValue"} />)
     expect(screen.getByText("test useMergeValue")).toBeInTheDocument()
   })
 })
 
 // test dayjs.ts
-test("test getDayjsValue", function () {
+test("test getDayjsValue", () => {
   const formatTime = (str: Dayjs) => {
     return str ? dayjsPro(str)?.format("HH:mm:ss") : ""
   }
@@ -231,7 +233,7 @@ test("test getDayjsValue", function () {
   expect(getDayjsValue(undefined, "HH:mm:ss")).toEqual(void 0)
 })
 
-test("test isDayjsChange", function () {
+test("test isDayjsChange", () => {
   const day1 = dayjsPro("06:00:00", "HH:mm:ss")
   const day2 = dayjsPro("08:00:00", "HH:mm:ss")
 
@@ -240,7 +242,7 @@ test("test isDayjsChange", function () {
   expect(isDayjsChange(undefined, undefined)).toEqual(false)
 })
 
-test("test isDayjsArrayChange", function () {
+test("test isDayjsArrayChange", () => {
   const dayArr1 = [dayjsPro(), dayjsPro("06:00:00", "HH:mm:ss")]
   const dayArr2 = [dayjsPro(), dayjsPro("08:00:00", "HH:mm:ss")]
 
@@ -249,7 +251,7 @@ test("test isDayjsArrayChange", function () {
   expect(isDayjsArrayChange(undefined, undefined)).toEqual(false)
 })
 
-test("test getSortedDayjsArray", function () {
+test("test getSortedDayjsArray", () => {
   const dayArr = [
     dayjsPro("08:00:00", "HH:mm:ss"),
     dayjsPro("06:00:00", "HH:mm:ss"),
@@ -264,4 +266,12 @@ test("test getAutoFullSizeCss", function () {
   const res = getSizeCssByAutoFullProps(true, true)
   expect(res.styles.includes("width: 100%")).toEqual(true)
   expect(res.styles.includes("height: 100%")).toEqual(true)
+})
+
+test("test merge refs", () => {
+  const ref = { current: null } as RefObject<HTMLElement>
+  const functionRef = jest.fn()
+  const mergedRef = mergeRefs(ref, functionRef)
+  mergedRef(null)
+  expect(functionRef).toBeCalledWith(null)
 })

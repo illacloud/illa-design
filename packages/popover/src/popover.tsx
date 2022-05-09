@@ -23,6 +23,7 @@ export const Popover: FC<PopoverProps> = (props) => {
     onVisibleChange,
     trigger = "click",
     hasCloseIcon = true,
+    // must be false
     closeOnClick = false,
     defaultPopupVisible,
     ...otherProps
