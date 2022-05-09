@@ -12,8 +12,8 @@ export const headerLeftCss = css`
   align-items: center;
 `
 export const backIconCss = css`
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   font-size: 12px;
   margin-right: 14px;
