@@ -66,7 +66,7 @@ export function applySubMenuHeaderCss(
   `
 
   // add more padding to padding-right to avoid title overlap with icon
-  const padding = isCollapse ? `0 16px` : `0 32px 0 24px`
+  const padding = isCollapse ? `0 16px` : `0 54px 0 24px`
 
   return css`
     font-size: 14px;
