@@ -5,7 +5,7 @@ import {
   MouseEvent,
   ReactNode,
   ReactElement,
-  RefAttributes
+  RefAttributes,
 } from "react"
 import { ButtonProps } from "@illa-design/button"
 import { AlertType as ModalType } from "@illa-design/alert"
@@ -65,7 +65,9 @@ export interface ConfirmProps extends ModalProps {
 }
 
 export interface ModalComponent
-  extends ForwardRefExoticComponent<PropsWithChildren<ModalProps> & RefAttributes<HTMLDivElement>> {
+  extends ForwardRefExoticComponent<
+    PropsWithChildren<ModalProps> & RefAttributes<HTMLDivElement>
+  > {
   confirm: (props: ConfirmProps) => ModalReturnProps
   info: (props: ConfirmProps) => ModalReturnProps
   success: (props: ConfirmProps) => ModalReturnProps

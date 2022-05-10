@@ -90,7 +90,10 @@ export function applyItemCss(
     line-height: 40px;
     ${isHorizontal && horizontalCss};
     /* margin between vertical item */
-    ${!isHorizontal && css`margin-bottom: 8px;`}
+    ${!isHorizontal &&
+    css`
+      margin-bottom: 8px;
+    `}
     ${isDisabled ? disabledCss : hoverCss};
     ${isSelected && selectedCss};
     ${isSelected && isHorizontal && horizontalSelectedCss};

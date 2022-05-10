@@ -3,7 +3,7 @@ import {
   ReactNode,
   ForwardRefExoticComponent,
   PropsWithChildren,
-  RefAttributes
+  RefAttributes,
 } from "react"
 import { AlertType } from "@illa-design/alert"
 
@@ -35,7 +35,9 @@ export interface NotificationProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export interface NotificationComponent
-  extends ForwardRefExoticComponent<PropsWithChildren<NotificationProps> & RefAttributes<HTMLDivElement>> {
+  extends ForwardRefExoticComponent<
+    PropsWithChildren<NotificationProps> & RefAttributes<HTMLDivElement>
+  > {
   info: (config: NoticeProps) => void
   success: (config: NoticeProps) => void
   warning: (config: NoticeProps) => void
