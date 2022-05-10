@@ -13,6 +13,8 @@ export type AvatarColorScheme =
   | "blue"
   | "cyan"
   | "purple"
+  | "tech-pink"
+  | "tech-purple"
 
 export type AvatarShape = "circle" | "square"
 

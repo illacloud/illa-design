@@ -15,6 +15,8 @@ const colorSchemes: ProgressColorScheme[] = [
   "blue",
   "cyan",
   "purple",
+  "tech-pink",
+  "tech-purple",
 ]
 
 export function applySvgContainer(width: string): SerializedStyles {
@@ -45,7 +47,7 @@ export function applyProgressContainer(
   const perimeter = `calc(${Math.PI} * 2 * (${width} - ${strokeWidth}) / 2)`
 
   let color
-  if (colorScheme == "gray") {
+  if (colorScheme == "gray" || colorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
   } else {
     color = colorSchemes.includes(colorScheme)
@@ -71,7 +73,7 @@ export function applyProgressContainerBg(
   const perimeter = `calc(${Math.PI} * 2 * (${width} - ${strokeWidth}) / 2)`
 
   let color
-  if (trailColorScheme == "gray") {
+  if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
   } else {
     color = colorSchemes.includes(trailColorScheme)

@@ -62,7 +62,7 @@ export function applyLineProgress(
   colorScheme: ProgressColorScheme,
 ): SerializedStyles {
   let color
-  if (colorScheme == "gray") {
+  if (colorScheme == "gray" || colorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
   } else {
     color = colorSchemes.includes(colorScheme)
@@ -88,7 +88,7 @@ export function applyLineProgressStep(
   index: number,
 ): SerializedStyles {
   let color
-  if (colorScheme == "gray") {
+  if (colorScheme == "gray" || colorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
   } else {
     color = colorSchemes.includes(colorScheme)
@@ -117,7 +117,7 @@ export function applyLineProgressBg(
   trailColorScheme: ProgressColorScheme,
 ): SerializedStyles {
   let color
-  if (trailColorScheme == "gray") {
+  if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
   } else {
     color = colorSchemes.includes(trailColorScheme)
@@ -140,7 +140,7 @@ export function applyLineProgressBgStep(
 ): SerializedStyles {
   let color
 
-  if (trailColorScheme == "gray") {
+  if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
   } else {
     color = colorSchemes.includes(trailColorScheme)

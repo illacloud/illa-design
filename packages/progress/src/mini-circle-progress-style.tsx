@@ -27,7 +27,7 @@ export function applyCircleSvgContainer(
   trailColorScheme: ProgressColorScheme,
 ): SerializedStyles {
   let color
-  if (trailColorScheme == "gray") {
+  if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
   } else {
     color = colorSchemes.includes(trailColorScheme)
@@ -50,7 +50,7 @@ export function applyCircleProgressContainer(
   const perimeter = `calc(${Math.PI} * 2 * ${width} / 2)`
 
   let color
-  if (colorScheme == "gray") {
+  if (colorScheme == "gray" || colorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
   } else {
     color = colorSchemes.includes(colorScheme)
