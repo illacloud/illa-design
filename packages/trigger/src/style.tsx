@@ -17,6 +17,8 @@ const colorSchemes = [
   "blue",
   "cyan",
   "purple",
+  "tech-pink",
+  "tech-purple",
 ]
 
 export const applyChildrenContainer = css`

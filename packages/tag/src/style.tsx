@@ -88,7 +88,7 @@ export function applyCloseIcon(
       }
     `
   } else if (variant === "outline") {
-    if (color === "gray") {
+    if (color === "gray" || color === "grayBlue") {
       variantCss = css`
         &:hover {
           background-color: ${globalColor(`--${illaPrefix}-${color}-08`)};
@@ -126,10 +126,12 @@ export const colors: TagColorScheme[] = [
   "blue",
   "cyan",
   "purple",
+  "tech-purple",
+  "tech-pink",
 ]
 
 export function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {
-  if (color == "gray") {
+  if (color == "gray" || color == "grayBlue") {
     return css`
       border-radius: 2px;
       border: solid 1px ${globalColor(`--${illaPrefix}-${color}-08`)};

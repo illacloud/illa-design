@@ -46,7 +46,7 @@ export function getDifferentStatusColor(
     case State.DEFAULT:
       switch (variant) {
         case "fill":
-          if (colorScheme != "gray") {
+          if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-01`),
               globalColor(`--${illaPrefix}-white-01`),
@@ -59,7 +59,7 @@ export function getDifferentStatusColor(
           }
         case "dashed":
         case "outline":
-          if (colorScheme != "gray") {
+          if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-01`),
               globalColor(`--${illaPrefix}-${colorScheme}-01`),
@@ -79,7 +79,7 @@ export function getDifferentStatusColor(
     case State.HOVER:
       switch (variant) {
         case "fill":
-          if (colorScheme != "gray") {
+          if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-02`),
               globalColor(`--${illaPrefix}-white-01`),
@@ -92,7 +92,7 @@ export function getDifferentStatusColor(
           }
         case "dashed":
         case "outline":
-          if (colorScheme != "gray") {
+          if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-02`),
               globalColor(`--${illaPrefix}-${colorScheme}-02`),
@@ -112,7 +112,7 @@ export function getDifferentStatusColor(
     case State.ACTIVE:
       switch (variant) {
         case "fill":
-          if (colorScheme != "gray") {
+          if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
               globalColor(`--${illaPrefix}-white-01`),
@@ -125,7 +125,7 @@ export function getDifferentStatusColor(
           }
         case "dashed":
         case "outline":
-          if (colorScheme != "gray") {
+          if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
               globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
@@ -145,7 +145,7 @@ export function getDifferentStatusColor(
     case State.DISABLE:
       switch (variant) {
         case "fill":
-          if (colorScheme != "gray") {
+          if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-05`),
               globalColor(`--${illaPrefix}-white-01`),
@@ -158,7 +158,7 @@ export function getDifferentStatusColor(
           }
         case "dashed":
         case "outline":
-          if (colorScheme != "gray") {
+          if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-05`),
               globalColor(`--${illaPrefix}-${colorScheme}-05`),

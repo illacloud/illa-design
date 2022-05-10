@@ -14,6 +14,8 @@ export const colorSchemes: LinkColorScheme[] = [
   "blue",
   "cyan",
   "purple",
+  "tech-pink",
+  "tech-purple",
 ]
 
 export function applyLinkContainer(

@@ -13,6 +13,8 @@ export type TriggerColorScheme =
   | "blue"
   | "cyan"
   | "purple"
+  | "tech-pink"
+  | "tech-purple"
 
 export type TriggerPosition =
   | "top"

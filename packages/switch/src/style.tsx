@@ -14,8 +14,8 @@ const innerColor = [
   "cyan",
   "purple",
   "grayBlue",
-  "brand-purple",
-  "brand-pink",
+  "tech-purple",
+  "tech-pink",
 ]
 
 export function applySwitch(
