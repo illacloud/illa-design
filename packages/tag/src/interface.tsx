@@ -13,8 +13,8 @@ export type TagColorScheme =
   | "blue"
   | "cyan"
   | "purple"
-  | "tech-purple"
-  | "tech-pink"
+  | "techPurple"
+  | "techPink"
 
 export type TagVariant = "outline" | "fill" | "light"
 

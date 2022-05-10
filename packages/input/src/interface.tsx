@@ -20,8 +20,8 @@ export type InputBorderColor =
   | "orange"
   | "cyan"
   | "white"
-  | "tech-pink"
-  | "tech-purple"
+  | "techPink"
+  | "techPurple"
 
 export type InputVariant = "fill" | "outline"
 

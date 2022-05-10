@@ -12,8 +12,8 @@ export type ButtonColorScheme =
   | "blue"
   | "cyan"
   | "purple"
-  | "tech-pink"
-  | "tech-purple"
+  | "techPink"
+  | "techPurple"
 
 export type ButtonSize = "small" | "medium" | "large"
 export type ButtonVariant = "fill" | "dashed" | "outline" | "text"

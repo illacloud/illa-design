@@ -13,8 +13,8 @@ export type RadioColorScheme =
   | "blue"
   | "cyan"
   | "purple"
-  | "tech-pink"
-  | "tech-purple"
+  | "techPink"
+  | "techPurple"
 
 export type RadioSize = "small" | "medium" | "large"
 
