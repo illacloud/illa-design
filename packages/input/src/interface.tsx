@@ -76,9 +76,7 @@ export interface InputProps
   onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   onChange?: (value: string, event: SyntheticEvent) => void
   withoutNormalBorder?: boolean
-  // control component
-  focus?: boolean
-  onFocusChange?: (focus: boolean) => void
+  highlight?: boolean
   readOnly?: boolean
 }
 
