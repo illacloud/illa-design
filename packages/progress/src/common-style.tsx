@@ -15,8 +15,8 @@ const colorSchemes: ProgressColorScheme[] = [
   "blue",
   "cyan",
   "purple",
-  "tech-pink",
-  "tech-purple",
+  "techPink",
+  "techPurple",
 ]
 
 export function applySvgContainer(width: string): SerializedStyles {

@@ -20,8 +20,8 @@ export const colors: AvatarColorScheme[] = [
   "blue",
   "cyan",
   "purple",
-  "tech-pink",
-  "tech-purple",
+  "techPink",
+  "techPurple",
 ]
 
 export function applyBgColor(colorScheme: AvatarColorScheme): SerializedStyles {

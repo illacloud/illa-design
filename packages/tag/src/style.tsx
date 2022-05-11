@@ -126,8 +126,8 @@ export const colors: TagColorScheme[] = [
   "blue",
   "cyan",
   "purple",
-  "tech-purple",
-  "tech-pink",
+  "techPurple",
+  "techPink",
 ]
 
 export function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {
