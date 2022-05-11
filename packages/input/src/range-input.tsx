@@ -48,7 +48,6 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
       onPressTab,
       changeFocusedInputIndex,
       withoutNormalBorder,
-      radius = "4px",
       ...otherProps
     } = props
 
@@ -104,7 +103,6 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
       focus: focus0 || focus1 || popupVisible,
       disabled: disabled0 && disabled1,
       withoutNormalBorder,
-      radius,
     }
 
     const inputProps = {

@@ -49,7 +49,6 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     onBlur,
     onPressEnter,
     withoutNormalBorder,
-    radius = "4px",
     focus: propFocus,
     onFocusChange,
     readOnly,
@@ -86,7 +85,6 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     borderColor,
     iconAppearWithSuffix,
     withoutNormalBorder,
-    radius,
   }
 
   if (maxLength && showCount) {
