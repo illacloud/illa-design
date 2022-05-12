@@ -1,7 +1,11 @@
 {
   "name": "@illa-design/description",
   "version": "0.0.3",
+<<<<<<< HEAD
   "description": "Illa Design description.",
+=======
+  "description": "Illa Design Description.",
+>>>>>>> ed557da1910714441dd902a37382ac8f3bbe6f96
   "keywords": [
     "description",
     "react",
