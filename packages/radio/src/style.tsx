@@ -109,16 +109,15 @@ export const disappear = css`
 
 export function applyRadioButtonContainer(size?: RadioSize): SerializedStyles {
   return css`
+    width: 100%;
     border-radius: 4px;
     display: inline-flex;
     vertical-align: middle;
     flex-direction: row;
     align-items: center;
-    gap: 4px;
     font-size: 14px;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 }
 
@@ -130,21 +129,18 @@ export function applyRadioButton(stateValue: RadioStatus) {
     case "small":
       sizeCss = css`
         padding: 1px 8px;
-        min-width: 44px;
         height: 24px;
       `
       break
     case "medium":
       sizeCss = css`
         padding: 5px 12px;
-        min-width: 52px;
         height: 32px;
       `
       break
     case "large":
       sizeCss = css`
         padding: 9px 16px;
-        min-width: 60px;
         height: 40px;
       `
       break
@@ -152,7 +148,7 @@ export function applyRadioButton(stateValue: RadioStatus) {
 
   if (stateValue?.disabled && stateValue?.checked) {
     stateCss = css`
-      color: ${globalColor(`--${illaPrefix}-${colorScheme}-06`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
       cursor: not-allowed;
     `
   } else if (stateValue?.disabled) {
@@ -164,7 +160,7 @@ export function applyRadioButton(stateValue: RadioStatus) {
     stateCss = css`
       font-weight: 500;
       border-radius: 4px;
-      color: ${globalColor(`--${illaPrefix}-${colorScheme}-03`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
       background-color: ${globalColor(`--${illaPrefix}-white-01`)};
 
       &::before,
@@ -183,6 +179,8 @@ export function applyRadioButton(stateValue: RadioStatus) {
   return css`
     position: relative;
     display: flex;
+    flex-grow: 1;
+    margin: 1px;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;

@@ -186,7 +186,7 @@ test("RadioGroup render with button type and click", () => {
   )
   fireEvent.click(screen.getByText("A"))
   expect(screen.getByText("A").parentNode).toHaveStyle(`
-    color: ${globalColor(`--${illaPrefix}-blue-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `)
 })
 
