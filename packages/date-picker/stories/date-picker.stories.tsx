@@ -9,7 +9,6 @@ import {
   DateRangePicker,
   CommonRangeProps,
 } from "../src"
-import dayjs from "dayjs"
 
 export default {
   title: "DATA INPUT/DatePicker",

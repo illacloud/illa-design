@@ -45,6 +45,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
       autoFitWidth,
       textCenterHorizontal,
       iconAppearWithSuffix,
+      readOnly,
       ...rest
     } = props
 
@@ -106,7 +107,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
     const inputProps = {
       ...otherProps,
       value: compositionValue || value || "",
-      disabled,
+      disabled: disabled || readOnly,
       placeholder,
       onChange,
       onKeyDown,
@@ -121,7 +122,10 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
       <>
         <input
           ref={inputRef}
-          css={css(applyInputStyle(textCenterHorizontal), _css)}
+          css={css(
+            applyInputStyle(textCenterHorizontal, readOnly && !disabled),
+            _css,
+          )}
           {...inputProps}
           {...(type ? { type } : {})}
         />
@@ -143,7 +147,10 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
         ) : null}
         {autoFitWidth ? (
           <span
-            css={css(applyInputStyle(textCenterHorizontal), mirrorStyle)}
+            css={css(
+              applyInputStyle(textCenterHorizontal, readOnly && !disabled),
+              mirrorStyle,
+            )}
             ref={mirrorInputRef}
           >
             {mirrorValue && mirrorValue.replace(/\s/g, "\u00A0")}
