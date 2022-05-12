@@ -4,6 +4,7 @@ import { InputElement } from "@illa-design/input"
 import { ErrorIcon } from "@illa-design/icon"
 import { InputTagProps, ObjectValueType } from "./interface"
 import {
+  applyFilterInput,
   applyInputContainer,
   applyInputInnerCss,
   applySuffixCls,
@@ -126,6 +127,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
           />
           <InputElement
             ref={refInput}
+            _css={applyFilterInput(stateValue)}
             size={size}
             value={currentInputValue}
             disabled={disabled || disableInput}

@@ -30,6 +30,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
     >("")
 
     const {
+      _css,
       allowClear,
       error,
       disabled,
@@ -121,7 +122,10 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
       <>
         <input
           ref={inputRef}
-          css={applyInputStyle(textCenterHorizontal, readOnly && !disabled)}
+          css={css(
+            applyInputStyle(textCenterHorizontal, readOnly && !disabled),
+            _css,
+          )}
           {...inputProps}
           {...(type ? { type } : {})}
         />

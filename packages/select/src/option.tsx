@@ -24,11 +24,11 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
 
   const currentValue = "value" in props ? value : children?.toString()
   const isChecked = multiple
-    ? (valueSelect as any[])?.indexOf(value) !== -1
-    : valueSelect === value
+    ? (valueSelect as any[])?.indexOf(currentValue) !== -1
+    : valueSelect === currentValue
 
   const optionProps = {
-    onMouseEnter: () => onMouseEnter?.(value),
+    onMouseEnter: () => onMouseEnter?.(currentValue),
     onMouseLeave: () => onMouseLeave?.(),
     onClick: (event: SyntheticEvent) => {
       onClickOption && onClickOption(currentValue, disabled)
@@ -40,7 +40,11 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
   return (
     <>
       {multiple ? (
-        <li css={applyOptionStyle(size)} ref={ref} {...optionProps}>
+        <li
+          css={applyOptionStyle(size, multiple, isChecked)}
+          ref={ref}
+          {...optionProps}
+        >
           <Checkbox
             checked={isChecked}
             disabled={disabled}
@@ -52,7 +56,11 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
           <span css={{ "margin-left": "8px" }}>{children}</span>
         </li>
       ) : (
-        <li css={applyOptionStyle(size)} ref={ref} {...optionProps}>
+        <li
+          css={applyOptionStyle(size, multiple, isChecked)}
+          ref={ref}
+          {...optionProps}
+        >
           {children}
         </li>
       )}

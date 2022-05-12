@@ -220,7 +220,25 @@ export function iconPointerStyle(size: string) {
 }
 
 // option
-export function applyOptionStyle(size: SelectProps["size"]): SerializedStyles {
+export function applyOptionStyle(
+  size: SelectProps["size"],
+  multiple?: boolean,
+  checked?: boolean,
+): SerializedStyles {
+  let stateStyle: SerializedStyles = css()
+  if (checked) {
+    if (multiple) {
+      stateStyle = css`
+        color: ${globalColor(`--${illaPrefix}-blue-01`)};
+      `
+    } else {
+      stateStyle = css`
+        background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+        color: ${globalColor(`--${illaPrefix}-blue-01`)};
+      `
+    }
+  }
+
   return css`
     position: relative;
     box-sizing: border-box;
@@ -242,6 +260,7 @@ export function applyOptionStyle(size: SelectProps["size"]): SerializedStyles {
       color: ${globalColor(`--${illaPrefix}-blue-01`)};
     }
 
+    ${stateStyle}
     ${applySizeStyle(size)}
   `
 }

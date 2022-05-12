@@ -210,7 +210,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       return (
         <>
           <InputElement
-            css={applySelectViewText(needShowInput)}
+            _css={applySelectViewText(needShowInput)}
             ref={inputRef}
             disabled={disabled}
             readOnly={readOnly}
