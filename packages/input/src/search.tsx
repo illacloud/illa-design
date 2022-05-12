@@ -31,7 +31,6 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     onSearch,
     onPressEnter,
     withoutNormalBorder,
-    radius = "4px",
     ...rest
   } = props
 
@@ -48,7 +47,6 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     size,
     borderColor,
     withoutNormalBorder,
-    radius,
   }
 
   const onValueChange = (v: string, e: ChangeEvent<HTMLInputElement>) => {

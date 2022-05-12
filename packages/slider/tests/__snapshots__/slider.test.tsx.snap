@@ -182,7 +182,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   -ms-flex-align: center;
   align-items: center;
   font-size: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   vertical-align: middle;
   color: #1d2129;
   border-color: #e5e6eb;
@@ -215,13 +215,13 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
 }
 
 .emotion-117:first-of-type {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .emotion-117:last-of-type {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .emotion-117:hover [title="InputClearIcon"] {
@@ -236,7 +236,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   appearance: none;
   font-size: inherit;
   font-family: inherit;
-  border-radius: 4px;
   line-height: inherit;
   color: #1d2129;
   border: none;
@@ -1086,7 +1085,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   -ms-flex-align: center;
   align-items: center;
   font-size: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   vertical-align: middle;
   color: #1d2129;
   border-color: #e5e6eb;
@@ -1119,13 +1118,13 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-117:first-of-type {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .emotion-117:last-of-type {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .emotion-117:hover [title="InputClearIcon"] {
@@ -1140,7 +1139,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   appearance: none;
   font-size: inherit;
   font-family: inherit;
-  border-radius: 4px;
   line-height: inherit;
   color: #1d2129;
   border: none;
@@ -1996,7 +1994,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   -ms-flex-align: center;
   align-items: center;
   font-size: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   vertical-align: middle;
   color: #1d2129;
   border-color: #e5e6eb;
@@ -2029,13 +2027,13 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-117:first-of-type {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .emotion-117:last-of-type {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .emotion-117:hover [title="InputClearIcon"] {
@@ -2050,7 +2048,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   appearance: none;
   font-size: inherit;
   font-family: inherit;
-  border-radius: 4px;
   line-height: inherit;
   color: #1d2129;
   border: none;

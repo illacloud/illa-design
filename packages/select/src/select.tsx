@@ -50,6 +50,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     onPopupScroll,
     onVisibleChange,
     onInputValueChange,
+    readOnly,
   } = props
 
   const [currentVisible, setCurrentVisible] = useState<boolean>()
@@ -360,7 +361,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       showArrow={false}
       colorScheme="white"
       position="bl"
-      disabled={disabled}
+      disabled={disabled || readOnly}
       openDelay={10}
       closeDelay={10}
       withoutPadding

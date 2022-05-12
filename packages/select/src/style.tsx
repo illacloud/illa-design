@@ -51,6 +51,10 @@ function applyStatus(stateValue: SelectStateValue) {
       cursor: not-allowed;
       ${disableOutlineStyle}
     `
+  } else if (stateValue?.readOnly) {
+    mainStyle = css`
+      cursor: not-allowed;
+    `
   } else if (stateValue?.focus) {
     const boxShadowColor = isInnerolor
       ? globalColor(`--${illaPrefix}-${borderColor}-01`)

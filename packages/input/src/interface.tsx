@@ -45,7 +45,7 @@ export interface InputElementProps
   onValueChange?: (value: string, e: ChangeEvent<HTMLInputElement>) => void
   onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   withoutNormalBorder?: boolean
-  radius?: string
+  readOnly?: boolean
 }
 
 export interface InputProps
@@ -76,10 +76,8 @@ export interface InputProps
   onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   onChange?: (value: string, event: SyntheticEvent) => void
   withoutNormalBorder?: boolean
-  radius?: string
-  // control component
-  focus?: boolean
-  onFocusChange?: (focus: boolean) => void
+  highlight?: boolean
+  readOnly?: boolean
 }
 
 export interface TextAreaProps
@@ -124,7 +122,6 @@ export interface SearchProps
   onSearch?: (value?: string) => void
   onPressEnter?: (event: KeyboardEvent<HTMLInputElement>) => void
   withoutNormalBorder?: boolean
-  radius?: string
 }
 
 export interface PasswordProps
@@ -144,7 +141,6 @@ export interface PasswordProps
   requirePadding?: boolean
   onClear?: () => void
   withoutNormalBorder?: boolean
-  radius?: string
 }
 
 export type RangeInputRef = {
@@ -186,7 +182,6 @@ export interface RangeInputProps
   onPressEnter?: () => void
   onPressTab?: (e: any) => void
   withoutNormalBorder?: boolean
-  radius?: string
 }
 
 export interface StateValue {
@@ -203,5 +198,4 @@ export interface StateValue {
   disabled0?: boolean
   disabled1?: boolean
   withoutNormalBorder?: boolean
-  radius?: string
 }
