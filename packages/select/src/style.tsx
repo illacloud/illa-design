@@ -225,18 +225,17 @@ export function applyOptionStyle(
   if (multiple) {
     if (checked) {
       stateStyle = css`
-      color: ${globalColor(`--${illaPrefix}-blue-01`)};
-    `
+        color: ${globalColor(`--${illaPrefix}-blue-01`)};
+      `
     }
   } else {
     if (checked) {
       stateStyle = css`
         background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
         color: ${globalColor(`--${illaPrefix}-blue-01`)};
-    `
+      `
     }
   }
-
 
   return css`
     position: relative;
