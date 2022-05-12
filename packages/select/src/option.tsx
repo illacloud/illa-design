@@ -24,11 +24,11 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
 
   const currentValue = "value" in props ? value : children?.toString()
   const isChecked = multiple
-    ? (valueSelect as any[])?.indexOf(value) !== -1
-    : valueSelect === value
+    ? (valueSelect as any[])?.indexOf(currentValue) !== -1
+    : valueSelect === currentValue
 
   const optionProps = {
-    onMouseEnter: () => onMouseEnter?.(value),
+    onMouseEnter: () => onMouseEnter?.(currentValue),
     onMouseLeave: () => onMouseLeave?.(),
     onClick: (event: SyntheticEvent) => {
       onClickOption && onClickOption(currentValue, disabled)
