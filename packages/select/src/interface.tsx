@@ -62,6 +62,9 @@ export type SelectBorderColor =
   | "orange"
   | "cyan"
   | "white"
+  | "techPink"
+  | "techPurple"
+  | "grayBlue"
 
 export interface SelectProps
   extends Omit<

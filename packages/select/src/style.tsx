@@ -14,6 +14,9 @@ const innerColor = [
   "orange",
   "cyan",
   "white",
+  "grayBlue",
+  "techPink",
+  "techPurple",
 ]
 
 // default select
