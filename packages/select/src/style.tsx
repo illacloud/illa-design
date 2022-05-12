@@ -222,14 +222,12 @@ export function applyOptionStyle(
   checked?: boolean,
 ): SerializedStyles {
   let stateStyle: SerializedStyles = css()
-  if (multiple) {
-    if (checked) {
+  if (checked) {
+    if (multiple) {
       stateStyle = css`
         color: ${globalColor(`--${illaPrefix}-blue-01`)};
       `
-    }
-  } else {
-    if (checked) {
+    } else {
       stateStyle = css`
         background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
         color: ${globalColor(`--${illaPrefix}-blue-01`)};
@@ -257,6 +255,7 @@ export function applyOptionStyle(
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
       color: ${globalColor(`--${illaPrefix}-blue-01`)};
     }
+
     ${stateStyle}
     ${applySizeStyle(size)}
   `
