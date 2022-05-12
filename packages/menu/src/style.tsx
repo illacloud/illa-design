@@ -4,7 +4,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 import { Theme } from "./interface"
 
-export function applyPopButtonCss(theme: Theme = "light"): SerializedStyles {
+export function applyPopButtonCss(theme: Theme): SerializedStyles {
   return css`
     width: 40px;
     height: 40px;

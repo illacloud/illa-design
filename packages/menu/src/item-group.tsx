@@ -4,25 +4,40 @@ import { processChildren } from "./util"
 import { ItemGroupProps } from "./interface"
 import { MenuContext } from "./menu-context"
 import { Indent } from "./indent"
-import { applyItemGroupCss, applyGroupTitleCss } from "./style"
+import {
+  applyItemGroupCss,
+  applyGroupTitleCss,
+  applyCollapseGroupTitleCss,
+} from "./style"
 
 const ForwardRefItemGroup = forwardRef<HTMLDivElement, ItemGroupProps>(
   (props, ref) => {
     const { children, title, level, _css, ...restProps } = props
-    const { levelIndent, mode, collapse, theme, inDropdown } =
-      useContext(MenuContext)
+    const {
+      levelIndent,
+      mode,
+      collapse,
+      theme = "light",
+      inDropdown,
+    } = useContext(MenuContext)
     const isPopButton = mode === "popButton"
     const isHorizontal = mode === "horizontal"
     const mergedNeedTooltip = level === 1 && collapse && !inDropdown
     const childrenList = processChildren(children as ReactElement, {
-      level: level === 1 ? level + 1 : level,
+      level,
       needTooltip: mergedNeedTooltip,
     })
+
+    const titleNode = collapse ? (
+      <div css={applyCollapseGroupTitleCss(theme)}></div>
+    ) : (
+      <span>{title}</span>
+    )
 
     const groupTitle = (
       <div css={applyGroupTitleCss(isHorizontal, isPopButton, collapse, theme)}>
         <Indent level={level} levelIndent={levelIndent} />
-        <span>{title}</span>
+        {titleNode}
       </div>
     )
 
