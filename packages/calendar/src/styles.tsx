@@ -3,7 +3,6 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const bodyContentCss = css`
   position: relative;
-  // padding: 0 10px;
   overflow: auto;
   ::-webkit-scrollbar {
     display: none;
