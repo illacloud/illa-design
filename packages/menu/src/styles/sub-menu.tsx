@@ -60,13 +60,15 @@ export function applySubMenuHeaderCss(
 
   const hoverCss = css`
     &:hover {
-      cursor: pointer;
-      background-color: ${themeColor[theme].hoverBg};
+    cursor: pointer;
+    background-color: ${themeColor[theme].hoverBg};
     }
   `
 
+
   // add more padding to padding-right to avoid title overlap with icon
   const padding = isCollapse ? `0 16px` : `0 54px 0 24px`
+  const ellipsisTextCss = isCollapse ? css`` : css`text-overflow: ellipsis`;
 
   return css`
     font-size: 14px;
@@ -74,10 +76,10 @@ export function applySubMenuHeaderCss(
     position: relative;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
     cursor: pointer;
     padding: ${padding};
     line-height: 40px;
+    ${ellipsisTextCss}
     ${isSelected && selectedCss};
     ${isPopButton && applyPopButtonCss(theme)}
     ${hoverCss};

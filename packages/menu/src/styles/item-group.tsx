@@ -40,3 +40,28 @@ export function applyGroupTitleCss(
     isPopButton && applyPopButtonCss(theme),
   ])
 }
+
+export function applyCollapseGroupTitleCss(
+  theme: Theme = "light",
+): SerializedStyles {
+  const bgColor =
+    theme === "dark"
+      ? globalColor(`--${illaPrefix}-white-08`)
+      : globalColor(`--${illaPrefix}-grayBlue-08`)
+
+  return css`
+    height: 40px;
+    width: auto;
+    position: relative;
+
+    &:after {
+      content: "";
+      background-color: ${bgColor};
+      height: 1px;
+      display: block;
+      position: absolute;
+      top: 20px;
+      width: 14px;
+    }
+  `
+}
