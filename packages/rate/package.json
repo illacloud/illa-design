@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/rate",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Illa Design Rate.",
   "keywords": [
     "rate",
@@ -39,9 +39,9 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.3",
-    "@illa-design/tooltip": "0.0.3",
-    "@illa-design/theme": "0.0.3",
-    "@illa-design/system": "0.0.3"
+    "@illa-design/icon": "0.0.4",
+    "@illa-design/tooltip": "0.0.4",
+    "@illa-design/theme": "0.0.4",
+    "@illa-design/system": "0.0.4"
   }
 }

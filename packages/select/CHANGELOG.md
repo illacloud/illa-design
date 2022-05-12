@@ -1,5 +1,22 @@
 # @illa-design/select
 
+## 0.0.4
+
+### Patch Changes
+
+- update version
+
+- Updated dependencies []:
+  - @illa-design/checkbox@0.0.4
+  - @illa-design/empty@0.0.4
+  - @illa-design/icon@0.0.4
+  - @illa-design/input@0.0.4
+  - @illa-design/input-tag@0.0.4
+  - @illa-design/list@0.0.4
+  - @illa-design/system@0.0.4
+  - @illa-design/theme@0.0.4
+  - @illa-design/trigger@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes
