@@ -8,6 +8,7 @@ import {
   MutableRefObject,
   SyntheticEvent,
 } from "react"
+import { SerializedStyles } from "@emotion/react"
 
 export type InputBorderColor =
   | string
@@ -27,6 +28,7 @@ export type InputSize = "small" | "medium" | "large"
 
 export interface InputElementProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+  _css?: SerializedStyles
   variant?: InputVariant
   placeholder?: string
   borderColor?: InputBorderColor
