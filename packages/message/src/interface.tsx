@@ -7,7 +7,7 @@ import {
   ForwardRefExoticComponent,
   HTMLAttributes,
   PropsWithChildren,
-  RefAttributes
+  RefAttributes,
 } from "react"
 
 export interface MessageSet {
@@ -23,7 +23,9 @@ export interface MessageProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export interface MessageComponent
-  extends ForwardRefExoticComponent<PropsWithChildren<MessageProps> & RefAttributes<HTMLDivElement>> {
+  extends ForwardRefExoticComponent<
+    PropsWithChildren<MessageProps> & RefAttributes<HTMLDivElement>
+  > {
   info: (config: NoticeProps | string) => void
   success: (config: NoticeProps | string) => void
   warning: (config: NoticeProps | string) => void

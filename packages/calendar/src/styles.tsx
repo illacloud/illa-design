@@ -3,7 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const bodyContentCss = css`
   position: relative;
-  padding: 0 10px;
+  // padding: 0 10px;
   overflow: auto;
   ::-webkit-scrollbar {
     display: none;
@@ -115,7 +115,7 @@ export const panelMonthTextCss = css`
 `
 
 export const dayBodyCss = css`
-  padding: 15px;
+  padding: 20px 10px;
 `
 
 export const dayModeTodayButton = css`

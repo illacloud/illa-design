@@ -3,6 +3,7 @@ import { CommonPickerProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"
 import { Input } from "@illa-design/input"
 import { CalendarIcon } from "@illa-design/icon"
+import { triggerCss } from "./style"
 
 export const Picker: FC<CommonPickerProps> = (props) => {
   const {
@@ -32,6 +33,7 @@ export const Picker: FC<CommonPickerProps> = (props) => {
   return (
     <>
       <Trigger
+        _css={triggerCss}
         showArrow={false}
         position={position}
         trigger={"click"}

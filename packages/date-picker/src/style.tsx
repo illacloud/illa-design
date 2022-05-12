@@ -1,6 +1,12 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
+export const triggerCss = css`
+  & > div {
+    padding: 0;
+  }
+`
+
 export const wrapCss = css`
   display: flex;
 `
@@ -31,7 +37,7 @@ export const vertShortcuts = css`
 
 export const popupCss = css`
   & > div:first-of-type {
-    padding: 15px 0;
+    padding: 20px 0;
   }
   & > li:first-of-type {
     font-size: 12px;
@@ -39,6 +45,7 @@ export const popupCss = css`
 `
 
 export const triContentCommonCss = css`
+  width: 278px;
   margin: 0;
   border: none;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
@@ -47,6 +54,7 @@ export const triContentCommonCss = css`
 `
 export const rangeLeftContentCss = css`
   border-right: none;
+  margin-right: 30px;
 `
 export const rangeRightContentCss = css`
   border-left: none;
