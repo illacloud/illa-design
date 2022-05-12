@@ -38,9 +38,11 @@ import useMeasure from "react-use/lib/useMeasure"
 import { mergeRefs } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
 import useMouse from "react-use/lib/useMouse"
+import { css } from "@emotion/react"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
+    _css,
     colorScheme = "gray",
     content,
     position = "top",
@@ -98,7 +100,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "tl":
     case "tr":
       centerNode = (
-        <div css={applyTipsContainer(finalPosition)}>
+        <div css={css(applyTipsContainer(finalPosition), _css)}>
           <div
             css={applyTipsText(
               colorScheme,
@@ -124,7 +126,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "bl":
     case "br":
       centerNode = (
-        <div css={applyTipsContainer(finalPosition)}>
+        <div css={css(applyTipsContainer(finalPosition), _css)}>
           {showArrow && (
             <TriangleBottom
               css={applyTriangleStyle(colorScheme, finalPosition)}
@@ -150,7 +152,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "lt":
     case "lb":
       centerNode = (
-        <div css={applyTipsContainer(finalPosition)}>
+        <div css={css(applyTipsContainer(finalPosition), _css)}>
           <div
             css={applyTipsText(
               colorScheme,
@@ -176,7 +178,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "rt":
     case "rb":
       centerNode = (
-        <div css={applyTipsContainer(finalPosition)}>
+        <div css={css(applyTipsContainer(finalPosition), _css)}>
           {showArrow && (
             <TriangleRight
               css={applyTriangleStyle(colorScheme, finalPosition)}
