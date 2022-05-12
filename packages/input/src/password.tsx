@@ -32,7 +32,6 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       size = "medium",
       variant = "outline",
       withoutNormalBorder,
-      radius = "4px",
       ...rest
     } = props
 
@@ -51,7 +50,6 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       size,
       borderColor,
       withoutNormalBorder,
-      radius,
     }
     const passwordProp = {
       ...rest,

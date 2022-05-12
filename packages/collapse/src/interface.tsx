@@ -44,7 +44,9 @@ export interface CollapseContextProps {
 }
 
 export interface CollapseComponent
-  extends ForwardRefExoticComponent<PropsWithChildren<CollapseProps>> {
+  extends ForwardRefExoticComponent<
+    PropsWithChildren<CollapseProps> & RefAttributes<HTMLDivElement>
+  > {
   Item: ForwardRefExoticComponent<
     CollapseItemProps & RefAttributes<HTMLDivElement>
   >

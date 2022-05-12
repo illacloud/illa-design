@@ -13,6 +13,8 @@ export type ProgressColorScheme =
   | "blue"
   | "cyan"
   | "purple"
+  | "techPink"
+  | "techPurple"
 
 export type ProgressType = "line" | "circle" | "miniCircle" | "miniRing"
 

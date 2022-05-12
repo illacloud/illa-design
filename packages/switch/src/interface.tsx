@@ -12,8 +12,8 @@ export type SwitchColorScheme =
   | "cyan"
   | "purple"
   | "grayBlue"
-  | "brand-purple"
-  | "brand-pink"
+  | "techPurple"
+  | "techPink"
   | string
 
 export type SwitchSize = "medium" | "large"

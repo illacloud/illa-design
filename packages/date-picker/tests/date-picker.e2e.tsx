@@ -66,13 +66,13 @@ it("clear data", () => {
 })
 
 it("click Today button", () => {
-  mount(<DatePicker showNowBtn showTime popupVisible />)
+  mount(
+    <DatePicker showNowBtn showTime popupVisible format={"YYYY-MM-DD HH:mm"} />,
+  )
   cy.findByText("Now")
     .click()
     .then(() => {
-      cy.findByDisplayValue(dayjs().format("YYYY-MM-DD HH:mm:ss")).should(
-        "exist",
-      )
+      cy.findByDisplayValue(dayjs().format("YYYY-MM-DD HH:mm")).should("exist")
     })
   unmount()
 })

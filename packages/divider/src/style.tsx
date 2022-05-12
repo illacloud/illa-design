@@ -6,7 +6,6 @@ export function applyDividerContainerHorizontal(
   variant: DividerVariant,
 ): SerializedStyles {
   return css`
-    display: inline-flex;
     vertical-align: middle;
     border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-style: ${variant};

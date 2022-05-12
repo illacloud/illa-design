@@ -13,6 +13,8 @@ export type LinkColorScheme =
   | "blue"
   | "cyan"
   | "purple"
+  | "techPink"
+  | "techPurple"
 
 export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   disabled?: boolean

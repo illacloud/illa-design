@@ -20,12 +20,14 @@ export const colors: AvatarColorScheme[] = [
   "blue",
   "cyan",
   "purple",
+  "techPink",
+  "techPurple",
 ]
 
 export function applyBgColor(colorScheme: AvatarColorScheme): SerializedStyles {
   let bgColor: SerializedStyles
   if (colors.includes(colorScheme)) {
-    if (colorScheme == "gray") {
+    if (colorScheme == "gray" || colorScheme == "grayBlue") {
       bgColor = css`
         background-color: ${globalColor(`--${illaPrefix}-${colorScheme}-05`)};
       `

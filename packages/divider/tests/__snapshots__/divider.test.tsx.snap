@@ -3,10 +3,6 @@
 exports[`Divider renders default 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
   vertical-align: middle;
   border-color: #e5e6eb;
   border-style: solid;
@@ -23,10 +19,6 @@ exports[`Divider renders default 1`] = `
 exports[`Divider renders horizontal 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
   vertical-align: middle;
   border-color: #e5e6eb;
   border-style: solid;

@@ -273,7 +273,6 @@ export const EmptyState: Story<IconProps> = (props: IconProps) => (
   <EmptyStateIcon {...props} />
 )
 
-
 export const RestApi: Story<IconProps> = (props: IconProps) => (
   <RestApiIcon {...props} />
 )
