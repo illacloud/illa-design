@@ -25,7 +25,8 @@ export default defineConfig({
     }),
   ],
   build: {
-    minify: true,
+    sourcemap: false,
+    minify: false,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/cascader",
