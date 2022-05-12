@@ -249,7 +249,10 @@ export function applyInputContainer(
   `
 }
 
-export function applyInputStyle(textCenterHorizontal?: boolean | undefined) {
+export function applyInputStyle(
+  textCenterHorizontal?: boolean | undefined,
+  readOnly?: boolean,
+) {
   let textAlignCss: SerializedStyles
   if (textCenterHorizontal) {
     textAlignCss = css`
@@ -260,6 +263,10 @@ export function applyInputStyle(textCenterHorizontal?: boolean | undefined) {
       text-align: start;
     `
   }
+
+  const fontColor = readOnly
+    ? globalColor(`--${illaPrefix}-grayBlue-02`)
+    : globalColor(`--${illaPrefix}-grayBlue-05`)
   return css`
     width: 100%;
     appearance: none;
@@ -281,10 +288,10 @@ export function applyInputStyle(textCenterHorizontal?: boolean | undefined) {
 
     &:disabled {
       cursor: not-allowed;
-      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+      color: ${fontColor};
 
       &::placeholder {
-        color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+        color: ${fontColor};
       }
     }
   `

@@ -121,6 +121,7 @@ export interface SelectProps
   onFocus?: (e: SyntheticEvent) => void
   onBlur?: (e: SyntheticEvent) => void
   onClear?: (visible?: boolean) => void
+  readOnly?: boolean
 }
 
 export interface SelectViewProps
@@ -152,4 +153,5 @@ export interface SelectStateValue {
   focus?: boolean
   size?: SelectViewProps["size"]
   borderColor?: SelectProps["borderColor"]
+  readOnly?: boolean
 }

@@ -69,6 +69,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       onVisibleChange,
       onRemoveCheckedItem,
       onChangeInputValue,
+      readOnly,
       ...otherProps
     } = props
 
@@ -90,6 +91,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       focus: mergedFocused,
       size,
       borderColor,
+      readOnly,
     }
 
     const handleFocus = (action: "focus" | "blur") => {
@@ -211,6 +213,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             css={applySelectViewText(needShowInput)}
             ref={inputRef}
             disabled={disabled}
+            readOnly={readOnly}
             {...inputProps}
           />
           <span css={applySelectViewText(!needShowInput)}>{_inputValue}</span>

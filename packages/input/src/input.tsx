@@ -52,6 +52,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     radius = "4px",
     focus: propFocus,
     onFocusChange,
+    readOnly,
     ...rest
   } = props
 
@@ -147,6 +148,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           onPressEnter={(e) => {
             onPressEnter?.(e)
           }}
+          readOnly={readOnly}
         />
         {inputAddon(suffix?.render, suffix?.custom, applySuffixCls(stateValue))}
       </span>

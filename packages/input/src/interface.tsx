@@ -46,6 +46,7 @@ export interface InputElementProps
   onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   withoutNormalBorder?: boolean
   radius?: string
+  readOnly?: boolean
 }
 
 export interface InputProps
@@ -80,6 +81,7 @@ export interface InputProps
   // control component
   focus?: boolean
   onFocusChange?: (focus: boolean) => void
+  readOnly?: boolean
 }
 
 export interface TextAreaProps
