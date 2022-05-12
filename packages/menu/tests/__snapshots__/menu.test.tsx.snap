@@ -23,6 +23,7 @@ exports[`Menu renders with horizontal selected 1`] = `
   font-size: 14px;
   color: #272e3b;
   line-height: 40px;
+  margin-bottom: 8px;
   cursor: not-allowed;
   color: #86909c;
   color: #134ae0;
@@ -44,6 +45,7 @@ exports[`Menu renders with horizontal selected 1`] = `
   font-size: 14px;
   color: #272e3b;
   line-height: 40px;
+  margin-bottom: 8px;
 }
 
 .emotion-4:hover {
