@@ -4,7 +4,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Theme } from "../interface"
 import { applyPopButtonCss } from "../style"
 
-export function applyItemGroupCss(theme: Theme = "light"): SerializedStyles {
+export function applyItemGroupCss(theme: Theme): SerializedStyles {
   const color =
     theme === "dark"
       ? globalColor(`--${illaPrefix}-grayBlue-04`)
@@ -41,9 +41,7 @@ export function applyGroupTitleCss(
   ])
 }
 
-export function applyCollapseGroupTitleCss(
-  theme: Theme = "light",
-): SerializedStyles {
+export function applyCollapseGroupTitleCss(theme: Theme): SerializedStyles {
   const bgColor =
     theme === "dark"
       ? globalColor(`--${illaPrefix}-white-08`)

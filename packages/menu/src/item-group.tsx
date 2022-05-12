@@ -13,8 +13,13 @@ import {
 const ForwardRefItemGroup = forwardRef<HTMLDivElement, ItemGroupProps>(
   (props, ref) => {
     const { children, title, level, _css, ...restProps } = props
-    const { levelIndent, mode, collapse, theme, inDropdown } =
-      useContext(MenuContext)
+    const {
+      levelIndent,
+      mode,
+      collapse,
+      theme = "light",
+      inDropdown,
+    } = useContext(MenuContext)
     const isPopButton = mode === "popButton"
     const isHorizontal = mode === "horizontal"
     const mergedNeedTooltip = level === 1 && collapse && !inDropdown
