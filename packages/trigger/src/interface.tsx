@@ -1,4 +1,5 @@
-import { HTMLAttributes, ReactNode } from "react"
+import { ReactNode } from "react"
+import { SerializedStyles } from "@emotion/react"
 
 export type TriggerColorScheme =
   | string
@@ -13,6 +14,8 @@ export type TriggerColorScheme =
   | "blue"
   | "cyan"
   | "purple"
+  | "techPink"
+  | "techPurple"
 
 export type TriggerPosition =
   | "top"
@@ -31,6 +34,7 @@ export type TriggerPosition =
 export type TriggerTrigger = "hover" | "click" | "focus"
 
 export interface TriggerProps {
+  _css?: SerializedStyles
   children?: ReactNode
   colorScheme?: TriggerColorScheme
   clickOutsideToClose?: boolean

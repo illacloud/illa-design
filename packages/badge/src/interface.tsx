@@ -12,6 +12,8 @@ export type BadgeColorScheme =
   | "cyan"
   | "purple"
   | "grayBlue"
+  | "techPink"
+  | "techPurple"
   | string
 
 export type BadgeStatus =

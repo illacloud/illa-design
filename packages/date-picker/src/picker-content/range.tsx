@@ -128,44 +128,53 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
 
     useEffect(() => {
       if (!rangeValueFirst || !rangeValueSecond) return
-      let format1 = rangeValueFirst.format(finalFormat as string)
-      let format2 = rangeValueSecond.format(finalFormat as string)
+      let formatPre = rangeValueFirst.format(finalFormat as string)
+      let formatAfter = rangeValueSecond.format(finalFormat as string)
       if (showTime) {
-        onSelect?.([format1, format2], [rangeValueFirst, rangeValueSecond])
+        onSelect?.(
+          [formatPre, formatAfter],
+          [rangeValueFirst, rangeValueSecond],
+        )
         return
       }
-      setInputVal([format1, format2])
+      setInputVal([formatPre, formatAfter])
       setShowTrigger(false)
-      onChange?.([format1, format2], [rangeValueFirst, rangeValueSecond])
+      onChange?.([formatPre, formatAfter], [rangeValueFirst, rangeValueSecond])
     }, [rangeValueSecond])
 
     const showTimeConfirm = () => {
       if (!rangeValueFirst || !rangeValueSecond) return
       let defaultTime = dayjs()
-      let calendar1 = dayjs(
+      let calendarPre = dayjs(
         Math.min(rangeValueFirst.valueOf(), rangeValueSecond.valueOf()),
       ).format("YYYY-MM-DD")
-      let calendar2 = dayjs(
+      let calendarAfter = dayjs(
         Math.max(rangeValueFirst.valueOf(), rangeValueSecond.valueOf()),
       ).format("YYYY-MM-DD")
-      let timePicker1 = (valueShowLeft || defaultTime).format("HH:mm:ss")
-      let timePicker2 = (valueShowRight || defaultTime).format("HH:mm:ss")
+      let timePickerPre = (valueShowLeft || defaultTime).format("HH:mm:ss")
+      let timePickerAfter = (valueShowRight || defaultTime).format("HH:mm:ss")
       setInputVal([
-        `${calendar1} ${timePicker1}`,
-        `${calendar2} ${timePicker2}`,
+        `${calendarPre} ${timePickerPre}`,
+        `${calendarAfter} ${timePickerAfter}`,
       ])
       onChange?.(
-        [`${calendar1} ${timePicker1}`, `${calendar2} ${timePicker2}`],
         [
-          dayjs(`${calendar1} ${timePicker1}`),
-          dayjs(`${calendar2} ${timePicker2}`),
+          `${calendarPre} ${timePickerPre}`,
+          `${calendarAfter} ${timePickerAfter}`,
+        ],
+        [
+          dayjs(`${calendarPre} ${timePickerPre}`),
+          dayjs(`${calendarAfter} ${timePickerAfter}`),
         ],
       )
       onOk?.(
-        [`${calendar1} ${timePicker1}`, `${calendar2} ${timePicker2}`],
         [
-          dayjs(`${calendar1} ${timePicker1}`),
-          dayjs(`${calendar2} ${timePicker2}`),
+          `${calendarPre} ${timePickerPre}`,
+          `${calendarAfter} ${timePickerAfter}`,
+        ],
+        [
+          dayjs(`${calendarPre} ${timePickerPre}`),
+          dayjs(`${calendarAfter} ${timePickerAfter}`),
         ],
       )
       setShowTrigger(false)

@@ -35,6 +35,12 @@ test("Select renders with disabled", () => {
   expect(screen.getByDisplayValue("1")).toBeDisabled()
 })
 
+test("Select renders with readOnly", () => {
+  render(<Select data-testid={"test"} value={1} options={[1, 2, 3]} readOnly />)
+  fireEvent.focus(screen.getByTestId("test"))
+  expect(screen.getByDisplayValue("1")).toBeDisabled()
+})
+
 test("Select renders with error", () => {
   render(<Select value={1} options={[1, 2, 3]} error />)
   expect(screen.getByText("1").nextElementSibling).toBeInTheDocument()

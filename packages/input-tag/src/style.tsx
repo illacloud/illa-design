@@ -81,6 +81,19 @@ export function applyInputInnerCss(stateValue: InputTagStateValue) {
   `
 }
 
+export function applyFilterInput(stateValue: InputTagStateValue) {
+  if (!stateValue?.focus) {
+    return css`
+      &:not(:first-child) {
+        width: 0 !important;
+        position: absolute;
+        bottom: 0;
+      }
+    `
+  }
+  return css``
+}
+
 function applyStatus(stateValue: InputTagStateValue) {
   let mainStyle: SerializedStyles
   let disableStyle, hoverStyle, inputStyle, errorStyle: SerializedStyles
