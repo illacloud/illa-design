@@ -9,7 +9,7 @@ export function useMergeValue<T>(
   },
 ): [T, React.Dispatch<React.SetStateAction<T>>, T] {
   const { defaultValue, value } = props || {}
-  const firstRenderRef = useRef(true)
+  const firstRenderRef = useRef<boolean>()
 
   const [stateValue, setStateValue] = useState<T>(
     value !== undefined
@@ -18,6 +18,13 @@ export function useMergeValue<T>(
       ? defaultValue
       : defaultStateValue,
   )
+
+  useEffect(() => {
+    firstRenderRef.current = true
+    return () => {
+      firstRenderRef.current = undefined
+    }
+  }, [])
 
   useEffect(() => {
     if (firstRenderRef.current) {
