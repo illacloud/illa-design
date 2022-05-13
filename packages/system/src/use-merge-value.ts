@@ -19,6 +19,8 @@ export function useMergeValue<T>(
       : defaultStateValue,
   )
 
+  // fix：When StrictMode is enabled, React-18 intentionally double-invokes effects for newly mounted components
+  // link：https://github.com/reactwg/react-18/discussions/19
   useEffect(() => {
     firstRenderRef.current = true
     return () => {
