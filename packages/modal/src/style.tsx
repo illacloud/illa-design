@@ -103,7 +103,15 @@ export function applyModalTitle(isSimple?: boolean): SerializedStyles {
   `
 }
 
-export function applyModalContent(isSimple?: boolean): SerializedStyles {
+export function applyModalContent(
+  isSimple?: boolean,
+  withoutPadding?: boolean,
+): SerializedStyles {
+  const paddingCSS = withoutPadding
+    ? css`
+        padding: 0;
+      `
+    : ""
   const simpleCss = isSimple
     ? css`
         padding: 0 24px 8px;
@@ -115,7 +123,8 @@ export function applyModalContent(isSimple?: boolean): SerializedStyles {
     font-size: 14px;
     overflow: auto;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    ${simpleCss}
+    ${simpleCss};
+    ${paddingCSS}
   `
 }
 

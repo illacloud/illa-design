@@ -25,6 +25,7 @@ export interface ModalProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   visible?: boolean
   _css?: SerializedStyles
+  withoutPadding?: boolean
   confirmLoading?: boolean
   mask?: boolean
   title?: ReactNode

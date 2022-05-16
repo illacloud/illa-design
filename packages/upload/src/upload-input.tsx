@@ -144,3 +144,5 @@ export const UploadInput: FC<ChildrenNodeProps> = (props) => {
   }
   return autoUploadButton
 }
+
+UploadInput.displayName = "UploadInput"
