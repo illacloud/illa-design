@@ -51,7 +51,14 @@ it("show time picker, typeof showTime is Object, extends of TimePickerProps", ()
 })
 
 it("clear data", () => {
-  mount(<DatePicker placeholder={"clear data"} value="2021-01-01" />)
+  const clearEvent = cy.stub().as("clearEvent")
+  mount(
+    <DatePicker
+      placeholder={"clear data"}
+      value="2021-01-01"
+      onClear={clearEvent}
+    />,
+  )
   cy.findByDisplayValue("2021-01-01")
     .parent()
     .trigger("mouseenter")
@@ -59,7 +66,8 @@ it("clear data", () => {
       cy.findByTitle("InputClearIcon")
         .click()
         .then(() => {
-          cy.findByDisplayValue("").should("exist")
+          cy.get("@clearEvent").should("be.calledOnce")
+          cy.get("input").should("not.have.value", "2021-01-01")
         })
     })
   unmount()
