@@ -22,10 +22,12 @@ export function useMergeValue<T>(
   useEffect(() => {
     if (firstRenderRef.current) {
       firstRenderRef.current = false
-      return
-    }
-    if (value === undefined) {
+    } else if (value === undefined) {
       setStateValue(value as T)
+    }
+    // reset the firstRenderRef for the upcoming reusable state version
+    return () => {
+      firstRenderRef.current = true
     }
   }, [value])
 

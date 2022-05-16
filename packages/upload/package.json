@@ -41,6 +41,7 @@
   "dependencies": {
     "@illa-design/icon": "0.0.4",
     "@illa-design/image": "0.0.4",
+    "@illa-design/button": "0.0.4",
     "@illa-design/list": "0.0.4",
     "@illa-design/progress": "0.0.4",
     "@illa-design/theme": "0.0.4",

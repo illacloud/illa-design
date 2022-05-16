@@ -212,3 +212,5 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     </div>
   )
 })
+
+Upload.displayName = "Upload"

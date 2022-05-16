@@ -51,3 +51,5 @@ export const FileListPicItem = forwardRef<HTMLDivElement, FileListItemProps>(
     )
   },
 )
+
+FileListPicItem.displayName = "FileListPicItem"
