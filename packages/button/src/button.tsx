@@ -54,76 +54,60 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           const hasLoadingText =
             loadingText != undefined && loadingText.length > 0
           const hasChild = Children.count(props.children) >= 1
+          const hasPropContent = hasChild || (hasLoadingText && loading)
+          const finalContainer = css`
+            ${applyTagContainer(fullWidth)};
+            ${applyCursor(loading ?? false, disabled ?? false)}
+            ${hasPropContent
+              ? applyPaddingStyle(size, variant)
+              : applyWithoutTextSize(size, fullWidth)};
+            ${applyShape(
+              shape,
+              attached ?? false,
+              first ?? false,
+              last ?? false,
+            )};
+            ${applyElementColor(variant, colorScheme, textColor)};
+            ${applyBg(variant, colorScheme, backgroundColor, borderColor)};
+            ${buttonRadius ? `border-radius: ${buttonRadius};` : ""}
+          `
 
-          if (hasChild || (hasLoadingText && loading)) {
-            const finalContainer = css`
-              ${applyTagContainer(fullWidth ?? false)};
-              ${applyCursor(loading ?? false, disabled ?? false)}
-              ${applyPaddingStyle(size, variant)};
-              ${applyShape(
-                shape,
-                attached ?? false,
-                first ?? false,
-                last ?? false,
-              )};
-              ${applyElementColor(variant, colorScheme, textColor)};
-              ${applyBg(variant, colorScheme, backgroundColor, borderColor)};
-            `
-
-            return (
-              <button
-                ref={ref}
-                css={css(finalContainer, sizeCss)}
-                disabled={disabled || loading}
-                {...otherProps}
-              >
-                {(loading || leftIcon) && (
-                  <span css={applyLeftIconStyle(size)}>
-                    {loading ? <LoadingIcon spin={true} /> : leftIcon}
-                  </span>
-                )}
+          return (
+            <button
+              ref={ref}
+              css={[finalContainer, sizeCss]}
+              disabled={disabled || loading}
+              {...otherProps}
+            >
+              {(loading || leftIcon) && (
+                <span
+                  css={
+                    hasPropContent
+                      ? applyLeftIconStyle(size)
+                      : applyIconWithoutText(size)
+                  }
+                >
+                  {loading ? <LoadingIcon spin={true} /> : leftIcon}
+                </span>
+              )}
+              {hasPropContent && (
                 <span css={applyFontStyle(size)}>
                   {loading && loadingText ? loadingText : props.children}
                 </span>
-                {rightIcon && (
-                  <span css={applyRightIconStyle(size)}>{rightIcon}</span>
-                )}
-              </button>
-            )
-          } else {
-            const finalContainer = css`
-              ${applyTagContainer(fullWidth)};
-              ${applyCursor(loading ?? false, disabled ?? false)}
-              ${applyWithoutTextSize(size, fullWidth)};
-              ${applyShape(
-                shape,
-                attached ?? false,
-                first ?? false,
-                last ?? false,
-              )};
-              ${applyElementColor(variant, colorScheme, textColor)};
-              ${applyBg(variant, colorScheme, backgroundColor, borderColor)};
-              ${buttonRadius ? `border-radius: ${buttonRadius};` : ""}
-            `
-
-            return (
-              <button
-                ref={ref}
-                css={finalContainer}
-                disabled={disabled || loading}
-                {...otherProps}
-              >
-                {(loading || leftIcon) && (
-                  <span css={applyIconWithoutText(size)}>
-                    {loading ? <LoadingIcon spin={true} /> : leftIcon}
-                  </span>
-                )}
-                {rightIcon && (
-                  <span css={applyIconWithoutText(size)}>{rightIcon}</span>
-                )}
-              </button>
-            )
-          }
+              )}
+              {rightIcon && (
+                <span
+                  css={
+                    hasPropContent
+                      ? applyRightIconStyle(size)
+                      : applyIconWithoutText(size)
+                  }
+                >
+                  {rightIcon}
+                </span>
+              )}
+            </button>
+          )
         }}
       </ButtonGroupContext.Consumer>
     )
