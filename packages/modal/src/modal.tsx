@@ -120,9 +120,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
               <div css={applyModalTitle(simple)}>{title}</div>
             </div>
           )}
-          <div css={css(applyModalContent(simple, withoutPadding))}>
-            {children}
-          </div>
+          <div css={applyModalContent(simple, withoutPadding)}>{children}</div>
           {renderFooter()}
           {showCloseIcon && (
             <>

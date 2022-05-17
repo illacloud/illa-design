@@ -125,7 +125,7 @@ test("System test padStart function", () => {
 
 // test style.ts
 test("GetStyle should work", () => {
-  render(<div style={{ color: "red" }} data-testid={"test"}></div>)
+  render(<div style={{ color: "red" }} data-testid={"test"} />)
   expect(getStyle(screen.getByTestId("test"), "color")).toBe("red")
   expect(getStyle(screen.getByTestId("test"), "")).toBe("")
 })
