@@ -110,7 +110,7 @@ export const disappear = css`
 export function applyRadioButtonContainer(size?: RadioSize): SerializedStyles {
   return css`
     width: 100%;
-    border-radius: 4px;
+    border-radius: 3px;
     display: inline-flex;
     vertical-align: middle;
     flex-direction: row;
