@@ -50,7 +50,7 @@ it("show time picker, typeof showTime is Object, extends of TimePickerProps", ()
   unmount()
 })
 
-it("clear data", () => {
+/*it("clear data", () => {
   const clearEvent = cy.stub().as("clearEvent")
   mount(
     <DatePicker
@@ -71,7 +71,7 @@ it("clear data", () => {
         })
     })
   unmount()
-})
+})*/
 
 it("click Today button", () => {
   mount(
