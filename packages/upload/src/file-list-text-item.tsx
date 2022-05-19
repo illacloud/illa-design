@@ -107,3 +107,5 @@ export const FileListTextItem = forwardRef<HTMLDivElement, FileListItemProps>(
     )
   },
 )
+
+FileListTextItem.displayName = "FileListTextItem"

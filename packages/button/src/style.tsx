@@ -39,8 +39,6 @@ export function getDifferentStatusColor(
   colorScheme: ButtonColorScheme,
   variant: ButtonVariant,
   state: State,
-  backgroundColor?: string,
-  borderColor?: string,
 ): string[] {
   switch (state) {
     case State.DEFAULT:

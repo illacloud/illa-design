@@ -7,7 +7,7 @@ import {
   ReactText,
   SyntheticEvent,
 } from "react"
-import { useMergeValue, isArray, isObject } from "@illa-design/system"
+import { useMergeValue, isArray, isObject, omit } from "@illa-design/system"
 import { Trigger } from "@illa-design/trigger"
 import { SelectView } from "./select-view"
 import {
@@ -373,7 +373,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       {...triggerProps}
     >
       <SelectView
-        {...props}
+        {...omit(props, ["triggerProps"])}
         {...selectViewEventHandlers}
         ref={ref}
         value={currentValue}

@@ -48,3 +48,14 @@ test("Modal api renders with config", () => {
   Modal.config({ simple: true })
   Modal.destroyAll()
 })
+
+test("Modal renders with withoutPadding ", () => {
+  render(
+    <Modal visible={true} title={"Modal Title"} withoutPadding>
+      Modal Content
+    </Modal>,
+  )
+  expect(screen.getByText("Modal Content")).toHaveStyle({
+    padding: "0px",
+  })
+})

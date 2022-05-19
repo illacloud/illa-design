@@ -292,3 +292,5 @@ export const UploadElement = forwardRef<UploadRefType, UploadInputElementProps>(
     )
   },
 )
+
+UploadElement.displayName = "UploadElement"

@@ -130,7 +130,7 @@ export interface SelectProps
 export interface SelectViewProps
   extends Omit<
     SelectProps,
-    "options" | "filterOption" | "onChange" | "onClear"
+    "options" | "filterOption" | "onChange" | "onClear" | "triggerProps"
   > {
   value?: any
   defaultValue?: any

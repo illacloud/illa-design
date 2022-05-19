@@ -41,6 +41,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       style,
       className,
       _css,
+      withoutPadding,
       children,
       visible,
       mask = true,
@@ -119,16 +120,17 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
               <div css={applyModalTitle(simple)}>{title}</div>
             </div>
           )}
-          <div css={applyModalContent(simple)}>{children}</div>
+          <div css={applyModalContent(simple, withoutPadding)}>{children}</div>
           {renderFooter()}
-          {showCloseIcon &&
-            (closeElement ? (
-              closeElement
-            ) : (
-              <div css={applyModalCloseIcon} onClick={onCancel}>
-                <CloseIcon />
-              </div>
-            ))}
+          {showCloseIcon && (
+            <>
+              {closeElement || (
+                <div css={applyModalCloseIcon} onClick={onCancel}>
+                  <CloseIcon />
+                </div>
+              )}
+            </>
+          )}
         </div>
       )
       return (
