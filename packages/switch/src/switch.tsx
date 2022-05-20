@@ -31,8 +31,8 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     const onHandleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
       if (propsChecked === void 0) {
         setChecked(!mergedChecked)
-        onChange && onChange(!mergedChecked, event)
       }
+      onChange && onChange(!mergedChecked, event)
       onClick && onClick(event)
     }
 
