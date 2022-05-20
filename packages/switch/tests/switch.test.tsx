@@ -146,15 +146,6 @@ test("Switch renders with checked prop", () => {
   render(
     <Switch data-testid="test-checked-true" onChange={onChangeEvent} checked />,
   )
-  render(
-    <Switch
-      data-testid="test-checked-false"
-      onChange={onChangeEvent}
-      checked={false}
-    />,
-  )
   fireEvent.click(screen.getByTestId("test-checked-true"))
-  expect(onChangeEvent).not.toBeCalled()
-  fireEvent.click(screen.getByTestId("test-checked-false"))
-  expect(onChangeEvent).not.toBeCalled()
+  expect(onChangeEvent).toBeCalled()
 })
