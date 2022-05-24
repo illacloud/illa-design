@@ -22,6 +22,8 @@ import {
   tabLineHeaderHorizontalContainerCss,
   applyHorizontalIconLineCss,
   applyCommonIconLineCss,
+  applyLineHeaderContainerCss,
+  tabsContentCss,
 } from "../style"
 import { TabHeaderChild } from "./tab-header-child"
 import { DownIcon, NextIcon, PreIcon, UpIcon } from "@illa-design/icon"
@@ -194,86 +196,97 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     }, [_isHorizontalLayout])
 
     return (
-      <div css={applyHeaderContainerCss(_isHorizontalLayout)} ref={ref}>
-        {needScroll && (
-          <span
-            onClick={() => {
-              if (preDisable || !scrollRef || !scrollRef?.current) return
-              let dis = getLeftTargetPosition(
-                getChildrenSize(_isHorizontalLayout, childRef.current),
-                getOffsetSize(),
-                getScrollDist(),
-              )
-              _isHorizontalLayout
-                ? scrollRef.current?.scrollTo(0, dis)
-                : scrollRef.current?.scrollTo(dis, 0)
-              checkPreAndNextDisable()
-            }}
-            css={applyPreNextIconCss(true, "line", preDisable, tabPosition)}
-          >
-            {_preIcon}
-            <span css={iconLineCss} />
-          </span>
-        )}
-        <div ref={scrollRef} css={scrollContainerCss}>
-          <div css={headerContainer} ref={ref}>
-            {!_isAhead && (
-              <div css={applyLineCss(childRef && dividerSize())}>
-                <div
-                  css={applyBlueLineCss(blueLineWidth, blueLinePosition, size)}
-                />
-          {prefix && <span>{prefix}</span>}
+      <div
+        css={applyLineHeaderContainerCss(_isHorizontalLayout, tabPosition)}
+        ref={ref}
+      >
+        {prefix && <span>{prefix}</span>}
+        <div css={tabsContentCss}>
+          {needScroll && (
+            <span
+              onClick={() => {
+                if (preDisable || !scrollRef || !scrollRef?.current) return
+                let dis = getLeftTargetPosition(
+                  getChildrenSize(_isHorizontalLayout, childRef.current),
+                  getOffsetSize(),
+                  getScrollDist(),
+                )
+                _isHorizontalLayout
+                  ? scrollRef.current?.scrollTo(0, dis)
+                  : scrollRef.current?.scrollTo(dis, 0)
+                checkPreAndNextDisable()
+              }}
+              css={applyPreNextIconCss(true, "line", preDisable, tabPosition)}
+            >
+              {_preIcon}
+            </span>
+          )}
+          <div ref={scrollRef} css={scrollContainerCss}>
+            <div css={headerContainer} ref={ref}>
+              {!_isAhead && (
+                <div css={applyLineCss(childRef && dividerSize())}>
+                  <div
+                    css={applyBlueLineCss(
+                      blueLineWidth,
+                      blueLinePosition,
+                      size,
+                    )}
+                  />
+                </div>
+              )}
+              <div ref={childRef} css={tabsContainerCss}>
+                {tabHeaderChild &&
+                  tabHeaderChild?.map((item, index) => {
+                    return (
+                      <TabHeaderChild
+                        key={item.tabKey}
+                        handleSelectTab={(key) => {
+                          _handleSelectTab(key, index)
+                        }}
+                        title={item.title}
+                        tabKey={item.tabKey}
+                        isSelected={index === selectedIndex}
+                        disabled={item.disabled}
+                        size={size}
+                        tabBarSpacing={tabBarSpacing}
+                      />
+                    )
+                  })}
               </div>
-            )}
-            <div ref={childRef} css={tabsContainerCss}>
-              {tabHeaderChild &&
-                tabHeaderChild?.map((item, index) => {
-                  return (
-                    <TabHeaderChild
-                      key={item.tabKey}
-                      handleSelectTab={(key) => {
-                        _handleSelectTab(key, index)
-                      }}
-                      title={item.title}
-                      tabKey={item.tabKey}
-                      isSelected={index === selectedIndex}
-                      disabled={item.disabled}
-                      size={size}
-                      tabBarSpacing={tabBarSpacing}
-                    />
-                  )
-                })}
+              {isAhead(tabPosition) && (
+                <div css={applyLineCss(childRef && dividerSize())}>
+                  <div
+                    css={applyBlueLineCss(
+                      blueLineWidth,
+                      blueLinePosition,
+                      size,
+                    )}
+                  />
+                </div>
+              )}
             </div>
-            {isAhead(tabPosition) && (
-              <div css={applyLineCss(childRef && dividerSize())}>
-                <div
-                  css={applyBlueLineCss(blueLineWidth, blueLinePosition, size)}
-                />
-              </div>
-            )}
           </div>
-          {suffix && <span>{suffix}</span>}
+          {needScroll && (
+            <span
+              onClick={() => {
+                if (nextDisable || !scrollRef || !scrollRef?.current) return
+                const dis = getTargetPosition(
+                  getChildrenSize(_isHorizontalLayout, childRef.current),
+                  getOffsetSize(),
+                  getScrollDist() ?? 0,
+                )
+                _isHorizontalLayout
+                  ? scrollRef.current?.scrollTo(0, dis)
+                  : scrollRef.current?.scrollTo(dis, 0)
+                checkPreAndNextDisable()
+              }}
+              css={applyPreNextIconCss(false, "line", nextDisable, tabPosition)}
+            >
+              {_nextIcon}
+            </span>
+          )}
         </div>
-        {needScroll && (
-          <span
-            onClick={() => {
-              if (nextDisable || !scrollRef || !scrollRef?.current) return
-              const dis = getTargetPosition(
-                getChildrenSize(_isHorizontalLayout, childRef.current),
-                getOffsetSize(),
-                getScrollDist() ?? 0,
-              )
-              _isHorizontalLayout
-                ? scrollRef.current?.scrollTo(0, dis)
-                : scrollRef.current?.scrollTo(dis, 0)
-              checkPreAndNextDisable()
-            }}
-            css={applyPreNextIconCss(false, "line", nextDisable, tabPosition)}
-          >
-            {_nextIcon}
-            <span css={iconLineCss} />
-          </span>
-        )}
+        {suffix && <span>{suffix}</span>}
       </div>
     )
   },
