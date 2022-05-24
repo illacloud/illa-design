@@ -466,7 +466,6 @@ export function applyCommonPreNextIconCss(
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: 40px;
     font-size: 12px;
     text-align: center;
     padding: 0 12px ${variant === "capsule" ? 11 : 0}px 4px;

@@ -83,6 +83,8 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     tabBarSpacing,
     tabPosition = "top",
     activeKey,
+    prefix,
+    suffix,
     ...rest
   } = props
 
@@ -147,6 +149,8 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       onDeleteTab && onDeleteTab(key)
     },
     deleteIcon: deleteIcon,
+    suffix: suffix,
+    prefix: prefix,
   }
 
   const containerCss = useMemo(() => {

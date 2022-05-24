@@ -62,6 +62,8 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       tabPosition,
       handleSelectTab,
       tabBarSpacing,
+      suffix,
+      prefix,
     } = props
 
     const scrollRef = useRef<HTMLDivElement | null>(null)
@@ -220,6 +222,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                 <div
                   css={applyBlueLineCss(blueLineWidth, blueLinePosition, size)}
                 />
+          {prefix && <span>{prefix}</span>}
               </div>
             )}
             <div ref={childRef} css={tabsContainerCss}>
@@ -249,6 +252,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
               </div>
             )}
           </div>
+          {suffix && <span>{suffix}</span>}
         </div>
         {needScroll && (
           <span

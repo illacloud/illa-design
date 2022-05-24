@@ -42,6 +42,8 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       handleSelectTab,
       handleDeleteTab,
       tabBarSpacing,
+      prefix,
+      suffix,
       addIcon = <AddIcon />,
     } = props
 
@@ -95,6 +97,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
 
     return (
       <div css={applyHeaderContainerCss(false)} ref={ref}>
+        {prefix && <span>{prefix}</span>}
         {needScroll && (
           <span
             onClick={() => {
@@ -113,6 +116,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             {variant === "card" && <span css={lineCss} />}
           </span>
         )}
+
         <div ref={scrollRef} css={containerHideScrollBarCss}>
           <div css={containerCss}>
             <div ref={childRef} css={tabHeaderContainerCss}>
@@ -168,6 +172,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             {variant === "card" && <span css={lineCss} />}
           </span>
         )}
+        {suffix && <span>{suffix}</span>}
       </div>
     )
   },
