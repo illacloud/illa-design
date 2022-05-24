@@ -9,18 +9,14 @@ export function getSizeCssByAutoFullProps(
         width: 100%;
         justify-content: center;
       `
-    : css`
-        width: auto;
-      `
+    : css``
 
   const heightCss = autoFullY
     ? css`
         height: 100%;
         align-items: center;
       `
-    : css`
-        height: auto;
-      `
+    : css``
 
   return css(widthCss, heightCss)
 }
