@@ -5,7 +5,10 @@ export declare type TabsSize = "small" | "medium" | "large"
 export declare type TabVariant = "line" | "text" | "card" | "capsule"
 
 export interface TabsProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+  extends Omit<
+    HTMLAttributes<HTMLDivElement>,
+    "onChange" | "prefix" | "suffix"
+  > {
   tabPosition?: TabPosition
   animated?: boolean | { tabPane?: boolean; inkBar?: boolean }
   size?: TabsSize
@@ -22,6 +25,8 @@ export interface TabsProps
   onAddTab?: () => void
   onDeleteTab?: (key: string) => void
   placeholder?: string
+  prefix?: ReactNode
+  suffix?: ReactNode
 }
 
 export interface TabContentProps extends HTMLAttributes<HTMLDivElement> {

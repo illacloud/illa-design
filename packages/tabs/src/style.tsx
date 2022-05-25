@@ -50,7 +50,49 @@ export function applyHeaderContainerCss(
   return css`
     display: inline-flex;
     flex-direction: ${isHorizontal ? "column" : "row"};
-    align-items: center;
+    align-items: end;
+  `
+}
+
+export function applyLineHeaderContainerCss(
+  isHorizontal: boolean,
+  position?: TabPosition,
+): SerializedStyles {
+  let borderCss: SerializedStyles
+  switch (position) {
+    case "bottom": {
+      borderCss = css`
+        border-top: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+        align-items: start;
+      `
+      break
+    }
+
+    case "left": {
+      borderCss = css`
+        border-right: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+        align-items: end;
+      `
+      break
+    }
+    case "right": {
+      borderCss = css`
+        border-left: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+        align-items: start;
+      `
+      break
+    }
+    default: {
+      borderCss = css`
+        border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+        align-items: end;
+      `
+      break
+    }
+  }
+  return css`
+    ${applyHeaderContainerCss(isHorizontal)}
+    ${borderCss}
   `
 }
 
@@ -63,6 +105,7 @@ export const tabLineHeaderContainerCss = css`
   display: inline-flex;
   position: relative;
   flex-direction: column;
+  justify-content: flex-end;
   width: 100%;
 `
 
@@ -86,6 +129,9 @@ export const containerHideScrollBarCss = css`
   overflow-y: hidden;
   scroll-behavior: smooth;
   width: 100%;
+  height: 100%;
+  display: inline-flex;
+
   position: relative;
 
   ::-webkit-scrollbar {
@@ -200,6 +246,7 @@ export const addButtonCss = css`
   align-items: center;
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+
   &:hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
@@ -213,6 +260,7 @@ export const deleteButtonCss = css`
   align-items: center;
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+
   &:hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
@@ -222,19 +270,12 @@ export function applyCommonHeaderChildCss(): SerializedStyles {
   return css`
     display: inline-flex;
     align-items: center;
+
     &:hover {
       cursor: pointer;
     }
   `
 }
-
-export const verticalLineCss = css`
-  width: 1px;
-  height: 8px;
-  position: relative;
-  right: 0;
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-`
 
 export function applyTextColorCss(
   disabled?: boolean,
@@ -253,28 +294,29 @@ export function applyTextColorCss(
     `
   } else {
     textColorCss = css`
-      color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
-      &:hover {
-        background-color: ${
-          variant !== "capsule"
-            ? globalColor(`--${illaPrefix}-grayBlue-09`)
-            : undefined
-        }
-    `
+          color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+
+          &:hover {
+            background-color: ${
+              variant !== "capsule"
+                ? globalColor(`--${illaPrefix}-grayBlue-09`)
+                : undefined
+            }
+        `
   }
   if (!disabled && variant === "text") {
     if (isSelected) {
       textColorCss = css`
-        color: ${globalColor(`--${illaPrefix}-grayblue-02`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
         font-weight: 500;
       `
     } else {
       textColorCss = css`
-        color: ${globalColor(`--${illaPrefix}-grayblue-04`)};
-        &:hover {
-          background-color: 
-                  ${globalColor(`--${illaPrefix}-gray-09`)}
-      `
+              color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+
+              &:hover {
+                background-color: ${globalColor(`--${illaPrefix}-gray-09`)}
+            `
     }
   }
   return textColorCss
@@ -310,8 +352,6 @@ export function applyDividerCommonLineCss(w: number): SerializedStyles {
     width: ${w}px;
     display: inline-flex;
     position: relative;
-    bottom: 4px;
-    border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
   `
 }
 
@@ -319,7 +359,6 @@ export function applyDividerHorizontalLineCss(h: number): SerializedStyles {
   return css`
     height: ${h}px;
     display: inline-flex;
-    border-right: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
   `
 }
 
@@ -333,8 +372,8 @@ export function applyCommonBlueLineCss(
     position: relative;
     box-sizing: border-box;
     left: ${position}px;
+    bottom: 0;
     transition: left 200ms, width 200ms;
-    top: 1px;
     background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
   `
 }
@@ -359,7 +398,6 @@ export function applyHorizontalBlueLineCss(
     position: relative;
     box-sizing: border-box;
     top: ${padding + position}px;
-    left: 1px;
     transition: top 200ms, height 200ms;
     bottom: 0;
     background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
@@ -443,7 +481,7 @@ export function applyHorizontalPreNextIconCss(
     cursor: pointer;
     ${verticalPaddingCss}
     ${colorCss}
-    position: relative;
+      position: relative;
     width: 100%;
     justify-content: center;
   `
@@ -453,7 +491,6 @@ export function applyCommonPreNextIconCss(
   isPre: boolean,
   variant?: TabVariant,
   disabled?: boolean,
-  tabPosition?: TabPosition,
 ): SerializedStyles {
   let colorCss =
     disabled &&
@@ -466,13 +503,10 @@ export function applyCommonPreNextIconCss(
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: 40px;
     font-size: 12px;
     text-align: center;
     padding: 0 12px ${variant === "capsule" ? 11 : 0}px 4px;
     ${colorCss};
-    margin-top: ${variant === "line" && tabPosition === "bottom" ? 13 : 0}px;
-    position: relative;
   `
 }
 
@@ -512,11 +546,9 @@ export function applyCommonIconLineCss(isTop: boolean): SerializedStyles {
   `
 }
 
-export const lineCss = css`
-  height: 0.5px;
-  width: 100%;
-  position: absolute;
-  bottom: 0.5px;
-  left: 0;
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)}; ;
+export const tabsContentCss = css`
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: inherit;
 `
