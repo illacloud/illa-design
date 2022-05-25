@@ -25,7 +25,7 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
   } = props
 
   const [applyChildCss] = useMemo(() => {
-    let _childCss, _textCss
+    let _childCss
     if (variant === "card") {
       _childCss = applyCardHeaderChildCss
     } else if (variant === "capsule") {
@@ -33,7 +33,7 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
     } else {
       _childCss = applyCommonHeaderChildCss
     }
-    return [_childCss, _textCss]
+    return [_childCss]
   }, [variant, isSelected])
 
   return (

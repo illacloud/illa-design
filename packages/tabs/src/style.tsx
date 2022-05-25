@@ -58,7 +58,7 @@ export function applyLineHeaderContainerCss(
   isHorizontal: boolean,
   position?: TabPosition,
 ): SerializedStyles {
-  let borderCss = css``
+  let borderCss: SerializedStyles
   switch (position) {
     case "bottom": {
       borderCss = css`
@@ -277,14 +277,6 @@ export function applyCommonHeaderChildCss(): SerializedStyles {
   `
 }
 
-export const verticalLineCss = css`
-  width: 1px;
-  height: 8px;
-  position: relative;
-  right: 0;
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-`
-
 export function applyTextColorCss(
   disabled?: boolean,
   isSelected?: boolean,
@@ -315,12 +307,12 @@ export function applyTextColorCss(
   if (!disabled && variant === "text") {
     if (isSelected) {
       textColorCss = css`
-        color: ${globalColor(`--${illaPrefix}-grayblue-02`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
         font-weight: 500;
       `
     } else {
       textColorCss = css`
-              color: ${globalColor(`--${illaPrefix}-grayblue-04`)};
+              color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 
               &:hover {
                 background-color: ${globalColor(`--${illaPrefix}-gray-09`)}
@@ -499,7 +491,6 @@ export function applyCommonPreNextIconCss(
   isPre: boolean,
   variant?: TabVariant,
   disabled?: boolean,
-  tabPosition?: TabPosition,
 ): SerializedStyles {
   let colorCss =
     disabled &&

@@ -122,7 +122,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             <div css={containerCss}>
               <div ref={childRef} css={tabHeaderContainerCss}>
                 {tabHeaderChild &&
-                  tabHeaderChild?.map((item, index, array) => {
+                  tabHeaderChild?.map((item, index) => {
                     const childProps: TabHeaderChildProps = {
                       handleSelectTab: (key) => _handleSelectTab(key, index),
                       title: item.title,

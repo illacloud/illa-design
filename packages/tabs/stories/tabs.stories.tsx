@@ -2,7 +2,6 @@ import { Meta, Story } from "@storybook/react"
 import { Tabs, TabsProps } from "../src"
 import { TabPane } from "../src"
 import { ReactNode } from "react"
-import { Button } from "@illa-design/button"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -56,12 +55,7 @@ const Template: Story<TabsProps> = (props) => {
   ]
 
   return (
-    <Tabs
-      suffix={<Button style={{ height: 100 }}>xxxxx</Button>}
-      prefix={"suffix"}
-      style={{ height: 200 }}
-      {...props}
-    >
+    <Tabs style={{ width: 400, height: 200 }} {...props}>
       {tabArr.map((item) => {
         return (
           <TabPane title={item.title} key={item.key} disabled={item.disabled}>

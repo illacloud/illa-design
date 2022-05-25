@@ -10,7 +10,6 @@ import {
   applyCommonBlueLineCss,
   applyDividerCommonLineCss,
   applyDividerHorizontalLineCss,
-  applyHeaderContainerCss,
   applyHorizontalBlueLineCss,
   applyHorizontalPreNextIconCss,
   applyCommonPreNextIconCss,
@@ -166,7 +165,6 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       applyBlueLineCss,
       scrollContainerCss,
       applyPreNextIconCss,
-      iconLineCss,
     ] = _isHorizontalLayout
       ? [
           tabLineHeaderHorizontalContainerCss,
@@ -196,10 +194,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     }, [_isHorizontalLayout])
 
     return (
-      <div
-        css={applyLineHeaderContainerCss(_isHorizontalLayout, tabPosition)}
-        ref={ref}
-      >
+      <div css={applyLineHeaderContainerCss(_isHorizontalLayout)} ref={ref}>
         {prefix && <span>{prefix}</span>}
         <div css={tabsContentCss}>
           {needScroll && (
@@ -216,7 +211,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                   : scrollRef.current?.scrollTo(dis, 0)
                 checkPreAndNextDisable()
               }}
-              css={applyPreNextIconCss(true, "line", preDisable, tabPosition)}
+              css={applyPreNextIconCss(true, "line", preDisable)}
             >
               {_preIcon}
             </span>
@@ -280,7 +275,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                   : scrollRef.current?.scrollTo(dis, 0)
                 checkPreAndNextDisable()
               }}
-              css={applyPreNextIconCss(false, "line", nextDisable, tabPosition)}
+              css={applyPreNextIconCss(false, "line", nextDisable)}
             >
               {_nextIcon}
             </span>

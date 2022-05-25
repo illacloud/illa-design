@@ -72,7 +72,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     defaultActiveKey,
     size = "medium",
     animated,
-    editable, // just valid when variant is card
+    editable,
     variant = "line",
     addIcon,
     deleteIcon,
