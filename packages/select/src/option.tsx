@@ -19,6 +19,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
     onMouseEnter,
     onMouseLeave,
     onClickOption,
+    colorScheme,
     ...otherProps
   } = props
 
@@ -41,7 +42,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
     <>
       {multiple ? (
         <li
-          css={applyOptionStyle(size, multiple, isChecked)}
+          css={applyOptionStyle(size, multiple, isChecked, colorScheme)}
           ref={ref}
           {...optionProps}
         >
@@ -57,7 +58,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
         </li>
       ) : (
         <li
-          css={applyOptionStyle(size, multiple, isChecked)}
+          css={applyOptionStyle(size, multiple, isChecked, colorScheme)}
           ref={ref}
           {...optionProps}
         >

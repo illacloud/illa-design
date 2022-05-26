@@ -7,6 +7,31 @@ import { BsGithub, BsMailbox, BsTwitch } from "react-icons/bs"
 export default {
   title: "DATA DISPLAY/AvatarGroup",
   component: AvatarGroup,
+  argTypes: {
+    icon: {
+      control: false,
+    },
+    colorScheme: {
+      options: [
+        "white",
+        "blackAlpha",
+        "gray",
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "cyan",
+        "purple",
+        "grayBlue",
+        "techPink",
+        "techPurple",
+      ],
+      control: {
+        type: "select",
+      },
+    },
+  },
 } as Meta
 
 const Template: Story<AvatarProps> = (args) => {
