@@ -68,7 +68,7 @@
     "report:combined": "sh ./scripts/merge-coverage.sh",
     "report:component": "sh ./scripts/coverage-component.sh"
   },
-  "packageManager": "yarn@1.22.17",
+  "packageManager": "yarn@1.22.19",
   "nyc": {
     "report-dir": "cypress-coverage",
     "reporter": [
