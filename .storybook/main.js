@@ -31,6 +31,11 @@ module.exports = {
         include: ["**/**.tsx", "**/**.ts"],
       }),
     )
+    config.optimizeDeps.include.push("@emotion/react/jsx-dev-runtime")
+    config.build = {
+      ...config.build,
+      sourcemap: true,
+    }
     return config
   },
 }

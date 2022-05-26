@@ -18,6 +18,7 @@ export default defineConfig({
     istanbul({
       cypress: true,
       requireEnv: false,
+      checkProd: false,
       exclude: ["node_modules", "cypress/", "dist"],
       extension: ["ts", "tsx"],
     }),
