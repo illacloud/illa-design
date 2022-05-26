@@ -1,5 +1,73 @@
 # @illa-design/react
 
+## 0.0.6
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/affix@0.0.6
+  - @illa-design/alert@0.0.6
+  - @illa-design/anchor@0.0.6
+  - @illa-design/avatar@0.0.6
+  - @illa-design/back-top@0.0.6
+  - @illa-design/badge@0.0.6
+  - @illa-design/button@0.0.6
+  - @illa-design/calendar@0.0.6
+  - @illa-design/card@0.0.6
+  - @illa-design/checkbox@0.0.6
+  - @illa-design/collapse@0.0.6
+  - @illa-design/comment@0.0.6
+  - @illa-design/config-provider@0.0.6
+  - @illa-design/date-picker@0.0.6
+  - @illa-design/description@0.0.6
+  - @illa-design/divider@0.0.6
+  - @illa-design/drawer@0.0.6
+  - @illa-design/empty@0.0.6
+  - @illa-design/grid@0.0.6
+  - @illa-design/icon@0.0.6
+  - @illa-design/image@0.0.6
+  - @illa-design/input@0.0.6
+  - @illa-design/input-number@0.0.6
+  - @illa-design/input-tag@0.0.6
+  - @illa-design/link@0.0.6
+  - @illa-design/list@0.0.6
+  - @illa-design/menu@0.0.6
+  - @illa-design/message@0.0.6
+  - @illa-design/modal@0.0.6
+  - @illa-design/notification@0.0.6
+  - @illa-design/page-header@0.0.6
+  - @illa-design/pagination@0.0.6
+  - @illa-design/popconfirm@0.0.6
+  - @illa-design/popover@0.0.6
+  - @illa-design/progress@0.0.6
+  - @illa-design/radio@0.0.6
+  - @illa-design/rate@0.0.6
+  - @illa-design/result@0.0.6
+  - @illa-design/select@0.0.6
+  - @illa-design/skeleton@0.0.6
+  - @illa-design/slider@0.0.6
+  - @illa-design/space@0.0.6
+  - @illa-design/spin@0.0.6
+  - @illa-design/statistic@0.0.6
+  - @illa-design/steps@0.0.6
+  - @illa-design/switch@0.0.6
+  - @illa-design/system@0.0.6
+  - @illa-design/table@0.0.6
+  - @illa-design/tabs@0.0.6
+  - @illa-design/tag@0.0.6
+  - @illa-design/theme@0.0.6
+  - @illa-design/time-picker@0.0.6
+  - @illa-design/timeline@0.0.6
+  - @illa-design/tooltip@0.0.6
+  - @illa-design/tree@0.0.6
+  - @illa-design/tree-common@0.0.6
+  - @illa-design/tree-select@0.0.6
+  - @illa-design/trigger@0.0.6
+  - @illa-design/typography@0.0.6
+  - @illa-design/upload@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @illa-design/theme
 
+## 0.0.6
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/system@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes

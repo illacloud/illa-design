@@ -1,5 +1,21 @@
 # @illa-design/cascader
 
+## 0.0.6
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/checkbox@0.0.6
+  - @illa-design/empty@0.0.6
+  - @illa-design/icon@0.0.6
+  - @illa-design/list@0.0.6
+  - @illa-design/select@0.0.6
+  - @illa-design/system@0.0.6
+  - @illa-design/theme@0.0.6
+  - @illa-design/trigger@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes
