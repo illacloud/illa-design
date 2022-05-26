@@ -55,7 +55,7 @@ const Template: Story<TabsProps> = (props) => {
   ]
 
   return (
-    <Tabs style={{ width: 500, height: 200 }} {...props}>
+    <Tabs style={{ width: 400, height: 200 }} {...props}>
       {tabArr.map((item) => {
         return (
           <TabPane title={item.title} key={item.key} disabled={item.disabled}>

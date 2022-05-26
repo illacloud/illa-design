@@ -17,7 +17,7 @@ import {
   tabCardHeaderContainerCss,
   tabHeaderContainerCss,
   tabLineHeaderContainerCss,
-  lineCss,
+  tabsContentCss,
 } from "../style"
 import { TabHeaderChild } from "./tab-header-child"
 import { AddIcon, NextIcon, PreIcon } from "@illa-design/icon"
@@ -42,6 +42,8 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       handleSelectTab,
       handleDeleteTab,
       tabBarSpacing,
+      prefix,
+      suffix,
       addIcon = <AddIcon />,
     } = props
 
@@ -95,79 +97,83 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
 
     return (
       <div css={applyHeaderContainerCss(false)} ref={ref}>
-        {needScroll && (
-          <span
-            onClick={() => {
-              if (preDisable || !scrollRef?.current || !childRef.current) return
-              const childrenWidthArr = getChildrenWidthArr(childRef.current)
-              const dis = getLeftTargetPosition(
-                childrenWidthArr,
-                scrollRef?.current?.offsetWidth ?? 0,
-                scrollRef.current?.scrollLeft ?? 0,
-              )
-              scrollRef.current?.scrollTo(dis, 0)
-            }}
-            css={applyCommonPreNextIconCss(true, variant, preDisable)}
-          >
-            <PreIcon />
-            {variant === "card" && <span css={lineCss} />}
-          </span>
-        )}
-        <div ref={scrollRef} css={containerHideScrollBarCss}>
-          <div css={containerCss}>
-            <div ref={childRef} css={tabHeaderContainerCss}>
-              {tabHeaderChild &&
-                tabHeaderChild?.map((item, index, array) => {
-                  const childProps: TabHeaderChildProps = {
-                    handleSelectTab: (key) => _handleSelectTab(key, index),
-                    title: item.title,
-                    tabKey: item.tabKey,
-                    isSelected: index == selectedIndex,
-                    disabled: item.disabled,
-                    size: size,
-                    variant: variant,
-                    closable: variant === "card" && editable,
-                    deleteIcon: deleteIcon,
-                    handleDeleteTab: handleDeleteTab,
-                    tabBarSpacing: tabBarSpacing,
-                  }
-                  return <TabHeaderChild key={item.tabKey} {...childProps} />
-                })}
-              {variant === "card" && editable && (
-                <span
-                  css={addButtonCss}
-                  onClick={() => {
-                    onAddTab && onAddTab()
-                  }}
-                >
-                  {addIcon}
-                </span>
-              )}
-            </div>
-            {variant === "card" && <div css={cardDividerContainerCss} />}
-          </div>
-        </div>
-        {needScroll && (
-          <span
-            onClick={() => {
-              if (nextDisable || !childRef.current || !scrollRef?.current)
-                return
-              const childrenWidthArr = getChildrenWidthArr(childRef.current)
-              scrollRef.current?.scrollTo(
-                getTargetPosition(
+        {prefix && <span>{prefix}</span>}
+        <div css={tabsContentCss}>
+          {needScroll && (
+            <span
+              onClick={() => {
+                if (preDisable || !scrollRef?.current || !childRef.current)
+                  return
+                const childrenWidthArr = getChildrenWidthArr(childRef.current)
+                const dis = getLeftTargetPosition(
                   childrenWidthArr,
                   scrollRef?.current?.offsetWidth ?? 0,
                   scrollRef.current?.scrollLeft ?? 0,
-                ),
-                0,
-              )
-            }}
-            css={applyCommonPreNextIconCss(false, variant, nextDisable)}
-          >
-            <NextIcon />
-            {variant === "card" && <span css={lineCss} />}
-          </span>
-        )}
+                )
+                scrollRef.current?.scrollTo(dis, 0)
+              }}
+              css={applyCommonPreNextIconCss(true, variant, preDisable)}
+            >
+              <PreIcon />
+            </span>
+          )}
+
+          <div ref={scrollRef} css={containerHideScrollBarCss}>
+            <div css={containerCss}>
+              <div ref={childRef} css={tabHeaderContainerCss}>
+                {tabHeaderChild &&
+                  tabHeaderChild?.map((item, index) => {
+                    const childProps: TabHeaderChildProps = {
+                      handleSelectTab: (key) => _handleSelectTab(key, index),
+                      title: item.title,
+                      tabKey: item.tabKey,
+                      isSelected: index == selectedIndex,
+                      disabled: item.disabled,
+                      size: size,
+                      variant: variant,
+                      closable: variant === "card" && editable,
+                      deleteIcon: deleteIcon,
+                      handleDeleteTab: handleDeleteTab,
+                      tabBarSpacing: tabBarSpacing,
+                    }
+                    return <TabHeaderChild key={item.tabKey} {...childProps} />
+                  })}
+                {variant === "card" && editable && (
+                  <span
+                    css={addButtonCss}
+                    onClick={() => {
+                      onAddTab && onAddTab()
+                    }}
+                  >
+                    {addIcon}
+                  </span>
+                )}
+              </div>
+              {variant === "card" && <div css={cardDividerContainerCss} />}
+            </div>
+          </div>
+          {needScroll && (
+            <span
+              onClick={() => {
+                if (nextDisable || !childRef.current || !scrollRef?.current)
+                  return
+                const childrenWidthArr = getChildrenWidthArr(childRef.current)
+                scrollRef.current?.scrollTo(
+                  getTargetPosition(
+                    childrenWidthArr,
+                    scrollRef?.current?.offsetWidth ?? 0,
+                    scrollRef.current?.scrollLeft ?? 0,
+                  ),
+                  0,
+                )
+              }}
+              css={applyCommonPreNextIconCss(false, variant, nextDisable)}
+            >
+              <NextIcon />
+            </span>
+          )}
+        </div>
+        {suffix && <span>{suffix}</span>}
       </div>
     )
   },

@@ -92,10 +92,9 @@ export const switchIconCss = css`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: 10px;
-  border-radius: 8px;
-  width: 10px;
-  margin: 3px;
+  height: 16px;
+  border-radius: 16px;
+  width: 16px;
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
