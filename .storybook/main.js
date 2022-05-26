@@ -27,10 +27,21 @@ module.exports = {
           plugins: ["@emotion/babel-plugin"],
           compact: false,
         },
-        exclude: [/\.stories\.([tj])sx?$/, /\.test\.([tj])sx?$/],
+        exclude: [/\.test\.([tj])sx?$/, /\.e2e\.([tj])sx?$/],
         include: ["**/**.tsx", "**/**.ts"],
       }),
     )
+
+    config.server = {
+      ...config.server,
+      watch: {
+        ignored: [
+          "**/cypress-coverage/**",
+          "**/jest-coverage/**",
+          "**/coverage/**",
+        ],
+      },
+    }
     config.optimizeDeps.include.push("@emotion/react/jsx-dev-runtime")
     config.build = {
       ...config.build,
