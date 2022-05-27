@@ -33,6 +33,11 @@ export type TriggerPosition =
 
 export type TriggerTrigger = "hover" | "click" | "focus"
 
+export type customPositionType = {
+  x?: number
+  y?: number
+}
+
 export interface TriggerProps {
   _css?: SerializedStyles
   children?: ReactNode
@@ -52,5 +57,6 @@ export interface TriggerProps {
   autoAlignPopupWidth?: boolean
   popupVisible?: boolean
   disabled?: boolean
+  customPosition?: customPositionType
   onVisibleChange?: (visible: boolean) => void
 }
