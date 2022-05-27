@@ -20,6 +20,7 @@ export interface OptionProps
   valueActive?: string
   valueSelect?: string | string[] | number | number[]
   isSelectOption?: boolean
+  colorScheme?: ColorScheme
   size?: SelectSize
   onClick?: (value: SyntheticEvent) => void
   onMouseEnter?: (value: OptionProps["value"]) => void
@@ -51,7 +52,7 @@ export interface OptionListProps<T> {
 
 export type SelectSize = "small" | "medium" | "large"
 
-export type SelectBorderColor =
+export type ColorScheme =
   | string
   | "gray"
   | "blue"
@@ -110,7 +111,7 @@ export interface SelectProps
     | boolean
     | ((inputValue: string, option: ReactElement) => boolean)
   triggerProps?: Partial<TriggerProps>
-  borderColor?: SelectBorderColor
+  colorScheme?: ColorScheme
   // events
   onChange?: (value: any, option?: OptionInfo | OptionInfo[]) => void
   onSearch?: (value: string, reason: InputValueChangeReason) => void
@@ -155,6 +156,6 @@ export interface SelectStateValue {
   error?: boolean
   focus?: boolean
   size?: SelectViewProps["size"]
-  borderColor?: SelectProps["borderColor"]
+  colorScheme?: SelectProps["colorScheme"]
   readOnly?: boolean
 }

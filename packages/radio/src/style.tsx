@@ -109,6 +109,7 @@ export const disappear = css`
 
 export function applyRadioButtonContainer(size?: RadioSize): SerializedStyles {
   return css`
+    width: 100%;
     border-radius: 4px;
     display: inline-flex;
     vertical-align: middle;
@@ -116,39 +117,40 @@ export function applyRadioButtonContainer(size?: RadioSize): SerializedStyles {
     align-items: center;
     gap: 4px;
     font-size: 14px;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    padding: 1px;
   `
 }
 
 export function applyRadioButton(stateValue: RadioStatus) {
   const { colorScheme } = stateValue
-  let sizeCss = css``
-  let stateCss = css``
+  let sizeCss,
+    stateCss = css``
   switch (stateValue?.size) {
     case "small":
       sizeCss = css`
         padding: 1px 8px;
-        min-width: 44px;
         height: 24px;
       `
       break
     case "medium":
       sizeCss = css`
         padding: 5px 12px;
-        min-width: 52px;
         height: 32px;
       `
       break
     case "large":
       sizeCss = css`
         padding: 9px 16px;
-        min-width: 60px;
         height: 40px;
       `
       break
   }
+  const checkedColor =
+    colorScheme === "gray" || colorScheme === "grayBlue"
+      ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
+      : globalColor(`--${illaPrefix}-${colorScheme}-03`)
 
   if (stateValue?.disabled && stateValue?.checked) {
     stateCss = css`
@@ -163,8 +165,8 @@ export function applyRadioButton(stateValue: RadioStatus) {
   } else if (stateValue?.checked) {
     stateCss = css`
       font-weight: 500;
-      border-radius: 4px;
-      color: ${globalColor(`--${illaPrefix}-${colorScheme}-03`)};
+      border-radius: 3px;
+      color: ${checkedColor};
       background-color: ${globalColor(`--${illaPrefix}-white-01`)};
 
       &::before,
@@ -175,12 +177,13 @@ export function applyRadioButton(stateValue: RadioStatus) {
   } else {
     stateCss = css`
       &:hover {
-        border-radius: 4px;
+        border-radius: 3px;
         background-color: ${globalColor(`--${illaPrefix}-white-01`)};
       }
     `
   }
   return css`
+    flex-grow: 1;
     position: relative;
     display: flex;
     align-items: center;
@@ -202,7 +205,7 @@ export function applyRadioButton(stateValue: RadioStatus) {
       display: block;
       height: 12px;
       width: 1px;
-      background-color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       content: "";
       transition: all 0.1s linear;
     }

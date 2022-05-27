@@ -51,6 +51,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     onVisibleChange,
     onInputValueChange,
     readOnly,
+    colorScheme = "blue",
   } = props
 
   const [currentVisible, setCurrentVisible] = useState<boolean>()
@@ -342,6 +343,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
                     valueSelect={currentValue}
                     valueActive={valueActive}
                     multiple={multiple}
+                    colorScheme={colorScheme}
                     onClickOption={handleOptionClick}
                     onMouseEnter={(value: any) => {
                       setValueActive(value)

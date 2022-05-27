@@ -132,7 +132,7 @@ export function applyTipsText(
     color: ${textColor};
     text-align: left;
     max-width: ${maxWidth};
-    border-radius: 2px;
+    border-radius: 8px;
     font-size: 14px;
     ${padding};
     ${width}

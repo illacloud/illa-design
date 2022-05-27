@@ -11,6 +11,26 @@ export default {
     icon: {
       control: false,
     },
+    colorScheme: {
+      options: [
+        "white",
+        "blackAlpha",
+        "gray",
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "cyan",
+        "purple",
+        "grayBlue",
+        "techPink",
+        "techPurple",
+      ],
+      control: {
+        type: "select",
+      },
+    },
   },
 } as Meta
 
