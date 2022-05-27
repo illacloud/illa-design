@@ -302,8 +302,12 @@ export async function adjustLocation(
     }
   }
   // custom position
-  if (customPosition.x) adjustResult.transX = customPosition.x
-  if (customPosition.y) adjustResult.transY = customPosition.y
+  if (customPosition.x) {
+    adjustResult.transX = customPosition.x
+  }
+  if (customPosition.y) {
+    adjustResult.transY = customPosition.y
+  }
   computeElement.remove()
   return adjustResult
 }
