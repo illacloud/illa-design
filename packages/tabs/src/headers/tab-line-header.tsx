@@ -195,7 +195,10 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     }, [_isHorizontalLayout])
 
     return (
-      <div css={applyLineHeaderContainerCss(_isHorizontalLayout)} ref={ref}>
+      <div
+        css={applyLineHeaderContainerCss(_isHorizontalLayout, tabPosition)}
+        ref={ref}
+      >
         {prefix && <span>{prefix}</span>}
         <div css={tabsContentCss}>
           {needScroll && (
