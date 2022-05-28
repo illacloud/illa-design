@@ -28,7 +28,6 @@ export const commonContainerCss = css`
   display: inline-flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
 `
 
 export const horizontalContainerCss = css`

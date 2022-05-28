@@ -42,6 +42,7 @@ export interface TabsProps
   placeholder?: string
   prefix?: ReactNode
   suffix?: ReactNode
+  withoutContent?: boolean
 }
 
 export interface TabContentProps extends HTMLAttributes<HTMLDivElement> {
