@@ -220,7 +220,7 @@ export function applyCardHeaderChildCss(
     z-index: 2;
     margin: 0 2px;
     ${applyHoverBackgroundCss(isSelected, disabled)}
-    color: ${globalColor(`--${illaPrefix}-blue-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     transition: background-color 200ms;
   `
 }
@@ -295,7 +295,7 @@ export function applyTextColorCss(
     `
   } else {
     textColorCss = css`
-          color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+          color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 
           &:hover {
             background-color: ${
@@ -313,7 +313,7 @@ export function applyTextColorCss(
       `
     } else {
       textColorCss = css`
-              color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+              color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 
               &:hover {
                 background-color: ${globalColor(`--${illaPrefix}-gray-09`)}
