@@ -14,7 +14,7 @@ exports[`List renders without border and split 1`] = `
 }
 
 .emotion-1 {
-  padding: 12px 24px;
+  padding: 12px 16px;
 }
 
 .emotion-2 {
