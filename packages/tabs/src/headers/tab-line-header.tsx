@@ -199,7 +199,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         css={applyLineHeaderContainerCss(_isHorizontalLayout, tabPosition)}
         ref={ref}
       >
-        {prefix && <span>{prefix}</span>}
+        {prefix}
         <div css={tabsContentCss}>
           {needScroll && (
             <span
@@ -288,7 +288,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             </span>
           )}
         </div>
-        {suffix && <span>{suffix}</span>}
+        {suffix}
       </div>
     )
   },
