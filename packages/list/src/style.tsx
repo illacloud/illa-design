@@ -88,12 +88,10 @@ export const applyItemMetaTitle = css`
 `
 
 export const applyListItemActionsStyle = css`
-  display: inline-flex;
   margin-top: 8px;
 `
 
 export const applyListItemExtraStyle = css`
-  display: inline-flex;
   margin-left: 32px;
 `
 
