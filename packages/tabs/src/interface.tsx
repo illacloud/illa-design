@@ -3,6 +3,20 @@ import { HTMLAttributes, ReactElement, ReactNode } from "react"
 export declare type TabPosition = "left" | "right" | "top" | "bottom"
 export declare type TabsSize = "small" | "medium" | "large"
 export declare type TabVariant = "line" | "text" | "card" | "capsule"
+export type TabsColorScheme =
+  | string
+  | "blackAlpha"
+  | "gray"
+  | "grayBlue"
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "cyan"
+  | "purple"
+  | "techPink"
+  | "techPurple"
 
 export interface TabsProps
   extends Omit<
@@ -24,6 +38,7 @@ export interface TabsProps
   onClickTab?: (key: string) => void
   onAddTab?: () => void
   onDeleteTab?: (key: string) => void
+  colorScheme?: TabsColorScheme
   placeholder?: string
   prefix?: ReactNode
   suffix?: ReactNode
@@ -55,6 +70,7 @@ export type TabHeaderChildProps = Pick<
   size?: TabsSize
   handleDeleteTab?: (key: string) => void
   tabBarSpacing?: number
+  colorScheme: TabsColorScheme
 }
 
 export interface TabPaneProps

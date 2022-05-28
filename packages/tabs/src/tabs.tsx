@@ -85,6 +85,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     activeKey,
     prefix,
     suffix,
+    colorScheme,
     ...rest
   } = props
 
@@ -151,6 +152,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     deleteIcon: deleteIcon,
     suffix: suffix,
     prefix: prefix,
+    colorScheme: colorScheme,
   }
 
   const containerCss = useMemo(() => {
