@@ -60,6 +60,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     popupVisible,
     onVisibleChange,
     trigger = "hover",
+    customPosition = {},
   } = props
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
@@ -210,6 +211,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           childrenRef.current,
           position,
           autoFitPosition,
+          customPosition,
         )
         // async deal
         setAdjustResult(result)

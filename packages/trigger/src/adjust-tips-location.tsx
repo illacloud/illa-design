@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import { render } from "react-dom"
-import { TriggerPosition } from "./interface"
+import { TriggerPosition, customPositionType } from "./interface"
 
 export interface AdjustResult {
   readonly transX: number
@@ -14,6 +14,7 @@ export async function adjustLocation(
   childrenRef: HTMLElement,
   position: TriggerPosition,
   autoFitPosition: boolean,
+  customPosition: customPositionType,
 ) {
   let computeElement: HTMLElement
   computeElement = document.createElement(HTMLDivElement.name)
@@ -299,6 +300,13 @@ export async function adjustLocation(
       }
       break
     }
+  }
+  // custom position
+  if (customPosition.x) {
+    adjustResult.transX = customPosition.x
+  }
+  if (customPosition.y) {
+    adjustResult.transY = customPosition.y
   }
   computeElement.remove()
   return adjustResult
