@@ -45,6 +45,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     _css,
     colorScheme = "gray",
     content,
+    closeOnInnerClick,
     position = "top",
     clickOutsideToClose,
     showArrow = true,
@@ -363,6 +364,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
       {!disabled && tipVisible && childrenRef.current != null ? (
         <Popup
           ref={mergeRefs(protalRef, tipsMeasureRef)}
+          onClick={() => {
+            if (closeOnInnerClick) {
+              hideTips(popupVisible != undefined)
+            }
+          }}
           top={`${adjustResult?.transY}px`}
           left={`${adjustResult?.transX}px`}
         >
