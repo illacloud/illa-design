@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { TabPosition, TabsSize, TabVariant } from "./interface"
+import { TabPosition, TabsColorScheme, TabsSize, TabVariant } from "./interface"
 
 export function applyPaddingSizeCss(size: TabsSize): SerializedStyles {
   let paddingSize
@@ -28,7 +28,6 @@ export const commonContainerCss = css`
   display: inline-flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
 `
 
 export const horizontalContainerCss = css`
@@ -278,10 +277,12 @@ export function applyCommonHeaderChildCss(): SerializedStyles {
 }
 
 export function applyTextColorCss(
+  colorScheme: TabsColorScheme,
   disabled?: boolean,
   isSelected?: boolean,
   variant?: TabVariant,
 ) {
+  const textColorScheme = isInnerColor(colorScheme) ? colorScheme : "blue"
   let textColorCss
   if (disabled) {
     textColorCss = css`
@@ -290,11 +291,11 @@ export function applyTextColorCss(
     `
   } else if (isSelected) {
     textColorCss = css`
-      color: ${globalColor(`--${illaPrefix}-blue-03`)};
+      color: ${globalColor(`--${illaPrefix}-${textColorScheme}-03`)};
     `
   } else {
     textColorCss = css`
-          color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+          color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 
           &:hover {
             background-color: ${
@@ -307,7 +308,7 @@ export function applyTextColorCss(
   if (!disabled && variant === "text") {
     if (isSelected) {
       textColorCss = css`
-        color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+        color: ${globalColor(`--${illaPrefix}-${textColorScheme}-02`)};
         font-weight: 500;
       `
     } else {
@@ -323,6 +324,7 @@ export function applyTextColorCss(
 }
 
 export function applyTextCss(
+  colorScheme: TabsColorScheme,
   size: TabsSize,
   isSelected?: boolean,
   disabled?: boolean,
@@ -332,7 +334,7 @@ export function applyTextCss(
   const _tabBarSpacing = tabBarSpacing >= 0 ? tabBarSpacing : 0
 
   return css`
-    ${applyTextColorCss(disabled, isSelected, variant)};
+    ${applyTextColorCss(colorScheme, disabled, isSelected, variant)};
     ${applyPaddingSizeCss(size)};
     white-space: nowrap;
     overflow: hidden;
@@ -362,10 +364,29 @@ export function applyDividerHorizontalLineCss(h: number): SerializedStyles {
   `
 }
 
+export const colors: TabsColorScheme[] = [
+  "blackAlpha",
+  "gray",
+  "grayBlue",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+  "techPink",
+  "techPurple",
+]
+
+const isInnerColor = (colorScheme: string) => colors.includes(colorScheme)
+
 export function applyCommonBlueLineCss(
   width: number,
   position: number,
+  colorScheme: TabsColorScheme,
 ): SerializedStyles {
+  const lineColorScheme = isInnerColor(colorScheme) ? colorScheme : "blue"
   return css`
     width: ${width - 32}px;
     height: 2px;
@@ -374,15 +395,17 @@ export function applyCommonBlueLineCss(
     left: ${position}px;
     bottom: 0;
     transition: left 200ms, width 200ms;
-    background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+    background-color: ${globalColor(`--${illaPrefix}-${lineColorScheme}-03`)};
   `
 }
 
 export function applyHorizontalBlueLineCss(
   height: number,
   position: number,
+  colorScheme: TabsColorScheme,
   size?: TabsSize,
 ): SerializedStyles {
+  const lineColorScheme = isInnerColor(colorScheme) ? colorScheme : "blue"
   let padding = 7
   switch (size) {
     case "large":
@@ -400,7 +423,7 @@ export function applyHorizontalBlueLineCss(
     top: ${padding + position}px;
     transition: top 200ms, height 200ms;
     bottom: 0;
-    background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+    background-color: ${globalColor(`--${illaPrefix}-${lineColorScheme}-03`)};
   `
 }
 

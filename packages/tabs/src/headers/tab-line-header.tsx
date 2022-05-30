@@ -65,6 +65,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       tabBarSpacing,
       suffix,
       prefix,
+      colorScheme = "blue",
     } = props
 
     const scrollRef = useRef<HTMLDivElement | null>(null)
@@ -194,8 +195,11 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     }, [_isHorizontalLayout])
 
     return (
-      <div css={applyLineHeaderContainerCss(_isHorizontalLayout)} ref={ref}>
-        {prefix && <span>{prefix}</span>}
+      <div
+        css={applyLineHeaderContainerCss(_isHorizontalLayout, tabPosition)}
+        ref={ref}
+      >
+        {prefix}
         <div css={tabsContentCss}>
           {needScroll && (
             <span
@@ -224,6 +228,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                     css={applyBlueLineCss(
                       blueLineWidth,
                       blueLinePosition,
+                      colorScheme,
                       size,
                     )}
                   />
@@ -244,6 +249,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                         disabled={item.disabled}
                         size={size}
                         tabBarSpacing={tabBarSpacing}
+                        colorScheme={colorScheme}
                       />
                     )
                   })}
@@ -254,6 +260,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                     css={applyBlueLineCss(
                       blueLineWidth,
                       blueLinePosition,
+                      colorScheme,
                       size,
                     )}
                   />
@@ -281,7 +288,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             </span>
           )}
         </div>
-        {suffix && <span>{suffix}</span>}
+        {suffix}
       </div>
     )
   },

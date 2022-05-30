@@ -22,6 +22,7 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
     deleteIcon = <CloseIcon size={"8"} />,
     handleDeleteTab,
     tabBarSpacing,
+    colorScheme,
   } = props
 
   const [applyChildCss] = useMemo(() => {
@@ -46,7 +47,14 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
       }}
     >
       <span
-        css={applyTextCss(size, isSelected, disabled, tabBarSpacing, variant)}
+        css={applyTextCss(
+          colorScheme,
+          size,
+          isSelected,
+          disabled,
+          tabBarSpacing,
+          variant,
+        )}
       >
         {title}
         {closable && (

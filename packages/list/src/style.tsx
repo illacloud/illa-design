@@ -25,17 +25,17 @@ export function applyListItemOuter(
   switch (size) {
     case "small":
       sizeCss = css`
-        padding: 8px 24px;
+        padding: 8px 16px;
       `
       break
     case "medium":
       sizeCss = css`
-        padding: 12px 24px;
+        padding: 12px 16px;
       `
       break
     case "large":
       sizeCss = css`
-        padding: 16px 24px;
+        padding: 16px 16px;
       `
       break
   }
@@ -88,12 +88,10 @@ export const applyItemMetaTitle = css`
 `
 
 export const applyListItemActionsStyle = css`
-  display: inline-flex;
   margin-top: 8px;
 `
 
 export const applyListItemExtraStyle = css`
-  display: inline-flex;
   margin-left: 32px;
 `
 
@@ -102,17 +100,17 @@ export function applyBarStyle(size: ListSize) {
   switch (size) {
     case "small":
       sizeCss = css`
-        padding: 8px 24px;
+        padding: 8px 16px;
       `
       break
     case "medium":
       sizeCss = css`
-        padding: 12px 24px;
+        padding: 12px 16px;
       `
       break
     case "large":
       sizeCss = css`
-        padding: 16px 24px;
+        padding: 16px 16px;
       `
       break
   }

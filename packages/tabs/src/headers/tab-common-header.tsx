@@ -44,6 +44,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       tabBarSpacing,
       prefix,
       suffix,
+      colorScheme = "blue",
       addIcon = <AddIcon />,
     } = props
 
@@ -97,7 +98,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
 
     return (
       <div css={applyHeaderContainerCss(false)} ref={ref}>
-        {prefix && <span>{prefix}</span>}
+        {prefix}
         <div css={tabsContentCss}>
           {needScroll && (
             <span
@@ -135,6 +136,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                       deleteIcon: deleteIcon,
                       handleDeleteTab: handleDeleteTab,
                       tabBarSpacing: tabBarSpacing,
+                      colorScheme: colorScheme,
                     }
                     return <TabHeaderChild key={item.tabKey} {...childProps} />
                   })}
@@ -173,7 +175,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             </span>
           )}
         </div>
-        {suffix && <span>{suffix}</span>}
+        {suffix}
       </div>
     )
   },

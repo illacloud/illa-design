@@ -39,7 +39,7 @@ test("Tabs renders with defaultActivityKey and disabled", () => {
     </Tabs>,
   )
   expect(screen.getByText("tab 01")).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-grayBlue-03`)}`,
+    color: `${globalColor(`--${illaPrefix}-grayBlue-04`)}`,
   })
   expect(screen.getByText("tab 02")).toHaveStyle({
     color: `${globalColor(`--${illaPrefix}-grayBlue-05`)}`,
