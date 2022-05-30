@@ -180,3 +180,38 @@ it("Trigger renders with custom position", () => {
     .should("have.css", "top", "100px")
     .should("have.css", "left", "100px")
 })
+
+it("Popup should follow trigger when window resize", () => {
+  mount(
+    <div style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
+      <Trigger trigger="click" content="Trigger">
+        <Button>Button</Button>
+      </Trigger>
+    </div>,
+  )
+  cy.findByText("Button").click()
+  cy.findByText("Trigger").should("exist")
+
+  cy.viewport(300, 300).then(() => {
+    cy.wait(200)
+    cy.findByText("Button").then((button) => {
+      const { left, width } = button[0].getBoundingClientRect()
+      const right = left + width
+
+      cy.findByText("Trigger").then((trigger) => {
+        const { left: triggerLeft, width: triggerWidth } =
+          trigger[0].getBoundingClientRect()
+
+        const triggerRight = triggerLeft + triggerWidth
+        const OFFSET = 20
+
+        /*
+         * After resize, trigger should below button
+         * Thus, trigger's left & right should between button's left & right
+         */
+        expect(triggerLeft).to.be.least(left - OFFSET)
+        expect(triggerRight).to.be.most(right + OFFSET)
+      })
+    })
+  })
+})
