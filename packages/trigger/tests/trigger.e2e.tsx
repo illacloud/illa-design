@@ -215,3 +215,20 @@ it("Popup should follow trigger when window resize", () => {
     })
   })
 })
+
+it("Trigger renders with closeOnInnerClick", () => {
+  const mock = cy.stub().as("mock")
+  mount(
+    <Trigger
+      popupVisible={true}
+      closeOnInnerClick
+      onVisibleChange={mock}
+      content={<div>Close Click Me</div>}
+    >
+      <Button>Button</Button>
+    </Trigger>,
+  )
+  cy.findByText("Close Click Me").click()
+  cy.get("@mock").should("to.be.calledWith", false)
+  unmount()
+})

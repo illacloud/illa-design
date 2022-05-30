@@ -46,6 +46,7 @@ export interface TriggerProps {
   withoutPadding?: boolean
   maxWidth?: string
   trigger?: TriggerTrigger
+  closeOnInnerClick?: boolean
   content?: string | ReactNode
   position?: TriggerPosition
   showArrow?: boolean

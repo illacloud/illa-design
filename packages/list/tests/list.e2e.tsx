@@ -98,8 +98,8 @@ it("List renders with different size.", () => {
   )
   cy.findByText("A").should("exist")
   cy.findByText("B").should("exist")
-  cy.findByText("A").parent().should("have.css", "padding", "16px 24px")
-  cy.findByText("B").parent().should("have.css", "padding", "8px 24px")
+  cy.findByText("A").parent().should("have.css", "padding", "16px")
+  cy.findByText("B").parent().should("have.css", "padding", "8px 16px")
   unmount()
 })
 

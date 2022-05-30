@@ -32,6 +32,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           const { attached, first, last } = value ?? {}
 
           const {
+            _css,
             colorScheme = value?.colorScheme ?? "blue",
             size = value?.size ?? "small",
             variant = value?.variant ?? "fill",
@@ -75,7 +76,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           return (
             <button
               ref={ref}
-              css={[finalContainer, sizeCss]}
+              css={css(finalContainer, sizeCss, _css)}
               disabled={disabled || loading}
               {...otherProps}
             >
