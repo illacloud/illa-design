@@ -160,3 +160,39 @@ it("Trigger renders with on visible change event", () => {
   cy.get("@mock").should("to.be.calledWith", false)
   unmount()
 })
+
+it("Trigger renders with custom position", () => {
+  const customPosition = {
+    x: 100,
+    y: 100,
+  }
+  mount(
+    <Trigger trigger="click" content="Trigger" customPosition={customPosition}>
+      <Button>Button</Button>
+    </Trigger>,
+  )
+  cy.findByText("Button").click()
+  cy.findByText("Trigger")
+    .parent()
+    .parent()
+    .parent()
+    .parent()
+    .should("have.css", "top", "100px")
+    .should("have.css", "left", "100px")
+})
+
+it("Trigger renders with closeOnInnerClick", () => {
+  const mock = cy.stub().as("mock")
+  mount(
+    <Trigger
+      popupVisible={true}
+      onVisibleChange={mock}
+      content={<div>Close Click Me</div>}
+    >
+      <Button>Button</Button>
+    </Trigger>,
+  )
+  cy.findByText("Close Click Me").click()
+  cy.get("@mock").should("to.be.calledWith", false)
+  unmount()
+})

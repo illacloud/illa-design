@@ -45,6 +45,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     _css,
     colorScheme = "gray",
     content,
+    closeOnInnerClick,
     position = "top",
     clickOutsideToClose,
     showArrow = true,
@@ -60,6 +61,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     popupVisible,
     onVisibleChange,
     trigger = "hover",
+    customPosition = {},
   } = props
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
@@ -210,6 +212,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           childrenRef.current,
           position,
           autoFitPosition,
+          customPosition,
         )
         // async deal
         setAdjustResult(result)
@@ -361,6 +364,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
       {!disabled && tipVisible && childrenRef.current != null ? (
         <Popup
           ref={mergeRefs(protalRef, tipsMeasureRef)}
+          onClick={() => {
+            if (closeOnInnerClick) {
+              hideTips(popupVisible != undefined)
+            }
+          }}
           top={`${adjustResult?.transY}px`}
           left={`${adjustResult?.transX}px`}
         >
