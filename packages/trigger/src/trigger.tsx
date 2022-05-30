@@ -35,6 +35,7 @@ import {
 } from "./adjust-tips-location"
 import { Popup } from "./popup"
 import useMeasure from "react-use/lib/useMeasure"
+import useWindowSize from "react-use/lib/useWindowSize"
 import { mergeRefs } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
 import useMouse from "react-use/lib/useMouse"
@@ -64,6 +65,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
   } = props
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
+  const { width: windowWidth, height: windowHeight } = useWindowSize()
+  const [windowSize, setWindowSize] = useState({
+    windowWidth: 0,
+    windowHeight: 0,
+  })
 
   const childrenRef = useRef<HTMLElement>(null) as MutableRefObject<HTMLElement>
 
@@ -203,32 +209,35 @@ export const Trigger: FC<TriggerProps> = (props) => {
       break
   }
 
-  const showTips = (control?: boolean) => {
-    delayTodo(async () => {
-      if (childrenRef.current != null) {
-        const result = await adjustLocation(
-          tipsNode,
-          childrenRef.current,
-          position,
-          autoFitPosition,
-          customPosition,
-        )
-        // async deal
-        setAdjustResult(result)
-        if (popupVisible == undefined || control) {
-          setTipsVisible(true)
-        }
-        if (onVisibleChange != undefined) {
-          if (popupVisible != undefined) {
-            onVisibleChange(true)
-          } else {
-            if (!tipVisible) {
+  const showTips = (control?: boolean, showImmediately?: boolean) => {
+    delayTodo(
+      async () => {
+        if (childrenRef.current != null) {
+          const result = await adjustLocation(
+            tipsNode,
+            childrenRef.current,
+            position,
+            autoFitPosition,
+            customPosition,
+          )
+          // async deal
+          setAdjustResult(result)
+          if (popupVisible == undefined || control) {
+            setTipsVisible(true)
+          }
+          if (onVisibleChange != undefined) {
+            if (popupVisible != undefined) {
               onVisibleChange(true)
+            } else {
+              if (!tipVisible) {
+                onVisibleChange(true)
+              }
             }
           }
         }
-      }
-    }, openDelay)
+      },
+      showImmediately ? 0 : openDelay,
+    )
   }
 
   const hideTips = (control?: boolean) => {
@@ -274,15 +283,23 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   useEffect(() => {
     let isMount = true
+    const newWindowSize = { windowWidth, windowHeight }
+    let isWindowResize = false
+    if (JSON.stringify(newWindowSize) !== JSON.stringify(windowSize)) {
+      isWindowResize = true
+      setWindowSize(newWindowSize)
+    }
+
     if (!disabled && childrenRef.current != null) {
       if (popupVisible == undefined) {
         if (tipVisible || defaultPopupVisible) {
           showTips()
         }
       } else {
-        popupVisible ? showTips(true) : hideTips(true)
+        popupVisible ? showTips(true, isWindowResize) : hideTips(true)
       }
     }
+
     return () => {
       isMount = false
       window.clearTimeout(timeOutHandlerId)
@@ -295,6 +312,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
     measureInfo,
     maxWidth,
     autoAlignPopupWidth,
+    windowWidth,
+    windowHeight,
   ])
 
   const protalRef = useRef<HTMLDivElement>(null)
@@ -381,23 +400,23 @@ export const Trigger: FC<TriggerProps> = (props) => {
       ),
       onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
         newProps.onMouseEnter(e)
-        ;(props.children as ReactElement).props?.onMouseEnter?.call(e)
+          ; (props.children as ReactElement).props?.onMouseEnter?.call(e)
       },
       onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
         newProps.onMouseLeave(e)
-        ;(props.children as ReactElement).props?.onMouseLeave?.call(e)
+          ; (props.children as ReactElement).props?.onMouseLeave?.call(e)
       },
       onFocus: (e: SyntheticEvent<Element, Event>) => {
         newProps.onFocus(e)
-        ;(props.children as ReactElement).props?.onFocus?.call(e)
+          ; (props.children as ReactElement).props?.onFocus?.call(e)
       },
       onBlur: (e: SyntheticEvent<Element, Event>) => {
         newProps.onBlur(e)
-        ;(props.children as ReactElement).props?.onBlur?.call(e)
+          ; (props.children as ReactElement).props?.onBlur?.call(e)
       },
       onClick: (e: SyntheticEvent<Element, Event>) => {
         newProps.onClick(e)
-        ;(props.children as ReactElement).props?.onClick?.call(e)
+          ; (props.children as ReactElement).props?.onClick?.call(e)
       },
     }
     return (
