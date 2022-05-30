@@ -64,6 +64,10 @@ import {
   EmptyStateIcon,
   RestApiIcon,
   PaginationPreIcon,
+  WindowBottomIcon,
+  WindowRightIcon,
+  WindowLeftIcon,
+  BugIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -279,4 +283,20 @@ export const RestApi: Story<IconProps> = (props: IconProps) => (
 
 export const PaginationPre: Story<IconProps> = (props: IconProps) => (
   <PaginationPreIcon {...props} />
+)
+
+export const Bug: Story<IconProps> = (props: IconProps) => (
+  <BugIcon {...props} />
+)
+
+export const WindowLeft: Story<IconProps> = (props: IconProps) => (
+  <WindowLeftIcon {...props} />
+)
+
+export const WindowRight: Story<IconProps> = (props: IconProps) => (
+  <WindowRightIcon {...props} />
+)
+
+export const WindowBottom: Story<IconProps> = (props: IconProps) => (
+  <WindowBottomIcon {...props} />
 )
