@@ -361,12 +361,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const protalContent = (
     <AnimatePresence>
-      {!disabled && tipVisible && childrenRef.current != null ? (
+      {!disabled && tipVisible && childrenRef.current !== null ? (
         <Popup
           ref={mergeRefs(protalRef, tipsMeasureRef)}
           onClick={() => {
             if (closeOnInnerClick) {
-              hideTips(popupVisible != undefined)
+              hideTips(popupVisible !== undefined)
             }
           }}
           top={`${adjustResult?.transY}px`}
