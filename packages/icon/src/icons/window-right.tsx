@@ -1,4 +1,4 @@
-import { createIcon } from "@illa-design/icon"
+import { createIcon } from "../create-icon"
 
 export const WindowRightIcon = createIcon({
   title: "WindowRightIcon",
