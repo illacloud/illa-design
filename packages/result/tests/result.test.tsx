@@ -16,7 +16,7 @@ test("Result1 renders with ", () => {
   expect(screen.getByTestId("info status Result").firstChild).toHaveStyle({
     "background-color": "#edf4ff",
   })
-  render(<Result status={"warning"}></Result>)
+  render(<Result status="warning"></Result>)
   expect(screen.getByTitle("WarningIcon")).toBeInTheDocument()
 })
 
@@ -46,7 +46,7 @@ test("Result renders with custom paddingVertical", () => {
   render(
     <Result
       data-testid="test-result"
-      status={"warning"}
+      status="warning"
       paddingVertical="80px"
     />,
   )
