@@ -258,3 +258,20 @@ exports[`Button renders with different variant 6`] = `
   Hello Text
 </span>
 `;
+
+exports[`Button renders with different variant 7`] = `
+.emotion-0 {
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+<span
+  class="emotion-0"
+>
+  Hello Light
+</span>
+`;
