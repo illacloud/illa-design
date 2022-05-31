@@ -67,6 +67,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
   } = props
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
+  const tipVisibleRef = useRef<boolean>(tipVisible)
   const { width: windowWidth, height: windowHeight } = useWindowSize()
   const [windowSize, setWindowSize] = useState({
     windowWidth: 0,
@@ -211,19 +212,25 @@ export const Trigger: FC<TriggerProps> = (props) => {
       break
   }
 
+  const adjustLocationAndResult = async () => {
+    if (childrenRef.current != null) {
+      const result = await adjustLocation(
+        tipsNode,
+        childrenRef.current,
+        position,
+        autoFitPosition,
+        customPosition,
+      )
+      // async deal
+      setAdjustResult(result)
+    }
+  }
+
   const showTips = (control?: boolean, showImmediately?: boolean) => {
     delayTodo(
       async () => {
         if (childrenRef.current != null) {
-          const result = await adjustLocation(
-            tipsNode,
-            childrenRef.current,
-            position,
-            autoFitPosition,
-            customPosition,
-          )
-          // async deal
-          setAdjustResult(result)
+          await adjustLocationAndResult()
           if (popupVisible == undefined || control) {
             setTipsVisible(true)
           }
@@ -286,25 +293,28 @@ export const Trigger: FC<TriggerProps> = (props) => {
   const updatePopupPositionOnScroll = useCallback(
     throttleByRaf((event: UIEvent) => {
       if (
-        !popupVisible ||
+        !tipVisibleRef.current ||
         !(event.target as Element).contains(childrenRef.current)
       ) {
         return
       }
 
-      showTips(true, true)
+      adjustLocationAndResult()
     }),
-    [popupVisible],
+    [],
   )
+
+  useEffect(() => {
+    tipVisibleRef.current = tipVisible
+  }, [tipVisible])
 
   useEffect(() => {
     let isMount = true
     const newWindowSize = { windowWidth, windowHeight }
-    let isWindowResize = false
 
     if (JSON.stringify(newWindowSize) !== JSON.stringify(windowSize)) {
-      isWindowResize = true
       setWindowSize(newWindowSize)
+      adjustLocationAndResult()
     }
 
     if (!disabled && childrenRef.current != null) {
@@ -313,7 +323,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           showTips()
         }
       } else {
-        popupVisible ? showTips(true, isWindowResize) : hideTips(true)
+        popupVisible ? showTips(true) : hideTips(true)
       }
     }
 
@@ -322,6 +332,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     return () => {
       isMount = false
       window.clearTimeout(timeOutHandlerId)
+      updatePopupPositionOnScroll.cancel()
       window.removeEventListener("scroll", updatePopupPositionOnScroll, true)
     }
   }, [
