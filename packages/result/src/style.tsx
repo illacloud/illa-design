@@ -26,6 +26,10 @@ export const subTitleCss = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 `
 
+export const extraContainerStyle = css`
+  margin-top: 24px;
+`
+
 export function applyIconContainer(status?: string): SerializedStyles {
   let iconColor
   switch (status) {

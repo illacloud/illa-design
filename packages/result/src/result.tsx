@@ -12,6 +12,7 @@ import {
 import {
   applyIconContainer,
   applyWrapStyle,
+  extraContainerStyle,
   subTitleCss,
   titleCss,
 } from "./style"
@@ -57,7 +58,7 @@ export const Result = forwardRef<HTMLDivElement, ResultProps>((props, ref) => {
       <div css={applyIconContainer(status)}>{icon || defaultIcon}</div>
       {title && <div css={titleCss}>{title}</div>}
       {subTitle && <div css={subTitleCss}>{subTitle}</div>}
-      {extra && <div>{extra}</div>}
+      {extra && <div css={extraContainerStyle}>{extra}</div>}
     </div>
   )
 })
