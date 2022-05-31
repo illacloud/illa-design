@@ -10,6 +10,7 @@ import {
   useEffect,
   useRef,
   useState,
+  useCallback,
 } from "react"
 import { TriggerProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
@@ -36,7 +37,7 @@ import {
 import { Popup } from "./popup"
 import useMeasure from "react-use/lib/useMeasure"
 import useWindowSize from "react-use/lib/useWindowSize"
-import { mergeRefs } from "@illa-design/system"
+import { mergeRefs, throttleByRaf } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
 import useMouse from "react-use/lib/useMouse"
 import { css } from "@emotion/react"
@@ -282,6 +283,20 @@ export const Trigger: FC<TriggerProps> = (props) => {
     </motion.div>
   )
 
+  const updatePopupPositionOnScroll = useCallback(
+    throttleByRaf((event: UIEvent) => {
+      if (
+        !popupVisible ||
+        !(event.target as Element).contains(childrenRef.current)
+      ) {
+        return
+      }
+
+      showTips(true, true)
+    }),
+    [popupVisible],
+  )
+
   useEffect(() => {
     let isMount = true
     const newWindowSize = { windowWidth, windowHeight }
@@ -302,9 +317,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
       }
     }
 
+    window.addEventListener("scroll", updatePopupPositionOnScroll, true)
+
     return () => {
       isMount = false
       window.clearTimeout(timeOutHandlerId)
+      window.removeEventListener("scroll", updatePopupPositionOnScroll, true)
     }
   }, [
     popupVisible,
@@ -407,23 +425,23 @@ export const Trigger: FC<TriggerProps> = (props) => {
       ),
       onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
         newProps.onMouseEnter(e)
-        ;(props.children as ReactElement).props?.onMouseEnter?.call(e)
+          ; (props.children as ReactElement).props?.onMouseEnter?.call(e)
       },
       onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
         newProps.onMouseLeave(e)
-        ;(props.children as ReactElement).props?.onMouseLeave?.call(e)
+          ; (props.children as ReactElement).props?.onMouseLeave?.call(e)
       },
       onFocus: (e: SyntheticEvent<Element, Event>) => {
         newProps.onFocus(e)
-        ;(props.children as ReactElement).props?.onFocus?.call(e)
+          ; (props.children as ReactElement).props?.onFocus?.call(e)
       },
       onBlur: (e: SyntheticEvent<Element, Event>) => {
         newProps.onBlur(e)
-        ;(props.children as ReactElement).props?.onBlur?.call(e)
+          ; (props.children as ReactElement).props?.onBlur?.call(e)
       },
       onClick: (e: SyntheticEvent<Element, Event>) => {
         newProps.onClick(e)
-        ;(props.children as ReactElement).props?.onClick?.call(e)
+          ; (props.children as ReactElement).props?.onClick?.call(e)
       },
     }
     return (
