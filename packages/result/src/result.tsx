@@ -9,7 +9,13 @@ import {
   Result404Icon,
   Result500Icon,
 } from "@illa-design/icon"
-import { applyIconContainer, subTitleCss, titleCss, wrapCss } from "./style"
+import {
+  applyIconContainer,
+  applyWrapStyle,
+  extraContainerStyle,
+  subTitleCss,
+  titleCss,
+} from "./style"
 
 export const Result = forwardRef<HTMLDivElement, ResultProps>((props, ref) => {
   const {
@@ -18,6 +24,7 @@ export const Result = forwardRef<HTMLDivElement, ResultProps>((props, ref) => {
     status = "info",
     title = "default title",
     subTitle,
+    paddingVertical = "40px",
     ...rest
   } = props
 
@@ -47,11 +54,11 @@ export const Result = forwardRef<HTMLDivElement, ResultProps>((props, ref) => {
   }
 
   return (
-    <div {...rest} ref={ref} css={wrapCss}>
+    <div {...rest} ref={ref} css={applyWrapStyle(paddingVertical)}>
       <div css={applyIconContainer(status)}>{icon || defaultIcon}</div>
       {title && <div css={titleCss}>{title}</div>}
       {subTitle && <div css={subTitleCss}>{subTitle}</div>}
-      {extra && <div>{extra}</div>}
+      {extra && <div css={extraContainerStyle}>{extra}</div>}
     </div>
   )
 })
