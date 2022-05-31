@@ -70,15 +70,15 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   let sizeCss: SerializedStyles
   switch (size) {
     case "small": {
-      sizeCss = applyTagSizeSmall(variant)
+      sizeCss = applyTagSizeSmall()
       break
     }
     case "medium": {
-      sizeCss = applyTagSizeMedium(variant)
+      sizeCss = applyTagSizeMedium()
       break
     }
     case "large": {
-      sizeCss = applyTagSizeLarge(variant)
+      sizeCss = applyTagSizeLarge()
       break
     }
   }

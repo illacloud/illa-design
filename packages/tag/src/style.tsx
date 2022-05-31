@@ -13,7 +13,7 @@ export const tagContainer = css`
   padding: 0 7px;
 `
 
-export function applyTagSizeLarge(variant: TagVariant): SerializedStyles {
+export function applyTagSizeLarge(): SerializedStyles {
   return css`
     font-size: 14px;
     line-height: 22px;
@@ -21,7 +21,7 @@ export function applyTagSizeLarge(variant: TagVariant): SerializedStyles {
   `
 }
 
-export function applyTagSizeMedium(variant: TagVariant): SerializedStyles {
+export function applyTagSizeMedium(): SerializedStyles {
   return css`
     font-size: 14px;
     line-height: 22px;
@@ -29,7 +29,7 @@ export function applyTagSizeMedium(variant: TagVariant): SerializedStyles {
   `
 }
 
-export function applyTagSizeSmall(variant: TagVariant): SerializedStyles {
+export function applyTagSizeSmall(): SerializedStyles {
   return css`
     font-size: 12px;
     line-height: 18px;
