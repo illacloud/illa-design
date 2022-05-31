@@ -13,29 +13,23 @@ export const tagContainer = css`
   padding: 0 7px;
 `
 
-export function applyTagSizeLarge(variant: TagVariant): SerializedStyles {
-  return css`
-    font-size: 14px;
-    line-height: 22px;
-    height: 32px;
-  `
-}
+export const tagSizeLargeStyle = css`
+  font-size: 14px;
+  line-height: 22px;
+  height: 32px;
+`
 
-export function applyTagSizeMedium(variant: TagVariant): SerializedStyles {
-  return css`
-    font-size: 14px;
-    line-height: 22px;
-    height: 24px;
-  `
-}
+export const tagSizeMediumStyle = css`
+  font-size: 14px;
+  line-height: 22px;
+  height: 24px;
+`
 
-export function applyTagSizeSmall(variant: TagVariant): SerializedStyles {
-  return css`
-    font-size: 12px;
-    line-height: 18px;
-    height: 18px;
-  `
-}
+export const tagSizeSmallStyle = css`
+  font-size: 12px;
+  line-height: 18px;
+  height: 18px;
+`
 
 export const tagContentStyle = css`
   font-size: inherit;

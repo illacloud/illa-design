@@ -6,9 +6,6 @@ import { SerializedStyles } from "@emotion/serialize"
 import { omit } from "@illa-design/system"
 import {
   applyCloseIcon,
-  applyTagSizeLarge,
-  applyTagSizeMedium,
-  applyTagSizeSmall,
   colors,
   leftIcon,
   tagContainer,
@@ -18,6 +15,9 @@ import {
   tagLightPrepare,
   tagOutlineNormal,
   tagOutlinePrepare,
+  tagSizeLargeStyle,
+  tagSizeMediumStyle,
+  tagSizeSmallStyle,
 } from "./style"
 
 export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
@@ -70,15 +70,15 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   let sizeCss: SerializedStyles
   switch (size) {
     case "small": {
-      sizeCss = applyTagSizeSmall(variant)
+      sizeCss = tagSizeSmallStyle
       break
     }
     case "medium": {
-      sizeCss = applyTagSizeMedium(variant)
+      sizeCss = tagSizeMediumStyle
       break
     }
     case "large": {
-      sizeCss = applyTagSizeLarge(variant)
+      sizeCss = tagSizeLargeStyle
       break
     }
   }

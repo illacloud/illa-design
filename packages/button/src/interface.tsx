@@ -17,7 +17,7 @@ export type ButtonColorScheme =
   | "techPurple"
 
 export type ButtonSize = "small" | "medium" | "large"
-export type ButtonVariant = "fill" | "dashed" | "outline" | "text"
+export type ButtonVariant = "fill" | "dashed" | "outline" | "text" | "light"
 export type ButtonShape = "square" | "round"
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

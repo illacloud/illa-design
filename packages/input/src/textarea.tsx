@@ -25,14 +25,6 @@ import {
 
 import { formatForRule } from "./utils"
 
-export interface TextAreaState {
-  disabled?: boolean
-  error?: boolean
-  focus?: boolean
-  variant?: string
-  size?: InputSize
-}
-
 export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
   (props, ref) => {
     const {
@@ -47,6 +39,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
       showCount,
       autoSize,
       defaultValue,
+      borderColor = "blue",
       variant = "outline",
       ...rest
     } = props
@@ -86,6 +79,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
       disabled,
       focus,
       variant,
+      borderColor,
     }
 
     if (maxLength && showCount) {
