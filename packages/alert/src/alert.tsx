@@ -1,6 +1,7 @@
 import { forwardRef, useState, useMemo, MouseEvent, ReactNode } from "react"
 import { AlertProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
+import { css } from "@emotion/react"
 import {
   RightIcon,
   ErrorIcon,
@@ -54,6 +55,7 @@ const variants = {
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const {
+    _css,
     style,
     className,
     title,
@@ -82,7 +84,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     <AnimatePresence>
       {visible && (
         <motion.div
-          css={applyAlertContainer(type, banner)}
+          css={css(applyAlertContainer(type, banner), _css)}
           style={style}
           className={className}
           variants={variants}
