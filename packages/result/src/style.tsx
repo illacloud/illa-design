@@ -1,12 +1,14 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const wrapCss = css`
-  min-width: 450px;
-  padding: 40px 0;
-  display: inline-block;
-  text-align: center;
-`
+export function applyWrapStyle(paddingVertical: string) {
+  return css`
+    min-width: 450px;
+    padding: ${paddingVertical} 0;
+    display: inline-block;
+    text-align: center;
+  `
+}
 
 export const titleCss = css`
   margin-top: 16px;
@@ -60,6 +62,7 @@ export function applyIconContainer(status?: string): SerializedStyles {
         width: 96px;
         height: 100%;
         background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+
         & > svg {
           width: 96px;
           height: 100%;
