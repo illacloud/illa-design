@@ -67,6 +67,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
   } = props
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
+  // to watch `tipVisible` change in `updatePopupPositionOnScroll`
   const tipVisibleRef = useRef<boolean>(tipVisible)
   const { width: windowWidth, height: windowHeight } = useWindowSize()
   const [windowSize, setWindowSize] = useState({
@@ -226,27 +227,24 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }
   }
 
-  const showTips = (control?: boolean, showImmediately?: boolean) => {
-    delayTodo(
-      async () => {
-        if (childrenRef.current != null) {
-          await adjustLocationAndResult()
-          if (popupVisible == undefined || control) {
-            setTipsVisible(true)
-          }
-          if (onVisibleChange != undefined) {
-            if (popupVisible != undefined) {
+  const showTips = (control?: boolean) => {
+    delayTodo(async () => {
+      if (childrenRef.current != null) {
+        await adjustLocationAndResult()
+        if (popupVisible == undefined || control) {
+          setTipsVisible(true)
+        }
+        if (onVisibleChange != undefined) {
+          if (popupVisible != undefined) {
+            onVisibleChange(true)
+          } else {
+            if (!tipVisible) {
               onVisibleChange(true)
-            } else {
-              if (!tipVisible) {
-                onVisibleChange(true)
-              }
             }
           }
         }
-      },
-      showImmediately ? 0 : openDelay,
-    )
+      }
+    }, openDelay)
   }
 
   const hideTips = (control?: boolean) => {
@@ -291,7 +289,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
   )
 
   const updatePopupPositionOnScroll = useCallback(
-    throttleByRaf((event: UIEvent) => {
+    throttleByRaf(async (event: UIEvent) => {
       if (
         !tipVisibleRef.current ||
         !(event.target as Element).contains(childrenRef.current)
@@ -299,7 +297,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         return
       }
 
-      adjustLocationAndResult()
+      await adjustLocationAndResult()
     }),
     [],
   )
@@ -314,7 +312,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
     if (JSON.stringify(newWindowSize) !== JSON.stringify(windowSize)) {
       setWindowSize(newWindowSize)
-      adjustLocationAndResult()
+        ; async () => await adjustLocationAndResult()
     }
 
     if (!disabled && childrenRef.current != null) {
