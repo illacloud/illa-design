@@ -7,7 +7,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
   (props, ref) => {
     const {
       colorScheme = "blue",
-      size = "small",
+      size = "medium",
       variant = "fill",
       shape = "square",
       spacing = "4px",

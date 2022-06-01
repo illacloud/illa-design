@@ -24,7 +24,7 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const {
     visible,
     colorScheme = "gray",
-    size = "small",
+    size = "medium",
     variant = "light",
     closable,
     ...rest

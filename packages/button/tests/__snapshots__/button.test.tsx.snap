@@ -26,7 +26,7 @@ exports[`Button renders fullwidth 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-radius: 4px;
   color: #fff;
   background-color: #134ae0;
@@ -61,11 +61,11 @@ exports[`Button renders fullwidth 1`] = `
 }
 
 .emotion-1 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
@@ -102,7 +102,7 @@ exports[`Button renders round 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-radius: 999px;
   color: #fff;
   background-color: #134ae0;
@@ -137,11 +137,11 @@ exports[`Button renders round 1`] = `
 }
 
 .emotion-1 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
@@ -159,11 +159,11 @@ exports[`Button renders round 1`] = `
 
 exports[`Button renders with different variant 1`] = `
 .emotion-0 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
@@ -176,11 +176,11 @@ exports[`Button renders with different variant 1`] = `
 
 exports[`Button renders with different variant 2`] = `
 .emotion-0 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
@@ -193,11 +193,11 @@ exports[`Button renders with different variant 2`] = `
 
 exports[`Button renders with different variant 3`] = `
 .emotion-0 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
@@ -210,11 +210,11 @@ exports[`Button renders with different variant 3`] = `
 
 exports[`Button renders with different variant 4`] = `
 .emotion-0 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
@@ -227,11 +227,11 @@ exports[`Button renders with different variant 4`] = `
 
 exports[`Button renders with different variant 5`] = `
 .emotion-0 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
@@ -244,11 +244,11 @@ exports[`Button renders with different variant 5`] = `
 
 exports[`Button renders with different variant 6`] = `
 .emotion-0 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
@@ -261,11 +261,11 @@ exports[`Button renders with different variant 6`] = `
 
 exports[`Button renders with different variant 7`] = `
 .emotion-0 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
