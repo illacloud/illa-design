@@ -253,7 +253,7 @@ it("Popup should follow trigger when upper container scroll", () => {
       const { top: triggerTop } = trigger[0].getBoundingClientRect()
 
       // popup should close to button
-      expect(triggerTop).to.be.most(bottom + OFFSET)
+      expect(triggerTop).to.be.most(bottom + OFFSET + 1)
     })
   })
 })
