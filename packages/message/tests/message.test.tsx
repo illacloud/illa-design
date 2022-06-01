@@ -4,7 +4,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { iconColorMap } from "@illa-design/alert"
 import userEvent from "@testing-library/user-event"
 import { Message } from "../src"
-import { MessageType, Notification } from "../../notification/src"
+import { MessageType } from "@illa-design/notification"
 
 describe("Open Message", () => {
   beforeEach(() => {
