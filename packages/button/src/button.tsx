@@ -34,7 +34,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           const {
             _css,
             colorScheme = value?.colorScheme ?? "blue",
-            size = value?.size ?? "small",
+            size = value?.size ?? "medium",
             variant = value?.variant ?? "fill",
             shape = value?.shape ?? "square",
             fullWidth,

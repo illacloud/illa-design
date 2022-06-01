@@ -21,9 +21,9 @@ exports[`Tag renders with color and variant 1`] = `
   border-radius: 2px;
   background-color: #f5f5f5;
   color: #1f1f1f;
-  font-size: 12px;
-  line-height: 18px;
-  height: 18px;
+  font-size: 14px;
+  line-height: 22px;
+  height: 24px;
 }
 
 .emotion-1 {
@@ -67,9 +67,9 @@ exports[`Tag renders with color and variant 2`] = `
   border-radius: 2px;
   background-color: #ecfbf5;
   color: #007a41;
-  font-size: 12px;
-  line-height: 18px;
-  height: 18px;
+  font-size: 14px;
+  line-height: 22px;
+  height: 24px;
 }
 
 .emotion-1 {
@@ -113,9 +113,9 @@ exports[`Tag renders with color and variant 3`] = `
   border-radius: 2px;
   color: #fff;
   background-color: #123321;
-  font-size: 12px;
-  line-height: 18px;
-  height: 18px;
+  font-size: 14px;
+  line-height: 22px;
+  height: 24px;
 }
 
 .emotion-1 {
@@ -159,9 +159,9 @@ exports[`Tag renders with color and variant 4`] = `
   background-color: #000;
   color: #fff;
   border-radius: 2px;
-  font-size: 12px;
-  line-height: 18px;
-  height: 18px;
+  font-size: 14px;
+  line-height: 22px;
+  height: 24px;
 }
 
 .emotion-1 {
@@ -205,9 +205,9 @@ exports[`Tag renders with color and variant 5`] = `
   background-color: #007a41;
   color: #fff;
   border-radius: 2px;
-  font-size: 12px;
-  line-height: 18px;
-  height: 18px;
+  font-size: 14px;
+  line-height: 22px;
+  height: 24px;
 }
 
 .emotion-1 {
@@ -251,9 +251,9 @@ exports[`Tag renders with color and variant 6`] = `
   border-radius: 2px;
   color: #fff;
   background-color: #123321;
-  font-size: 12px;
-  line-height: 18px;
-  height: 18px;
+  font-size: 14px;
+  line-height: 22px;
+  height: 24px;
 }
 
 .emotion-1 {
@@ -297,9 +297,9 @@ exports[`Tag renders with color and variant 7`] = `
   border-radius: 2px;
   border: solid 1px #ebebeb;
   color: #1f1f1f;
-  font-size: 12px;
-  line-height: 18px;
-  height: 18px;
+  font-size: 14px;
+  line-height: 22px;
+  height: 24px;
 }
 
 .emotion-1 {
@@ -343,9 +343,9 @@ exports[`Tag renders with color and variant 8`] = `
   border-radius: 2px;
   border: solid 1px #007a41;
   color: #007a41;
-  font-size: 12px;
-  line-height: 18px;
-  height: 18px;
+  font-size: 14px;
+  line-height: 22px;
+  height: 24px;
 }
 
 .emotion-1 {
@@ -389,9 +389,9 @@ exports[`Tag renders with color and variant 9`] = `
   border-radius: 2px;
   color: #123321;
   border: solid 1px #123321;
-  font-size: 12px;
-  line-height: 18px;
-  height: 18px;
+  font-size: 14px;
+  line-height: 22px;
+  height: 24px;
 }
 
 .emotion-1 {
