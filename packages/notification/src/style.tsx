@@ -151,7 +151,7 @@ export function applyMessageIcon(type: MessageType): SerializedStyles {
 }
 export const applyMessageContent = css`
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 22px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 

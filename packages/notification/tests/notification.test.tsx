@@ -46,6 +46,15 @@ describe("Open Notification", () => {
     })
   })
 
+  test("Notification renders with no icon", () => {
+    Notification.normal({
+      title: "Notify",
+    })
+    expect(screen.getByText("Notify").parentNode?.parentNode).toHaveStyle({
+      paddingLeft: 16,
+    })
+  })
+
   test("Notification renders with close action", async () => {
     const handleClose = jest.fn()
     const handleAfterClose = jest.fn()

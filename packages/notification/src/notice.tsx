@@ -96,7 +96,7 @@ export const Notice = forwardRef<HTMLDivElement, NoticeProps>((props, ref) => {
   if (noticeType === "Message") {
     return (
       <div
-        css={applyMessage(closable, showIcon)}
+        css={applyMessage(closable, showIcon && !!renderIcon)}
         ref={ref}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -116,7 +116,7 @@ export const Notice = forwardRef<HTMLDivElement, NoticeProps>((props, ref) => {
   }
   return (
     <div
-      css={applyNotification(showIcon, closable)}
+      css={applyNotification(showIcon && !!renderIcon, closable)}
       ref={ref}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

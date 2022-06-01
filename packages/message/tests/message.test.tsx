@@ -4,7 +4,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { iconColorMap } from "@illa-design/alert"
 import userEvent from "@testing-library/user-event"
 import { Message } from "../src"
-import { MessageType } from "../../notification/src"
+import { MessageType } from "@illa-design/notification"
 
 describe("Open Message", () => {
   beforeEach(() => {
@@ -42,6 +42,15 @@ describe("Open Message", () => {
           fontSize: 16,
           color: `${iconColorMap[type]}`,
         })
+    })
+  })
+
+  test("Message renders with no icon", () => {
+    Message.normal({
+      content: "Message",
+    })
+    expect(screen.getByText("Message").parentNode?.parentNode).toHaveStyle({
+      paddingLeft: 16,
     })
   })
 
