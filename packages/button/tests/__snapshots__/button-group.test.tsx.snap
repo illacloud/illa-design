@@ -63,7 +63,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-top-left-radius: 999px;
   border-bottom-left-radius: 999px;
   color: #fff;
@@ -99,11 +99,11 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-3 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
@@ -139,7 +139,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-radius: 0;
   color: #fff;
   background-color: #134ae0;
@@ -188,7 +188,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   width: 12px;
   height: 12px;
   font-size: 12px;
-  margin-right: 6px;
+  margin-right: 8px;
 }
 
 .emotion-12 {
@@ -211,7 +211,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  padding: 1px 11px;
+  padding: 4px 15px;
   border-radius: 0;
   color: #134ae0;
   border: solid 1px #134ae0;
@@ -265,7 +265,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: default;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-radius: 0;
   color: #fff;
   background-color: #134ae0;
@@ -329,8 +329,8 @@ exports[`Button Group renders attached with round shape 1`] = `
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   font-size: 12px;
   border-radius: 0;
   color: #fff;
@@ -405,7 +405,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: not-allowed;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-top-right-radius: 999px;
   border-bottom-right-radius: 999px;
   color: #fff;
@@ -707,7 +707,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   color: #fff;
@@ -743,11 +743,11 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-3 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
@@ -783,7 +783,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-radius: 0;
   color: #fff;
   background-color: #134ae0;
@@ -832,7 +832,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   width: 12px;
   height: 12px;
   font-size: 12px;
-  margin-right: 6px;
+  margin-right: 8px;
 }
 
 .emotion-12 {
@@ -855,7 +855,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  padding: 1px 11px;
+  padding: 4px 15px;
   border-radius: 0;
   color: #134ae0;
   border: solid 1px #134ae0;
@@ -909,7 +909,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: default;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-radius: 0;
   color: #fff;
   background-color: #134ae0;
@@ -973,8 +973,8 @@ exports[`Button Group renders attached with square shape 1`] = `
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   font-size: 12px;
   border-radius: 0;
   color: #fff;
@@ -1049,7 +1049,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: not-allowed;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   color: #fff;
@@ -1351,7 +1351,7 @@ exports[`Button Group renders with spacing 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-radius: 4px;
   color: #fff;
   background-color: #134ae0;
@@ -1386,11 +1386,11 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-3 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 20px;
+  line-height: 22px;
   letter-spacing: normal;
 }
 
@@ -1421,7 +1421,7 @@ exports[`Button Group renders with spacing 1`] = `
   width: 12px;
   height: 12px;
   font-size: 12px;
-  margin-right: 6px;
+  margin-right: 8px;
 }
 
 .emotion-12 {
@@ -1444,7 +1444,7 @@ exports[`Button Group renders with spacing 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  padding: 1px 11px;
+  padding: 4px 15px;
   border-radius: 4px;
   color: #134ae0;
   border: solid 1px #134ae0;
@@ -1498,7 +1498,7 @@ exports[`Button Group renders with spacing 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: default;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-radius: 4px;
   color: #fff;
   background-color: #134ae0;
@@ -1562,8 +1562,8 @@ exports[`Button Group renders with spacing 1`] = `
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   font-size: 12px;
   border-radius: 4px;
   color: #fff;
@@ -1638,7 +1638,7 @@ exports[`Button Group renders with spacing 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: not-allowed;
-  padding: 2px 12px;
+  padding: 5px 16px;
   border-radius: 4px;
   color: #fff;
   background-color: #134ae0;

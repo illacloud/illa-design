@@ -6,7 +6,7 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
-import { descriptionCss, emptyContainerCss, iconCss } from "./style"
+import { applyEmptyContainerStyle, descriptionStyle } from "./style"
 import { EmptyProps } from "./interface"
 
 export const Empty = forwardRef<HTMLDivElement, EmptyProps>((props, ref) => {
@@ -16,27 +16,28 @@ export const Empty = forwardRef<HTMLDivElement, EmptyProps>((props, ref) => {
   const locale = configProviderProps?.locale?.empty ?? def.empty
 
   const {
-    icon = <EmptyIcon css={iconCss} />,
+    icon = <EmptyIcon size="48px" />,
     imgSrc,
+    paddingVertical = "40px",
     description = locale["noData"],
     ...rest
   } = props
 
   return (
-    <div ref={ref} css={emptyContainerCss} {...rest}>
+    <div ref={ref} css={applyEmptyContainerStyle(paddingVertical)} {...rest}>
       <div>
         {imgSrc ? (
           <Image
             src={imgSrc}
             objectFit="container"
-            width="64px"
-            height="64px"
+            width="48px"
+            height="48px"
           />
         ) : (
-          <span>{icon}</span>
+          icon
         )}
       </div>
-      <div css={descriptionCss}>{description}</div>
+      <div css={descriptionStyle}>{description}</div>
     </div>
   )
 })

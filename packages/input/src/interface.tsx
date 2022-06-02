@@ -89,6 +89,7 @@ export interface TextAreaProps
   textAreaRef?: Ref<HTMLTextAreaElement>
   variant?: InputVariant
   placeholder?: string
+  borderColor?: InputBorderColor
   defaultValue?: string
   disabled?: boolean
   error?: boolean

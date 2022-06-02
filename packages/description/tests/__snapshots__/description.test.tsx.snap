@@ -29,7 +29,7 @@ exports[`Description renders with different data 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-3 {
@@ -354,7 +354,7 @@ exports[`Description renders with different reactive size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-4 {
@@ -382,7 +382,7 @@ exports[`Description renders with different reactive size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-19 {
@@ -410,7 +410,7 @@ exports[`Description renders with different reactive size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-34 {
@@ -763,7 +763,7 @@ exports[`Description renders with different size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-4 {
@@ -791,7 +791,7 @@ exports[`Description renders with different size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-19 {
@@ -819,7 +819,7 @@ exports[`Description renders with different size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-34 {
@@ -1164,7 +1164,7 @@ exports[`Description renders with horizontal layout 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-3 {
@@ -1402,7 +1402,7 @@ exports[`Description renders with horizontal layout and border 1`] = `
   border: solid 1px #e5e6eb;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
   background-color: #f2f3f5;
 }
 
@@ -1640,7 +1640,7 @@ exports[`Description renders with horizontal layout and single column 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-3 {
@@ -1901,7 +1901,7 @@ exports[`Description renders with inline-horizontal layout 1`] = `
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
   margin-right: 16px;
 }
 
@@ -2233,7 +2233,7 @@ exports[`Description renders with inline-horizontal layout and border 1`] = `
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
   margin-right: 16px;
 }
 
@@ -2563,7 +2563,7 @@ exports[`Description renders with inline-horizontal layout and single column 1`]
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
   margin-right: 16px;
 }
 
@@ -2905,7 +2905,7 @@ exports[`Description renders with inline-vertical layout 1`] = `
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
   margin-bottom: 4px;
 }
 
@@ -3237,7 +3237,7 @@ exports[`Description renders with inline-vertical layout and border 1`] = `
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
   margin-bottom: 4px;
 }
 
@@ -3575,7 +3575,7 @@ exports[`Description renders with inline-vertical layout and single column 1`] =
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
   margin-bottom: 4px;
 }
 
@@ -3904,7 +3904,7 @@ exports[`Description renders with vertical layout 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-5 {
@@ -4167,7 +4167,7 @@ exports[`Description renders with vertical layout and border 1`] = `
   line-height: 22px;
   font-size: 14px;
   background-color: #f2f3f5;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-5 {
@@ -4428,7 +4428,7 @@ exports[`Description renders with vertical layout and single column 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-3 {

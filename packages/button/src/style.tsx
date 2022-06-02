@@ -55,6 +55,12 @@ export function getDifferentStatusColor(
               globalColor(`--${illaPrefix}-${colorScheme}-02`),
             ]
           }
+        case "light": {
+          return [
+            globalColor(`--${illaPrefix}-${colorScheme}-07`),
+            globalColor(`--${illaPrefix}-${colorScheme}-01`),
+          ]
+        }
         case "dashed":
         case "outline":
           if (colorScheme != "gray" && colorScheme != "grayBlue") {
@@ -88,6 +94,12 @@ export function getDifferentStatusColor(
               globalColor(`--${illaPrefix}-${colorScheme}-02`),
             ]
           }
+        case "light": {
+          return [
+            globalColor(`--${illaPrefix}-${colorScheme}-06`),
+            globalColor(`--${illaPrefix}-${colorScheme}-01`),
+          ]
+        }
         case "dashed":
         case "outline":
           if (colorScheme != "gray" && colorScheme != "grayBlue") {
@@ -121,6 +133,12 @@ export function getDifferentStatusColor(
               globalColor(`--${illaPrefix}-${colorScheme}-02`),
             ]
           }
+        case "light": {
+          return [
+            globalColor(`--${illaPrefix}-${colorScheme}-05`),
+            globalColor(`--${illaPrefix}-${colorScheme}-01`),
+          ]
+        }
         case "dashed":
         case "outline":
           if (colorScheme != "gray" && colorScheme != "grayBlue") {
@@ -154,6 +172,12 @@ export function getDifferentStatusColor(
               globalColor(`--${illaPrefix}-${colorScheme}-05`),
             ]
           }
+        case "light": {
+          return [
+            globalColor(`--${illaPrefix}-${colorScheme}-07`),
+            globalColor(`--${illaPrefix}-${colorScheme}-05`),
+          ]
+        }
         case "dashed":
         case "outline":
           if (colorScheme != "gray" && colorScheme != "grayBlue") {
@@ -174,6 +198,7 @@ export function getDifferentStatusColor(
           ]
       }
   }
+  return []
 }
 
 export function applyBg(
@@ -302,7 +327,40 @@ export function applyBg(
         }
         ${borderCss}
       `
+    case "light":
+      return css`
+        background-color: ${getDifferentStatusColor(
+          colorScheme,
+          variant,
+          State.DEFAULT,
+        )[0]};
+        &:hover {
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.HOVER,
+          )[0]};
+        }
+
+        &:active {
+          transition: none;
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.ACTIVE,
+          )[0]};
+        }
+
+        &:disabled {
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
+          )[0]};
+        }
+      `
   }
+  return css``
 }
 
 export function applyCursor(
@@ -343,6 +401,37 @@ export function applyElementColor(
           State.DEFAULT,
         )[1]};
 
+        &:disabled {
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
+          )[1]};
+        }
+      `
+    case "light":
+      return css`
+        color: ${getDifferentStatusColor(
+          colorScheme,
+          variant,
+          State.DEFAULT,
+        )[1]};
+        &:hover {
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.HOVER,
+          )[1]};
+        }
+
+        &:active {
+          transition: none;
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.ACTIVE,
+          )[1]};
+        }
         &:disabled {
           color: ${getDifferentStatusColor(
             colorScheme,
@@ -419,6 +508,7 @@ export function applyElementColor(
         }
       `
   }
+  return css``
 }
 
 export function applyShape(

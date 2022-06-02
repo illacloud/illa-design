@@ -9,6 +9,26 @@ import { Input } from "@illa-design/input"
 export default {
   title: "DATA DISPLAY/Trigger",
   component: Trigger,
+  argTypes: {
+    colorScheme: {
+      options: [
+        "white",
+        "blackAlpha",
+        "gray",
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "cyan",
+        "purple",
+        "grayBlue",
+      ],
+      control: {
+        type: "select",
+      },
+    },
+  },
 } as Meta
 
 export const Basic: Story<TriggerProps> = (args) => {

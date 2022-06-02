@@ -31,7 +31,7 @@ export default {
 const Template: Story<RadioGroupProps<any>> = (args) => {
   return (
     <div>
-      <Space direction="vertical">
+      <Space style={{ width: 184 }} direction="vertical">
         <RadioGroup {...args} options={["A", "B", "C", "D"]} />
         <RadioGroup {...args} options={[1, 2, 3]} />
         <RadioGroup {...args} options={[1]} />

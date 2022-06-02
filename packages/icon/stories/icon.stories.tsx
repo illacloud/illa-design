@@ -64,6 +64,17 @@ import {
   EmptyStateIcon,
   RestApiIcon,
   PaginationPreIcon,
+  WindowBottomIcon,
+  WindowRightIcon,
+  WindowLeftIcon,
+  BugIcon,
+  ArrayIcon,
+  ComponentIcon,
+  FunctionIcon,
+  NullIcon,
+  NumberIcon,
+  ObjectIcon,
+  StringIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -279,4 +290,48 @@ export const RestApi: Story<IconProps> = (props: IconProps) => (
 
 export const PaginationPre: Story<IconProps> = (props: IconProps) => (
   <PaginationPreIcon {...props} />
+)
+
+export const Bug: Story<IconProps> = (props: IconProps) => (
+  <BugIcon {...props} />
+)
+
+export const WindowLeft: Story<IconProps> = (props: IconProps) => (
+  <WindowLeftIcon {...props} />
+)
+
+export const WindowRight: Story<IconProps> = (props: IconProps) => (
+  <WindowRightIcon {...props} />
+)
+
+export const WindowBottom: Story<IconProps> = (props: IconProps) => (
+  <WindowBottomIcon {...props} />
+)
+
+export const Array: Story<IconProps> = (props: IconProps) => (
+  <ArrayIcon {...props} />
+)
+
+export const Component: Story<IconProps> = (props: IconProps) => (
+  <ComponentIcon {...props} />
+)
+
+export const Function: Story<IconProps> = (props: IconProps) => (
+  <FunctionIcon {...props} />
+)
+
+export const Null: Story<IconProps> = (props: IconProps) => (
+  <NullIcon {...props} />
+)
+
+export const Number: Story<IconProps> = (props: IconProps) => (
+  <NumberIcon {...props} />
+)
+
+export const Object: Story<IconProps> = (props: IconProps) => (
+  <ObjectIcon {...props} />
+)
+
+export const String: Story<IconProps> = (props: IconProps) => (
+  <StringIcon {...props} />
 )

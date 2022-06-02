@@ -13,7 +13,7 @@ export default {
         type: "array",
       },
     },
-    borderColor: {
+    colorScheme: {
       options: [
         "gray",
         "blue",
@@ -24,6 +24,9 @@ export default {
         "orange",
         "cyan",
         "white",
+        "techPink",
+        "techPurple",
+        "grayBlue",
       ],
       control: {
         type: "select",

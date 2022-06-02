@@ -101,6 +101,8 @@ test("Button renders with different variant", () => {
   expect(screen.getByText("Hello Gray Outline")).toMatchSnapshot()
   render(<Button variant="text">Hello Text</Button>)
   expect(screen.getByText("Hello Text")).toMatchSnapshot()
+  render(<Button variant="light">Hello Light</Button>)
+  expect(screen.getByText("Hello Light")).toMatchSnapshot()
 })
 
 test("Button renders round", () => {

@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react"
+import { SerializedStyles } from "@emotion/react"
 
 export type ButtonColorScheme =
   | "white"
@@ -16,10 +17,11 @@ export type ButtonColorScheme =
   | "techPurple"
 
 export type ButtonSize = "small" | "medium" | "large"
-export type ButtonVariant = "fill" | "dashed" | "outline" | "text"
+export type ButtonVariant = "fill" | "dashed" | "outline" | "text" | "light"
 export type ButtonShape = "square" | "round"
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  _css?: SerializedStyles
   colorScheme?: ButtonColorScheme
   size?: ButtonSize
   variant?: ButtonVariant

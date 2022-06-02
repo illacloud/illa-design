@@ -13,6 +13,7 @@ export interface ResultProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   extra?: ReactNode
   icon?: ReactNode
+  paddingVertical?: string
   status?: ResultStatus
   subTitle?: ReactNode
   title?: ReactNode

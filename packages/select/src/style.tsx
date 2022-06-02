@@ -1,5 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { SelectProps, SelectStateValue } from "./interface"
+import { ColorScheme, SelectProps, SelectStateValue } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 import chroma from "chroma-js"
@@ -47,8 +47,8 @@ export const errorOutlineStyle = css`
 function applyStatus(stateValue: SelectStateValue) {
   let mainStyle: SerializedStyles
   let inputStyle = inputOutlineStyle
-  const { borderColor = "blue" } = stateValue
-  const isInnerolor = innerColor.indexOf(borderColor) > -1
+  const { colorScheme } = stateValue
+  const isInnerColor = colorScheme && innerColor.indexOf(colorScheme) > -1
   if (stateValue?.disabled) {
     mainStyle = css`
       cursor: not-allowed;
@@ -59,13 +59,14 @@ function applyStatus(stateValue: SelectStateValue) {
       cursor: not-allowed;
     `
   } else if (stateValue?.focus) {
-    const boxShadowColor = isInnerolor
-      ? globalColor(`--${illaPrefix}-${borderColor}-01`)
-      : chroma.mix(borderColor, "white", 0.1).hex()
+    const boxShadowColor = isInnerColor
+      ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
+      : globalColor(`--${illaPrefix}-blue-01`)
+    const borderColor = isInnerColor
+      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
+      : globalColor(`--${illaPrefix}-blue-03`)
     mainStyle = css`
-      border-color: ${isInnerolor
-        ? globalColor(`--${illaPrefix}-${borderColor}-03`)
-        : chroma.mix(borderColor, "white", 0.3).hex()};
+      border-color: ${borderColor};
       box-shadow: 0 0 8px 0
         ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
@@ -78,9 +79,9 @@ function applyStatus(stateValue: SelectStateValue) {
   } else {
     mainStyle = css`
       &:hover {
-        border-color: ${isInnerolor
-          ? globalColor(`--${illaPrefix}-${borderColor}-06`)
-          : chroma.mix(borderColor, "white", 0.6).hex()};
+        border-color: ${isInnerColor
+          ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
+          : chroma.mix(colorScheme ?? "blue", "white", 0.6).hex()};
       }
     `
   }
@@ -227,17 +228,28 @@ export function applyOptionStyle(
   size: SelectProps["size"],
   multiple?: boolean,
   checked?: boolean,
+  colorScheme?: ColorScheme,
 ): SerializedStyles {
+  const isInnerColor = colorScheme && innerColor.indexOf(colorScheme) > -1
+  const bgColor = isInnerColor
+    ? globalColor(`--${illaPrefix}-${colorScheme}-07`)
+    : globalColor(`--${illaPrefix}-blue-07`)
+  const color = isInnerColor
+    ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
+    : globalColor(`--${illaPrefix}-blue-01`)
   let stateStyle: SerializedStyles = css()
   if (checked) {
     if (multiple) {
       stateStyle = css`
-        color: ${globalColor(`--${illaPrefix}-blue-01`)};
+        color: ${color};
       `
     } else {
       stateStyle = css`
-        background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
-        color: ${globalColor(`--${illaPrefix}-blue-01`)};
+        background-color: ${bgColor};
+        color: ${color};
+        &:hover {
+          background-color: ${bgColor};
+        }
       `
     }
   }
@@ -259,8 +271,7 @@ export function applyOptionStyle(
     align-items: center;
 
     &:hover {
-      background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
-      color: ${globalColor(`--${illaPrefix}-blue-01`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     }
 
     ${stateStyle}

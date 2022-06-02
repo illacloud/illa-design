@@ -160,3 +160,100 @@ it("Trigger renders with on visible change event", () => {
   cy.get("@mock").should("to.be.calledWith", false)
   unmount()
 })
+
+it("Trigger renders with custom position", () => {
+  const customPosition = {
+    x: 100,
+    y: 100,
+  }
+  mount(
+    <Trigger trigger="click" content="Trigger" customPosition={customPosition}>
+      <Button>Button</Button>
+    </Trigger>,
+  )
+  cy.findByText("Button").click()
+  cy.findByText("Trigger")
+    .parent()
+    .parent()
+    .parent()
+    .parent()
+    .should("have.css", "top", "100px")
+    .should("have.css", "left", "100px")
+})
+
+it("Popup should follow trigger when window resize", () => {
+  mount(
+    <div style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
+      <Trigger trigger="click" content="Trigger">
+        <Button>Button</Button>
+      </Trigger>
+    </div>,
+  )
+  cy.findByText("Button").click()
+  cy.findByText("Trigger").should("exist")
+
+  cy.viewport(300, 300).then(() => {
+    cy.wait(500)
+    cy.findByText("Button").then((button) => {
+      const { left, width } = button[0].getBoundingClientRect()
+      const right = left + width
+
+      cy.findByText("Trigger").then((trigger) => {
+        const { left: triggerLeft, width: triggerWidth } =
+          trigger[0].getBoundingClientRect()
+
+        const triggerRight = triggerLeft + triggerWidth
+        const OFFSET = 20
+
+        /*
+         * After resize, trigger should below button
+         * Thus, trigger's left & right should between button's left & right
+         */
+        expect(triggerLeft).to.be.least(left - OFFSET)
+        expect(triggerRight).to.be.most(right + OFFSET)
+      })
+    })
+  })
+})
+
+it("Trigger renders with closeOnInnerClick", () => {
+  const mock = cy.stub().as("mock")
+  mount(
+    <Trigger
+      popupVisible={true}
+      closeOnInnerClick
+      onVisibleChange={mock}
+      content={<div>Close Click Me</div>}
+    >
+      <Button>Button</Button>
+    </Trigger>,
+  )
+  cy.findByText("Close Click Me").click()
+  cy.get("@mock").should("to.be.calledWith", false)
+  unmount()
+})
+
+it("Popup should follow trigger when upper container scroll", () => {
+  mount(
+    <div style={{ height: 100, overflow: "auto" }} data-testid="container">
+      <Trigger trigger="click" content="Trigger">
+        <Button>Button</Button>
+      </Trigger>
+      <div style={{ height: 300 }} />
+    </div>,
+  )
+  cy.findByText("Button").click()
+  cy.findByText("Trigger").should("exist")
+
+  cy.findByText("Button").then((button) => {
+    const OFFSET = 5
+    const { bottom } = button[0].getBoundingClientRect()
+
+    cy.findByText("Trigger").then((trigger) => {
+      const { top: triggerTop } = trigger[0].getBoundingClientRect()
+
+      // popup should close to button
+      expect(triggerTop).to.be.most(bottom + OFFSET + 1)
+    })
+  })
+})
