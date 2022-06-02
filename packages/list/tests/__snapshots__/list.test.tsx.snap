@@ -119,7 +119,7 @@ exports[`List renders without border and split 1`] = `
 }
 
 .emotion-10 {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-11 {

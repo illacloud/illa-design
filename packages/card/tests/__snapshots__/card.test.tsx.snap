@@ -149,7 +149,7 @@ exports[`Card renders with Meta 1`] = `
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
-  color: #272e3b;
+  color: #787e85;
   -webkit-transition: color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out;
 }
@@ -336,7 +336,7 @@ exports[`Card renders with different hoverable 1`] = `
 .emotion-3 {
   box-sizing: border-box;
   padding: 16px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 <div

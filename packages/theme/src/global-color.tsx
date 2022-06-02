@@ -30,11 +30,11 @@ const globalColorNormal: Map<string, string> = new Map([
 
   ["--illa-grayBlue-01", "#0b0c0f"],
   ["--illa-grayBlue-02", "#1d2129"],
-  ["--illa-grayBlue-03", "#272e3b"],
-  ["--illa-grayBlue-04", "#6b7785"],
-  ["--illa-grayBlue-05", "#86909c"],
-  ["--illa-grayBlue-06", "#a9aeb8"],
-  ["--illa-grayBlue-07", "#c9cdd4"],
+  ["--illa-grayBlue-03", "#787e85"],
+  ["--illa-grayBlue-04", "#a9aeb8"],
+  ["--illa-grayBlue-05", "#bbc0c9"],
+  ["--illa-grayBlue-06", "#c9cdd4"],
+  ["--illa-grayBlue-07", "#dadee5"],
   ["--illa-grayBlue-08", "#e5e6eb"],
   ["--illa-grayBlue-09", "#f2f3f5"],
 
