@@ -1,5 +1,18 @@
 # @illa-design/system
 
+## 0.0.7
+
+### Patch Changes
+
+- bugfix
+
+- Updated dependencies []:
+  - @illa-design/config-provider@0.0.7
+  - @illa-design/icon@0.0.7
+  - @illa-design/system@0.0.7
+  - @illa-design/theme@0.0.7
+  - @illa-design/tooltip@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes

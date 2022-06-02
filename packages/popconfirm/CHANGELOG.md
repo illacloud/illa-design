@@ -1,5 +1,19 @@
 # @illa-design/popconfirm
 
+## 0.0.7
+
+### Patch Changes
+
+- bugfix
+
+- Updated dependencies []:
+  - @illa-design/button@0.0.7
+  - @illa-design/config-provider@0.0.7
+  - @illa-design/system@0.0.7
+  - @illa-design/theme@0.0.7
+  - @illa-design/trigger@0.0.7
+  - @illa-design/typography@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes

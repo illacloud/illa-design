@@ -1,5 +1,16 @@
 # @illa-design/switch
 
+## 0.0.7
+
+### Patch Changes
+
+- bugfix
+
+- Updated dependencies []:
+  - @illa-design/icon@0.0.7
+  - @illa-design/system@0.0.7
+  - @illa-design/theme@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes

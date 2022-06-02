@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/statistic",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Illa Design Statistic.",
   "keywords": [
     "statistic",
@@ -39,8 +39,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.6",
-    "@illa-design/theme": "0.0.6",
-    "@illa-design/system": "0.0.6"
+    "@illa-design/icon": "0.0.7",
+    "@illa-design/theme": "0.0.7",
+    "@illa-design/system": "0.0.7"
   }
 }
