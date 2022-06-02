@@ -333,7 +333,7 @@ exports[`Steps render vertical label 1`] = `
   line-height: 24px;
   font-size: 14px;
   background: #e5e6eb;
-  color: #6b7785;
+  color: #a9aeb8;
   margin-left: 56px;
 }
 
@@ -484,8 +484,8 @@ exports[`Steps render with dot variant 1`] = `
   align-items: center;
   width: 8px;
   height: 8px;
-  background: #a9aeb8;
-  color: #6b7785;
+  background: #c9cdd4;
+  color: #a9aeb8;
   margin-left: 66px;
 }
 
@@ -621,8 +621,8 @@ exports[`Steps render with dot variant with vertical direction 1`] = `
   align-items: center;
   width: 8px;
   height: 8px;
-  background: #a9aeb8;
-  color: #6b7785;
+  background: #c9cdd4;
+  color: #a9aeb8;
   margin-top: 8px;
 }
 
@@ -961,7 +961,7 @@ exports[`Steps render with navigation variant 1`] = `
   display: block;
   width: 6px;
   height: 6px;
-  border: 2px solid #a9aeb8;
+  border: 2px solid #c9cdd4;
   border-left: none;
   border-bottom: none;
   -webkit-transform: rotate(45deg);
@@ -1007,7 +1007,7 @@ exports[`Steps render with navigation variant 1`] = `
   line-height: 24px;
   font-size: 14px;
   background: #e5e6eb;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-8 {
@@ -1245,7 +1245,7 @@ exports[`Steps render with process status 1`] = `
   line-height: 24px;
   font-size: 14px;
   background: #e5e6eb;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-12 {
@@ -1412,7 +1412,7 @@ exports[`Steps render with vertical 1`] = `
   line-height: 24px;
   font-size: 14px;
   background: #e5e6eb;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 <div
@@ -1586,8 +1586,8 @@ exports[`Steps with dot variant and error status should render error style 1`] =
   align-items: center;
   width: 8px;
   height: 8px;
-  background: #a9aeb8;
-  color: #6b7785;
+  background: #c9cdd4;
+  color: #a9aeb8;
   margin-top: 8px;
 }
 
@@ -1786,7 +1786,7 @@ exports[`Steps with vertical direction and error status should render error styl
   line-height: 24px;
   font-size: 14px;
   background: #e5e6eb;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 <div

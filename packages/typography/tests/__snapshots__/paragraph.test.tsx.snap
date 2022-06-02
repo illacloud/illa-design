@@ -7,7 +7,7 @@ exports[`Paragraph renders with code style 1`] = `
 
 .emotion-1 {
   color: rgba(0, 0, 0, 0.64);
-  background-color: #86909c;
+  background-color: #bbc0c9;
 }
 
 <div
@@ -33,7 +33,7 @@ exports[`Paragraph renders with disabled style 1`] = `
 .emotion-0 {
   color: rgba(0, 0, 0, 0.64);
   cursor: not-allowed;
-  color: #86909c;
+  color: #bbc0c9;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

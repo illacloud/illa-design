@@ -205,7 +205,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   font-size: inherit;
   line-height: inherit;
   box-sizing: border-box;
-  color: #86909c;
+  color: #bbc0c9;
   border: solid 1px #e5e6eb;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
@@ -247,40 +247,40 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
 }
 
 .emotion-118::-webkit-input-placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118::-moz-placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118:-ms-input-placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118::placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118:disabled {
   cursor: not-allowed;
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled::-webkit-input-placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled::-moz-placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled:-ms-input-placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled::placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-119 {
@@ -299,7 +299,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   flex-direction: column;
   box-sizing: border-box;
   padding: 0 3px;
-  color: #6b7785;
+  color: #a9aeb8;
   background-color: #f2f3f5;
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
@@ -307,7 +307,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
 
 .emotion-120:hover {
   cursor: pointer;
-  background-color: #c9cdd4;
+  background-color: #dadee5;
 }
 
 .emotion-120:first-of-type {
@@ -1108,7 +1108,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   font-size: inherit;
   line-height: inherit;
   box-sizing: border-box;
-  color: #86909c;
+  color: #bbc0c9;
   border: solid 1px #e5e6eb;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
@@ -1150,40 +1150,40 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-118::-webkit-input-placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118::-moz-placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118:-ms-input-placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118::placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118:disabled {
   cursor: not-allowed;
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled::-webkit-input-placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled::-moz-placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled:-ms-input-placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled::placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-119 {
@@ -1202,7 +1202,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   flex-direction: column;
   box-sizing: border-box;
   padding: 0 3px;
-  color: #6b7785;
+  color: #a9aeb8;
   background-color: #f2f3f5;
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
@@ -1210,7 +1210,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 
 .emotion-120:hover {
   cursor: pointer;
-  background-color: #c9cdd4;
+  background-color: #dadee5;
 }
 
 .emotion-120:first-of-type {
@@ -2017,7 +2017,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   font-size: inherit;
   line-height: inherit;
   box-sizing: border-box;
-  color: #86909c;
+  color: #bbc0c9;
   border: solid 1px #e5e6eb;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
@@ -2059,40 +2059,40 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-118::-webkit-input-placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118::-moz-placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118:-ms-input-placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118::placeholder {
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 .emotion-118:disabled {
   cursor: not-allowed;
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled::-webkit-input-placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled::-moz-placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled:-ms-input-placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-118:disabled::placeholder {
-  color: #86909c;
+  color: #bbc0c9;
 }
 
 .emotion-119 {
@@ -2111,7 +2111,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   flex-direction: column;
   box-sizing: border-box;
   padding: 0 3px;
-  color: #6b7785;
+  color: #a9aeb8;
   background-color: #f2f3f5;
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
@@ -2119,7 +2119,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 
 .emotion-120:hover {
   cursor: pointer;
-  background-color: #c9cdd4;
+  background-color: #dadee5;
 }
 
 .emotion-120:first-of-type {

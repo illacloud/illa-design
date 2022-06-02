@@ -45,7 +45,7 @@ exports[`Progress renders with colors 1`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 <div
@@ -115,7 +115,7 @@ exports[`Progress renders with colors 2`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 <div
@@ -185,7 +185,7 @@ exports[`Progress renders with colors 3`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 <div
@@ -286,7 +286,7 @@ exports[`Progress renders with colors 4`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 <div
@@ -431,7 +431,7 @@ exports[`Progress renders with colors 5`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 <div
@@ -576,7 +576,7 @@ exports[`Progress renders with colors 6`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 <div
@@ -690,7 +690,7 @@ exports[`Progress renders with custom width 1`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 <div
@@ -798,7 +798,7 @@ exports[`Progress renders with steps 1`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #6b7785;
+  color: #a9aeb8;
 }
 
 <div
