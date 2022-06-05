@@ -1,13 +1,15 @@
 import { forwardRef, useCallback, cloneElement, useState } from "react"
 import { throttleByRaf } from "@illa-design/system"
 import { Button } from "@illa-design/button"
+import dayjs, { Dayjs } from "dayjs"
+import { TimePickerPopup } from "@illa-design/time-picker"
+import { Calendar } from "@illa-design/calendar"
 import {
   DatePickerProps,
   MonthPickerProps,
   YearPickerProps,
   CommonSingleProps,
 } from "../interface"
-import dayjs, { Dayjs } from "dayjs"
 import { Picker } from "../picker"
 import {
   triContentCommonCss,
@@ -22,8 +24,6 @@ import {
   nowButtonCss,
 } from "../style"
 import { initFormat } from "../utils"
-import { TimePickerPopup } from "@illa-design/time-picker"
-import { Calendar } from "@illa-design/calendar"
 
 const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
   (props, ref) => {
@@ -76,6 +76,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     const mergedDefaultValue = value || defaultPickerValue
     const showTimeMerged =
       (isBooleanShowTime || Object.keys(tpProps).length > 0) && type === "day"
+    console.log("showTimeMerged", showTimeMerged)
 
     const [valueShow, setValueShow] = useState<Dayjs | Dayjs[]>()
 
@@ -196,7 +197,8 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
               )}
               <div>
                 <Calendar
-                  panel={true}
+                  panel
+                  isTodayTarget
                   mode={type}
                   panelTodayBtn={showCalendarTodayButton}
                   _css={triContentCommonCss}

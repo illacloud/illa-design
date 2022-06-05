@@ -85,7 +85,7 @@ export const showTimeContainerCss = css`
 `
 
 export const showTimeHeaderCss = css`
-  height: 42px;
+  height: 50px;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   font-size: 14px;

@@ -40,6 +40,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       rangeValueSecond,
       rangeValueHover,
       handleRangeVal,
+      isTodayTarget,
       ...restProps
     } = props
 
@@ -217,6 +218,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
           rangeValueSecond={rangeValueSecond}
           rangeValueHover={rangeValueHover}
           handleRangeVal={handleRangeVal}
+          isTodayTarget={isTodayTarget}
         />
       </div>
     )

@@ -273,7 +273,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                   {!showTimePicker && (
                     <>
                       <Calendar
-                        panel={true}
+                        panel
                         mode={"day"}
                         _css={css`
                           ${triContentCommonCss};
@@ -284,15 +284,16 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         onPanelChange={(date: Dayjs) => changeHeader(date)}
                         disabledDate={disabledDate}
                         // extra
+                        rangePicker
+                        isTodayTarget
                         defaultDate={leftCalendarDate}
-                        rangePicker={true}
                         rangeValueFirst={rangeValueFirst}
                         rangeValueSecond={rangeValueSecond}
                         rangeValueHover={rangeValueHover}
                         handleRangeVal={handleRangeVal}
                       />
                       <Calendar
-                        panel={true}
+                        panel
                         mode={"day"}
                         _css={css`
                           ${triContentCommonCss};
@@ -303,8 +304,9 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         onPanelChange={(date: Dayjs) => changeHeader(date)}
                         disabledDate={disabledDate}
                         // extra
+                        rangePicker
+                        isTodayTarget
                         defaultDate={rightCalendarDate}
-                        rangePicker={true}
                         rangeValueFirst={rangeValueFirst}
                         rangeValueSecond={rangeValueSecond}
                         rangeValueHover={rangeValueHover}
