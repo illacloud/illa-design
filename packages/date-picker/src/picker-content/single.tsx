@@ -76,7 +76,6 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     const mergedDefaultValue = value || defaultPickerValue
     const showTimeMerged =
       (isBooleanShowTime || Object.keys(tpProps).length > 0) && type === "day"
-    console.log("showTimeMerged", showTimeMerged)
 
     const [valueShow, setValueShow] = useState<Dayjs | Dayjs[]>()
 
