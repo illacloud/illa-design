@@ -75,6 +75,9 @@ import {
   NumberIcon,
   ObjectIcon,
   StringIcon,
+  PostgresIcon,
+  MySqlIcon,
+  RedisIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -337,4 +340,16 @@ Object_Icon.storyName = "Object"
 
 export const String: Story<IconProps> = (props: IconProps) => (
   <StringIcon {...props} />
+)
+
+export const Postgres: Story<IconProps> = (props: IconProps) => (
+  <PostgresIcon {...props} />
+)
+
+export const MySql: Story<IconProps> = (props: IconProps) => (
+  <MySqlIcon {...props} />
+)
+
+export const Redis: Story<IconProps> = (props: IconProps) => (
+  <RedisIcon {...props} />
 )
