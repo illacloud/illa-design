@@ -328,9 +328,12 @@ export const Number: Story<IconProps> = (props: IconProps) => (
   <NumberIcon {...props} />
 )
 
-export const Object: Story<IconProps> = (props: IconProps) => (
+// Can not use `Object` as variable name, `Object` may be treat as
+// keyword and cause icon story crash
+export const Object_Icon: Story<IconProps> = (props: IconProps) => (
   <ObjectIcon {...props} />
 )
+Object_Icon.storyName = "Object"
 
 export const String: Story<IconProps> = (props: IconProps) => (
   <StringIcon {...props} />
