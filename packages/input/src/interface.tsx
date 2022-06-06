@@ -29,7 +29,7 @@ export type InputVariant = "fill" | "outline"
 export type InputSize = "small" | "medium" | "large"
 
 export interface InputElementProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "readOnly"> {
   _css?: SerializedStyles
   variant?: InputVariant
   placeholder?: string
@@ -158,7 +158,7 @@ export type RangeInputRef = {
 export interface RangeInputProps
   extends Omit<
     InputHTMLAttributes<HTMLDivElement>,
-    "disabled" | "size" | "placeholder" | "value" | "onChange"
+    "disabled" | "size" | "placeholder" | "value" | "onChange" | "readOnly"
   > {
   inputGroupRef?: MutableRefObject<{
     input0?: HTMLInputElement | null
@@ -187,6 +187,7 @@ export interface RangeInputProps
   onPressEnter?: () => void
   onPressTab?: (e: any) => void
   withoutNormalBorder?: boolean
+  readOnly?: boolean
 }
 
 export interface StateValue {

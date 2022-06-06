@@ -21,6 +21,8 @@ export const PickerRange: FC<RangePickerBodyProps> = (props) => {
     inputVal,
     onClearDate,
     onChangeVisible,
+    colorScheme,
+    readOnly,
   } = props
 
   const tryUpdatePopupVisible = (value: boolean) => {
@@ -46,10 +48,12 @@ export const PickerRange: FC<RangePickerBodyProps> = (props) => {
       <RangeInput
         disabled={disabled}
         value={inputVal}
+        borderColor={colorScheme}
         allowClear={allowClear}
         onClear={() => onClearDate?.()}
         placeholder={placeholder}
         error={error}
+        readOnly={readOnly}
         size={size}
         suffix={{ render: <CalendarIcon /> }}
         separator={separator}
