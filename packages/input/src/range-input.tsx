@@ -54,6 +54,9 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
     const disabled0 = isArray(disabled) ? disabled?.[0] : disabled
     const disabled1 = isArray(disabled) ? disabled?.[1] : disabled
 
+    const readOnly0 = isArray(readOnly) ? readOnly?.[0] : readOnly
+    const readOnly1 = isArray(readOnly) ? readOnly?.[1] : readOnly
+
     const [focus0, setFocus0] = useState(false)
     const [focus1, setFocus1] = useState(false)
     const [value0, setValue0] = useState(value?.[0] || "")
@@ -106,7 +109,6 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
     }
 
     const inputProps = {
-      readOnly,
       onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => {
         const keyCode = e.keyCode || e.which
         // Enter
@@ -141,6 +143,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
           value={value0}
           placeholder={placeholder?.[0]}
           disabled={disabled0}
+          readOnly={readOnly0}
           onFocus={(e) => {
             if (disabled0) return
             changeFocusedInput(0)
@@ -171,6 +174,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
             applyInputStyle(),
             applyRangeInput(popupVisible && focusedInputIndex === 1),
           )}
+          readOnly={readOnly1}
           value={value1}
           placeholder={placeholder?.[1]}
           disabled={disabled1}

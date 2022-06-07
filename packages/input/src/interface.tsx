@@ -29,7 +29,7 @@ export type InputVariant = "fill" | "outline"
 export type InputSize = "small" | "medium" | "large"
 
 export interface InputElementProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "readOnly"> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   _css?: SerializedStyles
   variant?: InputVariant
   placeholder?: string
@@ -176,6 +176,7 @@ export interface RangeInputProps
   editable?: boolean
   error?: boolean
   disabled?: boolean | boolean[]
+  readOnly?: boolean | boolean[]
   suffix?: { custom?: boolean; render?: ReactNode }
   separator?: ReactNode
   focusedInputIndex?: number
@@ -187,7 +188,6 @@ export interface RangeInputProps
   onPressEnter?: () => void
   onPressTab?: (e: any) => void
   withoutNormalBorder?: boolean
-  readOnly?: boolean
 }
 
 export interface StateValue {
