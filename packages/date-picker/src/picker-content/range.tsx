@@ -50,6 +50,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       onSelectShortcut,
       onClear,
       colorScheme,
+      value,
       ...restProps
     } = props
 
@@ -74,6 +75,16 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
         ]
       : []
     const [inputVal, setInputVal] = useState<string[]>(initVal)
+
+    useEffect(() => {
+      if (value) {
+        setInputVal([
+          dayjs(value[0]).format(finalFormat as string),
+          dayjs(value[1]).format(finalFormat as string),
+        ])
+      }
+    }, [value])
+
     const [showTrigger, setShowTrigger] = useState<boolean>(
       popupVisible as boolean,
     )

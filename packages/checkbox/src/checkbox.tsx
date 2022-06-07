@@ -29,6 +29,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
       checked,
       indeterminate,
       defaultChecked,
+      colorScheme,
       ...otherProps
     } = mergeProps
     if (context.isGroup) {
@@ -53,7 +54,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
       <label css={applyMergeCss(props)} ref={ref} {...otherProps}>
         <input
           type="checkbox"
-          css={applyCheckboxSize(currentChecked || indeterminate)}
+          css={applyCheckboxSize(currentChecked || indeterminate, colorScheme)}
           value={value}
           checked={currentChecked}
           disabled={disabled}
