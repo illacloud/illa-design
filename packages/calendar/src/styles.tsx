@@ -349,3 +349,16 @@ export const disabledCss = css`
     cursor: default;
   }
 `
+
+export const isTodayStyle = css`
+  &::after {
+    content: "";
+    display: block;
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+  }
+`

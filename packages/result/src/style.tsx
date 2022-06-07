@@ -12,7 +12,7 @@ export function applyWrapStyle(paddingVertical: string) {
 
 export const titleCss = css`
   margin-top: 16px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   line-height: 22px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};

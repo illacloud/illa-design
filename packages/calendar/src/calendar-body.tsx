@@ -40,6 +40,7 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
     rangeValueSecond,
     rangeValueHover,
     handleRangeVal,
+    isTodayTarget,
   } = props
 
   // start of month data
@@ -198,6 +199,7 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
               rangeValueSecond={rangeValueSecond}
               rangeValueHover={rangeValueHover}
               handleRangeVal={handleRangeVal}
+              isTodayTarget={isTodayTarget}
             />
           </div>
           {panelTodayBtn && (
