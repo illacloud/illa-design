@@ -1,7 +1,7 @@
 import { createIcon } from "../create-icon"
 
-export const JavaScriptTransfomerIcon = createIcon({
-  title: "JavaScriptTransfomerIcon",
+export const JSTransformerIcon = createIcon({
+  title: "JSTransformerIcon",
   viewBox: "0 0 32 32",
   path: (
     <>
@@ -19,4 +19,4 @@ export const JavaScriptTransfomerIcon = createIcon({
   ),
 })
 
-JavaScriptTransfomerIcon.displayName = "JavaScriptTransfomerIcon"
+JSTransformerIcon.displayName = "JSTransformerIcon"
