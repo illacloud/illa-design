@@ -83,6 +83,5 @@ export * from "./icons/string"
 export * from "./icons/postgres"
 export * from "./icons/my-sql"
 export * from "./icons/redis"
-
 export * from "./icons/mongo-db"
 export * from "./icons/java-script-transfomer"
