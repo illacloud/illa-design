@@ -21,6 +21,8 @@ export const Picker: FC<CommonPickerProps> = (props) => {
     inputVal,
     onClearDate,
     onChangeVisible,
+    colorScheme,
+    readOnly,
   } = props
 
   const tryUpdatePopupVisible = (value: boolean) => {
@@ -45,10 +47,12 @@ export const Picker: FC<CommonPickerProps> = (props) => {
         onVisibleChange={tryUpdatePopupVisible}
       >
         <Input
+          readOnly={readOnly}
           disabled={typeof disabled === "boolean" ? disabled : false}
           placeholder={typeof placeholder === "string" ? placeholder : ""}
           size={size}
           value={inputVal}
+          borderColor={colorScheme}
           style={{ width: 280 }}
           suffix={{ render: <CalendarIcon /> }}
           allowClear={allowClear}

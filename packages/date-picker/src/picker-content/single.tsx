@@ -54,6 +54,8 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       defaultValue,
       showNowBtn,
       disabledTime,
+      colorScheme,
+      readOnly,
       ...restProps
     } = props
 
@@ -186,6 +188,8 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
           onClear={onClear}
           onVisibleChange={onVisibleChange}
           editable={editable}
+          readOnly={readOnly}
+          colorScheme={colorScheme}
           onChangeInputVal={setInputVal}
           pickerContent={
             <div css={singlePickerContentCss}>

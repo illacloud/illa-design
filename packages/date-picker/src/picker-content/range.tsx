@@ -49,6 +49,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       disabledTime,
       onSelectShortcut,
       onClear,
+      colorScheme,
       ...restProps
     } = props
 
@@ -211,6 +212,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
           placeholder={placeholder}
           error={error}
           size={size}
+          colorScheme={colorScheme}
           onVisibleChange={onVisibleChange}
           popupVisible={showTrigger}
           onChangeVisible={setShowTrigger}

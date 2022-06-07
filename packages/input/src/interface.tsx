@@ -158,7 +158,7 @@ export type RangeInputRef = {
 export interface RangeInputProps
   extends Omit<
     InputHTMLAttributes<HTMLDivElement>,
-    "disabled" | "size" | "placeholder" | "value" | "onChange"
+    "disabled" | "size" | "placeholder" | "value" | "onChange" | "readOnly"
   > {
   inputGroupRef?: MutableRefObject<{
     input0?: HTMLInputElement | null
@@ -176,6 +176,7 @@ export interface RangeInputProps
   editable?: boolean
   error?: boolean
   disabled?: boolean | boolean[]
+  readOnly?: boolean | boolean[]
   suffix?: { custom?: boolean; render?: ReactNode }
   separator?: ReactNode
   focusedInputIndex?: number

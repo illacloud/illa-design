@@ -13,7 +13,28 @@ import {
 export default {
   title: "DATA INPUT/DatePicker",
   component: DatePicker,
-  args: {},
+  argTypes: {
+    colorScheme: {
+      options: [
+        "white",
+        "blackAlpha",
+        "gray",
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "cyan",
+        "purple",
+        "grayBlue",
+        "techPink",
+        "techPurple",
+      ],
+      control: {
+        type: "select",
+      },
+    },
+  },
 } as Meta
 
 const DateTemplate: Story<DatePickerProps> = (args) => {
