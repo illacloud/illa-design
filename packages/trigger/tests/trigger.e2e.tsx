@@ -108,7 +108,6 @@ it("Trigger renders with equal width", () => {
       <div>Button</div>
     </Trigger>,
   )
-  cy.wait(2000)
   cy.findByText("Trigger")
     .parent()
     .parent()
@@ -193,7 +192,6 @@ it("Popup should follow trigger when window resize", () => {
   cy.findByText("Trigger").should("exist")
 
   cy.viewport(300, 300).then(() => {
-    cy.wait(500)
     cy.findByText("Button").then((button) => {
       const { left, width } = button[0].getBoundingClientRect()
       const right = left + width
