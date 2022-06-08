@@ -1,4 +1,10 @@
-import { forwardRef, useCallback, cloneElement, useState } from "react"
+import {
+  forwardRef,
+  useCallback,
+  cloneElement,
+  useState,
+  useEffect,
+} from "react"
 import { throttleByRaf } from "@illa-design/system"
 import { Button } from "@illa-design/button"
 import dayjs, { Dayjs } from "dayjs"
@@ -69,6 +75,13 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
         ? dayjs(value || defaultValue).format(finalFormat as string)
         : ""
     const [inputVal, setInputVal] = useState<string>(initValue)
+    useEffect(() => {
+      if (value) {
+        const _initValue = dayjs(value).format(finalFormat as string)
+        setInputVal(_initValue)
+      }
+    }, [value])
+
     const [calendarShortCuts, setCalendarShortCuts] = useState<
       Dayjs | "clear"
     >()

@@ -9,6 +9,25 @@ export default {
     value: {
       control: false,
     },
+    colorScheme: {
+      options: [
+        "gray",
+        "blue",
+        "purple",
+        "red",
+        "green",
+        "yellow",
+        "orange",
+        "cyan",
+        "white",
+        "techPink",
+        "techPurple",
+        "grayBlue",
+      ],
+      control: {
+        type: "select",
+      },
+    },
   },
 } as Meta
 

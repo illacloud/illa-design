@@ -26,6 +26,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
       direction = "horizontal",
       spacing = direction === "horizontal" ? "24px" : "16px",
       onChange,
+      colorScheme,
       ...otherProps
     } = props
 
@@ -90,6 +91,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
                     key={`check-${index}`}
                     value={option.value || option}
                     disabled={disabled || option?.disabled}
+                    colorScheme={colorScheme}
                   >
                     {option.label || option}
                   </Checkbox>
