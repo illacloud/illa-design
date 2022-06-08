@@ -1,6 +1,7 @@
 import { CheckboxGroup } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 test("CheckboxGroup renders with text", () => {
   render(<CheckboxGroup options={["A", "B", "C"]} />)
@@ -45,4 +46,19 @@ test("CheckboxGroup render with click", async () => {
   expect(screen.getByDisplayValue("a")).not.toBeChecked()
   fireEvent.click(screen.getByDisplayValue("c"))
   expect(screen.getByDisplayValue("c")).toBeChecked()
+})
+
+test("CheckboxGroup renders with colorScheme", () => {
+  render(
+    <div>
+      <CheckboxGroup
+        options={["A", "B", "C"]}
+        colorScheme="yellow"
+        defaultValue={["A"]}
+      />
+    </div>,
+  )
+  expect(screen.getByDisplayValue("A")).toHaveStyle({
+    "background-color": `${globalColor(`--${illaPrefix}-yellow-01`)}`,
+  })
 })
