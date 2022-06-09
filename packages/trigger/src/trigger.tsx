@@ -39,10 +39,8 @@ import useWindowSize from "react-use/lib/useWindowSize"
 import { mergeRefs } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
 import useMouse from "react-use/lib/useMouse"
-import useScroll from "react-use/lib/useScroll"
 import { css } from "@emotion/react"
-import { getScrollElements } from "@illa-design/system/src"
-import { on } from "codemirror"
+import { getScrollElements } from "@illa-design/system"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -260,10 +258,13 @@ export const Trigger: FC<TriggerProps> = (props) => {
   }
 
   const [tipsMeasureRef, tipsMeasureInfo] = useMeasure<HTMLDivElement>()
+  const protalRef = useRef<HTMLDivElement>(null)
+  const { elX, elY } = useMouse(protalRef)
 
   tipsNode = (
     <motion.div
       css={applyMotionDiv()}
+      ref={mergeRefs(protalRef, tipsMeasureRef)}
       variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
       animate="animate"
@@ -282,9 +283,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
       {centerNode}
     </motion.div>
   )
-
-  const protalRef = useRef<HTMLDivElement>(null)
-  const { elX, elY } = useMouse(protalRef)
 
   useClickAway(childrenRef, () => {
     if (!disabled && clickOutsideToClose) {
@@ -337,7 +335,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
     <AnimatePresence>
       {!disabled && tipVisible && childrenRef.current !== null ? (
         <Popup
-          ref={mergeRefs(protalRef, tipsMeasureRef)}
           onClick={() => {
             if (closeOnInnerClick) {
               hideTips(popupVisible !== undefined)

@@ -126,7 +126,6 @@ it("Trigger renders with control", () => {
       <Trigger content="Invisible Trigger" popupVisible={false} trigger="click">
         <Button>InvisibleButton</Button>
       </Trigger>
-      ,
     </Space>,
   )
   cy.findByText("Visible Success").should("exist")
@@ -229,29 +228,4 @@ it("Trigger renders with closeOnInnerClick", () => {
   cy.findByText("Close Click Me").click()
   cy.get("@mock").should("to.be.calledWith", false)
   unmount()
-})
-
-it("Popup should follow trigger when upper container scroll", () => {
-  mount(
-    <div style={{ height: 100, overflow: "auto" }} data-testid="container">
-      <Trigger trigger="click" content="Trigger">
-        <Button>Button</Button>
-      </Trigger>
-      <div style={{ height: 300 }} />
-    </div>,
-  )
-  cy.findByText("Button").click()
-  cy.findByText("Trigger").should("exist")
-
-  cy.findByText("Button").then((button) => {
-    const OFFSET = 5
-    const { bottom } = button[0].getBoundingClientRect()
-
-    cy.findByText("Trigger").then((trigger) => {
-      const { top: triggerTop } = trigger[0].getBoundingClientRect()
-
-      // popup should close to button
-      expect(triggerTop).to.be.most(bottom + OFFSET + 1)
-    })
-  })
 })
