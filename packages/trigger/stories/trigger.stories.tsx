@@ -44,7 +44,7 @@ export const Basic: Story<TriggerProps> = (args) => {
           <Trigger {...args} position="tl" content="TL">
             <Button>TL</Button>
           </Trigger>
-          <Trigger {...args} position="top">
+          <Trigger {...args} position="top" content="TOP">
             <Button>TOP</Button>
           </Trigger>
           <Trigger {...args} position="tr" content="TR">

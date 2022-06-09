@@ -209,9 +209,24 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const adjustLocationAndResult = () => {
     if (childrenRef.current != null && tipsMeasureInfo != null) {
+      let width = 0,
+        height = 0
+
+      if (protalRef.current) {
+        ;({ width, height } = protalRef?.current.getBoundingClientRect())
+      }
+
+      /*
+       * tipsMeasureInfo.width & tipsMeasureInfo.height may be 0,
+       * but tip's width & height is necessary, so get the maximun between
+       * `getBoundingClientRect` and `tipsMeasureinfo` as width & height
+       */
+      width = Math.max(width, tipsMeasureInfo.width)
+      height = Math.max(height, tipsMeasureInfo.height)
+
       const result = adjustLocation(
-        tipsMeasureInfo.width,
-        tipsMeasureInfo.height,
+        width,
+        height,
         childrenRef.current,
         position,
         autoFitPosition,
