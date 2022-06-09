@@ -1,5 +1,17 @@
 # @illa-design/card
 
+## 0.0.8
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@0.0.8
+  - @illa-design/spin@0.0.8
+  - @illa-design/system@0.0.8
+  - @illa-design/theme@0.0.8
+
 ## 0.0.7
 
 ### Patch Changes
