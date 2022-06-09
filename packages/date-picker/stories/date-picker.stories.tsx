@@ -13,7 +13,28 @@ import {
 export default {
   title: "DATA INPUT/DatePicker",
   component: DatePicker,
-  args: {},
+  argTypes: {
+    colorScheme: {
+      options: [
+        "white",
+        "blackAlpha",
+        "gray",
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "cyan",
+        "purple",
+        "grayBlue",
+        "techPink",
+        "techPurple",
+      ],
+      control: {
+        type: "select",
+      },
+    },
+  },
 } as Meta
 
 const DateTemplate: Story<DatePickerProps> = (args) => {
@@ -29,14 +50,7 @@ const YearTemplate: Story<YearPickerProps> = (args) => {
 }
 
 const RangeTemplate: Story<CommonRangeProps> = (args) => {
-  return (
-    <DateRangePicker
-      {...args}
-      popupVisible
-      placeholder={["", "date-2"]}
-      defaultPickerValue={["2022-05-01"]}
-    />
-  )
+  return <DateRangePicker {...args} />
 }
 
 export const date = DateTemplate.bind({})

@@ -2,6 +2,7 @@ import { HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
 import { SerializedStyles } from "@emotion/react"
 import { RangePickerProps, TimePickerProps } from "@illa-design/time-picker"
+import { InputBorderColor } from "@illa-design/input"
 
 export type PickerPosition = "top" | "tl" | "tr" | "bottom" | "bl" | "br"
 export type ShortcutType = {
@@ -44,6 +45,8 @@ export interface PickerProps
   _css?: SerializedStyles
   utcOffset?: number
   timezone?: string
+  colorScheme?: InputBorderColor
+  readOnly?: boolean
 }
 
 export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {

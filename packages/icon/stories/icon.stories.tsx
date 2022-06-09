@@ -75,6 +75,12 @@ import {
   NumberIcon,
   ObjectIcon,
   StringIcon,
+  PostgresIcon,
+  MySqlIcon,
+  RedisIcon,
+  MongoDbIcon,
+  JSTransformerIcon,
+  UnselectedWidgetIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -328,10 +334,37 @@ export const Number: Story<IconProps> = (props: IconProps) => (
   <NumberIcon {...props} />
 )
 
-export const Object: Story<IconProps> = (props: IconProps) => (
+// Can not use `Object` as variable name, `Object` may be treat as
+// keyword and cause icon story crash
+export const Object_Icon: Story<IconProps> = (props: IconProps) => (
   <ObjectIcon {...props} />
 )
+Object_Icon.storyName = "Object"
 
 export const String: Story<IconProps> = (props: IconProps) => (
   <StringIcon {...props} />
+)
+
+export const Postgres: Story<IconProps> = (props: IconProps) => (
+  <PostgresIcon {...props} />
+)
+
+export const MySql: Story<IconProps> = (props: IconProps) => (
+  <MySqlIcon {...props} />
+)
+
+export const Redis: Story<IconProps> = (props: IconProps) => (
+  <RedisIcon {...props} />
+)
+
+export const MongoDb: Story<IconProps> = (props: IconProps) => (
+  <MongoDbIcon {...props} />
+)
+
+export const JSTransformer: Story<IconProps> = (props: IconProps) => (
+  <JSTransformerIcon {...props} />
+)
+
+export const UnselectedWidget: Story<IconProps> = (props: IconProps) => (
+  <UnselectedWidgetIcon {...props} />
 )

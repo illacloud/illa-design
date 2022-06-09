@@ -1,6 +1,6 @@
-import { forwardRef, useState, useCallback, useEffect } from "react"
+import { forwardRef, useCallback } from "react"
 import { throttleByRaf } from "@illa-design/system"
-import { CalendarDaysProps } from "./interface"
+import isToday from "dayjs/plugin/isToday"
 import dayjs, { Dayjs } from "dayjs"
 import {
   weekContainerCss,
@@ -11,8 +11,12 @@ import {
   dayItemCss,
   disabledCss,
   applyCurrentColorCss,
+  isTodayStyle,
 } from "./styles"
 import { css } from "@emotion/react"
+import { CalendarDaysProps } from "./interface"
+
+dayjs.extend(isToday)
 
 export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
   (props, ref) => {
@@ -31,6 +35,7 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
       rangeValueSecond,
       rangeValueHover,
       handleRangeVal,
+      isTodayTarget,
       ...restProps
     } = props
 
@@ -87,6 +92,10 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
         ${applyCurrentColorCss(isCurrentMonth(item, month))};
         ${showSelectedStyle && selectedDayStyle};
         ${disabled && disabledCss};
+        ${isTodayTarget &&
+        isCurrentMonth(item, month) &&
+        item.isToday() &&
+        isTodayStyle}
       `
     }
     const isCurrentMonth = (item: Dayjs, month?: number | null) => {
@@ -191,7 +200,8 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
                 css={handleMonthTypeDayText(item.date, currentMonth, disabled)}
               >
                 {dateRender ? dateRender(item.date) : item.date.date()}
-                {dateInnerContent}
+                {/* use dateInnerContent only "panel" is false and mode is "month" */}
+                {!componentMode && dateInnerContent}
               </div>
             </div>
           )

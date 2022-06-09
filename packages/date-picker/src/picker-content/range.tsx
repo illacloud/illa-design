@@ -49,6 +49,8 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       disabledTime,
       onSelectShortcut,
       onClear,
+      colorScheme,
+      value,
       ...restProps
     } = props
 
@@ -73,6 +75,16 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
         ]
       : []
     const [inputVal, setInputVal] = useState<string[]>(initVal)
+
+    useEffect(() => {
+      if (value) {
+        setInputVal([
+          dayjs(value[0]).format(finalFormat as string),
+          dayjs(value[1]).format(finalFormat as string),
+        ])
+      }
+    }, [value])
+
     const [showTrigger, setShowTrigger] = useState<boolean>(
       popupVisible as boolean,
     )
@@ -211,6 +223,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
           placeholder={placeholder}
           error={error}
           size={size}
+          colorScheme={colorScheme}
           onVisibleChange={onVisibleChange}
           popupVisible={showTrigger}
           onChangeVisible={setShowTrigger}
@@ -273,7 +286,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                   {!showTimePicker && (
                     <>
                       <Calendar
-                        panel={true}
+                        panel
                         mode={"day"}
                         _css={css`
                           ${triContentCommonCss};
@@ -284,15 +297,16 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         onPanelChange={(date: Dayjs) => changeHeader(date)}
                         disabledDate={disabledDate}
                         // extra
+                        rangePicker
+                        isTodayTarget
                         defaultDate={leftCalendarDate}
-                        rangePicker={true}
                         rangeValueFirst={rangeValueFirst}
                         rangeValueSecond={rangeValueSecond}
                         rangeValueHover={rangeValueHover}
                         handleRangeVal={handleRangeVal}
                       />
                       <Calendar
-                        panel={true}
+                        panel
                         mode={"day"}
                         _css={css`
                           ${triContentCommonCss};
@@ -303,8 +317,9 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                         onPanelChange={(date: Dayjs) => changeHeader(date)}
                         disabledDate={disabledDate}
                         // extra
+                        rangePicker
+                        isTodayTarget
                         defaultDate={rightCalendarDate}
-                        rangePicker={true}
                         rangeValueFirst={rangeValueFirst}
                         rangeValueSecond={rangeValueSecond}
                         rangeValueHover={rangeValueHover}

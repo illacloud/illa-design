@@ -262,6 +262,24 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   color: #a9aeb8;
 }
 
+.emotion-118:-moz-read-only {
+  cursor: not-allowed;
+  color: #1d2129;
+}
+
+.emotion-118:read-only {
+  cursor: not-allowed;
+  color: #1d2129;
+}
+
+.emotion-118:-moz-read-only::placeholder {
+  color: #a9aeb8;
+}
+
+.emotion-118:read-only::placeholder {
+  color: #a9aeb8;
+}
+
 .emotion-118:disabled {
   cursor: not-allowed;
   color: #bbc0c9;
@@ -1162,6 +1180,24 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-118::placeholder {
+  color: #a9aeb8;
+}
+
+.emotion-118:-moz-read-only {
+  cursor: not-allowed;
+  color: #1d2129;
+}
+
+.emotion-118:read-only {
+  cursor: not-allowed;
+  color: #1d2129;
+}
+
+.emotion-118:-moz-read-only::placeholder {
+  color: #a9aeb8;
+}
+
+.emotion-118:read-only::placeholder {
   color: #a9aeb8;
 }
 
@@ -2071,6 +2107,24 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-118::placeholder {
+  color: #a9aeb8;
+}
+
+.emotion-118:-moz-read-only {
+  cursor: not-allowed;
+  color: #1d2129;
+}
+
+.emotion-118:read-only {
+  cursor: not-allowed;
+  color: #1d2129;
+}
+
+.emotion-118:-moz-read-only::placeholder {
+  color: #a9aeb8;
+}
+
+.emotion-118:read-only::placeholder {
   color: #a9aeb8;
 }
 

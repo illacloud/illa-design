@@ -46,6 +46,7 @@ export interface CalenderProps
     type: "first" | "second" | "hover",
   ) => void
   defaultSelectedDate?: Dayjs | "clear"
+  isTodayTarget?: boolean
 }
 
 export interface CalendarHeaderProps extends CalenderProps {

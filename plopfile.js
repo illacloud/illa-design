@@ -87,7 +87,6 @@ module.exports = (plop) => {
       {
         type: "append",
         path: "packages/icon/src/index.ts",
-        separator: "",
         template: 'export * from "./icons/{{dashCase name}}"'
       },
     ]

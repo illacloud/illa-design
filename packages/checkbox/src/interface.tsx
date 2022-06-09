@@ -1,5 +1,19 @@
 import { ReactText, LabelHTMLAttributes, SyntheticEvent } from "react"
 
+export type CheckboxColorScheme =
+  | string
+  | "gray"
+  | "blue"
+  | "purple"
+  | "red"
+  | "green"
+  | "yellow"
+  | "orange"
+  | "cyan"
+  | "white"
+  | "techPink"
+  | "techPurple"
+
 export interface CheckboxProps<T extends ReactText = any>
   extends Omit<LabelHTMLAttributes<HTMLLabelElement>, "onChange"> {
   value?: T
@@ -8,6 +22,7 @@ export interface CheckboxProps<T extends ReactText = any>
   defaultChecked?: boolean
   indeterminate?: boolean
   onChange?: (checked: boolean, event: SyntheticEvent) => void
+  colorScheme?: CheckboxColorScheme
 }
 
 export interface CheckboxGroupContextProps<T extends ReactText = any> {
@@ -42,4 +57,5 @@ export interface CheckboxGroupProps<T extends ReactText = any>
   direction?: "vertical" | "horizontal"
   spacing?: string | number
   onChange?: (value: T[], event: SyntheticEvent) => void
+  colorScheme?: CheckboxColorScheme
 }

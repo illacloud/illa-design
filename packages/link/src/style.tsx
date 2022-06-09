@@ -59,7 +59,7 @@ export function applyDisable(colorScheme: LinkColorScheme, disabled?: boolean) {
   const finalColor = disabled
     ? globalColor(`--${illaPrefix}-${colorScheme}-05`)
     : textColor
-  const cursor = disabled ? "not-allowed" : "default"
+  const cursor = disabled ? "not-allowed" : "pointer"
   return css`
     color: ${finalColor};
     cursor: ${cursor};
