@@ -78,6 +78,9 @@ import {
   PostgresIcon,
   MySqlIcon,
   RedisIcon,
+  MongoDbIcon,
+  JSTransformerIcon,
+  UnselectedWidgetIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -352,4 +355,16 @@ export const MySql: Story<IconProps> = (props: IconProps) => (
 
 export const Redis: Story<IconProps> = (props: IconProps) => (
   <RedisIcon {...props} />
+)
+
+export const MongoDb: Story<IconProps> = (props: IconProps) => (
+  <MongoDbIcon {...props} />
+)
+
+export const JSTransformer: Story<IconProps> = (props: IconProps) => (
+  <JSTransformerIcon {...props} />
+)
+
+export const UnselectedWidget: Story<IconProps> = (props: IconProps) => (
+  <UnselectedWidgetIcon {...props} />
 )
