@@ -1,5 +1,33 @@
 # @illa-design/drawer
 
+## 0.0.8
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/button@0.0.8
+  - @illa-design/config-provider@0.0.8
+  - @illa-design/icon@0.0.8
+  - @illa-design/modal@0.0.8
+  - @illa-design/system@0.0.8
+  - @illa-design/theme@0.0.8
+
+## 0.0.7
+
+### Patch Changes
+
+- bugfix
+
+- Updated dependencies []:
+  - @illa-design/button@0.0.7
+  - @illa-design/config-provider@0.0.7
+  - @illa-design/icon@0.0.7
+  - @illa-design/modal@0.0.7
+  - @illa-design/system@0.0.7
+  - @illa-design/theme@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes

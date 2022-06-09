@@ -1,5 +1,29 @@
 # @illa-design/rate
 
+## 0.0.8
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@0.0.8
+  - @illa-design/system@0.0.8
+  - @illa-design/theme@0.0.8
+  - @illa-design/tooltip@0.0.8
+
+## 0.0.7
+
+### Patch Changes
+
+- bugfix
+
+- Updated dependencies []:
+  - @illa-design/icon@0.0.7
+  - @illa-design/system@0.0.7
+  - @illa-design/theme@0.0.7
+  - @illa-design/tooltip@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes
