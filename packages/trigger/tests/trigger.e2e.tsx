@@ -108,7 +108,6 @@ it("Trigger renders with equal width", () => {
       <div>Button</div>
     </Trigger>,
   )
-  cy.wait(2000)
   cy.findByText("Trigger")
     .parent()
     .parent()
@@ -127,7 +126,6 @@ it("Trigger renders with control", () => {
       <Trigger content="Invisible Trigger" popupVisible={false} trigger="click">
         <Button>InvisibleButton</Button>
       </Trigger>
-      ,
     </Space>,
   )
   cy.findByText("Visible Success").should("exist")
@@ -179,6 +177,8 @@ it("Trigger renders with custom position", () => {
     .parent()
     .should("have.css", "top", "100px")
     .should("have.css", "left", "100px")
+
+  unmount()
 })
 
 it("Popup should follow trigger when window resize", () => {
@@ -205,15 +205,13 @@ it("Popup should follow trigger when window resize", () => {
         const triggerRight = triggerLeft + triggerWidth
         const OFFSET = 20
 
-        /*
-         * After resize, trigger should below button
-         * Thus, trigger's left & right should between button's left & right
-         */
         expect(triggerLeft).to.be.least(left - OFFSET)
         expect(triggerRight).to.be.most(right + OFFSET)
       })
     })
   })
+
+  unmount()
 })
 
 it("Trigger renders with closeOnInnerClick", () => {
@@ -236,24 +234,36 @@ it("Trigger renders with closeOnInnerClick", () => {
 it("Popup should follow trigger when upper container scroll", () => {
   mount(
     <div style={{ height: 100, overflow: "auto" }} data-testid="container">
-      <Trigger trigger="click" content="Trigger">
+      <Trigger trigger="click" content="TriggerHello" showArrow={false}>
         <Button>Button</Button>
       </Trigger>
       <div style={{ height: 300 }} />
     </div>,
   )
   cy.findByText("Button").click()
-  cy.findByText("Trigger").should("exist")
+  cy.findByText("TriggerHello").should("exist")
+  cy.findByTestId("container").scrollTo("bottom")
+  cy.wait(100)
+  cy.findByTestId("container").scrollTo("top")
+  cy.wait(400)
 
   cy.findByText("Button").then((button) => {
-    const OFFSET = 5
     const { bottom } = button[0].getBoundingClientRect()
+    const OFFSET = 10
 
-    cy.findByText("Trigger").then((trigger) => {
-      const { top: triggerTop } = trigger[0].getBoundingClientRect()
+    cy.findByText("TriggerHello").then((trigger) => {
+      const {
+        top: triggerTop,
+        bottom: triggerBottom,
+        height: triggerHeight,
+      } = trigger[0].getBoundingClientRect()
 
       // popup should close to button
-      expect(triggerTop).to.be.most(bottom + OFFSET + 1)
+      expect(triggerTop).to.be.greaterThan(bottom)
+      expect(triggerBottom).to.be.greaterThan(bottom)
+      expect(triggerTop).to.be.most(bottom + triggerHeight + OFFSET)
     })
   })
+
+  unmount()
 })

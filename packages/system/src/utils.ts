@@ -27,3 +27,25 @@ export function mergedToString(children: any): string {
 
   return mergedResult.join("")
 }
+
+export const isScrollElement = (element: HTMLElement) => {
+  return (
+    element.scrollHeight > element.offsetHeight ||
+    element.scrollWidth > element.offsetWidth
+  )
+}
+
+export const getScrollElements = (
+  container: HTMLElement,
+  top: HTMLElement = document.documentElement,
+): HTMLElement[] => {
+  const scrollElements: HTMLElement[] = []
+  let element: HTMLElement | null = container
+  while (element && element !== top) {
+    if (isScrollElement(element)) {
+      scrollElements.push(element)
+    }
+    element = element.parentElement
+  }
+  return scrollElements
+}
