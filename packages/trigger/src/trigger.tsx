@@ -213,7 +213,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         height = 0
 
       if (protalRef.current) {
-        ; ({ width, height } = protalRef?.current.getBoundingClientRect())
+        ;({ width, height } = protalRef?.current.getBoundingClientRect())
       }
 
       /*
@@ -406,7 +406,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
           }
           break
       }
-      e.stopPropagation()
     },
   }
 
@@ -419,23 +418,23 @@ export const Trigger: FC<TriggerProps> = (props) => {
       ),
       onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
         newProps.onMouseEnter(e)
-          ; (props.children as ReactElement).props?.onMouseEnter?.call(e)
+        ;(props.children as ReactElement).props?.onMouseEnter?.call(e)
       },
       onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
         newProps.onMouseLeave(e)
-          ; (props.children as ReactElement).props?.onMouseLeave?.call(e)
+        ;(props.children as ReactElement).props?.onMouseLeave?.call(e)
       },
       onFocus: (e: SyntheticEvent<Element, Event>) => {
         newProps.onFocus(e)
-          ; (props.children as ReactElement).props?.onFocus?.call(e)
+        ;(props.children as ReactElement).props?.onFocus?.call(e)
       },
       onBlur: (e: SyntheticEvent<Element, Event>) => {
         newProps.onBlur(e)
-          ; (props.children as ReactElement).props?.onBlur?.call(e)
+        ;(props.children as ReactElement).props?.onBlur?.call(e)
       },
       onClick: (e: SyntheticEvent<Element, Event>) => {
         newProps.onClick(e)
-          ; (props.children as ReactElement).props?.onClick?.call(e)
+        ;(props.children as ReactElement).props?.onClick?.call(e)
       },
     }
     return (
