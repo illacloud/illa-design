@@ -89,7 +89,8 @@ export function flatChildren(
 
   const getChildValue = (child: ReactElement) => {
     const propValue = child.props?.value
-    return propValue === undefined ? child.props.children.toString() : propValue
+    const propLabel = child.props?.children.toString()
+    return propLabel ? propLabel : propValue
   }
 
   const getChildKey = (
