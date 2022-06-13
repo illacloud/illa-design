@@ -3,8 +3,24 @@
 exports[`Divider renders default 1`] = `
 <DocumentFragment>
   .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #1d2129;
+}
+
+.emotion-0 span {
+  padding: 0 16px;
+}
+
+.emotion-1 {
   vertical-align: middle;
-  border-color: #e5e6eb;
   border-style: solid;
   border-width: 0 0 1px 0;
   width: 100%;
@@ -12,15 +28,35 @@ exports[`Divider renders default 1`] = `
 
 <div
     class="emotion-0"
-  />
+  >
+    <div
+      class="emotion-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
 exports[`Divider renders horizontal 1`] = `
 <DocumentFragment>
   .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #1d2129;
+}
+
+.emotion-0 span {
+  padding: 0 16px;
+}
+
+.emotion-1 {
   vertical-align: middle;
-  border-color: #e5e6eb;
   border-style: solid;
   border-width: 0 0 1px 0;
   width: 100%;
@@ -28,7 +64,11 @@ exports[`Divider renders horizontal 1`] = `
 
 <div
     class="emotion-0"
-  />
+  >
+    <div
+      class="emotion-1"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -39,16 +79,36 @@ exports[`Divider renders vertical 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #1d2129;
+}
+
+.emotion-0 span {
+  padding: 0 16px;
+}
+
+.emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   vertical-align: middle;
   border-width: 0 0 0 1px;
   border-image: initial;
-  border-color: #e5e6eb;
   border-style: dashed;
   height: 1em;
 }
 
 <div
     class="emotion-0"
-  />
+  >
+    <div
+      class="emotion-1"
+    />
+  </div>
 </DocumentFragment>
 `;

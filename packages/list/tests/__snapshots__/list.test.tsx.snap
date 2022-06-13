@@ -123,8 +123,21 @@ exports[`List renders without border and split 1`] = `
 }
 
 .emotion-11 {
+  display: inline-flex;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #1d2129;
+}
+
+.emotion-11 span {
+  padding: 0 16px;
+}
+
+.emotion-12 {
   vertical-align: middle;
-  border-color: #e5e6eb;
   border-style: solid;
   border-width: 0 0 1px 0;
   width: 100%;
@@ -203,7 +216,11 @@ exports[`List renders without border and split 1`] = `
           </div>
           <div
             class="emotion-11"
-          />
+          >
+            <div
+              class="emotion-12"
+            />
+          </div>
           <div
             class="emotion-1"
           >
