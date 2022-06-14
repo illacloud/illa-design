@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 import { SerializedStyles } from "@emotion/react"
+import { AdjustResult } from "./adjust-tips-location"
 
 export type TriggerColorScheme =
   | string
@@ -44,6 +45,7 @@ export interface TriggerProps {
   colorScheme?: TriggerColorScheme
   clickOutsideToClose?: boolean
   withoutPadding?: boolean
+  withoutShadow?: boolean
   maxWidth?: string
   trigger?: TriggerTrigger
   closeOnInnerClick?: boolean
@@ -60,4 +62,13 @@ export interface TriggerProps {
   disabled?: boolean
   customPosition?: customPositionType
   onVisibleChange?: (visible: boolean) => void
+}
+
+export interface TriggerState {
+  colorScheme: TriggerColorScheme
+  maxWidth?: string
+  withoutPadding?: boolean
+  withoutShadow?: boolean
+  adjustResult?: AdjustResult
+  autoAlignPopupWidth?: boolean
 }
