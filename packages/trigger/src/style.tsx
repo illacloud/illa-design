@@ -249,7 +249,7 @@ export function applyAnimation(
     case "rt":
       return getAnimation(`0px`, `calc(12px)`, showArrow, isHorizontal)
     case "rb":
-      return getAnimation(`0px`, `calc(100%)`, showArrow, isHorizontal)
+      return getAnimation(`0px`, `calc(100% - 12px)`, showArrow, isHorizontal)
   }
 }
 

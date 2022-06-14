@@ -10,7 +10,6 @@ import {
   useEffect,
   useRef,
   useState,
-  useCallback,
 } from "react"
 import { TriggerProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
@@ -37,10 +36,11 @@ import {
 import { Popup } from "./popup"
 import useMeasure from "react-use/lib/useMeasure"
 import useWindowSize from "react-use/lib/useWindowSize"
-import { mergeRefs, throttleByRaf } from "@illa-design/system"
+import { mergeRefs } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
 import useMouse from "react-use/lib/useMouse"
 import { css } from "@emotion/react"
+import { getScrollElements } from "@illa-design/system"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -68,13 +68,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
   } = props
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
-  // to watch `tipVisible` change in `updatePopupPositionOnScroll`
-  const tipVisibleRef = useRef<boolean>(tipVisible)
   const { width: windowWidth, height: windowHeight } = useWindowSize()
-  const [windowSize, setWindowSize] = useState({
-    windowWidth: 0,
-    windowHeight: 0,
-  })
 
   const childrenRef = useRef<HTMLElement>(null) as MutableRefObject<HTMLElement>
 
@@ -183,16 +177,31 @@ export const Trigger: FC<TriggerProps> = (props) => {
       break
   }
 
-  const adjustLocationAndResult = async () => {
-    if (childrenRef.current != null) {
-      const result = await adjustLocation(
-        tipsNode,
+  const adjustLocationAndResult = () => {
+    if (childrenRef.current != null && tipsMeasureInfo != null) {
+      let width = 0,
+        height = 0
+
+      if (protalRef.current) {
+        ;({ width, height } = protalRef?.current.getBoundingClientRect())
+      }
+
+      /*
+       * tipsMeasureInfo.width & tipsMeasureInfo.height may be 0,
+       * but tip's width & height is necessary, so get the maximun between
+       * `getBoundingClientRect` and `tipsMeasureinfo` as width & height
+       */
+      width = Math.max(width, tipsMeasureInfo.width)
+      height = Math.max(height, tipsMeasureInfo.height)
+
+      const result = adjustLocation(
+        width,
+        height,
         childrenRef.current,
         position,
         autoFitPosition,
         customPosition,
       )
-      // async deal
       setAdjustResult(result)
     }
   }
@@ -200,7 +209,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
   const showTips = (control?: boolean) => {
     delayTodo(async () => {
       if (childrenRef.current != null) {
-        await adjustLocationAndResult()
         if (popupVisible == undefined || control) {
           setTipsVisible(true)
         }
@@ -235,10 +243,13 @@ export const Trigger: FC<TriggerProps> = (props) => {
   }
 
   const [tipsMeasureRef, tipsMeasureInfo] = useMeasure<HTMLDivElement>()
+  const protalRef = useRef<HTMLDivElement>(null)
+  const { elX, elY } = useMouse(protalRef)
 
   tipsNode = (
     <motion.div
       css={applyMotionDiv()}
+      ref={mergeRefs(protalRef, tipsMeasureRef)}
       variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
       animate="animate"
@@ -258,66 +269,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
     </motion.div>
   )
 
-  const updatePopupPositionOnScroll = useCallback(
-    throttleByRaf(async (event: UIEvent) => {
-      if (
-        !tipVisibleRef.current ||
-        !(event.target as Element).contains(childrenRef.current)
-      ) {
-        return
-      }
-
-      await adjustLocationAndResult()
-    }),
-    [],
-  )
-
-  useEffect(() => {
-    tipVisibleRef.current = tipVisible
-  }, [tipVisible])
-
-  useEffect(() => {
-    let isMount = true
-    const newWindowSize = { windowWidth, windowHeight }
-
-    if (JSON.stringify(newWindowSize) !== JSON.stringify(windowSize)) {
-      setWindowSize(newWindowSize)
-      ;async () => await adjustLocationAndResult()
-    }
-
-    if (!disabled && childrenRef.current != null) {
-      if (popupVisible == undefined) {
-        if (tipVisible || defaultPopupVisible) {
-          showTips()
-        }
-      } else {
-        popupVisible ? showTips(true) : hideTips(true)
-      }
-    }
-
-    window.addEventListener("scroll", updatePopupPositionOnScroll, true)
-
-    return () => {
-      isMount = false
-      window.clearTimeout(timeOutHandlerId)
-      updatePopupPositionOnScroll.cancel()
-      window.removeEventListener("scroll", updatePopupPositionOnScroll, true)
-    }
-  }, [
-    popupVisible,
-    position,
-    content,
-    disabled,
-    measureInfo,
-    maxWidth,
-    autoAlignPopupWidth,
-    windowWidth,
-    windowHeight,
-  ])
-
-  const protalRef = useRef<HTMLDivElement>(null)
-  const { elX, elY } = useMouse(protalRef)
-
   useClickAway(childrenRef, () => {
     if (!disabled && clickOutsideToClose) {
       if (
@@ -330,6 +281,59 @@ export const Trigger: FC<TriggerProps> = (props) => {
       }
     }
   })
+
+  useEffect(() => {
+    if (tipVisible) {
+      adjustLocationAndResult()
+    }
+  }, [
+    tipVisible,
+    windowWidth,
+    windowHeight,
+    tipsMeasureInfo.width,
+    tipsMeasureInfo.height,
+    measureInfo,
+    content,
+  ])
+
+  useEffect(() => {
+    popupVisible ? showTips(true) : hideTips(popupVisible !== undefined)
+  }, [popupVisible])
+
+  useEffect(() => {
+    if (defaultPopupVisible) {
+      showTips(popupVisible !== undefined)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (childrenRef.current != null) {
+      let scrollElements = getScrollElements(childrenRef.current)
+      scrollElements.forEach((item) => {
+        item.addEventListener("scroll", () => {
+          adjustLocationAndResult()
+        })
+      })
+    }
+  }, [])
+
+  const protalContent = (
+    <AnimatePresence>
+      {!disabled && tipVisible && childrenRef.current !== null ? (
+        <Popup
+          onClick={() => {
+            if (closeOnInnerClick) {
+              hideTips(popupVisible !== undefined)
+            }
+          }}
+          top={`${adjustResult?.transY ?? 0}px`}
+          left={`${adjustResult?.transX ?? 0}px`}
+        >
+          {tipsNode}
+        </Popup>
+      ) : null}
+    </AnimatePresence>
+  )
 
   const newProps = {
     onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
@@ -372,28 +376,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
           }
           break
       }
-      e.stopPropagation()
     },
   }
-
-  const protalContent = (
-    <AnimatePresence>
-      {!disabled && tipVisible && childrenRef.current !== null ? (
-        <Popup
-          ref={mergeRefs(protalRef, tipsMeasureRef)}
-          onClick={() => {
-            if (closeOnInnerClick) {
-              hideTips(popupVisible !== undefined)
-            }
-          }}
-          top={`${adjustResult?.transY}px`}
-          left={`${adjustResult?.transX}px`}
-        >
-          {tipsNode}
-        </Popup>
-      ) : null}
-    </AnimatePresence>
-  )
 
   if (isValidElement(props.children)) {
     const finalProps = {

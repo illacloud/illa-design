@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/empty",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Illa Design Empty.",
   "keywords": [
     "icon",
@@ -39,10 +39,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.6",
-    "@illa-design/image": "0.0.6",
-    "@illa-design/config-provider": "0.0.6",
-    "@illa-design/system": "0.0.6",
-    "@illa-design/theme": "0.0.6"
+    "@illa-design/icon": "0.0.8",
+    "@illa-design/image": "0.0.8",
+    "@illa-design/config-provider": "0.0.8",
+    "@illa-design/system": "0.0.8",
+    "@illa-design/theme": "0.0.8"
   }
 }

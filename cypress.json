@@ -1,6 +1,7 @@
 {
   "viewportWidth": 1000,
   "viewportHeight": 1000,
+  "scrollBehavior": false,
   "component": {
     "testFiles": "**/tests/*.e2e.{ts,tsx}",
     "componentFolder": "packages"

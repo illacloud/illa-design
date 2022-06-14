@@ -80,6 +80,7 @@ import {
   RedisIcon,
   MongoDbIcon,
   JSTransformerIcon,
+  UnselectedWidgetIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -362,4 +363,8 @@ export const MongoDb: Story<IconProps> = (props: IconProps) => (
 
 export const JSTransformer: Story<IconProps> = (props: IconProps) => (
   <JSTransformerIcon {...props} />
+)
+
+export const UnselectedWidget: Story<IconProps> = (props: IconProps) => (
+  <UnselectedWidgetIcon {...props} />
 )

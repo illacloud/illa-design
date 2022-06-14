@@ -1,6 +1,4 @@
-import { ReactNode } from "react"
-import { render } from "react-dom"
-import { TriggerPosition, customPositionType } from "./interface"
+import { customPositionType, TriggerPosition } from "./interface"
 
 export interface AdjustResult {
   readonly transX: number
@@ -9,17 +7,14 @@ export interface AdjustResult {
   readonly childrenWidth: number
 }
 
-export async function adjustLocation(
-  tipsNode: ReactNode,
+export function adjustLocation(
+  tipsDomWidth: number,
+  tipsDomHeight: number,
   childrenRef: HTMLElement,
   position: TriggerPosition,
   autoFitPosition: boolean,
   customPosition: customPositionType,
 ) {
-  let computeElement: HTMLElement
-  computeElement = document.createElement(HTMLDivElement.name)
-  document.body.appendChild(computeElement)
-
   let adjustResult = {
     transY: 0,
     transX: 0,
@@ -27,13 +22,12 @@ export async function adjustLocation(
     childrenWidth: childrenRef.getBoundingClientRect().width,
   }
 
-  await render(
-    <div style={{ display: "inline-flex" }}>{tipsNode}</div>,
-    computeElement,
-  )
-
-  const tipsDom = computeElement.children.item(0)!!.getBoundingClientRect()
   const childrenDom = childrenRef.getBoundingClientRect()
+
+  const tipsDom = {
+    width: tipsDomWidth,
+    height: tipsDomHeight,
+  }
 
   switch (position) {
     case "top": {
@@ -308,7 +302,6 @@ export async function adjustLocation(
   if (customPosition.y) {
     adjustResult.transY = customPosition.y
   }
-  computeElement.remove()
   return adjustResult
 }
 
@@ -326,42 +319,81 @@ function mergeResult(
 }
 
 // top
-function adjustTop(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+function adjustTop(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): [number, number] {
   return [
     (childrenDom.width - tipsDom.width) / 2 + childrenDom.left + window.scrollX,
     childrenDom.top + window.scrollY - tipsDom.height,
   ]
 }
 
-function adjustTl(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+function adjustTl(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): [number, number] {
   return [
     childrenDom.left + window.scrollX,
     childrenDom.top + window.scrollY - tipsDom.height,
   ]
 }
 
-function adjustTr(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+function adjustTr(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): [number, number] {
   return [
     childrenDom.left + window.scrollX + childrenDom.width - tipsDom.width,
     childrenDom.top + window.scrollY - tipsDom.height,
   ]
 }
 
-function fitTop(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitTop(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return childrenDom.top >= tipsDom.height
 }
 
-function fitTl(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitTl(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return childrenDom.top >= tipsDom.height
 }
 
-function fitTr(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitTr(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return childrenDom.top >= tipsDom.height
 }
 
 // bottom
 function adjustBottom(
-  tipsDom: DOMRect,
+  tipsDom: {
+    width: number
+    height: number
+  },
   childrenDom: DOMRect,
 ): [number, number] {
   return [
@@ -370,35 +402,65 @@ function adjustBottom(
   ]
 }
 
-function adjustBl(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+function adjustBl(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): [number, number] {
   return [
     childrenDom.left + window.scrollX,
     childrenDom.bottom + window.scrollY,
   ]
 }
 
-function adjustBr(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+function adjustBr(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): [number, number] {
   return [
     childrenDom.left + window.scrollX + childrenDom.width - tipsDom.width,
     childrenDom.bottom + window.scrollY,
   ]
 }
 
-function fitBottom(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitBottom(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return (
     window.document.documentElement.clientHeight - childrenDom.bottom >=
     tipsDom.height
   )
 }
 
-function fitBl(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitBl(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return (
     window.document.documentElement.clientHeight - childrenDom.bottom >=
     tipsDom.height
   )
 }
 
-function fitBr(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitBr(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return (
     window.document.documentElement.clientHeight - childrenDom.bottom >=
     tipsDom.height
@@ -406,7 +468,13 @@ function fitBr(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
 }
 
 // left
-function adjustLeft(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+function adjustLeft(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): [number, number] {
   return [
     childrenDom.left + window.scrollX - tipsDom.width,
     childrenDom.top +
@@ -415,34 +483,70 @@ function adjustLeft(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
   ]
 }
 
-function adjustLt(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+function adjustLt(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): [number, number] {
   return [
     childrenDom.left + window.scrollX - tipsDom.width,
     childrenDom.top + window.scrollY,
   ]
 }
 
-function adjustLb(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+function adjustLb(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): [number, number] {
   return [
     childrenDom.left + window.scrollX - tipsDom.width,
     childrenDom.bottom + window.scrollY - tipsDom.height,
   ]
 }
 
-function fitLeft(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitLeft(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return childrenDom.left >= tipsDom.width
 }
 
-function fitLt(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitLt(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return childrenDom.left >= tipsDom.width
 }
 
-function fitLb(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitLb(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return childrenDom.left >= tipsDom.width
 }
 
 // right
-function adjustRight(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+function adjustRight(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): [number, number] {
   return [
     childrenDom.right + window.scrollX,
     childrenDom.top +
@@ -451,32 +555,62 @@ function adjustRight(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
   ]
 }
 
-function adjustRt(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+function adjustRt(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): [number, number] {
   return [childrenDom.right + window.scrollX, childrenDom.top + window.scrollY]
 }
 
-function adjustRb(tipsDom: DOMRect, childrenDom: DOMRect): [number, number] {
+function adjustRb(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): [number, number] {
   return [
     childrenDom.right + window.scrollX,
     childrenDom.bottom + window.scrollY - tipsDom.height,
   ]
 }
 
-function fitRight(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitRight(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return (
     window.document.documentElement.clientWidth - childrenDom.right >=
     tipsDom.width
   )
 }
 
-function fitRt(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitRt(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return (
     window.document.documentElement.clientWidth - childrenDom.right >=
     tipsDom.width
   )
 }
 
-function fitRb(tipsDom: DOMRect, childrenDom: DOMRect): boolean {
+function fitRb(
+  tipsDom: {
+    width: number
+    height: number
+  },
+  childrenDom: DOMRect,
+): boolean {
   return (
     window.document.documentElement.clientWidth - childrenDom.right >=
     tipsDom.width

@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/tag",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "This component displays as a tag with an optional link and/or button to remove the given tag.",
   "keywords": [
     "tag",
@@ -40,8 +40,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.6",
-    "@illa-design/theme": "0.0.6",
-    "@illa-design/system": "0.0.6"
+    "@illa-design/icon": "0.0.8",
+    "@illa-design/theme": "0.0.8",
+    "@illa-design/system": "0.0.8"
   }
 }

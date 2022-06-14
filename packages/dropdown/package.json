@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/dropdown",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Illa Design dropdown.",
   "keywords": [
     "dropdown",
@@ -39,8 +39,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/trigger": "0.0.6",
-    "@illa-design/system": "0.0.6",
-    "@illa-design/theme": "0.0.6"
+    "@illa-design/trigger": "0.0.8",
+    "@illa-design/system": "0.0.8",
+    "@illa-design/theme": "0.0.8"
   }
 }
