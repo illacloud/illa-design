@@ -59,6 +59,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     defaultPopupVisible,
     maxWidth = "588px",
     withoutPadding,
+    withoutShadow,
     disabled,
     popupVisible,
     onVisibleChange,
@@ -100,23 +101,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const closeContent = <div css={applyDefaultContentSize}>{content}</div>
 
+  const stateValue = {
+    colorScheme,
+    maxWidth,
+    withoutPadding,
+    withoutShadow,
+    adjustResult,
+    autoAlignPopupWidth,
+  }
+
   switch (finalPosition) {
     case "top":
     case "tl":
     case "tr":
       centerNode = (
         <div css={css(applyTipsContainer(finalPosition), _css)}>
-          <div
-            css={applyTipsText(
-              colorScheme,
-              maxWidth,
-              withoutPadding,
-              adjustResult,
-              autoAlignPopupWidth,
-            )}
-          >
-            {closeContent}
-          </div>
+          <div css={applyTipsText(stateValue)}>{closeContent}</div>
           {showArrow && (
             <TriangleTop
               css={applyTriangleStyle(colorScheme, finalPosition)}
@@ -139,17 +139,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               height="4px"
             />
           )}
-          <div
-            css={applyTipsText(
-              colorScheme,
-              maxWidth,
-              withoutPadding,
-              adjustResult,
-              autoAlignPopupWidth,
-            )}
-          >
-            {closeContent}
-          </div>
+          <div css={applyTipsText(stateValue)}>{closeContent}</div>
         </div>
       )
       break
@@ -158,17 +148,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "lb":
       centerNode = (
         <div css={css(applyTipsContainer(finalPosition), _css)}>
-          <div
-            css={applyTipsText(
-              colorScheme,
-              maxWidth,
-              withoutPadding,
-              adjustResult,
-              autoAlignPopupWidth,
-            )}
-          >
-            {closeContent}
-          </div>
+          <div css={applyTipsText(stateValue)}>{closeContent}</div>
           {showArrow && (
             <TriangleLeft
               css={applyTriangleStyle(colorScheme, finalPosition)}
@@ -191,17 +171,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               height="8px"
             />
           )}
-          <div
-            css={applyTipsText(
-              colorScheme,
-              maxWidth,
-              withoutPadding,
-              adjustResult,
-              autoAlignPopupWidth,
-            )}
-          >
-            {closeContent}
-          </div>
+          <div css={applyTipsText(stateValue)}>{closeContent}</div>
         </div>
       )
       break
