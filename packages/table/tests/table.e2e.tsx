@@ -75,9 +75,15 @@ it("Table renders filter", () => {
     />,
   )
   cy.findByTitle("FilterIcon").parent().click()
-  cy.get("input").type("World")
-  cy.findByText("Hello").should("not.exist")
-  cy.get("input").clear()
-  cy.findByText("Hello").should("exist")
+  cy.get("input")
+    .type("World")
+    .then(() => {
+      cy.findByText("Hello").should("not.exist")
+    })
+  cy.get("input")
+    .clear()
+    .then(() => {
+      cy.findByText("Hello").should("exist")
+    })
   unmount()
 })

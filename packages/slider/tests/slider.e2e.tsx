@@ -61,14 +61,22 @@ function RangeSlider(args: SliderProps) {
 }
 
 it("Slider renders with correctly", () => {
-  mount(<NormalSlider reverse vertical showTicks />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <NormalSlider reverse vertical showTicks />
+    </div>,
+  )
   cy.findByTestId("normal").should("exist")
   unmount()
 })
 
 it("Slider renders with afterChangeEvent", () => {
   const afterChangeEvent = cy.stub().as("afterChangeEvent")
-  mount(<NormalSlider onAfterChange={afterChangeEvent} />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <NormalSlider onAfterChange={afterChangeEvent} />
+    </div>,
+  )
   cy.findByRole("button")
     .trigger("mousedown")
     .then(() => {
@@ -80,23 +88,26 @@ it("Slider renders with afterChangeEvent", () => {
 })
 
 it("Slider renders with slides exactly", () => {
-  mount(<NormalSlider />)
-  cy.findByRole("button")
-    .trigger("mouseover")
-    .then(() => {
-      cy.findByText("0").should("exist")
-    })
-  cy.findByRole("button")
-    .trigger("mousedown")
-    .then(() => {
-      cy.findByTestId("normal").trigger("mousemove", "right")
-      cy.findByText("100").should("exist")
-    })
+  const afterChangeEvent = cy.stub().as("afterChangeEvent")
+  mount(
+    <Slider
+      data-testid={"normal"}
+      onChange={afterChangeEvent}
+      style={{ width: "100%" }}
+    />,
+  )
+  cy.findByRole("button").trigger("mousedown")
+  cy.findByTestId("normal").trigger("mousemove", "right")
+  cy.get("@afterChangeEvent").should("be.calledWith", 100)
   unmount()
 })
 
 it("Slider renders with marks", () => {
-  mount(<MarkSlider showTicks onlyMarkValue />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <MarkSlider showTicks onlyMarkValue />
+    </div>,
+  )
   cy.findByTestId("mark").should("exist")
   cy.findByText("0km").should("exist")
   cy.findByText("5km").should("exist")
@@ -117,7 +128,11 @@ it("Slider renders with marks", () => {
 })
 
 it("Slider renders with range and drag bar", () => {
-  mount(<RangeSlider />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <RangeSlider />
+    </div>,
+  )
   cy.findByRole("bar")
     .should("exist")
     .trigger("mousedown")
@@ -135,7 +150,11 @@ it("Slider renders with range and drag bar", () => {
 })
 
 it("Slider renders with range and drag left button", () => {
-  mount(<RangeSlider />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <RangeSlider />
+    </div>,
+  )
   cy.findByRole("road")
     .children("div:nth-of-type(2)")
     .trigger("mouseover")
@@ -153,7 +172,11 @@ it("Slider renders with range and drag left button", () => {
 })
 
 it("Slider renders with input-number", () => {
-  mount(<NormalSlider showInput />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <NormalSlider showInput />
+    </div>,
+  )
   cy.findByDisplayValue("0").should("exist")
   cy.findByRole("input-number")
     .children()
@@ -167,7 +190,11 @@ it("Slider renders with input-number", () => {
 })
 
 it("Slider renders with range input-number", () => {
-  mount(<RangeSlider vertical showInput />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <RangeSlider vertical showInput />
+    </div>,
+  )
   cy.findByDisplayValue("0").should("exist")
   const leftInput = cy
     .findByRole("input-number")
@@ -189,7 +216,11 @@ it("Slider renders with range input-number", () => {
 })
 
 it("Slider renders with vertical move", () => {
-  mount(<RangeSlider vertical showTicks />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <RangeSlider vertical showTicks />
+    </div>,
+  )
   cy.findByRole("bar")
     .should("exist")
     .trigger("mousedown")
