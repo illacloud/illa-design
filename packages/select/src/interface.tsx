@@ -48,6 +48,7 @@ export interface OptionListProps<T> {
   render?: (data: T, index: number) => ReactNode
   onMouseMove?: () => void
   onScroll?: UIEventHandler<HTMLElement>
+  size?: SelectSize
 }
 
 export type SelectSize = "small" | "medium" | "large"

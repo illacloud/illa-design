@@ -29,6 +29,17 @@ it("Trigger renders without padding", () => {
   unmount()
 })
 
+it("Trigger renders without shadow", () => {
+  mount(
+    <Trigger content="Trigger" withoutShadow>
+      <Button>Button</Button>
+    </Trigger>,
+  )
+  cy.findByText("Button").trigger("mouseover")
+  cy.findByText("Trigger").parent().should("not.have.a.property", "box-shadow")
+  unmount()
+})
+
 it("Trigger renders without triangle", () => {
   mount(
     <Trigger content="Trigger" showArrow={false} position="bottom">

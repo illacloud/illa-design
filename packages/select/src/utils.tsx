@@ -87,11 +87,6 @@ export function flatChildren(
   let childrenList: Array<ReactElement> = []
   let optionIndexListForArrowKey: Array<number> = []
 
-  const getChildValue = (child: ReactElement) => {
-    const propValue = child.props?.value
-    return propValue === undefined ? child.props.children.toString() : propValue
-  }
-
   const getChildKey = (
     { label, value }: any,
     key?: Key | null,
@@ -109,13 +104,16 @@ export function flatChildren(
   }
 
   const handleOption = (child: ReactElement, origin: OptionInfo["_origin"]) => {
-    const optionValue = getChildValue(child)
+    const propValue = child.props?.value
+    const propLabel = child.props?.children.toString()
+    const optionValue = propValue === undefined ? propLabel : propValue
 
     let isValidOption = true
     if (filterOption === true) {
+      const filterLabel = propLabel ? propLabel : propValue
       isValidOption =
         optionValue !== undefined &&
-        String(optionValue).toLowerCase().indexOf(inputValue.toLowerCase()) !==
+        String(filterLabel).toLowerCase().indexOf(inputValue.toLowerCase()) !==
           -1
     } else if (typeof filterOption === "function") {
       isValidOption = !inputValue || filterOption(inputValue, child)
