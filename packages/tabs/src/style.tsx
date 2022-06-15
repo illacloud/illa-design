@@ -298,10 +298,11 @@ export function applyTextColorCss(
           color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 
           &:hover {
-            background-color: ${variant !== "capsule"
-        ? globalColor(`--${illaPrefix}-grayBlue-09`)
-        : undefined
-      }
+            background-color: ${
+              variant !== "capsule"
+                ? globalColor(`--${illaPrefix}-grayBlue-09`)
+                : undefined
+            }
         `
   }
   if (!disabled && variant === "text") {
