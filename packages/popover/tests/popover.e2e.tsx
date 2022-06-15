@@ -27,7 +27,7 @@ it("Popover renders with close button", () => {
     </Popover>,
   )
   cy.findByText("Button").click()
-  cy.wait(100)
+  cy.wait(200)
   cy.findByText("Close").should("exist")
   cy.findByText("Close").click()
   cy.findByText("Visible").should("not.exist")
@@ -48,7 +48,7 @@ it("Popover renders with visible event", () => {
   )
   cy.findByText("Button").click()
   cy.get("@onVisibleChange").should("be.calledWith", true)
-  cy.wait(100)
+  cy.wait(200)
   cy.findByText("Close").click()
   cy.get("@onVisibleChange").should("be.calledWith", false)
   unmount()
