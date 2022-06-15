@@ -149,28 +149,6 @@ it("Slider renders with range and drag bar", () => {
   unmount()
 })
 
-it("Slider renders with range and drag left button", () => {
-  mount(
-    <div style={{ padding: "40px" }}>
-      <RangeSlider />
-    </div>,
-  )
-  cy.findByRole("road")
-    .children("div:nth-of-type(2)")
-    .trigger("mouseover")
-    .then(() => {
-      cy.findByText("0").should("exist")
-    })
-  cy.findByRole("road")
-    .children("div:nth-of-type(2)")
-    .trigger("mousedown")
-    .then(() => {
-      cy.findByTestId("range").trigger("mousemove", "right")
-      cy.findByText("5").should("exist")
-    })
-  unmount()
-})
-
 it("Slider renders with input-number", () => {
   mount(
     <div style={{ padding: "40px" }}>
