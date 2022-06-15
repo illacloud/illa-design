@@ -74,16 +74,20 @@ it("Table renders filter", () => {
       disableRowSelect
     />,
   )
-  cy.findByTitle("FilterIcon").parent().click()
-  cy.get("input")
-    .type("World")
+  cy.findByTitle("FilterIcon")
+    .parent()
+    .click()
     .then(() => {
-      cy.findByText("Hello").should("not.exist")
-    })
-  cy.get("input")
-    .clear()
-    .then(() => {
-      cy.findByText("Hello").should("exist")
+      cy.get("input")
+        .type("World")
+        .then(() => {
+          cy.findByText("Hello").should("not.exist")
+        })
+      cy.get("input")
+        .clear()
+        .then(() => {
+          cy.findByText("Hello").should("exist")
+        })
     })
   unmount()
 })
