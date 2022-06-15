@@ -124,7 +124,7 @@ export const tabCapsuleHeaderContainerCss = css`
 `
 
 export const containerHideScrollBarCss = css`
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
   width: 100%;
