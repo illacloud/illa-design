@@ -124,7 +124,7 @@ export const tabCapsuleHeaderContainerCss = css`
 `
 
 export const containerHideScrollBarCss = css`
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
   width: 100%;
@@ -298,11 +298,10 @@ export function applyTextColorCss(
           color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 
           &:hover {
-            background-color: ${
-              variant !== "capsule"
-                ? globalColor(`--${illaPrefix}-grayBlue-09`)
-                : undefined
-            }
+            background-color: ${variant !== "capsule"
+        ? globalColor(`--${illaPrefix}-grayBlue-09`)
+        : undefined
+      }
         `
   }
   if (!disabled && variant === "text") {
