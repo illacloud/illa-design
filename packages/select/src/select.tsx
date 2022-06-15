@@ -333,6 +333,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
         <OptionList
           ref={refList}
           childrenList={childrenList}
+          size={size}
           render={(child: any) => {
             if (isSelectOption(child)) {
               return (
