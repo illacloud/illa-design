@@ -48,6 +48,7 @@ export interface OptionListProps<T> {
   render?: (data: T, index: number) => ReactNode
   onMouseMove?: () => void
   onScroll?: UIEventHandler<HTMLElement>
+  size?: SelectSize
 }
 
 export type SelectSize = "small" | "medium" | "large"
@@ -69,16 +70,16 @@ export type ColorScheme =
 
 export interface SelectProps
   extends Omit<
-    HTMLAttributes<HTMLDivElement>,
-    "defaultValue" | "onFocus" | "onBlur"
+  HTMLAttributes<HTMLDivElement>,
+  "defaultValue" | "onFocus" | "onBlur"
   > {
   defaultValue?:
-    | string
-    | string[]
-    | number
-    | number[]
-    | LabeledValue
-    | LabeledValue[]
+  | string
+  | string[]
+  | number
+  | number[]
+  | LabeledValue
+  | LabeledValue[]
   value?: string | string[] | number | number[] | LabeledValue | LabeledValue[]
   inputValue?: string
   labelInValue?: boolean
@@ -87,8 +88,8 @@ export interface SelectProps
   notFoundContent?: ReactNode
   placeholder?: string
   showSearch?:
-    | boolean
-    | { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean }
+  | boolean
+  | { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean }
   size?: SelectSize
   disabled?: boolean
   error?: boolean
@@ -101,15 +102,15 @@ export interface SelectProps
     | string
     | number
     | {
-        label: ReactNode | string
-        value: string | number
-        disabled?: boolean
-        extra?: any
-      }
+      label: ReactNode | string
+      value: string | number
+      disabled?: boolean
+      extra?: any
+    }
   )[]
   filterOption?:
-    | boolean
-    | ((inputValue: string, option: ReactElement) => boolean)
+  | boolean
+  | ((inputValue: string, option: ReactElement) => boolean)
   triggerProps?: Partial<TriggerProps>
   colorScheme?: ColorScheme
   // events
@@ -130,8 +131,8 @@ export interface SelectProps
 
 export interface SelectViewProps
   extends Omit<
-    SelectProps,
-    "options" | "filterOption" | "onChange" | "onClear" | "triggerProps"
+  SelectProps,
+  "options" | "filterOption" | "onChange" | "onClear" | "triggerProps"
   > {
   value?: any
   defaultValue?: any
