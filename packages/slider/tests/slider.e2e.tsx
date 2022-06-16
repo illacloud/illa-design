@@ -61,14 +61,22 @@ function RangeSlider(args: SliderProps) {
 }
 
 it("Slider renders with correctly", () => {
-  mount(<NormalSlider reverse vertical showTicks />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <NormalSlider reverse vertical showTicks />
+    </div>,
+  )
   cy.findByTestId("normal").should("exist")
   unmount()
 })
 
 it("Slider renders with afterChangeEvent", () => {
   const afterChangeEvent = cy.stub().as("afterChangeEvent")
-  mount(<NormalSlider onAfterChange={afterChangeEvent} />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <NormalSlider onAfterChange={afterChangeEvent} />
+    </div>,
+  )
   cy.findByRole("button")
     .trigger("mousedown")
     .then(() => {
@@ -122,7 +130,11 @@ it("Slider renders with marks", () => {
 })
 
 it("Slider renders with range and drag bar", () => {
-  mount(<RangeSlider />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <RangeSlider />
+    </div>,
+  )
   cy.findByRole("bar")
     .should("exist")
     .trigger("mousedown")
@@ -138,6 +150,7 @@ it("Slider renders with range and drag bar", () => {
 
   unmount()
 })
+
 
 it("Slider renders with range and drag left button", () => {
   mount(<RangeSlider />)
@@ -159,7 +172,11 @@ it("Slider renders with range and drag left button", () => {
 })
 
 it("Slider renders with input-number", () => {
-  mount(<NormalSlider showInput />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <NormalSlider showInput />
+    </div>,
+  )
   cy.findByDisplayValue("0").should("exist")
   cy.findByRole("input-number")
     .children()
@@ -173,7 +190,11 @@ it("Slider renders with input-number", () => {
 })
 
 it("Slider renders with range input-number", () => {
-  mount(<RangeSlider vertical showInput />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <RangeSlider vertical showInput />
+    </div>,
+  )
   cy.findByDisplayValue("0").should("exist")
   const leftInput = cy
     .findByRole("input-number")
@@ -195,7 +216,11 @@ it("Slider renders with range input-number", () => {
 })
 
 it("Slider renders with vertical move", () => {
-  mount(<RangeSlider vertical showTicks />)
+  mount(
+    <div style={{ padding: "40px" }}>
+      <RangeSlider vertical showTicks />
+    </div>,
+  )
   cy.findByRole("bar")
     .should("exist")
     .trigger("mousedown")
