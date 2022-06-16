@@ -87,27 +87,28 @@ it("Slider renders with afterChangeEvent", () => {
   unmount()
 })
 
+
 it("Slider renders with slides exactly", () => {
-  const afterChangeEvent = cy.stub().as("afterChangeEvent")
-  mount(
-    <Slider
-      data-testid={"normal"}
-      onChange={afterChangeEvent}
-      style={{ width: "100%" }}
-    />,
-  )
-  cy.findByRole("button").trigger("mousedown")
-  cy.findByTestId("normal").trigger("mousemove", "right")
-  cy.get("@afterChangeEvent").should("be.calledWith", 100)
+  mount(<NormalSlider />)
+  cy.wait(100)
+  cy.findByRole("button")
+    .trigger("mouseover")
+    .then(() => {
+      cy.findByText("0").should("exist")
+    })
+  cy.findByRole("button")
+    .trigger("mousedown")
+    .then(() => {
+      cy.findByTestId("normal").trigger("mousemove", "right")
+      cy.findByText("100").should("exist")
+
+    })
   unmount()
 })
 
 it("Slider renders with marks", () => {
-  mount(
-    <div style={{ padding: "40px" }}>
-      <MarkSlider showTicks onlyMarkValue />
-    </div>,
-  )
+  mount(<MarkSlider showTicks onlyMarkValue />)
+  cy.wait(100)
   cy.findByTestId("mark").should("exist")
   cy.findByText("0km").should("exist")
   cy.findByText("5km").should("exist")
@@ -115,6 +116,7 @@ it("Slider renders with marks", () => {
   cy.findByRole("button")
     .trigger("mouseover")
     .then(() => {
+      cy.wait(100)
       cy.findByText("10").should("exist").click()
     })
   cy.findByRole("road")
@@ -146,6 +148,26 @@ it("Slider renders with range and drag bar", () => {
       cy.findByText("6").should("exist")
     })
 
+  unmount()
+})
+
+
+it("Slider renders with range and drag left button", () => {
+  mount(<RangeSlider />)
+  cy.wait(100)
+  cy.findByRole("road")
+    .children("div:nth-of-type(2)")
+    .trigger("mouseover")
+    .then(() => {
+      cy.findByText("0").should("exist")
+    })
+  cy.findByRole("road")
+    .children("div:nth-of-type(2)")
+    .trigger("mousedown")
+    .then(() => {
+      cy.findByTestId("range").trigger("mousemove", "right")
+      cy.findByText("5").should("exist")
+    })
   unmount()
 })
 
