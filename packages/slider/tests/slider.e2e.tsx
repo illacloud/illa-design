@@ -79,8 +79,10 @@ it("Slider renders with afterChangeEvent", () => {
   unmount()
 })
 
+
 it("Slider renders with slides exactly", () => {
   mount(<NormalSlider />)
+  cy.wait(100)
   cy.findByRole("button")
     .trigger("mouseover")
     .then(() => {
@@ -91,12 +93,14 @@ it("Slider renders with slides exactly", () => {
     .then(() => {
       cy.findByTestId("normal").trigger("mousemove", "right")
       cy.findByText("100").should("exist")
+
     })
   unmount()
 })
 
 it("Slider renders with marks", () => {
   mount(<MarkSlider showTicks onlyMarkValue />)
+  cy.wait(100)
   cy.findByTestId("mark").should("exist")
   cy.findByText("0km").should("exist")
   cy.findByText("5km").should("exist")
@@ -104,6 +108,7 @@ it("Slider renders with marks", () => {
   cy.findByRole("button")
     .trigger("mouseover")
     .then(() => {
+      cy.wait(100)
       cy.findByText("10").should("exist").click()
     })
   cy.findByRole("road")
@@ -136,6 +141,7 @@ it("Slider renders with range and drag bar", () => {
 
 it("Slider renders with range and drag left button", () => {
   mount(<RangeSlider />)
+  cy.wait(100)
   cy.findByRole("road")
     .children("div:nth-of-type(2)")
     .trigger("mouseover")

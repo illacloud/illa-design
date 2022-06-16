@@ -238,6 +238,7 @@ it("Trigger renders with closeOnInnerClick", () => {
     </Trigger>,
   )
   cy.findByText("Close Click Me").click()
+  cy.wait(100)
   cy.get("@mock").should("to.be.calledWith", false)
   unmount()
 })
