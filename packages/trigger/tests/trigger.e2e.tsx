@@ -231,6 +231,7 @@ it("Trigger renders with closeOnInnerClick", () => {
     <Trigger
       popupVisible={true}
       closeOnInnerClick
+      position="bl"
       onVisibleChange={mock}
       content={<div>Close Click Me</div>}
     >
