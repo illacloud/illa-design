@@ -1,5 +1,17 @@
 # @illa-design/list
 
+## 0.0.9
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/avatar@0.0.9
+  - @illa-design/system@0.0.9
+  - @illa-design/theme@0.0.9
+  - @illa-design/typography@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes

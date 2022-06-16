@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/time-picker",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Illa Design TimePicker.",
   "keywords": [
     "time-picker",
@@ -39,10 +39,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.8",
-    "@illa-design/trigger": "0.0.8",
-    "@illa-design/input": "0.0.8",
-    "@illa-design/theme": "0.0.8",
-    "@illa-design/system": "0.0.8"
+    "@illa-design/icon": "0.0.9",
+    "@illa-design/trigger": "0.0.9",
+    "@illa-design/input": "0.0.9",
+    "@illa-design/theme": "0.0.9",
+    "@illa-design/system": "0.0.9"
   }
 }
