@@ -122,6 +122,7 @@ export function applyModalContent(
     padding: 24px;
     font-size: 14px;
     overflow: auto;
+    max-height: 800px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${simpleCss};
     ${paddingCSS}
