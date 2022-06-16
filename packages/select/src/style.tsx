@@ -4,6 +4,13 @@ import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 import chroma from "chroma-js"
 
+const OPTION_LINE_HEIGHT = 36
+const OPTION_PADDING = {
+  small: [1, 12],
+  medium: [5, 16],
+  large: [9, 16],
+}
+
 const innerColor = [
   "gray",
   "blue",
@@ -91,27 +98,12 @@ function applyStatus(stateValue: SelectStateValue) {
   `
 }
 
-export function applySizeStyle(size?: SelectProps["size"]) {
-  let sizeStyle: SerializedStyles = css()
-  switch (size) {
-    default:
-    case "large":
-      sizeStyle = css`
-        padding: 9px 16px;
-      `
-      break
-    case "medium":
-      sizeStyle = css`
-        padding: 5px 16px;
-      `
-      break
-    case "small":
-      sizeStyle = css`
-        padding: 1px 12px;
-      `
-      break
-  }
-  return sizeStyle
+export function applySizeStyle(size: SelectProps["size"] = "medium") {
+  const [vPadding, hPadding] = OPTION_PADDING[size]
+
+  return css`
+    padding: ${vPadding}px ${hPadding}px;
+  `
 }
 
 // SelectView
@@ -262,7 +254,7 @@ export function applyOptionStyle(
     font-size: 14px;
     text-align: left;
     cursor: pointer;
-    line-height: 36px;
+    line-height: ${OPTION_LINE_HEIGHT}px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -276,5 +268,17 @@ export function applyOptionStyle(
 
     ${stateStyle}
     ${applySizeStyle(size)}
+  `
+}
+export function applyOptionListStyle(
+  size: SelectProps["size"] = "medium",
+): SerializedStyles {
+  const MAX_VISIBLE_OPTION_COUNT = 6
+  const optionHeight = OPTION_LINE_HEIGHT + OPTION_PADDING[size][0] * 2
+  const maxHeight = MAX_VISIBLE_OPTION_COUNT * optionHeight
+  return css`
+    max-height: ${maxHeight}px;
+    overflow: auto;
+    background-color: white;
   `
 }

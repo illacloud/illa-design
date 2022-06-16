@@ -22,11 +22,12 @@ it("Popover renders correctly", () => {
 
 it("Popover renders with close button", () => {
   mount(
-    <Popover hasCloseIcon trigger="click" content="Visible">
+    <Popover hasCloseIcon trigger="click" content="Visible" position="bl">
       <Button>Button</Button>
     </Popover>,
   )
   cy.findByText("Button").click()
+  cy.wait(200)
   cy.findByText("Close").should("exist")
   cy.findByText("Close").click()
   cy.findByText("Visible").should("not.exist")
@@ -40,6 +41,7 @@ it("Popover renders with visible event", () => {
       hasCloseIcon
       trigger="click"
       content="Visible"
+      position="bl"
       onVisibleChange={onVisibleChange}
     >
       <Button>Button</Button>
@@ -47,6 +49,7 @@ it("Popover renders with visible event", () => {
   )
   cy.findByText("Button").click()
   cy.get("@onVisibleChange").should("be.calledWith", true)
+  cy.wait(200)
   cy.findByText("Close").click()
   cy.get("@onVisibleChange").should("be.calledWith", false)
   unmount()

@@ -1,9 +1,8 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { TriggerColorScheme, TriggerPosition } from "./interface"
+import { TriggerColorScheme, TriggerPosition, TriggerState } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getAnimation } from "./transform"
 import { Variants } from "framer-motion"
-import { AdjustResult } from "./adjust-tips-location"
 
 const colorSchemes = [
   "white",
@@ -83,13 +82,16 @@ export function applyTipsContainer(
   `
 }
 
-export function applyTipsText(
-  colorScheme: TriggerColorScheme,
-  maxWidth?: string,
-  withoutPadding?: boolean,
-  adjustResult?: AdjustResult,
-  autoAlignPopupWidth?: boolean,
-): SerializedStyles {
+export function applyTipsText(stateValue: TriggerState): SerializedStyles {
+  const {
+    colorScheme,
+    maxWidth,
+    withoutPadding,
+    withoutShadow,
+    adjustResult,
+    autoAlignPopupWidth,
+  } = stateValue
+
   const bgColor = colorSchemes.includes(colorScheme)
     ? colorScheme == "white"
       ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
@@ -126,8 +128,14 @@ export function applyTipsText(
     }
   }
 
-  return css`
+  let shadow = css`
     box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
+  `
+  if (withoutShadow) {
+    shadow = css``
+  }
+
+  return css`
     background-color: ${bgColor};
     color: ${textColor};
     text-align: left;
@@ -136,6 +144,7 @@ export function applyTipsText(
     font-size: 14px;
     ${padding};
     ${width}
+    ${shadow}
   `
 }
 
@@ -240,7 +249,7 @@ export function applyAnimation(
     case "rt":
       return getAnimation(`0px`, `calc(12px)`, showArrow, isHorizontal)
     case "rb":
-      return getAnimation(`0px`, `calc(100%)`, showArrow, isHorizontal)
+      return getAnimation(`0px`, `calc(100% - 12px)`, showArrow, isHorizontal)
   }
 }
 

@@ -3,6 +3,7 @@ import { List } from "@illa-design/list"
 import { css } from "@emotion/react"
 import { Empty } from "@illa-design/empty"
 import { OptionListProps } from "./interface"
+import { applyOptionListStyle } from "./style"
 
 export const OptionList = forwardRef<HTMLDivElement, OptionListProps<any>>(
   (props, ref) => {
@@ -13,14 +14,11 @@ export const OptionList = forwardRef<HTMLDivElement, OptionListProps<any>>(
       // event
       onMouseMove,
       onScroll,
+      size,
     } = props
 
     return (
-      <div
-        css={css`
-          background-color: white;
-        `}
-      >
+      <div css={applyOptionListStyle(size)}>
         {childrenList?.length ? (
           <List
             ref={ref}

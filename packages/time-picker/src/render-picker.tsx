@@ -136,9 +136,9 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       if (currentPopupVisible !== visible) {
         setCurrentPopupVisible(visible)
       }
-      setInputValue(undefined)
-      setRangeInputValue(undefined)
       if (!visible) {
+        setInputValue(undefined)
+        setRangeInputValue(undefined)
         setValueShow(undefined)
       }
     }
