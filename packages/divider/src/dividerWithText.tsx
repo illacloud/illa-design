@@ -19,20 +19,12 @@ export const DividerWithText = forwardRef<HTMLDivElement, DividerProps>(
         ref={ref}
         {...otherProps}
       >
-        <div
-          css={applyDividerStyle(
-            variant,
-            textAlign === "end" || textAlign === "center",
-          )}
-        />
+        <div css={applyDividerStyle(variant, textAlign !== "start")} />
         <span>{text}</span>
-        <div
-          css={applyDividerStyle(
-            variant,
-            textAlign === "start" || textAlign === "center",
-          )}
-        />
+        <div css={applyDividerStyle(variant, textAlign !== "end")} />
       </div>
     )
   },
 )
+
+DividerWithText.displayName = "DividerWithText"

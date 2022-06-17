@@ -31,7 +31,7 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
     return (
       <div css={applyDividerWithTextContainerStyle(colorScheme)}>
         {text && text?.length > 0 ? (
-          <DividerWithText {...props} />
+          <DividerWithText ref={ref} {...props} />
         ) : (
           <div css={dividerCss} ref={ref} {...otherProps} />
         )}

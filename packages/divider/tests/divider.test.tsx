@@ -20,14 +20,14 @@ test("Divider renders vertical", () => {
   expect(asFragment()).toMatchSnapshot()
 })
 
-test("Divider renders vertical", () => {
+test("Divider renders with colorScheme", () => {
   const { asFragment } = render(
     <Divider direction="vertical" colorScheme={"orange"} />,
   )
   expect(asFragment()).toMatchSnapshot()
 })
 
-test("Divider renders vertical", () => {
+test("Divider renders with text", () => {
   const { asFragment } = render(
     <div>
       <Divider direction="vertical" text="this is a divider" textSize="20px" />

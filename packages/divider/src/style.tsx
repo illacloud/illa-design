@@ -45,7 +45,7 @@ export function applyDividerContainerVertical(
 export function applyDividerWithTextContainerStyle(
   color?: ColorScheme,
   textSize?: string,
-) {
+): SerializedStyles {
   const _color = color && innerColor.indexOf(color) > -1 ? color : "grayBlue"
   return css`
     display: inline-flex;
@@ -59,7 +59,10 @@ export function applyDividerWithTextContainerStyle(
   `
 }
 
-export function applyDividerStyle(variant: DividerVariant, full?: boolean) {
+export function applyDividerStyle(
+  variant: DividerVariant,
+  full?: boolean,
+): SerializedStyles {
   return css`
     flex-grow: ${full ? 1 : 0};
     flex-basis: 24px;

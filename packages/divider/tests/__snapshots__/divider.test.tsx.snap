@@ -113,7 +113,7 @@ exports[`Divider renders vertical 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Divider renders vertical 2`] = `
+exports[`Divider renders with colorScheme 1`] = `
 <DocumentFragment>
   .emotion-0 {
   display: -webkit-inline-box;
@@ -154,7 +154,7 @@ exports[`Divider renders vertical 2`] = `
 </DocumentFragment>
 `;
 
-exports[`Divider renders vertical 3`] = `
+exports[`Divider renders with text 1`] = `
 <DocumentFragment>
   .emotion-0 {
   display: -webkit-inline-box;
