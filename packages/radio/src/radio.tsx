@@ -4,6 +4,7 @@ import {
   applyMergeCss,
   applyRadioButton,
   applyRadioSize,
+  radioTextCss,
   disappear,
 } from "./style"
 import { useMergeValue } from "@illa-design/system"
@@ -76,7 +77,7 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
         disabled={disabled}
         onChange={onChangeValue}
       />
-      <span>{children}</span>
+      <span css={radioTextCss}>{children}</span>
     </label>
   )
 })

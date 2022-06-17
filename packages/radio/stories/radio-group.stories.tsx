@@ -30,13 +30,14 @@ export default {
 
 const Template: Story<RadioGroupProps<any>> = (args) => {
   return (
-    <div>
-      <Space style={{ width: 184 }} direction="vertical">
-        <RadioGroup {...args} options={["A", "B", "C", "D"]} />
-        <RadioGroup {...args} options={[1, 2, 3]} />
-        <RadioGroup {...args} options={[1]} />
-      </Space>
-    </div>
+    <Space style={{ width: 300 }} direction="vertical">
+      <RadioGroup {...args} options={["A", "B", "C", "D"]} />
+      <RadioGroup {...args} options={["pear", "watermelon", "peach"]} />
+      <RadioGroup {...args} options={[1, 2, 3]} />
+      <RadioGroup {...args} options={["left", "right"]} />
+      <RadioGroup {...args} options={["train", "plane"]} />
+      <RadioGroup {...args} options={[1]} />
+    </Space>
   )
 }
 
