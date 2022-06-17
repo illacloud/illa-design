@@ -33,6 +33,7 @@ import { Button } from "@illa-design/button"
 import { CloseIcon } from "@illa-design/icon"
 import { AlertType as ConfirmType } from "@illa-design/alert"
 import FocusLock from "react-focus-lock"
+import { RemoveScroll } from "react-remove-scroll"
 import useModal from "./useModal"
 
 export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
@@ -81,14 +82,16 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
     const locale = configProviderProps?.locale?.modal ?? def.modal
 
     const renderFooter = () => {
-      if (!footer) return
+      if (!footer) {
+        return
+      }
 
       const cancelButtonNode = (
         <Button
           css={applyModalCancelBtn}
           onClick={onCancel}
           colorScheme="gray"
-          size={"medium"}
+          size="medium"
           {...cancelButtonProps}
         >
           {cancelText || locale.cancelText}
@@ -97,7 +100,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       const okButtonNode = (
         <Button
           loading={loading}
-          size={"medium"}
+          size="medium"
           onClick={onConfirm}
           {...okButtonProps}
         >
@@ -114,7 +117,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
 
     const renderModal = () => {
       const element = (
-        <div>
+        <RemoveScroll>
           {title && (
             <div css={applyModalHeader(simple, showCloseIcon)}>
               <div css={applyModalTitle(simple)}>{title}</div>
@@ -131,14 +134,14 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
               )}
             </>
           )}
-        </div>
+        </RemoveScroll>
       )
       return (
         <motion.div
           variants={modalAnimation}
-          animate={"animate"}
-          exit={"exit"}
-          initial={"initial"}
+          animate="animate"
+          exit="exit"
+          initial="initial"
           transition={{ duration: 0.2 }}
           css={css(applyModal(alignCenter, simple), _css)}
           style={style}
@@ -151,10 +154,10 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           }}
           onAnimationComplete={(definition) => {
             if (definition === "animate") {
-              afterOpen && afterOpen()
+              afterOpen?.()
             }
             if (definition === "exit") {
-              afterClose && afterClose()
+              afterClose?.()
             }
           }}
         >
@@ -173,7 +176,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       if (!maskClickRef.current) return
       maskClickRef.current = false
       if (mask && maskClosable && e.target === e.currentTarget) {
-        onCancel && onCancel()
+        onCancel?.()
       }
     }
 
@@ -204,9 +207,9 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
               <motion.div
                 css={applyModalMask}
                 variants={maskAnimation}
-                animate={"animate"}
-                exit={"exit"}
-                initial={"initial"}
+                animate="animate"
+                exit="exit"
+                initial="initial"
                 transition={{ duration: 0.2 }}
               />
             ) : null}

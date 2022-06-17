@@ -1,5 +1,6 @@
+import { useState } from "react"
 import { Modal } from "../src"
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 test("Modal renders with title ", () => {
@@ -58,4 +59,30 @@ test("Modal renders with withoutPadding ", () => {
   expect(screen.getByText("Modal Content")).toHaveStyle({
     padding: "0px",
   })
+})
+
+test("Modal renders with focus lock correctly", () => {
+  const Component = () => {
+    const [show, setShow] = useState(false)
+    return (
+      <>
+        <button
+          data-testid="button"
+          onClick={() => {
+            setShow((show) => !show)
+          }}
+        >
+          Click
+        </button>
+        <Modal visible={show}>
+          <input data-testid="input" />
+        </Modal>
+      </>
+    )
+  }
+  render(<Component />)
+  const btn = screen.getByTestId("button")
+  fireEvent.click(btn)
+  expect(btn).not.toHaveFocus()
+  expect(screen.getByTestId("input")).toHaveFocus()
 })
