@@ -279,17 +279,30 @@ exports[`Space renders with divider 1`] = `
   margin-bottom: 0px;
 }
 
-.emotion-3 {
+.emotion-2 {
+  display: inline-flex;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #1d2129;
+}
+
+.emotion-2 span {
+  padding: 0 16px;
+}
+
+.emotion-4 {
   display: inline-flex;
   vertical-align: middle;
   border-width: 0 0 0 1px;
   border-image: initial;
-  border-color: #e5e6eb;
   border-style: solid;
   height: 1em;
 }
 
-.emotion-4 {
+.emotion-5 {
   height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -310,10 +323,14 @@ exports[`Space renders with divider 1`] = `
       </span>
     </div>
     <div
-      class="emotion-1 emotion-3"
-    />
+      class="emotion-2"
+    >
+      <div
+        class="emotion-1 emotion-4"
+      />
+    </div>
     <div
-      class="emotion-4"
+      class="emotion-5"
     >
       <span>
         B
