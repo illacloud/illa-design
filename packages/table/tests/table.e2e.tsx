@@ -74,6 +74,7 @@ it("Table renders filter", () => {
       disableRowSelect
     />,
   )
+  cy.wait(100)
   cy.findByTitle("FilterIcon").parent().click()
   cy.wait(100)
   cy.get("input").type("World")
