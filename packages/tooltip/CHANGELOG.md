@@ -1,5 +1,16 @@
 # @illa-design/tooltip
 
+## 0.0.9
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/system@0.0.9
+  - @illa-design/theme@0.0.9
+  - @illa-design/trigger@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes
