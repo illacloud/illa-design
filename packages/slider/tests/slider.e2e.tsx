@@ -87,7 +87,6 @@ it("Slider renders with afterChangeEvent", () => {
   unmount()
 })
 
-
 it("Slider renders with slides exactly", () => {
   mount(<NormalSlider />)
   cy.wait(100)
@@ -101,7 +100,6 @@ it("Slider renders with slides exactly", () => {
     .then(() => {
       cy.findByTestId("normal").trigger("mousemove", "right")
       cy.findByText("100").should("exist")
-
     })
   unmount()
 })
@@ -150,7 +148,6 @@ it("Slider renders with range and drag bar", () => {
 
   unmount()
 })
-
 
 it("Slider renders with range and drag left button", () => {
   mount(<RangeSlider />)

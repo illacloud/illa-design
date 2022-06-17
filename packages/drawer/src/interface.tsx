@@ -15,6 +15,8 @@ export interface DrawerProps
   maskClosable?: boolean
   visible?: boolean
   closable?: boolean
+  focusLock?: boolean
+  autoFocus?: boolean
   confirmLoading?: boolean
   onOk?: (e?: MouseEvent) => void
   onCancel?: (e?: MouseEvent) => void

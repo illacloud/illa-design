@@ -1,4 +1,4 @@
-import {
+import React, {
   forwardRef,
   useState,
   useContext,
@@ -7,6 +7,8 @@ import {
   useCallback,
 } from "react"
 import { findDOMNode } from "react-dom"
+import FocusLock from "react-focus-lock"
+import { RemoveScroll } from "react-remove-scroll"
 import { DrawerProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
 import { isServerRendering } from "@illa-design/system"
@@ -48,6 +50,8 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
     closable = true,
     okText,
     cancelText,
+    focusLock = true,
+    autoFocus = true,
     placement = "right",
     confirmLoading,
     onOk,
@@ -64,7 +68,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
   const [shouldReComputeFixed, setShouldReComputeFixed] = useState(false)
 
   const getContainer = useCallback((): HTMLElement => {
-    const container = getPopupContainer && getPopupContainer()
+    const container = getPopupContainer()
     return (findDOMNode(container) || document.body) as HTMLElement
   }, [getPopupContainer])
 
@@ -82,36 +86,44 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
 
   const renderDrawer = () => {
     const element = (
-      <div css={applyDrawerScroll} {...otherProps}>
-        {title && (
-          <div css={applyDrawerHeader}>
-            <div css={applyDrawerTitle}>{title}</div>
-          </div>
-        )}
-        {closable && (
-          <div css={applyDrawerCloseIcon} onClick={onCancel}>
-            <CloseIcon />
-          </div>
-        )}
-        <div css={applyDrawerContent}>{children}</div>
-        {footer && (
-          <div css={applyDrawerFooter}>
-            <Button
-              css={applyModalCancelBtn}
-              onClick={onCancel}
-              colorScheme="gray"
-              size={"medium"}
-            >
-              {cancelText || locale.cancelText}
-            </Button>
-            <Button size={"medium"} onClick={onOk} loading={confirmLoading}>
-              {okText || locale.okText}
-            </Button>
-          </div>
-        )}
-      </div>
+      <RemoveScroll>
+        <div css={applyDrawerScroll} {...otherProps}>
+          {title && (
+            <div css={applyDrawerHeader}>
+              <div css={applyDrawerTitle}>{title}</div>
+            </div>
+          )}
+          {closable && (
+            <div css={applyDrawerCloseIcon} onClick={onCancel}>
+              <CloseIcon />
+            </div>
+          )}
+          <div css={applyDrawerContent}>{children}</div>
+          {footer && (
+            <div css={applyDrawerFooter}>
+              <Button
+                css={applyModalCancelBtn}
+                onClick={onCancel}
+                colorScheme="gray"
+                size="medium"
+              >
+                {cancelText || locale.cancelText}
+              </Button>
+              <Button size="medium" onClick={onOk} loading={confirmLoading}>
+                {okText || locale.okText}
+              </Button>
+            </div>
+          )}
+        </div>
+      </RemoveScroll>
     )
-    return element
+    return focusLock ? (
+      <FocusLock disabled={!visible} autoFocus={autoFocus}>
+        {element}
+      </FocusLock>
+    ) : (
+      element
+    )
   }
 
   return (
@@ -122,9 +134,9 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
             {mask ? (
               <motion.div
                 variants={maskAnimation}
-                animate={"animate"}
-                exit={"exit"}
-                initial={"initial"}
+                animate="animate"
+                exit="exit"
+                initial="initial"
                 transition={{ duration: 0.2 }}
                 css={applyDrawerMask}
                 onClick={(e) => {
@@ -135,9 +147,9 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
             <motion.div
               className={className}
               variants={applyDrawerSlider(placement)}
-              animate={"animate"}
-              exit={"exit"}
-              initial={"initial"}
+              animate="animate"
+              exit="exit"
+              initial="initial"
               transition={{ duration: 0.2 }}
               style={Object.assign(
                 placement === "left" || placement === "right"
@@ -149,10 +161,10 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
               css={applyDrawer}
               onAnimationComplete={(definition) => {
                 if (definition === "animate") {
-                  afterOpen && afterOpen()
+                  afterOpen?.()
                 }
                 if (definition === "exit") {
-                  afterClose && afterClose()
+                  afterClose?.()
                 }
               }}
             >
