@@ -26,6 +26,7 @@ export interface ListProps<T>
 }
 
 export interface ListItemProps extends HTMLAttributes<HTMLDivElement> {
+  _css?: SerializedStyles
   actions?: ReactNode
   extra?: ReactNode
 }
