@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Collapse, CollapseProps } from "../src"
-import { ShareIcon } from "@illa-design/icon"
+import { ShareIcon, PreIcon } from "@illa-design/icon"
 
 export default {
   title: "DATA DISPLAY/Collapse",
@@ -86,6 +86,32 @@ export const Template: Story<CollapseProps> = (args) => {
           name="3"
         >
           Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
+        </CollapseItem>
+      </Collapse>
+    </>
+  )
+}
+
+export const BuilderCollapse: Story<CollapseProps> = (args) => {
+  return (
+    <>
+      <Collapse
+        style={{ maxWidth: 279, marginBottom: 20 }}
+        mode="builder-pro"
+        expandIconPosition="right"
+      >
+        <CollapseItem
+          header="temporary state (1)"
+          name="1"
+          expandIcon={<PreIcon />}
+        >
+          <Collapse mode="builder">
+            <CollapseItem name="1-1" header="current_user">
+              <div>email "wuxiaosong@illasoft.com"</div>
+              <div>email "wuxiaosong@illasoft.com"</div>
+              <div>email "wuxiaosong@illasoft.com"</div>
+            </CollapseItem>
+          </Collapse>
         </CollapseItem>
       </Collapse>
     </>
