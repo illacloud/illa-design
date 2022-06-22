@@ -643,18 +643,13 @@ export function applyFontStyle(size: ButtonSize): SerializedStyles {
   }
 }
 
-export function applyLeftIconStyle(
-  size: ButtonSize,
-  leftIconSize?: string,
-): SerializedStyles {
+export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
   switch (size) {
     case "small":
       return css`
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        width: ${leftIconSize || "12px"};
-        height: ${leftIconSize || "12px"};
         font-size: 12px;
         margin-right: 6px;
       `
@@ -664,8 +659,6 @@ export function applyLeftIconStyle(
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        width: ${leftIconSize || "12px"};
-        height: ${leftIconSize || "12px"};
         font-size: 12px;
         margin-right: 8px;
       `
@@ -681,8 +674,6 @@ export function applyIconWithoutText(size: ButtonSize): SerializedStyles {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        width: 12px;
-        height: 12px;
         justify-content: center;
       `
   }
@@ -695,8 +686,6 @@ export function applyRightIconStyle(size: ButtonSize): SerializedStyles {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        width: 12px;
-        height: 12px;
         font-size: 12px;
         margin-left: 6px;
       `
@@ -706,8 +695,6 @@ export function applyRightIconStyle(size: ButtonSize): SerializedStyles {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        width: 12px;
-        height: 12px;
         font-size: 12px;
         margin-left: 8px;
       `

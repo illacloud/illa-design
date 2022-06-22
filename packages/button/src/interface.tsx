@@ -30,7 +30,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean
   loadingText?: string
   leftIcon?: ReactNode
-  leftIconSize?: string
   rightIcon?: ReactNode
   buttonRadius?: string
   autoFullVertically?: boolean
