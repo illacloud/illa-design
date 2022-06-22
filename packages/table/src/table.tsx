@@ -243,7 +243,7 @@ function renderDataDrivenTable<D extends TableData>(
                       </div>
                       {column.canResize &&
                         group.headers.indexOf(column) !=
-                          group.headers.length - 1 && (
+                        group.headers.length - 1 && (
                           <div
                             {...column.getResizerProps()}
                             css={applyResizing(column.canResize)}
@@ -262,7 +262,10 @@ function renderDataDrivenTable<D extends TableData>(
                 <Tr {...row.getRowProps()}>
                   {row.cells.map((cell, index) => {
                     return (
-                      <Td {...cell.getCellProps()}>{cell.render("Cell")}</Td>
+                      <Td {...cell.getCellProps()} style={{
+                        minWidth: cell.column?.minWidth || '0px',
+                        width: cell.column?.width || 'auto',
+                      }}>{cell.render("Cell")}</Td>
                     )
                   })}
                 </Tr>

@@ -291,11 +291,11 @@ export function applyTextColorCss(
     `
   } else if (isSelected) {
     textColorCss = css`
-      color: ${globalColor(`--${illaPrefix}-${textColorScheme}-03`)};
+      color: ${globalColor(`--${illaPrefix}-${textColorScheme}-02`)};
     `
   } else {
     textColorCss = css`
-          color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+          color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 
           &:hover {
             background-color: ${
@@ -313,7 +313,7 @@ export function applyTextColorCss(
       `
     } else {
       textColorCss = css`
-              color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+              color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 
               &:hover {
                 background-color: ${globalColor(`--${illaPrefix}-gray-09`)}
@@ -395,7 +395,7 @@ export function applyCommonBlueLineCss(
     left: ${position}px;
     bottom: 0;
     transition: left 200ms, width 200ms;
-    background-color: ${globalColor(`--${illaPrefix}-${lineColorScheme}-03`)};
+    background-color: ${globalColor(`--${illaPrefix}-${lineColorScheme}-02`)};
   `
 }
 
