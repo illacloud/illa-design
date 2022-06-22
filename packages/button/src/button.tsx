@@ -41,6 +41,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             loading,
             loadingText,
             leftIcon,
+            leftIconSize,
             disabled,
             rightIcon,
             buttonRadius,
@@ -84,7 +85,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 <span
                   css={
                     hasPropContent
-                      ? applyLeftIconStyle(size)
+                      ? applyLeftIconStyle(size, leftIconSize)
                       : applyIconWithoutText(size)
                   }
                 >

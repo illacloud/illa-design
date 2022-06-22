@@ -643,15 +643,18 @@ export function applyFontStyle(size: ButtonSize): SerializedStyles {
   }
 }
 
-export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
+export function applyLeftIconStyle(
+  size: ButtonSize,
+  leftIconSize?: string,
+): SerializedStyles {
   switch (size) {
     case "small":
       return css`
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        width: 12px;
-        height: 12px;
+        width: ${leftIconSize || "12px"};
+        height: ${leftIconSize || "12px"};
         font-size: 12px;
         margin-right: 6px;
       `
@@ -661,8 +664,8 @@ export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        width: 12px;
-        height: 12px;
+        width: ${leftIconSize || "12px"};
+        height: ${leftIconSize || "12px"};
         font-size: 12px;
         margin-right: 8px;
       `
