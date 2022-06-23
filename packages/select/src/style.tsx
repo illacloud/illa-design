@@ -1,5 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { ColorScheme, SelectProps, SelectStateValue } from "./interface"
+import { SelectColorScheme, SelectProps, SelectStateValue } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 import chroma from "chroma-js"
@@ -39,8 +39,8 @@ export const errorFocusStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
   box-shadow: 0 0 8px 0
     ${chroma(globalColor(`--${illaPrefix}-red-01`))
-      .alpha(0.15)
-      .hex()};
+    .alpha(0.15)
+    .hex()};
 `
 export const errorOutlineStyle = css`
   background-color: unset;
@@ -87,8 +87,8 @@ function applyStatus(stateValue: SelectStateValue) {
     mainStyle = css`
       &:hover {
         border-color: ${isInnerColor
-          ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
-          : chroma.mix(colorScheme ?? "blue", "white", 0.6).hex()};
+        ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
+        : chroma.mix(colorScheme ?? "blue", "white", 0.6).hex()};
       }
     `
   }
@@ -220,7 +220,7 @@ export function applyOptionStyle(
   size: SelectProps["size"],
   multiple?: boolean,
   checked?: boolean,
-  colorScheme?: ColorScheme,
+  colorScheme?: SelectColorScheme,
 ): SerializedStyles {
   const isInnerColor = colorScheme && innerColor.indexOf(colorScheme) > -1
   const bgColor = isInnerColor
