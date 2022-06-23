@@ -1,5 +1,20 @@
 # @illa-design/date-picker
 
+## 0.0.10
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/calendar@0.0.10
+  - @illa-design/icon@0.0.10
+  - @illa-design/select@0.0.10
+  - @illa-design/system@0.0.10
+  - @illa-design/theme@0.0.10
+  - @illa-design/time-picker@0.0.10
+  - @illa-design/trigger@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes

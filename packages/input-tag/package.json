@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/input-tag",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Illa Design InputTag.",
   "keywords": [
     "input-tag",
@@ -39,10 +39,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.9",
-    "@illa-design/input": "0.0.9",
-    "@illa-design/tag": "0.0.9",
-    "@illa-design/system": "0.0.9",
-    "@illa-design/theme": "0.0.9"
+    "@illa-design/icon": "0.0.10",
+    "@illa-design/input": "0.0.10",
+    "@illa-design/tag": "0.0.10",
+    "@illa-design/system": "0.0.10",
+    "@illa-design/theme": "0.0.10"
   }
 }
