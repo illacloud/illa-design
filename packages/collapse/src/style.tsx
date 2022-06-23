@@ -16,13 +16,28 @@ export function applyCollapseStyle(bordered?: boolean): SerializedStyles {
   `
 }
 
-export const applyCollapseItemStyle: SerializedStyles = css`
-  box-sizing: border-box;
-  border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  &:last-of-type {
-    border-bottom: none;
+export function applyCollapseItemStyle(mode?: CollapseMode): SerializedStyles {
+  let modeCSS: SerializedStyles
+  switch (mode) {
+    case "builder":
+      modeCSS = css``
+      break
+    case "builder-pro":
+      modeCSS = css``
+      break
+    default:
+      modeCSS = css`
+        border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+        &:last-of-type {
+          border-bottom: none;
+        }
+      `
   }
-`
+  return css`
+    box-sizing: border-box;
+    ${modeCSS}
+  `
+}
 
 export function applyCollapseItemHeaderStyle(
   isExpanded?: boolean,
@@ -168,7 +183,7 @@ export function applyCollapseItemContentStyle(
       modeCSS = css`
         font-size: 12px;
         line-height: 16px;
-        padding: 0 16px 8px 28px;
+        padding: 4px 16px 4px 28px;
         background-color: ${chroma(globalColor(`--${illaPrefix}-techPurple-07`))
           .alpha(0.5)
           .hex()};
@@ -178,7 +193,7 @@ export function applyCollapseItemContentStyle(
       modeCSS = css`
         font-size: 12px;
         line-height: 22px;
-        padding: 0;
+        padding-bottom: 16px;
         background-color: ${globalColor(`--${illaPrefix}-white-01`)};
       `
       break

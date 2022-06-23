@@ -35,7 +35,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
     const unmountOnExit = destroyOnHide ?? ctx.destroyOnHide
     const mount = unmountOnExit ? isExpanded : true
     return (
-      <div ref={ref} css={applyCollapseItemStyle} {...otherProps}>
+      <div ref={ref} css={applyCollapseItemStyle(ctx.mode)} {...otherProps}>
         <div
           role={"button"}
           onClick={(e) => {
