@@ -81,7 +81,24 @@ import {
   MongoDbIcon,
   JSTransformerIcon,
   UnselectedWidgetIcon,
+  DocsIcon,
+  TextWidgetIcon,
+  EditableTextWidgetIcon,
+  ButtonWidgetIcon,
+  TextInputWidgetIcon,
+  SelectWidgetIcon,
+  ContainerWidgetIcon,
+  ChartWidgetIcon,
+  ImageWidgetIcon,
+  FormWidgetIcon,
+  TableWidgetIcon,
+  ModalWidgetIcon,
+  NavigationWidgetIcon,
+  SwitchWidgetIcon,
+  RadioGroupWidgetIcon,
+  TabWidgetIcon,
 } from "../src"
+import { DragIcon } from "../src/icons/drag"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -102,6 +119,8 @@ export default {
       control: false,
     },
   },
+
+  decorators: [(Story) => (<span style={{ fontSize: "100px" }}><Story /></span>)]
 } as Meta
 
 export const Close: Story<IconProps> = (props: IconProps) => (
@@ -180,6 +199,7 @@ export const Next: Story<IconProps> = (props: IconProps) => (
   <NextIcon {...props} />
 )
 export const Up: Story<IconProps> = (props: IconProps) => <UpIcon {...props} />
+
 export const Down: Story<IconProps> = (props: IconProps) => (
   <DownIcon {...props} />
 )
@@ -367,4 +387,72 @@ export const JSTransformer: Story<IconProps> = (props: IconProps) => (
 
 export const UnselectedWidget: Story<IconProps> = (props: IconProps) => (
   <UnselectedWidgetIcon {...props} />
+)
+
+export const Drag: Story<IconProps> = (props: IconProps) => (
+  <DragIcon {...props} />
+)
+
+export const Docs: Story<IconProps> = (props: IconProps) => (
+  <DocsIcon {...props} />
+)
+
+export const TextWidget: Story<IconProps> = (props: IconProps) => (
+  <TextWidgetIcon {...props} />
+)
+
+export const EditableTextWidget: Story<IconProps> = (props: IconProps) => (
+  <EditableTextWidgetIcon {...props} />
+)
+
+export const ButtonWidget: Story<IconProps> = (props: IconProps) => (
+  <ButtonWidgetIcon {...props} />
+)
+
+export const TextInputWidget: Story<IconProps> = (props: IconProps) => (
+  <TextInputWidgetIcon {...props} />
+)
+
+export const SelectWidget: Story<IconProps> = (props: IconProps) => (
+  <SelectWidgetIcon {...props} />
+)
+
+export const ContainerWidget: Story<IconProps> = (props: IconProps) => (
+  <ContainerWidgetIcon {...props} />
+)
+
+export const ChartWidget: Story<IconProps> = (props: IconProps) => (
+  <ChartWidgetIcon {...props} />
+)
+
+export const ImageWidget: Story<IconProps> = (props: IconProps) => (
+  <ImageWidgetIcon {...props} />
+)
+
+export const FormWidget: Story<IconProps> = (props: IconProps) => (
+  <FormWidgetIcon {...props} />
+)
+
+export const TableWidget: Story<IconProps> = (props: IconProps) => (
+  <TableWidgetIcon {...props} />
+)
+
+export const ModalWidget: Story<IconProps> = (props: IconProps) => (
+  <ModalWidgetIcon {...props} />
+)
+
+export const NavigationWidget: Story<IconProps> = (props: IconProps) => (
+  <NavigationWidgetIcon {...props} />
+)
+
+export const SwitchWidget: Story<IconProps> = (props: IconProps) => (
+  <SwitchWidgetIcon {...props} />
+)
+
+export const RadioGroupWidget: Story<IconProps> = (props: IconProps) => (
+  <RadioGroupWidgetIcon {...props} />
+)
+
+export const TabWidget: Story<IconProps> = (props: IconProps) => (
+  <TabWidgetIcon {...props} />
 )

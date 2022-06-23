@@ -20,7 +20,7 @@ export interface OptionProps
   valueActive?: string
   valueSelect?: string | string[] | number | number[]
   isSelectOption?: boolean
-  colorScheme?: ColorScheme
+  colorScheme?: SelectColorScheme
   size?: SelectSize
   onClick?: (value: SyntheticEvent) => void
   onMouseEnter?: (value: OptionProps["value"]) => void
@@ -53,7 +53,7 @@ export interface OptionListProps<T> {
 
 export type SelectSize = "small" | "medium" | "large"
 
-export type ColorScheme =
+export type SelectColorScheme =
   | string
   | "gray"
   | "blue"
@@ -70,16 +70,16 @@ export type ColorScheme =
 
 export interface SelectProps
   extends Omit<
-    HTMLAttributes<HTMLDivElement>,
-    "defaultValue" | "onFocus" | "onBlur"
+  HTMLAttributes<HTMLDivElement>,
+  "defaultValue" | "onFocus" | "onBlur"
   > {
   defaultValue?:
-    | string
-    | string[]
-    | number
-    | number[]
-    | LabeledValue
-    | LabeledValue[]
+  | string
+  | string[]
+  | number
+  | number[]
+  | LabeledValue
+  | LabeledValue[]
   value?: string | string[] | number | number[] | LabeledValue | LabeledValue[]
   inputValue?: string
   labelInValue?: boolean
@@ -88,8 +88,8 @@ export interface SelectProps
   notFoundContent?: ReactNode
   placeholder?: string
   showSearch?:
-    | boolean
-    | { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean }
+  | boolean
+  | { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean }
   size?: SelectSize
   disabled?: boolean
   error?: boolean
@@ -102,17 +102,17 @@ export interface SelectProps
     | string
     | number
     | {
-        label: ReactNode | string
-        value: string | number
-        disabled?: boolean
-        extra?: any
-      }
+      label: ReactNode | string
+      value: string | number
+      disabled?: boolean
+      extra?: any
+    }
   )[]
   filterOption?:
-    | boolean
-    | ((inputValue: string, option: ReactElement) => boolean)
+  | boolean
+  | ((inputValue: string, option: ReactElement) => boolean)
   triggerProps?: Partial<TriggerProps>
-  colorScheme?: ColorScheme
+  colorScheme?: SelectColorScheme
   // events
   onChange?: (value: any, option?: OptionInfo | OptionInfo[]) => void
   onSearch?: (value: string, reason: InputValueChangeReason) => void
@@ -131,8 +131,8 @@ export interface SelectProps
 
 export interface SelectViewProps
   extends Omit<
-    SelectProps,
-    "options" | "filterOption" | "onChange" | "onClear" | "triggerProps"
+  SelectProps,
+  "options" | "filterOption" | "onChange" | "onClear" | "triggerProps"
   > {
   value?: any
   defaultValue?: any

@@ -185,8 +185,6 @@ exports[`Button Group renders attached with round shape 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 12px;
-  height: 12px;
   font-size: 12px;
   margin-right: 8px;
 }
@@ -377,8 +375,6 @@ exports[`Button Group renders attached with round shape 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 12px;
-  height: 12px;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
@@ -829,8 +825,6 @@ exports[`Button Group renders attached with square shape 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 12px;
-  height: 12px;
   font-size: 12px;
   margin-right: 8px;
 }
@@ -1021,8 +1015,6 @@ exports[`Button Group renders attached with square shape 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 12px;
-  height: 12px;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
@@ -1418,8 +1410,6 @@ exports[`Button Group renders with spacing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 12px;
-  height: 12px;
   font-size: 12px;
   margin-right: 8px;
 }
@@ -1610,8 +1600,6 @@ exports[`Button Group renders with spacing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 12px;
-  height: 12px;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;

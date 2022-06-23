@@ -13,7 +13,6 @@ export const applyStatisticTitle = css`
 `
 
 export const applyStatisticContent = css`
-  font-family: HelveticaNeue;
   font-size: 24px;
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};

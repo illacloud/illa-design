@@ -1,10 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import {
-  RadioColorScheme,
-  RadioProps,
-  RadioSize,
-  RadioStatus,
-} from "./interface"
+import { RadioColorScheme, RadioSize, RadioStatus } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 
@@ -115,7 +110,7 @@ export function applyRadioButtonContainer(size?: RadioSize): SerializedStyles {
     vertical-align: middle;
     flex-direction: row;
     align-items: center;
-    gap: 4px;
+    gap: 1px;
     font-size: 14px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
@@ -183,7 +178,7 @@ export function applyRadioButton(stateValue: RadioStatus) {
     `
   }
   return css`
-    flex-grow: 1;
+    flex: 1;
     position: relative;
     display: flex;
     align-items: center;
@@ -191,6 +186,9 @@ export function applyRadioButton(stateValue: RadioStatus) {
     box-sizing: border-box;
     cursor: pointer;
     transition: 0.15s all linear;
+    white-space: nowrap;
+    min-width: 0;
+    overflow: hidden;
 
     &:hover::before,
     &:hover + &::before {
@@ -214,3 +212,8 @@ export function applyRadioButton(stateValue: RadioStatus) {
     ${stateCss}
   `
 }
+
+export const radioTextCss = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+`

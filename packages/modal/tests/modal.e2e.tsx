@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useState, createContext } from "react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 import { Modal, ModalProps, ModalReturnProps } from "../src"
@@ -8,9 +8,9 @@ import { AlertType } from "@illa-design/alert"
 const confirmTypes = ["info", "success", "warning", "error", "confirm"]
 
 const NormalModal = (props: ModalProps) => {
-  const [visible, setVisible] = React.useState(false)
-  const [show, setShow] = React.useState(false)
-  const [confirmLoading, setConfirmLoading] = React.useState(false)
+  const [visible, setVisible] = useState(false)
+  const [show, setShow] = useState(false)
+  const [confirmLoading, setConfirmLoading] = useState(false)
   function onOk() {
     Promise.resolve().then(() => {
       setConfirmLoading(true)
@@ -63,7 +63,7 @@ const NormalModal = (props: ModalProps) => {
 const ContextModal = (props: ModalProps & { type?: AlertType }) => {
   const { type = "info" } = props
   const [modal, contextHolder] = Modal.useModal()
-  const ConfigContext = React.createContext({})
+  const ConfigContext = createContext({})
   return (
     <ConfigContext.Provider value="Jarvey">
       {contextHolder}
@@ -216,6 +216,37 @@ it("Modal renders with useModal different types", () => {
     cy.root().click()
     unmount()
   })
+})
+
+it("Modal renders with removing document scroll", () => {
+  const loremIpsum = Array(100)
+    .fill(0)
+    .map(
+      () =>
+        `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    )
+    .join("\n\n")
+  const Component = () => {
+    return (
+      <div data-cy="container">
+        <Modal visible={true}>
+          <input />
+        </Modal>
+        <div>{loremIpsum}</div>
+      </div>
+    )
+  }
+  mount(<Component />)
+  cy.get("body").then((container) => {
+    const { y: beforeScroll } = container[0].getBoundingClientRect()
+    cy.get("body")
+      .scrollTo("bottom", { ensureScrollable: false })
+      .then((container) => {
+        const { y: afterScroll } = container[0].getBoundingClientRect()
+        expect(afterScroll).to.be.eql(beforeScroll)
+      })
+  })
+  unmount()
 })
 
 it("useModal api renders with close method", () => {
