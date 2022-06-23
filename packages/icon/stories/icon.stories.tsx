@@ -81,6 +81,7 @@ import {
   MongoDbIcon,
   JSTransformerIcon,
   UnselectedWidgetIcon,
+  DocsIcon,
   TextWidgetIcon,
   EditableTextWidgetIcon,
   ButtonWidgetIcon,
@@ -390,6 +391,10 @@ export const UnselectedWidget: Story<IconProps> = (props: IconProps) => (
 
 export const Drag: Story<IconProps> = (props: IconProps) => (
   <DragIcon {...props} />
+)
+
+export const Docs: Story<IconProps> = (props: IconProps) => (
+  <DocsIcon {...props} />
 )
 
 export const TextWidget: Story<IconProps> = (props: IconProps) => (
