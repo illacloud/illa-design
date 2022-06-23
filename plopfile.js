@@ -6,6 +6,13 @@ module.exports = (plop) => {
         type: "input",
         name: "name",
         message: "Component name(e.g. Input, InputNumber):",
+        validate: (name) => {
+          if (name === "") {
+            return "Please input component name or press `ctrl-c` to quit"
+          }
+
+          return true;
+        }
       },
       {
         type: "rawlist",
@@ -63,6 +70,13 @@ module.exports = (plop) => {
         type: "input",
         name: "name",
         message: "Icon name(e.g. EmptyState, FileWorld, NextDouble):",
+        validate: (name) => {
+          if (name === "") {
+            return "Please input icon name or press `ctrl-c` to quit"
+          }
+
+          return true;
+        }
       },
     ],
     actions: [
