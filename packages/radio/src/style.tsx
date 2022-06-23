@@ -1,9 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import {
-  RadioColorScheme,
-  RadioSize,
-  RadioStatus,
-} from "./interface"
+import { RadioColorScheme, RadioSize, RadioStatus } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 

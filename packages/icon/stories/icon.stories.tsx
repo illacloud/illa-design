@@ -82,6 +82,7 @@ import {
   JSTransformerIcon,
   UnselectedWidgetIcon,
 } from "../src"
+import { DragIcon } from "../src/icons/drag"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -367,4 +368,8 @@ export const JSTransformer: Story<IconProps> = (props: IconProps) => (
 
 export const UnselectedWidget: Story<IconProps> = (props: IconProps) => (
   <UnselectedWidgetIcon {...props} />
+)
+
+export const Drag: Story<IconProps> = (props: IconProps) => (
+  <DragIcon {...props} />
 )

@@ -39,13 +39,13 @@ test("Tabs renders with defaultActivityKey and disabled", () => {
     </Tabs>,
   )
   expect(screen.getByText("tab 01")).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-grayBlue-04`)}`,
+    color: `${globalColor(`--${illaPrefix}-grayBlue-03`)}`,
   })
   expect(screen.getByText("tab 02")).toHaveStyle({
     color: `${globalColor(`--${illaPrefix}-grayBlue-05`)}`,
   })
   expect(screen.getByText("tab 03")).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-blue-03`)}`,
+    color: `${globalColor(`--${illaPrefix}-blue-02`)}`,
   })
 })
 
@@ -62,7 +62,7 @@ test("Tabs renders without defaultActivityKey", () => {
     </Tabs>,
   )
   expect(screen.getByText("tab 01")).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-blue-03`)}`,
+    color: `${globalColor(`--${illaPrefix}-blue-02`)}`,
   })
 })
 

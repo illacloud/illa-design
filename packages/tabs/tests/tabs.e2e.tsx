@@ -140,7 +140,7 @@ it("Tabs renders with changeEvent and clickEvent", () => {
     </Tabs>,
   )
   cy.findByText("tab 02").trigger("click")
-  cy.findByText("tab 02").should("have.css", "color", "rgb(30, 111, 255)")
+  cy.findByText("tab 02").should("have.css", "color", "rgb(23, 92, 235)")
   cy.get("@changeEvent").should("to.be.calledWith", "2")
   cy.get("@clickEvent").should("to.be.calledWith", "2")
   unmount()

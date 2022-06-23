@@ -48,10 +48,10 @@ export function applyDividerWithTextContainerStyle(
 ): SerializedStyles {
   const _color = color && innerColor.indexOf(color) > -1 ? color : "grayBlue"
   return css`
-    display: inline-flex;
+    display: flex;
     width: 100%;
     align-items: center;
-    color: ${globalColor(`--${illaPrefix}-${_color}-02`)};
+    color: ${globalColor(`--${illaPrefix}-${_color}-08`)};
     font-size: ${textSize};
     span {
       padding: 0 16px;

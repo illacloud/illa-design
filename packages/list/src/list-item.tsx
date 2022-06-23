@@ -1,4 +1,5 @@
 import { forwardRef } from "react"
+import { css } from "@emotion/react"
 import { ListItemProps } from "./interface"
 import {
   applyListItemActionsStyle,
@@ -9,9 +10,9 @@ import {
 
 export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
   (props, ref) => {
-    const { actions, extra, ...otherProps } = props
+    const { actions, extra, _css, ...otherProps } = props
     return (
-      <div css={applyListItemContainer} ref={ref} {...otherProps}>
+      <div css={css(applyListItemContainer, _css)} ref={ref} {...otherProps}>
         <div css={applyListItemInner}>
           {props.children}
           {actions && <div css={applyListItemActionsStyle}>{actions}</div>}
