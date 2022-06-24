@@ -1,4 +1,4 @@
-import { ColorScheme, DividerVariant } from "./interface"
+import { DividerColorScheme, DividerVariant } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
@@ -43,7 +43,7 @@ export function applyDividerContainerVertical(
 }
 
 export function applyDividerWithTextContainerStyle(
-  color?: ColorScheme,
+  color?: DividerColorScheme,
   textSize?: string,
 ): SerializedStyles {
   const _color = color && innerColor.indexOf(color) > -1 ? color : "grayBlue"

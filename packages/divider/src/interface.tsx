@@ -3,7 +3,7 @@ import { HTMLAttributes } from "react"
 export type DividerDirection = "vertical" | "horizontal"
 export type DividerVariant = "solid" | "dashed" | "dotted" | "double"
 export type TextAlign = "start" | "center" | "end"
-export type ColorScheme =
+export type DividerColorScheme =
   | string
   | "gray"
   | "blue"
@@ -23,5 +23,5 @@ export interface DividerProps extends HTMLAttributes<HTMLDivElement> {
   text?: string
   textAlign?: TextAlign
   textSize?: string
-  colorScheme?: ColorScheme
+  colorScheme?: DividerColorScheme
 }

@@ -1,5 +1,17 @@
 # @illa-design/tree-common
 
+## 0.0.10
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/checkbox@0.0.10
+  - @illa-design/list@0.0.10
+  - @illa-design/system@0.0.10
+  - @illa-design/theme@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes
