@@ -97,8 +97,19 @@ import {
   SwitchWidgetIcon,
   RadioGroupWidgetIcon,
   TabWidgetIcon,
+  DragIcon,
+  ResetIcon,
+  TextAlignLeftIcon,
+  TextAlignRightIcon,
+  TextAlignCenterIcon,
+  HorizontalStartIcon,
+  HorizontalCenterIcon,
+  HorizontalEndIcon,
+  HorizontalFullIcon,
+  VerticalStartIcon,
+  VerticalCenterIcon,
+  VerticalEndIcon,
 } from "../src"
-import { DragIcon } from "../src/icons/drag"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -120,7 +131,13 @@ export default {
     },
   },
 
-  decorators: [(Story) => (<span style={{ fontSize: "100px" }}><Story /></span>)]
+  decorators: [
+    (Story) => (
+      <span style={{ fontSize: "100px" }}>
+        <Story />
+      </span>
+    ),
+  ],
 } as Meta
 
 export const Close: Story<IconProps> = (props: IconProps) => (
@@ -453,6 +470,44 @@ export const RadioGroupWidget: Story<IconProps> = (props: IconProps) => (
   <RadioGroupWidgetIcon {...props} />
 )
 
-export const TabWidget: Story<IconProps> = (props: IconProps) => (
-  <TabWidgetIcon {...props} />
+export const Reset: Story<IconProps> = (props: IconProps) => (
+  <ResetIcon {...props} />
+)
+
+export const TextAlignLeft: Story<IconProps> = (props: IconProps) => (
+  <TextAlignLeftIcon {...props} />
+)
+
+export const TextAlignRight: Story<IconProps> = (props: IconProps) => (
+  <TextAlignRightIcon {...props} />
+)
+
+export const TextAlignCenter: Story<IconProps> = (props: IconProps) => (
+  <TextAlignCenterIcon {...props} />
+)
+
+export const HorizontalStart: Story<IconProps> = (props: IconProps) => (
+  <HorizontalStartIcon {...props} />
+)
+
+export const HorizontalCenter: Story<IconProps> = (props: IconProps) => (
+  <HorizontalCenterIcon {...props} />
+)
+
+export const HorizontalEnd: Story<IconProps> = (props: IconProps) => (
+  <HorizontalEndIcon {...props} />
+)
+export const HorizontalFull: Story<IconProps> = (props: IconProps) => (
+  <HorizontalFullIcon {...props} />
+)
+export const VerticalStart: Story<IconProps> = (props: IconProps) => (
+  <VerticalStartIcon {...props} />
+)
+
+export const VerticalCenter: Story<IconProps> = (props: IconProps) => (
+  <VerticalCenterIcon {...props} />
+)
+
+export const VerticalEnd: Story<IconProps> = (props: IconProps) => (
+  <VerticalEndIcon {...props} />
 )
