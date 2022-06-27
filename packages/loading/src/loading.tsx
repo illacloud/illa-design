@@ -11,7 +11,7 @@ export const Loading = forwardRef<HTMLDivElement, LoadingProps>(
         ref={ref}
         css={css(applyLoadingStyle(colorScheme), _css)}
         {...restProps}
-      ></div>
+      />
     )
   },
 )
