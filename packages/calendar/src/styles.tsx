@@ -19,10 +19,8 @@ export const headerLeftPartCss = css`
   flex: 1;
 `
 
-export const headerRightPartCss = css`
-  padding: 5px;
-  border-radius: 4px;
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+export const modeRadioStyle = css`
+  width: 140px;
 `
 export const headerTextCss = css`
   vertical-align: middle;
