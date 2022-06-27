@@ -5,7 +5,10 @@ export const NavigationWidgetIcon = createIcon({
   viewBox: "0 0 72 54",
   path: (
     <>
-      <path d="M8 23a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4v-8z" fill="#fff" />
+      <path
+        d="M8 23a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4v-8z"
+        fill="#fff"
+      />
       <rect x="15" y="22" width="8" height="8" rx="2" fill="#A9AEB8" />
       <rect x="28" y="24" width="6" height="6" rx="2" fill="#E0E0E0" />
       <rect x="39" y="24" width="6" height="6" rx="2" fill="#E0E0E0" />

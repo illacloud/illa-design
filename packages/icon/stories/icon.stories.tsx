@@ -120,7 +120,13 @@ export default {
     },
   },
 
-  decorators: [(Story) => (<span style={{ fontSize: "100px" }}><Story /></span>)]
+  decorators: [
+    (Story) => (
+      <span style={{ fontSize: "100px" }}>
+        <Story />
+      </span>
+    ),
+  ],
 } as Meta
 
 export const Close: Story<IconProps> = (props: IconProps) => (
