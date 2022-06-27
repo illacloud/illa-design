@@ -21,7 +21,7 @@ export const headerLeftPartCss = css`
 
 export const headerRightPartCss = css`
   padding: 5px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 export const headerTextCss = css`
@@ -42,13 +42,6 @@ export const preNextIconsCss = css`
   margin-right: 40px;
 `
 
-export const modeButtonCss = css`
-  font-size: 14px;
-  border-radius: 4px;
-  border: none;
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-`
 export const selectCommonCss = css`
   display: inline-block;
   &:first-of-type {
@@ -191,6 +184,7 @@ export function applyCalendarWrapCss(
 ): SerializedStyles {
   return css`
     margin: 40px;
+    border-radius: 8px;
     border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${panel && `display: inline-block;width: ${+panelWidth}px`};
   `
@@ -240,7 +234,7 @@ export function applyModeButtonCss(click?: boolean): SerializedStyles {
     display: inline-block;
     font-size: 14px;
     padding: 2px 20px;
-    border-radius: 4px;
+    border-radius: 8px;
     border: none;
     ${colors};
     &:hover {

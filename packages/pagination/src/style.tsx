@@ -42,11 +42,6 @@ export function applyJumperInputCss(size: PaginationSize, disable?: boolean) {
   `
 }
 
-export const simplePaginationSumCss = css`
-  font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}; ;
-`
-
 export function applyCommonItemCss(
   size: PaginationSize,
   requireMargin?: boolean,
@@ -54,7 +49,6 @@ export function applyCommonItemCss(
   return css`
     display: inline-flex;
     justify-content: center;
-    border-radius: 4px;
     align-items: center;
     font-size: 14px;
     cursor: default;
@@ -78,7 +72,6 @@ export function applyDefaultItemCss(
   return css`
     display: inline-flex;
     justify-content: center;
-    border-radius: 4px;
     align-items: center;
     font-size: 14px;
     ${paddindCss}
@@ -115,6 +108,7 @@ export function applyBackground(
   if (disable && selected) {
     return css`
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+
       &:hover {
         background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
       }
@@ -123,6 +117,7 @@ export function applyBackground(
   if (!disable && selected) {
     return css`
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+
       &:hover {
         background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
       }
@@ -182,31 +177,30 @@ export function applyPageNumItemSelectedCss(
   `
 }
 
+function applyBackgroundAndBorderColor(disabled?: boolean) {
+  if (!disabled) {
+    return css`
+      &:hover {
+        background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      }
+
+      &:active {
+        background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+        border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+      }
+    `
+  }
+}
+
 export function applyPageSizeSelectorCss(
   size: PaginationSize,
   disabled?: boolean,
 ) {
-  function applyBackgroundAndBorderColor(disabled?: boolean) {
-    if (!disabled) {
-      return css`
-        &:hover {
-          background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-        }
-
-        &:active {
-          background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-          border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
-        }
-      `
-    }
-  }
-
   return css`
     vertical-align: middle;
     display: inline-flex;
     align-items: center;
     font-size: 14px;
-    border-radius: 4px;
     ${applySelectorSizeCss(size)}
     margin-left: 16px;
     border-width: 0;
@@ -215,7 +209,7 @@ export function applyPageSizeSelectorCss(
 
     ${applyTextColor(disabled)}
     ${applyCursor(disabled)}
-      ${applyBackgroundAndBorderColor(disabled)}
+    ${applyBackgroundAndBorderColor(disabled)}
   `
 }
 

@@ -21,7 +21,7 @@ export function applyCard(
     background-color: ${isGridMode
       ? ""
       : globalColor(`--${illaPrefix}-white-01`)};
-    border-radius: 2px;
+    border-radius: 8px;
     transition: box-shadow 0.2s ease-in-out;
     ${border};
     &:hover {
@@ -91,7 +91,7 @@ export function applyCardBody(
 }
 
 export const applyCardCover = css`
-  border-radius: 2px;
+  border-radius: 8px;
   overflow: hidden;
 `
 

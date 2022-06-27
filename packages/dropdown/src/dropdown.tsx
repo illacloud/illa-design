@@ -54,6 +54,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
       trigger={trigger}
       disabled={disabled}
       position={position}
+      showArrow={false}
       popupVisible={currentPopupVisible}
       content={
         content && content.props.isMenu

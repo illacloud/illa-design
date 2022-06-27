@@ -9,7 +9,6 @@ export function applyCollapse(bordered?: boolean): SerializedStyles {
     : ""
   return css`
     overflow: hidden;
-    border-radius: 2px;
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     line-height: 1.57;
     ${borderCSS}
