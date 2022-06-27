@@ -6,7 +6,12 @@ export const ChartWidgetIcon = createIcon({
   path: (
     <>
       <rect x="16" y="11" width="40" height="32" rx="4" fill="#fff" />
-      <path d="m20 35 6-6 6 3 8-13 6 8 6-1" stroke="#A9AEB8" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="m20 35 6-6 6 3 8-13 6 8 6-1"
+        stroke="#A9AEB8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
       <circle cx="20" cy="35" r="1" fill="#A9AEB8" />
       <circle cx="26.112" cy="28.947" r="1" fill="#A9AEB8" />
       <circle cx="31.971" cy="31.83" r="1" fill="#A9AEB8" />
