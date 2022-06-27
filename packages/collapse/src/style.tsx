@@ -114,7 +114,7 @@ export function applyCollapseItemHeaderIconStyle(
   `
 }
 
-export function applyCollapseItemHeaderTittleStyle(
+export function applyCollapseItemHeaderTitleStyle(
   isExpanded?: boolean,
   disabled?: boolean,
 ): SerializedStyles {

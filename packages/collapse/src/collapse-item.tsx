@@ -8,7 +8,7 @@ import {
   collapseItemExtraStyle,
   applyCollapseItemHeaderStyle,
   applyCollapseItemHeaderIconStyle,
-  applyCollapseItemHeaderTittleStyle,
+  applyCollapseItemHeaderTitleStyle,
   CollapseItemAnimation,
 } from "./style"
 
@@ -60,7 +60,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
               {icon}
             </span>
           )}
-          <div css={applyCollapseItemHeaderTittleStyle(isExpanded, disabled)}>
+          <div css={applyCollapseItemHeaderTitleStyle(isExpanded, disabled)}>
             {header}
           </div>
           {extra && (
