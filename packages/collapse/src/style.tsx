@@ -2,7 +2,6 @@ import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { CollapseMode, CollapsePosition } from "./interface"
 import { Variants } from "framer-motion"
-import chroma from "chroma-js"
 
 export function applyCollapseStyle(bordered?: boolean): SerializedStyles {
   const borderCSS = bordered
@@ -16,28 +15,13 @@ export function applyCollapseStyle(bordered?: boolean): SerializedStyles {
   `
 }
 
-export function applyCollapseItemStyle(mode?: CollapseMode): SerializedStyles {
-  let modeCSS: SerializedStyles
-  switch (mode) {
-    case "builder":
-      modeCSS = css``
-      break
-    case "builder-pro":
-      modeCSS = css``
-      break
-    default:
-      modeCSS = css`
-        border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-        &:last-of-type {
-          border-bottom: none;
-        }
-      `
+export const collapseItemStyle: SerializedStyles = css`
+  box-sizing: border-box;
+  border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  &:last-of-type {
+    border-bottom: none;
   }
-  return css`
-    box-sizing: border-box;
-    ${modeCSS}
-  `
-}
+`
 
 export function applyCollapseItemHeaderStyle(
   isExpanded?: boolean,
@@ -48,25 +32,6 @@ export function applyCollapseItemHeaderStyle(
   let modeCSS: SerializedStyles
   switch (mode) {
     case "builder":
-      modeCSS = css`
-        padding: 1px 28px;
-        padding-left: ${position === "left" ? "28px" : "16px"};
-        padding-right: ${position === "left" ? "16px" : "28px"};
-        background-color: ${
-          isExpanded
-            ? globalColor(`--${illaPrefix}-techPurple-07`)
-            : globalColor(`--${illaPrefix}-white-01`)
-        };
-        &:hover{
-          background-color:${
-            isExpanded
-              ? globalColor(`--${illaPrefix}-techPurple-07`)
-              : globalColor(`--${illaPrefix}-grayBlue-09`)
-          };}
-        }
-      `
-      break
-    case "builder-pro":
       modeCSS = css`
         padding: 13px 32px;
         padding-left: ${position === "left" ? "32px" : "16px"};
@@ -116,13 +81,6 @@ export function applyCollapseItemHeaderIconStyle(
   let modeCSS: SerializedStyles
   switch (mode) {
     case "builder":
-      modeCSS = css`
-        font-size: 8px;
-        top: 8px;
-        color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-      `
-      break
-    case "builder-pro":
       modeCSS = css`
         font-size: 12px;
         top: 18px;
@@ -176,24 +134,15 @@ export function applyCollapseItemHeaderTittleStyle(
 
 export function applyCollapseItemContentStyle(
   mode?: CollapseMode,
+  isExpanded?: boolean,
 ): SerializedStyles {
   let modeCSS: SerializedStyles
   switch (mode) {
     case "builder":
       modeCSS = css`
         font-size: 12px;
-        line-height: 16px;
-        padding: 4px 16px 4px 28px;
-        background-color: ${chroma(globalColor(`--${illaPrefix}-techPurple-07`))
-          .alpha(0.5)
-          .hex()};
-      `
-      break
-    case "builder-pro":
-      modeCSS = css`
-        font-size: 12px;
         line-height: 22px;
-        padding-bottom: 16px;
+        padding-bottom: ${isExpanded ? "16px" : "0"};
         background-color: ${globalColor(`--${illaPrefix}-white-01`)};
       `
       break
@@ -212,7 +161,7 @@ export function applyCollapseItemContentStyle(
     ${modeCSS}
   `
 }
-export const applyCollapseItemExtraStyle: SerializedStyles = css`
+export const collapseItemExtraStyle: SerializedStyles = css`
   font-size: 8px;
 `
 

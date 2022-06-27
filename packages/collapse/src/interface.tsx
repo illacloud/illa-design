@@ -9,7 +9,7 @@ import {
 
 export type CollapsePosition = "left" | "right"
 
-export type CollapseMode = "default" | "builder" | "builder-pro"
+export type CollapseMode = "default" | "builder"
 
 export interface CollapseProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {

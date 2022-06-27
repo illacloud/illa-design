@@ -3,9 +3,9 @@ import { CollapseItemProps } from "./interface"
 import { CollapseContext } from "./collapse-context"
 import { motion, AnimatePresence } from "framer-motion"
 import {
-  applyCollapseItemStyle,
+  collapseItemStyle,
   applyCollapseItemContentStyle,
-  applyCollapseItemExtraStyle,
+  collapseItemExtraStyle,
   applyCollapseItemHeaderStyle,
   applyCollapseItemHeaderIconStyle,
   applyCollapseItemHeaderTittleStyle,
@@ -35,7 +35,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
     const unmountOnExit = destroyOnHide ?? ctx.destroyOnHide
     const mount = unmountOnExit ? isExpanded : true
     return (
-      <div ref={ref} css={applyCollapseItemStyle(ctx.mode)} {...otherProps}>
+      <div ref={ref} css={collapseItemStyle} {...otherProps}>
         <div
           role={"button"}
           onClick={(e) => {
@@ -65,7 +65,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
           </div>
           {extra && (
             <div
-              css={applyCollapseItemExtraStyle}
+              css={collapseItemExtraStyle}
               onClick={(e) => {
                 e.stopPropagation()
               }}
@@ -77,7 +77,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
         <AnimatePresence initial={false}>
           {mount && (
             <motion.div
-              css={applyCollapseItemContentStyle(ctx.mode)}
+              css={applyCollapseItemContentStyle(ctx.mode, isExpanded)}
               role={"region"}
               variants={CollapseItemAnimation}
               animate={unmountOnExit ? "enter" : isExpanded ? "enter" : "exit"}

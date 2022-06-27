@@ -86,7 +86,7 @@ test("Tree renders with large size", async () => {
   expect(
     screen.getByText("0-0-head").parentElement?.parentElement?.parentElement,
   ).toHaveStyle({
-    height: `40px`,
+    minHeight: `40px`,
   })
 })
 
@@ -97,7 +97,7 @@ test("Tree renders with small size", async () => {
   expect(
     screen.getByText("0-0-head").parentElement?.parentElement?.parentElement,
   ).toHaveStyle({
-    height: `24px`,
+    minHeight: `24px`,
   })
 })
 
