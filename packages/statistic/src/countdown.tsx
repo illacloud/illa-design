@@ -4,15 +4,16 @@ import dayjs from "dayjs"
 import { getDateString } from "./util"
 
 import {
-  applyStatistic,
-  applyStatisticContent,
-  applyStatisticTitle,
+  statisticStyle,
+  applyStatisticContentStyle,
+  statisticTitleStyle,
 } from "./style"
 
 export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
   (props, ref) => {
     const {
       title,
+      mode = "default",
       value = 0,
       format = "HH:mm:ss",
       onFinish,
@@ -64,9 +65,9 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
       }
     }, [start])
     return (
-      <div ref={ref} {...restProps} css={applyStatistic}>
-        {title && <div css={applyStatisticTitle}>{title}</div>}
-        <div css={applyStatisticContent}>
+      <div ref={ref} {...restProps} css={statisticStyle}>
+        {title && <div css={statisticTitleStyle}>{title}</div>}
+        <div css={applyStatisticContentStyle(mode)}>
           {getDateString(valueShow, format)}
         </div>
       </div>
