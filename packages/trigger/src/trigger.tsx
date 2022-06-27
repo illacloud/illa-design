@@ -352,8 +352,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
     onContextMenu: (e: SyntheticEvent<Element, Event>) => {
       if (trigger == "contextmenu") {
         if (!disabled) {
+          e.preventDefault()
           if (!tipVisible) {
-            e.preventDefault()
             showTips()
           } else if (tipVisible) {
             if (closeOnClick) {
