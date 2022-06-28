@@ -1,5 +1,4 @@
 import { FC, Fragment, useEffect, useState } from "react"
-import { CalendarHeaderProps, selectTimeProps } from "./interface"
 import { Button } from "@illa-design/button"
 import {
   PreIcon,
@@ -8,9 +7,11 @@ import {
   NextDoubleIcon,
 } from "@illa-design/icon"
 import { Select } from "@illa-design/select"
+import { RadioGroup } from "@illa-design/radio"
+import { CalendarHeaderProps, selectTimeProps } from "./interface"
 import {
   headerLeftPartCss,
-  headerRightPartCss,
+  modeRadioStyle,
   headerTextCss,
   headerSmallTextCss,
   preNextIconsCss,
@@ -59,6 +60,17 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
     if (month) {
       setCurrentMonth(month)
       onSelectTime({ year: currentYear, month: month })
+    }
+  }
+
+  const modeRadioChange = (radioValue: string) => {
+    switch (radioValue) {
+      case locale?.month:
+        onChangeMode("month")
+        break
+      case locale?.year:
+        onChangeMode("year")
+        break
     }
   }
 
@@ -226,19 +238,14 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                   </Button>
                 )}
               </div>
-              <div css={headerRightPartCss}>
-                <div
-                  css={applyModeButtonCss(mode === "month")}
-                  onClick={() => onChangeMode("month")}
-                >
-                  {locale?.month}
-                </div>
-                <div
-                  css={applyModeButtonCss(mode === "year")}
-                  onClick={() => onChangeMode("year")}
-                >
-                  {locale?.year}
-                </div>
+              <div css={modeRadioStyle}>
+                <RadioGroup
+                  options={[locale?.month, locale?.year]}
+                  type="button"
+                  size="medium"
+                  defaultValue={locale?.month}
+                  onChange={modeRadioChange}
+                />
               </div>
             </Fragment>
           )}
