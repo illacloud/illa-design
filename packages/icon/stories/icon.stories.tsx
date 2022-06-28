@@ -109,6 +109,7 @@ import {
   VerticalStartIcon,
   VerticalCenterIcon,
   VerticalEndIcon,
+  FxIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -511,3 +512,5 @@ export const VerticalCenter: Story<IconProps> = (props: IconProps) => (
 export const VerticalEnd: Story<IconProps> = (props: IconProps) => (
   <VerticalEndIcon {...props} />
 )
+
+export const Fx: Story<IconProps> = (props: IconProps) => <FxIcon {...props} />
