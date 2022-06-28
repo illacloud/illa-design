@@ -183,7 +183,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
       const node = nodeCache.current[key]
       onDragLeave && onDragLeave(e, node)
     },
-    [onDragOver],
+    [onDragLeave],
   )
   const [dragState, setDragState] = useState<{
     dragNodeKey?: string
@@ -218,7 +218,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
       }
       onDrop && onDrop(_info)
     },
-    [onDrop, nodeCache.current, dragState],
+    [onDrop, nodeCache.current, dragState, allowDrop],
   )
 
   const handleSelect = useCallback(
@@ -244,7 +244,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
         onSelect && onSelect(keys, extra)
       }
     },
-    [selectedKeysState, nodeCache.current],
+    [selectedKeysState, nodeCache.current, onSelect],
   )
 
   const handleExpand = useCallback(
@@ -261,7 +261,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
       }
       onExpand && onExpand(keys, extra)
     },
-    [expandedKeysState, nodeCache.current],
+    [expandedKeysState, nodeCache.current, onExpand],
   )
 
   const handleCheck = useCallback(
@@ -291,7 +291,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
         onCheck && onCheck(Array.from(keys), extra)
       }
     },
-    [checkKeysState, nodeCache.current, _treeData],
+    [checkKeysState, nodeCache.current, _treeData, onCheck],
   )
 
   let isMountedRef = useRef(false)
