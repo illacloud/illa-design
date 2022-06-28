@@ -9,18 +9,18 @@ import {
 import { TriggerProps } from "@illa-design/trigger"
 
 export type DropListColor =
-    | string
-    | "gray"
-    | "blue"
-    | "purple"
-    | "red"
-    | "green"
-    | "yellow"
-    | "orange"
-    | "cyan"
-    | "white"
-    | "techPink"
-    | "techPurple"
+  | string
+  | "gray"
+  | "blue"
+  | "purple"
+  | "red"
+  | "green"
+  | "yellow"
+  | "orange"
+  | "cyan"
+  | "white"
+  | "techPink"
+  | "techPurple"
 
 export interface DropdownProps {
   children?: ReactNode

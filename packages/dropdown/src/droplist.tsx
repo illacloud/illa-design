@@ -1,8 +1,10 @@
-import React, {
+import {
   forwardRef,
   createContext,
   MouseEvent,
   isValidElement,
+  Children,
+  cloneElement,
 } from "react"
 import { DropListComponent, DropListProps } from "./interface"
 import { DropListItem } from "./item"
@@ -23,9 +25,9 @@ export const DropList = forwardRef<HTMLDivElement, DropListProps>(
             onClickItem,
           }}
         >
-          {React.Children.map(children, (item, index) => {
+          {Children.map(children, (item, index) => {
             if (isValidElement(item)) {
-              return React.cloneElement(item, {
+              return cloneElement(item, {
                 ...item.props,
                 _key: item.key || `$item-${index}`,
               })
