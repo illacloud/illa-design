@@ -99,6 +99,6 @@
     "@illa-design/tree-common": "0.0.10",
     "@illa-design/tree": "0.0.10",
     "@illa-design/tree-select": "0.0.10",
-    "@illa-design/loading": "0.0.10"
+    "@illa-design/loading": "0.0.0"
   }
 }
