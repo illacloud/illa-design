@@ -4,6 +4,7 @@ import { Dropdown, DropdownProps, DropList } from "../src"
 import { Button } from "@illa-design/button"
 import { Menu } from "@illa-design/menu"
 import { Space } from "@illa-design/space"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -33,7 +34,11 @@ const dropList = () => {
   const { Item } = DropList
   return (
     <DropList>
-      <Item title={"Blog"} key={"1"} fontColor={"red"} disabled />
+      <Item
+        title={"Blog"}
+        key={"1"}
+        fontColor={`${globalColor(`--${illaPrefix}-red-02`)}`}
+      />
       <Item title={"Tutorial"} key={"2"} />
       <Item title={"Docs"} key={"3"} fontColor={"blue"} />
       <Item title={"Community"} key={"4"} />
