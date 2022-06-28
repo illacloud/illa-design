@@ -50,5 +50,19 @@ export const Basic: Story<DropdownProps> = (args) => (
     <Dropdown dropList={menuList()} trigger={"click"} {...args}>
       <Button>Click me</Button>
     </Dropdown>
+    <Dropdown dropList={dropList()} trigger={"click"} {...args}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "lightgray",
+          width: 200,
+          height: 150,
+        }}
+      >
+        Click me on right
+      </div>
+    </Dropdown>
   </Space>
 )

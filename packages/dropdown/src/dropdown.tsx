@@ -31,6 +31,8 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     ...otherProps
   } = props
 
+  const content = getContent(dropList)
+
   const triggerDefaultProps = {
     colorScheme: "white",
     withoutPadding: true,
@@ -67,14 +69,13 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     }
   }
 
-  const content = getContent(dropList)
-
   return (
     <Trigger
       trigger={trigger}
       disabled={disabled}
       position={position}
       showArrow={false}
+      alignPoint={trigger === "contextmenu"}
       popupVisible={currentPopupVisible}
       _css={css`
         border-radius: 8px;
