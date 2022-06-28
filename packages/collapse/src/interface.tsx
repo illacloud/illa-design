@@ -9,10 +9,13 @@ import {
 
 export type CollapsePosition = "left" | "right"
 
+export type CollapseMode = "default" | "builder"
+
 export interface CollapseProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   activeKey?: string | string[]
   defaultActiveKey?: string | string[]
+  mode?: CollapseMode
   accordion?: boolean
   expandIcon?: ReactNode
   expandIconPosition?: CollapsePosition
@@ -36,6 +39,7 @@ export interface CollapseItemProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export interface CollapseContextProps {
+  mode?: CollapseMode
   expandIcon?: ReactNode
   activeKeys: string[]
   expandIconPosition?: CollapsePosition

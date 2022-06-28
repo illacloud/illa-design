@@ -15,6 +15,7 @@ function DemoTest(props: CollapseProps) {
         header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
         name="1"
         data-testid={"collapse-item-1"}
+        expandIcon={<div>Icon</div>}
       >
         Item-1
       </CollapseItem>
@@ -96,5 +97,19 @@ it("Collapse renders with onChange", () => {
   cy.findByTestId("collapse-item-3")
     .click()
     .then(() => cy.get("@onChangeEvent").should("to.be.called"))
+  unmount()
+})
+
+it("Collapse renders with mode", () => {
+  mount(<DemoTest mode="builder" />)
+  cy.findByTestId("collapse-item-1")
+    .children("div:first-of-type")
+    .should("have.css", "background-color", "rgb(248, 245, 255)")
+  cy.findByTestId("collapse-item-3")
+    .children("div:first-of-type")
+    .should("have.css", "background-color", "rgb(255, 255, 255)")
+  cy.findByText("Icon").parent().should("have.css", "font-size", "12px")
+  cy.findByText("Item-1").should("have.css", "padding-bottom", "16px")
+  cy.findByText("Item-3").should("have.css", "padding-bottom", "0px")
   unmount()
 })

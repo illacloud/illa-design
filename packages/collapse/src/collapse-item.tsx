@@ -3,13 +3,12 @@ import { CollapseItemProps } from "./interface"
 import { CollapseContext } from "./collapse-context"
 import { motion, AnimatePresence } from "framer-motion"
 import {
-  applyCollapseItem,
-  applyCollapseItemContent,
-  applyCollapseItemContentBox,
-  applyCollapseItemExtra,
-  applyCollapseItemHeader,
-  applyCollapseItemHeaderIcon,
-  applyCollapseItemHeaderTittle,
+  collapseItemStyle,
+  applyCollapseItemContentStyle,
+  collapseItemExtraStyle,
+  applyCollapseItemHeaderStyle,
+  applyCollapseItemHeaderIconStyle,
+  applyCollapseItemHeaderTitleStyle,
   CollapseItemAnimation,
 } from "./style"
 
@@ -36,35 +35,37 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
     const unmountOnExit = destroyOnHide ?? ctx.destroyOnHide
     const mount = unmountOnExit ? isExpanded : true
     return (
-      <div ref={ref} css={applyCollapseItem} {...otherProps}>
+      <div ref={ref} css={collapseItemStyle} {...otherProps}>
         <div
           role={"button"}
           onClick={(e) => {
             !disabled && ctx.onToggle(name, e)
           }}
-          css={applyCollapseItemHeader(
+          css={applyCollapseItemHeaderStyle(
             isExpanded,
             ctx.expandIconPosition,
             disabled,
+            ctx.mode,
           )}
         >
           {icon && (
             <span
-              css={applyCollapseItemHeaderIcon(
+              css={applyCollapseItemHeaderIconStyle(
                 isExpanded,
                 ctx.expandIconPosition,
                 disabled,
+                ctx.mode,
               )}
             >
               {icon}
             </span>
           )}
-          <div css={applyCollapseItemHeaderTittle(isExpanded, disabled)}>
+          <div css={applyCollapseItemHeaderTitleStyle(isExpanded, disabled)}>
             {header}
           </div>
           {extra && (
             <div
-              css={applyCollapseItemExtra}
+              css={collapseItemExtraStyle}
               onClick={(e) => {
                 e.stopPropagation()
               }}
@@ -76,7 +77,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
         <AnimatePresence initial={false}>
           {mount && (
             <motion.div
-              css={applyCollapseItemContent}
+              css={applyCollapseItemContentStyle(ctx.mode, isExpanded)}
               role={"region"}
               variants={CollapseItemAnimation}
               animate={unmountOnExit ? "enter" : isExpanded ? "enter" : "exit"}
@@ -84,7 +85,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
               initial={unmountOnExit ? "exit" : false}
               transition={{ duration: 0.2 }}
             >
-              <div css={applyCollapseItemContentBox}>{children}</div>
+              {children}
             </motion.div>
           )}
         </AnimatePresence>

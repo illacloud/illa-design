@@ -3,11 +3,11 @@ import { StatisticProps } from "./interface"
 import { Skeleton } from "@illa-design/skeleton"
 import dayjs, { Dayjs } from "dayjs"
 import {
-  applyStatistic,
-  applyStatisticContent,
-  applyStatisticDecorator,
-  applyStatisticTitle,
-  applyStatisticValue,
+  statisticStyle,
+  applyStatisticContentStyle,
+  applyStatisticDecoratorStyle,
+  statisticTitleStyle,
+  statisticValueStyle,
 } from "./style"
 import { isObject } from "@illa-design/system"
 
@@ -15,6 +15,7 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
   (props, ref) => {
     const {
       title,
+      mode = "default",
       value = 0,
       decimalSeparator = ".",
       format,
@@ -41,22 +42,24 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
       return decimal !== void 0 ? int + decimalSeparator + decimal : int
     }, [format, value, groupSeparator, decimalSeparator, precision])
     return (
-      <div css={applyStatistic} ref={ref} {...restProps}>
-        {title && <div css={applyStatisticTitle}>{title}</div>}
-        <div css={applyStatisticContent}>
+      <div css={statisticStyle} ref={ref} {...restProps}>
+        {title && <div css={statisticTitleStyle}>{title}</div>}
+        <div css={applyStatisticContentStyle(mode)}>
           <Skeleton
             animation
             visible={!!loading}
             text={{ rows: 1, width: "100%" }}
           >
             {prefix && (
-              <span css={applyStatisticDecorator(true, !isObject(prefix))}>
+              <span css={applyStatisticDecoratorStyle(true, !isObject(prefix))}>
                 {prefix}
               </span>
             )}
-            <span css={applyStatisticValue}>{renderValue.toString()}</span>
+            <span css={statisticValueStyle}>{renderValue.toString()}</span>
             {suffix && (
-              <span css={applyStatisticDecorator(false, !isObject(suffix))}>
+              <span
+                css={applyStatisticDecoratorStyle(false, !isObject(suffix))}
+              >
                 {suffix}
               </span>
             )}

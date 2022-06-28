@@ -40,7 +40,7 @@ export function applyNodeContainerCss(size: TreeSize): SerializedStyles {
     display: flex;
     justify-content: start;
     align-items: center;
-    height: ${height}px;
+    min-height: ${height}px;
     width: 100%;
   `
 }
