@@ -280,5 +280,6 @@ export function applyOptionListStyle(
     max-height: ${maxHeight}px;
     overflow: auto;
     background-color: white;
+    border-radius: 8px;
   `
 }
