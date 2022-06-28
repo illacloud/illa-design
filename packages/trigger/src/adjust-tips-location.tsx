@@ -295,13 +295,16 @@ export function adjustLocation(
       break
     }
   }
-  // custom position
+
   if (customPosition.x) {
     adjustResult.transX = customPosition.x
+    adjustResult.opposite = false
   }
   if (customPosition.y) {
     adjustResult.transY = customPosition.y
+    adjustResult.opposite = false
   }
+
   return adjustResult
 }
 
