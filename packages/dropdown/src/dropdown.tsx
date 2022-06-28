@@ -5,10 +5,16 @@ import {
   isValidElement,
   cloneElement,
   SyntheticEvent,
+  ReactNode,
 } from "react"
 import { DropdownProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"
 import { useMergeValue, omit } from "@illa-design/system"
+import { css } from "@emotion/react"
+
+const getContent = (dropList: ReactNode) => {
+  return Children.only(dropList || <span />) as ReactElement
+}
 
 export const Dropdown: FC<DropdownProps> = (props) => {
   const {
@@ -37,17 +43,31 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     value: props.popupVisible,
   })
 
-  const getContent = () => {
-    return Children.only(dropList || <span />) as ReactElement
-  }
-
   const changePopupVisible = (visible: boolean) => {
     setCurrentPopupVisible(visible)
     onVisibleChange?.(visible)
     triggerDefaultProps?.onVisibleChange?.(visible)
   }
 
-  const content = getContent()
+  const onClickMenuItem = (key: string, event: SyntheticEvent) => {
+    let clickMenuEventValue = null
+
+    const content = getContent(dropList)
+    if (content?.props?.onClickMenuItem) {
+      clickMenuEventValue = content.props?.onClickMenuItem(key, event)
+    }
+    if (content?.props?.onClickItem) {
+      clickMenuEventValue = content.props?.onClickItem(key, event)
+    }
+
+    if (clickMenuEventValue instanceof Promise) {
+      clickMenuEventValue?.finally(() => changePopupVisible(false))
+    } else if (clickMenuEventValue !== false) {
+      changePopupVisible(false)
+    }
+  }
+
+  const content = getContent(dropList)
 
   return (
     <Trigger
@@ -56,28 +76,19 @@ export const Dropdown: FC<DropdownProps> = (props) => {
       position={position}
       showArrow={false}
       popupVisible={currentPopupVisible}
+      _css={css`
+        border-radius: 8px;
+      `}
       content={
-        content && content.props.isMenu
+        content?.props?.isMenu
           ? cloneElement(content as ReactElement, {
               inDropdown: true,
               selectable: false,
-              onClickMenuItem: (key: string, event: SyntheticEvent) => {
-                let clickMenuEventValue = null
-
-                const content = getContent()
-                if (content?.props?.onClickMenuItem) {
-                  clickMenuEventValue = content.props?.onClickMenuItem(
-                    key,
-                    event,
-                  )
-                }
-
-                if (clickMenuEventValue instanceof Promise) {
-                  clickMenuEventValue?.finally(() => changePopupVisible(false))
-                } else if (clickMenuEventValue !== false) {
-                  changePopupVisible(false)
-                }
-              },
+              onClickMenuItem,
+            })
+          : content?.props?.isDropList
+          ? cloneElement(content as ReactElement, {
+              onClickItem: onClickMenuItem,
             })
           : content
       }
