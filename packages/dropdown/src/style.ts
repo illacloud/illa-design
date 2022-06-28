@@ -1,7 +1,6 @@
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { DropListColor } from "./interface"
 
 export function applyListCss(): SerializedStyles {
   return css`
@@ -9,6 +8,7 @@ export function applyListCss(): SerializedStyles {
     border-radius: 8px;
     overflow: hidden;
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    padding: 8px 0;
   `
 }
 
@@ -33,7 +33,7 @@ export function applyItemCss(
     color: ${fontColor
       ? fontColor
       : globalColor(`--${illaPrefix}-grayBlue-02`)};
-    line-height: 40px;
+    line-height: 32px;
     position: relative;
     padding: 0 16px;
 
