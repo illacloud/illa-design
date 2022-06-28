@@ -22,7 +22,7 @@ export function applyAlertContainer(
   type: AlertType,
   showBanner?: boolean,
 ): SerializedStyles {
-  const radius = showBanner ? `` : `border-radius: 2px`
+  const radius = showBanner ? `` : `border-radius: 8px`
   return css`
     display: inline-flex;
     box-sizing: border-box;

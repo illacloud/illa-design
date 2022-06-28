@@ -51,7 +51,7 @@ export function applyAvatarShapeSquare(size: AvatarSize): SerializedStyles {
     height: ${height};
     font-size: ${textSize};
     line-height: ${lineHeight};
-    border-radius: 4px;
+    border-radius: 8px;
   `
 }
 

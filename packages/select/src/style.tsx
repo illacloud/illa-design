@@ -116,7 +116,7 @@ export function applySelectView(
     width: 100%;
     line-height: 30px;
     font-size: 14px;
-    border-radius: 4px;
+    border-radius: 8px;
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: pointer;

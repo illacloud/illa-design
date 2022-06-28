@@ -105,7 +105,6 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
         {searchButton ? (
           <span>
             <Button
-              buttonRadius="0 4px 4px 0"
               size={size}
               leftIcon={<SearchIcon />}
               onClick={() => {
