@@ -5,7 +5,7 @@ import { applyLoadingStyle } from "./style"
 
 export const Loading = forwardRef<HTMLDivElement, LoadingProps>(
   (props, ref) => {
-    const { _css, colorScheme = "techPurple", ...restProps } = props
+    const { _css, colorScheme = "gray", ...restProps } = props
     return (
       <div
         ref={ref}

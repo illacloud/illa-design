@@ -1,6 +1,6 @@
 import { css, SerializedStyles, keyframes } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { colorSchemeType } from "./interface"
+import { LoadingColorScheme } from "./interface"
 
 export const spin = keyframes`
   from { transform: rotate(0deg); }
@@ -8,15 +8,12 @@ export const spin = keyframes`
 `
 
 export function applyLoadingStyle(
-  colorScheme: colorSchemeType,
+  colorScheme: LoadingColorScheme,
 ): SerializedStyles {
   let bgColor
-  switch (colorScheme) {
-    case "techPurple":
-      bgColor = globalColor(`--${illaPrefix}-techPurple-01`)
-      break
-  }
+  bgColor = globalColor(`--${illaPrefix}-${colorScheme}-01`)
   return css`
+    display: inline-block;
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -28,6 +25,5 @@ export function applyLoadingStyle(
     );
     mask-image: radial-gradient(closest-side, transparent 75%, black 76%);
     animation: ${spin} 1s linear infinite reverse;
-    margin: 0 auto;
   `
 }
