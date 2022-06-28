@@ -1,4 +1,4 @@
-import { customPositionType, TriggerPosition } from "./interface"
+import { CustomPositionType, TriggerPosition } from "./interface"
 
 export interface AdjustResult {
   readonly transX: number
@@ -13,7 +13,7 @@ export function adjustLocation(
   childrenRef: HTMLElement,
   position: TriggerPosition,
   autoFitPosition: boolean,
-  customPosition: customPositionType,
+  customPosition: CustomPositionType,
 ) {
   let adjustResult = {
     transY: 0,

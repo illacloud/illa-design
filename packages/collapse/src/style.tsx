@@ -9,7 +9,6 @@ export function applyCollapseStyle(bordered?: boolean): SerializedStyles {
     : ""
   return css`
     overflow: hidden;
-    border-radius: 2px;
     line-height: 1.57;
     ${borderCSS}
   `

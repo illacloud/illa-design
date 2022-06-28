@@ -128,7 +128,6 @@ export function applyNodeTextContainerCss(
     justify-content: space-between;
     align-items: center;
     padding: 0 4px;
-    border-radius: 2px;
     ${applyNodeTextColor(disabled, selected)};
     position: relative;
     ${hoverCss}

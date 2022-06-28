@@ -127,13 +127,13 @@ export const colors: TagColorScheme[] = [
 export function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {
   if (color == "gray" || color == "grayBlue") {
     return css`
-      border-radius: 2px;
+      border-radius: 4px;
       border: solid 1px ${globalColor(`--${illaPrefix}-${color}-08`)};
       color: ${globalColor(`--${illaPrefix}-${color}-02`)};
     `
   } else {
     return css`
-      border-radius: 2px;
+      border-radius: 4px;
       border: solid 1px ${globalColor(`--${illaPrefix}-${color}-01`)};
       color: ${globalColor(`--${illaPrefix}-${color}-01`)};
     `
@@ -144,20 +144,20 @@ export function tagFillPrepare(color: TagColorScheme): SerializedStyles {
   return css`
     background-color: ${globalColor(`--${illaPrefix}-${color}-01`)};
     color: ${globalColor(`--${illaPrefix}-white-01`)};
-    border-radius: 2px;
+    border-radius: 4px;
   `
 }
 
 export function tagLightPrepare(color: TagColorScheme): SerializedStyles {
   if (color == "gray") {
     return css`
-      border-radius: 2px;
+      border-radius: 4px;
       background-color: ${globalColor(`--${illaPrefix}-${color}-09`)};
       color: ${globalColor(`--${illaPrefix}-${color}-02`)};
     `
   } else {
     return css`
-      border-radius: 2px;
+      border-radius: 4px;
       background-color: ${globalColor(`--${illaPrefix}-${color}-07`)};
       color: ${globalColor(`--${illaPrefix}-${color}-01`)};
     `
@@ -168,7 +168,7 @@ export function tagFillNormal(
   color: Extract<TagColorScheme, string>,
 ): SerializedStyles {
   return css`
-    border-radius: 2px;
+    border-radius: 4px;
     color: ${globalColor(`--${illaPrefix}-white-01`)};
     background-color: ${color};
   `
@@ -178,7 +178,7 @@ export function tagOutlineNormal(
   color: Extract<TagColorScheme, string>,
 ): SerializedStyles {
   return css`
-    border-radius: 2px;
+    border-radius: 4px;
     color: ${color};
     border: solid 1px ${color};
   `

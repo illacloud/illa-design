@@ -36,11 +36,10 @@ import {
 import { Popup } from "./popup"
 import useMeasure from "react-use/lib/useMeasure"
 import useWindowSize from "react-use/lib/useWindowSize"
-import { mergeRefs } from "@illa-design/system"
+import { getScrollElements, mergeRefs } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
 import useMouse from "react-use/lib/useMouse"
 import { css } from "@emotion/react"
-import { getScrollElements } from "@illa-design/system"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -269,18 +268,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
     </motion.div>
   )
 
-  useClickAway(childrenRef, () => {
-    if (!disabled && clickOutsideToClose) {
-      if (
-        elX < 0 ||
-        elX > tipsMeasureInfo.width ||
-        elY < 0 ||
-        elY > tipsMeasureInfo.height
-      ) {
-        hideTips()
+  useClickAway(
+    childrenRef,
+    () => {
+      if (!disabled && clickOutsideToClose) {
+        if (
+          elX < 0 ||
+          elX > tipsMeasureInfo.width ||
+          elY < 0 ||
+          elY > tipsMeasureInfo.height
+        ) {
+          hideTips()
+        }
       }
-    }
-  })
+    },
+    ["click", "contextmenu"],
+  )
 
   useEffect(() => {
     if (tipVisible) {
@@ -346,6 +349,20 @@ export const Trigger: FC<TriggerProps> = (props) => {
         hideTips()
       }
     },
+    onContextMenu: (e: SyntheticEvent<Element, Event>) => {
+      if (trigger == "contextmenu") {
+        if (!disabled) {
+          e.preventDefault()
+          if (!tipVisible) {
+            showTips()
+          } else if (tipVisible) {
+            if (closeOnClick) {
+              hideTips()
+            }
+          }
+        }
+      }
+    },
     onFocus: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "focus") {
         showTips()
@@ -393,6 +410,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
       onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
         newProps.onMouseLeave(e)
         ;(props.children as ReactElement).props?.onMouseLeave?.call(e)
+      },
+      onContextMenu: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onContextMenu(e)
+        ;(props.children as ReactElement).props?.onContextMenu?.call(e)
       },
       onFocus: (e: SyntheticEvent<Element, Event>) => {
         newProps.onFocus(e)

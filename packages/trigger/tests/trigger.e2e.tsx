@@ -244,6 +244,19 @@ it("Trigger renders with closeOnInnerClick", () => {
   unmount()
 })
 
+it("Trigger renders with contextmenu", () => {
+  const mock = cy.stub().as("mock")
+  mount(
+    <Trigger position="bl" onVisibleChange={mock} content={<div>Hello</div>}>
+      <Button>Button</Button>
+    </Trigger>,
+  )
+  cy.findByText("Button").rightclick()
+  cy.wait(100)
+  cy.get("@mock").should("to.be.calledWith", true)
+  unmount()
+})
+
 it("Popup should follow trigger when upper container scroll", () => {
   mount(
     <div style={{ height: 100, overflow: "auto" }} data-testid="container">
