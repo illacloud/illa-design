@@ -23,14 +23,13 @@ export const ListItemMeta = forwardRef<HTMLDivElement, ListItemMetaProps>(
           />
         )}
         <Typography css={applyTypoStyle}>
-          {title &&
-            typeof title === 'string' ?
-            (
-              <Text fontSize="14px" colorScheme="gray" bold>
-                {title}
-              </Text>
-            ) : title
-          }
+          {title && typeof title === "string" ? (
+            <Text fontSize="14px" colorScheme="gray" bold>
+              {title}
+            </Text>
+          ) : (
+            title
+          )}
           {title && description && <div style={{ height: "4px" }} />}
           {description && (
             <Paragraph

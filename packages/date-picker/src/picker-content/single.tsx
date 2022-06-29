@@ -4,6 +4,7 @@ import {
   cloneElement,
   useState,
   useEffect,
+  useMemo,
 } from "react"
 import { throttleByRaf } from "@illa-design/system"
 import { Button } from "@illa-design/button"
@@ -110,13 +111,13 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       )
     }
 
-    const showCalendarTodayButton = () => {
-      if (showNowBtn === undefined && type === 'day') {
+    const showCalendarTodayButton = useMemo(() => {
+      if (showNowBtn === undefined && type === "day") {
         return true
       } else {
         return showNowBtn && !isBooleanShowTime && !shortcuts?.length
       }
-    }
+    }, [])
 
     const changeDate = (date: Dayjs) => {
       let value = finalValue(date)
@@ -226,7 +227,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                   panel
                   isTodayTarget
                   mode={type}
-                  panelTodayBtn={showCalendarTodayButton()}
+                  panelTodayBtn={showCalendarTodayButton}
                   _css={triContentCommonCss}
                   onChange={(date: Dayjs) => {
                     changeDate(date)
