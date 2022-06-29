@@ -109,7 +109,5 @@ it("Collapse renders with mode", () => {
     .children("div:first-of-type")
     .should("have.css", "background-color", "rgb(255, 255, 255)")
   cy.findByText("Icon").parent().should("have.css", "font-size", "12px")
-  cy.findByText("Item-1").should("have.css", "padding-bottom", "16px")
-  cy.findByText("Item-3").should("have.css", "padding-bottom", "0px")
   unmount()
 })

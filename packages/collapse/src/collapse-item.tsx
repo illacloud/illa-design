@@ -77,7 +77,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
         <AnimatePresence initial={false}>
           {mount && (
             <motion.div
-              css={applyCollapseItemContentStyle(ctx.mode, isExpanded)}
+              css={applyCollapseItemContentStyle(ctx.mode)}
               role={"region"}
               variants={CollapseItemAnimation}
               animate={unmountOnExit ? "enter" : isExpanded ? "enter" : "exit"}
