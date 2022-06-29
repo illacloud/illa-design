@@ -3,7 +3,6 @@ import { ListItemMetaProps } from "./interface"
 import {
   applyItemMetaAvatar,
   applyItemMetaContainer,
-  applyItemMetaTitle,
   applyTypoStyle,
 } from "./style"
 import { Avatar } from "@illa-design/avatar"
@@ -24,11 +23,14 @@ export const ListItemMeta = forwardRef<HTMLDivElement, ListItemMetaProps>(
           />
         )}
         <Typography css={applyTypoStyle}>
-          {title && (
-            <Text fontSize="14px" colorScheme="gray" bold>
-              {title}
-            </Text>
-          )}
+          {title &&
+            typeof title === 'string' ?
+            (
+              <Text fontSize="14px" colorScheme="gray" bold>
+                {title}
+              </Text>
+            ) : title
+          }
           {title && description && <div style={{ height: "4px" }} />}
           {description && (
             <Paragraph
