@@ -56,6 +56,8 @@ it("PopConfirm triggers ok event", () => {
     <PopConfirm
       title="Visible"
       position={"bl"}
+      openDelay={0}
+      closeDelay={0}
       onVisibleChange={visibleEvent}
       onOk={okEvent}
     >

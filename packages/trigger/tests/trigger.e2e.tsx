@@ -130,7 +130,7 @@ it("Trigger renders with equal width", () => {
 
 it("Trigger renders with control", () => {
   mount(
-    <Space direction="vertical">
+    <Space direction="horizontal">
       <Trigger content="Visible Success" popupVisible={true}>
         <Button>VisibleButton</Button>
       </Trigger>
@@ -141,8 +141,8 @@ it("Trigger renders with control", () => {
   )
   cy.wait(100)
   cy.findByText("Visible Success").should("exist")
-  cy.findByText("InvisibleButton").click()
   cy.wait(100)
+  cy.findByText("InvisibleButton").click()
   cy.findByText("Invisible Trigger").should("not.exist")
   unmount()
 })
