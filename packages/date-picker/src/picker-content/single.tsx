@@ -4,6 +4,7 @@ import {
   cloneElement,
   useState,
   useEffect,
+  useMemo,
 } from "react"
 import { throttleByRaf } from "@illa-design/system"
 import { Button } from "@illa-design/button"
@@ -70,7 +71,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
 
     const finalFormat = format || initFormat(type, isBooleanShowTime)
 
-    let initValue =
+    const initValue =
       value || defaultValue
         ? dayjs(value || defaultValue).format(finalFormat as string)
         : ""
@@ -81,6 +82,12 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
         setInputVal(_initValue)
       }
     }, [value])
+    useEffect(() => {
+      // YYYY-MM-DD
+      if (finalFormat?.length) {
+        setInputVal(dayjs(inputVal).format(finalFormat as string))
+      }
+    }, [finalFormat])
 
     const [calendarShortCuts, setCalendarShortCuts] = useState<
       Dayjs | "clear"
@@ -104,9 +111,13 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       )
     }
 
-    const showCalendarTodayButton = Boolean(
-      showNowBtn && !isBooleanShowTime && !shortcuts?.length,
-    )
+    const showCalendarTodayButton = useMemo(() => {
+      if (showNowBtn === undefined && type === "day") {
+        return true
+      } else {
+        return showNowBtn && !isBooleanShowTime && !shortcuts?.length
+      }
+    }, [])
 
     const changeDate = (date: Dayjs) => {
       let value = finalValue(date)
