@@ -139,8 +139,10 @@ it("Trigger renders with control", () => {
       </Trigger>
     </Space>,
   )
+  cy.wait(100)
   cy.findByText("Visible Success").should("exist")
   cy.findByText("InvisibleButton").click()
+  cy.wait(100)
   cy.findByText("Invisible Trigger").should("not.exist")
   unmount()
 })

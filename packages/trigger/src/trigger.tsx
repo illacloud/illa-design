@@ -3,7 +3,6 @@ import {
   FC,
   Fragment,
   isValidElement,
-  MouseEvent,
   MutableRefObject,
   ReactElement,
   ReactNode,
@@ -342,31 +341,31 @@ export const Trigger: FC<TriggerProps> = (props) => {
   )
 
   const newProps = {
-    onMouseEnter: (e: SyntheticEvent<Element, MouseEvent>) => {
+    onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "hover") {
         if (alignPoint) {
           setCustomPosition({
-            x: e.nativeEvent.clientX,
-            y: e.nativeEvent.clientY,
+            x: (e.nativeEvent as MouseEvent).clientX,
+            y: (e.nativeEvent as MouseEvent).clientY,
           })
         }
         showTips()
       }
     },
-    onMouseLeave: (e: SyntheticEvent<Element, MouseEvent>) => {
+    onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "hover") {
         hideTips()
       }
     },
-    onContextMenu: (e: SyntheticEvent<Element, MouseEvent>) => {
+    onContextMenu: (e: SyntheticEvent<Element, Event>) => {
       if (trigger == "contextmenu") {
         if (!disabled) {
           e.preventDefault()
           if (!tipVisible) {
             if (alignPoint) {
               setCustomPosition({
-                x: e.nativeEvent.clientX,
-                y: e.nativeEvent.clientY,
+                x: (e.nativeEvent as MouseEvent).clientX,
+                y: (e.nativeEvent as MouseEvent).clientY,
               })
             }
             showTips()
@@ -378,25 +377,25 @@ export const Trigger: FC<TriggerProps> = (props) => {
         }
       }
     },
-    onFocus: (e: SyntheticEvent<Element, MouseEvent>) => {
+    onFocus: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "focus") {
         if (alignPoint) {
           if (e.target instanceof HTMLElement) {
             setCustomPosition({
-              x: e.nativeEvent.clientX,
-              y: e.nativeEvent.clientY,
+              x: (e.nativeEvent as MouseEvent).clientX,
+              y: (e.nativeEvent as MouseEvent).clientY,
             })
           }
         }
         showTips()
       }
     },
-    onBlur: (e: SyntheticEvent<Element, MouseEvent>) => {
+    onBlur: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "focus") {
         hideTips()
       }
     },
-    onClick: (e: SyntheticEvent<Element, MouseEvent>) => {
+    onClick: (e: SyntheticEvent<Element, Event>) => {
       switch (trigger) {
         case "contextmenu":
           if (tipVisible) {
@@ -410,8 +409,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
             if (!tipVisible) {
               if (alignPoint) {
                 setCustomPosition({
-                  x: e.nativeEvent.clientX,
-                  y: e.nativeEvent.clientY,
+                  x: (e.nativeEvent as MouseEvent).clientX,
+                  y: (e.nativeEvent as MouseEvent).clientY,
                 })
               }
               showTips()
@@ -439,29 +438,29 @@ export const Trigger: FC<TriggerProps> = (props) => {
         measureRef,
         childrenRef,
       ),
-      onMouseEnter: (e: SyntheticEvent<Element, MouseEvent>) => {
+      onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
         newProps.onMouseEnter(e)
-        ;(props.children as ReactElement).props?.onMouseEnter?.call(e)
+        ;(props.children as ReactElement).props?.onMouseEnter?.(e.nativeEvent)
       },
-      onMouseLeave: (e: SyntheticEvent<Element, MouseEvent>) => {
+      onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
         newProps.onMouseLeave(e)
-        ;(props.children as ReactElement).props?.onMouseLeave?.call(e)
+        ;(props.children as ReactElement).props?.onMouseLeave?.(e.nativeEvent)
       },
-      onContextMenu: (e: SyntheticEvent<Element, MouseEvent>) => {
+      onContextMenu: (e: SyntheticEvent<Element, Event>) => {
         newProps.onContextMenu(e)
-        ;(props.children as ReactElement).props?.onContextMenu?.call(e)
+        ;(props.children as ReactElement).props?.onContextMenu?.(e.nativeEvent)
       },
-      onFocus: (e: SyntheticEvent<Element, MouseEvent>) => {
+      onFocus: (e: SyntheticEvent<Element, Event>) => {
         newProps.onFocus(e)
-        ;(props.children as ReactElement).props?.onFocus?.call(e)
+        ;(props.children as ReactElement).props?.onFocus?.(e.nativeEvent)
       },
-      onBlur: (e: SyntheticEvent<Element, MouseEvent>) => {
+      onBlur: (e: SyntheticEvent<Element, Event>) => {
         newProps.onBlur(e)
-        ;(props.children as ReactElement).props?.onBlur?.call(e)
+        ;(props.children as ReactElement).props?.onBlur?.(e.nativeEvent)
       },
-      onClick: (e: SyntheticEvent<Element, MouseEvent>) => {
+      onClick: (e: SyntheticEvent<Element, Event>) => {
         newProps.onClick(e)
-        ;(props.children as ReactElement).props?.onClick?.call(e)
+        ;(props.children as ReactElement).props?.onClick?.(e.nativeEvent)
       },
     }
     return (
@@ -475,7 +474,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
     )
   } else {
     return (
-      // @ts-ignore
       <span
         css={applyChildrenContainer}
         ref={(ref) => {
