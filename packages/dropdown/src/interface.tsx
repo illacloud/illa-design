@@ -24,6 +24,7 @@ export interface DropdownProps {
 
 export interface DropListProps extends HTMLAttributes<HTMLDivElement> {
   disabled?: boolean
+  width?: string
   isDropList?: boolean
   onClickItem?: (key: string, event: MouseEvent) => void
 }

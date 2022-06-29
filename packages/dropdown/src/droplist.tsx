@@ -16,10 +16,10 @@ export const DropListContext = createContext<{
 
 export const DropList = forwardRef<HTMLDivElement, DropListProps>(
   (props, ref) => {
-    const { children, onClickItem, isDropList, ...otherProps } = props
+    const { children, onClickItem, width, isDropList, ...otherProps } = props
 
     return (
-      <div ref={ref} css={applyListCss()} {...otherProps}>
+      <div ref={ref} css={applyListCss(width)} {...otherProps}>
         <DropListContext.Provider
           value={{
             onClickItem,
