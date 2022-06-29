@@ -60,8 +60,8 @@ export interface TriggerProps {
   autoAlignPopupWidth?: boolean
   popupVisible?: boolean
   disabled?: boolean
-  customPosition?: CustomPositionType
   onVisibleChange?: (visible: boolean) => void
+  alignPoint?: boolean
 }
 
 export interface TriggerState {

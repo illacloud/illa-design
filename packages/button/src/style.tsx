@@ -537,7 +537,7 @@ export function applyShape(
         }
       }
       return css`
-        border-radius: 4px;
+        border-radius: 8px;
       `
     case "round":
       if (attached) {

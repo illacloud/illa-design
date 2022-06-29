@@ -1344,7 +1344,7 @@ exports[`Button Group renders with spacing 1`] = `
   align-items: center;
   cursor: pointer;
   padding: 5px 16px;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #fff;
   background-color: #134ae0;
 }
@@ -1435,7 +1435,7 @@ exports[`Button Group renders with spacing 1`] = `
   align-items: center;
   cursor: pointer;
   padding: 4px 15px;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #134ae0;
   border: solid 1px #134ae0;
 }
@@ -1489,7 +1489,7 @@ exports[`Button Group renders with spacing 1`] = `
   align-items: center;
   cursor: default;
   padding: 5px 16px;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #fff;
   background-color: #134ae0;
 }
@@ -1555,7 +1555,7 @@ exports[`Button Group renders with spacing 1`] = `
   width: 32px;
   height: 32px;
   font-size: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #fff;
   background-color: #134ae0;
 }
@@ -1627,7 +1627,7 @@ exports[`Button Group renders with spacing 1`] = `
   align-items: center;
   cursor: not-allowed;
   padding: 5px 16px;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #fff;
   background-color: #134ae0;
 }

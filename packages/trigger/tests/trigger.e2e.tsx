@@ -170,24 +170,21 @@ it("Trigger renders with on visible change event", () => {
   unmount()
 })
 
-it("Trigger renders with custom position", () => {
-  const customPosition = {
-    x: 100,
-    y: 100,
-  }
+it("Trigger renders with alignPoint", () => {
   mount(
-    <Trigger trigger="click" content="Trigger" customPosition={customPosition}>
+    <Trigger trigger="click" content="Trigger" alignPoint>
       <Button>Button</Button>
     </Trigger>,
   )
-  cy.findByText("Button").click()
+  cy.get("button").click(24, 24)
+  cy.wait(50)
   cy.findByText("Trigger")
     .parent()
     .parent()
     .parent()
     .parent()
-    .should("have.css", "top", "100px")
-    .should("have.css", "left", "100px")
+    .should("have.css", "top", "32px")
+    .should("have.css", "left", "32px")
 
   unmount()
 })
