@@ -141,7 +141,7 @@ export function applyCollapseItemContentStyle(
       modeCSS = css`
         font-size: 12px;
         line-height: 22px;
-        //padding-bottom: ${isExpanded ? "16px" : "0"};
+        padding-bottom: ${isExpanded ? "16px" : "0"};
         background-color: ${globalColor(`--${illaPrefix}-white-01`)};
       `
       break
