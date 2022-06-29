@@ -3,6 +3,7 @@ import {
   FC,
   Fragment,
   isValidElement,
+  MouseEvent,
   MutableRefObject,
   ReactElement,
   ReactNode,
@@ -380,10 +381,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
     onFocus: (e: SyntheticEvent<Element, MouseEvent>) => {
       if (!disabled && trigger == "focus") {
         if (alignPoint) {
-          setCustomPosition({
-            x: e.nativeEvent.clientX,
-            y: e.nativeEvent.clientY,
-          })
+          if (e.target instanceof HTMLElement) {
+            setCustomPosition({
+              x: e.nativeEvent.clientX,
+              y: e.nativeEvent.clientY,
+            })
+          }
         }
         showTips()
       }
