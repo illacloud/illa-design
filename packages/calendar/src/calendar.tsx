@@ -18,7 +18,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
       _css,
       allowSelect = true,
       panel,
-      panelWidth = 265,
+      panelWidth = 280,
       panelTodayBtn = true,
       panelOperations = ["left", "right", "doubleLeft", "doubleRight"],
       dayStartOfWeek = 0,
