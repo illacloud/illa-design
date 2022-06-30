@@ -133,15 +133,13 @@ export function applyCollapseItemHeaderTitleStyle(
 
 export function applyCollapseItemContentStyle(
   mode?: CollapseMode,
-  isExpanded?: boolean,
 ): SerializedStyles {
   let modeCSS: SerializedStyles
   switch (mode) {
     case "builder":
       modeCSS = css`
-        font-size: 12px;
-        line-height: 22px;
-        padding-bottom: ${isExpanded ? "16px" : "0"};
+        /* builder mode need to set font-size 0px to control height*/
+        font-size: 0px;
         background-color: ${globalColor(`--${illaPrefix}-white-01`)};
       `
       break
