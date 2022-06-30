@@ -23,7 +23,7 @@ export function applyNotificationWrapper(
     flex-direction: column;
     ${align};
     position: fixed;
-    z-index: 999;
+    z-index: 1499;
     ${positionMap[position]};
   `
 }

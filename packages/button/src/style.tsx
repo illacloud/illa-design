@@ -16,7 +16,7 @@ export function applyTagContainer(fullWidth?: boolean) {
           justify-content: center;
         `
       : null};
-    transition: all 200ms ease-in-out;
+    transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
     vertical-align: middle;
     white-space: nowrap;
     outline: none;
