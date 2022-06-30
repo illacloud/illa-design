@@ -271,7 +271,7 @@ export function applyInputStyle(textCenterHorizontal?: boolean) {
     outline: unset;
     cursor: inherit;
     background-color: inherit;
-
+    padding: 0;
     ${textAlignCss}
     &::placeholder {
       color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};

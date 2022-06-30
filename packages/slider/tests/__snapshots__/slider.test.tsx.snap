@@ -242,6 +242,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   outline: unset;
   cursor: inherit;
   background-color: inherit;
+  padding: 0;
   text-align: start;
 }
 
@@ -1162,6 +1163,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   outline: unset;
   cursor: inherit;
   background-color: inherit;
+  padding: 0;
   text-align: start;
 }
 
@@ -2088,6 +2090,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   outline: unset;
   cursor: inherit;
   background-color: inherit;
+  padding: 0;
   text-align: start;
 }
 
