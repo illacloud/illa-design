@@ -302,7 +302,15 @@ export const Trigger: FC<TriggerProps> = (props) => {
   ])
 
   useEffect(() => {
-    popupVisible ? showTips(true) : hideTips(popupVisible !== undefined)
+    if (popupVisible != undefined) {
+      popupVisible
+        ? delayTodo(async () => {
+            setTipsVisible(true)
+          }, openDelay)
+        : delayTodo(async () => {
+            setTipsVisible(false)
+          }, closeDelay)
+    }
   }, [popupVisible])
 
   useEffect(() => {
