@@ -7,8 +7,8 @@ exports[`Button renders fullwidth 1`] = `
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -83,8 +83,8 @@ exports[`Button renders fullwidth 1`] = `
 
 exports[`Button renders round 1`] = `
 .emotion-0 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;

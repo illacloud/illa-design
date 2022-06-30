@@ -44,8 +44,8 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-2 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -120,8 +120,8 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-5 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -190,8 +190,8 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-12 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -244,8 +244,8 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-16 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -304,8 +304,8 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-26 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -382,8 +382,8 @@ exports[`Button Group renders attached with round shape 1`] = `
 }
 
 .emotion-30 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -684,8 +684,8 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-2 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -760,8 +760,8 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-5 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -830,8 +830,8 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-12 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -884,8 +884,8 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-16 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -944,8 +944,8 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-26 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -1022,8 +1022,8 @@ exports[`Button Group renders attached with square shape 1`] = `
 }
 
 .emotion-30 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -1324,8 +1324,8 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-2 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -1415,8 +1415,8 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-12 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -1469,8 +1469,8 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-16 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -1529,8 +1529,8 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-26 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
@@ -1607,8 +1607,8 @@ exports[`Button Group renders with spacing 1`] = `
 }
 
 .emotion-30 {
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
+  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   outline: none;
