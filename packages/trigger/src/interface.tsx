@@ -32,9 +32,9 @@ export type TriggerPosition =
   | "rt"
   | "rb"
 
-export type TriggerTrigger = "hover" | "click" | "focus"
+export type TriggerTrigger = "hover" | "click" | "focus" | "contextmenu"
 
-export type customPositionType = {
+export type CustomPositionType = {
   x?: number
   y?: number
 }
@@ -60,8 +60,8 @@ export interface TriggerProps {
   autoAlignPopupWidth?: boolean
   popupVisible?: boolean
   disabled?: boolean
-  customPosition?: customPositionType
   onVisibleChange?: (visible: boolean) => void
+  alignPoint?: boolean
 }
 
 export interface TriggerState {

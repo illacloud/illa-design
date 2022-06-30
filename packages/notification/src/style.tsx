@@ -23,7 +23,7 @@ export function applyNotificationWrapper(
     flex-direction: column;
     ${align};
     position: fixed;
-    z-index: 999;
+    z-index: 1499;
     ${positionMap[position]};
   `
 }
@@ -43,7 +43,7 @@ export function applyNotification(
     display: flex;
     box-sizing: border-box;
     box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
-    border-radius: 2px;
+    border-radius: 8px;
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   `
@@ -132,7 +132,7 @@ export function applyMessage(
     overflow: hidden;
     box-sizing: border-box;
     box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
-    border-radius: 2px;
+    border-radius: 8px;
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   `

@@ -39,8 +39,8 @@ export const errorFocusStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
   box-shadow: 0 0 8px 0
     ${chroma(globalColor(`--${illaPrefix}-red-01`))
-    .alpha(0.15)
-    .hex()};
+      .alpha(0.15)
+      .hex()};
 `
 export const errorOutlineStyle = css`
   background-color: unset;
@@ -87,8 +87,8 @@ function applyStatus(stateValue: SelectStateValue) {
     mainStyle = css`
       &:hover {
         border-color: ${isInnerColor
-        ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
-        : chroma.mix(colorScheme ?? "blue", "white", 0.6).hex()};
+          ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
+          : chroma.mix(colorScheme ?? "blue", "white", 0.6).hex()};
       }
     `
   }
@@ -116,7 +116,7 @@ export function applySelectView(
     width: 100%;
     line-height: 30px;
     font-size: 14px;
-    border-radius: 4px;
+    border-radius: 8px;
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: pointer;
@@ -280,5 +280,6 @@ export function applyOptionListStyle(
     max-height: ${maxHeight}px;
     overflow: auto;
     background-color: white;
+    border-radius: 8px;
   `
 }

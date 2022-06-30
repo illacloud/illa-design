@@ -389,7 +389,7 @@ exports[`Avatar Avatar renders with shape 1`] = `
   height: 32px;
   font-size: 14px;
   line-height: 22px;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 <div>

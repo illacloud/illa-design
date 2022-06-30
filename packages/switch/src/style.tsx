@@ -30,7 +30,7 @@ export function applySwitch(
     ? isInnerColor
       ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
       : colorScheme
-    : globalColor(`--${illaPrefix}-gray-06`)
+    : globalColor(`--${illaPrefix}-grayBlue-06`)
   return css`
     position: relative;
     border-radius: 16px;
@@ -51,10 +51,10 @@ export function applySwitch(
       cursor: not-allowed;
       background-color: ${isInnerColor && checked
         ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
-        : globalColor(`--${illaPrefix}-gray-08`)};
+        : globalColor(`--${illaPrefix}-grayBlue-08`)};
       color: ${isInnerColor && checked
         ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
-        : globalColor(`--${illaPrefix}-gray-08`)};
+        : globalColor(`--${illaPrefix}-grayBlue-08`)};
     }
   `
 }

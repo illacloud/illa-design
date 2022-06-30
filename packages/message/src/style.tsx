@@ -10,7 +10,7 @@ export function applyMessageWrapper(
     padding: 0 10px;
     align-items: center;
     position: fixed;
-    z-index: 999;
+    z-index: 1500;
     ${position === "top" ? "top" : "bottom"}:20px;
     box-sizing: border-box;
     pointer-events: none;

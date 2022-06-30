@@ -101,8 +101,8 @@ export default defineConfig({
         "@illa-design/page-header",
         "@illa-design/slider",
         "@illa-design/menu",
-        "@illa-design/tree-common",
         "@illa-design/tree-select",
+        "@illa-design/loading",
       ],
       output: {
         globals: {
@@ -167,7 +167,7 @@ export default defineConfig({
           "@illa-design/menu": "@illa-design/menu",
           "@illa-design/tree": "@illa-design/tree",
           "@illa-design/tree-select": "@illa-design/tree-select",
-          "@illa-design/tree-common": "@illa-design/tree-common",
+          "@illa-design/loading": "@illa-design/loading",
         },
       },
     },

@@ -4,7 +4,7 @@ import { CollapseContext } from "./collapse-context"
 import { CollapseItem } from "./collapse-item"
 import { CaretRightIcon, CaretLeftIcon } from "@illa-design/icon"
 import { useMergeValue } from "@illa-design/system"
-import { applyCollapse } from "./style"
+import { applyCollapseStyle } from "./style"
 
 const getActiveKeys = (
   keys: CollapseProps["activeKey"],
@@ -40,6 +40,7 @@ export const Collapse: CollapseComponent = forwardRef<
     bordered,
     expandIcon,
     expandIconPosition = "left",
+    mode = "default",
     destroyOnHide,
     accordion,
     defaultActiveKey,
@@ -61,13 +62,14 @@ export const Collapse: CollapseComponent = forwardRef<
     if (!("activeKey" in props)) {
       setActiveKeys(newActiveKeys)
     }
-    onChange && onChange(key, newActiveKeys, e)
+    onChange?.(key, newActiveKeys, e)
   }
 
   return (
     <CollapseContext.Provider
       value={{
         activeKeys,
+        mode,
         onToggle: onItemClick,
         expandIcon:
           "expandIcon" in props ? (
@@ -81,7 +83,7 @@ export const Collapse: CollapseComponent = forwardRef<
         expandIconPosition,
       }}
     >
-      <div ref={ref} css={applyCollapse(bordered)} {...otherProps}>
+      <div ref={ref} css={applyCollapseStyle(bordered)} {...otherProps}>
         {children}
       </div>
     </CollapseContext.Provider>

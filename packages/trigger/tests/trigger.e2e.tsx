@@ -130,7 +130,7 @@ it("Trigger renders with equal width", () => {
 
 it("Trigger renders with control", () => {
   mount(
-    <Space direction="vertical">
+    <Space direction="horizontal">
       <Trigger content="Visible Success" popupVisible={true}>
         <Button>VisibleButton</Button>
       </Trigger>
@@ -139,7 +139,9 @@ it("Trigger renders with control", () => {
       </Trigger>
     </Space>,
   )
+  cy.wait(100)
   cy.findByText("Visible Success").should("exist")
+  cy.wait(100)
   cy.findByText("InvisibleButton").click()
   cy.findByText("Invisible Trigger").should("not.exist")
   unmount()
@@ -170,24 +172,21 @@ it("Trigger renders with on visible change event", () => {
   unmount()
 })
 
-it("Trigger renders with custom position", () => {
-  const customPosition = {
-    x: 100,
-    y: 100,
-  }
+it("Trigger renders with alignPoint", () => {
   mount(
-    <Trigger trigger="click" content="Trigger" customPosition={customPosition}>
+    <Trigger trigger="click" content="Trigger" alignPoint>
       <Button>Button</Button>
     </Trigger>,
   )
-  cy.findByText("Button").click()
+  cy.get("button").click(24, 24)
+  cy.wait(50)
   cy.findByText("Trigger")
     .parent()
     .parent()
     .parent()
     .parent()
-    .should("have.css", "top", "100px")
-    .should("have.css", "left", "100px")
+    .should("have.css", "top", "32px")
+    .should("have.css", "left", "32px")
 
   unmount()
 })
@@ -241,6 +240,19 @@ it("Trigger renders with closeOnInnerClick", () => {
   cy.findByText("Close Click Me").click()
   cy.wait(100)
   cy.get("@mock").should("to.be.calledWith", false)
+  unmount()
+})
+
+it("Trigger renders with contextmenu", () => {
+  const mock = cy.stub().as("mock")
+  mount(
+    <Trigger position="bl" onVisibleChange={mock} content={<div>Hello</div>}>
+      <Button>Button</Button>
+    </Trigger>,
+  )
+  cy.findByText("Button").rightclick()
+  cy.wait(100)
+  cy.get("@mock").should("to.be.calledWith", true)
   unmount()
 })
 

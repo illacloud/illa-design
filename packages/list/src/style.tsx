@@ -83,10 +83,6 @@ export const applyTypoStyle = css`
   align-self: center;
 `
 
-export const applyItemMetaTitle = css`
-  margin-bottom: 4px;
-`
-
 export const applyListItemActionsStyle = css`
   margin-top: 8px;
 `

@@ -86,9 +86,8 @@ export const PopConfirm: FC<PopconfirmProps> = (props) => {
                 }
                 if (popupVisible == undefined) {
                   setConfirmVisibleState(false)
-                } else {
-                  onVisibleChange && onVisibleChange(false)
                 }
+                onVisibleChange && onVisibleChange(false)
               }}
               {...cancelButtonProps}
             >
@@ -102,9 +101,8 @@ export const PopConfirm: FC<PopconfirmProps> = (props) => {
                 }
                 if (popupVisible == undefined) {
                   setConfirmVisibleState(false)
-                } else {
-                  onVisibleChange && onVisibleChange(false)
                 }
+                onVisibleChange && onVisibleChange(false)
               }}
               {...okButtonProps}
             >

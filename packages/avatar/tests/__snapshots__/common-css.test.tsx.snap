@@ -168,7 +168,7 @@ Object {
     height: 64px;
     font-size: 24px;
     line-height: 32px;
-    border-radius: 4px;
+    border-radius: 8px;
   ;;
   ",
   "toString": [Function],
@@ -199,7 +199,7 @@ Object {
     height: 64px;
     font-size: 24px;
     line-height: 32px;
-    border-radius: 4px;
+    border-radius: 8px;
   ;;
   ",
   "toString": [Function],
@@ -230,7 +230,7 @@ Object {
     height: 64px;
     font-size: 24px;
     line-height: 32px;
-    border-radius: 4px;
+    border-radius: 8px;
   ;;
   ",
   "toString": [Function],
@@ -273,7 +273,7 @@ Object {
     height: 32px;
     font-size: 14px;
     line-height: 22px;
-    border-radius: 4px;
+    border-radius: 8px;
   ",
   "toString": [Function],
 }
@@ -288,7 +288,7 @@ Object {
     height: 40px;
     font-size: 14px;
     line-height: 22px;
-    border-radius: 4px;
+    border-radius: 8px;
   ",
   "toString": [Function],
 }
@@ -303,7 +303,7 @@ Object {
     height: 64px;
     font-size: 24px;
     line-height: 32px;
-    border-radius: 4px;
+    border-radius: 8px;
   ",
   "toString": [Function],
 }

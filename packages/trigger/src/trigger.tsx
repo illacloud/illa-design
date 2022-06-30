@@ -11,7 +11,7 @@ import {
   useRef,
   useState,
 } from "react"
-import { TriggerProps } from "./interface"
+import { CustomPositionType, TriggerProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
@@ -36,11 +36,10 @@ import {
 import { Popup } from "./popup"
 import useMeasure from "react-use/lib/useMeasure"
 import useWindowSize from "react-use/lib/useWindowSize"
-import { mergeRefs } from "@illa-design/system"
+import { getScrollElements, mergeRefs } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
 import useMouse from "react-use/lib/useMouse"
 import { css } from "@emotion/react"
-import { getScrollElements } from "@illa-design/system"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -64,11 +63,13 @@ export const Trigger: FC<TriggerProps> = (props) => {
     popupVisible,
     onVisibleChange,
     trigger = "hover",
-    customPosition = {},
+    alignPoint,
   } = props
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
   const { width: windowWidth, height: windowHeight } = useWindowSize()
+
+  const [customPosition, setCustomPosition] = useState<CustomPositionType>({})
 
   const childrenRef = useRef<HTMLElement>(null) as MutableRefObject<HTMLElement>
 
@@ -269,18 +270,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
     </motion.div>
   )
 
-  useClickAway(childrenRef, () => {
-    if (!disabled && clickOutsideToClose) {
-      if (
-        elX < 0 ||
-        elX > tipsMeasureInfo.width ||
-        elY < 0 ||
-        elY > tipsMeasureInfo.height
-      ) {
-        hideTips()
+  useClickAway(
+    childrenRef,
+    () => {
+      if (!disabled && clickOutsideToClose) {
+        if (
+          elX < 0 ||
+          elX > tipsMeasureInfo.width ||
+          elY < 0 ||
+          elY > tipsMeasureInfo.height
+        ) {
+          hideTips()
+        }
       }
-    }
-  })
+    },
+    ["click", "contextmenu"],
+  )
 
   useEffect(() => {
     if (tipVisible) {
@@ -297,7 +302,15 @@ export const Trigger: FC<TriggerProps> = (props) => {
   ])
 
   useEffect(() => {
-    popupVisible ? showTips(true) : hideTips(popupVisible !== undefined)
+    if (popupVisible != undefined) {
+      popupVisible
+        ? delayTodo(async () => {
+            setTipsVisible(true)
+          }, openDelay)
+        : delayTodo(async () => {
+            setTipsVisible(false)
+          }, closeDelay)
+    }
   }, [popupVisible])
 
   useEffect(() => {
@@ -338,6 +351,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
   const newProps = {
     onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "hover") {
+        if (alignPoint) {
+          setCustomPosition({
+            x: (e.nativeEvent as MouseEvent).clientX,
+            y: (e.nativeEvent as MouseEvent).clientY,
+          })
+        }
         showTips()
       }
     },
@@ -346,8 +365,36 @@ export const Trigger: FC<TriggerProps> = (props) => {
         hideTips()
       }
     },
+    onContextMenu: (e: SyntheticEvent<Element, Event>) => {
+      if (trigger == "contextmenu") {
+        if (!disabled) {
+          e.preventDefault()
+          if (!tipVisible) {
+            if (alignPoint) {
+              setCustomPosition({
+                x: (e.nativeEvent as MouseEvent).clientX,
+                y: (e.nativeEvent as MouseEvent).clientY,
+              })
+            }
+            showTips()
+          } else if (tipVisible) {
+            if (closeOnClick) {
+              hideTips()
+            }
+          }
+        }
+      }
+    },
     onFocus: (e: SyntheticEvent<Element, Event>) => {
       if (!disabled && trigger == "focus") {
+        if (alignPoint) {
+          if (e.target instanceof HTMLElement) {
+            setCustomPosition({
+              x: (e.nativeEvent as MouseEvent).clientX,
+              y: (e.nativeEvent as MouseEvent).clientY,
+            })
+          }
+        }
         showTips()
       }
     },
@@ -358,9 +405,22 @@ export const Trigger: FC<TriggerProps> = (props) => {
     },
     onClick: (e: SyntheticEvent<Element, Event>) => {
       switch (trigger) {
+        case "contextmenu":
+          if (tipVisible) {
+            if (closeOnClick) {
+              hideTips()
+            }
+          }
+          break
         case "click":
           if (!disabled) {
             if (!tipVisible) {
+              if (alignPoint) {
+                setCustomPosition({
+                  x: (e.nativeEvent as MouseEvent).clientX,
+                  y: (e.nativeEvent as MouseEvent).clientY,
+                })
+              }
               showTips()
             } else if (tipVisible) {
               if (closeOnClick) {
@@ -388,23 +448,27 @@ export const Trigger: FC<TriggerProps> = (props) => {
       ),
       onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
         newProps.onMouseEnter(e)
-        ;(props.children as ReactElement).props?.onMouseEnter?.call(e)
+        ;(props.children as ReactElement).props?.onMouseEnter?.(e.nativeEvent)
       },
       onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
         newProps.onMouseLeave(e)
-        ;(props.children as ReactElement).props?.onMouseLeave?.call(e)
+        ;(props.children as ReactElement).props?.onMouseLeave?.(e.nativeEvent)
+      },
+      onContextMenu: (e: SyntheticEvent<Element, Event>) => {
+        newProps.onContextMenu(e)
+        ;(props.children as ReactElement).props?.onContextMenu?.(e.nativeEvent)
       },
       onFocus: (e: SyntheticEvent<Element, Event>) => {
         newProps.onFocus(e)
-        ;(props.children as ReactElement).props?.onFocus?.call(e)
+        ;(props.children as ReactElement).props?.onFocus?.(e.nativeEvent)
       },
       onBlur: (e: SyntheticEvent<Element, Event>) => {
         newProps.onBlur(e)
-        ;(props.children as ReactElement).props?.onBlur?.call(e)
+        ;(props.children as ReactElement).props?.onBlur?.(e.nativeEvent)
       },
       onClick: (e: SyntheticEvent<Element, Event>) => {
         newProps.onClick(e)
-        ;(props.children as ReactElement).props?.onClick?.call(e)
+        ;(props.children as ReactElement).props?.onClick?.(e.nativeEvent)
       },
     }
     return (

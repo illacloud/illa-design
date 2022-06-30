@@ -31,8 +31,9 @@ export interface ListItemProps extends HTMLAttributes<HTMLDivElement> {
   extra?: ReactNode
 }
 
-export interface ListItemMetaProps extends HTMLAttributes<HTMLDivElement> {
-  title?: string
+export interface ListItemMetaProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: string | ReactNode
   avatar?: string
   description?: string
 }

@@ -1,6 +1,7 @@
 import { Statistic } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 test("Statistic renders with title", () => {
   render(<Statistic data-testid="test-title" title={"Amount"} />)
@@ -81,4 +82,12 @@ test("Statistic renders with precision", () => {
 test("Statistic renders with format", () => {
   render(<Statistic value={1644822796115} format={"YYYY-MM-DD"} />)
   expect(screen.getByText("2022-02-14")).toBeInTheDocument()
+})
+
+test("Statistic renders with mode", () => {
+  render(<Statistic data-testid="test-title" title="Deadline" mode="builder" />)
+  expect(screen.getByTestId("test-title").lastChild).toHaveStyle({
+    "font-size": "14px",
+    color: `${globalColor(`--${illaPrefix}-techPurple-01`)}`,
+  })
 })

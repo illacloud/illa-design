@@ -97,8 +97,31 @@ import {
   SwitchWidgetIcon,
   RadioGroupWidgetIcon,
   TabWidgetIcon,
+  DragIcon,
+  ResetIcon,
+  TextAlignLeftIcon,
+  TextAlignRightIcon,
+  TextAlignCenterIcon,
+  HorizontalStartIcon,
+  HorizontalCenterIcon,
+  HorizontalEndIcon,
+  HorizontalFullIcon,
+  VerticalStartIcon,
+  VerticalCenterIcon,
+  VerticalEndIcon,
+  FxIcon,
+  CheckboxWidgetIcon,
+  CircleProgressWidgetIcon,
+  LineProgressWidgetIcon,
+  DividerWidgetIcon,
+  NumberInputWidgetIcon,
+  RadioButtonWidgetIcon,
+  RateWidgetIcon,
+  TimelineWidgetIcon,
+  DateWidgetIcon,
+  DateRangeWidgetIcon,
+  DateTimeWidgetIcon,
 } from "../src"
-import { DragIcon } from "../src/icons/drag"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -120,7 +143,13 @@ export default {
     },
   },
 
-  decorators: [(Story) => (<span style={{ fontSize: "100px" }}><Story /></span>)]
+  decorators: [
+    (Story) => (
+      <span style={{ fontSize: "100px" }}>
+        <Story />
+      </span>
+    ),
+  ],
 } as Meta
 
 export const Close: Story<IconProps> = (props: IconProps) => (
@@ -453,6 +482,90 @@ export const RadioGroupWidget: Story<IconProps> = (props: IconProps) => (
   <RadioGroupWidgetIcon {...props} />
 )
 
-export const TabWidget: Story<IconProps> = (props: IconProps) => (
-  <TabWidgetIcon {...props} />
+export const Reset: Story<IconProps> = (props: IconProps) => (
+  <ResetIcon {...props} />
+)
+
+export const TextAlignLeft: Story<IconProps> = (props: IconProps) => (
+  <TextAlignLeftIcon {...props} />
+)
+
+export const TextAlignRight: Story<IconProps> = (props: IconProps) => (
+  <TextAlignRightIcon {...props} />
+)
+
+export const TextAlignCenter: Story<IconProps> = (props: IconProps) => (
+  <TextAlignCenterIcon {...props} />
+)
+
+export const HorizontalStart: Story<IconProps> = (props: IconProps) => (
+  <HorizontalStartIcon {...props} />
+)
+
+export const HorizontalCenter: Story<IconProps> = (props: IconProps) => (
+  <HorizontalCenterIcon {...props} />
+)
+
+export const HorizontalEnd: Story<IconProps> = (props: IconProps) => (
+  <HorizontalEndIcon {...props} />
+)
+export const HorizontalFull: Story<IconProps> = (props: IconProps) => (
+  <HorizontalFullIcon {...props} />
+)
+export const VerticalStart: Story<IconProps> = (props: IconProps) => (
+  <VerticalStartIcon {...props} />
+)
+
+export const VerticalCenter: Story<IconProps> = (props: IconProps) => (
+  <VerticalCenterIcon {...props} />
+)
+
+export const VerticalEnd: Story<IconProps> = (props: IconProps) => (
+  <VerticalEndIcon {...props} />
+)
+
+export const Fx: Story<IconProps> = (props: IconProps) => <FxIcon {...props} />
+
+export const CheckboxWidget: Story<IconProps> = (props: IconProps) => (
+  <CheckboxWidgetIcon {...props} />
+)
+
+export const CircleProgressWidget: Story<IconProps> = (props: IconProps) => (
+  <CircleProgressWidgetIcon {...props} />
+)
+
+export const LineProgressWidget: Story<IconProps> = (props: IconProps) => (
+  <LineProgressWidgetIcon {...props} />
+)
+
+export const DividerWidget: Story<IconProps> = (props: IconProps) => (
+  <DividerWidgetIcon {...props} />
+)
+
+export const NumberInputWidget: Story<IconProps> = (props: IconProps) => (
+  <NumberInputWidgetIcon {...props} />
+)
+
+export const RadioButtonWidget: Story<IconProps> = (props: IconProps) => (
+  <RadioButtonWidgetIcon {...props} />
+)
+
+export const RateWidget: Story<IconProps> = (props: IconProps) => (
+  <RateWidgetIcon {...props} />
+)
+
+export const TimelineWidget: Story<IconProps> = (props: IconProps) => (
+  <TimelineWidgetIcon {...props} />
+)
+
+export const DateWidget: Story<IconProps> = (props: IconProps) => (
+  <DateWidgetIcon {...props} />
+)
+
+export const DateRangeWidget: Story<IconProps> = (props: IconProps) => (
+  <DateRangeWidgetIcon {...props} />
+)
+
+export const DateTimeWidget: Story<IconProps> = (props: IconProps) => (
+  <DateTimeWidgetIcon {...props} />
 )

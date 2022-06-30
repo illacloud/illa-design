@@ -1,9 +1,12 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
 
+export type StatisticMode = "default" | "builder"
+
 export interface StatisticProps
   extends Omit<HTMLAttributes<HTMLElement>, "title" | "prefix"> {
   title?: string | ReactNode
+  mode?: StatisticMode
   value?: string | number | Dayjs
   decimalSeparator?: string
   format?: string
@@ -17,6 +20,7 @@ export interface StatisticProps
 export interface CountDownProps
   extends Omit<HTMLAttributes<HTMLElement>, "title" | "onChange"> {
   title?: string | ReactNode
+  mode?: StatisticMode
   value?: string | number | Dayjs | Date
   now?: string | number | Dayjs | Date
   format?: string
