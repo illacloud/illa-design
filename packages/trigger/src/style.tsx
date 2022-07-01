@@ -33,6 +33,7 @@ export function applyMotionDiv() {
 
 export function applyTipsContainer(
   position: TriggerPosition,
+  showArrow: boolean,
 ): SerializedStyles {
   const isColumn =
     position == "top" ||
@@ -43,33 +44,34 @@ export function applyTipsContainer(
     position == "br"
 
   let paddingStyle: SerializedStyles
+  const padding = showArrow ? 4 : 8
   switch (position) {
     case "top":
     case "tl":
     case "tr":
       paddingStyle = css`
-        padding-bottom: 4px;
+        padding-bottom: ${padding}px;
       `
       break
     case "bottom":
     case "bl":
     case "br":
       paddingStyle = css`
-        padding-top: 4px;
+        padding-top: ${padding}px;
       `
       break
     case "left":
     case "lt":
     case "lb":
       paddingStyle = css`
-        padding-right: 4px;
+        padding-right: ${padding}px;
       `
       break
     case "right":
     case "rt":
     case "rb":
       paddingStyle = css`
-        padding-left: 4px;
+        padding-left: ${padding}px;
       `
       break
   }
