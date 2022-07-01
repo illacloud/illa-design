@@ -21,6 +21,8 @@ export type HolderRef = {
   removeInstance: (ins: ReactElement) => void
 }
 
+export type AlignType = "left" | "center" | "right" | ""
+
 export interface ModalProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   visible?: boolean
@@ -40,6 +42,7 @@ export interface ModalProps
   okButtonProps?: ButtonProps
   cancelButtonProps?: ButtonProps
   footer?: boolean
+  footerAlign?: AlignType
   focusLock?: boolean
   autoFocus?: boolean
   getPopupContainer?: () => Element
