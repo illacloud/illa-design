@@ -16,7 +16,15 @@ export const DropListContext = createContext<{
 
 export const DropList = forwardRef<HTMLDivElement, DropListProps>(
   (props, ref) => {
-    const { children, onClickItem, width, isDropList, ...otherProps } = props
+    const {
+      children,
+      onClickItem,
+      width,
+      // you should explicitly set `isDropList: true` if you apply `css` prop on DropList component
+      // see: https://github.com/emotion-js/emotion/pull/2345
+      isDropList,
+      ...otherProps
+    } = props
 
     return (
       <div ref={ref} css={applyListCss(width)} {...otherProps}>

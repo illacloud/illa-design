@@ -55,7 +55,7 @@ export const Basic: Story<DropdownProps> = (args) => (
     <Dropdown dropList={menuList()} trigger={"click"} {...args}>
       <Button>Click me</Button>
     </Dropdown>
-    <Dropdown dropList={dropList()} trigger={"click"} {...args}>
+    <Dropdown dropList={dropList()} trigger={"contextmenu"} {...args}>
       <div
         style={{
           display: "flex",
