@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/notification",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Illa Design Notification.",
   "keywords": [
     "notification",
@@ -39,9 +39,9 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/alert": "0.0.10",
-    "@illa-design/icon": "0.0.10",
-    "@illa-design/system": "0.0.10",
-    "@illa-design/theme": "0.0.10"
+    "@illa-design/alert": "0.0.11",
+    "@illa-design/icon": "0.0.11",
+    "@illa-design/system": "0.0.11",
+    "@illa-design/theme": "0.0.11"
   }
 }
