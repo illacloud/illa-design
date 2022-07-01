@@ -49,6 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             textColor,
             autoFullHorizontal,
             autoFullVertically,
+            onClick,
             ...otherProps
           } = props
 
@@ -89,6 +90,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               ref={ref}
               css={css(finalContainer, sizeCss, _css)}
               {...otherProps}
+              onClick={(e) => {
+                if (disabled || loading) {
+                  return
+                }
+                onClick?.(e)
+              }}
             >
               {(loading || leftIcon) && (
                 <span
