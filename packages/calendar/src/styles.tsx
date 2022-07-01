@@ -62,6 +62,7 @@ export const blockPaddingCss = css`
 export const panelPaddingCss = css`
   ${weekTitleItemCommonCss};
   text-align: center;
+  line-height: 32px;
 `
 
 export const selectedDayStyle = css`
@@ -85,7 +86,7 @@ export const weekContainerCss = css`
 `
 
 export const panelMonthContainerCss = css`
-  padding: 10px 0;
+  padding: 10px 8px;
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   &:nth-of-type(4n) {
@@ -105,7 +106,7 @@ export const panelMonthTextCss = css`
 `
 
 export const dayBodyCss = css`
-  padding: 20px 10px;
+  padding: 16px;
 `
 
 export const dayModeTodayButton = css`
@@ -181,6 +182,7 @@ export function applyCalendarWrapCss(
   panelWidth: number | string,
 ): SerializedStyles {
   return css`
+    width: 1056px;
     margin: 40px;
     border-radius: 8px;
     border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
@@ -311,11 +313,6 @@ export function applyContainerBlockCss(
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
     `
   }
-  if (disabled) {
-    bgColor = css`
-      background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    `
-  }
   return css`
     ${padStyle};
     ${bgColor};
@@ -337,6 +334,10 @@ export function applyRangeSelectCss(type: string): SerializedStyles {
 }
 
 export const disabledCss = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  border-radius: 0px;
+  width: 100%;
   &:hover {
     cursor: default;
   }
