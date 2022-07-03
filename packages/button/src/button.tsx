@@ -64,24 +64,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               ? applyPaddingStyle(size, variant)
               : applyWithoutTextSize(size, fullWidth)};
             ${applyShape(
-              shape,
-              attached ?? false,
-              first ?? false,
-              last ?? false,
-            )};
-            ${applyElementColor(
-              variant,
-              colorScheme,
-              textColor,
-              disabled || loading,
-            )};
-            ${applyBg(
-              variant,
-              colorScheme,
-              backgroundColor,
-              borderColor,
-              disabled || loading,
-            )};
+                shape,
+                attached ?? false,
+                first ?? false,
+                last ?? false,
+              )};
+            ${applyElementColor(variant, colorScheme, textColor)};
+            ${applyBg(variant, colorScheme, backgroundColor, borderColor)};
             ${buttonRadius ? `border-radius: ${buttonRadius};` : ""}
           `
 
@@ -89,9 +78,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <button
               ref={ref}
               css={css(finalContainer, sizeCss, _css)}
+              disabled={disabled || loading}
               {...otherProps}
               onClick={(e) => {
                 if (disabled || loading) {
+                  e.preventDefault();
                   return
                 }
                 onClick?.(e)
