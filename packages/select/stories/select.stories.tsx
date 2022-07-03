@@ -40,13 +40,13 @@ const options = [
   "Shanghai",
   "Guangzhou",
   "Shenzhen",
-  "Chengdu",
   "Wuhan",
   "Dongguan",
   "Dalian",
   "Shanghai",
   "Hongkong",
   "Macau",
+  "A city with a very long long long long name",
 ]
 
 const Template: Story<SelectProps> = (args) => (
