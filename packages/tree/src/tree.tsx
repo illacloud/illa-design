@@ -24,6 +24,8 @@ import { getNodes, getNodeList } from "./utils"
 // treeData is default
 export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
   const {
+    //mode
+    _mode = "default",
     // node data
     treeData,
     children,
@@ -345,6 +347,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
         handleDrop={handleDrop}
         updateDragState={updateDragState}
         allowDrop={allowDrop}
+        _mode={_mode}
       />
     </div>
   )

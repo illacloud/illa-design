@@ -4,9 +4,8 @@ export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
   if (!nodeArr) return []
   const nodeList: NodeProps[] = []
   const _loop = (nodeArr: TreeDataType[], father: NodeProps) => {
-    if (father.expanding === false) return
     const len = nodeArr.length
-    nodeArr.map((node, index) => {
+    nodeArr.forEach((node, index) => {
       const nodeProps: NodeProps & { children?: NodeProps[] } = {
         ...node,
         _checked: node._checked,
@@ -23,6 +22,7 @@ export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
           father._isLast === undefined
             ? []
             : [...(father._indentArr ?? [])].concat(!father._isLast),
+        _shouldMount: father.expanding && father._shouldMount,
         dataRef: node,
       }
       nodeList.push(nodeProps)
@@ -31,7 +31,7 @@ export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
       }
     })
   }
-  _loop(nodeArr, { key: "" })
+  _loop(nodeArr, { key: "", expanding: true, _shouldMount: true })
   return nodeList
 }
 
@@ -44,7 +44,7 @@ export const loopNodeWithState = (
 ) => {
   if (!nodeArr) return []
   const _loop = (nodeArr: TreeDataType[]) => {
-    nodeArr.map((node) => {
+    nodeArr.forEach((node) => {
       if (expandedKeys) {
         node.expanding = expandedKeys?.includes(node.key)
       }
