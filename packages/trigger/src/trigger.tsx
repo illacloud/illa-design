@@ -284,7 +284,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         }
       }
     },
-    ["click", "contextmenu"],
+    ["click"],
   )
 
   useEffect(() => {
@@ -299,6 +299,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     tipsMeasureInfo.height,
     measureInfo,
     content,
+    customPosition,
   ])
 
   useEffect(() => {
@@ -369,19 +370,13 @@ export const Trigger: FC<TriggerProps> = (props) => {
       if (trigger == "contextmenu") {
         if (!disabled) {
           e.preventDefault()
-          if (!tipVisible) {
-            if (alignPoint) {
-              setCustomPosition({
-                x: (e.nativeEvent as MouseEvent).clientX,
-                y: (e.nativeEvent as MouseEvent).clientY,
-              })
-            }
-            showTips()
-          } else if (tipVisible) {
-            if (closeOnClick) {
-              hideTips()
-            }
+          if (alignPoint) {
+            setCustomPosition({
+              x: (e.nativeEvent as MouseEvent).clientX,
+              y: (e.nativeEvent as MouseEvent).clientY,
+            })
           }
+          showTips()
         }
       }
     },

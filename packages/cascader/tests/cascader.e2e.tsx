@@ -239,7 +239,7 @@ it("Cascader test onClear should be triggered in multiple mode", () => {
       cy.get("@changeEvent").should("be.calledOnce")
       cy.findByText("Shanghai / Huangpu").should("not.be.exist")
     })
-  cy.get("input").click()
+  cy.get("input").parent().click()
   cy.findByText("Shanghai").click()
   cy.findByText("Huangpu").click()
   cy.findByText("Shanghai / Huangpu").should("exist")
