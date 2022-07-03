@@ -64,11 +64,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               ? applyPaddingStyle(size, variant)
               : applyWithoutTextSize(size, fullWidth)};
             ${applyShape(
-                shape,
-                attached ?? false,
-                first ?? false,
-                last ?? false,
-              )};
+              shape,
+              attached ?? false,
+              first ?? false,
+              last ?? false,
+            )};
             ${applyElementColor(variant, colorScheme, textColor)};
             ${applyBg(variant, colorScheme, backgroundColor, borderColor)};
             ${buttonRadius ? `border-radius: ${buttonRadius};` : ""}
@@ -82,7 +82,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               {...otherProps}
               onClick={(e) => {
                 if (disabled || loading) {
-                  e.preventDefault();
+                  e.preventDefault()
                   return
                 }
                 onClick?.(e)

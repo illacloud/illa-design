@@ -399,7 +399,7 @@ export function applyElementColor(
           variant,
           State.DEFAULT,
         )[1]};
-        
+
         &:disabled {
           color: ${getDifferentStatusColor(
             colorScheme,
