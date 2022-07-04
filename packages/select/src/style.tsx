@@ -39,8 +39,8 @@ export const errorFocusStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
   box-shadow: 0 0 8px 0
     ${chroma(globalColor(`--${illaPrefix}-red-01`))
-      .alpha(0.15)
-      .hex()};
+    .alpha(0.15)
+    .hex()};
 `
 export const errorOutlineStyle = css`
   background-color: unset;
@@ -87,8 +87,8 @@ function applyStatus(stateValue: SelectStateValue) {
     mainStyle = css`
       &:hover {
         border-color: ${isInnerColor
-          ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
-          : chroma.mix(colorScheme ?? "blue", "white", 0.6).hex()};
+        ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
+        : chroma.mix(colorScheme ?? "blue", "white", 0.6).hex()};
       }
     `
   }
@@ -259,8 +259,7 @@ export function applyOptionStyle(
     white-space: nowrap;
     text-overflow: ellipsis;
     list-style: none;
-    display: flex;
-    align-items: center;
+    display: inline-block;
 
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
