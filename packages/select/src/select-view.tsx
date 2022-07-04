@@ -209,7 +209,12 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             readOnly={readOnly}
             {...inputProps}
           />
-          <span css={applySelectViewText(!needShowInput)}>{_inputValue}</span>
+          <input
+            css={applySelectViewText(!needShowInput)}
+            value={_inputValue}
+            placeholder={placeholder}
+            readOnly
+          />
         </>
       )
     }
