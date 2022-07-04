@@ -49,6 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             textColor,
             autoFullHorizontal,
             autoFullVertically,
+            onClick,
             ...otherProps
           } = props
 
@@ -68,19 +69,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               first ?? false,
               last ?? false,
             )};
-            ${applyElementColor(
-              variant,
-              colorScheme,
-              textColor,
-              disabled || loading,
-            )};
-            ${applyBg(
-              variant,
-              colorScheme,
-              backgroundColor,
-              borderColor,
-              disabled || loading,
-            )};
+            ${applyElementColor(variant, colorScheme, textColor)};
+            ${applyBg(variant, colorScheme, backgroundColor, borderColor)};
             ${buttonRadius ? `border-radius: ${buttonRadius};` : ""}
           `
 
@@ -88,7 +78,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <button
               ref={ref}
               css={css(finalContainer, sizeCss, _css)}
+              disabled={disabled || loading}
               {...otherProps}
+              onClick={(e) => {
+                if (disabled || loading) {
+                  e.preventDefault()
+                  return
+                }
+                onClick?.(e)
+              }}
             >
               {(loading || leftIcon) && (
                 <span
