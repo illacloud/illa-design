@@ -27,8 +27,8 @@ export function getAnimation(
       scaleY: initialScaleY,
       scaleX: initialScaleX,
       opacity: 0,
-      originX: showArrow ? originX : 0,
-      originY: showArrow ? originY : 0,
+      originX,
+      originY,
     },
     animate: {
       scaleX: 1,
