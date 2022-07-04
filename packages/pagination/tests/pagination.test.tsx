@@ -57,7 +57,7 @@ test("Pagination render with jumper", () => {
     />,
   )
   expect(screen.getByText("Go to")).toBeInTheDocument()
-  const input = screen.getByRole(`textbox`)
+  const input = screen.getAllByRole(`textbox`)[0]
   expect(screen.getByText("1")).toHaveStyle({
     color: `${globalColor(`--${illaPrefix}-blue-01`)}`,
   })
@@ -81,7 +81,7 @@ test("Pagination render with jumper", () => {
 
 test("Pagination render with page-selector", () => {
   render(<Pagination placeholder={"pagination"} total={100} />)
-  expect(screen.getByText("10/Page")).toBeInTheDocument()
+  expect(screen.getByDisplayValue("10/Page")).toBeInTheDocument()
 })
 
 test("Pagination render with onChange", () => {
