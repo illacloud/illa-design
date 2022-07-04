@@ -70,7 +70,6 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
             },
             [onGroupChange, context?.isGroup, onChange, value],
           )}
-          onClick={(e) => e.stopPropagation()}
         />
         {indeterminate ? (
           <ReduceIcon css={applyCheckState(true)} />
