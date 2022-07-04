@@ -6,7 +6,7 @@ export const FilePictureIcon = createIcon({
   path: (
     <>
       <mask
-        id="409k783eka"
+        className="409k783eka"
         maskUnits="userSpaceOnUse"
         x="2"
         y="2"
@@ -18,7 +18,7 @@ export const FilePictureIcon = createIcon({
           fill="#fff"
         />
       </mask>
-      <g mask="url(#409k783eka)">
+      <g mask="url(.409k783eka)">
         <path
           d="M2.827 2H10.3c.11 0 .215.045.292.126l3.285 3.404a.44.44 0 0 1 .123.307v11.298c0 .478-.37.865-.827.865H2.827C2.37 18 2 17.613 2 17.135V2.864C2 2.387 2.37 2 2.827 2z"
           fill="#00AA5B"

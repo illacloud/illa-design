@@ -6,7 +6,7 @@ export const FileWPSIcon = createIcon({
   path: (
     <>
       <mask
-        id="jpkjv8tgfa"
+        className="jpkjv8tgfa"
         maskUnits="userSpaceOnUse"
         x="2"
         y="2"
@@ -18,7 +18,7 @@ export const FileWPSIcon = createIcon({
           fill="#fff"
         />
       </mask>
-      <g mask="url(#jpkjv8tgfa)">
+      <g mask="url(.jpkjv8tgfa)">
         <path
           d="M2.828 2h7.68c.109 0 .213.045.29.125l3.08 3.188a.442.442 0 0 1 .122.308v11.514c0 .478-.37.865-.828.865H2.828C2.37 18 2 17.613 2 17.135V2.865C2 2.387 2.37 2 2.828 2z"
           fill="#1E6FFF"
