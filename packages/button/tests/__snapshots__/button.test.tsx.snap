@@ -42,6 +42,10 @@ exports[`Button renders fullwidth 1`] = `
   color: #fff;
 }
 
+.emotion-0:disabled {
+  color: #fff;
+}
+
 .emotion-0:hover {
   background-color: #175ceb;
 }
@@ -50,6 +54,10 @@ exports[`Button renders fullwidth 1`] = `
   -webkit-transition: none;
   transition: none;
   background-color: #083bc7;
+}
+
+.emotion-0:disabled {
+  background-color: #99beff;
 }
 
 .emotion-1 {
@@ -110,6 +118,10 @@ exports[`Button renders round 1`] = `
   color: #fff;
 }
 
+.emotion-0:disabled {
+  color: #fff;
+}
+
 .emotion-0:hover {
   background-color: #175ceb;
 }
@@ -118,6 +130,10 @@ exports[`Button renders round 1`] = `
   -webkit-transition: none;
   transition: none;
   background-color: #083bc7;
+}
+
+.emotion-0:disabled {
+  background-color: #99beff;
 }
 
 .emotion-1 {
