@@ -194,7 +194,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         // Avoid input getting focus by Tab
         inputProps.tabIndex = -1
       }
-      const needShowInput = (mergedFocused && canFocusInput) || isEmptyValue
+      const needShowInput = mergedFocused && canFocusInput
 
       return (
         <InputElement
