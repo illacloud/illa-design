@@ -70,9 +70,9 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
     const [preChangeValue, setPreChangeValue] = useState<number>(0)
     let initVal = defaultValue
       ? [
-          dayjs(defaultValue[0]).format(finalFormat as string),
-          dayjs(defaultValue[1]).format(finalFormat as string),
-        ]
+        dayjs(defaultValue[0]).format(finalFormat as string),
+        dayjs(defaultValue[1]).format(finalFormat as string),
+      ]
       : []
     const [inputVal, setInputVal] = useState<string[]>(initVal)
 
@@ -132,7 +132,12 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       if (type === "first") {
         setRangeValueFirst(date)
       } else if (type === "second") {
-        setRangeValueSecond(date)
+        if (date?.isBefore(rangeValueFirst)) {
+          setRangeValueSecond(rangeValueFirst)
+          setRangeValueFirst(date)
+        } else {
+          setRangeValueSecond(date)
+        }
       } else if (type === "hover") {
         setRangeValueHover(date)
       }
