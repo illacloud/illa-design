@@ -4,7 +4,7 @@ import "@testing-library/cypress"
 
 it("Select render correctly", () => {
   mount(<Select placeholder={"test select"} value={"test"} />)
-  cy.findByText("test").parent().click()
+  cy.findByDisplayValue("test").parent().click()
   cy.findByText("No data").should("exist")
   unmount()
 })
@@ -12,7 +12,7 @@ it("Select render correctly", () => {
 it("Select render with error type", () => {
   const focusEvent = cy.stub().as("focusEvent")
   mount(<Select error value={"test"} onFocus={focusEvent} />)
-  cy.findByText("test").parent().click()
+  cy.findByDisplayValue("test").parent().click()
   cy.findByText("No data").should("exist")
   unmount()
 })
