@@ -19,6 +19,7 @@ export const singlePickerContentCss = css`
 
 export const horShortcuts = css`
   min-height: 48px;
+  border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   width: min-content;
   min-width: 100%;
@@ -36,8 +37,8 @@ export const vertShortcuts = css`
 `
 
 export const popupCss = css`
-  & > div:first-of-type {
-    padding: 20px 0;
+  & > div:first-of-type > div {
+    height: 320px;
   }
   & > li:first-of-type {
     font-size: 12px;

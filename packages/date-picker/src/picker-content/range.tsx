@@ -51,6 +51,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       onClear,
       colorScheme,
       value,
+      readOnly,
       ...restProps
     } = props
 
@@ -237,6 +238,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
           onChangeInputVal={setInputVal}
           separator={separator}
           inputVal={inputVal}
+          readOnly={readOnly}
           pickerContent={
             <div css={wrapCss}>
               {shortcutsShowLeft && <ShortcutsCompt />}
