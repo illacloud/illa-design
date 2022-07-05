@@ -42,7 +42,7 @@ export interface DropListItemProps extends HTMLAttributes<HTMLDivElement> {
 
 export interface DropListComponent
   extends ForwardRefExoticComponent<
-  PropsWithChildren<DropListProps> & RefAttributes<HTMLDivElement>
+    PropsWithChildren<DropListProps> & RefAttributes<HTMLDivElement>
   > {
   Item: ForwardRefExoticComponent<DropListItemProps>
 }

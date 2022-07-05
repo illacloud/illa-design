@@ -48,7 +48,6 @@ export const triContentCommonCss = css`
   width: 278px;
   margin: 0;
   border: none;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   display: flex;
   flex-direction: column;
 `
@@ -110,7 +109,6 @@ export function applyShortContainerCss(
 }
 
 export const rangeBodyCss = css`
-  height: 336px;
   display: flex;
 `
 
@@ -136,6 +134,7 @@ export function applyRangeFooterCss(
     width: min-content;
     min-width: calc(100% - 24px);
     align-items: center;
+    border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     & > button:first-of-type {
       margin-right: 5px;
     }
