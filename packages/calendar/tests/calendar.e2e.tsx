@@ -5,10 +5,10 @@ import "@testing-library/cypress"
 
 it("onSelect", () => {
   mount(<Calendar headerType={"select"} />)
-  cy.findByText(2022).click()
+  cy.findByDisplayValue(2022).click()
   cy.wait(100)
   cy.findByText(2016).click()
   cy.wait(100)
-  cy.findByText(2016).should("exist")
+  cy.findByDisplayValue(2016).should("exist")
   unmount()
 })

@@ -277,7 +277,6 @@ export function applyInputStyle(textCenterHorizontal?: boolean) {
       color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     }
     &:read-only {
-      cursor: not-allowed;
       color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 
       &::placeholder {

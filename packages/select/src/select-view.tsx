@@ -172,9 +172,6 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
           canFocusInput && renderedValue && !isObject(renderedValue)
             ? renderedValue
             : placeholder,
-        style: {
-          pointerEvents: canFocusInput ? "auto" : "none",
-        },
       }
 
       if (canFocusInput) {
@@ -196,21 +193,17 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       } else {
         // Avoid input getting focus by Tab
         inputProps.tabIndex = -1
-        // inputProps['style']['pointerEvents'] = "none"
       }
-      const needShowInput = (mergedFocused && canFocusInput) || isEmptyValue
+      const needShowInput = mergedFocused && canFocusInput
 
       return (
-        <>
-          <InputElement
-            _css={applySelectViewText(needShowInput)}
-            ref={inputRef}
-            disabled={disabled}
-            readOnly={readOnly}
-            {...inputProps}
-          />
-          <span css={applySelectViewText(!needShowInput)}>{_inputValue}</span>
-        </>
+        <InputElement
+          _css={applySelectViewText(true)}
+          ref={inputRef}
+          disabled={disabled}
+          readOnly={readOnly || !needShowInput}
+          {...inputProps}
+        />
       )
     }
 
