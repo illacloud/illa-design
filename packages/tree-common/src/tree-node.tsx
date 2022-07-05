@@ -31,12 +31,15 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
     disabled,
     _isSelected,
     _mode = "default",
+    _level,
+    _isSelectedChild,
     isLeaf,
     expanding,
     handleExpand,
     handleSelect,
     handleCheck,
     blockNode,
+    selectable,
     _indentArr,
     _checked,
     _children,
@@ -104,7 +107,26 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
   }, [expanding, handleLoadMore, _children])
 
   return (
-    <div css={applyNodeContainerCss(size)} ref={ref}>
+    <div
+      css={applyNodeContainerCss(
+        size,
+        _mode,
+        _level,
+        _isSelected,
+        _isSelectedChild,
+      )}
+      onClick={(e) => {
+        if (_mode === "builder") {
+          if (_children?.length && _children?.length > 0) {
+            handleExpand?.(_key)
+          }
+          if (selectable !== false && _level === 0) {
+            handleSelect?.(_key, e?.nativeEvent)
+          }
+        }
+      }}
+      ref={ref}
+    >
       <div css={indentContainerCss}>
         {_indentArr?.map((requireDivider, index) => (
           <div
@@ -199,9 +221,10 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
             disabled,
             _isSelected,
             blockNode,
+            _mode,
           )}
           onClick={(e) => {
-            if (disabled) return
+            if (disabled || selectable === false) return
             handleSelect && handleSelect(_key, e?.nativeEvent)
           }}
         >

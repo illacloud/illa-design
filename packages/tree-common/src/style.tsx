@@ -1,4 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
+import chroma from "chroma-js"
 import { TreeMode, TreeSize } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
@@ -19,7 +20,13 @@ export function applyNodeHeight(size: TreeSize) {
 export function applyNodeTextColor(
   disabled?: boolean,
   selected?: boolean,
+  _mode?: TreeMode,
 ): SerializedStyles {
+  if (_mode === "builder") {
+    return css`
+      color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    `
+  }
   if (disabled) {
     return css`
       color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
@@ -34,7 +41,31 @@ export function applyNodeTextColor(
   `
 }
 
-export function applyNodeContainerCss(size: TreeSize): SerializedStyles {
+export function applyNodeContainerCss(
+  size: TreeSize,
+  _mode?: TreeMode,
+  _level?: number,
+  selected?: boolean,
+  _isSelectedChild?: boolean,
+): SerializedStyles {
+  let modeStyle: SerializedStyles
+  switch (_mode) {
+    case "builder":
+      modeStyle = css`
+        padding-left: 16px;
+        padding-right: 16px;
+        background-color: ${selected
+          ? `${globalColor(`--${illaPrefix}-techPurple-07`)}`
+          : _isSelectedChild
+          ? `${chroma(globalColor(`--${illaPrefix}-techPurple-07`))
+              .alpha(0.5)
+              .hex()}`
+          : ``};
+      `
+      break
+    default:
+      modeStyle = css``
+  }
   const height = applyNodeHeight(size)
   return css`
     display: flex;
@@ -42,6 +73,7 @@ export function applyNodeContainerCss(size: TreeSize): SerializedStyles {
     align-items: center;
     min-height: ${height}px;
     width: 100%;
+    ${modeStyle}
   `
 }
 
@@ -85,6 +117,7 @@ export function applyNodeFoldSwitchIconCss(
     display: flex;
     height: 8px;
     font-size: 8px;
+    cursor: pointer;
     width: 8px;
     transform-origin: center;
     transform: rotate(${rotate}deg);
@@ -174,9 +207,11 @@ export function applyNodeTextContainerCss(
   disabled?: boolean,
   selected?: boolean,
   blockNode?: boolean,
+  _mode?: TreeMode,
 ): SerializedStyles {
+  let modeStyle: SerializedStyles
   const fontSize = size === "small" ? 12 : 14
-  const hoverCss = !disabled
+  let hoverCss = !disabled
     ? css`
         &:hover {
           background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
@@ -189,6 +224,16 @@ export function applyNodeTextContainerCss(
           cursor: not-allowed;
         }
       `
+  switch (_mode) {
+    case "builder":
+      modeStyle = css``
+      hoverCss = css``
+      break
+    default:
+      modeStyle = css`
+        padding: 0 4px;
+      `
+  }
   return css`
     font-size: ${fontSize}px;
     flex-grow: ${blockNode ? 1 : 0};
@@ -196,10 +241,10 @@ export function applyNodeTextContainerCss(
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 4px;
-    ${applyNodeTextColor(disabled, selected)};
+    ${applyNodeTextColor(disabled, selected, _mode)};
     position: relative;
-    ${hoverCss}
+    ${hoverCss};
+    ${modeStyle}
   `
 }
 

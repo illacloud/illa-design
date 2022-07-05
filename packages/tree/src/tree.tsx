@@ -227,11 +227,14 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     (targetKey: string, event?: Event) => {
       const _selectedKeys = selectedKeys ?? selectedKeysState
       if (!selectable) return
-      const keys = updateKeys(
+      let keys = updateKeys(
         _selectedKeys,
         targetKey,
         selectedKeys !== undefined || multiple,
       )
+      if (_mode === "builder" && _selectedKeys.includes(targetKey)) {
+        keys = [targetKey]
+      }
       setSelectedKeys(keys)
       if (event) {
         const extra = {
@@ -243,7 +246,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
           node: nodeCache.current[targetKey],
           e: event,
         }
-        onSelect && onSelect(keys, extra)
+        onSelect?.(keys, extra)
       }
     },
     [selectedKeysState, nodeCache.current, onSelect],
@@ -261,7 +264,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
         expanded: keys.includes(targetKey),
         node: nodeCache.current[targetKey],
       }
-      onExpand && onExpand(keys, extra)
+      onExpand?.(keys, extra)
     },
     [expandedKeysState, nodeCache.current, onExpand],
   )
@@ -290,7 +293,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
           ),
           e: event,
         }
-        onCheck && onCheck(Array.from(keys), extra)
+        onCheck?.(Array.from(keys), extra)
       }
     },
     [checkKeysState, nodeCache.current, _treeData, onCheck],

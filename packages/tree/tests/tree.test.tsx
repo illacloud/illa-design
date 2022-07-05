@@ -1,5 +1,5 @@
 import { Tree } from "../src"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { act } from "react-dom/test-utils"
 import { globalColor, illaPrefix } from "@illa-design/theme"
@@ -12,7 +12,7 @@ const data = [
     key: "0-0",
     children: [
       {
-        title: "0-0-0 ",
+        title: "0-0-0",
         key: "0-0-0",
         disabled: true,
         children: [
@@ -21,7 +21,7 @@ const data = [
             key: "0-0-0-0",
           },
           {
-            title: "aoao",
+            title: "aoaos",
             key: "0-0-0-1",
             children: [
               {
@@ -234,26 +234,22 @@ test("Tree renders with defaultExpandedKeys", async () => {
 })
 
 test("Tree renders with control expand", async () => {
-  let keys = ["0-0", "0-0-0"]
   const expandEvent = jest.fn()
   await act(async () => {
-    render(
-      <Tree
-        placeholder="tree"
-        treeData={data}
-        defaultExpandedKeys={keys}
-        onExpand={(expandedKeys) => {
-          keys = expandedKeys
-          expandEvent()
-        }}
-      />,
-    )
+    render(<Tree placeholder="tree" treeData={data} onExpand={expandEvent} />)
   })
+  expect(screen.queryByText("aoao")).not.toBeNull()
   await act(async () => {
-    const target = screen.getAllByTitle("CaretDownIcon")[1]
+    const target = screen.getAllByTitle("CaretDownIcon")[0]
     fireEvent.click(target)
   })
-  expect(screen.queryByText("aoao")).toBeNull()
+  // wait the exit animate
+  await waitFor(
+    () => {
+      expect(screen.queryByText("aoao")).toBeNull()
+    },
+    { timeout: 300 },
+  )
   expect(expandEvent).toBeCalled()
 })
 
@@ -345,29 +341,6 @@ test("Tree renders with control select", async () => {
   })
 })
 
-test("Tree renders with control select", async () => {
-  let keys = ["0-0", "0-0-0-0-0"]
-  await act(async () => {
-    render(
-      <Tree
-        placeholder="tree"
-        treeData={data}
-        selectedKeys={keys}
-        onSelect={(value) => {
-          keys = value
-        }}
-      />,
-    )
-  })
-
-  expect(screen.getByText("0-0-head").parentNode).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-blue-03`)}`,
-  })
-  expect(screen.getByText("toutou 01").parentNode).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-blue-03`)}`,
-  })
-})
-
 test("Tree renders with loadMore", async () => {
   const callback = jest.fn()
   const loadMore = (node: NodeInstance) => {
@@ -423,4 +396,33 @@ test("Tree renders with icons", async () => {
     fireEvent.click(target)
   })
   expect(screen.getByTestId("loadingIcon")).toBeInTheDocument()
+})
+
+test("Tree renders with builder mode has at least one selected data and bind select and expand", async () => {
+  let keys: string[]
+  render(
+    <Tree
+      treeData={data}
+      data-testid="root"
+      _mode="builder"
+      defaultSelectedKeys={["0-0"]}
+      defaultExpandedKeys={["0-0"]}
+      autoExpandParent={false}
+      onSelect={(selectedKeys) => {
+        keys = selectedKeys
+      }}
+    />,
+  )
+  expect(screen.queryByText("0-0-0")).not.toBeNull()
+  const target = screen.getByText("0-0-head")
+  await act(async () => {
+    fireEvent.click(target)
+  })
+  await waitFor(
+    () => {
+      expect(screen.queryByText("0-0-0")).toBeNull()
+      expect(keys![0]).toEqual("0-0")
+    },
+    { timeout: 300 },
+  )
 })

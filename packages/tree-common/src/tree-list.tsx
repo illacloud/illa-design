@@ -47,20 +47,23 @@ export const TreeList: FC<TreeListProps> = (props) => {
           )
           saveNodeCache?.(data.key, node)
           return (
-            <AnimatePresence>
-              {data._shouldMount && (
-                <motion.div
-                  key={data.key}
-                  variants={variants}
-                  animate="enter"
-                  initial="initial"
-                  exit="exit"
-                  transition={{ duration: 0.2 }}
-                >
-                  {node}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            // add Fragment to solve ref warning
+            <>
+              <AnimatePresence>
+                {data._shouldMount && (
+                  <motion.div
+                    key={data.key}
+                    variants={variants}
+                    animate="enter"
+                    initial="initial"
+                    exit="exit"
+                    transition={{ duration: 0.2 }}
+                  >
+                    {node}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </>
           )
         }}
         renderRaw

@@ -33,6 +33,7 @@ export interface NodeProps
   _halfChecked?: boolean
   _children?: string[]
   _shouldMount?: boolean
+  _isSelectedChild?: boolean
   showLine?: boolean
   blockNode?: boolean
   draggable?: boolean
