@@ -6,7 +6,7 @@ export const RadioButtonWidgetIcon = createIcon({
   path: (
     <>
       <rect x="14" y="17" width="44" height="20" rx="4" fill="#E5E6EB" />
-      <g filter="url(#4tkv14ygea)">
+      <g filter="url(.4tkv14ygea)">
         <path
           d="m24.268 28.05 1.21-3.33h.02l1.19 3.33h-2.42zm.71-4.19L22.198 31h.97l.8-2.15h3.02l.78 2.15h1.05l-2.79-7.14h-1.05z"
           fill="#BBC0C9"
@@ -19,7 +19,7 @@ export const RadioButtonWidgetIcon = createIcon({
       />
       <defs>
         <filter
-          id="4tkv14ygea"
+          className="4tkv14ygea"
           x="11"
           y="16"
           width="29"

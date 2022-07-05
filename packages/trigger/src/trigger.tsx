@@ -116,7 +116,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "tl":
     case "tr":
       centerNode = (
-        <div css={css(applyTipsContainer(finalPosition), _css)}>
+        <div css={css(applyTipsContainer(finalPosition, showArrow), _css)}>
           <div css={applyTipsText(stateValue)}>{closeContent}</div>
           {showArrow && (
             <TriangleTop
@@ -132,7 +132,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "bl":
     case "br":
       centerNode = (
-        <div css={css(applyTipsContainer(finalPosition), _css)}>
+        <div css={css(applyTipsContainer(finalPosition, showArrow), _css)}>
           {showArrow && (
             <TriangleBottom
               css={applyTriangleStyle(colorScheme, finalPosition)}
@@ -148,7 +148,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "lt":
     case "lb":
       centerNode = (
-        <div css={css(applyTipsContainer(finalPosition), _css)}>
+        <div css={css(applyTipsContainer(finalPosition, showArrow), _css)}>
           <div css={applyTipsText(stateValue)}>{closeContent}</div>
           {showArrow && (
             <TriangleLeft
@@ -164,7 +164,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "rt":
     case "rb":
       centerNode = (
-        <div css={css(applyTipsContainer(finalPosition), _css)}>
+        <div css={css(applyTipsContainer(finalPosition, showArrow), _css)}>
           {showArrow && (
             <TriangleRight
               css={applyTriangleStyle(colorScheme, finalPosition)}

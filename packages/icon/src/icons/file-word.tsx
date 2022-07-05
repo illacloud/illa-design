@@ -7,14 +7,14 @@ export const FileWordIcon = createIcon({
     <>
       <path
         d="M14.111 3H4.486c-.38 0-.687.348-.687.778V6.5h11V3.778c0-.43-.308-.778-.688-.778z"
-        fill="url(#oxbyejk38a)"
+        fill="url(.oxbyejk38a)"
       />
       <path
         d="M3.799 13.5v2.718c0 .432.307.782.687.782h9.625c.38 0 .688-.35.688-.782V13.5h-11z"
-        fill="url(#4zbblm233b)"
+        fill="url(.4zbblm233b)"
       />
-      <path d="M3.799 6.5h11V10h-11V6.5z" fill="url(#6imap3bzdc)" />
-      <path d="M3.799 10h11v3.5h-11V10z" fill="url(#9t12w2ab9d)" />
+      <path d="M3.799 6.5h11V10h-11V6.5z" fill="url(.6imap3bzdc)" />
+      <path d="M3.799 10h11v3.5h-11V10z" fill="url(.9t12w2ab9d)" />
       <path
         opacity=".05"
         d="M7.41 6.45H3.8v8.4H7.41c.711 0 1.288-.576 1.288-1.288V7.738c0-.711-.577-1.288-1.288-1.288z"
@@ -32,7 +32,7 @@ export const FileWordIcon = createIcon({
       />
       <path
         d="M7.3 13.8H1.7a.7.7 0 0 1-.7-.7V7.5a.7.7 0 0 1 .7-.7h5.6a.7.7 0 0 1 .7.7v5.6a.7.7 0 0 1-.7.7z"
-        fill="url(#pw8iubqrxe)"
+        fill="url(.pw8iubqrxe)"
       />
       <path
         d="m6.042 8.55-.54 2.543-.6-2.543h-.766l-.618 2.621-.558-2.62h-.685l.82 3.5h.824l.6-2.692.6 2.691h.787l.82-3.5h-.684z"
@@ -40,7 +40,7 @@ export const FileWordIcon = createIcon({
       />
       <defs>
         <linearGradient
-          id="oxbyejk38a"
+          className="oxbyejk38a"
           x1="9.299"
           y1="6.486"
           x2="9.299"
@@ -51,7 +51,7 @@ export const FileWordIcon = createIcon({
           <stop offset="1" stopColor="#42A4EB" />
         </linearGradient>
         <linearGradient
-          id="4zbblm233b"
+          className="4zbblm233b"
           x1="9.299"
           y1="17"
           x2="9.299"
@@ -62,7 +62,7 @@ export const FileWordIcon = createIcon({
           <stop offset="1" stopColor="#103F8F" />
         </linearGradient>
         <linearGradient
-          id="6imap3bzdc"
+          className="6imap3bzdc"
           x1="9.299"
           y1="-5.344"
           x2="9.299"
@@ -73,7 +73,7 @@ export const FileWordIcon = createIcon({
           <stop offset="1" stopColor="#297CD2" />
         </linearGradient>
         <linearGradient
-          id="9t12w2ab9d"
+          className="9t12w2ab9d"
           x1="3.799"
           y1="11.75"
           x2="14.799"
@@ -84,7 +84,7 @@ export const FileWordIcon = createIcon({
           <stop offset="1" stopColor="#195BBC" />
         </linearGradient>
         <linearGradient
-          id="pw8iubqrxe"
+          className="pw8iubqrxe"
           x1="1.26"
           y1="7.061"
           x2="7.823"

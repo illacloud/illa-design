@@ -25,7 +25,7 @@ export const FilePPTIcon = createIcon({
       />
       <path
         d="M7.334 13.333H2.001a.667.667 0 0 1-.667-.666V7.333c0-.368.298-.666.667-.666h5.333c.368 0 .667.298.667.666v5.334a.667.667 0 0 1-.667.666z"
-        fill="url(#twkp6saqga)"
+        fill="url(.twkp6saqga)"
       />
       <path
         d="M4.892 8.337H3.334v3.334h.675v-1.174h.758c.626 0 1.133-.507 1.133-1.132v-.02c0-.556-.452-1.008-1.008-1.008zm.299 1.116a.519.519 0 0 1-.519.518h-.663V8.863h.663c.286 0 .519.232.519.519v.07z"
@@ -33,7 +33,7 @@ export const FilePPTIcon = createIcon({
       />
       <defs>
         <linearGradient
-          id="twkp6saqga"
+          className="twkp6saqga"
           x1="1.529"
           y1="6.862"
           x2="7.591"

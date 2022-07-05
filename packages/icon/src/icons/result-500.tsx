@@ -17,7 +17,7 @@ export const Result500Icon = createIcon({
       />
       <path
         d="m34.319 34.484 22.053 12.818c-.252-.116-.56-.09-.836-.062-.276.028-.54.128-.765.292L32.746 34.694a1.567 1.567 0 0 1 1.573-.21z"
-        fill="url(#7oeg1rxr2a)"
+        fill="url(.7oeg1rxr2a)"
       />
       <path
         d="M32.787 69.9 10.762 57.01a1.592 1.592 0 0 1-.646-1.447l22.025 12.89a1.603 1.603 0 0 0 .646 1.447z"
@@ -25,7 +25,7 @@ export const Result500Icon = createIcon({
       />
       <path
         d="m32.128 68.462-22.025-12.89-.021-5.087 22.025 12.89.021 5.087z"
-        fill="url(#tvol8y2ytb)"
+        fill="url(.tvol8y2ytb)"
       />
       <path
         d="m34.292 59.546-22.035-12.9 20.578-11.958 22.025 12.89-20.568 11.968z"
@@ -33,11 +33,11 @@ export const Result500Icon = createIcon({
       />
       <path
         d="M32.118 63.424 10.082 50.492c.04-.774.262-1.528.645-2.2a4.925 4.925 0 0 1 1.563-1.67l21.922 12.854c-.65.428-1.078 1.042-1.462 1.723-.384.68-.6 1.443-.632 2.225z"
-        fill="url(#u67wlkag1c)"
+        fill="url(.u67wlkag1c)"
       />
       <path
         d="m34.407 20.656 22.026 12.932a1.564 1.564 0 0 0-1.573.158l-22.025-12.89a1.566 1.566 0 0 1 1.572-.2z"
-        fill="url(#e2fcjdj7ad)"
+        fill="url(.e2fcjdj7ad)"
       />
       <path
         d="m32.741 56.064-22.025-12.89a1.593 1.593 0 0 1-.646-1.447l22.026 12.89a1.603 1.603 0 0 0 .645 1.447z"
@@ -49,7 +49,7 @@ export const Result500Icon = createIcon({
       />
       <path
         d="m32.096 54.627-22.025-12.9-.021-5.087 22.025 12.89.02 5.097z"
-        fill="url(#bdr44hq4je)"
+        fill="url(.bdr44hq4je)"
       />
       <path
         d="m34.292 45.67-22.035-12.9 20.578-11.958 22.025 12.89L34.292 45.67z"
@@ -57,11 +57,11 @@ export const Result500Icon = createIcon({
       />
       <path
         d="M54.828 33.703c1.23-.713 2.219-.136 2.219 1.29v5.087a4.923 4.923 0 0 1-.643 2.197c-.384.671-.92 1.241-1.565 1.663L34.26 55.907c-1.218.713-2.218.137-2.218-1.29V49.53a4.892 4.892 0 0 1 .64-2.199 4.852 4.852 0 0 1 1.568-1.66l20.577-11.968z"
-        fill="url(#jj7mnirmtf)"
+        fill="url(.jj7mnirmtf)"
       />
       <path
         d="M32.086 49.53 10.05 36.64c.04-.775.261-1.528.645-2.2a4.927 4.927 0 0 1 1.563-1.67l22.035 12.9c-.646.42-1.184.99-1.568 1.66a4.893 4.893 0 0 0-.64 2.2z"
-        fill="url(#11nztx9apg)"
+        fill="url(.11nztx9apg)"
       />
       <path
         d="m37.193 48.914.24.137a.434.434 0 0 0-.23-.066.56.56 0 0 0-.263.066l-.26-.11a.563.563 0 0 1 .26-.078.51.51 0 0 1 .253.051z"
@@ -87,7 +87,7 @@ export const Result500Icon = createIcon({
       />
       <path
         d="M54.828 47.475c1.23-.714 2.219-.137 2.219 1.29v5.087a4.923 4.923 0 0 1-.643 2.197c-.384.67-.92 1.24-1.565 1.662L34.26 69.68c-1.218.713-2.218.136-2.218-1.29v-5.087c.038-.775.258-1.53.642-2.203a4.894 4.894 0 0 1 1.566-1.667l20.577-11.957z"
-        fill="url(#htoprez2oh)"
+        fill="url(.htoprez2oh)"
       />
       <path
         d="m37.193 62.533.24.137a.434.434 0 0 0-.23-.066.56.56 0 0 0-.263.066l-.26-.11a.563.563 0 0 1 .26-.078.51.51 0 0 1 .253.051z"
@@ -155,7 +155,7 @@ export const Result500Icon = createIcon({
       />
       <defs>
         <linearGradient
-          id="7oeg1rxr2a"
+          className="7oeg1rxr2a"
           x1="51.561"
           y1="46.729"
           x2="56.392"
@@ -166,7 +166,7 @@ export const Result500Icon = createIcon({
           <stop offset="1" stopColor="#4672ED" />
         </linearGradient>
         <linearGradient
-          id="tvol8y2ytb"
+          className="tvol8y2ytb"
           x1="10.082"
           y1="59.474"
           x2="32.128"
@@ -177,7 +177,7 @@ export const Result500Icon = createIcon({
           <stop offset="1" stopColor="#4672ED" />
         </linearGradient>
         <linearGradient
-          id="u67wlkag1c"
+          className="u67wlkag1c"
           x1="23.925"
           y1="53.9"
           x2="21.21"
@@ -188,7 +188,7 @@ export const Result500Icon = createIcon({
           <stop offset="1" stopColor="#3B68ED" />
         </linearGradient>
         <linearGradient
-          id="e2fcjdj7ad"
+          className="e2fcjdj7ad"
           x1="44.634"
           y1="30.578"
           x2="49.978"
@@ -199,7 +199,7 @@ export const Result500Icon = createIcon({
           <stop offset="1" stopColor="#4672ED" />
         </linearGradient>
         <linearGradient
-          id="bdr44hq4je"
+          className="bdr44hq4je"
           x1="16.709"
           y1="43.834"
           x2="23.668"
@@ -210,7 +210,7 @@ export const Result500Icon = createIcon({
           <stop offset="1" stopColor="#4672ED" />
         </linearGradient>
         <linearGradient
-          id="jj7mnirmtf"
+          className="jj7mnirmtf"
           x1="32.043"
           y1="47.535"
           x2="58.371"
@@ -221,7 +221,7 @@ export const Result500Icon = createIcon({
           <stop offset="1" stopColor="#436EE7" />
         </linearGradient>
         <linearGradient
-          id="11nztx9apg"
+          className="11nztx9apg"
           x1="25.042"
           y1="39.307"
           x2="21.721"
@@ -232,7 +232,7 @@ export const Result500Icon = createIcon({
           <stop offset=".899" stopColor="#3C6AED" />
         </linearGradient>
         <linearGradient
-          id="htoprez2oh"
+          className="htoprez2oh"
           x1="57.046"
           y1="53.834"
           x2="36.031"

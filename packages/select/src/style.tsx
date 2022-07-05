@@ -259,8 +259,7 @@ export function applyOptionStyle(
     white-space: nowrap;
     text-overflow: ellipsis;
     list-style: none;
-    display: flex;
-    align-items: center;
+    display: inline-block;
 
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
