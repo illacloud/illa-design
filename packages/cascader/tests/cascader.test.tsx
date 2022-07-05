@@ -56,7 +56,7 @@ test("Cascader renders with options", () => {
   render(
     <Cascader value={["beijing", "xicheng"]} options={options} size="small" />,
   )
-  expect(screen.getByText("Beijing / Xicheng")).toBeInTheDocument()
+  expect(screen.getByDisplayValue("Beijing / Xicheng")).toBeInTheDocument()
 })
 
 test("Cascader renders with defaultValue", () => {
@@ -67,7 +67,7 @@ test("Cascader renders with defaultValue", () => {
       size="small"
     />,
   )
-  expect(screen.getByText("Beijing / Xicheng")).toBeInTheDocument()
+  expect(screen.getByDisplayValue("Beijing / Xicheng")).toBeInTheDocument()
 })
 
 test("Cascader renders with multiple", () => {
@@ -97,7 +97,7 @@ test("Cascader renders with options", async () => {
       onChange={changeEvent}
     />,
   )
-  expect(screen.getByText("Beijing / Xicheng")).toBeInTheDocument()
+  expect(screen.getByDisplayValue("Beijing / Xicheng")).toBeInTheDocument()
   userEvent.click(screen.getByTitle("selectRemoveIcon"))
   expect(changeEvent).toBeCalled()
 })
