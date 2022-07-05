@@ -53,7 +53,8 @@ test("Select renders with size", () => {
       <Select value={"a"} options={["a", "b", "c"]} size="small" allowClear />
     </div>,
   )
-  const container = screen.getByDisplayValue("1")?.parentElement?.previousElementSibling
+  const container =
+    screen.getByDisplayValue("1")?.parentElement?.previousElementSibling
   if (container) {
     userEvent.hover(container)
     expect(screen.getByTitle("selectRemoveIcon")).toHaveStyle({

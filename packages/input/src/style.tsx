@@ -29,8 +29,8 @@ export const errorFocusStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
   box-shadow: 0 0 8px 0
     ${chroma(globalColor(`--${illaPrefix}-red-01`))
-    .alpha(0.15)
-    .hex()};
+      .alpha(0.15)
+      .hex()};
 `
 export const errorFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-red-07`)};
@@ -143,8 +143,8 @@ function applyStatus(stateValue: StateValue) {
     )
     mainStyle = css`
       border-color: ${globalColor(
-      `--${illaPrefix}-${stateValue.borderColor}-03`,
-    )};
+        `--${illaPrefix}-${stateValue.borderColor}-03`,
+      )};
       box-shadow: 0 0 8px 0
         ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
@@ -158,8 +158,8 @@ function applyStatus(stateValue: StateValue) {
     mainStyle = css`
       &:hover {
         border-color: ${globalColor(
-      `--${illaPrefix}-${stateValue.borderColor}-06`,
-    )};
+          `--${illaPrefix}-${stateValue.borderColor}-06`,
+        )};
         ${hoverStyle}
       }
     `
@@ -238,12 +238,12 @@ export function applyInputContainer(
         opacity: 1;
         // input suffix hidden
         ${stateValue.iconAppearWithSuffix
-      ? css`
+          ? css`
               & ~ * {
                 visibility: hidden;
               }
             `
-      : ""}
+          : ""}
       }
     }
   `
