@@ -1,4 +1,4 @@
-import { NodeProps, TreeDataType, TreeMode } from "./interface"
+import { NodeProps, TreeDataType } from "./interface"
 
 export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
   if (!nodeArr) return []
@@ -19,6 +19,7 @@ export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
           : [father],
         _level: father?._level !== undefined ? father._level + 1 : 0,
         _isLast: index === len - 1,
+        _isFirst: index === 0,
         _indentArr:
           father._isLast === undefined
             ? []

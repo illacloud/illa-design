@@ -32,6 +32,8 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
     _isSelected,
     _mode = "default",
     _level,
+    _isFirst,
+    _isLast,
     _isSelectedChild,
     isLeaf,
     expanding,
@@ -114,6 +116,8 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
         _level,
         _isSelected,
         _isSelectedChild,
+        _isFirst,
+        _isLast,
       )}
       onClick={(e) => {
         if (_mode === "builder") {

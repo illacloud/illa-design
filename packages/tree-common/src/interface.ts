@@ -28,6 +28,7 @@ export interface NodeProps
   _level?: number
   _fatherPath?: NodeProps[]
   _isLast?: boolean
+  _isFirst?: boolean
   _indentArr?: boolean[]
   _checked?: boolean
   _halfChecked?: boolean
