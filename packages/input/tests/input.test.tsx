@@ -122,6 +122,7 @@ test("Input render with readOnly", () => {
     <Input placeholder="test-readOnly" defaultValue={"test-value"} readOnly />,
   )
   expect(screen.getByPlaceholderText("test-readOnly")).toHaveStyle({
+    cursor: "not-allowed",
     color: `${globalColor(`--${illaPrefix}-grayBlue-02`)}`,
   })
 })

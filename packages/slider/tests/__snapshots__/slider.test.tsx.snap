@@ -263,10 +263,12 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
 }
 
 .emotion-118:-moz-read-only {
+  cursor: not-allowed;
   color: #1d2129;
 }
 
 .emotion-118:read-only {
+  cursor: not-allowed;
   color: #1d2129;
 }
 
@@ -1182,10 +1184,12 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-118:-moz-read-only {
+  cursor: not-allowed;
   color: #1d2129;
 }
 
 .emotion-118:read-only {
+  cursor: not-allowed;
   color: #1d2129;
 }
 
@@ -2107,10 +2111,12 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-118:-moz-read-only {
+  cursor: not-allowed;
   color: #1d2129;
 }
 
 .emotion-118:read-only {
+  cursor: not-allowed;
   color: #1d2129;
 }
 

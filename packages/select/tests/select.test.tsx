@@ -10,7 +10,7 @@ test("Select renders with text", () => {
 
 test("Select renders with options", () => {
   render(<Select value={1} options={[1, 2, 3]} />)
-  expect(screen.getByDisplayValue("1")).toBeInTheDocument()
+  expect(screen.getByText("1")).toBeInTheDocument()
 })
 
 test("Select renders with Option", () => {
@@ -21,12 +21,12 @@ test("Select renders with Option", () => {
       <Option>C</Option>
     </Select>,
   )
-  expect(screen.getByDisplayValue("A")).toBeInTheDocument()
+  expect(screen.getByText("A")).toBeInTheDocument()
 })
 
 test("Select renders with loading", () => {
   render(<Select value={1} options={[1, 2, 3]} loading />)
-  expect(screen.getByDisplayValue("1").nextElementSibling).toBeInTheDocument()
+  expect(screen.getByText("1").nextElementSibling).toBeInTheDocument()
 })
 
 test("Select renders with disabled", () => {
@@ -43,7 +43,7 @@ test("Select renders with readOnly", () => {
 
 test("Select renders with error", () => {
   render(<Select value={1} options={[1, 2, 3]} error />)
-  expect(screen.getByDisplayValue("1").nextElementSibling).toBeInTheDocument()
+  expect(screen.getByText("1").nextElementSibling).toBeInTheDocument()
 })
 
 test("Select renders with size", () => {
@@ -53,7 +53,7 @@ test("Select renders with size", () => {
       <Select value={"a"} options={["a", "b", "c"]} size="small" allowClear />
     </div>,
   )
-  const container = screen.getByDisplayValue("1")?.parentElement?.previousElementSibling
+  const container = screen.getByText("1")?.parentElement?.previousElementSibling
   if (container) {
     userEvent.hover(container)
     expect(screen.getByTitle("selectRemoveIcon")).toHaveStyle({
@@ -61,7 +61,7 @@ test("Select renders with size", () => {
     })
   }
   const containerA =
-    screen.getByDisplayValue("a")?.parentElement?.previousElementSibling
+    screen.getByText("a")?.parentElement?.previousElementSibling
   if (containerA) {
     userEvent.hover(containerA)
     expect(screen.getByTitle("selectRemoveIcon")).toHaveStyle({
