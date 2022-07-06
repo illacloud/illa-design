@@ -194,7 +194,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         // Avoid input getting focus by Tab
         inputProps.tabIndex = -1
       }
-      const needShowInput = mergedFocused && canFocusInput
+      const needShowInput = (mergedFocused && canFocusInput) || isEmptyValue
 
       // <input> is used to input and display placeholder, in other cases use <span> to display value to support displaying rich text
       return (
