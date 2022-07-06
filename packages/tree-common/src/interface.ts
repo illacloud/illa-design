@@ -3,6 +3,8 @@ import { TreeNode } from "./tree-node"
 
 export type TreeSize = "small" | "medium" | "large"
 
+export type TreeMode = "default" | "builder"
+
 export interface TreeDataType extends Omit<NodeProps, "children"> {
   children?: TreeDataType[]
 }
@@ -20,6 +22,7 @@ export interface NodeProps
   expanding?: boolean
   isLeaf?: boolean
   _key?: string
+  _mode?: TreeMode
   _isSelected?: boolean
   _father?: NodeProps
   _level?: number
@@ -29,6 +32,8 @@ export interface NodeProps
   _checked?: boolean
   _halfChecked?: boolean
   _children?: string[]
+  _shouldMount?: boolean
+  _isSelectedChild?: boolean
   showLine?: boolean
   blockNode?: boolean
   draggable?: boolean
@@ -62,6 +67,7 @@ export interface TreeListProps extends HTMLAttributes<HTMLDivElement> {
   handleCheck?: (key: string, e?: Event) => void
   handleLoadMore?: (key: string) => void
   size?: TreeSize
+  _mode?: TreeMode
   blockNode?: boolean
   draggable?: boolean
   saveNodeCache?: (key: string, node: NodeInstance) => void
