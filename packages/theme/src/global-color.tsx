@@ -44,7 +44,7 @@ const globalColorNormal: Map<string, string> = new Map([
   ["--illa-techPurple-03", "#a087f4"],
   ["--illa-techPurple-04", "#bca6f7"],
   ["--illa-techPurple-05", "#d6c7fb"],
-  ["--illa-techPurple-06", "#f0e8ff"],
+  ["--illa-techPurple-06", "#eadeff"],
   ["--illa-techPurple-07", "#f8f5ff"],
 
   ["--illa-techPink-n-01", "#c24499"],
