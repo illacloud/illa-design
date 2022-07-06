@@ -38,7 +38,7 @@ export default {
 } as Meta
 
 const DateTemplate: Story<DatePickerProps> = (args) => {
-  return <DatePicker {...args} />
+  return <DatePicker {...args} showTime />
 }
 
 const MonthTemplate: Story<MonthPickerProps> = (args) => {

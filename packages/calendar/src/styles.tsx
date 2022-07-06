@@ -99,7 +99,7 @@ export const weekTitleCss = css`
 `
 
 export const panelMonthTextCss = css`
-  padding: 5px 20px 15px;
+  padding: 5px 10px 15px;
   font-weight: 500;
   font-size: 16px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
@@ -136,20 +136,16 @@ export const buttonHiddenCss = css`
 `
 
 export const headerLeftBtnsCss = css`
-  button:nth-of-type(1) {
-    padding-right: 5px;
-  }
-  button:nth-of-type(2) {
-    padding-left: 5px;
+  padding-left: 11px;
+  button {
+    padding: 5px;
   }
 `
 
 export const headerRightBtnsCss = css`
-  button:nth-of-type(1) {
-    padding-right: 5px;
-  }
-  button:nth-of-type(2) {
-    padding-left: 5px;
+  padding-right: 11px;
+  button {
+    padding: 5px;
   }
 `
 
@@ -265,15 +261,16 @@ export function applyCurrentColorCss(
 }
 
 export const dayItemPanelCss = css`
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
   border-radius: 50%;
   font-size: 14px;
   font-weight: 500;
   margin: 0 auto;
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    cursor: pointer;
   }
 `
 
@@ -316,9 +313,6 @@ export function applyContainerBlockCss(
   return css`
     ${padStyle};
     ${bgColor};
-    &:hover {
-      cursor: pointer;
-    }
     &:nth-of-type(7n) {
       border-right: none;
     }
@@ -339,7 +333,8 @@ export const disabledCss = css`
   border-radius: 0px;
   width: 100%;
   &:hover {
-    cursor: default;
+    cursor: not-allowed;
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `
 
@@ -347,7 +342,7 @@ export const isTodayStyle = css`
   &::after {
     content: "";
     display: block;
-    margin-left: 10px;
+    margin-left: 12px;
     margin-top: 5px;
     width: 4px;
     height: 4px;

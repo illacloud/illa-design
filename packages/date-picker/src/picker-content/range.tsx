@@ -51,6 +51,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       onClear,
       colorScheme,
       value,
+      readOnly,
       ...restProps
     } = props
 
@@ -132,7 +133,12 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       if (type === "first") {
         setRangeValueFirst(date)
       } else if (type === "second") {
-        setRangeValueSecond(date)
+        if (date?.isBefore(rangeValueFirst)) {
+          setRangeValueSecond(rangeValueFirst)
+          setRangeValueFirst(date)
+        } else {
+          setRangeValueSecond(date)
+        }
       } else if (type === "hover") {
         setRangeValueHover(date)
       }
@@ -232,6 +238,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
           onChangeInputVal={setInputVal}
           separator={separator}
           inputVal={inputVal}
+          readOnly={readOnly}
           pickerContent={
             <div css={wrapCss}>
               {shortcutsShowLeft && <ShortcutsCompt />}
