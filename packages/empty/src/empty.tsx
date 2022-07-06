@@ -27,12 +27,7 @@ export const Empty = forwardRef<HTMLDivElement, EmptyProps>((props, ref) => {
     <div ref={ref} css={applyEmptyContainerStyle(paddingVertical)} {...rest}>
       <div>
         {imgSrc ? (
-          <Image
-            src={imgSrc}
-            objectFit="container"
-            width="48px"
-            height="48px"
-          />
+          <Image src={imgSrc} objectFit="contain" width="48px" height="48px" />
         ) : (
           icon
         )}
