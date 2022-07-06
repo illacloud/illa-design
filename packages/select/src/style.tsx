@@ -163,12 +163,6 @@ export function applySelectViewText(
     text-overflow: ellipsis;
     padding: 0 4px;
     ${showInput ? "" : css({ display: "none !important" })};
-    border: 0;
-    outline: 0;
-
-    &::placeholder {
-      color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-    }
   `
 }
 
