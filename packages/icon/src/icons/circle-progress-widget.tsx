@@ -5,7 +5,7 @@ export const CircleProgressWidgetIcon = createIcon({
   viewBox: "0 0 72 54",
   path: (
     <>
-      <circle cx="36" cy="27" r="19" stroke="#E5E6EB" strokeWidth="2" />
+      <circle cx="36" cy="27" r="19" stroke="#DADEE6" strokeWidth="2" />
       <path
         d="M55 27c0-10.493-8.507-19-19-19"
         stroke="#A9AEB8"
