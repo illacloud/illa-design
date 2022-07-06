@@ -172,6 +172,9 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
           canFocusInput && renderedValue && typeof renderedValue !== "object"
             ? renderedValue
             : placeholder,
+        style: {
+          pointerEvents: canFocusInput ? "auto" : "none",
+        },
       }
 
       if (canFocusInput) {
@@ -193,18 +196,27 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       } else {
         // Avoid input getting focus by Tab
         inputProps.tabIndex = -1
+        // inputProps['style']['pointerEvents'] = "none"
       }
       const needShowInput = (mergedFocused && canFocusInput) || isEmptyValue
 
       // <input> is used to input and display placeholder, in other cases use <span> to display value to support displaying rich text
       return (
-        <InputElement
-          _css={applySelectViewText(true)}
-          ref={inputRef}
-          disabled={disabled}
-          readOnly={readOnly || !needShowInput}
-          {...inputProps}
-        />
+        <>
+          <InputElement
+            _css={applySelectViewText(needShowInput)}
+            ref={inputRef}
+            disabled={disabled}
+            readOnly={readOnly}
+            {...inputProps}
+          />
+          <input
+            css={applySelectViewText(!needShowInput)}
+            value={_inputValue}
+            placeholder={placeholder}
+            readOnly
+          />
+        </>
       )
     }
 
