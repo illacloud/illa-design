@@ -20,9 +20,9 @@ export function applyNodeHeight(size: TreeSize) {
 export function applyNodeTextColor(
   disabled?: boolean,
   selected?: boolean,
-  _mode?: TreeMode,
+  mode?: TreeMode,
 ): SerializedStyles {
-  if (_mode === "builder") {
+  if (mode === "builder") {
     return css`
       color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     `
@@ -43,20 +43,20 @@ export function applyNodeTextColor(
 
 export function applyNodeContainerCss(
   size: TreeSize,
-  _mode?: TreeMode,
-  _level?: number,
+  mode?: TreeMode,
+  level?: number,
   selected?: boolean,
-  _isSelectedChild?: boolean,
+  isSelectedChild?: boolean,
 ): SerializedStyles {
   let modeStyle: SerializedStyles
-  switch (_mode) {
+  switch (mode) {
     case "builder":
       modeStyle = css`
         padding-left: 16px;
         padding-right: 16px;
         background-color: ${selected
           ? `${globalColor(`--${illaPrefix}-techPurple-07`)}`
-          : _isSelectedChild
+          : isSelectedChild
           ? `${chroma(globalColor(`--${illaPrefix}-techPurple-07`))
               .alpha(0.5)
               .hex()}`
@@ -85,9 +85,9 @@ export const dragContainerCss = css`
   justify-content: start;
 `
 
-export function applyNodeFoldSwitchStyle(_mode?: TreeMode): SerializedStyles {
+export function applyNodeFoldSwitchStyle(mode?: TreeMode): SerializedStyles {
   let modeStyle: SerializedStyles
-  switch (_mode) {
+  switch (mode) {
     case "builder":
       modeStyle = css`
         width: 8px;
@@ -127,10 +127,10 @@ export function applyNodeFoldSwitchIconCss(
 
 export function applyLeafIconCss(
   visible?: boolean,
-  _mode?: TreeMode,
+  mode?: TreeMode,
 ): SerializedStyles {
   let modeStyle: SerializedStyles
-  switch (_mode) {
+  switch (mode) {
     case "builder":
       modeStyle = css`
         display: ${visible ? "inline-flex" : "none"};
@@ -156,9 +156,9 @@ export function applyLeafIconCss(
   `
 }
 
-export function applySwitchIconStyle(_mode?: TreeMode): SerializedStyles {
+export function applySwitchIconStyle(mode?: TreeMode): SerializedStyles {
   let modeStyle: SerializedStyles
-  switch (_mode) {
+  switch (mode) {
     case "builder":
       modeStyle = css`
         height: 8px;
@@ -207,7 +207,7 @@ export function applyNodeTextContainerCss(
   disabled?: boolean,
   selected?: boolean,
   blockNode?: boolean,
-  _mode?: TreeMode,
+  mode?: TreeMode,
 ): SerializedStyles {
   let modeStyle: SerializedStyles
   const fontSize = size === "small" ? 12 : 14
@@ -224,7 +224,7 @@ export function applyNodeTextContainerCss(
           cursor: not-allowed;
         }
       `
-  switch (_mode) {
+  switch (mode) {
     case "builder":
       modeStyle = css``
       hoverCss = css``
@@ -241,7 +241,7 @@ export function applyNodeTextContainerCss(
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    ${applyNodeTextColor(disabled, selected, _mode)};
+    ${applyNodeTextColor(disabled, selected, mode)};
     position: relative;
     ${hoverCss};
     ${modeStyle}
@@ -259,10 +259,10 @@ export const checkboxCss = css`
 
 export function applyIndentBlockCss(
   requireDivider?: boolean,
-  _mode?: TreeMode,
+  mode?: TreeMode,
 ): SerializedStyles {
   let modeStyle: SerializedStyles
-  switch (_mode) {
+  switch (mode) {
     case "builder":
       modeStyle = css`
         width: 3px;
