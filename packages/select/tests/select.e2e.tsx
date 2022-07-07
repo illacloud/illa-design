@@ -1,10 +1,11 @@
-import { Select } from "../src"
+import { Select, Option } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
+import { JSTransformerIcon } from "@illa-design/icon"
 
 it("Select render correctly", () => {
   mount(<Select placeholder={"test select"} value={"test"} />)
-  cy.findByDisplayValue("test").parent().click()
+  cy.findByText("test").parent().click()
   cy.findByText("No data").should("exist")
   unmount()
 })
@@ -12,7 +13,7 @@ it("Select render correctly", () => {
 it("Select render with error type", () => {
   const focusEvent = cy.stub().as("focusEvent")
   mount(<Select error value={"test"} onFocus={focusEvent} />)
-  cy.findByDisplayValue("test").parent().click()
+  cy.findByText("test").parent().click()
   cy.findByText("No data").should("exist")
   unmount()
 })
@@ -185,4 +186,60 @@ it("Select render with allowCreate", () => {
         })
     })
   unmount()
+})
+
+describe("Select renders with placeholder", () => {
+  it("Placeholder should be visible", () => {
+    mount(<Select placeholder={"placeholder"} options={[1, 2, 3]} />)
+    cy.findByPlaceholderText("placeholder").should("be.visible")
+    unmount()
+  })
+
+  it("Placeholder should be inVisible with value", () => {
+    mount(<Select value={1} placeholder={"placeholder"} options={[1, 2, 3]} />)
+    cy.findByPlaceholderText("placeholder").should("not.be.visible")
+    unmount()
+  })
+
+  it("Placeholder should be visible with empty string", () => {
+    mount(
+      <Select
+        allowClear
+        placeholder={"placeholder"}
+        value=""
+        options={["1", "2", "3"]}
+      />,
+    )
+    cy.findByPlaceholderText("placeholder").should("be.visible")
+    unmount()
+  })
+
+  it("With `showSearch` enabled, placeholder shoule be same with selected option if option is NOT custom option", () => {
+    mount(<Select showSearch placeholder={"placeholder"} options={[1, 2, 3]} />)
+    cy.findByPlaceholderText("placeholder").click()
+    // select option 1
+    cy.findByText("1").click()
+    // click select to input search, and placeholder shoule be `1`
+    cy.findByText("1").click()
+    cy.findByPlaceholderText("1").should("be.visible")
+    unmount()
+  })
+
+  it("With `showSearch` enabled, placeholder shoule be same placeholder prop if option is custom option", () => {
+    mount(
+      <Select showSearch placeholder={"placeholder"}>
+        <Option value={1}>
+          <JSTransformerIcon /> option
+        </Option>
+      </Select>,
+    )
+    cy.findByPlaceholderText("placeholder").click()
+    // select option `option`
+    cy.findByText("option").click()
+    // click select to input search, and placeholder shoule be still be `placeholder`
+    cy.findByText("option").click()
+    cy.findByPlaceholderText("option").should("not.exist")
+    cy.findByPlaceholderText("placeholder").should("be.visible")
+    unmount()
+  })
 })

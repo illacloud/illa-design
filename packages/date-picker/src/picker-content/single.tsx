@@ -112,6 +112,10 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     }
 
     const showCalendarTodayButton = useMemo(() => {
+      // if show time select, hide Today button
+      if (showTimeMerged) {
+        return false
+      }
       if (showNowBtn === undefined && type === "day") {
         return true
       } else {

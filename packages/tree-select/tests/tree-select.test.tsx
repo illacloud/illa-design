@@ -71,7 +71,7 @@ test("TreeSelect renders with defaultValue ", () => {
   render(
     <TreeSelect data-testid="TreeSelect" defaultValue="0-0" treeData={data} />,
   )
-  expect(screen.getByDisplayValue("0-0-head")).toBeInTheDocument()
+  expect(screen.getByText("0-0-head")).toBeInTheDocument()
 })
 
 test("TreeSelect renders with multiple defaultValue ", () => {
