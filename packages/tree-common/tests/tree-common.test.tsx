@@ -270,19 +270,3 @@ test("checkParentChecked is correctly", () => {
     expect(res02?.size).toBe(0)
   }
 })
-
-test("TreeList renders with builder mode style", () => {
-  const _listData = loopNodeWithState(
-    data,
-    ["0-0", "0-0-0", "0-0-0-1", "0-0-1"],
-    ["0-0"],
-  )
-  render(<TreeList listData={_listData} _mode="builder" />)
-  expect(
-    screen.getByText("0-0-0").parentElement?.parentElement?.parentElement,
-  ).toMatchSnapshot()
-  expect(
-    screen.getByText("xixi").parentElement?.parentElement?.parentElement
-      ?.parentElement,
-  ).toMatchSnapshot()
-})
