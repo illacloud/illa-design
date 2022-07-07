@@ -115,7 +115,6 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
     const isHover = (date: Dayjs) => {
       if (!rangeValueFirst) return
 
-      let curDate = date.valueOf()
       let compareBase = rangeValueSecond || rangeValueHover
       if (!compareBase) return
       if (

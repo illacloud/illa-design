@@ -2,6 +2,7 @@ import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Variants } from "framer-motion"
 import { iconColorMap } from "@illa-design/alert"
+import { AlignType } from "./interface"
 
 export const applyModalMask = css`
   position: fixed;
@@ -138,11 +139,19 @@ export const applyModalCloseIcon = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 `
 
-export function applyModalFooter(isSimple?: boolean): SerializedStyles {
+export function applyModalFooter(
+  isSimple?: boolean,
+  footerAlign?: AlignType,
+): SerializedStyles {
   const simpleCss = isSimple
     ? css`
         text-align: center;
         border: none;
+      `
+    : ""
+  const textAlignCss = footerAlign
+    ? css`
+        text-align: ${footerAlign};
       `
     : ""
   return css`
@@ -151,7 +160,8 @@ export function applyModalFooter(isSimple?: boolean): SerializedStyles {
     box-sizing: border-box;
     padding: 16px 24px;
     border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    ${simpleCss}
+    ${simpleCss};
+    ${textAlignCss};
   `
 }
 

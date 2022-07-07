@@ -5,7 +5,7 @@ export const SearchIcon = createIcon({
   viewBox: "0 0 16 16",
   path: (
     <>
-      <g clipPath="url(#a)">
+      <g clipPath="url(.a)">
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -14,7 +14,7 @@ export const SearchIcon = createIcon({
         />
       </g>
       <defs>
-        <clipPath id="a">
+        <clipPath className="a">
           <path fill="currentColor" d="M0 0h16v16H0z" />
         </clipPath>
       </defs>

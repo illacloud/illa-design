@@ -169,7 +169,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         value: typeof !isObject(_inputValue) ? _inputValue : "",
         // Allow placeholder to display the selected value first when searching
         placeholder:
-          canFocusInput && renderedValue && !isObject(renderedValue)
+          canFocusInput && renderedValue && typeof renderedValue !== "object"
             ? renderedValue
             : placeholder,
         style: {
@@ -200,6 +200,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       }
       const needShowInput = (mergedFocused && canFocusInput) || isEmptyValue
 
+      // <input> is used to input and display placeholder, in other cases use <span> to display value to support displaying rich text
       return (
         <>
           <InputElement

@@ -53,13 +53,13 @@ export const dragContainerCss = css`
   justify-content: start;
 `
 
-export const nodeFoldSwitchCss = css`
+export const nodeFoldSwitchStyle: SerializedStyles = css`
   display: flex;
-  width: 16px;
-  height: 16px;
   margin-right: 4px;
   justify-content: center;
   align-items: center;
+  width: 16px;
+  height: 16px;
 `
 
 export function applyNodeFoldSwitchIconCss(
@@ -70,6 +70,7 @@ export function applyNodeFoldSwitchIconCss(
     display: flex;
     height: 8px;
     font-size: 8px;
+    cursor: pointer;
     width: 8px;
     transform-origin: center;
     transform: rotate(${rotate}deg);
@@ -85,10 +86,11 @@ export function applyLeafIconCss(visible?: boolean): SerializedStyles {
     font-size: 12px;
     visibility: ${visible === true ? "visible" : "hidden"};
     margin-right: 4px;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}; ;
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
-export const switchIconCss = css`
+
+export const switchIconStyle: SerializedStyles = css`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -107,7 +109,7 @@ export function applyNodeTextContainerCss(
   blockNode?: boolean,
 ): SerializedStyles {
   const fontSize = size === "small" ? 12 : 14
-  const hoverCss = !disabled
+  let hoverCss = !disabled
     ? css`
         &:hover {
           background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
@@ -127,10 +129,10 @@ export function applyNodeTextContainerCss(
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 4px;
     ${applyNodeTextColor(disabled, selected)};
     position: relative;
-    ${hoverCss}
+    ${hoverCss};
+    padding: 0 4px;
   `
 }
 
@@ -148,11 +150,11 @@ export function applyIndentBlockCss(
 ): SerializedStyles {
   return css`
     height: 100%;
-    width: 16.5px;
     margin-left: 8px;
     border-left: solid 1px
       ${requireDivider ? globalColor(`--${illaPrefix}-grayBlue-08`) : "white"};
     box-sizing: border-box;
+    width: 16.5px;
   `
 }
 export const loadingIconCss = css`

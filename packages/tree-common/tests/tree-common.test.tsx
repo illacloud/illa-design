@@ -60,7 +60,7 @@ const data = [
   },
 ]
 
-const listData = loopNodeWithState(data)
+const listData = loopNodeWithState(data, ["0-0", "0-0-0", "0-0-0-1"])
 
 test("TreeList renders correctly", () => {
   render(<TreeList listData={listData} placeholder="tree" />)
@@ -69,7 +69,7 @@ test("TreeList renders correctly", () => {
 
 test("TreeList renders with large size", async () => {
   await act(async () => {
-    render(<TreeList listData={data} size="large" />)
+    render(<TreeList listData={listData} size="large" />)
   })
   expect(
     screen.getByText("0-0-head").parentElement?.parentElement?.parentElement,
@@ -80,7 +80,7 @@ test("TreeList renders with large size", async () => {
 
 test("TreeList renders with small size", async () => {
   await act(async () => {
-    render(<TreeList listData={data} size="small" />)
+    render(<TreeList listData={listData} size="small" />)
   })
   expect(
     screen.getByText("0-0-head").parentElement?.parentElement?.parentElement,
@@ -124,7 +124,11 @@ test("TreeList renders with showLine", async () => {
 test("TreeNode renders with selected", async () => {
   const selectEvent = jest.fn()
   const selectKey = ["0-0", "0-0-0-1"]
-  const _listData = loopNodeWithState(data, undefined, selectKey)
+  const _listData = loopNodeWithState(
+    data,
+    ["0-0", "0-0-0", "0-0-0-1"],
+    selectKey,
+  )
   await act(async () => {
     render(<TreeList listData={_listData} handleSelect={selectEvent} />)
   })
@@ -208,11 +212,11 @@ test("loopNodeWithState is correctly", () => {
     new Set(keys),
     new Set(halfCheck),
   )
-  expect(expandListData.length).toBe(4)
+  expect(expandListData.length).toBe(9)
   expect(expandListData[0].expanding).toBe(true)
   expect(expandListData[0]._checked).toBe(true)
   expect(expandListData[0]._isSelected).toBe(true)
-  expect(expandListData[3]._halfChecked).toBe(true)
+  expect(expandListData[8]._halfChecked).toBe(true)
 })
 
 test("updateKeys is correctly", () => {

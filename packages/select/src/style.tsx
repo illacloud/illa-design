@@ -62,9 +62,7 @@ function applyStatus(stateValue: SelectStateValue) {
       ${disableOutlineStyle}
     `
   } else if (stateValue?.readOnly) {
-    mainStyle = css`
-      cursor: not-allowed;
-    `
+    mainStyle = css``
   } else if (stateValue?.focus) {
     const boxShadowColor = isInnerColor
       ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
@@ -161,7 +159,6 @@ export function applySelectViewText(
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    padding: 0 4px;
     ${showInput ? "" : css({ display: "none !important" })};
   `
 }
@@ -259,8 +256,7 @@ export function applyOptionStyle(
     white-space: nowrap;
     text-overflow: ellipsis;
     list-style: none;
-    display: flex;
-    align-items: center;
+    display: inline-block;
 
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};

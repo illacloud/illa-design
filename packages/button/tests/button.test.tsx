@@ -135,7 +135,9 @@ test("Button renders disabled", () => {
       Hello
     </Button>,
   )
-  expect(screen.getByTestId("test-button")).toBeDisabled()
+  expect(screen.getByTestId("test-button")).toHaveStyle({
+    cursor: "not-allowed",
+  })
 })
 
 test("Button renders with colors", () => {

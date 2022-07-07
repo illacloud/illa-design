@@ -1,4 +1,10 @@
-import React, { forwardRef, useContext, useRef } from "react"
+import React, {
+  forwardRef,
+  useContext,
+  useRef,
+  cloneElement,
+  ReactElement,
+} from "react"
 import { css } from "@emotion/react"
 import {
   ModalProps,
@@ -59,6 +65,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       okButtonProps,
       cancelButtonProps,
       footer = true,
+      footerAlign = "",
       focusLock = true,
       autoFocus = true,
       getPopupContainer = () => document.body,
@@ -108,7 +115,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
         </Button>
       )
       return (
-        <div css={applyModalFooter(simple)}>
+        <div css={applyModalFooter(simple, footerAlign)}>
           {!hideCancel && cancelButtonNode}
           {okButtonNode}
         </div>
@@ -127,7 +134,11 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           {renderFooter()}
           {showCloseIcon && (
             <>
-              {closeElement || (
+              {closeElement ? (
+                cloneElement(closeElement as ReactElement, {
+                  onClick: onCancel,
+                })
+              ) : (
                 <div css={applyModalCloseIcon} onClick={onCancel}>
                   <CloseIcon />
                 </div>

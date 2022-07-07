@@ -44,7 +44,7 @@ const globalColorNormal: Map<string, string> = new Map([
   ["--illa-techPurple-03", "#a087f4"],
   ["--illa-techPurple-04", "#bca6f7"],
   ["--illa-techPurple-05", "#d6c7fb"],
-  ["--illa-techPurple-06", "#f0e8ff"],
+  ["--illa-techPurple-06", "#eadeff"],
   ["--illa-techPurple-07", "#f8f5ff"],
 
   ["--illa-techPink-n-01", "#c24499"],
@@ -98,7 +98,7 @@ const globalColorNormal: Map<string, string> = new Map([
   ["--illa-green-03", "#00aa5b"],
   ["--illa-green-04", "#00d689"],
   ["--illa-green-05", "#66dfb0"],
-  ["--illa-green-06", "#a3f0d4"],
+  ["--illa-green-06", "#d9ffea"],
   ["--illa-green-07", "#ecfbf5"],
 
   ["--illa-yellow-n-01", "#c76b00"],
@@ -125,7 +125,7 @@ const globalColorNormal: Map<string, string> = new Map([
   ["--illa-cyan-03", "#0cc1e2"],
   ["--illa-cyan-04", "#12ddf2"],
   ["--illa-cyan-05", "#71ebf7"],
-  ["--illa-cyan-06", "#aaf7fc"],
+  ["--illa-cyan-06", "#d1fcff"],
   ["--illa-cyan-07", "#effdfe"],
 
   ["--illa-brand-01", "#654aec"],
