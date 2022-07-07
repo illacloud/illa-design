@@ -265,7 +265,6 @@ it("Cascader render with input type", () => {
     />,
   )
   cy.get("input")
-    .focus()
     .type("Shanghai")
     .then(() => {
       cy.get("@searchEvent").should("be.called")
@@ -277,7 +276,6 @@ it("Cascader render with input type", () => {
     })
   cy.findByText("Shanghai / Huangpu").click()
   cy.get("input")
-    .focus()
     .type("i")
     .then(() => {
       cy.get("@visibleChangeEvent").should("be.calledThrice")

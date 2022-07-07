@@ -12,7 +12,7 @@ it("Pagination renders with sizeOptions", () => {
       total={100}
     />,
   )
-  cy.findByDisplayValue("20/Page").click()
+  cy.findByText("20/Page").click()
   cy.findAllByText("80/Page").should("exist")
   unmount()
 })
@@ -27,7 +27,7 @@ it("Pagination renders with pageSizeSelect", () => {
       placeholder={"pagination"}
     />,
   )
-  cy.findByDisplayValue("10/Page").click()
+  cy.findByText("10/Page").click()
   cy.findByText("20/Page").click()
   cy.findAllByText("20/Page").should("exist")
   unmount()

@@ -135,10 +135,10 @@ it("TreeSelect search with clear", () => {
       treeData={data}
     />,
   )
-  cy.findByDisplayValue("0-0").should("exist")
-  cy.findByDisplayValue("0-0").trigger("focus")
+  cy.contains("0-0").should("exist")
+  cy.contains("0-0").trigger("focus")
   cy.contains("ErrorIcon").parent().trigger("click")
-  cy.findByDisplayValue("0-0").should("not.exist")
+  cy.contains("0-0").should("not.exist")
   unmount()
 })
 

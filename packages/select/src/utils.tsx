@@ -16,7 +16,9 @@ export function isSelectOption(child: ReactElement): boolean {
 
 export function isEmptyValue(value: any, isMultiple?: boolean) {
   // Illegal value is considered as unselected
-  return isMultiple ? !isArray(value) || !value.length : value === undefined
+  return isMultiple
+    ? !isArray(value) || !value.length
+    : value === undefined || value === ""
 }
 
 export function getHighlightText<T>({
