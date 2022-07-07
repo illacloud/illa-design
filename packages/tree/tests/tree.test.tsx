@@ -248,7 +248,7 @@ test("Tree renders with control expand", async () => {
     () => {
       expect(screen.queryByText("aoao")).toBeNull()
     },
-    { timeout: 300 },
+    { timeout: 500 },
   )
   expect(expandEvent).toBeCalled()
 })
