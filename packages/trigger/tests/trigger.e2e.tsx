@@ -328,13 +328,13 @@ describe("Test `disabledOutsideScrollable`", () => {
     )
 
     cy.get("body").then((body) => {
-      const originBodyWidth = body[0].scrollWidth
+      const originBodyWidth = body[0].offsetWidth
 
       cy.findByText("Button").click()
       cy.findByText("TriggerHello").should("exist")
 
       cy.get("body").then((body) => {
-        const bodyWidthWithoutScrollbar = body[0].scrollWidth
+        const bodyWidthWithoutScrollbar = body[0].offsetWidth
         expect(bodyWidthWithoutScrollbar).to.be.greaterThan(originBodyWidth)
       })
     })
@@ -361,13 +361,13 @@ describe("Test `disabledOutsideScrollable`", () => {
     )
 
     cy.get("body").then((body) => {
-      const originBodyWidth = body[0].scrollWidth
+      const originBodyWidth = body[0].offsetWidth
 
       cy.findByText("Button").click()
       cy.findByText("TriggerHello").should("exist")
 
       cy.get("body").then((body) => {
-        const bodyWidthWithoutScrollbar = body[0].scrollWidth
+        const bodyWidthWithoutScrollbar = body[0].offsetWidth
         expect(bodyWidthWithoutScrollbar).to.be.equal(originBodyWidth)
       })
     })
