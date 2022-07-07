@@ -80,7 +80,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
                   </Radio>
                 ) : (
                   <Radio
-                    key={option.value}
+                    key={`radio-${index}`}
                     value={option.value}
                     disabled={disabled || option.disabled}
                   >
