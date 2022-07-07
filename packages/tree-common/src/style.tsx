@@ -48,7 +48,6 @@ export function applyNodeContainerCss(
   selected?: boolean,
   isSelectedChild?: boolean,
   isFirst?: boolean,
-  isLast?: boolean,
   isFinal?: boolean,
 ): SerializedStyles {
   let modeStyle: SerializedStyles
@@ -57,8 +56,6 @@ export function applyNodeContainerCss(
       modeStyle = css`
         padding-left: 16px;
         padding-right: 16px;
-        /*        margin-top: ${level === 0 && !isFirst ? "4px" : "0"};
-        padding-bottom: ${level === 0 ? "4px" : "0"};*/
         padding-top: ${level === 1 && isFirst ? "4px" : "0"};
         padding-bottom: ${isFinal ? "4px" : "0"};
         background-color: ${selected

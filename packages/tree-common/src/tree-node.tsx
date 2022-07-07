@@ -118,7 +118,6 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
         _isSelected,
         _isSelectedChild,
         _isFirst,
-        _isLast,
         _isFinal,
       )}
       onClick={(e) => {
