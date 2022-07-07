@@ -1,6 +1,10 @@
-import { NodeProps, TreeDataType } from "./interface"
+import { NodeProps, TreeDataType, TreeMode } from "./interface"
 
-export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
+export const loopNode = (
+  nodeArr?: TreeDataType[],
+  selectedKeys?: string[],
+  mode?: TreeMode,
+) => {
   if (!nodeArr) return []
   const nodeList: NodeProps[] = []
   const _loop = (nodeArr: TreeDataType[], father: NodeProps) => {
@@ -20,6 +24,7 @@ export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
         _level: father?._level !== undefined ? father._level + 1 : 0,
         _isLast: index === len - 1,
         _isFirst: index === 0,
+        _isFinal: false,
         _indentArr:
           father._isLast === undefined
             ? []
@@ -34,6 +39,20 @@ export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
     })
   }
   _loop(nodeArr, { key: "", expanding: true, _shouldMount: true })
+
+  // builder mode need add padding-bottom on every tree's final child
+  if (mode === "builder") {
+    const mountedNodeList = nodeList.filter((node) => node._shouldMount)
+    for (let index = mountedNodeList.length - 1; index > 0; index--) {
+      if (
+        (index === mountedNodeList.length - 1 ||
+          mountedNodeList[index + 1]._level === 0) &&
+        mountedNodeList[index]._level !== 0
+      ) {
+        mountedNodeList[index]._isFinal = true
+      }
+    }
+  }
   return nodeList
 }
 
@@ -43,6 +62,7 @@ export const loopNodeWithState = (
   selectedKeys?: string[],
   checkedKeys?: Set<string>,
   halfCheckedKeys?: Set<string>,
+  mode?: TreeMode,
 ) => {
   if (!nodeArr) return []
   const _loop = (nodeArr: TreeDataType[]) => {
@@ -62,7 +82,7 @@ export const loopNodeWithState = (
     })
   }
   _loop(nodeArr)
-  return loopNode(nodeArr, selectedKeys)
+  return loopNode(nodeArr, selectedKeys, mode)
 }
 
 export function checkChildrenChecked(

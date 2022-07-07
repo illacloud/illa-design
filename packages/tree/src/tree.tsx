@@ -125,6 +125,7 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
       selectedKeys ?? selectedKeysState,
       checkedKeys ? new Set(checkedKeys) : checkKeysState,
       halfCheckKeysState,
+      _mode,
     )
     setTreeData(newValue)
   }, [checkKeysState, selectedKeysState, expandedKeysState, halfCheckKeysState])
