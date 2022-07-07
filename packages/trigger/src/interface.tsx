@@ -62,6 +62,7 @@ export interface TriggerProps {
   disabled?: boolean
   onVisibleChange?: (visible: boolean) => void
   alignPoint?: boolean
+  disabledOutsideScrollable?: boolean
 }
 
 export interface TriggerState {

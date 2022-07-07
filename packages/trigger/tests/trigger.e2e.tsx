@@ -292,3 +292,86 @@ it("Popup should follow trigger when upper container scroll", () => {
 
   unmount()
 })
+
+/**
+ * Check scollbar visible to test `disabledOutsideScrollable`
+ *
+ * It should have been tested by scrolling. However, cy.scrollto()
+ *  can trigger the scroll regardless of whether the parameters are
+ *  set or not, and it cannot simulate the actual mouse wheel scrolling,
+ *  so determine whether there is a scrollbar to test whether it takes effect.
+ *
+ */
+describe("Test `disabledOutsideScrollable`", () => {
+  it("Scrollbar should be removed", () => {
+    const loremIpsum = Array(100)
+      .fill(0)
+      .map(
+        () =>
+          `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+      )
+
+      .join("\n\n")
+    mount(
+      <>
+        <Trigger
+          trigger="click"
+          content="TriggerHello"
+          showArrow={false}
+          disabledOutsideScrollable
+        >
+          <Button>Button</Button>
+        </Trigger>
+        {loremIpsum}
+        <span>bottom</span>
+      </>,
+    )
+
+    cy.get("body").then((body) => {
+      const originBodyWidth = body[0].scrollWidth
+
+      cy.findByText("Button").click()
+      cy.findByText("TriggerHello").should("exist")
+
+      cy.get("body").then((body) => {
+        const bodyWidthWithoutScrollbar = body[0].scrollWidth
+        expect(bodyWidthWithoutScrollbar).to.be.greaterThan(originBodyWidth)
+      })
+    })
+
+    unmount()
+  })
+
+  it("Scrollbar should still exist", () => {
+    const loremIpsum = Array(100)
+      .fill(0)
+      .map(
+        () =>
+          `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+      )
+
+      .join("\n\n")
+    mount(
+      <>
+        <Trigger trigger="click" content="TriggerHello" showArrow={false}>
+          <Button>Button</Button>
+        </Trigger>
+        {loremIpsum}
+      </>,
+    )
+
+    cy.get("body").then((body) => {
+      const originBodyWidth = body[0].scrollWidth
+
+      cy.findByText("Button").click()
+      cy.findByText("TriggerHello").should("exist")
+
+      cy.get("body").then((body) => {
+        const bodyWidthWithoutScrollbar = body[0].scrollWidth
+        expect(bodyWidthWithoutScrollbar).to.be.equal(originBodyWidth)
+      })
+    })
+
+    unmount()
+  })
+})
