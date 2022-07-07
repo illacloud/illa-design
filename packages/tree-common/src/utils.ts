@@ -1,4 +1,4 @@
-import { NodeProps, TreeDataType, TreeMode } from "./interface"
+import { NodeProps, TreeDataType } from "./interface"
 
 export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
   if (!nodeArr) return []
@@ -11,7 +11,6 @@ export const loopNode = (nodeArr?: TreeDataType[], selectedKeys?: string[]) => {
         _checked: node._checked,
         _halfChecked: node._halfChecked,
         _isSelected: selectedKeys?.includes(node.key),
-        _isSelectedChild: father._isSelected || father._isSelectedChild,
         _father: father,
         _children: node.children?.map((item) => item.key),
         _fatherPath: father?._fatherPath

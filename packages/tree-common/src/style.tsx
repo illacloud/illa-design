@@ -1,6 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import chroma from "chroma-js"
-import { TreeMode, TreeSize } from "./interface"
+import { TreeSize } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const listCss = css`
@@ -20,13 +19,7 @@ export function applyNodeHeight(size: TreeSize) {
 export function applyNodeTextColor(
   disabled?: boolean,
   selected?: boolean,
-  mode?: TreeMode,
 ): SerializedStyles {
-  if (mode === "builder") {
-    return css`
-      color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    `
-  }
   if (disabled) {
     return css`
       color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
@@ -41,31 +34,7 @@ export function applyNodeTextColor(
   `
 }
 
-export function applyNodeContainerCss(
-  size: TreeSize,
-  mode?: TreeMode,
-  level?: number,
-  selected?: boolean,
-  isSelectedChild?: boolean,
-): SerializedStyles {
-  let modeStyle: SerializedStyles
-  switch (mode) {
-    case "builder":
-      modeStyle = css`
-        padding-left: 16px;
-        padding-right: 16px;
-        background-color: ${selected
-          ? `${globalColor(`--${illaPrefix}-techPurple-07`)}`
-          : isSelectedChild
-          ? `${chroma(globalColor(`--${illaPrefix}-techPurple-07`))
-              .alpha(0.5)
-              .hex()}`
-          : ``};
-      `
-      break
-    default:
-      modeStyle = css``
-  }
+export function applyNodeContainerCss(size: TreeSize): SerializedStyles {
   const height = applyNodeHeight(size)
   return css`
     display: flex;
@@ -73,7 +42,6 @@ export function applyNodeContainerCss(
     align-items: center;
     min-height: ${height}px;
     width: 100%;
-    ${modeStyle}
   `
 }
 
@@ -85,29 +53,14 @@ export const dragContainerCss = css`
   justify-content: start;
 `
 
-export function applyNodeFoldSwitchStyle(mode?: TreeMode): SerializedStyles {
-  let modeStyle: SerializedStyles
-  switch (mode) {
-    case "builder":
-      modeStyle = css`
-        width: 8px;
-        height: 8px;
-      `
-      break
-    default:
-      modeStyle = css`
-        width: 16px;
-        height: 16px;
-      `
-  }
-  return css`
-    display: flex;
-    margin-right: 4px;
-    justify-content: center;
-    align-items: center;
-    ${modeStyle}
-  `
-}
+export const nodeFoldSwitchStyle: SerializedStyles = css`
+  display: flex;
+  margin-right: 4px;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+`
 
 export function applyNodeFoldSwitchIconCss(
   folding?: boolean,
@@ -125,25 +78,7 @@ export function applyNodeFoldSwitchIconCss(
   `
 }
 
-export function applyLeafIconCss(
-  visible?: boolean,
-  mode?: TreeMode,
-): SerializedStyles {
-  let modeStyle: SerializedStyles
-  switch (mode) {
-    case "builder":
-      modeStyle = css`
-        display: ${visible ? "inline-flex" : "none"};
-        font-size: 8px;
-      `
-      break
-    default:
-      modeStyle = css`
-        display: inline-flex;
-        padding: 2px;
-        font-size: 12px;
-      `
-  }
+export function applyLeafIconCss(visible?: boolean): SerializedStyles {
   return css`
     display: inline-flex;
     align-items: center;
@@ -152,64 +87,27 @@ export function applyLeafIconCss(
     visibility: ${visible === true ? "visible" : "hidden"};
     margin-right: 4px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    ${modeStyle}
   `
 }
 
-export function applySwitchIconStyle(mode?: TreeMode): SerializedStyles {
-  let modeStyle: SerializedStyles
-  switch (mode) {
-    case "builder":
-      modeStyle = css`
-        height: 8px;
-        position: relative;
-        width: 8px;
-        ::before {
-          content: "";
-          position: absolute;
-          width: 16px;
-          height: 16px;
-          border-radius: 16px;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background-color: transparent;
-          box-sizing: border-box;
-          display: block;
-        }
-        &:hover {
-          ::before {
-            background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-          }
-        }
-      `
-      break
-    default:
-      modeStyle = css`
-        height: 16px;
-        border-radius: 16px;
-        width: 16px;
-        &:hover {
-          background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-        }
-      `
+export const switchIconStyle: SerializedStyles = css`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 16px;
+  border-radius: 16px;
+  width: 16px;
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
-  return css`
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    ${modeStyle}
-  `
-}
+`
 
 export function applyNodeTextContainerCss(
   size: TreeSize,
   disabled?: boolean,
   selected?: boolean,
   blockNode?: boolean,
-  mode?: TreeMode,
 ): SerializedStyles {
-  let modeStyle: SerializedStyles
   const fontSize = size === "small" ? 12 : 14
   let hoverCss = !disabled
     ? css`
@@ -224,16 +122,6 @@ export function applyNodeTextContainerCss(
           cursor: not-allowed;
         }
       `
-  switch (mode) {
-    case "builder":
-      modeStyle = css``
-      hoverCss = css``
-      break
-    default:
-      modeStyle = css`
-        padding: 0 4px;
-      `
-  }
   return css`
     font-size: ${fontSize}px;
     flex-grow: ${blockNode ? 1 : 0};
@@ -241,10 +129,10 @@ export function applyNodeTextContainerCss(
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    ${applyNodeTextColor(disabled, selected, mode)};
+    ${applyNodeTextColor(disabled, selected)};
     position: relative;
     ${hoverCss};
-    ${modeStyle}
+    padding: 0 4px;
   `
 }
 
@@ -259,27 +147,14 @@ export const checkboxCss = css`
 
 export function applyIndentBlockCss(
   requireDivider?: boolean,
-  mode?: TreeMode,
 ): SerializedStyles {
-  let modeStyle: SerializedStyles
-  switch (mode) {
-    case "builder":
-      modeStyle = css`
-        width: 3px;
-      `
-      break
-    default:
-      modeStyle = css`
-        width: 16.5px;
-      `
-  }
   return css`
     height: 100%;
     margin-left: 8px;
     border-left: solid 1px
       ${requireDivider ? globalColor(`--${illaPrefix}-grayBlue-08`) : "white"};
     box-sizing: border-box;
-    ${modeStyle}
+    width: 16.5px;
   `
 }
 export const loadingIconCss = css`

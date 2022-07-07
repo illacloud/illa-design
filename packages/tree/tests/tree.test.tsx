@@ -248,7 +248,7 @@ test("Tree renders with control expand", async () => {
     () => {
       expect(screen.queryByText("aoao")).toBeNull()
     },
-    { timeout: 300 },
+    { timeout: 500 },
   )
   expect(expandEvent).toBeCalled()
 })
@@ -396,33 +396,4 @@ test("Tree renders with icons", async () => {
     fireEvent.click(target)
   })
   expect(screen.getByTestId("loadingIcon")).toBeInTheDocument()
-})
-
-test("Tree renders with builder mode has at least one selected data and bind select and expand", async () => {
-  let keys: string[]
-  render(
-    <Tree
-      treeData={data}
-      data-testid="root"
-      _mode="builder"
-      defaultSelectedKeys={["0-0"]}
-      defaultExpandedKeys={["0-0"]}
-      autoExpandParent={false}
-      onSelect={(selectedKeys) => {
-        keys = selectedKeys
-      }}
-    />,
-  )
-  expect(screen.queryByText("0-0-0")).not.toBeNull()
-  const target = screen.getByText("0-0-head")
-  await act(async () => {
-    fireEvent.click(target)
-  })
-  await waitFor(
-    () => {
-      expect(screen.queryByText("0-0-0")).toBeNull()
-      expect(keys![0]).toEqual("0-0")
-    },
-    { timeout: 300 },
-  )
 })

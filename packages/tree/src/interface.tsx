@@ -5,7 +5,6 @@ import {
   NodeProps,
   TreeDataType,
   TreeSize,
-  TreeMode,
 } from "@illa-design/tree-common"
 
 export interface TreeProps
@@ -18,7 +17,6 @@ export interface TreeProps
     | "onSelect"
     | "onDragEnd"
   > {
-  _mode?: TreeMode
   size?: TreeSize
   blockNode?: boolean
   renderTitle?: (props: NodeProps) => ReactNode

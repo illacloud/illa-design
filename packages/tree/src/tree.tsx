@@ -24,8 +24,6 @@ import { getNodes, getNodeList } from "./utils"
 // treeData is default
 export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
   const {
-    //mode
-    _mode = "default",
     // node data
     treeData,
     children,
@@ -227,14 +225,11 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
     (targetKey: string, event?: Event) => {
       const _selectedKeys = selectedKeys ?? selectedKeysState
       if (!selectable) return
-      let keys = updateKeys(
+      const keys = updateKeys(
         _selectedKeys,
         targetKey,
         selectedKeys !== undefined || multiple,
       )
-      if (_mode === "builder" && _selectedKeys.includes(targetKey)) {
-        keys = [targetKey]
-      }
       setSelectedKeys(keys)
       if (event) {
         const extra = {
@@ -350,7 +345,6 @@ export const Tree = forwardRef<HTMLDivElement, TreeProps>((props, ref) => {
         handleDrop={handleDrop}
         updateDragState={updateDragState}
         allowDrop={allowDrop}
-        _mode={_mode}
       />
     </div>
   )

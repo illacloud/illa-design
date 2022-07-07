@@ -11,8 +11,8 @@ import {
   iconColorCss,
   indentContainerCss,
   loadingIconCss,
-  applyNodeFoldSwitchStyle,
-  applySwitchIconStyle,
+  nodeFoldSwitchStyle,
+  switchIconStyle,
 } from "./style"
 import {
   CaretDownIcon,
@@ -30,9 +30,6 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
     size = "medium",
     disabled,
     _isSelected,
-    _mode = "default",
-    _level,
-    _isSelectedChild,
     isLeaf,
     expanding,
     handleExpand,
@@ -107,38 +104,19 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
   }, [expanding, handleLoadMore, _children])
 
   return (
-    <div
-      css={applyNodeContainerCss(
-        size,
-        _mode,
-        _level,
-        _isSelected,
-        _isSelectedChild,
-      )}
-      onClick={(e) => {
-        if (_mode === "builder") {
-          if (_children?.length && _children?.length > 0) {
-            handleExpand?.(_key)
-          }
-          if (selectable !== false && _level === 0) {
-            handleSelect?.(_key, e?.nativeEvent)
-          }
-        }
-      }}
-      ref={ref}
-    >
+    <div css={applyNodeContainerCss(size)} ref={ref}>
       <div css={indentContainerCss}>
         {_indentArr?.map((requireDivider, index) => (
           <div
             key={_key + index}
-            css={applyIndentBlockCss(requireDivider && showLine, _mode)}
+            css={applyIndentBlockCss(requireDivider && showLine)}
           />
         ))}
       </div>
 
       {!_isLeaf ? (
         <span
-          css={applyNodeFoldSwitchStyle(_mode)}
+          css={nodeFoldSwitchStyle}
           onClick={() => {
             if (_children?.length && _children?.length > 0) {
               handleExpand && handleExpand(_key)
@@ -152,7 +130,7 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
               {loadingIcon ?? <LoadingIcon spin />}
             </span>
           ) : (
-            <span css={applySwitchIconStyle(_mode)}>
+            <span css={switchIconStyle}>
               {switcherIcon ?? (
                 <span css={applyNodeFoldSwitchIconCss(_isExpanding)}>
                   <CaretDownIcon />
@@ -162,7 +140,7 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
           )}
         </span>
       ) : (
-        <span css={applyLeafIconCss(showLine, _mode)}>
+        <span css={applyLeafIconCss(showLine)}>
           <LeafIcon />
         </span>
       )}
@@ -221,7 +199,6 @@ export const TreeNode = forwardRef<HTMLDivElement, NodeProps>((props, ref) => {
             disabled,
             _isSelected,
             blockNode,
-            _mode,
           )}
           onClick={(e) => {
             if (disabled || selectable === false) return
