@@ -39,6 +39,7 @@ import useWindowSize from "react-use/lib/useWindowSize"
 import { getScrollElements, mergeRefs } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
 import useMouse from "react-use/lib/useMouse"
+import { RemoveScroll } from "react-remove-scroll"
 import { css } from "@emotion/react"
 
 export const Trigger: FC<TriggerProps> = (props) => {
@@ -64,6 +65,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     onVisibleChange,
     trigger = "hover",
     alignPoint,
+    disabledOutsideScrollable,
   } = props
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
@@ -266,7 +268,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
         }
       }}
     >
-      {centerNode}
+      {disabledOutsideScrollable ? (
+        <RemoveScroll>{centerNode}</RemoveScroll>
+      ) : (
+        centerNode
+      )}
     </motion.div>
   )
 
