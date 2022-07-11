@@ -94,7 +94,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       }
       target = _isHorizontalLayout ? target : target + PADDING
       setBlueLinePosition(target)
-    }, [selectedIndex, tabBarSpacing, childRef])
+    }, [selectedIndex, tabBarSpacing, childRef, tabHeaderChild])
 
     const getOffsetSize = () =>
       (_isHorizontalLayout
@@ -167,7 +167,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       scrollContainerCss,
       applyPreNextIconCss,
     ] = _isHorizontalLayout
-      ? [
+        ? [
           tabLineHeaderHorizontalContainerCss,
           tabHeaderHorizontalContainerCss,
           applyDividerHorizontalLineCss,
@@ -176,7 +176,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
           applyHorizontalPreNextIconCss,
           applyHorizontalIconLineCss(tabPosition === "left"),
         ]
-      : [
+        : [
           tabLineHeaderContainerCss,
           tabHeaderContainerCss,
           applyDividerCommonLineCss,
