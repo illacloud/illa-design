@@ -53,6 +53,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     showArrow = true,
     closeDelay = 150,
     openDelay = 150,
+    zIndex = "auto",
     autoFitPosition = true,
     autoAlignPopupWidth,
     closeOnClick = true,
@@ -348,6 +349,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           }}
           top={`${adjustResult?.transY ?? 0}px`}
           left={`${adjustResult?.transX ?? 0}px`}
+          zIndex={zIndex}
         >
           {tipsNode}
         </Popup>
