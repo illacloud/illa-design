@@ -2,6 +2,8 @@ import { Meta, Story } from "@storybook/react"
 import { Input, InputProps } from "../src"
 import { Space } from "@illa-design/space"
 import { PersonIcon } from "@illa-design/icon"
+import { useRef } from "react"
+import { getColor } from "@illa-design/theme"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -49,6 +51,8 @@ export default {
 } as Meta
 
 const Template: Story<InputProps> = (props) => {
+  const color = useRef("")
+  const step = useRef("01")
   return (
     <div>
       <Space direction={"vertical"} wrap>
@@ -74,6 +78,20 @@ const Template: Story<InputProps> = (props) => {
           addonAfter={{ render: "After" }}
           {...props}
         />
+        <div style={{ backgroundColor: getColor(color.current, step.current) }}>
+          <input
+            type="text"
+            onChange={(e) => {
+              color.current = e.target.value
+            }}
+          />
+          <input
+              type="text"
+              onChange={(e) => {
+                step.current = e.target.value
+              }}
+          />
+        </div>
       </Space>
     </div>
   )
