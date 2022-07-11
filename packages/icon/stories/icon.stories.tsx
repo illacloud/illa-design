@@ -121,8 +121,8 @@ import {
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
+  FullScreenIcon,
 } from "../src"
-import { FullScreenIcon } from "../dist/types"
 
 //👇 This default export determines where your story goes in the story list
 export default {
