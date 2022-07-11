@@ -167,7 +167,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       scrollContainerCss,
       applyPreNextIconCss,
     ] = _isHorizontalLayout
-        ? [
+      ? [
           tabLineHeaderHorizontalContainerCss,
           tabHeaderHorizontalContainerCss,
           applyDividerHorizontalLineCss,
@@ -176,7 +176,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
           applyHorizontalPreNextIconCss,
           applyHorizontalIconLineCss(tabPosition === "left"),
         ]
-        : [
+      : [
           tabLineHeaderContainerCss,
           tabHeaderContainerCss,
           applyDividerCommonLineCss,
