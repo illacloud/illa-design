@@ -29,6 +29,7 @@ import {
   EmptyIcon,
   EmptyStateIcon,
   ErrorIcon,
+  ExitIcon,
   ExpandIcon,
   EyeOffIcon,
   EyeOnIcon,
@@ -571,4 +572,8 @@ export const DateTimeWidget: Story<IconProps> = (props: IconProps) => (
 
 export const FullScreenIcon: Story<IconProps> = (props: IconProps) => (
   <FullScreenIcon {...props} />
+)
+
+export const Exit: Story<IconProps> = (props: IconProps) => (
+  <ExitIcon {...props} />
 )
