@@ -109,9 +109,13 @@ function applyStatus(stateValue: InputTagStateValue) {
       ${disableStyle}
     `
   } else if (stateValue?.focus) {
-    const boxShadowColor = globalColor(`--${illaPrefix}-blue-01`)
+    const boxShadowColor = globalColor(
+      `--${illaPrefix}-${stateValue.borderColor}-01`,
+    )
     mainStyle = css`
-      border-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+      border-color: ${globalColor(
+        `--${illaPrefix}-${stateValue.borderColor}-03`,
+      )};
       box-shadow: 0 0 8px 0
         ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
@@ -124,7 +128,9 @@ function applyStatus(stateValue: InputTagStateValue) {
   } else {
     mainStyle = css`
       &:hover {
-        border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
+        border-color: ${globalColor(
+          `--${illaPrefix}-${stateValue.borderColor}-06`,
+        )};
         ${hoverStyle}
       }
     `
@@ -146,7 +152,7 @@ export function applyInputContainer(stateValue: InputTagStateValue) {
     cursor: text;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    border-radius: 4px;
+    border-radius: 8px;
     transition: all 200ms ease-in-out;
     ${applySizeStyle(stateValue?.size)};
     ${applyStatus(stateValue)}
