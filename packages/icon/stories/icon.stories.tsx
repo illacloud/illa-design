@@ -122,6 +122,7 @@ import {
   WindowLeftIcon,
   WindowRightIcon,
 } from "../src"
+import { FullScreenIcon } from "../dist/types"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -570,7 +571,7 @@ export const DateTimeWidget: Story<IconProps> = (props: IconProps) => (
   <DateTimeWidgetIcon {...props} />
 )
 
-export const FullScreenIcon: Story<IconProps> = (props: IconProps) => (
+export const FullScreen: Story<IconProps> = (props: IconProps) => (
   <FullScreenIcon {...props} />
 )
 
