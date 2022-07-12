@@ -112,7 +112,6 @@ export function applySelectView(
     transition: all 200ms ease-in-out;
     box-sizing: border-box;
     width: 100%;
-    line-height: 30px;
     font-size: 14px;
     border-radius: 8px;
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
