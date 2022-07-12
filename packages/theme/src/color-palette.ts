@@ -1,5 +1,6 @@
 import Color from "color"
 import { globalColor, illaPrefix } from "./global-color"
+
 const formats = ["hex", "rgb", "hsl"]
 
 function getFormat(format: string) {
@@ -22,8 +23,6 @@ export const getColorString = (
   }
   return color[innerFormat]().round().string()
 }
-
-Color("s")
 
 // 动态梯度算法
 export function colorPalette(
@@ -78,8 +77,8 @@ export function colorPalette(
       : v - ((v - minValue) / 4) * i
   }
 
-  const isLight = i < 6
-  const index = isLight ? 6 - i : i - 6
+  const isLight = i > 6
+  const index = isLight ? i - 6 : 6 - i
 
   const retColor =
     i === 6
@@ -97,8 +96,13 @@ export const getColor = (color: string, step: string) => {
   let colorStyle = globalColor(`--${illaPrefix}-${color}-${step}`)
   if (!colorStyle) {
     const formatStep = step.slice(0, 1) === "0" ? step.slice(1) : step
-    let formatNum = parseInt(formatStep, 10) ?? 6
-    colorStyle = colorPalette(color, formatNum, "hex")
+    let formatNum = parseInt(formatStep, 10) ? parseInt(formatStep, 10) : 6
+    try {
+      colorStyle = colorPalette(color, formatNum, "hex")
+    } catch (e) {
+      colorStyle = "#fff"
+    }
   }
   return colorStyle
 }
+
