@@ -140,7 +140,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
                 })
               ) : (
                 <div css={applyModalCloseIcon} onClick={onCancel}>
-                  <CloseIcon />
+                  <CloseIcon size="14px" />
                 </div>
               )}
             </>
