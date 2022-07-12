@@ -77,8 +77,8 @@ export function colorPalette(
       : v - ((v - minValue) / 4) * i
   }
 
-  const isLight = i > 6
-  const index = isLight ? i - 6 : 6 - i
+  const isLight = i < 6
+  const index = isLight ? 6 - i : i - 6
 
   const retColor =
     i === 6
@@ -92,11 +92,22 @@ export function colorPalette(
   return getColorString(retColor, format)
 }
 
+const transRule: Record<string, number> = {
+  "n-01": 9,
+  "01": 8,
+  "02": 7,
+  "03": 6,
+  "04": 5,
+  "05": 4,
+  "06": 2,
+  "07": 1,
+}
+
 export const getColor = (color: string, step: string) => {
   let colorStyle = globalColor(`--${illaPrefix}-${color}-${step}`)
   if (!colorStyle) {
-    const formatStep = step.slice(0, 1) === "0" ? step.slice(1) : step
-    let formatNum = parseInt(formatStep, 10) ? parseInt(formatStep, 10) : 6
+    const formatStep = transRule[step]
+    let formatNum = formatStep ? formatStep : 6
     try {
       colorStyle = colorPalette(color, formatNum, "hex")
     } catch (e) {
@@ -105,4 +116,3 @@ export const getColor = (color: string, step: string) => {
   }
   return colorStyle
 }
-
