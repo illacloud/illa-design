@@ -204,7 +204,11 @@ exports[`Divider renders with text 1`] = `
   width: 100%;
 }
 
-.emotion-5 {
+.emotion-3 {
+  color: #1d2129;
+}
+
+.emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -218,11 +222,11 @@ exports[`Divider renders with text 1`] = `
   font-size: 14px;
 }
 
-.emotion-5 span {
+.emotion-6 span {
   padding: 0 16px;
 }
 
-.emotion-6 {
+.emotion-7 {
   -webkit-box-flex: 0;
   -webkit-flex-grow: 0;
   -ms-flex-positive: 0;
@@ -247,7 +251,9 @@ exports[`Divider renders with text 1`] = `
         <div
           class="emotion-2"
         />
-        <span>
+        <span
+          class="emotion-3"
+        >
           this is a divider
         </span>
         <div
@@ -259,13 +265,15 @@ exports[`Divider renders with text 1`] = `
       class="emotion-0"
     >
       <div
-        class="emotion-5"
+        class="emotion-6"
         direction="vertical"
       >
         <div
-          class="emotion-6"
+          class="emotion-7"
         />
-        <span>
+        <span
+          class="emotion-3"
+        >
           this is a divider
         </span>
         <div
@@ -277,17 +285,19 @@ exports[`Divider renders with text 1`] = `
       class="emotion-0"
     >
       <div
-        class="emotion-5"
+        class="emotion-6"
         direction="vertical"
       >
         <div
           class="emotion-2"
         />
-        <span>
+        <span
+          class="emotion-3"
+        >
           this is a divider
         </span>
         <div
-          class="emotion-6"
+          class="emotion-7"
         />
       </div>
     </div>

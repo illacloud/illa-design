@@ -54,11 +54,14 @@ export function applyDividerWithTextContainerStyle(
     color: ${globalColor(`--${illaPrefix}-${_color}-08`)};
     font-size: ${textSize};
     span {
-      color: ${globalColor(`--${illaPrefix}-${_color}-02`)};
       padding: 0 16px;
     }
   `
 }
+
+export const textCss = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`
 
 export function applyDividerStyle(
   variant: DividerVariant,
