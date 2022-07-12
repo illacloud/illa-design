@@ -12,21 +12,8 @@ export default {
       },
     },
     borderColor: {
-      options: [
-        "gray",
-        "blue",
-        "purple",
-        "red",
-        "green",
-        "yellow",
-        "orange",
-        "cyan",
-        "white",
-        "techPink",
-        "techPurple",
-      ],
       control: {
-        type: "select",
+        type: "text",
       },
     },
   },

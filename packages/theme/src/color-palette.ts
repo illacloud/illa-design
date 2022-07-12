@@ -25,7 +25,6 @@ export const getColorString = (
   return color[innerFormat]().round().string()
 }
 
-// 动态梯度算法
 export function colorPalette(
   originColor: string,
   i: number,
