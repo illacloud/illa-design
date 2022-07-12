@@ -38,15 +38,18 @@ export default {
         "orange",
         "cyan",
         "white",
+        "techPink",
+        "techPurple",
       ],
       control: {
-        type: "select",
+        type: "text",
       },
     },
   },
 } as Meta
 
 const Template: Story<InputProps> = (props) => {
+
   return (
     <div>
       <Space direction={"vertical"} wrap>

@@ -47,6 +47,7 @@ export interface TriggerProps {
   withoutPadding?: boolean
   withoutShadow?: boolean
   maxWidth?: string
+  zIndex?: number | "auto"
   trigger?: TriggerTrigger
   closeOnInnerClick?: boolean
   content?: string | ReactNode

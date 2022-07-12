@@ -3,6 +3,20 @@ import { SerializedStyles } from "@emotion/react"
 
 export type InputTagSize = "small" | "medium" | "large"
 
+export type InputTagBorderColor =
+  | string
+  | "gray"
+  | "blue"
+  | "purple"
+  | "red"
+  | "green"
+  | "yellow"
+  | "orange"
+  | "cyan"
+  | "white"
+  | "techPink"
+  | "techPurple"
+
 export interface InputTagProps<T = any>
   extends Omit<
     HTMLAttributes<HTMLDivElement>,
@@ -13,6 +27,7 @@ export interface InputTagProps<T = any>
   defaultValue?: T[]
   value?: T[]
   size?: InputTagSize
+  borderColor?: InputTagBorderColor
   placeholder?: string
   error?: boolean
   disabled?: boolean
@@ -59,4 +74,5 @@ export interface InputTagStateValue {
   error?: boolean
   focus?: boolean
   size?: InputTagProps["size"]
+  borderColor: InputTagBorderColor
 }
