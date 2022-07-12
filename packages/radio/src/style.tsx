@@ -126,19 +126,19 @@ export function applyRadioButton(stateValue: RadioStatus) {
     case "small":
       sizeCss = css`
         padding: 1px 8px;
-        height: 24px;
+        height: 22px;
       `
       break
     case "medium":
       sizeCss = css`
         padding: 5px 12px;
-        height: 32px;
+        height: 30px;
       `
       break
     case "large":
       sizeCss = css`
         padding: 9px 16px;
-        height: 40px;
+        height: 38px;
       `
       break
   }
@@ -198,7 +198,7 @@ export function applyRadioButton(stateValue: RadioStatus) {
     &:not(:first-of-type):before {
       position: absolute;
       top: 50%;
-      left: -2px;
+      left: 0;
       transform: translateY(-50%);
       display: block;
       height: 12px;
