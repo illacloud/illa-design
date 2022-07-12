@@ -1,4 +1,4 @@
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import { RadioColorScheme, RadioSize, RadioStatus } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
@@ -17,7 +17,7 @@ export function applyRadioSize(colorScheme: RadioColorScheme) {
     transition: 0.15s all linear;
 
     &:hover {
-      border-color: ${globalColor(`--${illaPrefix}-${colorScheme}-06`)};
+      border-color:  ${getColor(colorScheme, "06")};
     }
 
     &:disabled {
@@ -27,14 +27,14 @@ export function applyRadioSize(colorScheme: RadioColorScheme) {
     }
 
     &:checked {
-      border: 4px solid ${globalColor(`--${illaPrefix}-${colorScheme}-01`)};
+      border: 4px solid ${getColor(colorScheme, "01")};
 
       &:hover {
-        border-color: ${globalColor(`--${illaPrefix}-${colorScheme}-02`)};
+        border-color: ${getColor(colorScheme, "02")};
       }
 
       &:disabled {
-        border-color: ${globalColor(`--${illaPrefix}-${colorScheme}-05`)};
+        border-color: ${getColor(colorScheme, "05")};
       }
     }
   `
@@ -145,11 +145,11 @@ export function applyRadioButton(stateValue: RadioStatus) {
   const checkedColor =
     colorScheme === "gray" || colorScheme === "grayBlue"
       ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
-      : globalColor(`--${illaPrefix}-${colorScheme}-03`)
+      : getColor(colorScheme, "03")
 
   if (stateValue?.disabled && stateValue?.checked) {
     stateCss = css`
-      color: ${globalColor(`--${illaPrefix}-${colorScheme}-06`)};
+      color: ${getColor(colorScheme, "06")};
       cursor: not-allowed;
     `
   } else if (stateValue?.disabled) {

@@ -11,6 +11,11 @@ export default {
         type: "text",
       },
     },
+    borderColor: {
+      control: {
+        type: "text",
+      },
+    },
   },
 } as Meta
 

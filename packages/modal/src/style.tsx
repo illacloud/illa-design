@@ -83,7 +83,7 @@ export function applyModalHeader(
       `
     : ""
   return css`
-    padding: 12px 16px;
+    padding: 24px 16px;
     ${closable ? "padding-right:40px" : ""};
     width: 100%;
     box-sizing: border-box;
@@ -98,7 +98,7 @@ export function applyModalTitle(isSimple?: boolean): SerializedStyles {
   return css`
     text-align: center;
     flex: 1;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: ${isSimple ? 500 : 600};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
@@ -129,13 +129,15 @@ export function applyModalContent(
   `
 }
 
-export const applyModalCloseIcon = css`
+export const modalCloseIconStyle = css`
   position: absolute;
-  top: 20px;
-  right: 24px;
-  font-size: 8px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  top: 26px;
+  right: 26px;
   cursor: pointer;
-  line-height: 0;
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 `
 

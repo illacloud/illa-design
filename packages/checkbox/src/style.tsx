@@ -1,4 +1,4 @@
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import { CheckboxColorScheme, CheckboxProps } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
@@ -20,22 +20,20 @@ const innerColor = [
 
 export function applyCheckboxSize(
   checked?: boolean,
-  colorScheme?: CheckboxColorScheme,
+  colorScheme: CheckboxColorScheme = "blue",
 ) {
-  const _colorScheme =
-    colorScheme && innerColor.indexOf(colorScheme) > -1 ? colorScheme : "blue"
   let checkedCss = css()
   if (checked) {
     checkedCss = css`
       border-color: transparent;
-      background-color: ${globalColor(`--${illaPrefix}-${_colorScheme}-01`)};
+      background-color: ${getColor(colorScheme, "01")};
 
       &:hover {
-        background-color: ${globalColor(`--${illaPrefix}-${_colorScheme}-02`)};
+        background-color: ${getColor(colorScheme, "02")};
       }
 
       &:disabled {
-        background-color: ${globalColor(`--${illaPrefix}-${_colorScheme}-06`)};
+        background-color: ${getColor(colorScheme, "06")};
       }
     `
   }
@@ -49,8 +47,9 @@ export function applyCheckboxSize(
     border: solid 2px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     cursor: pointer;
     transition: 0.15s all linear;
+
     &:hover {
-      border-color: ${globalColor(`--${illaPrefix}-${_colorScheme}-06`)};
+      border-color: ${getColor(colorScheme, "06")};
     }
 
     &:disabled {
@@ -58,6 +57,7 @@ export function applyCheckboxSize(
       border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     }
+
     ${checkedCss}
   `
 }

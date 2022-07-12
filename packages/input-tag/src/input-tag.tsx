@@ -29,6 +29,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       inputValue,
       placeholder,
       allowClear,
+      borderColor = "blue",
       error,
       disabled,
       readOnly,
@@ -67,6 +68,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       disabled,
       focus,
       size,
+      borderColor,
     }
 
     const valueChangeHandler = (value: ObjectValueType[]) => {
