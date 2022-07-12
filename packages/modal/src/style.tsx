@@ -129,7 +129,7 @@ export function applyModalContent(
   `
 }
 
-export const applyModalCloseIcon = css`
+export const modalCloseIconStyle = css`
   position: absolute;
   width: 24px;
   height: 24px;
