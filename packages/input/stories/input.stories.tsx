@@ -49,7 +49,6 @@ export default {
 } as Meta
 
 const Template: Story<InputProps> = (props) => {
-
   return (
     <div>
       <Space direction={"vertical"} wrap>
