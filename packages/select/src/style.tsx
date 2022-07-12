@@ -117,6 +117,7 @@ export function applySelectView(
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: pointer;
+    display: flex;
 
     &:hover {
       [title="selectRemoveIcon"] {
