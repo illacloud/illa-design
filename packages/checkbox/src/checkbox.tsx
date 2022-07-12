@@ -29,7 +29,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
       checked,
       indeterminate,
       defaultChecked,
-      colorScheme,
+      colorScheme = "blue",
       ...otherProps
     } = mergeProps
     if (context.isGroup) {
