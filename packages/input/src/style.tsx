@@ -138,9 +138,9 @@ function applyStatus(stateValue: StateValue) {
       ${disableStyle}
     `
   } else if (stateValue?.focus) {
-    const boxShadowColor = getColor(stateValue.borderColor, '01')
+    const boxShadowColor = getColor(stateValue.borderColor, "01")
     mainStyle = css`
-      border-color: ${getColor(stateValue.borderColor, '03')};
+      border-color: ${getColor(stateValue.borderColor, "03")};
       box-shadow: 0 0 8px 0
         ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
@@ -153,7 +153,7 @@ function applyStatus(stateValue: StateValue) {
   } else {
     mainStyle = css`
       &:hover {
-        border-color:  ${getColor(stateValue.borderColor, '06')};
+        border-color: ${getColor(stateValue.borderColor, "06")};
         ${hoverStyle}
       }
     `

@@ -15,7 +15,7 @@ import { ErrorIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import autoSizeTextAreaHeight from "./autoSizeTextAreaHeight"
 import { applyLengthErrorStyle, applyCountLimitStyle } from "./style"
-import { InputSize, TextAreaProps } from "./interface"
+import { TextAreaProps } from "./interface"
 import {
   applyTextAreaContainer,
   applyTextAreaStyle,

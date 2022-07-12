@@ -74,5 +74,5 @@ export interface InputTagStateValue {
   error?: boolean
   focus?: boolean
   size?: InputTagProps["size"]
-  borderColor?: InputTagBorderColor
+  borderColor: InputTagBorderColor
 }

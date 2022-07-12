@@ -1,3 +1,4 @@
+// thanks arco
 import Color from "color"
 import { globalColor, illaPrefix } from "./global-color"
 

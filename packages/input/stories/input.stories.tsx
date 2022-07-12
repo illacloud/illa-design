@@ -65,7 +65,7 @@ const Template: Story<InputProps> = (props) => {
     return list
   }
 
-  console.log(generate('red'))
+  console.log(generate("red"))
   return (
     <div>
       <Space direction={"vertical"} wrap>
@@ -100,11 +100,11 @@ const Template: Story<InputProps> = (props) => {
             }}
           />
           <input
-              type="text"
-              defaultValue={step}
-              onChange={(e) => {
-                setStep(e.target.value)
-              }}
+            type="text"
+            defaultValue={step}
+            onChange={(e) => {
+              setStep(e.target.value)
+            }}
           />
         </div>
       </Space>
