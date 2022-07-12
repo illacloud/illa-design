@@ -24,7 +24,7 @@ import {
   applyModalWrapper,
   applyModalHeader,
   applyModalTitle,
-  applyModalCloseIcon,
+  modalCloseIconStyle,
   applyModalContent,
   applyModalFooter,
   applyModalCancelBtn,
@@ -139,8 +139,8 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
                   onClick: onCancel,
                 })
               ) : (
-                <div css={applyModalCloseIcon} onClick={onCancel}>
-                  <CloseIcon />
+                <div css={modalCloseIconStyle} onClick={onCancel}>
+                  <CloseIcon size="14px" />
                 </div>
               )}
             </>
