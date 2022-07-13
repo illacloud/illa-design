@@ -139,7 +139,7 @@ export function confirm(
   }
 
   function onCancel(isOnOk?: boolean) {
-    !isOnOk && config.onCancel && config.onCancel()
+    isOnOk !== true && config.onCancel?.()
     modalConfig.visible = false
     renderFunction(modalConfig)
   }
