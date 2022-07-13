@@ -34,7 +34,7 @@ test("Modal api renders with config", () => {
     // @ts-ignore
     "data-testid": "warn",
   })
-  expect(screen.getByTestId("warn").firstChild).toHaveStyle({ width: "320px" })
+  expect(screen.getByTestId("warn").firstChild).toHaveStyle({ width: "400px" })
   Modal.config({ simple: false })
   Modal.success({
     visible: true,
