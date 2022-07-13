@@ -58,7 +58,7 @@ export function applyModal(
     position: relative;
     top: 100px;
     margin: 0 auto;
-    width: ${isSimple ? "320px" : "520px"};
+    width: ${isSimple ? "400px" : "520px"};
     text-align: left;
     overflow: auto;
     white-space: initial;
@@ -115,7 +115,7 @@ export function applyModalContent(
     : ""
   const simpleCss = isSimple
     ? css`
-        padding: 0 24px 8px;
+        padding: 8px 24px;
       `
     : ""
   return css`
@@ -138,6 +138,9 @@ export const modalCloseIconStyle = css`
   top: 16px;
   right: 16px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 `
 
