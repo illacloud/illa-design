@@ -147,6 +147,7 @@ export function applyIconStyle(): SerializedStyles {
       font-size: 12px;
     }
 
+    display: flex;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }

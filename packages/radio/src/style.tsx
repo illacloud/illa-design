@@ -112,7 +112,7 @@ export function applyRadioButtonContainer(size?: RadioSize): SerializedStyles {
     align-items: center;
     gap: 1px;
     font-size: 14px;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     padding: 1px;
   `
