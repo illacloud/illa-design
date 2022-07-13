@@ -17,7 +17,7 @@ export function applyRadioSize(colorScheme: RadioColorScheme) {
     transition: 0.15s all linear;
 
     &:hover {
-      border-color:  ${getColor(colorScheme, "06")};
+      border-color: ${getColor(colorScheme, "06")};
     }
 
     &:disabled {

@@ -208,6 +208,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             ref={inputRef}
             disabled={disabled}
             readOnly={readOnly}
+            borderColor={colorScheme}
             {...inputProps}
           />
           <span css={applySelectViewText(!needShowInput)}>{_inputValue}</span>
@@ -268,6 +269,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             padding: unset;
             box-shadow: unset;
           `}
+          borderColor={colorScheme}
           disableInput={!(showSearch ? showSearch : multiple)}
           inputRef={inputRef}
           disabled={disabled}

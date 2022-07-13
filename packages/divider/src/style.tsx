@@ -59,6 +59,10 @@ export function applyDividerWithTextContainerStyle(
   `
 }
 
+export const textCss = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`
+
 export function applyDividerStyle(
   variant: DividerVariant,
   full?: boolean,
