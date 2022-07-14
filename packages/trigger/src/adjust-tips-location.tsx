@@ -1,4 +1,5 @@
 import { CustomPositionType, TriggerPosition } from "./interface"
+import { useEffect, useMemo, useState } from "react"
 
 export interface AdjustResult {
   readonly transX: number
@@ -653,4 +654,28 @@ export function getFinalPosition(
     case "rb":
       return "lb"
   }
+}
+
+export const useIsInViewport = (element?: Element) => {
+  const [isInViewport, setIsInViewport] = useState(false)
+
+  const observer = useMemo(
+    () =>
+      new IntersectionObserver(([entry]) =>
+        setIsInViewport(entry.isIntersecting),
+      ),
+    [],
+  )
+
+  useEffect(() => {
+    if (element) {
+      observer.observe(element)
+    }
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [element, observer])
+  console.log(isInViewport, element,'isInViewport')
+  return isInViewport
 }
