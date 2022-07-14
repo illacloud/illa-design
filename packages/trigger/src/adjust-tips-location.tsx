@@ -653,7 +653,7 @@ function adjustRb(
   childrenDom: DOMRect,
   customPosition: CustomPositionType,
 ): [number, number] {
-  let y = childrenDom.top - tipsDom.height
+  let y = childrenDom.bottom - tipsDom.height
 
   if (customPosition.y) {
     y = customPosition.y
