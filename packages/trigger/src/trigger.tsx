@@ -66,6 +66,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     onVisibleChange,
     trigger = "hover",
     alignPoint,
+    closeOnNoElementsInside,
     disabledOutsideScrollable,
   } = props
 
@@ -295,6 +296,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
   )
 
   useEffect(() => {
+    if (closeOnNoElementsInside) {
+      if (!(measureInfo.width || measureInfo.height)) {
+        hideTips()
+        return
+      }
+    }
     if (tipVisible) {
       adjustLocationAndResult()
     }

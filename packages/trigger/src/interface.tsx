@@ -50,6 +50,7 @@ export interface TriggerProps {
   zIndex?: number | "auto"
   trigger?: TriggerTrigger
   closeOnInnerClick?: boolean
+  closeOnNoElementsInside?: boolean
   content?: string | ReactNode
   position?: TriggerPosition
   showArrow?: boolean
