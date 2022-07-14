@@ -37,6 +37,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     colorScheme: "white",
     withoutPadding: true,
     clickOutsideToClose: true,
+    closeOnInnerClick: true,
     ...triggerProps,
   }
 
