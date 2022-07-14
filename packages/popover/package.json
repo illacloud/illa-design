@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/popover",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Illa Design Popover.",
   "keywords": [
     "popover",
@@ -39,10 +39,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/trigger": "0.0.11",
-    "@illa-design/typography": "0.0.11",
-    "@illa-design/link": "0.0.11",
-    "@illa-design/system": "0.0.11",
-    "@illa-design/theme": "0.0.11"
+    "@illa-design/trigger": "0.0.12",
+    "@illa-design/typography": "0.0.12",
+    "@illa-design/link": "0.0.12",
+    "@illa-design/system": "0.0.12",
+    "@illa-design/theme": "0.0.12"
   }
 }
