@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/card",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Illa Design Card.",
   "keywords": [
     "card",
@@ -39,9 +39,9 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.12",
-    "@illa-design/spin": "0.0.12",
-    "@illa-design/system": "0.0.12",
-    "@illa-design/theme": "0.0.12"
+    "@illa-design/icon": "0.0.13",
+    "@illa-design/spin": "0.0.13",
+    "@illa-design/system": "0.0.13",
+    "@illa-design/theme": "0.0.13"
   }
 }

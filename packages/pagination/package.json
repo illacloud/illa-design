@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/pagination",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Illa Design Pagination.",
   "keywords": [
     "pagination",
@@ -39,10 +39,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.12",
-    "@illa-design/input": "0.0.12",
-    "@illa-design/select": "0.0.12",
-    "@illa-design/system": "0.0.12",
-    "@illa-design/theme": "0.0.12"
+    "@illa-design/icon": "0.0.13",
+    "@illa-design/input": "0.0.13",
+    "@illa-design/select": "0.0.13",
+    "@illa-design/system": "0.0.13",
+    "@illa-design/theme": "0.0.13"
   }
 }

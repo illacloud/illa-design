@@ -1,5 +1,16 @@
 # @illa-design/space
 
+## 0.0.13
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/divider@0.0.13
+  - @illa-design/system@0.0.13
+  - @illa-design/theme@0.0.13
+
 ## 0.0.12
 
 ### Patch Changes
