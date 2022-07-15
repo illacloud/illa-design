@@ -84,7 +84,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     adjustResult?.opposite ?? false,
     position,
   )
-  const isInViewport = useIsInViewport(childrenRef?.current)
+  const isInViewport = useIsInViewport(childrenRef)
   const [measureRef, measureInfo] = useMeasure<HTMLElement>()
 
   // delay to do sth

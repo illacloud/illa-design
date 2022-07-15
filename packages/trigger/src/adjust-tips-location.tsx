@@ -1,5 +1,5 @@
 import { CustomPositionType, TriggerPosition } from "./interface"
-import { useEffect, useMemo, useState } from "react"
+import { RefObject, useEffect, useMemo, useState } from "react"
 
 export interface AdjustResult {
   readonly transX: number
@@ -656,7 +656,7 @@ export function getFinalPosition(
   }
 }
 
-export const useIsInViewport = (element?: Element) => {
+export const useIsInViewport = (ref?: RefObject<HTMLElement>) => {
   const [isInViewport, setIsInViewport] = useState(false)
 
   const observer = useMemo(
@@ -668,14 +668,14 @@ export const useIsInViewport = (element?: Element) => {
   )
 
   useEffect(() => {
-    if (element) {
-      observer.observe(element)
+    if (ref?.current) {
+      observer.observe(ref.current)
     }
 
     return () => {
       observer.disconnect()
     }
-  }, [element, observer])
-  console.log(isInViewport, element,'isInViewport')
+  }, [ref, observer])
+
   return isInViewport
 }
