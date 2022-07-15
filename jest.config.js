@@ -13,6 +13,7 @@ module.exports = {
   ],
   moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
   modulePathIgnorePatterns: ["<rootDir>/examples"],
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.js'],
   snapshotSerializers: ["@emotion/jest/serializer"],
   testPathIgnorePatterns: [
     "<rootDir>/node_modules/",
