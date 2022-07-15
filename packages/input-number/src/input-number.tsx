@@ -177,7 +177,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       }
       val = formatter ? formatter(val) : val
       setDisplayValue(val)
-    }, [inputValue, isUserInputting, mergedValue, value])
+    }, [inputValue, isUserInputting, mergedValue, value, precision, formatter])
 
     useEffect(() => {
       hasOperateRef.current = false
