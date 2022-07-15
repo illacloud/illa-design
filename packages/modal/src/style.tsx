@@ -58,7 +58,7 @@ export function applyModal(
     position: relative;
     top: 100px;
     margin: 0 auto;
-    width: ${isSimple ? "320px" : "520px"};
+    width: ${isSimple ? "400px" : "520px"};
     text-align: left;
     overflow: auto;
     white-space: initial;
@@ -76,14 +76,14 @@ export function applyModalHeader(
 ): SerializedStyles {
   const simpleCss = isSimple
     ? css`
-        padding-top: 24px;
-        padding-bottom: 16px;
+        padding-top: 16px;
+        padding-bottom: 8px;
         height: unset;
         border: none;
       `
     : ""
   return css`
-    padding: 12px 16px;
+    padding: 16px;
     ${closable ? "padding-right:40px" : ""};
     width: 100%;
     box-sizing: border-box;
@@ -115,7 +115,7 @@ export function applyModalContent(
     : ""
   const simpleCss = isSimple
     ? css`
-        padding: 0 24px 8px;
+        padding: 8px 24px;
       `
     : ""
   return css`
@@ -129,13 +129,18 @@ export function applyModalContent(
   `
 }
 
-export const applyModalCloseIcon = css`
+export const modalCloseIconStyle = css`
   position: absolute;
-  top: 20px;
-  right: 24px;
-  font-size: 8px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  top: 16px;
+  right: 16px;
   cursor: pointer;
-  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 `
 

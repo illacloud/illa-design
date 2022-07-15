@@ -8,21 +8,8 @@ export default {
   component: RadioGroup,
   argTypes: {
     colorScheme: {
-      options: [
-        "white",
-        "blackAlpha",
-        "gray",
-        "red",
-        "orange",
-        "yellow",
-        "green",
-        "blue",
-        "cyan",
-        "purple",
-        "grayBlue",
-      ],
       control: {
-        type: "select",
+        type: "text",
       },
     },
   },

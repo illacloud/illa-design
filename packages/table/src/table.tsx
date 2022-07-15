@@ -224,7 +224,12 @@ function renderDataDrivenTable<D extends TableData>(
                         css={applyPreContainer(align)}
                         {...column.getSortByToggleProps()}
                       >
-                        {column.Header != undefined && column.render("Header")}
+                        {/* it will compile to different code if wrap with Fragment or not  */}
+                        {/* wrap with Fragment to avoid `Each child in a list should have a unique "key" prop.` warning */}
+                        <>
+                          {column.Header != undefined &&
+                            column.render("Header")}
+                        </>
                         {column.canSort &&
                           (column.isSorted ? (
                             column.isSortedDesc ? (

@@ -94,7 +94,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       }
       target = _isHorizontalLayout ? target : target + PADDING
       setBlueLinePosition(target)
-    }, [selectedIndex, tabBarSpacing, childRef])
+    }, [selectedIndex, tabBarSpacing, childRef, tabHeaderChild])
 
     const getOffsetSize = () =>
       (_isHorizontalLayout

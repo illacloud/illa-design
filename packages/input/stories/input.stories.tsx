@@ -38,9 +38,11 @@ export default {
         "orange",
         "cyan",
         "white",
+        "techPink",
+        "techPurple",
       ],
       control: {
-        type: "select",
+        type: "text",
       },
     },
   },

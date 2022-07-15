@@ -1,6 +1,6 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import {
   disableFillStyle,
   disableOutlineStyle,
@@ -40,13 +40,9 @@ function applyStatus(stateValue: StateValue) {
     `
   } else if (stateValue?.focus) {
     mainStyle = css`
-      border-color: ${globalColor(
-        `--${illaPrefix}-${stateValue.borderColor}-03`,
-      )};
+      border-color: ${getColor(stateValue.borderColor, "03")};
       box-shadow: 0 0 8px 0
-        ${chroma(globalColor(`--${illaPrefix}-${stateValue.borderColor}-01`))
-          .alpha(0.15)
-          .hex()};
+        ${chroma(getColor(stateValue.borderColor, "01")).alpha(0.15).hex()};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
     `
@@ -57,9 +53,7 @@ function applyStatus(stateValue: StateValue) {
   } else {
     mainStyle = css`
       &:hover {
-        border-color: ${globalColor(
-          `--${illaPrefix}-${stateValue.borderColor}-06`,
-        )};
+        border-color: ${getColor(stateValue.borderColor, "06")};
         ${hoverStyle}
       }
     `

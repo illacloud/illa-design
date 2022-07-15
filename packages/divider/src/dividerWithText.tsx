@@ -1,6 +1,10 @@
 import { forwardRef } from "react"
 import { DividerProps } from "./interface"
-import { applyDividerStyle, applyDividerWithTextContainerStyle } from "./style"
+import {
+  applyDividerStyle,
+  applyDividerWithTextContainerStyle,
+  textCss,
+} from "./style"
 
 export const DividerWithText = forwardRef<HTMLDivElement, DividerProps>(
   (props, ref) => {
@@ -20,7 +24,7 @@ export const DividerWithText = forwardRef<HTMLDivElement, DividerProps>(
         {...otherProps}
       >
         <div css={applyDividerStyle(variant, textAlign !== "start")} />
-        <span>{text}</span>
+        <span css={textCss}>{text}</span>
         <div css={applyDividerStyle(variant, textAlign !== "end")} />
       </div>
     )

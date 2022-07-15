@@ -47,8 +47,11 @@ export interface TriggerProps {
   withoutPadding?: boolean
   withoutShadow?: boolean
   maxWidth?: string
+  zIndex?: number | "auto"
   trigger?: TriggerTrigger
+  hideOnInnerInVisible?: boolean
   closeOnInnerClick?: boolean
+  closeOnNoElementsInside?: boolean
   content?: string | ReactNode
   position?: TriggerPosition
   showArrow?: boolean
@@ -62,6 +65,7 @@ export interface TriggerProps {
   disabled?: boolean
   onVisibleChange?: (visible: boolean) => void
   alignPoint?: boolean
+  disabledOutsideScrollable?: boolean
 }
 
 export interface TriggerState {

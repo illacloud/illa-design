@@ -58,6 +58,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
       "showCount",
       "onKeyDown",
       "onPressEnter",
+      "borderColor",
     ])
 
     useImperativeHandle(ref, () => inputRef.current as HTMLInputElement, [])

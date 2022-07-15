@@ -196,7 +196,7 @@ export interface StateValue {
   focus?: boolean
   variant?: string
   size?: InputProps["size"]
-  borderColor?: InputProps["borderColor"]
+  borderColor: InputBorderColor
   iconAppearWithSuffix?: boolean
   // only RangeInput
   focusedInput0?: boolean

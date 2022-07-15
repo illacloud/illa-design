@@ -44,7 +44,12 @@ export function getDifferentStatusColor(
     case State.DEFAULT:
       switch (variant) {
         case "fill":
-          if (colorScheme != "gray" && colorScheme != "grayBlue") {
+          if (colorScheme === "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-01`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-01`),
               globalColor(`--${illaPrefix}-white-01`),
@@ -56,14 +61,26 @@ export function getDifferentStatusColor(
             ]
           }
         case "light": {
-          return [
-            globalColor(`--${illaPrefix}-${colorScheme}-07`),
-            globalColor(`--${illaPrefix}-${colorScheme}-01`),
-          ]
+          if (colorScheme === "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-01`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else {
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-07`),
+              globalColor(`--${illaPrefix}-${colorScheme}-01`),
+            ]
+          }
         }
         case "dashed":
         case "outline":
-          if (colorScheme != "gray" && colorScheme != "grayBlue") {
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-01`),
+              globalColor(`--${illaPrefix}-white-01`),
+            ]
+          } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-01`),
               globalColor(`--${illaPrefix}-${colorScheme}-01`),
@@ -75,15 +92,27 @@ export function getDifferentStatusColor(
             ]
           }
         case "text":
-          return [
-            globalColor("transparent"),
-            globalColor(`--${illaPrefix}-${colorScheme}-01`),
-          ]
+          if (colorScheme == "white") {
+            return [
+              globalColor("transparent"),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else {
+            return [
+              globalColor("transparent"),
+              globalColor(`--${illaPrefix}-${colorScheme}-01`),
+            ]
+          }
       }
     case State.HOVER:
       switch (variant) {
         case "fill":
-          if (colorScheme != "gray" && colorScheme != "grayBlue") {
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-02`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-02`),
               globalColor(`--${illaPrefix}-white-01`),
@@ -95,14 +124,26 @@ export function getDifferentStatusColor(
             ]
           }
         case "light": {
-          return [
-            globalColor(`--${illaPrefix}-${colorScheme}-06`),
-            globalColor(`--${illaPrefix}-${colorScheme}-01`),
-          ]
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-02`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else {
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-06`),
+              globalColor(`--${illaPrefix}-${colorScheme}-01`),
+            ]
+          }
         }
         case "dashed":
         case "outline":
-          if (colorScheme != "gray" && colorScheme != "grayBlue") {
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-02`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-02`),
               globalColor(`--${illaPrefix}-${colorScheme}-02`),
@@ -114,15 +155,27 @@ export function getDifferentStatusColor(
             ]
           }
         case "text":
-          return [
-            globalColor(`--${illaPrefix}-grayBlue-09`),
-            globalColor(`--${illaPrefix}-${colorScheme}-02`),
-          ]
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-02`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else {
+            return [
+              globalColor(`--${illaPrefix}-grayBlue-09`),
+              globalColor(`--${illaPrefix}-${colorScheme}-02`),
+            ]
+          }
       }
     case State.ACTIVE:
       switch (variant) {
         case "fill":
-          if (colorScheme != "gray" && colorScheme != "grayBlue") {
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-03`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
               globalColor(`--${illaPrefix}-white-01`),
@@ -134,14 +187,26 @@ export function getDifferentStatusColor(
             ]
           }
         case "light": {
-          return [
-            globalColor(`--${illaPrefix}-${colorScheme}-05`),
-            globalColor(`--${illaPrefix}-${colorScheme}-01`),
-          ]
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-03`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else {
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-05`),
+              globalColor(`--${illaPrefix}-${colorScheme}-01`),
+            ]
+          }
         }
         case "dashed":
         case "outline":
-          if (colorScheme != "gray" && colorScheme != "grayBlue") {
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-03`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
               globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
@@ -153,15 +218,27 @@ export function getDifferentStatusColor(
             ]
           }
         case "text":
-          return [
-            globalColor(`--${illaPrefix}-grayBlue-08`),
-            globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
-          ]
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-03`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else {
+            return [
+              globalColor(`--${illaPrefix}-grayBlue-08`),
+              globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
+            ]
+          }
       }
     case State.DISABLE:
       switch (variant) {
         case "fill":
-          if (colorScheme != "gray" && colorScheme != "grayBlue") {
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-04`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-05`),
               globalColor(`--${illaPrefix}-white-01`),
@@ -173,14 +250,26 @@ export function getDifferentStatusColor(
             ]
           }
         case "light": {
-          return [
-            globalColor(`--${illaPrefix}-${colorScheme}-07`),
-            globalColor(`--${illaPrefix}-${colorScheme}-05`),
-          ]
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-04`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else {
+            return [
+              globalColor(`--${illaPrefix}-${colorScheme}-07`),
+              globalColor(`--${illaPrefix}-${colorScheme}-05`),
+            ]
+          }
         }
         case "dashed":
         case "outline":
-          if (colorScheme != "gray" && colorScheme != "grayBlue") {
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-04`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
               globalColor(`--${illaPrefix}-${colorScheme}-05`),
               globalColor(`--${illaPrefix}-${colorScheme}-05`),
@@ -192,10 +281,17 @@ export function getDifferentStatusColor(
             ]
           }
         case "text":
-          return [
-            globalColor("transparent"),
-            globalColor(`--${illaPrefix}-${colorScheme}-05`),
-          ]
+          if (colorScheme == "white") {
+            return [
+              globalColor(`--${illaPrefix}-white-04`),
+              globalColor(`--${illaPrefix}-gray-02`),
+            ]
+          } else {
+            return [
+              globalColor("transparent"),
+              globalColor(`--${illaPrefix}-${colorScheme}-05`),
+            ]
+          }
       }
   }
   return []
@@ -211,9 +307,11 @@ export function applyBg(
   const borderCss = borderColor
     ? css`
         border: solid 1px ${borderColor};
+
         &:hover {
           border: solid 1px ${borderColor};
         }
+
         &:active {
           border: solid 1px ${borderColor};
         }
@@ -222,9 +320,11 @@ export function applyBg(
   const backgroundCss = backgroundColor
     ? css`
         background-color: ${backgroundColor};
+
         &:hover {
           background-color: ${backgroundColor};
         }
+
         &:active {
           background-color: ${backgroundColor};
         }
@@ -307,6 +407,7 @@ export function applyBg(
             State.ACTIVE,
           )[0]};
         }
+
         ${borderCss}
         ${backgroundCss}
       `
@@ -332,6 +433,7 @@ export function applyBg(
           border: solid 1px
             ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
         }
+
         ${borderCss}
       `
     case "light":
@@ -350,6 +452,7 @@ export function applyBg(
           variant,
           State.DEFAULT,
         )[0]};
+
         &:hover {
           background-color: ${getDifferentStatusColor(
             colorScheme,
@@ -434,6 +537,7 @@ export function applyElementColor(
           variant,
           State.DEFAULT,
         )[1]};
+
         &:hover {
           color: ${getDifferentStatusColor(
             colorScheme,

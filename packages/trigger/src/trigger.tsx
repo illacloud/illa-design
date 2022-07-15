@@ -32,6 +32,7 @@ import {
   adjustLocation,
   AdjustResult,
   getFinalPosition,
+  useIsInViewport,
 } from "./adjust-tips-location"
 import { Popup } from "./popup"
 import useMeasure from "react-use/lib/useMeasure"
@@ -39,6 +40,7 @@ import useWindowSize from "react-use/lib/useWindowSize"
 import { getScrollElements, mergeRefs } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
 import useMouse from "react-use/lib/useMouse"
+import { RemoveScroll } from "react-remove-scroll"
 import { css } from "@emotion/react"
 
 export const Trigger: FC<TriggerProps> = (props) => {
@@ -52,9 +54,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
     showArrow = true,
     closeDelay = 150,
     openDelay = 150,
+    zIndex = "auto",
     autoFitPosition = true,
     autoAlignPopupWidth,
     closeOnClick = true,
+    hideOnInnerInVisible = true,
     defaultPopupVisible,
     maxWidth = "588px",
     withoutPadding,
@@ -64,6 +68,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
     onVisibleChange,
     trigger = "hover",
     alignPoint,
+    closeOnNoElementsInside,
+    disabledOutsideScrollable,
   } = props
 
   const [tipVisible, setTipsVisible] = useState<boolean>(false)
@@ -78,7 +84,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     adjustResult?.opposite ?? false,
     position,
   )
-
+  const isInViewport = useIsInViewport(childrenRef)
   const [measureRef, measureInfo] = useMeasure<HTMLElement>()
 
   // delay to do sth
@@ -120,7 +126,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div css={applyTipsText(stateValue)}>{closeContent}</div>
           {showArrow && (
             <TriangleTop
-              css={applyTriangleStyle(colorScheme, finalPosition)}
+              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
               width="8px"
               height="4px"
             />
@@ -135,7 +141,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         <div css={css(applyTipsContainer(finalPosition, showArrow), _css)}>
           {showArrow && (
             <TriangleBottom
-              css={applyTriangleStyle(colorScheme, finalPosition)}
+              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
               width="8px"
               height="4px"
             />
@@ -152,7 +158,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div css={applyTipsText(stateValue)}>{closeContent}</div>
           {showArrow && (
             <TriangleLeft
-              css={applyTriangleStyle(colorScheme, finalPosition)}
+              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
               width="4px"
               height="8px"
             />
@@ -167,7 +173,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         <div css={css(applyTipsContainer(finalPosition, showArrow), _css)}>
           {showArrow && (
             <TriangleRight
-              css={applyTriangleStyle(colorScheme, finalPosition)}
+              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
               width="4px"
               height="8px"
             />
@@ -202,6 +208,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         position,
         autoFitPosition,
         customPosition,
+        showArrow,
       )
       setAdjustResult(result)
     }
@@ -266,7 +273,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
         }
       }}
     >
-      {centerNode}
+      {disabledOutsideScrollable ? (
+        <RemoveScroll>{centerNode}</RemoveScroll>
+      ) : (
+        centerNode
+      )}
     </motion.div>
   )
 
@@ -288,6 +299,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
   )
 
   useEffect(() => {
+    if (closeOnNoElementsInside) {
+      if (!(measureInfo.width || measureInfo.height)) {
+        hideTips()
+        return
+      }
+    }
     if (tipVisible) {
       adjustLocationAndResult()
     }
@@ -342,6 +359,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
           }}
           top={`${adjustResult?.transY ?? 0}px`}
           left={`${adjustResult?.transX ?? 0}px`}
+          zIndex={zIndex}
+          isInViewport={hideOnInnerInVisible ? isInViewport : true}
         >
           {tipsNode}
         </Popup>

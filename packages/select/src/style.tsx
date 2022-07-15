@@ -1,4 +1,4 @@
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import { SelectColorScheme, SelectProps, SelectStateValue } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
@@ -10,21 +10,6 @@ const OPTION_PADDING = {
   medium: [5, 16],
   large: [9, 16],
 }
-
-const innerColor = [
-  "gray",
-  "blue",
-  "purple",
-  "red",
-  "green",
-  "yellow",
-  "orange",
-  "cyan",
-  "white",
-  "grayBlue",
-  "techPink",
-  "techPurple",
-]
 
 // default select
 export const inputOutlineStyle = css`
@@ -54,8 +39,7 @@ export const errorOutlineStyle = css`
 function applyStatus(stateValue: SelectStateValue) {
   let mainStyle: SerializedStyles
   let inputStyle = inputOutlineStyle
-  const { colorScheme } = stateValue
-  const isInnerColor = colorScheme && innerColor.indexOf(colorScheme) > -1
+  const colorScheme = stateValue.colorScheme ?? "blue"
   if (stateValue?.disabled) {
     mainStyle = css`
       cursor: not-allowed;
@@ -64,12 +48,8 @@ function applyStatus(stateValue: SelectStateValue) {
   } else if (stateValue?.readOnly) {
     mainStyle = css``
   } else if (stateValue?.focus) {
-    const boxShadowColor = isInnerColor
-      ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
-      : globalColor(`--${illaPrefix}-blue-01`)
-    const borderColor = isInnerColor
-      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
-      : globalColor(`--${illaPrefix}-blue-03`)
+    const boxShadowColor = getColor(colorScheme, "01")
+    const borderColor = getColor(colorScheme, "03")
     mainStyle = css`
       border-color: ${borderColor};
       box-shadow: 0 0 8px 0
@@ -84,9 +64,7 @@ function applyStatus(stateValue: SelectStateValue) {
   } else {
     mainStyle = css`
       &:hover {
-        border-color: ${isInnerColor
-          ? globalColor(`--${illaPrefix}-${colorScheme}-06`)
-          : chroma.mix(colorScheme ?? "blue", "white", 0.6).hex()};
+        border-color: ${getColor(colorScheme, "06")};
       }
     `
   }
@@ -112,12 +90,12 @@ export function applySelectView(
     transition: all 200ms ease-in-out;
     box-sizing: border-box;
     width: 100%;
-    line-height: 30px;
     font-size: 14px;
     border-radius: 8px;
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: pointer;
+    display: flex;
 
     &:hover {
       [title="selectRemoveIcon"] {
@@ -169,6 +147,7 @@ export function applyIconStyle(): SerializedStyles {
       font-size: 12px;
     }
 
+    display: flex;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
@@ -217,15 +196,10 @@ export function applyOptionStyle(
   size: SelectProps["size"],
   multiple?: boolean,
   checked?: boolean,
-  colorScheme?: SelectColorScheme,
+  colorScheme: SelectColorScheme = "blue",
 ): SerializedStyles {
-  const isInnerColor = colorScheme && innerColor.indexOf(colorScheme) > -1
-  const bgColor = isInnerColor
-    ? globalColor(`--${illaPrefix}-${colorScheme}-07`)
-    : globalColor(`--${illaPrefix}-blue-07`)
-  const color = isInnerColor
-    ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
-    : globalColor(`--${illaPrefix}-blue-01`)
+  const bgColor = getColor(colorScheme, "07")
+  const color = getColor(colorScheme, "01")
   let stateStyle: SerializedStyles = css()
   if (checked) {
     if (multiple) {
