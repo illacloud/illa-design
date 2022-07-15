@@ -174,7 +174,13 @@ it("Trigger renders with on visible change event", () => {
 
 it("Trigger renders with alignPoint", () => {
   mount(
-    <Trigger trigger="click" content="Trigger" position="br" showArrow={false} alignPoint>
+    <Trigger
+      trigger="click"
+      content="Trigger"
+      position="br"
+      showArrow={false}
+      alignPoint
+    >
       <Button>Button</Button>
     </Trigger>,
   )
