@@ -4,6 +4,11 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getAnimation } from "./transform"
 import { Variants } from "framer-motion"
 
+// should update these constant when arrow size change
+const HALF_OF_ARROW = 4
+export const ARROW_MARGIN_OFFSET = 6
+export const ARROW_TIP_OFFSET = ARROW_MARGIN_OFFSET + HALF_OF_ARROW
+
 const colorSchemes = [
   "white",
   "gray",
@@ -153,6 +158,7 @@ export function applyTipsText(stateValue: TriggerState): SerializedStyles {
 export function applyTriangleStyle(
   colorScheme: TriggerColorScheme,
   position: TriggerPosition,
+  alignPoint?: boolean,
 ): SerializedStyles {
   const bgColor = colorSchemes.includes(colorScheme)
     ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
@@ -177,6 +183,14 @@ export function applyTriangleStyle(
         align-self: start;
         margin-left: 12px;
       `
+
+      if (alignPoint) {
+        positionStyle = css`
+          align-self: end;
+          margin-right: ${ARROW_MARGIN_OFFSET}px;
+        `
+      }
+
       break
     case "tr":
     case "br":
@@ -184,6 +198,13 @@ export function applyTriangleStyle(
         align-self: end;
         margin-right: 12px;
       `
+
+      if (alignPoint) {
+        positionStyle = css`
+          align-self: start;
+          margin-left: ${ARROW_MARGIN_OFFSET}px;
+        `
+      }
       break
     case "lt":
     case "rt":
@@ -191,6 +212,13 @@ export function applyTriangleStyle(
         align-self: start;
         margin-top: 12px;
       `
+
+      if (alignPoint) {
+        positionStyle = css`
+          align-self: end;
+          margin-bottom: ${ARROW_MARGIN_OFFSET}px;
+        `
+      }
       break
     case "lb":
     case "rb":
@@ -198,6 +226,12 @@ export function applyTriangleStyle(
         align-self: end;
         margin-bottom: 12px;
       `
+      if (alignPoint) {
+        positionStyle = css`
+          align-self: start;
+          margin-top: ${ARROW_MARGIN_OFFSET}px;
+        `
+      }
       break
   }
   return css`

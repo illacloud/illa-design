@@ -35,13 +35,14 @@ export const Basic: Story<TriggerProps> = (args) => {
   return (
     <div
       style={{
-        height: 100,
+        height: 500,
         overflow: "scroll",
+        padding: 100,
       }}
     >
       <Space direction="vertical">
-        <Space>
-          <Trigger {...args} position="tl" content="TL">
+        <Space style={{ marginLeft: 70 }}>
+          <Trigger {...args} position="tl" content="TopLeft">
             <Button>TL</Button>
           </Trigger>
           <Trigger {...args} position="top" content="TOP">
@@ -63,7 +64,7 @@ export const Basic: Story<TriggerProps> = (args) => {
               <Button>LB</Button>
             </Trigger>
           </Space>
-          <Space direction="vertical">
+          <Space direction="vertical" style={{ marginLeft: 20 }}>
             <Trigger {...args} position="rt" content="RT">
               <Button>RT</Button>
             </Trigger>
@@ -75,7 +76,7 @@ export const Basic: Story<TriggerProps> = (args) => {
             </Trigger>
           </Space>
         </Space>
-        <Space style={{ marginLeft: "70px" }}>
+        <Space style={{ marginLeft: 70 }}>
           <Trigger {...args} position="bl" content="BL">
             <Button
               onClick={(e) => {
@@ -93,14 +94,7 @@ export const Basic: Story<TriggerProps> = (args) => {
             position="br"
             content="A design is a plan or specification for the construction of an object or system or for the implementation of an activity or process, or the result of that plan or specification in the form of a prototype, product or pro"
           >
-            111111
-          </Trigger>
-          <Trigger
-            {...args}
-            position="br"
-            content="A design is a plan or specification for the construction of an object or system or for the implementation of an activity or process, or the result of that plan or specification in the form of a prototype, product or pro"
-          >
-            <Input />
+            <Button>BR</Button>
           </Trigger>
         </Space>
       </Space>

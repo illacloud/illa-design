@@ -1,5 +1,6 @@
-import { CustomPositionType, TriggerPosition } from "./interface"
 import { RefObject, useEffect, useMemo, useState } from "react"
+import { CustomPositionType, TriggerPosition } from "./interface"
+import { ARROW_TIP_OFFSET } from "./style"
 
 export interface AdjustResult {
   readonly transX: number
@@ -15,6 +16,7 @@ export function adjustLocation(
   position: TriggerPosition,
   autoFitPosition: boolean,
   customPosition: CustomPositionType,
+  showArrow: boolean,
 ) {
   let adjustResult = {
     transY: 0,
@@ -32,21 +34,21 @@ export function adjustLocation(
 
   switch (position) {
     case "top": {
-      if (fitTop(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitTop(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustTop(tipsDom, childrenDom),
+          adjustTop(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitBottom(tipsDom, childrenDom)) {
+      } else if (fitBottom(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustBottom(tipsDom, childrenDom),
+          adjustBottom(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustTop(tipsDom, childrenDom),
+          adjustTop(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
@@ -54,21 +56,21 @@ export function adjustLocation(
       break
     }
     case "tl": {
-      if (fitTl(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitTl(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustTl(tipsDom, childrenDom),
+          adjustTl(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitBl(tipsDom, childrenDom)) {
+      } else if (fitBl(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustBl(tipsDom, childrenDom),
+          adjustBl(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustTl(tipsDom, childrenDom),
+          adjustTl(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
@@ -76,21 +78,21 @@ export function adjustLocation(
       break
     }
     case "tr": {
-      if (fitTr(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitTr(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustTr(tipsDom, childrenDom),
+          adjustTr(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitBr(tipsDom, childrenDom)) {
+      } else if (fitBr(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustBr(tipsDom, childrenDom),
+          adjustBr(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustTr(tipsDom, childrenDom),
+          adjustTr(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
@@ -98,21 +100,21 @@ export function adjustLocation(
       break
     }
     case "bottom": {
-      if (fitBottom(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitBottom(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustBottom(tipsDom, childrenDom),
+          adjustBottom(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitTop(tipsDom, childrenDom)) {
+      } else if (fitTop(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustTop(tipsDom, childrenDom),
+          adjustTop(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustBottom(tipsDom, childrenDom),
+          adjustBottom(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
@@ -120,21 +122,21 @@ export function adjustLocation(
       break
     }
     case "bl": {
-      if (fitBl(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitBl(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustBl(tipsDom, childrenDom),
+          adjustBl(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitTl(tipsDom, childrenDom)) {
+      } else if (fitTl(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustTl(tipsDom, childrenDom),
+          adjustTl(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustBl(tipsDom, childrenDom),
+          adjustBl(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
@@ -142,21 +144,21 @@ export function adjustLocation(
       break
     }
     case "br": {
-      if (fitBr(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitBr(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustBr(tipsDom, childrenDom),
+          adjustBr(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitTr(tipsDom, childrenDom)) {
+      } else if (fitTr(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustTr(tipsDom, childrenDom),
+          adjustTr(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustBr(tipsDom, childrenDom),
+          adjustBr(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
@@ -164,21 +166,21 @@ export function adjustLocation(
       break
     }
     case "left": {
-      if (fitLeft(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitLeft(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustLeft(tipsDom, childrenDom),
+          adjustLeft(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitRight(tipsDom, childrenDom)) {
+      } else if (fitRight(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustRight(tipsDom, childrenDom),
+          adjustRight(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustLeft(tipsDom, childrenDom),
+          adjustLeft(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
@@ -186,21 +188,21 @@ export function adjustLocation(
       break
     }
     case "lt": {
-      if (fitLt(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitLt(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustLt(tipsDom, childrenDom),
+          adjustLt(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitRt(tipsDom, childrenDom)) {
+      } else if (fitRt(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustRt(tipsDom, childrenDom),
+          adjustRt(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustLt(tipsDom, childrenDom),
+          adjustLt(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
@@ -208,21 +210,21 @@ export function adjustLocation(
       break
     }
     case "lb": {
-      if (fitLb(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitLb(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustLb(tipsDom, childrenDom),
+          adjustLb(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitRb(tipsDom, childrenDom)) {
+      } else if (fitRb(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustRb(tipsDom, childrenDom),
+          adjustRb(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustLb(tipsDom, childrenDom),
+          adjustLb(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
@@ -230,21 +232,21 @@ export function adjustLocation(
       break
     }
     case "right": {
-      if (fitRight(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitRight(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustRight(tipsDom, childrenDom),
+          adjustRight(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitLeft(tipsDom, childrenDom)) {
+      } else if (fitLeft(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustLeft(tipsDom, childrenDom),
+          adjustLeft(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustRight(tipsDom, childrenDom),
+          adjustRight(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
@@ -252,21 +254,21 @@ export function adjustLocation(
       break
     }
     case "rt": {
-      if (fitRt(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitRt(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustRt(tipsDom, childrenDom),
+          adjustRt(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitLt(tipsDom, childrenDom)) {
+      } else if (fitLt(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustLt(tipsDom, childrenDom),
+          adjustLt(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustRt(tipsDom, childrenDom),
+          adjustRt(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
@@ -274,36 +276,27 @@ export function adjustLocation(
       break
     }
     case "rb": {
-      if (fitRb(tipsDom, childrenDom) || !autoFitPosition) {
+      if (fitRb(tipsDom, childrenDom, customPosition) || !autoFitPosition) {
         adjustResult = mergeResult(
-          adjustRb(tipsDom, childrenDom),
+          adjustRb(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
-      } else if (fitLb(tipsDom, childrenDom)) {
+      } else if (fitLb(tipsDom, childrenDom, customPosition)) {
         adjustResult = mergeResult(
-          adjustLb(tipsDom, childrenDom),
+          adjustLb(tipsDom, childrenDom, customPosition, showArrow),
           true,
           childrenRef.getBoundingClientRect().width,
         )
       } else {
         adjustResult = mergeResult(
-          adjustRb(tipsDom, childrenDom),
+          adjustRb(tipsDom, childrenDom, customPosition, showArrow),
           false,
           childrenRef.getBoundingClientRect().width,
         )
       }
       break
     }
-  }
-
-  if (customPosition.x) {
-    adjustResult.transX = customPosition.x
-    adjustResult.opposite = false
-  }
-  if (customPosition.y) {
-    adjustResult.transY = customPosition.y
-    adjustResult.opposite = false
   }
 
   return adjustResult
@@ -329,10 +322,18 @@ function adjustTop(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
+  let x = childrenDom.left + (childrenDom.width - tipsDom.width) / 2
+
+  if (customPosition.x) {
+    x = customPosition.x - tipsDom.width / 2
+  }
+
   return [
-    (childrenDom.width - tipsDom.width) / 2 + childrenDom.left + window.scrollX,
-    childrenDom.top + window.scrollY - tipsDom.height,
+    x + window.scrollX,
+    (customPosition.y ?? childrenDom.top) + window.scrollY - tipsDom.height,
   ]
 }
 
@@ -342,10 +343,17 @@ function adjustTl(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
+  let x = childrenDom.left
+
+  if (customPosition.x) {
+    x = customPosition.x - tipsDom.width + (showArrow ? ARROW_TIP_OFFSET : 0)
+  }
   return [
-    childrenDom.left + window.scrollX,
-    childrenDom.top + window.scrollY - tipsDom.height,
+    x + window.scrollX,
+    (customPosition.y ?? childrenDom.top) + window.scrollY - tipsDom.height,
   ]
 }
 
@@ -355,10 +363,17 @@ function adjustTr(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
+  let x = childrenDom.left + childrenDom.width - tipsDom.width
+
+  if (customPosition.x) {
+    x = customPosition.x - (showArrow ? ARROW_TIP_OFFSET : 0)
+  }
   return [
-    childrenDom.left + window.scrollX + childrenDom.width - tipsDom.width,
-    childrenDom.top + window.scrollY - tipsDom.height,
+    x + window.scrollX,
+    (customPosition.y ?? childrenDom.top) + window.scrollY - tipsDom.height,
   ]
 }
 
@@ -368,8 +383,9 @@ function fitTop(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
-  return childrenDom.top >= tipsDom.height
+  return (customPosition.y ?? childrenDom.top) >= tipsDom.height
 }
 
 function fitTl(
@@ -378,8 +394,9 @@ function fitTl(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
-  return childrenDom.top >= tipsDom.height
+  return (customPosition.y ?? childrenDom.top) >= tipsDom.height
 }
 
 function fitTr(
@@ -388,8 +405,9 @@ function fitTr(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
-  return childrenDom.top >= tipsDom.height
+  return (customPosition.y ?? childrenDom.top) >= tipsDom.height
 }
 
 // bottom
@@ -399,10 +417,18 @@ function adjustBottom(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
+  let x = (childrenDom.width - tipsDom.width) / 2 + childrenDom.left
+
+  if (customPosition.x) {
+    x = customPosition.x - tipsDom.width / 2
+  }
+
   return [
-    (childrenDom.width - tipsDom.width) / 2 + childrenDom.left + window.scrollX,
-    childrenDom.bottom + window.scrollY,
+    x + window.scrollX,
+    (customPosition.y ?? childrenDom.bottom) + window.scrollY,
   ]
 }
 
@@ -412,10 +438,18 @@ function adjustBl(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
+  let x = childrenDom.left
+
+  if (customPosition.x) {
+    x = customPosition.x - tipsDom.width + (showArrow ? ARROW_TIP_OFFSET : 0)
+  }
+
   return [
-    childrenDom.left + window.scrollX,
-    childrenDom.bottom + window.scrollY,
+    x + window.scrollX,
+    (customPosition.y ?? childrenDom.bottom) + window.scrollY,
   ]
 }
 
@@ -425,10 +459,18 @@ function adjustBr(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
+  let x = childrenDom.left + childrenDom.width - tipsDom.width
+
+  if (customPosition.x) {
+    x = customPosition.x - (showArrow ? ARROW_TIP_OFFSET : 0)
+  }
+
   return [
-    childrenDom.left + window.scrollX + childrenDom.width - tipsDom.width,
-    childrenDom.bottom + window.scrollY,
+    x + window.scrollX,
+    (customPosition.y ?? childrenDom.bottom) + window.scrollY,
   ]
 }
 
@@ -438,9 +480,11 @@ function fitBottom(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
   return (
-    window.document.documentElement.clientHeight - childrenDom.bottom >=
+    window.document.documentElement.clientHeight -
+      (customPosition.y ?? childrenDom.bottom) >=
     tipsDom.height
   )
 }
@@ -451,9 +495,11 @@ function fitBl(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
   return (
-    window.document.documentElement.clientHeight - childrenDom.bottom >=
+    window.document.documentElement.clientHeight -
+      (customPosition.y ?? childrenDom.bottom) >=
     tipsDom.height
   )
 }
@@ -464,9 +510,11 @@ function fitBr(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
   return (
-    window.document.documentElement.clientHeight - childrenDom.bottom >=
+    window.document.documentElement.clientHeight -
+      (customPosition.y ?? childrenDom.bottom) >=
     tipsDom.height
   )
 }
@@ -478,12 +526,18 @@ function adjustLeft(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
+  let y = childrenDom.top - (tipsDom.height - childrenDom.height) / 2
+
+  if (customPosition.y) {
+    y = customPosition.y - tipsDom.height / 2
+  }
+
   return [
-    childrenDom.left + window.scrollX - tipsDom.width,
-    childrenDom.top +
-      window.scrollY -
-      (tipsDom.height - childrenDom.height) / 2,
+    (customPosition.x ?? childrenDom.left) + window.scrollX - tipsDom.width,
+    y + window.scrollY,
   ]
 }
 
@@ -493,10 +547,18 @@ function adjustLt(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
+  let y = childrenDom.top
+
+  if (customPosition.y) {
+    y = customPosition.y - tipsDom.height + (showArrow ? ARROW_TIP_OFFSET : 0)
+  }
+
   return [
-    childrenDom.left + window.scrollX - tipsDom.width,
-    childrenDom.top + window.scrollY,
+    (customPosition.x ?? childrenDom.left) + window.scrollX - tipsDom.width,
+    y + window.scrollY,
   ]
 }
 
@@ -506,10 +568,18 @@ function adjustLb(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
+  let y = childrenDom.bottom - tipsDom.height
+
+  if (customPosition.y) {
+    y = customPosition.y - (showArrow ? ARROW_TIP_OFFSET : 0)
+  }
+
   return [
-    childrenDom.left + window.scrollX - tipsDom.width,
-    childrenDom.bottom + window.scrollY - tipsDom.height,
+    (customPosition.x ?? childrenDom.left) + window.scrollX - tipsDom.width,
+    y + window.scrollY,
   ]
 }
 
@@ -519,8 +589,9 @@ function fitLeft(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
-  return childrenDom.left >= tipsDom.width
+  return (customPosition.x ?? childrenDom.left) >= tipsDom.width
 }
 
 function fitLt(
@@ -529,8 +600,9 @@ function fitLt(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
-  return childrenDom.left >= tipsDom.width
+  return (customPosition.x ?? childrenDom.left) >= tipsDom.width
 }
 
 function fitLb(
@@ -539,8 +611,9 @@ function fitLb(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
-  return childrenDom.left >= tipsDom.width
+  return (customPosition.x ?? childrenDom.left) >= tipsDom.width
 }
 
 // right
@@ -550,12 +623,18 @@ function adjustRight(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
+  let y = childrenDom.top - (tipsDom.height - childrenDom.height) / 2
+
+  if (customPosition.y) {
+    y = customPosition.y - tipsDom.height / 2
+  }
+
   return [
-    childrenDom.right + window.scrollX,
-    childrenDom.top +
-      window.scrollY -
-      (tipsDom.height - childrenDom.height) / 2,
+    (customPosition.x ?? childrenDom.right) + window.scrollX,
+    y + window.scrollY,
   ]
 }
 
@@ -565,8 +644,19 @@ function adjustRt(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
-  return [childrenDom.right + window.scrollX, childrenDom.top + window.scrollY]
+  let y = childrenDom.top
+
+  if (customPosition.y) {
+    y = customPosition.y - tipsDom.height + (showArrow ? ARROW_TIP_OFFSET : 0)
+  }
+
+  return [
+    (customPosition.x ?? childrenDom.right) + window.scrollX,
+    y + window.scrollY,
+  ]
 }
 
 function adjustRb(
@@ -575,10 +665,17 @@ function adjustRb(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
+  showArrow: boolean,
 ): [number, number] {
+  let y = childrenDom.bottom - tipsDom.height
+
+  if (customPosition.y) {
+    y = customPosition.y - (showArrow ? ARROW_TIP_OFFSET : 0)
+  }
   return [
-    childrenDom.right + window.scrollX,
-    childrenDom.bottom + window.scrollY - tipsDom.height,
+    (customPosition.x ?? childrenDom.right) + window.scrollX,
+    y + window.scrollY,
   ]
 }
 
@@ -588,9 +685,11 @@ function fitRight(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
   return (
-    window.document.documentElement.clientWidth - childrenDom.right >=
+    window.document.documentElement.clientWidth -
+      (customPosition.x ?? childrenDom.right) >=
     tipsDom.width
   )
 }
@@ -601,9 +700,11 @@ function fitRt(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
   return (
-    window.document.documentElement.clientWidth - childrenDom.right >=
+    window.document.documentElement.clientWidth -
+      (customPosition.x ?? childrenDom.right) >=
     tipsDom.width
   )
 }
@@ -614,9 +715,11 @@ function fitRb(
     height: number
   },
   childrenDom: DOMRect,
+  customPosition: CustomPositionType,
 ): boolean {
   return (
-    window.document.documentElement.clientWidth - childrenDom.right >=
+    window.document.documentElement.clientWidth -
+      (customPosition.x ?? childrenDom.right) >=
     tipsDom.width
   )
 }

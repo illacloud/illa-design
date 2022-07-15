@@ -126,7 +126,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div css={applyTipsText(stateValue)}>{closeContent}</div>
           {showArrow && (
             <TriangleTop
-              css={applyTriangleStyle(colorScheme, finalPosition)}
+              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
               width="8px"
               height="4px"
             />
@@ -141,7 +141,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         <div css={css(applyTipsContainer(finalPosition, showArrow), _css)}>
           {showArrow && (
             <TriangleBottom
-              css={applyTriangleStyle(colorScheme, finalPosition)}
+              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
               width="8px"
               height="4px"
             />
@@ -158,7 +158,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <div css={applyTipsText(stateValue)}>{closeContent}</div>
           {showArrow && (
             <TriangleLeft
-              css={applyTriangleStyle(colorScheme, finalPosition)}
+              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
               width="4px"
               height="8px"
             />
@@ -173,7 +173,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         <div css={css(applyTipsContainer(finalPosition, showArrow), _css)}>
           {showArrow && (
             <TriangleRight
-              css={applyTriangleStyle(colorScheme, finalPosition)}
+              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
               width="4px"
               height="8px"
             />
@@ -208,6 +208,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         position,
         autoFitPosition,
         customPosition,
+        showArrow,
       )
       setAdjustResult(result)
     }
