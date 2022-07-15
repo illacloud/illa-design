@@ -3,6 +3,7 @@ import { ListItemMetaProps } from "./interface"
 import {
   applyItemMetaAvatar,
   applyItemMetaContainer,
+  applyListItemMetaTitleStyle,
   applyTypoStyle,
 } from "./style"
 import { Avatar } from "@illa-design/avatar"
@@ -28,7 +29,7 @@ export const ListItemMeta = forwardRef<HTMLDivElement, ListItemMetaProps>(
               {title}
             </Text>
           ) : (
-            title
+            <div css={applyListItemMetaTitleStyle}>{title}</div>
           )}
           {title && description && <div style={{ height: "4px" }} />}
           {description && (
