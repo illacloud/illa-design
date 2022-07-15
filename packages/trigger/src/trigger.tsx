@@ -32,6 +32,7 @@ import {
   adjustLocation,
   AdjustResult,
   getFinalPosition,
+  useIsInViewport,
 } from "./adjust-tips-location"
 import { Popup } from "./popup"
 import useMeasure from "react-use/lib/useMeasure"
@@ -57,6 +58,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     autoFitPosition = true,
     autoAlignPopupWidth,
     closeOnClick = true,
+    hideOnInnerInVisible = true,
     defaultPopupVisible,
     maxWidth = "588px",
     withoutPadding,
@@ -66,6 +68,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     onVisibleChange,
     trigger = "hover",
     alignPoint,
+    closeOnNoElementsInside,
     disabledOutsideScrollable,
   } = props
 
@@ -81,7 +84,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     adjustResult?.opposite ?? false,
     position,
   )
-
+  const isInViewport = useIsInViewport(childrenRef)
   const [measureRef, measureInfo] = useMeasure<HTMLElement>()
 
   // delay to do sth
@@ -296,6 +299,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
   )
 
   useEffect(() => {
+    if (closeOnNoElementsInside) {
+      if (!(measureInfo.width || measureInfo.height)) {
+        hideTips()
+        return
+      }
+    }
     if (tipVisible) {
       adjustLocationAndResult()
     }
@@ -351,6 +360,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           top={`${adjustResult?.transY ?? 0}px`}
           left={`${adjustResult?.transX ?? 0}px`}
           zIndex={zIndex}
+          isInViewport={hideOnInnerInVisible ? isInViewport : true}
         >
           {tipsNode}
         </Popup>

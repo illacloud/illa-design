@@ -1,3 +1,4 @@
+import { RefObject, useEffect, useMemo, useState } from "react"
 import { CustomPositionType, TriggerPosition } from "./interface"
 import { ARROW_TIP_OFFSET } from "./style"
 
@@ -756,4 +757,28 @@ export function getFinalPosition(
     case "rb":
       return "lb"
   }
+}
+
+export const useIsInViewport = (ref?: RefObject<HTMLElement>) => {
+  const [isInViewport, setIsInViewport] = useState(false)
+
+  const observer = useMemo(
+    () =>
+      new IntersectionObserver(([entry]) =>
+        setIsInViewport(entry.isIntersecting),
+      ),
+    [],
+  )
+
+  useEffect(() => {
+    if (ref?.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [ref, observer])
+
+  return isInViewport
 }

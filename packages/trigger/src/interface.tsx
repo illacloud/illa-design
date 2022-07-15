@@ -49,7 +49,9 @@ export interface TriggerProps {
   maxWidth?: string
   zIndex?: number | "auto"
   trigger?: TriggerTrigger
+  hideOnInnerInVisible?: boolean
   closeOnInnerClick?: boolean
+  closeOnNoElementsInside?: boolean
   content?: string | ReactNode
   position?: TriggerPosition
   showArrow?: boolean
