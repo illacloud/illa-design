@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/tree-select",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Illa Design TreeSelect.",
   "keywords": [
     "treeselect",
@@ -39,11 +39,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/tree": "0.0.12",
-    "@illa-design/select": "0.0.12",
-    "@illa-design/tree-common": "0.0.12",
-    "@illa-design/empty": "0.0.12",
-    "@illa-design/theme": "0.0.12",
-    "@illa-design/system": "0.0.12"
+    "@illa-design/tree": "0.0.13",
+    "@illa-design/select": "0.0.13",
+    "@illa-design/tree-common": "0.0.13",
+    "@illa-design/empty": "0.0.13",
+    "@illa-design/theme": "0.0.13",
+    "@illa-design/system": "0.0.13"
   }
 }

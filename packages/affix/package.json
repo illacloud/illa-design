@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/affix",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Illa Design Affix.",
   "keywords": [
     "affix",
@@ -39,7 +39,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/theme": "0.0.12",
-    "@illa-design/system": "0.0.12"
+    "@illa-design/theme": "0.0.13",
+    "@illa-design/system": "0.0.13"
   }
 }
