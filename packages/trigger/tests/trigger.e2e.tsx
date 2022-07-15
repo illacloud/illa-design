@@ -174,12 +174,12 @@ it("Trigger renders with on visible change event", () => {
 
 it("Trigger renders with alignPoint", () => {
   mount(
-    <Trigger trigger="click" content="Trigger" alignPoint>
+    <Trigger trigger="click" content="Trigger" position="br" showArrow={false} alignPoint>
       <Button>Button</Button>
     </Trigger>,
   )
   cy.get("button").click(24, 24)
-  cy.wait(50)
+  cy.wait(100)
   cy.findByText("Trigger")
     .parent()
     .parent()
