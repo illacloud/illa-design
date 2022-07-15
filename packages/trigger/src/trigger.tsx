@@ -58,6 +58,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     autoFitPosition = true,
     autoAlignPopupWidth,
     closeOnClick = true,
+    hideOnInnerInVisible = true,
     defaultPopupVisible,
     maxWidth = "588px",
     withoutPadding,
@@ -358,7 +359,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           top={`${adjustResult?.transY ?? 0}px`}
           left={`${adjustResult?.transX ?? 0}px`}
           zIndex={zIndex}
-          isInViewport={isInViewport}
+          isInViewport={hideOnInnerInVisible ? isInViewport : true}
         >
           {tipsNode}
         </Popup>
