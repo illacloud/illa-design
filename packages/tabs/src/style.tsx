@@ -349,21 +349,6 @@ export function applyTextCss(
   `
 }
 
-export function applyDividerCommonLineCss(w: number): SerializedStyles {
-  return css`
-    width: ${w}px;
-    display: inline-flex;
-    position: relative;
-  `
-}
-
-export function applyDividerHorizontalLineCss(h: number): SerializedStyles {
-  return css`
-    height: ${h}px;
-    display: inline-flex;
-  `
-}
-
 export const colors: TabsColorScheme[] = [
   "blackAlpha",
   "gray",

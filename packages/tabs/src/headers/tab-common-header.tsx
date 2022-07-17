@@ -98,7 +98,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
 
     return (
       <div css={applyHeaderContainerCss(false)} ref={ref}>
-        {prefix}
+        <React.Fragment key="prefix">{prefix}</React.Fragment>
         <div css={tabsContentCss}>
           {needScroll && (
             <span
@@ -175,7 +175,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             </span>
           )}
         </div>
-        {suffix}
+        <React.Fragment key="suffix"> {suffix}</React.Fragment>
       </div>
     )
   },
