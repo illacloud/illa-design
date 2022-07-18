@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useRef,
   useState,
+  Fragment,
 } from "react"
 import { TabHeaderChildProps, TabHeaderProps } from "../interface"
 import {
@@ -98,7 +99,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
 
     return (
       <div css={applyHeaderContainerCss(false)} ref={ref}>
-        <React.Fragment key="prefix">{prefix}</React.Fragment>
+        <Fragment key="prefix">{prefix}</Fragment>
         <div css={tabsContentCss}>
           {needScroll && (
             <span
@@ -175,7 +176,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             </span>
           )}
         </div>
-        <React.Fragment key="suffix"> {suffix}</React.Fragment>
+        <Fragment key="suffix"> {suffix}</Fragment>
       </div>
     )
   },

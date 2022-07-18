@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useRef,
   useState,
+  Fragment,
 } from "react"
 import {
   applyCommonBlueLineCss,
@@ -184,7 +185,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         css={applyLineHeaderContainerCss(_isHorizontalLayout, tabPosition)}
         ref={ref}
       >
-        <React.Fragment key="prefix">{prefix}</React.Fragment>
+        <Fragment key="prefix">{prefix}</Fragment>
         <div css={tabsContentCss}>
           {needScroll && (
             <span
@@ -269,7 +270,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             </span>
           )}
         </div>
-        <React.Fragment key="suffix">{suffix}</React.Fragment>
+        <Fragment key="suffix">{suffix}</Fragment>
       </div>
     )
   },
