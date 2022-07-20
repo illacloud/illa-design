@@ -160,3 +160,11 @@ export interface SelectStateValue {
   colorScheme?: SelectProps["colorScheme"]
   readOnly?: boolean
 }
+
+export interface SelectOptionStateValue {
+  disabled?: boolean
+  size?: SelectViewProps["size"]
+  colorScheme: SelectColorScheme
+  isChecked?: boolean
+  multiple?: boolean
+}

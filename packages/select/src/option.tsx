@@ -1,6 +1,6 @@
 import { forwardRef, SyntheticEvent } from "react"
 import { OptionProps } from "./interface"
-import { applyOptionStyle } from "./style"
+import { applyOptionStyle, optionLabelStyle } from "./style"
 import { omit } from "@illa-design/system"
 import { Checkbox } from "@illa-design/checkbox"
 
@@ -19,7 +19,7 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
     onMouseEnter,
     onMouseLeave,
     onClickOption,
-    colorScheme,
+    colorScheme = "blue",
     ...otherProps
   } = props
 
@@ -38,14 +38,18 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
     ...omit(otherProps, ["_key", "extra", "isSelectOption", "onClick"]),
   }
 
+  const stateValue = {
+    size,
+    multiple,
+    isChecked,
+    colorScheme,
+    disabled,
+  }
+
   return (
     <>
       {multiple ? (
-        <li
-          css={applyOptionStyle(size, multiple, isChecked, colorScheme)}
-          ref={ref}
-          {...optionProps}
-        >
+        <li css={applyOptionStyle(stateValue)} ref={ref} {...optionProps}>
           <Checkbox
             checked={isChecked}
             disabled={disabled}
@@ -54,14 +58,10 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>((props, ref) => {
               otherProps.onClick?.(event)
             }}
           />
-          <span css={{ "margin-left": "8px" }}>{children}</span>
+          <span css={optionLabelStyle}>{children}</span>
         </li>
       ) : (
-        <li
-          css={applyOptionStyle(size, multiple, isChecked, colorScheme)}
-          ref={ref}
-          {...optionProps}
-        >
+        <li css={applyOptionStyle(stateValue)} ref={ref} {...optionProps}>
           {children}
         </li>
       )}
