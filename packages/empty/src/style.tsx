@@ -11,8 +11,10 @@ export function applyEmptyContainerStyle(
   `
 }
 
-export const descriptionStyle = css`
-  margin-top: 16px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-  font-size: 14px;
-`
+export function applyDescriptionStyle(divideSize: string): SerializedStyles {
+  return css`
+    margin-top: ${divideSize}px;
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+    font-size: 14px;
+  `
+}

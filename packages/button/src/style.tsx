@@ -8,12 +8,19 @@ import {
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 // button
-export function applyTagContainer(fullWidth?: boolean) {
+export function applyTagContainer(
+  fullWidth?: boolean,
+  fullHeight?: boolean,
+): SerializedStyles {
   return css`
     ${fullWidth
       ? css`
           width: 100%;
-          justify-content: center;
+        `
+      : null};
+    ${fullHeight
+      ? css`
+          height: 100%;
         `
       : null};
     transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
@@ -25,6 +32,7 @@ export function applyTagContainer(fullWidth?: boolean) {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
   `
 }
 
@@ -710,27 +718,28 @@ export function applyPaddingStyle(
 export function applyWithoutTextSize(
   size: ButtonSize,
   fullWidth?: boolean,
+  fullHeight?: boolean,
 ): SerializedStyles {
   switch (size) {
     case "small":
       return css`
         justify-content: center;
         width: ${fullWidth ? "100%" : "24px"};
-        height: 24px;
+        height: ${fullHeight ? "100%" : "24px"};
         font-size: 12px;
       `
     case "medium":
       return css`
         justify-content: center;
         width: ${fullWidth ? "100%" : "32px"};
-        height: 32px;
+        height: ${fullHeight ? "100%" : "32px"};
         font-size: 12px;
       `
     case "large":
       return css`
         justify-content: center;
         width: ${fullWidth ? "100%" : "40px"};
-        height: 40px;
+        height: ${fullHeight ? "100%" : "40px"};
         font-size: 12px;
       `
   }

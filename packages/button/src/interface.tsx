@@ -27,13 +27,12 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant
   shape?: ButtonShape
   fullWidth?: boolean
+  fullHeight?: boolean
   loading?: boolean
   loadingText?: string
   leftIcon?: ReactNode
   rightIcon?: ReactNode
   buttonRadius?: string
-  autoFullVertically?: boolean
-  autoFullHorizontal?: boolean
   borderColor?: string
   backgroundColor?: string
   textColor?: string
