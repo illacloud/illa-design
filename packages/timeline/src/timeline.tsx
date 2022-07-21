@@ -18,6 +18,7 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
       children,
       ...rest
     } = props
+    const childrenCount = Children.count(children)
 
     const items =
       Children.map(children as ReactElement, (ele: ReactElement, index) => {
@@ -27,6 +28,7 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
               direction,
               mode,
               index,
+              isChildrenLast: childrenCount - 1 === index,
             }}
           >
             {ele}

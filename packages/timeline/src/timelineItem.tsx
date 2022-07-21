@@ -3,14 +3,11 @@ import { TimelineItemProps } from "./interface"
 import { TimelineContext } from "./timeline-context"
 import {
   applyItemCss,
-  applyVertItemLineCss,
-  applyHorItemLineCss,
-  applyVertItemDotCss,
-  applyHorItemDotCss,
-  applyVertPropDotCss,
-  applyHorPropDotCss,
   applyVertItemContentCss,
   applyHorItemContentCss,
+  applyDotItemStyle,
+  applyLineStyle,
+  dotCommonStyle, applyDotWrapperStyle,
 } from "./styles"
 
 export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
@@ -18,6 +15,7 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
     return (
       <TimelineContext.Consumer>
         {(value) => {
+          const isChildrenLast = value?.isChildrenLast
           const {
             dot,
             direction = value?.direction || "vertical",
@@ -30,6 +28,7 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
             lineType = "solid",
             lineColor,
             autoFixDotSize = true,
+            children,
             ...rest
           } = props
 
@@ -41,21 +40,15 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
             )
             return mode === "alternate" ? classArr[classIdx] : mode
           }
-          let handleLineCss, handleDotCss, handleContentCss, handlePropDotCss
+          let handleContentCss
 
           if (direction === "vertical") {
-            handleLineCss = applyVertItemLineCss(mode, lineColor, lineType)
-            handleDotCss = applyVertItemDotCss(mode, dotColor, dotType)
-            handlePropDotCss = applyVertPropDotCss(mode)
             handleContentCss = applyVertItemContentCss(
               modehandle(mode, index),
               autoFixDotSize,
             )
           }
           if (direction === "horizontal") {
-            handleLineCss = applyHorItemLineCss(mode, lineColor, lineType)
-            handleDotCss = applyHorItemDotCss(mode, dotColor, dotType)
-            handlePropDotCss = applyHorPropDotCss(mode)
             handleContentCss = applyHorItemContentCss(
               modehandle(mode, index),
               autoFixDotSize,
@@ -64,13 +57,13 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
 
           return (
             <div css={applyItemCss(direction)} ref={ref} {...rest}>
-              {!dot && <div css={handleLineCss}></div>}
-              {dot ? (
-                <div css={handlePropDotCss}>{dot}</div>
-              ) : (
-                <div css={handleDotCss}></div>
-              )}
-              <div css={handleContentCss}>{label ? label : props.children}</div>
+              <div css={applyDotItemStyle(direction, mode)}>
+                <div css={applyLineStyle(direction, lineType, lineColor)} />
+                <div css={applyDotWrapperStyle(direction)}>
+                  {dot ? dot : <div css={dotCommonStyle(dotColor, dotType)} />}
+                </div>
+              </div>
+              <div css={handleContentCss}>{label ? label : children}</div>
             </div>
           )
         }}

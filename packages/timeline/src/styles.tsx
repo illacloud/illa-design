@@ -1,5 +1,10 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  TimelineDirection,
+  TimelineItemLineType,
+  TimelineMode,
+} from "./interface"
 
 export function applyWrapCss(direction: string): SerializedStyles {
   return css`
@@ -26,65 +31,6 @@ export function baseLineStyle(lineColor?: string): SerializedStyles {
   `
 }
 
-export function applyVertItemLineCss(
-  mode: string,
-  lineColor?: string,
-  lineType?: string,
-): SerializedStyles {
-  let leftPositionStyle = css`
-    left: 2.5px;
-  `
-  if (mode === "right") {
-    leftPositionStyle = css`
-      left: calc(100% - 2.5px);
-    `
-  } else if (mode === "alternate") {
-    leftPositionStyle = css`
-      left: calc(50% + 2.5px);
-    `
-  }
-  return css`
-    position: absolute;
-    ${leftPositionStyle};
-    top: 13px;
-    width: 1px;
-    height: calc(100% - 22px);
-    border-left: 1px ${lineType};
-    ${baseLineStyle(lineColor)};
-  `
-}
-
-export function applyHorItemLineCss(
-  mode: string,
-  lineColor?: string,
-  lineType?: string,
-): SerializedStyles {
-  let otherModePosition
-  if (mode === "top") {
-    otherModePosition = css`
-      top: 2.5px;
-    `
-  } else if (mode === "bottom") {
-    otherModePosition = css`
-      top: auto;
-      bottom: calc(0px + 2.5px);
-    `
-  } else if (mode === "alternate") {
-    otherModePosition = css`
-      top: calc(50% + 2.5px);
-    `
-  }
-  return css`
-    position: absolute;
-    top: 2.5px;
-    left: 12px;
-    width: calc(100% - 20px);
-    height: 1px;
-    border-top: 1px ${lineType};
-    ${baseLineStyle(lineColor)};
-    ${otherModePosition};
-  `
-}
 
 export function dotCommonStyle(
   dotColor?: string,
@@ -111,98 +57,104 @@ export function dotCommonStyle(
   `
 }
 
-export function applyVertItemDotCss(
-  mode: string,
-  dotColor?: string,
-  dotType?: string,
+export function applyDotItemStyle(
+  direction: TimelineDirection,
+  mode: TimelineMode,
 ): SerializedStyles {
-  let leftPositionStyle
-  if (mode === "right") {
-    leftPositionStyle = css`
-      left: calc(100% - 5px);
-    `
-  } else if (mode === "alternate") {
-    leftPositionStyle = css`
-      left: 50%;
-    `
-  }
-
-  return css`
+  const commonDotStyle = css`
     position: absolute;
-    ${leftPositionStyle};
-    ${dotCommonStyle(dotColor, dotType)};
+    height: 100%;
+    text-align: center;
   `
+  if (direction === "horizontal") {
+    if (mode === "bottom") {
+      return css`
+        ${commonDotStyle};
+        bottom: 0;
+      `
+    } else {
+      return css`
+        ${commonDotStyle};
+        top: 0;
+      `
+    }
+  } else {
+    if (mode === "alternate") {
+      return css`
+        ${commonDotStyle};
+        left: 50%;
+      `
+    } else if (mode === "right") {
+      return css`
+        ${commonDotStyle};
+        right: 0;
+      `
+    } else {
+      return css`
+        ${commonDotStyle};
+        left: 0;
+      `
+    }
+  }
 }
 
-export function applyHorItemDotCss(
-  mode: string,
+export function applyLineStyle(
+  direction: TimelineDirection,
+  lineType: TimelineItemLineType,
   dotColor?: string,
-  dotType?: string,
 ): SerializedStyles {
-  let otherModePosition
-  if (mode === "top") {
-    otherModePosition = css`
-      top: 0px;
-    `
-  } else if (mode === "bottom") {
-    otherModePosition = css`
-      bottom: 0px;
-    `
-  } else if (mode === "alternate") {
-    otherModePosition = css`
+  let dotFillColor = dotColor
+    ? dotColor
+    : globalColor(`--${illaPrefix}-grayBlue-08`)
+  if (direction === "horizontal") {
+    return css`
+      box-sizing: border-box;
+      position: absolute;
+      transform: translateY(-50%);
       top: 50%;
+      bottom: -4px;
+      left: 12px;
+      right: 4px;
+      height: 1px;
+      border-top: 1px ${lineType} ${dotFillColor};
     `
   }
   return css`
+    box-sizing: border-box;
     position: absolute;
-    ${otherModePosition};
-    ${dotCommonStyle(dotColor, dotType)};
+    transform: translateX(-50%);
+    top: 24px;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    border-left: 1px ${lineType} ${dotFillColor};
   `
 }
 
-export function applyVertPropDotCss(mode: string): SerializedStyles {
-  let posStyle
-  if (mode === "left") {
-    posStyle = css`
-      left: 2.5px;
-    `
-  } else if (mode === "right") {
-    posStyle = css`
-      right: 2.5px;
-    `
-  } else if (mode === "alternate") {
-    posStyle = css`
-      left: calc(50% + 2.5px);
-    `
-  }
-  return css`
-    position: absolute;
-    ${posStyle};
-    top: -40%;
-  `
-}
+const flexCenter = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
-export function applyHorPropDotCss(mode: string): SerializedStyles {
-  let posStyle
-  if (mode === "top") {
-    posStyle = css`
-      top: 0%;
-      transform: translate(3px, calc(-50% - 5px));
-    `
-  } else if (mode === "bottom") {
-    posStyle = css`
-      bottom: 0%;
-      transform: translate(3px, calc(50% - 11px));
-    `
-  } else if (mode === "alternate") {
-    posStyle = css`
-      top: 50%;
-      transform: translate(3px, calc(-50% - 5px));
+export function applyDotWrapperStyle(
+  direction: TimelineDirection,
+): SerializedStyles {
+  if (direction === "horizontal") {
+    return css`
+      ${flexCenter};
+      width: 6px;
+      height: 6px;
+      line-height: 6px;
+      position: relative;
     `
   }
   return css`
-    position: absolute;
-    ${posStyle};
+    ${flexCenter};
+    width: 6px;
+    height: 24px;
+    line-height: 24px;
+    position: relative;
   `
 }
 
@@ -230,7 +182,6 @@ export function applyVertItemContentCss(
   }
   return css`
     position: relative;
-    top: -7.5px;
     ${alignStyle};
     margin-left: 16px;
     ${autoFixDotSize && "font-size: 14px"};
