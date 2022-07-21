@@ -110,7 +110,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
 
     const setValue = (val?: number) => {
       setCurrentValue(val)
-      const plusVal = val ? +val : undefined
+      const plusVal = isNumber(val) ? +val : undefined
       const newValue = isNumber(plusVal) ? plusVal : undefined
       if (newValue !== mergedValue) {
         onChange && onChange(newValue)
