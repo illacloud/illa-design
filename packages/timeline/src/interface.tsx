@@ -29,7 +29,8 @@ export interface TimelineItemProps extends TimelineProps {
 }
 
 export interface TimelineContextProps {
-  direction?: string
-  mode?: string
+  direction?: TimelineDirection
+  mode?: TimelineMode
   index?: number
+  isChildrenLast?: boolean
 }

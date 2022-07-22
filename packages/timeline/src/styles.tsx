@@ -1,21 +1,63 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  TimelineDirection,
+  TimelineItemLineType,
+  TimelineMode,
+} from "./interface"
 
-export function applyWrapCss(direction: string): SerializedStyles {
+export function applyWrapStyle(
+  direction: TimelineDirection,
+  mode: TimelineMode,
+): SerializedStyles {
   return css`
     display: inline-flex;
     ${direction === "vertical" && "flex-direction: column"};
+    ${direction === "horizontal" &&
+    mode === "alternate" &&
+    css`
+      min-height: 100px;
+      align-items: center;
+    `};
   `
 }
 
-export function applyItemCss(direction: string): SerializedStyles {
+export function applyItemStyle(
+  direction: TimelineDirection,
+  mode: string,
+): SerializedStyles {
+  if (direction === "horizontal") {
+    if (mode === "alternate-same") {
+      return css`
+        margin-top: 16px;
+        padding-bottom: 8px;
+        transform: translateY(-50%);
+        position: relative;
+      `
+    } else if (mode === "alternate-relative") {
+      return css`
+        margin-top: -16px;
+        padding-top: 8px;
+        transform: translateY(50%);
+        position: relative;
+      `
+    } else if (mode === "bottom") {
+      return css`
+        padding-bottom: 8px;
+        position: relative;
+      `
+    } else {
+      return css`
+        padding-top: 8px;
+        position: relative;
+      `
+    }
+  }
+
   return css`
-    ${direction === "horizontal" && "display: inline-block"};
     position: relative;
     margin: 0;
-    ${direction === "vertical"
-      ? "padding-bottom: 42px"
-      : "padding-bottom: 20px"};
+    padding-bottom: 42px;
   `
 }
 
@@ -23,66 +65,6 @@ export function baseLineStyle(lineColor?: string): SerializedStyles {
   let color = lineColor ? lineColor : globalColor(`--${illaPrefix}-grayBlue-08`)
   return css`
     border-color: ${color};
-  `
-}
-
-export function applyVertItemLineCss(
-  mode: string,
-  lineColor?: string,
-  lineType?: string,
-): SerializedStyles {
-  let leftPositionStyle = css`
-    left: 2.5px;
-  `
-  if (mode === "right") {
-    leftPositionStyle = css`
-      left: calc(100% - 2.5px);
-    `
-  } else if (mode === "alternate") {
-    leftPositionStyle = css`
-      left: calc(50% + 2.5px);
-    `
-  }
-  return css`
-    position: absolute;
-    ${leftPositionStyle};
-    top: 13px;
-    width: 1px;
-    height: calc(100% - 22px);
-    border-left: 1px ${lineType};
-    ${baseLineStyle(lineColor)};
-  `
-}
-
-export function applyHorItemLineCss(
-  mode: string,
-  lineColor?: string,
-  lineType?: string,
-): SerializedStyles {
-  let otherModePosition
-  if (mode === "top") {
-    otherModePosition = css`
-      top: 2.5px;
-    `
-  } else if (mode === "bottom") {
-    otherModePosition = css`
-      top: auto;
-      bottom: calc(0px + 2.5px);
-    `
-  } else if (mode === "alternate") {
-    otherModePosition = css`
-      top: calc(50% + 2.5px);
-    `
-  }
-  return css`
-    position: absolute;
-    top: 2.5px;
-    left: 12px;
-    width: calc(100% - 20px);
-    height: 1px;
-    border-top: 1px ${lineType};
-    ${baseLineStyle(lineColor)};
-    ${otherModePosition};
   `
 }
 
@@ -111,142 +93,182 @@ export function dotCommonStyle(
   `
 }
 
-export function applyVertItemDotCss(
+export function applyDotItemStyle(
+  direction: TimelineDirection,
   mode: string,
+): SerializedStyles {
+  const commonDotStyle = css`
+    position: absolute;
+    text-align: center;
+  `
+  if (direction === "horizontal") {
+    if (mode === "bottom" || mode === "alternate-same") {
+      return css`
+        ${commonDotStyle};
+        width: 100%;
+        bottom: 0;
+      `
+    } else {
+      return css`
+        ${commonDotStyle};
+        width: 100%;
+        top: 0;
+      `
+    }
+  } else {
+    if (mode === "alternate-same" || mode === "alternate-relative") {
+      return css`
+        ${commonDotStyle};
+        height: 100%;
+        left: 50%;
+      `
+    } else if (mode === "right") {
+      return css`
+        ${commonDotStyle};
+        height: 100%;
+        right: 0;
+      `
+    } else {
+      return css`
+        ${commonDotStyle};
+        height: 100%;
+        left: 0;
+      `
+    }
+  }
+}
+
+export function applyLineStyle(
+  direction: TimelineDirection,
+  lineType: TimelineItemLineType,
   dotColor?: string,
-  dotType?: string,
 ): SerializedStyles {
-  let leftPositionStyle
-  if (mode === "right") {
-    leftPositionStyle = css`
-      left: calc(100% - 5px);
-    `
-  } else if (mode === "alternate") {
-    leftPositionStyle = css`
-      left: 50%;
-    `
-  }
-
-  return css`
-    position: absolute;
-    ${leftPositionStyle};
-    ${dotCommonStyle(dotColor, dotType)};
-  `
-}
-
-export function applyHorItemDotCss(
-  mode: string,
-  dotColor?: string,
-  dotType?: string,
-): SerializedStyles {
-  let otherModePosition
-  if (mode === "top") {
-    otherModePosition = css`
-      top: 0px;
-    `
-  } else if (mode === "bottom") {
-    otherModePosition = css`
-      bottom: 0px;
-    `
-  } else if (mode === "alternate") {
-    otherModePosition = css`
+  let dotFillColor = dotColor
+    ? dotColor
+    : globalColor(`--${illaPrefix}-grayBlue-08`)
+  if (direction === "horizontal") {
+    return css`
+      box-sizing: border-box;
+      position: absolute;
+      transform: translateY(-50%);
       top: 50%;
+      bottom: -4px;
+      left: 24px;
+      right: 0;
+      height: 1px;
+      border-top: 1px ${lineType} ${dotFillColor};
     `
   }
   return css`
+    box-sizing: border-box;
     position: absolute;
-    ${otherModePosition};
-    ${dotCommonStyle(dotColor, dotType)};
+    transform: translateX(-50%);
+    top: 24px;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    border-left: 1px ${lineType} ${dotFillColor};
   `
 }
 
-export function applyVertPropDotCss(mode: string): SerializedStyles {
-  let posStyle
-  if (mode === "left") {
-    posStyle = css`
-      left: 2.5px;
-    `
-  } else if (mode === "right") {
-    posStyle = css`
-      right: 2.5px;
-    `
-  } else if (mode === "alternate") {
-    posStyle = css`
-      left: calc(50% + 2.5px);
-    `
-  }
-  return css`
-    position: absolute;
-    ${posStyle};
-    top: -40%;
-  `
-}
+const flexCenter = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
-export function applyHorPropDotCss(mode: string): SerializedStyles {
-  let posStyle
-  if (mode === "top") {
-    posStyle = css`
-      top: 0%;
-      transform: translate(3px, calc(-50% - 5px));
-    `
-  } else if (mode === "bottom") {
-    posStyle = css`
-      bottom: 0%;
-      transform: translate(3px, calc(50% - 11px));
-    `
-  } else if (mode === "alternate") {
-    posStyle = css`
-      top: 50%;
-      transform: translate(3px, calc(-50% - 5px));
-    `
-  }
-  return css`
-    position: absolute;
-    ${posStyle};
-  `
-}
-
-export function applyVertItemContentCss(
-  mode: string,
-  autoFixDotSize?: boolean,
+export function applyDotWrapperStyle(
+  direction: TimelineDirection,
 ): SerializedStyles {
-  let alignStyle
-  if (mode === "right") {
-    alignStyle = css`
-      text-align: right;
-      right: 20px;
+  if (direction === "horizontal") {
+    return css`
+      ${flexCenter};
+      width: 24px;
+      height: 16px;
+      line-height: 6px;
+      position: relative;
     `
-  } else if (mode === "alternate-same") {
-    alignStyle = css`
+  }
+  return css`
+    ${flexCenter};
+    width: 6px;
+    height: 24px;
+    line-height: 24px;
+    position: relative;
+  `
+}
+
+export function applyVertItemContentStyle(mode: string): SerializedStyles {
+  if (mode === "alternate-same") {
+    return css`
       left: 50%;
-      width: calc(50% - 15px);
+      width: 50%;
+      margin-left: 22px;
+      padding-right: 22px;
     `
   } else if (mode === "alternate-relative") {
-    alignStyle = css`
-      width: calc(50% - 15px);
+    return css`
+      left: 0;
+      margin-left: -16px;
+      margin-right: 0;
       text-align: right;
-      right: 20px;
+      width: 50%;
+      padding-right: 16px;
+    `
+  } else if (mode === "right") {
+    return css`
+      text-align: right;
+      margin-left: 0;
+      margin-right: 16px;
+    `
+  } else {
+    return css`
+      margin-left: 16px;
     `
   }
-  return css`
-    position: relative;
-    top: -7.5px;
-    ${alignStyle};
-    margin-left: 16px;
-    ${autoFixDotSize && "font-size: 14px"};
-  `
 }
 
-export function applyHorItemContentCss(
+export function applyHortItemContentStyle(mode: string): SerializedStyles {
+  if (mode === "alternate-same") {
+    return css`
+      margin-bottom: 16px;
+      margin-right: 20px;
+      padding-bottom: unset;
+    `
+  } else if (mode === "alternate-relative") {
+    return css`
+      margin-top: 16px;
+      margin-right: 20px;
+    `
+  } else if (mode === "bottom") {
+    return css`
+      margin-bottom: 16px;
+      margin-right: 20px;
+    `
+  } else {
+    return css`
+      margin-top: 16px;
+      margin-right: 20px;
+    `
+  }
+}
+
+export function applyItemContentStyle(
+  direction: TimelineDirection,
   mode: string,
   autoFixDotSize?: boolean,
 ): SerializedStyles {
+  let directionStyle
+  if (direction === "horizontal") {
+    directionStyle = applyHortItemContentStyle(mode)
+  } else {
+    directionStyle = applyVertItemContentStyle(mode)
+  }
+
   return css`
     position: relative;
-    margin: 20px 20px 0 0;
-    left: -10px;
-    ${mode === "alternate-relative" && "top: 50%;margin-top: 30px;"};
-    ${mode === "alternate-same" && "top: -50%;"}
+    padding-bottom: 4px;
     ${autoFixDotSize && "font-size: 14px"};
+    ${directionStyle};
   `
 }

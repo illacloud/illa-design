@@ -1,5 +1,10 @@
 import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
-import { SelectColorScheme, SelectProps, SelectStateValue } from "./interface"
+import {
+  SelectColorScheme,
+  SelectOptionStateValue,
+  SelectProps,
+  SelectStateValue,
+} from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 import chroma from "chroma-js"
@@ -193,15 +198,13 @@ export function iconPointerStyle(size: string) {
 
 // option
 export function applyOptionStyle(
-  size: SelectProps["size"],
-  multiple?: boolean,
-  checked?: boolean,
-  colorScheme: SelectColorScheme = "blue",
+  stateValue: SelectOptionStateValue,
 ): SerializedStyles {
+  const { colorScheme, isChecked, multiple, disabled, size } = stateValue
   const bgColor = getColor(colorScheme, "07")
   const color = getColor(colorScheme, "01")
   let stateStyle: SerializedStyles = css()
-  if (checked) {
+  if (isChecked) {
     if (multiple) {
       stateStyle = css`
         color: ${color};
@@ -210,8 +213,26 @@ export function applyOptionStyle(
       stateStyle = css`
         background-color: ${bgColor};
         color: ${color};
+
         &:hover {
           background-color: ${bgColor};
+        }
+      `
+    }
+  }
+
+  if (disabled) {
+    stateStyle = css`
+      ${stateStyle};
+      cursor: not-allowed;
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+    `
+    if (!isChecked) {
+      stateStyle = css`
+        ${stateStyle};
+
+        &:hover {
+          background-color: unset;
         }
       `
     }
@@ -230,7 +251,7 @@ export function applyOptionStyle(
     white-space: nowrap;
     text-overflow: ellipsis;
     list-style: none;
-    display: inline-block;
+    display: inline-flex;
 
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
@@ -240,6 +261,7 @@ export function applyOptionStyle(
     ${applySizeStyle(size)}
   `
 }
+
 export function applyOptionListStyle(
   size: SelectProps["size"] = "medium",
 ): SerializedStyles {
@@ -253,3 +275,11 @@ export function applyOptionListStyle(
     border-radius: 8px;
   `
 }
+
+export const optionLabelStyle = css`
+  margin-left: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+`

@@ -41,18 +41,22 @@ export function applyOptionStyle(states: {
     `
   }
   if (states.disabled) {
-    stateStyle = css(
-      stateStyle,
-      css`
-        cursor: not-allowed;
-        color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+    stateStyle = css`
+      ${stateStyle};
+      cursor: not-allowed;
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+    `
+    if (!states.active) {
+      stateStyle = css`
+        ${stateStyle};
 
         &:hover {
           background-color: unset;
         }
-      `,
-    )
+      `
+    }
   }
+
   return css`
     padding: 0 16px;
     display: flex;
