@@ -29,26 +29,26 @@ export function applyItemStyle(
   if (direction === "horizontal") {
     if (mode === "alternate-same") {
       return css`
-        margin-top: 6px;
-        padding-bottom: 6px;
+        margin-top: 16px;
+        padding-bottom: 8px;
         transform: translateY(-50%);
         position: relative;
       `
     } else if (mode === "alternate-relative") {
       return css`
-        margin-top: -6px;
-        padding-top: 6px;
+        margin-top: -16px;
+        padding-top: 8px;
         transform: translateY(50%);
         position: relative;
       `
     } else if (mode === "bottom") {
       return css`
-        padding-bottom: 6px;
+        padding-bottom: 8px;
         position: relative;
       `
     } else {
       return css`
-        padding-top: 6px;
+        padding-top: 8px;
         position: relative;
       `
     }
@@ -153,8 +153,8 @@ export function applyLineStyle(
       transform: translateY(-50%);
       top: 50%;
       bottom: -4px;
-      left: 14px;
-      right: 9px;
+      left: 24px;
+      right: 0;
       height: 1px;
       border-top: 1px ${lineType} ${dotFillColor};
     `
@@ -183,8 +183,8 @@ export function applyDotWrapperStyle(
   if (direction === "horizontal") {
     return css`
       ${flexCenter};
-      width: 6px;
-      height: 6px;
+      width: 24px;
+      height: 16px;
       line-height: 6px;
       position: relative;
     `
@@ -231,23 +231,24 @@ export function applyVertItemContentStyle(mode: string): SerializedStyles {
 export function applyHortItemContentStyle(mode: string): SerializedStyles {
   if (mode === "alternate-same") {
     return css`
-      margin-left: 0;
       margin-bottom: 16px;
+      margin-right: 20px;
+      padding-bottom: unset;
     `
   } else if (mode === "alternate-relative") {
     return css`
       margin-top: 16px;
-      margin-left: 0;
+      margin-right: 20px;
     `
   } else if (mode === "bottom") {
     return css`
-      margin-left: 0;
       margin-bottom: 16px;
+      margin-right: 20px;
     `
   } else {
     return css`
       margin-top: 16px;
-      margin-left: 0;
+      margin-right: 20px;
     `
   }
 }
@@ -266,8 +267,8 @@ export function applyItemContentStyle(
 
   return css`
     position: relative;
+    padding-bottom: 4px;
     ${autoFixDotSize && "font-size: 14px"};
     ${directionStyle};
-    padding-bottom: 4px;
   `
 }

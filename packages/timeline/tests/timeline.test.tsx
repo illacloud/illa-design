@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom"
 import { Timeline, TimelineItem } from "../src"
 import { render, screen, within } from "@testing-library/react"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 test("vertical Timeline", () => {
   render(
@@ -51,7 +52,7 @@ test("horizontal Timeline", () => {
     </Timeline>,
   )
   expect(screen.getByText("The second milestone")).toHaveStyle({
-    top: "50%",
+    "margin-top": "16px",
   })
 })
 
@@ -93,7 +94,7 @@ test("label & relative position", () => {
     </Timeline>,
   )
   expect(screen.getByTestId("relative target").lastChild).toHaveStyle({
-    top: "-50%",
+    "margin-top": "16px",
   })
 })
 
@@ -116,13 +117,12 @@ test("custom dot & line style", () => {
   // dot
   render(
     <Timeline>
-      <TimelineItem
-        data-testid="test dotColor"
-        dotColor={"#ccc"}
-      ></TimelineItem>
+      <TimelineItem data-testid="test dotColor" dotColor={"#ccc"} />
     </Timeline>,
   )
-  expect(screen.getByTestId("test dotColor").children[1]).toHaveStyle({
+  expect(
+    screen.getByTestId("test dotColor").firstChild?.lastChild?.lastChild,
+  ).toHaveStyle({
     "background-color": "#ccc",
   })
   render(
@@ -131,34 +131,41 @@ test("custom dot & line style", () => {
         data-testid="test dotType"
         dotColor={"#ddd"}
         dotType={"hollow"}
-      ></TimelineItem>
+      />
     </Timeline>,
   )
-  expect(screen.getByTestId("test dotType").children[1]).toHaveStyle({
+  expect(
+    screen.getByTestId("test dotType").firstChild?.lastChild?.firstChild,
+  ).toHaveStyle({
     border: "1px solid #ddd",
   })
 
   // line
   render(
-    <Timeline>
+    <Timeline pending>
       <TimelineItem
         data-testid="test lineColor"
         lineColor={"#abcdef"}
       ></TimelineItem>
     </Timeline>,
   )
-  expect(screen.getByTestId("test lineColor").firstChild).toHaveStyle({
-    "border-color": "#abcdef",
+  expect(
+    screen.getByTestId("test lineColor").firstChild?.firstChild,
+  ).toHaveStyle({
+    "border-left": "1px solid #abcdef",
   })
+
   render(
-    <Timeline>
+    <Timeline pending>
       <TimelineItem
         data-testid="test lineType"
         lineType={"dashed"}
       ></TimelineItem>
     </Timeline>,
   )
-  expect(screen.getByTestId("test lineType").firstChild).toHaveStyle({
-    "border-left": "1px dashed",
+  expect(
+    screen.getByTestId("test lineType").firstChild?.firstChild,
+  ).toHaveStyle({
+    "border-left": `1px dashed ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
   })
 })
