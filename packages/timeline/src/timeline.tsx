@@ -19,10 +19,7 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
       ...rest
     } = props
 
-    const items =
-      Children.map(children as ReactElement, (ele: ReactElement) => {
-        return ele
-      }) || []
+    const items = Children.toArray(children) || []
 
     if (reverse) items.reverse()
 
