@@ -27,7 +27,6 @@ import {
   DragPointIcon,
   EditableTextWidgetIcon,
   EmptyIcon,
-  EmptyStateIcon,
   ErrorIcon,
   ExitIcon,
   ExpandIcon,
@@ -44,6 +43,7 @@ import {
   FileWPSIcon,
   FilterIcon,
   FormWidgetIcon,
+  FullScreenIcon,
   FunctionIcon,
   FxIcon,
   HeartIcon,
@@ -121,7 +121,6 @@ import {
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
-  FullScreenIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -334,10 +333,6 @@ export const Result404: Story<IconProps> = (props: IconProps) => (
 )
 export const Result500: Story<IconProps> = (props: IconProps) => (
   <Result500Icon {...props} />
-)
-
-export const EmptyState: Story<IconProps> = (props: IconProps) => (
-  <EmptyStateIcon {...props} />
 )
 
 export const RestApi: Story<IconProps> = (props: IconProps) => (
