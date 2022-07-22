@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/description",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Illa Design Description.",
   "keywords": [
     "description",
@@ -39,8 +39,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.13",
-    "@illa-design/system": "0.0.13",
-    "@illa-design/theme": "0.0.13"
+    "@illa-design/icon": "0.0.14",
+    "@illa-design/system": "0.0.14",
+    "@illa-design/theme": "0.0.14"
   }
 }
