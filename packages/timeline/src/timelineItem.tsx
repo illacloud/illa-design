@@ -1,14 +1,27 @@
 import { forwardRef } from "react"
-import { TimelineItemProps } from "./interface"
+import { TimelineItemProps, TimelineLabelPosition } from "./interface"
 import { TimelineContext } from "./timeline-context"
 import {
-  applyItemCss,
+  applyItemStyle,
   applyVertItemContentCss,
   applyHorItemContentCss,
   applyDotItemStyle,
   applyLineStyle,
-  dotCommonStyle, applyDotWrapperStyle,
+  dotCommonStyle,
+  applyDotWrapperStyle,
+  applyItemContentStyle,
 } from "./styles"
+
+const modeHandle = (
+  mode: string,
+  key: number,
+  labelPosition: TimelineLabelPosition,
+) => {
+  let classArr = ["alternate-same", "alternate-relative"]
+  // if labelPosition is relative :  1 -> 0, 0 -> 1
+  let classIdx = Math.abs((key % 2) - (labelPosition === "relative" ? 1 : 0))
+  return mode === "alternate" ? classArr[classIdx] : mode
+}
 
 export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
   (props, ref) => {
@@ -32,38 +45,23 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
             ...rest
           } = props
 
-          let modehandle = (mode: string, key: number) => {
-            let classArr = ["alternate-same", "alternate-relative"]
-            // if labelPosition is relative :  1 -> 0, 0 -> 1
-            let classIdx = Math.abs(
-              (key % 2) - (labelPosition === "relative" ? 1 : 0),
-            )
-            return mode === "alternate" ? classArr[classIdx] : mode
-          }
-          let handleContentCss
-
-          if (direction === "vertical") {
-            handleContentCss = applyVertItemContentCss(
-              modehandle(mode, index),
-              autoFixDotSize,
-            )
-          }
-          if (direction === "horizontal") {
-            handleContentCss = applyHorItemContentCss(
-              modehandle(mode, index),
-              autoFixDotSize,
-            )
-          }
+          const _mode = modeHandle(mode, index, labelPosition)
 
           return (
-            <div css={applyItemCss(direction)} ref={ref} {...rest}>
-              <div css={applyDotItemStyle(direction, mode)}>
-                <div css={applyLineStyle(direction, lineType, lineColor)} />
+            <div css={applyItemStyle(direction, _mode)} ref={ref} {...rest}>
+              <div css={applyDotItemStyle(direction, _mode)}>
+                {isChildrenLast ? null : (
+                  <div css={applyLineStyle(direction, lineType, lineColor)} />
+                )}
                 <div css={applyDotWrapperStyle(direction)}>
                   {dot ? dot : <div css={dotCommonStyle(dotColor, dotType)} />}
                 </div>
               </div>
-              <div css={handleContentCss}>{label ? label : children}</div>
+              <div
+                css={applyItemContentStyle(direction, _mode, autoFixDotSize)}
+              >
+                {label ? label : children}
+              </div>
             </div>
           )
         }}
