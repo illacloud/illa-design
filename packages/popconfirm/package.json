@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/popconfirm",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Illa Design Popconfirm.",
   "keywords": [
     "popconfirm",
@@ -39,11 +39,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/trigger": "0.0.13",
-    "@illa-design/typography": "0.0.13",
-    "@illa-design/button": "0.0.13",
-    "@illa-design/config-provider": "0.0.13",
-    "@illa-design/system": "0.0.13",
-    "@illa-design/theme": "0.0.13"
+    "@illa-design/trigger": "0.0.14",
+    "@illa-design/typography": "0.0.14",
+    "@illa-design/button": "0.0.14",
+    "@illa-design/config-provider": "0.0.14",
+    "@illa-design/system": "0.0.14",
+    "@illa-design/theme": "0.0.14"
   }
 }

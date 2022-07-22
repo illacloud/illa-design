@@ -1,5 +1,73 @@
 # @illa-design/react
 
+## 0.0.14
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/affix@0.0.14
+  - @illa-design/alert@0.0.14
+  - @illa-design/anchor@0.0.14
+  - @illa-design/avatar@0.0.14
+  - @illa-design/back-top@0.0.14
+  - @illa-design/badge@0.0.14
+  - @illa-design/button@0.0.14
+  - @illa-design/calendar@0.0.14
+  - @illa-design/card@0.0.14
+  - @illa-design/checkbox@0.0.14
+  - @illa-design/collapse@0.0.14
+  - @illa-design/comment@0.0.14
+  - @illa-design/config-provider@0.0.14
+  - @illa-design/date-picker@0.0.14
+  - @illa-design/description@0.0.14
+  - @illa-design/divider@0.0.14
+  - @illa-design/drawer@0.0.14
+  - @illa-design/empty@0.0.14
+  - @illa-design/grid@0.0.14
+  - @illa-design/icon@0.0.14
+  - @illa-design/image@0.0.14
+  - @illa-design/input@0.0.14
+  - @illa-design/input-number@0.0.14
+  - @illa-design/input-tag@0.0.14
+  - @illa-design/link@0.0.14
+  - @illa-design/list@0.0.14
+  - @illa-design/loading@0.0.4
+  - @illa-design/menu@0.0.14
+  - @illa-design/message@0.0.14
+  - @illa-design/modal@0.0.14
+  - @illa-design/notification@0.0.14
+  - @illa-design/page-header@0.0.14
+  - @illa-design/pagination@0.0.14
+  - @illa-design/popconfirm@0.0.14
+  - @illa-design/popover@0.0.14
+  - @illa-design/progress@0.0.14
+  - @illa-design/radio@0.0.14
+  - @illa-design/rate@0.0.14
+  - @illa-design/result@0.0.14
+  - @illa-design/select@0.0.14
+  - @illa-design/skeleton@0.0.14
+  - @illa-design/slider@0.0.14
+  - @illa-design/space@0.0.14
+  - @illa-design/spin@0.0.14
+  - @illa-design/statistic@0.0.14
+  - @illa-design/steps@0.0.14
+  - @illa-design/switch@0.0.14
+  - @illa-design/system@0.0.14
+  - @illa-design/table@0.0.14
+  - @illa-design/tabs@0.0.14
+  - @illa-design/tag@0.0.14
+  - @illa-design/theme@0.0.14
+  - @illa-design/time-picker@0.0.14
+  - @illa-design/timeline@0.0.14
+  - @illa-design/tooltip@0.0.14
+  - @illa-design/tree@0.0.14
+  - @illa-design/tree-select@0.0.14
+  - @illa-design/trigger@0.0.14
+  - @illa-design/typography@0.0.14
+  - @illa-design/upload@0.0.14
+
 ## 0.0.13
 
 ### Patch Changes
