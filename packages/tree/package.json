@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/tree",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "tree ",
   "keywords": [
     "tree",
@@ -39,8 +39,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/tree-common": "0.0.13",
-    "@illa-design/theme": "0.0.13",
-    "@illa-design/system": "0.0.13"
+    "@illa-design/tree-common": "0.0.14",
+    "@illa-design/theme": "0.0.14",
+    "@illa-design/system": "0.0.14"
   }
 }
