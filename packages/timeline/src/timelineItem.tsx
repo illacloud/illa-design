@@ -3,8 +3,6 @@ import { TimelineItemProps, TimelineLabelPosition } from "./interface"
 import { TimelineContext } from "./timeline-context"
 import {
   applyItemStyle,
-  applyVertItemContentCss,
-  applyHorItemContentCss,
   applyDotItemStyle,
   applyLineStyle,
   dotCommonStyle,
