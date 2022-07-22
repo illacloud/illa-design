@@ -94,7 +94,7 @@ test("label & relative position", () => {
     </Timeline>,
   )
   expect(screen.getByTestId("relative target").lastChild).toHaveStyle({
-    "margin-top": "16px",
+    "margin-bottom": "16px",
   })
 })
 
