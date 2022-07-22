@@ -114,3 +114,7 @@ export function applyBarStyle(size: ListSize) {
     ${sizeCss};
   `
 }
+
+export const applyListItemMetaTitleStyle = css`
+  display: inline-flex;
+`

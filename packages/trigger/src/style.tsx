@@ -39,6 +39,7 @@ export function applyMotionDiv() {
 export function applyTipsContainer(
   position: TriggerPosition,
   showArrow: boolean,
+  alignPoint?: boolean,
 ): SerializedStyles {
   const isColumn =
     position == "top" ||
@@ -49,7 +50,8 @@ export function applyTipsContainer(
     position == "br"
 
   let paddingStyle: SerializedStyles
-  const padding = showArrow ? 4 : 8
+  const padding = alignPoint ? 0 : showArrow ? 4 : 8
+
   switch (position) {
     case "top":
     case "tl":

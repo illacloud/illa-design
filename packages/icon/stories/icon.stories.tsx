@@ -27,7 +27,6 @@ import {
   DragPointIcon,
   EditableTextWidgetIcon,
   EmptyIcon,
-  EmptyStateIcon,
   ErrorIcon,
   ExitIcon,
   ExpandIcon,
@@ -110,7 +109,6 @@ import {
   TextWidgetIcon,
   TimeIcon,
   TimelineWidgetIcon,
-  UnselectedWidgetIcon,
   UpIcon,
   UploadIcon,
   VerticalCenterIcon,
@@ -336,10 +334,6 @@ export const Result500: Story<IconProps> = (props: IconProps) => (
   <Result500Icon {...props} />
 )
 
-export const EmptyState: Story<IconProps> = (props: IconProps) => (
-  <EmptyStateIcon {...props} />
-)
-
 export const RestApi: Story<IconProps> = (props: IconProps) => (
   <RestApiIcon {...props} />
 )
@@ -413,10 +407,6 @@ export const MongoDb: Story<IconProps> = (props: IconProps) => (
 
 export const JSTransformer: Story<IconProps> = (props: IconProps) => (
   <JSTransformerIcon {...props} />
-)
-
-export const UnselectedWidget: Story<IconProps> = (props: IconProps) => (
-  <UnselectedWidgetIcon {...props} />
 )
 
 export const Drag: Story<IconProps> = (props: IconProps) => (
