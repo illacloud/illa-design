@@ -79,6 +79,15 @@ const Template: Story<SelectProps> = (args) => (
     />
 
     <Select
+      showSearch={true}
+      style={{ width: 280 }}
+      options={options}
+      defaultValue={"Shenzhen"}
+      addonAfter={{render: '222'}}
+      {...args}
+    />
+
+    <Select
       style={{ width: 280 }}
       placeholder="Select items"
       {...args}

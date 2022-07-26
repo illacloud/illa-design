@@ -1,6 +1,5 @@
 import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import {
-  SelectColorScheme,
   SelectOptionStateValue,
   SelectProps,
   SelectStateValue,
@@ -96,7 +95,7 @@ export function applySelectView(
     box-sizing: border-box;
     width: 100%;
     font-size: 14px;
-    border-radius: 8px;
+    //border-radius: 8px;
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: pointer;
@@ -110,6 +109,16 @@ export function applySelectView(
           visibility: hidden;
         }
       }
+    }
+
+    &:first-of-type {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
     }
 
     ${applyStatus(stateValue)}
@@ -283,3 +292,10 @@ export const optionLabelStyle = css`
   text-overflow: ellipsis;
   flex: 1;
 `
+
+export function applySelectViewStyle(width?: string): SerializedStyles {
+  return css`
+    display: flex;
+    width: ${width ? width : "100%"};
+  `
+}
