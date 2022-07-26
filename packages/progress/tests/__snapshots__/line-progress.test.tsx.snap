@@ -255,7 +255,6 @@ exports[`Progress renders with colors 4`] = `
 }
 
 .emotion-4 {
-  height: 100%;
   display: inline-flex;
   margin-right: 4px;
   margin-bottom: 0px;
@@ -269,7 +268,6 @@ exports[`Progress renders with colors 4`] = `
 }
 
 .emotion-8 {
-  height: 100%;
   display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
@@ -400,7 +398,6 @@ exports[`Progress renders with colors 5`] = `
 }
 
 .emotion-4 {
-  height: 100%;
   display: inline-flex;
   margin-right: 4px;
   margin-bottom: 0px;
@@ -414,7 +411,6 @@ exports[`Progress renders with colors 5`] = `
 }
 
 .emotion-8 {
-  height: 100%;
   display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
@@ -545,7 +541,6 @@ exports[`Progress renders with colors 6`] = `
 }
 
 .emotion-4 {
-  height: 100%;
   display: inline-flex;
   margin-right: 4px;
   margin-bottom: 0px;
@@ -559,7 +554,6 @@ exports[`Progress renders with colors 6`] = `
 }
 
 .emotion-8 {
-  height: 100%;
   display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
@@ -760,7 +754,6 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-4 {
-  height: 100%;
   display: inline-flex;
   margin-right: 4px;
   margin-bottom: 0px;
@@ -774,7 +767,6 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-8 {
-  height: 100%;
   display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;

@@ -87,7 +87,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     suffix.render = (
       <span css={applyCountLimitStyle}>
         <span css={applyLengthErrorStyle(lengthError)}>{valueLength}</span>
-        {maxLength ? <span>/{maxLength}</span>: null}
+        {maxLength ? <span>/{maxLength}</span> : null}
       </span>
     )
   }
