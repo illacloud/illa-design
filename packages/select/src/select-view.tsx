@@ -41,9 +41,9 @@ const SearchStatus = {
 
 const SelectAddon: FC<{
   addon: "before" | "after"
+  size?: SelectSize
   render?: ReactNode
   buttonProps?: ButtonProps
-  size?: SelectSize
 }> = (props) => {
   const { addon, render, size, buttonProps } = props
   const buttonRadius = addon === "before" ? "8px 0 0 8px" : "0 8px 8px 0"
@@ -52,11 +52,11 @@ const SelectAddon: FC<{
     buttonRadius,
     ...buttonProps,
   }
-  return render ? (
+  return (
     <span>
       <Button {...buttonDefaultProps}>{render}</Button>
     </span>
-  ) : null
+  )
 }
 
 export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
@@ -324,7 +324,9 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         className={className}
         style={style}
       >
-        <SelectAddon addon={"before"} size={size} {...addonBefore} />
+        {addonBefore ? (
+          <SelectAddon addon={"before"} size={size} {...addonBefore} />
+        ) : null}
         <span
           css={applySelectView(stateValue)}
           onClick={onClick}
@@ -369,7 +371,9 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             <div css={applyIconStyle}>{suffixIcon}</div>
           </div>
         </span>
-        <SelectAddon addon={"after"} size={size} {...addonAfter} />
+        {addonAfter ? (
+          <SelectAddon addon={"after"} size={size} {...addonAfter} />
+        ) : null}
       </div>
     )
   },
