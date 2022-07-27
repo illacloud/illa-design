@@ -107,7 +107,6 @@ export function applyRadioButtonContainer(
   hasChildren?: ReactNode,
 ): SerializedStyles {
   return css`
-    width: 100%;
     border-radius: 4px;
     display: ${hasChildren ? "inline-flex" : "none"};
     vertical-align: middle;
