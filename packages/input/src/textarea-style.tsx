@@ -66,7 +66,7 @@ function applyStatus(stateValue: StateValue) {
 
 export function applyTextAreaContainer(stateValue: StateValue) {
   return css`
-    width: 280px;
+    width: 100%;
     margin-bottom: 16px;
     display: flex;
     flex-direction: row;
