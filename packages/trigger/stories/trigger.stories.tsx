@@ -78,13 +78,7 @@ export const Basic: Story<TriggerProps> = (args) => {
         </Space>
         <Space style={{ marginLeft: 70 }}>
           <Trigger {...args} position="bl" content="BL">
-            <Button
-              onClick={(e) => {
-                console.log(e)
-              }}
-            >
-              BL
-            </Button>
+            <Button onClick={(ignore) => {}}>BL</Button>
           </Trigger>
           <Trigger {...args} position="bottom" content="Test">
             <Button>BOTTOM</Button>
