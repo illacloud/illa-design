@@ -23,7 +23,12 @@ import {
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Button, ButtonProps } from "@illa-design/button"
-import { SelectSize, SelectStateValue, SelectViewProps } from "./interface"
+import {
+  SelectColorScheme,
+  SelectSize,
+  SelectStateValue,
+  SelectViewProps,
+} from "./interface"
 import {
   applyIconStyle,
   applySelectContent,
@@ -42,14 +47,16 @@ const SearchStatus = {
 const SelectAddon: FC<{
   addon: "before" | "after"
   size?: SelectSize
+  colorScheme?: SelectColorScheme
   render?: ReactNode
   buttonProps?: ButtonProps
 }> = (props) => {
-  const { addon, render, size, buttonProps } = props
+  const { addon, render, size, colorScheme, buttonProps } = props
   const buttonRadius = addon === "before" ? "8px 0 0 8px" : "0 8px 8px 0"
   const buttonDefaultProps = {
     size,
     buttonRadius,
+    colorScheme,
     ...buttonProps,
   }
   return (
@@ -325,7 +332,12 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         style={style}
       >
         {addonBefore ? (
-          <SelectAddon addon={"before"} size={size} {...addonBefore} />
+          <SelectAddon
+            addon={"before"}
+            size={size}
+            colorScheme={colorScheme}
+            {...addonBefore}
+          />
         ) : null}
         <span
           css={applySelectView(stateValue)}
@@ -372,7 +384,12 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
           </div>
         </span>
         {addonAfter ? (
-          <SelectAddon addon={"after"} size={size} {...addonAfter} />
+          <SelectAddon
+            addon={"after"}
+            size={size}
+            colorScheme={colorScheme}
+            {...addonAfter}
+          />
         ) : null}
       </div>
     )
