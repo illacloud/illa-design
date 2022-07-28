@@ -26,6 +26,7 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       onChange,
       onFocus,
       onBlur,
+      width = "100%",
       requirePadding = true,
       invisibleButton = true,
       borderRadius,
@@ -45,6 +46,7 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
 
     const stateValue = {
       error,
+      width,
       disabled,
       focus,
       variant,

@@ -28,6 +28,11 @@ export type InputVariant = "fill" | "outline"
 
 export type InputSize = "small" | "medium" | "large"
 
+interface BaseInputProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "width"> {
+  width?: string
+}
+
 export interface InputElementProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   _css?: SerializedStyles
@@ -60,6 +65,7 @@ export interface InputProps
   > {
   inputRef?: Ref<HTMLInputElement>
   variant?: InputVariant
+  width?: string
   placeholder?: string
   borderColor?: InputBorderColor
   borderRadius?: string
@@ -109,8 +115,7 @@ export interface TextAreaProps
   onClear?: () => void
 }
 
-export interface SearchProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+export interface SearchProps extends BaseInputProps {
   inputRef?: Ref<HTMLInputElement>
   searchButton?: boolean
   loading?: boolean
@@ -133,8 +138,7 @@ export interface SearchProps
   withoutNormalBorder?: boolean
 }
 
-export interface PasswordProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+export interface PasswordProps extends BaseInputProps {
   inputRef?: Ref<HTMLInputElement>
   invisibleButton?: boolean
   loading?: boolean
@@ -201,6 +205,7 @@ export interface StateValue {
   error?: boolean
   focus?: boolean
   variant?: string
+  width: string
   size?: InputProps["size"]
   borderColor: InputBorderColor
   borderRadius?: string
