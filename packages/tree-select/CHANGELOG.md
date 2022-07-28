@@ -1,5 +1,19 @@
 # @illa-design/treeselect
 
+## 0.0.15
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/empty@0.0.15
+  - @illa-design/select@0.0.15
+  - @illa-design/system@0.0.15
+  - @illa-design/theme@0.0.15
+  - @illa-design/tree@0.0.15
+  - @illa-design/tree-common@0.0.15
+
 ## 0.0.14
 
 ### Patch Changes

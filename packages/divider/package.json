@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/divider",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Illa Design divider.",
   "keywords": [
     "divider",
@@ -39,7 +39,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/system": "0.0.14",
-    "@illa-design/theme": "0.0.14"
+    "@illa-design/system": "0.0.15",
+    "@illa-design/theme": "0.0.15"
   }
 }
