@@ -97,6 +97,7 @@ export interface TextAreaProps
   textAreaRef?: Ref<HTMLTextAreaElement>
   variant?: InputVariant
   placeholder?: string
+  width?: string
   borderColor?: InputBorderColor
   borderRadius?: string
   defaultValue?: string
@@ -178,6 +179,7 @@ export interface RangeInputProps
   size?: InputSize
   borderColor?: InputProps["borderColor"]
   borderRadius?: string
+  width?: string
   value?: string[]
   placeholder?: string[]
   popupVisible?: boolean
