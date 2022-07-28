@@ -10,9 +10,14 @@ import chroma from "chroma-js"
 
 const OPTION_LINE_HEIGHT = 36
 const OPTION_PADDING = {
-  small: [1, 12],
-  medium: [5, 16],
-  large: [9, 16],
+  small: [0, 12],
+  medium: [0, 16],
+  large: [0, 16],
+}
+const OPTION_HEIGHT = {
+  small: 24,
+  medium: 32,
+  large: 40,
 }
 
 // default select
@@ -90,6 +95,7 @@ export function applySizeStyle(size: SelectProps["size"] = "medium") {
 export function applySelectView(
   stateValue: SelectStateValue,
 ): SerializedStyles {
+  const optionHeight = OPTION_HEIGHT[stateValue.size]
   return css`
     transition: all 200ms ease-in-out;
     box-sizing: border-box;
@@ -99,6 +105,7 @@ export function applySelectView(
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: pointer;
     display: flex;
+    height: ${optionHeight}px;
 
     &:hover {
       [title="selectRemoveIcon"] {
@@ -274,7 +281,7 @@ export function applyOptionListStyle(
   size: SelectProps["size"] = "medium",
 ): SerializedStyles {
   const MAX_VISIBLE_OPTION_COUNT = 6
-  const optionHeight = OPTION_LINE_HEIGHT + OPTION_PADDING[size][0] * 2
+  const optionHeight = OPTION_HEIGHT[size]
   const maxHeight = MAX_VISIBLE_OPTION_COUNT * optionHeight
   return css`
     max-height: ${maxHeight}px;

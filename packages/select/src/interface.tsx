@@ -163,7 +163,7 @@ export interface SelectStateValue {
   disabled?: boolean
   error?: boolean
   focus?: boolean
-  size?: SelectViewProps["size"]
+  size: SelectSize
   colorScheme?: SelectProps["colorScheme"]
   readOnly?: boolean
 }
