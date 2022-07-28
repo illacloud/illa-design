@@ -43,6 +43,7 @@ import {
   FileWPSIcon,
   FilterIcon,
   FormWidgetIcon,
+  FullScreenIcon,
   FunctionIcon,
   FxIcon,
   HeartIcon,
@@ -119,7 +120,6 @@ import {
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
-  FullScreenIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list

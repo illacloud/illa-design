@@ -1,4 +1,12 @@
-import { forwardRef, SyntheticEvent, useEffect, useRef, useState } from "react"
+import {
+  FC,
+  forwardRef,
+  ReactNode,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { InputElement, InputElementProps } from "@illa-design/input"
 import { isNumber, isObject, omit } from "@illa-design/system"
 import {
@@ -12,16 +20,18 @@ import {
   InputTagProps,
   ObjectValueType,
 } from "@illa-design/input-tag"
-import { SelectStateValue, SelectViewProps } from "./interface"
+import { css } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/theme"
+import { Button, ButtonProps } from "@illa-design/button"
+import { SelectSize, SelectStateValue, SelectViewProps } from "./interface"
 import {
   applyIconStyle,
   applySelectContent,
   applySelectView,
   applySelectViewText,
   iconPointerStyle,
+  applySelectViewStyle,
 } from "./style"
-import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 
 const SearchStatus = {
   BEFORE: 0,
@@ -29,11 +39,34 @@ const SearchStatus = {
   NONE: 2,
 }
 
+const SelectAddon: FC<{
+  addon: "before" | "after"
+  size?: SelectSize
+  render?: ReactNode
+  buttonProps?: ButtonProps
+}> = (props) => {
+  const { addon, render, size, buttonProps } = props
+  const buttonRadius = addon === "before" ? "8px 0 0 8px" : "0 8px 8px 0"
+  const buttonDefaultProps = {
+    size,
+    buttonRadius,
+    ...buttonProps,
+  }
+  return (
+    <span>
+      <Button {...buttonDefaultProps}>{render}</Button>
+    </span>
+  )
+}
+
 export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
   (props, ref) => {
     const {
       children,
+      className,
+      style,
       value,
+      width,
       size = "medium",
       inputValue,
       defaultValue,
@@ -52,6 +85,8 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       allowCreate,
       removeIcon,
       colorScheme = "blue",
+      addonAfter,
+      addonBefore,
       // event
       onClick,
       onFocus,
@@ -285,46 +320,60 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     return (
       <div
         ref={ref}
-        css={applySelectView(stateValue)}
-        onClick={onClick}
-        onFocus={(event) => {
-          if (disabled) {
-            return
-          }
-          if (canFocusInput) {
-            inputRef?.current?.focus?.()
-          } else {
-            tryTriggerFocusChange("focus", event)
-          }
-        }}
-        onBlur={(event) => tryTriggerFocusChange("blur", event)}
-        {...omit(otherProps, [
-          "options",
-          "filterOption",
-          "onSearch",
-          "onChange",
-          "onPopupScroll",
-          "onInputValueChange",
-          "onDeselect",
-        ])}
+        css={applySelectViewStyle(width)}
+        className={className}
+        style={style}
       >
-        <div
-          css={applySelectContent(stateValue)}
-          onClick={(e) => popupVisible && canFocusInput && e.stopPropagation()}
+        {addonBefore ? (
+          <SelectAddon addon={"before"} size={size} {...addonBefore} />
+        ) : null}
+        <span
+          css={applySelectView(stateValue)}
+          onClick={onClick}
+          onFocus={(event) => {
+            if (disabled) {
+              return
+            }
+            if (canFocusInput) {
+              inputRef?.current?.focus?.()
+            } else {
+              tryTriggerFocusChange("focus", event)
+            }
+          }}
+          onBlur={(event) => tryTriggerFocusChange("blur", event)}
+          {...omit(otherProps, [
+            "options",
+            "filterOption",
+            "onSearch",
+            "onChange",
+            "onPopupScroll",
+            "onInputValueChange",
+            "onDeselect",
+          ])}
         >
-          {multiple ? renderMultiple() : renderSingle()}
-          {!disabled && !isEmptyValue && allowClear ? (
-            <span
-              title="selectRemoveIcon"
-              css={iconPointerStyle(size)}
-              onClick={onClear}
-              onMouseDown={(event) => event?.preventDefault()}
-            >
-              {removeIcon ? removeIcon : <ErrorIcon />}
-            </span>
-          ) : null}
-          <div css={applyIconStyle}>{suffixIcon}</div>
-        </div>
+          <div
+            css={applySelectContent(stateValue)}
+            onClick={(e) =>
+              popupVisible && canFocusInput && e.stopPropagation()
+            }
+          >
+            {multiple ? renderMultiple() : renderSingle()}
+            {!disabled && !isEmptyValue && allowClear ? (
+              <span
+                title="selectRemoveIcon"
+                css={iconPointerStyle(size)}
+                onClick={onClear}
+                onMouseDown={(event) => event?.preventDefault()}
+              >
+                {removeIcon ? removeIcon : <ErrorIcon />}
+              </span>
+            ) : null}
+            <div css={applyIconStyle}>{suffixIcon}</div>
+          </div>
+        </span>
+        {addonAfter ? (
+          <SelectAddon addon={"after"} size={size} {...addonAfter} />
+        ) : null}
       </div>
     )
   },

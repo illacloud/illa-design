@@ -1,6 +1,8 @@
 import { HTMLAttributes } from "react"
 import { SerializedStyles } from "@emotion/react"
 
+export type LoadingSize = "small" | "medium" | "large"
+
 export type LoadingColorScheme =
   | string
   | "white"
@@ -19,5 +21,6 @@ export type LoadingColorScheme =
 
 export interface LoadingProps extends HTMLAttributes<HTMLDivElement> {
   _css?: SerializedStyles
+  size?: LoadingSize
   colorScheme?: LoadingColorScheme
 }

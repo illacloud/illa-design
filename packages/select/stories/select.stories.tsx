@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
-import { JSTransformerIcon } from "@illa-design/icon"
+import { JSTransformerIcon, SearchIcon } from "@illa-design/icon"
 import { Select, SelectProps, Option } from "../src"
 import { BsFacebook } from "react-icons/bs"
 
@@ -36,6 +36,22 @@ export default {
   },
 } as Meta
 
+const cityOption = [
+  {
+    value: "beijing",
+    label: "Beijing",
+    disabled: true,
+  },
+  {
+    value: "shanghai",
+    label: "Shanghai",
+  },
+  {
+    value: "guangdong",
+    label: "Guangdong",
+  },
+]
+
 const options = [
   "Beijing",
   "Shanghai",
@@ -51,14 +67,24 @@ const options = [
 ]
 
 const Template: Story<SelectProps> = (args) => (
-  <Space direction="vertical">
-    <Select style={{ width: 280 }} {...args} />
+  <Space direction="vertical" style={{ height: "200vh" }}>
+    <Select style={{ width: 280 }} options={cityOption} {...args} />
 
     <Select
       showSearch={true}
       style={{ width: 280 }}
       options={options}
       defaultValue={"Shenzhen"}
+      {...args}
+    />
+
+    <Select
+      showSearch={true}
+      style={{ width: 280 }}
+      options={options}
+      defaultValue={"Shenzhen"}
+      addonBefore={{ render: "222" }}
+      addonAfter={{ buttonProps: { leftIcon: <SearchIcon /> } }}
       {...args}
     />
 
@@ -70,7 +96,7 @@ const Template: Story<SelectProps> = (args) => (
     >
       {Array.from({ length: 10 }, (i, idx) => {
         return (
-          <Option value={idx} key={idx}>
+          <Option value={idx} key={idx} disabled={true}>
             <JSTransformerIcon style={{ marginRight: 8 }} />
             {`option-${idx}`}
           </Option>

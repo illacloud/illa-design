@@ -22,7 +22,6 @@ exports[`Space renders with different align 1`] = `
 }
 
 .emotion-1 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -32,7 +31,6 @@ exports[`Space renders with different align 1`] = `
 }
 
 .emotion-2 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -84,7 +82,6 @@ exports[`Space renders with different align 2`] = `
 }
 
 .emotion-1 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -94,7 +91,6 @@ exports[`Space renders with different align 2`] = `
 }
 
 .emotion-2 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -146,7 +142,6 @@ exports[`Space renders with different align 3`] = `
 }
 
 .emotion-1 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -156,7 +151,6 @@ exports[`Space renders with different align 3`] = `
 }
 
 .emotion-2 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -208,7 +202,6 @@ exports[`Space renders with different align 4`] = `
 }
 
 .emotion-1 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -218,7 +211,6 @@ exports[`Space renders with different align 4`] = `
 }
 
 .emotion-2 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -270,7 +262,6 @@ exports[`Space renders with divider 1`] = `
 }
 
 .emotion-1 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -303,7 +294,6 @@ exports[`Space renders with divider 1`] = `
 }
 
 .emotion-5 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -362,7 +352,6 @@ exports[`Space renders with wrap 1`] = `
 }
 
 .emotion-1 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -372,7 +361,6 @@ exports[`Space renders with wrap 1`] = `
 }
 
 .emotion-6 {
-  height: 100%;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;

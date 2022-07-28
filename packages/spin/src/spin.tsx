@@ -13,6 +13,7 @@ export const Spin = forwardRef<HTMLDivElement, SpinProps>((props, ref) => {
   const {
     loading = true,
     size = "medium",
+    colorScheme = "blue",
     icon,
     element,
     tip,
@@ -24,12 +25,12 @@ export const Spin = forwardRef<HTMLDivElement, SpinProps>((props, ref) => {
   let loadingIcon
   if (icon) {
     loadingIcon = cloneElement(icon as ReactElement, {
-      css: applySizeCss(size, loading),
+      css: applySizeCss(size, loading, colorScheme),
     })
   } else if (element) {
     loadingIcon = element
   } else {
-    loadingIcon = <LoadingIcon css={applySizeCss(size, loading)} />
+    loadingIcon = <LoadingIcon css={applySizeCss(size, loading, colorScheme)} />
   }
   let tipView
   if (isObject(tip)) {

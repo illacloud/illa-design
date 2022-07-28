@@ -34,7 +34,8 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
     let radioGroupCss: SerializedStyles
 
     if (type === "button") {
-      radioGroupCss = applyRadioButtonContainer(size)
+      const hasChildren = options?.length || children
+      radioGroupCss = applyRadioButtonContainer(hasChildren)
     } else {
       switch (direction) {
         case "vertical":

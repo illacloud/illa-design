@@ -3,10 +3,6 @@
 exports[`Button renders fullwidth 1`] = `
 .emotion-0 {
   width: 100%;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -25,6 +21,10 @@ exports[`Button renders fullwidth 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
   cursor: pointer;
   padding: 5px 16px;
   border-radius: 8px;
@@ -93,6 +93,10 @@ exports[`Button renders round 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
   cursor: pointer;
   padding: 5px 16px;
   border-radius: 999px;

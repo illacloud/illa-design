@@ -43,13 +43,6 @@ export function applyDividerSizeSingle(
       break
   }
   return css`
-    ${direction == "horizontal"
-      ? css`
-          height: 100%;
-        `
-      : css`
-          width: 100%;
-        `};
     display: inline-flex;
     margin-right: ${horSpace};
     margin-bottom: ${verSpace};

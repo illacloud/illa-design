@@ -21,7 +21,9 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     defaultValue,
     requirePadding = true,
     searchButton,
+    width = "100%",
     borderColor = "blue",
+    borderRadius,
     size = "medium",
     variant = "outline",
     onChange,
@@ -41,9 +43,11 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   })
   const stateValue = {
     error,
+    width,
     disabled,
     focus,
     variant,
+    borderRadius,
     size,
     borderColor,
     withoutNormalBorder,

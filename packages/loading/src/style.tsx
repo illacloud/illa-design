@@ -1,21 +1,45 @@
 import { css, SerializedStyles, keyframes } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { LoadingColorScheme } from "./interface"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { LoadingColorScheme, LoadingSize } from "./interface"
 
 export const spin = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 `
 
 export function applyLoadingStyle(
   colorScheme: LoadingColorScheme,
+  size: LoadingSize,
 ): SerializedStyles {
   let bgColor
-  bgColor = globalColor(`--${illaPrefix}-${colorScheme}-01`)
+  bgColor = getColor(colorScheme, "01")
+  let sizeCss
+  switch (size) {
+    case "small":
+      sizeCss = css`
+        width: 12px;
+        height: 12px;
+      `
+      break
+    case "large":
+      sizeCss = css`
+        width: 24px;
+        height: 24px;
+      `
+      break
+    default:
+      sizeCss = css`
+        width: 16px;
+        height: 16px;
+      `
+  }
   return css`
     display: inline-block;
-    width: 32px;
-    height: 32px;
+    ${sizeCss};
     border-radius: 50%;
     background: conic-gradient(
       rgba(101, 74, 236, 0) 45deg,

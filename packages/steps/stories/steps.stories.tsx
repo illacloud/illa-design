@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react"
+import React, { useState } from "react"
 import { Tooltip } from "@illa-design/tooltip"
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
@@ -46,10 +46,9 @@ const TemplateWithDescription = (args: StepsProps) => (
   </Steps>
 )
 
-export const Description = TemplateWithDescription.bind({})
-Description.args = {
+export const Description = TemplateWithDescription.bind({
   current: 3,
-}
+})
 
 export const CustomIcon = (args: StepsProps) => (
   <Steps {...args}>
@@ -66,23 +65,17 @@ export const CustomIcon = (args: StepsProps) => (
     />
   </Steps>
 )
-CustomIcon.args = {}
 
-export const Error = TemplateWithDescription.bind({})
-Error.args = {
+export const Error = TemplateWithDescription.bind({
   status: "error",
   current: 2,
-}
+})
 
-export const Lineless = TemplateWithDescription.bind({})
-Lineless.args = {
+export const Lineless = TemplateWithDescription.bind({
   lineless: true,
-}
+})
 
-export const Vertical = TemplateWithDescription.bind({})
-Vertical.args = {
-  direction: "vertical",
-}
+export const Vertical = TemplateWithDescription.bind({ direction: "vertical" })
 
 export const Dot = (args: StepsProps) => {
   const { onChange, ...restArgs } = args
@@ -115,120 +108,18 @@ Dot.args = {
 }
 
 export const CustomDot = () => {
-  const customDot = (iconNode: ReactElement, { index }) => {
-    return <Tooltip content={index}>{iconNode}</Tooltip>
-  }
   return (
-    <Steps customDot={customDot}>
+    <Steps
+      customDot={(icon, config) => {
+        return <Tooltip content={config.index}>{icon}</Tooltip>
+      }}
+    >
       <Step title="Succeeded" description="Read the message" />
       <Step title="Processing" description="Please Confirm" />
       <Step title="Pending" description="Commit it" />
     </Steps>
   )
 }
-
-//  Size is not currently supported
-/*
-export const Size = () => {
-  const steps = (
-    <>
-      <Step title="Succeeded" description="Read the message" />
-      <Step title="Processing" description="Please Confirm" />
-      <Step title="Pending" description="Commit it" />
-    </>
-  )
-  return (
-    <Space direction="vertical">
-      <Steps style={{ width: 800 }}>
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Steps style={{ width: 800 }} size="large">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Steps style={{ width: 800 }} labelPlacement="vertical">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Steps style={{ width: 800 }} size="large" labelPlacement="vertical">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Space>
-        <Steps direction="vertical" current={2} status="error">
-          <Step title="Succeeded" description="Read the message" />
-          <Step title="Processing" description="Please Confirm" />
-          <Step title="Pending" description="Commit it" />
-        </Steps>
-
-        <Steps size="large" direction="vertical">
-          <Step title="Succeeded" description="Read the message" />
-          <Step title="Processing" description="Please Confirm" />
-          <Step title="Pending" description="Commit it" />
-        </Steps>
-      </Space>
-
-      <Steps style={{ width: 800 }} variant="dot" current={3} status="error">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Steps style={{ width: 800 }} variant="dot" size="large">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Space>
-        <Steps variant="dot" direction="vertical">
-          <Step title="Succeeded" description="Read the message" />
-          <Step title="Processing" description="Please Confirm" />
-          <Step title="Pending" description="Commit it" />
-        </Steps>
-
-        <Steps
-          variant="dot"
-          size="large"
-          direction="vertical"
-          current={3}
-          status="error"
-        >
-          <Step title="Succeeded" description="Read the message" />
-          <Step title="Processing" description="Please Confirm" />
-          <Step title="Pending" description="Commit it" />
-        </Steps>
-      </Space>
-
-      <Steps
-        style={{ width: 800 }}
-        variant="navigation"
-        current={3}
-        status="error"
-      >
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-
-      <Steps style={{ width: 800 }} variant="navigation" size="large">
-        <Step title="Succeeded" description="Read the message" />
-        <Step title="Processing" description="Please Confirm" />
-        <Step title="Pending" description="Commit it" />
-      </Steps>
-    </Space>
-  )
-}
-*/
 
 export const SwitchStep = () => {
   const [current, setCurrent] = useState(1)

@@ -1,4 +1,4 @@
-import { Children, forwardRef, useMemo } from "react"
+import { Children, forwardRef } from "react"
 import { ButtonProps } from "./interface"
 import { css } from "@emotion/react"
 import { LoadingIcon } from "@illa-design/icon"
@@ -16,16 +16,9 @@ import {
   applyWithoutTextSize,
 } from "./style"
 import { ButtonGroupContext } from "."
-import { getSizeCssByAutoFullProps } from "@illa-design/system"
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const { autoFullHorizontal, autoFullVertically } = props
-    const sizeCss = useMemo(
-      () => getSizeCssByAutoFullProps(autoFullHorizontal, autoFullVertically),
-      [autoFullHorizontal, autoFullVertically],
-    )
-
     return (
       <ButtonGroupContext.Consumer>
         {(value) => {
@@ -38,6 +31,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             variant = value?.variant ?? "fill",
             shape = value?.shape ?? "square",
             fullWidth,
+            fullHeight,
             loading,
             loadingText,
             leftIcon,
@@ -47,8 +41,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             borderColor,
             backgroundColor,
             textColor,
-            autoFullHorizontal,
-            autoFullVertically,
             onClick,
             ...otherProps
           } = props
@@ -58,11 +50,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           const hasChild = Children.count(props.children) >= 1
           const hasPropContent = hasChild || (hasLoadingText && loading)
           const finalContainer = css`
-            ${applyTagContainer(fullWidth)};
+            ${applyTagContainer(fullWidth, fullHeight)};
             ${applyCursor(loading ?? false, disabled ?? false)}
             ${hasPropContent
               ? applyPaddingStyle(size, variant)
-              : applyWithoutTextSize(size, fullWidth)};
+              : applyWithoutTextSize(size, fullWidth, fullHeight)};
             ${applyShape(
               shape,
               attached ?? false,
@@ -88,7 +80,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           return (
             <button
               ref={ref}
-              css={css(finalContainer, sizeCss, _css)}
+              css={css(finalContainer, _css)}
               {...otherProps}
               onClick={(e) => {
                 if (disabled || loading) {

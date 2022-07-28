@@ -37,6 +37,8 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     addonAfter,
     addonBefore,
     defaultValue,
+    borderRadius,
+    width = "100%",
     borderColor = "blue",
     size = "medium",
     variant = "outline",
@@ -76,18 +78,20 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     error: error || lengthError,
     disabled,
     focus: highlight ?? focus,
+    width,
     variant,
     size,
     borderColor,
+    borderRadius,
     iconAppearWithSuffix,
     withoutNormalBorder,
   }
 
-  if (maxLength && showCount) {
+  if (showCount) {
     suffix.render = (
       <span css={applyCountLimitStyle}>
         <span css={applyLengthErrorStyle(lengthError)}>{valueLength}</span>
-        <span>/{maxLength}</span>
+        {maxLength ? <span>/{maxLength}</span> : null}
       </span>
     )
   }

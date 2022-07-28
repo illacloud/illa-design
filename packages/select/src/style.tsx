@@ -1,14 +1,23 @@
 import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
-import { SelectColorScheme, SelectProps, SelectStateValue } from "./interface"
+import {
+  SelectOptionStateValue,
+  SelectProps,
+  SelectStateValue,
+} from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 import chroma from "chroma-js"
 
 const OPTION_LINE_HEIGHT = 36
 const OPTION_PADDING = {
-  small: [1, 12],
-  medium: [5, 16],
-  large: [9, 16],
+  small: [0, 12],
+  medium: [0, 16],
+  large: [0, 16],
+}
+const OPTION_HEIGHT = {
+  small: 24,
+  medium: 32,
+  large: 40,
 }
 
 // default select
@@ -86,16 +95,17 @@ export function applySizeStyle(size: SelectProps["size"] = "medium") {
 export function applySelectView(
   stateValue: SelectStateValue,
 ): SerializedStyles {
+  const optionHeight = OPTION_HEIGHT[stateValue.size]
   return css`
     transition: all 200ms ease-in-out;
     box-sizing: border-box;
     width: 100%;
     font-size: 14px;
-    border-radius: 8px;
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: pointer;
     display: flex;
+    height: ${optionHeight}px;
 
     &:hover {
       [title="selectRemoveIcon"] {
@@ -105,6 +115,16 @@ export function applySelectView(
           visibility: hidden;
         }
       }
+    }
+
+    &:first-of-type {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
     }
 
     ${applyStatus(stateValue)}
@@ -193,15 +213,13 @@ export function iconPointerStyle(size: string) {
 
 // option
 export function applyOptionStyle(
-  size: SelectProps["size"],
-  multiple?: boolean,
-  checked?: boolean,
-  colorScheme: SelectColorScheme = "blue",
+  stateValue: SelectOptionStateValue,
 ): SerializedStyles {
+  const { colorScheme, isChecked, multiple, disabled, size } = stateValue
   const bgColor = getColor(colorScheme, "07")
   const color = getColor(colorScheme, "01")
   let stateStyle: SerializedStyles = css()
-  if (checked) {
+  if (isChecked) {
     if (multiple) {
       stateStyle = css`
         color: ${color};
@@ -210,8 +228,26 @@ export function applyOptionStyle(
       stateStyle = css`
         background-color: ${bgColor};
         color: ${color};
+
         &:hover {
           background-color: ${bgColor};
+        }
+      `
+    }
+  }
+
+  if (disabled) {
+    stateStyle = css`
+      ${stateStyle};
+      cursor: not-allowed;
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+    `
+    if (!isChecked) {
+      stateStyle = css`
+        ${stateStyle};
+
+        &:hover {
+          background-color: unset;
         }
       `
     }
@@ -230,7 +266,7 @@ export function applyOptionStyle(
     white-space: nowrap;
     text-overflow: ellipsis;
     list-style: none;
-    display: inline-block;
+    display: inline-flex;
 
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
@@ -240,16 +276,32 @@ export function applyOptionStyle(
     ${applySizeStyle(size)}
   `
 }
+
 export function applyOptionListStyle(
   size: SelectProps["size"] = "medium",
 ): SerializedStyles {
   const MAX_VISIBLE_OPTION_COUNT = 6
-  const optionHeight = OPTION_LINE_HEIGHT + OPTION_PADDING[size][0] * 2
+  const optionHeight = OPTION_HEIGHT[size]
   const maxHeight = MAX_VISIBLE_OPTION_COUNT * optionHeight
   return css`
     max-height: ${maxHeight}px;
     overflow: auto;
     background-color: white;
     border-radius: 8px;
+  `
+}
+
+export const optionLabelStyle = css`
+  margin-left: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+`
+
+export function applySelectViewStyle(width?: string): SerializedStyles {
+  return css`
+    display: flex;
+    width: ${width ? width : "100%"};
   `
 }

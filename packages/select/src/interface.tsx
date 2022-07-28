@@ -8,6 +8,7 @@ import {
   SyntheticEvent,
 } from "react"
 import { TriggerProps } from "@illa-design/trigger"
+import { ButtonProps } from "@illa-design/button"
 
 export interface OptionProps
   extends Omit<HTMLAttributes<HTMLLIElement>, "onMouseEnter" | "onMouseLeave"> {
@@ -113,6 +114,9 @@ export interface SelectProps
     | ((inputValue: string, option: ReactElement) => boolean)
   triggerProps?: Partial<TriggerProps>
   colorScheme?: SelectColorScheme
+  width?: string
+  addonAfter?: { buttonProps?: ButtonProps; render?: ReactNode }
+  addonBefore?: { buttonProps?: ButtonProps; render?: ReactNode }
   // events
   onChange?: (value: any, option?: OptionInfo | OptionInfo[]) => void
   onSearch?: (value: string, reason: InputValueChangeReason) => void
@@ -139,6 +143,9 @@ export interface SelectViewProps
   multiple?: boolean
   popupVisible?: boolean
   isEmptyValue?: boolean
+  width?: string
+  addonAfter?: { buttonProps?: ButtonProps; render?: ReactNode }
+  addonBefore?: { buttonProps?: ButtonProps; render?: ReactNode }
   renderText: (value: any) => { text?: any; disabled?: boolean }
   onRemoveCheckedItem?: (item: any, index: number, e?: SyntheticEvent) => void
   onChangeInputValue?: (value: string, e?: SyntheticEvent) => void
@@ -156,7 +163,15 @@ export interface SelectStateValue {
   disabled?: boolean
   error?: boolean
   focus?: boolean
-  size?: SelectViewProps["size"]
+  size: SelectSize
   colorScheme?: SelectProps["colorScheme"]
   readOnly?: boolean
+}
+
+export interface SelectOptionStateValue {
+  disabled?: boolean
+  size?: SelectViewProps["size"]
+  colorScheme: SelectColorScheme
+  isChecked?: boolean
+  multiple?: boolean
 }

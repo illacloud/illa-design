@@ -21,7 +21,6 @@ import {
   mergeRefs,
   omit,
   padStart,
-  getSizeCssByAutoFullProps,
   raf,
   useMergeValue,
 } from "../src"
@@ -260,12 +259,6 @@ test("test getSortedDayjsArray", () => {
   expect(getSortedDayjsArray(dayArr)).toEqual(excArr)
   const errorCase = [dayjsPro("06:00:00", "HH:mm:ss")]
   expect(getSortedDayjsArray(errorCase)).toEqual(errorCase)
-})
-
-test("test getAutoFullSizeCss", function () {
-  const res = getSizeCssByAutoFullProps(true, true)
-  expect(res.styles.includes("width: 100%")).toEqual(true)
-  expect(res.styles.includes("height: 100%")).toEqual(true)
 })
 
 test("test merge refs", () => {
