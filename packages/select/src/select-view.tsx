@@ -58,6 +58,14 @@ const SelectAddon: FC<{
     buttonRadius,
     colorScheme,
     ...buttonProps,
+    _css: css(
+      css(
+        addon === "before"
+          ? { borderRight: 0, ":hover": { borderRight: 0 } }
+          : { borderLeft: 0, ":hover": { borderLeft: 0 } },
+      ),
+      buttonProps?._css,
+    ),
   }
   return (
     <span>

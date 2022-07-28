@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
-import { JSTransformerIcon, SearchIcon } from "@illa-design/icon"
+import { JSTransformerIcon, PenIcon, SearchIcon } from "@illa-design/icon"
 import { Select, SelectProps, Option } from "../src"
 import { BsFacebook } from "react-icons/bs"
 
@@ -84,7 +84,13 @@ const Template: Story<SelectProps> = (args) => (
       options={options}
       defaultValue={"Shenzhen"}
       addonBefore={{ render: "222" }}
-      addonAfter={{ buttonProps: { leftIcon: <SearchIcon /> } }}
+      addonAfter={{
+        buttonProps: {
+          variant: "outline",
+          colorScheme: "gray",
+          leftIcon: <PenIcon />,
+        },
+      }}
       {...args}
     />
 
