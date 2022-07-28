@@ -80,7 +80,7 @@ export function applyTextAreaContainer(stateValue: StateValue) {
   `
 }
 
-export function applyTextAreaStyle() {
+export function applyTextAreaStyle(borderRadius: string) {
   return css`
     width: 100%;
     appearance: none;
@@ -91,7 +91,7 @@ export function applyTextAreaStyle() {
     min-height: 44px;
     height: 44px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    border-radius: 4px;
+    border-radius: ${borderRadius};
     border: 1px solid transparent;
     outline: unset;
     cursor: inherit;

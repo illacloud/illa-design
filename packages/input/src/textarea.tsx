@@ -168,7 +168,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
         <textarea
           style={{ ...autoSizeStyle }}
           ref={refTextArea}
-          css={applyTextAreaStyle}
+          css={applyTextAreaStyle(borderRadius)}
           {...textAreaProps}
           onChange={onChange}
           onFocus={(e) => {
