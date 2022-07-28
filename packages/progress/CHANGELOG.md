@@ -1,5 +1,18 @@
 # @illa-design/progress
 
+## 0.0.15
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@0.0.15
+  - @illa-design/space@0.0.15
+  - @illa-design/system@0.0.15
+  - @illa-design/theme@0.0.15
+  - @illa-design/trigger@0.0.15
+
 ## 0.0.14
 
 ### Patch Changes
