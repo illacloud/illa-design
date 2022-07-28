@@ -203,7 +203,7 @@ export interface StateValue {
   variant?: string
   size?: InputProps["size"]
   borderColor: InputBorderColor
-  borderRadius: string
+  borderRadius?: string
   iconAppearWithSuffix?: boolean
   // only RangeInput
   focusedInput0?: boolean

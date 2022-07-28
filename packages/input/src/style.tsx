@@ -77,7 +77,6 @@ export function applyContainerCss(stateValue: StateValue) {
     flex-direction: row;
     align-items: center;
     font-size: 14px;
-    border-radius: ${stateValue.borderRadius};
     vertical-align: middle;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${applyVariantStyle(stateValue?.variant)}
@@ -201,6 +200,24 @@ export function applyInputContainer(
   stateValue: StateValue,
   requirePadding?: boolean,
 ) {
+  let borderRadius
+  if (stateValue.borderRadius) {
+    borderRadius = css`
+      border-radius: ${stateValue.borderRadius};
+    `
+  } else {
+    borderRadius = css`
+      &:first-of-type {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+
+      &:last-of-type {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    `
+  }
   return css`
     width: 100%;
     height: 100%;
@@ -217,17 +234,8 @@ export function applyInputContainer(
     ${applySizeCss(requirePadding, stateValue?.size)};
 
     ${applyStatus(stateValue)}
-    &:first-of-type {
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
-    }
-
-    &:last-of-type {
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
-    }
-
-    &:hover {
+    ${borderRadius}
+      &:hover {
       [title="InputClearIcon"] {
         opacity: 1;
         // input suffix hidden
@@ -266,10 +274,12 @@ export function applyInputStyle(textCenterHorizontal?: boolean) {
     cursor: inherit;
     background-color: inherit;
     padding: 0;
+
     ${textAlignCss}
     &::placeholder {
       color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     }
+
     &:read-only {
       color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 
@@ -277,6 +287,7 @@ export function applyInputStyle(textCenterHorizontal?: boolean) {
         color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
       }
     }
+
     &:disabled {
       cursor: not-allowed;
       color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
@@ -484,7 +495,7 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
     border-radius: ${stateValue.borderColor};
     ${applyStatus(stateValue)}
     ${applySizeStyle(stateValue?.size)}
-    ${applySizeCss(true, stateValue?.size)};
+      ${applySizeCss(true, stateValue?.size)};
 
     &:hover {
       [title="InputClearIcon"] {

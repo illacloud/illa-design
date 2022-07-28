@@ -37,7 +37,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     addonAfter,
     addonBefore,
     defaultValue,
-    borderRadius = "8px",
+    borderRadius,
     borderColor = "blue",
     size = "medium",
     variant = "outline",
