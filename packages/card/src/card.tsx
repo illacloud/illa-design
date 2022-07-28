@@ -2,7 +2,7 @@ import { forwardRef, Children, cloneElement, ReactElement } from "react"
 import { CardGrid } from "./card-grid"
 import { Meta } from "./meta"
 import { CardProps } from "./interface"
-import { Spin } from "@illa-design/spin"
+import { Loading } from "@illa-design/loading"
 import {
   applyCardActionItem,
   applyCard,
@@ -82,7 +82,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
       {cover ? <div css={applyCardCover}>{cover}</div> : null}
 
       <div css={applyCardBody(size, loading ?? false, isContainGrid)}>
-        {loading ? <Spin /> : handledChildren}
+        {loading ? <Loading size={size} colorScheme="blue" /> : handledChildren}
         {isContainMeta ? null : actionList}
       </div>
     </div>
