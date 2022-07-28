@@ -1,6 +1,6 @@
 import { css, keyframes, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { SpinSize } from "./interface"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { SpinColorScheme, SpinSize } from "./interface"
 
 export const containerCss = css`
   display: inline-flex;
@@ -16,6 +16,7 @@ export const tipCss = css`
 export function applySizeCss(
   size: SpinSize,
   loading: boolean,
+  colorScheme: SpinColorScheme,
 ): SerializedStyles {
   let sizeCss
   switch (size) {
@@ -39,7 +40,7 @@ export function applySizeCss(
   return css`
     ${animationCss};
     ${sizeCss};
-    color: ${globalColor(`--${illaPrefix}-blue-03`)};
+    color: ${getColor(colorScheme, "03")};
   `
 }
 
