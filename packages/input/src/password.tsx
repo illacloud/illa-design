@@ -28,7 +28,7 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       onBlur,
       requirePadding = true,
       invisibleButton = true,
-      borderRadius = "8px",
+      borderRadius,
       borderColor = "blue",
       size = "medium",
       variant = "outline",

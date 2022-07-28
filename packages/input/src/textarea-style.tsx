@@ -73,7 +73,7 @@ export function applyTextAreaContainer(stateValue: StateValue) {
     align-items: center;
     font-size: 14px;
     line-height: 22px;
-    border-radius: 4px;
+    border-radius: ${stateValue.borderRadius ?? "8px"};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${applyStatus(stateValue)}

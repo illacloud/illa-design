@@ -22,7 +22,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     requirePadding = true,
     searchButton,
     borderColor = "blue",
-    borderRadius = "8px",
+    borderRadius,
     size = "medium",
     variant = "outline",
     onChange,

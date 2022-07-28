@@ -492,7 +492,7 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     transition: all 200ms ease-in-out;
-    border-radius: ${stateValue.borderColor};
+    border-radius: ${stateValue.borderRadius};
     ${applyStatus(stateValue)}
     ${applySizeStyle(stateValue?.size)}
       ${applySizeCss(true, stateValue?.size)};
