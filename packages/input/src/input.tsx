@@ -37,6 +37,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     addonAfter,
     addonBefore,
     defaultValue,
+    borderRadius = "8px",
     borderColor = "blue",
     size = "medium",
     variant = "outline",
@@ -79,6 +80,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     variant,
     size,
     borderColor,
+    borderRadius,
     iconAppearWithSuffix,
     withoutNormalBorder,
   }

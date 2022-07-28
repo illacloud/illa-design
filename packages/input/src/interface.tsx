@@ -34,6 +34,7 @@ export interface InputElementProps
   variant?: InputVariant
   placeholder?: string
   borderColor?: InputBorderColor
+  borderRadius?: string
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -61,6 +62,7 @@ export interface InputProps
   variant?: InputVariant
   placeholder?: string
   borderColor?: InputBorderColor
+  borderRadius?: string
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -90,6 +92,7 @@ export interface TextAreaProps
   variant?: InputVariant
   placeholder?: string
   borderColor?: InputBorderColor
+  borderRadius?: string
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -114,6 +117,7 @@ export interface SearchProps
   variant?: InputVariant
   placeholder?: string
   borderColor?: InputBorderColor
+  borderRadius?: string
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -137,6 +141,7 @@ export interface PasswordProps
   variant?: InputVariant
   placeholder?: string
   borderColor?: InputBorderColor
+  borderRadius?: string
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -168,6 +173,7 @@ export interface RangeInputProps
   }>
   size?: InputSize
   borderColor?: InputProps["borderColor"]
+  borderRadius?: string
   value?: string[]
   placeholder?: string[]
   popupVisible?: boolean
@@ -197,6 +203,7 @@ export interface StateValue {
   variant?: string
   size?: InputProps["size"]
   borderColor: InputBorderColor
+  borderRadius: string
   iconAppearWithSuffix?: boolean
   // only RangeInput
   focusedInput0?: boolean

@@ -77,7 +77,7 @@ export function applyContainerCss(stateValue: StateValue) {
     flex-direction: row;
     align-items: center;
     font-size: 14px;
-    border-radius: 8px;
+    border-radius: ${stateValue.borderRadius};
     vertical-align: middle;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${applyVariantStyle(stateValue?.variant)}
@@ -481,7 +481,7 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     transition: all 200ms ease-in-out;
-    border-radius: 8px;
+    border-radius: ${stateValue.borderColor};
     ${applyStatus(stateValue)}
     ${applySizeStyle(stateValue?.size)}
     ${applySizeCss(true, stateValue?.size)};

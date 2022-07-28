@@ -31,6 +31,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
       style,
       className,
       textAreaRef,
+      borderRadius = "8px",
       allowClear,
       error,
       disabled,
@@ -77,6 +78,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
     const stateValue = {
       error: error || lengthError,
       disabled,
+      borderRadius,
       focus,
       variant,
       borderColor,
