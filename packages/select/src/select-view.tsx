@@ -47,22 +47,32 @@ const SearchStatus = {
 const SelectAddon: FC<{
   addon: "before" | "after"
   size?: SelectSize
+  borderRadius?: string
   colorScheme?: SelectColorScheme
   render?: ReactNode
   buttonProps?: ButtonProps
 }> = (props) => {
-  const { addon, render, size, colorScheme, buttonProps } = props
-  const buttonRadius = addon === "before" ? "8px 0 0 8px" : "0 8px 8px 0"
+  const { addon, render, size, colorScheme, borderRadius, buttonProps } = props
   const buttonDefaultProps = {
     size,
-    buttonRadius,
+    buttonRadius: borderRadius,
     colorScheme,
     ...buttonProps,
     _css: css(
       css(
         addon === "before"
-          ? { borderRight: 0, ":hover": { borderRight: 0 } }
-          : { borderLeft: 0, ":hover": { borderLeft: 0 } },
+          ? {
+              borderRight: 0,
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+              ":hover": { borderRight: 0 },
+            }
+          : {
+              borderLeft: 0,
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+              ":hover": { borderLeft: 0 },
+            },
       ),
       buttonProps?._css,
     ),
@@ -82,6 +92,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       style,
       value,
       width,
+      borderRadius = "8px",
       size = "medium",
       inputValue,
       defaultValue,
@@ -134,6 +145,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       focus: mergedFocused,
       size,
       colorScheme,
+      borderRadius,
       readOnly,
     }
 
@@ -344,6 +356,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             addon={"before"}
             size={size}
             colorScheme={colorScheme}
+            borderRadius={borderRadius}
             {...addonBefore}
           />
         ) : null}
@@ -396,6 +409,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             addon={"after"}
             size={size}
             colorScheme={colorScheme}
+            borderRadius={borderRadius}
             {...addonAfter}
           />
         ) : null}
