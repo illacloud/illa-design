@@ -308,36 +308,8 @@ export function getDifferentStatusColor(
 export function applyBg(
   variant: ButtonVariant,
   colorScheme: ButtonColorScheme,
-  backgroundColor?: string,
-  borderColor?: string,
   disabled?: boolean,
 ): SerializedStyles {
-  const borderCss = borderColor
-    ? css`
-        border: solid 1px ${borderColor};
-
-        &:hover {
-          border: solid 1px ${borderColor};
-        }
-
-        &:active {
-          border: solid 1px ${borderColor};
-        }
-      `
-    : css``
-  const backgroundCss = backgroundColor
-    ? css`
-        background-color: ${backgroundColor};
-
-        &:hover {
-          background-color: ${backgroundColor};
-        }
-
-        &:active {
-          background-color: ${backgroundColor};
-        }
-      `
-    : css``
   switch (variant) {
     case "text":
       return css`
@@ -388,8 +360,6 @@ export function applyBg(
             variant,
             State.DISABLE,
           )[0]};
-          ${borderCss}
-          ${backgroundCss}
         `
       }
       return css`
@@ -415,16 +385,12 @@ export function applyBg(
             State.ACTIVE,
           )[0]};
         }
-
-        ${borderCss}
-        ${backgroundCss}
       `
     case "outline":
       if (disabled) {
         return css`
           border: solid 1px
             ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
-          ${borderCss};
         `
       }
       return css`
@@ -441,8 +407,6 @@ export function applyBg(
           border: solid 1px
             ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
         }
-
-        ${borderCss}
       `
     case "light":
       if (disabled) {

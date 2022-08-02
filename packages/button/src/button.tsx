@@ -38,8 +38,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             disabled,
             rightIcon,
             buttonRadius,
-            borderColor,
-            backgroundColor,
             textColor,
             onClick,
             ...otherProps
@@ -67,13 +65,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               textColor,
               disabled || loading,
             )};
-            ${applyBg(
-              variant,
-              colorScheme,
-              backgroundColor,
-              borderColor,
-              disabled || loading,
-            )};
+            ${applyBg(variant, colorScheme, disabled || loading)};
             ${buttonRadius ? `border-radius: ${buttonRadius};` : ""}
           `
 
