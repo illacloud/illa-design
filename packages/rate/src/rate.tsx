@@ -77,15 +77,23 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
       readonly || disabled
         ? {}
         : {
-            onMouseEnter: onMouseEnter.bind(this, index, true),
-            onClick: onClick.bind(this, index, true),
+            onMouseEnter: () => {
+              onMouseEnter(index, true)
+            },
+            onClick: () => {
+              onClick(index, true)
+            },
           }
     const rightProps =
       readonly || disabled
         ? {}
         : {
-            onMouseEnter: onMouseEnter.bind(this, index, false),
-            onClick: onClick.bind(this, index, false),
+            onMouseEnter: () => {
+              onMouseEnter(index, false)
+            },
+            onClick: () => {
+              onClick(index, false)
+            },
           }
     const tooltip = tooltips && tooltips[index]
     const CharacterWrapper = tooltip ? Tooltip : Fragment
