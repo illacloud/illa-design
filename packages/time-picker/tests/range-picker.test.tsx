@@ -42,7 +42,7 @@ test("RangePicker renders with size", () => {
   })
 })
 
-test("RangePicker render with input event", async () => {
+test("RangePicker renders with input event", async () => {
   const changeEvent = jest.fn()
   render(
     <TimeRangePicker

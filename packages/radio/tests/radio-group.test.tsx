@@ -35,7 +35,7 @@ test("RadioGroup options renders correctly", () => {
   expect(screen.getByTestId("radio-group-options")).toBeInTheDocument()
 })
 
-test("RadioGroup render with options", () => {
+test("RadioGroup renders with options", () => {
   render(
     <RadioGroup
       options={[
@@ -50,14 +50,14 @@ test("RadioGroup render with options", () => {
   expect(screen.getByLabelText("B")).toBeDisabled()
 })
 
-test("RadioGroup render with value", () => {
+test("RadioGroup renders with value", () => {
   render(
     <RadioGroup options={["valueA", "valueB", "valueC"]} value={"valueA"} />,
   )
   expect(screen.getByLabelText("valueA")).toBeChecked()
 })
 
-test("RadioGroup options render with spacing", () => {
+test("RadioGroup options renders with spacing", () => {
   render(
     <RadioGroup
       data-testid="radio-group-spacing"
@@ -71,7 +71,7 @@ test("RadioGroup options render with spacing", () => {
   `)
 })
 
-test("RadioGroup options render with spacing", () => {
+test("RadioGroup options renders with spacing", () => {
   render(
     <RadioGroup
       data-testid="radio-group-spacing-16"
@@ -85,7 +85,7 @@ test("RadioGroup options render with spacing", () => {
   `)
 })
 
-test("RadioGroup options render with direction", () => {
+test("RadioGroup options renders with direction", () => {
   render(
     <RadioGroup
       data-testid="radio-group-direction"
@@ -100,7 +100,7 @@ test("RadioGroup options render with direction", () => {
   `)
 })
 
-test("RadioGroup options render with direction vertical", () => {
+test("RadioGroup options renders with direction vertical", () => {
   render(
     <RadioGroup
       data-testid="radio-group-vertical"
@@ -114,7 +114,7 @@ test("RadioGroup options render with direction vertical", () => {
   `)
 })
 
-test("RadioGroup render with button type", () => {
+test("RadioGroup renders with button type", () => {
   render(
     <RadioGroup
       data-testid="radio-group-button"
@@ -129,7 +129,7 @@ test("RadioGroup render with button type", () => {
   `)
 })
 
-test("RadioGroup render with disabled style", () => {
+test("RadioGroup renders with disabled style", () => {
   render(
     <RadioGroup
       data-testid="radio-group-button"
@@ -145,7 +145,7 @@ test("RadioGroup render with disabled style", () => {
   `)
 })
 
-test("RadioGroup render with button type and small size", () => {
+test("RadioGroup renders with button type and small size", () => {
   render(
     <RadioGroup
       data-testid="radio-group-button"
@@ -161,7 +161,7 @@ test("RadioGroup render with button type and small size", () => {
   `)
 })
 
-test("RadioGroup render with button type and large size", () => {
+test("RadioGroup renders with button type and large size", () => {
   render(
     <RadioGroup
       data-testid="radio-group-button"
@@ -176,7 +176,7 @@ test("RadioGroup render with button type and large size", () => {
   `)
 })
 
-test("RadioGroup render with button type and click", () => {
+test("RadioGroup renders with button type and click", () => {
   render(
     <RadioGroup
       data-testid="radio-group-button"
@@ -190,7 +190,7 @@ test("RadioGroup render with button type and click", () => {
   `)
 })
 
-test("RadioGroup render with click", async () => {
+test("RadioGroup renders with click", async () => {
   render(<RadioGroup options={["GroupClickA", "GroupClickB", "GroupClickC"]} />)
   const GroupClickA = screen.getByLabelText("GroupClickA")
   const GroupClickB = screen.getByLabelText("GroupClickB")
@@ -203,7 +203,7 @@ test("RadioGroup render with click", async () => {
   expect(GroupClickA).toBeChecked()
 })
 
-test("RadioGroup child render with click", async () => {
+test("RadioGroup child renders with click", async () => {
   const changeEvent = jest.fn()
   render(
     <RadioGroup onChange={changeEvent}>

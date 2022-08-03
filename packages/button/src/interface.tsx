@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react"
 import { SerializedStyles } from "@emotion/react"
 
 export type ButtonColorScheme =
-  string
+  | string
   | "white"
   | "blackAlpha"
   | "gray"

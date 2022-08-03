@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-test("Input render correctly", () => {
+test("Input renders correctly", () => {
   render(<Input placeholder={"input"} />)
   expect(screen.getByPlaceholderText("input")).toBeInTheDocument()
 
@@ -13,7 +13,7 @@ test("Input render correctly", () => {
   })
 })
 
-test("Input render with variant fill", () => {
+test("Input renders with variant fill", () => {
   render(
     <Input
       placeholder="variant-fill"
@@ -31,7 +31,7 @@ test("Input render with variant fill", () => {
   )
 })
 
-test("Input render with size small", () => {
+test("Input renders with size small", () => {
   render(
     <Input
       placeholder="size-small"
@@ -44,7 +44,7 @@ test("Input render with size small", () => {
   })
 })
 
-test("Input render with size large", () => {
+test("Input renders with size large", () => {
   render(
     <Input
       placeholder="size-large"
@@ -57,7 +57,7 @@ test("Input render with size large", () => {
   })
 })
 
-test("Input render with prefix", () => {
+test("Input renders with prefix", () => {
   render(
     <Input
       prefix={{ render: "prefix" }}
@@ -74,12 +74,12 @@ test("Input render with prefix", () => {
   expect(screen.getByText("addonBefore")).toHaveTextContent("addonBefore")
 })
 
-test("Input render with value", () => {
+test("Input renders with value", () => {
   render(<Input placeholder="value" value="test value" />)
   expect(screen.getByPlaceholderText("value")).toHaveDisplayValue("test value")
 })
 
-test("Input render with defaultValue", () => {
+test("Input renders with defaultValue", () => {
   render(<Input placeholder="defaultValue" defaultValue="test defaultValue" />)
   expect(screen.getByPlaceholderText("defaultValue")).toHaveDisplayValue(
     "test defaultValue",
@@ -87,7 +87,7 @@ test("Input render with defaultValue", () => {
   expect(screen.getByPlaceholderText("defaultValue")).toBeInTheDocument()
 })
 
-test("Input render with maxLength", () => {
+test("Input renders with maxLength", () => {
   render(
     <Input
       placeholder="maxLength"
@@ -98,7 +98,7 @@ test("Input render with maxLength", () => {
   expect(screen.getByPlaceholderText("maxLength")).toHaveDisplayValue("test")
 })
 
-test("Input render with showCount", () => {
+test("Input renders with showCount", () => {
   render(<Input placeholder="showCount" maxLength={4} showCount />)
   expect(screen.getByText("/4")).toBeInTheDocument()
   expect(screen.getByText("/4").previousSibling).toHaveTextContent("0")
@@ -107,7 +107,7 @@ test("Input render with showCount", () => {
   })
 })
 
-test("Input render with disabled", () => {
+test("Input renders with disabled", () => {
   render(<Input placeholder="test-disabled" disabled />)
   expect(screen.getByPlaceholderText("test-disabled")).toBeDisabled()
   expect(
@@ -117,7 +117,7 @@ test("Input render with disabled", () => {
   })
 })
 
-test("Input render with readOnly", () => {
+test("Input renders with readOnly", () => {
   render(
     <Input placeholder="test-readOnly" defaultValue={"test-value"} readOnly />,
   )
@@ -126,14 +126,14 @@ test("Input render with readOnly", () => {
   })
 })
 
-test("Input render with error", () => {
+test("Input renders with error", () => {
   render(<Input placeholder="test-error" error />)
   expect(screen.getByPlaceholderText("test-error").parentElement).toHaveStyle({
     borderColor: `${globalColor(`--${illaPrefix}-red-03`)}`,
   })
 })
 
-test("Input render with focus and blur", () => {
+test("Input renders with focus and blur", () => {
   const focusEvent = jest.fn()
   const blurEvent = jest.fn()
   render(
@@ -148,7 +148,7 @@ test("Input render with focus and blur", () => {
   expect(testInputFocus).not.toHaveFocus()
 })
 
-test("Input render with input event", async () => {
+test("Input renders with input event", async () => {
   const changeEvent = jest.fn()
   render(<Input placeholder="test-input-event" onChange={changeEvent} />)
   const testInputEvent = screen.getByPlaceholderText("test-input-event")
@@ -168,7 +168,7 @@ test("Input render with input event", async () => {
   expect(testInputEvent).toHaveDisplayValue("是")
 })
 
-test("Input render with clear event", async () => {
+test("Input renders with clear event", async () => {
   const clearEvent = jest.fn()
   render(
     <Input placeholder="test-clear-event" allowClear onClear={clearEvent} />,
@@ -184,7 +184,7 @@ test("Input render with clear event", async () => {
   expect(testClearEvent).toHaveDisplayValue("")
 })
 
-test("Input render with search event", async () => {
+test("Input renders with search event", async () => {
   const pressEnterEvent = jest.fn()
   render(
     <Input placeholder="test-enter-event" onPressEnter={pressEnterEvent} />,

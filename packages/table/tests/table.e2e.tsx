@@ -74,14 +74,14 @@ it("Table renders filter", () => {
       disableRowSelect
     />,
   )
-  cy.wait(200)
+  cy.wait(300)
   cy.findByTitle("FilterIcon").parent().click()
-  cy.wait(200)
+  cy.wait(300)
   cy.get("input").type("World")
-  cy.wait(200)
+  cy.wait(300)
   cy.findByText("Hello").should("not.exist")
   cy.get("input").clear()
-  cy.wait(200)
+  cy.wait(300)
   cy.findByText("Hello").should("exist")
   unmount()
 })

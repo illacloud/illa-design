@@ -3,22 +3,22 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import userEvent from "@testing-library/user-event"
 
-test("InputNumber render correctly", () => {
+test("InputNumber renders correctly", () => {
   render(<InputNumber placeholder={"input-tag"} />)
   expect(screen.getByPlaceholderText("input-tag")).toBeInTheDocument()
 })
 
-test("InputNumber render with value", () => {
+test("InputNumber renders with value", () => {
   render(<InputNumber placeholder="value" size="large" value={5} />)
   expect(screen.getByDisplayValue(5)).toBeInTheDocument()
 })
 
-test("InputNumber render with disabled", () => {
+test("InputNumber renders with disabled", () => {
   render(<InputNumber placeholder="test-disabled" disabled />)
   expect(screen.getByPlaceholderText("test-disabled")).toBeDisabled()
 })
 
-test("InputNumber render with focus and blur", () => {
+test("InputNumber renders with focus and blur", () => {
   const focusEvent = jest.fn()
   const blurEvent = jest.fn()
   render(
@@ -38,7 +38,7 @@ test("InputNumber render with focus and blur", () => {
   expect(testFocus).not.toHaveFocus()
 })
 
-test("InputNumber render with mode button", async () => {
+test("InputNumber renders with mode button", async () => {
   const changeEvent = jest.fn()
   render(
     <InputNumber
@@ -74,7 +74,7 @@ test("InputNumber render with mode button", async () => {
   expect(changeEvent).toBeCalledTimes(7)
 })
 
-test("InputNumber render with input", async () => {
+test("InputNumber renders with input", async () => {
   const changeEvent = jest.fn()
   render(
     <InputNumber

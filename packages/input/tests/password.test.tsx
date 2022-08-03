@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-test("Password render correctly", () => {
+test("Password renders correctly", () => {
   render(<Password placeholder={"password"} />)
   expect(screen.getByPlaceholderText("password")).toBeInTheDocument()
   expect(screen.getByPlaceholderText("password")).toHaveAttribute(
@@ -17,7 +17,7 @@ test("Password render correctly", () => {
   })
 })
 
-test("Password render with variant fill", () => {
+test("Password renders with variant fill", () => {
   render(<Password placeholder="variant-fill" variant="fill" />)
   expect(screen.getByPlaceholderText("variant-fill").parentElement).toHaveStyle(
     {
@@ -28,12 +28,12 @@ test("Password render with variant fill", () => {
   )
 })
 
-test("Password render with value", () => {
+test("Password renders with value", () => {
   render(<Password placeholder="value" value="test value" />)
   expect(screen.getByPlaceholderText("value")).toHaveDisplayValue("test value")
 })
 
-test("Password render with defaultValue", () => {
+test("Password renders with defaultValue", () => {
   render(
     <Password placeholder="defaultValue" defaultValue="test defaultValue" />,
   )
@@ -43,7 +43,7 @@ test("Password render with defaultValue", () => {
   expect(screen.getByPlaceholderText("defaultValue")).toBeInTheDocument()
 })
 
-test("Password render with disabled", () => {
+test("Password renders with disabled", () => {
   render(<Password placeholder="test-disabled" disabled />)
   expect(screen.getByPlaceholderText("test-disabled")).toBeDisabled()
   expect(
@@ -53,14 +53,14 @@ test("Password render with disabled", () => {
   })
 })
 
-test("Password render with error", () => {
+test("Password renders with error", () => {
   render(<Password placeholder="test-error" error />)
   expect(screen.getByPlaceholderText("test-error").parentElement).toHaveStyle({
     borderColor: `${globalColor(`--${illaPrefix}-red-03`)}`,
   })
 })
 
-test("Password render with type text", () => {
+test("Password renders with type text", () => {
   render(<Password placeholder="test-type" />)
   const testVisible = screen.getByPlaceholderText("test-type")
   expect(testVisible).toHaveAttribute("type", "password")
@@ -70,7 +70,7 @@ test("Password render with type text", () => {
   expect(testVisible).toHaveAttribute("type", "text")
 })
 
-test("Password render with focus and blur", () => {
+test("Password renders with focus and blur", () => {
   const focusEvent = jest.fn()
   const blurEvent = jest.fn()
   render(
@@ -89,7 +89,7 @@ test("Password render with focus and blur", () => {
   expect(testInputFocus).not.toHaveFocus()
 })
 
-test("Password render with input event", async () => {
+test("Password renders with input event", async () => {
   const changeEvent = jest.fn()
   render(<Password placeholder="test-password-event" onChange={changeEvent} />)
   const testPasswordEvent = screen.getByPlaceholderText("test-password-event")
@@ -109,7 +109,7 @@ test("Password render with input event", async () => {
   expect(testPasswordEvent).toHaveDisplayValue("是")
 })
 
-test("Password render with clear event", async () => {
+test("Password renders with clear event", async () => {
   const clearEvent = jest.fn()
   render(
     <Password placeholder="test-clear-event" allowClear onClear={clearEvent} />,

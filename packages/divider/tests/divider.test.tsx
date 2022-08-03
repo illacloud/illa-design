@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react"
+import { renders } from "@testing-library/react"
 import { Divider } from "../src"
 
 test("Divider renders default", () => {

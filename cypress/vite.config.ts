@@ -22,6 +22,9 @@ export default defineConfig({
       extension: ["ts", "tsx"],
     }),
   ],
+  esbuild: {
+    logOverride: { "this-is-undefined-in-esm": "silent" },
+  },
   server: {
     watch: {
       ignored: [

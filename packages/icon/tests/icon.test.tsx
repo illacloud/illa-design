@@ -2,22 +2,22 @@ import { CloseIcon, Icon, ImageDefaultIcon, PersonIcon } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
-test("Icon render CloseIcon", () => {
+test("Icon renders CloseIcon", () => {
   render(<CloseIcon data-testid="test-icon-close" />)
   expect(screen.getByTestId("test-icon-close")).toBeInTheDocument()
 })
 
-test("Icon render ImageDefaultIcon", () => {
+test("Icon renders ImageDefaultIcon", () => {
   render(<ImageDefaultIcon data-testid="test-icon-image-default" />)
   expect(screen.getByTestId("test-icon-image-default")).toBeInTheDocument()
 })
 
-test("Icon render PersonIcon", () => {
+test("Icon renders PersonIcon", () => {
   render(<PersonIcon data-testid="test-icon-person" />)
   expect(screen.getByTestId("test-icon-person")).toBeInTheDocument()
 })
 
-test("Icon render correctly", () => {
+test("Icon renders correctly", () => {
   render(
     <Icon data-testid="test-icon">
       <svg
