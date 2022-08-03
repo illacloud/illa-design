@@ -24,7 +24,7 @@ export function applyWrapperStyle({
     ? "visible"
     : "hidden"
   const minHeight = direction === "vertical" ? 90 : "unset"
-  let navigactionProcessStatusIndicator = css``
+  let navigationProcessStatusIndicator = css``
   let boxStyle = css({
     marginRight: 16,
     minHeight,
@@ -41,11 +41,11 @@ export function applyWrapperStyle({
       const right = isVerticalLabel({ variant, direction, labelPlacement })
         ? 10
         : 30
-      navigactionProcessStatusIndicator = css`
+      navigationProcessStatusIndicator = css`
         &:after {
           content: "";
           position: absolute;
-          diplay: block;
+          display: block;
           height: 2px;
           bottom: 0;
           left: 20px;
@@ -64,7 +64,7 @@ export function applyWrapperStyle({
       overflow,
     }),
     boxStyle,
-    navigactionProcessStatusIndicator,
+    navigationProcessStatusIndicator,
     applyWrapperCursor(disabled),
     applyHover(hoverable),
   ])
