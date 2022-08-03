@@ -173,6 +173,9 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
 .emotion-116 {
   width: 100%;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -181,16 +184,20 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
   vertical-align: middle;
   color: #1d2129;
   height: 24px;
+  font-size: 12px;
   line-height: 18px;
 }
 
 .emotion-117 {
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -203,13 +210,15 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   font-size: inherit;
   line-height: inherit;
   box-sizing: border-box;
-  color: #bbc0c9;
+  color: #1d2129;
   border: solid 1px #e5e6eb;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
   padding: 0 12px;
   border-color: #e5e6eb;
   cursor: not-allowed;
+  border-color: #e5e6eb;
+  color: #bbc0c9;
 }
 
 .emotion-117:first-of-type {
@@ -303,10 +312,14 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   opacity: 0;
   position: absolute;
   right: 2px;
+  right: 2px;
   font-size: 10px;
 }
 
 .emotion-120 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -1090,6 +1103,9 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 .emotion-116 {
   width: 100%;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -1098,16 +1114,20 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
   vertical-align: middle;
   color: #1d2129;
   height: 24px;
+  font-size: 12px;
   line-height: 18px;
 }
 
 .emotion-117 {
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -1120,13 +1140,15 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   font-size: inherit;
   line-height: inherit;
   box-sizing: border-box;
-  color: #bbc0c9;
+  color: #1d2129;
   border: solid 1px #e5e6eb;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
   padding: 0 12px;
   border-color: #e5e6eb;
   cursor: not-allowed;
+  border-color: #e5e6eb;
+  color: #bbc0c9;
 }
 
 .emotion-117:first-of-type {
@@ -1220,10 +1242,14 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   opacity: 0;
   position: absolute;
   right: 2px;
+  right: 2px;
   font-size: 10px;
 }
 
 .emotion-120 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -2013,6 +2039,9 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 .emotion-116 {
   width: 100%;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -2021,16 +2050,20 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
   vertical-align: middle;
   color: #1d2129;
   height: 24px;
+  font-size: 12px;
   line-height: 18px;
 }
 
 .emotion-117 {
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -2043,13 +2076,15 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   font-size: inherit;
   line-height: inherit;
   box-sizing: border-box;
-  color: #bbc0c9;
+  color: #1d2129;
   border: solid 1px #e5e6eb;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
   padding: 0 12px;
   border-color: #e5e6eb;
   cursor: not-allowed;
+  border-color: #e5e6eb;
+  color: #bbc0c9;
 }
 
 .emotion-117:first-of-type {
@@ -2143,10 +2178,14 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   opacity: 0;
   position: absolute;
   right: 2px;
+  right: 2px;
   font-size: 10px;
 }
 
 .emotion-120 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;

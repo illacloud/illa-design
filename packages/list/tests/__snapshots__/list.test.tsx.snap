@@ -123,6 +123,9 @@ exports[`List renders without border and split 1`] = `
 }
 
 .emotion-11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   -webkit-align-items: center;

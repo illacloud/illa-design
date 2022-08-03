@@ -271,6 +271,9 @@ exports[`Space renders with divider 1`] = `
 }
 
 .emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   -webkit-align-items: center;
@@ -285,6 +288,9 @@ exports[`Space renders with divider 1`] = `
 }
 
 .emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
   border-width: 0 0 0 1px;

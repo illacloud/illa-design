@@ -56,11 +56,17 @@ exports[`Card renders with Meta 1`] = `
 
 .emotion-3 {
   vertical-align: middle;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
 .emotion-4 {
   background-color: #c2c2c2;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   overflow: hidden;
   word-wrap: break-word;
@@ -86,6 +92,9 @@ exports[`Card renders with Meta 1`] = `
 }
 
 .emotion-5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;

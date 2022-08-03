@@ -21,6 +21,9 @@ exports[`Progress renders with colors 1`] = `
 }
 
 .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -88,6 +91,9 @@ exports[`Progress renders with colors 2`] = `
 }
 
 .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -155,6 +161,9 @@ exports[`Progress renders with colors 3`] = `
 }
 
 .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -222,6 +231,9 @@ exports[`Progress renders with custom width 1`] = `
 }
 
 .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -289,6 +301,9 @@ exports[`Progress renders with error status 1`] = `
 }
 
 .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -356,6 +371,9 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
