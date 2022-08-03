@@ -251,6 +251,7 @@ export function applyHortItemContentStyle(mode: string): SerializedStyles {
     return css`
       margin-bottom: 16px;
       margin-right: 20px;
+      padding-bottom: unset;
     `
   } else {
     return css`
@@ -274,8 +275,12 @@ export function applyItemContentStyle(
 
   return css`
     position: relative;
-    padding-bottom: 4px;
-    ${autoFixDotSize && "font-size: 14px"};
+    padding-bottom: 2px;
+    ${autoFixDotSize &&
+    css`
+      font-size: 14px;
+      line-height: 22px;
+    `};
     ${directionStyle};
   `
 }
