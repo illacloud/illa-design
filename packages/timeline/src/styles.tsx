@@ -5,6 +5,7 @@ import {
   TimelineItemLineType,
   TimelineMode,
 } from "./interface"
+import { ReactNode } from "react"
 
 export function applyWrapStyle(
   direction: TimelineDirection,
@@ -25,6 +26,7 @@ export function applyWrapStyle(
 export function applyItemStyle(
   direction: TimelineDirection,
   mode: string,
+  dot?: ReactNode,
 ): SerializedStyles {
   if (direction === "horizontal") {
     if (mode === "alternate-same") {
@@ -53,11 +55,16 @@ export function applyItemStyle(
       `
     }
   }
-
+  const lastItemStyle = css`
+    &:last-of-type {
+      padding-bottom: ${dot ? "20px" : "0"};
+    }
+  `
   return css`
     position: relative;
     margin: 0;
     padding-bottom: 42px;
+    ${lastItemStyle};
   `
 }
 
