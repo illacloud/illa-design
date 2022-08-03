@@ -5,6 +5,7 @@ import {
   TimelineItemLineType,
   TimelineMode,
 } from "./interface"
+import { ReactNode } from "react"
 
 export function applyWrapStyle(
   direction: TimelineDirection,
@@ -25,6 +26,7 @@ export function applyWrapStyle(
 export function applyItemStyle(
   direction: TimelineDirection,
   mode: string,
+  dot?: ReactNode,
 ): SerializedStyles {
   if (direction === "horizontal") {
     if (mode === "alternate-same") {
@@ -53,11 +55,16 @@ export function applyItemStyle(
       `
     }
   }
-
+  const lastItemStyle = css`
+    &:last-of-type {
+      padding-bottom: ${dot ? "20px" : "0"};
+    }
+  `
   return css`
     position: relative;
     margin: 0;
     padding-bottom: 42px;
+    ${lastItemStyle};
   `
 }
 
@@ -244,6 +251,7 @@ export function applyHortItemContentStyle(mode: string): SerializedStyles {
     return css`
       margin-bottom: 16px;
       margin-right: 20px;
+      padding-bottom: unset;
     `
   } else {
     return css`
@@ -267,8 +275,12 @@ export function applyItemContentStyle(
 
   return css`
     position: relative;
-    padding-bottom: 4px;
-    ${autoFixDotSize && "font-size: 14px"};
+    padding-bottom: 2px;
+    ${autoFixDotSize &&
+    css`
+      font-size: 14px;
+      line-height: 22px;
+    `};
     ${directionStyle};
   `
 }

@@ -46,7 +46,11 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
           const _mode = modeHandle(mode, index, labelPosition)
 
           return (
-            <div css={applyItemStyle(direction, _mode)} ref={ref} {...rest}>
+            <div
+              css={applyItemStyle(direction, _mode, dot)}
+              ref={ref}
+              {...rest}
+            >
               <div css={applyDotItemStyle(direction, _mode)}>
                 {isChildrenLast ? null : (
                   <div css={applyLineStyle(direction, lineType, lineColor)} />
