@@ -16,6 +16,7 @@ import {
   applyWithoutTextSize,
 } from "./style"
 import { ButtonGroupContext } from "."
+import { ButtonBox } from "@illa-design/theme"
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -70,7 +71,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           `
 
           return (
-            <button
+            <ButtonBox
               ref={ref}
               css={css(finalContainer, _css)}
               {...otherProps}
@@ -108,7 +109,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                   {rightIcon}
                 </span>
               )}
-            </button>
+            </ButtonBox>
           )
         }}
       </ButtonGroupContext.Consumer>

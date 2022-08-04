@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react"
 import { SerializedStyles } from "@emotion/react"
+import { BoxProps } from "@illa-design/theme"
 
 export type ButtonColorScheme =
   | string
@@ -21,7 +22,9 @@ export type ButtonSize = "small" | "medium" | "large"
 export type ButtonVariant = "fill" | "dashed" | "outline" | "text" | "light"
 export type ButtonShape = "square" | "round"
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    BoxProps {
   _css?: SerializedStyles
   colorScheme?: ButtonColorScheme
   size?: ButtonSize
