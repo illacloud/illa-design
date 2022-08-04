@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Only last step render error style 1`] = `
+exports[`Only last step renders error style 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -227,7 +227,7 @@ exports[`Only last step render error style 1`] = `
 </div>
 `;
 
-exports[`Steps render vertical label 1`] = `
+exports[`Steps renders vertical label 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -383,7 +383,7 @@ exports[`Steps render vertical label 1`] = `
 </div>
 `;
 
-exports[`Steps render with dot variant 1`] = `
+exports[`Steps renders with dot variant 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -531,7 +531,7 @@ exports[`Steps render with dot variant 1`] = `
 </div>
 `;
 
-exports[`Steps render with dot variant with vertical direction 1`] = `
+exports[`Steps renders with dot variant with vertical direction 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -668,7 +668,7 @@ exports[`Steps render with dot variant with vertical direction 1`] = `
 </div>
 `;
 
-exports[`Steps render with error status 1`] = `
+exports[`Steps renders with error status 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -773,7 +773,7 @@ exports[`Steps render with error status 1`] = `
 </div>
 `;
 
-exports[`Steps render with finish status 1`] = `
+exports[`Steps renders with finish status 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -880,7 +880,7 @@ exports[`Steps render with finish status 1`] = `
 </div>
 `;
 
-exports[`Steps render with navigation variant 1`] = `
+exports[`Steps renders with navigation variant 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1062,7 +1062,7 @@ exports[`Steps render with navigation variant 1`] = `
 </div>
 `;
 
-exports[`Steps render with no line 1`] = `
+exports[`Steps renders with no line 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1148,7 +1148,7 @@ exports[`Steps render with no line 1`] = `
 </div>
 `;
 
-exports[`Steps render with process status 1`] = `
+exports[`Steps renders with process status 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1318,7 +1318,7 @@ exports[`Steps render with process status 1`] = `
 </div>
 `;
 
-exports[`Steps render with vertical 1`] = `
+exports[`Steps renders with vertical 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1461,7 +1461,7 @@ exports[`Steps render with vertical 1`] = `
 </div>
 `;
 
-exports[`Steps with dot variant and error status should render error style 1`] = `
+exports[`Steps with dot variant and error status should renders error style 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1652,7 +1652,7 @@ exports[`Steps with dot variant and error status should render error style 1`] =
 </div>
 `;
 
-exports[`Steps with vertical direction and error status should render error style 1`] = `
+exports[`Steps with vertical direction and error status should renders error style 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;

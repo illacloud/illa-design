@@ -1,14 +1,13 @@
 import { forwardRef } from "react"
 import { DivBoxProps } from "./interface"
-import styled from "@emotion/styled"
+import { applyBoxStyle } from "./style"
 
 export const DivBox = forwardRef<HTMLDivElement, DivBoxProps>((props, ref) => {
   const { children, ...rest } = props
-  const Div = styled.div``
   return (
-    <Div {...rest} ref={ref}>
+    <div {...rest} ref={ref} css={applyBoxStyle(props)}>
       {children}
-    </Div>
+    </div>
   )
 })
 

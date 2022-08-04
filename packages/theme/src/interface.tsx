@@ -113,6 +113,10 @@ export interface ColorStyledProps {
    * color
    */
   c?: string
+  /**
+   * opacity
+   */
+  opacity?: number
 }
 
 export interface PositionStyledProps {

@@ -4,6 +4,7 @@ import { BoxProps } from "./interface"
 export function applyBoxStyle(props: BoxProps): SerializedStyles {
   return css`
     width: ${props.w};
+    opacity: ${props.opacity};
     min-width: ${props.minW};
     max-width: ${props.maxW};
     height: ${props.h};

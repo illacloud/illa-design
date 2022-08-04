@@ -73,7 +73,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           return (
             <ButtonBox
               ref={ref}
-              css={css(finalContainer, _css)}
+              css={finalContainer}
               {...otherProps}
               onClick={(e) => {
                 if (disabled || loading) {

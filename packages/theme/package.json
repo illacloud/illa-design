@@ -40,7 +40,6 @@
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
-    "@emotion/styled": "^11.10.0",
     "@illa-design/system": "0.0.15",
     "chroma-js": "^2.1.2",
     "color": "^4.2.3",
