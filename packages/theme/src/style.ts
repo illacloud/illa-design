@@ -47,5 +47,6 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     justify-self: ${props.justifySelf};
     align-self: ${props.alignSelf};
     order: ${props.order};
+    ${props._css};
   `
 }

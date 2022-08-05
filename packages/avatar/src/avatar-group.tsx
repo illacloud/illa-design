@@ -2,7 +2,7 @@ import { Children, CSSProperties, forwardRef, ReactNode } from "react"
 import { AvatarGroupProps } from "./interface"
 import { css } from "@emotion/react"
 import { Avatar } from "./avatar"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
 import { AvatarGroupContext } from "./avatar-group-context"
 
 const avatarGroupCss = css`
@@ -77,6 +77,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
         css={css`
           display: inline-block;
           ${avatarGroupCss};
+          ${applyBoxStyle(props)};
         `}
         ref={ref}
         {...otherProps}

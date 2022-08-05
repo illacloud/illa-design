@@ -5,6 +5,7 @@ import { applyParagraphContainer, applyTextContainer } from "./paragraph-style"
 import { Tooltip } from "@illa-design/tooltip"
 import { css } from "@emotion/react"
 import { mergedToString } from "@illa-design/system"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
   (props, ref) => {
@@ -34,7 +35,7 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
     `
 
     const p = (
-      <div css={finalCss} ref={ref} {...otherProps}>
+      <div css={[finalCss, applyBoxStyle(props)]} ref={ref} {...otherProps}>
         <Base
           colorScheme={colorScheme}
           ellipsis={ellipsis}

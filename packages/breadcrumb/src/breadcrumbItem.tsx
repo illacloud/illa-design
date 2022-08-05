@@ -5,13 +5,15 @@ import { css } from "@emotion/react"
 import { BreadcrumbContext } from "./breadcrumb-context"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const BreadcrumbItem = forwardRef<HTMLDivElement, BreadcrumbItemProps>(
   (props, ref) => {
-    const { _css, dropList, dropdownProps, ...restProps } = props
+    const { dropList, dropdownProps, ...restProps } = props
 
-    const { isCurrent, path, breadcrumbName, children } =
-      useContext(BreadcrumbContext)
+    const { isCurrent, path, breadcrumbName, children } = useContext(
+      BreadcrumbContext,
+    )
 
     const { Item } = Menu
 
@@ -34,7 +36,11 @@ export const BreadcrumbItem = forwardRef<HTMLDivElement, BreadcrumbItemProps>(
     }
 
     const item = (
-      <div ref={ref} {...restProps} css={css(handleItemCss(), _css)}>
+      <div
+        ref={ref}
+        {...restProps}
+        css={css(handleItemCss(), applyBoxStyle(props))}
+      >
         {breadcrumbName || props.children}
       </div>
     )

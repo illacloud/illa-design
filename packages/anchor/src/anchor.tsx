@@ -1,31 +1,30 @@
 import {
   forwardRef,
-  useState,
-  useRef,
   MouseEvent,
-  useEffect,
   useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from "react"
 import computeScrollIntoView from "compute-scroll-into-view"
 import {
+  caf,
+  easingMethod,
   isFunction,
   isNumber,
   raf,
-  caf,
-  easingMethod,
 } from "@illa-design/system"
 import { Affix } from "@illa-design/affix"
 import { Link } from "./link"
 import { AnchorProps } from "./interface"
 import { AnchorContext } from "./context"
-import { findNode, getContainer, getContainerElement } from "./utils/index"
-import { applyAnchorListCss, activeLineIndicatorCss } from "./style"
+import { findNode, getContainer, getContainerElement } from "./utils"
+import { activeLineIndicatorCss, applyAnchorListCss } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       animation = true,
       scrollContainer: scrollContainerProp,
       boundary = "start",
@@ -56,9 +55,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       const containerElement = getContainerElement(
         container as HTMLElement | Window,
       )
-      const containerRect = (
-        containerElement as HTMLElement
-      ).getBoundingClientRect()
+      const containerRect = (containerElement as HTMLElement).getBoundingClientRect()
       const documentHeight = document.documentElement.clientHeight
 
       for (const hash of linkMap.current.keys()) {
@@ -137,11 +134,11 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
               id = raf(updateScrollTopPerFrame)
             } else {
               caf(id)
-              isScrollingTimer.current = setTimeout(() => {
+              isScrollingTimer.current = (setTimeout(() => {
                 isScrolling.current = false
                 clearTimeout(isScrollingTimer.current as number)
                 isScrollingTimer.current = null
-              }, 200) as unknown as number
+              }, 200) as unknown) as number
             }
           }
 
@@ -220,9 +217,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
     const anchorList = (
       <div
         ref={ref}
-        css={applyAnchorListCss(lineless)}
-        style={style}
-        className={className}
+        css={[applyAnchorListCss(lineless), applyBoxStyle(props)]}
         {...restProps}
       >
         {!lineless && currentLink && (

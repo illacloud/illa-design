@@ -1,4 +1,5 @@
 import { ReactText, LabelHTMLAttributes, SyntheticEvent } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type CheckboxColorScheme =
   | string
@@ -15,7 +16,8 @@ export type CheckboxColorScheme =
   | "techPurple"
 
 export interface CheckboxProps<T extends ReactText = any>
-  extends Omit<LabelHTMLAttributes<HTMLLabelElement>, "onChange"> {
+  extends Omit<LabelHTMLAttributes<HTMLLabelElement>, "onChange">,
+    BoxProps {
   value?: T
   disabled?: boolean
   checked?: boolean
@@ -40,9 +42,10 @@ export interface CheckboxGroupContextProps<T extends ReactText = any> {
 
 export interface CheckboxGroupProps<T extends ReactText = any>
   extends Omit<
-    LabelHTMLAttributes<HTMLDivElement>,
-    "onChange" | "defaultValue"
-  > {
+      LabelHTMLAttributes<HTMLDivElement>,
+      "onChange" | "defaultValue"
+    >,
+    BoxProps {
   value?: T[]
   defaultValue?: T[]
   disabled?: boolean

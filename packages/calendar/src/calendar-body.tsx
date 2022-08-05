@@ -1,24 +1,25 @@
-import { FC, Fragment, useCallback, useEffect, useMemo, useState } from "react"
+import { FC, Fragment, useCallback, useMemo, useState } from "react"
 import { CalendarBodyProps } from "./interface"
 import {
-  bodyCoverCss,
+  applyPanelGridItemCss,
   blockPaddingCss,
-  panelPaddingCss,
-  twelveMonthsContainer,
-  panelMonthContainerCss,
-  weekTitleCss,
-  panelMonthTextCss,
+  bodyContentCss,
+  bodyCoverCss,
   dayBodyCss,
   dayModeTodayButton,
-  panelGridCss,
   monthBlockCss,
-  applyPanelGridItemCss,
-  bodyContentCss,
+  panelGridCss,
+  panelMonthContainerCss,
+  panelMonthTextCss,
+  panelPaddingCss,
+  twelveMonthsContainer,
+  weekTitleCss,
 } from "./styles"
 import { CalendarDays } from "./calendar-days"
 import dayjs from "dayjs"
+import { applyBoxStyle } from "@illa-design/theme"
 
-export const CalendarBody: FC<CalendarBodyProps> = (props) => {
+export const CalendarBody: FC<CalendarBodyProps> = props => {
   const {
     allowSelect,
     panel,
@@ -101,7 +102,7 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
   }, [weekTitleText])
 
   return (
-    <div css={bodyContentCss}>
+    <div css={[bodyContentCss, applyBoxStyle(props)]}>
       {!allowSelect && <div css={bodyCoverCss} />}
       {mode === "month" &&
         (panel ? (
@@ -161,7 +162,7 @@ export const CalendarBody: FC<CalendarBodyProps> = (props) => {
             {new Array(12)
               .fill(1)
               .map((arrItem, arrIndex) => arrIndex)
-              .map((item) => {
+              .map(item => {
                 return (
                   <div css={panelMonthContainerCss} key={item}>
                     <div css={panelMonthTextCss}>{item + 1}月</div>

@@ -1,10 +1,11 @@
-import { HTMLAttributes } from "react"
+import { SerializedStyles } from "@emotion/react"
 
 export type BoxProps = SizeStyledProps &
   ShapeStyledProps &
   ColorStyledProps &
   PositionStyledProps &
-  FlexStyledProps
+  FlexStyledProps &
+  CustomStyledProps
 
 export interface SizeStyledProps {
   /**
@@ -143,12 +144,6 @@ export interface FlexStyledProps {
   order?: string
 }
 
-export interface DivBoxProps extends BoxProps, HTMLAttributes<HTMLDivElement> {}
-
-export interface ButtonBoxProps
-  extends BoxProps,
-    HTMLAttributes<HTMLButtonElement> {}
-
-export interface SpanBoxProps
-  extends BoxProps,
-    HTMLAttributes<HTMLSpanElement> {}
+export interface CustomStyledProps {
+  _css?: SerializedStyles
+}

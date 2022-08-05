@@ -4,10 +4,11 @@ import { css } from "@emotion/react"
 import { separatorCss, itemCss, wrapCss } from "./style"
 import { BreadcrumbContext } from "./breadcrumb-context"
 import { BreadcrumbItem } from "./breadcrumbItem"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
   (props, ref) => {
-    const { _css, separator, routes, maxCount, ...restProps } = props
+    const { separator, routes, maxCount, ...restProps } = props
 
     function Separator() {
       return <span css={separatorCss}>{separator ? separator : "/"}</span>
@@ -73,7 +74,7 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
     })
 
     return (
-      <div ref={ref} {...restProps} css={css(wrapCss, _css)}>
+      <div ref={ref} {...restProps} css={css(wrapCss, applyBoxStyle(props))}>
         {routes?.length ? routeItems : normalItems}
       </div>
     )

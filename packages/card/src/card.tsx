@@ -14,6 +14,7 @@ import {
   applyCardHeaderTitle,
   applyCardActionsRight,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const {
@@ -33,7 +34,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   let isContainGrid = false
   let isContainMeta = false
 
-  Children.forEach(children, (element) => {
+  Children.forEach(children, element => {
     if (element && (element as ReactElement).type) {
       if ((element as ReactElement).type === CardGrid) {
         isContainGrid = true
@@ -69,7 +70,10 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   return (
     <div
       ref={ref}
-      css={applyCard(bordered, hoverable ?? false, isGridMode)}
+      css={[
+        applyCard(bordered, hoverable ?? false, isGridMode),
+        applyBoxStyle(props),
+      ]}
       {...restProps}
     >
       {title || extra ? (

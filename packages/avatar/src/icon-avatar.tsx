@@ -1,10 +1,9 @@
 import { FC } from "react"
-import { AvatarProps, AvatarSize } from "./interface"
+import { AvatarProps } from "./interface"
 import { applyIconSize, applyMergeCss } from "./style"
-import { css } from "@emotion/react"
 import { PersonIcon } from "@illa-design/icon"
 
-export const IconAvatar: FC<AvatarProps> = (props) => {
+export const IconAvatar: FC<AvatarProps> = props => {
   const currentColorScheme = props.colorScheme ?? "blue"
   const currentSize = props.size ?? "small"
   const currentShape = props.shape ?? "circle"

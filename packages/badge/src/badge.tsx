@@ -3,14 +3,15 @@ import { BadgeProps } from "./interface"
 import { isObject } from "@illa-design/system"
 import {
   applyBadge,
-  applyBadgeStatusWrapper,
   applyBadgeDot,
-  applyBadgeStatusText,
   applyBadgeNumberOrText,
+  applyBadgeStatusText,
+  applyBadgeStatusWrapper,
   getDotColor,
 } from "./style"
 
 import { Count } from "./count"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   const {
@@ -89,7 +90,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     ) : null
   }
   return (
-    <span css={applyBadge} ref={ref} {...restProps}>
+    <span css={[applyBadge, applyBoxStyle(props)]} ref={ref} {...restProps}>
       {children}
       {renderBadge()}
     </span>

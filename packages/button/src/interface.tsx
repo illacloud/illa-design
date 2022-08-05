@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
-import { SerializedStyles } from "@emotion/react"
+import DataType from "@storybook/theming/dist/ts3.9/_modules/@emotion-react-node_modules-csstype-index"
 
 export type ButtonColorScheme =
   | string
@@ -25,7 +25,6 @@ export type ButtonShape = "square" | "round"
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     BoxProps {
-  _css?: SerializedStyles
   colorScheme?: ButtonColorScheme
   size?: ButtonSize
   variant?: ButtonVariant
@@ -44,7 +43,8 @@ export interface ButtonProps
 
 export interface ButtonGroupProps
   extends HTMLAttributes<HTMLDivElement>,
-    Omit<ButtonGroupContextProps, "first" | "last"> {}
+    Omit<ButtonGroupContextProps, "first" | "last">,
+    BoxProps {}
 
 export interface ButtonGroupContextProps {
   colorScheme?: ButtonColorScheme

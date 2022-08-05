@@ -1,7 +1,9 @@
 import { HTMLAttributes, ReactNode, CSSProperties, MouseEvent } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export interface AnchorProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "onSelect"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "onSelect">,
+    BoxProps {
   animation?: boolean
   scrollContainer?: string | HTMLElement | Window
   boundary?: number | "start" | "center" | "end" | "nearest"

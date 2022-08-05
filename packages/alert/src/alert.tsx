@@ -1,24 +1,24 @@
-import { forwardRef, useState, useMemo, MouseEvent, ReactNode } from "react"
+import { forwardRef, MouseEvent, ReactNode, useMemo, useState } from "react"
 import { AlertProps } from "./interface"
-import { motion, AnimatePresence } from "framer-motion"
-import { css } from "@emotion/react"
+import { AnimatePresence, motion } from "framer-motion"
 import {
-  RightIcon,
-  ErrorIcon,
-  WarningCircleIcon,
   CloseIcon,
+  ErrorIcon,
   InfoCircleIcon,
+  RightIcon,
+  WarningCircleIcon,
 } from "@illa-design/icon"
 import {
-  applyAlertCloseBtn,
   applyAlert,
   applyAlertAction,
+  applyAlertCloseBtn,
+  applyAlertContainer,
   applyAlertContent,
   applyAlertContentWrapper,
   applyAlertIcon,
   applyAlertTitle,
-  applyAlertContainer,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 const iconMap = {
   info: <InfoCircleIcon />,
@@ -55,9 +55,6 @@ const variants = {
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const {
-    _css,
-    style,
-    className,
     title,
     action,
     closable,
@@ -71,7 +68,9 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     afterClose,
     ...restProps
   }: AlertProps & { children?: ReactNode | undefined } = props
+
   const [visible, setVisible] = useState<boolean>(true)
+
   const renderIcon = useMemo(() => {
     return icon ? icon : iconMap[type]
   }, [icon, type])
@@ -80,19 +79,18 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     setVisible(false)
     onClose && onClose(e)
   }
+
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          css={css(applyAlertContainer(type, banner), _css)}
-          style={style}
-          className={className}
+          css={[applyAlertContainer(type, banner), applyBoxStyle(restProps)]}
           variants={variants}
           animate={"show"}
           exit={"hidden"}
           initial={"enter"}
           ref={ref}
-          onAnimationComplete={(definition) => {
+          onAnimationComplete={definition => {
             if (definition === "hidden") {
               afterClose && afterClose()
             }

@@ -1,11 +1,13 @@
 import { CSSProperties, HTMLAttributes, ReactNode, SyntheticEvent } from "react"
 import { NodeProps, Store } from "./node"
 import { TriggerProps } from "@illa-design/trigger"
+import { BoxProps } from "@illa-design/theme"
 
 export type CascaderSize = "small" | "medium" | "large"
 
 export interface CascaderProps<T>
-  extends Omit<HTMLAttributes<HTMLDivElement>, "defaultValue" | "onChange"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "defaultValue" | "onChange">,
+    BoxProps {
   value?: (string | string[])[]
   defaultValue?: (string | string[])[]
   options?: OptionProps[]

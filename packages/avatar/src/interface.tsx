@@ -1,4 +1,5 @@
 import { CSSProperties, HTMLAttributes, ReactNode } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type AvatarColorScheme =
   | string
@@ -20,7 +21,7 @@ export type AvatarShape = "circle" | "square"
 
 export type AvatarSize = "small" | "medium" | "large"
 
-export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
+export interface AvatarProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   colorScheme?: AvatarColorScheme
   size?: AvatarSize
   shape?: AvatarShape
@@ -31,7 +32,8 @@ export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
 
 export interface AvatarGroupProps
   extends HTMLAttributes<HTMLDivElement>,
-    AvatarGroupContextProps {}
+    AvatarGroupContextProps,
+    BoxProps {}
 
 export interface AvatarGroupContextProps {
   zIndexAscend?: boolean
