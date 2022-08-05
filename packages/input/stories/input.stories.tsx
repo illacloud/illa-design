@@ -52,7 +52,7 @@ const Template: Story<InputProps> = (props) => {
   return (
     <div>
       <Space direction={"vertical"} wrap>
-        <Input style={{ width: 280 }} {...props} />
+        <Input width={"280px"} {...props} />
         <Input
           style={{ width: 280 }}
           suffix={{ render: <PersonIcon /> }}

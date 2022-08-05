@@ -35,7 +35,7 @@ test("CheckboxGroup renders with vertical", () => {
   })
 })
 
-test("CheckboxGroup render with click", async () => {
+test("CheckboxGroup renders with click", async () => {
   const changeEvent = jest.fn()
   render(<CheckboxGroup options={["a", "b", "c"]} onChange={changeEvent} />)
 

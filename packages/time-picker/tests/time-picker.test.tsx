@@ -41,7 +41,7 @@ test("TimePicker renders with size", () => {
   })
 })
 
-test("TimePicker render with input event", async () => {
+test("TimePicker renders with input event", async () => {
   const changeEvent = jest.fn()
   render(
     <TimePicker

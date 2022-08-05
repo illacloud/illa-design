@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-test("TextArea render correctly", () => {
+test("TextArea renders correctly", () => {
   render(<TextArea placeholder={"textArea"} />)
   expect(screen.getByPlaceholderText("textArea")).toBeInTheDocument()
 
@@ -13,7 +13,7 @@ test("TextArea render correctly", () => {
   })
 })
 
-test("TextArea render with variant fill", () => {
+test("TextArea renders with variant fill", () => {
   render(<TextArea placeholder="variant-fill" variant="fill" />)
   expect(screen.getByPlaceholderText("variant-fill").parentElement).toHaveStyle(
     {
@@ -24,12 +24,12 @@ test("TextArea render with variant fill", () => {
   )
 })
 
-test("TextArea render with value", () => {
+test("TextArea renders with value", () => {
   render(<TextArea placeholder="value" value="test value" />)
   expect(screen.getByPlaceholderText("value")).toHaveDisplayValue("test value")
 })
 
-test("TextArea render with defaultValue", () => {
+test("TextArea renders with defaultValue", () => {
   render(
     <TextArea placeholder="defaultValue" defaultValue="test defaultValue" />,
   )
@@ -39,7 +39,7 @@ test("TextArea render with defaultValue", () => {
   expect(screen.getByPlaceholderText("defaultValue")).toBeInTheDocument()
 })
 
-test("TextArea render with maxLength", () => {
+test("TextArea renders with maxLength", () => {
   render(
     <TextArea
       placeholder="maxLength"
@@ -50,13 +50,13 @@ test("TextArea render with maxLength", () => {
   expect(screen.getByPlaceholderText("maxLength")).toHaveDisplayValue("test")
 })
 
-test("TextArea render with showCount", () => {
+test("TextArea renders with showCount", () => {
   render(<TextArea maxLength={23} showCount />)
   expect(screen.getByText("/23")).toBeInTheDocument()
   expect(screen.getByText("/23").previousSibling).toHaveTextContent("0")
 })
 
-test("TextArea render with disabled", () => {
+test("TextArea renders with disabled", () => {
   render(<TextArea placeholder="test-disabled" disabled />)
   expect(screen.getByPlaceholderText("test-disabled")).toBeDisabled()
   expect(
@@ -66,14 +66,14 @@ test("TextArea render with disabled", () => {
   })
 })
 
-test("TextArea render with error", () => {
+test("TextArea renders with error", () => {
   render(<TextArea placeholder="test-error" error />)
   expect(screen.getByPlaceholderText("test-error").parentElement).toHaveStyle({
     borderColor: `${globalColor(`--${illaPrefix}-red-03`)}`,
   })
 })
 
-test("TextArea render with focus and blur", () => {
+test("TextArea renders with focus and blur", () => {
   const focusEvent = jest.fn()
   const blurEvent = jest.fn()
   render(
@@ -92,7 +92,7 @@ test("TextArea render with focus and blur", () => {
   expect(testInputFocus).not.toHaveFocus()
 })
 
-test("TextArea render with input event", async () => {
+test("TextArea renders with input event", async () => {
   const changeEvent = jest.fn()
   render(
     <TextArea placeholder="test-input-event" onChange={changeEvent} autoSize />,
@@ -114,7 +114,7 @@ test("TextArea render with input event", async () => {
   expect(testTextAreaEvent).toHaveDisplayValue("是")
 })
 
-test("TextArea render with clear event", async () => {
+test("TextArea renders with clear event", async () => {
   const clearEvent = jest.fn()
   render(
     <TextArea placeholder="test-clear-event" allowClear onClear={clearEvent} />,

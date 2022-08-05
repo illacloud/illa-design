@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react"
 import { Divider } from "../src"
+import { render } from "@testing-library/react"
 
 test("Divider renders default", () => {
   const { asFragment } = render(<Divider />)

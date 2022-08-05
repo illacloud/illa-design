@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-test("Search render correctly", () => {
+test("Search renders correctly", () => {
   render(<Search placeholder={"search"} />)
   expect(screen.getByPlaceholderText("search")).toBeInTheDocument()
 
@@ -13,7 +13,7 @@ test("Search render correctly", () => {
   })
 })
 
-test("Search render with variant fill", () => {
+test("Search renders with variant fill", () => {
   render(<Search placeholder="variant-fill" variant="fill" />)
   expect(screen.getByPlaceholderText("variant-fill").parentElement).toHaveStyle(
     {
@@ -24,12 +24,12 @@ test("Search render with variant fill", () => {
   )
 })
 
-test("Search render with value", () => {
+test("Search renders with value", () => {
   render(<Search placeholder="value" value="test value" />)
   expect(screen.getByPlaceholderText("value")).toHaveDisplayValue("test value")
 })
 
-test("Search render with defaultValue", () => {
+test("Search renders with defaultValue", () => {
   render(<Search placeholder="defaultValue" defaultValue="test defaultValue" />)
   expect(screen.getByPlaceholderText("defaultValue")).toHaveDisplayValue(
     "test defaultValue",
@@ -37,7 +37,7 @@ test("Search render with defaultValue", () => {
   expect(screen.getByPlaceholderText("defaultValue")).toBeInTheDocument()
 })
 
-test("Search render with disabled", () => {
+test("Search renders with disabled", () => {
   render(<Search placeholder="test-disabled" disabled />)
   expect(screen.getByPlaceholderText("test-disabled")).toBeDisabled()
   expect(
@@ -47,14 +47,14 @@ test("Search render with disabled", () => {
   })
 })
 
-test("Search render with error", () => {
+test("Search renders with error", () => {
   render(<Search placeholder="test-error" error />)
   expect(screen.getByPlaceholderText("test-error").parentElement).toHaveStyle({
     borderColor: `${globalColor(`--${illaPrefix}-red-03`)}`,
   })
 })
 
-test("Search render with focus and blur", () => {
+test("Search renders with focus and blur", () => {
   const focusEvent = jest.fn()
   const blurEvent = jest.fn()
   render(
@@ -69,7 +69,7 @@ test("Search render with focus and blur", () => {
   expect(testInputFocus).not.toHaveFocus()
 })
 
-test("Search render with input event", async () => {
+test("Search renders with input event", async () => {
   const changeEvent = jest.fn()
   render(<Search placeholder="test-search-event" onChange={changeEvent} />)
   const testSearchEvent = screen.getByPlaceholderText("test-search-event")
@@ -89,7 +89,7 @@ test("Search render with input event", async () => {
   expect(testSearchEvent).toHaveDisplayValue("是")
 })
 
-test("Search render with clear event", async () => {
+test("Search renders with clear event", async () => {
   const clearEvent = jest.fn()
   render(
     <Search placeholder="test-clear-event" allowClear onClear={clearEvent} />,
@@ -105,7 +105,7 @@ test("Search render with clear event", async () => {
   expect(testClearEvent).toHaveDisplayValue("")
 })
 
-test("Search render with search event", async () => {
+test("Search renders with search event", async () => {
   const searchEvent = jest.fn()
   const pressEnterEvent = jest.fn()
   render(
@@ -122,7 +122,7 @@ test("Search render with search event", async () => {
   expect(pressEnterEvent).toBeCalled()
 })
 
-test("Search render with searchButton event", async () => {
+test("Search renders with searchButton event", async () => {
   const searchEvent = jest.fn()
   render(
     <Search

@@ -20,6 +20,7 @@ export interface InputNumberProps<T = any>
   defaultValue?: number
   value?: number | string
   placeholder?: string
+  width?: string
   mode?: "embed" | "button"
   size?: InputNumberSize
   prefix?: ReactNode

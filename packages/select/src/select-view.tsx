@@ -23,7 +23,12 @@ import {
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Button, ButtonProps } from "@illa-design/button"
-import { SelectSize, SelectStateValue, SelectViewProps } from "./interface"
+import {
+  SelectColorScheme,
+  SelectSize,
+  SelectStateValue,
+  SelectViewProps,
+} from "./interface"
 import {
   applyIconStyle,
   applySelectContent,
@@ -42,15 +47,35 @@ const SearchStatus = {
 const SelectAddon: FC<{
   addon: "before" | "after"
   size?: SelectSize
+  borderRadius?: string
+  colorScheme?: SelectColorScheme
   render?: ReactNode
   buttonProps?: ButtonProps
 }> = (props) => {
-  const { addon, render, size, buttonProps } = props
-  const buttonRadius = addon === "before" ? "8px 0 0 8px" : "0 8px 8px 0"
+  const { addon, render, size, colorScheme, borderRadius, buttonProps } = props
   const buttonDefaultProps = {
     size,
-    buttonRadius,
+    buttonRadius: borderRadius,
+    colorScheme,
     ...buttonProps,
+    _css: css(
+      css(
+        addon === "before"
+          ? {
+              borderRight: 0,
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+              ":hover": { borderRight: 0 },
+            }
+          : {
+              borderLeft: 0,
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+              ":hover": { borderLeft: 0 },
+            },
+      ),
+      buttonProps?._css,
+    ),
   }
   return (
     <span>
@@ -67,6 +92,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       style,
       value,
       width,
+      borderRadius = "8px",
       size = "medium",
       inputValue,
       defaultValue,
@@ -119,6 +145,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       focus: mergedFocused,
       size,
       colorScheme,
+      borderRadius,
       readOnly,
     }
 
@@ -325,7 +352,13 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         style={style}
       >
         {addonBefore ? (
-          <SelectAddon addon={"before"} size={size} {...addonBefore} />
+          <SelectAddon
+            addon={"before"}
+            size={size}
+            colorScheme={colorScheme}
+            borderRadius={borderRadius}
+            {...addonBefore}
+          />
         ) : null}
         <span
           css={applySelectView(stateValue)}
@@ -372,7 +405,13 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
           </div>
         </span>
         {addonAfter ? (
-          <SelectAddon addon={"after"} size={size} {...addonAfter} />
+          <SelectAddon
+            addon={"after"}
+            size={size}
+            colorScheme={colorScheme}
+            borderRadius={borderRadius}
+            {...addonAfter}
+          />
         ) : null}
       </div>
     )

@@ -117,14 +117,16 @@ export function applySelectView(
       }
     }
 
-    &:first-of-type {
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
+    border-radius: ${stateValue.borderRadius};
+
+    &:not(:first-of-type) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
 
-    &:last-of-type {
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
+    &:not(:last-of-type) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
 
     ${applyStatus(stateValue)}

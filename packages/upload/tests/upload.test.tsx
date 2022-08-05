@@ -24,14 +24,14 @@ describe("Upload", () => {
     requests = []
   })
 
-  test("Upload render correctly", () => {
+  test("Upload renders correctly", () => {
     render(<Upload placeholder={"upload"} />)
     fireEvent.click(screen.getByText("Upload"))
     expect(screen.getByPlaceholderText("upload")).toBeInTheDocument()
     expect(screen.getByText("Upload")).toBeInTheDocument()
   })
 
-  test("Upload render correctly with request success ", async () => {
+  test("Upload renders correctly with request success ", async () => {
     let files: UploadItem[] = []
     let curFile: UploadItem | undefined
     render(
@@ -63,7 +63,7 @@ describe("Upload", () => {
     requests.pop()
   })
 
-  test("Upload render correctly with request fail ", async () => {
+  test("Upload renders correctly with request fail ", async () => {
     let files: UploadItem[] = []
     let curFile: UploadItem | undefined
     const retryEvent = jest.fn()
@@ -98,13 +98,13 @@ describe("Upload", () => {
     requests.pop()
   })
 
-  test("Upload render correctly with drag", () => {
+  test("Upload renders correctly with drag", () => {
     render(<Upload drag={true} placeholder={"upload"} />)
     expect(screen.getByText("Drag and drop the file")).toBeInTheDocument()
     fireEvent.click(screen.getByText("Drag and drop the file"))
   })
 
-  test("Upload render correctly with pictureUpload", () => {
+  test("Upload renders correctly with pictureUpload", () => {
     render(<Upload pictureUpload={true} placeholder={"upload"} />)
     expect(screen.getByText("Upload")).toBeInTheDocument()
     expect(screen.getByText("Upload").parentNode).toHaveStyle({
@@ -114,7 +114,7 @@ describe("Upload", () => {
     fireEvent.click(screen.getByText("Upload"))
   })
 
-  test("Upload render correctly without autoUpload", () => {
+  test("Upload renders correctly without autoUpload", () => {
     render(<Upload autoUpload={false} placeholder={"upload"} />)
     const selectButton = screen.getByText("Select File")
     expect(selectButton).toBeInTheDocument()
@@ -124,7 +124,7 @@ describe("Upload", () => {
     fireEvent.click(uploadButton)
   })
 
-  test("Upload render correctly with limit is 2 and onExceedLimit", async () => {
+  test("Upload renders correctly with limit is 2 and onExceedLimit", async () => {
     const exceedLimitEvent = jest.fn()
     render(
       <Upload
@@ -152,7 +152,7 @@ describe("Upload", () => {
     expect(exceedLimitEvent).toBeCalled()
   })
 
-  test("Upload render correctly with upload file ", async () => {
+  test("Upload renders correctly with upload file ", async () => {
     const changeEvent = jest.fn()
     const onRemoveEvent = jest.fn()
     let curFile: UploadItem | undefined
@@ -182,7 +182,7 @@ describe("Upload", () => {
     expect(onRemoveEvent).toBeCalled()
   })
 
-  test('Upload render correctly with accept is "image/*"', async () => {
+  test('Upload renders correctly with accept is "image/*"', async () => {
     render(<Upload action={"/"} placeholder={"upload"} accept={"image/*"} />)
     const inputDom = screen.getByPlaceholderText("upload")
     const file = new File(["(⌐□_□)"], "test01.png", { type: "image/png" })
@@ -197,7 +197,7 @@ describe("Upload", () => {
     expect(screen.queryByText("test02.txt")).toBeNull()
   })
 
-  test('Upload render correctly with accept is ".jpg, .jpeg, .png"', async () => {
+  test('Upload renders correctly with accept is ".jpg, .jpeg, .png"', async () => {
     render(
       <Upload
         action={"/"}
@@ -218,7 +218,7 @@ describe("Upload", () => {
     expect(screen.queryByText("test.txt")).toBeNull()
   })
 
-  test('Upload render correctly with accept is ".png"', async () => {
+  test('Upload renders correctly with accept is ".png"', async () => {
     render(<Upload action={"/"} placeholder={"upload"} accept={".png"} />)
     const inputDom = screen.getByPlaceholderText("upload")
     const file = new File(["(⌐□_□)"], "test01.png")
@@ -228,7 +228,7 @@ describe("Upload", () => {
     expect(screen.queryByText("test01.png")).toBeInTheDocument()
   })
 
-  test('Upload render correctly with accept is "image/jpeg"', async () => {
+  test('Upload renders correctly with accept is "image/jpeg"', async () => {
     render(<Upload action={"/"} placeholder={"upload"} accept={"image/jpeg"} />)
     const inputDom = screen.getByPlaceholderText("upload")
     const file = new File(["(⌐□_□)"], "test01.jpeg", { type: "image/jpeg" })
@@ -238,7 +238,7 @@ describe("Upload", () => {
     expect(screen.queryByText("test01.jpeg")).toBeInTheDocument()
   })
 
-  test('Upload render correctly with listType is "picture-list"', async () => {
+  test('Upload renders correctly with listType is "picture-list"', async () => {
     const retryEvent = jest.fn()
     render(
       <Upload
@@ -263,12 +263,12 @@ describe("Upload", () => {
     requests.pop()
   })
 
-  test("Upload render correctly with tip", async () => {
+  test("Upload renders correctly with tip", async () => {
     render(<Upload drag={true} tip={"just a tip"} placeholder={"upload"} />)
     expect(screen.getByText("just a tip")).toBeInTheDocument()
   })
 
-  test("Upload render correctly with all file type", async () => {
+  test("Upload renders correctly with all file type", async () => {
     render(
       <Upload
         action={"/"}
@@ -295,7 +295,7 @@ describe("Upload", () => {
     expect(screen.getByText("test.mp4")).toBeInTheDocument()
   })
 
-  test("Upload render with disable", () => {
+  test("Upload renders with disable", () => {
     render(
       <Upload pictureUpload={true} disabled={true} placeholder={"upload"} />,
     )
@@ -305,7 +305,7 @@ describe("Upload", () => {
     })
   })
 
-  test("Upload render with fileList", () => {
+  test("Upload renders with fileList", () => {
     const file = new File(["(⌐□_□)"], "test.xls")
     render(
       <Upload
@@ -332,7 +332,7 @@ describe("Upload", () => {
     expect(screen.getByText("test02.xls")).toBeInTheDocument()
   })
 
-  test("Upload render with customRequest", async () => {
+  test("Upload renders with customRequest", async () => {
     const customEvent = jest.fn()
     const file = new File(["(⌐□_□)"], "test.xls")
     render(<Upload customRequest={customEvent} placeholder={"upload"} />)

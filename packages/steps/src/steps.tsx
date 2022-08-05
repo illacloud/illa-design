@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { forwardRef, ReactElement, ReactNode } from "react"
 import { StepsProps } from "./interface"
 import { applyStepsStyle } from "./style"

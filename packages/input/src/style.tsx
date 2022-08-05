@@ -79,8 +79,7 @@ export function applyContainerCss(stateValue: StateValue) {
     font-size: 14px;
     vertical-align: middle;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    ${applyVariantStyle(stateValue?.variant)}
-    ${applySizeStyle(stateValue?.size)}
+    ${applySizeStyle(stateValue?.size)};
   `
 }
 
@@ -235,7 +234,7 @@ export function applyInputContainer(
 
     ${applyStatus(stateValue)}
     ${borderRadius}
-      &:hover {
+    &:hover {
       [title="InputClearIcon"] {
         opacity: 1;
         // input suffix hidden
@@ -495,7 +494,7 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
     border-radius: ${stateValue.borderRadius};
     ${applyStatus(stateValue)}
     ${applySizeStyle(stateValue?.size)}
-      ${applySizeCss(true, stateValue?.size)};
+    ${applySizeCss(true, stateValue?.size)};
 
     &:hover {
       [title="InputClearIcon"] {

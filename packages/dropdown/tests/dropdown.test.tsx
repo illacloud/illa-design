@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { Button } from "@illa-design/button"
 
-test("Dropdown render correctly", () => {
+test("Dropdown renders correctly", () => {
   render(
     <Dropdown dropList={<div>test</div>}>
       <Button>Hover me</Button>

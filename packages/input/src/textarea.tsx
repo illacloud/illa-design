@@ -40,6 +40,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
       showCount,
       autoSize,
       defaultValue,
+      width = "100%",
       borderColor = "blue",
       variant = "outline",
       ...rest
@@ -77,6 +78,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
 
     const stateValue = {
       error: error || lengthError,
+      width,
       disabled,
       borderRadius,
       focus,
@@ -166,7 +168,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
         <textarea
           style={{ ...autoSizeStyle }}
           ref={refTextArea}
-          css={applyTextAreaStyle}
+          css={applyTextAreaStyle(borderRadius)}
           {...textAreaProps}
           onChange={onChange}
           onFocus={(e) => {

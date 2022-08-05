@@ -92,6 +92,7 @@ export interface SelectProps
     | boolean
     | { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean }
   size?: SelectSize
+  borderRadius?: string
   disabled?: boolean
   error?: boolean
   loading?: boolean
@@ -165,6 +166,7 @@ export interface SelectStateValue {
   focus?: boolean
   size: SelectSize
   colorScheme?: SelectProps["colorScheme"]
+  borderRadius?: string
   readOnly?: boolean
 }
 

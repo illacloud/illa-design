@@ -16,6 +16,7 @@ import {
   applyWithoutTextSize,
 } from "./style"
 import { ButtonGroupContext } from "."
+import { ButtonBox } from "@illa-design/theme"
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -38,8 +39,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             disabled,
             rightIcon,
             buttonRadius,
-            borderColor,
-            backgroundColor,
             textColor,
             onClick,
             ...otherProps
@@ -67,20 +66,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               textColor,
               disabled || loading,
             )};
-            ${applyBg(
-              variant,
-              colorScheme,
-              backgroundColor,
-              borderColor,
-              disabled || loading,
-            )};
+            ${applyBg(variant, colorScheme, disabled || loading)};
             ${buttonRadius ? `border-radius: ${buttonRadius};` : ""}
           `
 
           return (
-            <button
+            <ButtonBox
               ref={ref}
-              css={css(finalContainer, _css)}
+              css={finalContainer}
               {...otherProps}
               onClick={(e) => {
                 if (disabled || loading) {
@@ -116,7 +109,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                   {rightIcon}
                 </span>
               )}
-            </button>
+            </ButtonBox>
           )
         }}
       </ButtonGroupContext.Consumer>

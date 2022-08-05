@@ -2,7 +2,7 @@ import { Affix } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
-test("Affix should render children", () => {
+test("Affix should renders children", () => {
   render(
     <Affix>
       <span>Hello</span>

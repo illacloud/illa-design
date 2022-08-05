@@ -4,41 +4,41 @@ import "@testing-library/jest-dom"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import userEvent from "@testing-library/user-event"
 
-test("InputTag render correctly", () => {
+test("InputTag renders correctly", () => {
   render(<InputTag placeholder={"input-tag"} suffix="suffix" />)
   expect(screen.getByPlaceholderText("input-tag")).toBeInTheDocument()
 })
 
-test("InputTag render with size small", () => {
+test("InputTag renders with size small", () => {
   render(<InputTag placeholder="size-small" size="small" suffix="suffix" />)
   expect(screen.getByPlaceholderText("size-small").parentElement).toHaveStyle({
     gap: "4px",
   })
 })
 
-test("InputTag render with size large", () => {
+test("InputTag renders with size large", () => {
   render(<InputTag placeholder="size-large" size="large" />)
   expect(screen.getByPlaceholderText("size-large").parentElement).toHaveStyle({
     gap: "8px",
   })
 })
 
-test("InputTag render with value", () => {
+test("InputTag renders with value", () => {
   render(<InputTag placeholder="value" value={["test value"]} />)
   expect(screen.getByText("test value")).toBeInTheDocument()
 })
 
-test("InputTag render with value as error type", () => {
+test("InputTag renders with value as error type", () => {
   render(<InputTag placeholder="value" value={"test value" as any} />)
   expect(screen.getByPlaceholderText("value")).toBeInTheDocument()
 })
 
-test("InputTag render with defaultValue", () => {
+test("InputTag renders with defaultValue", () => {
   render(<InputTag defaultValue={["default value"]} />)
   expect(screen.getByText("default value")).toBeInTheDocument()
 })
 
-test("InputTag render with disabled", () => {
+test("InputTag renders with disabled", () => {
   render(<InputTag placeholder="test-disabled" disabled />)
   expect(screen.getByPlaceholderText("test-disabled")).toBeDisabled()
   expect(
@@ -48,7 +48,7 @@ test("InputTag render with disabled", () => {
   })
 })
 
-test("InputTag render with error", () => {
+test("InputTag renders with error", () => {
   render(<InputTag placeholder="test-error" error />)
   expect(
     screen.getByPlaceholderText("test-error")?.parentElement?.parentElement,
@@ -57,7 +57,7 @@ test("InputTag render with error", () => {
   })
 })
 
-test("InputTag render with focus and blur", () => {
+test("InputTag renders with focus and blur", () => {
   const focusEvent = jest.fn()
   const blurEvent = jest.fn()
   const clickEvent = jest.fn()
@@ -81,7 +81,7 @@ test("InputTag render with focus and blur", () => {
   expect(testFocus).toHaveFocus()
 })
 
-test("InputTag render with input event", async () => {
+test("InputTag renders with input event", async () => {
   const changeEvent = jest.fn()
   const clearEvent = jest.fn()
   const inputChangeEvent = jest.fn()
@@ -112,7 +112,7 @@ test("InputTag render with input event", async () => {
   expect(testEvent).toBeInTheDocument()
 })
 
-test("InputTag render with clear event", async () => {
+test("InputTag renders with clear event", async () => {
   const removeEvent = jest.fn()
   const clearEvent = jest.fn()
   render(

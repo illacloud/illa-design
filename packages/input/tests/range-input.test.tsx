@@ -3,13 +3,13 @@ import { RangeInput } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
-test("RangeInput render correctly", () => {
+test("RangeInput renders correctly", () => {
   render(<RangeInput placeholder={["Range", "Input"]} />)
   expect(screen.getByPlaceholderText("Range")).toBeInTheDocument()
   expect(screen.getByPlaceholderText("Input")).toBeInTheDocument()
 })
 
-test("RangeInput render with value", () => {
+test("RangeInput renders with value", () => {
   render(
     <RangeInput
       placeholder={["input0", "input1"]}
@@ -20,7 +20,7 @@ test("RangeInput render with value", () => {
   expect(screen.getByPlaceholderText("input1")).toHaveDisplayValue("test1")
 })
 
-test("RangeInput render with focus and blur", () => {
+test("RangeInput renders with focus and blur", () => {
   const focusEvent = jest.fn()
   const blurEvent = jest.fn()
   render(
@@ -44,7 +44,7 @@ test("RangeInput render with focus and blur", () => {
   expect(blurEvent).toBeCalledTimes(2)
 })
 
-test("RangeInput render with disabled", () => {
+test("RangeInput renders with disabled", () => {
   const focusEvent = jest.fn()
   render(
     <RangeInput
@@ -58,7 +58,7 @@ test("RangeInput render with disabled", () => {
   expect(focusEvent).toBeCalledTimes(0)
 })
 
-test("RangeInput render with change event", () => {
+test("RangeInput renders with change event", () => {
   const changeEvent = jest.fn()
   render(
     <RangeInput
@@ -78,7 +78,7 @@ test("RangeInput render with change event", () => {
   expect(input1).toHaveDisplayValue("456")
 })
 
-test("RangeInput render with clear event", () => {
+test("RangeInput renders with clear event", () => {
   const clearEvent = jest.fn()
   render(
     <RangeInput
@@ -94,7 +94,7 @@ test("RangeInput render with clear event", () => {
   expect(clearEvent).toBeCalledTimes(1)
 })
 
-test("RangeInput render with pressEnter and pressTab event", () => {
+test("RangeInput renders with pressEnter and pressTab event", () => {
   const pressEnterEvent = jest.fn()
   const pressTabEvent = jest.fn()
   render(

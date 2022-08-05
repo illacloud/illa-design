@@ -86,17 +86,15 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
           variant={"text"}
           colorScheme={"gray"}
           onClick={() => onChangeTime("pre")}
-        >
-          <PreIcon size={"12px"} />
-        </Button>
+          leftIcon={<PreIcon size={"12px"} />}
+        />
         <Button
           disabled={!allowSelect}
           variant={"text"}
           colorScheme={"gray"}
           onClick={() => onChangeTime("next")}
-        >
-          <NextIcon size={"12px"} />
-        </Button>
+          leftIcon={<NextIcon size={"12px"} />}
+        />
       </div>
     )
   }
@@ -162,9 +160,8 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                     !panelOperations?.includes("doubleLeft") && buttonHiddenCss
                   }
                   onClick={() => onChangeTime("pre", "year")}
-                >
-                  <PreDoubleIcon size={"12px"} />
-                </Button>
+                  leftIcon={<PreDoubleIcon size={"12px"} />}
+                />
                 {/* pre button */}
                 <Button
                   disabled={!allowSelect}
@@ -175,9 +172,8 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                     buttonHiddenCss
                   }
                   onClick={() => onChangeTime("pre", "month")}
-                >
-                  <PreIcon size={"12px"} />
-                </Button>
+                  leftIcon={<PreIcon size={"12px"} />}
+                />
               </div>
 
               {mode === "day" && (
@@ -195,7 +191,6 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
               )}
 
               <div css={headerRightBtnsCss}>
-                {/* next button */}
                 <Button
                   disabled={!allowSelect}
                   variant={"text"}
@@ -205,10 +200,8 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                     buttonHiddenCss
                   }
                   onClick={() => onChangeTime("next", "month")}
-                >
-                  <NextIcon size={"12px"} />
-                </Button>
-                {/* double-next button */}
+                  leftIcon={<NextIcon size={"12px"} />}
+                />
                 <Button
                   disabled={!allowSelect}
                   variant={"text"}
@@ -217,9 +210,8 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
                     !panelOperations?.includes("doubleRight") && buttonHiddenCss
                   }
                   onClick={() => onChangeTime("next", "year")}
-                >
-                  <NextDoubleIcon size={"12px"} />
-                </Button>
+                  leftIcon={<NextDoubleIcon size={"12px"} />}
+                />
               </div>
             </Fragment>
           ) : (

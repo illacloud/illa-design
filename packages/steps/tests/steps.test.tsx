@@ -6,7 +6,7 @@ import { ReactNode } from "react"
 
 const { Step } = Steps
 
-test("Steps render with title", () => {
+test("Steps renders with title", () => {
   render(
     <Steps>
       <Step title="Succeed" />
@@ -20,7 +20,7 @@ test("Steps render with title", () => {
   expect(screen.getByText("Wait")).toBeInTheDocument()
 })
 
-test("Steps render with description", () => {
+test("Steps renders with description", () => {
   render(
     <Steps>
       <Step title="Succeed" description="This is a description" />
@@ -31,13 +31,13 @@ test("Steps render with description", () => {
   expect(screen.getByText("This is a description")).toBeInTheDocument()
 })
 
-test("Steps render without step components should render nothing", () => {
+test("Steps renders without step components should renders nothing", () => {
   render(<Steps data-testid="steps" />)
 
   expect(screen.getByTestId("steps").children.length).toBe(0)
 })
 
-test("Steps render with only span element should render nothing", () => {
+test("Steps renders with only span element should renders nothing", () => {
   render(
     <Steps>
       <span>Hello</span>
@@ -47,7 +47,7 @@ test("Steps render with only span element should render nothing", () => {
   expect(screen.queryByText("Hello")).toBeNull()
 })
 
-test("Steps render with current step 2", () => {
+test("Steps renders with current step 2", () => {
   render(
     <Steps current={2}>
       <Step title="Succeed" />
@@ -61,7 +61,7 @@ test("Steps render with current step 2", () => {
   expect(screen.getByText("Wait")).toBeInTheDocument()
 })
 
-test("Steps render vertical label", () => {
+test("Steps renders vertical label", () => {
   render(
     <Steps data-testid="steps" labelPlacement="vertical">
       <Step title="Succeed" />
@@ -72,7 +72,7 @@ test("Steps render vertical label", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps render index", () => {
+test("Steps renders index", () => {
   render(
     <Steps>
       <Step title="Succeed" />
@@ -83,7 +83,7 @@ test("Steps render index", () => {
   expect(screen.getByText("2")).toBeInTheDocument()
 })
 
-test("Steps render custom icon", () => {
+test("Steps renders custom icon", () => {
   render(
     <Steps>
       <Step
@@ -96,7 +96,7 @@ test("Steps render custom icon", () => {
   expect(screen.getByTestId("link-icon")).toBeInTheDocument()
 })
 
-test("Steps render custom dot", () => {
+test("Steps renders custom dot", () => {
   const customDot = (dot: ReactNode, { index }: { index: number }) => (
     <div title={`dot-index-${index}`}> {dot}</div>
   )
@@ -108,7 +108,7 @@ test("Steps render custom dot", () => {
   expect(screen.getByTitle("dot-index-1")).toBeInTheDocument()
 })
 
-test("Steps render with process status", () => {
+test("Steps renders with process status", () => {
   render(
     <Steps data-testid="steps">
       <Step title="Finish" />
@@ -121,7 +121,7 @@ test("Steps render with process status", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps render with error status", () => {
+test("Steps renders with error status", () => {
   render(
     <Steps data-testid="steps" status="error">
       <Step title="Error" />
@@ -132,7 +132,7 @@ test("Steps render with error status", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps render with finish status", () => {
+test("Steps renders with finish status", () => {
   render(
     <Steps data-testid="steps" status="finish">
       <Step title="Finish" />
@@ -143,7 +143,7 @@ test("Steps render with finish status", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps render with no line", () => {
+test("Steps renders with no line", () => {
   render(
     <Steps data-testid="steps" lineless>
       <Step title="Error" />
@@ -153,7 +153,7 @@ test("Steps render with no line", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps render with vertical", () => {
+test("Steps renders with vertical", () => {
   render(
     <Steps data-testid="steps" direction="vertical">
       <Step title="Succeeded" />
@@ -164,7 +164,7 @@ test("Steps render with vertical", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps render with dot variant", () => {
+test("Steps renders with dot variant", () => {
   render(
     <Steps data-testid="steps" variant="dot">
       <Step title="Succeeded" />
@@ -175,7 +175,7 @@ test("Steps render with dot variant", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps render with dot variant with vertical direction", () => {
+test("Steps renders with dot variant with vertical direction", () => {
   render(
     <Steps data-testid="steps" variant="dot" direction="vertical">
       <Step title="Succeeded" />
@@ -186,7 +186,7 @@ test("Steps render with dot variant with vertical direction", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps render with navigation variant", () => {
+test("Steps renders with navigation variant", () => {
   render(
     <Steps data-testid="steps" variant="navigation">
       <Step title="Succeeded" />
@@ -223,7 +223,7 @@ test("Steps onChange should be triggered if step is disabled", () => {
   expect(clickEvent).not.toBeCalled()
 })
 
-test("Steps with vertical direction and error status should render error style", () => {
+test("Steps with vertical direction and error status should renders error style", () => {
   render(
     <Steps data-testid="steps" direction="vertical" current={2} status="error">
       <Step title="Succeeded" />
@@ -235,7 +235,7 @@ test("Steps with vertical direction and error status should render error style",
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Only last step render error style", () => {
+test("Only last step renders error style", () => {
   render(
     <Steps data-testid="steps" direction="vertical" current={3} status="error">
       <Step title="Succeeded" />
@@ -247,7 +247,7 @@ test("Only last step render error style", () => {
   expect(screen.getByTestId("steps")).toMatchSnapshot()
 })
 
-test("Steps with dot variant and error status should render error style", () => {
+test("Steps with dot variant and error status should renders error style", () => {
   render(
     <Steps
       data-testid="steps"

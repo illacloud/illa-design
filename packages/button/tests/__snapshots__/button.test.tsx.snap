@@ -52,7 +52,7 @@ exports[`Button renders fullwidth 1`] = `
   background-color: #083bc7;
 }
 
-.emotion-1 {
+.emotion-2 {
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -62,11 +62,11 @@ exports[`Button renders fullwidth 1`] = `
 }
 
 <button
-  class="emotion-0"
+  class="emotion-0 emotion-1"
   data-testid="test-with-fullwidth"
 >
   <span
-    class="emotion-1"
+    class="emotion-2"
   >
     Hello
   </span>
@@ -124,7 +124,7 @@ exports[`Button renders round 1`] = `
   background-color: #083bc7;
 }
 
-.emotion-1 {
+.emotion-2 {
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -134,11 +134,11 @@ exports[`Button renders round 1`] = `
 }
 
 <button
-  class="emotion-0"
+  class="emotion-0 emotion-1"
   data-testid="test-with-round"
 >
   <span
-    class="emotion-1"
+    class="emotion-2"
   >
     Hello
   </span>

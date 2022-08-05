@@ -3,7 +3,7 @@ import "@testing-library/jest-dom"
 import { Pagination } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-test("Pagination render correctly", () => {
+test("Pagination renders correctly", () => {
   render(<Pagination showTotal={true} placeholder={"pagination"} total={40} />)
   expect(screen.getByPlaceholderText("pagination")).toBeInTheDocument()
   expect(screen.getByText("Total 40")).toBeInTheDocument()
@@ -12,28 +12,28 @@ test("Pagination render correctly", () => {
   })
 })
 
-test("Pagination render with defaultCurrent", () => {
+test("Pagination renders with defaultCurrent", () => {
   render(<Pagination defaultCurrent={6} total={100} />)
   expect(screen.getByText("6")).toHaveStyle({
     color: `${globalColor(`--${illaPrefix}-blue-01`)}`,
   })
 })
 
-test("Pagination render with small size", () => {
+test("Pagination renders with small size", () => {
   render(<Pagination size={"small"} total={100} />)
   expect(screen.getByText("2")).toHaveStyle({
     height: `22px`,
   })
 })
 
-test("Pagination render with  large size", () => {
+test("Pagination renders with  large size", () => {
   render(<Pagination size={"large"} total={100} />)
   expect(screen.getByText("2")).toHaveStyle({
     height: `40px`,
   })
 })
 
-test("Pagination render with total is 0", () => {
+test("Pagination renders with total is 0", () => {
   render(
     <Pagination
       placeholder={"pagination"}
@@ -46,7 +46,7 @@ test("Pagination render with total is 0", () => {
   expect(screen.getByText("Total 0")).toBeInTheDocument()
 })
 
-test("Pagination render with jumper", () => {
+test("Pagination renders with jumper", () => {
   const changeEvent = jest.fn()
   render(
     <Pagination
@@ -79,12 +79,12 @@ test("Pagination render with jumper", () => {
   })
 })
 
-test("Pagination render with page-selector", () => {
+test("Pagination renders with page-selector", () => {
   render(<Pagination placeholder={"pagination"} total={100} />)
   expect(screen.getByText("10/Page")).toBeInTheDocument()
 })
 
-test("Pagination render with onChange", () => {
+test("Pagination renders with onChange", () => {
   const changeEvent = jest.fn()
   render(<Pagination total={100} onChange={changeEvent} />)
   const targetPage = screen.getByText("4")
@@ -95,7 +95,7 @@ test("Pagination render with onChange", () => {
   })
 })
 
-test("Pagination render with click more", () => {
+test("Pagination renders with click more", () => {
   render(<Pagination total={99} />)
   fireEvent.click(screen.getByTitle("MoreIcon"))
   expect(screen.getByText("6")).toHaveStyle({
@@ -107,12 +107,12 @@ test("Pagination render with click more", () => {
   })
 })
 
-test("Pagination render with simple", () => {
+test("Pagination renders with simple", () => {
   render(<Pagination total={99} simple={true} />)
   expect(screen.getByText("/")).toBeInTheDocument()
 })
 
-test("Pagination render with simple jumper", () => {
+test("Pagination renders with simple jumper", () => {
   const changeEvent = jest.fn()
   render(
     <Pagination
@@ -134,7 +134,7 @@ test("Pagination render with simple jumper", () => {
   expect(input).toHaveDisplayValue("10")
 })
 
-test("Pagination render with simple input blur", () => {
+test("Pagination renders with simple input blur", () => {
   const changeEvent = jest.fn()
   render(
     <Pagination
@@ -151,22 +151,22 @@ test("Pagination render with simple input blur", () => {
   expect(changeEvent).toBeCalled()
 })
 
-test("Pagination render with selectedPage is 5 ", () => {
+test("Pagination renders with selectedPage is 5 ", () => {
   render(<Pagination total={100} defaultCurrent={5} />)
   expect(screen.getByText("2")).toBeInTheDocument()
 })
 
-test("Pagination render with pageItem < 7 and selectedPage is 1 ", () => {
+test("Pagination renders with pageItem < 7 and selectedPage is 1 ", () => {
   render(<Pagination total={100} defaultCurrent={1} />)
   expect(screen.getByText("5")).toBeInTheDocument()
 })
 
-test("Pagination render with pageItem < 7 and selectedPage is 10 ", () => {
+test("Pagination renders with pageItem < 7 and selectedPage is 10 ", () => {
   render(<Pagination total={100} defaultCurrent={10} />)
   expect(screen.getByText("6")).toBeInTheDocument()
 })
 
-test("Simple Pagination render with prevIcon and NextIcon", () => {
+test("Simple Pagination renders with prevIcon and NextIcon", () => {
   render(<Pagination total={100} simple={true} defaultCurrent={2} />)
   const input = screen.getByRole(`textbox`)
   expect(input).toHaveDisplayValue("2")
@@ -176,7 +176,7 @@ test("Simple Pagination render with prevIcon and NextIcon", () => {
   expect(input).toHaveDisplayValue("2")
 })
 
-test("Pagination render with prevIcon and NextIcon", () => {
+test("Pagination renders with prevIcon and NextIcon", () => {
   render(<Pagination total={99} defaultCurrent={2} />)
   expect(screen.getByText("2")).toHaveStyle({
     color: `${globalColor(`--${illaPrefix}-blue-01`)}`,
@@ -191,12 +191,12 @@ test("Pagination render with prevIcon and NextIcon", () => {
   })
 })
 
-test("Pagination render with singlePage", () => {
+test("Pagination renders with singlePage", () => {
   render(<Pagination placeholder={"pagination"} total={1} />)
   expect(screen.queryByPlaceholderText("pagination")).toBeNull()
 })
 
-test("Pagination render with showTotal function", () => {
+test("Pagination renders with showTotal function", () => {
   render(
     <Pagination
       placeholder={"pagination"}
@@ -208,7 +208,7 @@ test("Pagination render with showTotal function", () => {
   expect(screen.getByTestId("test-progress-gray")).toBeInTheDocument()
 })
 
-test("Pagination render with disable", () => {
+test("Pagination renders with disable", () => {
   render(<Pagination placeholder={"pagination"} total={100} disabled={true} />)
   expect(screen.getByPlaceholderText("pagination")).toBeInTheDocument()
 })

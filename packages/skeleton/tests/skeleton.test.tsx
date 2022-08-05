@@ -2,7 +2,7 @@ import { Skeleton } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
-test("Skeleton should render with 3 rows", () => {
+test("Skeleton should renders with 3 rows", () => {
   render(<Skeleton data-testid="skeleton" />)
   expect(screen.getByTestId("skeleton").querySelectorAll("li")).toHaveLength(3)
 })

@@ -182,10 +182,8 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   -ms-flex-align: center;
   align-items: center;
   font-size: 12px;
-  border-radius: 8px;
   vertical-align: middle;
   color: #1d2129;
-  border-color: #e5e6eb;
   height: 24px;
   line-height: 18px;
 }
@@ -1101,10 +1099,8 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   -ms-flex-align: center;
   align-items: center;
   font-size: 12px;
-  border-radius: 8px;
   vertical-align: middle;
   color: #1d2129;
-  border-color: #e5e6eb;
   height: 24px;
   line-height: 18px;
 }
@@ -2026,10 +2022,8 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   -ms-flex-align: center;
   align-items: center;
   font-size: 12px;
-  border-radius: 8px;
   vertical-align: middle;
   color: #1d2129;
-  border-color: #e5e6eb;
   height: 24px;
   line-height: 18px;
 }
