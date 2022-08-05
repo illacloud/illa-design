@@ -241,7 +241,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
 
     return (
       <Trigger
-        trigger="click"
+        trigger={trigger}
         content={
           <div css={applyPopupStyle()}>
             {showSearchPanel ? (

@@ -120,6 +120,8 @@ import {
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
+  HeartOutlineIcon,
+  StartOutlineIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -567,4 +569,12 @@ export const FullScreen: Story<IconProps> = (props: IconProps) => (
 
 export const Exit: Story<IconProps> = (props: IconProps) => (
   <ExitIcon {...props} />
+)
+
+export const HeartOutline: Story<IconProps> = (props: IconProps) => (
+  <HeartOutlineIcon {...props} />
+)
+
+export const StarOutLine: Story<IconProps> = (props: IconProps) => (
+  <StartOutlineIcon {...props} />
 )
