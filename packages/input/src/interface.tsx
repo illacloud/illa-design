@@ -9,6 +9,7 @@ import {
   SyntheticEvent,
 } from "react"
 import { SerializedStyles } from "@emotion/react"
+import { BoxProps } from "@illa-design/theme"
 
 export type InputBorderColor =
   | string
@@ -60,9 +61,10 @@ export interface InputElementProps
 
 export interface InputProps
   extends Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    "prefix" | "size" | "onChange"
-  > {
+      InputHTMLAttributes<HTMLInputElement>,
+      "prefix" | "size" | "onChange"
+    >,
+    BoxProps {
   inputRef?: Ref<HTMLInputElement>
   variant?: InputVariant
   width?: string
