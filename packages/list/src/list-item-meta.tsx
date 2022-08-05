@@ -25,7 +25,7 @@ export const ListItemMeta = forwardRef<HTMLDivElement, ListItemMetaProps>(
         )}
         <Typography css={applyTypoStyle}>
           {title && typeof title === "string" ? (
-            <Text fontSize="14px" colorScheme="gray" bold>
+            <Text colorScheme="gray" bold>
               {title}
             </Text>
           ) : (
@@ -39,7 +39,6 @@ export const ListItemMeta = forwardRef<HTMLDivElement, ListItemMetaProps>(
                   ? globalColor(`--${illaPrefix}-grayBlue-02`)
                   : globalColor(`--${illaPrefix}-grayBlue-04`)
               }
-              fontSize="14px"
             >
               {description}
             </Paragraph>

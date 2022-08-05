@@ -24,15 +24,12 @@ export type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 export interface TextProps
   extends BaseProps,
     HTMLAttributes<HTMLSpanElement>,
-    BoxProps {
-  fontSize?: string
-}
+    BoxProps {}
 
 export interface ParagraphProps
   extends BaseProps,
     HTMLAttributes<HTMLParagraphElement>,
     BoxProps {
-  fontSize?: string
   indent?: boolean
 }
 

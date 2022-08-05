@@ -3,6 +3,7 @@ import { LinkProps } from "./interface"
 import { applyDisable, applyLeftIcon, applyLinkContainer } from "./style"
 import { LinkIcon } from "@illa-design/icon"
 import { css } from "@emotion/react"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const {
@@ -21,7 +22,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   `
 
   return (
-    <a ref={ref} css={finalCss} {...otherProps}>
+    <a ref={ref} css={[finalCss, applyBoxStyle(props)]} {...otherProps}>
       {leftIcon && <span css={applyLeftIcon}>{leftIcon}</span>}
       {props.children}
     </a>

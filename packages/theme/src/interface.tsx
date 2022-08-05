@@ -5,7 +5,8 @@ export type BoxProps = SizeStyledProps &
   ColorStyledProps &
   PositionStyledProps &
   FlexStyledProps &
-  CustomStyledProps
+  CustomStyledProps &
+  FontStyledProps
 
 export interface SizeStyledProps {
   /**
@@ -126,6 +127,21 @@ export interface PositionStyledProps {
   l?: string
   b?: string
   r?: string
+}
+
+export interface FontStyledProps {
+  /**
+   * font-size
+   */
+  fs?: string
+  /**
+   * font-family
+   */
+  ff?: string
+  /**
+   * font-weight
+   */
+  fw?: string
 }
 
 export interface FlexStyledProps {

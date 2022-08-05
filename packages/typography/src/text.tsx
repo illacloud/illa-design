@@ -1,7 +1,6 @@
 import { Children, forwardRef } from "react"
 import { TextProps } from "./interface"
 import { Base } from "./base"
-import { applyTextContainer } from "./text-style"
 import { Tooltip } from "@illa-design/tooltip"
 import { mergedToString } from "@illa-design/system"
 import { applyBoxStyle } from "@illa-design/theme"
@@ -18,7 +17,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
     deleted,
     code,
     copyable,
-    fontSize = "14px",
+    fs = "14px",
     ...otherProps
   } = props
 
@@ -41,11 +40,7 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
     </Base>
   )
   const text = (
-    <span
-      css={[applyTextContainer(fontSize), applyBoxStyle(props)]}
-      ref={ref}
-      {...otherProps}
-    >
+    <span css={[applyBoxStyle(props)]} ref={ref} {...otherProps}>
       {base}
     </span>
   )
