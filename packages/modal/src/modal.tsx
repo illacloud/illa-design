@@ -40,6 +40,7 @@ import { AlertType as ConfirmType } from "@illa-design/alert"
 import FocusLock from "react-focus-lock"
 import { RemoveScroll } from "react-remove-scroll"
 import useModal from "./useModal"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
   (props, ref) => {
@@ -156,7 +157,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           exit="exit"
           initial="initial"
           transition={{ duration: 0.2 }}
-          css={applyModal(alignCenter, simple)}
+          css={[applyModal(alignCenter, simple), applyBoxStyle(props)]}
           style={style}
           className={className}
           onMouseDown={() => {
