@@ -53,7 +53,6 @@ export const Picker: FC<CommonPickerProps> = (props) => {
           size={size}
           value={inputVal}
           borderColor={colorScheme}
-          style={{ width: 280 }}
           suffix={{ render: <CalendarIcon /> }}
           allowClear={allowClear}
           error={error}
