@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, MouseEvent, ReactNode } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type SwitchColorScheme =
   | "white"
@@ -19,7 +20,8 @@ export type SwitchColorScheme =
 export type SwitchSize = "medium" | "large"
 
 export interface SwitchProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onChange"> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onChange">,
+    BoxProps {
   colorScheme?: SwitchColorScheme
   disabled?: boolean
   size?: SwitchSize
