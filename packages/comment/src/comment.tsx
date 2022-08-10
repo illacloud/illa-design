@@ -11,6 +11,7 @@ import {
   dateTimeTextCss,
   singleCommentContainerCss,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Comment = forwardRef<HTMLDivElement, CommentProps>(
   (props, ref) => {
@@ -38,7 +39,7 @@ export const Comment = forwardRef<HTMLDivElement, CommentProps>(
     return (
       <div
         placeholder={placeholder}
-        css={commentContainerCss}
+        css={[commentContainerCss, applyBoxStyle(props)]}
         ref={ref}
         {...rest}
       >

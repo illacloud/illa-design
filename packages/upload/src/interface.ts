@@ -92,10 +92,6 @@ export interface CustomIconType {
   reuploadIcon?: ReactNode
 }
 
-export interface FileList {
-  fileList: UploadItem[]
-}
-
 export type UploadRefType = {
   dom: HTMLDivElement | null
   reUpload: (file: UploadItem) => void

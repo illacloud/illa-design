@@ -5,11 +5,11 @@ import { TimelineItem } from "./timelineItem"
 import { TimelineContext } from "./timeline-context"
 import { applyWrapStyle } from "./styles"
 import { css } from "@emotion/react"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
   (props, ref) => {
     const {
-      _css,
       reverse,
       mode = "left",
       direction = "vertical",
@@ -35,7 +35,11 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
     pending && items.push(pendingItem as ReactElement)
 
     return (
-      <div ref={ref} {...rest} css={css(applyWrapStyle(direction, mode), _css)}>
+      <div
+        ref={ref}
+        {...rest}
+        css={css(applyWrapStyle(direction, mode), applyBoxStyle(props))}
+      >
         {items.map((child, index) => {
           if (!child) {
             return null

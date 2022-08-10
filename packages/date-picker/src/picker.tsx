@@ -23,6 +23,7 @@ export const Picker: FC<CommonPickerProps> = (props) => {
     onChangeVisible,
     colorScheme,
     readOnly,
+    ...rest
   } = props
 
   const tryUpdatePopupVisible = (value: boolean) => {
@@ -60,6 +61,7 @@ export const Picker: FC<CommonPickerProps> = (props) => {
           onChange={(value: string) => {
             editable && onChangeInputVal?.(value)
           }}
+          {...rest}
         />
       </Trigger>
     </>

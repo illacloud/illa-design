@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type DividerDirection = "vertical" | "horizontal"
 export type DividerVariant = "solid" | "dashed" | "dotted" | "double"
@@ -17,7 +18,7 @@ export type DividerColorScheme =
   | "techPink"
   | "techPurple"
 
-export interface DividerProps extends HTMLAttributes<HTMLDivElement> {
+export interface DividerProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   direction?: DividerDirection
   variant?: DividerVariant
   text?: string

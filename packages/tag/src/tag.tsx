@@ -19,6 +19,7 @@ import {
   tagSizeMediumStyle,
   tagSizeSmallStyle,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const {
@@ -90,7 +91,7 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   `
 
   return (visible == undefined ? realVisible : visible) ? (
-    <div css={finalStyle} ref={ref} {...otherProps}>
+    <div css={[finalStyle, applyBoxStyle(props)]} ref={ref} {...otherProps}>
       {props.icon && <span css={leftIcon}>{props.icon}</span>}
       <span css={tagContentStyle}>{props.children}</span>
       {props.closable && (

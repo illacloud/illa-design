@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type DescriptionAlign = "left" | "right"
 export type DescriptionSize = "small" | "medium" | "large"
@@ -19,7 +20,9 @@ export interface DescriptionColumn {
   xxl?: number
 }
 
-export interface DescriptionProps extends HTMLAttributes<HTMLDivElement> {
+export interface DescriptionProps
+  extends HTMLAttributes<HTMLDivElement>,
+    BoxProps {
   data?: DescriptionItem[]
   bordered?: boolean
   column?: number | DescriptionColumn

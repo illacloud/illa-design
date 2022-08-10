@@ -30,7 +30,6 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       boundary = "start",
       hash: willModifyHash = true,
       affix = true,
-      affixStyle,
       offsetTop,
       offsetBottom,
       onChange,
@@ -55,7 +54,9 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       const containerElement = getContainerElement(
         container as HTMLElement | Window,
       )
-      const containerRect = (containerElement as HTMLElement).getBoundingClientRect()
+      const containerRect = (
+        containerElement as HTMLElement
+      ).getBoundingClientRect()
       const documentHeight = document.documentElement.clientHeight
 
       for (const hash of linkMap.current.keys()) {
@@ -134,11 +135,11 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
               id = raf(updateScrollTopPerFrame)
             } else {
               caf(id)
-              isScrollingTimer.current = (setTimeout(() => {
+              isScrollingTimer.current = setTimeout(() => {
                 isScrolling.current = false
                 clearTimeout(isScrollingTimer.current as number)
                 isScrollingTimer.current = null
-              }, 200) as unknown) as number
+              }, 200) as unknown as number
             }
           }
 
@@ -239,7 +240,6 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
 
     return affix ? (
       <Affix
-        style={affixStyle}
         offsetBottom={offsetBottom}
         offsetTop={offsetTop}
         target={getAffixTarget}

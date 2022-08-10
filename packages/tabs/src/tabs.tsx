@@ -12,6 +12,7 @@ import { TabCommonHeader } from "./headers/tab-common-header"
 import { isAhead, isHorizontalLayout } from "./utils"
 import { TabLineHeader } from "./headers/tab-line-header"
 import { isObject } from "@illa-design/system"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export type TabChildren = {
   headers: TabHeaderChildProps[]
@@ -171,7 +172,12 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   }, [variant, tabPosition])
 
   return (
-    <div css={containerCss} placeholder={placeholder} ref={ref} {...rest}>
+    <div
+      css={[containerCss, applyBoxStyle(props)]}
+      placeholder={placeholder}
+      ref={ref}
+      {...rest}
+    >
       {isAhead(tabPosition) && _variant === "line" && (
         <TabLineHeader {...headerProps} />
       )}

@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 import { SerializedStyles } from "@emotion/react"
 import { AdjustResult } from "./adjust-tips-location"
+import { BoxProps } from "@illa-design/theme"
 
 export type TriggerColorScheme =
   | string
@@ -39,8 +40,7 @@ export type CustomPositionType = {
   y?: number
 }
 
-export interface TriggerProps {
-  _css?: SerializedStyles
+export interface TriggerProps extends BoxProps {
   children?: ReactNode
   colorScheme?: TriggerColorScheme
   clickOutsideToClose?: boolean
