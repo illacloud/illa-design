@@ -8,7 +8,7 @@ import {
   applyProgressContainerBg,
   applySvgContainer,
 } from "./common-style"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
 
 export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
@@ -60,7 +60,11 @@ export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
     }
 
     return (
-      <div css={applyContainer(w)} ref={ref} {...otherProps}>
+      <div
+        css={[applyContainer(w), applyBoxStyle(props)]}
+        ref={ref}
+        {...otherProps}
+      >
         <svg css={applySvgContainer(w)}>
           <circle
             css={applyProgressContainerBg(trailColor, w, strokeWidth)}

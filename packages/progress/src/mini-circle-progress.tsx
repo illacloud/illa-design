@@ -8,7 +8,7 @@ import {
   applyCircleStatus,
   applyCircleSvgContainer,
 } from "./mini-circle-progress-style"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
 
 export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
@@ -60,7 +60,11 @@ export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
     }
 
     return (
-      <div css={applyContainer(w)} ref={ref} {...otherProps}>
+      <div
+        css={[applyContainer(w), applyBoxStyle(props)]}
+        ref={ref}
+        {...otherProps}
+      >
         <Trigger disabled={!showText} content={formatText(percent)}>
           {(status == "normal" || status == "error") && (
             <svg css={applyCircleSvgContainer(w, trailColor)}>
