@@ -16,7 +16,7 @@ export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
       type = "line",
       status = "normal",
       color = "blue",
-      width = "16px",
+      w = "16px",
       strokeWidth = "4px",
       trailColor = "gray",
       showText = true,
@@ -28,8 +28,8 @@ export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
       ...otherProps
     } = props
 
-    const radius = `calc(${width} / 2)`
-    const center = `calc(${width} / 2)`
+    const radius = `calc(${w} / 2)`
+    const center = `calc(${w} / 2)`
 
     let finalColor: string
 
@@ -60,17 +60,17 @@ export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
     }
 
     return (
-      <div css={applyContainer(width)} ref={ref} {...otherProps}>
+      <div css={applyContainer(w)} ref={ref} {...otherProps}>
         <Trigger disabled={!showText} content={formatText(percent)}>
           {(status == "normal" || status == "error") && (
-            <svg css={applyCircleSvgContainer(width, trailColor)}>
+            <svg css={applyCircleSvgContainer(w, trailColor)}>
               <circle
-                css={applyCircleProgressContainer(finalColor, width, percent)}
+                css={applyCircleProgressContainer(finalColor, w, percent)}
                 fill="none"
                 cx={center}
                 cy={center}
                 r={radius}
-                strokeWidth={width}
+                strokeWidth={w}
               />
             </svg>
           )}

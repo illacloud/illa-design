@@ -17,7 +17,7 @@ export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
       steps,
       status = "normal",
       color = "blue",
-      width = "80px",
+      w = "80px",
       strokeWidth = "4px",
       trailColor = "gray",
       showText = true,
@@ -28,8 +28,8 @@ export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
       ...otherProps
     } = props
 
-    const radius = `calc((${width} - ${strokeWidth}) / 2)`
-    const center = `calc(${width} / 2)`
+    const radius = `calc((${w} - ${strokeWidth}) / 2)`
+    const center = `calc(${w} / 2)`
 
     let finalColor: string
 
@@ -60,10 +60,10 @@ export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
     }
 
     return (
-      <div css={applyContainer(width)} ref={ref} {...otherProps}>
-        <svg css={applySvgContainer(width)}>
+      <div css={applyContainer(w)} ref={ref} {...otherProps}>
+        <svg css={applySvgContainer(w)}>
           <circle
-            css={applyProgressContainerBg(trailColor, width, strokeWidth)}
+            css={applyProgressContainerBg(trailColor, w, strokeWidth)}
             fill="none"
             cx={center}
             cy={center}
@@ -71,12 +71,7 @@ export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
             strokeWidth={strokeWidth}
           />
           <circle
-            css={applyProgressContainer(
-              finalColor,
-              width,
-              strokeWidth,
-              percent,
-            )}
+            css={applyProgressContainer(finalColor, w, strokeWidth, percent)}
             fill="none"
             cx={center}
             cy={center}

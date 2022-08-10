@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactNode } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type ProgressColorScheme =
   | string
@@ -22,7 +23,9 @@ export type ProgressStatus = "normal" | "success" | "error"
 
 export type ProgressSize = "small" | "medium" | "large"
 
-export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
+export interface ProgressProps
+  extends HTMLAttributes<HTMLDivElement>,
+    BoxProps {
   type?: ProgressType
   steps?: number
   status?: ProgressStatus
@@ -31,6 +34,5 @@ export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
   showText?: boolean
   formatText?: (percent: number) => ReactNode
   percent?: number
-  width?: string
   strokeWidth?: string
 }
