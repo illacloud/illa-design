@@ -1,5 +1,16 @@
 # @illa-design/loading
 
+## 0.0.7
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@0.0.17
+  - @illa-design/system@0.0.17
+  - @illa-design/theme@0.0.17
+
 ## 0.0.6
 
 ### Patch Changes
