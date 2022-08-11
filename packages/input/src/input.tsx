@@ -13,6 +13,7 @@ import {
 import { InputElement } from "./input-element"
 import { formatForRule } from "./utils"
 import { SerializedStyles } from "@emotion/react"
+import { applyBoxStyle } from "@illa-design/theme"
 
 const inputAddon = (
   node?: ReactNode,
@@ -99,7 +100,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   return (
     <div
       ref={ref}
-      css={applyContainerCss(stateValue)}
+      css={[applyContainerCss(stateValue), applyBoxStyle(props)]}
       style={style}
       className={className}
     >
@@ -121,11 +122,11 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           allowClear={allowClear}
           textCenterHorizontal={textCenterHorizontal}
           iconAppearWithSuffix={iconAppearWithSuffix}
-          onFocus={(e) => {
+          onFocus={e => {
             setFocus(true)
             onFocus?.(e)
           }}
-          onBlur={(e) => {
+          onBlur={e => {
             setFocus(false)
             onBlur?.(e)
           }}
@@ -141,7 +142,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
             }
             onChange?.(value, event)
           }}
-          onPressEnter={(e) => {
+          onPressEnter={e => {
             onPressEnter?.(e)
           }}
           readOnly={readOnly}

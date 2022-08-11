@@ -1,4 +1,4 @@
-import { forwardRef, useContext, useEffect, useMemo, useState } from "react"
+import { forwardRef, useContext, useEffect, useState } from "react"
 import { CalendarHeader } from "./calendar-header"
 import { CalendarBody } from "./calendar-body"
 import { CalenderProps, defaultModeItem, selectTimeProps } from "./interface"
@@ -10,12 +10,12 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
   (props, ref) => {
     const {
       // base props
-      _css,
       allowSelect = true,
       panel,
       panelWidth = 280,
@@ -171,7 +171,10 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
 
     return (
       <div
-        css={css(applyCalendarWrapCss(finPanel ?? false, panelWidth), _css)}
+        css={css(
+          applyCalendarWrapCss(finPanel ?? false, panelWidth),
+          applyBoxStyle(props),
+        )}
         ref={ref}
         {...restProps}
       >

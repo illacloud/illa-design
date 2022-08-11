@@ -15,6 +15,7 @@ import {
   opacityTransition,
   pointerStyle,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
   (props, ref) => {
@@ -100,6 +101,7 @@ export const BackTop = forwardRef<HTMLDivElement, BackTopProps>(
           pointerStyle,
           applyOpacity(visible),
           opacityTransition,
+          applyBoxStyle(props),
         ]}
         style={style}
         className={className}

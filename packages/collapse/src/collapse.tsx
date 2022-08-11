@@ -5,6 +5,7 @@ import { CollapseItem } from "./collapse-item"
 import { CaretRightIcon, CaretLeftIcon } from "@illa-design/icon"
 import { useMergeValue } from "@illa-design/system"
 import { applyCollapseStyle } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 const getActiveKeys = (
   keys: CollapseProps["activeKey"],
@@ -83,7 +84,11 @@ export const Collapse: CollapseComponent = forwardRef<
         expandIconPosition,
       }}
     >
-      <div ref={ref} css={applyCollapseStyle(bordered)} {...otherProps}>
+      <div
+        ref={ref}
+        css={[applyCollapseStyle(bordered), applyBoxStyle(props)]}
+        {...otherProps}
+      >
         {children}
       </div>
     </CollapseContext.Provider>

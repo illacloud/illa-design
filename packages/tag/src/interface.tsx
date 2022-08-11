@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactNode, SyntheticEvent } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type TagColorScheme =
   | string
@@ -20,7 +21,7 @@ export type TagVariant = "outline" | "fill" | "light"
 
 export type TagSize = "small" | "medium" | "large"
 
-export interface TagProps extends HTMLAttributes<HTMLDivElement> {
+export interface TagProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   colorScheme?: TagColorScheme
   size?: TagSize
   variant?: TagVariant

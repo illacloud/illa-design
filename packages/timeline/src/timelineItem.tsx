@@ -9,6 +9,7 @@ import {
   applyDotWrapperStyle,
   applyItemContentStyle,
 } from "./styles"
+import { applyBoxStyle } from "@illa-design/theme"
 
 const modeHandle = (
   mode: string,
@@ -47,7 +48,10 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
 
           return (
             <div
-              css={applyItemStyle(direction, _mode, dot)}
+              css={[
+                applyItemStyle(direction, _mode, dot),
+                applyBoxStyle(props),
+              ]}
               ref={ref}
               {...rest}
             >

@@ -1,6 +1,7 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { Ellipsis } from "./ellipsis-config"
 import { Copyable } from "./copyable-config"
+import { BoxProps } from "@illa-design/theme"
 
 export type TypographyColorScheme =
   | string
@@ -20,20 +21,22 @@ export type TypographyColorScheme =
 
 export type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 
-export interface TextProps extends BaseProps, HTMLAttributes<HTMLSpanElement> {
-  fontSize?: string
-}
+export interface TextProps
+  extends BaseProps,
+    HTMLAttributes<HTMLSpanElement>,
+    BoxProps {}
 
 export interface ParagraphProps
   extends BaseProps,
-    HTMLAttributes<HTMLParagraphElement> {
-  fontSize?: string
+    HTMLAttributes<HTMLParagraphElement>,
+    BoxProps {
   indent?: boolean
 }
 
 export interface HeadingProps
   extends BaseProps,
-    HTMLAttributes<HTMLHeadingElement> {
+    HTMLAttributes<HTMLHeadingElement>,
+    BoxProps {
   level?: HeadingLevel
 }
 

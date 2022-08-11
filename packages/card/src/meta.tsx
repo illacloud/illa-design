@@ -1,15 +1,16 @@
 import { forwardRef } from "react"
 import { CardMetaProps } from "./interface"
 import {
-  applyCardMetaTitle,
   applyCardMetaDescription,
   applyCardMetaFooter,
+  applyCardMetaTitle,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Meta = forwardRef<HTMLDivElement, CardMetaProps>((props, ref) => {
   const { title, description, actionList, avatar, ...restProps } = props
   return (
-    <div ref={ref} {...restProps}>
+    <div ref={ref} css={applyBoxStyle(props)} {...restProps}>
       {title || description ? (
         <div>
           {title && <div css={applyCardMetaTitle}>{title}</div>}

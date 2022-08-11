@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactElement, ReactNode } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export declare type TabPosition = "left" | "right" | "top" | "bottom"
 export declare type TabsSize = "small" | "medium" | "large"
@@ -20,9 +21,10 @@ export type TabsColorScheme =
 
 export interface TabsProps
   extends Omit<
-    HTMLAttributes<HTMLDivElement>,
-    "onChange" | "prefix" | "suffix"
-  > {
+      HTMLAttributes<HTMLDivElement>,
+      "onChange" | "prefix" | "suffix"
+    >,
+    BoxProps {
   tabPosition?: TabPosition
   animated?: boolean | { tabPane?: boolean; inkBar?: boolean }
   size?: TabsSize

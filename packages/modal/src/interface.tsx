@@ -1,15 +1,15 @@
 import {
   ForwardRefExoticComponent,
   HTMLAttributes,
-  PropsWithChildren,
   MouseEvent,
-  ReactNode,
+  PropsWithChildren,
   ReactElement,
+  ReactNode,
   RefAttributes,
 } from "react"
 import { ButtonProps } from "@illa-design/button"
 import { AlertType as ModalType } from "@illa-design/alert"
-import { SerializedStyles } from "@emotion/react"
+import { BoxProps } from "@illa-design/theme"
 
 export type ModalReturnProps = {
   update: (newConfig: ConfirmProps) => void
@@ -24,9 +24,9 @@ export type HolderRef = {
 export type AlignType = "left" | "center" | "right" | ""
 
 export interface ModalProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "title">,
+    BoxProps {
   visible?: boolean
-  _css?: SerializedStyles
   withoutPadding?: boolean
   confirmLoading?: boolean
   mask?: boolean

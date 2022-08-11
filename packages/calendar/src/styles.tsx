@@ -4,6 +4,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export const bodyContentCss = css`
   position: relative;
   overflow: auto;
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -42,6 +43,7 @@ export const preNextIconsCss = css`
 
 export const selectCommonCss = css`
   display: inline-block;
+
   &:first-of-type {
     margin-right: 8px;
   }
@@ -68,6 +70,7 @@ export const panelPaddingCss = css`
 export const selectedDayStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
   color: ${globalColor(`--${illaPrefix}-white-01`)};
+
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
   }
@@ -89,6 +92,7 @@ export const panelMonthContainerCss = css`
   padding: 10px 8px;
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+
   &:nth-of-type(4n) {
     border-right: none;
   }
@@ -116,6 +120,7 @@ export const dayModeTodayButton = css`
   font-weight: 500;
   text-align: center;
   padding: 10px 0;
+
   &:hover {
     cursor: pointer;
   }
@@ -137,6 +142,7 @@ export const buttonHiddenCss = css`
 
 export const headerLeftBtnsCss = css`
   padding-left: 11px;
+
   button {
     padding: 5px;
   }
@@ -144,6 +150,7 @@ export const headerLeftBtnsCss = css`
 
 export const headerRightBtnsCss = css`
   padding-right: 11px;
+
   button {
     padding: 5px;
   }
@@ -158,18 +165,21 @@ export function applyPanelGridItemCss(selected: boolean): SerializedStyles {
     text-align: center;
     border-radius: 12px;
     padding: 0 5px;
+
     &:hover {
       cursor: pointer;
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     }
+
     ${selected &&
-    css`
-      color: ${globalColor(`--${illaPrefix}-white-01`)};
-      background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
-      &:hover {
+      css`
+        color: ${globalColor(`--${illaPrefix}-white-01`)};
         background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
-      }
-    `}
+
+        &:hover {
+          background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+        }
+      `}
   `
 }
 
@@ -178,11 +188,13 @@ export function applyCalendarWrapCss(
   panelWidth: number | string,
 ): SerializedStyles {
   return css`
-    width: 1056px;
-    margin: 40px;
     border-radius: 8px;
     border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    ${panel && `display: inline-block;width: ${+panelWidth}px`};
+    ${panel &&
+      css`
+        display: inline-block;
+        width: ${panelWidth}px;
+      `};
   `
 }
 
@@ -212,6 +224,7 @@ export function applyModeButtonCss(click?: boolean): SerializedStyles {
     colors = css`
       background-color: ${globalColor(`--${illaPrefix}-white-01`)};
       color: ${globalColor(`--${illaPrefix}-blue-03`)};
+
       &:hover {
         color: ${globalColor(`--${illaPrefix}-blue-03`)};
       }
@@ -220,6 +233,7 @@ export function applyModeButtonCss(click?: boolean): SerializedStyles {
     colors = css`
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
       color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+
       &:hover {
         color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
       }
@@ -233,9 +247,11 @@ export function applyModeButtonCss(click?: boolean): SerializedStyles {
     border-radius: 8px;
     border: none;
     ${colors};
+
     &:hover {
       cursor: pointer;
     }
+
     &:first-of-type {
       margin-right: 5px;
     }
@@ -268,6 +284,7 @@ export const dayItemPanelCss = css`
   font-size: 14px;
   font-weight: 500;
   margin: 0 auto;
+
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     cursor: pointer;
@@ -313,6 +330,7 @@ export function applyContainerBlockCss(
   return css`
     ${padStyle};
     ${bgColor};
+
     &:nth-of-type(7n) {
       border-right: none;
     }
@@ -332,6 +350,7 @@ export const disabledCss = css`
   background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   border-radius: 0px;
   width: 100%;
+
   &:hover {
     cursor: not-allowed;
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};

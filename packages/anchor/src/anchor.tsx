@@ -1,37 +1,35 @@
 import {
   forwardRef,
-  useState,
-  useRef,
   MouseEvent,
-  useEffect,
   useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from "react"
 import computeScrollIntoView from "compute-scroll-into-view"
 import {
+  caf,
+  easingMethod,
   isFunction,
   isNumber,
   raf,
-  caf,
-  easingMethod,
 } from "@illa-design/system"
 import { Affix } from "@illa-design/affix"
 import { Link } from "./link"
 import { AnchorProps } from "./interface"
 import { AnchorContext } from "./context"
-import { findNode, getContainer, getContainerElement } from "./utils/index"
-import { applyAnchorListCss, activeLineIndicatorCss } from "./style"
+import { findNode, getContainer, getContainerElement } from "./utils"
+import { activeLineIndicatorCss, applyAnchorListCss } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       animation = true,
       scrollContainer: scrollContainerProp,
       boundary = "start",
       hash: willModifyHash = true,
       affix = true,
-      affixStyle,
       offsetTop,
       offsetBottom,
       onChange,
@@ -220,9 +218,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
     const anchorList = (
       <div
         ref={ref}
-        css={applyAnchorListCss(lineless)}
-        style={style}
-        className={className}
+        css={[applyAnchorListCss(lineless), applyBoxStyle(props)]}
         {...restProps}
       >
         {!lineless && currentLink && (
@@ -244,7 +240,6 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
 
     return affix ? (
       <Affix
-        style={affixStyle}
         offsetBottom={offsetBottom}
         offsetTop={offsetTop}
         target={getAffixTarget}

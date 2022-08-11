@@ -5,6 +5,7 @@ import {
   applyDividerWithTextContainerStyle,
   textCss,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const DividerWithText = forwardRef<HTMLDivElement, DividerProps>(
   (props, ref) => {
@@ -19,7 +20,10 @@ export const DividerWithText = forwardRef<HTMLDivElement, DividerProps>(
 
     return (
       <div
-        css={applyDividerWithTextContainerStyle(colorScheme, textSize)}
+        css={[
+          applyDividerWithTextContainerStyle(colorScheme, textSize),
+          applyBoxStyle(props),
+        ]}
         ref={ref}
         {...otherProps}
       >

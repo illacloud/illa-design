@@ -2,6 +2,7 @@ import { Children, forwardRef, ReactNode } from "react"
 import { ButtonGroupContext } from "./button-group-context"
 import { ButtonGroupProps } from "./interface"
 import { applySpacing, avatarGroupContainer } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
   (props, ref) => {
@@ -40,7 +41,11 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
       },
     )
     return (
-      <div css={avatarGroupContainer} ref={ref} {...otherProps}>
+      <div
+        css={[avatarGroupContainer, applyBoxStyle(props)]}
+        ref={ref}
+        {...otherProps}
+      >
         {newChildren}
       </div>
     )

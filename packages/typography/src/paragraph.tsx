@@ -1,10 +1,10 @@
 import { Children, forwardRef } from "react"
 import { ParagraphProps } from "./interface"
 import { Base } from "./base"
-import { applyParagraphContainer, applyTextContainer } from "./paragraph-style"
+import { applyParagraphContainer } from "./paragraph-style"
 import { Tooltip } from "@illa-design/tooltip"
-import { css } from "@emotion/react"
 import { mergedToString } from "@illa-design/system"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
   (props, ref) => {
@@ -19,7 +19,7 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
       deleted,
       code,
       copyable,
-      fontSize = "14px",
+      fs = "14px",
       indent,
       ...otherProps
     } = props
@@ -28,13 +28,12 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
       !disabled &&
       (ellipsis == true || (typeof ellipsis == "object" && ellipsis.tooltip))
 
-    const finalCss = css`
-      ${applyParagraphContainer(indent ?? false)};
-      ${applyTextContainer(fontSize)};
-    `
-
     const p = (
-      <div css={finalCss} ref={ref} {...otherProps}>
+      <div
+        css={[applyParagraphContainer(indent ?? false), applyBoxStyle(props)]}
+        ref={ref}
+        {...otherProps}
+      >
         <Base
           colorScheme={colorScheme}
           ellipsis={ellipsis}

@@ -6,13 +6,15 @@ import {
   MouseEvent,
   RefAttributes,
 } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type CollapsePosition = "left" | "right"
 
 export type CollapseMode = "default" | "builder"
 
 export interface CollapseProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange">,
+    BoxProps {
   activeKey?: string | string[]
   defaultActiveKey?: string | string[]
   mode?: CollapseMode
@@ -28,7 +30,9 @@ export interface CollapseProps
   ) => void
 }
 
-export interface CollapseItemProps extends HTMLAttributes<HTMLDivElement> {
+export interface CollapseItemProps
+  extends HTMLAttributes<HTMLDivElement>,
+    BoxProps {
   header?: ReactNode
   name: string
   disabled?: boolean

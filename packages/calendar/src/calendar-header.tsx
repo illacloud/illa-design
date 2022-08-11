@@ -1,29 +1,29 @@
 import { FC, Fragment, useEffect, useState } from "react"
 import { Button } from "@illa-design/button"
 import {
-  PreIcon,
+  NextDoubleIcon,
   NextIcon,
   PreDoubleIcon,
-  NextDoubleIcon,
+  PreIcon,
 } from "@illa-design/icon"
 import { Select } from "@illa-design/select"
 import { RadioGroup } from "@illa-design/radio"
 import { CalendarHeaderProps, selectTimeProps } from "./interface"
 import {
-  headerLeftPartCss,
-  modeRadioStyle,
-  headerTextCss,
-  headerSmallTextCss,
-  preNextIconsCss,
-  selectCommonCss,
   applyHeaderWrapCss,
-  applyModeButtonCss,
   buttonHiddenCss,
   headerLeftBtnsCss,
+  headerLeftPartCss,
   headerRightBtnsCss,
+  headerSmallTextCss,
+  headerTextCss,
+  modeRadioStyle,
+  preNextIconsCss,
+  selectCommonCss,
 } from "./styles"
+import { applyBoxStyle } from "@illa-design/theme"
 
-export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
+export const CalendarHeader: FC<CalendarHeaderProps> = props => {
   const {
     allowSelect,
     panel,
@@ -147,7 +147,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
           onChangeMode,
         })
       ) : (
-        <div css={applyHeaderWrapCss(panel || false)}>
+        <div css={[applyHeaderWrapCss(panel || false), applyBoxStyle(props)]}>
           {panel ? (
             <Fragment>
               <div css={headerLeftBtnsCss}>

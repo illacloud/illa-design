@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react"
-import { SerializedStyles } from "@emotion/react"
 import { DropdownProps } from "@illa-design/dropdown"
+import { BoxProps } from "@illa-design/theme"
 
 export type RouteProps = {
   path?: string
@@ -11,15 +11,17 @@ export type RouteProps = {
   }[]
 }
 
-export interface BreadcrumbProps extends HTMLAttributes<HTMLDivElement> {
+export interface BreadcrumbProps
+  extends HTMLAttributes<HTMLDivElement>,
+    BoxProps {
   separator?: string | ReactNode
   routes?: RouteProps[]
   maxCount?: number
-  _css?: SerializedStyles
 }
 
-export interface BreadcrumbItemProps extends HTMLAttributes<HTMLDivElement> {
-  _css?: SerializedStyles
+export interface BreadcrumbItemProps
+  extends HTMLAttributes<HTMLDivElement>,
+    BoxProps {
   dropList?: ReactNode
   dropdownProps?: DropdownProps
 }

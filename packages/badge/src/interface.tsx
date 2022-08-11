@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactNode } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type BadgeColorScheme =
   | "white"
@@ -23,7 +24,7 @@ export type BadgeStatus =
   | "warning"
   | "error"
 
-export interface BadgeProps extends HTMLAttributes<HTMLElement> {
+export interface BadgeProps extends HTMLAttributes<HTMLElement>, BoxProps {
   count?: number | ReactNode
   text?: string
   dot?: boolean

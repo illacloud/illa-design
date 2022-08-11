@@ -11,6 +11,7 @@ import useMeasure from "react-use/lib/useMeasure"
 import useIsomorphicLayoutEffect from "react-use/lib/useIsomorphicLayoutEffect"
 import { applyAffixFixedStyle, applySize } from "./style"
 import { AffixProps } from "./interface"
+import { applyBoxStyle } from "@illa-design/theme"
 
 enum AffixStatus {
   START,
@@ -166,7 +167,7 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   })
 
   return (
-    <div ref={setWrapperRefs} {...rest}>
+    <div ref={setWrapperRefs} {...rest} css={applyBoxStyle(props)}>
       {lastIsFixed.current && <div css={applySize(size)}></div>}
       <div
         css={applyAffixFixedStyle({

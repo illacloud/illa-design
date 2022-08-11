@@ -16,17 +16,15 @@ import {
   applyWithoutTextSize,
 } from "./style"
 import { ButtonGroupContext } from "."
-import { ButtonBox } from "@illa-design/theme"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     return (
       <ButtonGroupContext.Consumer>
-        {(value) => {
+        {value => {
           const { attached, first, last } = value ?? {}
-
           const {
-            _css,
             colorScheme = value?.colorScheme ?? "blue",
             size = value?.size ?? "medium",
             variant = value?.variant ?? "fill",
@@ -71,11 +69,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           `
 
           return (
-            <ButtonBox
+            <button
               ref={ref}
-              css={finalContainer}
+              css={[finalContainer, applyBoxStyle(otherProps)]}
               {...otherProps}
-              onClick={(e) => {
+              onClick={e => {
                 if (disabled || loading) {
                   return
                 }
@@ -109,7 +107,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                   {rightIcon}
                 </span>
               )}
-            </ButtonBox>
+            </button>
           )
         }}
       </ButtonGroupContext.Consumer>

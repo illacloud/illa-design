@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
-import { SerializedStyles } from "@emotion/react"
+import { BoxProps } from "@illa-design/theme"
 
 export type panelOperationsItem =
   | "left"
@@ -10,7 +10,8 @@ export type panelOperationsItem =
 export type defaultModeItem = "month" | "year" | "day"
 
 export interface CalenderProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange">,
+    BoxProps {
   allowSelect?: boolean
   panel?: boolean
   panelWidth?: number | string
@@ -35,7 +36,6 @@ export interface CalenderProps
   }) => ReactNode
   locale?: Record<string, any>
   headerType?: "button" | "select"
-  _css?: SerializedStyles
   defaultDate?: Dayjs
   rangePicker?: boolean
   rangeValueFirst?: Dayjs | undefined

@@ -11,6 +11,7 @@ import {
   applyCollapseItemHeaderTitleStyle,
   CollapseItemAnimation,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
   (props, ref) => {
@@ -35,7 +36,11 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
     const unmountOnExit = destroyOnHide ?? ctx.destroyOnHide
     const mount = unmountOnExit ? isExpanded : true
     return (
-      <div ref={ref} css={collapseItemStyle} {...otherProps}>
+      <div
+        ref={ref}
+        css={[collapseItemStyle, applyBoxStyle(props)]}
+        {...otherProps}
+      >
         <div
           role={"button"}
           onClick={(e) => {

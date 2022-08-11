@@ -15,6 +15,7 @@ import {
   childrenContainerCss,
 } from "./style"
 import { CheckboxGroupContext } from "./context"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
   (props, ref) => {
@@ -51,7 +52,11 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
     }, [value])
 
     return (
-      <label css={applyMergeCss(props)} ref={ref} {...otherProps}>
+      <label
+        css={[applyMergeCss(props), applyBoxStyle(props)]}
+        ref={ref}
+        {...otherProps}
+      >
         <input
           type="checkbox"
           css={applyCheckboxSize(currentChecked || indeterminate, colorScheme)}

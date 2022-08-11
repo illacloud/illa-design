@@ -3,6 +3,7 @@ import { HeadingProps } from "./interface"
 import { Base } from "./base"
 import { Tooltip } from "@illa-design/tooltip"
 import { mergedToString } from "@illa-design/system"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   (props, ref) => {
@@ -44,7 +45,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
     const TagWrapper = level
 
     let headingNode = (
-      <TagWrapper ref={ref} {...otherProps}>
+      <TagWrapper css={applyBoxStyle(props)} ref={ref} {...otherProps}>
         {base}
       </TagWrapper>
     )

@@ -19,6 +19,7 @@ import {
 } from "./style"
 import { css } from "@emotion/react"
 import useWindowSize from "react-use/lib/useWindowSize"
+import { applyBoxStyle } from "@illa-design/theme"
 
 function getTrList(
   data: DescriptionItem[],
@@ -299,7 +300,11 @@ export const Description = forwardRef<HTMLDivElement, DescriptionProps>(
     }
 
     return (
-      <div ref={ref} css={applyDescContainerStyle} {...otherProps}>
+      <div
+        ref={ref}
+        css={[applyDescContainerStyle, applyBoxStyle(props)]}
+        {...otherProps}
+      >
         {title && <div css={applyTitleStyle(size)}>{title}</div>}
         {data && (
           <table css={applyTableStyle(tableLayout, bordered ?? false)}>

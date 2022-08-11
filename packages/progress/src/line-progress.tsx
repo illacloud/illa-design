@@ -13,7 +13,7 @@ import {
 } from "./line-progress-style"
 import { SuccessIcon, WarningCircleIcon } from "@illa-design/icon"
 import { Space } from "@illa-design/space"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
 
 export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
@@ -28,7 +28,7 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>(
       },
       percent = 0,
       strokeWidth = "4px",
-      width = "320px",
+      w = "320px",
       ...otherProps
     } = props
 
@@ -62,8 +62,12 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>(
 
     if (steps == 1) {
       return (
-        <div ref={ref} css={applyProgressContainer} {...otherProps}>
-          <div css={applyLineContainer(width, strokeWidth)}>
+        <div
+          ref={ref}
+          css={[applyProgressContainer, applyBoxStyle(props)]}
+          {...otherProps}
+        >
+          <div css={applyLineContainer(w, strokeWidth)}>
             <div css={applyLineProgressBg(strokeWidth, trailColor)} />
             <div css={applyLineProgress(percent, strokeWidth, finalColor)} />
           </div>
@@ -86,7 +90,7 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>(
             css={applyLineProgressStep(
               percent,
               strokeWidth,
-              `calc((${width} - (${steps} - 1) * 4px) / ${steps})`,
+              `calc((${w} - (${steps} - 1) * 4px) / ${steps})`,
               finalColor,
               steps,
               i,
@@ -98,7 +102,7 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>(
             key={i}
             css={applyLineProgressBgStep(
               strokeWidth,
-              `calc((${width} - (${steps} - 1) * 4px) / ${steps})`,
+              `calc((${w} - (${steps} - 1) * 4px) / ${steps})`,
               trailColor,
             )}
           />,
@@ -106,8 +110,12 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>(
       }
 
       return (
-        <div ref={ref} css={applyProgressContainer} {...otherProps}>
-          <div css={applyLineContainer(width, strokeWidth)}>
+        <div
+          ref={ref}
+          css={[applyProgressContainer, applyBoxStyle(props)]}
+          {...otherProps}
+        >
+          <div css={applyLineContainer(w, strokeWidth)}>
             <Space css={applySpace()} size="4px">
               {lineProgressBgContainer}
             </Space>

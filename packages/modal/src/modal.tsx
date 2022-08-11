@@ -1,15 +1,14 @@
 import React, {
+  cloneElement,
   forwardRef,
+  ReactElement,
   useContext,
   useRef,
-  cloneElement,
-  ReactElement,
 } from "react"
-import { css } from "@emotion/react"
 import {
-  ModalProps,
-  ModalComponent,
   ConfirmProps,
+  ModalComponent,
+  ModalProps,
   ModalReturnProps,
 } from "./interface"
 import { Portal } from "./portal"
@@ -20,34 +19,34 @@ import {
 } from "@illa-design/config-provider"
 import {
   applyModal,
-  applyModalMask,
-  applyModalWrapper,
-  applyModalHeader,
-  applyModalTitle,
-  modalCloseIconStyle,
+  applyModalCancelBtn,
   applyModalContent,
   applyModalFooter,
-  applyModalCancelBtn,
+  applyModalHeader,
+  applyModalMask,
+  applyModalTitle,
+  applyModalWrapper,
   maskAnimation,
   modalAnimation,
+  modalCloseIconStyle,
 } from "./style"
 import { confirm } from "./confirm"
-import { setModalConfig, destroyList } from "./config"
-import { motion, AnimatePresence } from "framer-motion"
-import { useMergeValue, omit } from "@illa-design/system"
+import { destroyList, setModalConfig } from "./config"
+import { AnimatePresence, motion } from "framer-motion"
+import { omit, useMergeValue } from "@illa-design/system"
 import { Button } from "@illa-design/button"
 import { CloseIcon } from "@illa-design/icon"
 import { AlertType as ConfirmType } from "@illa-design/alert"
 import FocusLock from "react-focus-lock"
 import { RemoveScroll } from "react-remove-scroll"
 import useModal from "./useModal"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
   (props, ref) => {
     const {
       style,
       className,
-      _css,
       withoutPadding,
       children,
       visible,
@@ -158,7 +157,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           exit="exit"
           initial="initial"
           transition={{ duration: 0.2 }}
-          css={css(applyModal(alignCenter, simple), _css)}
+          css={[applyModal(alignCenter, simple), applyBoxStyle(props)]}
           style={style}
           className={className}
           onMouseDown={() => {
@@ -167,7 +166,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           onMouseUp={() => {
             maskClickRef.current = false
           }}
-          onAnimationComplete={(definition) => {
+          onAnimationComplete={definition => {
             if (definition === "animate") {
               afterOpen?.()
             }
@@ -187,7 +186,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       )
     }
 
-    const onClickMask: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    const onClickMask: React.MouseEventHandler<HTMLDivElement> = e => {
       if (!maskClickRef.current) return
       maskClickRef.current = false
       if (mask && maskClosable && e.target === e.currentTarget) {
@@ -195,7 +194,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       }
     }
 
-    const onConfirm: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    const onConfirm: React.MouseEventHandler<HTMLButtonElement> = e => {
       let res
       if (onOk) {
         res = onOk(e)
@@ -233,7 +232,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
             role="dialog"
             css={applyModalWrapper(alignCenter, visible)}
             {...omit(otherProps, ["isNotice", "noticeType"])}
-            onMouseDown={(e) => {
+            onMouseDown={e => {
               maskClickRef.current = e.target === e.currentTarget
             }}
             onClick={onClickMask}
@@ -253,7 +252,7 @@ Modal.confirm = (props: ConfirmProps): ModalReturnProps => {
 }
 
 const confirmTypes: ConfirmType[] = ["info", "success", "warning", "error"]
-confirmTypes.forEach((type) => {
+confirmTypes.forEach(type => {
   Modal[type] = (props: ConfirmProps) => {
     return confirm({
       ...props,

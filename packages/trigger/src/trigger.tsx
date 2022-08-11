@@ -42,10 +42,10 @@ import useClickAway from "react-use/lib/useClickAway"
 import useMouse from "react-use/lib/useMouse"
 import { RemoveScroll } from "react-remove-scroll"
 import { css } from "@emotion/react"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
-    _css,
     colorScheme = "gray",
     content,
     closeOnInnerClick,
@@ -125,7 +125,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         <div
           css={css(
             applyTipsContainer(finalPosition, showArrow, alignPoint),
-            _css,
+            applyBoxStyle(props),
           )}
         >
           <div css={applyTipsText(stateValue)}>{closeContent}</div>
@@ -146,7 +146,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         <div
           css={css(
             applyTipsContainer(finalPosition, showArrow, alignPoint),
-            _css,
+            applyBoxStyle(props),
           )}
         >
           {showArrow && (
@@ -167,7 +167,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         <div
           css={css(
             applyTipsContainer(finalPosition, showArrow, alignPoint),
-            _css,
+            applyBoxStyle(props),
           )}
         >
           <div css={applyTipsText(stateValue)}>{closeContent}</div>
@@ -188,7 +188,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         <div
           css={css(
             applyTipsContainer(finalPosition, showArrow, alignPoint),
-            _css,
+            applyBoxStyle(props),
           )}
         >
           {showArrow && (

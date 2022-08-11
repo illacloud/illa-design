@@ -24,6 +24,7 @@ export function applyCard(
     border-radius: 8px;
     transition: box-shadow 0.2s ease-in-out;
     ${border};
+
     &:hover {
       ${boxShadow};
     }
@@ -120,9 +121,11 @@ export const applyCardActionItem = css`
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   transition: color 0.2s ease-in-out;
+
   &:not(:last-child) {
     margin-right: 24px;
   }
+
   &:hover {
     color: ${globalColor(`--${illaPrefix}-blue-03`)};
   }
@@ -137,6 +140,7 @@ export function applyCardGrid(hoverable: boolean): SerializedStyles {
     box-shadow: 1px 0 0 0 ${borderColor}, 0 1px 0 0 ${borderColor},
       1px 1px 0 0 ${borderColor}, 1px 0 0 0 ${borderColor} inset,
       0 1px 0 0 ${borderColor} inset;
+
     &:hover {
       z-index: ${hoverable ? 1 : ""};
     }
@@ -163,6 +167,7 @@ export const applyCardMetaFooter = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   &:last-of-type {
     margin-top: 16px;
   }

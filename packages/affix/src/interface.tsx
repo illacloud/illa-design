@@ -1,7 +1,9 @@
 import { HTMLAttributes } from "react"
+import { BoxProps } from "@illa-design/theme/src"
 
 export interface AffixProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange">,
+    BoxProps {
   offsetTop?: number
   offsetBottom?: number
   target?: () => HTMLElement | null | Window

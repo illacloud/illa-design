@@ -47,5 +47,9 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     justify-self: ${props.justifySelf};
     align-self: ${props.alignSelf};
     order: ${props.order};
+    font-size: ${props.fs};
+    font-family: ${props.ff};
+    font-weight: ${props.fw};
+    ${props._css};
   `
 }

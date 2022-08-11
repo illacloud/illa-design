@@ -3,6 +3,7 @@ import { Dayjs } from "dayjs"
 import { SerializedStyles } from "@emotion/react"
 import { RangePickerProps, TimePickerProps } from "@illa-design/time-picker"
 import { InputBorderColor } from "@illa-design/input"
+import { BoxProps } from "@illa-design/theme"
 
 export type PickerPosition = "top" | "tl" | "tr" | "bottom" | "bl" | "br"
 export type ShortcutType = {
@@ -95,17 +96,13 @@ export interface CommonSingleProps extends DatePickerProps {
   type: "day" | "month" | "year"
 }
 
-export interface CommonPickerProps extends PickerProps {
+export interface CommonPickerProps extends PickerProps, BoxProps {
   pickerContent: ReactNode
   size?: PickerSize
   inputVal?: string
   onClearDate?: () => void
   onChangeInputVal?: (value: string) => void
   onChangeVisible?: (visible: boolean) => void
-}
-
-export interface PickerContextProps {
-  inputVal?: string
 }
 
 export interface RangePickerBodyProps extends CommonRangeProps {
