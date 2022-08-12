@@ -84,7 +84,7 @@ test("Progress renders with format text function", () => {
     <Progress
       percent={50}
       type="line"
-      formatText={(percent) => {
+      formatText={percent => {
         return `test${percent}`
       }}
     />,
@@ -97,7 +97,7 @@ test("Progress renders with custom width", () => {
     <Progress
       data-testid="test-progress"
       percent={50}
-      width="100px"
+      w="100px"
       type="line"
       strokeWidth="10px"
     />,

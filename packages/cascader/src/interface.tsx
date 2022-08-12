@@ -1,4 +1,4 @@
-import { CSSProperties, HTMLAttributes, ReactNode, SyntheticEvent } from "react"
+import { HTMLAttributes, ReactNode, SyntheticEvent } from "react"
 import { NodeProps, Store } from "./node"
 import { TriggerProps } from "@illa-design/trigger"
 import { BoxProps } from "@illa-design/theme"
@@ -60,9 +60,7 @@ export type FieldNamesType = {
   isLeaf?: string
 }
 
-export interface CascaderPanelProps<T> {
-  className?: string | string[]
-  style?: CSSProperties
+export interface CascaderPanelProps<T> extends BoxProps {
   store: Store<T>
   multiple?: boolean
   defaultValue?: string[][]
@@ -77,9 +75,8 @@ export interface CascaderPanelProps<T> {
   onDoubleClickOption?: () => void
 }
 
-export type SearchPopupProps<T> = {
+export interface SearchPopupProps<T> extends BoxProps {
   store?: Store<T>
-  style?: CSSProperties
   multiple?: boolean
   value?: string[][]
   inputValue?: string

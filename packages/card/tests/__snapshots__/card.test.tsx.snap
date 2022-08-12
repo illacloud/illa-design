@@ -22,7 +22,7 @@ exports[`Card renders with Cover 1`] = `
 `;
 
 exports[`Card renders with Meta 1`] = `
-.emotion-0 {
+.emotion-1 {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
@@ -32,11 +32,11 @@ exports[`Card renders with Meta 1`] = `
   white-space: nowrap;
 }
 
-.emotion-1:not(:first-of-type) {
+.emotion-2:not(:first-of-type) {
   margin-top: 4px;
 }
 
-.emotion-2 {
+.emotion-3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -50,16 +50,16 @@ exports[`Card renders with Meta 1`] = `
   justify-content: space-between;
 }
 
-.emotion-2:last-of-type {
+.emotion-3:last-of-type {
   margin-top: 16px;
 }
 
-.emotion-3 {
+.emotion-4 {
   vertical-align: middle;
   display: inline-flex;
 }
 
-.emotion-4 {
+.emotion-5 {
   background-color: #c2c2c2;
   display: inline-flex;
   overflow: hidden;
@@ -85,7 +85,7 @@ exports[`Card renders with Meta 1`] = `
   border-radius: 50%;
 }
 
-.emotion-5 {
+.emotion-6 {
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -103,11 +103,11 @@ exports[`Card renders with Meta 1`] = `
   height: 14px;
 }
 
-.emotion-6 {
+.emotion-7 {
   vertical-align: middle;
 }
 
-.emotion-7 {
+.emotion-8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -121,7 +121,7 @@ exports[`Card renders with Meta 1`] = `
   justify-content: space-between;
 }
 
-.emotion-8 {
+.emotion-9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -132,7 +132,7 @@ exports[`Card renders with Meta 1`] = `
   align-items: center;
 }
 
-.emotion-9 {
+.emotion-10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -154,42 +154,44 @@ exports[`Card renders with Meta 1`] = `
   transition: color 0.2s ease-in-out;
 }
 
-.emotion-9:not(:last-child) {
+.emotion-10:not(:last-child) {
   margin-right: 24px;
 }
 
-.emotion-9:hover {
+.emotion-10:hover {
   color: #1e6fff;
 }
 
-<div>
+<div
+  class="emotion-0"
+>
   <div>
     <div
-      class="emotion-0"
+      class="emotion-1"
     >
       CardMeta
     </div>
     <div
-      class="emotion-1"
+      class="emotion-2"
     >
       MetaContent
     </div>
   </div>
   <div
-    class="emotion-2"
+    class="emotion-3"
   >
     <div>
       <div
-        class="emotion-3"
+        class="emotion-4"
       >
         <div
-          class="emotion-4"
+          class="emotion-5"
         >
           <div
-            class="emotion-5"
+            class="emotion-6"
           >
             <svg
-              class="emotion-6"
+              class="emotion-7"
               color="currentColor"
               fill="none"
               height="14px"
@@ -209,16 +211,16 @@ exports[`Card renders with Meta 1`] = `
       </div>
     </div>
     <div
-      class="emotion-7"
+      class="emotion-8"
     >
       <div
-        class="emotion-8"
+        class="emotion-9"
       >
         <span
-          class="emotion-9"
+          class="emotion-10"
         >
           <svg
-            class="emotion-6"
+            class="emotion-7"
             color="currentColor"
             fill="none"
             height="1em"
@@ -237,10 +239,10 @@ exports[`Card renders with Meta 1`] = `
           </svg>
         </span>
         <span
-          class="emotion-9"
+          class="emotion-10"
         >
           <svg
-            class="emotion-6"
+            class="emotion-7"
             color="currentColor"
             fill="none"
             height="1em"
@@ -259,10 +261,10 @@ exports[`Card renders with Meta 1`] = `
           </svg>
         </span>
         <span
-          class="emotion-9"
+          class="emotion-10"
         >
           <svg
-            class="emotion-6"
+            class="emotion-7"
             color="currentColor"
             fill="none"
             height="1em"
@@ -299,7 +301,7 @@ exports[`Card renders with different hoverable 1`] = `
 }
 
 .emotion-0:hover {
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 10px 0 #00000013;
 }
 
 .emotion-1 {

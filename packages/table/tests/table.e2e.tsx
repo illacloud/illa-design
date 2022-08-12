@@ -1,10 +1,7 @@
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import { Table, TableData, TableFilter } from "../src"
-import { UseFiltersInstanceProps } from "react-table"
-import { css } from "@emotion/react"
-import { Input } from "@illa-design/input"
-import { useState } from "react"
+import { Table, TableData } from "../src"
+import { ColumnDef } from "@tanstack/react-table"
 
 interface DemoData extends TableData {
   col1: string
@@ -19,7 +16,6 @@ const data = [
   {
     col1: "react-table",
     col2: "rocks",
-    disableRowSelect: true,
   } as DemoData,
   {
     col1: "whatever",
@@ -27,41 +23,17 @@ const data = [
   } as DemoData,
 ]
 
-const columns = [
+const columns: ColumnDef<DemoData>[] = [
   {
-    Header: "Column 1",
-    Footer: "Footer 1",
-    accessor: "col1", // accessor is the "key" in the data
-    Filter: (columnProps: UseFiltersInstanceProps<DemoData>) => {
-      const [currentInput, setCurrentInput] = useState<string>("")
-      return (
-        <TableFilter
-          _css={css`
-            margin-left: 4px;
-          `}
-          renderFilterContent={(
-            columnProps?: UseFiltersInstanceProps<DemoData>,
-          ) => {
-            return (
-              <Input
-                value={currentInput}
-                onChange={(value) => {
-                  setCurrentInput(value)
-                  columnProps?.setFilter("col1", value)
-                }}
-              />
-            )
-          }}
-          columnProps={columnProps}
-        />
-      )
-    },
-    filter: "includes", // equals, between
+    header: "Column 1",
+    footer: "Footer 1",
+    accessorKey: "col1", // accessor is the "key" in the data
+    enableColumnFilter: false,
   },
   {
-    Header: "Column 2",
-    Footer: "Footer 2",
-    accessor: "col2",
+    header: "Column 2",
+    footer: "Footer 2",
+    accessorKey: "col2",
   },
 ]
 
@@ -71,17 +43,9 @@ it("Table renders filter", () => {
       data-testid="test-table"
       data={data}
       columns={columns}
-      disableRowSelect
+      disableSortBy
     />,
   )
-  cy.wait(300)
-  cy.findByTitle("FilterIcon").parent().click()
-  cy.wait(300)
-  cy.get("input").type("World")
-  cy.wait(300)
-  cy.findByText("Hello").should("not.exist")
-  cy.get("input").clear()
-  cy.wait(300)
-  cy.findByText("Hello").should("exist")
+  cy.findByTitle("FilterIcon").should("exist")
   unmount()
 })

@@ -101,12 +101,12 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     targetRef.current = target && isFunction(target) ? target() : null
 
     if (targetRef.current) {
-      events.forEach((event) => {
+      events.forEach(event => {
         targetRef.current?.addEventListener(event, updatePosition)
       })
 
       return () => {
-        events.forEach((event) => {
+        events.forEach(event => {
           targetRef.current?.removeEventListener(event, updatePosition)
         })
       }
@@ -168,13 +168,18 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
 
   return (
     <div ref={setWrapperRefs} {...rest} css={applyBoxStyle(props)}>
-      {lastIsFixed.current && <div css={applySize(size)}></div>}
+      {lastIsFixed.current && (
+        <div css={applySize(size.width, size.height)}></div>
+      )}
       <div
-        css={applyAffixFixedStyle({
-          isFixed: lastIsFixed.current,
-          position,
-          size,
-        })}
+        css={applyAffixFixedStyle(
+          {
+            isFixed: lastIsFixed.current,
+            position,
+          },
+          size.width,
+          size.height,
+        )}
         ref={measureAffixRef}
       >
         {children}

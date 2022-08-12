@@ -1,8 +1,10 @@
-import { CSSProperties, HTMLAttributes, ReactNode } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 import { TriggerPosition } from "@illa-design/trigger"
+import { BoxProps } from "@illa-design/theme"
 
 export interface SliderProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "defaultValue" | "onChange"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "defaultValue" | "onChange">,
+    BoxProps {
   tooltipVisible?: boolean
   tooltipPosition?: TriggerPosition
   reverse?: boolean
@@ -23,7 +25,7 @@ export interface SliderProps
   onChange?: (val: number | number[]) => void
 }
 
-export interface SliderTicksProps {
+export interface SliderTicksProps extends BoxProps {
   step: number
   min: number
   max: number
@@ -38,7 +40,7 @@ export type SliderMarkType = {
   content: string
 }
 
-export interface SliderMarkProps {
+export interface SliderMarkProps extends BoxProps {
   data: SliderMarkType[]
   min: number
   max: number
@@ -49,7 +51,7 @@ export interface SliderMarkProps {
   disabled?: boolean
 }
 
-export interface SliderInputProps {
+export interface SliderInputProps extends BoxProps {
   min?: number
   max?: number
   step?: number
@@ -60,8 +62,7 @@ export interface SliderInputProps {
   onChange?: (val: [number, number]) => void
 }
 
-export interface SliderButtonProps {
-  style?: CSSProperties
+export interface SliderButtonProps extends BoxProps {
   disabled?: boolean
   value: number
   vertical?: boolean

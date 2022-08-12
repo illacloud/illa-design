@@ -1,6 +1,5 @@
 import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
-import DataType from "@storybook/theming/dist/ts3.9/_modules/@emotion-react-node_modules-csstype-index"
 
 export type ButtonColorScheme =
   | string

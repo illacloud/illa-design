@@ -1,8 +1,7 @@
 import { DatePicker } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-
-const dayjs = require("dayjs")
+import * as dayjs from "dayjs"
 
 it("visible change", () => {
   const onVisibleChange = cy.stub().as("onVisibleChange")

@@ -41,6 +41,7 @@
   "dependencies": {
     "@illa-design/icon": "0.0.17",
     "@illa-design/trigger": "0.0.17",
+    "@illa-design/button": "0.0.17",
     "@illa-design/checkbox": "0.0.17",
     "@tanstack/react-table": "^8.5.11",
     "@tanstack/match-sorter-utils": "^8.1.1",

@@ -1,12 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Paragraph renders with code style 1`] = `
-.emotion-0 {
-  font-size: 14px;
-}
-
 .emotion-1 {
-  color: rgba(0, 0, 0, 0.64);
+  color: #000000a3;
   background-color: #bbc0c9;
 }
 
@@ -31,7 +27,7 @@ exports[`Paragraph renders with code style 1`] = `
 
 exports[`Paragraph renders with disabled style 1`] = `
 .emotion-0 {
-  color: rgba(0, 0, 0, 0.64);
+  color: #000000a3;
   cursor: not-allowed;
   color: #bbc0c9;
   -webkit-user-select: none;
@@ -48,12 +44,8 @@ exports[`Paragraph renders with disabled style 1`] = `
 `;
 
 exports[`Paragraph renders with styles 1`] = `
-.emotion-0 {
-  font-size: 14px;
-}
-
 .emotion-1 {
-  color: rgba(0, 0, 0, 0.64);
+  color: #000000a3;
   font-weight: bold;
   background-color: #fff2a3;
   -webkit-text-decoration: underline line-through;

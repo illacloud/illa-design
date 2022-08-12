@@ -18,6 +18,7 @@ import { SearchPopup } from "./popup/search-popup"
 import { applyPopupStyle } from "./style"
 import { useCurrentRef } from "./hooks"
 import { applyBoxStyle } from "@illa-design/theme"
+import { css } from "@emotion/react"
 
 function getConfig(props: CascaderProps<any>) {
   return {
@@ -246,7 +247,9 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
           <div css={applyPopupStyle()}>
             {showSearchPanel ? (
               <SearchPopup
-                style={{ minWidth: selectViewRef?.current?.offsetWidth }}
+                _css={css`
+                  min-width: ${selectViewRef?.current?.offsetWidth}px;
+                `}
                 multiple={multiple}
                 store={store}
                 value={mergeValue}
@@ -255,7 +258,9 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
               />
             ) : (
               <DefaultPopup
-                style={{ minWidth: selectViewRef?.current?.offsetWidth }}
+                _css={css`
+                  min-width: ${selectViewRef?.current?.offsetWidth}px;
+                `}
                 multiple={multiple}
                 store={store}
                 value={mergeValue}

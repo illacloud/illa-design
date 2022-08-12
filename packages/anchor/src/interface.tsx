@@ -9,7 +9,6 @@ export interface AnchorProps
   boundary?: number | "start" | "center" | "end" | "nearest"
   hash?: boolean
   affix?: boolean
-  affixStyle?: CSSProperties
   offsetTop?: number
   offsetBottom?: number
   onChange?: (newLink: string, oldLink: string) => void

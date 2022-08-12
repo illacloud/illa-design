@@ -65,7 +65,6 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
             maxCount,
             colorScheme,
             size,
-            style,
           }}
         >
           {child}

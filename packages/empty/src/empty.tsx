@@ -8,7 +8,7 @@ import {
 } from "@illa-design/config-provider"
 import { applyDescriptionStyle, applyEmptyContainerStyle } from "./style"
 import { EmptyProps } from "./interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
 
 export const Empty = forwardRef<HTMLDivElement, EmptyProps>((props, ref) => {
   const configProviderProps = useContext<ConfigProviderProps>(
@@ -31,7 +31,11 @@ export const Empty = forwardRef<HTMLDivElement, EmptyProps>((props, ref) => {
   } = props
 
   return (
-    <div ref={ref} css={applyEmptyContainerStyle(paddingVertical)} {...rest}>
+    <div
+      ref={ref}
+      css={[applyEmptyContainerStyle(paddingVertical), applyBoxStyle(props)]}
+      {...rest}
+    >
       <div>
         {imgSrc ? (
           <Image src={imgSrc} objectFit="contain" width="48px" height="48px" />

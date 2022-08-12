@@ -1,12 +1,12 @@
-import { memo, useRef, useMemo, SyntheticEvent } from "react"
+import { memo, SyntheticEvent, useMemo, useRef } from "react"
 import { Trigger } from "@illa-design/trigger"
-import { useMergeValue, isServerRendering } from "@illa-design/system"
+import { isServerRendering, useMergeValue } from "@illa-design/system"
 import { SliderButtonProps } from "./interface"
 import { applySliderBtn } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
-const SliderButton = function (props: SliderButtonProps) {
+const SliderButton = function(props: SliderButtonProps) {
   const {
-    style,
     disabled,
     value,
     vertical,
@@ -116,7 +116,7 @@ const SliderButton = function (props: SliderButtonProps) {
       <div
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handlePopupMouseEnter}
-        onClick={(e) => {
+        onClick={e => {
           e.stopPropagation()
         }}
       >
@@ -140,8 +140,10 @@ const SliderButton = function (props: SliderButtonProps) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         role={"button"}
-        css={applySliderBtn(vertical, reverse, disabled)}
-        style={style}
+        css={[
+          applySliderBtn(vertical, reverse, disabled),
+          applyBoxStyle(props),
+        ]}
       />
     </Trigger>
   )

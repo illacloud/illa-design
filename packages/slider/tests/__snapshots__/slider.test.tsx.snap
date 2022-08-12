@@ -54,9 +54,11 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+  right: 0%;
+  left: 100%;
 }
 
-.emotion-4 {
+.emotion-5 {
   position: absolute;
   width: 1px;
   height: 3px;
@@ -69,7 +71,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   margin-top: -1px;
 }
 
-.emotion-103 {
+.emotion-105 {
   position: absolute;
   top: 50%;
   -webkit-transform: translate(50%, -50%);
@@ -79,7 +81,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   font-size: 12px;
 }
 
-.emotion-104 {
+.emotion-106 {
   width: 8px;
   height: 8px;
   background-color: #fff;
@@ -88,13 +90,13 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   border: 2px solid #e5e6eb;
 }
 
-.emotion-109 {
+.emotion-111 {
   position: absolute;
   top: 12px;
   width: 100%;
 }
 
-.emotion-110 {
+.emotion-112 {
   position: absolute;
   cursor: pointer;
   -webkit-transform: translateX(50%);
@@ -106,7 +108,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   color: #1d2129;
 }
 
-.emotion-113 {
+.emotion-115 {
   position: absolute;
   height: 12px;
   width: 12px;
@@ -125,7 +127,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   cursor: not-allowed;
 }
 
-.emotion-113::after {
+.emotion-115::after {
   content: "";
   display: inline-block;
   width: 12px;
@@ -141,15 +143,19 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   top: 0;
 }
 
-.emotion-113:hover::after {
+.emotion-115:hover {
+  right: 0%;
+}
+
+.emotion-115:hover::after {
   -webkit-transform: scale(1.5);
   -moz-transform: scale(1.5);
   -ms-transform: scale(1.5);
   transform: scale(1.5);
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 4px 0 #0000003c;
 }
 
-.emotion-114 {
+.emotion-116 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -157,20 +163,20 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   margin-left: 20px;
 }
 
-.emotion-114 input {
+.emotion-116 input {
   text-align: center;
 }
 
-.emotion-115 {
+.emotion-117 {
   position: relative;
 }
 
-.emotion-115:hover [title="inputStepEmbed"] {
+.emotion-117:hover [title="inputStepEmbed"] {
   visibility: visible;
   opacity: 1;
 }
 
-.emotion-116 {
+.emotion-118 {
   width: 100%;
   position: relative;
   display: flex;
@@ -188,7 +194,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   line-height: 18px;
 }
 
-.emotion-117 {
+.emotion-119 {
   width: 100%;
   height: 100%;
   display: flex;
@@ -212,21 +218,21 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   cursor: not-allowed;
 }
 
-.emotion-117:first-of-type {
+.emotion-119:first-of-type {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 
-.emotion-117:last-of-type {
+.emotion-119:last-of-type {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
-.emotion-117:hover [title="InputClearIcon"] {
+.emotion-119:hover [title="InputClearIcon"] {
   opacity: 1;
 }
 
-.emotion-118 {
+.emotion-120 {
   width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -244,60 +250,60 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   text-align: start;
 }
 
-.emotion-118::-webkit-input-placeholder {
+.emotion-120::-webkit-input-placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118::-moz-placeholder {
+.emotion-120::-moz-placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:-ms-input-placeholder {
+.emotion-120:-ms-input-placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118::placeholder {
+.emotion-120::placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:-moz-read-only {
+.emotion-120:-moz-read-only {
   color: #1d2129;
 }
 
-.emotion-118:read-only {
+.emotion-120:read-only {
   color: #1d2129;
 }
 
-.emotion-118:-moz-read-only::placeholder {
+.emotion-120:-moz-read-only::placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:read-only::placeholder {
+.emotion-120:read-only::placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:disabled {
+.emotion-120:disabled {
   cursor: not-allowed;
   color: #bbc0c9;
 }
 
-.emotion-118:disabled::-webkit-input-placeholder {
+.emotion-120:disabled::-webkit-input-placeholder {
   color: #bbc0c9;
 }
 
-.emotion-118:disabled::-moz-placeholder {
+.emotion-120:disabled::-moz-placeholder {
   color: #bbc0c9;
 }
 
-.emotion-118:disabled:-ms-input-placeholder {
+.emotion-120:disabled:-ms-input-placeholder {
   color: #bbc0c9;
 }
 
-.emotion-118:disabled::placeholder {
+.emotion-120:disabled::placeholder {
   color: #bbc0c9;
 }
 
-.emotion-119 {
+.emotion-121 {
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
   opacity: 0;
@@ -306,7 +312,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   font-size: 10px;
 }
 
-.emotion-120 {
+.emotion-122 {
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -319,22 +325,22 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   transition: 0.2s ease-in-out;
 }
 
-.emotion-120:hover {
+.emotion-122:hover {
   cursor: pointer;
   background-color: #dadee5;
 }
 
-.emotion-120:first-of-type {
+.emotion-122:first-of-type {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
 
-.emotion-120:last-of-type {
+.emotion-122:last-of-type {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
-.emotion-121 {
+.emotion-123 {
   vertical-align: middle;
 }
 
@@ -353,485 +359,487 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
       <div
         class="emotion-3"
         role="bar"
-        style="right: 0%; left: 100%;"
       />
-      <div>
+      <div
+        class="emotion-4"
+      >
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 1%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 2%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 3%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 4%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 5%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 6%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 7.000000000000001%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 8%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 9%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 10%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 11%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 12%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 13%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 14.000000000000002%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 15%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 16%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 17%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 18%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 19%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 20%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 21%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 22%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 23%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 24%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 25%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 26%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 27%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 28.000000000000004%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 28.999999999999996%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 30%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 31%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 32%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 33%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 34%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 35%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 36%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 37%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 38%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 39%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 40%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 41%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 42%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 43%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 44%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 45%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 46%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 47%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 48%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 49%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 50%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 51%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 52%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 53%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 54%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 55.00000000000001%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 56.00000000000001%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 56.99999999999999%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 57.99999999999999%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 59%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 60%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 61%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 62%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 63%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 64%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 65%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 66%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 67%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 68%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 69%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 70%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 71%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 72%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 73%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 74%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 75%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 76%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 77%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 78%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 79%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 80%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 81%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 82%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 83%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 84%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 85%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 86%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 87%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 88%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 89%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 90%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 91%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 92%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 93%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 94%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 95%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 96%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 97%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 98%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="right: 99%;"
         />
       </div>
-      <div>
+      <div
+        class="emotion-104"
+      >
         <div
-          class="emotion-103"
+          class="emotion-105"
           style="right: 0%; visibility: hidden;"
         >
           <div
-            class="emotion-104"
+            class="emotion-106"
           />
         </div>
         <div
-          class="emotion-103"
+          class="emotion-105"
           style="right: 5%;"
         >
           <div
-            class="emotion-104"
+            class="emotion-106"
           />
         </div>
         <div
-          class="emotion-103"
+          class="emotion-105"
           style="right: 10%;"
         >
           <div
-            class="emotion-104"
+            class="emotion-106"
           />
         </div>
       </div>
       <div
-        class="emotion-109"
+        class="emotion-111"
       >
         <div
-          class="emotion-110"
+          class="emotion-112"
           style="right: 0%;"
         >
           0km
         </div>
         <div
-          class="emotion-110"
+          class="emotion-112"
           style="right: 5%;"
         >
           5km
         </div>
         <div
-          class="emotion-110"
+          class="emotion-112"
           style="right: 10%;"
         >
           10km
         </div>
       </div>
       <div
-        class="emotion-113"
+        class="emotion-115"
         role="button"
-        style="right: 0%;"
       />
     </div>
     <div
-      class="emotion-114"
+      class="emotion-116"
       role="input-number"
     >
       <div
-        class="emotion-115 emotion-116"
+        class="emotion-117 emotion-118"
         style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
       >
         <span
-          class="emotion-117"
+          class="emotion-119"
         >
           <input
-            class="emotion-118"
+            class="emotion-120"
             disabled=""
             value="0"
           />
           <div
-            class="emotion-119"
+            class="emotion-121"
             title="inputStepEmbed"
           >
             <span
-              class="emotion-120"
+              class="emotion-122"
             >
               <svg
-                class="emotion-121"
+                class="emotion-123"
                 color="currentColor"
                 fill="none"
                 height="1em"
@@ -850,10 +858,10 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
               </svg>
             </span>
             <span
-              class="emotion-120"
+              class="emotion-122"
             >
               <svg
-                class="emotion-121"
+                class="emotion-123"
                 color="currentColor"
                 fill="none"
                 height="1em"
@@ -961,9 +969,11 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
+  bottom: 0%;
+  top: 100%;
 }
 
-.emotion-4 {
+.emotion-5 {
   position: absolute;
   width: 1px;
   height: 3px;
@@ -981,7 +991,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   left: 50%;
 }
 
-.emotion-103 {
+.emotion-105 {
   position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%, 50%);
@@ -993,7 +1003,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   left: 50%;
 }
 
-.emotion-104 {
+.emotion-106 {
   width: 8px;
   height: 8px;
   background-color: #fff;
@@ -1002,7 +1012,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   border: 2px solid #e5e6eb;
 }
 
-.emotion-109 {
+.emotion-111 {
   position: absolute;
   top: 12px;
   width: 100%;
@@ -1011,7 +1021,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   top: 0;
 }
 
-.emotion-110 {
+.emotion-112 {
   position: absolute;
   cursor: pointer;
   -webkit-transform: translateY(50%);
@@ -1023,7 +1033,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   color: #1d2129;
 }
 
-.emotion-113 {
+.emotion-115 {
   position: absolute;
   height: 12px;
   width: 12px;
@@ -1042,7 +1052,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   cursor: not-allowed;
 }
 
-.emotion-113::after {
+.emotion-115::after {
   content: "";
   display: inline-block;
   width: 12px;
@@ -1058,15 +1068,19 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   top: 0;
 }
 
-.emotion-113:hover::after {
+.emotion-115:hover {
+  bottom: 0%;
+}
+
+.emotion-115:hover::after {
   -webkit-transform: scale(1.5);
   -moz-transform: scale(1.5);
   -ms-transform: scale(1.5);
   transform: scale(1.5);
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 4px 0 #0000003c;
 }
 
-.emotion-114 {
+.emotion-116 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1074,20 +1088,20 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   margin-left: 0;
 }
 
-.emotion-114 input {
+.emotion-116 input {
   text-align: center;
 }
 
-.emotion-115 {
+.emotion-117 {
   position: relative;
 }
 
-.emotion-115:hover [title="inputStepEmbed"] {
+.emotion-117:hover [title="inputStepEmbed"] {
   visibility: visible;
   opacity: 1;
 }
 
-.emotion-116 {
+.emotion-118 {
   width: 100%;
   position: relative;
   display: flex;
@@ -1105,7 +1119,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   line-height: 18px;
 }
 
-.emotion-117 {
+.emotion-119 {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1129,21 +1143,21 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   cursor: not-allowed;
 }
 
-.emotion-117:first-of-type {
+.emotion-119:first-of-type {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 
-.emotion-117:last-of-type {
+.emotion-119:last-of-type {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
-.emotion-117:hover [title="InputClearIcon"] {
+.emotion-119:hover [title="InputClearIcon"] {
   opacity: 1;
 }
 
-.emotion-118 {
+.emotion-120 {
   width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -1161,60 +1175,60 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   text-align: start;
 }
 
-.emotion-118::-webkit-input-placeholder {
+.emotion-120::-webkit-input-placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118::-moz-placeholder {
+.emotion-120::-moz-placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:-ms-input-placeholder {
+.emotion-120:-ms-input-placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118::placeholder {
+.emotion-120::placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:-moz-read-only {
+.emotion-120:-moz-read-only {
   color: #1d2129;
 }
 
-.emotion-118:read-only {
+.emotion-120:read-only {
   color: #1d2129;
 }
 
-.emotion-118:-moz-read-only::placeholder {
+.emotion-120:-moz-read-only::placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:read-only::placeholder {
+.emotion-120:read-only::placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:disabled {
+.emotion-120:disabled {
   cursor: not-allowed;
   color: #bbc0c9;
 }
 
-.emotion-118:disabled::-webkit-input-placeholder {
+.emotion-120:disabled::-webkit-input-placeholder {
   color: #bbc0c9;
 }
 
-.emotion-118:disabled::-moz-placeholder {
+.emotion-120:disabled::-moz-placeholder {
   color: #bbc0c9;
 }
 
-.emotion-118:disabled:-ms-input-placeholder {
+.emotion-120:disabled:-ms-input-placeholder {
   color: #bbc0c9;
 }
 
-.emotion-118:disabled::placeholder {
+.emotion-120:disabled::placeholder {
   color: #bbc0c9;
 }
 
-.emotion-119 {
+.emotion-121 {
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
   opacity: 0;
@@ -1223,7 +1237,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   font-size: 10px;
 }
 
-.emotion-120 {
+.emotion-122 {
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -1236,22 +1250,22 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   transition: 0.2s ease-in-out;
 }
 
-.emotion-120:hover {
+.emotion-122:hover {
   cursor: pointer;
   background-color: #dadee5;
 }
 
-.emotion-120:first-of-type {
+.emotion-122:first-of-type {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
 
-.emotion-120:last-of-type {
+.emotion-122:last-of-type {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
-.emotion-121 {
+.emotion-123 {
   vertical-align: middle;
 }
 
@@ -1270,485 +1284,487 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
       <div
         class="emotion-3"
         role="bar"
-        style="bottom: 0%; top: 100%;"
       />
-      <div>
+      <div
+        class="emotion-4"
+      >
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 1%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 2%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 3%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 4%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 5%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 6%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 7.000000000000001%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 8%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 9%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 10%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 11%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 12%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 13%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 14.000000000000002%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 15%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 16%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 17%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 18%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 19%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 20%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 21%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 22%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 23%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 24%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 25%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 26%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 27%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 28.000000000000004%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 28.999999999999996%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 30%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 31%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 32%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 33%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 34%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 35%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 36%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 37%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 38%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 39%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 40%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 41%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 42%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 43%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 44%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 45%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 46%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 47%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 48%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 49%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 50%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 51%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 52%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 53%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 54%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 55.00000000000001%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 56.00000000000001%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 56.99999999999999%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 57.99999999999999%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 59%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 60%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 61%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 62%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 63%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 64%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 65%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 66%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 67%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 68%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 69%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 70%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 71%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 72%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 73%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 74%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 75%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 76%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 77%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 78%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 79%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 80%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 81%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 82%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 83%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 84%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 85%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 86%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 87%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 88%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 89%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 90%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 91%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 92%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 93%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 94%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 95%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 96%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 97%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 98%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="bottom: 99%;"
         />
       </div>
-      <div>
+      <div
+        class="emotion-104"
+      >
         <div
-          class="emotion-103"
+          class="emotion-105"
           style="bottom: 0%; visibility: hidden;"
         >
           <div
-            class="emotion-104"
+            class="emotion-106"
           />
         </div>
         <div
-          class="emotion-103"
+          class="emotion-105"
           style="bottom: 5%;"
         >
           <div
-            class="emotion-104"
+            class="emotion-106"
           />
         </div>
         <div
-          class="emotion-103"
+          class="emotion-105"
           style="bottom: 10%;"
         >
           <div
-            class="emotion-104"
+            class="emotion-106"
           />
         </div>
       </div>
       <div
-        class="emotion-109"
+        class="emotion-111"
       >
         <div
-          class="emotion-110"
+          class="emotion-112"
           style="bottom: 0%;"
         >
           0km
         </div>
         <div
-          class="emotion-110"
+          class="emotion-112"
           style="bottom: 5%;"
         >
           5km
         </div>
         <div
-          class="emotion-110"
+          class="emotion-112"
           style="bottom: 10%;"
         >
           10km
         </div>
       </div>
       <div
-        class="emotion-113"
+        class="emotion-115"
         role="button"
-        style="bottom: 0%;"
       />
     </div>
     <div
-      class="emotion-114"
+      class="emotion-116"
       role="input-number"
     >
       <div
-        class="emotion-115 emotion-116"
+        class="emotion-117 emotion-118"
         style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
       >
         <span
-          class="emotion-117"
+          class="emotion-119"
         >
           <input
-            class="emotion-118"
+            class="emotion-120"
             disabled=""
             value="0"
           />
           <div
-            class="emotion-119"
+            class="emotion-121"
             title="inputStepEmbed"
           >
             <span
-              class="emotion-120"
+              class="emotion-122"
             >
               <svg
-                class="emotion-121"
+                class="emotion-123"
                 color="currentColor"
                 fill="none"
                 height="1em"
@@ -1767,10 +1783,10 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
               </svg>
             </span>
             <span
-              class="emotion-120"
+              class="emotion-122"
             >
               <svg
-                class="emotion-121"
+                class="emotion-123"
                 color="currentColor"
                 fill="none"
                 height="1em"
@@ -1878,9 +1894,11 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
+  top: 0%;
+  bottom: 100%;
 }
 
-.emotion-4 {
+.emotion-5 {
   position: absolute;
   width: 1px;
   height: 3px;
@@ -1898,7 +1916,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   left: 50%;
 }
 
-.emotion-103 {
+.emotion-105 {
   position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -1910,7 +1928,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   left: 50%;
 }
 
-.emotion-104 {
+.emotion-106 {
   width: 8px;
   height: 8px;
   background-color: #fff;
@@ -1919,7 +1937,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   border: 2px solid #e5e6eb;
 }
 
-.emotion-109 {
+.emotion-111 {
   position: absolute;
   top: 12px;
   width: 100%;
@@ -1928,7 +1946,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   top: 0;
 }
 
-.emotion-110 {
+.emotion-112 {
   position: absolute;
   cursor: pointer;
   -webkit-transform: translateY(-50%);
@@ -1940,7 +1958,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   color: #1d2129;
 }
 
-.emotion-113 {
+.emotion-115 {
   position: absolute;
   height: 12px;
   width: 12px;
@@ -1965,7 +1983,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   cursor: not-allowed;
 }
 
-.emotion-113::after {
+.emotion-115::after {
   content: "";
   display: inline-block;
   width: 12px;
@@ -1981,15 +1999,19 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   top: 0;
 }
 
-.emotion-113:hover::after {
+.emotion-115:hover {
+  top: 0%;
+}
+
+.emotion-115:hover::after {
   -webkit-transform: scale(1.5);
   -moz-transform: scale(1.5);
   -ms-transform: scale(1.5);
   transform: scale(1.5);
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 4px 0 #0000003c;
 }
 
-.emotion-114 {
+.emotion-116 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1997,20 +2019,20 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   margin-left: 0;
 }
 
-.emotion-114 input {
+.emotion-116 input {
   text-align: center;
 }
 
-.emotion-115 {
+.emotion-117 {
   position: relative;
 }
 
-.emotion-115:hover [title="inputStepEmbed"] {
+.emotion-117:hover [title="inputStepEmbed"] {
   visibility: visible;
   opacity: 1;
 }
 
-.emotion-116 {
+.emotion-118 {
   width: 100%;
   position: relative;
   display: flex;
@@ -2028,7 +2050,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   line-height: 18px;
 }
 
-.emotion-117 {
+.emotion-119 {
   width: 100%;
   height: 100%;
   display: flex;
@@ -2052,21 +2074,21 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   cursor: not-allowed;
 }
 
-.emotion-117:first-of-type {
+.emotion-119:first-of-type {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 
-.emotion-117:last-of-type {
+.emotion-119:last-of-type {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
-.emotion-117:hover [title="InputClearIcon"] {
+.emotion-119:hover [title="InputClearIcon"] {
   opacity: 1;
 }
 
-.emotion-118 {
+.emotion-120 {
   width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2084,60 +2106,60 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   text-align: start;
 }
 
-.emotion-118::-webkit-input-placeholder {
+.emotion-120::-webkit-input-placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118::-moz-placeholder {
+.emotion-120::-moz-placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:-ms-input-placeholder {
+.emotion-120:-ms-input-placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118::placeholder {
+.emotion-120::placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:-moz-read-only {
+.emotion-120:-moz-read-only {
   color: #1d2129;
 }
 
-.emotion-118:read-only {
+.emotion-120:read-only {
   color: #1d2129;
 }
 
-.emotion-118:-moz-read-only::placeholder {
+.emotion-120:-moz-read-only::placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:read-only::placeholder {
+.emotion-120:read-only::placeholder {
   color: #a9aeb8;
 }
 
-.emotion-118:disabled {
+.emotion-120:disabled {
   cursor: not-allowed;
   color: #bbc0c9;
 }
 
-.emotion-118:disabled::-webkit-input-placeholder {
+.emotion-120:disabled::-webkit-input-placeholder {
   color: #bbc0c9;
 }
 
-.emotion-118:disabled::-moz-placeholder {
+.emotion-120:disabled::-moz-placeholder {
   color: #bbc0c9;
 }
 
-.emotion-118:disabled:-ms-input-placeholder {
+.emotion-120:disabled:-ms-input-placeholder {
   color: #bbc0c9;
 }
 
-.emotion-118:disabled::placeholder {
+.emotion-120:disabled::placeholder {
   color: #bbc0c9;
 }
 
-.emotion-119 {
+.emotion-121 {
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
   opacity: 0;
@@ -2146,7 +2168,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   font-size: 10px;
 }
 
-.emotion-120 {
+.emotion-122 {
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -2159,22 +2181,22 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   transition: 0.2s ease-in-out;
 }
 
-.emotion-120:hover {
+.emotion-122:hover {
   cursor: pointer;
   background-color: #dadee5;
 }
 
-.emotion-120:first-of-type {
+.emotion-122:first-of-type {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
 
-.emotion-120:last-of-type {
+.emotion-122:last-of-type {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
-.emotion-121 {
+.emotion-123 {
   vertical-align: middle;
 }
 
@@ -2193,485 +2215,487 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
       <div
         class="emotion-3"
         role="bar"
-        style="top: 0%; bottom: 100%;"
       />
-      <div>
+      <div
+        class="emotion-4"
+      >
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 1%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 2%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 3%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 4%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 5%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 6%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 7.000000000000001%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 8%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 9%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 10%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 11%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 12%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 13%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 14.000000000000002%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 15%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 16%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 17%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 18%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 19%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 20%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 21%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 22%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 23%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 24%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 25%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 26%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 27%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 28.000000000000004%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 28.999999999999996%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 30%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 31%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 32%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 33%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 34%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 35%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 36%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 37%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 38%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 39%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 40%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 41%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 42%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 43%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 44%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 45%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 46%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 47%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 48%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 49%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 50%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 51%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 52%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 53%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 54%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 55.00000000000001%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 56.00000000000001%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 56.99999999999999%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 57.99999999999999%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 59%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 60%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 61%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 62%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 63%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 64%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 65%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 66%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 67%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 68%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 69%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 70%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 71%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 72%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 73%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 74%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 75%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 76%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 77%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 78%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 79%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 80%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 81%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 82%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 83%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 84%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 85%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 86%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 87%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 88%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 89%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 90%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 91%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 92%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 93%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 94%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 95%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 96%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 97%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 98%;"
         />
         <div
-          class="emotion-4"
+          class="emotion-5"
           style="top: 99%;"
         />
       </div>
-      <div>
+      <div
+        class="emotion-104"
+      >
         <div
-          class="emotion-103"
+          class="emotion-105"
           style="top: 0%; visibility: hidden;"
         >
           <div
-            class="emotion-104"
+            class="emotion-106"
           />
         </div>
         <div
-          class="emotion-103"
+          class="emotion-105"
           style="top: 5%;"
         >
           <div
-            class="emotion-104"
+            class="emotion-106"
           />
         </div>
         <div
-          class="emotion-103"
+          class="emotion-105"
           style="top: 10%;"
         >
           <div
-            class="emotion-104"
+            class="emotion-106"
           />
         </div>
       </div>
       <div
-        class="emotion-109"
+        class="emotion-111"
       >
         <div
-          class="emotion-110"
+          class="emotion-112"
           style="top: 0%;"
         >
           0km
         </div>
         <div
-          class="emotion-110"
+          class="emotion-112"
           style="top: 5%;"
         >
           5km
         </div>
         <div
-          class="emotion-110"
+          class="emotion-112"
           style="top: 10%;"
         >
           10km
         </div>
       </div>
       <div
-        class="emotion-113"
+        class="emotion-115"
         role="button"
-        style="top: 0%;"
       />
     </div>
     <div
-      class="emotion-114"
+      class="emotion-116"
       role="input-number"
     >
       <div
-        class="emotion-115 emotion-116"
+        class="emotion-117 emotion-118"
         style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
       >
         <span
-          class="emotion-117"
+          class="emotion-119"
         >
           <input
-            class="emotion-118"
+            class="emotion-120"
             disabled=""
             value="0"
           />
           <div
-            class="emotion-119"
+            class="emotion-121"
             title="inputStepEmbed"
           >
             <span
-              class="emotion-120"
+              class="emotion-122"
             >
               <svg
-                class="emotion-121"
+                class="emotion-123"
                 color="currentColor"
                 fill="none"
                 height="1em"
@@ -2690,10 +2714,10 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
               </svg>
             </span>
             <span
-              class="emotion-120"
+              class="emotion-122"
             >
               <svg
-                class="emotion-121"
+                class="emotion-123"
                 color="currentColor"
                 fill="none"
                 height="1em"

@@ -7,6 +7,7 @@ import {
   applySliderInputRange,
   applySliderInputRangeContent,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export default memo(function Input(props: SliderInputProps) {
   const { value, range, min, max, step, disabled, vertical, onChange } = props
@@ -32,7 +33,7 @@ export default memo(function Input(props: SliderInputProps) {
   return (
     <div
       onBlur={handleBlur}
-      css={applySliderInput(vertical)}
+      css={[applySliderInput(vertical), applyBoxStyle(props)]}
       role={"input-number"}
     >
       {range && [
@@ -42,7 +43,7 @@ export default memo(function Input(props: SliderInputProps) {
           key={0}
           size={"small"}
           {...inputProps}
-          onChange={(val) => {
+          onChange={val => {
             handleChange([val!, innerValue[1]])
           }}
         />,
@@ -56,7 +57,7 @@ export default memo(function Input(props: SliderInputProps) {
         size={"small"}
         value={innerValue[1]}
         {...inputProps}
-        onChange={(val) => {
+        onChange={val => {
           handleChange([innerValue[0], val!])
         }}
       />

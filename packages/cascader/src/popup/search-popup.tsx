@@ -12,11 +12,12 @@ import {
   searchListWrapper,
   textMargin,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const SearchPopup = <T extends OptionProps>(
   props: SearchPopupProps<T>,
 ) => {
-  const { store, multiple, onChange, inputValue, style, value = [] } = props
+  const { store, multiple, onChange, inputValue, value = [] } = props
 
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [options, setOptions] = useState<Node<T>[]>(
@@ -40,7 +41,7 @@ export const SearchPopup = <T extends OptionProps>(
       if (checked) {
         checkedValues = value?.concat([option.pathValue])
       } else {
-        checkedValues = value?.filter((item) => {
+        checkedValues = value?.filter(item => {
           return !isEqual(item, option.pathValue)
         })
       }
@@ -69,15 +70,15 @@ export const SearchPopup = <T extends OptionProps>(
   return options.length ? (
     <div
       ref={wrapperRef}
-      css={searchListWrapper}
-      onClick={(e) => e?.stopPropagation()}
+      css={[searchListWrapper, applyBoxStyle(props)]}
+      onClick={e => e?.stopPropagation()}
     >
-      <ul css={optionListStyle} style={style}>
+      <ul css={optionListStyle}>
         {options.map((option, i) => {
           const pathNodes = option.getPathNodes()
-          const label = pathNodes.map((x) => x.label).join(" / ")
+          const label = pathNodes.map(x => x.label).join(" / ")
 
-          const checked = value.some((x) => {
+          const checked = value.some(x => {
             return isEqual(x, option.pathValue)
           })
 
@@ -87,13 +88,13 @@ export const SearchPopup = <T extends OptionProps>(
                 active: checked,
                 disabled: option.disabled,
               })}
-              ref={(node) => {
+              ref={node => {
                 if (checked && isFirst.current && !activeItemRef.current) {
                   node?.scrollIntoView()
                   activeItemRef.current = node
                 }
               }}
-              onClick={(e) => {
+              onClick={e => {
                 clickOption(option, !checked, e)
               }}
               key={i}
@@ -120,6 +121,6 @@ export const SearchPopup = <T extends OptionProps>(
       </ul>
     </div>
   ) : (
-    <Empty css={flexCenterStyle} style={style} />
+    <Empty css={flexCenterStyle} />
   )
 }

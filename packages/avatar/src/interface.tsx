@@ -40,5 +40,4 @@ export interface AvatarGroupContextProps {
   maxCount?: number
   colorScheme?: AvatarColorScheme
   size?: AvatarSize
-  style?: CSSProperties
 }

@@ -107,11 +107,11 @@ exports[`List renders without border and split 1`] = `
 
 .emotion-7 {
   font-size: 14px;
+  font-weight: 500;
 }
 
 .emotion-8 {
   color: #1f1f1f;
-  font-weight: bold;
 }
 
 .emotion-9 {
@@ -176,6 +176,7 @@ exports[`List renders without border and split 1`] = `
                   >
                     <span
                       class="emotion-7"
+                      fw="500"
                     >
                       <span
                         style="position: relative;"
@@ -238,6 +239,7 @@ exports[`List renders without border and split 1`] = `
                   >
                     <span
                       class="emotion-7"
+                      fw="500"
                     >
                       <span
                         style="position: relative;"

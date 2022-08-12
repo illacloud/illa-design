@@ -2,6 +2,7 @@ import { memo } from "react"
 import { formatPercent, getOffset, valueInRange } from "./util"
 import { SliderMarkProps } from "./interface"
 import { applySliderDot, applySliderDotWrapper } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export default memo(function Dots(props: SliderMarkProps) {
   const {
@@ -18,7 +19,7 @@ export default memo(function Dots(props: SliderMarkProps) {
   if (!data.length) return null
 
   return (
-    <div>
+    <div css={applyBoxStyle(props)}>
       {data.map(({ key }) => {
         const offset = formatPercent(getOffset(key, [min, max]))
         return (
@@ -31,7 +32,7 @@ export default memo(function Dots(props: SliderMarkProps) {
                 : { [reverse ? "right" : "left"]: offset }),
               ...(+key === min || +key === max ? { visibility: "hidden" } : {}),
             }}
-            onMouseDown={(e) => {
+            onMouseDown={e => {
               e.stopPropagation()
               onMouseDown && onMouseDown(parseFloat(key as string))
             }}

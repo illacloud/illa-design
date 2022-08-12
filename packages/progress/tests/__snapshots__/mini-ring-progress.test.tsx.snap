@@ -243,6 +243,7 @@ exports[`Progress renders with custom width 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  width: 100px;
 }
 
 .emotion-1 {

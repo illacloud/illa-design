@@ -23,7 +23,6 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
           text = undefined,
           src = undefined,
           icon = undefined,
-          style = value?.style,
           ...otherProps
         } = props
 
@@ -65,7 +64,6 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
         return (
           <div
             css={[applyOuterCss, applyBoxStyle(props)]}
-            style={style}
             ref={ref}
             {...otherProps}
           >
