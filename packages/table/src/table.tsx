@@ -1,42 +1,36 @@
-import {
-  ChangeEvent,
-  ForwardedRef,
-  forwardRef,
-  ReactElement,
-  SyntheticEvent,
-  useEffect,
-} from "react"
+import { ForwardedRef, forwardRef, ReactElement, useState } from "react"
 import { TableContextProps, TableProps } from "./interface"
 import {
   applyContainerStyle,
   applyFilterContainer,
   applyHeaderIconLeft,
   applyPreContainer,
-  applyResizing,
   applyTableStyle,
 } from "./style"
 import { TableContext } from "./table-context"
-import {
-  Row,
-  useFilters,
-  useResizeColumns,
-  useRowSelect,
-  useSortBy,
-  useTable,
-} from "react-table"
 import { Thead } from "./thead"
 import { Tr } from "./tr"
 import { Th } from "./th"
 import { TBody } from "./tbody"
 import { Td } from "./td"
 import { TFoot } from "./tfoot"
+import { TableData } from "./table-data"
+import { applyBoxStyle } from "@illa-design/theme"
+import {
+  ColumnFiltersState,
+  flexRender,
+  getCoreRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+} from "@tanstack/react-table"
 import {
   SorterDefaultIcon,
   SorterDownIcon,
   SorterUpIcon,
 } from "@illa-design/icon"
-import { Checkbox } from "@illa-design/checkbox"
-import { TableData } from "./table-data"
+import { TableFilter } from "./table-filter"
+import { rankItem } from "@tanstack/match-sorter-utils"
 
 export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
   (props, ref) => {
@@ -63,12 +57,9 @@ function renderDirectTable<D extends TableData>(
     children,
     disableSortBy,
     disableFilters,
-    disableRowSelect,
     align = "left",
     showFooter = true,
     showHeader = true,
-    onRowSelectChange,
-    _css,
     ...otherProps
   } = props
 
@@ -82,7 +73,7 @@ function renderDirectTable<D extends TableData>(
   } as TableContextProps
 
   return (
-    <div css={applyContainerStyle(_css)} ref={ref}>
+    <div css={[applyContainerStyle(), applyBoxStyle(props)]} ref={ref}>
       <TableContext.Provider value={contextProps}>
         <table css={applyTableStyle(tableLayout, bordered)} {...otherProps}>
           {children}
@@ -107,12 +98,9 @@ function renderDataDrivenTable<D extends TableData>(
     children,
     disableSortBy,
     disableFilters,
-    disableRowSelect,
     align = "left",
     showFooter,
     showHeader = true,
-    onRowSelectChange,
-    _css,
     ...otherProps
   } = props
 
@@ -125,114 +113,59 @@ function renderDataDrivenTable<D extends TableData>(
     showFooter,
   } as TableContextProps
 
-  const {
-    headerGroups,
-    rows,
-    prepareRow,
-    footerGroups,
-    getTableProps,
-    getTableBodyProps,
-    selectedFlatRows,
-    allColumns,
-  } = useTable<D>(
-    {
-      columns,
-      data,
-      disableSortBy,
-      disableFilters,
-      // TODO resizing
-      disableResizing: true,
-    },
-    useFilters,
-    useSortBy,
-    useResizeColumns,
-    useRowSelect,
-    (hooks) => {
-      // add selection
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <Checkbox
-              checked={getToggleAllRowsSelectedProps().checked}
-              indeterminate={getToggleAllRowsSelectedProps().indeterminate}
-              onChange={(_, event: SyntheticEvent) => {
-                let changeEvent = getToggleAllRowsSelectedProps().onChange
-                if (changeEvent != undefined) {
-                  changeEvent({
-                    target: event.target,
-                  } as ChangeEvent)
-                }
-              }}
-            />
-          ),
-          disableSortBy: true,
-          disableResizing: true,
-          width: "0px",
-          Cell: ({ row }: { row: Row<D> }) => (
-            <Checkbox
-              disabled={row.original.disableRowSelect}
-              checked={row.getToggleRowSelectedProps().checked}
-              indeterminate={row.getToggleRowSelectedProps().indeterminate}
-              onChange={(checked: boolean, event: SyntheticEvent) => {
-                let changeEvent = row.getToggleRowSelectedProps().onChange
-                if (changeEvent != undefined) {
-                  changeEvent({
-                    target: event.target,
-                  } as ChangeEvent)
-                }
-              }}
-            />
-          ),
-        },
-        ...columns,
-      ])
-    },
-  )
+  const [sorting, setSorting] = useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
-  // row select event
-  if (onRowSelectChange != undefined) {
-    onRowSelectChange(selectedFlatRows)
-  }
-
-  useEffect(() => {
-    // hidden select
-    allColumns.map((column) => {
-      if (disableRowSelect && column.id == "selection") {
-        column.toggleHidden(true)
-      } else {
-        column.toggleHidden(false)
-      }
-    })
-  }, [disableRowSelect])
+  const table = useReactTable({
+    data,
+    columns,
+    filterFns: {
+      fuzzy: (row, columnId, value, addMeta) => {
+        // Rank the item
+        const itemRank = rankItem(row.getValue(columnId), value)
+        // Store the itemRank info
+        addMeta({
+          itemRank,
+        })
+        // Return if the item should be filtered in/out
+        return itemRank.passed
+      },
+    },
+    state: {
+      columnFilters,
+      sorting,
+    },
+    enableSorting: !disableSortBy,
+    enableFilters: !disableFilters,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+  })
 
   return (
-    <div css={applyContainerStyle(_css)} ref={ref}>
+    <div css={[applyContainerStyle(), applyBoxStyle(props)]} ref={ref}>
       <TableContext.Provider value={contextProps}>
-        <table
-          css={applyTableStyle(tableLayout, bordered)}
-          {...getTableProps()}
-          {...otherProps}
-        >
+        <table css={applyTableStyle(tableLayout, bordered)} {...otherProps}>
           {showHeader && (
             <Thead>
-              {headerGroups.map((group) => (
-                <Tr {...group.getHeaderGroupProps()}>
-                  {group.headers.map((column, index) => (
-                    <Th {...column.getHeaderProps()}>
+              {table.getHeaderGroups().map(headerGroup => (
+                <Tr key={headerGroup.id}>
+                  {headerGroup.headers.map(header => (
+                    <Th key={header.id} colSpan={header.colSpan}>
                       <div
                         css={applyPreContainer(align)}
-                        {...column.getSortByToggleProps()}
+                        onClick={() => header.column.toggleSorting()}
                       >
-                        {/* it will compile to different code if wrap with Fragment or not  */}
-                        {/* wrap with Fragment to avoid `Each child in a list should have a unique "key" prop.` warning */}
-                        <>
-                          {column.Header != undefined &&
-                            column.render("Header")}
-                        </>
-                        {column.canSort &&
-                          (column.isSorted ? (
-                            column.isSortedDesc ? (
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                        {header.column.getCanSort() &&
+                          (header.column.getIsSorted() ? (
+                            header.column.getIsSorted() === "desc" ? (
                               <SorterDownIcon _css={applyHeaderIconLeft} />
                             ) : (
                               <SorterUpIcon _css={applyHeaderIconLeft} />
@@ -241,57 +174,45 @@ function renderDataDrivenTable<D extends TableData>(
                             <SorterDefaultIcon _css={applyHeaderIconLeft} />
                           ))}
                       </div>
-                      <div css={applyFilterContainer}>
-                        {column.canFilter &&
-                          column.Filter != undefined &&
-                          column.render("Filter")}
-                      </div>
-                      {column.canResize &&
-                        group.headers.indexOf(column) !=
-                          group.headers.length - 1 && (
-                          <div
-                            {...column.getResizerProps()}
-                            css={applyResizing(column.canResize)}
-                          />
-                        )}
+                      {header.column.getCanFilter() && (
+                        <div css={applyFilterContainer}>
+                          {header.column.getFilterFn() != undefined && (
+                            <TableFilter columnProps={header.column} />
+                          )}
+                        </div>
+                      )}
                     </Th>
                   ))}
                 </Tr>
               ))}
             </Thead>
           )}
-          <TBody {...getTableBodyProps()}>
-            {rows.map((row) => {
-              prepareRow(row)
-              return (
-                <Tr {...row.getRowProps()}>
-                  {row.cells.map((cell, index) => {
-                    return (
-                      <Td
-                        {...cell.getCellProps()}
-                        style={{
-                          minWidth: cell.column?.minWidth || "0px",
-                          width: cell.column?.width || "auto",
-                        }}
-                      >
-                        {cell.render("Cell")}
-                      </Td>
-                    )
-                  })}
-                </Tr>
-              )
-            })}
+          <TBody>
+            {table.getRowModel().rows.map(row => (
+              <Tr key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <Td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </Td>
+                ))}
+              </Tr>
+            ))}
           </TBody>
           {showFooter && (
             <TFoot>
-              {footerGroups.map((group) => (
-                <Tr {...group.getFooterGroupProps()}>
-                  {group.headers.map((column, index) => (
-                    <Td {...column.getFooterProps()}>
-                      {column.Footer != undefined && column.render("Footer")}
-                    </Td>
+              {table.getFooterGroups().map(footerGroup => (
+                <tr key={footerGroup.id}>
+                  {footerGroup.headers.map(header => (
+                    <th key={header.id} colSpan={header.colSpan}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.footer,
+                            header.getContext(),
+                          )}
+                    </th>
                   ))}
-                </Tr>
+                </tr>
               ))}
             </TFoot>
           )}

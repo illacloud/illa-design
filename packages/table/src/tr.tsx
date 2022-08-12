@@ -1,9 +1,10 @@
 import { forwardRef } from "react"
 import { TrProps } from "./interface"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Tr = forwardRef<HTMLTableRowElement, TrProps>((props, ref) => {
-  const { _css, ...otherProps } = props
-  return <tr css={_css} ref={ref} {...otherProps} />
+  const { ...otherProps } = props
+  return <tr css={applyBoxStyle(props)} ref={ref} {...otherProps} />
 })
 
 Tr.displayName = "Tr"

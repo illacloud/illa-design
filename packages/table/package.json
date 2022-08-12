@@ -40,9 +40,10 @@
   },
   "dependencies": {
     "@illa-design/icon": "0.0.17",
-    "@illa-design/popover": "0.0.17",
+    "@illa-design/trigger": "0.0.17",
     "@illa-design/checkbox": "0.0.17",
-    "react-table": "^7.7.0",
+    "@tanstack/react-table": "^8.5.11",
+    "@tanstack/match-sorter-utils": "^8.1.1",
     "@illa-design/theme": "0.0.17",
     "@illa-design/system": "0.0.17"
   },

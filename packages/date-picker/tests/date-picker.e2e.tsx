@@ -1,7 +1,8 @@
 import { DatePicker } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import dayjs from "dayjs"
+
+const dayjs = require("dayjs")
 
 it("visible change", () => {
   const onVisibleChange = cy.stub().as("onVisibleChange")
@@ -33,7 +34,9 @@ it("use shortcuts", () => {
 
 it("show time picker, typeof showTime is boolean", () => {
   mount(<DatePicker showTime popupVisible />)
-  cy.findAllByText("01").first().click()
+  cy.findAllByText("01")
+    .first()
+    .click()
   cy.findByText("OK").click()
   cy.findByDisplayValue(`${dayjs().format("YYYY-MM-DD")} 01:00:00`).should(
     "exist",
@@ -46,7 +49,9 @@ it("show time picker, typeof showTime is Object, extends of TimePickerProps", ()
     return [1]
   }
   mount(<DatePicker showTime={{ disabledHours: disabledHours }} popupVisible />)
-  cy.findAllByText("01").first().should("have.css", "cursor", "not-allowed")
+  cy.findAllByText("01")
+    .first()
+    .should("have.css", "cursor", "not-allowed")
   unmount()
 })
 

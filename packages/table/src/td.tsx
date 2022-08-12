@@ -8,6 +8,7 @@ import {
 } from "./style"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
   (props, ref) => {
@@ -19,7 +20,6 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
       children,
       showFooter,
       showHeader,
-      _css,
       ...otherProps
     } = props
 
@@ -34,7 +34,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
             borderedCell ?? tableContext?.borderedCell,
             striped ?? tableContext?.striped,
           ),
-          _css,
+          applyBoxStyle(props),
         )}
         ref={ref}
         {...otherProps}

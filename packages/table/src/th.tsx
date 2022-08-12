@@ -10,6 +10,7 @@ import {
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
 import { mergeRefs } from "@illa-design/system"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
   (props, ref) => {
@@ -17,11 +18,10 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
       size,
       borderedCell,
       striped,
-      align,
+      align = "center",
       children,
       showFooter,
       showHeader,
-      _css,
       ...otherProps
     } = props
     const tableContext = useContext(TableContext)
@@ -42,7 +42,7 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
             borderedCell ?? tableContext?.borderedCell,
             striped ?? tableContext?.striped,
           ),
-          _css,
+          applyBoxStyle(props),
         )}
         ref={mergeRefs(ref, thRef)}
         {...otherProps}

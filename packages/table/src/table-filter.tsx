@@ -1,24 +1,33 @@
 import { forwardRef, useState } from "react"
-import { TableFilterProps } from "./interface"
-import { Popover } from "@illa-design/popover"
 import { FilterIcon } from "@illa-design/icon"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
 import { css } from "@emotion/react"
+import { TableFilterProps } from "./interface"
+import { Input } from "@illa-design/input"
+import { Trigger } from "@illa-design/trigger"
 
 export const TableFilter = forwardRef<SVGSVGElement, TableFilterProps<any>>(
   (props, ref) => {
-    const { renderFilterContent, _css, columnProps, ...otherProps } = props
+    const { renderFilterContent, columnProps, ...otherProps } = props
 
     const [highlight, setHighlightState] = useState(false)
 
     return (
-      <Popover
-        hasCloseIcon={false}
+      <Trigger
+        withoutPadding
+        colorScheme="white"
         trigger="click"
         clickOutsideToClose={true}
         closeOnClick={true}
-        content={renderFilterContent && renderFilterContent(columnProps)}
-        onVisibleChange={(visible) => {
+        position="top"
+        content={
+          <Input
+            onChange={value => {
+              columnProps?.setFilterValue(value)
+            }}
+          />
+        }
+        onVisibleChange={visible => {
           setHighlightState(visible)
         }}
       >
@@ -34,11 +43,11 @@ export const TableFilter = forwardRef<SVGSVGElement, TableFilterProps<any>>(
             css`
               font-size: 16px;
             `,
-            _css,
+            applyBoxStyle(props),
           )}
           {...otherProps}
         />
-      </Popover>
+      </Trigger>
     )
   },
 )

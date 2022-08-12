@@ -46,14 +46,13 @@ export function applyHeaderSizeStyle(size: TableSize): SerializedStyles {
   return paddingStyle
 }
 
-export function applyContainerStyle(_css?: SerializedStyles): SerializedStyles {
+export function applyContainerStyle(): SerializedStyles {
   return css(
     css`
       overflow: auto;
       display: inline-flex;
       vertical-align: center;
     `,
-    _css,
   )
 }
 
