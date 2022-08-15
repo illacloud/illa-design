@@ -1,6 +1,7 @@
 import { ForwardedRef, forwardRef, ReactElement, useState } from "react"
 import { TableContextProps, TableProps } from "./interface"
 import {
+  applyBorderedStyle,
   applyContainerStyle,
   applyFilterContainer,
   applyHeaderIconLeft,
@@ -73,9 +74,16 @@ function renderDirectTable<D extends TableData>(
   } as TableContextProps
 
   return (
-    <div css={[applyContainerStyle(), applyBoxStyle(props)]} ref={ref}>
+    <div
+      css={[
+        applyContainerStyle(),
+        applyBoxStyle(props),
+        applyBorderedStyle(bordered),
+      ]}
+      ref={ref}
+    >
       <TableContext.Provider value={contextProps}>
-        <table css={applyTableStyle(tableLayout, bordered)} {...otherProps}>
+        <table css={applyTableStyle(tableLayout)} {...otherProps}>
           {children}
         </table>
       </TableContext.Provider>
@@ -98,6 +106,7 @@ function renderDataDrivenTable<D extends TableData>(
     children,
     disableSortBy,
     disableFilters,
+    pinedHeader,
     align = "left",
     showFooter,
     showHeader = true,
@@ -144,15 +153,35 @@ function renderDataDrivenTable<D extends TableData>(
   })
 
   return (
-    <div css={[applyContainerStyle(), applyBoxStyle(props)]} ref={ref}>
+    <div
+      css={[
+        applyContainerStyle(),
+        applyBoxStyle(props),
+        applyBorderedStyle(bordered),
+      ]}
+      ref={ref}
+    >
       <TableContext.Provider value={contextProps}>
-        <table css={applyTableStyle(tableLayout, bordered)} {...otherProps}>
+        <table css={applyTableStyle(tableLayout)} {...otherProps}>
           {showHeader && (
-            <Thead>
+            <Thead pined={pinedHeader}>
               {table.getHeaderGroups().map(headerGroup => (
                 <Tr key={headerGroup.id}>
                   {headerGroup.headers.map(header => (
-                    <Th key={header.id} colSpan={header.colSpan}>
+                    <Th
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      colIndex={headerGroup.headers.indexOf(header)}
+                      rowIndex={table.getHeaderGroups().indexOf(headerGroup)}
+                      lastCol={
+                        headerGroup.headers.indexOf(header) ===
+                        headerGroup.headers.length - 1
+                      }
+                      lastRow={
+                        table.getHeaderGroups().indexOf(headerGroup) ===
+                        table.getHeaderGroups().length - 1
+                      }
+                    >
                       <div
                         css={applyPreContainer(align)}
                         onClick={() => header.column.toggleSorting()}
@@ -191,7 +220,19 @@ function renderDataDrivenTable<D extends TableData>(
             {table.getRowModel().rows.map(row => (
               <Tr key={row.id}>
                 {row.getVisibleCells().map(cell => (
-                  <Td key={cell.id}>
+                  <Td
+                    key={cell.id}
+                    colIndex={row.getVisibleCells().indexOf(cell)}
+                    rowIndex={table.getRowModel().rows.indexOf(row)}
+                    lastCol={
+                      row.getVisibleCells().indexOf(cell) ===
+                      row.getVisibleCells().length - 1
+                    }
+                    lastRow={
+                      table.getRowModel().rows.indexOf(row) ===
+                      table.getRowModel().rows.length - 1
+                    }
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </Td>
                 ))}
@@ -201,18 +242,31 @@ function renderDataDrivenTable<D extends TableData>(
           {showFooter && (
             <TFoot>
               {table.getFooterGroups().map(footerGroup => (
-                <tr key={footerGroup.id}>
+                <Tr key={footerGroup.id}>
                   {footerGroup.headers.map(header => (
-                    <th key={header.id} colSpan={header.colSpan}>
+                    <Th
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      colIndex={footerGroup.headers.indexOf(header)}
+                      rowIndex={table.getHeaderGroups().indexOf(footerGroup)}
+                      lastCol={
+                        footerGroup.headers.indexOf(header) ===
+                        footerGroup.headers.length - 1
+                      }
+                      lastRow={
+                        table.getHeaderGroups().indexOf(footerGroup) ===
+                        table.getHeaderGroups().length - 1
+                      }
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
                             header.column.columnDef.footer,
                             header.getContext(),
                           )}
-                    </th>
+                    </Th>
                   ))}
-                </tr>
+                </Tr>
               ))}
             </TFoot>
           )}

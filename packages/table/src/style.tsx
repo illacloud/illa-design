@@ -56,6 +56,15 @@ export function applyContainerStyle(): SerializedStyles {
   )
 }
 
+export function applyPinedStyle(pined?: boolean): SerializedStyles {
+  return pined
+    ? css`
+        position: sticky;
+        top: 0;
+      `
+    : css``
+}
+
 export function applyResizing(canResize?: boolean): SerializedStyles {
   if (canResize) {
     return css`
@@ -73,20 +82,44 @@ export function applyResizing(canResize?: boolean): SerializedStyles {
 export function applyBorderStyle(
   borderCell?: boolean,
   striped?: boolean,
+  colIndex?: number,
+  rowIndex?: number,
+  lastCol?: boolean,
+  lastRow?: boolean,
 ): SerializedStyles {
   let borderStyle: SerializedStyles = css()
   if (borderCell) {
-    borderStyle = css`
-      border-left: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    `
+    if (colIndex === 0) {
+      borderStyle = css`
+        border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
+    } else if (lastCol) {
+      borderStyle = css`
+        border-left: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
+    } else {
+      borderStyle = css`
+        border-left: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+        border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
+    }
   }
   let stripedStyle: SerializedStyles = css()
   if (striped) {
-    stripedStyle = css`
-      border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    `
+    if (rowIndex === 0) {
+      stripedStyle = css`
+        border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
+    } else if (lastRow) {
+      stripedStyle = css`
+        border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
+    } else {
+      stripedStyle = css`
+        border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+        border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
+    }
   }
   return css(borderStyle, stripedStyle)
 }
@@ -143,30 +176,20 @@ export function applyPreContainer(align: TableAlign): SerializedStyles {
   `
 }
 
-export function applyTableStyle(
-  tableLayout: TableLayout,
-  bordered?: boolean,
-): SerializedStyles {
-  const border = css`
-    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  `
-
-  const commonStyle = css`
+export function applyTableStyle(tableLayout: TableLayout): SerializedStyles {
+  return css`
     width: 100%;
     box-sizing: border-box;
     display: table;
     border-collapse: collapse;
     table-layout: ${tableLayout};
   `
+}
 
-  if (bordered) {
-    return css`
-      ${border};
-      ${commonStyle};
-    `
-  } else {
-    return css`
-      ${commonStyle};
-    `
-  }
+export function applyBorderedStyle(bordered?: boolean): SerializedStyles {
+  return bordered
+    ? css`
+        border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
+    : css``
 }

@@ -1,18 +1,7 @@
-import { Meta, Story } from "@storybook/react"
-import {
-  Table,
-  TableData,
-  TableProps,
-  TBody,
-  Td,
-  TFoot,
-  Th,
-  Thead,
-  Tr,
-} from "../src"
-import { useMemo } from "react"
-import { ColumnDef } from "@tanstack/react-table"
-import { rankItem } from "@tanstack/match-sorter-utils"
+import { Meta, Story } from "@storybook/react";
+import { Table, TableData, TableProps, TBody, Td, TFoot, Th, Thead, Tr } from "../src";
+import { useMemo } from "react";
+import { ColumnDef } from "@tanstack/react-table";
 
 export default {
   title: "DATA DISPLAY/Table",
@@ -103,5 +92,5 @@ export const CombineHeader: Story<TableProps<any>> = args => {
     ]
     return c
   }, [])
-  return <Table w="100%" h="100%" data={data} columns={columns} {...args} />
+  return <Table w="100%" h="100px" data={data} columns={columns} {...args} />
 }

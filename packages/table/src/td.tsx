@@ -20,6 +20,10 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
       children,
       showFooter,
       showHeader,
+      colIndex,
+      rowIndex,
+      lastCol,
+      lastRow,
       ...otherProps
     } = props
 
@@ -33,6 +37,10 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
           applyBorderStyle(
             borderedCell ?? tableContext?.borderedCell,
             striped ?? tableContext?.striped,
+            colIndex,
+            rowIndex,
+            lastCol,
+            lastRow,
           ),
           applyBoxStyle(props),
         )}

@@ -55,7 +55,7 @@
   ],
   "scripts": {
     "build-develop": "sh ./scripts/build-develop.sh",
-    "storybook": "yarn build-all-components  && yarn start-storybook -p 6006",
+    "storybook": "yarn build-all-components  && npx start-storybook -p 6006",
     "build-storybook": "yarn build-all-components && npx build-storybook",
     "build-all-components": "npx turbo run build",
     "test": "npx patch-package && yarn build-all-components && npx jest && npx cypress run-ct -b chrome",

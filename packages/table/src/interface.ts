@@ -27,6 +27,7 @@ export interface TableProps<D extends TableData>
     BoxProps {
   columns?: ColumnDef<D>[]
   data?: D[]
+  pinedHeader?: boolean
   tableLayout?: TableLayout
   bordered?: boolean
   disableSortBy?: boolean
@@ -53,7 +54,12 @@ export interface TrProps
 export interface TdProps
   extends Omit<TdHTMLAttributes<HTMLTableDataCellElement>, "align">,
     TableContextProps,
-    BoxProps {}
+    BoxProps {
+  colIndex?: number
+  rowIndex?: number
+  lastCol?: boolean
+  lastRow?: boolean
+}
 
 export interface TFootProps
   extends HTMLAttributes<HTMLTableSectionElement>,
@@ -61,12 +67,19 @@ export interface TFootProps
 
 export interface THeadProps
   extends HTMLAttributes<HTMLTableSectionElement>,
-    BoxProps {}
+    BoxProps {
+  pined?: boolean
+}
 
 export interface ThProps
   extends Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, "align">,
     TableContextProps,
-    BoxProps {}
+    BoxProps {
+  colIndex?: number
+  rowIndex?: number
+  lastCol?: boolean
+  lastRow?: boolean
+}
 
 export interface TableFilterProps<D extends TableData> extends BoxProps {
   renderFilterContent?: (columnProps: Column<D, unknown>) => ReactNode

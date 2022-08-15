@@ -1,5 +1,5 @@
 import * as React from "react"
-import { forwardRef, useContext, useEffect, useRef, useState } from "react"
+import { forwardRef, useContext, useRef } from "react"
 import { ThProps } from "./interface"
 import {
   applyBorderStyle,
@@ -22,16 +22,15 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
       children,
       showFooter,
       showHeader,
+      colIndex,
+      rowIndex,
+      lastCol,
+      lastRow,
       ...otherProps
     } = props
     const tableContext = useContext(TableContext)
 
     const thRef = useRef<HTMLTableHeaderCellElement | null>()
-    const [thTop, setThTop] = useState(0)
-
-    useEffect(() => {
-      setThTop(thRef.current?.parentElement?.offsetTop ?? 0)
-    })
 
     return (
       <th
@@ -41,6 +40,10 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
           applyBorderStyle(
             borderedCell ?? tableContext?.borderedCell,
             striped ?? tableContext?.striped,
+            colIndex,
+            rowIndex,
+            lastCol,
+            lastRow,
           ),
           applyBoxStyle(props),
         )}
