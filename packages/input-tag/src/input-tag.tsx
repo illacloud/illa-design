@@ -13,6 +13,7 @@ import {
 import { formatValue } from "./utils"
 import { RenderTags } from "./render-tag"
 import { css } from "@emotion/react"
+import { applyBoxStyle } from "@illa-design/theme"
 
 // default validate func
 const defaultValidate = (inputValue: string, values: ObjectValueType[]) =>
@@ -109,8 +110,10 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
 
     return (
       <div
-        css={css(applyInputContainer(stateValue), _css)}
         ref={ref}
+        style={style}
+        className={className}
+        css={[applyInputContainer(stateValue), applyBoxStyle(props)]}
         onClick={(e) => {
           !focus && refInput?.current?.focus?.()
           onClick?.(e)
