@@ -149,9 +149,9 @@ function renderDataDrivenTable<D extends TableData>(
         <table css={applyTableStyle(tableLayout, bordered)} {...otherProps}>
           {showHeader && (
             <Thead>
-              {table.getHeaderGroups().map(headerGroup => (
+              {table.getHeaderGroups().map((headerGroup) => (
                 <Tr key={headerGroup.id}>
-                  {headerGroup.headers.map(header => (
+                  {headerGroup.headers.map((header) => (
                     <Th key={header.id} colSpan={header.colSpan}>
                       <div
                         css={applyPreContainer(align)}
@@ -188,9 +188,9 @@ function renderDataDrivenTable<D extends TableData>(
             </Thead>
           )}
           <TBody>
-            {table.getRowModel().rows.map(row => (
+            {table.getRowModel().rows.map((row) => (
               <Tr key={row.id}>
-                {row.getVisibleCells().map(cell => (
+                {row.getVisibleCells().map((cell) => (
                   <Td key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </Td>
@@ -200,9 +200,9 @@ function renderDataDrivenTable<D extends TableData>(
           </TBody>
           {showFooter && (
             <TFoot>
-              {table.getFooterGroups().map(footerGroup => (
+              {table.getFooterGroups().map((footerGroup) => (
                 <tr key={footerGroup.id}>
-                  {footerGroup.headers.map(header => (
+                  {footerGroup.headers.map((header) => (
                     <th key={header.id} colSpan={header.colSpan}>
                       {header.isPlaceholder
                         ? null

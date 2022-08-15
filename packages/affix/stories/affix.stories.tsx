@@ -27,7 +27,7 @@ const loremIpsum = Array(10)
   )
   .join("\n\n")
 
-export const Basic: Story<AffixProps> = args => {
+export const Basic: Story<AffixProps> = (args) => {
   return (
     <>
       <Affix {...args}>

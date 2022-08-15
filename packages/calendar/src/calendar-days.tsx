@@ -94,9 +94,9 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
         ${showSelectedStyle && selectedDayStyle};
         ${disabled && disabledCss};
         ${isTodayTarget &&
-          isCurrentMonth(item, month) &&
-          item.isToday() &&
-          isTodayStyle}
+        isCurrentMonth(item, month) &&
+        item.isToday() &&
+        isTodayStyle}
       `
     }
     const isCurrentMonth = (item: Dayjs, month?: number | null) => {
@@ -105,7 +105,7 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
     }
 
     const handleDateHover = useCallback(
-      throttleByRaf(item => {
+      throttleByRaf((item) => {
         if (!rangeValueFirst) return
         if (rangeValueFirst && rangeValueSecond) return
         handleRangeVal?.(item, "hover")

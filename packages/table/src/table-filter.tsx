@@ -22,12 +22,12 @@ export const TableFilter = forwardRef<SVGSVGElement, TableFilterProps<any>>(
         position="top"
         content={
           <Input
-            onChange={value => {
+            onChange={(value) => {
               columnProps?.setFilterValue(value)
             }}
           />
         }
-        onVisibleChange={visible => {
+        onVisibleChange={(visible) => {
           setHighlightState(visible)
         }}
       >

@@ -90,7 +90,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
           exit={"hidden"}
           initial={"enter"}
           ref={ref}
-          onAnimationComplete={definition => {
+          onAnimationComplete={(definition) => {
             if (definition === "hidden") {
               afterClose && afterClose()
             }

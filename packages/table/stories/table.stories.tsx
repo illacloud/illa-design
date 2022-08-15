@@ -27,7 +27,7 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<TableProps<any>> = args => {
+export const Basic: Story<TableProps<any>> = (args) => {
   return (
     <Table {...args}>
       <Thead>
@@ -65,7 +65,7 @@ interface DemoData extends TableData {
   col2: string
 }
 
-export const CombineHeader: Story<TableProps<any>> = args => {
+export const CombineHeader: Story<TableProps<any>> = (args) => {
   const data = useMemo(
     () => [
       {

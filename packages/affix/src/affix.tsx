@@ -101,12 +101,12 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     targetRef.current = target && isFunction(target) ? target() : null
 
     if (targetRef.current) {
-      events.forEach(event => {
+      events.forEach((event) => {
         targetRef.current?.addEventListener(event, updatePosition)
       })
 
       return () => {
-        events.forEach(event => {
+        events.forEach((event) => {
           targetRef.current?.removeEventListener(event, updatePosition)
         })
       }

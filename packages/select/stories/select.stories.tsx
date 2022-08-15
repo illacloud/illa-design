@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
-import { JSTransformerIcon, PenIcon, SearchIcon } from "@illa-design/icon"
+import { JSTransformerIcon, PenIcon } from "@illa-design/icon"
 import { Select, SelectProps, Option } from "../src"
 import { BsFacebook } from "react-icons/bs"
 
@@ -68,11 +68,11 @@ const options = [
 
 const Template: Story<SelectProps> = (args) => (
   <Space direction="vertical" style={{ height: "200vh" }}>
-    <Select style={{ width: 280 }} options={cityOption} {...args} />
+    <Select w={"280px"} options={cityOption} {...args} />
 
     <Select
       showSearch={true}
-      style={{ width: 280 }}
+      w={"280px"}
       options={options}
       defaultValue={"Shenzhen"}
       {...args}
@@ -80,7 +80,7 @@ const Template: Story<SelectProps> = (args) => (
 
     <Select
       showSearch={true}
-      style={{ width: 280 }}
+      w={"280px"}
       options={options}
       defaultValue={"Shenzhen"}
       addonBefore={{ render: "222" }}
@@ -94,12 +94,7 @@ const Template: Story<SelectProps> = (args) => (
       {...args}
     />
 
-    <Select
-      style={{ width: 280 }}
-      placeholder="Select items"
-      {...args}
-      showSearch
-    >
+    <Select w={"280px"} placeholder="Select items" {...args} showSearch>
       {Array.from({ length: 10 }, (i, idx) => {
         return (
           <Option value={idx} key={idx} disabled={true}>

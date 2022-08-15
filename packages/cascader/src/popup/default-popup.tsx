@@ -21,10 +21,8 @@ import { applyBoxStyle } from "@illa-design/theme"
 export const DefaultPopup = <T extends OptionProps>(
   props: CascaderPanelProps<T>,
 ) => {
-  const [
-    activeOptionList,
-    setActiveOptionList,
-  ] = useRefs<HTMLLIElement | null>()
+  const [activeOptionList, setActiveOptionList] =
+    useRefs<HTMLLIElement | null>()
   const [refWrapper, setRefWrapper] = useRefs<HTMLUListElement | null>()
   const forceUpdate = useForceUpdate()
   const {
@@ -65,18 +63,18 @@ export const DefaultPopup = <T extends OptionProps>(
     // props.value may contain selected values for which there is no corresponding option
     const beforeCheckedNodes = store
       .getCheckedNodes()
-      .map(node => JSON.stringify(node.pathValue))
+      .map((node) => JSON.stringify(node.pathValue))
     const inexistenceValue = (value || [])?.filter(
-      x => beforeCheckedNodes.indexOf(JSON.stringify(x)) === -1,
+      (x) => beforeCheckedNodes.indexOf(JSON.stringify(x)) === -1,
     )
     option.setCheckedState(checked)
     const checkedNodes = store.getCheckedNodes()
-    const _value = checkedNodes.map(node => node.pathValue)
+    const _value = checkedNodes.map((node) => node.pathValue)
     const newValue = [...inexistenceValue, ..._value]
 
     newValue.sort((a, b) => {
-      const aIndex = value?.findIndex(item => isEqual(item, a))
-      const bIndex = value?.findIndex(item => isEqual(item, b))
+      const aIndex = value?.findIndex((item) => isEqual(item, a))
+      const bIndex = value?.findIndex((item) => isEqual(item, b))
 
       if (aIndex === -1) {
         return 1
@@ -106,9 +104,9 @@ export const DefaultPopup = <T extends OptionProps>(
       if (activeNode?.pathValue?.length) {
         const values = activeNode.pathValue
         let parent = { children: options } as Node<T>
-        values.map(value => {
+        values.map((value) => {
           const list = parent.children || []
-          const item = list.find(x => x.value === value)
+          const item = list.find((x) => x.value === value)
           if (item) {
             parent = item
             newActiveNode = item
@@ -157,13 +155,13 @@ export const DefaultPopup = <T extends OptionProps>(
               variants={!animate ? {} : variants}
               transition={{ duration: 0.15 }}
               key={level}
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault()
               }}
               css={optionListStyle}
-              ref={node => setRefWrapper(node, level)}
+              ref={(node) => setRefWrapper(node, level)}
             >
-              {list.map(option => {
+              {list.map((option) => {
                 let isActive = false
                 if (activeNode) {
                   isActive = activeNode.pathValue[level] === option.value
@@ -180,7 +178,7 @@ export const DefaultPopup = <T extends OptionProps>(
                       disabled: option.disabled,
                     })}
                     key={option.value}
-                    ref={ref => {
+                    ref={(ref) => {
                       if (isActive) {
                         setActiveOptionList(ref, level)
                       }

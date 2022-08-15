@@ -29,7 +29,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     const [checked, setChecked] = useState<boolean>(defaultChecked ?? false)
     const mergedChecked = propsChecked !== void 0 ? propsChecked : checked
 
-    const onHandleClick: MouseEventHandler<HTMLButtonElement> = event => {
+    const onHandleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
       if (propsChecked === void 0) {
         setChecked(!mergedChecked)
       }

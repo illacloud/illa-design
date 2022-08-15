@@ -166,7 +166,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           onMouseUp={() => {
             maskClickRef.current = false
           }}
-          onAnimationComplete={definition => {
+          onAnimationComplete={(definition) => {
             if (definition === "animate") {
               afterOpen?.()
             }
@@ -186,7 +186,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       )
     }
 
-    const onClickMask: React.MouseEventHandler<HTMLDivElement> = e => {
+    const onClickMask: React.MouseEventHandler<HTMLDivElement> = (e) => {
       if (!maskClickRef.current) return
       maskClickRef.current = false
       if (mask && maskClosable && e.target === e.currentTarget) {
@@ -194,7 +194,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       }
     }
 
-    const onConfirm: React.MouseEventHandler<HTMLButtonElement> = e => {
+    const onConfirm: React.MouseEventHandler<HTMLButtonElement> = (e) => {
       let res
       if (onOk) {
         res = onOk(e)
@@ -232,7 +232,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
             role="dialog"
             css={applyModalWrapper(alignCenter, visible)}
             {...omit(otherProps, ["isNotice", "noticeType"])}
-            onMouseDown={e => {
+            onMouseDown={(e) => {
               maskClickRef.current = e.target === e.currentTarget
             }}
             onClick={onClickMask}
@@ -252,7 +252,7 @@ Modal.confirm = (props: ConfirmProps): ModalReturnProps => {
 }
 
 const confirmTypes: ConfirmType[] = ["info", "success", "warning", "error"]
-confirmTypes.forEach(type => {
+confirmTypes.forEach((type) => {
   Modal[type] = (props: ConfirmProps) => {
     return confirm({
       ...props,

@@ -63,7 +63,7 @@ test("Progress renders with format text function", () => {
     <Progress
       percent={50}
       type="circle"
-      formatText={percent => {
+      formatText={(percent) => {
         return `test${percent}`
       }}
     />,
