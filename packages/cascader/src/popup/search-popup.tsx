@@ -41,7 +41,7 @@ export const SearchPopup = <T extends OptionProps>(
       if (checked) {
         checkedValues = value?.concat([option.pathValue])
       } else {
-        checkedValues = value?.filter(item => {
+        checkedValues = value?.filter((item) => {
           return !isEqual(item, option.pathValue)
         })
       }
@@ -71,14 +71,14 @@ export const SearchPopup = <T extends OptionProps>(
     <div
       ref={wrapperRef}
       css={[searchListWrapper, applyBoxStyle(props)]}
-      onClick={e => e?.stopPropagation()}
+      onClick={(e) => e?.stopPropagation()}
     >
       <ul css={optionListStyle}>
         {options.map((option, i) => {
           const pathNodes = option.getPathNodes()
-          const label = pathNodes.map(x => x.label).join(" / ")
+          const label = pathNodes.map((x) => x.label).join(" / ")
 
-          const checked = value.some(x => {
+          const checked = value.some((x) => {
             return isEqual(x, option.pathValue)
           })
 
@@ -88,13 +88,13 @@ export const SearchPopup = <T extends OptionProps>(
                 active: checked,
                 disabled: option.disabled,
               })}
-              ref={node => {
+              ref={(node) => {
                 if (checked && isFirst.current && !activeItemRef.current) {
                   node?.scrollIntoView()
                   activeItemRef.current = node
                 }
               }}
-              onClick={e => {
+              onClick={(e) => {
                 clickOption(option, !checked, e)
               }}
               key={i}

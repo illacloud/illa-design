@@ -138,7 +138,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
                 initial="initial"
                 transition={{ duration: 3 }}
                 css={applyDrawerMask}
-                onClick={e => {
+                onClick={(e) => {
                   maskClosable && onCancel && onCancel(e)
                 }}
               />
@@ -150,7 +150,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
               initial="initial"
               transition={{ duration: 3 }}
               css={[applyDrawerStyle(w, h, placement), applyBoxStyle(props)]}
-              onAnimationComplete={definition => {
+              onAnimationComplete={(definition) => {
                 if (definition === "animate") {
                   afterOpen?.()
                 }

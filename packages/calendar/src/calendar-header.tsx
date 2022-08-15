@@ -23,7 +23,7 @@ import {
 } from "./styles"
 import { applyBoxStyle } from "@illa-design/theme"
 
-export const CalendarHeader: FC<CalendarHeaderProps> = props => {
+export const CalendarHeader: FC<CalendarHeaderProps> = (props) => {
   const {
     allowSelect,
     panel,

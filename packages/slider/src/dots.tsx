@@ -32,7 +32,7 @@ export default memo(function Dots(props: SliderMarkProps) {
                 : { [reverse ? "right" : "left"]: offset }),
               ...(+key === min || +key === max ? { visibility: "hidden" } : {}),
             }}
-            onMouseDown={e => {
+            onMouseDown={(e) => {
               e.stopPropagation()
               onMouseDown && onMouseDown(parseFloat(key as string))
             }}

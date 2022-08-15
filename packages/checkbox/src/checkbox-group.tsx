@@ -58,7 +58,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
         }
         setCurrentValue(newVal)
         onChange?.(
-          newVal.filter(v => allOptionValues?.indexOf(v) > -1),
+          newVal.filter((v) => allOptionValues?.indexOf(v) > -1),
           e,
         )
       },
@@ -78,13 +78,13 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
             onGroupChange,
             disabled,
             registerValue: (v: ReactText) => {
-              setAllOptionValues(allOptionValues => {
+              setAllOptionValues((allOptionValues) => {
                 return Array.from(new Set([...allOptionValues, v]))
               })
             },
             unRegisterValue: (v: ReactText) => {
-              setAllOptionValues(allOptionValues => {
-                return allOptionValues.filter(x => x !== v)
+              setAllOptionValues((allOptionValues) => {
+                return allOptionValues.filter((x) => x !== v)
               })
             },
           }}

@@ -34,7 +34,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   let isContainGrid = false
   let isContainMeta = false
 
-  Children.forEach(children, element => {
+  Children.forEach(children, (element) => {
     if (element && (element as ReactElement).type) {
       if ((element as ReactElement).type === CardGrid) {
         isContainGrid = true

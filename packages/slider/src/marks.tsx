@@ -22,7 +22,7 @@ export default memo(function Marks(props: SliderMarkProps) {
                 ? { [reverse ? "top" : "bottom"]: offset }
                 : { [reverse ? "right" : "left"]: offset }
             }
-            onMouseDown={e => {
+            onMouseDown={(e) => {
               e.stopPropagation()
               onMouseDown && onMouseDown(parseFloat(key as string))
             }}

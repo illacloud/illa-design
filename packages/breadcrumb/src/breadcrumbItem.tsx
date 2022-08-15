@@ -11,9 +11,8 @@ export const BreadcrumbItem = forwardRef<HTMLDivElement, BreadcrumbItemProps>(
   (props, ref) => {
     const { dropList, dropdownProps, ...restProps } = props
 
-    const { isCurrent, path, breadcrumbName, children } = useContext(
-      BreadcrumbContext,
-    )
+    const { isCurrent, path, breadcrumbName, children } =
+      useContext(BreadcrumbContext)
 
     const { Item } = Menu
 

@@ -15,7 +15,7 @@ const applyOuterCss = css`
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
   return (
     <AvatarGroupContext.Consumer>
-      {value => {
+      {(value) => {
         const {
           colorScheme = value?.colorScheme ?? "gray",
           size = value?.size ?? "small",

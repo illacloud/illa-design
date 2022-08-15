@@ -106,22 +106,16 @@ const options = [
 
 export const Basic: Story<CascaderProps<any>> = (args) => (
   <Space direction="vertical">
+    <Cascader w={"280px"} allowClear showSearch options={options} {...args} />
     <Cascader
-      style={{ width: 280 }}
-      allowClear
-      showSearch
-      options={options}
-      {...args}
-    />
-    <Cascader
-      style={{ width: 280 }}
+      w={"280px"}
       options={options}
       multiple
       value={[["beijing", "xicheng"]]}
       allowClear
       {...args}
     />
-    <Cascader style={{ width: 280 }} multiple options={options} {...args} />
-    <Cascader style={{ width: 280 }} options={[]} value={undefined} {...args} />
+    <Cascader w={"280px"} multiple options={options} {...args} />
+    <Cascader w={"280px"} options={[]} value={undefined} {...args} />
   </Space>
 )

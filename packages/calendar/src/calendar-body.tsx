@@ -19,7 +19,7 @@ import { CalendarDays } from "./calendar-days"
 import dayjs from "dayjs"
 import { applyBoxStyle } from "@illa-design/theme"
 
-export const CalendarBody: FC<CalendarBodyProps> = props => {
+export const CalendarBody: FC<CalendarBodyProps> = (props) => {
   const {
     allowSelect,
     panel,
@@ -162,7 +162,7 @@ export const CalendarBody: FC<CalendarBodyProps> = props => {
             {new Array(12)
               .fill(1)
               .map((arrItem, arrIndex) => arrIndex)
-              .map(item => {
+              .map((item) => {
                 return (
                   <div css={panelMonthContainerCss} key={item}>
                     <div css={panelMonthTextCss}>{item + 1}月</div>

@@ -5,7 +5,7 @@ import { SliderButtonProps } from "./interface"
 import { applySliderBtn } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
 
-const SliderButton = function(props: SliderButtonProps) {
+const SliderButton = function (props: SliderButtonProps) {
   const {
     disabled,
     value,
@@ -116,7 +116,7 @@ const SliderButton = function(props: SliderButtonProps) {
       <div
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handlePopupMouseEnter}
-        onClick={e => {
+        onClick={(e) => {
           e.stopPropagation()
         }}
       >

@@ -103,7 +103,7 @@ function copyToClipboard(text: string) {
   navigator.clipboard.writeText(text).then()
 }
 
-export const Base: FC<BaseProps> = props => {
+export const Base: FC<BaseProps> = (props) => {
   // get props
   const {
     colorScheme = "gray",
@@ -133,9 +133,8 @@ export const Base: FC<BaseProps> = props => {
   const [copied, setCopied] = useState(false)
 
   // get ref
-  const contentRef = useRef<HTMLDivElement>() as MutableRefObject<
-    HTMLDivElement
-  >
+  const contentRef =
+    useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
   const operationRef = useRef<HTMLElement>() as MutableRefObject<HTMLElement>
 
   // apply content

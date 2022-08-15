@@ -86,7 +86,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const markList = useMemo(
     () =>
       Object.keys(marks)
-        .filter(key => isNumber(+key))
+        .filter((key) => isNumber(+key))
         .sort((a, b) => (+a > +b ? 1 : -1))
         .map((key: string | number) => ({
           key,
