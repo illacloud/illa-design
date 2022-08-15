@@ -1,7 +1,7 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
-import { InputSize, StateValue } from "./interface"
+import { InputProps, InputSize, StateValue } from "./interface"
 
 export const inputFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
@@ -71,7 +71,6 @@ export function applyVariantStyle(variant?: string) {
 
 export function applyContainerCss(stateValue: StateValue) {
   return css`
-    width: ${stateValue.width};
     position: relative;
     display: flex;
     flex-direction: row;
@@ -200,7 +199,7 @@ export function applyInputContainer(
   requirePadding?: boolean,
 ) {
   let borderRadius
-  if (stateValue.borderRadius) {
+  if (stateValue?.borderRadius) {
     borderRadius = css`
       border-radius: ${stateValue.borderRadius};
     `
@@ -298,9 +297,9 @@ export function applyInputStyle(textCenterHorizontal?: boolean) {
   `
 }
 
-function baseFixCls(stateValue: StateValue) {
+function baseFixCls(size?: InputProps["size"]) {
   let sizeCss: SerializedStyles
-  switch (stateValue?.size) {
+  switch (size) {
     default:
       sizeCss = css`
         & > svg {
@@ -323,9 +322,9 @@ function baseFixCls(stateValue: StateValue) {
   `
 }
 
-export function applyPrefixCls(stateValue: StateValue) {
+export function applyPrefixCls(size?: InputProps["size"]) {
   return css`
-    ${baseFixCls(stateValue)}
+    ${baseFixCls(size)}
     &:first-of-type {
       margin-right: 12px;
     }
@@ -336,9 +335,9 @@ export function applyPrefixCls(stateValue: StateValue) {
   `
 }
 
-export function applySuffixCls(stateValue: StateValue) {
+export function applySuffixCls(size?: InputProps["size"]) {
   return css`
-    ${baseFixCls(stateValue)}
+    ${baseFixCls(size)}
     margin-left: 12px;
   `
 }
@@ -378,7 +377,7 @@ export function applyAddonCss(stateValue: StateValue) {
       break
   }
   return css`
-    ${baseFixCls(stateValue)}
+    ${baseFixCls(stateValue?.size)}
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-width: 1px;
@@ -491,7 +490,6 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     transition: all 200ms ease-in-out;
-    border-radius: ${stateValue.borderRadius};
     ${applyStatus(stateValue)}
     ${applySizeStyle(stateValue?.size)}
     ${applySizeCss(true, stateValue?.size)};

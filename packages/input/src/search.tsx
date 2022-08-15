@@ -6,7 +6,7 @@ import { applyContainerCss, applyInputContainer, applySuffixCls } from "./style"
 import { InputElement } from "./input-element"
 import { Button } from "@illa-design/button"
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
 
 export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   const {
@@ -21,9 +21,8 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
     defaultValue,
     requirePadding = true,
     searchButton,
-    width = "100%",
     borderColor = "blue",
-    borderRadius,
+    bdRadius: borderRadius,
     size = "medium",
     variant = "outline",
     onChange,
@@ -43,7 +42,6 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   })
   const stateValue = {
     error,
-    width,
     disabled,
     focus,
     variant,
@@ -69,55 +67,56 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   }
 
   return (
-    <div ref={ref} style={style} className={className}>
-      <span css={applyContainerCss(stateValue)}>
-        <span css={applyInputContainer(stateValue, requirePadding)}>
-          <InputElement
-            {...searchProp}
-            ref={inputRef}
-            onFocus={(e) => {
-              setFocus(true)
-              props.onFocus && props.onFocus(e)
-            }}
-            onBlur={(e) => {
-              setFocus(false)
-              props.onBlur && props.onBlur(e)
-            }}
-            value={value}
-            onValueChange={onValueChange}
-            onClear={() => {
-              if (!("value" in props)) {
-                setValue("")
-              }
-              onClear?.()
-            }}
-            onPressEnter={(e: KeyboardEvent<HTMLInputElement>) => {
-              !disabled && props.onSearch?.(value)
-              props.onPressEnter?.(e)
-            }}
-          />
-          {!searchButton ? (
-            <span css={applySuffixCls(stateValue)}>
-              <SearchIcon
-                css={css(
-                  `color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};`,
-                )}
-              />
-            </span>
-          ) : null}
-        </span>
-        {searchButton ? (
-          <span>
-            <Button
-              size={size}
-              leftIcon={<SearchIcon />}
-              onClick={() => {
-                props.onSearch?.(value)
-              }}
+    <div
+      ref={ref}
+      style={style}
+      className={className}
+      css={[applyContainerCss(stateValue), applyBoxStyle(props)]}
+    >
+      <span css={applyInputContainer(stateValue, requirePadding)}>
+        <InputElement
+          {...searchProp}
+          ref={inputRef}
+          onFocus={(e) => {
+            setFocus(true)
+            props.onFocus && props.onFocus(e)
+          }}
+          onBlur={(e) => {
+            setFocus(false)
+            props.onBlur && props.onBlur(e)
+          }}
+          value={value}
+          onValueChange={onValueChange}
+          onClear={() => {
+            if (!("value" in props)) {
+              setValue("")
+            }
+            onClear?.()
+          }}
+          onPressEnter={(e: KeyboardEvent<HTMLInputElement>) => {
+            !disabled && props.onSearch?.(value)
+            props.onPressEnter?.(e)
+          }}
+        />
+        {!searchButton ? (
+          <span css={applySuffixCls(size)}>
+            <SearchIcon
+              css={css(`color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};`)}
             />
           </span>
         ) : null}
       </span>
+      {searchButton ? (
+        <span>
+          <Button
+            size={size}
+            leftIcon={<SearchIcon />}
+            onClick={() => {
+              props.onSearch?.(value)
+            }}
+          />
+        </span>
+      ) : null}
     </div>
   )
 })

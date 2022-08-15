@@ -177,7 +177,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
 }
 
 .emotion-118 {
-  width: 100%;
   position: relative;
   display: flex;
   -webkit-flex-direction: row;
@@ -1102,7 +1101,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-118 {
-  width: 100%;
   position: relative;
   display: flex;
   -webkit-flex-direction: row;
@@ -2033,7 +2031,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-118 {
-  width: 100%;
   position: relative;
   display: flex;
   -webkit-flex-direction: row;

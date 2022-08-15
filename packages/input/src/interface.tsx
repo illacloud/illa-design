@@ -30,7 +30,8 @@ export type InputVariant = "fill" | "outline"
 export type InputSize = "small" | "medium" | "large"
 
 interface BaseInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "width"> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "width">,
+    BoxProps {
   width?: string
 }
 
@@ -40,7 +41,6 @@ export interface InputElementProps
   variant?: InputVariant
   placeholder?: string
   borderColor?: InputBorderColor
-  borderRadius?: string
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -70,7 +70,6 @@ export interface InputProps
   width?: string
   placeholder?: string
   borderColor?: InputBorderColor
-  borderRadius?: string
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -95,13 +94,13 @@ export interface InputProps
 }
 
 export interface TextAreaProps
-  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  extends TextareaHTMLAttributes<HTMLTextAreaElement>,
+    BoxProps {
   textAreaRef?: Ref<HTMLTextAreaElement>
   variant?: InputVariant
   placeholder?: string
   width?: string
   borderColor?: InputBorderColor
-  borderRadius?: string
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -125,7 +124,6 @@ export interface SearchProps extends BaseInputProps {
   variant?: InputVariant
   placeholder?: string
   borderColor?: InputBorderColor
-  borderRadius?: string
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -148,7 +146,6 @@ export interface PasswordProps extends BaseInputProps {
   variant?: InputVariant
   placeholder?: string
   borderColor?: InputBorderColor
-  borderRadius?: string
   defaultValue?: string
   disabled?: boolean
   error?: boolean
@@ -169,9 +166,10 @@ export type RangeInputRef = {
 
 export interface RangeInputProps
   extends Omit<
-    InputHTMLAttributes<HTMLDivElement>,
-    "disabled" | "size" | "placeholder" | "value" | "onChange" | "readOnly"
-  > {
+      InputHTMLAttributes<HTMLDivElement>,
+      "disabled" | "size" | "placeholder" | "value" | "onChange" | "readOnly"
+    >,
+    BoxProps {
   inputGroupRef?: MutableRefObject<{
     input0?: HTMLInputElement | null
     input1?: HTMLInputElement | null
@@ -180,8 +178,6 @@ export interface RangeInputProps
   }>
   size?: InputSize
   borderColor?: InputProps["borderColor"]
-  borderRadius?: string
-  width?: string
   value?: string[]
   placeholder?: string[]
   popupVisible?: boolean
@@ -209,7 +205,6 @@ export interface StateValue {
   error?: boolean
   focus?: boolean
   variant?: string
-  width: string
   size?: InputProps["size"]
   borderColor: InputBorderColor
   borderRadius?: string

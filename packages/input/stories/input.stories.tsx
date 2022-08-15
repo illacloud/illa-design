@@ -52,24 +52,12 @@ const Template: Story<InputProps> = (props) => {
   return (
     <div>
       <Space direction={"vertical"} wrap>
-        <Input width={"280px"} {...props} />
+        <Input w={"280px"} {...props} />
+        <Input w={"280px"} suffix={{ render: <PersonIcon /> }} {...props} />
+        <Input w={"280px"} prefix={{ render: "prefix" }} {...props} />
+        <Input w={"280px"} suffix={{ render: "suffix" }} {...props} />
         <Input
-          style={{ width: 280 }}
-          suffix={{ render: <PersonIcon /> }}
-          {...props}
-        />
-        <Input
-          style={{ width: 280 }}
-          prefix={{ render: "prefix" }}
-          {...props}
-        />
-        <Input
-          style={{ width: 280 }}
-          suffix={{ render: "suffix" }}
-          {...props}
-        />
-        <Input
-          style={{ width: 280 }}
+          w={"280px"}
           addonBefore={{ render: "Before" }}
           addonAfter={{ render: "After" }}
           {...props}

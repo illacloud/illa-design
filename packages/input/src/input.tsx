@@ -38,8 +38,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     addonAfter,
     addonBefore,
     defaultValue,
-    borderRadius,
-    width = "100%",
+    bdRadius: borderRadius,
     borderColor = "blue",
     size = "medium",
     variant = "outline",
@@ -79,7 +78,6 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     error: error || lengthError,
     disabled,
     focus: highlight ?? focus,
-    width,
     variant,
     size,
     borderColor,
@@ -110,7 +108,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         applyAddonCss(stateValue),
       )}
       <span css={applyInputContainer(stateValue, requirePadding)}>
-        {inputAddon(prefix?.render, prefix?.custom, applyPrefixCls(stateValue))}
+        {inputAddon(prefix?.render, prefix?.custom, applyPrefixCls(size))}
         <InputElement
           ref={inputRef}
           {...rest}
@@ -122,11 +120,11 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           allowClear={allowClear}
           textCenterHorizontal={textCenterHorizontal}
           iconAppearWithSuffix={iconAppearWithSuffix}
-          onFocus={e => {
+          onFocus={(e) => {
             setFocus(true)
             onFocus?.(e)
           }}
-          onBlur={e => {
+          onBlur={(e) => {
             setFocus(false)
             onBlur?.(e)
           }}
@@ -142,12 +140,12 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
             }
             onChange?.(value, event)
           }}
-          onPressEnter={e => {
+          onPressEnter={(e) => {
             onPressEnter?.(e)
           }}
           readOnly={readOnly}
         />
-        {inputAddon(suffix?.render, suffix?.custom, applySuffixCls(stateValue))}
+        {inputAddon(suffix?.render, suffix?.custom, applySuffixCls(size))}
       </span>
       {inputAddon(
         addonAfter?.render,

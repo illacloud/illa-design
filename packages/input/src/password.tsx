@@ -10,6 +10,7 @@ import {
 import { PasswordProps } from "./interface"
 import { InputElement } from "./input-element"
 import { css } from "@emotion/react"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Password = forwardRef<HTMLDivElement, PasswordProps>(
   (props, ref) => {
@@ -26,10 +27,9 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       onChange,
       onFocus,
       onBlur,
-      width = "100%",
       requirePadding = true,
       invisibleButton = true,
-      borderRadius,
+      bdRadius: borderRadius,
       borderColor = "blue",
       size = "medium",
       variant = "outline",
@@ -46,7 +46,6 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
 
     const stateValue = {
       error,
-      width,
       disabled,
       focus,
       variant,
@@ -55,6 +54,7 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
       borderRadius,
       withoutNormalBorder,
     }
+
     const passwordProp = {
       ...rest,
       type: visibility ? "text" : "password",
@@ -73,40 +73,43 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
     }
 
     return (
-      <div ref={ref} style={style} className={className}>
-        <span css={applyContainerCss(stateValue)}>
-          <span css={applyInputContainer(stateValue, requirePadding)}>
-            <InputElement
-              {...passwordProp}
-              ref={inputRef}
-              onFocus={(e) => {
-                setFocus(true)
-                props.onFocus && props.onFocus(e)
+      <div
+        ref={ref}
+        style={style}
+        className={className}
+        css={[applyContainerCss(stateValue), applyBoxStyle(props)]}
+      >
+        <span css={applyInputContainer(stateValue, requirePadding)}>
+          <InputElement
+            {...passwordProp}
+            ref={inputRef}
+            onFocus={(e) => {
+              setFocus(true)
+              props.onFocus && props.onFocus(e)
+            }}
+            onBlur={(e) => {
+              setFocus(false)
+              props.onBlur && props.onBlur(e)
+            }}
+            onClear={() => {
+              if (!("value" in props) || !props.value) {
+                setValue("")
+              }
+              onClear?.()
+            }}
+            value={value}
+            onValueChange={onValueChange}
+          />
+          {invisibleButton ? (
+            <span
+              css={css(pointerStyle, applySuffixCls(size))}
+              onClick={() => {
+                setVisibility(!visibility)
               }}
-              onBlur={(e) => {
-                setFocus(false)
-                props.onBlur && props.onBlur(e)
-              }}
-              onClear={() => {
-                if (!("value" in props) || !props.value) {
-                  setValue("")
-                }
-                onClear?.()
-              }}
-              value={value}
-              onValueChange={onValueChange}
-            />
-            {invisibleButton ? (
-              <span
-                css={css(pointerStyle, applySuffixCls(stateValue))}
-                onClick={() => {
-                  setVisibility(!visibility)
-                }}
-              >
-                {visibility ? <EyeOnIcon /> : <EyeOffIcon />}
-              </span>
-            ) : null}
-          </span>
+            >
+              {visibility ? <EyeOnIcon /> : <EyeOffIcon />}
+            </span>
+          ) : null}
         </span>
       </div>
     )

@@ -8,6 +8,7 @@ import {
 } from "react"
 import { css } from "@emotion/react"
 import { isArray } from "@illa-design/system"
+import { applyBoxStyle } from "@illa-design/theme"
 import { ErrorIcon } from "@illa-design/icon"
 import { RangeInputProps } from "./interface"
 import {
@@ -31,8 +32,8 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
       disabled,
       placeholder,
       value,
-      width = "100%",
-      borderRadius = "8px",
+      w: width = "100%",
+      bdRadius: borderRadius = "8px",
       borderColor = "blue",
       size = "medium",
       separator,
@@ -134,9 +135,9 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
     return (
       <div
         ref={ref}
-        css={applyRangeContainer(stateValue)}
         style={style}
         className={className}
+        css={[applyRangeContainer(stateValue), applyBoxStyle(props)]}
       >
         <input
           ref={inputRef}
@@ -219,7 +220,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
             <ErrorIcon />
           </span>
         ) : null}
-        <span css={applySuffixCls(stateValue)}>{suffix?.render ?? null}</span>
+        <span css={applySuffixCls(size)}>{suffix?.render ?? null}</span>
       </div>
     )
   },
