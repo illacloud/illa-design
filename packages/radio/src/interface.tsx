@@ -1,4 +1,5 @@
 import { HTMLAttributes, ChangeEvent, ReactNode } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type RadioColorScheme =
   | string
@@ -17,9 +18,13 @@ export type RadioColorScheme =
   | "techPurple"
 
 export type RadioSize = "small" | "medium" | "large"
+export type RadioGroupType = "radio" | "button"
+export type RadioGroupDirection = "vertical" | "horizontal"
+export type RadioGroupSpacing = string | number
 
 export interface RadioProps
-  extends Omit<HTMLAttributes<HTMLLabelElement>, "onChange"> {
+  extends Omit<HTMLAttributes<HTMLLabelElement>, "onChange">,
+    BoxProps {
   name?: string
   value?: any
   disabled?: boolean
@@ -40,17 +45,18 @@ export interface RadioGroupContextProps<T> {
     | number
     | { label: ReactNode; value: any; disabled?: boolean }
   )[]
-  type?: "radio" | "button"
-  direction?: "vertical" | "horizontal"
+  type?: RadioGroupType
+  direction?: RadioGroupDirection
   // only used in type="button"
   size?: RadioSize
-  spacing?: string | number
+  spacing?: RadioGroupSpacing
   onChange?: (value: any, event: ChangeEvent) => void
 }
 
 export interface RadioGroupProps<T>
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue">,
-    RadioGroupContextProps<T> {}
+    RadioGroupContextProps<T>,
+    BoxProps {}
 
 export interface RadioStatus {
   size?: RadioSize

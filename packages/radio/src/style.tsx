@@ -1,11 +1,21 @@
 import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
-import { RadioColorScheme, RadioSize, RadioStatus } from "./interface"
+import {
+  RadioColorScheme,
+  RadioGroupDirection,
+  RadioGroupProps,
+  RadioGroupSpacing,
+  RadioGroupType,
+  RadioSize,
+  RadioStatus,
+} from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 import { ReactNode } from "react"
 
 // default radio
-export function applyRadioSize(colorScheme: RadioColorScheme) {
+export function applyRadioSize(
+  colorScheme: RadioColorScheme,
+): SerializedStyles {
   return css`
     position: relative;
     appearance: none;
@@ -120,10 +130,9 @@ export function applyRadioButtonContainer(
   `
 }
 
-export function applyRadioButton(stateValue: RadioStatus) {
+export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
   const { colorScheme } = stateValue
-  let sizeCss,
-    stateCss = css``
+  let sizeCss, stateCss
   switch (stateValue?.size) {
     case "small":
       sizeCss = css`
@@ -213,6 +222,46 @@ export function applyRadioButton(stateValue: RadioStatus) {
     ${sizeCss}
     ${stateCss}
   `
+}
+
+export const applyRadioContainerCss = (
+  stateValue: RadioStatus,
+  type?: RadioGroupType,
+): SerializedStyles => {
+  return type === "button"
+    ? applyRadioButton(stateValue)
+    : applyMergeCss(stateValue)
+}
+
+export const applyRadioCss = (
+  colorScheme: RadioColorScheme,
+  type?: RadioGroupType,
+): SerializedStyles => {
+  return type === "button" ? disappear : applyRadioSize(colorScheme)
+}
+
+export const applyRadioGroupCss = (styleProps: {
+  hasChildren: ReactNode
+  direction: RadioGroupDirection
+  spacing: RadioGroupSpacing
+  type?: RadioGroupType
+}): SerializedStyles => {
+  const { hasChildren, direction, spacing, type } = styleProps
+  let radioGroupCss: SerializedStyles
+
+  if (type === "button") {
+    radioGroupCss = applyRadioButtonContainer(hasChildren)
+  } else {
+    switch (direction) {
+      case "vertical":
+        radioGroupCss = applyRadioContainerVertical(spacing)
+        break
+      case "horizontal":
+        radioGroupCss = applyRadioContainerHorizontal(spacing)
+        break
+    }
+  }
+  return radioGroupCss
 }
 
 export const radioTextCss = css`

@@ -1,13 +1,9 @@
 import { ChangeEvent, forwardRef } from "react"
-import { RadioGroupProps } from "./interface"
-import { SerializedStyles } from "@emotion/react"
-import { Radio } from "./radio"
-import {
-  applyRadioButtonContainer,
-  applyRadioContainerHorizontal,
-  applyRadioContainerVertical,
-} from "./style"
 import { isArray, useMergeValue } from "@illa-design/system"
+import { applyBoxStyle } from "@illa-design/theme"
+import { RadioGroupProps } from "./interface"
+import { Radio } from "./radio"
+import { applyRadioGroupCss } from "./style"
 import { RadioGroupContext } from "./radio-group-context"
 
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
@@ -30,22 +26,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
       defaultValue: props.defaultValue,
       value: props.value,
     })
-
-    let radioGroupCss: SerializedStyles
-
-    if (type === "button") {
-      const hasChildren = options?.length || children
-      radioGroupCss = applyRadioButtonContainer(hasChildren)
-    } else {
-      switch (direction) {
-        case "vertical":
-          radioGroupCss = applyRadioContainerVertical(spacing)
-          break
-        case "horizontal":
-          radioGroupCss = applyRadioContainerHorizontal(spacing)
-          break
-      }
-    }
+    const hasChildren = options?.length || children
 
     function onChangeValue<T>(v: T, event: ChangeEvent): void {
       const { onChange } = props
@@ -70,7 +51,14 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
     }
 
     return (
-      <div css={radioGroupCss} ref={ref} {...otherProps}>
+      <div
+        ref={ref}
+        css={[
+          applyRadioGroupCss({ hasChildren, direction, spacing, type }),
+          applyBoxStyle(props),
+        ]}
+        {...otherProps}
+      >
         <RadioGroupContext.Provider value={contextProp}>
           {options && isArray(options)
             ? options.map((option, index) => {

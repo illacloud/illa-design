@@ -1,15 +1,9 @@
 import { ChangeEvent, forwardRef, useContext } from "react"
-import { RadioProps } from "./interface"
-import {
-  applyMergeCss,
-  applyRadioButton,
-  applyRadioSize,
-  radioTextCss,
-  disappear,
-} from "./style"
 import { useMergeValue } from "@illa-design/system"
-import { omit } from "@illa-design/system"
+import { applyBoxStyle } from "@illa-design/theme"
+import { RadioProps } from "./interface"
 import { RadioGroupContext } from "./radio-group-context"
+import { radioTextCss, applyRadioContainerCss, applyRadioCss } from "./style"
 
 export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
   const context = useContext(RadioGroupContext)
@@ -21,12 +15,11 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
     checked,
     disabled,
     value,
+    colorScheme = context?.colorScheme ?? "blue",
     onChange,
     ...otherProps
   } = mergeProps
-  const colorScheme = props?.colorScheme
-    ? props?.colorScheme
-    : context?.colorScheme ?? "blue"
+
   if (context) {
     mergeProps.checked = context?.value === props?.value
     mergeProps.disabled = !!(context?.disabled || props?.disabled)
@@ -58,20 +51,17 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
     <label
       style={style}
       className={className}
-      css={
-        context?.type === "button"
-          ? applyRadioButton(stateValue)
-          : applyMergeCss(stateValue)
-      }
+      css={[
+        applyRadioContainerCss(stateValue, context?.type),
+        applyBoxStyle(props),
+      ]}
       ref={ref}
-      {...omit(otherProps, ["colorScheme"])}
+      {...otherProps}
     >
       <input
         type="radio"
         {...(context?.name ? { name: context.name } : {})}
-        css={
-          context?.type === "button" ? disappear : applyRadioSize(colorScheme)
-        }
+        css={applyRadioCss(colorScheme, context?.type)}
         value={value || ""}
         checked={currentChecked}
         disabled={disabled}
