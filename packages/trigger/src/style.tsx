@@ -25,10 +25,6 @@ const colorSchemes = [
   "techPurple",
 ]
 
-export const applyChildrenContainer = css`
-  display: inline-flex;
-`
-
 export function applyMotionDiv() {
   return css`
     display: inline-flex;
