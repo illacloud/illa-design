@@ -157,7 +157,10 @@ export interface FlexStyledProps {
   flexBasis?: string
   justifySelf?: string
   alignSelf?: string
-  order?: string
+  /**
+   * order
+   */
+  o?: string
 }
 
 export interface CustomStyledProps {
