@@ -20,7 +20,7 @@ export function applyRadioSize(
     position: relative;
     appearance: none;
     border-radius: 50%;
-    margin: auto 6px auto auto;
+    margin: auto 8px auto auto;
     width: 16px;
     height: 16px;
     border: solid 2px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
@@ -93,7 +93,8 @@ export function applyRadioContainerVertical(
     vertical-align: middle;
     flex-direction: column;
     align-items: flex-start;
-    gap: ${currentSpacing};
+    flex-wrap: wrap;
+    gap: 6px ${currentSpacing};
     margin-bottom: ${currentSpacing};
   `
 }
