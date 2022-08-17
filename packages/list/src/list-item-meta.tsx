@@ -8,13 +8,17 @@ import {
 } from "./style"
 import { Avatar } from "@illa-design/avatar"
 import { Paragraph, Text, Typography } from "@illa-design/typography"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
 
 export const ListItemMeta = forwardRef<HTMLDivElement, ListItemMetaProps>(
   (props, ref) => {
     const { title, avatar, description, ...otherProps } = props
     return (
-      <div css={applyItemMetaContainer} ref={ref} {...otherProps}>
+      <div
+        css={[applyItemMetaContainer(), applyBoxStyle(props)]}
+        ref={ref}
+        {...otherProps}
+      >
         {avatar && (
           <Avatar
             css={applyItemMetaAvatar}

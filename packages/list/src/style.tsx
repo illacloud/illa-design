@@ -17,10 +17,21 @@ export function applyListContainer(bordered?: boolean): SerializedStyles {
   return containerCss
 }
 
-export function applyListItemOuter(
-  size: ListSize,
-  hoverable?: boolean,
-): SerializedStyles {
+export function applyListItemOuter(hoverable?: boolean): SerializedStyles {
+  let hoverableCss: SerializedStyles = css``
+  if (hoverable) {
+    hoverableCss = css`
+      &:hover {
+        background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+      }
+    `
+  }
+  return css`
+    ${hoverableCss};
+  `
+}
+
+export function applyListItemContainer(size: ListSize): SerializedStyles {
   let sizeCss: SerializedStyles
   switch (size) {
     case "small":
@@ -39,24 +50,12 @@ export function applyListItemOuter(
       `
       break
   }
-  let hoverableCss: SerializedStyles = css``
-  if (hoverable) {
-    hoverableCss = css`
-      &:hover {
-        background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-      }
-    `
-  }
   return css`
+    display: flex;
+    flex-direction: row;
     ${sizeCss};
-    ${hoverableCss};
   `
 }
-
-export const applyListItemContainer = css`
-  display: flex;
-  flex-direction: row;
-`
 
 export const applyListItemInner = css`
   display: inline-flex;
@@ -64,16 +63,13 @@ export const applyListItemInner = css`
   flex-grow: 1;
 `
 
-export const applyItemMetaContainer = css`
-  display: inline-flex;
-  align-items: start;
-  flex-direction: row;
-`
-
-export const applyItemMetaInner = css`
-  display: inline-flex;
-  flex-direction: row;
-`
+export function applyItemMetaContainer(): SerializedStyles {
+  return css`
+    display: inline-flex;
+    align-items: start;
+    flex-direction: row;
+  `
+}
 
 export const applyItemMetaAvatar = css`
   margin-right: 8px;
@@ -88,6 +84,8 @@ export const applyListItemActionsStyle = css`
 `
 
 export const applyListItemExtraStyle = css`
+  display: flex;
+  align-items: center;
   margin-left: 32px;
 `
 
