@@ -29,31 +29,33 @@ export function applyItemStyle(
   dot?: ReactNode,
 ): SerializedStyles {
   if (direction === "horizontal") {
+    let itemStyle
     if (mode === "alternate-same") {
-      return css`
+      itemStyle = css`
         margin-top: 16px;
         padding-bottom: 8px;
         transform: translateY(-50%);
-        position: relative;
       `
     } else if (mode === "alternate-relative") {
-      return css`
+      itemStyle = css`
         margin-top: -16px;
         padding-top: 8px;
         transform: translateY(50%);
-        position: relative;
       `
     } else if (mode === "bottom") {
-      return css`
+      itemStyle = css`
         padding-bottom: 8px;
-        position: relative;
       `
     } else {
-      return css`
+      itemStyle = css`
         padding-top: 8px;
-        position: relative;
       `
     }
+    return css`
+      ${itemStyle};
+      flex: ${dot ? "unset" : "1"};
+      position: relative;
+    `
   }
   const lastItemStyle = css`
     &:last-of-type {
