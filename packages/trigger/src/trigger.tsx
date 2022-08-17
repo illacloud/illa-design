@@ -15,7 +15,6 @@ import { CustomPositionType, TriggerProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
-  applyChildrenContainer,
   applyDefaultContentSize,
   applyMotionDiv,
   applyTipsContainer,
@@ -517,7 +516,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
   } else {
     return (
       <span
-        css={applyChildrenContainer}
         ref={(ref) => {
           if (ref != null) {
             measureRef(ref)
