@@ -1,7 +1,17 @@
-import { Meta, Story } from "@storybook/react";
-import { Table, TableData, TableProps, TBody, Td, TFoot, Th, Thead, Tr } from "../src";
-import { useMemo } from "react";
-import { ColumnDef } from "@tanstack/react-table";
+import { Meta, Story } from "@storybook/react"
+import {
+  Table,
+  TableData,
+  TableProps,
+  TBody,
+  Td,
+  TFoot,
+  Th,
+  Thead,
+  Tr,
+} from "../src"
+import { useMemo } from "react"
+import { ColumnDef } from "@tanstack/react-table"
 
 export default {
   title: "DATA DISPLAY/Table",

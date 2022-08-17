@@ -1,6 +1,6 @@
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import { List } from "../src"
+import { List, ListItem, ListItemMeta } from "../src"
 
 it("List renders raw.", () => {
   mount(
@@ -15,7 +15,10 @@ it("List renders raw.", () => {
       }}
     />,
   )
-  cy.findByText("Title A").parent().children().should("have.length", 3)
+  cy.findByText("Title A")
+    .parent()
+    .children()
+    .should("have.length", 3)
   unmount()
 })
 
@@ -32,14 +35,18 @@ it("List renders with scroll event.", () => {
         { title: "Title E", description: "Desc E" },
       ]}
       render={(data, index) => {
-        return <span>{data.title}</span>
+        return (
+          <ListItem>
+            <ListItemMeta title={data.title} />
+          </ListItem>
+        )
       }}
       renderKey={(data, index) => {
         return index.toString()
       }}
       onReachBottom={onReachBottom}
       onScroll={onScroll}
-      height={200}
+      height={100}
     />,
   )
   cy.get(".rc-virtual-list-holder").scrollTo("center")
@@ -76,30 +83,36 @@ it("List renders with different size.", () => {
       <List
         data={[{ title: "A" }]}
         render={(data, index) => {
-          return <span>{data.title}</span>
+          return (
+            <ListItem data-testId="medium-item">
+              <ListItemMeta title={data.title} />
+            </ListItem>
+          )
         }}
         renderKey={(data, index) => {
           return index.toString()
         }}
-        size="large"
       />
       <List
         data={[{ title: "B" }]}
         render={(data, index) => {
-          return <span>{data.title}</span>
+          return (
+            <ListItem data-testId="small-item" size="small">
+              <ListItemMeta title={data.title} />
+            </ListItem>
+          )
         }}
         renderKey={(data, index) => {
           return index.toString()
         }}
         size="small"
       />
-      ,
     </>,
   )
   cy.findByText("A").should("exist")
   cy.findByText("B").should("exist")
-  cy.findByText("A").parent().should("have.css", "padding", "16px")
-  cy.findByText("B").parent().should("have.css", "padding", "8px 16px")
+  cy.findByTestId("medium-item").should("have.css", "padding", "12px 16px")
+  cy.findByTestId("small-item").should("have.css", "padding", "8px 16px")
   unmount()
 })
 

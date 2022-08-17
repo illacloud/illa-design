@@ -3,7 +3,6 @@ import { TableContextProps, TableProps } from "./interface"
 import {
   applyBorderedStyle,
   applyContainerStyle,
-  applyFilterContainer,
   applyHeaderIconLeft,
   applyPreContainer,
   applyTableStyle,
@@ -30,7 +29,6 @@ import {
   SorterDownIcon,
   SorterUpIcon,
 } from "@illa-design/icon"
-import { TableFilter } from "./table-filter"
 import { rankItem } from "@tanstack/match-sorter-utils"
 
 export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
@@ -57,7 +55,6 @@ function renderDirectTable<D extends TableData>(
     striped,
     children,
     disableSortBy,
-    disableFilters,
     hoverable,
     align = "left",
     showFooter = true,
@@ -107,7 +104,6 @@ function renderDataDrivenTable<D extends TableData>(
     striped,
     children,
     disableSortBy,
-    disableFilters,
     pinedHeader,
     align = "left",
     showFooter,
@@ -149,7 +145,6 @@ function renderDataDrivenTable<D extends TableData>(
       sorting,
     },
     enableSorting: !disableSortBy,
-    enableFilters: !disableFilters,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -169,9 +164,9 @@ function renderDataDrivenTable<D extends TableData>(
         <table css={applyTableStyle(tableLayout)} {...otherProps}>
           {showHeader && (
             <Thead pined={pinedHeader}>
-              {table.getHeaderGroups().map(headerGroup => (
+              {table.getHeaderGroups().map((headerGroup) => (
                 <Tr key={headerGroup.id} hoverable>
-                  {headerGroup.headers.map(header => (
+                  {headerGroup.headers.map((header) => (
                     <Th
                       key={header.id}
                       colSpan={header.colSpan}
@@ -207,13 +202,6 @@ function renderDataDrivenTable<D extends TableData>(
                             <SorterDefaultIcon _css={applyHeaderIconLeft} />
                           ))}
                       </div>
-                      {header.column.getCanFilter() && (
-                        <div css={applyFilterContainer}>
-                          {header.column.getFilterFn() != undefined && (
-                            <TableFilter columnProps={header.column} />
-                          )}
-                        </div>
-                      )}
                     </Th>
                   ))}
                 </Tr>
@@ -221,9 +209,9 @@ function renderDataDrivenTable<D extends TableData>(
             </Thead>
           )}
           <TBody>
-            {table.getRowModel().rows.map(row => (
+            {table.getRowModel().rows.map((row) => (
               <Tr key={row.id} hoverable>
-                {row.getVisibleCells().map(cell => (
+                {row.getVisibleCells().map((cell) => (
                   <Td
                     key={cell.id}
                     colIndex={row.getVisibleCells().indexOf(cell)}
@@ -245,9 +233,9 @@ function renderDataDrivenTable<D extends TableData>(
           </TBody>
           {showFooter && (
             <TFoot>
-              {table.getFooterGroups().map(footerGroup => (
+              {table.getFooterGroups().map((footerGroup) => (
                 <Tr key={footerGroup.id} hoverable>
-                  {footerGroup.headers.map(header => (
+                  {footerGroup.headers.map((header) => (
                     <Th
                       key={header.id}
                       colSpan={header.colSpan}

@@ -62,12 +62,12 @@ const options = [
   },
 ]
 
-it("Cascader render correctly", () => {
+it("Cascader renders correctly", () => {
   const changeEvent = cy.stub().as("changeEvent")
   const clearEvent = cy.stub().as("clearEvent")
   mount(
     <Cascader
-      w="200px"
+      w="400px"
       options={options}
       placeholder={"test"}
       onChange={changeEvent}
@@ -99,7 +99,7 @@ it("Cascader render correctly", () => {
   unmount()
 })
 
-it("Cascader render with no data", () => {
+it("Cascader renders with no data", () => {
   mount(<Cascader options={[]} placeholder={"test"} value={undefined} />)
 
   cy.findByPlaceholderText("test").should("exist")
@@ -108,7 +108,7 @@ it("Cascader render with no data", () => {
   unmount()
 })
 
-it("Cascader render with disabled", () => {
+it("Cascader renders with disabled", () => {
   mount(<Cascader options={[]} placeholder={"test"} disabled />)
 
   cy.findByPlaceholderText("test").should("exist")
@@ -124,7 +124,7 @@ it("Cascader rende with expandTrigger hover", () => {
   const clearEvent = cy.stub().as("clearEvent")
   mount(
     <Cascader
-      w="200px"
+      w="400px"
       options={options}
       placeholder={"test"}
       onChange={changeEvent}
@@ -158,11 +158,11 @@ it("Cascader rende with expandTrigger hover", () => {
   unmount()
 })
 
-it("Cascader render with multiple", () => {
+it("Cascader renders with multiple", () => {
   const changeEvent = cy.stub().as("changeEvent")
   mount(
     <Cascader
-      w="200px"
+      w="400px"
       multiple
       size={"large"}
       options={options}
@@ -194,11 +194,11 @@ it("Cascader render with multiple", () => {
   unmount()
 })
 
-it("Cascader render with maxTagCount", () => {
+it("Cascader renders with maxTagCount", () => {
   const changeEvent = cy.stub().as("changeEvent")
   mount(
     <Cascader
-      w="200px"
+      w="400px"
       multiple
       options={options}
       placeholder={"test"}
@@ -224,7 +224,7 @@ it("Cascader test onClear should be triggered in multiple mode", () => {
   const clearEvent = cy.stub().as("clearEvent")
   mount(
     <Cascader
-      w="200px"
+      w="400px"
       multiple
       defaultValue={[
         ["beijing", "xicheng"],
@@ -255,13 +255,13 @@ it("Cascader test onClear should be triggered in multiple mode", () => {
   unmount()
 })
 
-it("Cascader render with input type", () => {
+it("Cascader renders with input type", () => {
   const changeEvent = cy.stub().as("changeEvent")
   const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
   const searchEvent = cy.stub().as("searchEvent")
   mount(
     <Cascader
-      w="200px"
+      w="400px"
       options={options}
       placeholder={"test"}
       onChange={changeEvent}
@@ -290,12 +290,12 @@ it("Cascader render with input type", () => {
   unmount()
 })
 
-it("Cascader render with search popup", () => {
+it("Cascader renders with search popup", () => {
   const changeEvent = cy.stub().as("changeEvent")
   const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
   mount(
     <Cascader
-      w="200px"
+      w="400px"
       multiple
       options={options}
       placeholder={"test"}
@@ -326,7 +326,7 @@ it("Cascader test with click disabled label", () => {
   const visibleChangeEvent = cy.stub().as("visibleChangeEvent")
   mount(
     <Cascader
-      w="200px"
+      w="400px"
       options={options}
       placeholder={"test"}
       onChange={changeEvent}

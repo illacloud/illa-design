@@ -289,9 +289,9 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                       panel
                       mode={"day"}
                       _css={css`
-                          ${triContentCommonCss};
-                          ${rangeLeftContentCss}
-                        `}
+                        ${triContentCommonCss};
+                        ${rangeLeftContentCss}
+                      `}
                       panelOperations={["doubleLeft", "left"]}
                       panelTodayBtn={false}
                       onPanelChange={(date: Dayjs) => changeHeader(date)}
@@ -309,9 +309,9 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                       panel
                       mode={"day"}
                       _css={css`
-                          ${triContentCommonCss};
-                          ${rangeRightContentCss}
-                        `}
+                        ${triContentCommonCss};
+                        ${rangeRightContentCss}
+                      `}
                       panelOperations={["doubleRight", "right"]}
                       panelTodayBtn={false}
                       onPanelChange={(date: Dayjs) => changeHeader(date)}

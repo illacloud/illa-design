@@ -59,13 +59,6 @@ test("Data Driven Table renders with disableSortBy.", () => {
 })
 
 test("Data Driven Table renders with disableFilter.", () => {
-  render(
-    <Table
-      data-testid="test-table"
-      data={data}
-      columns={columns}
-      disableFilters={true}
-    />,
-  )
+  render(<Table data-testid="test-table" data={data} columns={columns} />)
   expect(screen.queryAllByTitle("FilterIcon").length == 0)
 })

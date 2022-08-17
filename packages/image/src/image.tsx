@@ -50,13 +50,13 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
           src={src}
           width={width}
           height={height}
-          onError={e => {
+          onError={(e) => {
             setImageState(ImageState.Error)
             if (props.onError != undefined) {
               props.onError(e)
             }
           }}
-          onLoad={e => {
+          onLoad={(e) => {
             setImageState(ImageState.Loaded)
             if (props.onLoad != undefined) {
               props.onLoad(e)

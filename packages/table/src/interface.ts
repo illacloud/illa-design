@@ -32,7 +32,6 @@ export interface TableProps<D extends TableData>
   bordered?: boolean
   hoverable?: boolean
   disableSortBy?: boolean
-  disableFilters?: boolean
 }
 
 export interface TableContextProps {
