@@ -32,7 +32,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
     return (
       <td
         css={css(
-          applyNormalStyle,
+          applyNormalStyle(),
           applySizeStyle(size ?? tableContext?.size ?? "medium"),
           applyBorderStyle(
             borderedCell ?? tableContext?.borderedCell,

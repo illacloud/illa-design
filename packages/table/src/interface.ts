@@ -30,6 +30,7 @@ export interface TableProps<D extends TableData>
   pinedHeader?: boolean
   tableLayout?: TableLayout
   bordered?: boolean
+  hoverable?: boolean
   disableSortBy?: boolean
   disableFilters?: boolean
 }
@@ -41,15 +42,16 @@ export interface TableContextProps {
   showFooter?: boolean
   size?: TableSize
   align?: TableAlign
+  hoverable?: boolean
 }
 
 export interface TBodyProps
   extends HTMLAttributes<HTMLTableSectionElement>,
     BoxProps {}
 
-export interface TrProps
-  extends HTMLAttributes<HTMLTableRowElement>,
-    BoxProps {}
+export interface TrProps extends HTMLAttributes<HTMLTableRowElement>, BoxProps {
+  hoverable?: boolean
+}
 
 export interface TdProps
   extends Omit<TdHTMLAttributes<HTMLTableDataCellElement>, "align">,

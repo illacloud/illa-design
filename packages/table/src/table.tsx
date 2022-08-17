@@ -58,6 +58,7 @@ function renderDirectTable<D extends TableData>(
     children,
     disableSortBy,
     disableFilters,
+    hoverable,
     align = "left",
     showFooter = true,
     showHeader = true,
@@ -70,6 +71,7 @@ function renderDirectTable<D extends TableData>(
     striped,
     size,
     showHeader,
+    hoverable,
     showFooter,
   } as TableContextProps
 
@@ -109,6 +111,7 @@ function renderDataDrivenTable<D extends TableData>(
     pinedHeader,
     align = "left",
     showFooter,
+    hoverable,
     showHeader = true,
     ...otherProps
   } = props
@@ -118,6 +121,7 @@ function renderDataDrivenTable<D extends TableData>(
     borderedCell,
     striped,
     size,
+    hoverable,
     showHeader,
     showFooter,
   } as TableContextProps
@@ -166,7 +170,7 @@ function renderDataDrivenTable<D extends TableData>(
           {showHeader && (
             <Thead pined={pinedHeader}>
               {table.getHeaderGroups().map(headerGroup => (
-                <Tr key={headerGroup.id}>
+                <Tr key={headerGroup.id} hoverable>
                   {headerGroup.headers.map(header => (
                     <Th
                       key={header.id}
@@ -218,7 +222,7 @@ function renderDataDrivenTable<D extends TableData>(
           )}
           <TBody>
             {table.getRowModel().rows.map(row => (
-              <Tr key={row.id}>
+              <Tr key={row.id} hoverable>
                 {row.getVisibleCells().map(cell => (
                   <Td
                     key={cell.id}
@@ -242,7 +246,7 @@ function renderDataDrivenTable<D extends TableData>(
           {showFooter && (
             <TFoot>
               {table.getFooterGroups().map(footerGroup => (
-                <Tr key={footerGroup.id}>
+                <Tr key={footerGroup.id} hoverable>
                   {footerGroup.headers.map(header => (
                     <Th
                       key={header.id}

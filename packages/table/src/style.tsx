@@ -7,39 +7,17 @@ export function applySizeStyle(size: TableSize): SerializedStyles {
   switch (size) {
     case "small":
       paddingStyle = css`
-        padding: 5px 16px;
+        padding: 12px 16px;
       `
       break
     case "medium":
       paddingStyle = css`
-        padding: 7px 16px;
+        padding: 14px 16px;
       `
       break
     case "large":
       paddingStyle = css`
-        padding: 9px 16px;
-      `
-      break
-  }
-  return paddingStyle
-}
-
-export function applyHeaderSizeStyle(size: TableSize): SerializedStyles {
-  let paddingStyle
-  switch (size) {
-    case "small":
-      paddingStyle = css`
-        padding: 5px 0;
-      `
-      break
-    case "medium":
-      paddingStyle = css`
-        padding: 7px 0;
-      `
-      break
-    case "large":
-      paddingStyle = css`
-        padding: 9px 0;
+        padding: 16px 16px;
       `
       break
   }
@@ -128,17 +106,29 @@ export function applyThStyle(): SerializedStyles {
   return css`
     font-size: 14px;
     font-weight: bold;
-    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
-export const applyNormalStyle: SerializedStyles = css`
-  font-size: 14px;
-  min-height: 22px;
-  background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-`
+export function applyNormalStyle(): SerializedStyles {
+  return css`
+    font-size: 14px;
+    min-height: 22px;
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  `
+}
+
+export function applyBgHoverStyle(hoverable?: boolean): SerializedStyles {
+  const hoverableStyle = css`
+    &:hover {
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+    }
+  `
+  return css`
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    ${hoverable ? hoverableStyle : null}
+  `
+}
 
 export const applyFilterContainer = css`
   flex-shrink: 1;
