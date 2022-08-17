@@ -510,6 +510,9 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
 
 export function applyRangeInput(focus?: boolean): SerializedStyles {
   return css`
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     transition: all 200ms ease-in-out;
     ${focus
       ? css`

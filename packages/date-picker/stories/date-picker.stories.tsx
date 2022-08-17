@@ -38,19 +38,19 @@ export default {
 } as Meta
 
 const DateTemplate: Story<DatePickerProps> = (args) => {
-  return <DatePicker {...args} showTime />
+  return <DatePicker w={"280px"} {...args} showTime />
 }
 
 const MonthTemplate: Story<MonthPickerProps> = (args) => {
-  return <MonthPicker {...args} />
+  return <MonthPicker w={"280px"} {...args} />
 }
 
 const YearTemplate: Story<YearPickerProps> = (args) => {
-  return <YearPicker {...args} />
+  return <YearPicker w={"280px"} {...args} />
 }
 
 const RangeTemplate: Story<CommonRangeProps> = (args) => {
-  return <DateRangePicker {...args} />
+  return <DateRangePicker w={"320px"} {...args} />
 }
 
 export const date = DateTemplate.bind({})

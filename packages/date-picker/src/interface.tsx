@@ -1,6 +1,5 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
-import { SerializedStyles } from "@emotion/react"
 import { RangePickerProps, TimePickerProps } from "@illa-design/time-picker"
 import { InputBorderColor } from "@illa-design/input"
 import { BoxProps } from "@illa-design/theme"
@@ -18,11 +17,13 @@ export type DisabledTimeProps = {
   disabledSeconds?: () => number[]
 }
 export type RangePickerMode = "date" | "month" | "week" | "year" | "quarter"
+
 export interface PickerProps
   extends Omit<
-    HTMLAttributes<HTMLDivElement>,
-    "placeholder" | "onChange" | "onSelect"
-  > {
+      HTMLAttributes<HTMLDivElement>,
+      "placeholder" | "onChange" | "onSelect"
+    >,
+    BoxProps {
   disabled?: boolean | boolean[]
   allowClear?: boolean
   position?: PickerPosition
@@ -32,25 +33,25 @@ export interface PickerProps
   error?: boolean
   size?: PickerSize
   popupVisible?: boolean
-  onVisibleChange?: (visible?: boolean) => void
-  onChange?: (dateString: string, date: Dayjs) => void
-  onSelect?: (dateString: string, date: Dayjs) => void
-  onClear?: () => void
   editable?: boolean
-  onSelectShortcut?: (shortcut: ShortcutType) => void
   locale?: Record<string, any>
   separator?: ReactNode
   disabledDate?: (current?: Dayjs) => boolean
-  onOk?: (dateString: string, date: Dayjs) => void
   defaultPickerValue?: DatePickerCalendarValue
-  _css?: SerializedStyles
   utcOffset?: number
   timezone?: string
   colorScheme?: InputBorderColor
   readOnly?: boolean
+  onSelectShortcut?: (shortcut: ShortcutType) => void
+  onVisibleChange?: (visible?: boolean) => void
+  onChange?: (dateString: string, date: Dayjs) => void
+  onSelect?: (dateString: string, date: Dayjs) => void
+  onOk?: (dateString: string, date: Dayjs) => void
+  onClear?: () => void
 }
 
 export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {
+  placeholder?: string
   format?: string | ((value: Dayjs) => string)
   defaultValue?: DatePickerCalendarValue
   value?: DatePickerCalendarValue
@@ -61,12 +62,14 @@ export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {
 }
 
 export interface MonthPickerProps extends Omit<PickerProps, "defaultValue"> {
+  placeholder?: string
   format?: string | ((value: Dayjs) => string)
   defaultValue?: DatePickerCalendarValue
   value?: DatePickerCalendarValue
 }
 
 export interface YearPickerProps extends Omit<PickerProps, "defaultValue"> {
+  placeholder?: string
   format?: string | ((value: Dayjs) => string)
   defaultValue?: DatePickerCalendarValue
   value?: DatePickerCalendarValue
@@ -96,18 +99,41 @@ export interface CommonSingleProps extends DatePickerProps {
   type: "day" | "month" | "year"
 }
 
-export interface CommonPickerProps extends PickerProps, BoxProps {
-  pickerContent: ReactNode
-  size?: PickerSize
+export interface CommonProps
+  extends Omit<
+    PickerProps,
+    | "prefix"
+    | "placeholder"
+    | "shortcuts"
+    | "shortcutsPlacementLeft"
+    | "defaultValue"
+    | "defaultPickerValue"
+    | "locale"
+    | "disabledDate"
+    | "utcOffset"
+    | "timezone"
+    | "onSelectShortcut"
+    | "onSelect"
+    | "onChange"
+    | "onOk"
+    | "onClear"
+  > {}
+
+export interface CommonPickerProps extends CommonProps {
+  placeholder?: string
   inputVal?: string
+  pickerContent: ReactNode
+  onClear?: () => void
   onClearDate?: () => void
   onChangeInputVal?: (value: string) => void
   onChangeVisible?: (visible: boolean) => void
 }
 
-export interface RangePickerBodyProps extends CommonRangeProps {
-  pickerContent: ReactNode
+export interface RangePickerBodyProps extends CommonProps {
+  placeholder?: string[]
   inputVal?: string[]
+  separator?: ReactNode
+  pickerContent: ReactNode
   onClearDate?: () => void
   onChangeInputVal?: (value: string[]) => void
   onChangeVisible?: (visible: boolean) => void
