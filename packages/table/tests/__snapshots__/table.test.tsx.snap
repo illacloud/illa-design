@@ -9,12 +9,18 @@ exports[`Table renders with different align. 1`] = `
   table-layout: auto;
 }
 
+.emotion-2 {
+  font-size: 14px;
+  min-height: 22px;
+  color: #1d2129;
+  background-color: #fff;
+}
+
 .emotion-3 {
   font-size: 14px;
   min-height: 22px;
-  background-color: #fff;
   color: #1d2129;
-  padding: 7px 16px;
+  padding: 14px 16px;
 }
 
 .emotion-4 {
@@ -65,7 +71,7 @@ exports[`Table renders with different align. 1`] = `
     class="emotion-1"
   >
     <tr
-      class="emotion-1"
+      class="emotion-2"
     >
       <td
         class="emotion-3"

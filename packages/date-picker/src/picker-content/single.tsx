@@ -201,24 +201,19 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     }
 
     return (
-      <div ref={ref} css={_css} {...restProps}>
+      <div ref={ref} css={_css}>
         <Picker
           disabled={disabled}
           allowClear={allowClear}
           position={position}
           placeholder={placeholder}
           inputVal={inputVal}
-          onClearDate={clearDate}
           error={error}
           size={size}
           popupVisible={showTrigger}
-          onChangeVisible={setShowTrigger}
-          onClear={onClear}
-          onVisibleChange={onVisibleChange}
           editable={editable}
           readOnly={readOnly}
           colorScheme={colorScheme}
-          onChangeInputVal={setInputVal}
           pickerContent={
             <div css={singlePickerContentCss}>
               {shortcutsPlacementLeft && (
@@ -274,13 +269,18 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                       disabledMinutes: disabledTime?.().disabledMinutes,
                       disabledSeconds: disabledTime?.().disabledSeconds,
                       ...tpProps,
-                      ...restProps,
                     })}
                   </div>
                 </div>
               )}
             </div>
           }
+          onVisibleChange={onVisibleChange}
+          onChangeInputVal={setInputVal}
+          onChangeVisible={setShowTrigger}
+          onClearDate={clearDate}
+          onClear={onClear}
+          {...restProps}
         />
       </div>
     )

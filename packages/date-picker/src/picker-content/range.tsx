@@ -1,8 +1,11 @@
 import { forwardRef, useEffect, useState, cloneElement } from "react"
-import { CommonRangeProps } from "../interface"
 import dayjs, { Dayjs } from "dayjs"
-import { PickerRange } from "../picker-range"
 import { css } from "@emotion/react"
+import { Button } from "@illa-design/button"
+import { TimePickerPopup } from "@illa-design/time-picker"
+import { Calendar } from "@illa-design/calendar"
+import { CommonRangeProps } from "../interface"
+import { PickerRange } from "../picker-range"
 import {
   wrapCss,
   triContentCommonCss,
@@ -17,9 +20,6 @@ import {
   buttonBoxCss,
 } from "../style"
 import { initFormat } from "../utils"
-import { Button } from "@illa-design/button"
-import { TimePickerPopup } from "@illa-design/time-picker"
-import { Calendar } from "@illa-design/calendar"
 
 export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
   (props, ref) => {
@@ -221,24 +221,20 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
     }
 
     return (
-      <div ref={ref} css={_css} {...restProps}>
+      <div ref={ref} css={_css}>
         <PickerRange
           disabled={disabled}
           allowClear={allowClear}
-          onClearDate={clearDate}
+          position={position}
           placeholder={placeholder}
+          inputVal={inputVal}
           error={error}
           size={size}
-          colorScheme={colorScheme}
-          onVisibleChange={onVisibleChange}
           popupVisible={showTrigger}
-          onChangeVisible={setShowTrigger}
           editable={editable}
-          position={position}
-          onChangeInputVal={setInputVal}
-          separator={separator}
-          inputVal={inputVal}
           readOnly={readOnly}
+          colorScheme={colorScheme}
+          separator={separator}
           pickerContent={
             <div css={wrapCss}>
               {shortcutsShowLeft && <ShortcutsCompt />}
@@ -264,7 +260,6 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                             .disabledSeconds,
                           ...timepickerProps,
                           ...tpProps,
-                          ...restProps,
                         })}
                       </div>
                       <div>
@@ -285,7 +280,6 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
                             .disabledSeconds,
                           ...timepickerProps,
                           ...tpProps,
-                          ...restProps,
                         })}
                       </div>
                     </div>
@@ -356,6 +350,11 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
               </div>
             </div>
           }
+          onVisibleChange={onVisibleChange}
+          onChangeVisible={setShowTrigger}
+          onChangeInputVal={setInputVal}
+          onClearDate={clearDate}
+          {...restProps}
         />
       </div>
     )

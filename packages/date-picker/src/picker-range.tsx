@@ -23,6 +23,7 @@ export const PickerRange: FC<RangePickerBodyProps> = (props) => {
     onChangeVisible,
     colorScheme,
     readOnly,
+    ...otherProps
   } = props
 
   const tryUpdatePopupVisible = (value: boolean) => {
@@ -46,6 +47,7 @@ export const PickerRange: FC<RangePickerBodyProps> = (props) => {
       onVisibleChange={tryUpdatePopupVisible}
     >
       <RangeInput
+        {...otherProps}
         disabled={disabled}
         value={inputVal}
         borderColor={colorScheme}

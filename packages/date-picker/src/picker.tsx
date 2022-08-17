@@ -23,6 +23,7 @@ export const Picker: FC<CommonPickerProps> = (props) => {
     onChangeVisible,
     colorScheme,
     readOnly,
+    ...otherProps
   } = props
 
   const tryUpdatePopupVisible = (value: boolean) => {
@@ -47,6 +48,7 @@ export const Picker: FC<CommonPickerProps> = (props) => {
         onVisibleChange={tryUpdatePopupVisible}
       >
         <Input
+          {...otherProps}
           readOnly={readOnly}
           disabled={typeof disabled === "boolean" ? disabled : false}
           placeholder={typeof placeholder === "string" ? placeholder : ""}

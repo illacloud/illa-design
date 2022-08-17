@@ -20,9 +20,10 @@ export type DisabledTimeProps = {
 export type RangePickerMode = "date" | "month" | "week" | "year" | "quarter"
 export interface PickerProps
   extends Omit<
-    HTMLAttributes<HTMLDivElement>,
-    "placeholder" | "onChange" | "onSelect"
-  > {
+      HTMLAttributes<HTMLDivElement>,
+      "placeholder" | "onChange" | "onSelect"
+    >,
+    BoxProps {
   disabled?: boolean | boolean[]
   allowClear?: boolean
   position?: PickerPosition
@@ -51,6 +52,7 @@ export interface PickerProps
 }
 
 export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {
+  placeholder?: string
   format?: string | ((value: Dayjs) => string)
   defaultValue?: DatePickerCalendarValue
   value?: DatePickerCalendarValue
@@ -61,12 +63,14 @@ export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {
 }
 
 export interface MonthPickerProps extends Omit<PickerProps, "defaultValue"> {
+  placeholder?: string
   format?: string | ((value: Dayjs) => string)
   defaultValue?: DatePickerCalendarValue
   value?: DatePickerCalendarValue
 }
 
 export interface YearPickerProps extends Omit<PickerProps, "defaultValue"> {
+  placeholder?: string
   format?: string | ((value: Dayjs) => string)
   defaultValue?: DatePickerCalendarValue
   value?: DatePickerCalendarValue
@@ -96,18 +100,34 @@ export interface CommonSingleProps extends DatePickerProps {
   type: "day" | "month" | "year"
 }
 
-export interface CommonPickerProps extends PickerProps, BoxProps {
-  pickerContent: ReactNode
+export interface CommonProps extends BoxProps {
+  disabled?: boolean | boolean[]
+  allowClear?: boolean
+  position?: PickerPosition
+  error?: boolean
   size?: PickerSize
+  popupVisible?: boolean
+  editable?: boolean
+  readOnly?: boolean
+  colorScheme?: InputBorderColor
+  onVisibleChange?: (visible?: boolean) => void
+}
+
+export interface CommonPickerProps extends CommonProps {
+  placeholder?: string
   inputVal?: string
+  pickerContent: ReactNode
+  onClear?: () => void
   onClearDate?: () => void
   onChangeInputVal?: (value: string) => void
   onChangeVisible?: (visible: boolean) => void
 }
 
-export interface RangePickerBodyProps extends CommonRangeProps {
-  pickerContent: ReactNode
+export interface RangePickerBodyProps extends CommonProps {
+  placeholder?: string[]
   inputVal?: string[]
+  separator?: ReactNode
+  pickerContent: ReactNode
   onClearDate?: () => void
   onChangeInputVal?: (value: string[]) => void
   onChangeVisible?: (visible: boolean) => void
