@@ -36,7 +36,6 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
   (props, ref) => {
     const {
       type,
-      _css,
       disabled,
       allowClear = true,
       position = "bl",
@@ -201,88 +200,87 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     }
 
     return (
-      <div ref={ref} css={_css}>
-        <Picker
-          disabled={disabled}
-          allowClear={allowClear}
-          position={position}
-          placeholder={placeholder}
-          inputVal={inputVal}
-          error={error}
-          size={size}
-          popupVisible={showTrigger}
-          editable={editable}
-          readOnly={readOnly}
-          colorScheme={colorScheme}
-          pickerContent={
-            <div css={singlePickerContentCss}>
-              {shortcutsPlacementLeft && (
-                <div css={vertShortcuts}>
-                  <ShortcutsCompt />
-                </div>
-              )}
-              <div>
-                <Calendar
-                  panel
-                  isTodayTarget
-                  mode={type}
-                  panelTodayBtn={showCalendarTodayButton}
-                  _css={triContentCommonCss}
-                  onChange={(date: Dayjs) => {
-                    changeDate(date)
-                  }}
-                  disabledDate={disabledDate}
-                  defaultDate={calendarValue || dayjs(mergedDefaultValue)}
-                  defaultSelectedDate={calendarShortCuts}
-                />
-                {(shortcuts || showTime) && (
-                  <div css={horShortcuts}>
-                    {shortcuts && !shortcutsPlacementLeft ? (
-                      <ShortcutsCompt />
-                    ) : showNowBtn ? (
-                      <Button
-                        colorScheme="gray"
-                        css={nowButtonCss}
-                        onClick={() => {
-                          clickNow()
-                        }}
-                      >
-                        Now
-                      </Button>
-                    ) : null}
-                  </div>
-                )}
+      <Picker
+        ref={ref}
+        disabled={disabled}
+        allowClear={allowClear}
+        position={position}
+        placeholder={placeholder}
+        inputVal={inputVal}
+        error={error}
+        size={size}
+        popupVisible={showTrigger}
+        editable={editable}
+        readOnly={readOnly}
+        colorScheme={colorScheme}
+        pickerContent={
+          <div css={singlePickerContentCss}>
+            {shortcutsPlacementLeft && (
+              <div css={vertShortcuts}>
+                <ShortcutsCompt />
               </div>
-              {showTimeMerged && (
-                <div css={showTimeContainerCss}>
-                  <div css={showTimeHeaderCss}>time</div>
-                  <div css={popupCss}>
-                    {cloneElement(<TimePickerPopup />, {
-                      isRangePicker: false,
-                      format: "HH:mm:ss",
-                      valueShow: valueShow,
-                      setValueShow,
-                      popupVisible: showTrigger,
-                      onConfirmValue,
-                      showNowBtn: false,
-                      disabledHours: disabledTime?.().disabledHours,
-                      disabledMinutes: disabledTime?.().disabledMinutes,
-                      disabledSeconds: disabledTime?.().disabledSeconds,
-                      ...tpProps,
-                    })}
-                  </div>
+            )}
+            <div>
+              <Calendar
+                panel
+                isTodayTarget
+                mode={type}
+                panelTodayBtn={showCalendarTodayButton}
+                _css={triContentCommonCss}
+                onChange={(date: Dayjs) => {
+                  changeDate(date)
+                }}
+                disabledDate={disabledDate}
+                defaultDate={calendarValue || dayjs(mergedDefaultValue)}
+                defaultSelectedDate={calendarShortCuts}
+              />
+              {(shortcuts || showTime) && (
+                <div css={horShortcuts}>
+                  {shortcuts && !shortcutsPlacementLeft ? (
+                    <ShortcutsCompt />
+                  ) : showNowBtn ? (
+                    <Button
+                      colorScheme="gray"
+                      css={nowButtonCss}
+                      onClick={() => {
+                        clickNow()
+                      }}
+                    >
+                      Now
+                    </Button>
+                  ) : null}
                 </div>
               )}
             </div>
-          }
-          onVisibleChange={onVisibleChange}
-          onChangeInputVal={setInputVal}
-          onChangeVisible={setShowTrigger}
-          onClearDate={clearDate}
-          onClear={onClear}
-          {...restProps}
-        />
-      </div>
+            {showTimeMerged && (
+              <div css={showTimeContainerCss}>
+                <div css={showTimeHeaderCss}>time</div>
+                <div css={popupCss}>
+                  {cloneElement(<TimePickerPopup />, {
+                    isRangePicker: false,
+                    format: "HH:mm:ss",
+                    valueShow: valueShow,
+                    setValueShow,
+                    popupVisible: showTrigger,
+                    onConfirmValue,
+                    showNowBtn: false,
+                    disabledHours: disabledTime?.().disabledHours,
+                    disabledMinutes: disabledTime?.().disabledMinutes,
+                    disabledSeconds: disabledTime?.().disabledSeconds,
+                    ...tpProps,
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        }
+        onVisibleChange={onVisibleChange}
+        onChangeInputVal={setInputVal}
+        onChangeVisible={setShowTrigger}
+        onClearDate={clearDate}
+        onClear={onClear}
+        {...restProps}
+      />
     )
   },
 )

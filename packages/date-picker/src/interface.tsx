@@ -1,6 +1,5 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
-import { SerializedStyles } from "@emotion/react"
 import { RangePickerProps, TimePickerProps } from "@illa-design/time-picker"
 import { InputBorderColor } from "@illa-design/input"
 import { BoxProps } from "@illa-design/theme"
@@ -18,6 +17,7 @@ export type DisabledTimeProps = {
   disabledSeconds?: () => number[]
 }
 export type RangePickerMode = "date" | "month" | "week" | "year" | "quarter"
+
 export interface PickerProps
   extends Omit<
       HTMLAttributes<HTMLDivElement>,
@@ -33,22 +33,21 @@ export interface PickerProps
   error?: boolean
   size?: PickerSize
   popupVisible?: boolean
-  onVisibleChange?: (visible?: boolean) => void
-  onChange?: (dateString: string, date: Dayjs) => void
-  onSelect?: (dateString: string, date: Dayjs) => void
-  onClear?: () => void
   editable?: boolean
-  onSelectShortcut?: (shortcut: ShortcutType) => void
   locale?: Record<string, any>
   separator?: ReactNode
   disabledDate?: (current?: Dayjs) => boolean
-  onOk?: (dateString: string, date: Dayjs) => void
   defaultPickerValue?: DatePickerCalendarValue
-  _css?: SerializedStyles
   utcOffset?: number
   timezone?: string
   colorScheme?: InputBorderColor
   readOnly?: boolean
+  onSelectShortcut?: (shortcut: ShortcutType) => void
+  onVisibleChange?: (visible?: boolean) => void
+  onChange?: (dateString: string, date: Dayjs) => void
+  onSelect?: (dateString: string, date: Dayjs) => void
+  onOk?: (dateString: string, date: Dayjs) => void
+  onClear?: () => void
 }
 
 export interface DatePickerProps extends Omit<PickerProps, "defaultValue"> {
@@ -100,18 +99,25 @@ export interface CommonSingleProps extends DatePickerProps {
   type: "day" | "month" | "year"
 }
 
-export interface CommonProps extends BoxProps {
-  disabled?: boolean | boolean[]
-  allowClear?: boolean
-  position?: PickerPosition
-  error?: boolean
-  size?: PickerSize
-  popupVisible?: boolean
-  editable?: boolean
-  readOnly?: boolean
-  colorScheme?: InputBorderColor
-  onVisibleChange?: (visible?: boolean) => void
-}
+export interface CommonProps
+  extends Omit<
+    PickerProps,
+    | "prefix"
+    | "placeholder"
+    | "shortcuts"
+    | "shortcutsPlacementLeft"
+    | "defaultValue"
+    | "defaultPickerValue"
+    | "locale"
+    | "disabledDate"
+    | "utcOffset"
+    | "timezone"
+    | "onSelectShortcut"
+    | "onSelect"
+    | "onChange"
+    | "onOk"
+    | "onClear"
+  > {}
 
 export interface CommonPickerProps extends CommonProps {
   placeholder?: string
