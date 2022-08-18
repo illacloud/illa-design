@@ -1,14 +1,12 @@
-import { forwardRef, useMemo } from "react"
+import { forwardRef } from "react"
 import { SerializedStyles } from "@emotion/react"
 import { DividerProps } from "./interface"
 import {
   applyDividerContainerHorizontal,
   applyDividerContainerVertical,
-  applyDividerWithTextContainerStyle,
 } from "./style"
 import { DividerWithText } from "./dividerWithText"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Divider = forwardRef<HTMLDivElement, DividerProps>(
   (props, ref) => {
@@ -16,17 +14,17 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
       direction = "horizontal",
       variant = "solid",
       text,
-      colorScheme,
+      colorScheme = "grayBlue",
       ...otherProps
     } = props
 
     let dividerCss: SerializedStyles
     switch (direction) {
       case "vertical":
-        dividerCss = applyDividerContainerVertical(variant)
+        dividerCss = applyDividerContainerVertical(colorScheme, variant)
         break
       case "horizontal":
-        dividerCss = applyDividerContainerHorizontal(variant)
+        dividerCss = applyDividerContainerHorizontal(colorScheme, variant)
         break
     }
 

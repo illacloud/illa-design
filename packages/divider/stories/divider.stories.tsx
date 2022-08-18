@@ -5,26 +5,8 @@ import { Divider, DividerProps } from "../src"
 export default {
   title: "Layout/Divider",
   component: Divider,
-  argTypes: {
-    colorScheme: {
-      options: [
-        "gray",
-        "blue",
-        "purple",
-        "red",
-        "green",
-        "yellow",
-        "orange",
-        "cyan",
-        "white",
-      ],
-      control: {
-        type: "select",
-      },
-    },
-  },
 } as Meta
 
-const Template: Story<DividerProps> = (props) => <Divider {...props} />
+const Template: Story<DividerProps> = props => <Divider {...props} />
 
 export const Basic = Template.bind({})

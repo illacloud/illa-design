@@ -1,75 +1,81 @@
-import { DividerColorScheme, DividerVariant } from "./interface"
+import {
+  DividerColorScheme,
+  DividerDirection,
+  DividerVariant,
+} from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-
-const innerColor = [
-  "white",
-  "blackAlpha",
-  "gray",
-  "red",
-  "orange",
-  "yellow",
-  "green",
-  "blue",
-  "cyan",
-  "purple",
-  "grayBlue",
-  "techPurple",
-  "techPink",
-]
+import { colorSchemes } from "@illa-design/link/dist/types/style"
 
 export function applyDividerContainerHorizontal(
+  color: DividerColorScheme,
   variant: DividerVariant,
 ): SerializedStyles {
+  const c =
+    globalColor(`--${illaPrefix}-${color}-08`) === ""
+      ? globalColor(`--${illaPrefix}-${color}-03`) === ""
+        ? color
+        : globalColor(`--${illaPrefix}-${color}-03`)
+      : globalColor(`--${illaPrefix}-${color}-08`)
   return css`
     vertical-align: middle;
     border-style: ${variant};
     border-width: 0 0 ${variant == "double" ? "3px" : "1px"} 0;
+    border-color: ${c};
     width: 100%;
   `
 }
 
 export function applyDividerContainerVertical(
+  color: DividerColorScheme,
   variant: DividerVariant,
 ): SerializedStyles {
+  const c =
+    globalColor(`--${illaPrefix}-${color}-08`) === ""
+      ? globalColor(`--${illaPrefix}-${color}-03`) === ""
+        ? color
+        : globalColor(`--${illaPrefix}-${color}-03`)
+      : globalColor(`--${illaPrefix}-${color}-08`)
   return css`
     display: inline-flex;
     vertical-align: middle;
     border-width: 0 0 0 ${variant == "double" ? "3px" : "1px"};
-    border-image: initial;
+    border-color: ${c};
     border-style: ${variant};
     height: 1em;
   `
 }
 
 export function applyDividerWithTextContainerStyle(
-  color?: DividerColorScheme,
-  textSize?: string,
+  direction: DividerDirection,
 ): SerializedStyles {
-  const _color = color && innerColor.indexOf(color) > -1 ? color : "grayBlue"
-  return css`
-    display: flex;
-    width: 100%;
-    align-items: center;
-    color: ${globalColor(`--${illaPrefix}-${_color}-08`)};
-    font-size: ${textSize};
-    span {
-      padding: 0 16px;
-    }
-  `
+  if (direction == "horizontal") {
+    return css`
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+    `
+  } else {
+    return css`
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    `
+  }
 }
 
-export const textCss = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-`
-
-export function applyDividerStyle(
-  variant: DividerVariant,
-  full?: boolean,
+export function applyTextStyle(
+  color: DividerColorScheme,
+  fs: string,
 ): SerializedStyles {
+  const c =
+    globalColor(`--${illaPrefix}-${color}-02`) === ""
+      ? color
+      : globalColor(`--${illaPrefix}-${color}-02`)
   return css`
-    flex-grow: ${full ? 1 : 0};
-    flex-basis: 24px;
-    ${applyDividerContainerHorizontal(variant)}
+    color: ${c};
+    margin-left: 16px;
+    margin-right: 16px;
+    font-size: ${fs};
   `
 }

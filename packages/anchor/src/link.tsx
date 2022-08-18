@@ -15,13 +15,8 @@ export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
   (props, ref) => {
     const { href = "#", title, children, ...restProps } = props
 
-    const {
-      currentLink,
-      registerLink,
-      unregisterLink,
-      onClickLink,
-      lineless,
-    } = useContext(AnchorContext)
+    const { currentLink, registerLink, unregisterLink, onClickLink, lineless } =
+      useContext(AnchorContext)
 
     const isActive = currentLink === href
 
@@ -38,7 +33,7 @@ export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
 
     function renderNestedAnchorLink() {
       return React.Children.toArray(children).filter(
-        child =>
+        (child) =>
           child &&
           (child as ReactElement).type &&
           ((child as ReactElement).type as { displayName?: string })
@@ -52,7 +47,7 @@ export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
           css={applyLinkStyle(isActive, lineless)}
           href={href}
           title={isString(title) ? title : ""}
-          onClick={e => onClickLink && onClickLink(href, e)}
+          onClick={(e) => onClickLink && onClickLink(href, e)}
           {...restProps}
         >
           {title}

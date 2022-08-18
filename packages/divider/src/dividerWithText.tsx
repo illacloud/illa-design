@@ -1,36 +1,48 @@
 import { forwardRef } from "react"
 import { DividerProps } from "./interface"
 import {
-  applyDividerStyle,
+  applyDividerContainerHorizontal,
+  applyDividerContainerVertical,
   applyDividerWithTextContainerStyle,
-  textCss,
+  applyTextStyle,
 } from "./style"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { css, SerializedStyles } from "@emotion/react"
 
 export const DividerWithText = forwardRef<HTMLDivElement, DividerProps>(
   (props, ref) => {
     const {
       variant = "solid",
       text,
+      fs = "14px",
+      direction = "horizontal",
       textAlign = "center",
-      textSize = "14px",
-      colorScheme,
+      colorScheme = "grayBlue",
       ...otherProps
     } = props
+
+    let dividerStyle: SerializedStyles = css``
+    switch (direction) {
+      case "vertical":
+        dividerStyle = applyDividerContainerVertical(colorScheme, variant)
+        break
+      case "horizontal":
+        dividerStyle = applyDividerContainerHorizontal(colorScheme, variant)
+        break
+    }
 
     return (
       <div
         css={[
-          applyDividerWithTextContainerStyle(colorScheme, textSize),
+          applyDividerWithTextContainerStyle(direction),
           applyBoxStyle(props),
         ]}
         ref={ref}
         {...deleteCssProps(otherProps)}
       >
-        <div css={applyDividerStyle(variant, textAlign !== "start")} />
-        <span css={textCss}>{text}</span>
-        <div css={applyDividerStyle(variant, textAlign !== "end")} />
+        <div css={dividerStyle} />
+        <span css={applyTextStyle(colorScheme, fs)}>{text}</span>
+        <div css={dividerStyle} />
       </div>
     )
   },
