@@ -7,6 +7,6 @@ export default {
   component: Divider,
 } as Meta
 
-const Template: Story<DividerProps> = props => <Divider {...props} />
+const Template: Story<DividerProps> = (props) => <Divider {...props} />
 
 export const Basic = Template.bind({})
