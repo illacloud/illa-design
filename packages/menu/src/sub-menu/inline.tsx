@@ -95,3 +95,5 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     </div>
   )
 })
+
+Inline.displayName = "Inline"

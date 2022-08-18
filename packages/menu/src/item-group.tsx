@@ -10,6 +10,7 @@ import {
   applyCollapseGroupTitleCss,
 } from "./style"
 
+// eslint-disable-next-line react/display-name
 const ForwardRefItemGroup = forwardRef<HTMLDivElement, ItemGroupProps>(
   (props, ref) => {
     const { children, title, level, _css, ...restProps } = props

@@ -43,6 +43,7 @@ export function createIcon(options: CreateIconOptions) {
     defaultProps = {},
   } = options
 
+  // eslint-disable-next-line react/display-name
   return forwardRef<SVGSVGElement, IconProps>((props, ref) => (
     <Icon ref={ref} viewBox={viewBox} fill={fill} {...defaultProps} {...props}>
       <title>{title}</title>

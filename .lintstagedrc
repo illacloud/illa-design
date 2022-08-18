@@ -1,0 +1,3 @@
+{
+    "!(*test).{ts,tsx}":[prettier --write, eslint]
+}

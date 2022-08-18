@@ -136,3 +136,5 @@ export const TimeColumn = forwardRef<HTMLDivElement, TimeColumnProps>(
     )
   },
 )
+
+TimeColumn.displayName = "TimeColumn"

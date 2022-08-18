@@ -178,6 +178,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     function ShortcutsCompt() {
       return shortcuts ? (
         <div css={applyShortContainerCss(shortcutsPlacementLeft)}>
+          {/* eslint-disable-next-line react/prop-types */}
           {shortcuts.map((item, key) => {
             return (
               <div
@@ -284,6 +285,8 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     )
   },
 )
+
+CommonPicker.displayName = "CommonPicker"
 
 export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
   (props, ref) => {

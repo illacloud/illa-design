@@ -7,6 +7,7 @@ import { Indent } from "./indent"
 import { applyItemCss } from "./style"
 import { applyItemTitleCss } from "./styles"
 
+// eslint-disable-next-line react/display-name
 const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   const {
     _key = "",
