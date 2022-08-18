@@ -188,9 +188,9 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
 
     const [_preIcon, _nextIcon] = useMemo(() => {
       if (_isHorizontalLayout) {
-        return [<UpIcon />, <DownIcon />]
+        return [<UpIcon key="upIcon" />, <DownIcon key="downIcon" />]
       } else {
-        return [<PreIcon />, <NextIcon />]
+        return [<PreIcon key="preIcon" />, <NextIcon key="nextIcon" />]
       }
     }, [_isHorizontalLayout])
 
@@ -293,3 +293,5 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     )
   },
 )
+
+TabLineHeader.displayName = "TabLineHeader"

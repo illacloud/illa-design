@@ -23,6 +23,7 @@ import { activeLineIndicatorCss, applyAnchorListCss } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
 import { deleteCssProps } from "@illa-design/theme"
 
+// eslint-disable-next-line react/display-name
 export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
   (props, ref) => {
     const {

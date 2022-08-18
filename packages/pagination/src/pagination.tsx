@@ -186,3 +186,5 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     )
   },
 )
+
+Pagination.displayName = "Pagination"

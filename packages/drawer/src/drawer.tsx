@@ -34,8 +34,7 @@ import {
   applyModalCancelBtn,
   maskAnimation,
 } from "./style"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
   const {
@@ -69,6 +68,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
 
   const getContainer = useCallback((): HTMLElement => {
     const container = getPopupContainer()
+    // eslint-disable-next-line react/no-find-dom-node
     return (findDOMNode(container) || document.body) as HTMLElement
   }, [getPopupContainer])
 

@@ -96,14 +96,12 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
       }
     }
 
-    if (autoFitWidth) {
-      useEffect(() => {
-        if (mirrorInputRef.current && inputRef.current) {
-          const width = mirrorInputRef.current.offsetWidth
-          inputRef.current.style.width = `${width + (width ? 8 : 4)}px`
-        }
-      }, [compositionValue, value, placeholder])
-    }
+    useEffect(() => {
+      if (autoFitWidth && mirrorInputRef.current && inputRef.current) {
+        const width = mirrorInputRef.current.offsetWidth
+        inputRef.current.style.width = `${width + (width ? 8 : 4)}px`
+      }
+    }, [compositionValue, value, placeholder])
 
     const inputProps = {
       ...otherProps,
@@ -156,3 +154,5 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
     )
   },
 )
+
+InputElement.displayName = "InputElement"

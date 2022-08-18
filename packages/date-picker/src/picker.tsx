@@ -68,3 +68,5 @@ export const Picker = forwardRef<HTMLDivElement, CommonPickerProps>(
     )
   },
 )
+
+Picker.displayName = "Picker"

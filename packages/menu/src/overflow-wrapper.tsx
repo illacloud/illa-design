@@ -93,8 +93,9 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
         data-sub-menu-placeholder-marker={isPlaceholder}
         _css={isPlaceholder ? subMenuPlaceholderCss : undefined}
         {...props}
-        children={children}
-      />
+      >
+        {children}
+      </SubMenu>
     )
   }
 

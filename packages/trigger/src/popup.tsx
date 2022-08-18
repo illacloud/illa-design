@@ -40,3 +40,5 @@ export const Popup = forwardRef<HTMLDivElement, PopupProps>((props, ref) => {
     document.body,
   )
 })
+
+Popup.displayName = "Popup"

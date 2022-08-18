@@ -57,3 +57,5 @@ export const Spin = forwardRef<HTMLDivElement, SpinProps>((props, ref) => {
     </div>
   )
 })
+
+Spin.displayName = "Spin"
