@@ -274,7 +274,7 @@ exports[`Space renders with divider 1`] = `
   display: inline-flex;
   vertical-align: middle;
   border-width: 0 0 0 1px;
-  border-image: initial;
+  border-color: #e5e6eb;
   border-style: solid;
   height: 1em;
 }
