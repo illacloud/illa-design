@@ -204,3 +204,5 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     </div>
   )
 })
+
+Tabs.displayName = "Tabs"

@@ -180,3 +180,5 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     )
   },
 )
+
+TabCommonHeader.displayName = "TabCommonHeader"

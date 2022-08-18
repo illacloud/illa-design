@@ -4,6 +4,7 @@ import { Pop } from "./pop"
 import { SubMenuProps } from "../interface"
 import { MenuContext } from "../menu-context"
 
+// eslint-disable-next-line react/display-name
 const ForwardRefSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
   (props, ref) => {
     const { children, ...restProps } = props

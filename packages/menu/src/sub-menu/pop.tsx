@@ -126,3 +126,5 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     </Dropdown>
   )
 })
+
+Pop.displayName = "Pop"

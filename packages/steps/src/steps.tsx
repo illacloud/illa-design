@@ -4,6 +4,7 @@ import { applyStepsStyle } from "./style"
 import { Step } from "./step"
 import { deleteCssProps } from "@illa-design/theme"
 
+// eslint-disable-next-line react/display-name
 const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
   const {
     variant = "line",
