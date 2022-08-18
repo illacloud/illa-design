@@ -12,6 +12,7 @@ import { FileListTextItem } from "./file-list-text-item"
 import { FileListPicItem } from "./file-list-pic-item"
 import { List } from "@illa-design/list"
 import { isFunction, isObject } from "@illa-design/system"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   const {
@@ -183,7 +184,11 @@ export const Upload = forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
   }
 
   return (
-    <div css={uploadContainerCss} ref={ref} {...rest}>
+    <div
+      css={[uploadContainerCss, applyBoxStyle(props)]}
+      ref={ref}
+      {...deleteCssProps(rest)}
+    >
       <UploadElement
         directory={directory}
         accept={accept}

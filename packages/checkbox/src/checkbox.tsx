@@ -16,6 +16,7 @@ import {
 } from "./style"
 import { CheckboxGroupContext } from "./context"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
   (props, ref) => {
@@ -55,7 +56,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
       <label
         css={[applyMergeCss(props), applyBoxStyle(props)]}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <input
           type="checkbox"

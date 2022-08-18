@@ -1,10 +1,12 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
+import { BoxProps } from "@illa-design/theme"
 
 export type StatisticMode = "default" | "builder"
 
 export interface StatisticProps
-  extends Omit<HTMLAttributes<HTMLElement>, "title" | "prefix"> {
+  extends Omit<HTMLAttributes<HTMLElement>, "title" | "prefix">,
+    BoxProps {
   title?: string | ReactNode
   mode?: StatisticMode
   value?: string | number | Dayjs
@@ -18,7 +20,8 @@ export interface StatisticProps
 }
 
 export interface CountDownProps
-  extends Omit<HTMLAttributes<HTMLElement>, "title" | "onChange"> {
+  extends Omit<HTMLAttributes<HTMLElement>, "title" | "onChange">,
+    BoxProps {
   title?: string | ReactNode
   mode?: StatisticMode
   value?: string | number | Dayjs | Date

@@ -1,5 +1,6 @@
 import { HTMLAttributes } from "react"
 import { SerializedStyles } from "@emotion/react"
+import { BoxProps } from "@illa-design/theme"
 
 export type LoadingSize = "small" | "medium" | "large"
 
@@ -19,8 +20,7 @@ export type LoadingColorScheme =
   | "techPink"
   | "techPurple"
 
-export interface LoadingProps extends HTMLAttributes<HTMLDivElement> {
-  _css?: SerializedStyles
+export interface LoadingProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   size?: LoadingSize
   colorScheme?: LoadingColorScheme
 }

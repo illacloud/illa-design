@@ -18,6 +18,7 @@ import {
   applyStepEmbed,
   applyStepEmbedContainer,
 } from "./style"
+import { deleteCssProps } from "@illa-design/theme"
 
 type StepMethods = "minus" | "plus"
 
@@ -33,8 +34,6 @@ const getPrecision = (precision?: number, step?: number) => {
 export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       inputRef,
       defaultValue,
       value,
@@ -206,12 +205,10 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
 
     return (
       <Input
-        css={applyInputNumber}
+        css={[applyInputNumber]}
         size={size}
         ref={ref}
         inputRef={refInput}
-        style={style}
-        className={className}
         error={error}
         disabled={disabled}
         readOnly={readOnly}
@@ -287,7 +284,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
           setIsUserInputting(false)
           onBlur && onBlur(e)
         }}
-        {...rest}
+        {...deleteCssProps(rest)}
       />
     )
   },

@@ -6,11 +6,12 @@ import {
   applyCardMetaTitle,
 } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const Meta = forwardRef<HTMLDivElement, CardMetaProps>((props, ref) => {
   const { title, description, actionList, avatar, ...restProps } = props
   return (
-    <div ref={ref} css={applyBoxStyle(props)} {...restProps}>
+    <div ref={ref} css={applyBoxStyle(props)} {...deleteCssProps(restProps)}>
       {title || description ? (
         <div>
           {title && <div css={applyCardMetaTitle}>{title}</div>}

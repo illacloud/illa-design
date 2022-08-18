@@ -1,6 +1,6 @@
 import { ChangeEvent, forwardRef, useContext } from "react"
 import { useMergeValue } from "@illa-design/system"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import { RadioProps } from "./interface"
 import { RadioGroupContext } from "./radio-group-context"
 import { radioTextCss, applyRadioContainerCss, applyRadioCss } from "./style"
@@ -9,8 +9,6 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
   const context = useContext(RadioGroupContext)
   const mergeProps = { ...props }
   const {
-    style,
-    className,
     children,
     checked,
     disabled,
@@ -49,14 +47,12 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
 
   return (
     <label
-      style={style}
-      className={className}
       css={[
         applyRadioContainerCss(stateValue, context?.type),
         applyBoxStyle(props),
       ]}
       ref={ref}
-      {...otherProps}
+      {...deleteCssProps(otherProps)}
     >
       <input
         type="radio"

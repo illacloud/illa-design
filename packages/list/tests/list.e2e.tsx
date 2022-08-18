@@ -1,11 +1,11 @@
-import {mount, unmount} from "@cypress/react"
+import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import {List, ListItem, ListItemMeta} from "../src"
+import { List, ListItem, ListItemMeta } from "../src"
 
 it("List renders raw.", () => {
   mount(
     <List
-      data={[{title: "Title A"}, {title: "Title B"}, {title: "Title C"}]}
+      data={[{ title: "Title A" }, { title: "Title B" }, { title: "Title C" }]}
       render={(data, _) => {
         return <div>{data.title}</div>
       }}
@@ -25,16 +25,16 @@ it("List renders with scroll event.", () => {
   mount(
     <List
       data={[
-        {title: "Title A", description: "Desc A"},
-        {title: "Title B", description: "Desc B"},
-        {title: "Title C", description: "Desc C"},
-        {title: "Title D", description: "Desc D"},
-        {title: "Title E", description: "Desc E"},
+        { title: "Title A", description: "Desc A" },
+        { title: "Title B", description: "Desc B" },
+        { title: "Title C", description: "Desc C" },
+        { title: "Title D", description: "Desc D" },
+        { title: "Title E", description: "Desc E" },
       ]}
       render={(data, index) => {
         return (
           <ListItem>
-            <ListItemMeta title={data.title}/>
+            <ListItemMeta title={data.title} />
           </ListItem>
         )
       }}
@@ -57,8 +57,8 @@ it("List renders with loader.", () => {
   mount(
     <List
       data={[
-        {title: "Title A", description: "Desc A"},
-        {title: "Title B", description: "Desc B"},
+        { title: "Title A", description: "Desc A" },
+        { title: "Title B", description: "Desc B" },
       ]}
       render={(data, index) => {
         return <span>{data.title}</span>
@@ -78,11 +78,11 @@ it("List renders with different size.", () => {
   mount(
     <>
       <List
-        data={[{title: "A"}]}
+        data={[{ title: "A" }]}
         render={(data, index) => {
           return (
             <ListItem data-testId="medium-item">
-              <ListItemMeta title={data.title}/>
+              <ListItemMeta title={data.title} />
             </ListItem>
           )
         }}
@@ -91,11 +91,11 @@ it("List renders with different size.", () => {
         }}
       />
       <List
-        data={[{title: "B"}]}
+        data={[{ title: "B" }]}
         render={(data, index) => {
           return (
             <ListItem data-testId="small-item" size="small">
-              <ListItemMeta title={data.title}/>
+              <ListItemMeta title={data.title} />
             </ListItem>
           )
         }}
@@ -117,7 +117,7 @@ it("List renders with different size.", () => {
 it("List renders with hoverable.", () => {
   mount(
     <List
-      data={[{title: "A"}]}
+      data={[{ title: "A" }]}
       render={(data, index) => {
         return <span>{data.title}</span>
       }}
@@ -136,8 +136,8 @@ it("List renders with end message.", () => {
   mount(
     <List
       data={[
-        {title: "Title A", description: "Desc A"},
-        {title: "Title B", description: "Desc B"},
+        { title: "Title A", description: "Desc A" },
+        { title: "Title B", description: "Desc B" },
       ]}
       render={(data, index) => {
         return <span>{data.title}</span>

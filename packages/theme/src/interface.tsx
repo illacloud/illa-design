@@ -118,15 +118,15 @@ export interface ColorStyledProps {
   /**
    * opacity
    */
-  opacity?: number
+  opac?: number
 }
 
 export interface PositionStyledProps {
   pos?: "absolute" | "relative" | "fixed" | "static"
-  t?: string
-  l?: string
-  b?: string
-  r?: string
+  posT?: string
+  posL?: string
+  posB?: string
+  posR?: string
 }
 
 export interface FontStyledProps {

@@ -2,7 +2,7 @@ import { Children, forwardRef, Fragment } from "react"
 import { SpaceProps } from "./interface"
 import { Divider, DividerDirection } from "@illa-design/divider"
 import { applyContainer, applyDividerSize } from "./style"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Space = forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
   const {
@@ -23,7 +23,7 @@ export const Space = forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
         applyBoxStyle(props),
       ]}
       ref={ref}
-      {...otherProps}
+      {...deleteCssProps(otherProps)}
     >
       {childrenArray.map((child, index) => {
         return (

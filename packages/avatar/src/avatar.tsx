@@ -6,6 +6,7 @@ import { ImgAvatar } from "./img-avatar"
 import { css } from "@emotion/react"
 import { AvatarGroupContext } from "./avatar-group-context"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 const applyOuterCss = css`
   vertical-align: middle;
@@ -65,7 +66,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
           <div
             css={[applyOuterCss, applyBoxStyle(props)]}
             ref={ref}
-            {...otherProps}
+            {...deleteCssProps(otherProps)}
           >
             {finalNode}
           </div>

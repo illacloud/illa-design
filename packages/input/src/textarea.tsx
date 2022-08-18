@@ -12,7 +12,12 @@ import {
 import { css } from "@emotion/react"
 import { omit, useMergeValue } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
-import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  applyBoxStyle,
+  deleteCssProps,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 import autoSizeTextAreaHeight from "./autoSizeTextAreaHeight"
 import { applyLengthErrorStyle, applyCountLimitStyle } from "./style"
 import { TextAreaProps } from "./interface"
@@ -27,8 +32,6 @@ import { formatForRule } from "./utils"
 export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       textAreaRef,
       allowClear,
       error,
@@ -145,7 +148,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
     }
 
     const textAreaProps = {
-      ...otherProps,
+      ...deleteCssProps(otherProps),
       disabled,
       placeholder,
       value: composValue || value || "",
@@ -157,8 +160,6 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
     return (
       <span
         ref={ref}
-        style={style}
-        className={className}
         css={[applyTextAreaContainer(stateValue), applyBoxStyle(props)]}
       >
         <textarea

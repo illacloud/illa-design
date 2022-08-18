@@ -8,6 +8,7 @@ import {
 } from "./style"
 import { DividerWithText } from "./dividerWithText"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const Divider = forwardRef<HTMLDivElement, DividerProps>(
   (props, ref) => {
@@ -30,18 +31,17 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
     }
 
     return (
-      <div
-        css={[
-          applyDividerWithTextContainerStyle(colorScheme),
-          applyBoxStyle(props),
-        ]}
-      >
+      <>
         {text && text?.length > 0 ? (
           <DividerWithText ref={ref} {...props} />
         ) : (
-          <div css={dividerCss} ref={ref} {...otherProps} />
+          <div
+            css={[dividerCss, applyBoxStyle(props)]}
+            ref={ref}
+            {...deleteCssProps(otherProps)}
+          />
         )}
-      </div>
+      </>
     )
   },
 )

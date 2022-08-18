@@ -19,6 +19,7 @@ import {
   applyAlertTitle,
 } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 const iconMap = {
   info: <InfoCircleIcon />,
@@ -96,7 +97,10 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
             }
           }}
         >
-          <div css={applyAlert(!!content, showIcon, closable)} {...restProps}>
+          <div
+            css={applyAlert(!!content, showIcon, closable)}
+            {...deleteCssProps(restProps)}
+          >
             {showIcon && (
               <div css={applyAlertIcon(type, !!content)}>{renderIcon}</div>
             )}

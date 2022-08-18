@@ -7,7 +7,7 @@ import {
   applyListItemExtraStyle,
   applyListItemInner,
 } from "./style"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
   (props, ref) => {
@@ -16,7 +16,7 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
       <div
         css={css(applyListItemContainer(size), applyBoxStyle(props))}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <div css={applyListItemInner}>
           {props.children}

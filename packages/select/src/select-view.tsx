@@ -51,7 +51,7 @@ const SelectAddon: FC<{
   colorScheme?: SelectColorScheme
   render?: ReactNode
   buttonProps?: ButtonProps
-}> = (props) => {
+}> = props => {
   const { addon, render, size, colorScheme, borderRadius, buttonProps } = props
   const buttonDefaultProps = {
     size,
@@ -88,8 +88,6 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
   (props, ref) => {
     const {
       children,
-      className,
-      style,
       value,
       bdRadius: borderRadius = "8px",
       size = "medium",
@@ -240,7 +238,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
 
       if (canFocusInput) {
         inputProps.onPaste = inputEventHandlers.paste
-        inputProps.onKeyDown = (event) => {
+        inputProps.onKeyDown = event => {
           if (canFocusInput && event.currentTarget === viewRef.current) {
             return
           }
@@ -284,7 +282,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         : usedValue.length
       const tagsToShow: ObjectValueType[] = usedValue
         .slice(0, usedMaxTagCount)
-        .map((v) => {
+        .map(v => {
           const result = renderText(v)
           return {
             value: v,
@@ -305,7 +303,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         onFocus: inputEventHandlers.focus,
         onBlur: inputEventHandlers.blur,
         onInputChange: inputEventHandlers.change,
-        onKeyDown: (event) => {
+        onKeyDown: event => {
           if (canFocusInput && event.currentTarget === viewRef.current) {
             return
           }
@@ -344,12 +342,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     }
 
     return (
-      <div
-        ref={ref}
-        style={style}
-        className={className}
-        css={[applySelectViewStyle(), applyBoxStyle(props)]}
-      >
+      <div ref={ref} css={[applySelectViewStyle(), applyBoxStyle(props)]}>
         {addonBefore ? (
           <SelectAddon
             addon={"before"}
@@ -362,7 +355,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         <span
           css={applySelectView(stateValue)}
           onClick={onClick}
-          onFocus={(event) => {
+          onFocus={event => {
             if (disabled) {
               return
             }
@@ -372,7 +365,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
               tryTriggerFocusChange("focus", event)
             }
           }}
-          onBlur={(event) => tryTriggerFocusChange("blur", event)}
+          onBlur={event => tryTriggerFocusChange("blur", event)}
           {...omit(otherProps, [
             "options",
             "filterOption",
@@ -385,9 +378,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
         >
           <div
             css={applySelectContent(stateValue)}
-            onClick={(e) =>
-              popupVisible && canFocusInput && e.stopPropagation()
-            }
+            onClick={e => popupVisible && canFocusInput && e.stopPropagation()}
           >
             {multiple ? renderMultiple() : renderSingle()}
             {!disabled && !isEmptyValue && allowClear ? (
@@ -395,7 +386,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
                 title="selectRemoveIcon"
                 css={iconPointerStyle(size)}
                 onClick={onClear}
-                onMouseDown={(event) => event?.preventDefault()}
+                onMouseDown={event => event?.preventDefault()}
               >
                 {removeIcon ? removeIcon : <ErrorIcon />}
               </span>

@@ -4,8 +4,8 @@ import { omit } from "@illa-design/system"
 
 export function applyBoxStyle(props: BoxProps): SerializedStyles {
   return css`
+    //SizeStyledProps
     width: ${props.w};
-    opacity: ${props.opacity};
     min-width: ${props.minW};
     max-width: ${props.maxW};
     height: ${props.h};
@@ -21,20 +21,25 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     margin-top: ${props.mt};
     margin-bottom: ${props.mb};
     margin: ${props.mg};
+    //ShapeStyledProps
     border-top: ${props.bt};
     border-bottom: ${props.bb};
     border-left: ${props.bl};
     border-right: ${props.br};
     border-radius: ${props.bdRadius};
     border: ${props.bd};
+    //ColorStyledProps
     background-color: ${props.bgColor};
     border-color: ${props.bdColor};
     color: ${props.c};
+    opacity: ${props.opac};
+    //PositionStyledProps
     position: ${props.pos};
-    top: ${props.t};
-    left: ${props.l};
-    bottom: ${props.b};
-    right: ${props.r};
+    top: ${props.posT};
+    left: ${props.posL};
+    bottom: ${props.posB};
+    right: ${props.posR};
+    // FlexStyledProps
     align-items: ${props.alignItems};
     align-content: ${props.alignContent};
     justify-content: ${props.justifyContent};
@@ -48,9 +53,70 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     justify-self: ${props.justifySelf};
     align-self: ${props.alignSelf};
     order: ${props.o};
+    //FontStyledProps
     font-size: ${props.fs};
     font-family: ${props.ff};
     font-weight: ${props.fw};
     ${props._css};
   `
+}
+
+export function deleteCssProps(obj: object): object {
+  omit(obj, [
+    //SizeStyledProps
+    "w",
+    "minW",
+    "maxW",
+    "h",
+    "minH",
+    "maxH",
+    "pt",
+    "pb",
+    "pl",
+    "pr",
+    "pd",
+    "ml",
+    "mr",
+    "mt",
+    "mb",
+    "mg",
+    //ShapeStyledProps
+    "bt",
+    "bb",
+    "bl",
+    "br",
+    "bdRadius",
+    "bd",
+    //ColorStyledProps
+    "bgColor",
+    "bdColor",
+    "c",
+    "opac",
+    //PositionStyledProps
+    "pos",
+    "posT",
+    "posL",
+    "posB",
+    "posR",
+    // FlexStyledProps
+    "alignItems",
+    "alignContent",
+    "justifyContent",
+    "justifyItems",
+    "flexWrap",
+    "flexDirection",
+    "flex",
+    "flexGrow",
+    "flexShrink",
+    "flexBasis",
+    "justifySelf",
+    "alignSelf",
+    "o",
+    //FontStyledProps
+    "fs",
+    "ff",
+    "fw",
+    "_css",
+  ])
+  return obj
 }

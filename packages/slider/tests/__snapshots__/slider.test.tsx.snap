@@ -169,15 +169,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
 
 .emotion-117 {
   position: relative;
-}
-
-.emotion-117:hover [title="inputStepEmbed"] {
-  visibility: visible;
-  opacity: 1;
-}
-
-.emotion-118 {
-  position: relative;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -193,7 +184,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   line-height: 18px;
 }
 
-.emotion-119 {
+.emotion-118 {
   width: 100%;
   height: 100%;
   display: flex;
@@ -217,17 +208,26 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   cursor: not-allowed;
 }
 
-.emotion-119:first-of-type {
+.emotion-118:first-of-type {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 
-.emotion-119:last-of-type {
+.emotion-118:last-of-type {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
-.emotion-119:hover [title="InputClearIcon"] {
+.emotion-118:hover [title="InputClearIcon"] {
+  opacity: 1;
+}
+
+.emotion-119 {
+  position: relative;
+}
+
+.emotion-119:hover [title="inputStepEmbed"] {
+  visibility: visible;
   opacity: 1;
 }
 
@@ -819,15 +819,15 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
       role="input-number"
     >
       <div
-        class="emotion-117 emotion-118"
-        style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
+        class="emotion-117"
       >
         <span
-          class="emotion-119"
+          class="emotion-118"
         >
           <input
-            class="emotion-120"
+            class="emotion-119 emotion-120"
             disabled=""
+            style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
             value="0"
           />
           <div
@@ -1093,15 +1093,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 
 .emotion-117 {
   position: relative;
-}
-
-.emotion-117:hover [title="inputStepEmbed"] {
-  visibility: visible;
-  opacity: 1;
-}
-
-.emotion-118 {
-  position: relative;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -1117,7 +1108,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   line-height: 18px;
 }
 
-.emotion-119 {
+.emotion-118 {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1141,17 +1132,26 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   cursor: not-allowed;
 }
 
-.emotion-119:first-of-type {
+.emotion-118:first-of-type {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 
-.emotion-119:last-of-type {
+.emotion-118:last-of-type {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
-.emotion-119:hover [title="InputClearIcon"] {
+.emotion-118:hover [title="InputClearIcon"] {
+  opacity: 1;
+}
+
+.emotion-119 {
+  position: relative;
+}
+
+.emotion-119:hover [title="inputStepEmbed"] {
+  visibility: visible;
   opacity: 1;
 }
 
@@ -1743,15 +1743,15 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
       role="input-number"
     >
       <div
-        class="emotion-117 emotion-118"
-        style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
+        class="emotion-117"
       >
         <span
-          class="emotion-119"
+          class="emotion-118"
         >
           <input
-            class="emotion-120"
+            class="emotion-119 emotion-120"
             disabled=""
+            style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
             value="0"
           />
           <div
@@ -2023,15 +2023,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 
 .emotion-117 {
   position: relative;
-}
-
-.emotion-117:hover [title="inputStepEmbed"] {
-  visibility: visible;
-  opacity: 1;
-}
-
-.emotion-118 {
-  position: relative;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -2047,7 +2038,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   line-height: 18px;
 }
 
-.emotion-119 {
+.emotion-118 {
   width: 100%;
   height: 100%;
   display: flex;
@@ -2071,17 +2062,26 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   cursor: not-allowed;
 }
 
-.emotion-119:first-of-type {
+.emotion-118:first-of-type {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 
-.emotion-119:last-of-type {
+.emotion-118:last-of-type {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
-.emotion-119:hover [title="InputClearIcon"] {
+.emotion-118:hover [title="InputClearIcon"] {
+  opacity: 1;
+}
+
+.emotion-119 {
+  position: relative;
+}
+
+.emotion-119:hover [title="inputStepEmbed"] {
+  visibility: visible;
   opacity: 1;
 }
 
@@ -2673,15 +2673,15 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
       role="input-number"
     >
       <div
-        class="emotion-117 emotion-118"
-        style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
+        class="emotion-117"
       >
         <span
-          class="emotion-119"
+          class="emotion-118"
         >
           <input
-            class="emotion-120"
+            class="emotion-119 emotion-120"
             disabled=""
+            style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
             value="0"
           />
           <div

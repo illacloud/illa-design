@@ -21,6 +21,7 @@ import { AnchorContext } from "./context"
 import { findNode, getContainer, getContainerElement } from "./utils"
 import { activeLineIndicatorCss, applyAnchorListCss } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
   (props, ref) => {
@@ -219,7 +220,7 @@ export const ForwardRefAnchor = forwardRef<HTMLDivElement, AnchorProps>(
       <div
         ref={ref}
         css={[applyAnchorListCss(lineless), applyBoxStyle(props)]}
-        {...restProps}
+        {...deleteCssProps(restProps)}
       >
         {!lineless && currentLink && (
           <div css={activeLineIndicatorCss} ref={activeLineIndicator} />

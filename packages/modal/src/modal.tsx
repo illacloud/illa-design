@@ -40,13 +40,11 @@ import { AlertType as ConfirmType } from "@illa-design/alert"
 import FocusLock from "react-focus-lock"
 import { RemoveScroll } from "react-remove-scroll"
 import useModal from "./useModal"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       withoutPadding,
       children,
       visible,
@@ -158,8 +156,6 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           initial="initial"
           transition={{ duration: 0.2 }}
           css={[applyModal(alignCenter, simple), applyBoxStyle(props)]}
-          style={style}
-          className={className}
           onMouseDown={() => {
             maskClickRef.current = false
           }}
@@ -231,11 +227,11 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           <div
             role="dialog"
             css={applyModalWrapper(alignCenter, visible)}
-            {...omit(otherProps, ["isNotice", "noticeType"])}
             onMouseDown={(e) => {
               maskClickRef.current = e.target === e.currentTarget
             }}
             onClick={onClickMask}
+            {...omit(deleteCssProps(otherProps), ["isNotice", "noticeType"])}
           >
             <AnimatePresence>{visible && renderModal()}</AnimatePresence>
           </div>

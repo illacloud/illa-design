@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactNode } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type LabelPlacement = "vertical" | "horizontal"
 export type StepVariant = "line" | "dot" | "navigation"
@@ -19,7 +20,8 @@ type StepConfig = {
 }
 
 export interface StepsProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange">,
+    BoxProps {
   variant?: StepVariant
   current?: number
   status?: StepStatus
@@ -32,7 +34,8 @@ export interface StepsProps
 }
 
 export interface StepProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "title" | "onClick"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "title" | "onClick">,
+    BoxProps {
   title: string | ReactNode
   id?: any
   description?: string | ReactNode

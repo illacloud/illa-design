@@ -32,8 +32,6 @@ import { triggerContentStyle } from "./style"
 export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       children,
       popup,
       isRangePicker,
@@ -175,8 +173,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     const baseInputProps = {
       ...otherProps,
       ref,
-      style,
-      className,
       error,
       size,
       readOnly: !editable,

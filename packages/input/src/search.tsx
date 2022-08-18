@@ -6,12 +6,15 @@ import { applyContainerCss, applyInputContainer, applySuffixCls } from "./style"
 import { InputElement } from "./input-element"
 import { Button } from "@illa-design/button"
 import { css } from "@emotion/react"
-import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  applyBoxStyle,
+  deleteCssProps,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 
 export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   const {
-    style,
-    className,
     inputRef,
     allowClear,
     error,
@@ -59,7 +62,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   }
 
   const searchProp = {
-    ...rest,
+    ...deleteCssProps(rest),
     size,
     disabled,
     allowClear,
@@ -67,12 +70,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   }
 
   return (
-    <div
-      ref={ref}
-      style={style}
-      className={className}
-      css={[applyContainerCss(stateValue), applyBoxStyle(props)]}
-    >
+    <div ref={ref} css={[applyContainerCss(stateValue), applyBoxStyle(props)]}>
       <span css={applyInputContainer(stateValue, requirePadding)}>
         <InputElement
           {...searchProp}

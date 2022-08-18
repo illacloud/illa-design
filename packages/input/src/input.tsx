@@ -13,7 +13,7 @@ import {
 import { InputElement } from "./input-element"
 import { formatForRule } from "./utils"
 import { SerializedStyles } from "@emotion/react"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 const inputAddon = (
   node?: ReactNode,
@@ -25,8 +25,6 @@ const inputAddon = (
 
 export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   const {
-    style,
-    className,
     inputRef,
     allowClear,
     error,
@@ -96,12 +94,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   }
 
   return (
-    <div
-      ref={ref}
-      css={[applyContainerCss(stateValue), applyBoxStyle(props)]}
-      style={style}
-      className={className}
-    >
+    <div ref={ref} css={[applyContainerCss(stateValue), applyBoxStyle(props)]}>
       {inputAddon(
         addonBefore?.render,
         addonBefore?.custom,
@@ -111,7 +104,6 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         {inputAddon(prefix?.render, prefix?.custom, applyPrefixCls(size))}
         <InputElement
           ref={inputRef}
-          {...rest}
           value={value}
           size={size}
           error={error}
@@ -144,6 +136,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
             onPressEnter?.(e)
           }}
           readOnly={readOnly}
+          {...deleteCssProps(rest)}
         />
         {inputAddon(suffix?.render, suffix?.custom, applySuffixCls(size))}
       </span>

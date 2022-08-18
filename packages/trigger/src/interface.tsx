@@ -1,5 +1,4 @@
 import { ReactNode } from "react"
-import { SerializedStyles } from "@emotion/react"
 import { AdjustResult } from "./adjust-tips-location"
 import { BoxProps } from "@illa-design/theme"
 

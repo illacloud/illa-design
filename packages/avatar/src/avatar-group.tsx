@@ -4,6 +4,7 @@ import { css } from "@emotion/react"
 import { Avatar } from "./avatar"
 import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
 import { AvatarGroupContext } from "./avatar-group-context"
+import { deleteCssProps } from "@illa-design/theme"
 
 const avatarGroupCss = css`
   display: flex;
@@ -79,7 +80,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
           ${applyBoxStyle(props)};
         `}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         {newNodeList}
       </div>

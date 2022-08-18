@@ -35,6 +35,7 @@ import {
   maskAnimation,
 } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
   const {
@@ -86,7 +87,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
   const renderDrawer = () => {
     const element = (
       <RemoveScroll>
-        <div css={applyDrawerScroll} {...otherProps}>
+        <div css={applyDrawerScroll} {...deleteCssProps(otherProps)}>
           {title && (
             <div css={applyDrawerHeader}>
               <div css={applyDrawerTitle}>{title}</div>

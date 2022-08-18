@@ -15,6 +15,7 @@ import {
 } from "./style"
 import { CheckboxGroupContext } from "./context"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
   (props, ref) => {
@@ -69,7 +70,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
       <div
         css={[checkboxGroupCss, applyBoxStyle(props)]}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <CheckboxGroupContext.Provider
           value={{

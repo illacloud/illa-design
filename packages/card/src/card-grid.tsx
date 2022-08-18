@@ -2,6 +2,7 @@ import { Children, cloneElement, forwardRef, ReactElement } from "react"
 import { CardGridProps } from "./interface"
 import { applyCardGrid } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const CardGrid = forwardRef<HTMLDivElement, CardGridProps>(
   (props, ref) => {
@@ -19,7 +20,7 @@ export const CardGrid = forwardRef<HTMLDivElement, CardGridProps>(
       <div
         ref={ref}
         css={[applyCardGrid(hoverable ?? false), applyBoxStyle(props)]}
-        {...restProps}
+        {...deleteCssProps(restProps)}
       >
         {renderChildren}
       </div>

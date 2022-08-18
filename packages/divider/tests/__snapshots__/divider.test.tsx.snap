@@ -3,23 +3,6 @@
 exports[`Divider renders default 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #e5e6eb;
-}
-
-.emotion-0 span {
-  padding: 0 16px;
-}
-
-.emotion-1 {
   vertical-align: middle;
   border-style: solid;
   border-width: 0 0 1px 0;
@@ -28,34 +11,13 @@ exports[`Divider renders default 1`] = `
 
 <div
     class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    />
-  </div>
+  />
 </DocumentFragment>
 `;
 
 exports[`Divider renders horizontal 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #e5e6eb;
-}
-
-.emotion-0 span {
-  padding: 0 16px;
-}
-
-.emotion-1 {
   vertical-align: middle;
   border-style: solid;
   border-width: 0 0 1px 0;
@@ -64,34 +26,13 @@ exports[`Divider renders horizontal 1`] = `
 
 <div
     class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    />
-  </div>
+  />
 </DocumentFragment>
 `;
 
 exports[`Divider renders vertical 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #e5e6eb;
-}
-
-.emotion-0 span {
-  padding: 0 16px;
-}
-
-.emotion-1 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -105,33 +46,13 @@ exports[`Divider renders vertical 1`] = `
 
 <div
     class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    />
-  </div>
+  />
 </DocumentFragment>
 `;
 
 exports[`Divider renders with colorScheme 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-0 span {
-  padding: 0 16px;
-}
-
-.emotion-1 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -145,11 +66,7 @@ exports[`Divider renders with colorScheme 1`] = `
 
 <div
     class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    />
-  </div>
+  />
 </DocumentFragment>
 `;
 
@@ -166,6 +83,7 @@ exports[`Divider renders with text 1`] = `
   -ms-flex-align: center;
   align-items: center;
   color: #e5e6eb;
+  font-size: 20px;
 }
 
 .emotion-0 span {
@@ -173,24 +91,6 @@ exports[`Divider renders with text 1`] = `
 }
 
 .emotion-1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #e5e6eb;
-  font-size: 20px;
-}
-
-.emotion-1 span {
-  padding: 0 16px;
-}
-
-.emotion-2 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -204,11 +104,11 @@ exports[`Divider renders with text 1`] = `
   width: 100%;
 }
 
-.emotion-3 {
+.emotion-2 {
   color: #1d2129;
 }
 
-.emotion-6 {
+.emotion-4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -222,11 +122,11 @@ exports[`Divider renders with text 1`] = `
   font-size: 14px;
 }
 
-.emotion-6 span {
+.emotion-4 span {
   padding: 0 16px;
 }
 
-.emotion-7 {
+.emotion-5 {
   -webkit-box-flex: 0;
   -webkit-flex-grow: 0;
   -ms-flex-positive: 0;
@@ -243,63 +143,51 @@ exports[`Divider renders with text 1`] = `
 <div>
     <div
       class="emotion-0"
+      direction="vertical"
     >
       <div
         class="emotion-1"
-        direction="vertical"
+      />
+      <span
+        class="emotion-2"
       >
-        <div
-          class="emotion-2"
-        />
-        <span
-          class="emotion-3"
-        >
-          this is a divider
-        </span>
-        <div
-          class="emotion-2"
-        />
-      </div>
+        this is a divider
+      </span>
+      <div
+        class="emotion-1"
+      />
     </div>
     <div
-      class="emotion-0"
+      class="emotion-4"
+      direction="vertical"
     >
       <div
-        class="emotion-6"
-        direction="vertical"
+        class="emotion-5"
+      />
+      <span
+        class="emotion-2"
       >
-        <div
-          class="emotion-7"
-        />
-        <span
-          class="emotion-3"
-        >
-          this is a divider
-        </span>
-        <div
-          class="emotion-2"
-        />
-      </div>
+        this is a divider
+      </span>
+      <div
+        class="emotion-1"
+      />
     </div>
     <div
-      class="emotion-0"
+      class="emotion-4"
+      direction="vertical"
     >
       <div
-        class="emotion-6"
-        direction="vertical"
+        class="emotion-1"
+      />
+      <span
+        class="emotion-2"
       >
-        <div
-          class="emotion-2"
-        />
-        <span
-          class="emotion-3"
-        >
-          this is a divider
-        </span>
-        <div
-          class="emotion-7"
-        />
-      </div>
+        this is a divider
+      </span>
+      <div
+        class="emotion-5"
+      />
     </div>
   </div>
 </DocumentFragment>

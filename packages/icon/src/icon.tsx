@@ -3,6 +3,7 @@ import { IconProps } from "./interface"
 import { css } from "@emotion/react"
 import { omit } from "@illa-design/system"
 import { rotateAnimation } from "./style"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
   const {
@@ -28,11 +29,11 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
   return (
     <svg
       ref={ref}
-      css={css(finalCss, _css)}
+      css={css(finalCss, _css, applyBoxStyle(props))}
       width={width}
       height={height}
       color={color}
-      {...otherProps}
+      {...deleteCssProps(otherProps)}
     >
       {props.children}
     </svg>

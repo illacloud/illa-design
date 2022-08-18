@@ -12,6 +12,7 @@ import {
   CollapseItemAnimation,
 } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
   (props, ref) => {
@@ -39,7 +40,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
       <div
         ref={ref}
         css={[collapseItemStyle, applyBoxStyle(props)]}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <div
           role={"button"}

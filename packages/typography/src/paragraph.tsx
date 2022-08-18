@@ -4,7 +4,7 @@ import { Base } from "./base"
 import { applyParagraphContainer } from "./paragraph-style"
 import { Tooltip } from "@illa-design/tooltip"
 import { mergedToString } from "@illa-design/system"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
   (props, ref) => {
@@ -32,7 +32,7 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
       <div
         css={[applyParagraphContainer(indent ?? false), applyBoxStyle(props)]}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <Base
           colorScheme={colorScheme}

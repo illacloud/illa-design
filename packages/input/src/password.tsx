@@ -10,13 +10,11 @@ import {
 import { PasswordProps } from "./interface"
 import { InputElement } from "./input-element"
 import { css } from "@emotion/react"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Password = forwardRef<HTMLDivElement, PasswordProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       inputRef,
       allowClear,
       error,
@@ -56,7 +54,7 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
     }
 
     const passwordProp = {
-      ...rest,
+      ...deleteCssProps(rest),
       type: visibility ? "text" : "password",
       size,
       disabled,
@@ -75,8 +73,6 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
     return (
       <div
         ref={ref}
-        style={style}
-        className={className}
         css={[applyContainerCss(stateValue), applyBoxStyle(props)]}
       >
         <span css={applyInputContainer(stateValue, requirePadding)}>

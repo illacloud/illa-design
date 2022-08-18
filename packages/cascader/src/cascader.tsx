@@ -287,8 +287,6 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       >
         <div ref={ref}>
           <SelectView
-            {...props}
-            {...selectViewEventHandlers}
             ref={selectViewRef}
             inputValue={inputValue}
             value={multiple ? mergeValue : mergeValue && mergeValue[0]}
@@ -316,6 +314,8 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
               const newValue = mergeValue?.filter((_, i) => i !== index) ?? []
               handleChange(newValue)
             }}
+            {...props}
+            {...selectViewEventHandlers}
           />
         </div>
       </Trigger>

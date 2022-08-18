@@ -1,13 +1,14 @@
 import { forwardRef, ReactElement } from "react"
 import { isObject } from "@illa-design/system"
 import {
-  SkeletonProps,
   SkeletonImageProps,
+  SkeletonProps,
   SkeletonTextProps,
 } from "./interface"
 import { Text } from "./text"
 import { Image } from "./image"
-import { skeletonStyle, skeletonImageStyle, skeletonTextStyle } from "./style"
+import { skeletonImageStyle, skeletonStyle, skeletonTextStyle } from "./style"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 function getProps(props: boolean | Object) {
   return isObject(props) ? props : {}
@@ -16,8 +17,6 @@ function getProps(props: boolean | Object) {
 export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       animation,
       visible = true,
       image,
@@ -34,7 +33,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       const textProps = getProps(text) as SkeletonTextProps
 
       return (
-        <Text css={skeletonTextStyle} {...textProps} animation={animation} />
+        <Text css={[skeletonTextStyle]} animation={animation} {...textProps} />
       )
     }
 
@@ -45,7 +44,11 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       const imageProps = getProps(image) as SkeletonImageProps
 
       return (
-        <Image css={skeletonImageStyle} {...imageProps} animation={animation} />
+        <Image
+          css={[skeletonImageStyle]}
+          animation={animation}
+          {...imageProps}
+        />
       )
     }
 
@@ -53,10 +56,8 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       return (
         <div
           ref={ref}
-          css={skeletonStyle}
-          className={className}
-          style={style}
-          {...restProps}
+          css={[skeletonStyle, applyBoxStyle(props)]}
+          {...deleteCssProps(restProps)}
         >
           {renderImage()}
           {renderText()}

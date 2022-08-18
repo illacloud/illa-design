@@ -3,7 +3,7 @@ import { TextProps } from "./interface"
 import { Base } from "./base"
 import { Tooltip } from "@illa-design/tooltip"
 import { mergedToString } from "@illa-design/system"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
   // get props
@@ -40,7 +40,11 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
     </Base>
   )
   const text = (
-    <span css={[applyBoxStyle(props)]} ref={ref} {...otherProps}>
+    <span
+      css={[applyBoxStyle(props)]}
+      ref={ref}
+      {...deleteCssProps(otherProps)}
+    >
       {base}
     </span>
   )

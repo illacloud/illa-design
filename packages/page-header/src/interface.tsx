@@ -1,10 +1,10 @@
 import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { BreadcrumbProps } from "@illa-design/breadcrumb"
-import { SerializedStyles } from "@emotion/react"
+import { BoxProps } from "@illa-design/theme"
 
 export interface PageHeaderProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
-  _css?: SerializedStyles
+  extends Omit<HTMLAttributes<HTMLDivElement>, "title">,
+    BoxProps {
   title?: ReactNode
   subTitle?: ReactNode
   breadcrumb?: BreadcrumbProps

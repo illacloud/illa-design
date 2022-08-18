@@ -8,6 +8,7 @@ import {
   containerCss,
   tipCss,
 } from "./styles"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Spin = forwardRef<HTMLDivElement, SpinProps>((props, ref) => {
   const {
@@ -40,7 +41,12 @@ export const Spin = forwardRef<HTMLDivElement, SpinProps>((props, ref) => {
   }
 
   return (
-    <div placeholder={placeholder} css={containerCss} ref={ref} {...rest}>
+    <div
+      placeholder={placeholder}
+      css={[containerCss, applyBoxStyle(props)]}
+      ref={ref}
+      {...deleteCssProps(rest)}
+    >
       {children}
       {loading && (
         <div css={applySpinContainerCss(loading)}>

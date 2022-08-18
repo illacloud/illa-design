@@ -1,15 +1,16 @@
 import { forwardRef, Fragment, useState } from "react"
 import NP from "number-precision"
 import { RateProps } from "./interface"
-import { StarIcon, HeartIcon } from "@illa-design/icon"
+import { HeartIcon, StarIcon } from "@illa-design/icon"
 import { Tooltip } from "@illa-design/tooltip"
 import {
-  applyRateInner,
   applyRate,
   applyRateCharacter,
   applyRateCharacterLeft,
   applyRateCharacterRight,
+  applyRateInner,
 } from "./style"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
   const {
@@ -137,8 +138,8 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
   return (
     <div
       ref={ref}
-      css={applyRate(disabled ?? false)}
-      {...restProps}
+      css={[applyRate(disabled ?? false), applyBoxStyle(props)]}
+      {...deleteCssProps(restProps)}
       onMouseLeave={resetHoverIndex}
     >
       <div css={applyRateInner}>

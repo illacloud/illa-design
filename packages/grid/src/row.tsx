@@ -7,6 +7,7 @@ import {
 } from "./style"
 import { css } from "@emotion/react"
 import { RowContext } from "./row-context"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Row = forwardRef<HTMLDivElement, RowProps>((props, ref) => {
   const { align, justify, horizontalGap, verticalGap, ...otherProps } = props
@@ -22,7 +23,11 @@ export const Row = forwardRef<HTMLDivElement, RowProps>((props, ref) => {
   `
 
   return (
-    <div ref={ref} css={finalCss} {...otherProps}>
+    <div
+      ref={ref}
+      css={[finalCss, applyBoxStyle(props)]}
+      {...deleteCssProps(otherProps)}
+    >
       <RowContext.Provider
         value={
           {

@@ -1,20 +1,21 @@
-import { forwardRef, Children, cloneElement, ReactElement } from "react"
+import { Children, cloneElement, forwardRef, ReactElement } from "react"
 import { CardGrid } from "./card-grid"
 import { Meta } from "./meta"
 import { CardProps } from "./interface"
 import { Loading } from "@illa-design/loading"
 import {
-  applyCardActionItem,
   applyCard,
+  applyCardActionItem,
   applyCardActions,
+  applyCardActionsRight,
   applyCardBody,
   applyCardCover,
   applyCardHeader,
   applyCardHeaderExtra,
   applyCardHeaderTitle,
-  applyCardActionsRight,
 } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const {
@@ -74,7 +75,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
         applyCard(bordered, hoverable ?? false, isGridMode),
         applyBoxStyle(props),
       ]}
-      {...restProps}
+      {...deleteCssProps(restProps)}
     >
       {title || extra ? (
         <div css={applyCardHeader(size)}>

@@ -15,7 +15,7 @@ import { TBody } from "./tbody"
 import { Td } from "./td"
 import { TFoot } from "./tfoot"
 import { TableData } from "./table-data"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import {
   ColumnFiltersState,
   flexRender,
@@ -82,7 +82,10 @@ function renderDirectTable<D extends TableData>(
       ref={ref}
     >
       <TableContext.Provider value={contextProps}>
-        <table css={applyTableStyle(tableLayout)} {...otherProps}>
+        <table
+          css={applyTableStyle(tableLayout)}
+          {...deleteCssProps(otherProps)}
+        >
           {children}
         </table>
       </TableContext.Provider>
@@ -161,7 +164,10 @@ function renderDataDrivenTable<D extends TableData>(
       ref={ref}
     >
       <TableContext.Provider value={contextProps}>
-        <table css={applyTableStyle(tableLayout)} {...otherProps}>
+        <table
+          css={applyTableStyle(tableLayout)}
+          {...deleteCssProps(otherProps)}
+        >
           {showHeader && (
             <Thead pined={pinedHeader}>
               {table.getHeaderGroups().map((headerGroup) => (

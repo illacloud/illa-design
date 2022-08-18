@@ -10,6 +10,7 @@ import {
   statisticValueStyle,
 } from "./style"
 import { isObject } from "@illa-design/system"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
   (props, ref) => {
@@ -42,7 +43,11 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
       return decimal !== void 0 ? int + decimalSeparator + decimal : int
     }, [format, value, groupSeparator, decimalSeparator, precision])
     return (
-      <div css={statisticStyle} ref={ref} {...restProps}>
+      <div
+        css={[statisticStyle, applyBoxStyle(props)]}
+        ref={ref}
+        {...deleteCssProps(restProps)}
+      >
         {title && <div css={statisticTitleStyle}>{title}</div>}
         <div css={applyStatisticContentStyle(mode)}>
           <Skeleton

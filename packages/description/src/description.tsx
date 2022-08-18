@@ -20,6 +20,7 @@ import {
 import { css } from "@emotion/react"
 import useWindowSize from "react-use/lib/useWindowSize"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 function getTrList(
   data: DescriptionItem[],
@@ -303,7 +304,7 @@ export const Description = forwardRef<HTMLDivElement, DescriptionProps>(
       <div
         ref={ref}
         css={[applyDescContainerStyle, applyBoxStyle(props)]}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         {title && <div css={applyTitleStyle(size)}>{title}</div>}
         {data && (

@@ -2,11 +2,10 @@ import React, { forwardRef, ReactElement, ReactNode } from "react"
 import { StepsProps } from "./interface"
 import { applyStepsStyle } from "./style"
 import { Step } from "./step"
+import { deleteCssProps } from "@illa-design/theme"
 
 const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
   const {
-    style,
-    className,
     variant = "line",
     direction = "horizontal",
     labelPlacement = "horizontal",
@@ -61,9 +60,7 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
     <div
       ref={ref}
       css={[applyStepsStyle({ direction })]}
-      style={style}
-      className={className}
-      {...restProps}
+      {...deleteCssProps(restProps)}
     >
       {React.Children.toArray(children)
         .filter(filterStepComponent)

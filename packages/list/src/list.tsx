@@ -5,7 +5,7 @@ import { Divider } from "@illa-design/divider"
 import VirtualList from "rc-virtual-list"
 import { Text, Typography } from "@illa-design/typography"
 import { css } from "@emotion/react"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
   const {
@@ -33,7 +33,7 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
     <div
       css={css(applyListContainer(bordered), applyBoxStyle(props))}
       ref={ref}
-      {...otherProps}
+      {...deleteCssProps(otherProps)}
     >
       {header && (
         <>

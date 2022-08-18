@@ -5,6 +5,7 @@ import { separatorCss, itemCss, wrapCss } from "./style"
 import { BreadcrumbContext } from "./breadcrumb-context"
 import { BreadcrumbItem } from "./breadcrumbItem"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
   (props, ref) => {
@@ -13,6 +14,7 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
     function Separator() {
       return <span css={separatorCss}>{separator ? separator : "/"}</span>
     }
+
     const renderItem = (list: any, idx: number) => {
       if (!maxCount || list.length < maxCount) return true
       if (idx === 0 || idx > list.length - maxCount) return true
@@ -74,7 +76,11 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
     })
 
     return (
-      <div ref={ref} {...restProps} css={css(wrapCss, applyBoxStyle(props))}>
+      <div
+        ref={ref}
+        css={css(wrapCss, applyBoxStyle(props))}
+        {...deleteCssProps(restProps)}
+      >
         {routes?.length ? routeItems : normalItems}
       </div>
     )

@@ -1,4 +1,5 @@
 import { HTMLAttributes, ReactNode } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type UploadStatus = "init" | "uploading" | "done" | "error"
 export type ListType = "text" | "picture-list"
@@ -25,7 +26,8 @@ export interface UploadListProps {
 }
 
 export interface UploadProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "onProgress"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "onProgress">,
+    BoxProps {
   defaultFileList?: UploadItem[]
   // controlled
   fileList?: UploadItem[]

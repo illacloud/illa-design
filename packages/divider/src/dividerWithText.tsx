@@ -6,6 +6,7 @@ import {
   textCss,
 } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const DividerWithText = forwardRef<HTMLDivElement, DividerProps>(
   (props, ref) => {
@@ -25,7 +26,7 @@ export const DividerWithText = forwardRef<HTMLDivElement, DividerProps>(
           applyBoxStyle(props),
         ]}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <div css={applyDividerStyle(variant, textAlign !== "start")} />
         <span css={textCss}>{text}</span>

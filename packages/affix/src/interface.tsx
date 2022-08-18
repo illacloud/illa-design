@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react"
-import { BoxProps } from "@illa-design/theme/src"
+import { BoxProps } from "@illa-design/theme"
 
 export interface AffixProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange">,
