@@ -22,7 +22,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     return (
       <ButtonGroupContext.Consumer>
-        {(value) => {
+        {value => {
           const { attached, first, last } = value ?? {}
           const {
             colorScheme = value?.colorScheme ?? "blue",
@@ -36,7 +36,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             leftIcon,
             disabled,
             rightIcon,
-            buttonRadius,
             textColor,
             onClick,
             ...otherProps
@@ -65,7 +64,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               disabled || loading,
             )};
             ${applyBg(variant, colorScheme, disabled || loading)};
-            ${buttonRadius ? `border-radius: ${buttonRadius};` : ""}
           `
 
           return (
@@ -73,7 +71,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               ref={ref}
               css={[finalContainer, applyBoxStyle(otherProps)]}
               {...otherProps}
-              onClick={(e) => {
+              onClick={e => {
                 if (disabled || loading) {
                   return
                 }

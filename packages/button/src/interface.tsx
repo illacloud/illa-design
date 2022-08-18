@@ -34,7 +34,6 @@ export interface ButtonProps
   loadingText?: string
   leftIcon?: ReactNode
   rightIcon?: ReactNode
-  buttonRadius?: string
   borderColor?: string
   backgroundColor?: string
   textColor?: string
