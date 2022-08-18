@@ -167,6 +167,7 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     })
   })
 
+  console.log("xxxx")
   return (
     <div
       ref={setWrapperRefs}
