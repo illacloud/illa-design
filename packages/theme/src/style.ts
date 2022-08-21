@@ -62,7 +62,7 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
 }
 
 export function deleteCssProps(obj: object): object {
-  omit(obj, [
+  return omit(obj, [
     //SizeStyledProps
     "w",
     "minW",
@@ -118,5 +118,4 @@ export function deleteCssProps(obj: object): object {
     "fw",
     "_css",
   ])
-  return obj
 }

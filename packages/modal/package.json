@@ -44,6 +44,7 @@
     "@illa-design/alert": "0.0.17",
     "@illa-design/icon": "0.0.17",
     "@illa-design/system": "0.0.17",
-    "@illa-design/theme": "0.0.17"
+    "@illa-design/theme": "0.0.17",
+    "react-hotkeys-hook": "^3.4.6"
   }
 }

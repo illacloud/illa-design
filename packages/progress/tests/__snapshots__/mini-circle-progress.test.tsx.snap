@@ -186,8 +186,8 @@ exports[`Progress renders with colors 3`] = `
 exports[`Progress renders with custom width 1`] = `
 .emotion-0 {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 16px;
+  height: 16px;
   vertical-align: middle;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -201,12 +201,11 @@ exports[`Progress renders with custom width 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  width: 100px;
 }
 
 .emotion-1 {
-  width: 100px;
-  height: 100px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background-color: #ebebeb;
 }
@@ -220,8 +219,8 @@ exports[`Progress renders with custom width 1`] = `
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   transform-origin: center;
-  stroke-dasharray: calc(3.141592653589793 * 2 * 100px / 2);
-  stroke-dashoffset: calc(calc(3.141592653589793 * 2 * 100px / 2) - (50 / 100 * calc(3.141592653589793 * 2 * 100px / 2)));
+  stroke-dasharray: calc(3.141592653589793 * 2 * 16px / 2);
+  stroke-dashoffset: calc(calc(3.141592653589793 * 2 * 16px / 2) - (50 / 100 * calc(3.141592653589793 * 2 * 16px / 2)));
 }
 
 <div
@@ -234,11 +233,11 @@ exports[`Progress renders with custom width 1`] = `
     >
       <circle
         class="emotion-2"
-        cx="calc(100px / 2)"
-        cy="calc(100px / 2)"
+        cx="calc(16px / 2)"
+        cy="calc(16px / 2)"
         fill="none"
-        r="calc(100px / 2)"
-        stroke-width="100px"
+        r="calc(16px / 2)"
+        stroke-width="16px"
       />
     </svg>
   </span>

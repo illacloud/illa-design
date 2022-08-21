@@ -160,7 +160,6 @@ exports[`List renders without border and split 1`] = `
                   >
                     <span
                       class="emotion-7"
-                      fw="500"
                     >
                       <span
                         style="position: relative;"
@@ -219,7 +218,6 @@ exports[`List renders without border and split 1`] = `
                   >
                     <span
                       class="emotion-7"
-                      fw="500"
                     >
                       <span
                         style="position: relative;"

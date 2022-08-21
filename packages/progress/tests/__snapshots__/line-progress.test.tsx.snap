@@ -653,13 +653,12 @@ exports[`Progress renders with custom width 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  width: 100px;
 }
 
 .emotion-1 {
   display: inline-block;
   height: 10px;
-  width: 100px;
+  width: 320px;
   position: relative;
 }
 

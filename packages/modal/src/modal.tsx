@@ -41,6 +41,7 @@ import FocusLock from "react-focus-lock"
 import { RemoveScroll } from "react-remove-scroll"
 import useModal from "./useModal"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { useHotkeys } from "react-hotkeys-hook"
 
 export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
   (props, ref) => {
@@ -208,6 +209,22 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
         )
       }
     }
+
+    // hot key
+    useHotkeys(
+      "Enter,Escape",
+      (event, handler) => {
+        switch (event.key) {
+          case "Enter":
+            onOk?.()
+            break
+          case "Escape":
+            onCancel?.()
+            break
+        }
+      },
+      [],
+    )
 
     return (
       <Portal container={getPopupContainer()}>
