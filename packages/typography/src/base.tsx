@@ -21,7 +21,7 @@ import { css } from "@emotion/react"
 import { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
-import useSize from "react-use/lib/useSize"
+import useMeasure from "react-use-measure"
 import { Tooltip } from "@illa-design/tooltip"
 import {
   ConfigProviderContext,
@@ -211,11 +211,13 @@ export const Base: FC<BaseProps> = (props) => {
     </span>
   )
 
-  const [base, { width }] = useSize(
-    <span>
+  const [ref, { width }] = useMeasure()
+
+  const base = (
+    <span ref={ref}>
       {content}
       {operation}
-    </span>,
+    </span>
   )
 
   // update clip text
