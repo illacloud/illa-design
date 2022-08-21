@@ -34,9 +34,9 @@ import {
   useIsInViewport,
 } from "./adjust-tips-location"
 import { Popup } from "./popup"
-import useMeasure from "react-use/lib/useMeasure"
+import useMeasure from "react-use-measure"
 import useWindowSize from "react-use/lib/useWindowSize"
-import { getScrollElements, mergeRefs } from "@illa-design/system"
+import { mergeRefs } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
 import useMouse from "react-use/lib/useMouse"
 import { RemoveScroll } from "react-remove-scroll"
@@ -84,7 +84,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     position,
   )
   const isInViewport = useIsInViewport(childrenRef)
-  const [measureRef, measureInfo] = useMeasure<HTMLElement>()
+  const [measureRef, measureInfo] = useMeasure({ scroll: true })
 
   // delay to do sth
   let timeOutHandlerId: number | undefined
@@ -204,26 +204,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
   }
 
   const adjustLocationAndResult = () => {
-    if (childrenRef.current != null && tipsMeasureInfo != null) {
-      let width = 0,
-        height = 0
-
-      if (protalRef.current) {
-        ;({ width, height } = protalRef?.current.getBoundingClientRect())
-      }
-
-      /*
-       * tipsMeasureInfo.width & tipsMeasureInfo.height may be 0,
-       * but tip's width & height is necessary, so get the maximun between
-       * `getBoundingClientRect` and `tipsMeasureinfo` as width & height
-       */
-      width = Math.max(width, tipsMeasureInfo.width)
-      height = Math.max(height, tipsMeasureInfo.height)
-
+    if (measureInfo != null && tipsMeasureInfo != null) {
       const result = adjustLocation(
-        width,
-        height,
-        childrenRef.current,
+        measureInfo,
+        tipsMeasureInfo,
         position,
         autoFitPosition,
         customPosition,
@@ -269,14 +253,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }, closeDelay)
   }
 
-  const [tipsMeasureRef, tipsMeasureInfo] = useMeasure<HTMLDivElement>()
+  const [tipsMeasureRef, tipsMeasureInfo] = useMeasure({ scroll: true })
   const protalRef = useRef<HTMLDivElement>(null)
   const { elX, elY } = useMouse(protalRef)
 
   tipsNode = (
     <motion.div
       css={applyMotionDiv()}
-      ref={mergeRefs(protalRef, tipsMeasureRef)}
+      ref={protalRef}
       variants={applyAnimation(finalPosition, showArrow)}
       initial="initial"
       animate="animate"
@@ -331,8 +315,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     tipVisible,
     windowWidth,
     windowHeight,
-    tipsMeasureInfo.width,
-    tipsMeasureInfo.height,
+    tipsMeasureInfo,
     measureInfo,
     content,
     customPosition,
@@ -356,21 +339,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }
   }, [])
 
-  useEffect(() => {
-    if (childrenRef.current != null) {
-      let scrollElements = getScrollElements(childrenRef.current)
-      scrollElements.forEach((item) => {
-        item.addEventListener("scroll", () => {
-          adjustLocationAndResult()
-        })
-      })
-    }
-  }, [])
-
   const protalContent = (
     <AnimatePresence>
       {!disabled && tipVisible && childrenRef.current !== null ? (
         <Popup
+          ref={tipsMeasureRef}
           onClick={() => {
             if (closeOnInnerClick) {
               hideTips(popupVisible !== undefined)
