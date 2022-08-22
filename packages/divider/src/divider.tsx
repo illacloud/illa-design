@@ -21,10 +21,18 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
     let dividerCss: SerializedStyles
     switch (direction) {
       case "vertical":
-        dividerCss = applyDividerContainerVertical(colorScheme, variant)
+        dividerCss = applyDividerContainerVertical(
+          colorScheme,
+          variant,
+          "center",
+        )
         break
       case "horizontal":
-        dividerCss = applyDividerContainerHorizontal(colorScheme, variant)
+        dividerCss = applyDividerContainerHorizontal(
+          colorScheme,
+          variant,
+          "center",
+        )
         break
     }
 

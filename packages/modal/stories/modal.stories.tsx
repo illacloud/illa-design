@@ -13,21 +13,21 @@ export default {
   component: Modal,
 } as Meta
 
-const Template: Story<ModalProps> = (args) => {
+const Template: Story<ModalProps> = args => {
   const [visible, setVisible] = React.useState(false)
   const [confirmLoading, setConfirmLoading] = React.useState(false)
   const [locale, setLocale] = React.useState(zhCN)
   const ConfigContext = React.createContext({})
   const [modal, contextHolder] = Modal.useModal()
   const sleep = async (time: number) => {
-    return new Promise<void>((resolve) => {
+    return new Promise<void>(resolve => {
       setTimeout(() => {
         resolve()
       }, time)
     })
   }
   function onOk() {
-    Promise.resolve().then((res) => {
+    Promise.resolve().then(res => {
       setConfirmLoading(true)
       setTimeout(() => {
         Message.success("Success !")
@@ -70,7 +70,7 @@ const Template: Story<ModalProps> = (args) => {
               modal.info({
                 content: (
                   <ConfigContext.Consumer>
-                    {(name) => `Current user: ${name}`}
+                    {name => `Current user: ${name}`}
                   </ConfigContext.Consumer>
                 ),
                 title: "Context",
@@ -94,7 +94,7 @@ const Template: Story<ModalProps> = (args) => {
               const modalIns = Modal.confirm({
                 title: "Submitting...",
                 icon: <InfoCircleIcon />,
-                content: <span>This modal will be successful after 1.5s.</span>,
+                content: "This modal will be successful after 1.5s.",
                 footer: false,
                 isNotice: true,
                 noticeType: "info",

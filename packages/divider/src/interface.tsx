@@ -3,7 +3,7 @@ import { BoxProps } from "@illa-design/theme"
 
 export type DividerDirection = "vertical" | "horizontal"
 export type DividerVariant = "solid" | "dashed" | "dotted" | "double"
-export type TextAlign = "start" | "center" | "end"
+export type DividerTextAlign = "start" | "center" | "end"
 export type DividerColorScheme =
   | string
   | "gray"
@@ -22,7 +22,7 @@ export interface DividerProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   direction?: DividerDirection
   variant?: DividerVariant
   text?: string
-  textAlign?: TextAlign
+  textAlign?: DividerTextAlign
   textSize?: string
   colorScheme?: DividerColorScheme
 }

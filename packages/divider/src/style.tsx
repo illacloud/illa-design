@@ -1,6 +1,7 @@
 import {
   DividerColorScheme,
   DividerDirection,
+  DividerTextAlign,
   DividerVariant,
 } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
@@ -10,7 +11,23 @@ import { colorSchemes } from "@illa-design/link/dist/types/style"
 export function applyDividerContainerHorizontal(
   color: DividerColorScheme,
   variant: DividerVariant,
+  basis?: string,
+  grow?: number,
 ): SerializedStyles {
+  let flexBasis = css``
+  if (basis != undefined) {
+    flexBasis = css`
+      flex-basis: ${basis};
+    `
+  }
+
+  let flexGrow = css``
+  if (grow != undefined) {
+    flexGrow = css`
+      flex-grow: ${grow};
+    `
+  }
+
   const c =
     globalColor(`--${illaPrefix}-${color}-08`) === ""
       ? globalColor(`--${illaPrefix}-${color}-03`) === ""
@@ -23,13 +40,31 @@ export function applyDividerContainerHorizontal(
     border-width: 0 0 ${variant == "double" ? "3px" : "1px"} 0;
     border-color: ${c};
     width: 100%;
+    ${flexBasis};
+    ${flexGrow};
   `
 }
 
 export function applyDividerContainerVertical(
   color: DividerColorScheme,
   variant: DividerVariant,
+  basis?: string,
+  grow?: number,
 ): SerializedStyles {
+  let flexBasis = css``
+  if (basis != undefined) {
+    flexBasis = css`
+      flex-basis: ${basis};
+    `
+  }
+
+  let flexGrow = css``
+  if (grow != undefined) {
+    flexGrow = css`
+      flex-grow: ${grow};
+    `
+  }
+
   const c =
     globalColor(`--${illaPrefix}-${color}-08`) === ""
       ? globalColor(`--${illaPrefix}-${color}-03`) === ""
@@ -43,6 +78,9 @@ export function applyDividerContainerVertical(
     border-color: ${c};
     border-style: ${variant};
     height: 1em;
+    flex-basis: ${basis};
+    ${flexBasis};
+    ${flexGrow};
   `
 }
 
