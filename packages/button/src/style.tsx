@@ -43,11 +43,31 @@ export enum State {
   DISABLE,
 }
 
+const colors = [
+  "white",
+  "blackAlpha",
+  "gray",
+  "grayBlue",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+  "techPink",
+  "techPurple",
+]
+
 export function getDifferentStatusColor(
   colorScheme: ButtonColorScheme,
   variant: ButtonVariant,
   state: State,
 ): string[] {
+  if (!colors.includes(colorScheme)) {
+    return [colorScheme, colorScheme]
+  }
+
   switch (state) {
     case State.DEFAULT:
       switch (variant) {

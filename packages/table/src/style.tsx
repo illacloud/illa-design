@@ -130,13 +130,6 @@ export function applyBgHoverStyle(hoverable?: boolean): SerializedStyles {
   `
 }
 
-export const applyFilterContainer = css`
-  flex-shrink: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`
-
 export const applyHeaderIconLeft = css`
   margin-left: 4px;
   width: 16px;
