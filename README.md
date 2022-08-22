@@ -14,7 +14,7 @@
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/2tGBuJkgd6)
 [![storybook](https://cdn.illafamily.com/storybook.svg)](https://design.illafamily.com)
 [![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
-[![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](./LICENSE)
+[![license](https://img.shields.io/github/license/illa-family/illa-design)](./LICENSE)
 [![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
 
 ## ✨ Features
