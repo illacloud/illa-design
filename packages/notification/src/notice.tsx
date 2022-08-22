@@ -4,14 +4,16 @@ import {
   applyNotification,
   applyNotificationTitle,
   applyNotificationAction,
-  applyNotificationContent,
   applyNotificationCloseBtn,
-  applyNotificationContentWrapper,
   applyNotificationIcon,
   applyMessage,
   applyMessageIcon,
   applyMessageContent,
   applyMessageCloseBtn,
+  applyContentWrapperStyle,
+  applyContentStyle,
+  applyNotificationContentStyle,
+  applyNotificationLeftStyle,
 } from "./style"
 import {
   RightIcon,
@@ -116,20 +118,28 @@ export const Notice = forwardRef<HTMLDivElement, NoticeProps>((props, ref) => {
   }
   return (
     <div
-      css={applyNotification(showIcon && !!renderIcon, closable)}
+      css={applyNotification(closable)}
       ref={ref}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       {...restProps}
     >
-      {showIcon && renderIcon && (
-        <div css={applyNotificationIcon(type as AlertType)}>{renderIcon}</div>
-      )}
-      <div css={applyNotificationContentWrapper}>
-        {title && <div css={applyNotificationTitle}>{title}</div>}
-        <div css={applyNotificationContent(!!title)}>{content}</div>
-        {action && <div css={applyNotificationAction}>{action}</div>}
+      <div css={applyContentWrapperStyle}>
+        {showIcon && renderIcon && (
+          <div css={applyNotificationLeftStyle}>
+            {showIcon && renderIcon && (
+              <span css={applyNotificationIcon(type as AlertType)}>
+                {renderIcon}
+              </span>
+            )}
+          </div>
+        )}
+        <div css={applyContentStyle}>
+          {title && <div css={applyNotificationTitle}>{title}</div>}
+          {content && <div css={applyNotificationContentStyle}>{content}</div>}
+        </div>
       </div>
+      {action && <div css={applyNotificationAction}>{action}</div>}
       {closable && (
         <div css={applyNotificationCloseBtn} onClick={handleClose}>
           {closeElement || <CloseIcon />}

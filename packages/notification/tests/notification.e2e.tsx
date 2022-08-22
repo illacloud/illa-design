@@ -1,5 +1,5 @@
 import { Notification } from "../src"
-import { mount, unmount } from "@cypress/react"
+import "@cypress/react"
 import "@testing-library/cypress"
 
 it("Notification renders with duration", () => {
