@@ -326,7 +326,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
     windowHeight,
     tipsMeasureInfo,
     measureInfo,
-    content,
     customPosition,
   ])
 
