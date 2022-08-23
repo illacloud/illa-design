@@ -33,7 +33,9 @@ function px2Number(str: string): number {
 export const OverflowWrapper = (props: OverflowWrapperProps) => {
   const { children } = props
   const wrapperRef = useRef<HTMLDivElement | null>(null)
-  const [measureWrapperRef, measureWrapperInfo] = useMeasure<HTMLDivElement>()
+  const [measureWrapperRef, measureWrapperInfo] = useMeasure({
+    polyfill: ResizeObserver,
+  })
   const [lastVisibleIndex, setLastVisibleIndex] = useState<number | null>(null)
   const OVERFLOW_THRESHOLD = 10
 
