@@ -35,6 +35,7 @@ import {
 } from "./adjust-tips-location"
 import { Popup } from "./popup"
 import useMeasure from "react-use-measure"
+import { ResizeObserver } from "@juggle/resize-observer"
 import useWindowSize from "react-use/lib/useWindowSize"
 import { mergeRefs } from "@illa-design/system"
 import useClickAway from "react-use/lib/useClickAway"
@@ -84,7 +85,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
     position,
   )
   const isInViewport = useIsInViewport(childrenRef)
-  const [measureRef, measureInfo] = useMeasure({ scroll: true })
+  const [measureRef, measureInfo] = useMeasure({
+    polyfill: ResizeObserver,
+    offsetSize: true,
+    scroll: true,
+  })
 
   // delay to do sth
   let timeOutHandlerId: number | undefined
@@ -253,7 +258,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }, closeDelay)
   }
 
-  const [tipsMeasureRef, tipsMeasureInfo] = useMeasure({ scroll: true })
+  const [tipsMeasureRef, tipsMeasureInfo] = useMeasure({
+    polyfill: ResizeObserver,
+    offsetSize: true,
+    scroll: true,
+  })
   const protalRef = useRef<HTMLDivElement>(null)
   const { elX, elY } = useMouse(protalRef)
 

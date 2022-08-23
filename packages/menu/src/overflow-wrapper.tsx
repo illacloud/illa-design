@@ -6,7 +6,8 @@ import React, {
   useState,
 } from "react"
 import { getStyle } from "@illa-design/system"
-import useMeasure from "react-use/lib/useMeasure"
+import useMeasure from "react-use-measure"
+import { ResizeObserver } from "@juggle/resize-observer"
 import { OverflowWrapperProps } from "./interface"
 import { SubMenu } from "./sub-menu"
 import { overflowMenuItemCss } from "./style"

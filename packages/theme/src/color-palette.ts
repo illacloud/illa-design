@@ -104,7 +104,12 @@ const transRule: Record<string, number> = {
 }
 
 export const getColor = (color: string, step: string) => {
-  let colorStyle = globalColor(`--${illaPrefix}-${color}-${step}`)
+  let colorStyle
+  if (color === "transparent") {
+    colorStyle = "transparent"
+  } else {
+    colorStyle = globalColor(`--${illaPrefix}-${color}-${step}`)
+  }
   if (!colorStyle) {
     const formatStep = transRule[step]
     let formatNum = formatStep ? formatStep : 6
