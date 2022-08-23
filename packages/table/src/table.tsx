@@ -33,15 +33,16 @@ import { rankItem } from "@tanstack/match-sorter-utils"
 
 export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
   (props, ref) => {
-    if (props.columns == undefined || props.data == undefined) {
-      return renderDirectTable(props, ref)
+    const { columns, data } = props
+    if (columns == undefined || data == undefined) {
+      return RenderDirectTable(props, ref)
     } else {
-      return renderDataDrivenTable(props, ref)
+      return RenderDataDrivenTable(props, ref)
     }
   },
 )
 
-function renderDirectTable<D extends TableData>(
+function RenderDirectTable<D extends TableData>(
   props: TableProps<D>,
   ref: ForwardedRef<HTMLDivElement>,
 ): ReactElement {
@@ -93,7 +94,7 @@ function renderDirectTable<D extends TableData>(
   )
 }
 
-function renderDataDrivenTable<D extends TableData>(
+function RenderDataDrivenTable<D extends TableData>(
   props: TableProps<D>,
   ref: ForwardedRef<HTMLDivElement>,
 ): ReactElement {

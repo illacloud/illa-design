@@ -102,5 +102,5 @@ export const CombineHeader: Story<TableProps<any>> = (args) => {
     ]
     return c
   }, [])
-  return <Table w="100%" h="100px" data={data} columns={columns} {...args} />
+  return <Table w="100px" h="160px" data={data} columns={columns} {...args} />
 }

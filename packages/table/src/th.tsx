@@ -28,9 +28,8 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
       lastRow,
       ...otherProps
     } = props
-    const tableContext = useContext(TableContext)
 
-    const thRef = useRef<HTMLTableHeaderCellElement | null>()
+    const tableContext = useContext(TableContext)
 
     return (
       <th
@@ -47,7 +46,7 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
           ),
           applyBoxStyle(props),
         )}
-        ref={mergeRefs(ref, thRef)}
+        ref={ref}
         {...otherProps}
       >
         <div
