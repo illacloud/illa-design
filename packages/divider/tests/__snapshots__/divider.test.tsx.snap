@@ -6,8 +6,11 @@ exports[`Divider renders default 1`] = `
   vertical-align: middle;
   border-style: solid;
   border-width: 0 0 1px 0;
-  border-color: #e5e6eb;
+  border-color: #e5e6ebff;
   width: 100%;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
 }
 
 <div
@@ -22,8 +25,11 @@ exports[`Divider renders horizontal 1`] = `
   vertical-align: middle;
   border-style: solid;
   border-width: 0 0 1px 0;
-  border-color: #e5e6eb;
+  border-color: #e5e6ebff;
   width: 100%;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
 }
 
 <div
@@ -41,9 +47,15 @@ exports[`Divider renders vertical 1`] = `
   display: inline-flex;
   vertical-align: middle;
   border-width: 0 0 0 1px;
-  border-color: #e5e6eb;
+  border-color: #e5e6ebff;
   border-style: dashed;
   height: 1em;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
 }
 
 <div
@@ -61,9 +73,15 @@ exports[`Divider renders with colorScheme 1`] = `
   display: inline-flex;
   vertical-align: middle;
   border-width: 0 0 0 1px;
-  border-color: #ff5e2f;
+  border-color: #ff5e2fff;
   border-style: solid;
   height: 1em;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
 }
 
 <div
@@ -95,16 +113,50 @@ exports[`Divider renders with text 1`] = `
   display: inline-flex;
   vertical-align: middle;
   border-width: 0 0 0 1px;
-  border-color: #e5e6eb;
+  border-color: #e5e6ebff;
   border-style: solid;
   height: 1em;
 }
 
 .emotion-2 {
-  color: #1d2129;
+  color: #1d2129ff;
   margin-left: 16px;
   margin-right: 16px;
   font-size: 14px;
+}
+
+.emotion-5 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  border-width: 0 0 0 1px;
+  border-color: #e5e6ebff;
+  border-style: solid;
+  height: 1em;
+  -webkit-flex-basis: 20%;
+  -ms-flex-preferred-size: 20%;
+  flex-basis: 20%;
+  -webkit-flex-basis: 20%;
+  -ms-flex-preferred-size: 20%;
+  flex-basis: 20%;
+}
+
+.emotion-7 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  border-width: 0 0 0 1px;
+  border-color: #e5e6ebff;
+  border-style: solid;
+  height: 1em;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 <div>
@@ -128,7 +180,7 @@ exports[`Divider renders with text 1`] = `
       class="emotion-0"
     >
       <div
-        class="emotion-1"
+        class="emotion-5"
       />
       <span
         class="emotion-2"
@@ -136,14 +188,14 @@ exports[`Divider renders with text 1`] = `
         this is a divider
       </span>
       <div
-        class="emotion-1"
+        class="emotion-7"
       />
     </div>
     <div
       class="emotion-0"
     >
       <div
-        class="emotion-1"
+        class="emotion-7"
       />
       <span
         class="emotion-2"
@@ -151,7 +203,7 @@ exports[`Divider renders with text 1`] = `
         this is a divider
       </span>
       <div
-        class="emotion-1"
+        class="emotion-5"
       />
     </div>
   </div>

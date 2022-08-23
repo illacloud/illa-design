@@ -5,7 +5,7 @@ exports[`Menu renders with horizontal selected 1`] = `
   position: relative;
   -webkit-transition: width 0.2s ease-in-out;
   transition: width 0.2s ease-in-out;
-  background-color: #fff;
+  background-color: #ffffffff;
 }
 
 .emotion-1 {
@@ -21,13 +21,13 @@ exports[`Menu renders with horizontal selected 1`] = `
   display: flex;
   padding: 0 24px;
   font-size: 14px;
-  color: #787e85;
+  color: #787e85ff;
   line-height: 40px;
   margin-bottom: 8px;
   cursor: not-allowed;
-  color: #bbc0c9;
-  color: #134ae0;
-  background-color: #f2f3f5;
+  color: #bbc0c9ff;
+  color: #134ae0ff;
+  background-color: #f2f3f5ff;
 }
 
 .emotion-3 {
@@ -43,14 +43,14 @@ exports[`Menu renders with horizontal selected 1`] = `
   display: flex;
   padding: 0 24px;
   font-size: 14px;
-  color: #787e85;
+  color: #787e85ff;
   line-height: 40px;
   margin-bottom: 8px;
 }
 
 .emotion-4:hover {
   cursor: pointer;
-  background-color: #f2f3f5;
+  background-color: #f2f3f5ff;
 }
 
 <div

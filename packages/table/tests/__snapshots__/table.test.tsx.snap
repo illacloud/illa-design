@@ -12,19 +12,19 @@ exports[`Table renders with borders. 1`] = `
 .emotion-2 {
   font-size: 14px;
   min-height: 22px;
-  color: #1d2129;
-  background-color: #fff;
+  color: #1d2129ff;
+  background-color: #ffffffff;
 }
 
 .emotion-3 {
   font-size: 14px;
   font-weight: bold;
-  color: #1d2129;
+  color: #1d2129ff;
   padding: 14px 16px;
-  border-left: solid 1px #e5e6eb;
-  border-right: solid 1px #e5e6eb;
-  border-top: solid 1px #e5e6eb;
-  border-bottom: solid 1px #e5e6eb;
+  border-left: solid 1px #e5e6ebff;
+  border-right: solid 1px #e5e6ebff;
+  border-top: solid 1px #e5e6ebff;
+  border-bottom: solid 1px #e5e6ebff;
 }
 
 .emotion-4 {
@@ -50,12 +50,12 @@ exports[`Table renders with borders. 1`] = `
 .emotion-11 {
   font-size: 14px;
   min-height: 22px;
-  color: #1d2129;
+  color: #1d2129ff;
   padding: 14px 16px;
-  border-left: solid 1px #e5e6eb;
-  border-right: solid 1px #e5e6eb;
-  border-top: solid 1px #e5e6eb;
-  border-bottom: solid 1px #e5e6eb;
+  border-left: solid 1px #e5e6ebff;
+  border-right: solid 1px #e5e6ebff;
+  border-top: solid 1px #e5e6ebff;
+  border-bottom: solid 1px #e5e6ebff;
 }
 
 .emotion-12 {
@@ -233,14 +233,14 @@ exports[`Table renders with different align. 1`] = `
 .emotion-2 {
   font-size: 14px;
   min-height: 22px;
-  color: #1d2129;
-  background-color: #fff;
+  color: #1d2129ff;
+  background-color: #ffffffff;
 }
 
 .emotion-3 {
   font-size: 14px;
   min-height: 22px;
-  color: #1d2129;
+  color: #1d2129ff;
   padding: 14px 16px;
 }
 

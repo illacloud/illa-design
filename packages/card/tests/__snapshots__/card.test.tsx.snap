@@ -26,7 +26,7 @@ exports[`Card renders with Meta 1`] = `
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  color: #1d2129;
+  color: #1d2129ff;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -60,12 +60,12 @@ exports[`Card renders with Meta 1`] = `
 }
 
 .emotion-5 {
-  background-color: #c2c2c2;
+  background-color: #c2c2c2ff;
   display: inline-flex;
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -149,7 +149,7 @@ exports[`Card renders with Meta 1`] = `
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
-  color: #787e85;
+  color: #787e85ff;
   -webkit-transition: color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out;
 }
@@ -159,7 +159,7 @@ exports[`Card renders with Meta 1`] = `
 }
 
 .emotion-10:hover {
-  color: #1e6fff;
+  color: #1e6fffff;
 }
 
 <div
@@ -293,11 +293,11 @@ exports[`Card renders with different hoverable 1`] = `
   position: relative;
   font-size: 14px;
   line-height: 1.57;
-  background-color: #fff;
+  background-color: #ffffffff;
   border-radius: 8px;
   -webkit-transition: box-shadow 0.2s ease-in-out;
   transition: box-shadow 0.2s ease-in-out;
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
 }
 
 .emotion-0:hover {
@@ -318,7 +318,7 @@ exports[`Card renders with different hoverable 1`] = `
   -ms-flex-align: center;
   align-items: center;
   box-sizing: border-box;
-  border-bottom: solid 1px #e5e6eb;
+  border-bottom: solid 1px #e5e6ebff;
   padding: 16px;
 }
 
@@ -326,7 +326,7 @@ exports[`Card renders with different hoverable 1`] = `
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  color: #1d2129;
+  color: #1d2129ff;
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -338,7 +338,7 @@ exports[`Card renders with different hoverable 1`] = `
 .emotion-3 {
   box-sizing: border-box;
   padding: 16px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div

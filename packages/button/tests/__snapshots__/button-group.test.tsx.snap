@@ -70,28 +70,28 @@ exports[`Button Group renders attached with round shape 1`] = `
   padding: 5px 16px;
   border-top-left-radius: 999px;
   border-bottom-left-radius: 999px;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
 .emotion-2:hover {
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-2:hover {
-  background-color: #175ceb;
+  background-color: #175cebff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
 .emotion-3 {
@@ -141,28 +141,28 @@ exports[`Button Group renders attached with round shape 1`] = `
   cursor: pointer;
   padding: 5px 16px;
   border-radius: 0;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
 .emotion-5:hover {
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-5:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-5:hover {
-  background-color: #175ceb;
+  background-color: #175cebff;
 }
 
 .emotion-5:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
 .emotion-6 {
@@ -207,28 +207,28 @@ exports[`Button Group renders attached with round shape 1`] = `
   cursor: pointer;
   padding: 4px 15px;
   border-radius: 0;
-  color: #134ae0;
-  border: solid 1px #134ae0;
+  color: #134ae0ff;
+  border: solid 1px #134ae0ff;
 }
 
 .emotion-12:hover {
-  color: #175ceb;
+  color: #175cebff;
 }
 
 .emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  color: #083bc7;
+  color: #083bc7ff;
 }
 
 .emotion-12:hover {
-  border: solid 1px #175ceb;
+  border: solid 1px #175cebff;
 }
 
 .emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  border: solid 1px #083bc7;
+  border: solid 1px #083bc7ff;
 }
 
 .emotion-16 {
@@ -257,8 +257,8 @@ exports[`Button Group renders attached with round shape 1`] = `
   cursor: default;
   padding: 5px 16px;
   border-radius: 0;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #99beffff;
 }
 
 .emotion-18 {
@@ -299,8 +299,8 @@ exports[`Button Group renders attached with round shape 1`] = `
   height: 32px;
   font-size: 12px;
   border-radius: 0;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #99beffff;
 }
 
 .emotion-27 {
@@ -348,8 +348,8 @@ exports[`Button Group renders attached with round shape 1`] = `
   padding: 5px 16px;
   border-top-right-radius: 999px;
   border-bottom-right-radius: 999px;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #99beffff;
 }
 
 <div
@@ -622,28 +622,28 @@ exports[`Button Group renders attached with square shape 1`] = `
   padding: 5px 16px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
 .emotion-2:hover {
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-2:hover {
-  background-color: #175ceb;
+  background-color: #175cebff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
 .emotion-3 {
@@ -693,28 +693,28 @@ exports[`Button Group renders attached with square shape 1`] = `
   cursor: pointer;
   padding: 5px 16px;
   border-radius: 0;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
 .emotion-5:hover {
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-5:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-5:hover {
-  background-color: #175ceb;
+  background-color: #175cebff;
 }
 
 .emotion-5:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
 .emotion-6 {
@@ -759,28 +759,28 @@ exports[`Button Group renders attached with square shape 1`] = `
   cursor: pointer;
   padding: 4px 15px;
   border-radius: 0;
-  color: #134ae0;
-  border: solid 1px #134ae0;
+  color: #134ae0ff;
+  border: solid 1px #134ae0ff;
 }
 
 .emotion-12:hover {
-  color: #175ceb;
+  color: #175cebff;
 }
 
 .emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  color: #083bc7;
+  color: #083bc7ff;
 }
 
 .emotion-12:hover {
-  border: solid 1px #175ceb;
+  border: solid 1px #175cebff;
 }
 
 .emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  border: solid 1px #083bc7;
+  border: solid 1px #083bc7ff;
 }
 
 .emotion-16 {
@@ -809,8 +809,8 @@ exports[`Button Group renders attached with square shape 1`] = `
   cursor: default;
   padding: 5px 16px;
   border-radius: 0;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #99beffff;
 }
 
 .emotion-18 {
@@ -851,8 +851,8 @@ exports[`Button Group renders attached with square shape 1`] = `
   height: 32px;
   font-size: 12px;
   border-radius: 0;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #99beffff;
 }
 
 .emotion-27 {
@@ -900,8 +900,8 @@ exports[`Button Group renders attached with square shape 1`] = `
   padding: 5px 16px;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #99beffff;
 }
 
 <div
@@ -1173,28 +1173,28 @@ exports[`Button Group renders with spacing 1`] = `
   cursor: pointer;
   padding: 5px 16px;
   border-radius: 8px;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
 .emotion-2:hover {
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-2:hover {
-  background-color: #175ceb;
+  background-color: #175cebff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
 .emotion-3 {
@@ -1260,28 +1260,28 @@ exports[`Button Group renders with spacing 1`] = `
   cursor: pointer;
   padding: 4px 15px;
   border-radius: 8px;
-  color: #134ae0;
-  border: solid 1px #134ae0;
+  color: #134ae0ff;
+  border: solid 1px #134ae0ff;
 }
 
 .emotion-12:hover {
-  color: #175ceb;
+  color: #175cebff;
 }
 
 .emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  color: #083bc7;
+  color: #083bc7ff;
 }
 
 .emotion-12:hover {
-  border: solid 1px #175ceb;
+  border: solid 1px #175cebff;
 }
 
 .emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  border: solid 1px #083bc7;
+  border: solid 1px #083bc7ff;
 }
 
 .emotion-16 {
@@ -1310,8 +1310,8 @@ exports[`Button Group renders with spacing 1`] = `
   cursor: default;
   padding: 5px 16px;
   border-radius: 8px;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #99beffff;
 }
 
 .emotion-18 {
@@ -1352,8 +1352,8 @@ exports[`Button Group renders with spacing 1`] = `
   height: 32px;
   font-size: 12px;
   border-radius: 8px;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #99beffff;
 }
 
 .emotion-27 {
@@ -1400,8 +1400,8 @@ exports[`Button Group renders with spacing 1`] = `
   cursor: not-allowed;
   padding: 5px 16px;
   border-radius: 8px;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #99beffff;
 }
 
 <div
