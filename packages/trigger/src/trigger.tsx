@@ -253,7 +253,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }, closeDelay)
   }
 
-  const [tipsMeasureRef, tipsMeasureInfo] = useMeasure({ scroll: true })
+  const [tipsMeasureRef, tipsMeasureInfo] = useMeasure({
+    scroll: true,
+    offsetSize: true,
+  })
+
   const protalRef = useRef<HTMLDivElement>(null)
   const { elX, elY } = useMouse(protalRef)
 
@@ -312,9 +316,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
       adjustLocationAndResult()
     }
   }, [
-    tipVisible,
     windowWidth,
     windowHeight,
+    tipVisible,
     tipsMeasureInfo,
     measureInfo,
     content,
