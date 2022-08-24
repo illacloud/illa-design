@@ -22,6 +22,7 @@ import { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
 import useMeasure from "react-use-measure"
+import { ResizeObserver } from "@juggle/resize-observer"
 import { Tooltip } from "@illa-design/tooltip"
 import {
   ConfigProviderContext,
@@ -211,7 +212,7 @@ export const Base: FC<BaseProps> = (props) => {
     </span>
   )
 
-  const [ref, { width }] = useMeasure()
+  const [ref, { width }] = useMeasure({ polyfill: ResizeObserver })
 
   const base = (
     <span ref={ref}>

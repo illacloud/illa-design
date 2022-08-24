@@ -274,9 +274,12 @@ exports[`Space renders with divider 1`] = `
   display: inline-flex;
   vertical-align: middle;
   border-width: 0 0 0 1px;
-  border-color: #e5e6eb;
+  border-color: #e5e6ebff;
   border-style: solid;
   height: 1em;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
 }
 
 .emotion-4 {

@@ -28,28 +28,28 @@ exports[`Button renders fullwidth 1`] = `
   cursor: pointer;
   padding: 5px 16px;
   border-radius: 8px;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
 .emotion-0:hover {
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-0:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-0:hover {
-  background-color: #175ceb;
+  background-color: #175cebff;
 }
 
 .emotion-0:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
 .emotion-1 {
@@ -100,28 +100,28 @@ exports[`Button renders round 1`] = `
   cursor: pointer;
   padding: 5px 16px;
   border-radius: 999px;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
 .emotion-0:hover {
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-0:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-0:hover {
-  background-color: #175ceb;
+  background-color: #175cebff;
 }
 
 .emotion-0:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
 .emotion-1 {

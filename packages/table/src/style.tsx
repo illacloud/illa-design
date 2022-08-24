@@ -67,34 +67,20 @@ export function applyBorderStyle(
 ): SerializedStyles {
   let borderStyle: SerializedStyles = css()
   if (borderCell) {
-    if (colIndex === 0) {
-      borderStyle = css`
-        border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      `
-    } else if (lastCol) {
-      borderStyle = css`
-        border-left: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      `
+    if (lastCol) {
+      borderStyle = css``
     } else {
       borderStyle = css`
-        border-left: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
         border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       `
     }
   }
   let stripedStyle: SerializedStyles = css()
   if (striped) {
-    if (rowIndex === 0) {
-      stripedStyle = css`
-        border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      `
-    } else if (lastRow) {
-      stripedStyle = css`
-        border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      `
+    if (lastRow) {
+      stripedStyle = css``
     } else {
       stripedStyle = css`
-        border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
         border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       `
     }
@@ -107,6 +93,7 @@ export function applyThStyle(): SerializedStyles {
     font-size: 14px;
     font-weight: bold;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   `
 }
 
@@ -118,6 +105,12 @@ export function applyNormalStyle(): SerializedStyles {
   `
 }
 
+export function applyNormalBg(): SerializedStyles {
+  return css`
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+  `
+}
+
 export function applyBgHoverStyle(hoverable?: boolean): SerializedStyles {
   const hoverableStyle = css`
     &:hover {
@@ -125,7 +118,6 @@ export function applyBgHoverStyle(hoverable?: boolean): SerializedStyles {
     }
   `
   return css`
-    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
     ${hoverable ? hoverableStyle : null}
   `
 }
@@ -164,7 +156,8 @@ export function applyTableStyle(tableLayout: TableLayout): SerializedStyles {
     width: 100%;
     box-sizing: border-box;
     display: table;
-    border-collapse: collapse;
+    border-spacing: 0;
+    border-collapse: separate;
     table-layout: ${tableLayout};
   `
 }

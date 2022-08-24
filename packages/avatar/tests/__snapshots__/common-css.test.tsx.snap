@@ -5,7 +5,7 @@ Object {
   "map": undefined,
   "next": undefined,
   "styles": "
-        background-color: #007a41;
+        background-color: #007a41ff;
       ",
   "toString": [Function],
 }
@@ -16,7 +16,7 @@ Object {
   "map": undefined,
   "next": undefined,
   "styles": "
-        background-color: #c2c2c2;
+        background-color: #c2c2c2ff;
       ",
   "toString": [Function],
 }
@@ -84,13 +84,13 @@ Object {
   "next": undefined,
   "styles": "
     
-        background-color: #007a41;
+        background-color: #007a41ff;
       ;;
     display: inline-flex;
     overflow: hidden;
     word-wrap: break-word;
     white-space: nowrap;
-    color: #fff;
+    color: #ffffffff;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -106,13 +106,13 @@ Object {
   "next": undefined,
   "styles": "
     
-        background-color: #c2c2c2;
+        background-color: #c2c2c2ff;
       ;;
     display: inline-flex;
     overflow: hidden;
     word-wrap: break-word;
     white-space: nowrap;
-    color: #fff;
+    color: #ffffffff;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -134,7 +134,7 @@ Object {
     overflow: hidden;
     word-wrap: break-word;
     white-space: nowrap;
-    color: #fff;
+    color: #ffffffff;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -151,13 +151,13 @@ Object {
   "styles": "
     
     
-        background-color: #c2c2c2;
+        background-color: #c2c2c2ff;
       ;;
     display: inline-flex;
     overflow: hidden;
     word-wrap: break-word;
     white-space: nowrap;
-    color: #fff;
+    color: #ffffffff;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -182,13 +182,13 @@ Object {
   "styles": "
     
     
-        background-color: #c2c2c2;
+        background-color: #c2c2c2ff;
       ;;
     display: inline-flex;
     overflow: hidden;
     word-wrap: break-word;
     white-space: nowrap;
-    color: #fff;
+    color: #ffffffff;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -213,13 +213,13 @@ Object {
   "styles": "
     
     
-        background-color: #c2c2c2;
+        background-color: #c2c2c2ff;
       ;;
     display: inline-flex;
     overflow: hidden;
     word-wrap: break-word;
     white-space: nowrap;
-    color: #fff;
+    color: #ffffffff;
     flex-direction: row;
     align-items: center;
     justify-content: center;

@@ -6,7 +6,8 @@ import React, {
   useState,
 } from "react"
 import { getStyle } from "@illa-design/system"
-import useMeasure from "react-use/lib/useMeasure"
+import useMeasure from "react-use-measure"
+import { ResizeObserver } from "@juggle/resize-observer"
 import { OverflowWrapperProps } from "./interface"
 import { SubMenu } from "./sub-menu"
 import { overflowMenuItemCss } from "./style"
@@ -32,7 +33,9 @@ function px2Number(str: string): number {
 export const OverflowWrapper = (props: OverflowWrapperProps) => {
   const { children } = props
   const wrapperRef = useRef<HTMLDivElement | null>(null)
-  const [measureWrapperRef, measureWrapperInfo] = useMeasure<HTMLDivElement>()
+  const [measureWrapperRef, measureWrapperInfo] = useMeasure({
+    polyfill: ResizeObserver,
+  })
   const [lastVisibleIndex, setLastVisibleIndex] = useState<number | null>(null)
   const OVERFLOW_THRESHOLD = 10
 

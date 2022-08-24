@@ -8,12 +8,13 @@ import {
 } from "react"
 import { TriggerProps } from "@illa-design/trigger"
 import { SerializedStyles } from "@emotion/serialize"
+import { BoxProps } from "@illa-design/theme"
 
 export type MenuVariant = "inline" | "pop"
 export type Theme = "light" | "dark"
 type Mode = "vertical" | "horizontal" | "popButton"
 
-export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
+export interface MenuProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   theme?: Theme
   mode?: Mode
   variant?: MenuVariant
@@ -76,9 +77,7 @@ export interface OverflowWrapperProps {
 }
 
 export interface MenuComponent
-  extends ForwardRefExoticComponent<
-    PropsWithChildren<MenuProps> & RefAttributes<HTMLDivElement>
-  > {
+  extends ForwardRefExoticComponent<PropsWithChildren<MenuProps> & RefAttributes<HTMLDivElement>> {
   Item: ForwardRefExoticComponent<ItemProps>
   ItemGroup: ForwardRefExoticComponent<PropsWithChildren<ItemGroupProps>>
   SubMenu: ForwardRefExoticComponent<PropsWithChildren<SubMenuProps>>

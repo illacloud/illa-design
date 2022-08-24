@@ -11,7 +11,7 @@ exports[`Avatar Avatar renders with colorScheme 1`] = `
 }
 
 .emotion-1 {
-  background-color: #c2c2c2;
+  background-color: #c2c2c2ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -19,7 +19,7 @@ exports[`Avatar Avatar renders with colorScheme 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -65,7 +65,7 @@ exports[`Avatar Avatar renders with colorScheme 1`] = `
 }
 
 .emotion-5 {
-  background-color: #007a41;
+  background-color: #007a41ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -73,7 +73,7 @@ exports[`Avatar Avatar renders with colorScheme 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -102,7 +102,7 @@ exports[`Avatar Avatar renders with colorScheme 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -222,7 +222,7 @@ exports[`Avatar Avatar renders with icon 1`] = `
 }
 
 .emotion-1 {
-  background-color: #c2c2c2;
+  background-color: #c2c2c2ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -230,7 +230,7 @@ exports[`Avatar Avatar renders with icon 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -310,7 +310,7 @@ exports[`Avatar Avatar renders with shape 1`] = `
 }
 
 .emotion-1 {
-  background-color: #c2c2c2;
+  background-color: #c2c2c2ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -318,7 +318,7 @@ exports[`Avatar Avatar renders with shape 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -364,7 +364,7 @@ exports[`Avatar Avatar renders with shape 1`] = `
 }
 
 .emotion-5 {
-  background-color: #c2c2c2;
+  background-color: #c2c2c2ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -372,7 +372,7 @@ exports[`Avatar Avatar renders with shape 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -464,7 +464,7 @@ exports[`Avatar Avatar renders with size 1`] = `
 }
 
 .emotion-1 {
-  background-color: #c2c2c2;
+  background-color: #c2c2c2ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -472,7 +472,7 @@ exports[`Avatar Avatar renders with size 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -518,7 +518,7 @@ exports[`Avatar Avatar renders with size 1`] = `
 }
 
 .emotion-5 {
-  background-color: #c2c2c2;
+  background-color: #c2c2c2ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -526,7 +526,7 @@ exports[`Avatar Avatar renders with size 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -568,7 +568,7 @@ exports[`Avatar Avatar renders with size 1`] = `
 }
 
 .emotion-9 {
-  background-color: #c2c2c2;
+  background-color: #c2c2c2ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -576,7 +576,7 @@ exports[`Avatar Avatar renders with size 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
