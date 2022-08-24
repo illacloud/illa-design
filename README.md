@@ -11,7 +11,7 @@
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-design/graphs/contributors">contributors</a></p>
 </div>
 
-![cover](https://cdn.illafamily.com/cover.png)
+![cover](https://devbo.cn/github-cover.png)
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/2tGBuJkgd6)
 [![storybook](https://cdn.illafamily.com/storybook.svg)](https://design.illafamily.com)
