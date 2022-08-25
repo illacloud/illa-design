@@ -5,7 +5,8 @@ exports[`Table renders with borders. 1`] = `
   width: 100%;
   box-sizing: border-box;
   display: table;
-  border-collapse: collapse;
+  border-spacing: 0;
+  border-collapse: separate;
   table-layout: auto;
 }
 
@@ -13,17 +14,15 @@ exports[`Table renders with borders. 1`] = `
   font-size: 14px;
   min-height: 22px;
   color: #1d2129ff;
-  background-color: #ffffffff;
 }
 
 .emotion-3 {
   font-size: 14px;
   font-weight: bold;
   color: #1d2129ff;
+  background-color: #f2f3f5ff;
   padding: 14px 16px;
-  border-left: solid 1px #e5e6ebff;
   border-right: solid 1px #e5e6ebff;
-  border-top: solid 1px #e5e6ebff;
   border-bottom: solid 1px #e5e6ebff;
 }
 
@@ -48,13 +47,12 @@ exports[`Table renders with borders. 1`] = `
 }
 
 .emotion-11 {
+  background-color: #ffffffff;
   font-size: 14px;
   min-height: 22px;
   color: #1d2129ff;
   padding: 14px 16px;
-  border-left: solid 1px #e5e6ebff;
   border-right: solid 1px #e5e6ebff;
-  border-top: solid 1px #e5e6ebff;
   border-bottom: solid 1px #e5e6ebff;
 }
 
@@ -226,7 +224,8 @@ exports[`Table renders with different align. 1`] = `
   width: 100%;
   box-sizing: border-box;
   display: table;
-  border-collapse: collapse;
+  border-spacing: 0;
+  border-collapse: separate;
   table-layout: auto;
 }
 
@@ -234,10 +233,10 @@ exports[`Table renders with different align. 1`] = `
   font-size: 14px;
   min-height: 22px;
   color: #1d2129ff;
-  background-color: #ffffffff;
 }
 
 .emotion-3 {
+  background-color: #ffffffff;
   font-size: 14px;
   min-height: 22px;
   color: #1d2129ff;
