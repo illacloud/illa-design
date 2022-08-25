@@ -70,7 +70,7 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
   }
 
   return (
-    <div ref={ref} css={[applyContainerCss(stateValue), applyBoxStyle(props)]}>
+    <div ref={ref} css={[applyContainerCss(size), applyBoxStyle(props)]}>
       <span css={applyInputContainer(stateValue, requirePadding)}>
         <InputElement
           {...searchProp}

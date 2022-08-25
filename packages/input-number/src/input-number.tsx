@@ -157,10 +157,10 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       return readOnly
         ? {}
         : {
-            onMouseDown: (e: SyntheticEvent) => handleArrowKey(e, method, true),
-            onMouseLeave: stop,
-            onMouseUp: stop,
-          }
+          onMouseDown: (e: SyntheticEvent) => handleArrowKey(e, method, true),
+          onMouseLeave: stop,
+          onMouseUp: stop,
+        }
     }
 
     useEffect(() => {
@@ -185,7 +185,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     useEffect(() => {
       const outOfRange = isNumber(mergedValue)
         ? (isNumber(min) && mergedValue < min) ||
-          (isNumber(max) && mergedValue > max)
+        (isNumber(max) && mergedValue > max)
         : false
       // Don't correct the illegal value caused by prop value. Wait for user to take actions.
       if (outOfRange && hasOperateRef.current) {
@@ -221,7 +221,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
             <>
               {renderStepEmbed ? (
                 <div
-                  css={applyStepEmbedContainer(stateValue)}
+                  css={applyStepEmbedContainer(size)}
                   title="inputStepEmbed"
                 >
                   <span css={applyStepEmbed} {...stepEvents("plus")}>
@@ -239,7 +239,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         }}
         addonBefore={{
           render: renderStepButton ? (
-            <span css={applyAddonCss(stateValue)} {...stepEvents("minus")}>
+            <span css={applyAddonCss(size)} {...stepEvents("minus")}>
               {icons && icons.plus ? icons.plus : <MinusIcon />}
             </span>
           ) : null,
@@ -247,7 +247,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         }}
         addonAfter={{
           render: renderStepButton ? (
-            <span css={applyAddonCss(stateValue)} {...stepEvents("plus")}>
+            <span css={applyAddonCss(size)} {...stepEvents("plus")}>
               {icons && icons.minus ? icons.minus : <PlusIcon />}
             </span>
           ) : null,

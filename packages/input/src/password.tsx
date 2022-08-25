@@ -73,7 +73,7 @@ export const Password = forwardRef<HTMLDivElement, PasswordProps>(
     return (
       <div
         ref={ref}
-        css={[applyContainerCss(stateValue), applyBoxStyle(props)]}
+        css={[applyContainerCss(size), applyBoxStyle(props)]}
       >
         <span css={applyInputContainer(stateValue, requirePadding)}>
           <InputElement

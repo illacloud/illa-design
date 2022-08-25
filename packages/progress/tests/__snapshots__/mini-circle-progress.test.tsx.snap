@@ -24,13 +24,13 @@ exports[`Progress renders with colors 1`] = `
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #fcc;
+  background-color: #fcccccff;
 }
 
 .emotion-2 {
   -webkit-transition: all 200ms;
   transition: all 200ms;
-  stroke: #ff4747;
+  stroke: #ff4747ff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -85,13 +85,13 @@ exports[`Progress renders with colors 2`] = `
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #ebebeb;
+  background-color: #ebebebff;
 }
 
 .emotion-2 {
   -webkit-transition: all 200ms;
   transition: all 200ms;
-  stroke: #1f1f1f;
+  stroke: #1f1f1fff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -207,13 +207,13 @@ exports[`Progress renders with custom width 1`] = `
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #ebebeb;
+  background-color: #ebebebff;
 }
 
 .emotion-2 {
   -webkit-transition: all 200ms;
   transition: all 200ms;
-  stroke: #1e6fff;
+  stroke: #1e6fffff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -268,13 +268,13 @@ exports[`Progress renders with error status 1`] = `
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #ebebeb;
+  background-color: #ebebebff;
 }
 
 .emotion-2 {
   -webkit-transition: all 200ms;
   transition: all 200ms;
-  stroke: #ff4747;
+  stroke: #ff4747ff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -329,13 +329,13 @@ exports[`Progress renders with steps 1`] = `
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #ebebeb;
+  background-color: #ebebebff;
 }
 
 .emotion-2 {
   -webkit-transition: all 200ms;
   transition: all 200ms;
-  stroke: #1e6fff;
+  stroke: #1e6fffff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);

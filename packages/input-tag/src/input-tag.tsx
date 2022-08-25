@@ -115,7 +115,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
         }}
         {...deleteCssProps(rest)}
       >
-        <span css={applyInputInnerCss(stateValue)}>
+        <span css={applyInputInnerCss(size)}>
           <RenderTags
             value={currentValue}
             size={size}
@@ -155,7 +155,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
             }}
           />
           {suffix ? (
-            <span css={applySuffixCls(stateValue)}>{suffix}</span>
+            <span css={applySuffixCls(size)}>{suffix}</span>
           ) : null}
         </span>
         {allowClear && !disabled && currentValue?.length ? (

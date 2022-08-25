@@ -1,7 +1,7 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
-import { InputTagStateValue } from "./interface"
+import { InputTagProps, InputTagStateValue } from "./interface"
 
 export const inputOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
@@ -14,10 +14,9 @@ export const disableOutlineStyle = css`
 export const errorFocusStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-  box-shadow: 0 0 8px 0
-    ${chroma(globalColor(`--${illaPrefix}-red-01`))
-      .alpha(0.15)
-      .hex()};
+  box-shadow: 0 0 8px 0 ${chroma(globalColor(`--${illaPrefix}-red-01`))
+          .alpha(0.15)
+          .hex()};
 `
 export const errorOutlineStyle = css`
   background-color: unset;
@@ -28,7 +27,7 @@ export const errorOutlineStyle = css`
   }
 `
 
-function applySizeStyle(size?: string) {
+function applySizeStyle(size?: string): SerializedStyles {
   let sizeCss: SerializedStyles
   switch (size) {
     default:
@@ -51,9 +50,9 @@ function applySizeStyle(size?: string) {
   return sizeCss
 }
 
-export function applyInputInnerCss(stateValue: InputTagStateValue) {
+export function applyInputInnerCss(size?: InputTagProps["size"]): SerializedStyles {
   let paddingCss: SerializedStyles
-  switch (stateValue?.size) {
+  switch (size) {
     default:
     case "large":
       paddingCss = css`
@@ -81,7 +80,7 @@ export function applyInputInnerCss(stateValue: InputTagStateValue) {
   `
 }
 
-export function applyFilterInput(stateValue: InputTagStateValue) {
+export function applyFilterInput(stateValue: InputTagStateValue): SerializedStyles {
   if (!stateValue?.focus) {
     return css`
       &:not(:first-child) {
@@ -94,7 +93,7 @@ export function applyFilterInput(stateValue: InputTagStateValue) {
   return css``
 }
 
-function applyStatus(stateValue: InputTagStateValue) {
+function applyStatus(stateValue: InputTagStateValue): SerializedStyles {
   let mainStyle: SerializedStyles
   let disableStyle, hoverStyle, inputStyle, errorStyle: SerializedStyles
 
@@ -112,8 +111,7 @@ function applyStatus(stateValue: InputTagStateValue) {
     const boxShadowColor = getColor(stateValue.borderColor, "01")
     mainStyle = css`
       border-color: ${getColor(stateValue.borderColor, "03")};
-      box-shadow: 0 0 8px 0
-        ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
+      box-shadow: 0 0 8px 0 ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
     `
@@ -135,7 +133,7 @@ function applyStatus(stateValue: InputTagStateValue) {
   `
 }
 
-export function applyInputContainer(stateValue: InputTagStateValue) {
+export function applyInputContainer(stateValue: InputTagStateValue): SerializedStyles {
   return css`
     box-sizing: border-box;
     display: flex;
@@ -153,9 +151,9 @@ export function applyInputContainer(stateValue: InputTagStateValue) {
   `
 }
 
-function baseFixCls(stateValue: InputTagStateValue) {
+function baseFixCls(size: InputTagProps["size"]): SerializedStyles {
   let sizeCss: SerializedStyles
-  switch (stateValue?.size) {
+  switch (size) {
     default:
       sizeCss = css`
         & > svg {
@@ -178,9 +176,9 @@ function baseFixCls(stateValue: InputTagStateValue) {
   `
 }
 
-export function applySuffixCls(stateValue: InputTagStateValue) {
+export function applySuffixCls(size: InputTagProps["size"]): SerializedStyles {
   return css`
-    ${baseFixCls(stateValue)}
+    ${baseFixCls(size)}
     margin-left: 12px;
   `
 }

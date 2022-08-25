@@ -27,10 +27,9 @@ export const hoverFillStyle = css`
 export const errorFocusStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-  box-shadow: 0 0 8px 0
-    ${chroma(globalColor(`--${illaPrefix}-red-01`))
-      .alpha(0.15)
-      .hex()};
+  box-shadow: 0 0 8px 0 ${chroma(globalColor(`--${illaPrefix}-red-01`))
+          .alpha(0.15)
+          .hex()};
 `
 export const errorFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-red-07`)};
@@ -50,7 +49,7 @@ export const errorOutlineStyle = css`
   }
 `
 
-export function applyVariantStyle(variant?: string) {
+export function applyVariantStyle(variant?: string): SerializedStyles {
   let inputStyle: SerializedStyles
   switch (variant) {
     default:
@@ -69,7 +68,7 @@ export function applyVariantStyle(variant?: string) {
   return inputStyle
 }
 
-export function applyContainerCss(stateValue: StateValue) {
+export function applyContainerCss(size?: InputProps["size"]): SerializedStyles {
   return css`
     position: relative;
     display: flex;
@@ -78,11 +77,11 @@ export function applyContainerCss(stateValue: StateValue) {
     font-size: 14px;
     vertical-align: middle;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    ${applySizeStyle(stateValue?.size)};
+    ${applySizeStyle(size)};
   `
 }
 
-function applySizeStyle(size?: string) {
+function applySizeStyle(size?: string): SerializedStyles {
   let sizeCss: SerializedStyles
   switch (size) {
     default:
@@ -109,7 +108,7 @@ function applySizeStyle(size?: string) {
   return sizeCss
 }
 
-function applyStatus(stateValue: StateValue) {
+function applyStatus(stateValue: StateValue): SerializedStyles {
   let mainStyle: SerializedStyles
   let disableStyle, hoverStyle, inputStyle, errorStyle: SerializedStyles
 
@@ -138,8 +137,7 @@ function applyStatus(stateValue: StateValue) {
     const boxShadowColor = getColor(stateValue.borderColor, "01")
     mainStyle = css`
       border-color: ${getColor(stateValue.borderColor, "03")};
-      box-shadow: 0 0 8px 0
-        ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
+      box-shadow: 0 0 8px 0 ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
     `
@@ -160,10 +158,10 @@ function applyStatus(stateValue: StateValue) {
     const _activeCss = stateValue.focus
       ? css``
       : css`
-          &:hover {
-            border-color: transparent;
-          }
-        `
+              &:hover {
+                border-color: transparent;
+              }
+      `
     return css`
       ${inputStyle};
       border-color: transparent;
@@ -193,11 +191,10 @@ export function applySizeCss(
   }
   return paddingCss
 }
-
 export function applyInputContainer(
   stateValue: StateValue,
   requirePadding?: boolean,
-) {
+): SerializedStyles {
   let borderRadius
   if (stateValue?.borderRadius) {
     borderRadius = css`
@@ -238,18 +235,18 @@ export function applyInputContainer(
         opacity: 1;
         // input suffix hidden
         ${stateValue.iconAppearWithSuffix
-          ? css`
-              & ~ * {
-                visibility: hidden;
-              }
-            `
-          : ""}
+                ? css`
+                  & ~ * {
+                    visibility: hidden;
+                  }
+                `
+                : ""}
       }
     }
   `
 }
 
-export function applyInputStyle(textCenterHorizontal?: boolean) {
+export function applyInputStyle(textCenterHorizontal?: boolean): SerializedStyles {
   let textAlignCss: SerializedStyles
   if (textCenterHorizontal) {
     textAlignCss = css`
@@ -297,7 +294,7 @@ export function applyInputStyle(textCenterHorizontal?: boolean) {
   `
 }
 
-function baseFixCls(size?: InputProps["size"]) {
+function baseFixCls(size?: InputProps["size"]): SerializedStyles {
   let sizeCss: SerializedStyles
   switch (size) {
     default:
@@ -322,7 +319,7 @@ function baseFixCls(size?: InputProps["size"]) {
   `
 }
 
-export function applyPrefixCls(size?: InputProps["size"]) {
+export function applyPrefixCls(size?: InputProps["size"]): SerializedStyles {
   return css`
     ${baseFixCls(size)}
     &:first-of-type {
@@ -335,16 +332,16 @@ export function applyPrefixCls(size?: InputProps["size"]) {
   `
 }
 
-export function applySuffixCls(size?: InputProps["size"]) {
+export function applySuffixCls(size?: InputProps["size"]): SerializedStyles {
   return css`
     ${baseFixCls(size)}
     margin-left: 12px;
   `
 }
 
-export function applyAddonCss(stateValue: StateValue) {
+export function applyAddonCss(variant: InputProps["variant"], size: InputProps["size"]): SerializedStyles {
   let inputStyle: SerializedStyles
-  switch (stateValue?.variant) {
+  switch (variant) {
     default:
     case "fill":
       inputStyle = css`
@@ -377,7 +374,7 @@ export function applyAddonCss(stateValue: StateValue) {
       break
   }
   return css`
-    ${baseFixCls(stateValue?.size)}
+    ${baseFixCls(size)}
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-width: 1px;
@@ -463,9 +460,9 @@ export function applyClearStyle(
 
   return AppearWithSuffix
     ? css`
-        opacity: 0;
-        ${sizeCss}
-      `
+            opacity: 0;
+            ${sizeCss}
+    `
     : clearStyle
 }
 
@@ -515,11 +512,11 @@ export function applyRangeInput(focus?: boolean): SerializedStyles {
     white-space: nowrap;
     transition: all 200ms ease-in-out;
     ${focus
-      ? css`
-          border-radius: 2px;
-          background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
-        `
-      : null}
+            ? css`
+              border-radius: 2px;
+              background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+            `
+            : null}
   `
 }
 

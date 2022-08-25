@@ -94,11 +94,11 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   }
 
   return (
-    <div ref={ref} css={[applyContainerCss(stateValue), applyBoxStyle(props)]}>
+    <div ref={ref} css={[applyContainerCss(size), applyBoxStyle(rest)]}>
       {inputAddon(
         addonBefore?.render,
         addonBefore?.custom,
-        applyAddonCss(stateValue),
+        applyAddonCss(variant, size),
       )}
       <span css={applyInputContainer(stateValue, requirePadding)}>
         {inputAddon(prefix?.render, prefix?.custom, applyPrefixCls(size))}
@@ -143,7 +143,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
       {inputAddon(
         addonAfter?.render,
         addonAfter?.custom,
-        applyAddonCss(stateValue),
+        applyAddonCss(variant, size),
       )}
     </div>
   )
