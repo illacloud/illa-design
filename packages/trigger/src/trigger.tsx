@@ -37,6 +37,7 @@ import { mergeRefs } from "@illa-design/system"
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
     children,
+    closeWhenScroll = true,
     autoFitPosition = true,
     colorScheme = "gray",
     clickOutsideToClose = true,
@@ -73,29 +74,32 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }
   }, [])
 
-  let middleware: Middleware[] = []
-  if (autoFitPosition) {
-    middleware.push(flip())
-  }
-  if (!withoutOffset) {
-    middleware.push(offset(4))
-  }
-  if (autoAlignPopupWidth) {
-    middleware.push(
-      size({
-        apply({ rects }) {
-          if (autoAlignPopupWidth) {
-            if (tipsContainerRef?.current !== null) {
-              Object.assign(tipsContainerRef.current.style, {
-                width: `${rects.reference.width}px`,
-              })
+  const middleware = useMemo(() => {
+    let middleware: Middleware[] = []
+    if (autoFitPosition) {
+      middleware.push(flip())
+    }
+    if (!withoutOffset) {
+      middleware.push(offset(4))
+    }
+    if (autoAlignPopupWidth) {
+      middleware.push(
+        size({
+          apply({ rects }) {
+            if (autoAlignPopupWidth) {
+              if (tipsContainerRef?.current !== null) {
+                Object.assign(tipsContainerRef.current.style, {
+                  width: `${rects.reference.width}px`,
+                })
+              }
             }
-          }
-        },
-      }),
-    )
-  }
-  middleware.push(hide())
+          },
+        }),
+      )
+    }
+    middleware.push(hide())
+    return middleware
+  }, [autoFitPosition, withoutOffset, autoAlignPopupWidth])
 
   const { x, y, reference, floating, strategy, placement, context } =
     useFloating({
@@ -111,59 +115,29 @@ export const Trigger: FC<TriggerProps> = (props) => {
       whileElementsMounted: autoUpdate,
     })
 
-  let l: ElementProps[] = []
-  switch (trigger) {
-    case "hover":
-      l = [
-        useHover(context, {
-          move: true,
-          delay: {
-            open: openDelay,
-            close: closeDelay,
-          },
-        }),
-        useRole(context, { role: "tooltip" }),
-        useDismiss(context, {
-          outsidePointerDown: clickOutsideToClose,
-          ancestorScroll: true,
-        }),
-      ]
-      break
-    case "click":
-      l = [
-        useClick(context, {
-          toggle: closeOnClick,
-        }),
-        useRole(context, { role: "tooltip" }),
-        useDismiss(context, {
-          outsidePointerDown: clickOutsideToClose,
-          ancestorScroll: true,
-        }),
-      ]
-      break
-    case "focus":
-      l = [
-        useFocus(context, {
-          keyboardOnly: false,
-        }),
-        useRole(context, { role: "tooltip" }),
-        useDismiss(context, {
-          outsidePointerDown: clickOutsideToClose,
-          ancestorScroll: true,
-        }),
-      ]
-      break
-    case "contextmenu":
-      l = [
-        useRole(context, { role: "menu" }),
-        useDismiss(context, {
-          outsidePointerDown: clickOutsideToClose,
-          ancestorScroll: true,
-        }),
-      ]
-  }
-
-  const { getReferenceProps, getFloatingProps } = useInteractions(l)
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    useHover(context, {
+      enabled: trigger === "hover",
+      move: true,
+      delay: {
+        open: openDelay,
+        close: closeDelay,
+      },
+    }),
+    useClick(context, {
+      enabled: trigger === "click",
+      toggle: closeOnClick,
+    }),
+    useFocus(context, {
+      enabled: trigger === "focus",
+      keyboardOnly: false,
+    }),
+    useRole(context, { role: "tooltip" }),
+    useDismiss(context, {
+      outsidePointerDown: clickOutsideToClose,
+      ancestorScroll: closeWhenScroll,
+    }),
+  ])
 
   const ref = useMemo(
     () => mergeRefs(reference, (children as any).ref),
@@ -217,6 +191,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
             }
           },
           onClick: (e) => {
+            if (alignPoint) {
+              setMouseRecord({
+                x: e.clientX,
+                y: e.clientY,
+              })
+            }
+          },
+          onMouseEnter: (e) => {
             if (alignPoint) {
               setMouseRecord({
                 x: e.clientX,

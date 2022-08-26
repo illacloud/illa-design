@@ -37,6 +37,7 @@ export interface TriggerProps extends BoxProps {
   children?: ReactNode
   colorScheme?: TriggerColorScheme
   inline?: boolean
+  closeWhenScroll?: boolean
   clickOutsideToClose?: boolean
   withoutPadding?: boolean
   withoutShadow?: boolean
