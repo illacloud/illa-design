@@ -9,7 +9,7 @@ exports[`List renders without border and split 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  border: solid 1px #f2f3f5;
+  border: solid 1px #f2f3f5ff;
   border-radius: 2px;
 }
 
@@ -108,7 +108,7 @@ exports[`List renders without border and split 1`] = `
 }
 
 .emotion-8 {
-  color: #1f1f1f;
+  color: #1f1f1fff;
 }
 
 .emotion-9 {
@@ -116,15 +116,18 @@ exports[`List renders without border and split 1`] = `
 }
 
 .emotion-10 {
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-11 {
   vertical-align: middle;
   border-style: solid;
   border-width: 0 0 1px 0;
-  border-color: #e5e6eb;
+  border-color: #e5e6ebff;
   width: 100%;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
 }
 
 <div
@@ -161,12 +164,7 @@ exports[`List renders without border and split 1`] = `
                     <span
                       class="emotion-7"
                     >
-                      <span
-                        style="position: relative;"
-                      >
-                        <iframe
-                          style="background: transparent; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: -1;"
-                        />
+                      <span>
                         <span
                           class="emotion-8"
                         >
@@ -180,12 +178,7 @@ exports[`List renders without border and split 1`] = `
                     <div
                       class="emotion-9"
                     >
-                      <span
-                        style="position: relative;"
-                      >
-                        <iframe
-                          style="background: transparent; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: -1;"
-                        />
+                      <span>
                         <span
                           class="emotion-10"
                         >
@@ -219,12 +212,7 @@ exports[`List renders without border and split 1`] = `
                     <span
                       class="emotion-7"
                     >
-                      <span
-                        style="position: relative;"
-                      >
-                        <iframe
-                          style="background: transparent; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: -1;"
-                        />
+                      <span>
                         <span
                           class="emotion-8"
                         >
@@ -238,12 +226,7 @@ exports[`List renders without border and split 1`] = `
                     <div
                       class="emotion-9"
                     >
-                      <span
-                        style="position: relative;"
-                      >
-                        <iframe
-                          style="background: transparent; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: -1;"
-                        />
+                      <span>
                         <span
                           class="emotion-10"
                         >

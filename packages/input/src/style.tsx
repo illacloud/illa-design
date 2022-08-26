@@ -140,6 +140,7 @@ function applyStatus(stateValue: StateValue): SerializedStyles {
       box-shadow: 0 0 8px 0 ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
+      z-index: 1;
     `
   } else if (stateValue?.error) {
     mainStyle = css`
@@ -149,6 +150,7 @@ function applyStatus(stateValue: StateValue): SerializedStyles {
     mainStyle = css`
       &:hover {
         border-color: ${getColor(stateValue.borderColor, "06")};
+        z-index: 1;
         ${hoverStyle}
       }
     `
