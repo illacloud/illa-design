@@ -122,9 +122,10 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       }
     }, [])
 
-    const changeDate = (date: Dayjs) => {
-      let value = finalValue(date)
+    const changeDate = (date: Dayjs, time?: Dayjs) => {
+      let value = finalValue(date, time)
       let valueFormat = value.format(finalFormat as string)
+      console.log(valueFormat, "valueFormat")
       onSelect?.(valueFormat, value)
       if (!showTimeMerged) {
         onChange?.(valueFormat, value)
@@ -134,6 +135,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
         setValueShow(value)
       } else {
         setCalendarValue(date)
+        setValueShow(value)
       }
     }
     const clearDate = () => {
@@ -177,6 +179,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       setInputVal(valueFormat)
       setCalendarShortCuts(value)
       setCalendarValue(dayjs())
+      setValueShow(undefined)
     }
 
     function ShortcutsCompt() {
@@ -211,7 +214,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
         allowClear={allowClear}
         position={position}
         placeholder={placeholder}
-        inputVal={inputVal}
+        inputVal={valueShow?.format(finalFormat as string) || inputVal}
         error={error}
         size={size}
         popupVisible={showTrigger}
@@ -233,7 +236,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                 panelTodayBtn={showCalendarTodayButton}
                 _css={triContentCommonCss}
                 onChange={(date: Dayjs) => {
-                  changeDate(date)
+                  changeDate(date, valueShow)
                 }}
                 disabledDate={disabledDate}
                 defaultDate={calendarValue || dayjs(mergedDefaultValue)}
@@ -273,7 +276,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                     disabledMinutes: disabledTime?.().disabledMinutes,
                     disabledSeconds: disabledTime?.().disabledSeconds,
                     onSelect: (valueString: string, value: Dayjs) => {
-                      changeDate(value)
+                      changeDate(calendarValue, value)
                     },
                     ...tpProps,
                   })}
@@ -282,7 +285,12 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
             )}
           </div>
         }
-        onVisibleChange={onVisibleChange}
+        onVisibleChange={(visible) => {
+          if (!visible) {
+            setValueShow(undefined)
+          }
+          onVisibleChange?.(visible)
+        }}
         onChangeInputVal={setInputVal}
         onChangeVisible={setShowTrigger}
         onClearDate={clearDate}
