@@ -125,7 +125,6 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     const changeDate = (date: Dayjs, time?: Dayjs) => {
       let value = finalValue(date, time)
       let valueFormat = value.format(finalFormat as string)
-      console.log(valueFormat, "valueFormat")
       onSelect?.(valueFormat, value)
       if (!showTimeMerged) {
         onChange?.(valueFormat, value)
