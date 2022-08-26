@@ -177,7 +177,7 @@ it("Trigger renders with alignPoint", () => {
     <Trigger
       trigger="click"
       content="Trigger"
-      position="br"
+      position="bottom-end"
       showArrow={false}
       alignPoint
     >

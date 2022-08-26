@@ -10,7 +10,7 @@ it("PopConfirm renders correctly", () => {
       title="Visible"
       closeDelay={0}
       openDelay={0}
-      position={"bl"}
+      position="bottom-start"
       colorScheme="blue"
     >
       <Button>Click</Button>
@@ -25,7 +25,7 @@ it("PopConfirm renders with different button text", () => {
   mount(
     <PopConfirm
       title="Visible"
-      position={"bl"}
+      position="bottom-start"
       okText={"ok-test"}
       cancelText={"cancel-text"}
     >
@@ -40,7 +40,7 @@ it("PopConfirm renders with different button text", () => {
 
 it("PopConfirm renders with different icon", () => {
   mount(
-    <PopConfirm title="Visible" position={"bl"} icon={<SearchIcon />}>
+    <PopConfirm title="Visible" position="bottom-start" icon={<SearchIcon />}>
       <Button>Click</Button>
     </PopConfirm>,
   )
@@ -55,7 +55,7 @@ it("PopConfirm triggers ok event", () => {
   mount(
     <PopConfirm
       title="Visible"
-      position={"bl"}
+      position="bottom-start"
       openDelay={0}
       closeDelay={0}
       onVisibleChange={visibleEvent}
@@ -75,7 +75,7 @@ it("PopConfirm triggers ok event", () => {
 it("PopConfirm triggers cancel event", () => {
   const cancelEvent = cy.stub().as("cancelEvent")
   mount(
-    <PopConfirm title="Visible" position={"bl"} onCancel={cancelEvent}>
+    <PopConfirm title="Visible" position="bottom-start" onCancel={cancelEvent}>
       <Button>Click</Button>
     </PopConfirm>,
   )

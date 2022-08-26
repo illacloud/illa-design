@@ -4,7 +4,13 @@ import { RangePickerProps, TimePickerProps } from "@illa-design/time-picker"
 import { InputBorderColor } from "@illa-design/input"
 import { BoxProps } from "@illa-design/theme"
 
-export type PickerPosition = "top" | "tl" | "tr" | "bottom" | "bl" | "br"
+export type PickerPosition =
+  | "top"
+  | "top-start"
+  | "top-end"
+  | "bottom"
+  | "bottom-start"
+  | "bottom-end"
 export type ShortcutType = {
   text: ReactNode
   value: () => Dayjs | Dayjs[]

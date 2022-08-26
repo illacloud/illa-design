@@ -38,7 +38,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       type,
       disabled,
       allowClear = true,
-      position = "bl",
+      position = "bottom-start",
       placeholder = "",
       shortcuts,
       shortcutsPlacementLeft,
