@@ -33,17 +33,14 @@ export type TriggerPosition =
 
 export type TriggerTrigger = "hover" | "click" | "focus" | "contextmenu"
 
-export type CustomPositionType = {
-  x?: number
-  y?: number
-}
-
 export interface TriggerProps extends BoxProps {
   children?: ReactNode
   colorScheme?: TriggerColorScheme
+  inline?: boolean
   clickOutsideToClose?: boolean
   withoutPadding?: boolean
   withoutShadow?: boolean
+  withoutOffset?: boolean
   trigger?: TriggerTrigger
   closeOnInnerClick?: boolean
   content?: string | ReactNode

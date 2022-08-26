@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState, cloneElement } from "react"
+import { cloneElement, forwardRef, useEffect, useState } from "react"
 import dayjs, { Dayjs } from "dayjs"
 import { css } from "@emotion/react"
 import { Button } from "@illa-design/button"
@@ -7,17 +7,17 @@ import { Calendar } from "@illa-design/calendar"
 import { CommonRangeProps } from "../interface"
 import { PickerRange } from "../picker-range"
 import {
-  wrapCss,
-  triContentCommonCss,
-  rangeLeftContentCss,
-  rangeRightContentCss,
-  rangeBodyCss,
   applyRangeFooterCss,
-  rangePickerCss,
-  showTimeHeaderCss,
   applyShortContainerCss,
-  shortCutsCss,
   buttonBoxCss,
+  rangeBodyCss,
+  rangeLeftContentCss,
+  rangePickerCss,
+  rangeRightContentCss,
+  shortCutsCss,
+  showTimeHeaderCss,
+  triContentCommonCss,
+  wrapCss,
 } from "../style"
 import { initFormat } from "../utils"
 
@@ -26,7 +26,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
     const {
       disabled,
       allowClear = true,
-      position = "bl",
+      position = "bottom-start",
       placeholder = [],
       shortcuts,
       shortcutsPlacementLeft,

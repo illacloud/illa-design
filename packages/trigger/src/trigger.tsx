@@ -17,7 +17,10 @@ import {
 } from "./style"
 import {
   autoUpdate,
+  ElementProps,
   flip,
+  FloatingPortal,
+  hide,
   Middleware,
   offset,
   size,
@@ -30,7 +33,6 @@ import {
   useRole,
 } from "@floating-ui/react-dom-interactions"
 import { mergeRefs } from "@illa-design/system"
-import { ElementProps } from "@floating-ui/react-dom-interactions/src/types"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -49,6 +51,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     defaultPopupVisible,
     withoutPadding,
     withoutShadow,
+    withoutOffset,
     disabled,
     popupVisible,
     maxW = "566px",
@@ -59,6 +62,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const tipsContainerRef = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState<boolean>(false)
+  const [mouseRecord, setMouseRecord] = useState({ x: 0, y: 0 })
   const finalVisible = popupVisible === undefined ? visible : popupVisible
 
   useEffect(() => {
@@ -73,7 +77,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
   if (autoFitPosition) {
     middleware.push(flip())
   }
-  middleware.push(offset(0))
+  if (!withoutOffset) {
+    middleware.push(offset(4))
+  }
   if (autoAlignPopupWidth) {
     middleware.push(
       size({
@@ -89,7 +95,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
       }),
     )
   }
-  middleware.push(offset(4))
+  middleware.push(hide())
 
   const { x, y, reference, floating, strategy, placement, context } =
     useFloating({
@@ -119,6 +125,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         useRole(context, { role: "tooltip" }),
         useDismiss(context, {
           outsidePointerDown: clickOutsideToClose,
+          ancestorScroll: true,
         }),
       ]
       break
@@ -130,15 +137,19 @@ export const Trigger: FC<TriggerProps> = (props) => {
         useRole(context, { role: "tooltip" }),
         useDismiss(context, {
           outsidePointerDown: clickOutsideToClose,
+          ancestorScroll: true,
         }),
       ]
       break
     case "focus":
       l = [
-        useFocus(context),
+        useFocus(context, {
+          keyboardOnly: false,
+        }),
         useRole(context, { role: "tooltip" }),
         useDismiss(context, {
           outsidePointerDown: clickOutsideToClose,
+          ancestorScroll: true,
         }),
       ]
       break
@@ -147,6 +158,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         useRole(context, { role: "menu" }),
         useDismiss(context, {
           outsidePointerDown: clickOutsideToClose,
+          ancestorScroll: true,
         }),
       ]
   }
@@ -185,45 +197,67 @@ export const Trigger: FC<TriggerProps> = (props) => {
     <>
       {cloneElement(
         children as ReactElement,
-        getReferenceProps({ ref, ...(props.children as any).props }),
+        getReferenceProps({
+          onContextMenu: (e) => {
+            if (trigger === "contextmenu") {
+              e.preventDefault()
+              if (alignPoint) {
+                setMouseRecord({
+                  x: e.clientX,
+                  y: e.clientY,
+                })
+              }
+              if (popupVisible === undefined) {
+                if (finalVisible) {
+                  setVisible(false)
+                } else {
+                  setVisible(true)
+                }
+              }
+            }
+          },
+          onClick: (e) => {
+            if (alignPoint) {
+              setMouseRecord({
+                x: e.clientX,
+                y: e.clientY,
+              })
+            }
+          },
+          ref,
+          ...(props.children as any).props,
+        }),
       )}
-      {!disabled && (
-        <AnimatePresence>
-          {finalVisible && (
-            <div
-              {...getFloatingProps({
-                onClick: (e) => {
-                  if (closeOnInnerClick) {
-                    if (popupVisible === undefined) {
-                      setVisible(false)
-                    }
-                  }
-                },
-                onContextMenu: (e) => {
-                  if (trigger === "contextmenu") {
-                    e.preventDefault()
-                    if (popupVisible === undefined) {
-                      if (finalVisible) {
-                        setVisible(false)
-                      } else {
-                        setVisible(true)
+      <FloatingPortal
+        root={document.body}
+        children={
+          !disabled && (
+            <AnimatePresence>
+              {finalVisible && (
+                <div
+                  {...getFloatingProps({
+                    onClick: (e) => {
+                      if (closeOnInnerClick) {
+                        if (popupVisible === undefined) {
+                          setVisible(false)
+                        }
                       }
-                    }
-                  }
-                },
-                ref: floating,
-                style: {
-                  position: strategy,
-                  top: y ?? 0,
-                  left: x ?? 0,
-                },
-              })}
-            >
-              {tipsNode}
-            </div>
-          )}
-        </AnimatePresence>
-      )}
+                    },
+                    ref: floating,
+                    style: {
+                      position: strategy,
+                      top: alignPoint ? mouseRecord.y ?? 0 : y ?? 0,
+                      left: alignPoint ? mouseRecord.x ?? 0 : x ?? 0,
+                    },
+                  })}
+                >
+                  {tipsNode}
+                </div>
+              )}
+            </AnimatePresence>
+          )
+        }
+      />
     </>
   )
 }
