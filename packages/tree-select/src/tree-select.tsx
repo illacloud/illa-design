@@ -343,7 +343,7 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
         }
         showArrow={false}
         colorScheme="white"
-        position="bl"
+        position="bottom-start"
         disabled={disabled}
         withoutPadding
         closeOnClick

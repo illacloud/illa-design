@@ -52,7 +52,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       disabledMinutes,
       disabledSeconds,
       hideDisabledOptions,
-      position = "bl",
+      position = "bottom-start",
       format = "HH:mm:ss",
       icons = { inputSuffix: <TimeIcon /> },
       allowClear = true,

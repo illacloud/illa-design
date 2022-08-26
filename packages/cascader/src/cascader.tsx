@@ -274,10 +274,10 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         }
         showArrow={false}
         colorScheme="white"
-        position="bl"
+        position="bottom-start"
         openDelay={0}
         closeDelay={0}
-        maxWidth=""
+        maxW=""
         disabled={disabled}
         withoutPadding
         closeOnClick

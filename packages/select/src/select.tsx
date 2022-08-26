@@ -363,7 +363,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       }
       showArrow={false}
       colorScheme="white"
-      position="bl"
+      position="bottom-start"
       disabled={disabled || readOnly}
       openDelay={10}
       closeDelay={10}

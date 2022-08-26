@@ -82,7 +82,9 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
 
   const mergedTriggerProps = {
     colorScheme: theme === "light" ? "white" : "gray",
-    position: (needPopOnBottom ? "bl" : "rt") as TriggerProps["position"],
+    position: (needPopOnBottom
+      ? "bottom-start"
+      : "right-start") as TriggerProps["position"],
     showArrow: mode === "popButton" || variant !== "pop",
     withoutPadding: true,
     clickOutsideToClose: true,
