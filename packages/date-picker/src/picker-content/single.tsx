@@ -79,26 +79,26 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       if (value) {
         const _initValue = dayjs(value).format(finalFormat as string)
         setInputVal(_initValue)
+        setCalendarShortCuts(dayjs(value))
       }
     }, [value])
     useEffect(() => {
       // YYYY-MM-DD
       if (finalFormat?.length) {
-        setInputVal(dayjs(inputVal).format(finalFormat as string))
+        setInputVal(inputVal ? dayjs(inputVal).format(finalFormat as string) : inputVal)
+        setCalendarShortCuts(inputVal ? dayjs(value) : undefined)
       }
     }, [finalFormat])
 
-    const [calendarShortCuts, setCalendarShortCuts] = useState<
-      Dayjs | "clear"
-    >()
+    const [calendarShortCuts, setCalendarShortCuts] = useState<Dayjs | "clear">()
     const [showTrigger, setShowTrigger] = useState<boolean>(
       popupVisible ?? false,
     )
-    const mergedDefaultValue = value || defaultPickerValue
+    const mergedDefaultValue = value || defaultValue || defaultPickerValue
     const showTimeMerged =
       (isBooleanShowTime || Object.keys(tpProps).length > 0) && type === "day"
 
-    const [valueShow, setValueShow] = useState<Dayjs | Dayjs[]>()
+    const [valueShow, setValueShow] = useState<Dayjs>()
 
     const [calendarValue, setCalendarValue] = useState<Dayjs>(dayjs())
 
@@ -130,6 +130,8 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
         onChange?.(valueFormat, value)
         setShowTrigger(false)
         setInputVal(valueFormat)
+        setCalendarValue(value)
+        setValueShow(value)
       } else {
         setCalendarValue(date)
       }
@@ -146,6 +148,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     const clickNow = () => {
       let current = dayjs()
       setInputVal(current.format(finalFormat as string))
+      setCalendarShortCuts(current)
       onChange?.(current.format(finalFormat as string), current)
       setShowTrigger(false)
     }
@@ -172,6 +175,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       onOk?.(valueFormat, value)
       setShowTrigger(false)
       setInputVal(valueFormat)
+      setCalendarShortCuts(value)
       setCalendarValue(dayjs())
     }
 
@@ -268,6 +272,9 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
                     disabledHours: disabledTime?.().disabledHours,
                     disabledMinutes: disabledTime?.().disabledMinutes,
                     disabledSeconds: disabledTime?.().disabledSeconds,
+                    onSelect: (valueString: string, value: Dayjs) => {
+                      changeDate(value)
+                    },
                     ...tpProps,
                   })}
                 </div>
