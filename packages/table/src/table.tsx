@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef, ReactElement, useState } from "react"
+import { ReactElement, useState } from "react"
 import { TableContextProps, TableProps } from "./interface"
 import {
   applyBorderedStyle,
@@ -31,20 +31,19 @@ import {
 } from "@illa-design/icon"
 import { rankItem } from "@tanstack/match-sorter-utils"
 
-export const Table = forwardRef<HTMLDivElement, TableProps<TableData, any>>(
-  (props, ref) => {
-    const { columns, data } = props
-    if (columns == undefined || data == undefined) {
-      return RenderDirectTable(props, ref)
-    } else {
-      return RenderDataDrivenTable(props, ref)
-    }
-  },
-)
+export function Table<D extends TableData, TValue>(
+  props: TableProps<D, TValue>,
+) {
+  const { columns, data } = props
+  if (columns == undefined || data == undefined) {
+    return RenderDirectTable(props)
+  } else {
+    return RenderDataDrivenTable(props)
+  }
+}
 
 function RenderDirectTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
-  ref: ForwardedRef<HTMLDivElement>,
 ): ReactElement {
   const {
     size = "medium",
@@ -80,7 +79,6 @@ function RenderDirectTable<D extends TableData, TValue>(
         applyBoxStyle(props),
         applyBorderedStyle(bordered),
       ]}
-      ref={ref}
     >
       <TableContext.Provider value={contextProps}>
         <table
@@ -96,7 +94,6 @@ function RenderDirectTable<D extends TableData, TValue>(
 
 function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
-  ref: ForwardedRef<HTMLDivElement>,
 ): ReactElement {
   const {
     size = "medium",
@@ -162,7 +159,6 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
         applyBoxStyle(props),
         applyBorderedStyle(bordered),
       ]}
-      ref={ref}
     >
       <TableContext.Provider value={contextProps}>
         <table

@@ -24,7 +24,7 @@ const data = [
   } as DemoData,
 ]
 
-const columns: ColumnDef<DemoData>[] = [
+const columns: ColumnDef<DemoData, string>[] = [
   {
     header: "Column 1",
     footer: "Footer 1",
