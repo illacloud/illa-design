@@ -7,7 +7,7 @@ import {
   applyProgressContainerBg,
   applySvgContainer,
 } from "./common-style"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const MiniRingProgress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
@@ -48,7 +48,7 @@ export const MiniRingProgress = forwardRef<HTMLDivElement, ProgressProps>(
       <div
         css={[applyContainer(w), applyBoxStyle(props)]}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <Trigger disabled={!showText} content={formatText(percent)}>
           <svg css={applySvgContainer(w)}>

@@ -59,7 +59,7 @@ export function applyCircleProgressContainer(
   }
 
   return css`
-    transition: all 200ms;
+    transition: stroke-dashoffset 200ms;
     stroke: ${color};
     transform: rotate(-90deg);
     transform-origin: center;

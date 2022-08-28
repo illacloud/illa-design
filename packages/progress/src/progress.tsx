@@ -14,20 +14,16 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
 
     switch (type) {
       case "line":
-        progress = <LineProgress ref={ref} {...deleteCssProps(otherProps)} />
+        progress = <LineProgress ref={ref} {...otherProps} />
         break
       case "circle":
-        progress = <CircleProgress ref={ref} {...deleteCssProps(otherProps)} />
+        progress = <CircleProgress ref={ref} {...otherProps} />
         break
       case "miniCircle":
-        progress = (
-          <MiniCircleProgress ref={ref} {...deleteCssProps(otherProps)} />
-        )
+        progress = <MiniCircleProgress ref={ref} {...otherProps} />
         break
       case "miniRing":
-        progress = (
-          <MiniRingProgress ref={ref} {...deleteCssProps(otherProps)} />
-        )
+        progress = <MiniRingProgress ref={ref} {...otherProps} />
         break
     }
 
