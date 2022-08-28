@@ -37,6 +37,7 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
     sizes,
     srcSet,
     useMap,
+    draggable = true,
     ...rest
   } = props
 
@@ -78,6 +79,7 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
           sizes={sizes}
           srcSet={srcSet}
           useMap={useMap}
+          draggable={draggable}
         />
       ) : fallbackSrc && fallbackSrc.length != 0 ? (
         <img
@@ -93,6 +95,7 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
           sizes={sizes}
           srcSet={srcSet}
           useMap={useMap}
+          draggable={draggable}
         />
       ) : (
         <div css={applyDefaultFallback(width, height, radius)}>{fallback}</div>
