@@ -1,29 +1,8 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { TriggerColorScheme, TriggerPosition } from "./interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import { getAnimation } from "./transform"
 import { Variants } from "framer-motion"
-
-// should update these constant when arrow size change
-const HALF_OF_ARROW = 4
-export const ARROW_MARGIN_OFFSET = 6
-export const ARROW_TIP_OFFSET = ARROW_MARGIN_OFFSET + HALF_OF_ARROW
-
-const colorSchemes = [
-  "white",
-  "gray",
-  "grayBlue",
-  "red",
-  "orange",
-  "yellow",
-  "blackAlpha",
-  "green",
-  "blue",
-  "cyan",
-  "purple",
-  "techPink",
-  "techPurple",
-]
 
 export function applyMotionDiv() {
   return css`
@@ -44,11 +23,10 @@ export function applyTipsText(
   withoutPadding?: boolean,
   withoutShadow?: boolean,
 ): SerializedStyles {
-  const bgColor = colorSchemes.includes(colorScheme)
-    ? colorScheme == "white"
-      ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
-      : globalColor(`--${illaPrefix}-${colorScheme}-02`)
-    : colorScheme
+  const bgColor =
+    colorScheme == "white"
+      ? getColor(colorScheme, "01")
+      : getColor(colorScheme, "02")
   const textColor =
     colorScheme == "white"
       ? globalColor(`--${illaPrefix}-grayBlue-02`)
@@ -86,11 +64,8 @@ export function applyTipsText(
 export function applyTriangleStyle(
   colorScheme: TriggerColorScheme,
   position: TriggerPosition,
-  alignPoint?: boolean,
 ): SerializedStyles {
-  const bgColor = colorSchemes.includes(colorScheme)
-    ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
-    : colorScheme
+  const bgColor = getColor(colorScheme, "02")
   const mainStyle = css`
     color: ${bgColor};
   `
@@ -110,14 +85,6 @@ export function applyTriangleStyle(
         align-self: start;
         margin-left: 12px;
       `
-
-      if (alignPoint) {
-        positionStyle = css`
-          align-self: end;
-          margin-right: ${ARROW_MARGIN_OFFSET}px;
-        `
-      }
-
       break
     case "top-end":
     case "bottom-end":
@@ -125,13 +92,6 @@ export function applyTriangleStyle(
         align-self: end;
         margin-right: 12px;
       `
-
-      if (alignPoint) {
-        positionStyle = css`
-          align-self: start;
-          margin-left: ${ARROW_MARGIN_OFFSET}px;
-        `
-      }
       break
     case "left-start":
     case "right-start":
@@ -139,13 +99,6 @@ export function applyTriangleStyle(
         align-self: start;
         margin-top: 12px;
       `
-
-      if (alignPoint) {
-        positionStyle = css`
-          align-self: end;
-          margin-bottom: ${ARROW_MARGIN_OFFSET}px;
-        `
-      }
       break
     case "left-end":
     case "right-end":
@@ -153,12 +106,6 @@ export function applyTriangleStyle(
         align-self: end;
         margin-bottom: 12px;
       `
-      if (alignPoint) {
-        positionStyle = css`
-          align-self: start;
-          margin-top: ${ARROW_MARGIN_OFFSET}px;
-        `
-      }
       break
   }
   return css`
@@ -218,4 +165,14 @@ export function applyAnimation(
 
 export const applyDefaultContentSize = css`
   font-size: 14px;
+`
+
+export const applyVerticalContainer = css`
+  display: inline-flex;
+  flex-direction: column;
+`
+
+export const applyHorizontalContainer = css`
+  display: inline-flex;
+  flex-direction: row;
 `

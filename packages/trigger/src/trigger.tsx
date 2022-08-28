@@ -12,8 +12,11 @@ import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
   applyDefaultContentSize,
+  applyHorizontalContainer,
   applyMotionDiv,
   applyTipsText,
+  applyTriangleStyle,
+  applyVerticalContainer,
 } from "./style"
 import {
   autoUpdate,
@@ -32,6 +35,13 @@ import {
   useRole,
 } from "@floating-ui/react-dom-interactions"
 import { mergeRefs } from "@illa-design/system"
+import {
+  TriangleBottom,
+  TriangleLeft,
+  TriangleRight,
+  TriangleTop,
+} from "./triangle"
+import { css } from "@emotion/react"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -118,6 +128,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     useHover(context, {
       enabled: trigger === "hover",
       move: true,
+      restMs: 100,
       delay: {
         open: openDelay,
         close: closeDelay,
@@ -145,14 +156,106 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const closeContent = <div css={applyDefaultContentSize}>{content}</div>
 
-  const centerNode = (
-    <div
-      ref={tipsContainerRef}
-      css={applyTipsText(colorScheme, maxW, withoutPadding, withoutShadow)}
-    >
-      {closeContent}
-    </div>
-  )
+  let centerNode: ReactElement = <></>
+
+  switch (placement) {
+    case "top":
+    case "top-start":
+    case "top-end":
+      centerNode = (
+        <div css={applyVerticalContainer}>
+          <div
+            ref={tipsContainerRef}
+            css={applyTipsText(
+              colorScheme,
+              maxW,
+              withoutPadding,
+              withoutShadow,
+            )}
+          >
+            {closeContent}
+          </div>
+          <TriangleTop
+            w="8px"
+            h="4px"
+            css={applyTriangleStyle(colorScheme, placement)}
+          />
+        </div>
+      )
+      break
+    case "bottom":
+    case "bottom-start":
+    case "bottom-end":
+      centerNode = (
+        <div css={applyVerticalContainer}>
+          <TriangleBottom
+            w="8px"
+            h="4px"
+            css={applyTriangleStyle(colorScheme, placement)}
+          />
+          <div
+            ref={tipsContainerRef}
+            css={applyTipsText(
+              colorScheme,
+              maxW,
+              withoutPadding,
+              withoutShadow,
+            )}
+          >
+            {closeContent}
+          </div>
+        </div>
+      )
+      break
+    case "right":
+    case "right-start":
+    case "right-end":
+      centerNode = (
+        <div css={applyHorizontalContainer}>
+          <TriangleRight
+            w="4px"
+            h="8px"
+            css={applyTriangleStyle(colorScheme, placement)}
+          />
+          <div
+            ref={tipsContainerRef}
+            css={applyTipsText(
+              colorScheme,
+              maxW,
+              withoutPadding,
+              withoutShadow,
+            )}
+          >
+            {closeContent}
+          </div>
+        </div>
+      )
+      break
+    case "left":
+    case "left-start":
+    case "left-end":
+      centerNode = (
+        <div css={applyHorizontalContainer}>
+          <div
+            ref={tipsContainerRef}
+            css={applyTipsText(
+              colorScheme,
+              maxW,
+              withoutPadding,
+              withoutShadow,
+            )}
+          >
+            {closeContent}
+          </div>
+          <TriangleLeft
+            w="4px"
+            h="8px"
+            css={applyTriangleStyle(colorScheme, placement)}
+          />
+        </div>
+      )
+      break
+  }
 
   const tipsNode = (
     <motion.div
@@ -174,10 +277,20 @@ export const Trigger: FC<TriggerProps> = (props) => {
           onContextMenu: (e) => {
             if (trigger === "contextmenu") {
               e.preventDefault()
-              if (alignPoint) {
-                setMouseRecord({
-                  x: e.clientX,
-                  y: e.clientY,
+              if (alignPoint && trigger === "contextmenu") {
+                ref({
+                  getBoundingClientRect() {
+                    return {
+                      x: e.clientX,
+                      y: e.clientY,
+                      width: 0,
+                      height: 0,
+                      top: e.clientY,
+                      right: e.clientX,
+                      bottom: e.clientY,
+                      left: e.clientX,
+                    }
+                  },
                 })
               }
               if (popupVisible === undefined) {
@@ -190,18 +303,20 @@ export const Trigger: FC<TriggerProps> = (props) => {
             }
           },
           onClick: (e) => {
-            if (alignPoint) {
-              setMouseRecord({
-                x: e.clientX,
-                y: e.clientY,
-              })
-            }
-          },
-          onMouseEnter: (e) => {
-            if (alignPoint) {
-              setMouseRecord({
-                x: e.clientX,
-                y: e.clientY,
+            if (alignPoint && trigger === "click") {
+              ref({
+                getBoundingClientRect() {
+                  return {
+                    x: e.clientX,
+                    y: e.clientY,
+                    width: 0,
+                    height: 0,
+                    top: e.clientY,
+                    right: e.clientX,
+                    bottom: e.clientY,
+                    left: e.clientX,
+                  }
+                },
               })
             }
           },
@@ -215,6 +330,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <AnimatePresence>
             {finalVisible && (
               <div
+                css={css`
+                  display: inline-flex;
+                `}
                 {...getFloatingProps({
                   onClick: (e) => {
                     if (closeOnInnerClick) {
@@ -226,8 +344,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
                   ref: floating,
                   style: {
                     position: strategy,
-                    top: alignPoint ? mouseRecord.y ?? 0 : y ?? 0,
-                    left: alignPoint ? mouseRecord.x ?? 0 : x ?? 0,
+                    top: y ?? 0,
+                    left: x ?? 0,
                   },
                 })}
               >
