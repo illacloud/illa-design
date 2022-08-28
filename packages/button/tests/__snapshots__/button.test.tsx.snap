@@ -32,6 +32,10 @@ exports[`Button renders fullwidth 1`] = `
   background-color: #134ae0ff;
 }
 
+.emotion-0:disabled {
+  cursor: not-allowed;
+}
+
 .emotion-0:hover {
   color: #ffffffff;
 }
@@ -39,6 +43,10 @@ exports[`Button renders fullwidth 1`] = `
 .emotion-0:active {
   -webkit-transition: none;
   transition: none;
+  color: #ffffffff;
+}
+
+.emotion-0:disabled {
   color: #ffffffff;
 }
 
@@ -50,6 +58,10 @@ exports[`Button renders fullwidth 1`] = `
   -webkit-transition: none;
   transition: none;
   background-color: #083bc7ff;
+}
+
+.emotion-0:disabled {
+  background-color: #99beffff;
 }
 
 .emotion-1 {
@@ -104,6 +116,10 @@ exports[`Button renders round 1`] = `
   background-color: #134ae0ff;
 }
 
+.emotion-0:disabled {
+  cursor: not-allowed;
+}
+
 .emotion-0:hover {
   color: #ffffffff;
 }
@@ -111,6 +127,10 @@ exports[`Button renders round 1`] = `
 .emotion-0:active {
   -webkit-transition: none;
   transition: none;
+  color: #ffffffff;
+}
+
+.emotion-0:disabled {
   color: #ffffffff;
 }
 
@@ -122,6 +142,10 @@ exports[`Button renders round 1`] = `
   -webkit-transition: none;
   transition: none;
   background-color: #083bc7ff;
+}
+
+.emotion-0:disabled {
+  background-color: #99beffff;
 }
 
 .emotion-1 {

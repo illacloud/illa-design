@@ -1,23 +1,6 @@
 import { ProgressColorScheme } from "./interface"
-import { SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { css } from "@emotion/react"
-
-const colorSchemes: ProgressColorScheme[] = [
-  "white",
-  "blackAlpha",
-  "gray",
-  "grayBlue",
-  "red",
-  "orange",
-  "yellow",
-  "green",
-  "blue",
-  "cyan",
-  "purple",
-  "techPink",
-  "techPurple",
-]
+import { css, SerializedStyles } from "@emotion/react"
+import { getColor } from "@illa-design/theme"
 
 export function applySvgContainer(width: string): SerializedStyles {
   return css`
@@ -48,11 +31,9 @@ export function applyProgressContainer(
 
   let color
   if (colorScheme == "gray" || colorScheme == "grayBlue") {
-    color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
+    color = getColor(colorScheme, "02")
   } else {
-    color = colorSchemes.includes(colorScheme)
-      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
-      : colorScheme
+    color = getColor(colorScheme, "03")
   }
 
   return css`
@@ -74,11 +55,9 @@ export function applyProgressContainerBg(
 
   let color
   if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
-    color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
+    color = getColor(trailColorScheme, "08")
   } else {
-    color = colorSchemes.includes(trailColorScheme)
-      ? globalColor(`--${illaPrefix}-${trailColorScheme}-06`)
-      : trailColorScheme
+    color = getColor(trailColorScheme, "06")
   }
 
   return css`

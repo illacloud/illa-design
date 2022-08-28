@@ -1,21 +1,6 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { ProgressColorScheme } from "./interface"
-import { SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-
-const colorSchemes: ProgressColorScheme[] = [
-  "white",
-  "blackAlpha",
-  "gray",
-  "grayBlue",
-  "red",
-  "orange",
-  "yellow",
-  "green",
-  "blue",
-  "cyan",
-  "purple",
-]
+import { getColor } from "@illa-design/theme"
 
 export const applyCircleStatus = css`
   display: inline-flex;
@@ -28,11 +13,9 @@ export function applyCircleSvgContainer(
 ): SerializedStyles {
   let color
   if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
-    color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
+    color = getColor(trailColorScheme, "08")
   } else {
-    color = colorSchemes.includes(trailColorScheme)
-      ? globalColor(`--${illaPrefix}-${trailColorScheme}-06`)
-      : trailColorScheme
+    color = getColor(trailColorScheme, "06")
   }
   return css`
     width: ${width};
@@ -51,11 +34,9 @@ export function applyCircleProgressContainer(
 
   let color
   if (colorScheme == "gray" || colorScheme == "grayBlue") {
-    color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
+    color = getColor(colorScheme, "02")
   } else {
-    color = colorSchemes.includes(colorScheme)
-      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
-      : colorScheme
+    color = getColor(colorScheme, "03")
   }
 
   return css`

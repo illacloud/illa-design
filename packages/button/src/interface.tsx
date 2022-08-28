@@ -28,6 +28,7 @@ export interface ButtonProps
   size?: ButtonSize
   variant?: ButtonVariant
   shape?: ButtonShape
+  disabled?: boolean
   fullWidth?: boolean
   fullHeight?: boolean
   loading?: boolean
@@ -36,7 +37,6 @@ export interface ButtonProps
   rightIcon?: ReactNode
   borderColor?: string
   backgroundColor?: string
-  textColor?: string
 }
 
 export interface ButtonGroupProps

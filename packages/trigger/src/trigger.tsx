@@ -17,7 +17,6 @@ import {
 } from "./style"
 import {
   autoUpdate,
-  ElementProps,
   flip,
   FloatingPortal,
   hide,
@@ -206,40 +205,38 @@ export const Trigger: FC<TriggerProps> = (props) => {
               })
             }
           },
+          key: "illa-trigger",
           ref,
           ...(props.children as any).props,
         }),
       )}
-      <FloatingPortal
-        root={document.body}
-        children={
-          !disabled && (
-            <AnimatePresence>
-              {finalVisible && (
-                <div
-                  {...getFloatingProps({
-                    onClick: (e) => {
-                      if (closeOnInnerClick) {
-                        if (popupVisible === undefined) {
-                          setVisible(false)
-                        }
+      <FloatingPortal root={document.body}>
+        {!disabled && (
+          <AnimatePresence>
+            {finalVisible && (
+              <div
+                {...getFloatingProps({
+                  onClick: (e) => {
+                    if (closeOnInnerClick) {
+                      if (popupVisible === undefined) {
+                        setVisible(false)
                       }
-                    },
-                    ref: floating,
-                    style: {
-                      position: strategy,
-                      top: alignPoint ? mouseRecord.y ?? 0 : y ?? 0,
-                      left: alignPoint ? mouseRecord.x ?? 0 : x ?? 0,
-                    },
-                  })}
-                >
-                  {tipsNode}
-                </div>
-              )}
-            </AnimatePresence>
-          )
-        }
-      />
+                    }
+                  },
+                  ref: floating,
+                  style: {
+                    position: strategy,
+                    top: alignPoint ? mouseRecord.y ?? 0 : y ?? 0,
+                    left: alignPoint ? mouseRecord.x ?? 0 : x ?? 0,
+                  },
+                })}
+              >
+                {tipsNode}
+              </div>
+            )}
+          </AnimatePresence>
+        )}
+      </FloatingPortal>
     </>
   )
 }

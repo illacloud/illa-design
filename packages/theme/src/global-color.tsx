@@ -7,6 +7,10 @@ export function globalColor(key: string): string {
   return globalColorNormal.get(key) ?? ""
 }
 
+export function hasGlobalColor(key: string): boolean {
+  return globalColorNormal.has(key)
+}
+
 const globalColorNormal: Map<string, string> = new Map([
   ["--illa-white-01", "#ffffffff"],
   ["--illa-white-02", "#ffffffe5"],

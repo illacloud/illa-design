@@ -1,6 +1,5 @@
-// thanks arco
 import Color from "color"
-import { globalColor, illaPrefix } from "./global-color"
+import { globalColor, hasGlobalColor, illaPrefix } from "./global-color"
 
 const formats = ["hex", "rgb", "hsl"]
 
@@ -109,18 +108,18 @@ const transRule: Record<string, number> = {
 export const getColor = (color: string, step: string) => {
   let colorStyle
   if (color === "transparent") {
-    colorStyle = "transparent"
-  } else {
-    colorStyle = globalColor(`--${illaPrefix}-${color}-${step}`)
+    return "transparent"
   }
-  if (!colorStyle) {
+  if (!hasGlobalColor(`--${illaPrefix}-${color}-${step}`)) {
     const formatStep = transRule[step]
     let formatNum = formatStep ? formatStep : 6
     try {
       colorStyle = colorPalette(color, formatNum, "hsl")
     } catch (e) {
-      colorStyle = "#fff"
+      colorStyle = "transparent"
     }
+  } else {
+    colorStyle = globalColor(`--${illaPrefix}-${color}-${step}`)
   }
   return colorStyle
 }

@@ -23,6 +23,5 @@ export interface DividerProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   variant?: DividerVariant
   text?: string
   textAlign?: DividerTextAlign
-  textSize?: string
   colorScheme?: DividerColorScheme
 }

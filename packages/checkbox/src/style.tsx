@@ -3,21 +3,6 @@ import { CheckboxColorScheme, CheckboxProps } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 
-const innerColor = [
-  "gray",
-  "blue",
-  "purple",
-  "red",
-  "green",
-  "yellow",
-  "orange",
-  "cyan",
-  "white",
-  "grayBlue",
-  "techPink",
-  "techPurple",
-]
-
 export function applyCheckboxSize(
   checked?: boolean,
   colorScheme: CheckboxColorScheme = "blue",

@@ -4,7 +4,6 @@ import { LineProgress } from "./line-progress"
 import { CircleProgress } from "./circle-progress"
 import { MiniCircleProgress } from "./mini-circle-progress"
 import { MiniRingProgress } from "./mini-ring-progress"
-import { deleteCssProps } from "@illa-design/theme"
 
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {

@@ -3,11 +3,7 @@ import "@testing-library/jest-dom"
 import { Progress } from "../src"
 
 test("Progress renders correctly", () => {
-  render(
-    <div>
-      <Progress data-testid="test-progress" type="miniCircle" />
-    </div>,
-  )
+  render(<Progress data-testid="test-progress" type="miniCircle" />)
   expect(screen.getByTestId("test-progress")).toBeInTheDocument()
 })
 

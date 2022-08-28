@@ -23,7 +23,7 @@ import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
 import useMeasure from "react-use-measure"
 import { ResizeObserver } from "@juggle/resize-observer"
-import { Tooltip } from "@illa-design/tooltip"
+import { Trigger } from "@illa-design/trigger"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
@@ -193,14 +193,14 @@ export const Base: FC<BaseProps> = (props) => {
 
   const copyablePanel =
     copyable && originCopyable.copyIcon && showCopyTooltip ? (
-      <Tooltip
+      <Trigger
         closeOnClick={false}
         content={
           copied ? originCopyable.copiedToolTip : originCopyable.copyToolTip
         }
       >
         {copyableElement}
-      </Tooltip>
+      </Trigger>
     ) : (
       copyableElement
     )

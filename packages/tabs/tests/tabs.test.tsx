@@ -96,7 +96,7 @@ test("Tabs renders with variant is capsule", () => {
     </Tabs>,
   )
   expect(screen.getByText("tab 01").parentElement).toHaveStyle({
-    "background-color": "#fff",
+    "background-color": globalColor(`--${illaPrefix}-white-01`),
   })
 })
 

@@ -1,7 +1,7 @@
 import { Children, forwardRef } from "react"
 import { TextProps } from "./interface"
 import { Base } from "./base"
-import { Tooltip } from "@illa-design/tooltip"
+import { Trigger } from "@illa-design/trigger"
 import { mergedToString } from "@illa-design/system"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
@@ -51,9 +51,9 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
 
   if (showTooltip) {
     return (
-      <Tooltip content={mergedToString(Children.toArray(props.children))}>
+      <Trigger content={mergedToString(Children.toArray(props.children))}>
         {text}
-      </Tooltip>
+      </Trigger>
     )
   } else {
     return text

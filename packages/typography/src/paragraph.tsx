@@ -2,7 +2,7 @@ import { Children, forwardRef } from "react"
 import { ParagraphProps } from "./interface"
 import { Base } from "./base"
 import { applyParagraphContainer } from "./paragraph-style"
-import { Tooltip } from "@illa-design/tooltip"
+import { Trigger } from "@illa-design/trigger"
 import { mergedToString } from "@illa-design/system"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
@@ -52,9 +52,9 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
 
     if (showTooltip) {
       return (
-        <Tooltip content={mergedToString(Children.toArray(props.children))}>
+        <Trigger content={mergedToString(Children.toArray(props.children))}>
           {p}
-        </Tooltip>
+        </Trigger>
       )
     } else {
       return p

@@ -66,7 +66,7 @@ it("Should overflow in horizontal mode when exceed width", () => {
 
   cy.get(`[data-testid='item']`).should("not.be.visible")
   cy.get(`[data-sub-menu-marker]:last-child`).should("be.visible")
-  cy.get(`[data-sub-menu-marker]:last-child`).trigger("mouseover")
+  cy.get(`[data-sub-menu-marker]:last-child`).trigger("mouseenter")
   cy.get(`[data-testid='item']`).should("be.visible")
 
   unmount()
@@ -114,7 +114,7 @@ it("Menu render with variant pop", () => {
   mount(<TestMenuInline variant={"pop"} style={{ width: 150 }} />)
 
   cy.findByTestId("submenu-item-1").should("not.exist")
-  cy.findByTestId("submenu-1").trigger("mouseover")
+  cy.findByTestId("submenu-1").trigger("mouseenter")
   cy.wait(200)
   cy.findByTestId("submenu-item-1").should("be.visible")
 
@@ -127,22 +127,15 @@ it("Click on pop menu item, onClickMenuItem should be called", () => {
     <TestMenuInline
       variant={"pop"}
       onClickMenuItem={onClickMenuItem}
-      style={{ width: 150 }}
+      style={{ width: 300 }}
       triggerProps={{ trigger: "click" }}
     />,
   )
 
   cy.findByTestId("submenu-item-1").should("not.exist")
   cy.findByTestId("submenu-1").click()
-
   cy.findByTestId("submenu-item-1").should("be.visible")
-  cy.findByTestId("submenu-item-1")
-    .click("center")
-    .then(() => {
-      cy.get("@onClickMenuItem").should("be.called")
-      cy.findByTestId("submenu-1").click("center")
-      cy.findByTestId("submenu-item-1").should("not.exist")
-    })
-
+  cy.findByTestId("submenu-item-1").click()
+  cy.get("@onClickMenuItem").should("be.called")
   unmount()
 })

@@ -30,7 +30,7 @@ test("Divider renders with colorScheme", () => {
 test("Divider renders with text", () => {
   const { asFragment } = render(
     <div>
-      <Divider direction="vertical" text="this is a divider" textSize="20px" />
+      <Divider direction="vertical" text="this is a divider" />
       <Divider
         direction="vertical"
         text="this is a divider"

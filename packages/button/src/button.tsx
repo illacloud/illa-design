@@ -16,8 +16,7 @@ import {
   applyWithoutTextSize,
 } from "./style"
 import { ButtonGroupContext } from "."
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -37,7 +36,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             leftIcon,
             disabled,
             rightIcon,
-            textColor,
             onClick,
             ...otherProps
           } = props
@@ -48,7 +46,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           const hasPropContent = hasChild || (hasLoadingText && loading)
           const finalContainer = css`
             ${applyTagContainer(fullWidth, fullHeight)};
-            ${applyCursor(loading ?? false, disabled ?? false)}
+            ${applyCursor(loading ?? false)}
             ${hasPropContent
               ? applyPaddingStyle(size, variant)
               : applyWithoutTextSize(size, fullWidth, fullHeight)};
@@ -58,13 +56,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               first ?? false,
               last ?? false,
             )};
-            ${applyElementColor(
-              variant,
-              colorScheme,
-              textColor,
-              disabled || loading,
-            )};
-            ${applyBg(variant, colorScheme, disabled || loading)};
+            ${applyElementColor(variant, colorScheme)};
+            ${applyBg(variant, colorScheme)};
           `
 
           return (
@@ -77,6 +70,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 }
                 onClick?.(e)
               }}
+              disabled={disabled || loading}
               {...deleteCssProps(otherProps)}
             >
               {(loading || leftIcon) && (

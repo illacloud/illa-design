@@ -2,7 +2,7 @@ import { forwardRef, Fragment, useState } from "react"
 import NP from "number-precision"
 import { RateProps } from "./interface"
 import { HeartIcon, StarIcon } from "@illa-design/icon"
-import { Tooltip } from "@illa-design/tooltip"
+import { Trigger } from "@illa-design/trigger"
 import {
   applyRate,
   applyRateCharacter,
@@ -97,7 +97,7 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
             },
           }
     const tooltip = tooltips && tooltips[index]
-    const CharacterWrapper = tooltip ? Tooltip : Fragment
+    const CharacterWrapper = tooltip ? Trigger : Fragment
     const tooltipProps = tooltip ? { content: tooltip } : {}
 
     return (

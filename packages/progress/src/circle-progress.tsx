@@ -18,7 +18,7 @@ import {
 export const CircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
     const {
-      type = "line",
+      type,
       steps,
       status = "normal",
       color = "blue",

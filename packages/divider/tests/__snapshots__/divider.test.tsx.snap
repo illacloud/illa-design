@@ -162,7 +162,6 @@ exports[`Divider renders with text 1`] = `
 <div>
     <div
       class="emotion-0"
-      textsize="20px"
     >
       <div
         class="emotion-1"

@@ -53,7 +53,7 @@ it("Dropdown renders with dropList", () => {
     </Dropdown>,
   )
   cy.findByText("Hover")
-    .trigger("mouseover")
+    .trigger("mouseenter")
     .then(() => {
       cy.findByText("Blog")
         .should("exist")

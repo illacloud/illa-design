@@ -1,7 +1,8 @@
 import { Radio, RadioGroup } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import userEvent from "@testing-library/user-event"
 
 test("RadioGroup renders correctly", () => {
   render(
@@ -176,18 +177,11 @@ test("RadioGroup renders with button type and large size", () => {
   `)
 })
 
-test("RadioGroup renders with button type and click", () => {
-  render(
-    <RadioGroup
-      data-testid="radio-group-button"
-      options={["A", "B", "C"]}
-      type={"button"}
-    />,
-  )
-  fireEvent.click(screen.getByText("A"))
-  expect(screen.getByText("A").parentNode).toHaveStyle(`
-    color: ${globalColor(`--${illaPrefix}-blue-03`)};
-  `)
+test("RadioGroup renders with button type and click", async () => {
+  const fn = jest.fn()
+  render(<RadioGroup options={["A", "B", "C"]} type={"button"} onChange={fn} />)
+  await userEvent.click(screen.getByText("A"))
+  expect(fn).toBeCalledWith("A", expect.anything())
 })
 
 test("RadioGroup renders with click", async () => {
@@ -195,11 +189,11 @@ test("RadioGroup renders with click", async () => {
   const GroupClickA = screen.getByLabelText("GroupClickA")
   const GroupClickB = screen.getByLabelText("GroupClickB")
 
-  fireEvent.click(GroupClickB)
+  await userEvent.click(GroupClickB)
   expect(GroupClickB).toBeChecked()
   GroupClickB.focus()
   expect(GroupClickB).toHaveFocus()
-  fireEvent.click(GroupClickA)
+  await userEvent.click(GroupClickA)
   expect(GroupClickA).toBeChecked()
 })
 

@@ -1,12 +1,10 @@
 import {
   DividerColorScheme,
   DividerDirection,
-  DividerTextAlign,
   DividerVariant,
 } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { colorSchemes } from "@illa-design/link/dist/types/style"
 
 export function applyDividerContainerHorizontal(
   color: DividerColorScheme,

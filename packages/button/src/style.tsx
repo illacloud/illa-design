@@ -5,7 +5,7 @@ import {
   ButtonSize,
   ButtonVariant,
 } from "./interface"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor } from "@illa-design/theme"
 
 // button
 export function applyTagContainer(
@@ -42,22 +42,6 @@ export enum State {
   ACTIVE,
   DISABLE,
 }
-
-const colors = [
-  "white",
-  "blackAlpha",
-  "gray",
-  "grayBlue",
-  "red",
-  "orange",
-  "yellow",
-  "green",
-  "blue",
-  "cyan",
-  "purple",
-  "techPink",
-  "techPurple",
-]
 
 export function getDifferentStatusColor(
   colorScheme: ButtonColorScheme,
@@ -207,7 +191,6 @@ export function getDifferentStatusColor(
 export function applyBg(
   variant: ButtonVariant,
   colorScheme: ButtonColorScheme,
-  disabled?: boolean,
 ): SerializedStyles {
   switch (variant) {
     case "text":
@@ -230,12 +213,6 @@ export function applyBg(
         }
       `
     case "dashed":
-      if (disabled) {
-        return css`
-          border: dashed 1px
-            ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
-        `
-      }
       return css`
         border: dashed 1px
           ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
@@ -250,17 +227,13 @@ export function applyBg(
           border: dashed 1px
             ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
         }
+
+        &:disabled {
+          border: dashed 1px
+            ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
+        }
       `
     case "fill":
-      if (disabled) {
-        return css`
-          background-color: ${getDifferentStatusColor(
-            colorScheme,
-            variant,
-            State.DISABLE,
-          )[0]};
-        `
-      }
       return css`
         background-color: ${getDifferentStatusColor(
           colorScheme,
@@ -284,14 +257,16 @@ export function applyBg(
             State.ACTIVE,
           )[0]};
         }
+
+        &:disabled {
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
+          )[0]};
+        }
       `
     case "outline":
-      if (disabled) {
-        return css`
-          border: solid 1px
-            ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
-        `
-      }
       return css`
         border: solid 1px
           ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
@@ -306,17 +281,13 @@ export function applyBg(
           border: solid 1px
             ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
         }
+
+        &:disabled {
+          border: solid 1px
+            ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
+        }
       `
     case "light":
-      if (disabled) {
-        return css`
-          background-color: ${getDifferentStatusColor(
-            colorScheme,
-            variant,
-            State.DISABLE,
-          )[0]};
-        `
-      }
       return css`
         background-color: ${getDifferentStatusColor(
           colorScheme,
@@ -340,25 +311,34 @@ export function applyBg(
             State.ACTIVE,
           )[0]};
         }
+
+        &:disabled {
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
+          )[0]};
+        }
       `
   }
 }
 
-export function applyCursor(
-  loading: boolean,
-  disabled: boolean,
-): SerializedStyles {
-  if (disabled) {
-    return css`
-      cursor: not-allowed;
-    `
-  } else if (loading) {
+export function applyCursor(loading: boolean): SerializedStyles {
+  if (loading) {
     return css`
       cursor: default;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
     `
   } else {
     return css`
       cursor: pointer;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
     `
   }
 }
@@ -366,42 +346,25 @@ export function applyCursor(
 export function applyElementColor(
   variant: ButtonVariant,
   colorScheme: ButtonColorScheme,
-  textColor?: string,
-  disabled?: boolean,
 ): SerializedStyles {
-  if (textColor) {
-    return css`
-      color: ${textColor};
-    `
-  }
   switch (variant) {
     case "text":
-      if (disabled) {
-        return css`
-          color: ${getDifferentStatusColor(
-            colorScheme,
-            variant,
-            State.DISABLE,
-          )[1]};
-        `
-      }
       return css`
         color: ${getDifferentStatusColor(
           colorScheme,
           variant,
           State.DEFAULT,
         )[1]};
-      `
-    case "light":
-      if (disabled) {
-        return css`
+
+        &:disabled {
           color: ${getDifferentStatusColor(
             colorScheme,
             variant,
             State.DISABLE,
           )[1]};
-        `
-      }
+        }
+      `
+    case "light":
       return css`
         color: ${getDifferentStatusColor(
           colorScheme,
@@ -423,20 +386,19 @@ export function applyElementColor(
             colorScheme,
             variant,
             State.ACTIVE,
+          )[1]};
+        }
+
+        &:disabled {
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
           )[1]};
         }
       `
     case "outline":
     case "dashed":
-      if (disabled) {
-        return css`
-          color: ${getDifferentStatusColor(
-            colorScheme,
-            variant,
-            State.DISABLE,
-          )[1]};
-        `
-      }
       return css`
         color: ${getDifferentStatusColor(
           colorScheme,
@@ -458,19 +420,18 @@ export function applyElementColor(
             colorScheme,
             variant,
             State.ACTIVE,
+          )[1]};
+        }
+
+        &:disabled {
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
           )[1]};
         }
       `
     case "fill":
-      if (disabled) {
-        return css`
-          color: ${getDifferentStatusColor(
-            colorScheme,
-            variant,
-            State.DISABLE,
-          )[1]};
-        `
-      }
       return css`
         color: ${getDifferentStatusColor(
           colorScheme,
@@ -492,6 +453,14 @@ export function applyElementColor(
             colorScheme,
             variant,
             State.ACTIVE,
+          )[1]};
+        }
+
+        &:disabled {
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
           )[1]};
         }
       `
