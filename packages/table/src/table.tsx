@@ -31,7 +31,7 @@ import {
 } from "@illa-design/icon"
 import { rankItem } from "@tanstack/match-sorter-utils"
 
-export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
+export const Table = forwardRef<HTMLDivElement, TableProps<TableData, any>>(
   (props, ref) => {
     const { columns, data } = props
     if (columns == undefined || data == undefined) {
@@ -42,8 +42,8 @@ export const Table = forwardRef<HTMLDivElement, TableProps<any>>(
   },
 )
 
-function RenderDirectTable<D extends TableData>(
-  props: TableProps<D>,
+function RenderDirectTable<D extends TableData, TValue>(
+  props: TableProps<D, TValue>,
   ref: ForwardedRef<HTMLDivElement>,
 ): ReactElement {
   const {
@@ -94,8 +94,8 @@ function RenderDirectTable<D extends TableData>(
   )
 }
 
-function RenderDataDrivenTable<D extends TableData>(
-  props: TableProps<D>,
+function RenderDataDrivenTable<D extends TableData, TValue>(
+  props: TableProps<D, TValue>,
   ref: ForwardedRef<HTMLDivElement>,
 ): ReactElement {
   const {

@@ -21,11 +21,11 @@ export type TableAlign =
   | "flex-start"
   | "flex-end"
 
-export interface TableProps<D extends TableData>
+export interface TableProps<D extends TableData, TValue>
   extends HTMLAttributes<HTMLDivElement>,
     TableContextProps,
     BoxProps {
-  columns?: ColumnDef<D>[]
+  columns?: ColumnDef<D, TValue>[]
   data?: D[]
   pinedHeader?: boolean
   tableLayout?: TableLayout
