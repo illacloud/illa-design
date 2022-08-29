@@ -128,11 +128,15 @@ export interface CommonProps
 export interface CommonPickerProps extends CommonProps {
   placeholder?: string
   inputVal?: string
-  pickerContent: ReactNode
   onClear?: () => void
   onClearDate?: () => void
   onChangeInputVal?: (value: string) => void
   onChangeVisible?: (visible: boolean) => void
+
+  type: "day" | "month" | "year"
+  shortcuts?: ShortcutType[]
+  shortcutsPlacementLeft?: boolean
+
 }
 
 export interface RangePickerBodyProps extends CommonProps {
