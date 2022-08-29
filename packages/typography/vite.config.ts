@@ -48,7 +48,7 @@ export default defineConfig({
         "@illa-design/system",
         "@illa-design/theme",
         "@illa-design/icon",
-        "@illa-design/tooltip",
+        "@illa-design/trigger",
         "@illa-design/config-provider",
       ],
       output: {
@@ -58,7 +58,7 @@ export default defineConfig({
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
-          "@illa-design/tooltip": "@illa-design/tooltip",
+          "@illa-design/trigger": "@illa-design/trigger",
           "@illa-design/config-provider": "@illa-design/config-provider",
         },
       },
