@@ -85,12 +85,16 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
     useEffect(() => {
       // YYYY-MM-DD
       if (finalFormat?.length) {
-        setInputVal(inputVal ? dayjs(inputVal).format(finalFormat as string) : inputVal)
+        setInputVal(
+          inputVal ? dayjs(inputVal).format(finalFormat as string) : inputVal,
+        )
         setCalendarShortCuts(inputVal ? dayjs(value) : undefined)
       }
     }, [finalFormat])
 
-    const [calendarShortCuts, setCalendarShortCuts] = useState<Dayjs | "clear">()
+    const [calendarShortCuts, setCalendarShortCuts] = useState<
+      Dayjs | "clear"
+    >()
     const [showTrigger, setShowTrigger] = useState<boolean>(
       popupVisible ?? false,
     )
@@ -132,6 +136,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
         setInputVal(valueFormat)
         setCalendarValue(value)
         setValueShow(value)
+        setCalendarShortCuts(value)
       } else {
         setCalendarValue(date)
         setValueShow(value)
@@ -141,6 +146,7 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
       setInputVal("")
       setCalendarValue(dayjs())
       setCalendarShortCuts("clear")
+      setValueShow(undefined)
 
       onClear?.()
       setShowTrigger(false)
@@ -205,7 +211,12 @@ const CommonPicker = forwardRef<HTMLDivElement, CommonSingleProps>(
         </div>
       ) : null
     }
-
+    console.log({
+      inputVal,
+      calendarShortCuts,
+      calendarValue: calendarValue?.format(finalFormat as string),
+      valueShowString: valueShow?.format(finalFormat as string),
+    })
     return (
       <Picker
         ref={ref}

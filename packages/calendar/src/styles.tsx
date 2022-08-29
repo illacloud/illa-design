@@ -156,7 +156,7 @@ export const headerRightBtnsCss = css`
   }
 `
 
-export function applyPanelGridItemCss(selected: boolean): SerializedStyles {
+export function applyPanelGridItemCss(selected?: boolean): SerializedStyles {
   return css`
     height: 24px;
     line-height: 24px;
