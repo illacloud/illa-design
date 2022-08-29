@@ -13,14 +13,13 @@ export const wrapCss = css`
 
 export const singlePickerContentCss = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  border-bottom: none;
+  border-radius: 8px;
   display: flex;
 `
 
 export const horShortcuts = css`
   min-height: 48px;
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   width: min-content;
   min-width: 100%;
 `
@@ -81,7 +80,6 @@ export const nowButtonCss = css`
 export const showTimeContainerCss = css`
   width: 144px;
   border-left: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
 export const showTimeHeaderCss = css`
