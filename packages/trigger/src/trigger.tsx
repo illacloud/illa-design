@@ -1,6 +1,7 @@
 import {
   cloneElement,
   FC,
+  MutableRefObject,
   ReactElement,
   useEffect,
   useMemo,
@@ -149,12 +150,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }),
   ])
 
-  const ref = useMemo(
-    () => mergeRefs(reference, (children as any).ref),
-    [reference, children],
-  )
-
   const closeContent = <div css={applyDefaultContentSize}>{content}</div>
+
+  const childrenRef = useRef<HTMLElement>(null)
 
   let centerNode: ReactElement = <></>
 
@@ -277,10 +275,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
           onContextMenu: (e) => {
             if (trigger === "contextmenu") {
               e.preventDefault()
-              if (alignPoint && trigger === "contextmenu") {
-                ref({
-                  getBoundingClientRect() {
-                    return {
+              if (alignPoint) {
+                if (childrenRef.current != null) {
+                  Object.assign(childrenRef.current, {
+                    getBoundingClientRect: () => ({
                       x: e.clientX,
                       y: e.clientY,
                       width: 0,
@@ -289,9 +287,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
                       right: e.clientX,
                       bottom: e.clientY,
                       left: e.clientX,
-                    }
-                  },
-                })
+                    }),
+                  })
+                }
               }
               if (popupVisible === undefined) {
                 if (finalVisible) {
@@ -299,14 +297,16 @@ export const Trigger: FC<TriggerProps> = (props) => {
                 } else {
                   setVisible(true)
                 }
+              } else {
+                onVisibleChange?.(!finalVisible)
               }
             }
           },
           onClick: (e) => {
             if (alignPoint && trigger === "click") {
-              ref({
-                getBoundingClientRect() {
-                  return {
+              if (childrenRef.current != null) {
+                Object.assign(childrenRef.current, {
+                  getBoundingClientRect: () => ({
                     x: e.clientX,
                     y: e.clientY,
                     width: 0,
@@ -315,13 +315,13 @@ export const Trigger: FC<TriggerProps> = (props) => {
                     right: e.clientX,
                     bottom: e.clientY,
                     left: e.clientX,
-                  }
-                },
-              })
+                  }),
+                })
+              }
             }
           },
           key: "illa-trigger",
-          ref,
+          ref: mergeRefs(reference, (props.children as any).ref, childrenRef),
           ...(props.children as any).props,
         }),
       )}
@@ -338,6 +338,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
                     if (closeOnInnerClick) {
                       if (popupVisible === undefined) {
                         setVisible(false)
+                      } else {
+                        onVisibleChange?.(false)
                       }
                     }
                   },

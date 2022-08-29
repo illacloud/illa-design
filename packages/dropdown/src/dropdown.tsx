@@ -21,7 +21,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     children,
     dropList,
     disabled,
-    position = "bottom-start",
+    position = "right-start",
     trigger = "hover",
     triggerProps,
     defaultPopupVisible,
