@@ -69,7 +69,7 @@ export interface TFootProps
 export interface THeadProps
   extends HTMLAttributes<HTMLTableSectionElement>,
     BoxProps {
-  pined?: boolean
+  pinedHeader?: boolean
 }
 
 export interface ThProps

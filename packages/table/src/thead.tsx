@@ -7,11 +7,11 @@ import { applyPinedStyle } from "./style"
 
 export const Thead = forwardRef<HTMLTableSectionElement, THeadProps>(
   (props, ref) => {
-    const { pined, ...otherProps } = props
+    const { pinedHeader, ...otherProps } = props
     const tableContext = useContext(TableContext)
     return tableContext?.showHeader ? (
       <thead
-        css={css(applyPinedStyle(pined), applyBoxStyle(props))}
+        css={css(applyPinedStyle(pinedHeader), applyBoxStyle(props))}
         ref={ref}
         {...otherProps}
       />

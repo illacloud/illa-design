@@ -55,6 +55,7 @@ function RenderDirectTable<D extends TableData, TValue>(
     striped,
     children,
     disableSortBy,
+    pinedHeader,
     hoverable,
     align = "left",
     showFooter = true,
@@ -166,7 +167,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
           {...deleteCssProps(otherProps)}
         >
           {showHeader && (
-            <Thead pined={pinedHeader}>
+            <Thead pinedHeader={pinedHeader}>
               {table.getHeaderGroups().map((headerGroup) => (
                 <Tr key={headerGroup.id} hoverable>
                   {headerGroup.headers.map((header) => (
