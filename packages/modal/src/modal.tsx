@@ -216,10 +216,14 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       (event, handler) => {
         switch (event.key) {
           case "Enter":
-            onOk?.()
+            if (visible) {
+              onOk?.()
+            }
             break
           case "Escape":
-            onCancel?.()
+            if (visible) {
+              onCancel?.()
+            }
             break
         }
       },
