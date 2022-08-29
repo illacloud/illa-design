@@ -45,6 +45,7 @@ export const Picker = forwardRef<HTMLDivElement, CommonPickerProps>(
         content={pickerContent}
         closeOnClick={false}
         clickOutsideToClose
+        withoutPadding
         onVisibleChange={tryUpdatePopupVisible}
       >
         <Input
