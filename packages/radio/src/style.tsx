@@ -79,7 +79,8 @@ export function applyRadioContainerHorizontal(
     vertical-align: middle;
     flex-direction: row;
     align-items: center;
-    gap: ${currentSpacing};
+    flex-wrap: wrap;
+    gap: 6px ${currentSpacing};
   `
 }
 
