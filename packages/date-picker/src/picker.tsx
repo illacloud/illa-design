@@ -19,12 +19,18 @@ import { TimePickerPopup } from "@illa-design/time-picker"
 import {
   dayjsPro,
   getDayjsValue,
-  isDayjs, isDayjsChange,
+  isDayjs, isDayjsChange, isObject,
   isString,
   throttleByRaf,
   useMergeValue,
 } from "@illa-design/system"
 import { initFormat } from "./utils"
+
+const isValidTime = (time?: string, format?: string): boolean => {
+  return (
+    typeof isString(time) && dayjsPro(time, format).format(format) === time
+  )
+}
 
 export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
   (props, ref) => {
@@ -60,17 +66,12 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
     } = props
 
     const inputRef = useRef<HTMLInputElement>(null)
-    const [currentPopupVisible, setCurrentPopupVisible] = useMergeValue(false, {
-      value: popupVisible,
-      defaultValue: undefined,
-    })
-
-    const tpProps = typeof showTime === "object" ? showTime : {}
+    const tpProps = isObject(showTime) ? showTime : {}
     const isBooleanShowTime = typeof showTime === "boolean" ? showTime : false
-
     const finalFormat = initFormat(type, isBooleanShowTime, format)
 
     const [inputValue, setInputValue] = useState<string>()
+    const [valueShow, setValueShow] = useState<Dayjs>()
     const [currentValue, setCurrentValue] = useMergeValue(
       value
         ? getDayjsValue(value, finalFormat) as Dayjs
@@ -82,22 +83,15 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
         defaultValue: undefined,
       },
     )
-
+    const [currentPopupVisible, setCurrentPopupVisible] = useMergeValue(false, {
+      value: popupVisible,
+      defaultValue: undefined,
+    })
+    const [calendarValue, setCalendarValue] = useState<Dayjs>(dayjs())
     const [calendarShortCuts, setCalendarShortCuts] = useState<Dayjs | "clear">()
 
-    const mergedDefaultValue = value || defaultValue || defaultPickerValue
     const showTimeMerged =
       (isBooleanShowTime || Object.keys(tpProps).length > 0) && type === "day"
-
-    const [valueShow, setValueShow] = useState<Dayjs>()
-
-    const [calendarValue, setCalendarValue] = useState<Dayjs>(dayjs())
-
-    const isValidTime = (time?: string): boolean => {
-      return (
-        typeof isString(time) && dayjsPro(time, finalFormat).format(finalFormat) === time
-      )
-    }
 
     const tryUpdatePopupVisible = (visible: boolean) => {
       if (currentPopupVisible !== visible) {
@@ -118,7 +112,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
       onClear?.()
     }
 
-    const finalValue = (calendar?: Dayjs | null, timePicker?: Dayjs | null) => {
+    const getFinalValue = (calendar?: Dayjs | null, timePicker?: Dayjs | null) => {
       calendar = calendar || calendarValue
       timePicker = timePicker || dayjs()
       return dayjs(
@@ -126,28 +120,20 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
       )
     }
 
-    const changeDate = (date: Dayjs, time?: Dayjs) => {
-      let value = finalValue(date, time)
+    const changeDate = (date?: Dayjs, time?: Dayjs) => {
+      let value = getFinalValue(date, time)
       let valueFormat = value.format(finalFormat)
       onSelect?.(valueFormat, value)
       if (!showTimeMerged) {
-        // onChange?.(valueFormat, value)
-        // setCurrentPopupVisible(false)
-        // // setInputValue(valueFormat)
-        // setCalendarValue(value)
-        // setValueShow(value)
-        // setCalendarShortCuts(value)
         onConfirmValue(value)
       } else {
         setValueShow(value)
-        setCalendarValue(value)
         setCalendarShortCuts(value)
       }
     }
 
     const clickNow = () => {
       let current = dayjs()
-      // setInputValue(current.format(finalFormat))
       setCurrentValue(current)
       setCalendarShortCuts(current)
       onChange?.(current.format(finalFormat), current)
@@ -222,8 +208,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
       ) : null
     }
 
-    console.log({ inputValue, valueShow, currentValue, value, defaultValue })
-
     return (
       <Trigger
         _css={triggerCss}
@@ -246,10 +230,10 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
               panelTodayBtn={showCalendarTodayButton}
               _css={triContentCommonCss}
               onChange={(date: Dayjs) => {
-                changeDate(date, valueShow)
+                changeDate(date, valueShow || currentValue)
               }}
               disabledDate={disabledDate}
-              defaultDate={calendarValue || dayjs(mergedDefaultValue)}
+              defaultDate={calendarValue}
               defaultSelectedDate={calendarShortCuts}
             />
             {(shortcuts || showTime) && (
@@ -260,9 +244,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
                   <Button
                     colorScheme="gray"
                     css={nowButtonCss}
-                    onClick={() => {
-                      clickNow()
-                    }}
+                    onClick={clickNow}
                   >
                     Now
                   </Button>
@@ -280,17 +262,16 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
                   setInputValue,
                   format: "HH:mm:ss",
                   valueShow: valueShow || currentValue,
-                  setValueShow,
                   popupVisible: currentPopupVisible,
                   onConfirmValue: (time: Dayjs) => {
-                    onConfirmValue(finalValue(calendarValue, time))
+                    onConfirmValue(getFinalValue(valueShow || currentValue, time))
                   },
                   showNowBtn: false,
                   disabledHours: disabledTime?.().disabledHours,
                   disabledMinutes: disabledTime?.().disabledMinutes,
                   disabledSeconds: disabledTime?.().disabledSeconds,
                   onSelect: (valueString: string, value: Dayjs) => {
-                    changeDate(calendarValue, value)
+                    changeDate(valueShow || currentValue, value)
                   },
                   ...tpProps,
                 })}
@@ -324,7 +305,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
           onChange={(value: string) => {
             if (editable) {
               setInputValue(value)
-              if (isValidTime(value)) {
+              if (isValidTime(value, finalFormat)) {
                 const dayjsValue = getDayjsValue(value, finalFormat) as Dayjs
                 setValueShow(dayjsValue)
                 setCalendarShortCuts(dayjsValue)
