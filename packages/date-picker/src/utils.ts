@@ -1,7 +1,11 @@
 import { Dayjs } from "dayjs"
 import { isFunction } from "@illa-design/system"
 
-export function initFormat(type: string, showTime: boolean, format?: string | ((value: Dayjs) => string)): string {
+export function initFormat(
+  type: string,
+  showTime: boolean,
+  format?: string | ((value: Dayjs) => string),
+): string {
   let result
   switch (type) {
     case "day":

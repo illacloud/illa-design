@@ -1,4 +1,12 @@
-import { cloneElement, forwardRef, useCallback, useEffect, useMemo, useRef, useState } from "react"
+import {
+  cloneElement,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { RenderSinglePickerProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"
 import { Input } from "@illa-design/input"
@@ -6,7 +14,11 @@ import { CalendarIcon } from "@illa-design/icon"
 import {
   applyShortContainerCss,
   horShortcuts,
-  nowButtonCss, popupCss, shortCutsCss, showTimeContainerCss, showTimeHeaderCss,
+  nowButtonCss,
+  popupCss,
+  shortCutsCss,
+  showTimeContainerCss,
+  showTimeHeaderCss,
   singlePickerContentCss,
   triContentCommonCss,
   triggerCss,
@@ -19,7 +31,9 @@ import { TimePickerPopup } from "@illa-design/time-picker"
 import {
   dayjsPro,
   getDayjsValue,
-  isDayjs, isDayjsChange, isObject,
+  isDayjs,
+  isDayjsChange,
+  isObject,
   isString,
   throttleByRaf,
   useMergeValue,
@@ -27,9 +41,7 @@ import {
 import { initFormat } from "./utils"
 
 const isValidTime = (time?: string, format?: string): boolean => {
-  return (
-    typeof isString(time) && dayjsPro(time, format).format(format) === time
-  )
+  return typeof isString(time) && dayjsPro(time, format).format(format) === time
 }
 
 export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
@@ -74,10 +86,10 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
     const [valueShow, setValueShow] = useState<Dayjs>()
     const [currentValue, setCurrentValue] = useMergeValue(
       value
-        ? getDayjsValue(value, finalFormat) as Dayjs
+        ? (getDayjsValue(value, finalFormat) as Dayjs)
         : defaultValue
-          ? getDayjsValue(defaultValue, finalFormat) as Dayjs
-          : undefined,
+        ? (getDayjsValue(defaultValue, finalFormat) as Dayjs)
+        : undefined,
       {
         value: getDayjsValue(value, finalFormat) as Dayjs,
         defaultValue: undefined,
@@ -88,7 +100,9 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
       defaultValue: undefined,
     })
     const [calendarValue, setCalendarValue] = useState<Dayjs>(dayjs())
-    const [calendarShortCuts, setCalendarShortCuts] = useState<Dayjs | "clear">()
+    const [calendarShortCuts, setCalendarShortCuts] = useState<
+      Dayjs | "clear"
+    >()
 
     const showTimeMerged =
       (isBooleanShowTime || Object.keys(tpProps).length > 0) && type === "day"
@@ -112,7 +126,10 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
       onClear?.()
     }
 
-    const getFinalValue = (calendar?: Dayjs | null, timePicker?: Dayjs | null) => {
+    const getFinalValue = (
+      calendar?: Dayjs | null,
+      timePicker?: Dayjs | null,
+    ) => {
       calendar = calendar || calendarValue
       timePicker = timePicker || dayjs()
       return dayjs(
@@ -216,69 +233,73 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
         trigger={"click"}
         colorScheme={"white"}
         popupVisible={currentPopupVisible}
-        content={<div css={singlePickerContentCss}>
-          {shortcutsPlacementLeft && (
-            <div css={vertShortcuts}>
-              <ShortcutsCompt />
+        content={
+          <div css={singlePickerContentCss}>
+            {shortcutsPlacementLeft && (
+              <div css={vertShortcuts}>
+                <ShortcutsCompt />
+              </div>
+            )}
+            <div>
+              <Calendar
+                panel
+                isTodayTarget
+                mode={type}
+                panelTodayBtn={showCalendarTodayButton}
+                _css={triContentCommonCss}
+                onChange={(date: Dayjs) => {
+                  changeDate(date, valueShow || currentValue)
+                }}
+                disabledDate={disabledDate}
+                defaultDate={calendarValue}
+                defaultSelectedDate={calendarShortCuts}
+              />
+              {(shortcuts || showTime) && (
+                <div css={horShortcuts}>
+                  {shortcuts && !shortcutsPlacementLeft ? (
+                    <ShortcutsCompt />
+                  ) : showNowBtn ? (
+                    <Button
+                      colorScheme="gray"
+                      css={nowButtonCss}
+                      onClick={clickNow}
+                    >
+                      Now
+                    </Button>
+                  ) : null}
+                </div>
+              )}
             </div>
-          )}
-          <div>
-            <Calendar
-              panel
-              isTodayTarget
-              mode={type}
-              panelTodayBtn={showCalendarTodayButton}
-              _css={triContentCommonCss}
-              onChange={(date: Dayjs) => {
-                changeDate(date, valueShow || currentValue)
-              }}
-              disabledDate={disabledDate}
-              defaultDate={calendarValue}
-              defaultSelectedDate={calendarShortCuts}
-            />
-            {(shortcuts || showTime) && (
-              <div css={horShortcuts}>
-                {shortcuts && !shortcutsPlacementLeft ? (
-                  <ShortcutsCompt />
-                ) : showNowBtn ? (
-                  <Button
-                    colorScheme="gray"
-                    css={nowButtonCss}
-                    onClick={clickNow}
-                  >
-                    Now
-                  </Button>
-                ) : null}
+            {showTimeMerged && (
+              <div css={showTimeContainerCss}>
+                <div css={showTimeHeaderCss}>time</div>
+                <div css={popupCss}>
+                  {cloneElement(<TimePickerPopup />, {
+                    isRangePicker: false,
+                    inputValue,
+                    setInputValue,
+                    format: "HH:mm:ss",
+                    valueShow: valueShow || currentValue,
+                    popupVisible: currentPopupVisible,
+                    onConfirmValue: (time: Dayjs) => {
+                      onConfirmValue(
+                        getFinalValue(valueShow || currentValue, time),
+                      )
+                    },
+                    showNowBtn: false,
+                    disabledHours: disabledTime?.().disabledHours,
+                    disabledMinutes: disabledTime?.().disabledMinutes,
+                    disabledSeconds: disabledTime?.().disabledSeconds,
+                    onSelect: (valueString: string, value: Dayjs) => {
+                      changeDate(valueShow || currentValue, value)
+                    },
+                    ...tpProps,
+                  })}
+                </div>
               </div>
             )}
           </div>
-          {showTimeMerged && (
-            <div css={showTimeContainerCss}>
-              <div css={showTimeHeaderCss}>time</div>
-              <div css={popupCss}>
-                {cloneElement(<TimePickerPopup />, {
-                  isRangePicker: false,
-                  inputValue,
-                  setInputValue,
-                  format: "HH:mm:ss",
-                  valueShow: valueShow || currentValue,
-                  popupVisible: currentPopupVisible,
-                  onConfirmValue: (time: Dayjs) => {
-                    onConfirmValue(getFinalValue(valueShow || currentValue, time))
-                  },
-                  showNowBtn: false,
-                  disabledHours: disabledTime?.().disabledHours,
-                  disabledMinutes: disabledTime?.().disabledMinutes,
-                  disabledSeconds: disabledTime?.().disabledSeconds,
-                  onSelect: (valueString: string, value: Dayjs) => {
-                    changeDate(valueShow || currentValue, value)
-                  },
-                  ...tpProps,
-                })}
-              </div>
-            </div>
-          )}
-        </div>}
+        }
         closeOnClick={false}
         clickOutsideToClose
         withoutPadding
@@ -292,9 +313,14 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
           disabled={disabled}
           placeholder={placeholder}
           size={size}
-          value={inputValue ? inputValue
-            : valueShow ? valueShow.format(finalFormat)
-              : currentValue ? currentValue.format(finalFormat) : ""
+          value={
+            inputValue
+              ? inputValue
+              : valueShow
+              ? valueShow.format(finalFormat)
+              : currentValue
+              ? currentValue.format(finalFormat)
+              : ""
           }
           borderColor={colorScheme}
           suffix={{ render: <CalendarIcon /> }}
