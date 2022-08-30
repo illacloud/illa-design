@@ -180,7 +180,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
       )
     }
 
-    const clickNow = () => {
+    const onClickNow = () => {
       let current = dayjs()
       setCurrentValue(current)
       setCalendarShortCuts(current)
@@ -188,7 +188,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
       setCurrentPopupVisible(false)
     }
 
-    const changeDate = (date?: Dayjs, time?: Dayjs) => {
+    const onChangeDate = (date?: Dayjs, time?: Dayjs) => {
       let value = getFinalValue(date, time)
       let valueFormat = value.format(finalFormat)
       onSelect?.(valueFormat, value)
@@ -233,7 +233,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
 
     const onClickShortcut = (item: ShortcutType) => {
       setCalendarValue(item.value() as Dayjs)
-      changeDate(item.value() as Dayjs)
+      onChangeDate(item.value() as Dayjs)
       onSelectShortcut?.(item)
     }
 
@@ -266,7 +266,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
                 panelTodayBtn={showCalendarTodayButton}
                 _css={triContentCommonCss}
                 onChange={(date: Dayjs) => {
-                  changeDate(date, valueShow || currentValue)
+                  onChangeDate(date, valueShow || currentValue)
                 }}
                 disabledDate={disabledDate}
                 defaultDate={calendarValue}
@@ -286,7 +286,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
                     <Button
                       colorScheme="gray"
                       css={nowButtonCss}
-                      onClick={clickNow}
+                      onClick={onClickNow}
                     >
                       Now
                     </Button>
@@ -301,7 +301,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
                   {cloneElement(<TimePickerPopup />, {
                     isRangePicker: false,
                     inputValue,
-                    setInputValue,
                     format: "HH:mm:ss",
                     valueShow: valueShow || currentValue,
                     popupVisible: currentPopupVisible,
@@ -315,7 +314,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
                     disabledMinutes: disabledTime?.().disabledMinutes,
                     disabledSeconds: disabledTime?.().disabledSeconds,
                     onSelect: (valueString: string, value: Dayjs) => {
-                      changeDate(valueShow || currentValue, value)
+                      onChangeDate(valueShow || currentValue, value)
                     },
                     ...tpProps,
                   })}
