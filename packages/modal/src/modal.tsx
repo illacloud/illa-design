@@ -227,7 +227,10 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
             break
         }
       },
-      [],
+      {
+        enableOnTags: ["INPUT"],
+      },
+      [visible],
     )
 
     return (
