@@ -26,7 +26,7 @@ export type RangePickerMode = "date" | "month" | "week" | "year" | "quarter"
 
 export interface PickerProps
   extends Omit<HTMLAttributes<HTMLDivElement>,
-    "defaultValue" | "placeholder" | "onChange" | "onSelect">,
+    "defaultValue" | "prefix" | "placeholder" | "onChange" | "onSelect">,
     BoxProps {
   allowClear?: boolean
   position?: PickerPosition
@@ -48,7 +48,7 @@ export interface PickerProps
   format?: string | ((value: Dayjs) => string)
   onSelectShortcut?: (shortcut: ShortcutType) => void
   onVisibleChange?: (visible?: boolean) => void
-  onChange?: (dateString: string, date: Dayjs) => void
+  onChange?: (dateString?: string, date?: Dayjs) => void
   onSelect?: (dateString: string, date: Dayjs) => void
   onOk?: (dateString: string, date: Dayjs) => void
   onClear?: () => void

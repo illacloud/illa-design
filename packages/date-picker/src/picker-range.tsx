@@ -24,6 +24,7 @@ export const PickerRange = forwardRef<HTMLDivElement, RangePickerBodyProps>(
       onChangeVisible,
       colorScheme,
       readOnly,
+      format,
       ...otherProps
     } = props
 
