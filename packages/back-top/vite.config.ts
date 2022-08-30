@@ -40,7 +40,6 @@ export default defineConfig({
           declaration: true,
           declarationDir: path.resolve(__dirname, "dist/types"),
           exclude: path.resolve(__dirname, "node_modules/**"),
-          allowSyntheticDefaultImports: true,
         }),
       ],
       external: [
