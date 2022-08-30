@@ -1,5 +1,5 @@
 import { cloneElement, forwardRef, useCallback, useEffect, useMemo, useState } from "react"
-import { CommonPickerProps } from "./interface"
+import { RenderSinglePickerProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"
 import { Input } from "@illa-design/input"
 import { CalendarIcon } from "@illa-design/icon"
@@ -19,7 +19,7 @@ import { TimePickerPopup } from "@illa-design/time-picker"
 import { throttleByRaf, useMergeValue } from "@illa-design/system"
 import { initFormat } from "./utils"
 
-export const Picker = forwardRef<HTMLDivElement, CommonPickerProps>(
+export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
   (props, ref) => {
     const {
       shortcuts,
@@ -49,9 +49,6 @@ export const Picker = forwardRef<HTMLDivElement, CommonPickerProps>(
       onSelect,
       onClear,
       onVisibleChange,
-      onChangeInputVal,
-      onClearDate,
-      onChangeVisible,
       ...otherProps
     } = props
 
@@ -301,9 +298,9 @@ export const Picker = forwardRef<HTMLDivElement, CommonPickerProps>(
           suffix={{ render: <CalendarIcon /> }}
           allowClear={allowClear}
           error={error}
-          onClear={() => onClearDate?.()}
+          onClear={clearDate}
           onChange={(value: string) => {
-            editable && onChangeInputVal?.(value)
+            editable && setInputVal(value)
           }}
         />
       </Trigger>
