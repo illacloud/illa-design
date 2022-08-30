@@ -1,13 +1,13 @@
 import {
+  FC,
   cloneElement,
   forwardRef,
   useCallback,
-  useEffect,
   useMemo,
   useRef,
   useState,
 } from "react"
-import { RenderSinglePickerProps } from "./interface"
+import { RenderSinglePickerProps, ShortcutType } from "./interface"
 import { Trigger } from "@illa-design/trigger"
 import { Input } from "@illa-design/input"
 import { CalendarIcon } from "@illa-design/icon"
@@ -42,6 +42,43 @@ import { initFormat } from "./utils"
 
 const isValidTime = (time?: string, format?: string): boolean => {
   return typeof isString(time) && dayjsPro(time, format).format(format) === time
+}
+
+interface ShortcutsProps {
+  shortcuts?: ShortcutType[]
+  shortcutsPlacementLeft?: boolean
+  onClickShortcut?: (s: ShortcutType) => void
+  handleShortEnter?: (s: ShortcutType) => void
+  handleShortLeave?: (s: ShortcutType) => void
+}
+
+const ShortcutsComp: FC<ShortcutsProps> = (props) => {
+  const {
+    shortcuts,
+    shortcutsPlacementLeft,
+    handleShortEnter,
+    handleShortLeave,
+    onClickShortcut,
+  } = props
+  return shortcuts ? (
+    <div css={applyShortContainerCss(shortcutsPlacementLeft)}>
+      {shortcuts.map((item, key) => {
+        return (
+          <div
+            css={shortCutsCss}
+            key={key}
+            onMouseEnter={() => handleShortEnter?.(item)}
+            onMouseLeave={() => handleShortLeave?.(item)}
+            onClick={() => {
+              onClickShortcut?.(item)
+            }}
+          >
+            {item.text}
+          </div>
+        )
+      })}
+    </div>
+  ) : null
 }
 
 export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
@@ -107,6 +144,18 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
     const showTimeMerged =
       (isBooleanShowTime || Object.keys(tpProps).length > 0) && type === "day"
 
+    const showCalendarTodayButton = useMemo(() => {
+      // if show time select, hide Today button
+      if (showTimeMerged) {
+        return false
+      }
+      if (showNowBtn === undefined && type === "day") {
+        return true
+      } else {
+        return showNowBtn && !isBooleanShowTime && !shortcuts?.length
+      }
+    }, [])
+
     const tryUpdatePopupVisible = (visible: boolean) => {
       if (currentPopupVisible !== visible) {
         setCurrentPopupVisible(visible)
@@ -120,12 +169,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
       }
     }
 
-    const clearDate = () => {
-      onConfirmValue(undefined)
-      onChange?.(undefined, undefined)
-      onClear?.()
-    }
-
     const getFinalValue = (
       calendar?: Dayjs | null,
       timePicker?: Dayjs | null,
@@ -135,6 +178,14 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
       return dayjs(
         `${calendar.format("YYYY-MM-DD")} ${timePicker.format("HH:mm:ss")}`,
       )
+    }
+
+    const clickNow = () => {
+      let current = dayjs()
+      setCurrentValue(current)
+      setCalendarShortCuts(current)
+      onChange?.(current.format(finalFormat), current)
+      setCurrentPopupVisible(false)
     }
 
     const changeDate = (date?: Dayjs, time?: Dayjs) => {
@@ -148,29 +199,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
         setCalendarShortCuts(value)
       }
     }
-
-    const clickNow = () => {
-      let current = dayjs()
-      setCurrentValue(current)
-      setCalendarShortCuts(current)
-      onChange?.(current.format(finalFormat), current)
-      setCurrentPopupVisible(false)
-    }
-
-    const handleShortEnter = useCallback(
-      throttleByRaf((item: any) => {
-        if (item.value().isSame(calendarValue, "date")) return
-        setCalendarShortCuts(item.value())
-      }),
-      [calendarShortCuts],
-    )
-    const handleShortLeave = useCallback(
-      throttleByRaf((item: any) => {
-        if (item.value().isSame(calendarValue, "date")) return
-        setCalendarShortCuts("clear")
-      }),
-      [calendarShortCuts],
-    )
 
     const onConfirmValue = (value?: Dayjs) => {
       setCurrentValue(value)
@@ -188,41 +216,25 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
       inputRef?.current?.blur()
     }
 
-    const showCalendarTodayButton = useMemo(() => {
-      // if show time select, hide Today button
-      if (showTimeMerged) {
-        return false
-      }
-      if (showNowBtn === undefined && type === "day") {
-        return true
-      } else {
-        return showNowBtn && !isBooleanShowTime && !shortcuts?.length
-      }
-    }, [])
+    const handleShortEnter = useCallback(
+      throttleByRaf((item: any) => {
+        if (item.value().isSame(calendarValue, "date")) return
+        setCalendarShortCuts(item.value())
+      }),
+      [calendarShortCuts],
+    )
+    const handleShortLeave = useCallback(
+      throttleByRaf((item: any) => {
+        if (item.value().isSame(calendarValue, "date")) return
+        setCalendarShortCuts("clear")
+      }),
+      [calendarShortCuts],
+    )
 
-    function ShortcutsCompt() {
-      return shortcuts ? (
-        <div css={applyShortContainerCss(shortcutsPlacementLeft)}>
-          {/* eslint-disable-next-line react/prop-types */}
-          {shortcuts.map((item, key) => {
-            return (
-              <div
-                css={shortCutsCss}
-                key={key}
-                onMouseEnter={() => handleShortEnter(item)}
-                onMouseLeave={() => handleShortLeave(item)}
-                onClick={() => {
-                  setCalendarValue(item.value() as Dayjs)
-                  changeDate(item.value() as Dayjs)
-                  onSelectShortcut?.(item)
-                }}
-              >
-                {item.text}
-              </div>
-            )
-          })}
-        </div>
-      ) : null
+    const onClickShortcut = (item: ShortcutType) => {
+      setCalendarValue(item.value() as Dayjs)
+      changeDate(item.value() as Dayjs)
+      onSelectShortcut?.(item)
     }
 
     return (
@@ -237,7 +249,13 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
           <div css={singlePickerContentCss}>
             {shortcutsPlacementLeft && (
               <div css={vertShortcuts}>
-                <ShortcutsCompt />
+                <ShortcutsComp
+                  shortcuts={shortcuts}
+                  shortcutsPlacementLeft={shortcutsPlacementLeft}
+                  handleShortEnter={handleShortEnter}
+                  handleShortLeave={handleShortLeave}
+                  onClickShortcut={onClickShortcut}
+                />
               </div>
             )}
             <div>
@@ -257,7 +275,13 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
               {(shortcuts || showTime) && (
                 <div css={horShortcuts}>
                   {shortcuts && !shortcutsPlacementLeft ? (
-                    <ShortcutsCompt />
+                    <ShortcutsComp
+                      shortcuts={shortcuts}
+                      shortcutsPlacementLeft={shortcutsPlacementLeft}
+                      handleShortEnter={handleShortEnter}
+                      handleShortLeave={handleShortLeave}
+                      onClickShortcut={onClickShortcut}
+                    />
                   ) : showNowBtn ? (
                     <Button
                       colorScheme="gray"
@@ -326,7 +350,11 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
           suffix={{ render: <CalendarIcon /> }}
           allowClear={allowClear}
           error={error}
-          onClear={clearDate}
+          onClear={() => {
+            onConfirmValue(undefined)
+            onChange?.(undefined, undefined)
+            onClear?.()
+          }}
           onPressEnter={() => onConfirmValue(valueShow || currentValue)}
           onChange={(value: string) => {
             if (editable) {
