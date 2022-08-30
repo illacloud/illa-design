@@ -10,18 +10,15 @@ export const applyModalMask = css`
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 1000;
   background-color: ${globalColor(`--${illaPrefix}-blackAlpha-02`)};
 `
 
-export function applyModalWrapper(
-  isCenter?: boolean,
-  visible?: boolean,
-): SerializedStyles {
+export function applyModalWrapper(isCenter?: boolean): SerializedStyles {
   const centerCss = isCenter
     ? css`
         text-align: center;
         white-space: nowrap;
+
         &::after {
           display: inline-block;
           vertical-align: middle;
@@ -39,7 +36,6 @@ export function applyModalWrapper(
     overflow: auto;
     width: 100%;
     height: 100%;
-    z-index: ${visible ? 1000 : -1000};
   `
 }
 
@@ -181,6 +177,7 @@ export function applyModalConfirmTitle(
     position: relative;
     padding-left: 24px;
     display: inline-block;
+
     > svg {
       color: ${iconColorMap[type]};
       position: absolute;

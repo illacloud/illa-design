@@ -234,33 +234,38 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
     )
 
     return (
-      <Portal container={getPopupContainer()}>
-        <div ref={ref}>
-          <AnimatePresence>
-            {visible && mask ? (
-              <motion.div
-                css={applyModalMask}
-                variants={maskAnimation}
-                animate="animate"
-                exit="exit"
-                initial="initial"
-                transition={{ duration: 0.2 }}
-              />
-            ) : null}
-          </AnimatePresence>
-          <div
-            role="dialog"
-            css={applyModalWrapper(alignCenter, visible)}
-            onMouseDown={(e) => {
-              maskClickRef.current = e.target === e.currentTarget
-            }}
-            onClick={onClickMask}
-            {...omit(deleteCssProps(otherProps), ["isNotice", "noticeType"])}
-          >
-            <AnimatePresence>{visible && renderModal()}</AnimatePresence>
-          </div>
-        </div>
-      </Portal>
+      <AnimatePresence>
+        {visible && (
+          <Portal container={getPopupContainer()}>
+            <div ref={ref}>
+              {mask ? (
+                <motion.div
+                  css={applyModalMask}
+                  variants={maskAnimation}
+                  animate="animate"
+                  exit="exit"
+                  initial="initial"
+                  transition={{ duration: 0.2 }}
+                />
+              ) : null}
+              <div
+                role="dialog"
+                css={applyModalWrapper(alignCenter)}
+                onMouseDown={(e) => {
+                  maskClickRef.current = e.target === e.currentTarget
+                }}
+                onClick={onClickMask}
+                {...omit(deleteCssProps(otherProps), [
+                  "isNotice",
+                  "noticeType",
+                ])}
+              >
+                {renderModal()}
+              </div>
+            </div>
+          </Portal>
+        )}
+      </AnimatePresence>
     )
   },
 ) as ModalComponent

@@ -6,28 +6,29 @@ import { Button } from "@illa-design/button"
 import { Input } from "@illa-design/input"
 import { Message } from "@illa-design/message"
 import { InfoCircleIcon, SuccessIcon } from "@illa-design/icon"
-import { ConfigProvider, zhCN, enUS } from "@illa-design/config-provider"
+import { ConfigProvider, enUS, zhCN } from "@illa-design/config-provider"
 
 export default {
   title: "FEEDBACK/Modal",
   component: Modal,
 } as Meta
 
-const Template: Story<ModalProps> = args => {
+const Template: Story<ModalProps> = (args) => {
   const [visible, setVisible] = React.useState(false)
   const [confirmLoading, setConfirmLoading] = React.useState(false)
   const [locale, setLocale] = React.useState(zhCN)
   const ConfigContext = React.createContext({})
   const [modal, contextHolder] = Modal.useModal()
   const sleep = async (time: number) => {
-    return new Promise<void>(resolve => {
+    return new Promise<void>((resolve) => {
       setTimeout(() => {
         resolve()
       }, time)
     })
   }
+
   function onOk() {
-    Promise.resolve().then(res => {
+    Promise.resolve().then((res) => {
       setConfirmLoading(true)
       setTimeout(() => {
         Message.success("Success !")
@@ -36,6 +37,7 @@ const Template: Story<ModalProps> = args => {
       }, 1500)
     })
   }
+
   return (
     <Space size={"large"}>
       <Button
@@ -53,8 +55,7 @@ const Template: Story<ModalProps> = args => {
           onCancel={() => setVisible(false)}
           onOk={onOk}
         >
-          I don't know if we each have a destiny, or if we're all just floating
-          around accidentally―like on a breeze.
+          ILLA very good!
         </Modal>
       </ConfigProvider>
 
@@ -70,7 +71,7 @@ const Template: Story<ModalProps> = args => {
               modal.info({
                 content: (
                   <ConfigContext.Consumer>
-                    {name => `Current user: ${name}`}
+                    {(name) => `Current user: ${name}`}
                   </ConfigContext.Consumer>
                 ),
                 title: "Context",
@@ -99,18 +100,14 @@ const Template: Story<ModalProps> = args => {
                 isNotice: true,
                 noticeType: "info",
               })
-
               await sleep(1500)
-
               modalIns.update({
                 icon: <SuccessIcon />,
                 title: "Success",
                 content: "This modal will be closed after 1.5s.",
                 noticeType: "success",
               })
-
               await sleep(1500)
-
               modalIns.close()
             }}
           >
