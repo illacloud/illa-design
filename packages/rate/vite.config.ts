@@ -40,7 +40,6 @@ export default defineConfig({
           declaration: true,
           declarationDir: path.resolve(__dirname, "dist/types"),
           exclude: path.resolve(__dirname, "node_modules/**"),
-          allowSyntheticDefaultImports: true,
         }),
       ],
       external: [
@@ -49,7 +48,7 @@ export default defineConfig({
         "@illa-design/system",
         "@illa-design/theme",
         "@illa-design/icon",
-        "@illa-design/tooltip",
+        "@illa-design/trigger",
       ],
       output: {
         globals: {
@@ -58,7 +57,7 @@ export default defineConfig({
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
-          "@illa-design/tooltip": "@illa-design/tooltip",
+          "@illa-design/trigger": "@illa-design/trigger",
         },
       },
     },
