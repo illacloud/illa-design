@@ -25,10 +25,8 @@ export type DisabledTimeProps = {
 export type RangePickerMode = "date" | "month" | "week" | "year" | "quarter"
 
 export interface PickerProps
-  extends Omit<
-      HTMLAttributes<HTMLDivElement>,
-      "defaultValue" | "prefix" | "placeholder" | "onChange" | "onSelect"
-    >,
+  extends Omit<HTMLAttributes<HTMLDivElement>,
+    "defaultValue" | "prefix" | "placeholder" | "onChange" | "onSelect">,
     BoxProps {
   allowClear?: boolean
   position?: PickerPosition
@@ -70,15 +68,15 @@ export interface DatePickerProps extends PickerProps, CommonSingleProps {
   disabledTime?: (current?: Dayjs) => DisabledTimeProps
 }
 
-export interface MonthPickerProps extends PickerProps, CommonSingleProps {}
+export interface MonthPickerProps extends PickerProps, CommonSingleProps {
+}
 
-export interface YearPickerProps extends PickerProps, CommonSingleProps {}
+export interface YearPickerProps extends PickerProps, CommonSingleProps {
+}
 
 export interface CommonRangeProps
-  extends Omit<
-    PickerProps,
-    "onChange" | "defaultValue" | "onOk" | "defaultPickerValue" | "onSelect"
-  > {
+  extends Omit<PickerProps,
+    "onChange" | "defaultValue" | "onOk" | "defaultPickerValue" | "onSelect"> {
   disabled?: boolean | boolean[]
   format?: string | ((value: Dayjs) => string)
   onChange?: (dateString: string[], date: Dayjs[]) => void
@@ -95,8 +93,7 @@ export interface CommonRangeProps
 }
 
 export interface CommonProps
-  extends Omit<
-    PickerProps,
+  extends Omit<PickerProps,
     | "prefix"
     | "placeholder"
     | "shortcuts"
@@ -111,8 +108,8 @@ export interface CommonProps
     | "onSelect"
     | "onChange"
     | "onOk"
-    | "onClear"
-  > {}
+    | "onClear"> {
+}
 
 export interface RenderSinglePickerProps extends Partial<DatePickerProps> {
   type: "day" | "month" | "year"
@@ -127,4 +124,34 @@ export interface RangePickerBodyProps extends CommonProps {
   onClearDate?: () => void
   onChangeInputVal?: (value: string[]) => void
   onChangeVisible?: (visible: boolean) => void
+}
+
+export interface ShortcutsProps {
+  shortcuts?: ShortcutType[]
+  shortcutsPlacementLeft?: boolean
+  onClickShortcut?: (s: ShortcutType) => void
+  handleShortEnter?: (s: ShortcutType) => void
+  handleShortLeave?: (s: ShortcutType) => void
+}
+
+export interface PickerPopUpProps {
+  type: "day" | "month" | "year"
+  popupVisible?: boolean
+  showTime?: boolean | TimePickerProps
+  showNowBtn?: boolean
+  disabledDate?: (current?: Dayjs) => boolean
+  disabledTime?: (current?: Dayjs) => DisabledTimeProps
+  valueShow?: Dayjs
+
+  calendarValue?: Dayjs
+  calendarShortCuts?: Dayjs | "clear"
+  onClickNow?: () => void
+  onConfirmValue?: (value?: Dayjs) => void
+  onChangeDate?: (date?: Dayjs, time?: Dayjs) => void
+
+  shortcuts?: ShortcutType[]
+  shortcutsPlacementLeft?: boolean
+  onClickShortcut?: (s: ShortcutType) => void
+  handleShortEnter?: (s: ShortcutType) => void
+  handleShortLeave?: (s: ShortcutType) => void
 }

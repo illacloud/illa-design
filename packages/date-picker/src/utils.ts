@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
 import { isFunction } from "@illa-design/system"
 
 export function initFormat(
@@ -29,4 +29,15 @@ export function initFormat(
     }
   }
   return result
+}
+
+export const getFinalValue = (
+  calendar?: Dayjs | null,
+  timePicker?: Dayjs | null,
+) => {
+  calendar = calendar || dayjs()
+  timePicker = timePicker || dayjs()
+  return dayjs(
+    `${calendar.format("YYYY-MM-DD")} ${timePicker.format("HH:mm:ss")}`,
+  )
 }
