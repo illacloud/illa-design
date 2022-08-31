@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from "dayjs"
-import { isFunction } from "@illa-design/system"
+import { dayjsPro, isFunction, isString } from "@illa-design/system"
 
 export function initFormat(
   type: string,
@@ -40,4 +40,8 @@ export const getFinalValue = (
   return dayjs(
     `${calendar.format("YYYY-MM-DD")} ${timePicker.format("HH:mm:ss")}`,
   )
+}
+
+export const isValidTime = (time?: string, format?: string): boolean => {
+  return typeof isString(time) && dayjsPro(time, format).format(format) === time
 }

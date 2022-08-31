@@ -1,8 +1,4 @@
-import {
-  FC,
-  forwardRef,
-  useMemo,
-} from "react"
+import { FC, forwardRef, useMemo } from "react"
 import { PickerPopUpProps, ShortcutsProps } from "./interface"
 import {
   applyShortContainerCss,
@@ -20,9 +16,7 @@ import { Calendar } from "@illa-design/calendar"
 import { Dayjs } from "dayjs"
 import { Button } from "@illa-design/button"
 import { TimePickerPopup } from "@illa-design/time-picker"
-import {
-  isObject,
-} from "@illa-design/system"
+import { isObject } from "@illa-design/system"
 import { getFinalValue } from "./utils"
 
 const ShortcutsComp: FC<ShortcutsProps> = (props) => {
@@ -92,7 +86,6 @@ export const PickerPopUp = forwardRef<HTMLDivElement, PickerPopUpProps>(
         return showNowBtn && !isBooleanShowTime && !shortcuts?.length
       }
     }, [])
-    console.log({popupVisible})
 
     return (
       <div css={singlePickerContentCss} ref={ref}>

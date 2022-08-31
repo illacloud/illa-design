@@ -1,32 +1,25 @@
-import {
-  forwardRef,
-  useCallback,
-  useRef,
-  useState,
-} from "react"
+import { forwardRef, useCallback, useRef, useState } from "react"
 import { RenderSinglePickerProps, ShortcutType } from "./interface"
 import { Trigger } from "@illa-design/trigger"
 import { Input } from "@illa-design/input"
 import { CalendarIcon } from "@illa-design/icon"
-import {
-  triggerCss,
-} from "./style"
+import { triggerCss } from "./style"
 import dayjs, { Dayjs } from "dayjs"
 import {
   dayjsPro,
-  getDayjsValue,
-  isDayjs,
+  getDayjsValue, getSortedDayjsArray, isArray,
+  isDayjs, isDayjsArrayChange,
   isDayjsChange,
   isObject,
   isString,
   throttleByRaf,
   useMergeValue,
 } from "@illa-design/system"
-import { initFormat } from "./utils"
+import { initFormat, isValidTime } from "./utils"
 import { PickerPopUp } from "./picker-popup"
 
-const isValidTime = (time?: string, format?: string): boolean => {
-  return typeof isString(time) && dayjsPro(time, format).format(format) === time
+const formatTime = (str: Dayjs, format: string) => {
+  return str ? dayjsPro(str)?.format(format) : ""
 }
 
 export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
@@ -91,7 +84,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
 
     const showTimeMerged =
       (isBooleanShowTime || Object.keys(tpProps).length > 0) && type === "day"
-
 
     const tryUpdatePopupVisible = (visible: boolean) => {
       if (currentPopupVisible !== visible) {
@@ -173,7 +165,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
       onChangeDate(item.value() as Dayjs)
       onSelectShortcut?.(item)
     }
-    console.log({currentPopupVisible})
 
     return (
       <Trigger
@@ -186,6 +177,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
         content={
           <PickerPopUp
             popupVisible={currentPopupVisible}
+            valueShow={valueShow || currentValue}
             {...{
               shortcuts,
               shortcutsPlacementLeft,
@@ -194,7 +186,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
               showTime,
               showNowBtn,
               disabledTime,
-              valueShow: valueShow||currentValue,
               calendarValue,
               calendarShortCuts,
               handleShortEnter,
@@ -212,7 +203,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
         onVisibleChange={tryUpdatePopupVisible}
       >
         <Input
-          {...otherProps}
           ref={ref}
           inputRef={inputRef}
           readOnly={readOnly}
@@ -249,6 +239,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
               }
             }
           }}
+          {...otherProps}
         />
       </Trigger>
     )
