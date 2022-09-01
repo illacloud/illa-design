@@ -49,7 +49,6 @@ const YearTemplate: Story<YearPickerProps> = (args) => {
   return <YearPicker w={"280px"} {...args} />
 }
 
-
 export const date = DateTemplate.bind({})
 
 export const Month = MonthTemplate.bind({})

@@ -7,11 +7,10 @@ import { triggerCss } from "./style"
 import dayjs, { Dayjs } from "dayjs"
 import {
   dayjsPro,
-  getDayjsValue, getSortedDayjsArray, isArray,
-  isDayjs, isDayjsArrayChange,
+  getDayjsValue,
+  isDayjs,
   isDayjsChange,
   isObject,
-  isString,
   throttleByRaf,
   useMergeValue,
 } from "@illa-design/system"

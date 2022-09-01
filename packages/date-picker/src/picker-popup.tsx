@@ -151,9 +151,7 @@ export const PickerPopUp = forwardRef<HTMLDivElement, PickerPopUpProps>(
                 disabledMinutes={disabledTime?.().disabledMinutes}
                 disabledSeconds={disabledTime?.().disabledSeconds}
                 onConfirmValue={(time: Dayjs) => {
-                  onConfirmValue?.(
-                    getFinalValue(valueShow, time),
-                  )
+                  onConfirmValue?.(getFinalValue(valueShow, time))
                 }}
                 onSelect={(valueString: string, value: Dayjs) => {
                   onChangeDate?.(valueShow, value)

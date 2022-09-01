@@ -4,13 +4,7 @@ import { PickerRange } from "../picker-range"
 
 export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
   (props, ref) => {
-
-    return (
-      <PickerRange
-        ref={ref}
-        {...props}
-      />
-    )
+    return <PickerRange ref={ref} {...props} />
   },
 )
 

@@ -74,9 +74,10 @@ export interface MonthPickerProps extends PickerProps, CommonSingleProps {}
 
 export interface YearPickerProps extends PickerProps, CommonSingleProps {}
 
-export interface DateRangePickerProps extends Omit<
-  PickerProps,
-  "onChange" | "defaultValue" | "onOk" | "defaultPickerValue" | "onSelect"
+export interface DateRangePickerProps
+  extends Omit<
+    PickerProps,
+    "onChange" | "defaultValue" | "onOk" | "defaultPickerValue" | "onSelect"
   > {
   order?: boolean
   disableConfirm?: boolean
@@ -91,14 +92,11 @@ export interface DateRangePickerProps extends Omit<
   defaultPickerValue?: DatePickerCalendarValue[]
   disabledTime?: (current: Dayjs, type: "start" | "end") => DisabledTimeProps
   onOk?: (dateString: string[], date: Dayjs[]) => void
-  onChange?: (dateString: string[], date: Dayjs[]) => void
+  onChange?: (dateString?: string[], date?: Dayjs[]) => void
   onSelect?: (dateString: string[], date: Dayjs[]) => void
 }
 
-export interface CommonRangeProps
-  extends DateRangePickerProps {
-
-}
+export interface CommonRangeProps extends DateRangePickerProps {}
 
 export interface CommonProps
   extends Omit<
