@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/avatar",
-  "version": "0.0.17",
+  "version": "1.0.0",
   "description": "Illa Design Avatar.",
   "keywords": [
     "avatar",
@@ -39,9 +39,9 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.17",
-    "@illa-design/image": "0.0.17",
-    "@illa-design/system": "0.0.17",
-    "@illa-design/theme": "0.0.17"
+    "@illa-design/icon": "1.0.0",
+    "@illa-design/image": "1.0.0",
+    "@illa-design/system": "1.0.0",
+    "@illa-design/theme": "1.0.0"
   }
 }

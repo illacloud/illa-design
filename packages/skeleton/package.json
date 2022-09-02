@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/skeleton",
-  "version": "0.0.17",
+  "version": "1.0.0",
   "description": "Illa Design Skeleton.",
   "keywords": [
     "skeleton",
@@ -39,7 +39,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/theme": "0.0.17",
-    "@illa-design/system": "0.0.17"
+    "@illa-design/theme": "1.0.0",
+    "@illa-design/system": "1.0.0"
   }
 }

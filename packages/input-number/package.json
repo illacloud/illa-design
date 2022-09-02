@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/input-number",
-  "version": "0.0.17",
+  "version": "1.0.0",
   "description": "Illa Design InputNumber.",
   "keywords": [
     "input-number",
@@ -39,9 +39,9 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.17",
-    "@illa-design/input": "0.0.17",
-    "@illa-design/system": "0.0.17",
-    "@illa-design/theme": "0.0.17"
+    "@illa-design/icon": "1.0.0",
+    "@illa-design/input": "1.0.0",
+    "@illa-design/system": "1.0.0",
+    "@illa-design/theme": "1.0.0"
   }
 }

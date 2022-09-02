@@ -1,5 +1,19 @@
 # @illa-design/calendar
 
+## 1.0.0
+
+### Major Changes
+
+- fix bugs
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/icon@1.0.0
+  - @illa-design/select@1.0.0
+  - @illa-design/system@1.0.0
+  - @illa-design/theme@1.0.0
+
 ## 0.0.17
 
 ### Patch Changes
