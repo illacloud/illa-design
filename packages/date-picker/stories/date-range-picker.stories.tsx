@@ -4,28 +4,7 @@ import { DateRangePicker, DateRangePickerProps } from "../src"
 export default {
   title: "DATA INPUT/DatePicker",
   component: DateRangePicker,
-  argTypes: {
-    colorScheme: {
-      options: [
-        "white",
-        "blackAlpha",
-        "gray",
-        "red",
-        "orange",
-        "yellow",
-        "green",
-        "blue",
-        "cyan",
-        "purple",
-        "grayBlue",
-        "techPink",
-        "techPurple",
-      ],
-      control: {
-        type: "select",
-      },
-    },
-  },
+  argTypes: {},
 } as Meta
 
 const RangeTemplate: Story<DateRangePickerProps> = (args) => {

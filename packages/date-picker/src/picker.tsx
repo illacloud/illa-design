@@ -6,7 +6,6 @@ import { CalendarIcon } from "@illa-design/icon"
 import { triggerCss } from "./style"
 import dayjs, { Dayjs } from "dayjs"
 import {
-  dayjsPro,
   getDayjsValue,
   isDayjs,
   isDayjsChange,
@@ -16,10 +15,6 @@ import {
 } from "@illa-design/system"
 import { initFormat, isValidTime } from "./utils"
 import { PickerPopUp } from "./picker-popup"
-
-const formatTime = (str: Dayjs, format: string) => {
-  return str ? dayjsPro(str)?.format(format) : ""
-}
 
 export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
   (props, ref) => {

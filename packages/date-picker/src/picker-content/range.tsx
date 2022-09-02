@@ -1,11 +1,11 @@
 import { forwardRef } from "react"
 import { DateRangePickerProps } from "../interface"
-import { PickerRange } from "../picker-range"
+import { RangePicker } from "../range-picker"
 
 export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
   (props, ref) => {
-    return <PickerRange ref={ref} {...props} />
+    return <RangePicker ref={ref} {...props} />
   },
 )
 
-DateRangePicker.displayName = "rangePicker"
+DateRangePicker.displayName = "DateRangePicker"

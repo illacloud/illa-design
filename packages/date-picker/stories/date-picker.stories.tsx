@@ -6,8 +6,6 @@ import {
   MonthPickerProps,
   YearPicker,
   YearPickerProps,
-  DateRangePicker,
-  DateRangePickerProps,
 } from "../src"
 
 export default {

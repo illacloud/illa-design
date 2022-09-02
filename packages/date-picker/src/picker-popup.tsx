@@ -1,11 +1,9 @@
-import { FC, forwardRef, useMemo } from "react"
-import { PickerPopUpProps, ShortcutsProps } from "./interface"
+import { forwardRef, useMemo } from "react"
+import { PickerPopUpProps } from "./interface"
 import {
-  applyShortContainerCss,
   horShortcuts,
   nowButtonCss,
   popupCss,
-  shortCutsCss,
   showTimeContainerCss,
   showTimeHeaderCss,
   singlePickerContentCss,
@@ -18,35 +16,7 @@ import { Button } from "@illa-design/button"
 import { TimePickerPopup } from "@illa-design/time-picker"
 import { isObject } from "@illa-design/system"
 import { getFinalValue } from "./utils"
-
-const ShortcutsComp: FC<ShortcutsProps> = (props) => {
-  const {
-    shortcuts,
-    shortcutsPlacementLeft,
-    handleShortEnter,
-    handleShortLeave,
-    onClickShortcut,
-  } = props
-  return shortcuts ? (
-    <div css={applyShortContainerCss(shortcutsPlacementLeft)}>
-      {shortcuts.map((item, key) => {
-        return (
-          <div
-            css={shortCutsCss}
-            key={key}
-            onMouseEnter={() => handleShortEnter?.(item)}
-            onMouseLeave={() => handleShortLeave?.(item)}
-            onClick={() => {
-              onClickShortcut?.(item)
-            }}
-          >
-            {item.text}
-          </div>
-        )
-      })}
-    </div>
-  ) : null
-}
+import { ShortcutsComp } from "./shortcut"
 
 export const PickerPopUp = forwardRef<HTMLDivElement, PickerPopUpProps>(
   (props, ref) => {
