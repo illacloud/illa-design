@@ -5,11 +5,13 @@
 
 <h1 align="center">ILLA Design</h1>
 
+<p align="center">Accelerate your internal tools development.</p>
+
 <div align="center">
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-design/graphs/contributors">contributors</a></p>
 </div>
 
-![cover](https://cdn.illafamily.com/cover.png)
+![cover](https://cdn.illafamily.com/github-cover.png)
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/2tGBuJkgd6)
 [![storybook](https://cdn.illafamily.com/storybook.svg)](https://design.illafamily.com)
@@ -19,8 +21,7 @@
 
 ## ✨ Features
 
-1. 🛠 **Made for React & Vue3 & Svelte:** Ready-to-use component library for React, Vue 3(in progress) and Svelte
-   JavaScript Framework(in progress).
+1. 🛠 **Made for React:** Ready-to-use component library for React.
 2. 📝 **TypeScript Friendly:** Come with TypeScript typings out of the box and support with predictable static typings.
 3. 📦 **High Productivity:** Easy and fast, import in 5 seconds.
 4. 🎨 **Vibrant Design:** Beautifully designed components and powerful theming system supports custom themes to match
