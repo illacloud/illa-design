@@ -9,7 +9,8 @@ import {
   dayjsPro,
   getDayjsValue,
   getSortedDayjsArray,
-  isArray, isDayjs,
+  isArray,
+  isDayjs,
   isDayjsArrayChange,
   useMergeValue,
 } from "@illa-design/system"
@@ -74,8 +75,8 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       value
         ? (getDayjsValue(value, finalFormat) as Dayjs[])
         : defaultValue
-          ? (getDayjsValue(defaultValue, finalFormat) as Dayjs[])
-          : undefined,
+        ? (getDayjsValue(defaultValue, finalFormat) as Dayjs[])
+        : undefined,
       {
         value: getDayjsValue(value, finalFormat) as Dayjs[],
         defaultValue: undefined,
@@ -91,7 +92,9 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
     const shortcutsShowBottom = shortcuts?.length && !shortcutsPlacementLeft
     // calendar range value
     const [rangeValueFirst, setRangeValueFirst] = useState<Dayjs | undefined>()
-    const [rangeValueSecond, setRangeValueSecond] = useState<Dayjs | undefined>()
+    const [rangeValueSecond, setRangeValueSecond] = useState<
+      Dayjs | undefined
+    >()
     const [rangeValueHover, setRangeValueHover] = useState<Dayjs | undefined>()
 
     const onClearDate = () => {
@@ -233,10 +236,12 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
           newValue,
         )
 
-        ok && onOk && onOk(
-          newValue.map((t) => t.format(finalFormat)),
-          newValue,
-        )
+        ok &&
+          onOk &&
+          onOk(
+            newValue.map((t) => t.format(finalFormat)),
+            newValue,
+          )
       }
       tryUpdatePopupVisible(false)
       setTimeout(() => focusInput(false))
@@ -283,26 +288,24 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
           <RangePickerPopUp
             popupVisible={showTrigger}
             valueShow={valueShow || currentValue}
-            {
-              ...{
-                shortcuts,
-                shortcutsPlacementLeft,
-                disabledDate,
-                showTime,
-                disabledTime,
-                timepickerProps,
-                onClickShortcut,
-                leftCalendarDate,
-                rightCalendarDate,
-                rangeValueFirst,
-                rangeValueSecond,
-                rangeValueHover,
-                handleRangeVal,
-                changeHeader,
-                onSelectTime,
-                onConfirmTimeValue,
-              }
-            }
+            {...{
+              shortcuts,
+              shortcutsPlacementLeft,
+              disabledDate,
+              showTime,
+              disabledTime,
+              timepickerProps,
+              onClickShortcut,
+              leftCalendarDate,
+              rightCalendarDate,
+              rangeValueFirst,
+              rangeValueSecond,
+              rangeValueHover,
+              handleRangeVal,
+              changeHeader,
+              onSelectTime,
+              onConfirmTimeValue,
+            }}
           />
         }
         closeOnClick={false}
@@ -318,16 +321,16 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
             inputVal
               ? inputVal
               : isArray(valueShow) && valueShow.length
-                ? [
+              ? [
                   formatTime(valueShow[0], finalFormat),
                   formatTime(valueShow[1], finalFormat),
                 ]
-                : isArray(currentValue) && currentValue.length
-                  ? [
-                    formatTime(currentValue[0], finalFormat),
-                    formatTime(currentValue[1], finalFormat),
-                  ]
-                  : []
+              : isArray(currentValue) && currentValue.length
+              ? [
+                  formatTime(currentValue[0], finalFormat),
+                  formatTime(currentValue[1], finalFormat),
+                ]
+              : []
           }
           focusedInputIndex={focusedInputIndex}
           changeFocusedInputIndex={changeFocusedInputIndex}
