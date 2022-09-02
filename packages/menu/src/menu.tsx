@@ -171,7 +171,7 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
             onClickMenuItem: (key, event) => {
               selectable && setSelectedKeys([key])
               onClickMenuItem &&
-              onClickMenuItem(key, event, menuInfoMap[key]?.keyPath)
+                onClickMenuItem(key, event, menuInfoMap[key]?.keyPath)
             },
             onClickSubMenu: (key, level, variant) => {
               let newOpenKeys: string[] = [...openKeys]
@@ -195,7 +195,7 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
               }
 
               isFunction(onClickSubMenu) &&
-              onClickSubMenu(key, newOpenKeys, menuInfoMap[key]?.keyPath)
+                onClickSubMenu(key, newOpenKeys, menuInfoMap[key]?.keyPath)
             },
           }}
         >

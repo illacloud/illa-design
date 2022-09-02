@@ -6,8 +6,6 @@ import {
   MonthPickerProps,
   YearPicker,
   YearPickerProps,
-  DateRangePicker,
-  CommonRangeProps,
 } from "../src"
 
 export default {
@@ -49,14 +47,8 @@ const YearTemplate: Story<YearPickerProps> = (args) => {
   return <YearPicker w={"280px"} {...args} />
 }
 
-const RangeTemplate: Story<CommonRangeProps> = (args) => {
-  return <DateRangePicker w={"320px"} {...args} />
-}
-
 export const date = DateTemplate.bind({})
 
 export const Month = MonthTemplate.bind({})
 
 export const Year = YearTemplate.bind({})
-
-export const Range = RangeTemplate.bind({})

@@ -4,7 +4,8 @@ import { BoxProps } from "@illa-design/theme"
 export type PaginationSize = "small" | "medium" | "large"
 
 export interface PaginationProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange">, BoxProps {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange">,
+    BoxProps {
   currentPage?: number
   pageSize?: number
   total?: number

@@ -77,7 +77,9 @@ export interface OverflowWrapperProps {
 }
 
 export interface MenuComponent
-  extends ForwardRefExoticComponent<PropsWithChildren<MenuProps> & RefAttributes<HTMLDivElement>> {
+  extends ForwardRefExoticComponent<
+    PropsWithChildren<MenuProps> & RefAttributes<HTMLDivElement>
+  > {
   Item: ForwardRefExoticComponent<ItemProps>
   ItemGroup: ForwardRefExoticComponent<PropsWithChildren<ItemGroupProps>>
   SubMenu: ForwardRefExoticComponent<PropsWithChildren<SubMenuProps>>

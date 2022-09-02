@@ -27,9 +27,10 @@ export const hoverFillStyle = css`
 export const errorFocusStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-  box-shadow: 0 0 8px 0 ${chroma(globalColor(`--${illaPrefix}-red-01`))
-          .alpha(0.15)
-          .hex()};
+  box-shadow: 0 0 8px 0
+    ${chroma(globalColor(`--${illaPrefix}-red-01`))
+      .alpha(0.15)
+      .hex()};
 `
 export const errorFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-red-07`)};
@@ -137,7 +138,8 @@ function applyStatus(stateValue: StateValue): SerializedStyles {
     const boxShadowColor = getColor(stateValue.borderColor, "01")
     mainStyle = css`
       border-color: ${getColor(stateValue.borderColor, "03")};
-      box-shadow: 0 0 8px 0 ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
+      box-shadow: 0 0 8px 0
+        ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
       z-index: 1;
@@ -160,10 +162,10 @@ function applyStatus(stateValue: StateValue): SerializedStyles {
     const _activeCss = stateValue.focus
       ? css``
       : css`
-              &:hover {
-                border-color: transparent;
-              }
-      `
+          &:hover {
+            border-color: transparent;
+          }
+        `
     return css`
       ${inputStyle};
       border-color: transparent;
@@ -237,18 +239,20 @@ export function applyInputContainer(
         opacity: 1;
         // input suffix hidden
         ${stateValue.iconAppearWithSuffix
-                ? css`
-                  & ~ * {
-                    visibility: hidden;
-                  }
-                `
-                : ""}
+          ? css`
+              & ~ * {
+                visibility: hidden;
+              }
+            `
+          : ""}
       }
     }
   `
 }
 
-export function applyInputStyle(textCenterHorizontal?: boolean): SerializedStyles {
+export function applyInputStyle(
+  textCenterHorizontal?: boolean,
+): SerializedStyles {
   let textAlignCss: SerializedStyles
   if (textCenterHorizontal) {
     textAlignCss = css`
@@ -341,7 +345,10 @@ export function applySuffixCls(size?: InputProps["size"]): SerializedStyles {
   `
 }
 
-export function applyAddonCss(variant: InputProps["variant"], size: InputProps["size"]): SerializedStyles {
+export function applyAddonCss(
+  variant: InputProps["variant"],
+  size: InputProps["size"],
+): SerializedStyles {
   let inputStyle: SerializedStyles
   switch (variant) {
     default:
@@ -462,9 +469,9 @@ export function applyClearStyle(
 
   return AppearWithSuffix
     ? css`
-            opacity: 0;
-            ${sizeCss}
-    `
+        opacity: 0;
+        ${sizeCss}
+      `
     : clearStyle
 }
 
@@ -514,11 +521,11 @@ export function applyRangeInput(focus?: boolean): SerializedStyles {
     white-space: nowrap;
     transition: all 200ms ease-in-out;
     ${focus
-            ? css`
-              border-radius: 2px;
-              background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
-            `
-            : null}
+      ? css`
+          border-radius: 2px;
+          background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+        `
+      : null}
   `
 }
 

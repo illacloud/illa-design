@@ -45,7 +45,9 @@ function baseFixCls(size?: InputNumberProps["size"]): SerializedStyles {
   `
 }
 
-export function applyAddonCss(size?: InputNumberProps["size"]): SerializedStyles {
+export function applyAddonCss(
+  size?: InputNumberProps["size"],
+): SerializedStyles {
   return css`
     ${baseFixCls(size)}
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
@@ -89,7 +91,9 @@ export function applyInputNumber(): SerializedStyles {
   `
 }
 
-export function applyStepEmbedContainer(size?: InputNumberProps["size"]): SerializedStyles {
+export function applyStepEmbedContainer(
+  size?: InputNumberProps["size"],
+): SerializedStyles {
   let sizeCss: SerializedStyles
   switch (size) {
     default:

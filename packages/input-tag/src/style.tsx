@@ -14,9 +14,10 @@ export const disableOutlineStyle = css`
 export const errorFocusStyle = css`
   background-color: unset;
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-  box-shadow: 0 0 8px 0 ${chroma(globalColor(`--${illaPrefix}-red-01`))
-          .alpha(0.15)
-          .hex()};
+  box-shadow: 0 0 8px 0
+    ${chroma(globalColor(`--${illaPrefix}-red-01`))
+      .alpha(0.15)
+      .hex()};
 `
 export const errorOutlineStyle = css`
   background-color: unset;
@@ -50,7 +51,9 @@ function applySizeStyle(size?: string): SerializedStyles {
   return sizeCss
 }
 
-export function applyInputInnerCss(size?: InputTagProps["size"]): SerializedStyles {
+export function applyInputInnerCss(
+  size?: InputTagProps["size"],
+): SerializedStyles {
   let paddingCss: SerializedStyles
   switch (size) {
     default:
@@ -80,7 +83,9 @@ export function applyInputInnerCss(size?: InputTagProps["size"]): SerializedStyl
   `
 }
 
-export function applyFilterInput(stateValue: InputTagStateValue): SerializedStyles {
+export function applyFilterInput(
+  stateValue: InputTagStateValue,
+): SerializedStyles {
   if (!stateValue?.focus) {
     return css`
       &:not(:first-child) {
@@ -111,7 +116,8 @@ function applyStatus(stateValue: InputTagStateValue): SerializedStyles {
     const boxShadowColor = getColor(stateValue.borderColor, "01")
     mainStyle = css`
       border-color: ${getColor(stateValue.borderColor, "03")};
-      box-shadow: 0 0 8px 0 ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
+      box-shadow: 0 0 8px 0
+        ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
     `
@@ -133,7 +139,9 @@ function applyStatus(stateValue: InputTagStateValue): SerializedStyles {
   `
 }
 
-export function applyInputContainer(stateValue: InputTagStateValue): SerializedStyles {
+export function applyInputContainer(
+  stateValue: InputTagStateValue,
+): SerializedStyles {
   return css`
     box-sizing: border-box;
     display: flex;
