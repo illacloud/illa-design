@@ -1,37 +1,11 @@
 import { Meta, Story } from "@storybook/react"
-import { Progress } from "../src"
-
-import { ProgressProps } from "../dist/types"
+import { Progress, ProgressProps } from "../src"
 import { Space } from "@illa-design/space"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "FEEDBACK/Progress",
   component: Progress,
-
-  argTypes: {
-    type: {
-      control: false,
-    },
-    percent: {
-      control: {
-        type: "range",
-        min: 0,
-        max: 100,
-        step: 1,
-      },
-    },
-    color: {
-      control: {
-        type: "text",
-      },
-    },
-    trailColor: {
-      control: {
-        type: "text",
-      },
-    },
-  },
 } as Meta
 
 export const Basic: Story<ProgressProps> = (args) => (

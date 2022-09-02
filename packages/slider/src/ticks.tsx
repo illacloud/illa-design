@@ -3,6 +3,7 @@ import { plus } from "number-precision"
 import { formatPercent, getOffset, valueInRange } from "./util"
 import { SliderTicksProps } from "./interface"
 import { applySliderTick } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export default memo(function Ticks(props: SliderTicksProps) {
   const { step, min, max, value, vertical, reverse, disabled } = props
@@ -18,7 +19,7 @@ export default memo(function Ticks(props: SliderTicksProps) {
     })
   }
   return (
-    <div>
+    <div css={applyBoxStyle(props)}>
       {steps.map((item, index) => (
         <div
           css={applySliderTick(vertical, reverse, disabled, item.isActive)}

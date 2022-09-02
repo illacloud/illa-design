@@ -140,7 +140,7 @@ export const Notification: NotificationComponent = forwardRef<
   }, [notice])
 
   return (
-    <div ref={ref} css={applyNotificationWrapper(position)}>
+    <div ref={ref} css={[applyNotificationWrapper(position)]}>
       <AnimatePresence>
         {notificationSet[position].map((notice) => (
           <motion.div

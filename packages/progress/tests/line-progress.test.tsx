@@ -97,7 +97,7 @@ test("Progress renders with custom width", () => {
     <Progress
       data-testid="test-progress"
       percent={50}
-      width="100px"
+      w="100px"
       type="line"
       strokeWidth="10px"
     />,

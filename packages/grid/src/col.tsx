@@ -11,6 +11,7 @@ import {
   getOneUnitWidth,
 } from "./style"
 import { css } from "@emotion/react"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Col = forwardRef<HTMLDivElement, ColProps>((props, ref) => {
   const {
@@ -87,7 +88,11 @@ export const Col = forwardRef<HTMLDivElement, ColProps>((props, ref) => {
   `
 
   return (
-    <div ref={ref} css={finalCss} {...otherProps}>
+    <div
+      ref={ref}
+      css={[finalCss, applyBoxStyle(props)]}
+      {...deleteCssProps(otherProps)}
+    >
       {props.children}
     </div>
   )

@@ -1,7 +1,6 @@
 import { Table, TBody, Td, TFoot, Th, Thead, Tr } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 
 test("Table renders correctly.", () => {
   render(
@@ -42,14 +41,14 @@ test("Table renders with borders.", () => {
     <Table data-testid="test-table" bordered borderedCell striped>
       <Thead>
         <Tr>
-          <Th data-testid="test-th">First</Th>
+          <Th>First</Th>
           <Th>Second</Th>
           <Th>Third</Th>
         </Tr>
       </Thead>
       <TBody>
         <Tr>
-          <Td data-testid="test-td">1</Td>
+          <Td>1</Td>
           <Td>2</Td>
           <Td>3</Td>
         </Tr>
@@ -68,17 +67,7 @@ test("Table renders with borders.", () => {
       </TFoot>
     </Table>,
   )
-  const itemCss = {
-    borderLeft: `solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
-    borderRight: `solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
-    borderTop: `solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
-    borderBottom: `solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
-  }
-  expect(screen.getByTestId("test-table")).toHaveStyle({
-    border: `solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)}`,
-  })
-  expect(screen.getByTestId("test-th")).toHaveStyle(itemCss)
-  expect(screen.getByTestId("test-td")).toHaveStyle(itemCss)
+  expect(screen.queryByTestId("test-table")).toMatchSnapshot()
 })
 
 test("Table renders without header.", () => {
@@ -186,7 +175,7 @@ test("Table renders with different size.", () => {
     </Table>,
   )
   expect(screen.queryByTestId("test-td")).toHaveStyle({
-    padding: "9px 16px",
+    padding: "16px 16px",
   })
 })
 

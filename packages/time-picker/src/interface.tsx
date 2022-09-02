@@ -1,14 +1,16 @@
 import { HTMLAttributes, ReactElement, ReactNode } from "react"
 import { Dayjs } from "dayjs"
 import { TriggerProps } from "@illa-design/trigger"
+import { BoxProps } from "@illa-design/theme"
 
 export type TimePickerSize = "small" | "medium" | "large"
 
 interface PickerProps
   extends Omit<
-    HTMLAttributes<HTMLElement>,
-    "placeholder" | "defaultValue" | "onChange" | "onSelect"
-  > {
+      HTMLAttributes<HTMLElement>,
+      "placeholder" | "defaultValue" | "onChange" | "onSelect"
+    >,
+    BoxProps {
   size?: TimePickerSize
   step?: { hour?: number; minute?: number; second?: number }
   error?: boolean

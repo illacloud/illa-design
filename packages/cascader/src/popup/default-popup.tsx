@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import isEqual from "react-fast-compare"
 import { isNumber } from "@illa-design/system"
 import { LoadingIcon, NextIcon } from "@illa-design/icon"
@@ -9,13 +9,14 @@ import useRefs, { useForceUpdate, useUpdate } from "../hooks"
 import {
   applyOptionStyle,
   flexCenterStyle,
+  optionLabelStyle,
   optionListStyle,
   optionListWrapper,
-  optionLabelStyle,
   textMargin,
 } from "./style"
 import { Empty } from "@illa-design/empty"
 import { motion } from "framer-motion"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const DefaultPopup = <T extends OptionProps>(
   props: CascaderPanelProps<T>,
@@ -25,7 +26,6 @@ export const DefaultPopup = <T extends OptionProps>(
   const [refWrapper, setRefWrapper] = useRefs<HTMLUListElement | null>()
   const forceUpdate = useForceUpdate()
   const {
-    style,
     store,
     value,
     multiple,
@@ -145,10 +145,10 @@ export const DefaultPopup = <T extends OptionProps>(
     <>
       {menus.map((list, level) => {
         if (list.length === 0 && level === 0) {
-          return <Empty css={flexCenterStyle} style={style} />
+          return <Empty css={flexCenterStyle} _css={props._css} />
         }
         return list.length === 0 ? null : (
-          <div css={optionListWrapper} key={level}>
+          <div css={[optionListWrapper, applyBoxStyle(props)]} key={level}>
             <motion.ul
               initial={"hidden"}
               animate={"visible"}

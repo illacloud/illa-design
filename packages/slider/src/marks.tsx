@@ -2,6 +2,7 @@ import { memo } from "react"
 import { formatPercent, getOffset } from "./util"
 import { SliderMarkProps } from "./interface"
 import { applySliderMarks, applySliderMarkText } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export default memo(function Marks(props: SliderMarkProps) {
   const { data = [], min, max, vertical, reverse, onMouseDown } = props
@@ -9,7 +10,7 @@ export default memo(function Marks(props: SliderMarkProps) {
   if (!data.length) return null
 
   return (
-    <div css={applySliderMarks(vertical)}>
+    <div css={[applySliderMarks(vertical), applyBoxStyle(props)]}>
       {data.map(({ key, content }) => {
         const offset = formatPercent(getOffset(key, [min, max]))
         return (

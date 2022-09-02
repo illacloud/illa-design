@@ -1,10 +1,11 @@
 import { HTMLAttributes, ReactNode, UIEventHandler } from "react"
-import { SerializedStyles } from "@emotion/react"
+import { BoxProps } from "@illa-design/theme"
 
 export type ListSize = "small" | "medium" | "large"
 
 export interface ListProps<T>
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onScroll"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onScroll">,
+    BoxProps {
   data?: T[]
   size?: ListSize
   bordered?: boolean
@@ -22,17 +23,19 @@ export interface ListProps<T>
   loader?: ReactNode
   endMessage?: ReactNode
   onScroll?: UIEventHandler<HTMLElement>
-  _css?: SerializedStyles
 }
 
-export interface ListItemProps extends HTMLAttributes<HTMLDivElement> {
-  _css?: SerializedStyles
+export interface ListItemProps
+  extends HTMLAttributes<HTMLDivElement>,
+    BoxProps {
   actions?: ReactNode
   extra?: ReactNode
+  size?: ListSize
 }
 
 export interface ListItemMetaProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "title">,
+    BoxProps {
   title?: string | ReactNode
   avatar?: string
   description?: string

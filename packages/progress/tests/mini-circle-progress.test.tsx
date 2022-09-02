@@ -3,11 +3,7 @@ import "@testing-library/jest-dom"
 import { Progress } from "../src"
 
 test("Progress renders correctly", () => {
-  render(
-    <div>
-      <Progress data-testid="test-progress" type="miniCircle" />
-    </div>,
-  )
+  render(<Progress data-testid="test-progress" type="miniCircle" />)
   expect(screen.getByTestId("test-progress")).toBeInTheDocument()
 })
 
@@ -64,7 +60,7 @@ test("Progress renders with custom width", () => {
     <Progress
       data-testid="test-progress"
       percent={50}
-      width="100px"
+      w="100px"
       type="miniCircle"
       strokeWidth="10px"
     />,

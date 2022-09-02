@@ -10,7 +10,7 @@ export default {
 export const search: Story<SearchProps> = (props) => {
   return (
     <div>
-      <Search style={{ width: 280 }} {...props} />
+      <Search w={"280px"} {...props} />
     </div>
   )
 }

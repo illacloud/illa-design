@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export type RowAlign = "start" | "center" | "end" | "stretch"
 export type RowJustify =
@@ -43,12 +44,14 @@ export interface RowGridProps {
 
 export interface RowProps
   extends HTMLAttributes<HTMLDivElement>,
-    RowGridProps {}
+    RowGridProps,
+    BoxProps {}
 
 export interface ColProps
   extends HTMLAttributes<HTMLDivElement>,
     ColSize,
-    ColGridProps {}
+    ColGridProps,
+    BoxProps {}
 
 export interface RowContextProps {
   horizontalGap?: GridSize | string

@@ -5,7 +5,7 @@ import { Paragraph, Typography } from "../src"
 test("Paragraph renders with different font size", () => {
   render(
     <Typography>
-      <Paragraph data-testid="test-paragraph" fontSize="20px">
+      <Paragraph data-testid="test-paragraph" fs="20px">
         A design is a plan or specification for the construction of an object or
         system or for the implementation of an activity or process, or the
         result of that plan or specification in the form of a prototype, product
@@ -22,7 +22,7 @@ test("Paragraph renders with different font size", () => {
 test("Paragraph renders with indent", () => {
   render(
     <Typography>
-      <Paragraph data-testid="test-paragraph" indent={true} fontSize="20px">
+      <Paragraph data-testid="test-paragraph" indent={true} fs="20px">
         A design is a plan or specification for the construction of an object or
         system or for the implementation of an activity or process, or the
         result of that plan or specification in the form of a prototype, product

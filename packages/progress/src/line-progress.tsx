@@ -13,11 +13,17 @@ import {
 } from "./line-progress-style"
 import { SuccessIcon, WarningCircleIcon } from "@illa-design/icon"
 import { Space } from "@illa-design/space"
-import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  applyBoxStyle,
+  deleteCssProps,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 
 export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
     const {
+      type,
       steps = 1,
       status = "normal",
       color = "blue",
@@ -65,7 +71,7 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>(
         <div
           ref={ref}
           css={[applyProgressContainer, applyBoxStyle(props)]}
-          {...otherProps}
+          {...deleteCssProps(otherProps)}
         >
           <div css={applyLineContainer(w, strokeWidth)}>
             <div css={applyLineProgressBg(strokeWidth, trailColor)} />
@@ -113,7 +119,7 @@ export const LineProgress = forwardRef<HTMLDivElement, ProgressProps>(
         <div
           ref={ref}
           css={[applyProgressContainer, applyBoxStyle(props)]}
-          {...otherProps}
+          {...deleteCssProps(otherProps)}
         >
           <div css={applyLineContainer(w, strokeWidth)}>
             <Space css={applySpace()} size="4px">

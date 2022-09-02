@@ -1,21 +1,7 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/react"
 import { ProgressColorScheme } from "./interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-
-const colorSchemes: ProgressColorScheme[] = [
-  "white",
-  "blackAlpha",
-  "gray",
-  "grayBlue",
-  "red",
-  "orange",
-  "yellow",
-  "green",
-  "blue",
-  "cyan",
-  "purple",
-]
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 
 export const applyProgressContainer = css`
   vertical-align: middle;
@@ -65,9 +51,7 @@ export function applyLineProgress(
   if (colorScheme == "gray" || colorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
   } else {
-    color = colorSchemes.includes(colorScheme)
-      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
-      : colorScheme
+    color = getColor(colorScheme, "03")
   }
   return css`
     transition: width 200ms;
@@ -91,9 +75,7 @@ export function applyLineProgressStep(
   if (colorScheme == "gray" || colorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
   } else {
-    color = colorSchemes.includes(colorScheme)
-      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
-      : colorScheme
+    color = getColor(colorScheme, "03")
   }
 
   let finalWidth: string
@@ -120,9 +102,7 @@ export function applyLineProgressBg(
   if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
   } else {
-    color = colorSchemes.includes(trailColorScheme)
-      ? globalColor(`--${illaPrefix}-${trailColorScheme}-06`)
-      : trailColorScheme
+    color = getColor(trailColorScheme, "06")
   }
   return css`
     position: absolute;
@@ -143,9 +123,7 @@ export function applyLineProgressBgStep(
   if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
   } else {
-    color = colorSchemes.includes(trailColorScheme)
-      ? globalColor(`--${illaPrefix}-${trailColorScheme}-06`)
-      : trailColorScheme
+    color = getColor(trailColorScheme, "06")
   }
 
   return css`

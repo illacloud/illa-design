@@ -26,7 +26,7 @@ exports[`AvatarGroup renders with large props 1`] = `
 }
 
 .emotion-2 {
-  background-color: #e07800;
+  background-color: #e07800ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -34,7 +34,7 @@ exports[`AvatarGroup renders with large props 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -59,7 +59,6 @@ exports[`AvatarGroup renders with large props 1`] = `
   >
     <div
       class="emotion-1"
-      style="margin-left: 0px; border: 2px solid #fff; border-radius: 50%; z-index: 5;"
     >
       <div
         class="emotion-2"
@@ -73,7 +72,6 @@ exports[`AvatarGroup renders with large props 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -20px; border: 2px solid #fff; border-radius: 50%; z-index: 4;"
     >
       <div
         class="emotion-2"
@@ -87,7 +85,6 @@ exports[`AvatarGroup renders with large props 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -20px; border: 2px solid #fff; border-radius: 50%; z-index: 3;"
     >
       <div
         class="emotion-2"
@@ -101,7 +98,6 @@ exports[`AvatarGroup renders with large props 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -20px; border: 2px solid #fff; border-radius: 50%; z-index: 2;"
     >
       <div
         class="emotion-2"
@@ -115,7 +111,6 @@ exports[`AvatarGroup renders with large props 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -20px; border: 2px solid #fff; border-radius: 50%; z-index: 1;"
     >
       <div
         class="emotion-2"
@@ -157,7 +152,7 @@ exports[`AvatarGroup renders with medium props 1`] = `
 }
 
 .emotion-2 {
-  background-color: #e07800;
+  background-color: #e07800ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -165,7 +160,7 @@ exports[`AvatarGroup renders with medium props 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -190,7 +185,6 @@ exports[`AvatarGroup renders with medium props 1`] = `
   >
     <div
       class="emotion-1"
-      style="margin-left: 0px; border: 2px solid #fff; border-radius: 50%; z-index: 5;"
     >
       <div
         class="emotion-2"
@@ -204,7 +198,6 @@ exports[`AvatarGroup renders with medium props 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -12px; border: 2px solid #fff; border-radius: 50%; z-index: 4;"
     >
       <div
         class="emotion-2"
@@ -218,7 +211,6 @@ exports[`AvatarGroup renders with medium props 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -12px; border: 2px solid #fff; border-radius: 50%; z-index: 3;"
     >
       <div
         class="emotion-2"
@@ -232,7 +224,6 @@ exports[`AvatarGroup renders with medium props 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -12px; border: 2px solid #fff; border-radius: 50%; z-index: 2;"
     >
       <div
         class="emotion-2"
@@ -246,7 +237,6 @@ exports[`AvatarGroup renders with medium props 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -12px; border: 2px solid #fff; border-radius: 50%; z-index: 1;"
     >
       <div
         class="emotion-2"
@@ -288,7 +278,7 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
 }
 
 .emotion-2 {
-  background-color: #c2c2c2;
+  background-color: #c2c2c2ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -296,7 +286,7 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
   overflow: hidden;
   word-wrap: break-word;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffffff;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -321,7 +311,6 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
   >
     <div
       class="emotion-1"
-      style="margin-left: 0px; border: 2px solid #fff; border-radius: 50%; z-index: 0;"
     >
       <div
         class="emotion-2"
@@ -335,7 +324,6 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -8px; border: 2px solid #fff; border-radius: 50%; z-index: 1;"
     >
       <div
         class="emotion-2"
@@ -349,7 +337,6 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -8px; border: 2px solid #fff; border-radius: 50%; z-index: 2;"
     >
       <div
         class="emotion-2"
@@ -363,7 +350,6 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -8px; border: 2px solid #fff; border-radius: 50%; z-index: 3;"
     >
       <div
         class="emotion-2"
@@ -377,7 +363,6 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
     </div>
     <div
       class="emotion-1"
-      style="margin-left: -8px; border: 2px solid #fff; border-radius: 50%; z-index: 4;"
     >
       <div
         class="emotion-2"

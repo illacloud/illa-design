@@ -17,6 +17,7 @@ import { SubMenu } from "./sub-menu"
 import { processChildren, generateInfoMap } from "./util"
 import { OverflowWrapper } from "./overflow-wrapper"
 import { applyMenuCss, applyMenuInnerCss, applyCollapseIconCss } from "./style"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 const DEFAULT_THEME: MenuProps["theme"] = "light"
 
@@ -141,8 +142,8 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
       <div
         ref={ref}
         style={usedStyle}
-        css={applyMenuCss(collapse, isPopButton, theme)}
-        {...omit(restProps, ["isMenu"])}
+        css={[applyMenuCss(collapse, isPopButton, theme), applyBoxStyle(props)]}
+        {...omit(deleteCssProps(restProps), ["isMenu"])}
       >
         <MenuContext.Provider
           value={{

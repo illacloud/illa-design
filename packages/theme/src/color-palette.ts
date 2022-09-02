@@ -1,6 +1,5 @@
-// thanks arco
 import Color from "color"
-import { globalColor, illaPrefix } from "./global-color"
+import { globalColor, hasGlobalColor, illaPrefix } from "./global-color"
 
 const formats = ["hex", "rgb", "hsl"]
 
@@ -16,13 +15,14 @@ export const getColorString = (
     [x: string]: any
   },
   format: string,
+  alpha?: number,
 ) => {
   const innerFormat = getFormat(format)
 
   if (innerFormat === "hex") {
     return color[innerFormat]()
   }
-  return color[innerFormat]().round().string()
+  return color[innerFormat]().alpha(alpha).round().string()
 }
 
 export function colorPalette(
@@ -31,6 +31,8 @@ export function colorPalette(
   format: "hex" | "rgb" | "hsl" = "hex",
 ) {
   const color = Color(originColor)
+
+  const alpha = color.alpha()
   const h = color.hue()
   const s = color.saturationv()
   const v = color.value()
@@ -89,7 +91,7 @@ export function colorPalette(
           v: getNewValue(isLight, index),
         })
 
-  return getColorString(retColor, format)
+  return getColorString(retColor, format, alpha)
 }
 
 const transRule: Record<string, number> = {
@@ -104,15 +106,20 @@ const transRule: Record<string, number> = {
 }
 
 export const getColor = (color: string, step: string) => {
-  let colorStyle = globalColor(`--${illaPrefix}-${color}-${step}`)
-  if (!colorStyle) {
+  let colorStyle
+  if (color === "transparent") {
+    return "transparent"
+  }
+  if (!hasGlobalColor(`--${illaPrefix}-${color}-${step}`)) {
     const formatStep = transRule[step]
     let formatNum = formatStep ? formatStep : 6
     try {
-      colorStyle = colorPalette(color, formatNum, "hex")
+      colorStyle = colorPalette(color, formatNum, "hsl")
     } catch (e) {
-      colorStyle = "#fff"
+      colorStyle = "transparent"
     }
+  } else {
+    colorStyle = globalColor(`--${illaPrefix}-${color}-${step}`)
   }
   return colorStyle
 }

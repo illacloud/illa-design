@@ -9,6 +9,24 @@ import {
 } from "react"
 import { TriggerProps } from "@illa-design/trigger"
 import { ButtonProps } from "@illa-design/button"
+import { BoxProps } from "@illa-design/theme"
+
+export type SelectSize = "small" | "medium" | "large"
+
+export type SelectColorScheme =
+  | string
+  | "gray"
+  | "blue"
+  | "purple"
+  | "red"
+  | "green"
+  | "yellow"
+  | "orange"
+  | "cyan"
+  | "white"
+  | "techPink"
+  | "techPurple"
+  | "grayBlue"
 
 export interface OptionProps
   extends Omit<HTMLAttributes<HTMLLIElement>, "onMouseEnter" | "onMouseLeave"> {
@@ -52,28 +70,12 @@ export interface OptionListProps<T> {
   size?: SelectSize
 }
 
-export type SelectSize = "small" | "medium" | "large"
-
-export type SelectColorScheme =
-  | string
-  | "gray"
-  | "blue"
-  | "purple"
-  | "red"
-  | "green"
-  | "yellow"
-  | "orange"
-  | "cyan"
-  | "white"
-  | "techPink"
-  | "techPurple"
-  | "grayBlue"
-
 export interface SelectProps
   extends Omit<
-    HTMLAttributes<HTMLDivElement>,
-    "defaultValue" | "onFocus" | "onBlur"
-  > {
+      HTMLAttributes<HTMLDivElement>,
+      "defaultValue" | "onFocus" | "onBlur"
+    >,
+    BoxProps {
   defaultValue?:
     | string
     | string[]
@@ -92,7 +94,6 @@ export interface SelectProps
     | boolean
     | { retainInputValue?: boolean; retainInputValueWhileSelect?: boolean }
   size?: SelectSize
-  borderRadius?: string
   disabled?: boolean
   error?: boolean
   loading?: boolean

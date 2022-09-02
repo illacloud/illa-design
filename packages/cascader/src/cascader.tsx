@@ -17,7 +17,7 @@ import { DefaultPopup } from "./popup/default-popup"
 import { SearchPopup } from "./popup/search-popup"
 import { applyPopupStyle } from "./style"
 import { useCurrentRef } from "./hooks"
-import { applyBoxStyle } from "@illa-design/theme"
+import { css } from "@emotion/react"
 
 function getConfig(props: CascaderProps<any>) {
   return {
@@ -85,10 +85,10 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     const timerRef = useRef<number | undefined>()
     const stashNodes = useRef<Store<T>["nodes"]>([])
 
-    const store = useCurrentRef<Store<T>>(() => getStore(props, mergeValue), [
-      JSON.stringify(getConfig(props)),
-      options,
-    ])
+    const store = useCurrentRef<Store<T>>(
+      () => getStore(props, mergeValue),
+      [JSON.stringify(getConfig(props)), options],
+    )
 
     const handleVisibleChange = useCallback(
       (value: boolean) => {
@@ -150,10 +150,10 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
     const getSelectedOptionsByValue = (values: string[][]): OptionProps[][] => {
       const nodes = store.getCheckedNodes().concat(stashNodes.current)
       const result: any[] = []
-      values.map(value => {
-        const node = nodes.find(item => isEqual(item.pathValue, value))
+      values.map((value) => {
+        const node = nodes.find((item) => isEqual(item.pathValue, value))
         if (node) {
-          result.push(node.getPathNodes()?.map(x => x._data))
+          result.push(node.getPathNodes()?.map((x) => x._data))
         }
       })
       return result
@@ -164,12 +164,12 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         const options = getSelectedOptionsByValue([value])[0] || []
 
         let text
-        let valueShow = isArray(value) ? value.map(x => String(x)) : []
+        let valueShow = isArray(value) ? value.map((x) => String(x)) : []
 
         if (options.length) {
           valueShow = options?.map((x: OptionProps) => x.label ?? "")
         }
-        if (valueShow.every(v => isString(v))) {
+        if (valueShow.every((v) => isString(v))) {
           text = valueShow.join(" / ")
         } else {
           text = valueShow.reduce((total: string[], item, index) => {
@@ -223,7 +223,9 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
           handleChange([])
         } else {
           const nodes = store.getCheckedNodes()
-          const newValue = nodes.filter(x => x.disabled).map(x => x.pathValue)
+          const newValue = nodes
+            .filter((x) => x.disabled)
+            .map((x) => x.pathValue)
           store.setNodeCheckedByValue(newValue)
           handleChange(newValue)
         }
@@ -246,7 +248,9 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
           <div css={applyPopupStyle()}>
             {showSearchPanel ? (
               <SearchPopup
-                style={{ minWidth: selectViewRef?.current?.offsetWidth }}
+                _css={css`
+                  min-width: ${selectViewRef?.current?.offsetWidth}px;
+                `}
                 multiple={multiple}
                 store={store}
                 value={mergeValue}
@@ -255,7 +259,9 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
               />
             ) : (
               <DefaultPopup
-                style={{ minWidth: selectViewRef?.current?.offsetWidth }}
+                _css={css`
+                  min-width: ${selectViewRef?.current?.offsetWidth}px;
+                `}
                 multiple={multiple}
                 store={store}
                 value={mergeValue}
@@ -268,10 +274,10 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         }
         showArrow={false}
         colorScheme="white"
-        position="bl"
+        position="bottom-start"
         openDelay={0}
         closeDelay={0}
-        maxWidth=""
+        maxW=""
         disabled={disabled}
         withoutPadding
         closeOnClick
@@ -279,10 +285,8 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         popupVisible={currentVisible}
         onVisibleChange={handleVisibleChange}
       >
-        <div ref={ref} css={applyBoxStyle(props)}>
+        <div ref={ref}>
           <SelectView
-            {...props}
-            {...selectViewEventHandlers}
             ref={selectViewRef}
             inputValue={inputValue}
             value={multiple ? mergeValue : mergeValue && mergeValue[0]}
@@ -291,7 +295,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
             isEmptyValue={
               !mergeValue || (isArray(mergeValue) && mergeValue.length === 0)
             }
-            onKeyDown={e => {
+            onKeyDown={(e) => {
               if (disabled) {
                 return
               }
@@ -310,6 +314,8 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
               const newValue = mergeValue?.filter((_, i) => i !== index) ?? []
               handleChange(newValue)
             }}
+            {...props}
+            {...selectViewEventHandlers}
           />
         </div>
       </Trigger>

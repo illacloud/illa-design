@@ -6,7 +6,7 @@ import "@testing-library/jest-dom"
 test("Text renders with different level", () => {
   render(
     <Typography>
-      <Text data-testid="test-text" fontSize="20px">
+      <Text data-testid="test-text" fs="20px">
         Text
       </Text>
     </Typography>,
@@ -34,7 +34,7 @@ test("Text renders with different color schemes", () => {
 test("Text renders with copy icon", async () => {
   render(
     <Typography>
-      <Text data-testid="test-text" fontSize="20px" copyable={true}>
+      <Text data-testid="test-text" fs="20px" copyable={true}>
         Text
       </Text>
     </Typography>,

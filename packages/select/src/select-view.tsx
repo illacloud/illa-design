@@ -21,7 +21,12 @@ import {
   ObjectValueType,
 } from "@illa-design/input-tag"
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  applyBoxStyle,
+  deleteCssProps,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 import { Button, ButtonProps } from "@illa-design/button"
 import {
   SelectColorScheme,
@@ -88,11 +93,8 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
   (props, ref) => {
     const {
       children,
-      className,
-      style,
       value,
-      width,
-      borderRadius = "8px",
+      bdRadius: borderRadius = "8px",
       size = "medium",
       inputValue,
       defaultValue,
@@ -345,12 +347,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
     }
 
     return (
-      <div
-        ref={ref}
-        css={applySelectViewStyle(width)}
-        className={className}
-        style={style}
-      >
+      <div ref={ref} css={[applySelectViewStyle(), applyBoxStyle(props)]}>
         {addonBefore ? (
           <SelectAddon
             addon={"before"}
@@ -374,7 +371,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             }
           }}
           onBlur={(event) => tryTriggerFocusChange("blur", event)}
-          {...omit(otherProps, [
+          {...omit(deleteCssProps(otherProps), [
             "options",
             "filterOption",
             "onSearch",

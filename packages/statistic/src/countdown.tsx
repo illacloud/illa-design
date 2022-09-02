@@ -4,10 +4,11 @@ import dayjs from "dayjs"
 import { getDateString } from "./util"
 
 import {
-  statisticStyle,
   applyStatisticContentStyle,
+  statisticStyle,
   statisticTitleStyle,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
   (props, ref) => {
@@ -65,7 +66,11 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
       }
     }, [start])
     return (
-      <div ref={ref} {...restProps} css={statisticStyle}>
+      <div
+        ref={ref}
+        css={[statisticStyle, applyBoxStyle(props)]}
+        {...restProps}
+      >
         {title && <div css={statisticTitleStyle}>{title}</div>}
         <div css={applyStatisticContentStyle(mode)}>
           {getDateString(valueShow, format)}

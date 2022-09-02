@@ -1,7 +1,7 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
-import { InputSize, StateValue } from "./interface"
+import { InputProps, InputSize, StateValue } from "./interface"
 
 export const inputFillStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
@@ -50,7 +50,7 @@ export const errorOutlineStyle = css`
   }
 `
 
-export function applyVariantStyle(variant?: string) {
+export function applyVariantStyle(variant?: string): SerializedStyles {
   let inputStyle: SerializedStyles
   switch (variant) {
     default:
@@ -69,9 +69,8 @@ export function applyVariantStyle(variant?: string) {
   return inputStyle
 }
 
-export function applyContainerCss(stateValue: StateValue) {
+export function applyContainerCss(size?: InputProps["size"]): SerializedStyles {
   return css`
-    width: ${stateValue.width};
     position: relative;
     display: flex;
     flex-direction: row;
@@ -79,11 +78,11 @@ export function applyContainerCss(stateValue: StateValue) {
     font-size: 14px;
     vertical-align: middle;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    ${applySizeStyle(stateValue?.size)};
+    ${applySizeStyle(size)};
   `
 }
 
-function applySizeStyle(size?: string) {
+function applySizeStyle(size?: string): SerializedStyles {
   let sizeCss: SerializedStyles
   switch (size) {
     default:
@@ -110,7 +109,7 @@ function applySizeStyle(size?: string) {
   return sizeCss
 }
 
-function applyStatus(stateValue: StateValue) {
+function applyStatus(stateValue: StateValue): SerializedStyles {
   let mainStyle: SerializedStyles
   let disableStyle, hoverStyle, inputStyle, errorStyle: SerializedStyles
 
@@ -143,6 +142,7 @@ function applyStatus(stateValue: StateValue) {
         ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
+      z-index: 1;
     `
   } else if (stateValue?.error) {
     mainStyle = css`
@@ -152,6 +152,7 @@ function applyStatus(stateValue: StateValue) {
     mainStyle = css`
       &:hover {
         border-color: ${getColor(stateValue.borderColor, "06")};
+        z-index: 1;
         ${hoverStyle}
       }
     `
@@ -194,13 +195,12 @@ export function applySizeCss(
   }
   return paddingCss
 }
-
 export function applyInputContainer(
   stateValue: StateValue,
   requirePadding?: boolean,
-) {
+): SerializedStyles {
   let borderRadius
-  if (stateValue.borderRadius) {
+  if (stateValue?.borderRadius) {
     borderRadius = css`
       border-radius: ${stateValue.borderRadius};
     `
@@ -250,7 +250,9 @@ export function applyInputContainer(
   `
 }
 
-export function applyInputStyle(textCenterHorizontal?: boolean) {
+export function applyInputStyle(
+  textCenterHorizontal?: boolean,
+): SerializedStyles {
   let textAlignCss: SerializedStyles
   if (textCenterHorizontal) {
     textAlignCss = css`
@@ -298,9 +300,9 @@ export function applyInputStyle(textCenterHorizontal?: boolean) {
   `
 }
 
-function baseFixCls(stateValue: StateValue) {
+function baseFixCls(size?: InputProps["size"]): SerializedStyles {
   let sizeCss: SerializedStyles
-  switch (stateValue?.size) {
+  switch (size) {
     default:
       sizeCss = css`
         & > svg {
@@ -323,9 +325,9 @@ function baseFixCls(stateValue: StateValue) {
   `
 }
 
-export function applyPrefixCls(stateValue: StateValue) {
+export function applyPrefixCls(size?: InputProps["size"]): SerializedStyles {
   return css`
-    ${baseFixCls(stateValue)}
+    ${baseFixCls(size)}
     &:first-of-type {
       margin-right: 12px;
     }
@@ -336,16 +338,19 @@ export function applyPrefixCls(stateValue: StateValue) {
   `
 }
 
-export function applySuffixCls(stateValue: StateValue) {
+export function applySuffixCls(size?: InputProps["size"]): SerializedStyles {
   return css`
-    ${baseFixCls(stateValue)}
+    ${baseFixCls(size)}
     margin-left: 12px;
   `
 }
 
-export function applyAddonCss(stateValue: StateValue) {
+export function applyAddonCss(
+  variant: InputProps["variant"],
+  size: InputProps["size"],
+): SerializedStyles {
   let inputStyle: SerializedStyles
-  switch (stateValue?.variant) {
+  switch (variant) {
     default:
     case "fill":
       inputStyle = css`
@@ -378,7 +383,7 @@ export function applyAddonCss(stateValue: StateValue) {
       break
   }
   return css`
-    ${baseFixCls(stateValue)}
+    ${baseFixCls(size)}
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-width: 1px;
@@ -511,6 +516,9 @@ export function applyRangeContainer(stateValue: StateValue): SerializedStyles {
 
 export function applyRangeInput(focus?: boolean): SerializedStyles {
   return css`
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     transition: all 200ms ease-in-out;
     ${focus
       ? css`

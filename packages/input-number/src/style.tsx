@@ -1,16 +1,17 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { InputNumberStateValue } from "./interface"
+import { InputNumberProps } from "./interface"
 
-function baseFixCls(stateValue: InputNumberStateValue) {
+function baseFixCls(size?: InputNumberProps["size"]): SerializedStyles {
   let sizeCss: SerializedStyles
-  switch (stateValue?.size) {
+  switch (size) {
     default:
     case "small":
       sizeCss = css`
         & > svg {
           font-size: 8px;
         }
+
         padding: 0 7px;
       `
       break
@@ -19,6 +20,7 @@ function baseFixCls(stateValue: InputNumberStateValue) {
         & > svg {
           font-size: 12px;
         }
+
         padding: 0 9px;
       `
       break
@@ -27,6 +29,7 @@ function baseFixCls(stateValue: InputNumberStateValue) {
         & > svg {
           font-size: 12px;
         }
+
         padding: 0 13px;
       `
       break
@@ -42,9 +45,11 @@ function baseFixCls(stateValue: InputNumberStateValue) {
   `
 }
 
-export function applyAddonCss(stateValue: InputNumberStateValue) {
+export function applyAddonCss(
+  size?: InputNumberProps["size"],
+): SerializedStyles {
   return css`
-    ${baseFixCls(stateValue)}
+    ${baseFixCls(size)}
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-width: 1px;
@@ -53,6 +58,7 @@ export function applyAddonCss(stateValue: InputNumberStateValue) {
     height: 100%;
     box-sizing: border-box;
     text-align: center;
+
     &:hover {
       cursor: pointer;
       color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
@@ -71,9 +77,11 @@ export function applyAddonCss(stateValue: InputNumberStateValue) {
     }
   `
 }
-export function applyInputNumber() {
+
+export function applyInputNumber(): SerializedStyles {
   return css`
     position: relative;
+
     &:hover {
       [title="inputStepEmbed"] {
         visibility: visible;
@@ -83,9 +91,11 @@ export function applyInputNumber() {
   `
 }
 
-export function applyStepEmbedContainer(stateValue: InputNumberStateValue) {
+export function applyStepEmbedContainer(
+  size?: InputNumberProps["size"],
+): SerializedStyles {
   let sizeCss: SerializedStyles
-  switch (stateValue?.size) {
+  switch (size) {
     default:
     case "small":
       sizeCss = css`
@@ -114,7 +124,8 @@ export function applyStepEmbedContainer(stateValue: InputNumberStateValue) {
     ${sizeCss}
   `
 }
-export function applyStepEmbed() {
+
+export function applyStepEmbed(): SerializedStyles {
   return css`
     display: flex;
     flex-direction: column;
@@ -123,10 +134,12 @@ export function applyStepEmbed() {
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     transition: 0.2s ease-in-out;
+
     &:hover {
       cursor: pointer;
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
     }
+
     &:first-of-type {
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;

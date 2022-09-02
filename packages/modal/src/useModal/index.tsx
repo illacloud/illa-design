@@ -11,7 +11,7 @@ import {
 } from "../interface"
 import { AlertType as ConfirmType } from "@illa-design/alert"
 
-function useModal(): [modalFunctionsType, ReactElement] {
+export function useModal(): [modalFunctionsType, ReactElement] {
   const contextHolderRef = createRef<HolderRef>()
   const holderEle = <ContextHolderElement ref={contextHolderRef} />
 

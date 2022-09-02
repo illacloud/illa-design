@@ -1,20 +1,246 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Table renders with borders. 1`] = `
+.emotion-0 {
+  width: 100%;
+  box-sizing: border-box;
+  display: table;
+  border-spacing: 0;
+  border-collapse: separate;
+  table-layout: auto;
+}
+
+.emotion-2 {
+  font-size: 14px;
+  min-height: 22px;
+  color: #1d2129ff;
+}
+
+.emotion-3 {
+  font-size: 14px;
+  font-weight: bold;
+  color: #1d2129ff;
+  background-color: #f2f3f5ff;
+  padding: 14px 16px;
+  border-right: solid 1px #e5e6ebff;
+  border-bottom: solid 1px #e5e6ebff;
+}
+
+.emotion-4 {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+  min-height: 22px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-11 {
+  background-color: #ffffffff;
+  font-size: 14px;
+  min-height: 22px;
+  color: #1d2129ff;
+  padding: 14px 16px;
+  border-right: solid 1px #e5e6ebff;
+  border-bottom: solid 1px #e5e6ebff;
+}
+
+.emotion-12 {
+  -webkit-box-pack: left;
+  -ms-flex-pack: left;
+  -webkit-justify-content: left;
+  justify-content: left;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+  min-height: 22px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+<table
+  class="emotion-0"
+  data-testid="test-table"
+>
+  <thead
+    class="emotion-1"
+  >
+    <tr
+      class="emotion-2"
+    >
+      <th
+        class="emotion-3"
+      >
+        <div
+          class="emotion-4"
+        >
+          First
+        </div>
+      </th>
+      <th
+        class="emotion-3"
+      >
+        <div
+          class="emotion-4"
+        >
+          Second
+        </div>
+      </th>
+      <th
+        class="emotion-3"
+      >
+        <div
+          class="emotion-4"
+        >
+          Third
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    class="emotion-9"
+  >
+    <tr
+      class="emotion-2"
+    >
+      <td
+        class="emotion-11"
+      >
+        <div
+          class="emotion-12"
+        >
+          1
+        </div>
+      </td>
+      <td
+        class="emotion-11"
+      >
+        <div
+          class="emotion-12"
+        >
+          2
+        </div>
+      </td>
+      <td
+        class="emotion-11"
+      >
+        <div
+          class="emotion-12"
+        >
+          3
+        </div>
+      </td>
+    </tr>
+    <tr
+      class="emotion-2"
+    >
+      <td
+        class="emotion-11"
+      >
+        <div
+          class="emotion-12"
+        >
+          4
+        </div>
+      </td>
+      <td
+        class="emotion-11"
+      >
+        <div
+          class="emotion-12"
+        >
+          5
+        </div>
+      </td>
+      <td
+        class="emotion-11"
+      >
+        <div
+          class="emotion-12"
+        >
+          6
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot
+    class="emotion-9"
+  >
+    <tr
+      class="emotion-2"
+    >
+      <td
+        class="emotion-11"
+      >
+        <div
+          class="emotion-12"
+        >
+          7
+        </div>
+      </td>
+      <td
+        class="emotion-11"
+      >
+        <div
+          class="emotion-12"
+        >
+          8
+        </div>
+      </td>
+      <td
+        class="emotion-11"
+      >
+        <div
+          class="emotion-12"
+        >
+          9
+        </div>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+`;
+
 exports[`Table renders with different align. 1`] = `
 .emotion-0 {
   width: 100%;
   box-sizing: border-box;
   display: table;
-  border-collapse: collapse;
+  border-spacing: 0;
+  border-collapse: separate;
   table-layout: auto;
 }
 
-.emotion-3 {
+.emotion-2 {
   font-size: 14px;
   min-height: 22px;
-  background-color: #fff;
-  color: #1d2129;
-  padding: 7px 16px;
+  color: #1d2129ff;
+}
+
+.emotion-3 {
+  background-color: #ffffffff;
+  font-size: 14px;
+  min-height: 22px;
+  color: #1d2129ff;
+  padding: 14px 16px;
 }
 
 .emotion-4 {
@@ -65,7 +291,7 @@ exports[`Table renders with different align. 1`] = `
     class="emotion-1"
   >
     <tr
-      class="emotion-1"
+      class="emotion-2"
     >
       <td
         class="emotion-3"

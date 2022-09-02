@@ -1,5 +1,5 @@
 import { forwardRef, ReactElement, useContext } from "react"
-import { Tooltip } from "@illa-design/tooltip"
+import { Trigger } from "@illa-design/trigger"
 import { processChildren } from "./util"
 import { ItemGroupProps } from "./interface"
 import { MenuContext } from "./menu-context"
@@ -10,6 +10,7 @@ import {
   applyCollapseGroupTitleCss,
 } from "./style"
 
+// eslint-disable-next-line react/display-name
 const ForwardRefItemGroup = forwardRef<HTMLDivElement, ItemGroupProps>(
   (props, ref) => {
     const { children, title, level, _css, ...restProps } = props
@@ -44,9 +45,9 @@ const ForwardRefItemGroup = forwardRef<HTMLDivElement, ItemGroupProps>(
     return (
       <div ref={ref} css={[applyItemGroupCss(theme), _css]} {...restProps}>
         {mergedNeedTooltip ? (
-          <Tooltip content={title} trigger={"hover"} position={"right"}>
+          <Trigger content={title} trigger={"hover"} position={"right"}>
             {groupTitle}
-          </Tooltip>
+          </Trigger>
         ) : (
           groupTitle
         )}

@@ -5,7 +5,7 @@ import {
   ButtonSize,
   ButtonVariant,
 } from "./interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor } from "@illa-design/theme"
 
 // button
 export function applyTagContainer(
@@ -53,252 +53,135 @@ export function getDifferentStatusColor(
       switch (variant) {
         case "fill":
           if (colorScheme === "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-01`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "01"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-01`),
-              globalColor(`--${illaPrefix}-white-01`),
-            ]
+            return [getColor(colorScheme, "01"), getColor("white", "01")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-09`),
-              globalColor(`--${illaPrefix}-${colorScheme}-02`),
-            ]
+            return [getColor(colorScheme, "09"), getColor(colorScheme, "02")]
           }
         case "light": {
           if (colorScheme === "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-01`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "01"), getColor("gray", "02")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-07`),
-              globalColor(`--${illaPrefix}-${colorScheme}-01`),
-            ]
+            return [getColor(colorScheme, "07"), getColor(colorScheme, "01")]
           }
         }
         case "dashed":
         case "outline":
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-01`),
-              globalColor(`--${illaPrefix}-white-01`),
-            ]
+            return [getColor("white", "01"), getColor("white", "01")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-01`),
-              globalColor(`--${illaPrefix}-${colorScheme}-01`),
-            ]
+            return [getColor(colorScheme, "01"), getColor(colorScheme, "01")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-08`),
-              globalColor(`--${illaPrefix}-${colorScheme}-02`),
-            ]
+            return [getColor(colorScheme, "08"), getColor(colorScheme, "02")]
           }
         case "text":
           if (colorScheme == "white") {
-            return [
-              globalColor("transparent"),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("transparent", "01"), getColor("gray", "02")]
           } else {
-            return [
-              globalColor("transparent"),
-              globalColor(`--${illaPrefix}-${colorScheme}-01`),
-            ]
+            return [getColor("transparent", "01"), getColor(colorScheme, "01")]
           }
       }
     case State.HOVER:
       switch (variant) {
         case "fill":
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-02`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "02"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-02`),
-              globalColor(`--${illaPrefix}-white-01`),
-            ]
+            return [getColor(colorScheme, "02"), getColor("white", "01")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-08`),
-              globalColor(`--${illaPrefix}-${colorScheme}-02`),
-            ]
+            return [getColor(colorScheme, "08"), getColor(colorScheme, "02")]
           }
         case "light": {
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-02`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "02"), getColor("gray", "02")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-06`),
-              globalColor(`--${illaPrefix}-${colorScheme}-01`),
-            ]
+            return [getColor(colorScheme, "06"), getColor(colorScheme, "01")]
           }
         }
         case "dashed":
         case "outline":
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-02`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "02"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-02`),
-              globalColor(`--${illaPrefix}-${colorScheme}-02`),
-            ]
+            return [getColor(colorScheme, "02"), getColor(colorScheme, "02")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-07`),
-              globalColor(`--${illaPrefix}-${colorScheme}-02`),
-            ]
+            return [getColor(colorScheme, "07"), getColor(colorScheme, "02")]
           }
         case "text":
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-02`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "02"), getColor("gray", "02")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-grayBlue-09`),
-              globalColor(`--${illaPrefix}-${colorScheme}-02`),
-            ]
+            return [getColor("grayBlue", "09"), getColor(colorScheme, "02")]
           }
       }
     case State.ACTIVE:
       switch (variant) {
         case "fill":
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-03`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "03"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
-              globalColor(`--${illaPrefix}-white-01`),
-            ]
+            return [getColor(colorScheme, "n-01"), getColor("white", "01")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-06`),
-              globalColor(`--${illaPrefix}-${colorScheme}-02`),
-            ]
+            return [getColor(colorScheme, "06"), getColor(colorScheme, "02")]
           }
         case "light": {
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-03`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "02"), getColor("gray", "02")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-05`),
-              globalColor(`--${illaPrefix}-${colorScheme}-01`),
-            ]
+            return [getColor(colorScheme, "05"), getColor(colorScheme, "01")]
           }
         }
         case "dashed":
         case "outline":
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-03`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "03"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
-              globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
-              globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
+              getColor(colorScheme, "n-01"),
+              getColor(colorScheme, "n-01"),
             ]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-05`),
-              globalColor(`--${illaPrefix}-${colorScheme}-02`),
-            ]
+            return [getColor(colorScheme, "05"), getColor(colorScheme, "02")]
           }
         case "text":
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-03`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "03"), getColor("gray", "02")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-grayBlue-08`),
-              globalColor(`--${illaPrefix}-${colorScheme}-n-01`),
-            ]
+            return [getColor("grayBlue", "08"), getColor(colorScheme, "n-01")]
           }
       }
     case State.DISABLE:
       switch (variant) {
         case "fill":
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-04`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "04"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-05`),
-              globalColor(`--${illaPrefix}-white-01`),
-            ]
+            return [getColor(colorScheme, "05"), getColor("white", "01")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-09`),
-              globalColor(`--${illaPrefix}-${colorScheme}-05`),
-            ]
+            return [getColor(colorScheme, "09"), getColor(colorScheme, "05")]
           }
         case "light": {
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-04`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "04"), getColor("gray", "02")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-07`),
-              globalColor(`--${illaPrefix}-${colorScheme}-05`),
-            ]
+            return [getColor(colorScheme, "07"), getColor(colorScheme, "05")]
           }
         }
         case "dashed":
         case "outline":
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-04`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "04"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-05`),
-              globalColor(`--${illaPrefix}-${colorScheme}-05`),
-            ]
+            return [getColor(colorScheme, "05"), getColor(colorScheme, "05")]
           } else {
-            return [
-              globalColor(`--${illaPrefix}-${colorScheme}-08`),
-              globalColor(`--${illaPrefix}-${colorScheme}-05`),
-            ]
+            return [getColor(colorScheme, "08"), getColor(colorScheme, "05")]
           }
         case "text":
           if (colorScheme == "white") {
-            return [
-              globalColor(`--${illaPrefix}-white-04`),
-              globalColor(`--${illaPrefix}-gray-02`),
-            ]
+            return [getColor("white", "04"), getColor("gray", "02")]
           } else {
-            return [
-              globalColor("transparent"),
-              globalColor(`--${illaPrefix}-${colorScheme}-05`),
-            ]
+            return [getColor("transparent", "01"), getColor(colorScheme, "05")]
           }
       }
   }
@@ -308,7 +191,6 @@ export function getDifferentStatusColor(
 export function applyBg(
   variant: ButtonVariant,
   colorScheme: ButtonColorScheme,
-  disabled?: boolean,
 ): SerializedStyles {
   switch (variant) {
     case "text":
@@ -331,12 +213,6 @@ export function applyBg(
         }
       `
     case "dashed":
-      if (disabled) {
-        return css`
-          border: dashed 1px
-            ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
-        `
-      }
       return css`
         border: dashed 1px
           ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
@@ -351,17 +227,13 @@ export function applyBg(
           border: dashed 1px
             ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
         }
+
+        &:disabled {
+          border: dashed 1px
+            ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
+        }
       `
     case "fill":
-      if (disabled) {
-        return css`
-          background-color: ${getDifferentStatusColor(
-            colorScheme,
-            variant,
-            State.DISABLE,
-          )[0]};
-        `
-      }
       return css`
         background-color: ${getDifferentStatusColor(
           colorScheme,
@@ -385,14 +257,16 @@ export function applyBg(
             State.ACTIVE,
           )[0]};
         }
+
+        &:disabled {
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
+          )[0]};
+        }
       `
     case "outline":
-      if (disabled) {
-        return css`
-          border: solid 1px
-            ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
-        `
-      }
       return css`
         border: solid 1px
           ${getDifferentStatusColor(colorScheme, variant, State.DEFAULT)[0]};
@@ -407,17 +281,13 @@ export function applyBg(
           border: solid 1px
             ${getDifferentStatusColor(colorScheme, variant, State.ACTIVE)[0]};
         }
+
+        &:disabled {
+          border: solid 1px
+            ${getDifferentStatusColor(colorScheme, variant, State.DISABLE)[0]};
+        }
       `
     case "light":
-      if (disabled) {
-        return css`
-          background-color: ${getDifferentStatusColor(
-            colorScheme,
-            variant,
-            State.DISABLE,
-          )[0]};
-        `
-      }
       return css`
         background-color: ${getDifferentStatusColor(
           colorScheme,
@@ -441,25 +311,34 @@ export function applyBg(
             State.ACTIVE,
           )[0]};
         }
+
+        &:disabled {
+          background-color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
+          )[0]};
+        }
       `
   }
 }
 
-export function applyCursor(
-  loading: boolean,
-  disabled: boolean,
-): SerializedStyles {
-  if (disabled) {
-    return css`
-      cursor: not-allowed;
-    `
-  } else if (loading) {
+export function applyCursor(loading: boolean): SerializedStyles {
+  if (loading) {
     return css`
       cursor: default;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
     `
   } else {
     return css`
       cursor: pointer;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
     `
   }
 }
@@ -467,42 +346,25 @@ export function applyCursor(
 export function applyElementColor(
   variant: ButtonVariant,
   colorScheme: ButtonColorScheme,
-  textColor?: string,
-  disabled?: boolean,
 ): SerializedStyles {
-  if (textColor) {
-    return css`
-      color: ${textColor};
-    `
-  }
   switch (variant) {
     case "text":
-      if (disabled) {
-        return css`
-          color: ${getDifferentStatusColor(
-            colorScheme,
-            variant,
-            State.DISABLE,
-          )[1]};
-        `
-      }
       return css`
         color: ${getDifferentStatusColor(
           colorScheme,
           variant,
           State.DEFAULT,
         )[1]};
-      `
-    case "light":
-      if (disabled) {
-        return css`
+
+        &:disabled {
           color: ${getDifferentStatusColor(
             colorScheme,
             variant,
             State.DISABLE,
           )[1]};
-        `
-      }
+        }
+      `
+    case "light":
       return css`
         color: ${getDifferentStatusColor(
           colorScheme,
@@ -524,20 +386,19 @@ export function applyElementColor(
             colorScheme,
             variant,
             State.ACTIVE,
+          )[1]};
+        }
+
+        &:disabled {
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
           )[1]};
         }
       `
     case "outline":
     case "dashed":
-      if (disabled) {
-        return css`
-          color: ${getDifferentStatusColor(
-            colorScheme,
-            variant,
-            State.DISABLE,
-          )[1]};
-        `
-      }
       return css`
         color: ${getDifferentStatusColor(
           colorScheme,
@@ -559,19 +420,18 @@ export function applyElementColor(
             colorScheme,
             variant,
             State.ACTIVE,
+          )[1]};
+        }
+
+        &:disabled {
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
           )[1]};
         }
       `
     case "fill":
-      if (disabled) {
-        return css`
-          color: ${getDifferentStatusColor(
-            colorScheme,
-            variant,
-            State.DISABLE,
-          )[1]};
-        `
-      }
       return css`
         color: ${getDifferentStatusColor(
           colorScheme,
@@ -593,6 +453,14 @@ export function applyElementColor(
             colorScheme,
             variant,
             State.ACTIVE,
+          )[1]};
+        }
+
+        &:disabled {
+          color: ${getDifferentStatusColor(
+            colorScheme,
+            variant,
+            State.DISABLE,
           )[1]};
         }
       `

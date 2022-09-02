@@ -31,8 +31,8 @@ export default {
 export const Template: Story<InputNumberProps> = (props) => {
   return (
     <Space wrap direction="vertical">
-      <InputNumber {...props} />
-      <InputNumber mode="button" {...props} />
+      <InputNumber w={"200px"} {...props} />
+      <InputNumber w={"200px"} mode="button" {...props} />
     </Space>
   )
 }

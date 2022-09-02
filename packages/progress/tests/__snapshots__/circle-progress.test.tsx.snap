@@ -26,7 +26,7 @@ exports[`Progress renders with colors 1`] = `
 }
 
 .emotion-2 {
-  stroke: #fcc;
+  stroke: #fcccccff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -36,9 +36,9 @@ exports[`Progress renders with colors 1`] = `
 }
 
 .emotion-3 {
-  -webkit-transition: all 200ms;
-  transition: all 200ms;
-  stroke: #ff4747;
+  -webkit-transition: stroke-dashoffset 200ms;
+  transition: stroke-dashoffset 200ms;
+  stroke: #ff4747ff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -52,7 +52,7 @@ exports[`Progress renders with colors 1`] = `
   position: absolute;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div
@@ -114,7 +114,7 @@ exports[`Progress renders with colors 2`] = `
 }
 
 .emotion-2 {
-  stroke: #ebebeb;
+  stroke: #ebebebff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -124,9 +124,9 @@ exports[`Progress renders with colors 2`] = `
 }
 
 .emotion-3 {
-  -webkit-transition: all 200ms;
-  transition: all 200ms;
-  stroke: #1f1f1f;
+  -webkit-transition: stroke-dashoffset 200ms;
+  transition: stroke-dashoffset 200ms;
+  stroke: #1f1f1fff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -140,7 +140,7 @@ exports[`Progress renders with colors 2`] = `
   position: absolute;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div
@@ -202,7 +202,7 @@ exports[`Progress renders with colors 3`] = `
 }
 
 .emotion-2 {
-  stroke: #321321;
+  stroke: hsl(341, 34%, 76%);
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -212,9 +212,9 @@ exports[`Progress renders with colors 3`] = `
 }
 
 .emotion-3 {
-  -webkit-transition: all 200ms;
-  transition: all 200ms;
-  stroke: #123123;
+  -webkit-transition: stroke-dashoffset 200ms;
+  transition: stroke-dashoffset 200ms;
+  stroke: hsl(153, 46%, 13%);
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -228,7 +228,7 @@ exports[`Progress renders with colors 3`] = `
   position: absolute;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div
@@ -282,6 +282,7 @@ exports[`Progress renders with custom width 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  width: 100px;
 }
 
 .emotion-1 {
@@ -290,7 +291,7 @@ exports[`Progress renders with custom width 1`] = `
 }
 
 .emotion-2 {
-  stroke: #ebebeb;
+  stroke: #ebebebff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -300,9 +301,9 @@ exports[`Progress renders with custom width 1`] = `
 }
 
 .emotion-3 {
-  -webkit-transition: all 200ms;
-  transition: all 200ms;
-  stroke: #1e6fff;
+  -webkit-transition: stroke-dashoffset 200ms;
+  transition: stroke-dashoffset 200ms;
+  stroke: #1e6fffff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -316,7 +317,7 @@ exports[`Progress renders with custom width 1`] = `
   position: absolute;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div
@@ -378,7 +379,7 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-2 {
-  stroke: #ebebeb;
+  stroke: #ebebebff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -388,9 +389,9 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-3 {
-  -webkit-transition: all 200ms;
-  transition: all 200ms;
-  stroke: #1e6fff;
+  -webkit-transition: stroke-dashoffset 200ms;
+  transition: stroke-dashoffset 200ms;
+  stroke: #1e6fffff;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -404,7 +405,7 @@ exports[`Progress renders with steps 1`] = `
   position: absolute;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div

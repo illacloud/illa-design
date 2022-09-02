@@ -25,7 +25,7 @@ exports[`Progress renders with colors 1`] = `
 
 .emotion-2 {
   position: absolute;
-  background-color: #fcc;
+  background-color: #fcccccff;
   width: 100%;
   border-radius: calc(4px / 2);
   height: 4px;
@@ -37,7 +37,7 @@ exports[`Progress renders with colors 1`] = `
   position: absolute;
   width: 0%;
   border-radius: calc(4px / 2);
-  background-color: #ff4747;
+  background-color: #ff4747ff;
   height: 4px;
 }
 
@@ -45,7 +45,7 @@ exports[`Progress renders with colors 1`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div
@@ -95,7 +95,7 @@ exports[`Progress renders with colors 2`] = `
 
 .emotion-2 {
   position: absolute;
-  background-color: #ebebeb;
+  background-color: #ebebebff;
   width: 100%;
   border-radius: calc(4px / 2);
   height: 4px;
@@ -107,7 +107,7 @@ exports[`Progress renders with colors 2`] = `
   position: absolute;
   width: 0%;
   border-radius: calc(4px / 2);
-  background-color: #1f1f1f;
+  background-color: #1f1f1fff;
   height: 4px;
 }
 
@@ -115,7 +115,7 @@ exports[`Progress renders with colors 2`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div
@@ -165,7 +165,7 @@ exports[`Progress renders with colors 3`] = `
 
 .emotion-2 {
   position: absolute;
-  background-color: #321321;
+  background-color: hsl(341, 34%, 76%);
   width: 100%;
   border-radius: calc(4px / 2);
   height: 4px;
@@ -177,7 +177,7 @@ exports[`Progress renders with colors 3`] = `
   position: absolute;
   width: 0%;
   border-radius: calc(4px / 2);
-  background-color: #123123;
+  background-color: hsl(153, 46%, 13%);
   height: 4px;
 }
 
@@ -185,7 +185,7 @@ exports[`Progress renders with colors 3`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div
@@ -261,7 +261,7 @@ exports[`Progress renders with colors 4`] = `
 }
 
 .emotion-5 {
-  background-color: #fcc;
+  background-color: #fcccccff;
   width: calc((320px - (3 - 1) * 4px) / 3);
   border-radius: calc(4px / 2);
   height: 4px;
@@ -276,7 +276,7 @@ exports[`Progress renders with colors 4`] = `
 .emotion-13 {
   width: 0px;
   border-radius: calc(4px / 2);
-  background-color: #ff4747;
+  background-color: #ff4747ff;
   height: 4px;
 }
 
@@ -284,7 +284,7 @@ exports[`Progress renders with colors 4`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div
@@ -404,7 +404,7 @@ exports[`Progress renders with colors 5`] = `
 }
 
 .emotion-5 {
-  background-color: #ebebeb;
+  background-color: #ebebebff;
   width: calc((320px - (3 - 1) * 4px) / 3);
   border-radius: calc(4px / 2);
   height: 4px;
@@ -419,7 +419,7 @@ exports[`Progress renders with colors 5`] = `
 .emotion-13 {
   width: 0px;
   border-radius: calc(4px / 2);
-  background-color: #1f1f1f;
+  background-color: #1f1f1fff;
   height: 4px;
 }
 
@@ -427,7 +427,7 @@ exports[`Progress renders with colors 5`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div
@@ -547,7 +547,7 @@ exports[`Progress renders with colors 6`] = `
 }
 
 .emotion-5 {
-  background-color: #321321;
+  background-color: hsl(341, 34%, 76%);
   width: calc((320px - (3 - 1) * 4px) / 3);
   border-radius: calc(4px / 2);
   height: 4px;
@@ -562,7 +562,7 @@ exports[`Progress renders with colors 6`] = `
 .emotion-13 {
   width: 0px;
   border-radius: calc(4px / 2);
-  background-color: #123123;
+  background-color: hsl(153, 46%, 13%);
   height: 4px;
 }
 
@@ -570,7 +570,7 @@ exports[`Progress renders with colors 6`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div
@@ -653,6 +653,7 @@ exports[`Progress renders with custom width 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  width: 100px;
 }
 
 .emotion-1 {
@@ -664,7 +665,7 @@ exports[`Progress renders with custom width 1`] = `
 
 .emotion-2 {
   position: absolute;
-  background-color: #ebebeb;
+  background-color: #ebebebff;
   width: 100%;
   border-radius: calc(10px / 2);
   height: 10px;
@@ -676,7 +677,7 @@ exports[`Progress renders with custom width 1`] = `
   position: absolute;
   width: 50%;
   border-radius: calc(10px / 2);
-  background-color: #1e6fff;
+  background-color: #1e6fffff;
   height: 10px;
 }
 
@@ -684,7 +685,7 @@ exports[`Progress renders with custom width 1`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div
@@ -760,7 +761,7 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-5 {
-  background-color: #ebebeb;
+  background-color: #ebebebff;
   width: calc((320px - (3 - 1) * 4px) / 3);
   border-radius: calc(4px / 2);
   height: 4px;
@@ -775,14 +776,14 @@ exports[`Progress renders with steps 1`] = `
 .emotion-13 {
   width: calc((320px - (3 - 1) * 4px) / 3);
   border-radius: calc(4px / 2);
-  background-color: #1e6fff;
+  background-color: #1e6fffff;
   height: 4px;
 }
 
 .emotion-15 {
   width: 0px;
   border-radius: calc(4px / 2);
-  background-color: #1e6fff;
+  background-color: #1e6fffff;
   height: 4px;
 }
 
@@ -790,7 +791,7 @@ exports[`Progress renders with steps 1`] = `
   margin-left: 8px;
   line-height: 14px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 <div

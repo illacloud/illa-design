@@ -99,3 +99,5 @@ export const PageNumGroup = forwardRef<HTMLSpanElement, PageNumGroupProps>(
     )
   },
 )
+
+PageNumGroup.displayName = "PageNumGroup"

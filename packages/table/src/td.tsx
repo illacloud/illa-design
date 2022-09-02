@@ -3,11 +3,13 @@ import { TdProps } from "./interface"
 import {
   applyBorderStyle,
   applyContentContainer,
+  applyNormalBg,
   applyNormalStyle,
   applySizeStyle,
 } from "./style"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
   (props, ref) => {
@@ -19,7 +21,10 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
       children,
       showFooter,
       showHeader,
-      _css,
+      colIndex,
+      rowIndex,
+      lastCol,
+      lastRow,
       ...otherProps
     } = props
 
@@ -28,13 +33,18 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
     return (
       <td
         css={css(
-          applyNormalStyle,
+          applyNormalBg(),
+          applyNormalStyle(),
           applySizeStyle(size ?? tableContext?.size ?? "medium"),
           applyBorderStyle(
             borderedCell ?? tableContext?.borderedCell,
             striped ?? tableContext?.striped,
+            colIndex,
+            rowIndex,
+            lastCol,
+            lastRow,
           ),
-          _css,
+          applyBoxStyle(props),
         )}
         ref={ref}
         {...otherProps}

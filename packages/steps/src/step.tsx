@@ -11,11 +11,10 @@ import {
   applyConnectionNodeStyle,
   isVerticalLabel,
 } from "./style"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
   const {
-    style,
-    className,
     id,
     index = 1,
     current = 1,
@@ -130,9 +129,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
         hoverable,
       })}
       onClick={onClickStep}
-      style={style}
-      className={className}
-      {...restProps}
+      {...deleteCssProps(restProps)}
     >
       {renderConnectionNode()}
       {stepIconNode}

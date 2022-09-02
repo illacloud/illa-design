@@ -1,7 +1,7 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
-import { InputTagStateValue } from "./interface"
+import { InputTagProps, InputTagStateValue } from "./interface"
 
 export const inputOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
@@ -28,7 +28,7 @@ export const errorOutlineStyle = css`
   }
 `
 
-function applySizeStyle(size?: string) {
+function applySizeStyle(size?: string): SerializedStyles {
   let sizeCss: SerializedStyles
   switch (size) {
     default:
@@ -51,9 +51,11 @@ function applySizeStyle(size?: string) {
   return sizeCss
 }
 
-export function applyInputInnerCss(stateValue: InputTagStateValue) {
+export function applyInputInnerCss(
+  size?: InputTagProps["size"],
+): SerializedStyles {
   let paddingCss: SerializedStyles
-  switch (stateValue?.size) {
+  switch (size) {
     default:
     case "large":
       paddingCss = css`
@@ -81,7 +83,9 @@ export function applyInputInnerCss(stateValue: InputTagStateValue) {
   `
 }
 
-export function applyFilterInput(stateValue: InputTagStateValue) {
+export function applyFilterInput(
+  stateValue: InputTagStateValue,
+): SerializedStyles {
   if (!stateValue?.focus) {
     return css`
       &:not(:first-child) {
@@ -94,7 +98,7 @@ export function applyFilterInput(stateValue: InputTagStateValue) {
   return css``
 }
 
-function applyStatus(stateValue: InputTagStateValue) {
+function applyStatus(stateValue: InputTagStateValue): SerializedStyles {
   let mainStyle: SerializedStyles
   let disableStyle, hoverStyle, inputStyle, errorStyle: SerializedStyles
 
@@ -135,7 +139,9 @@ function applyStatus(stateValue: InputTagStateValue) {
   `
 }
 
-export function applyInputContainer(stateValue: InputTagStateValue) {
+export function applyInputContainer(
+  stateValue: InputTagStateValue,
+): SerializedStyles {
   return css`
     box-sizing: border-box;
     display: flex;
@@ -153,9 +159,9 @@ export function applyInputContainer(stateValue: InputTagStateValue) {
   `
 }
 
-function baseFixCls(stateValue: InputTagStateValue) {
+function baseFixCls(size: InputTagProps["size"]): SerializedStyles {
   let sizeCss: SerializedStyles
-  switch (stateValue?.size) {
+  switch (size) {
     default:
       sizeCss = css`
         & > svg {
@@ -178,9 +184,9 @@ function baseFixCls(stateValue: InputTagStateValue) {
   `
 }
 
-export function applySuffixCls(stateValue: InputTagStateValue) {
+export function applySuffixCls(size: InputTagProps["size"]): SerializedStyles {
   return css`
-    ${baseFixCls(stateValue)}
+    ${baseFixCls(size)}
     margin-left: 12px;
   `
 }

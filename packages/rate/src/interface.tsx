@@ -1,7 +1,9 @@
 import { HTMLAttributes, ReactNode } from "react"
+import { BoxProps } from "@illa-design/theme"
 
 export interface RateProps
-  extends Omit<HTMLAttributes<HTMLElement>, "onChange"> {
+  extends Omit<HTMLAttributes<HTMLElement>, "onChange">,
+    BoxProps {
   defaultValue?: number
   character?: ReactNode | ((index: number) => ReactNode)
   count?: number

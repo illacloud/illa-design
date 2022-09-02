@@ -1,6 +1,4 @@
 import { ReactNode } from "react"
-import { SerializedStyles } from "@emotion/react"
-import { AdjustResult } from "./adjust-tips-location"
 import { BoxProps } from "@illa-design/theme"
 
 export type TriggerColorScheme =
@@ -21,37 +19,31 @@ export type TriggerColorScheme =
 
 export type TriggerPosition =
   | "top"
-  | "tl"
-  | "tr"
+  | "top-start"
+  | "top-end"
   | "bottom"
-  | "bl"
-  | "br"
+  | "bottom-start"
+  | "bottom-end"
   | "left"
-  | "lt"
-  | "lb"
+  | "left-start"
+  | "left-end"
   | "right"
-  | "rt"
-  | "rb"
+  | "right-start"
+  | "right-end"
 
 export type TriggerTrigger = "hover" | "click" | "focus" | "contextmenu"
-
-export type CustomPositionType = {
-  x?: number
-  y?: number
-}
 
 export interface TriggerProps extends BoxProps {
   children?: ReactNode
   colorScheme?: TriggerColorScheme
+  inline?: boolean
+  closeWhenScroll?: boolean
   clickOutsideToClose?: boolean
   withoutPadding?: boolean
   withoutShadow?: boolean
-  maxWidth?: string
-  zIndex?: number | "auto"
+  withoutOffset?: boolean
   trigger?: TriggerTrigger
-  hideOnInnerInVisible?: boolean
   closeOnInnerClick?: boolean
-  closeOnNoElementsInside?: boolean
   content?: string | ReactNode
   position?: TriggerPosition
   showArrow?: boolean
@@ -65,14 +57,4 @@ export interface TriggerProps extends BoxProps {
   disabled?: boolean
   onVisibleChange?: (visible: boolean) => void
   alignPoint?: boolean
-  disabledOutsideScrollable?: boolean
-}
-
-export interface TriggerState {
-  colorScheme: TriggerColorScheme
-  maxWidth?: string
-  withoutPadding?: boolean
-  withoutShadow?: boolean
-  adjustResult?: AdjustResult
-  autoAlignPopupWidth?: boolean
 }

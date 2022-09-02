@@ -1,9 +1,9 @@
 import { Children, forwardRef } from "react"
 import { HeadingProps } from "./interface"
 import { Base } from "./base"
-import { Tooltip } from "@illa-design/tooltip"
+import { Trigger } from "@illa-design/trigger"
 import { mergedToString } from "@illa-design/system"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   (props, ref) => {
@@ -45,16 +45,20 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
     const TagWrapper = level
 
     let headingNode = (
-      <TagWrapper css={applyBoxStyle(props)} ref={ref} {...otherProps}>
+      <TagWrapper
+        css={applyBoxStyle(props)}
+        ref={ref}
+        {...deleteCssProps(otherProps)}
+      >
         {base}
       </TagWrapper>
     )
 
     if (showTooltip) {
       return (
-        <Tooltip content={mergedToString(Children.toArray(props.children))}>
+        <Trigger content={mergedToString(Children.toArray(props.children))}>
           {headingNode}
-        </Tooltip>
+        </Trigger>
       )
     } else {
       return headingNode

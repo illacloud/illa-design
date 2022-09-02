@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { Tooltip } from "@illa-design/tooltip"
+import { useState } from "react"
+import { Trigger } from "@illa-design/trigger"
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
 import { Button } from "@illa-design/button"
@@ -111,7 +111,7 @@ export const CustomDot = () => {
   return (
     <Steps
       customDot={(icon, config) => {
-        return <Tooltip content={config.index}>{icon}</Tooltip>
+        return <Trigger content={config.index}>{icon}</Trigger>
       }}
     >
       <Step title="Succeeded" description="Read the message" />
@@ -154,7 +154,7 @@ export const OnChange = () => {
       <Steps
         onChange={onChange}
         current={current}
-        css={css`
+        _css={css`
           width: 500px;
         `}
       >
@@ -167,7 +167,7 @@ export const OnChange = () => {
         direction="vertical"
         onChange={onChange}
         current={current}
-        css={css`
+        _css={css`
           width: 500px;
         `}
       >

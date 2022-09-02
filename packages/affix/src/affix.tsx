@@ -7,11 +7,12 @@ import {
   useState,
 } from "react"
 import { isFunction, throttleByRaf } from "@illa-design/system"
-import useMeasure from "react-use/lib/useMeasure"
+import useMeasure from "react-use-measure"
+import { ResizeObserver } from "@juggle/resize-observer"
 import useIsomorphicLayoutEffect from "react-use/lib/useIsomorphicLayoutEffect"
 import { applyAffixFixedStyle, applySize } from "./style"
 import { AffixProps } from "./interface"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 enum AffixStatus {
   START,
@@ -53,8 +54,12 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const lastIsFixed = useRef(false)
 
-  const [measureWrapperRef, measureWrapperInfo] = useMeasure<HTMLDivElement>()
-  const [measureAffixRef, measureAffixInfo] = useMeasure<HTMLDivElement>()
+  const [measureWrapperRef, measureWrapperInfo] = useMeasure({
+    polyfill: ResizeObserver,
+  })
+  const [measureAffixRef, measureAffixInfo] = useMeasure({
+    polyfill: ResizeObserver,
+  })
 
   const setWrapperRefs = (el: HTMLDivElement) => {
     // for size measure
@@ -167,14 +172,23 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   })
 
   return (
-    <div ref={setWrapperRefs} {...rest} css={applyBoxStyle(props)}>
-      {lastIsFixed.current && <div css={applySize(size)}></div>}
+    <div
+      ref={setWrapperRefs}
+      css={applyBoxStyle(props)}
+      {...deleteCssProps(rest)}
+    >
+      {lastIsFixed.current && (
+        <div css={applySize(size.width, size.height)}></div>
+      )}
       <div
-        css={applyAffixFixedStyle({
-          isFixed: lastIsFixed.current,
-          position,
-          size,
-        })}
+        css={applyAffixFixedStyle(
+          {
+            isFixed: lastIsFixed.current,
+            position,
+          },
+          size.width,
+          size.height,
+        )}
         ref={measureAffixRef}
       >
         {children}

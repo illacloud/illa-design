@@ -6,18 +6,24 @@ import "@testing-library/jest-dom"
 
 test("Result1 renders with ", () => {
   // use icon
-  render(<Result data-testid={"default Result"} />)
-  expect(screen.getByTestId("default Result")).toBeInTheDocument()
-  render(<Result status={"success"} />)
+  render(
+    <>
+      <Result status="success" />
+      <Result status="error" />
+      <Result status="info" />
+      <Result status="warning" />
+      <Result status="403" />
+      <Result status="404" />
+      <Result status="500" />
+    </>,
+  )
   expect(screen.getByTitle("SuccessIcon")).toBeInTheDocument()
-  render(<Result status={"error"} />)
   expect(screen.getByTitle("CloseIcon")).toBeInTheDocument()
-  render(<Result status={"info"} data-testid={"info status Result"} />)
-  expect(screen.getByTestId("info status Result").firstChild).toHaveStyle({
-    "background-color": "#edf4ff",
-  })
-  render(<Result status="warning"></Result>)
+  expect(screen.getByTitle("InfoIcon")).toBeInTheDocument()
   expect(screen.getByTitle("WarningIcon")).toBeInTheDocument()
+  expect(screen.getByTitle("Result403Icon")).toBeInTheDocument()
+  expect(screen.getByTitle("Result404Icon")).toBeInTheDocument()
+  expect(screen.getByTitle("Result500Icon")).toBeInTheDocument()
 })
 
 test("custom icon", () => {

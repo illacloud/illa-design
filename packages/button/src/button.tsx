@@ -16,13 +16,13 @@ import {
   applyWithoutTextSize,
 } from "./style"
 import { ButtonGroupContext } from "."
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     return (
       <ButtonGroupContext.Consumer>
-        {value => {
+        {(value) => {
           const { attached, first, last } = value ?? {}
           const {
             colorScheme = value?.colorScheme ?? "blue",
@@ -36,8 +36,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             leftIcon,
             disabled,
             rightIcon,
-            buttonRadius,
-            textColor,
             onClick,
             ...otherProps
           } = props
@@ -48,7 +46,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           const hasPropContent = hasChild || (hasLoadingText && loading)
           const finalContainer = css`
             ${applyTagContainer(fullWidth, fullHeight)};
-            ${applyCursor(loading ?? false, disabled ?? false)}
+            ${applyCursor(loading ?? false)}
             ${hasPropContent
               ? applyPaddingStyle(size, variant)
               : applyWithoutTextSize(size, fullWidth, fullHeight)};
@@ -58,27 +56,22 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               first ?? false,
               last ?? false,
             )};
-            ${applyElementColor(
-              variant,
-              colorScheme,
-              textColor,
-              disabled || loading,
-            )};
-            ${applyBg(variant, colorScheme, disabled || loading)};
-            ${buttonRadius ? `border-radius: ${buttonRadius};` : ""}
+            ${applyElementColor(variant, colorScheme)};
+            ${applyBg(variant, colorScheme)};
           `
 
           return (
             <button
               ref={ref}
               css={[finalContainer, applyBoxStyle(otherProps)]}
-              {...otherProps}
-              onClick={e => {
+              onClick={(e) => {
                 if (disabled || loading) {
                   return
                 }
                 onClick?.(e)
               }}
+              disabled={disabled || loading}
+              {...deleteCssProps(otherProps)}
             >
               {(loading || leftIcon) && (
                 <span

@@ -3,21 +3,6 @@ import { CheckboxColorScheme, CheckboxProps } from "./interface"
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 
-const innerColor = [
-  "gray",
-  "blue",
-  "purple",
-  "red",
-  "green",
-  "yellow",
-  "orange",
-  "cyan",
-  "white",
-  "grayBlue",
-  "techPink",
-  "techPurple",
-]
-
 export function applyCheckboxSize(
   checked?: boolean,
   colorScheme: CheckboxColorScheme = "blue",
@@ -104,7 +89,8 @@ export function applyCheckboxContainerHorizontal(
     vertical-align: middle;
     flex-direction: row;
     align-items: center;
-    gap: ${currentSpacing};
+    flex-wrap: wrap;
+    gap: 6px ${currentSpacing};
     margin-right: ${currentSpacing};
   `
 }

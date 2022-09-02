@@ -1,8 +1,12 @@
 import * as React from "react"
 import { forwardRef, ReactNode, useContext, useEffect, useState } from "react"
-import { PaginationProps } from "./interface"
-
 import { MoreIcon, NextIcon, PreIcon } from "@illa-design/icon"
+import {
+  ConfigProviderContext,
+  ConfigProviderProps,
+  def,
+} from "@illa-design/config-provider"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import {
   applyDefaultItemCss,
   applyDefaultItemWithMarginCss,
@@ -13,11 +17,7 @@ import { PageNumGroup } from "./page-num-group"
 import { JumperInput } from "./jump-input"
 import { PageSizeSelector } from "./page-size-selector"
 import { SimplePagination } from "./simple-pagination"
-import {
-  ConfigProviderContext,
-  ConfigProviderProps,
-  def,
-} from "@illa-design/config-provider"
+import { PaginationProps } from "./interface"
 
 export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
   (props, ref) => {
@@ -104,10 +104,10 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
 
     return (
       <div
-        css={paginationContainer}
+        css={[paginationContainer, applyBoxStyle(props)]}
         placeholder={placeholder}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         {totalElement}
         {simple ? (
@@ -186,3 +186,5 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     )
   },
 )
+
+Pagination.displayName = "Pagination"

@@ -118,15 +118,21 @@ export interface ColorStyledProps {
   /**
    * opacity
    */
-  opacity?: number
+  opac?: number
 }
 
 export interface PositionStyledProps {
   pos?: "absolute" | "relative" | "fixed" | "static"
-  t?: string
-  l?: string
-  b?: string
-  r?: string
+  posT?: string
+  posL?: string
+  posB?: string
+  posR?: string
+  /**
+   * over-flow,over-flow-x,over-flow-y
+   */
+  ov?: string
+  ovX?: string
+  ovY?: string
 }
 
 export interface FontStyledProps {
@@ -157,7 +163,10 @@ export interface FlexStyledProps {
   flexBasis?: string
   justifySelf?: string
   alignSelf?: string
-  order?: string
+  /**
+   * order
+   */
+  o?: string
 }
 
 export interface CustomStyledProps {

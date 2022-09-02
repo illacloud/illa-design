@@ -1,536 +1,364 @@
 import {
   cloneElement,
   FC,
-  Fragment,
-  isValidElement,
   MutableRefObject,
   ReactElement,
-  ReactNode,
-  SyntheticEvent,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react"
-import { CustomPositionType, TriggerProps } from "./interface"
+import { TriggerProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
-  applyChildrenContainer,
   applyDefaultContentSize,
+  applyHorizontalContainer,
   applyMotionDiv,
-  applyTipsContainer,
   applyTipsText,
   applyTriangleStyle,
+  applyVerticalContainer,
 } from "./style"
+import {
+  autoUpdate,
+  flip,
+  FloatingPortal,
+  hide,
+  Middleware,
+  offset,
+  size,
+  useClick,
+  useDismiss,
+  useFloating,
+  useFocus,
+  useHover,
+  useInteractions,
+  useRole,
+} from "@floating-ui/react-dom-interactions"
+import { mergeRefs } from "@illa-design/system"
 import {
   TriangleBottom,
   TriangleLeft,
   TriangleRight,
   TriangleTop,
 } from "./triangle"
-import {
-  adjustLocation,
-  AdjustResult,
-  getFinalPosition,
-  useIsInViewport,
-} from "./adjust-tips-location"
-import { Popup } from "./popup"
-import useMeasure from "react-use/lib/useMeasure"
-import useWindowSize from "react-use/lib/useWindowSize"
-import { getScrollElements, mergeRefs } from "@illa-design/system"
-import useClickAway from "react-use/lib/useClickAway"
-import useMouse from "react-use/lib/useMouse"
-import { RemoveScroll } from "react-remove-scroll"
 import { css } from "@emotion/react"
-import { applyBoxStyle } from "@illa-design/theme"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
+    children,
+    closeWhenScroll = true,
+    autoFitPosition = true,
     colorScheme = "gray",
+    clickOutsideToClose = true,
     content,
     closeOnInnerClick,
     position = "top",
-    clickOutsideToClose,
     showArrow = true,
     closeDelay = 150,
     openDelay = 150,
-    zIndex = "auto",
-    autoFitPosition = true,
     autoAlignPopupWidth,
     closeOnClick = true,
-    hideOnInnerInVisible = true,
     defaultPopupVisible,
-    maxWidth = "588px",
     withoutPadding,
     withoutShadow,
+    withoutOffset,
     disabled,
     popupVisible,
+    maxW = "566px",
     onVisibleChange,
     trigger = "hover",
     alignPoint,
-    closeOnNoElementsInside,
-    disabledOutsideScrollable,
   } = props
 
-  const [tipVisible, setTipsVisible] = useState<boolean>(false)
-  const { width: windowWidth, height: windowHeight } = useWindowSize()
+  const tipsContainerRef = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState<boolean>(false)
+  const [mouseRecord, setMouseRecord] = useState({ x: 0, y: 0 })
+  const finalVisible = popupVisible === undefined ? visible : popupVisible
 
-  const [customPosition, setCustomPosition] = useState<CustomPositionType>({})
-
-  const childrenRef = useRef<HTMLElement>(null) as MutableRefObject<HTMLElement>
-
-  const [adjustResult, setAdjustResult] = useState<AdjustResult>()
-  const finalPosition = getFinalPosition(
-    adjustResult?.opposite ?? false,
-    position,
-  )
-  const isInViewport = useIsInViewport(childrenRef)
-  const [measureRef, measureInfo] = useMeasure<HTMLElement>()
-
-  // delay to do sth
-  let timeOutHandlerId: number | undefined
-  const delayTodo = (todo: () => void, timeout: number) => {
-    if (timeOutHandlerId != undefined) {
-      window.clearTimeout(timeOutHandlerId)
+  useEffect(() => {
+    if (defaultPopupVisible) {
+      if (popupVisible === undefined) {
+        setVisible(true)
+      }
     }
-    if (timeout <= 0) {
-      todo()
-    } else {
-      timeOutHandlerId = window.setTimeout(() => {
-        todo()
-        timeOutHandlerId = undefined
-      }, timeout)
-    }
-  }
+  }, [])
 
-  let tipsNode: ReactNode
-  let centerNode: ReactNode
+  const middleware = useMemo(() => {
+    let middleware: Middleware[] = []
+    if (autoFitPosition) {
+      middleware.push(flip())
+    }
+    if (!withoutOffset) {
+      middleware.push(offset(4))
+    }
+    if (autoAlignPopupWidth) {
+      middleware.push(
+        size({
+          apply({ rects }) {
+            if (autoAlignPopupWidth) {
+              if (tipsContainerRef?.current !== null) {
+                Object.assign(tipsContainerRef.current.style, {
+                  width: `${rects.reference.width}px`,
+                })
+              }
+            }
+          },
+        }),
+      )
+    }
+    middleware.push(hide())
+    return middleware
+  }, [autoFitPosition, withoutOffset, autoAlignPopupWidth])
+
+  const { x, y, reference, floating, strategy, placement, context } =
+    useFloating({
+      placement: position,
+      open: finalVisible,
+      onOpenChange: (v) => {
+        if (popupVisible === undefined) {
+          setVisible(v)
+        }
+        onVisibleChange?.(v)
+      },
+      middleware: middleware,
+      whileElementsMounted: autoUpdate,
+    })
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    useHover(context, {
+      enabled: trigger === "hover",
+      move: true,
+      restMs: 100,
+      delay: {
+        open: openDelay,
+        close: closeDelay,
+      },
+    }),
+    useClick(context, {
+      enabled: trigger === "click",
+      toggle: closeOnClick,
+    }),
+    useFocus(context, {
+      enabled: trigger === "focus",
+      keyboardOnly: false,
+    }),
+    useRole(context, { role: "tooltip" }),
+    useDismiss(context, {
+      outsidePointerDown: clickOutsideToClose,
+      ancestorScroll: closeWhenScroll,
+    }),
+  ])
 
   const closeContent = <div css={applyDefaultContentSize}>{content}</div>
 
-  const stateValue = {
-    colorScheme,
-    maxWidth,
-    withoutPadding,
-    withoutShadow,
-    adjustResult,
-    autoAlignPopupWidth,
-  }
+  const childrenRef = useRef<HTMLElement>(null)
 
-  switch (finalPosition) {
+  let centerNode: ReactElement = <></>
+
+  switch (placement) {
     case "top":
-    case "tl":
-    case "tr":
+    case "top-start":
+    case "top-end":
       centerNode = (
-        <div
-          css={css(
-            applyTipsContainer(finalPosition, showArrow, alignPoint),
-            applyBoxStyle(props),
-          )}
-        >
-          <div css={applyTipsText(stateValue)}>{closeContent}</div>
-          {showArrow && (
-            <TriangleTop
-              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
-              width="8px"
-              height="4px"
-            />
-          )}
+        <div css={applyVerticalContainer}>
+          <div
+            ref={tipsContainerRef}
+            css={applyTipsText(
+              colorScheme,
+              maxW,
+              withoutPadding,
+              withoutShadow,
+            )}
+          >
+            {closeContent}
+          </div>
+          <TriangleTop
+            w="8px"
+            h="4px"
+            css={applyTriangleStyle(colorScheme, placement)}
+          />
         </div>
       )
       break
     case "bottom":
-    case "bl":
-    case "br":
+    case "bottom-start":
+    case "bottom-end":
       centerNode = (
-        <div
-          css={css(
-            applyTipsContainer(finalPosition, showArrow, alignPoint),
-            applyBoxStyle(props),
-          )}
-        >
-          {showArrow && (
-            <TriangleBottom
-              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
-              width="8px"
-              height="4px"
-            />
-          )}
-          <div css={applyTipsText(stateValue)}>{closeContent}</div>
-        </div>
-      )
-      break
-    case "left":
-    case "lt":
-    case "lb":
-      centerNode = (
-        <div
-          css={css(
-            applyTipsContainer(finalPosition, showArrow, alignPoint),
-            applyBoxStyle(props),
-          )}
-        >
-          <div css={applyTipsText(stateValue)}>{closeContent}</div>
-          {showArrow && (
-            <TriangleLeft
-              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
-              width="4px"
-              height="8px"
-            />
-          )}
+        <div css={applyVerticalContainer}>
+          <TriangleBottom
+            w="8px"
+            h="4px"
+            css={applyTriangleStyle(colorScheme, placement)}
+          />
+          <div
+            ref={tipsContainerRef}
+            css={applyTipsText(
+              colorScheme,
+              maxW,
+              withoutPadding,
+              withoutShadow,
+            )}
+          >
+            {closeContent}
+          </div>
         </div>
       )
       break
     case "right":
-    case "rt":
-    case "rb":
+    case "right-start":
+    case "right-end":
       centerNode = (
-        <div
-          css={css(
-            applyTipsContainer(finalPosition, showArrow, alignPoint),
-            applyBoxStyle(props),
-          )}
-        >
-          {showArrow && (
-            <TriangleRight
-              css={applyTriangleStyle(colorScheme, finalPosition, alignPoint)}
-              width="4px"
-              height="8px"
-            />
-          )}
-          <div css={applyTipsText(stateValue)}>{closeContent}</div>
+        <div css={applyHorizontalContainer}>
+          <TriangleRight
+            w="4px"
+            h="8px"
+            css={applyTriangleStyle(colorScheme, placement)}
+          />
+          <div
+            ref={tipsContainerRef}
+            css={applyTipsText(
+              colorScheme,
+              maxW,
+              withoutPadding,
+              withoutShadow,
+            )}
+          >
+            {closeContent}
+          </div>
+        </div>
+      )
+      break
+    case "left":
+    case "left-start":
+    case "left-end":
+      centerNode = (
+        <div css={applyHorizontalContainer}>
+          <div
+            ref={tipsContainerRef}
+            css={applyTipsText(
+              colorScheme,
+              maxW,
+              withoutPadding,
+              withoutShadow,
+            )}
+          >
+            {closeContent}
+          </div>
+          <TriangleLeft
+            w="4px"
+            h="8px"
+            css={applyTriangleStyle(colorScheme, placement)}
+          />
         </div>
       )
       break
   }
 
-  const adjustLocationAndResult = () => {
-    if (childrenRef.current != null && tipsMeasureInfo != null) {
-      let width = 0,
-        height = 0
-
-      if (protalRef.current) {
-        ;({ width, height } = protalRef?.current.getBoundingClientRect())
-      }
-
-      /*
-       * tipsMeasureInfo.width & tipsMeasureInfo.height may be 0,
-       * but tip's width & height is necessary, so get the maximun between
-       * `getBoundingClientRect` and `tipsMeasureinfo` as width & height
-       */
-      width = Math.max(width, tipsMeasureInfo.width)
-      height = Math.max(height, tipsMeasureInfo.height)
-
-      const result = adjustLocation(
-        width,
-        height,
-        childrenRef.current,
-        position,
-        autoFitPosition,
-        customPosition,
-        showArrow,
-      )
-      setAdjustResult(result)
-    }
-  }
-
-  const showTips = (control?: boolean) => {
-    delayTodo(async () => {
-      if (childrenRef.current != null) {
-        if (popupVisible == undefined || control) {
-          setTipsVisible(true)
-        }
-        if (onVisibleChange != undefined) {
-          if (popupVisible != undefined) {
-            onVisibleChange(true)
-          } else {
-            if (!tipVisible) {
-              onVisibleChange(true)
-            }
-          }
-        }
-      }
-    }, openDelay)
-  }
-
-  const hideTips = (control?: boolean) => {
-    delayTodo(() => {
-      if (popupVisible == undefined || control) {
-        setTipsVisible(false)
-      }
-      if (onVisibleChange != undefined) {
-        if (popupVisible != undefined) {
-          onVisibleChange(false)
-        } else {
-          if (tipVisible) {
-            onVisibleChange(false)
-          }
-        }
-      }
-    }, closeDelay)
-  }
-
-  const [tipsMeasureRef, tipsMeasureInfo] = useMeasure<HTMLDivElement>()
-  const protalRef = useRef<HTMLDivElement>(null)
-  const { elX, elY } = useMouse(protalRef)
-
-  tipsNode = (
+  const tipsNode = (
     <motion.div
       css={applyMotionDiv()}
-      ref={mergeRefs(protalRef, tipsMeasureRef)}
-      variants={applyAnimation(finalPosition, showArrow)}
+      variants={applyAnimation(placement, showArrow)}
       initial="initial"
       animate="animate"
       exit="exit"
-      onMouseEnter={(event) => {
-        if (!disabled && trigger == "hover") {
-          showTips()
-        }
-      }}
-      onMouseLeave={(event) => {
-        if (!disabled && trigger == "hover") {
-          hideTips()
-        }
-      }}
     >
-      {disabledOutsideScrollable ? (
-        <RemoveScroll>{centerNode}</RemoveScroll>
-      ) : (
-        centerNode
-      )}
+      {centerNode}
     </motion.div>
   )
 
-  useClickAway(
-    childrenRef,
-    () => {
-      if (!disabled && clickOutsideToClose) {
-        if (
-          elX < 0 ||
-          elX > tipsMeasureInfo.width ||
-          elY < 0 ||
-          elY > tipsMeasureInfo.height
-        ) {
-          hideTips()
-        }
-      }
-    },
-    ["click"],
-  )
-
-  useEffect(() => {
-    if (closeOnNoElementsInside) {
-      if (!(measureInfo.width || measureInfo.height)) {
-        hideTips()
-        return
-      }
-    }
-    if (tipVisible) {
-      adjustLocationAndResult()
-    }
-  }, [
-    tipVisible,
-    windowWidth,
-    windowHeight,
-    tipsMeasureInfo.width,
-    tipsMeasureInfo.height,
-    measureInfo,
-    content,
-    customPosition,
-  ])
-
-  useEffect(() => {
-    if (popupVisible != undefined) {
-      popupVisible
-        ? delayTodo(async () => {
-            setTipsVisible(true)
-          }, openDelay)
-        : delayTodo(async () => {
-            setTipsVisible(false)
-          }, closeDelay)
-    }
-  }, [popupVisible])
-
-  useEffect(() => {
-    if (defaultPopupVisible) {
-      showTips(popupVisible !== undefined)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (childrenRef.current != null) {
-      let scrollElements = getScrollElements(childrenRef.current)
-      scrollElements.forEach((item) => {
-        item.addEventListener("scroll", () => {
-          adjustLocationAndResult()
-        })
-      })
-    }
-  }, [])
-
-  const protalContent = (
-    <AnimatePresence>
-      {!disabled && tipVisible && childrenRef.current !== null ? (
-        <Popup
-          onClick={() => {
-            if (closeOnInnerClick) {
-              hideTips(popupVisible !== undefined)
-            }
-          }}
-          top={`${adjustResult?.transY ?? 0}px`}
-          left={`${adjustResult?.transX ?? 0}px`}
-          zIndex={zIndex}
-          isInViewport={hideOnInnerInVisible ? isInViewport : true}
-        >
-          {tipsNode}
-        </Popup>
-      ) : null}
-    </AnimatePresence>
-  )
-
-  const newProps = {
-    onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
-      if (!disabled && trigger == "hover") {
-        if (alignPoint) {
-          setCustomPosition({
-            x: (e.nativeEvent as MouseEvent).clientX,
-            y: (e.nativeEvent as MouseEvent).clientY,
-          })
-        }
-        showTips()
-      }
-    },
-    onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
-      if (!disabled && trigger == "hover") {
-        hideTips()
-      }
-    },
-    onContextMenu: (e: SyntheticEvent<Element, Event>) => {
-      if (trigger == "contextmenu") {
-        if (!disabled) {
-          e.preventDefault()
-          if (alignPoint) {
-            setCustomPosition({
-              x: (e.nativeEvent as MouseEvent).clientX,
-              y: (e.nativeEvent as MouseEvent).clientY,
-            })
-          }
-          showTips()
-        }
-      }
-    },
-    onFocus: (e: SyntheticEvent<Element, Event>) => {
-      if (!disabled && trigger == "focus") {
-        if (alignPoint) {
-          if (e.target instanceof HTMLElement) {
-            setCustomPosition({
-              x: (e.nativeEvent as MouseEvent).clientX,
-              y: (e.nativeEvent as MouseEvent).clientY,
-            })
-          }
-        }
-        showTips()
-      }
-    },
-    onBlur: (e: SyntheticEvent<Element, Event>) => {
-      if (!disabled && trigger == "focus") {
-        hideTips()
-      }
-    },
-    onClick: (e: SyntheticEvent<Element, Event>) => {
-      switch (trigger) {
-        case "contextmenu":
-          if (tipVisible) {
-            if (closeOnClick) {
-              hideTips()
-            }
-          }
-          break
-        case "click":
-          if (!disabled) {
-            if (!tipVisible) {
+  return (
+    <>
+      {cloneElement(
+        children as ReactElement,
+        getReferenceProps({
+          onContextMenu: (e) => {
+            if (trigger === "contextmenu") {
+              e.preventDefault()
               if (alignPoint) {
-                setCustomPosition({
-                  x: (e.nativeEvent as MouseEvent).clientX,
-                  y: (e.nativeEvent as MouseEvent).clientY,
+                if (childrenRef.current != null) {
+                  Object.assign(childrenRef.current, {
+                    getBoundingClientRect: () => ({
+                      x: e.clientX,
+                      y: e.clientY,
+                      width: 0,
+                      height: 0,
+                      top: e.clientY,
+                      right: e.clientX,
+                      bottom: e.clientY,
+                      left: e.clientX,
+                    }),
+                  })
+                }
+              }
+              if (popupVisible === undefined) {
+                if (finalVisible) {
+                  setVisible(false)
+                } else {
+                  setVisible(true)
+                }
+              } else {
+                onVisibleChange?.(!finalVisible)
+              }
+            }
+          },
+          onClick: (e) => {
+            if (alignPoint && trigger === "click") {
+              if (childrenRef.current != null) {
+                Object.assign(childrenRef.current, {
+                  getBoundingClientRect: () => ({
+                    x: e.clientX,
+                    y: e.clientY,
+                    width: 0,
+                    height: 0,
+                    top: e.clientY,
+                    right: e.clientX,
+                    bottom: e.clientY,
+                    left: e.clientX,
+                  }),
                 })
               }
-              showTips()
-            } else if (tipVisible) {
-              if (closeOnClick) {
-                hideTips()
-              }
             }
-          }
-          break
-        case "hover":
-        case "focus":
-          if (!disabled && closeOnClick && tipVisible) {
-            hideTips()
-          }
-          break
-      }
-    },
-  }
-
-  if (isValidElement(props.children)) {
-    const finalProps = {
-      ref: mergeRefs(
-        (props.children as ReactElement).props?.ref ?? null,
-        measureRef,
-        childrenRef,
-      ),
-      onMouseEnter: (e: SyntheticEvent<Element, Event>) => {
-        newProps.onMouseEnter(e)
-        ;(props.children as ReactElement).props?.onMouseEnter?.(e.nativeEvent)
-      },
-      onMouseLeave: (e: SyntheticEvent<Element, Event>) => {
-        newProps.onMouseLeave(e)
-        ;(props.children as ReactElement).props?.onMouseLeave?.(e.nativeEvent)
-      },
-      onContextMenu: (e: SyntheticEvent<Element, Event>) => {
-        newProps.onContextMenu(e)
-        ;(props.children as ReactElement).props?.onContextMenu?.(e.nativeEvent)
-      },
-      onFocus: (e: SyntheticEvent<Element, Event>) => {
-        newProps.onFocus(e)
-        ;(props.children as ReactElement).props?.onFocus?.(e.nativeEvent)
-      },
-      onBlur: (e: SyntheticEvent<Element, Event>) => {
-        newProps.onBlur(e)
-        ;(props.children as ReactElement).props?.onBlur?.(e.nativeEvent)
-      },
-      onClick: (e: SyntheticEvent<Element, Event>) => {
-        newProps.onClick(e)
-        ;(props.children as ReactElement).props?.onClick?.(e.nativeEvent)
-      },
-    }
-    return (
-      <Fragment>
-        {cloneElement(props.children as ReactElement, {
+          },
           key: "illa-trigger",
-          ...finalProps,
-        })}
-        {protalContent}
-      </Fragment>
-    )
-  } else {
-    return (
-      <span
-        css={applyChildrenContainer}
-        ref={(ref) => {
-          if (ref != null) {
-            measureRef(ref)
-            childrenRef.current = ref
-          }
-        }}
-        {...newProps}
-      >
-        {props.children}
-        {protalContent}
-      </span>
-    )
-  }
+          ref: mergeRefs(reference, (props.children as any).ref, childrenRef),
+          ...(props.children as any).props,
+        }),
+      )}
+      <FloatingPortal root={document.body}>
+        {!disabled && (
+          <AnimatePresence>
+            {finalVisible && (
+              <div
+                css={css`
+                  display: inline-flex;
+                `}
+                {...getFloatingProps({
+                  onClick: (e) => {
+                    if (closeOnInnerClick) {
+                      if (popupVisible === undefined) {
+                        setVisible(false)
+                      } else {
+                        onVisibleChange?.(false)
+                      }
+                    }
+                  },
+                  ref: floating,
+                  style: {
+                    position: strategy,
+                    top: y ?? 0,
+                    left: x ?? 0,
+                  },
+                })}
+              >
+                {tipsNode}
+              </div>
+            )}
+          </AnimatePresence>
+        )}
+      </FloatingPortal>
+    </>
+  )
 }
 
 Trigger.displayName = "Trigger"

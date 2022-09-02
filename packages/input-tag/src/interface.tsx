@@ -1,5 +1,6 @@
 import { ReactNode, HTMLAttributes, Ref, SyntheticEvent } from "react"
 import { SerializedStyles } from "@emotion/react"
+import { BoxProps } from "@illa-design/theme"
 
 export type InputTagSize = "small" | "medium" | "large"
 
@@ -19,9 +20,10 @@ export type InputTagBorderColor =
 
 export interface InputTagProps<T = any>
   extends Omit<
-    HTMLAttributes<HTMLDivElement>,
-    "size" | "value" | "defaultValue" | "onChange"
-  > {
+      HTMLAttributes<HTMLDivElement>,
+      "size" | "value" | "defaultValue" | "onChange"
+    >,
+    BoxProps {
   inputRef?: Ref<HTMLInputElement>
   inputValue?: string
   defaultValue?: T[]
@@ -49,8 +51,6 @@ export interface InputTagProps<T = any>
   onRemove?: (value: T, index: number, event?: SyntheticEvent) => void
   onInputChange?: (inputValue: string, event?: SyntheticEvent) => void
   onPressEnter?: (e: SyntheticEvent) => void
-
-  _css?: SerializedStyles
 }
 
 export type ObjectValueType = {

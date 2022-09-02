@@ -29,7 +29,7 @@ exports[`Description renders with different data 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-3 {
@@ -39,7 +39,7 @@ exports[`Description renders with different data 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -334,7 +334,7 @@ exports[`Description renders with different reactive size 1`] = `
 
 .emotion-1 {
   font-weight: bold;
-  color: #1d2129;
+  color: #1d2129ff;
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 12px;
@@ -354,7 +354,7 @@ exports[`Description renders with different reactive size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-4 {
@@ -364,12 +364,12 @@ exports[`Description renders with different reactive size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 .emotion-16 {
   font-weight: bold;
-  color: #1d2129;
+  color: #1d2129ff;
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 16px;
@@ -382,7 +382,7 @@ exports[`Description renders with different reactive size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-19 {
@@ -392,12 +392,12 @@ exports[`Description renders with different reactive size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 .emotion-31 {
   font-weight: bold;
-  color: #1d2129;
+  color: #1d2129ff;
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 24px;
@@ -410,7 +410,7 @@ exports[`Description renders with different reactive size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-34 {
@@ -420,7 +420,7 @@ exports[`Description renders with different reactive size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -743,7 +743,7 @@ exports[`Description renders with different size 1`] = `
 
 .emotion-1 {
   font-weight: bold;
-  color: #1d2129;
+  color: #1d2129ff;
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 12px;
@@ -763,7 +763,7 @@ exports[`Description renders with different size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-4 {
@@ -773,12 +773,12 @@ exports[`Description renders with different size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 .emotion-16 {
   font-weight: bold;
-  color: #1d2129;
+  color: #1d2129ff;
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 16px;
@@ -791,7 +791,7 @@ exports[`Description renders with different size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-19 {
@@ -801,12 +801,12 @@ exports[`Description renders with different size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 .emotion-31 {
   font-weight: bold;
-  color: #1d2129;
+  color: #1d2129ff;
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 24px;
@@ -819,7 +819,7 @@ exports[`Description renders with different size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-34 {
@@ -829,7 +829,7 @@ exports[`Description renders with different size 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -1164,7 +1164,7 @@ exports[`Description renders with horizontal layout 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-3 {
@@ -1174,7 +1174,7 @@ exports[`Description renders with horizontal layout 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -1387,7 +1387,7 @@ exports[`Description renders with horizontal layout and border 1`] = `
 }
 
 .emotion-1 {
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
   width: 100%;
   box-sizing: border-box;
   border-collapse: collapse;
@@ -1399,11 +1399,11 @@ exports[`Description renders with horizontal layout and border 1`] = `
   padding: 7px 24px;
   margin: 0;
   min-width: 115px;
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
-  background-color: #f2f3f5;
+  color: #a9aeb8ff;
+  background-color: #f2f3f5ff;
 }
 
 .emotion-3 {
@@ -1411,10 +1411,10 @@ exports[`Description renders with horizontal layout and border 1`] = `
   padding: 7px 24px;
   margin: 0;
   min-width: 115px;
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -1640,7 +1640,7 @@ exports[`Description renders with horizontal layout and single column 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-3 {
@@ -1650,7 +1650,7 @@ exports[`Description renders with horizontal layout and single column 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -1901,14 +1901,14 @@ exports[`Description renders with inline-horizontal layout 1`] = `
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
   margin-right: 16px;
 }
 
 .emotion-5 {
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -2205,7 +2205,7 @@ exports[`Description renders with inline-horizontal layout and border 1`] = `
 }
 
 .emotion-1 {
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
   width: 100%;
   box-sizing: border-box;
   border-collapse: collapse;
@@ -2217,7 +2217,7 @@ exports[`Description renders with inline-horizontal layout and border 1`] = `
   padding: 7px 24px;
   margin: 0;
   min-width: 115px;
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
 }
 
 .emotion-3 {
@@ -2233,14 +2233,14 @@ exports[`Description renders with inline-horizontal layout and border 1`] = `
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
   margin-right: 16px;
 }
 
 .emotion-5 {
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -2563,14 +2563,14 @@ exports[`Description renders with inline-horizontal layout and single column 1`]
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
   margin-right: 16px;
 }
 
 .emotion-5 {
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -2905,14 +2905,14 @@ exports[`Description renders with inline-vertical layout 1`] = `
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
   margin-bottom: 4px;
 }
 
 .emotion-5 {
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -3209,7 +3209,7 @@ exports[`Description renders with inline-vertical layout and border 1`] = `
 }
 
 .emotion-1 {
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
   width: 100%;
   box-sizing: border-box;
   border-collapse: collapse;
@@ -3221,7 +3221,7 @@ exports[`Description renders with inline-vertical layout and border 1`] = `
   padding: 5px 24px;
   margin: 0;
   min-width: 115px;
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
 }
 
 .emotion-3 {
@@ -3237,14 +3237,14 @@ exports[`Description renders with inline-vertical layout and border 1`] = `
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
   margin-bottom: 4px;
 }
 
 .emotion-5 {
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 .emotion-28 {
@@ -3252,7 +3252,7 @@ exports[`Description renders with inline-vertical layout and border 1`] = `
   padding: 9px 24px;
   margin: 0;
   min-width: 115px;
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
 }
 
 <div
@@ -3575,14 +3575,14 @@ exports[`Description renders with inline-vertical layout and single column 1`] =
 .emotion-4 {
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
   margin-bottom: 4px;
 }
 
 .emotion-5 {
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -3904,7 +3904,7 @@ exports[`Description renders with vertical layout 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-5 {
@@ -3914,7 +3914,7 @@ exports[`Description renders with vertical layout 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -4151,7 +4151,7 @@ exports[`Description renders with vertical layout and border 1`] = `
 }
 
 .emotion-1 {
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
   width: 100%;
   box-sizing: border-box;
   border-collapse: collapse;
@@ -4163,11 +4163,11 @@ exports[`Description renders with vertical layout and border 1`] = `
   padding: 7px 24px;
   margin: 0;
   min-width: 115px;
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
   line-height: 22px;
   font-size: 14px;
-  background-color: #f2f3f5;
-  color: #a9aeb8;
+  background-color: #f2f3f5ff;
+  color: #a9aeb8ff;
 }
 
 .emotion-5 {
@@ -4175,10 +4175,10 @@ exports[`Description renders with vertical layout and border 1`] = `
   padding: 7px 24px;
   margin: 0;
   min-width: 115px;
-  border: solid 1px #e5e6eb;
+  border: solid 1px #e5e6ebff;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div
@@ -4428,7 +4428,7 @@ exports[`Description renders with vertical layout and single column 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #a9aeb8;
+  color: #a9aeb8ff;
 }
 
 .emotion-3 {
@@ -4438,7 +4438,7 @@ exports[`Description renders with vertical layout and single column 1`] = `
   min-width: 115px;
   line-height: 22px;
   font-size: 14px;
-  color: #1d2129;
+  color: #1d2129ff;
 }
 
 <div

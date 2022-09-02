@@ -2,7 +2,12 @@ import { forwardRef, useEffect, useState } from "react"
 import { ImageProps } from "./interface"
 import { ImageDefaultIcon } from "@illa-design/icon"
 import { applyDefaultFallback, applyImageCss, applyOuterCss } from "./style"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  applyBoxStyle,
+  deleteCssProps,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 
 enum ImageState {
   Loading,
@@ -32,6 +37,7 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
     sizes,
     srcSet,
     useMap,
+    draggable = true,
     ...rest
   } = props
 
@@ -42,7 +48,11 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
   }, [src])
 
   return (
-    <div css={applyOuterCss} ref={ref} {...rest}>
+    <div
+      css={[applyOuterCss, applyBoxStyle(props)]}
+      ref={ref}
+      {...deleteCssProps(rest)}
+    >
       {src && src.length != 0 && imageState != ImageState.Error ? (
         <img
           css={applyImageCss(objectFit, radius)}
@@ -69,6 +79,7 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
           sizes={sizes}
           srcSet={srcSet}
           useMap={useMap}
+          draggable={draggable}
         />
       ) : fallbackSrc && fallbackSrc.length != 0 ? (
         <img
@@ -84,6 +95,7 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>((props, ref) => {
           sizes={sizes}
           srcSet={srcSet}
           useMap={useMap}
+          draggable={draggable}
         />
       ) : (
         <div css={applyDefaultFallback(width, height, radius)}>{fallback}</div>

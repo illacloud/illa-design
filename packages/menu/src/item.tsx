@@ -1,5 +1,5 @@
 import { forwardRef, useContext, MouseEvent } from "react"
-import { Tooltip } from "@illa-design/tooltip"
+import { Trigger } from "@illa-design/trigger"
 import { isFunction } from "@illa-design/system"
 import { MenuContext } from "./menu-context"
 import { ItemProps } from "./interface"
@@ -7,6 +7,7 @@ import { Indent } from "./indent"
 import { applyItemCss } from "./style"
 import { applyItemTitleCss } from "./styles"
 
+// eslint-disable-next-line react/display-name
 const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   const {
     _key = "",
@@ -65,9 +66,9 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   )
 
   return mergedNeedTooltip ? (
-    <Tooltip content={title} trigger={"hover"} position={"right"}>
+    <Trigger content={title} trigger={"hover"} position={"right"}>
       {itemNode}
-    </Tooltip>
+    </Trigger>
   ) : (
     itemNode
   )

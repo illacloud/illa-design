@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  useRef,
-  useEffect,
-  useMemo,
-  CSSProperties,
-} from "react"
+import React, { forwardRef, useEffect, useMemo, useRef } from "react"
 import { SliderProps } from "./interface"
 import {
   applySlider,
@@ -12,14 +6,16 @@ import {
   applySliderRoad,
   applySliderWrapper,
 } from "./style"
-import { isObject, useMergeValue, isNumber } from "@illa-design/system"
-import { getValueUtils, isSameOrder, getOffset, formatPercent } from "./util"
+import { isNumber, isObject, useMergeValue } from "@illa-design/system"
+import { formatPercent, getOffset, getValueUtils, isSameOrder } from "./util"
 import { plus } from "number-precision"
 import Ticks from "./ticks"
 import Dots from "./dots"
 import Marks from "./marks"
 import SliderButton from "./button"
 import SliderInput from "./input"
+import { css, SerializedStyles } from "@emotion/react"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const {
@@ -165,7 +161,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     return plus(min, steps * step)
   }
 
-  function getBarStyle(offsets: number[]): CSSProperties {
+  function getBarStyle(offsets: number[]): SerializedStyles {
     let [begin, end] = offsets
     if (begin > end) {
       ;[begin, end] = [end, begin]
@@ -173,20 +169,24 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     const beginOffset = formatPercent(begin)
     const endOffset = formatPercent(1 - end)
     return vertical
-      ? {
-          [reverse ? "top" : "bottom"]: beginOffset,
-          [reverse ? "bottom" : "top"]: endOffset,
-        }
-      : {
-          [reverse ? "right" : "left"]: beginOffset,
-          [reverse ? "left" : "right"]: endOffset,
-        }
+      ? css`
+          ${reverse ? "top" : "bottom"}: ${beginOffset};
+          ${reverse ? "bottom" : "top"}: ${endOffset};
+        `
+      : css`
+          ${reverse ? "right" : "left"}: ${beginOffset};
+          ${reverse ? "left" : "right"}: ${endOffset}
+        `
   }
 
-  function getBtnStyle(offset: number): CSSProperties {
+  function getBtnStyle(offset: number): SerializedStyles {
     return vertical
-      ? { [reverse ? "top" : "bottom"]: formatPercent(offset) }
-      : { [reverse ? "right" : "left"]: formatPercent(offset) }
+      ? css`
+          ${reverse ? "top" : "bottom"}: ${formatPercent(offset)};
+        `
+      : css`
+          ${reverse ? "right" : "left"}: ${formatPercent(offset)};
+        `
   }
 
   function getPosition() {
@@ -261,7 +261,11 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   }
 
   return (
-    <div ref={ref} css={applySlider(vertical)} {...otherProps}>
+    <div
+      ref={ref}
+      css={[applySlider(vertical), applyBoxStyle(props)]}
+      {...otherProps}
+    >
       <div role={"wrapper"} css={applySliderWrapper(vertical)}>
         <div
           role={"road"}
@@ -271,8 +275,10 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         >
           <div
             role={"bar"}
-            css={applySliderBar(vertical, disabled)}
-            style={getBarStyle([beginOffset, endOffset])}
+            css={[
+              applySliderBar(vertical, disabled),
+              getBarStyle([beginOffset, endOffset]),
+            ]}
           />
           {showTicks && (
             <Ticks
@@ -305,7 +311,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           />
           {range && (
             <SliderButton
-              style={getBtnStyle(beginOffset)}
+              _css={getBtnStyle(beginOffset)}
               disabled={disabled}
               value={beginVal}
               vertical={vertical}
@@ -319,7 +325,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
             />
           )}
           <SliderButton
-            style={getBtnStyle(endOffset)}
+            _css={getBtnStyle(endOffset)}
             disabled={disabled}
             value={endVal}
             vertical={vertical}

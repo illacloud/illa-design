@@ -36,13 +36,6 @@ describe("Open Notification", () => {
 
     types.forEach((type) => {
       expect(screen.getByText(type)).toBeInTheDocument()
-
-      type !== "normal" &&
-        expect(screen.getByText(type).parentNode?.previousSibling).toHaveStyle({
-          paddingRight: 8,
-          fontSize: 16,
-          color: `${iconColorMap[type]}`,
-        })
     })
   })
 
@@ -65,7 +58,7 @@ describe("Open Notification", () => {
       onClose: handleClose,
       afterClose: handleAfterClose,
     })
-    const closBtn = screen.getByText("Close").parentNode?.nextSibling
+    const closBtn = screen.getByText("CloseIcon").parentNode?.parentNode
     expect(closBtn).toBeInTheDocument()
     expect(closBtn).toHaveStyle({
       fontSize: 8,

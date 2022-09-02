@@ -1,16 +1,16 @@
 import {
   forwardRef,
-  useState,
-  useContext,
-  useMemo,
-  useEffect,
   useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
 } from "react"
 import { findDOMNode } from "react-dom"
 import FocusLock from "react-focus-lock"
 import { RemoveScroll } from "react-remove-scroll"
 import { DrawerProps } from "./interface"
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { isServerRendering } from "@illa-design/system"
 import { Portal } from "@illa-design/modal"
 import {
@@ -21,28 +21,27 @@ import {
 import { CloseIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 import {
-  applyDrawerWrapper,
   applyDrawerCloseIcon,
   applyDrawerContent,
   applyDrawerFooter,
   applyDrawerHeader,
   applyDrawerMask,
-  applyDrawerTitle,
-  applyModalCancelBtn,
-  applyDrawer,
   applyDrawerScroll,
-  maskAnimation,
   applyDrawerSlider,
+  applyDrawerStyle,
+  applyDrawerTitle,
+  applyDrawerWrapper,
+  applyModalCancelBtn,
+  maskAnimation,
 } from "./style"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
   const {
-    style,
-    className,
     children,
     title,
-    width = 250,
-    height = 250,
+    w = "250px",
+    h = "100%",
     footer = true,
     visible,
     mask = true,
@@ -69,6 +68,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
 
   const getContainer = useCallback((): HTMLElement => {
     const container = getPopupContainer()
+    // eslint-disable-next-line react/no-find-dom-node
     return (findDOMNode(container) || document.body) as HTMLElement
   }, [getPopupContainer])
 
@@ -87,7 +87,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
   const renderDrawer = () => {
     const element = (
       <RemoveScroll>
-        <div css={applyDrawerScroll} {...otherProps}>
+        <div css={applyDrawerScroll} {...deleteCssProps(otherProps)}>
           {title && (
             <div css={applyDrawerHeader}>
               <div css={applyDrawerTitle}>{title}</div>
@@ -137,7 +137,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
                 animate="animate"
                 exit="exit"
                 initial="initial"
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 3 }}
                 css={applyDrawerMask}
                 onClick={(e) => {
                   maskClosable && onCancel && onCancel(e)
@@ -145,20 +145,12 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
               />
             ) : null}
             <motion.div
-              className={className}
               variants={applyDrawerSlider(placement)}
               animate="animate"
               exit="exit"
               initial="initial"
-              transition={{ duration: 0.2 }}
-              style={Object.assign(
-                placement === "left" || placement === "right"
-                  ? { width }
-                  : { height },
-                { [placement]: 0 },
-                style,
-              )}
-              css={applyDrawer}
+              transition={{ duration: 3 }}
+              css={[applyDrawerStyle(w, h, placement), applyBoxStyle(props)]}
               onAnimationComplete={(definition) => {
                 if (definition === "animate") {
                   afterOpen?.()

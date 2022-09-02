@@ -1,5 +1,5 @@
 import * as React from "react"
-import { forwardRef, useContext, useEffect, useRef, useState } from "react"
+import { forwardRef, useContext, useRef } from "react"
 import { ThProps } from "./interface"
 import {
   applyBorderStyle,
@@ -10,6 +10,7 @@ import {
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
 import { mergeRefs } from "@illa-design/system"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
   (props, ref) => {
@@ -17,21 +18,18 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
       size,
       borderedCell,
       striped,
-      align,
+      align = "center",
       children,
       showFooter,
       showHeader,
-      _css,
+      colIndex,
+      rowIndex,
+      lastCol,
+      lastRow,
       ...otherProps
     } = props
+
     const tableContext = useContext(TableContext)
-
-    const thRef = useRef<HTMLTableHeaderCellElement | null>()
-    const [thTop, setThTop] = useState(0)
-
-    useEffect(() => {
-      setThTop(thRef.current?.parentElement?.offsetTop ?? 0)
-    })
 
     return (
       <th
@@ -41,10 +39,14 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
           applyBorderStyle(
             borderedCell ?? tableContext?.borderedCell,
             striped ?? tableContext?.striped,
+            colIndex,
+            rowIndex,
+            lastCol,
+            lastRow,
           ),
-          _css,
+          applyBoxStyle(props),
         )}
-        ref={mergeRefs(ref, thRef)}
+        ref={ref}
         {...otherProps}
       >
         <div

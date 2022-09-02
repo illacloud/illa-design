@@ -1,33 +1,8 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { TriggerColorScheme, TriggerPosition, TriggerState } from "./interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { TriggerColorScheme, TriggerPosition } from "./interface"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import { getAnimation } from "./transform"
 import { Variants } from "framer-motion"
-
-// should update these constant when arrow size change
-const HALF_OF_ARROW = 4
-export const ARROW_MARGIN_OFFSET = 6
-export const ARROW_TIP_OFFSET = ARROW_MARGIN_OFFSET + HALF_OF_ARROW
-
-const colorSchemes = [
-  "white",
-  "gray",
-  "grayBlue",
-  "red",
-  "orange",
-  "yellow",
-  "blackAlpha",
-  "green",
-  "blue",
-  "cyan",
-  "purple",
-  "techPink",
-  "techPurple",
-]
-
-export const applyChildrenContainer = css`
-  display: inline-flex;
-`
 
 export function applyMotionDiv() {
   return css`
@@ -36,76 +11,22 @@ export function applyMotionDiv() {
   `
 }
 
-export function applyTipsContainer(
-  position: TriggerPosition,
-  showArrow: boolean,
-  alignPoint?: boolean,
-): SerializedStyles {
-  const isColumn =
-    position == "top" ||
-    position == "tl" ||
-    position == "tr" ||
-    position == "bottom" ||
-    position == "bl" ||
-    position == "br"
-
-  let paddingStyle: SerializedStyles
-  const padding = alignPoint ? 0 : showArrow ? 4 : 8
-
-  switch (position) {
-    case "top":
-    case "tl":
-    case "tr":
-      paddingStyle = css`
-        padding-bottom: ${padding}px;
-      `
-      break
-    case "bottom":
-    case "bl":
-    case "br":
-      paddingStyle = css`
-        padding-top: ${padding}px;
-      `
-      break
-    case "left":
-    case "lt":
-    case "lb":
-      paddingStyle = css`
-        padding-right: ${padding}px;
-      `
-      break
-    case "right":
-    case "rt":
-    case "rb":
-      paddingStyle = css`
-        padding-left: ${padding}px;
-      `
-      break
-  }
-
+export function applyTipsContainer(): SerializedStyles {
   return css`
-    ${paddingStyle};
     display: inline-flex;
-    flex-direction: ${isColumn ? "column" : "row"};
-    z-index: 10;
   `
 }
 
-export function applyTipsText(stateValue: TriggerState): SerializedStyles {
-  const {
-    colorScheme,
-    maxWidth,
-    withoutPadding,
-    withoutShadow,
-    adjustResult,
-    autoAlignPopupWidth,
-  } = stateValue
-
-  const bgColor = colorSchemes.includes(colorScheme)
-    ? colorScheme == "white"
-      ? globalColor(`--${illaPrefix}-${colorScheme}-01`)
-      : globalColor(`--${illaPrefix}-${colorScheme}-02`)
-    : colorScheme
+export function applyTipsText(
+  colorScheme: TriggerColorScheme,
+  maxWidth: string,
+  withoutPadding?: boolean,
+  withoutShadow?: boolean,
+): SerializedStyles {
+  const bgColor =
+    colorScheme == "white"
+      ? getColor(colorScheme, "01")
+      : getColor(colorScheme, "02")
   const textColor =
     colorScheme == "white"
       ? globalColor(`--${illaPrefix}-grayBlue-02`)
@@ -120,23 +41,6 @@ export function applyTipsText(stateValue: TriggerState): SerializedStyles {
     padding = css``
   }
 
-  let width = css``
-  if (autoAlignPopupWidth) {
-    if (withoutPadding) {
-      width = css`
-        width: ${adjustResult?.childrenWidth}px;
-        max-width: unset;
-      `
-    } else {
-      width = css`
-        width: calc(
-          ${adjustResult?.childrenWidth}px - ${paddingHor} - ${paddingHor}
-        );
-        max-width: unset;
-      `
-    }
-  }
-
   let shadow = css`
     box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
   `
@@ -147,27 +51,23 @@ export function applyTipsText(stateValue: TriggerState): SerializedStyles {
   return css`
     background-color: ${bgColor};
     color: ${textColor};
+    box-sizing: border-box;
     text-align: left;
     max-width: ${maxWidth};
     border-radius: 8px;
     font-size: 14px;
     ${padding};
-    ${width}
-    ${shadow}
+    ${shadow};
   `
 }
 
 export function applyTriangleStyle(
   colorScheme: TriggerColorScheme,
   position: TriggerPosition,
-  alignPoint?: boolean,
 ): SerializedStyles {
-  const bgColor = colorSchemes.includes(colorScheme)
-    ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
-    : colorScheme
+  const bgColor = getColor(colorScheme, "02")
   const mainStyle = css`
     color: ${bgColor};
-    z-index: 1;
   `
   let positionStyle: SerializedStyles
   switch (position) {
@@ -179,61 +79,33 @@ export function applyTriangleStyle(
         align-self: center;
       `
       break
-    case "tl":
-    case "bl":
+    case "top-start":
+    case "bottom-start":
       positionStyle = css`
         align-self: start;
         margin-left: 12px;
       `
-
-      if (alignPoint) {
-        positionStyle = css`
-          align-self: end;
-          margin-right: ${ARROW_MARGIN_OFFSET}px;
-        `
-      }
-
       break
-    case "tr":
-    case "br":
+    case "top-end":
+    case "bottom-end":
       positionStyle = css`
         align-self: end;
         margin-right: 12px;
       `
-
-      if (alignPoint) {
-        positionStyle = css`
-          align-self: start;
-          margin-left: ${ARROW_MARGIN_OFFSET}px;
-        `
-      }
       break
-    case "lt":
-    case "rt":
+    case "left-start":
+    case "right-start":
       positionStyle = css`
         align-self: start;
         margin-top: 12px;
       `
-
-      if (alignPoint) {
-        positionStyle = css`
-          align-self: end;
-          margin-bottom: ${ARROW_MARGIN_OFFSET}px;
-        `
-      }
       break
-    case "lb":
-    case "rb":
+    case "left-end":
+    case "right-end":
       positionStyle = css`
         align-self: end;
         margin-bottom: 12px;
       `
-      if (alignPoint) {
-        positionStyle = css`
-          align-self: start;
-          margin-top: ${ARROW_MARGIN_OFFSET}px;
-        `
-      }
       break
   }
   return css`
@@ -248,17 +120,17 @@ export function applyAnimation(
 ): Variants {
   const isHorizontal =
     position == "left" ||
-    position == "lt" ||
-    position == "lb" ||
+    position == "left-start" ||
+    position == "left-end" ||
     position == "right" ||
-    position == "rt" ||
-    position == "rb"
+    position == "right-start" ||
+    position == "right-end"
   switch (position) {
     case "top":
       return getAnimation(`calc(50%)`, `calc(100%)`, showArrow, isHorizontal)
-    case "tl":
+    case "top-start":
       return getAnimation(`calc(12px)`, `calc(100%)`, showArrow, isHorizontal)
-    case "tr":
+    case "top-end":
       return getAnimation(
         `calc(100% - 12px)`,
         `calc(100%)`,
@@ -267,15 +139,15 @@ export function applyAnimation(
       )
     case "bottom":
       return getAnimation(`calc(50%)`, `0px`, showArrow, isHorizontal)
-    case "bl":
+    case "bottom-start":
       return getAnimation(`calc(12px)`, `0px`, showArrow, isHorizontal)
-    case "br":
+    case "bottom-end":
       return getAnimation(`calc(100% - 12px)`, `0px`, showArrow, isHorizontal)
     case "left":
       return getAnimation(`calc(100%)`, `calc(50%)`, showArrow, isHorizontal)
-    case "lt":
+    case "left-start":
       return getAnimation(`calc(100%)`, `calc(12px)`, showArrow, isHorizontal)
-    case "lb":
+    case "left-end":
       return getAnimation(
         `calc(100%)`,
         `calc(100% - 12px)`,
@@ -284,13 +156,23 @@ export function applyAnimation(
       )
     case "right":
       return getAnimation(`0px`, `calc(50%)`, showArrow, isHorizontal)
-    case "rt":
+    case "right-start":
       return getAnimation(`0px`, `calc(12px)`, showArrow, isHorizontal)
-    case "rb":
+    case "right-end":
       return getAnimation(`0px`, `calc(100% - 12px)`, showArrow, isHorizontal)
   }
 }
 
 export const applyDefaultContentSize = css`
   font-size: 14px;
+`
+
+export const applyVerticalContainer = css`
+  display: inline-flex;
+  flex-direction: column;
+`
+
+export const applyHorizontalContainer = css`
+  display: inline-flex;
+  flex-direction: row;
 `

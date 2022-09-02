@@ -3,11 +3,11 @@ import { ResultProps } from "./interface"
 import {
   CloseIcon,
   InfoIcon,
-  SuccessIcon,
-  WarningIcon,
   Result403Icon,
   Result404Icon,
   Result500Icon,
+  SuccessIcon,
+  WarningIcon,
 } from "@illa-design/icon"
 import {
   applyIconContainer,
@@ -16,6 +16,7 @@ import {
   subTitleCss,
   titleCss,
 } from "./style"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Result = forwardRef<HTMLDivElement, ResultProps>((props, ref) => {
   const {
@@ -54,7 +55,11 @@ export const Result = forwardRef<HTMLDivElement, ResultProps>((props, ref) => {
   }
 
   return (
-    <div {...rest} ref={ref} css={applyWrapStyle(paddingVertical)}>
+    <div
+      ref={ref}
+      css={[applyWrapStyle(paddingVertical), applyBoxStyle(props)]}
+      {...deleteCssProps(rest)}
+    >
       <div css={applyIconContainer(status)}>{icon || defaultIcon}</div>
       {title && <div css={titleCss}>{title}</div>}
       {subTitle && <div css={subTitleCss}>{subTitle}</div>}

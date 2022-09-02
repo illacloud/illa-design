@@ -1,6 +1,5 @@
 import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
-import DataType from "@storybook/theming/dist/ts3.9/_modules/@emotion-react-node_modules-csstype-index"
 
 export type ButtonColorScheme =
   | string
@@ -29,16 +28,15 @@ export interface ButtonProps
   size?: ButtonSize
   variant?: ButtonVariant
   shape?: ButtonShape
+  disabled?: boolean
   fullWidth?: boolean
   fullHeight?: boolean
   loading?: boolean
   loadingText?: string
   leftIcon?: ReactNode
   rightIcon?: ReactNode
-  buttonRadius?: string
   borderColor?: string
   backgroundColor?: string
-  textColor?: string
 }
 
 export interface ButtonGroupProps

@@ -49,3 +49,5 @@ export const HookModal = forwardRef<unknown, ConfirmProps>((props, ref) => {
     </Modal>
   )
 })
+
+HookModal.displayName = "HookModal"

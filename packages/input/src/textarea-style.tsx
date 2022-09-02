@@ -66,14 +66,14 @@ function applyStatus(stateValue: StateValue) {
 
 export function applyTextAreaContainer(stateValue: StateValue) {
   return css`
-    width: ${stateValue.width};
+    width: 100%;
     margin-bottom: 16px;
     display: flex;
     flex-direction: row;
     align-items: center;
     font-size: 14px;
     line-height: 22px;
-    border-radius: ${stateValue.borderRadius ?? "8px"};
+    border-radius: 8px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${applyStatus(stateValue)}

@@ -1,6 +1,7 @@
 import { isArray } from "@illa-design/system"
 import { SkeletonTextProps } from "./interface"
 import { applyAnimation, applyLineStyle, textContainerStyle } from "./style"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export function Text(props: SkeletonTextProps) {
   const { rows = 3, width = "80%", animation, ...restProps } = props
@@ -18,12 +19,15 @@ export function Text(props: SkeletonTextProps) {
       <li
         key={idx}
         css={[applyLineStyle(lineWidth), applyAnimation(animation)]}
-      ></li>
+      />
     )
   })
 
   return (
-    <ul css={textContainerStyle} {...restProps}>
+    <ul
+      css={[textContainerStyle, applyBoxStyle(props)]}
+      {...deleteCssProps(restProps)}
+    >
       {lines}
     </ul>
   )

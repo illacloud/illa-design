@@ -2,7 +2,12 @@ import { Children, CSSProperties, forwardRef, ReactNode } from "react"
 import { AvatarGroupProps } from "./interface"
 import { css } from "@emotion/react"
 import { Avatar } from "./avatar"
-import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  applyBoxStyle,
+  globalColor,
+  illaPrefix,
+  deleteCssProps,
+} from "@illa-design/theme"
 import { AvatarGroupContext } from "./avatar-group-context"
 
 const avatarGroupCss = css`
@@ -31,7 +36,11 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
     if (childrenCount > maxCount) {
       nodeList = [
         ...nodeList,
-        <Avatar colorScheme={"gray"} text={`+${childrenCount - maxCount}`} />,
+        <Avatar
+          colorScheme={"gray"}
+          text={`+${childrenCount - maxCount}`}
+          key="illa-more-avatar"
+        />,
       ]
     }
 
@@ -65,7 +74,6 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
             maxCount,
             colorScheme,
             size,
-            style,
           }}
         >
           {child}
@@ -80,7 +88,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
           ${applyBoxStyle(props)};
         `}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         {newNodeList}
       </div>

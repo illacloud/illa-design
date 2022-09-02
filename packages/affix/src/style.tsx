@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
-import { PositionValue, SizeValue, AffixFixedValue } from "./interface"
+import { PositionValue, AffixFixedValue } from "./interface"
 
 export function applyFixedPosition(
   positionValue: PositionValue,
@@ -11,20 +11,22 @@ export function applyFixedPosition(
   `
 }
 
-export function applySize(sizeValue: SizeValue): SerializedStyles {
+export function applySize(w: number, h: number): SerializedStyles {
   return css`
-    width: ${sizeValue.width}px;
-    height: ${sizeValue.height}px;
+    width: ${w}px;
+    height: ${h}px;
   `
 }
 
 export function applyAffixFixedStyle(
   affixFixedValue: AffixFixedValue,
+  w: number,
+  h: number,
 ): SerializedStyles {
   if (affixFixedValue.isFixed) {
     return css`
       ${applyFixedPosition(affixFixedValue.position)};
-      ${applySize(affixFixedValue.size)}
+      ${applySize(w, h)}
     `
   }
 

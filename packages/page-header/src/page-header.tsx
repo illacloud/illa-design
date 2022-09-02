@@ -1,33 +1,33 @@
 import { forwardRef } from "react"
 import { PageHeaderProps } from "./interface"
 import {
+  backIconCss,
   headerCss,
   headerLeftCss,
-  backIconCss,
-  titleCss,
   separateCss,
   subTitleCss,
+  titleCss,
 } from "./style"
 import { Breadcrumb } from "@illa-design/breadcrumb"
 import { PreIcon } from "@illa-design/icon"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
   (props, ref) => {
     const {
-      _css,
       title,
       subTitle,
       breadcrumb,
       backIcon,
       extra,
       onBack,
-      ...restprops
+      ...otherProps
     } = props
 
     const backEle = backIcon === true ? <PreIcon /> : backIcon
 
     return (
-      <div ref={ref} {...restprops} css={_css}>
+      <div ref={ref} css={applyBoxStyle(props)} {...deleteCssProps(otherProps)}>
         {breadcrumb && <Breadcrumb {...breadcrumb} />}
         <div css={headerCss}>
           <div css={headerLeftCss}>

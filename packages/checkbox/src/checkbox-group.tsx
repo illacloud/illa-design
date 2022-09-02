@@ -15,6 +15,7 @@ import {
 } from "./style"
 import { CheckboxGroupContext } from "./context"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
   (props, ref) => {
@@ -58,7 +59,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
         }
         setCurrentValue(newVal)
         onChange?.(
-          newVal.filter(v => allOptionValues?.indexOf(v) > -1),
+          newVal.filter((v) => allOptionValues?.indexOf(v) > -1),
           e,
         )
       },
@@ -69,7 +70,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
       <div
         css={[checkboxGroupCss, applyBoxStyle(props)]}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <CheckboxGroupContext.Provider
           value={{
@@ -78,13 +79,13 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
             onGroupChange,
             disabled,
             registerValue: (v: ReactText) => {
-              setAllOptionValues(allOptionValues => {
+              setAllOptionValues((allOptionValues) => {
                 return Array.from(new Set([...allOptionValues, v]))
               })
             },
             unRegisterValue: (v: ReactText) => {
-              setAllOptionValues(allOptionValues => {
-                return allOptionValues.filter(x => x !== v)
+              setAllOptionValues((allOptionValues) => {
+                return allOptionValues.filter((x) => x !== v)
               })
             },
           }}

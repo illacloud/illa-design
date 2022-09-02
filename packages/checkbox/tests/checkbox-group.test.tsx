@@ -50,13 +50,11 @@ test("CheckboxGroup renders with click", async () => {
 
 test("CheckboxGroup renders with colorScheme", () => {
   render(
-    <div>
-      <CheckboxGroup
-        options={["A", "B", "C"]}
-        colorScheme="yellow"
-        defaultValue={["A"]}
-      />
-    </div>,
+    <CheckboxGroup
+      options={["A", "B", "C"]}
+      colorScheme="yellow"
+      defaultValue={["A"]}
+    />,
   )
   expect(screen.getByDisplayValue("A")).toHaveStyle({
     "background-color": `${globalColor(`--${illaPrefix}-yellow-01`)}`,

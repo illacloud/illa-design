@@ -3,13 +3,19 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Variants } from "framer-motion"
 import { DrawerPlacement } from "./interface"
 
-export const applyDrawer = css`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-  line-height: 1.5715;
-`
+export function applyDrawerStyle(
+  w: string,
+  h: string,
+  placement: DrawerPlacement,
+): SerializedStyles {
+  return css`
+    ${placement}: 0;
+    width: ${w};
+    height: ${h};
+    position: absolute;
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+  `
+}
 
 export function applyDrawerWrapper(isFixed?: boolean): SerializedStyles {
   return css`

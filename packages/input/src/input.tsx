@@ -13,7 +13,7 @@ import {
 import { InputElement } from "./input-element"
 import { formatForRule } from "./utils"
 import { SerializedStyles } from "@emotion/react"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 const inputAddon = (
   node?: ReactNode,
@@ -25,8 +25,6 @@ const inputAddon = (
 
 export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   const {
-    style,
-    className,
     inputRef,
     allowClear,
     error,
@@ -38,8 +36,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     addonAfter,
     addonBefore,
     defaultValue,
-    borderRadius,
-    width = "100%",
+    bdRadius: borderRadius,
     borderColor = "blue",
     size = "medium",
     variant = "outline",
@@ -79,7 +76,6 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     error: error || lengthError,
     disabled,
     focus: highlight ?? focus,
-    width,
     variant,
     size,
     borderColor,
@@ -98,22 +94,16 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   }
 
   return (
-    <div
-      ref={ref}
-      css={[applyContainerCss(stateValue), applyBoxStyle(props)]}
-      style={style}
-      className={className}
-    >
+    <div ref={ref} css={[applyContainerCss(size), applyBoxStyle(rest)]}>
       {inputAddon(
         addonBefore?.render,
         addonBefore?.custom,
-        applyAddonCss(stateValue),
+        applyAddonCss(variant, size),
       )}
       <span css={applyInputContainer(stateValue, requirePadding)}>
-        {inputAddon(prefix?.render, prefix?.custom, applyPrefixCls(stateValue))}
+        {inputAddon(prefix?.render, prefix?.custom, applyPrefixCls(size))}
         <InputElement
           ref={inputRef}
-          {...rest}
           value={value}
           size={size}
           error={error}
@@ -122,11 +112,11 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           allowClear={allowClear}
           textCenterHorizontal={textCenterHorizontal}
           iconAppearWithSuffix={iconAppearWithSuffix}
-          onFocus={e => {
+          onFocus={(e) => {
             setFocus(true)
             onFocus?.(e)
           }}
-          onBlur={e => {
+          onBlur={(e) => {
             setFocus(false)
             onBlur?.(e)
           }}
@@ -142,17 +132,18 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
             }
             onChange?.(value, event)
           }}
-          onPressEnter={e => {
+          onPressEnter={(e) => {
             onPressEnter?.(e)
           }}
           readOnly={readOnly}
+          {...deleteCssProps(rest)}
         />
-        {inputAddon(suffix?.render, suffix?.custom, applySuffixCls(stateValue))}
+        {inputAddon(suffix?.render, suffix?.custom, applySuffixCls(size))}
       </span>
       {inputAddon(
         addonAfter?.render,
         addonAfter?.custom,
-        applyAddonCss(stateValue),
+        applyAddonCss(variant, size),
       )}
     </div>
   )

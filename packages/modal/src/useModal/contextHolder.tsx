@@ -21,3 +21,5 @@ export const ContextHolderElement = forwardRef<HolderRef>((_props, ref) => {
 
   return <>{instances}</>
 })
+
+ContextHolderElement.displayName = "ContextHolderElement"

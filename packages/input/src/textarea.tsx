@@ -12,7 +12,12 @@ import {
 import { css } from "@emotion/react"
 import { omit, useMergeValue } from "@illa-design/system"
 import { ErrorIcon } from "@illa-design/icon"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  applyBoxStyle,
+  deleteCssProps,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 import autoSizeTextAreaHeight from "./autoSizeTextAreaHeight"
 import { applyLengthErrorStyle, applyCountLimitStyle } from "./style"
 import { TextAreaProps } from "./interface"
@@ -22,16 +27,12 @@ import {
   applyPrefixCls,
   clearStyle,
 } from "./textarea-style"
-
 import { formatForRule } from "./utils"
 
 export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       textAreaRef,
-      borderRadius = "8px",
       allowClear,
       error,
       disabled,
@@ -40,7 +41,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
       showCount,
       autoSize,
       defaultValue,
-      width = "100%",
+      bdRadius: borderRadius = "8px",
       borderColor = "blue",
       variant = "outline",
       ...rest
@@ -78,9 +79,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
 
     const stateValue = {
       error: error || lengthError,
-      width,
       disabled,
-      borderRadius,
       focus,
       variant,
       borderColor,
@@ -149,7 +148,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
     }
 
     const textAreaProps = {
-      ...otherProps,
+      ...deleteCssProps(otherProps),
       disabled,
       placeholder,
       value: composValue || value || "",
@@ -161,9 +160,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
     return (
       <span
         ref={ref}
-        css={applyTextAreaContainer(stateValue)}
-        style={style}
-        className={className}
+        css={[applyTextAreaContainer(stateValue), applyBoxStyle(props)]}
       >
         <textarea
           style={{ ...autoSizeStyle }}

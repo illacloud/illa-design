@@ -12,7 +12,7 @@ import {
 } from "./style"
 import { formatValue } from "./utils"
 import { RenderTags } from "./render-tag"
-import { css } from "@emotion/react"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 // default validate func
 const defaultValidate = (inputValue: string, values: ObjectValueType[]) =>
@@ -21,8 +21,6 @@ const defaultValidate = (inputValue: string, values: ObjectValueType[]) =>
 export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       inputRef,
       value,
       defaultValue,
@@ -109,15 +107,15 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
 
     return (
       <div
-        css={css(applyInputContainer(stateValue), _css)}
         ref={ref}
+        css={[applyInputContainer(stateValue), applyBoxStyle(props)]}
         onClick={(e) => {
           !focus && refInput?.current?.focus?.()
           onClick?.(e)
         }}
-        {...rest}
+        {...deleteCssProps(rest)}
       >
-        <span css={applyInputInnerCss(stateValue)}>
+        <span css={applyInputInnerCss(size)}>
           <RenderTags
             value={currentValue}
             size={size}
@@ -156,9 +154,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               await tryAddInputValueToTag()
             }}
           />
-          {suffix ? (
-            <span css={applySuffixCls(stateValue)}>{suffix}</span>
-          ) : null}
+          {suffix ? <span css={applySuffixCls(size)}>{suffix}</span> : null}
         </span>
         {allowClear && !disabled && currentValue?.length ? (
           <span

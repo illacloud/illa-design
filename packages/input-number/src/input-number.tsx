@@ -18,6 +18,7 @@ import {
   applyStepEmbed,
   applyStepEmbedContainer,
 } from "./style"
+import { deleteCssProps } from "@illa-design/theme"
 
 type StepMethods = "minus" | "plus"
 
@@ -33,8 +34,6 @@ const getPrecision = (precision?: number, step?: number) => {
 export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       inputRef,
       defaultValue,
       value,
@@ -206,12 +205,10 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
 
     return (
       <Input
-        css={applyInputNumber}
+        css={[applyInputNumber]}
         size={size}
         ref={ref}
         inputRef={refInput}
-        style={style}
-        className={className}
         error={error}
         disabled={disabled}
         readOnly={readOnly}
@@ -223,10 +220,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
           render: (
             <>
               {renderStepEmbed ? (
-                <div
-                  css={applyStepEmbedContainer(stateValue)}
-                  title="inputStepEmbed"
-                >
+                <div css={applyStepEmbedContainer(size)} title="inputStepEmbed">
                   <span css={applyStepEmbed} {...stepEvents("plus")}>
                     {icons && icons.up ? icons.up : <UpIcon />}
                   </span>
@@ -242,7 +236,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         }}
         addonBefore={{
           render: renderStepButton ? (
-            <span css={applyAddonCss(stateValue)} {...stepEvents("minus")}>
+            <span css={applyAddonCss(size)} {...stepEvents("minus")}>
               {icons && icons.plus ? icons.plus : <MinusIcon />}
             </span>
           ) : null,
@@ -250,7 +244,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         }}
         addonAfter={{
           render: renderStepButton ? (
-            <span css={applyAddonCss(stateValue)} {...stepEvents("plus")}>
+            <span css={applyAddonCss(size)} {...stepEvents("plus")}>
               {icons && icons.minus ? icons.minus : <PlusIcon />}
             </span>
           ) : null,
@@ -287,7 +281,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
           setIsUserInputting(false)
           onBlur && onBlur(e)
         }}
-        {...rest}
+        {...deleteCssProps(rest)}
       />
     )
   },

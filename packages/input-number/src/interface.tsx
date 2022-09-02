@@ -1,13 +1,15 @@
 import { ReactNode, InputHTMLAttributes, Ref } from "react"
 import { InputBorderColor } from "@illa-design/input"
+import { BoxProps } from "@illa-design/theme"
 
 export type InputNumberSize = "small" | "medium" | "large"
 
 export interface InputNumberProps<T = any>
   extends Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    "prefix" | "size" | "onChange"
-  > {
+      InputHTMLAttributes<HTMLInputElement>,
+      "prefix" | "size" | "onChange"
+    >,
+    BoxProps {
   inputRef?: Ref<HTMLInputElement>
   borderColor?: InputBorderColor
   step?: number

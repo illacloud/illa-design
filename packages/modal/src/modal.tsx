@@ -40,13 +40,12 @@ import { AlertType as ConfirmType } from "@illa-design/alert"
 import FocusLock from "react-focus-lock"
 import { RemoveScroll } from "react-remove-scroll"
 import useModal from "./useModal"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { useHotkeys } from "react-hotkeys-hook"
 
 export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       withoutPadding,
       children,
       visible,
@@ -158,15 +157,13 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           initial="initial"
           transition={{ duration: 0.2 }}
           css={[applyModal(alignCenter, simple), applyBoxStyle(props)]}
-          style={style}
-          className={className}
           onMouseDown={() => {
             maskClickRef.current = false
           }}
           onMouseUp={() => {
             maskClickRef.current = false
           }}
-          onAnimationComplete={definition => {
+          onAnimationComplete={(definition) => {
             if (definition === "animate") {
               afterOpen?.()
             }
@@ -186,7 +183,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       )
     }
 
-    const onClickMask: React.MouseEventHandler<HTMLDivElement> = e => {
+    const onClickMask: React.MouseEventHandler<HTMLDivElement> = (e) => {
       if (!maskClickRef.current) return
       maskClickRef.current = false
       if (mask && maskClosable && e.target === e.currentTarget) {
@@ -194,7 +191,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       }
     }
 
-    const onConfirm: React.MouseEventHandler<HTMLButtonElement> = e => {
+    const onConfirm: React.MouseEventHandler<HTMLButtonElement> = (e) => {
       let res
       if (onOk) {
         res = onOk(e)
@@ -213,34 +210,62 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       }
     }
 
+    // hot key
+    useHotkeys(
+      "Enter,Escape",
+      (event, handler) => {
+        switch (event.key) {
+          case "Enter":
+            if (visible) {
+              onOk?.()
+            }
+            break
+          case "Escape":
+            if (visible) {
+              onCancel?.()
+            }
+            break
+        }
+      },
+      {
+        enableOnTags: ["INPUT"],
+      },
+      [visible],
+    )
+
     return (
-      <Portal container={getPopupContainer()}>
-        <div ref={ref}>
-          <AnimatePresence>
-            {visible && mask ? (
-              <motion.div
-                css={applyModalMask}
-                variants={maskAnimation}
-                animate="animate"
-                exit="exit"
-                initial="initial"
-                transition={{ duration: 0.2 }}
-              />
-            ) : null}
-          </AnimatePresence>
-          <div
-            role="dialog"
-            css={applyModalWrapper(alignCenter, visible)}
-            {...omit(otherProps, ["isNotice", "noticeType"])}
-            onMouseDown={e => {
-              maskClickRef.current = e.target === e.currentTarget
-            }}
-            onClick={onClickMask}
-          >
-            <AnimatePresence>{visible && renderModal()}</AnimatePresence>
-          </div>
-        </div>
-      </Portal>
+      <AnimatePresence>
+        {visible && (
+          <Portal container={getPopupContainer()}>
+            <div ref={ref}>
+              {mask ? (
+                <motion.div
+                  css={applyModalMask}
+                  variants={maskAnimation}
+                  animate="animate"
+                  exit="exit"
+                  initial="initial"
+                  transition={{ duration: 0.2 }}
+                />
+              ) : null}
+              <div
+                role="dialog"
+                css={applyModalWrapper(alignCenter)}
+                onMouseDown={(e) => {
+                  maskClickRef.current = e.target === e.currentTarget
+                }}
+                onClick={onClickMask}
+                {...omit(deleteCssProps(otherProps), [
+                  "isNotice",
+                  "noticeType",
+                ])}
+              >
+                {renderModal()}
+              </div>
+            </div>
+          </Portal>
+        )}
+      </AnimatePresence>
     )
   },
 ) as ModalComponent
@@ -252,7 +277,7 @@ Modal.confirm = (props: ConfirmProps): ModalReturnProps => {
 }
 
 const confirmTypes: ConfirmType[] = ["info", "success", "warning", "error"]
-confirmTypes.forEach(type => {
+confirmTypes.forEach((type) => {
   Modal[type] = (props: ConfirmProps) => {
     return confirm({
       ...props,

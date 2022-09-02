@@ -12,6 +12,7 @@ import {
 
 import { Count } from "./count"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   const {
@@ -90,7 +91,11 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     ) : null
   }
   return (
-    <span css={[applyBadge, applyBoxStyle(props)]} ref={ref} {...restProps}>
+    <span
+      css={[applyBadge, applyBoxStyle(props)]}
+      ref={ref}
+      {...deleteCssProps(restProps)}
+    >
       {children}
       {renderBadge()}
     </span>

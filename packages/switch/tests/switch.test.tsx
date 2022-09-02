@@ -117,14 +117,14 @@ test("Switch renders with text", () => {
   expect(screen.getByText("OFF")).toHaveStyle({
     margin: "0 6px 0 19px",
     "font-size": "12px",
-    color: "#fff",
+    color: globalColor(`--${illaPrefix}-white-01`),
   })
   fireEvent.click(btn)
   expect(screen.getByText("ON")).toBeInTheDocument()
   expect(screen.getByText("ON")).toHaveStyle({
     margin: "0 19px 0 6px",
     "font-size": "12px",
-    color: "#fff",
+    color: globalColor(`--${illaPrefix}-white-01`),
   })
 })
 

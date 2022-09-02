@@ -8,8 +8,6 @@ import { css } from "@emotion/react"
 export const RenderTags = forwardRef<HTMLElement, RenderTagsProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       value,
       size = "medium",
       disabled,

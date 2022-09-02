@@ -21,8 +21,9 @@ import { css } from "@emotion/react"
 import { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
-import useSize from "react-use/lib/useSize"
-import { Tooltip } from "@illa-design/tooltip"
+import useMeasure from "react-use-measure"
+import { ResizeObserver } from "@juggle/resize-observer"
+import { Trigger } from "@illa-design/trigger"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
@@ -192,14 +193,14 @@ export const Base: FC<BaseProps> = (props) => {
 
   const copyablePanel =
     copyable && originCopyable.copyIcon && showCopyTooltip ? (
-      <Tooltip
+      <Trigger
         closeOnClick={false}
         content={
           copied ? originCopyable.copiedToolTip : originCopyable.copyToolTip
         }
       >
         {copyableElement}
-      </Tooltip>
+      </Trigger>
     ) : (
       copyableElement
     )
@@ -211,11 +212,13 @@ export const Base: FC<BaseProps> = (props) => {
     </span>
   )
 
-  const [base, { width }] = useSize(
-    <span>
+  const [ref, { width }] = useMeasure({ polyfill: ResizeObserver })
+
+  const base = (
+    <span ref={ref}>
       {content}
       {operation}
-    </span>,
+    </span>
   )
 
   // update clip text

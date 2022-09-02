@@ -9,7 +9,7 @@ import {
   applyDotWrapperStyle,
   applyItemContentStyle,
 } from "./styles"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 const modeHandle = (
   mode: string,
@@ -53,7 +53,7 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
                 applyBoxStyle(props),
               ]}
               ref={ref}
-              {...rest}
+              {...deleteCssProps(rest)}
             >
               <div css={applyDotItemStyle(direction, _mode)}>
                 {isChildrenLast ? null : (

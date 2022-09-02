@@ -27,7 +27,7 @@ it("Dropdown renders with dropList", () => {
     </Dropdown>,
   )
   cy.findByText("Hover")
-    .trigger("mouseover")
+    .trigger("mouseenter")
     .then(() => {
       cy.findByText("Tutorial")
         .should("exist")
@@ -58,7 +58,7 @@ it("Dropdown render DropList with disabled", () => {
     </Dropdown>,
   )
   cy.findByText("Hover")
-    .trigger("mouseover")
+    .trigger("mouseenter")
     .then(() => {
       cy.findByText("Blog")
         .should("exist")

@@ -28,35 +28,28 @@ export function applyNotificationWrapper(
   `
 }
 
-export function applyNotification(
-  showIcon?: boolean,
-  closable?: boolean,
-): SerializedStyles {
+export function applyNotification(closable?: boolean): SerializedStyles {
   return css`
-    margin-bottom: 20px;
     position: relative;
     padding: 16px;
-    padding-left: ${showIcon ? "40px" : "16px"};
     padding-right: ${closable ? "40px" : "16px"};
-    overflow: hidden;
     width: 320px;
     display: flex;
     box-sizing: border-box;
     box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
     border-radius: 8px;
-    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    flex-direction: column;
   `
 }
 
 export function applyNotificationIcon(type: AlertType): SerializedStyles {
   return css`
-    position: absolute;
-    left: 16px;
-    top: 20px;
-    line-height: 0;
-    font-size: 16px;
     color: ${iconColorMap[type]};
+    display: inline-flex;
+    align-items: center;
+    font-size: 22px;
   `
 }
 
@@ -68,18 +61,14 @@ export const applyNotificationContentWrapper = css`
 export const applyNotificationTitle = css`
   font-size: 16px;
   font-weight: 500;
-  line-height: 1.5;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  margin-bottom: 4px;
 `
 
-export function applyNotificationContent(hasTitle: boolean): SerializedStyles {
-  const fontSize = hasTitle ? `14px` : `16px`
-  return css`
-    font-size: ${fontSize};
-    line-height: 1.57;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-  `
-}
+export const applyNotificationContentStyle = css`
+  font-size: 14px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+`
 
 export const applyNotificationCloseBtn = css`
   position: absolute;
@@ -89,6 +78,11 @@ export const applyNotificationCloseBtn = css`
   line-height: 0;
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const applyNotificationAction = css`
@@ -164,4 +158,18 @@ export const applyMessageCloseBtn = css`
   display: inline-block;
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+`
+
+export const applyContentWrapperStyle = css`
+  display: flex;
+  flex-direction: row;
+`
+
+export const applyContentStyle = css`
+  flex: 1;
+  word-break: break-word;
+`
+
+export const applyNotificationLeftStyle = css`
+  padding-right: 8px;
 `

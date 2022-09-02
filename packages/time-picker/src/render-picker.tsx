@@ -32,8 +32,6 @@ import { triggerContentStyle } from "./style"
 export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       children,
       popup,
       isRangePicker,
@@ -54,7 +52,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
       disabledMinutes,
       disabledSeconds,
       hideDisabledOptions,
-      position = "bl",
+      position = "bottom-start",
       format = "HH:mm:ss",
       icons = { inputSuffix: <TimeIcon /> },
       allowClear = true,
@@ -175,8 +173,6 @@ export const Picker = forwardRef<HTMLDivElement, RenderPickerProps>(
     const baseInputProps = {
       ...otherProps,
       ref,
-      style,
-      className,
       error,
       size,
       readOnly: !editable,

@@ -1,13 +1,14 @@
 import {
   forwardRef,
-  useRef,
-  useState,
-  useImperativeHandle,
   KeyboardEvent,
   useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
 } from "react"
 import { css } from "@emotion/react"
 import { isArray } from "@illa-design/system"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import { ErrorIcon } from "@illa-design/icon"
 import { RangeInputProps } from "./interface"
 import {
@@ -23,16 +24,14 @@ import {
 export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
   (props, ref) => {
     const {
-      style,
-      className,
       inputGroupRef,
       allowClear,
       error,
       disabled,
       placeholder,
       value,
-      width = "100%",
-      borderRadius = "8px",
+      w: width = "100%",
+      bdRadius: borderRadius = "8px",
       borderColor = "blue",
       size = "medium",
       separator,
@@ -134,9 +133,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
     return (
       <div
         ref={ref}
-        css={applyRangeContainer(stateValue)}
-        style={style}
-        className={className}
+        css={[applyRangeContainer(stateValue), applyBoxStyle(props)]}
       >
         <input
           ref={inputRef}
@@ -166,7 +163,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
             event?.stopPropagation()
             onChange?.([value, value1], event)
           }}
-          {...otherProps}
+          {...deleteCssProps(otherProps)}
           {...inputProps}
         />
         <span css={css({ padding: size === "small" ? "0 8px" : "0 12px" })}>
@@ -219,7 +216,7 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
             <ErrorIcon />
           </span>
         ) : null}
-        <span css={applySuffixCls(stateValue)}>{suffix?.render ?? null}</span>
+        <span css={applySuffixCls(size)}>{suffix?.render ?? null}</span>
       </div>
     )
   },

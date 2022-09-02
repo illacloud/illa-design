@@ -9,7 +9,7 @@ exports[`Skeleton renders with custom size image 1`] = `
 }
 
 .emotion-1 {
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -29,7 +29,7 @@ exports[`Skeleton renders with custom size image 1`] = `
 
 .emotion-3 {
   height: 16px;
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
 }
 
 .emotion-3:not(last-child) {
@@ -39,7 +39,7 @@ exports[`Skeleton renders with custom size image 1`] = `
 .emotion-5 {
   width: 80%;
   height: 16px;
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
 }
 
 .emotion-5:not(last-child) {
@@ -78,7 +78,7 @@ exports[`Skeleton renders with image 1`] = `
 }
 
 .emotion-1 {
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -98,7 +98,7 @@ exports[`Skeleton renders with image 1`] = `
 
 .emotion-3 {
   height: 16px;
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
 }
 
 .emotion-3:not(last-child) {
@@ -108,7 +108,7 @@ exports[`Skeleton renders with image 1`] = `
 .emotion-5 {
   width: 80%;
   height: 16px;
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
 }
 
 .emotion-5:not(last-child) {
@@ -147,7 +147,7 @@ exports[`Skeleton renders with squrare shape image 1`] = `
 }
 
 .emotion-1 {
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
   width: 48px;
   height: 48px;
   margin-right: 16px;
@@ -166,7 +166,7 @@ exports[`Skeleton renders with squrare shape image 1`] = `
 
 .emotion-3 {
   height: 16px;
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
 }
 
 .emotion-3:not(last-child) {
@@ -176,7 +176,7 @@ exports[`Skeleton renders with squrare shape image 1`] = `
 .emotion-5 {
   width: 80%;
   height: 16px;
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
 }
 
 .emotion-5:not(last-child) {
@@ -228,7 +228,7 @@ exports[`Skeleton renders with width array 1`] = `
 .emotion-2 {
   width: 100px;
   height: 16px;
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
 }
 
 .emotion-2:not(last-child) {
@@ -238,7 +238,7 @@ exports[`Skeleton renders with width array 1`] = `
 .emotion-3 {
   width: 200px;
   height: 16px;
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
 }
 
 .emotion-3:not(last-child) {
@@ -248,7 +248,7 @@ exports[`Skeleton renders with width array 1`] = `
 .emotion-4 {
   width: 300px;
   height: 16px;
-  background-color: #e5e6eb;
+  background-color: #e5e6ebff;
 }
 
 .emotion-4:not(last-child) {

@@ -11,6 +11,7 @@ import {
   def,
 } from "@illa-design/config-provider"
 import { applyBoxStyle } from "@illa-design/theme"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
   (props, ref) => {
@@ -176,7 +177,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
           applyBoxStyle(props),
         )}
         ref={ref}
-        {...restProps}
+        {...deleteCssProps(restProps)}
       >
         <CalendarHeader
           allowSelect={finAllowSelect}

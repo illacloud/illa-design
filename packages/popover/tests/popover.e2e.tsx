@@ -22,7 +22,12 @@ it("Popover renders correctly", () => {
 
 it("Popover renders with close button", () => {
   mount(
-    <Popover hasCloseIcon trigger="click" content="Visible" position="bl">
+    <Popover
+      hasCloseIcon
+      trigger="click"
+      content="Visible"
+      position="bottom-start"
+    >
       <Button>Button</Button>
     </Popover>,
   )
@@ -41,7 +46,7 @@ it("Popover renders with visible event", () => {
       hasCloseIcon
       trigger="click"
       content="Visible"
-      position="bl"
+      position="bottom-start"
       onVisibleChange={onVisibleChange}
     >
       <Button>Button</Button>

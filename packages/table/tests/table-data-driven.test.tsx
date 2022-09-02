@@ -1,10 +1,7 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { Table, TableData, TableFilter } from "../src"
-import { useMemo, useState } from "react"
-import { Row, UseFiltersInstanceProps } from "react-table"
-import { css } from "@emotion/react"
-import { Input } from "@illa-design/input"
+import { Table, TableData } from "../src"
+import { ColumnDef } from "@tanstack/react-table"
 
 interface DemoData extends TableData {
   col1: string
@@ -27,65 +24,16 @@ const data = [
   } as DemoData,
 ]
 
-const columns = [
+const columns: ColumnDef<DemoData, string>[] = [
   {
-    Header: "Column 1",
-    Footer: "Footer 1",
-    accessor: "col1", // accessor is the "key" in the data
-    Filter: (columnProps: UseFiltersInstanceProps<DemoData>) => {
-      const [currentInput, setCurrentInput] = useState<string>("")
-      return (
-        <TableFilter
-          _css={css`
-            margin-left: 4px;
-          `}
-          renderFilterContent={(
-            columnProps?: UseFiltersInstanceProps<DemoData>,
-          ) => {
-            return (
-              <Input
-                value={currentInput}
-                onChange={(value) => {
-                  setCurrentInput(value)
-                  columnProps?.setFilter("col1", value)
-                }}
-              />
-            )
-          }}
-          columnProps={columnProps}
-        />
-      )
-    },
-    filter: "includes", // equals, between
+    header: "Column 1",
+    footer: "Footer 1",
+    accessorKey: "col1", // accessor is the "key" in the data
   },
   {
-    Header: "Column 2",
-    Footer: "Footer 2",
-    accessor: "col2",
-    Filter: (columnProps: UseFiltersInstanceProps<DemoData>) => {
-      const [currentInput, setCurrentInput] = useState<string>("")
-      return (
-        <TableFilter
-          _css={css`
-            margin-left: 4px;
-          `}
-          renderFilterContent={(
-            columnProps?: UseFiltersInstanceProps<DemoData>,
-          ) => {
-            return (
-              <Input
-                value={currentInput}
-                onChange={(value) => {
-                  setCurrentInput(value)
-                  columnProps?.setFilter("col2", value)
-                }}
-              />
-            )
-          }}
-          columnProps={columnProps}
-        />
-      )
-    },
+    header: "Column 2",
+    footer: "Footer 2",
+    accessorKey: "col2",
   },
 ]
 
@@ -96,8 +44,6 @@ test("Data Driven Table renders correctly.", async () => {
   expect(screen.queryAllByTitle("FilterIcon").length == 2)
   expect(screen.queryAllByRole("FilterIcon").length == 2)
   expect(screen.queryAllByRole("checkbox").length == 4)
-  const checkboxList = await screen.findAllByRole<HTMLInputElement>("checkbox")
-  expect(checkboxList[2]).toBeDisabled()
 })
 
 test("Data Driven Table renders with disableSortBy.", () => {
@@ -113,40 +59,6 @@ test("Data Driven Table renders with disableSortBy.", () => {
 })
 
 test("Data Driven Table renders with disableFilter.", () => {
-  render(
-    <Table
-      data-testid="test-table"
-      data={data}
-      columns={columns}
-      disableFilters={true}
-    />,
-  )
+  render(<Table data-testid="test-table" data={data} columns={columns} />)
   expect(screen.queryAllByTitle("FilterIcon").length == 0)
-})
-
-test("Data Driven Table renders with disableRowSelect.", () => {
-  render(
-    <Table
-      data-testid="test-table"
-      data={data}
-      columns={columns}
-      disableRowSelect={true}
-    />,
-  )
-  expect(screen.queryAllByRole("checkbox").length == 0)
-})
-
-test("Data Driven Table renders with row-select", async () => {
-  const onRowSelect = jest.fn()
-  render(
-    <Table
-      data-testid="test-table"
-      data={data}
-      columns={columns}
-      onRowSelectChange={onRowSelect}
-    />,
-  )
-  const checkBoxList = await screen.queryAllByRole("checkbox")
-  fireEvent.click(checkBoxList[0])
-  expect(onRowSelect).toBeCalled()
 })

@@ -70,31 +70,43 @@ exports[`Button Group renders attached with round shape 1`] = `
   padding: 5px 16px;
   border-top-left-radius: 999px;
   border-bottom-left-radius: 999px;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
+}
+
+.emotion-2:disabled {
+  cursor: not-allowed;
 }
 
 .emotion-2:hover {
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
+}
+
+.emotion-2:disabled {
+  color: #ffffffff;
 }
 
 .emotion-2:hover {
-  background-color: #175ceb;
+  background-color: #175cebff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
-.emotion-4 {
+.emotion-2:disabled {
+  background-color: #99beffff;
+}
+
+.emotion-3 {
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -103,7 +115,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   letter-spacing: normal;
 }
 
-.emotion-5 {
+.emotion-4 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -111,11 +123,11 @@ exports[`Button Group renders attached with round shape 1`] = `
   margin-left: -1px;
 }
 
-.emotion-5:hover {
+.emotion-4:hover {
   z-index: 2;
 }
 
-.emotion-6 {
+.emotion-5 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -141,31 +153,43 @@ exports[`Button Group renders attached with round shape 1`] = `
   cursor: pointer;
   padding: 5px 16px;
   border-radius: 0;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
-.emotion-6:hover {
-  color: #fff;
+.emotion-5:disabled {
+  cursor: not-allowed;
 }
 
-.emotion-6:active {
+.emotion-5:hover {
+  color: #ffffffff;
+}
+
+.emotion-5:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
 }
 
-.emotion-6:hover {
-  background-color: #175ceb;
+.emotion-5:disabled {
+  color: #ffffffff;
 }
 
-.emotion-6:active {
+.emotion-5:hover {
+  background-color: #175cebff;
+}
+
+.emotion-5:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
-.emotion-8 {
+.emotion-5:disabled {
+  background-color: #99beffff;
+}
+
+.emotion-6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -181,7 +205,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   margin-right: 8px;
 }
 
-.emotion-15 {
+.emotion-12 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -207,31 +231,43 @@ exports[`Button Group renders attached with round shape 1`] = `
   cursor: pointer;
   padding: 4px 15px;
   border-radius: 0;
-  color: #134ae0;
-  border: solid 1px #134ae0;
+  color: #134ae0ff;
+  border: solid 1px #134ae0ff;
 }
 
-.emotion-15:hover {
-  color: #175ceb;
+.emotion-12:disabled {
+  cursor: not-allowed;
 }
 
-.emotion-15:active {
+.emotion-12:hover {
+  color: #175cebff;
+}
+
+.emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  color: #083bc7;
+  color: #083bc7ff;
 }
 
-.emotion-15:hover {
-  border: solid 1px #175ceb;
+.emotion-12:disabled {
+  color: #99beffff;
 }
 
-.emotion-15:active {
+.emotion-12:hover {
+  border: solid 1px #175cebff;
+}
+
+.emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  border: solid 1px #083bc7;
+  border: solid 1px #083bc7ff;
 }
 
-.emotion-20 {
+.emotion-12:disabled {
+  border: solid 1px #99beffff;
+}
+
+.emotion-16 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -257,17 +293,49 @@ exports[`Button Group renders attached with round shape 1`] = `
   cursor: default;
   padding: 5px 16px;
   border-radius: 0;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
-.emotion-23 {
+.emotion-16:disabled {
+  cursor: not-allowed;
+}
+
+.emotion-16:hover {
+  color: #ffffffff;
+}
+
+.emotion-16:active {
+  -webkit-transition: none;
+  transition: none;
+  color: #ffffffff;
+}
+
+.emotion-16:disabled {
+  color: #ffffffff;
+}
+
+.emotion-16:hover {
+  background-color: #175cebff;
+}
+
+.emotion-16:active {
+  -webkit-transition: none;
+  transition: none;
+  background-color: #083bc7ff;
+}
+
+.emotion-16:disabled {
+  background-color: #99beffff;
+}
+
+.emotion-18 {
   -webkit-animation: 1s linear infinite animation-0;
   animation: 1s linear infinite animation-0;
   vertical-align: middle;
 }
 
-.emotion-32 {
+.emotion-26 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -299,11 +367,43 @@ exports[`Button Group renders attached with round shape 1`] = `
   height: 32px;
   font-size: 12px;
   border-radius: 0;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
-.emotion-34 {
+.emotion-26:disabled {
+  cursor: not-allowed;
+}
+
+.emotion-26:hover {
+  color: #ffffffff;
+}
+
+.emotion-26:active {
+  -webkit-transition: none;
+  transition: none;
+  color: #ffffffff;
+}
+
+.emotion-26:disabled {
+  color: #ffffffff;
+}
+
+.emotion-26:hover {
+  background-color: #175cebff;
+}
+
+.emotion-26:active {
+  -webkit-transition: none;
+  transition: none;
+  background-color: #083bc7ff;
+}
+
+.emotion-26:disabled {
+  background-color: #99beffff;
+}
+
+.emotion-27 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -321,7 +421,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   justify-content: center;
 }
 
-.emotion-37 {
+.emotion-30 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -344,12 +444,44 @@ exports[`Button Group renders attached with round shape 1`] = `
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  cursor: not-allowed;
+  cursor: pointer;
   padding: 5px 16px;
   border-top-right-radius: 999px;
   border-bottom-right-radius: 999px;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #134ae0ff;
+}
+
+.emotion-30:disabled {
+  cursor: not-allowed;
+}
+
+.emotion-30:hover {
+  color: #ffffffff;
+}
+
+.emotion-30:active {
+  -webkit-transition: none;
+  transition: none;
+  color: #ffffffff;
+}
+
+.emotion-30:disabled {
+  color: #ffffffff;
+}
+
+.emotion-30:hover {
+  background-color: #175cebff;
+}
+
+.emotion-30:active {
+  -webkit-transition: none;
+  transition: none;
+  background-color: #083bc7ff;
+}
+
+.emotion-30:disabled {
+  background-color: #99beffff;
 }
 
 <div
@@ -360,23 +492,23 @@ exports[`Button Group renders attached with round shape 1`] = `
     class="emotion-1"
   >
     <button
-      class="emotion-2 emotion-3"
+      class="emotion-2"
     >
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-6 emotion-3"
+      class="emotion-5"
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
           fill="currentColor"
@@ -393,33 +525,33 @@ exports[`Button Group renders attached with round shape 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-6 emotion-3"
+      class="emotion-5"
     >
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-15 emotion-3"
+      class="emotion-12"
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
           fill="currentColor"
@@ -436,23 +568,24 @@ exports[`Button Group renders attached with round shape 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-20 emotion-3"
+      class="emotion-16"
+      disabled=""
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
-          class="emotion-23"
+          class="emotion-18"
           color="currentColor"
           fill="none"
           height="1em"
@@ -469,23 +602,24 @@ exports[`Button Group renders attached with round shape 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-20 emotion-3"
+      class="emotion-16"
+      disabled=""
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
-          class="emotion-23"
+          class="emotion-18"
           color="currentColor"
           fill="none"
           height="1em"
@@ -502,23 +636,24 @@ exports[`Button Group renders attached with round shape 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Loading
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-32 emotion-3"
+      class="emotion-26"
+      disabled=""
     >
       <span
-        class="emotion-34"
+        class="emotion-27"
       >
         <svg
-          class="emotion-23"
+          class="emotion-18"
           color="currentColor"
           fill="none"
           height="1em"
@@ -537,13 +672,14 @@ exports[`Button Group renders attached with round shape 1`] = `
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-37 emotion-3"
+      class="emotion-30"
+      disabled=""
     >
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Text
       </span>
@@ -622,31 +758,43 @@ exports[`Button Group renders attached with square shape 1`] = `
   padding: 5px 16px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
+}
+
+.emotion-2:disabled {
+  cursor: not-allowed;
 }
 
 .emotion-2:hover {
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
+}
+
+.emotion-2:disabled {
+  color: #ffffffff;
 }
 
 .emotion-2:hover {
-  background-color: #175ceb;
+  background-color: #175cebff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
-.emotion-4 {
+.emotion-2:disabled {
+  background-color: #99beffff;
+}
+
+.emotion-3 {
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -655,7 +803,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   letter-spacing: normal;
 }
 
-.emotion-5 {
+.emotion-4 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -663,11 +811,11 @@ exports[`Button Group renders attached with square shape 1`] = `
   margin-left: -1px;
 }
 
-.emotion-5:hover {
+.emotion-4:hover {
   z-index: 2;
 }
 
-.emotion-6 {
+.emotion-5 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -693,31 +841,43 @@ exports[`Button Group renders attached with square shape 1`] = `
   cursor: pointer;
   padding: 5px 16px;
   border-radius: 0;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
-.emotion-6:hover {
-  color: #fff;
+.emotion-5:disabled {
+  cursor: not-allowed;
 }
 
-.emotion-6:active {
+.emotion-5:hover {
+  color: #ffffffff;
+}
+
+.emotion-5:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
 }
 
-.emotion-6:hover {
-  background-color: #175ceb;
+.emotion-5:disabled {
+  color: #ffffffff;
 }
 
-.emotion-6:active {
+.emotion-5:hover {
+  background-color: #175cebff;
+}
+
+.emotion-5:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
-.emotion-8 {
+.emotion-5:disabled {
+  background-color: #99beffff;
+}
+
+.emotion-6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -733,7 +893,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   margin-right: 8px;
 }
 
-.emotion-15 {
+.emotion-12 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -759,31 +919,43 @@ exports[`Button Group renders attached with square shape 1`] = `
   cursor: pointer;
   padding: 4px 15px;
   border-radius: 0;
-  color: #134ae0;
-  border: solid 1px #134ae0;
+  color: #134ae0ff;
+  border: solid 1px #134ae0ff;
 }
 
-.emotion-15:hover {
-  color: #175ceb;
+.emotion-12:disabled {
+  cursor: not-allowed;
 }
 
-.emotion-15:active {
+.emotion-12:hover {
+  color: #175cebff;
+}
+
+.emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  color: #083bc7;
+  color: #083bc7ff;
 }
 
-.emotion-15:hover {
-  border: solid 1px #175ceb;
+.emotion-12:disabled {
+  color: #99beffff;
 }
 
-.emotion-15:active {
+.emotion-12:hover {
+  border: solid 1px #175cebff;
+}
+
+.emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  border: solid 1px #083bc7;
+  border: solid 1px #083bc7ff;
 }
 
-.emotion-20 {
+.emotion-12:disabled {
+  border: solid 1px #99beffff;
+}
+
+.emotion-16 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -809,17 +981,49 @@ exports[`Button Group renders attached with square shape 1`] = `
   cursor: default;
   padding: 5px 16px;
   border-radius: 0;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
-.emotion-23 {
+.emotion-16:disabled {
+  cursor: not-allowed;
+}
+
+.emotion-16:hover {
+  color: #ffffffff;
+}
+
+.emotion-16:active {
+  -webkit-transition: none;
+  transition: none;
+  color: #ffffffff;
+}
+
+.emotion-16:disabled {
+  color: #ffffffff;
+}
+
+.emotion-16:hover {
+  background-color: #175cebff;
+}
+
+.emotion-16:active {
+  -webkit-transition: none;
+  transition: none;
+  background-color: #083bc7ff;
+}
+
+.emotion-16:disabled {
+  background-color: #99beffff;
+}
+
+.emotion-18 {
   -webkit-animation: 1s linear infinite animation-0;
   animation: 1s linear infinite animation-0;
   vertical-align: middle;
 }
 
-.emotion-32 {
+.emotion-26 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -851,11 +1055,43 @@ exports[`Button Group renders attached with square shape 1`] = `
   height: 32px;
   font-size: 12px;
   border-radius: 0;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
-.emotion-34 {
+.emotion-26:disabled {
+  cursor: not-allowed;
+}
+
+.emotion-26:hover {
+  color: #ffffffff;
+}
+
+.emotion-26:active {
+  -webkit-transition: none;
+  transition: none;
+  color: #ffffffff;
+}
+
+.emotion-26:disabled {
+  color: #ffffffff;
+}
+
+.emotion-26:hover {
+  background-color: #175cebff;
+}
+
+.emotion-26:active {
+  -webkit-transition: none;
+  transition: none;
+  background-color: #083bc7ff;
+}
+
+.emotion-26:disabled {
+  background-color: #99beffff;
+}
+
+.emotion-27 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -873,7 +1109,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   justify-content: center;
 }
 
-.emotion-37 {
+.emotion-30 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -896,12 +1132,44 @@ exports[`Button Group renders attached with square shape 1`] = `
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  cursor: not-allowed;
+  cursor: pointer;
   padding: 5px 16px;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #134ae0ff;
+}
+
+.emotion-30:disabled {
+  cursor: not-allowed;
+}
+
+.emotion-30:hover {
+  color: #ffffffff;
+}
+
+.emotion-30:active {
+  -webkit-transition: none;
+  transition: none;
+  color: #ffffffff;
+}
+
+.emotion-30:disabled {
+  color: #ffffffff;
+}
+
+.emotion-30:hover {
+  background-color: #175cebff;
+}
+
+.emotion-30:active {
+  -webkit-transition: none;
+  transition: none;
+  background-color: #083bc7ff;
+}
+
+.emotion-30:disabled {
+  background-color: #99beffff;
 }
 
 <div
@@ -912,23 +1180,23 @@ exports[`Button Group renders attached with square shape 1`] = `
     class="emotion-1"
   >
     <button
-      class="emotion-2 emotion-3"
+      class="emotion-2"
     >
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-6 emotion-3"
+      class="emotion-5"
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
           fill="currentColor"
@@ -945,33 +1213,33 @@ exports[`Button Group renders attached with square shape 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-6 emotion-3"
+      class="emotion-5"
     >
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-15 emotion-3"
+      class="emotion-12"
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
           fill="currentColor"
@@ -988,23 +1256,24 @@ exports[`Button Group renders attached with square shape 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-20 emotion-3"
+      class="emotion-16"
+      disabled=""
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
-          class="emotion-23"
+          class="emotion-18"
           color="currentColor"
           fill="none"
           height="1em"
@@ -1021,23 +1290,24 @@ exports[`Button Group renders attached with square shape 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-20 emotion-3"
+      class="emotion-16"
+      disabled=""
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
-          class="emotion-23"
+          class="emotion-18"
           color="currentColor"
           fill="none"
           height="1em"
@@ -1054,23 +1324,24 @@ exports[`Button Group renders attached with square shape 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Loading
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-32 emotion-3"
+      class="emotion-26"
+      disabled=""
     >
       <span
-        class="emotion-34"
+        class="emotion-27"
       >
         <svg
-          class="emotion-23"
+          class="emotion-18"
           color="currentColor"
           fill="none"
           height="1em"
@@ -1089,13 +1360,14 @@ exports[`Button Group renders attached with square shape 1`] = `
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-37 emotion-3"
+      class="emotion-30"
+      disabled=""
     >
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Text
       </span>
@@ -1173,31 +1445,43 @@ exports[`Button Group renders with spacing 1`] = `
   cursor: pointer;
   padding: 5px 16px;
   border-radius: 8px;
-  color: #fff;
-  background-color: #134ae0;
+  color: #ffffffff;
+  background-color: #134ae0ff;
+}
+
+.emotion-2:disabled {
+  cursor: not-allowed;
 }
 
 .emotion-2:hover {
-  color: #fff;
+  color: #ffffffff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  color: #fff;
+  color: #ffffffff;
+}
+
+.emotion-2:disabled {
+  color: #ffffffff;
 }
 
 .emotion-2:hover {
-  background-color: #175ceb;
+  background-color: #175cebff;
 }
 
 .emotion-2:active {
   -webkit-transition: none;
   transition: none;
-  background-color: #083bc7;
+  background-color: #083bc7ff;
 }
 
-.emotion-4 {
+.emotion-2:disabled {
+  background-color: #99beffff;
+}
+
+.emotion-3 {
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -1206,7 +1490,7 @@ exports[`Button Group renders with spacing 1`] = `
   letter-spacing: normal;
 }
 
-.emotion-5 {
+.emotion-4 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1214,11 +1498,11 @@ exports[`Button Group renders with spacing 1`] = `
   margin-left: 12px;
 }
 
-.emotion-5:hover {
+.emotion-4:hover {
   z-index: 2;
 }
 
-.emotion-8 {
+.emotion-6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1234,7 +1518,7 @@ exports[`Button Group renders with spacing 1`] = `
   margin-right: 8px;
 }
 
-.emotion-15 {
+.emotion-12 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -1260,31 +1544,43 @@ exports[`Button Group renders with spacing 1`] = `
   cursor: pointer;
   padding: 4px 15px;
   border-radius: 8px;
-  color: #134ae0;
-  border: solid 1px #134ae0;
+  color: #134ae0ff;
+  border: solid 1px #134ae0ff;
 }
 
-.emotion-15:hover {
-  color: #175ceb;
+.emotion-12:disabled {
+  cursor: not-allowed;
 }
 
-.emotion-15:active {
+.emotion-12:hover {
+  color: #175cebff;
+}
+
+.emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  color: #083bc7;
+  color: #083bc7ff;
 }
 
-.emotion-15:hover {
-  border: solid 1px #175ceb;
+.emotion-12:disabled {
+  color: #99beffff;
 }
 
-.emotion-15:active {
+.emotion-12:hover {
+  border: solid 1px #175cebff;
+}
+
+.emotion-12:active {
   -webkit-transition: none;
   transition: none;
-  border: solid 1px #083bc7;
+  border: solid 1px #083bc7ff;
 }
 
-.emotion-20 {
+.emotion-12:disabled {
+  border: solid 1px #99beffff;
+}
+
+.emotion-16 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -1310,17 +1606,49 @@ exports[`Button Group renders with spacing 1`] = `
   cursor: default;
   padding: 5px 16px;
   border-radius: 8px;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
-.emotion-23 {
+.emotion-16:disabled {
+  cursor: not-allowed;
+}
+
+.emotion-16:hover {
+  color: #ffffffff;
+}
+
+.emotion-16:active {
+  -webkit-transition: none;
+  transition: none;
+  color: #ffffffff;
+}
+
+.emotion-16:disabled {
+  color: #ffffffff;
+}
+
+.emotion-16:hover {
+  background-color: #175cebff;
+}
+
+.emotion-16:active {
+  -webkit-transition: none;
+  transition: none;
+  background-color: #083bc7ff;
+}
+
+.emotion-16:disabled {
+  background-color: #99beffff;
+}
+
+.emotion-18 {
   -webkit-animation: 1s linear infinite animation-0;
   animation: 1s linear infinite animation-0;
   vertical-align: middle;
 }
 
-.emotion-32 {
+.emotion-26 {
   -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
   vertical-align: middle;
@@ -1352,56 +1680,58 @@ exports[`Button Group renders with spacing 1`] = `
   height: 32px;
   font-size: 12px;
   border-radius: 8px;
-  color: #fff;
-  background-color: #99beff;
+  color: #ffffffff;
+  background-color: #134ae0ff;
 }
 
-.emotion-34 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-}
-
-.emotion-37 {
-  -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
-  transition: color 200ms ease-in-out,background-color 200ms ease-in-out;
-  vertical-align: middle;
-  white-space: nowrap;
-  outline: none;
-  border: 0;
-  background-color: transparent;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
+.emotion-26:disabled {
   cursor: not-allowed;
-  padding: 5px 16px;
-  border-radius: 8px;
-  color: #fff;
-  background-color: #99beff;
+}
+
+.emotion-26:hover {
+  color: #ffffffff;
+}
+
+.emotion-26:active {
+  -webkit-transition: none;
+  transition: none;
+  color: #ffffffff;
+}
+
+.emotion-26:disabled {
+  color: #ffffffff;
+}
+
+.emotion-26:hover {
+  background-color: #175cebff;
+}
+
+.emotion-26:active {
+  -webkit-transition: none;
+  transition: none;
+  background-color: #083bc7ff;
+}
+
+.emotion-26:disabled {
+  background-color: #99beffff;
+}
+
+.emotion-27 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
 }
 
 <div
@@ -1412,23 +1742,23 @@ exports[`Button Group renders with spacing 1`] = `
     class="emotion-1"
   >
     <button
-      class="emotion-2 emotion-3"
+      class="emotion-2"
     >
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-2 emotion-3"
+      class="emotion-2"
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
           fill="currentColor"
@@ -1445,33 +1775,33 @@ exports[`Button Group renders with spacing 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-2 emotion-3"
+      class="emotion-2"
     >
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-15 emotion-3"
+      class="emotion-12"
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
           fill="currentColor"
@@ -1488,23 +1818,24 @@ exports[`Button Group renders with spacing 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-20 emotion-3"
+      class="emotion-16"
+      disabled=""
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
-          class="emotion-23"
+          class="emotion-18"
           color="currentColor"
           fill="none"
           height="1em"
@@ -1521,23 +1852,24 @@ exports[`Button Group renders with spacing 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Hello
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-20 emotion-3"
+      class="emotion-16"
+      disabled=""
     >
       <span
-        class="emotion-8"
+        class="emotion-6"
       >
         <svg
-          class="emotion-23"
+          class="emotion-18"
           color="currentColor"
           fill="none"
           height="1em"
@@ -1554,23 +1886,24 @@ exports[`Button Group renders with spacing 1`] = `
         </svg>
       </span>
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Loading
       </span>
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-32 emotion-3"
+      class="emotion-26"
+      disabled=""
     >
       <span
-        class="emotion-34"
+        class="emotion-27"
       >
         <svg
-          class="emotion-23"
+          class="emotion-18"
           color="currentColor"
           fill="none"
           height="1em"
@@ -1589,13 +1922,14 @@ exports[`Button Group renders with spacing 1`] = `
     </button>
   </span>
   <span
-    class="emotion-5"
+    class="emotion-4"
   >
     <button
-      class="emotion-37 emotion-3"
+      class="emotion-2"
+      disabled=""
     >
       <span
-        class="emotion-4"
+        class="emotion-3"
       >
         Text
       </span>

@@ -8,12 +8,12 @@ import {
   applyCircleStatus,
   applyCircleSvgContainer,
 } from "./mini-circle-progress-style"
-import { applyBoxStyle, globalColor, illaPrefix } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 
 export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
     const {
-      type = "line",
+      type,
       status = "normal",
       color = "blue",
       w = "16px",
@@ -48,24 +48,20 @@ export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
     let statusComponent: ReactNode
     switch (status) {
       case "success":
-        statusComponent = (
-          <SuccessIcon color={globalColor(`--${illaPrefix}-green-03`)} />
-        )
+        statusComponent = <SuccessIcon color={getColor("green", "03")} />
         break
       case "error":
-        statusComponent = (
-          <WarningCircleIcon color={globalColor(`--${illaPrefix}-red-03`)} />
-        )
+        statusComponent = <WarningCircleIcon color={getColor("red", "03")} />
         break
     }
 
     return (
-      <div
-        css={[applyContainer(w), applyBoxStyle(props)]}
-        ref={ref}
-        {...otherProps}
-      >
-        <Trigger disabled={!showText} content={formatText(percent)}>
+      <Trigger disabled={!showText} content={formatText(percent)}>
+        <div
+          css={[applyContainer(w), applyBoxStyle(props)]}
+          ref={ref}
+          {...deleteCssProps(otherProps)}
+        >
           {(status == "normal" || status == "error") && (
             <svg css={applyCircleSvgContainer(w, trailColor)}>
               <circle
@@ -81,8 +77,8 @@ export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
           {status == "success" && (
             <span css={applyCircleStatus}>{statusComponent}</span>
           )}
-        </Trigger>
-      </div>
+        </div>
+      </Trigger>
     )
   },
 )

@@ -156,7 +156,7 @@ export const headerRightBtnsCss = css`
   }
 `
 
-export function applyPanelGridItemCss(selected: boolean): SerializedStyles {
+export function applyPanelGridItemCss(selected?: boolean): SerializedStyles {
   return css`
     height: 24px;
     line-height: 24px;
@@ -172,14 +172,14 @@ export function applyPanelGridItemCss(selected: boolean): SerializedStyles {
     }
 
     ${selected &&
-      css`
-        color: ${globalColor(`--${illaPrefix}-white-01`)};
-        background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+    css`
+      color: ${globalColor(`--${illaPrefix}-white-01`)};
+      background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
 
-        &:hover {
-          background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
-        }
-      `}
+      &:hover {
+        background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+      }
+    `}
   `
 }
 
@@ -191,10 +191,10 @@ export function applyCalendarWrapCss(
     border-radius: 8px;
     border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${panel &&
-      css`
-        display: inline-block;
-        width: ${panelWidth}px;
-      `};
+    css`
+      display: inline-block;
+      width: ${panelWidth}px;
+    `};
   `
 }
 

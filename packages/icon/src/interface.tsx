@@ -1,8 +1,7 @@
 import { SVGAttributes } from "react"
-import { SerializedStyles } from "@emotion/react"
+import { BoxProps } from "@illa-design/theme"
 
-export interface IconProps extends SVGAttributes<SVGElement> {
+export interface IconProps extends SVGAttributes<SVGElement>, BoxProps {
   size?: string
   spin?: boolean
-  _css?: SerializedStyles
 }

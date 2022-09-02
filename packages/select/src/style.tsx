@@ -301,9 +301,9 @@ export const optionLabelStyle = css`
   flex: 1;
 `
 
-export function applySelectViewStyle(width?: string): SerializedStyles {
+export function applySelectViewStyle(): SerializedStyles {
   return css`
     display: flex;
-    width: ${width ? width : "100%"};
+    width: 100%;
   `
 }

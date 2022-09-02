@@ -13,14 +13,7 @@ import { AnchorContext } from "./context"
 
 export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
   (props, ref) => {
-    const {
-      style,
-      className,
-      href = "#",
-      title,
-      children,
-      ...restProps
-    } = props
+    const { href = "#", title, children, ...restProps } = props
 
     const { currentLink, registerLink, unregisterLink, onClickLink, lineless } =
       useContext(AnchorContext)
@@ -55,8 +48,6 @@ export const Link = forwardRef<HTMLDivElement, AnchorLinkProps>(
           href={href}
           title={isString(title) ? title : ""}
           onClick={(e) => onClickLink && onClickLink(href, e)}
-          style={style}
-          className={className}
           {...restProps}
         >
           {title}

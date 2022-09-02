@@ -19,7 +19,7 @@ import { CalendarDays } from "./calendar-days"
 import dayjs from "dayjs"
 import { applyBoxStyle } from "@illa-design/theme"
 
-export const CalendarBody: FC<CalendarBodyProps> = props => {
+export const CalendarBody: FC<CalendarBodyProps> = (props) => {
   const {
     allowSelect,
     panel,
@@ -115,7 +115,11 @@ export const CalendarBody: FC<CalendarBodyProps> = props => {
               >
                 <div
                   css={applyPanelGridItemCss(
-                    currentYear === cmptSelectYear && idx === cmptSelectMonth,
+                    cmptSelectYear
+                      ? currentYear === cmptSelectYear &&
+                          idx === cmptSelectMonth
+                      : selectDay?.year() === currentYear &&
+                          idx === selectDay?.month(),
                   )}
                 >
                   {monthRender ? monthRender(dayjs().set("month", idx)) : item}
@@ -150,7 +154,11 @@ export const CalendarBody: FC<CalendarBodyProps> = props => {
               .map((yItem: any) => (
                 <div
                   key={yItem}
-                  css={applyPanelGridItemCss(yItem === cmptSelectYear)}
+                  css={applyPanelGridItemCss(
+                    cmptSelectYear
+                      ? yItem === cmptSelectYear
+                      : yItem === selectDay?.year(),
+                  )}
                   onClick={() => clickCmptItem(yItem, "year")}
                 >
                   {yItem}
@@ -162,7 +170,7 @@ export const CalendarBody: FC<CalendarBodyProps> = props => {
             {new Array(12)
               .fill(1)
               .map((arrItem, arrIndex) => arrIndex)
-              .map(item => {
+              .map((item) => {
                 return (
                   <div css={panelMonthContainerCss} key={item}>
                     <div css={panelMonthTextCss}>{item + 1}月</div>

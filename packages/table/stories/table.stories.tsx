@@ -2,7 +2,6 @@ import { Meta, Story } from "@storybook/react"
 import {
   Table,
   TableData,
-  TableFilter,
   TableProps,
   TBody,
   Td,
@@ -11,10 +10,8 @@ import {
   Thead,
   Tr,
 } from "../src"
-import { useMemo, useState } from "react"
-import { Row, UseFiltersInstanceProps } from "react-table"
-import { Input } from "@illa-design/input"
-import { css } from "@emotion/react"
+import { useMemo } from "react"
+import { ColumnDef } from "@tanstack/react-table"
 
 export default {
   title: "DATA DISPLAY/Table",
@@ -26,13 +23,10 @@ export default {
     columns: {
       control: false,
     },
-    _css: {
-      control: false,
-    },
   },
 } as Meta
 
-export const Basic: Story<TableProps<any>> = (args) => {
+export const Basic: Story<TableProps<DemoData, string>> = (args) => {
   return (
     <Table {...args}>
       <Thead>
@@ -70,146 +64,43 @@ interface DemoData extends TableData {
   col2: string
 }
 
-export const DataDriven: Story<TableProps<any>> = (args) => {
+export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
   const data = useMemo(
     () => [
       {
-        col1: "Hello",
-        col2: "World",
+        col1: "A",
+        col2: "D",
       } as DemoData,
       {
-        col1: "react-table",
-        col2: "rocks",
+        col1: "C",
+        col2: "F",
         disableRowSelect: true,
       } as DemoData,
       {
-        col1: "whatever",
-        col2: "you want",
+        col1: "B",
+        col2: "E",
       } as DemoData,
     ],
     [],
   )
 
-  const columns = useMemo(
-    () => [
+  const columns = useMemo(() => {
+    const c: ColumnDef<DemoData>[] = [
       {
-        Header: "Column 1",
-        Footer: "Footer 1",
-        accessor: "col1", // accessor is the "key" in the data
-        Filter: (columnProps: UseFiltersInstanceProps<DemoData>) => {
-          const [currentInput, setCurrentInput] = useState<string>("")
-          return (
-            <TableFilter
-              _css={css`
-                margin-left: 4px;
-              `}
-              renderFilterContent={(
-                columnProps?: UseFiltersInstanceProps<DemoData>,
-              ) => {
-                return (
-                  <Input
-                    value={currentInput}
-                    onChange={(value) => {
-                      setCurrentInput(value)
-                      columnProps?.setFilter("col1", value)
-                    }}
-                  />
-                )
-              }}
-              columnProps={columnProps}
-            />
-          )
-        },
-        filter: "includes", // equals, between
-      },
-      {
-        Header: "Column 2",
-        Footer: "Footer 2",
-        accessor: "col2",
-        Filter: (columnProps: UseFiltersInstanceProps<DemoData>) => {
-          const [currentInput, setCurrentInput] = useState<string>("")
-          return (
-            <TableFilter
-              _css={css`
-                margin-left: 4px;
-              `}
-              renderFilterContent={(
-                columnProps?: UseFiltersInstanceProps<DemoData>,
-              ) => {
-                return (
-                  <Input
-                    value={currentInput}
-                    onChange={(value) => {
-                      setCurrentInput(value)
-                      columnProps?.setFilter("col2", value)
-                    }}
-                  />
-                )
-              }}
-              columnProps={columnProps}
-            />
-          )
-        },
-        filter: (
-          rows: Array<Row>,
-          columnIds: Array<String>, //
-          filterValue: string,
-        ) => {
-          if (filterValue == "") {
-            return rows
-          }
-          return rows.filter((value) => {
-            return (
-              (value.cells.find((value) => {
-                return columnIds.includes(value.column.id)
-              })?.value as string) ?? ""
-            ).includes(filterValue)
-          })
-        },
-      },
-    ],
-    [],
-  )
-  return <Table data={data} columns={columns} {...args} />
-}
-
-export const CombineHeader: Story<TableProps<any>> = (args) => {
-  const data = useMemo(
-    () => [
-      {
-        col1: "Hello",
-        col2: "World",
-      } as DemoData,
-      {
-        col1: "react-table",
-        col2: "rocks",
-        disableRowSelect: true,
-      } as DemoData,
-      {
-        col1: "whatever",
-        col2: "you want",
-      } as DemoData,
-    ],
-    [],
-  )
-
-  const columns = useMemo(
-    () => [
-      {
-        Header: "Common",
+        header: "Common",
         columns: [
           {
-            Header: "Header 1",
-            accessor: "col1", // accessor is the "key" in the data
+            header: "Header 1",
+            accessorKey: "col1", // accessor is the "key" in the data
           },
           {
-            Header: "Header 2",
-            accessor: "col2",
+            header: "Header 2",
+            accessorKey: "col2",
           },
         ],
       },
-    ],
-    [],
-  )
-  return <Table data={data} columns={columns} {...args} />
+    ]
+    return c
+  }, [])
+  return <Table w="100px" h="160px" data={data} columns={columns} {...args} />
 }

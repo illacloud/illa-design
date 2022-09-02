@@ -7,7 +7,7 @@ import {
   applySwitchIcon,
 } from "./style"
 import { isObject } from "@illa-design/system"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (props, ref) => {
@@ -29,7 +29,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     const [checked, setChecked] = useState<boolean>(defaultChecked ?? false)
     const mergedChecked = propsChecked !== void 0 ? propsChecked : checked
 
-    const onHandleClick: MouseEventHandler<HTMLButtonElement> = event => {
+    const onHandleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
       if (propsChecked === void 0) {
         setChecked(!mergedChecked)
       }
@@ -49,7 +49,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         onClick={onHandleClick}
         disabled={disabled}
         type="button"
-        {...restProps}
+        {...deleteCssProps(restProps)}
       >
         <div css={applySwitchDot(size, mergedChecked, disabled ?? false)}>
           {(checkedIcon || uncheckedIcon) && (

@@ -12,11 +12,12 @@ import {
   searchListWrapper,
   textMargin,
 } from "./style"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const SearchPopup = <T extends OptionProps>(
   props: SearchPopupProps<T>,
 ) => {
-  const { store, multiple, onChange, inputValue, style, value = [] } = props
+  const { store, multiple, onChange, inputValue, value = [] } = props
 
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [options, setOptions] = useState<Node<T>[]>(
@@ -69,10 +70,10 @@ export const SearchPopup = <T extends OptionProps>(
   return options.length ? (
     <div
       ref={wrapperRef}
-      css={searchListWrapper}
+      css={[searchListWrapper, applyBoxStyle(props)]}
       onClick={(e) => e?.stopPropagation()}
     >
-      <ul css={optionListStyle} style={style}>
+      <ul css={optionListStyle}>
         {options.map((option, i) => {
           const pathNodes = option.getPathNodes()
           const label = pathNodes.map((x) => x.label).join(" / ")
@@ -120,6 +121,6 @@ export const SearchPopup = <T extends OptionProps>(
       </ul>
     </div>
   ) : (
-    <Empty css={flexCenterStyle} style={style} />
+    <Empty css={flexCenterStyle} />
   )
 }

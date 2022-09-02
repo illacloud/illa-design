@@ -3,132 +3,107 @@
 exports[`Divider renders default 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #e5e6eb;
-}
-
-.emotion-0 span {
-  padding: 0 16px;
-}
-
-.emotion-1 {
   vertical-align: middle;
   border-style: solid;
   border-width: 0 0 1px 0;
+  border-color: #e5e6ebff;
   width: 100%;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
 }
 
 <div
     class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    />
-  </div>
+  />
 </DocumentFragment>
 `;
 
 exports[`Divider renders horizontal 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #e5e6eb;
-}
-
-.emotion-0 span {
-  padding: 0 16px;
-}
-
-.emotion-1 {
   vertical-align: middle;
   border-style: solid;
   border-width: 0 0 1px 0;
+  border-color: #e5e6ebff;
   width: 100%;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
 }
 
 <div
     class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    />
-  </div>
+  />
 </DocumentFragment>
 `;
 
 exports[`Divider renders vertical 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #e5e6eb;
-}
-
-.emotion-0 span {
-  padding: 0 16px;
-}
-
-.emotion-1 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
   border-width: 0 0 0 1px;
-  border-image: initial;
+  border-color: #e5e6ebff;
   border-style: dashed;
   height: 1em;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
 }
 
 <div
     class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    />
-  </div>
+  />
 </DocumentFragment>
 `;
 
 exports[`Divider renders with colorScheme 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  border-width: 0 0 0 1px;
+  border-color: #ff5e2fff;
+  border-style: solid;
+  height: 1em;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
+  -webkit-flex-basis: center;
+  -ms-flex-preferred-size: center;
+  flex-basis: center;
+}
+
+<div
+    class="emotion-0"
+  />
+</DocumentFragment>
+`;
+
+exports[`Divider renders with text 1`] = `
+<DocumentFragment>
+  .emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.emotion-0 span {
-  padding: 0 16px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .emotion-1 {
@@ -138,106 +113,50 @@ exports[`Divider renders with colorScheme 1`] = `
   display: inline-flex;
   vertical-align: middle;
   border-width: 0 0 0 1px;
-  border-image: initial;
+  border-color: #e5e6ebff;
   border-style: solid;
   height: 1em;
 }
 
-<div
-    class="emotion-0"
-  >
-    <div
-      class="emotion-1"
-    />
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Divider renders with text 1`] = `
-<DocumentFragment>
-  .emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #e5e6eb;
-}
-
-.emotion-0 span {
-  padding: 0 16px;
-}
-
-.emotion-1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #e5e6eb;
-  font-size: 20px;
-}
-
-.emotion-1 span {
-  padding: 0 16px;
-}
-
 .emotion-2 {
+  color: #1d2129ff;
+  margin-left: 16px;
+  margin-right: 16px;
+  font-size: 14px;
+}
+
+.emotion-5 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  border-width: 0 0 0 1px;
+  border-color: #e5e6ebff;
+  border-style: solid;
+  height: 1em;
+  -webkit-flex-basis: 20%;
+  -ms-flex-preferred-size: 20%;
+  flex-basis: 20%;
+  -webkit-flex-basis: 20%;
+  -ms-flex-preferred-size: 20%;
+  flex-basis: 20%;
+}
+
+.emotion-7 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  border-width: 0 0 0 1px;
+  border-color: #e5e6ebff;
+  border-style: solid;
+  height: 1em;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  -webkit-flex-basis: 24px;
-  -ms-flex-preferred-size: 24px;
-  flex-basis: 24px;
-  vertical-align: middle;
-  border-style: solid;
-  border-width: 0 0 1px 0;
-  width: 100%;
-}
-
-.emotion-3 {
-  color: #1d2129;
-}
-
-.emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #e5e6eb;
-  font-size: 14px;
-}
-
-.emotion-6 span {
-  padding: 0 16px;
-}
-
-.emotion-7 {
-  -webkit-box-flex: 0;
-  -webkit-flex-grow: 0;
-  -ms-flex-positive: 0;
-  flex-grow: 0;
-  -webkit-flex-basis: 24px;
-  -ms-flex-preferred-size: 24px;
-  flex-basis: 24px;
-  vertical-align: middle;
-  border-style: solid;
-  border-width: 0 0 1px 0;
-  width: 100%;
 }
 
 <div>
@@ -246,60 +165,45 @@ exports[`Divider renders with text 1`] = `
     >
       <div
         class="emotion-1"
-        direction="vertical"
+      />
+      <span
+        class="emotion-2"
       >
-        <div
-          class="emotion-2"
-        />
-        <span
-          class="emotion-3"
-        >
-          this is a divider
-        </span>
-        <div
-          class="emotion-2"
-        />
-      </div>
+        this is a divider
+      </span>
+      <div
+        class="emotion-1"
+      />
     </div>
     <div
       class="emotion-0"
     >
       <div
-        class="emotion-6"
-        direction="vertical"
+        class="emotion-5"
+      />
+      <span
+        class="emotion-2"
       >
-        <div
-          class="emotion-7"
-        />
-        <span
-          class="emotion-3"
-        >
-          this is a divider
-        </span>
-        <div
-          class="emotion-2"
-        />
-      </div>
+        this is a divider
+      </span>
+      <div
+        class="emotion-7"
+      />
     </div>
     <div
       class="emotion-0"
     >
       <div
-        class="emotion-6"
-        direction="vertical"
+        class="emotion-7"
+      />
+      <span
+        class="emotion-2"
       >
-        <div
-          class="emotion-2"
-        />
-        <span
-          class="emotion-3"
-        >
-          this is a divider
-        </span>
-        <div
-          class="emotion-7"
-        />
-      </div>
+        this is a divider
+      </span>
+      <div
+        class="emotion-5"
+      />
     </div>
   </div>
 </DocumentFragment>

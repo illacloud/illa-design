@@ -7,54 +7,40 @@ export function applySizeStyle(size: TableSize): SerializedStyles {
   switch (size) {
     case "small":
       paddingStyle = css`
-        padding: 5px 16px;
+        padding: 12px 16px;
       `
       break
     case "medium":
       paddingStyle = css`
-        padding: 7px 16px;
+        padding: 14px 16px;
       `
       break
     case "large":
       paddingStyle = css`
-        padding: 9px 16px;
+        padding: 16px 16px;
       `
       break
   }
   return paddingStyle
 }
 
-export function applyHeaderSizeStyle(size: TableSize): SerializedStyles {
-  let paddingStyle
-  switch (size) {
-    case "small":
-      paddingStyle = css`
-        padding: 5px 0;
-      `
-      break
-    case "medium":
-      paddingStyle = css`
-        padding: 7px 0;
-      `
-      break
-    case "large":
-      paddingStyle = css`
-        padding: 9px 0;
-      `
-      break
-  }
-  return paddingStyle
-}
-
-export function applyContainerStyle(_css?: SerializedStyles): SerializedStyles {
+export function applyContainerStyle(): SerializedStyles {
   return css(
     css`
       overflow: auto;
       display: inline-flex;
       vertical-align: center;
     `,
-    _css,
   )
+}
+
+export function applyPinedStyle(pined?: boolean): SerializedStyles {
+  return pined
+    ? css`
+        position: sticky;
+        top: 0;
+      `
+    : css``
 }
 
 export function applyResizing(canResize?: boolean): SerializedStyles {
@@ -74,20 +60,30 @@ export function applyResizing(canResize?: boolean): SerializedStyles {
 export function applyBorderStyle(
   borderCell?: boolean,
   striped?: boolean,
+  colIndex?: number,
+  rowIndex?: number,
+  lastCol?: boolean,
+  lastRow?: boolean,
 ): SerializedStyles {
   let borderStyle: SerializedStyles = css()
   if (borderCell) {
-    borderStyle = css`
-      border-left: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    `
+    if (lastCol) {
+      borderStyle = css``
+    } else {
+      borderStyle = css`
+        border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
+    }
   }
   let stripedStyle: SerializedStyles = css()
   if (striped) {
-    stripedStyle = css`
-      border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    `
+    if (lastRow) {
+      stripedStyle = css``
+    } else {
+      stripedStyle = css`
+        border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
+    }
   }
   return css(borderStyle, stripedStyle)
 }
@@ -96,24 +92,35 @@ export function applyThStyle(): SerializedStyles {
   return css`
     font-size: 14px;
     font-weight: bold;
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  `
+}
+
+export function applyNormalStyle(): SerializedStyles {
+  return css`
+    font-size: 14px;
+    min-height: 22px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
-export const applyNormalStyle: SerializedStyles = css`
-  font-size: 14px;
-  min-height: 22px;
-  background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-`
+export function applyNormalBg(): SerializedStyles {
+  return css`
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+  `
+}
 
-export const applyFilterContainer = css`
-  flex-shrink: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`
+export function applyBgHoverStyle(hoverable?: boolean): SerializedStyles {
+  const hoverableStyle = css`
+    &:hover {
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+    }
+  `
+  return css`
+    ${hoverable ? hoverableStyle : null}
+  `
+}
 
 export const applyHeaderIconLeft = css`
   margin-left: 4px;
@@ -144,30 +151,21 @@ export function applyPreContainer(align: TableAlign): SerializedStyles {
   `
 }
 
-export function applyTableStyle(
-  tableLayout: TableLayout,
-  bordered?: boolean,
-): SerializedStyles {
-  const border = css`
-    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  `
-
-  const commonStyle = css`
+export function applyTableStyle(tableLayout: TableLayout): SerializedStyles {
+  return css`
     width: 100%;
     box-sizing: border-box;
     display: table;
-    border-collapse: collapse;
+    border-spacing: 0;
+    border-collapse: separate;
     table-layout: ${tableLayout};
   `
+}
 
-  if (bordered) {
-    return css`
-      ${border};
-      ${commonStyle};
-    `
-  } else {
-    return css`
-      ${commonStyle};
-    `
-  }
+export function applyBorderedStyle(bordered?: boolean): SerializedStyles {
+  return bordered
+    ? css`
+        border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
+    : css``
 }

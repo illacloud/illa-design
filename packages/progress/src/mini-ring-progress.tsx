@@ -7,12 +7,12 @@ import {
   applyProgressContainerBg,
   applySvgContainer,
 } from "./common-style"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const MiniRingProgress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {
     const {
-      type = "line",
+      type,
       steps,
       status = "normal",
       color = "blue",
@@ -45,12 +45,12 @@ export const MiniRingProgress = forwardRef<HTMLDivElement, ProgressProps>(
     }
 
     return (
-      <div
-        css={[applyContainer(w), applyBoxStyle(props)]}
-        ref={ref}
-        {...otherProps}
-      >
-        <Trigger disabled={!showText} content={formatText(percent)}>
+      <Trigger disabled={!showText} content={formatText(percent)}>
+        <div
+          css={[applyContainer(w), applyBoxStyle(props)]}
+          ref={ref}
+          {...deleteCssProps(otherProps)}
+        >
           <svg css={applySvgContainer(w)}>
             <circle
               css={applyProgressContainerBg(trailColor, w, strokeWidth)}
@@ -69,8 +69,8 @@ export const MiniRingProgress = forwardRef<HTMLDivElement, ProgressProps>(
               strokeWidth={strokeWidth}
             />
           </svg>
-        </Trigger>
-      </div>
+        </div>
+      </Trigger>
     )
   },
 )
