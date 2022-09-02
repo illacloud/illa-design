@@ -25,10 +25,8 @@ export type DisabledTimeProps = {
 export type RangePickerMode = "date" | "month" | "week" | "year" | "quarter"
 
 export interface PickerProps
-  extends Omit<
-      HTMLAttributes<HTMLDivElement>,
-      "defaultValue" | "prefix" | "placeholder" | "onChange" | "onSelect"
-    >,
+  extends Omit<HTMLAttributes<HTMLDivElement>,
+    "defaultValue" | "prefix" | "placeholder" | "onChange" | "onSelect">,
     BoxProps {
   allowClear?: boolean
   position?: PickerPosition
@@ -70,15 +68,15 @@ export interface DatePickerProps extends PickerProps, CommonSingleProps {
   disabledTime?: (current?: Dayjs) => DisabledTimeProps
 }
 
-export interface MonthPickerProps extends PickerProps, CommonSingleProps {}
+export interface MonthPickerProps extends PickerProps, CommonSingleProps {
+}
 
-export interface YearPickerProps extends PickerProps, CommonSingleProps {}
+export interface YearPickerProps extends PickerProps, CommonSingleProps {
+}
 
 export interface DateRangePickerProps
-  extends Omit<
-    PickerProps,
-    "onChange" | "defaultValue" | "onOk" | "defaultPickerValue" | "onSelect"
-  > {
+  extends Omit<PickerProps,
+    "onChange" | "defaultValue" | "onOk" | "defaultPickerValue" | "onSelect"> {
   order?: boolean
   disableConfirm?: boolean
   disabled?: boolean | boolean[]
@@ -96,11 +94,11 @@ export interface DateRangePickerProps
   onSelect?: (dateString: string[], date: Dayjs[]) => void
 }
 
-export interface CommonRangeProps extends DateRangePickerProps {}
+export interface CommonRangeProps extends DateRangePickerProps {
+}
 
 export interface CommonProps
-  extends Omit<
-    PickerProps,
+  extends Omit<PickerProps,
     | "prefix"
     | "placeholder"
     | "shortcuts"
@@ -115,8 +113,8 @@ export interface CommonProps
     | "onSelect"
     | "onChange"
     | "onOk"
-    | "onClear"
-  > {}
+    | "onClear"> {
+}
 
 export interface RenderSinglePickerProps extends Partial<DatePickerProps> {
   type: "day" | "month" | "year"
@@ -161,4 +159,35 @@ export interface PickerPopUpProps {
   onClickShortcut?: (s: ShortcutType) => void
   handleShortEnter?: (s: ShortcutType) => void
   handleShortLeave?: (s: ShortcutType) => void
+}
+
+export interface RangePickerPopUpProps {
+  // TODO: type support
+  type?: "day" | "month" | "year"
+  popupVisible?: boolean
+  timepickerProps?: RangePickerProps
+  showTime?: boolean | RangePickerProps
+  showNowBtn?: boolean
+  showTimePicker?: boolean
+  disabledDate?: (current?: Dayjs) => boolean
+  disabledTime?: (current: Dayjs, type: "start" | "end") => DisabledTimeProps
+  valueShow?: Dayjs[]
+
+  onConfirmValue?: (value?: Dayjs) => void
+
+  shortcuts?: ShortcutType[]
+  shortcutsPlacementLeft?: boolean
+  onClickShortcut?: (s: ShortcutType) => void
+  leftCalendarDate?: Dayjs
+  rightCalendarDate?: Dayjs
+  rangeValueFirst?: Dayjs
+  rangeValueSecond?: Dayjs
+  rangeValueHover?: Dayjs
+  handleRangeVal?: (
+    date: Dayjs | undefined,
+    type: "first" | "second" | "hover",
+  ) => void
+  changeHeader?: (date: Dayjs) => void
+  onSelectTime?: (time: Dayjs, focusedInput: number) => void
+  onConfirmTimeValue?: (ok?: boolean) => void
 }

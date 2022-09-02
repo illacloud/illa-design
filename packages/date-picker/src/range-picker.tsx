@@ -1,24 +1,9 @@
-import { cloneElement, forwardRef, useEffect, useRef, useState } from "react"
+import { forwardRef, useEffect, useRef, useState } from "react"
 import { CommonRangeProps, ShortcutType } from "./interface"
 import { Trigger } from "@illa-design/trigger"
 import { CalendarIcon } from "@illa-design/icon"
 import { RangeInput, RangeInputRef } from "@illa-design/input"
-import {
-  applyRangeFooterCss,
-  buttonBoxCss,
-  rangeBodyCss,
-  rangeLeftContentCss,
-  rangePickerCss,
-  rangeRightContentCss,
-  showTimeHeaderCss,
-  triContentCommonCss,
-  wrapCss,
-} from "./style"
-import { TimePickerPopup } from "@illa-design/time-picker"
 import dayjs, { Dayjs } from "dayjs"
-import { Calendar } from "@illa-design/calendar"
-import { css } from "@emotion/react"
-import { Button } from "@illa-design/button"
 import { getFinalValue, initFormat, isValidTime } from "./utils"
 import {
   dayjsPro,
@@ -28,7 +13,7 @@ import {
   isDayjsArrayChange,
   useMergeValue,
 } from "@illa-design/system"
-import { ShortcutsComp } from "./shortcut"
+import { RangePickerPopUp } from "./range-picker-popup"
 
 const formatTime = (str: Dayjs, format: string) => {
   return str ? dayjsPro(str)?.format(format) : ""
@@ -189,10 +174,8 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
     }
 
     const onClickShortcut = (item: ShortcutType) => {
-      // setCalendarValue(item.value() as Dayjs)
-      // onChangeDate(item.value() as Dayjs)
-      setRangeValueFirst(item.value()?.[0])
-      setRangeValueSecond(item.value()?.[1])
+      setRangeValueFirst((item.value() as Dayjs[])?.[0])
+      setRangeValueSecond((item.value() as Dayjs[])?.[1])
       onSelectShortcut?.(item)
     }
 
@@ -259,10 +242,6 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       setTimeout(() => focusInput(false))
     }
 
-    useEffect(() => {
-      console.log("valueShow", valueShow)
-    }, [valueShow])
-
     const onSelectTime = (time: Dayjs, focusedInput: number) => {
       const values = valueShow?.slice() || currentValue?.slice() || []
       values[focusedInput] = getFinalValue(values[focusedInput], time)
@@ -271,7 +250,6 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
         values.map((t) => t.format(finalFormat)),
         values,
       )
-      console.log(values, "values")
       if (
         disableConfirm &&
         isArray(values) &&
@@ -293,20 +271,6 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
       }
     }
 
-
-    console.log({
-      finalFormat,
-      showTrigger,
-      focusedInputIndex,
-      inputVal,
-      currentValue,
-      valueShow0: valueShow?.[0],
-      valueShow1: valueShow?.[1],
-      rangeValueHover,
-      rangeValueFirst,
-      rangeValueSecond,
-    })
-
     return (
       <Trigger
         showArrow={false}
@@ -316,136 +280,30 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
         maxW={"700px"}
         popupVisible={showTrigger}
         content={
-          <div css={wrapCss}>
-            {shortcutsShowLeft && <ShortcutsComp
-              shortcuts={shortcuts}
-              shortcutsPlacementLeft={shortcutsPlacementLeft}
-              onClickShortcut={onClickShortcut}
-            />}
-            <div>
-              <div css={rangeBodyCss}>
-                {showTimePicker && (
-                  <div css={rangePickerCss}>
-                    <div>
-                      <div css={showTimeHeaderCss}>time</div>
-                      {cloneElement(<TimePickerPopup />, {
-                        isRangePicker: true,
-                        disableConfirm: true,
-                        format: "HH:mm:ss",
-                        valueShow: valueShow?.[0] || currentValue?.[0],
-                        popupVisible: showTrigger,
-                        showNowBtn: false,
-                        disabledHours: disabledTime?.(dayjs(), "start")
-                          .disabledHours,
-                        disabledMinutes: disabledTime?.(dayjs(), "start")
-                          .disabledMinutes,
-                        disabledSeconds: disabledTime?.(dayjs(), "start")
-                          .disabledSeconds,
-                        onSelect: (_: string, time: Dayjs) => {
-                          onSelectTime(time, 0)
-                        },
-                        onConfirmValue: onConfirmTimeValue,
-                        ...timepickerProps,
-                        ...tpProps,
-                      })}
-                    </div>
-                    <div>
-                      <div css={showTimeHeaderCss}>time</div>
-                      {cloneElement(<TimePickerPopup />, {
-                        isRangePicker: true,
-                        disableConfirm: true,
-                        format: "HH:mm:ss",
-                        valueShow: valueShow?.[1] || currentValue?.[1],
-                        popupVisible: showTrigger,
-                        showNowBtn: false,
-                        disabledHours: disabledTime?.(dayjs(), "end")
-                          .disabledHours,
-                        disabledMinutes: disabledTime?.(dayjs(), "end")
-                          .disabledMinutes,
-                        disabledSeconds: disabledTime?.(dayjs(), "end")
-                          .disabledSeconds,
-                        onSelect: (_: string, time: Dayjs) => {
-                          onSelectTime(time, 1)
-                        },
-                        onConfirmValue: onConfirmTimeValue,
-                        ...timepickerProps,
-                        ...tpProps,
-                      })}
-                    </div>
-                  </div>
-                )}
-                {!showTimePicker && (
-                  <>
-                    <Calendar
-                      panel
-                      mode={"day"}
-                      _css={css`
-                        ${triContentCommonCss};
-                        ${rangeLeftContentCss}
-                      `}
-                      panelOperations={["doubleLeft", "left"]}
-                      panelTodayBtn={false}
-                      onPanelChange={(date: Dayjs) => changeHeader(date)}
-                      disabledDate={disabledDate}
-                      // extra
-                      rangePicker
-                      isTodayTarget
-                      defaultDate={leftCalendarDate}
-                      rangeValueFirst={rangeValueFirst}
-                      rangeValueSecond={rangeValueSecond}
-                      rangeValueHover={rangeValueHover}
-                      handleRangeVal={handleRangeVal}
-                      onChange={(v) => {
-                        console.log("onChange", v.format(finalFormat))
-                      }}
-                    />
-                    <Calendar
-                      panel
-                      mode={"day"}
-                      _css={css`
-                        ${triContentCommonCss};
-                        ${rangeRightContentCss}
-                      `}
-                      panelOperations={["doubleRight", "right"]}
-                      panelTodayBtn={false}
-                      onPanelChange={(date: Dayjs) => changeHeader(date)}
-                      disabledDate={disabledDate}
-                      // extra
-                      rangePicker
-                      isTodayTarget
-                      defaultDate={rightCalendarDate}
-                      rangeValueFirst={rangeValueFirst}
-                      rangeValueSecond={rangeValueSecond}
-                      rangeValueHover={rangeValueHover}
-                      handleRangeVal={handleRangeVal}
-                    />
-                  </>
-                )}
-              </div>
-              {(showTime || shortcutsShowBottom) && (
-                <div
-                  css={applyRangeFooterCss(!!showTime, !!shortcutsShowBottom)}
-                >
-                  {shortcutsShowBottom && <ShortcutsComp
-                    shortcuts={shortcuts}
-                    shortcutsPlacementLeft={shortcutsPlacementLeft}
-                    onClickShortcut={onClickShortcut}
-                  />}
-                  {showTime && (
-                    <div css={buttonBoxCss}>
-                      <Button
-                        variant={"text"}
-                        onClick={() => setShowTimePicker(!showTimePicker)}
-                      >
-                        choose {showTimePicker ? "date" : "time"}
-                      </Button>
-                      <Button onClick={() => onConfirmTimeValue(true)}>ok</Button>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
+          <RangePickerPopUp
+            popupVisible={showTrigger}
+            valueShow={valueShow || currentValue}
+            {
+              ...{
+                shortcuts,
+                shortcutsPlacementLeft,
+                disabledDate,
+                showTime,
+                disabledTime,
+                timepickerProps,
+                onClickShortcut,
+                leftCalendarDate,
+                rightCalendarDate,
+                rangeValueFirst,
+                rangeValueSecond,
+                rangeValueHover,
+                handleRangeVal,
+                changeHeader,
+                onSelectTime,
+                onConfirmTimeValue,
+              }
+            }
+          />
         }
         closeOnClick={false}
         clickOutsideToClose

@@ -8,7 +8,7 @@ export default {
 } as Meta
 
 const RangeTemplate: Story<DateRangePickerProps> = (args) => {
-  return <DateRangePicker w={"320px"} mode={"year"} {...args} />
+  return <DateRangePicker w={"400px"} mode={"year"} {...args} />
 }
 
 export const Range = RangeTemplate.bind({})
