@@ -56,7 +56,6 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
     } = props
 
     const inputGroupRef = useRef({} as RangeInputRef)
-    const tpProps = typeof showTime === "object" ? showTime : {}
     const isBooleanShowTime = typeof showTime === "boolean" ? showTime : false
 
     const finalFormat = initFormat("day", isBooleanShowTime, format)
@@ -87,9 +86,6 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
     const [showTrigger, setShowTrigger] = useState<boolean>(
       popupVisible as boolean,
     )
-    const [showTimePicker, setShowTimePicker] = useState<boolean>(false)
-    const shortcutsShowLeft = shortcuts?.length && shortcutsPlacementLeft
-    const shortcutsShowBottom = shortcuts?.length && !shortcutsPlacementLeft
     // calendar range value
     const [rangeValueFirst, setRangeValueFirst] = useState<Dayjs | undefined>()
     const [rangeValueSecond, setRangeValueSecond] = useState<

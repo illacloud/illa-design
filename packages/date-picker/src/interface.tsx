@@ -141,7 +141,7 @@ export interface ShortcutsProps {
   handleShortLeave?: (s: ShortcutType) => void
 }
 
-export interface PickerPopUpProps {
+export interface DatePickerPopUpProps {
   type: "day" | "month" | "year"
   popupVisible?: boolean
   showTime?: boolean | TimePickerProps
@@ -163,7 +163,7 @@ export interface PickerPopUpProps {
   handleShortLeave?: (s: ShortcutType) => void
 }
 
-export interface RangePickerPopUpProps {
+export interface DateRangePickerPopUpProps {
   // TODO: type support
   type?: "day" | "month" | "year"
   popupVisible?: boolean

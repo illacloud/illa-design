@@ -1,5 +1,5 @@
 import { forwardRef, useMemo } from "react"
-import { PickerPopUpProps } from "./interface"
+import { DatePickerPopUpProps } from "./interface"
 import {
   horShortcuts,
   nowButtonCss,
@@ -18,7 +18,7 @@ import { isObject } from "@illa-design/system"
 import { getFinalValue } from "./utils"
 import { ShortcutsComp } from "./shortcut"
 
-export const PickerPopUp = forwardRef<HTMLDivElement, PickerPopUpProps>(
+export const PickerPopUp = forwardRef<HTMLDivElement, DatePickerPopUpProps>(
   (props, ref) => {
     const {
       shortcuts,

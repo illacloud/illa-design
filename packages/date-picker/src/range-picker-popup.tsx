@@ -1,34 +1,26 @@
-import { cloneElement, forwardRef, useMemo, useState } from "react"
-import { PickerPopUpProps, RangePickerPopUpProps } from "./interface"
+import { cloneElement, forwardRef, useState } from "react"
+import { DateRangePickerPopUpProps } from "./interface"
 import {
   applyRangeFooterCss,
   buttonBoxCss,
-  horShortcuts,
-  nowButtonCss,
-  popupCss,
   rangeBodyCss,
   rangeLeftContentCss,
   rangePickerCss,
   rangeRightContentCss,
-  showTimeContainerCss,
   showTimeHeaderCss,
-  singlePickerContentCss,
   triContentCommonCss,
-  vertShortcuts,
   wrapCss,
 } from "./style"
 import { Calendar } from "@illa-design/calendar"
 import dayjs, { Dayjs } from "dayjs"
 import { Button } from "@illa-design/button"
 import { TimePickerPopup } from "@illa-design/time-picker"
-import { isObject } from "@illa-design/system"
-import { getFinalValue } from "./utils"
 import { ShortcutsComp } from "./shortcut"
-import { css } from "@emotion/react/dist/emotion-react.cjs"
+import { css } from "@emotion/react"
 
 export const RangePickerPopUp = forwardRef<
   HTMLDivElement,
-  RangePickerPopUpProps
+  DateRangePickerPopUpProps
 >((props, ref) => {
   const {
     shortcuts,
