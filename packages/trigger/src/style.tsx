@@ -22,6 +22,7 @@ export function applyTipsText(
   maxWidth: string,
   withoutPadding?: boolean,
   withoutShadow?: boolean,
+  autoAlignPopupWidth?: boolean,
 ): SerializedStyles {
   const bgColor =
     colorScheme == "white"
@@ -48,6 +49,13 @@ export function applyTipsText(
     shadow = css``
   }
 
+  let align = css``
+  if (autoAlignPopupWidth) {
+    align = css`
+      max-width: unset;
+    `
+  }
+
   return css`
     background-color: ${bgColor};
     color: ${textColor};
@@ -58,6 +66,7 @@ export function applyTipsText(
     font-size: 14px;
     ${padding};
     ${shadow};
+    ${align}
   `
 }
 

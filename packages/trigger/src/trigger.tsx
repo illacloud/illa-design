@@ -1,7 +1,6 @@
 import {
   cloneElement,
   FC,
-  MutableRefObject,
   ReactElement,
   useEffect,
   useMemo,
@@ -169,6 +168,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               maxW,
               withoutPadding,
               withoutShadow,
+              autoAlignPopupWidth,
             )}
           >
             {closeContent}
@@ -198,6 +198,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               maxW,
               withoutPadding,
               withoutShadow,
+              autoAlignPopupWidth,
             )}
           >
             {closeContent}
@@ -222,6 +223,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               maxW,
               withoutPadding,
               withoutShadow,
+              autoAlignPopupWidth,
             )}
           >
             {closeContent}
@@ -241,6 +243,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               maxW,
               withoutPadding,
               withoutShadow,
+              autoAlignPopupWidth,
             )}
           >
             {closeContent}
