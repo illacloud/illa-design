@@ -185,6 +185,7 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
         if (!visible) {
           setInputVal(undefined)
           setValueShow(undefined)
+          setRangeValueHover(undefined)
         }
       }
     }
@@ -332,7 +333,7 @@ export const RangePicker = forwardRef<HTMLDivElement, CommonRangeProps>(
           changeFocusedInputIndex={changeFocusedInputIndex}
           borderColor={colorScheme}
           allowClear={allowClear}
-          onClear={() => onClearDate?.()}
+          onClear={onClearDate}
           placeholder={placeholder}
           error={error}
           readOnly={readOnly}
