@@ -160,7 +160,7 @@ export const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
           return applyRangeSelectCss("right")
         } else if (rangeValueHover?.isBefore(rangeValueFirst, "date")) {
           return applyRangeSelectCss("left")
-        } else if ((rangeValueHover?.isSame(rangeValueFirst), "date")) {
+        } else if (rangeValueHover?.isSame(rangeValueFirst, "date")) {
           return applyRangeSelectCss("mid")
         }
       }
