@@ -60,7 +60,7 @@ const SelectAddon: FC<{
   const { addon, render, size, colorScheme, borderRadius, buttonProps } = props
   const buttonDefaultProps = {
     size,
-    borderRadius,
+    bdRadius: borderRadius,
     colorScheme,
     ...buttonProps,
     _css: css(
