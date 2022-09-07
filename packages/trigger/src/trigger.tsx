@@ -34,7 +34,7 @@ import {
   useInteractions,
   useRole,
 } from "@floating-ui/react-dom-interactions"
-import { mergeRefs } from "@illa-design/system"
+import { isFunction, mergeRefs } from "@illa-design/system"
 import {
   TriangleBottom,
   TriangleLeft,
@@ -311,7 +311,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
             }
           },
           onClick: (e) => {
-            if ((props.children as any).props.onClick() != undefined) {
+            if ((props.children as any).props.onClick != undefined) {
               ;(props.children as any).props.onClick(e)
             }
             if (alignPoint && trigger === "click") {
