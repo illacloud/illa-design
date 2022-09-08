@@ -1,7 +1,6 @@
 import {
   cloneElement,
   FC,
-  MutableRefObject,
   ReactElement,
   useEffect,
   useMemo,
@@ -35,7 +34,7 @@ import {
   useInteractions,
   useRole,
 } from "@floating-ui/react-dom-interactions"
-import { mergeRefs } from "@illa-design/system"
+import { isFunction, mergeRefs } from "@illa-design/system"
 import {
   TriangleBottom,
   TriangleLeft,
@@ -73,7 +72,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const tipsContainerRef = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState<boolean>(false)
-  const [mouseRecord, setMouseRecord] = useState({ x: 0, y: 0 })
   const finalVisible = popupVisible === undefined ? visible : popupVisible
 
   useEffect(() => {
@@ -169,6 +167,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               maxW,
               withoutPadding,
               withoutShadow,
+              autoAlignPopupWidth,
             )}
           >
             {closeContent}
@@ -198,6 +197,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               maxW,
               withoutPadding,
               withoutShadow,
+              autoAlignPopupWidth,
             )}
           >
             {closeContent}
@@ -222,6 +222,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               maxW,
               withoutPadding,
               withoutShadow,
+              autoAlignPopupWidth,
             )}
           >
             {closeContent}
@@ -241,6 +242,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
               maxW,
               withoutPadding,
               withoutShadow,
+              autoAlignPopupWidth,
             )}
           >
             {closeContent}
@@ -272,7 +274,13 @@ export const Trigger: FC<TriggerProps> = (props) => {
       {cloneElement(
         children as ReactElement,
         getReferenceProps({
+          key: "illa-trigger",
+          ...(props.children as any).props,
+          ref: mergeRefs(reference, (props.children as any).ref, childrenRef),
           onContextMenu: (e) => {
+            if ((props.children as any).props.onContextMenu != undefined) {
+              ;(props.children as any).props.onContextMenu(e)
+            }
             if (trigger === "contextmenu") {
               e.preventDefault()
               if (alignPoint) {
@@ -303,6 +311,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
             }
           },
           onClick: (e) => {
+            if ((props.children as any).props.onClick != undefined) {
+              ;(props.children as any).props.onClick(e)
+            }
             if (alignPoint && trigger === "click") {
               if (childrenRef.current != null) {
                 Object.assign(childrenRef.current, {
@@ -320,9 +331,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
               }
             }
           },
-          key: "illa-trigger",
-          ref: mergeRefs(reference, (props.children as any).ref, childrenRef),
-          ...(props.children as any).props,
         }),
       )}
       <FloatingPortal root={document.body}>
