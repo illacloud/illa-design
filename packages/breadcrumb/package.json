@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/breadcrumb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Illa Design Breadcrumb.",
   "keywords": [
     "breadcrumb",
@@ -39,10 +39,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.0",
-    "@illa-design/dropdown": "1.0.0",
-    "@illa-design/menu": "1.0.0",
-    "@illa-design/system": "1.0.0",
-    "@illa-design/theme": "1.0.0"
+    "@illa-design/icon": "1.0.1",
+    "@illa-design/dropdown": "1.0.1",
+    "@illa-design/menu": "1.0.1",
+    "@illa-design/system": "1.0.1",
+    "@illa-design/theme": "1.0.1"
   }
 }

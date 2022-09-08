@@ -1,5 +1,17 @@
 # @illa-design/slider
 
+## 1.0.1
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/input-number@1.0.1
+  - @illa-design/system@1.0.1
+  - @illa-design/theme@1.0.1
+  - @illa-design/trigger@1.0.1
+
 ## 1.0.0
 
 ### Major Changes

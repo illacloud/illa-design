@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/list",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Illa Design List.",
   "keywords": [
     "list",
@@ -39,11 +39,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/typography": "1.0.0",
-    "@illa-design/avatar": "1.0.0",
-    "@illa-design/divider": "1.0.0",
-    "@illa-design/system": "1.0.0",
-    "@illa-design/theme": "1.0.0",
+    "@illa-design/typography": "1.0.1",
+    "@illa-design/avatar": "1.0.1",
+    "@illa-design/divider": "1.0.1",
+    "@illa-design/system": "1.0.1",
+    "@illa-design/theme": "1.0.1",
     "rc-virtual-list": "^3.4.2"
   }
 }
