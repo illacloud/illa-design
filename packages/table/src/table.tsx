@@ -220,7 +220,11 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
               </Thead>
             )}
             <TBody>
-              {table.getRowModel().rows.length ? null : <Empty />}
+              {table.getRowModel().rows.length ? null :
+                <td colSpan={99} style={{ textAlign: "center" }}>
+                  <Empty />
+                </td>
+              }
               {table.getRowModel().rows.map((row) => (
                 <Tr key={row.id} hoverable>
                   {row.getVisibleCells().map((cell) => (
