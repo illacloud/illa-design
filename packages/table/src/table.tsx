@@ -31,6 +31,7 @@ import {
 } from "@illa-design/icon"
 import { rankItem } from "@tanstack/match-sorter-utils"
 import { Spin } from "@illa-design/spin"
+import { Empty } from "@illa-design/empty"
 
 export function Table<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -219,6 +220,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
               </Thead>
             )}
             <TBody>
+              {table.getRowModel().rows.length ? null : <Empty />}
               {table.getRowModel().rows.map((row) => (
                 <Tr key={row.id} hoverable>
                   {row.getVisibleCells().map((cell) => (
