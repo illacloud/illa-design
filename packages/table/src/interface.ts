@@ -7,6 +7,7 @@ import {
 import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
 import { Column, ColumnDef } from "@tanstack/react-table"
+import { EmptyProps } from "@illa-design/empty"
 
 export type TableSize = "small" | "medium" | "large"
 
@@ -33,6 +34,7 @@ export interface TableProps<D extends TableData, TValue>
   hoverable?: boolean
   disableSortBy?: boolean
   loading?: boolean
+  emptyProps?: EmptyProps
 }
 
 export interface TableContextProps {
