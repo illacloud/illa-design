@@ -159,7 +159,6 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   })
-  console.log(table.getHeaderGroups(), "getHeaderGroups")
 
   return (
     <div
