@@ -104,3 +104,23 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
   }, [])
   return <Table w="100px" h="160px" data={data} columns={columns} {...args} />
 }
+
+export const NoDataTable: Story<TableProps<DemoData, string>> = (args) => {
+  const columns = useMemo(() => {
+    const c: ColumnDef<DemoData>[] = [
+        {
+          header: "Header 1",
+          accessorKey: "col1", // accessor is the "key" in the data
+        },
+        {
+          header: "Header 2",
+          accessorKey: "col2",
+        },
+      ]
+    return c
+  }, [])
+  return <div>
+    <Table data={[]} columns={[]} {...args} />
+    <Table data={[]} columns={columns} {...args} />
+  </div>
+}

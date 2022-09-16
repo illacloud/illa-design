@@ -159,6 +159,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   })
+  console.log(table.getHeaderGroups(), "getHeaderGroups")
 
   return (
     <div
@@ -221,10 +222,12 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
               </Thead>
             )}
             <TBody>
-              {table.getRowModel().rows.length ? null :
-                <td colSpan={99} style={{ textAlign: "center" }}>
-                  <Empty {...emptyProps} />
-                </td>
+              {table.getRowModel().rows.length ? null : columns?.length ?
+                (<tr>
+                  <td colSpan={99} style={{ textAlign: "center" }}>
+                    <Empty {...emptyProps} />
+                  </td>
+                </tr>) : null
               }
               {table.getRowModel().rows.map((row) => (
                 <Tr key={row.id} hoverable>
