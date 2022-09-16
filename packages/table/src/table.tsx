@@ -117,6 +117,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     showFooter,
     hoverable,
     showHeader = true,
+    emptyProps,
     ...otherProps
   } = props
 
@@ -222,7 +223,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
             <TBody>
               {table.getRowModel().rows.length ? null :
                 <td colSpan={99} style={{ textAlign: "center" }}>
-                  <Empty />
+                  <Empty {...emptyProps} />
                 </td>
               }
               {table.getRowModel().rows.map((row) => (
