@@ -6,6 +6,7 @@ import {
   applyHeaderIconLeft,
   applyPreContainer,
   applyTableStyle,
+  spinStyle,
 } from "./style"
 import { TableContext } from "./table-context"
 import { Thead } from "./thead"
@@ -168,7 +169,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
         applyBorderedStyle(bordered),
       ]}
     >
-      <Spin loading={loading}>
+      <Spin loading={loading} css={spinStyle}>
         <TableContext.Provider value={contextProps}>
           <table
             css={applyTableStyle(tableLayout)}
