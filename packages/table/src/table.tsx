@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react"
+import { ReactElement, useEffect, useState } from "react"
 import { TableContextProps, TableProps } from "./interface"
 import {
   applyBorderedStyle,
@@ -33,6 +33,7 @@ import {
 import { rankItem } from "@tanstack/match-sorter-utils"
 import { Spin } from "@illa-design/spin"
 import { Empty } from "@illa-design/empty"
+import { isObject } from "@illa-design/system"
 
 export function Table<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -119,6 +120,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     hoverable,
     showHeader = true,
     emptyProps,
+    defaultSort = [],
     ...otherProps
   } = props
 
@@ -132,8 +134,14 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     showFooter,
   } as TableContextProps
 
-  const [sorting, setSorting] = useState<SortingState>([])
+  const [sorting, setSorting] = useState<SortingState>(defaultSort)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+
+  useEffect(() => {
+    if (defaultSort?.length) {
+      setSorting(defaultSort)
+    }
+  }, [defaultSort])
 
   const table = useReactTable({
     data,
@@ -201,9 +209,9 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                           {header.column.getCanSort() &&
                             (header.column.getIsSorted() ? (
                               header.column.getIsSorted() === "desc" ? (
@@ -276,9 +284,9 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                              header.column.columnDef.footer,
-                              header.getContext(),
-                            )}
+                            header.column.columnDef.footer,
+                            header.getContext(),
+                          )}
                       </Th>
                     ))}
                   </Tr>
