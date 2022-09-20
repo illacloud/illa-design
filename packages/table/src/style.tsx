@@ -169,3 +169,7 @@ export function applyBorderedStyle(bordered?: boolean): SerializedStyles {
       `
     : css``
 }
+
+export const spinStyle = css`
+  width: 100%;
+`

@@ -6,6 +6,7 @@ import {
   applyHeaderIconLeft,
   applyPreContainer,
   applyTableStyle,
+  spinStyle,
 } from "./style"
 import { TableContext } from "./table-context"
 import { Thead } from "./thead"
@@ -168,7 +169,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
         applyBorderedStyle(bordered),
       ]}
     >
-      <Spin loading={loading}>
+      <Spin loading={loading} css={spinStyle}>
         <TableContext.Provider value={contextProps}>
           <table
             css={applyTableStyle(tableLayout)}
@@ -200,9 +201,9 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext(),
-                            )}
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
                           {header.column.getCanSort() &&
                             (header.column.getIsSorted() ? (
                               header.column.getIsSorted() === "desc" ? (
@@ -221,13 +222,13 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
               </Thead>
             )}
             <TBody>
-              {table.getRowModel().rows.length ? null : columns?.length ?
-                (<tr>
+              {table.getRowModel().rows.length ? null : columns?.length ? (
+                <tr>
                   <td colSpan={99} style={{ textAlign: "center" }}>
                     <Empty {...emptyProps} />
                   </td>
-                </tr>) : null
-              }
+                </tr>
+              ) : null}
               {table.getRowModel().rows.map((row) => (
                 <Tr key={row.id} hoverable>
                   {row.getVisibleCells().map((cell) => (
@@ -244,7 +245,10 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                         table.getRowModel().rows.length - 1
                       }
                     >
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </Td>
                   ))}
                 </Tr>
@@ -272,9 +276,9 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                            header.column.columnDef.footer,
-                            header.getContext(),
-                          )}
+                              header.column.columnDef.footer,
+                              header.getContext(),
+                            )}
                       </Th>
                     ))}
                   </Tr>

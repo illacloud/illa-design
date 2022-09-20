@@ -87,9 +87,16 @@ export function applyModalHeader(
     `
   }
 
+  const paddingCss = closable
+    ? css`
+        padding: 16px 40px;
+      `
+    : css`
+        padding: 16px;
+      `
+
   return css`
-    padding: 16px;
-    ${closable ? "padding-right:40px" : ""};
+    ${paddingCss};
     width: 100%;
     box-sizing: border-box;
     display: flex;
