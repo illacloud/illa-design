@@ -34,14 +34,14 @@ import { rankItem } from "@tanstack/match-sorter-utils"
 import { Spin } from "@illa-design/spin"
 import { Empty } from "@illa-design/empty"
 
-type TableComponent<D extends TableData, TValue=any> = (
+type TableComponent<D extends TableData, TValue = unknown> = (
   props: TableProps<D, TValue>,
-  ref: ForwardedRef<HTMLTableElement>
+  ref: ForwardedRef<HTMLTableElement>,
 ) => ReactElement | null
 
-const TableComponent:TableComponent<any> = (
+const TableComponent: TableComponent<any> = (
   props, ref,
-) =>{
+) => {
   const { columns, data } = props
   if (columns == undefined || data == undefined) {
     return RenderDirectTable(props, ref)
@@ -52,7 +52,7 @@ const TableComponent:TableComponent<any> = (
 
 function RenderDirectTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
-  ref: ForwardedRef<HTMLTableElement>
+  ref: ForwardedRef<HTMLTableElement>,
 ): ReactElement {
   const {
     size = "medium",
@@ -108,7 +108,7 @@ function RenderDirectTable<D extends TableData, TValue>(
 
 function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
-  ref: ForwardedRef<HTMLTableElement>
+  ref: ForwardedRef<HTMLTableElement>,
 ): ReactElement {
   const {
     size = "medium",
