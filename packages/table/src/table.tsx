@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react"
+import { ForwardedRef, forwardRef, ReactElement, useState } from "react"
 import { TableContextProps, TableProps } from "./interface"
 import {
   applyBorderedStyle,
@@ -34,19 +34,25 @@ import { rankItem } from "@tanstack/match-sorter-utils"
 import { Spin } from "@illa-design/spin"
 import { Empty } from "@illa-design/empty"
 
-export function Table<D extends TableData, TValue>(
+type TableComponent<D extends TableData, TValue=any> = (
   props: TableProps<D, TValue>,
-) {
+  ref: ForwardedRef<HTMLTableElement>
+) => ReactElement | null
+
+const TableComponent:TableComponent<any> = (
+  props, ref,
+) =>{
   const { columns, data } = props
   if (columns == undefined || data == undefined) {
-    return RenderDirectTable(props)
+    return RenderDirectTable(props, ref)
   } else {
-    return RenderDataDrivenTable(props)
+    return RenderDataDrivenTable(props, ref)
   }
 }
 
 function RenderDirectTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
+  ref: ForwardedRef<HTMLTableElement>
 ): ReactElement {
   const {
     size = "medium",
@@ -88,6 +94,7 @@ function RenderDirectTable<D extends TableData, TValue>(
       <Spin loading={loading}>
         <TableContext.Provider value={contextProps}>
           <table
+            ref={ref}
             css={applyTableStyle(tableLayout)}
             {...deleteCssProps(otherProps)}
           >
@@ -101,6 +108,7 @@ function RenderDirectTable<D extends TableData, TValue>(
 
 function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
+  ref: ForwardedRef<HTMLTableElement>
 ): ReactElement {
   const {
     size = "medium",
@@ -172,6 +180,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       <Spin loading={loading} css={spinStyle}>
         <TableContext.Provider value={contextProps}>
           <table
+            ref={ref}
             css={applyTableStyle(tableLayout)}
             {...deleteCssProps(otherProps)}
           >
@@ -288,5 +297,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     </div>
   )
 }
+
+export const Table = forwardRef(TableComponent)
 
 Table.displayName = "Table"
