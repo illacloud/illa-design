@@ -52,6 +52,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       mask = true,
       confirmLoading,
       title,
+      withoutLine,
       alignCenter = true,
       maskClosable = true,
       hideCancel,
@@ -124,7 +125,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
       const element = (
         <RemoveScroll>
           {title && (
-            <div css={applyModalHeader(simple, showCloseIcon)}>
+            <div css={applyModalHeader(simple, showCloseIcon, withoutLine)}>
               <div css={applyModalTitle(simple)}>{title}</div>
             </div>
           )}
