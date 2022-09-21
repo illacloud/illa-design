@@ -172,11 +172,13 @@ export const Trigger: FC<TriggerProps> = (props) => {
           >
             {closeContent}
           </div>
-          <TriangleTop
-            w="8px"
-            h="4px"
-            css={applyTriangleStyle(colorScheme, placement)}
-          />
+          {showArrow && (
+            <TriangleTop
+              w="8px"
+              h="4px"
+              css={applyTriangleStyle(colorScheme, placement)}
+            />
+          )}
         </div>
       )
       break
@@ -185,11 +187,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "bottom-end":
       centerNode = (
         <div css={applyVerticalContainer}>
-          <TriangleBottom
-            w="8px"
-            h="4px"
-            css={applyTriangleStyle(colorScheme, placement)}
-          />
+          {showArrow && (
+            <TriangleBottom
+              w="8px"
+              h="4px"
+              css={applyTriangleStyle(colorScheme, placement)}
+            />)}
           <div
             ref={tipsContainerRef}
             css={applyTipsText(
@@ -210,11 +213,13 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "right-end":
       centerNode = (
         <div css={applyHorizontalContainer}>
-          <TriangleRight
-            w="4px"
-            h="8px"
-            css={applyTriangleStyle(colorScheme, placement)}
-          />
+          {showArrow && (
+            <TriangleRight
+              w="4px"
+              h="8px"
+              css={applyTriangleStyle(colorScheme, placement)}
+            />
+          )}
           <div
             ref={tipsContainerRef}
             css={applyTipsText(
@@ -247,11 +252,13 @@ export const Trigger: FC<TriggerProps> = (props) => {
           >
             {closeContent}
           </div>
-          <TriangleLeft
-            w="4px"
-            h="8px"
-            css={applyTriangleStyle(colorScheme, placement)}
-          />
+          {showArrow && (
+            <TriangleLeft
+              w="4px"
+              h="8px"
+              css={applyTriangleStyle(colorScheme, placement)}
+            />
+          )}
         </div>
       )
       break
