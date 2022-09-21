@@ -8,7 +8,7 @@ import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
 import { Column, ColumnDef } from "@tanstack/react-table"
 import { EmptyProps } from "@illa-design/empty"
-import { ColumnSort } from "@tanstack/table-core"
+import { ColumnFiltersState, ColumnSort, OnChangeFn, PaginationState, SortingState } from "@tanstack/table-core"
 
 export type TableSize = "small" | "medium" | "large"
 
@@ -37,6 +37,9 @@ export interface TableProps<D extends TableData, TValue>
   disableSortBy?: boolean
   loading?: boolean
   emptyProps?: EmptyProps
+  onSortingChange?: OnChangeFn<SortingState>
+  onPaginationChange?: OnChangeFn<PaginationState>
+  onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>;
 }
 
 export interface TableContextProps {
@@ -51,7 +54,8 @@ export interface TableContextProps {
 
 export interface TBodyProps
   extends HTMLAttributes<HTMLTableSectionElement>,
-    BoxProps {}
+    BoxProps {
+}
 
 export interface TrProps extends HTMLAttributes<HTMLTableRowElement>, BoxProps {
   hoverable?: boolean
@@ -69,7 +73,8 @@ export interface TdProps
 
 export interface TFootProps
   extends HTMLAttributes<HTMLTableSectionElement>,
-    BoxProps {}
+    BoxProps {
+}
 
 export interface THeadProps
   extends HTMLAttributes<HTMLTableSectionElement>,

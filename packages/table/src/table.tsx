@@ -33,7 +33,6 @@ import {
 import { rankItem } from "@tanstack/match-sorter-utils"
 import { Spin } from "@illa-design/spin"
 import { Empty } from "@illa-design/empty"
-import { isObject } from "@illa-design/system"
 
 export function Table<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -121,6 +120,9 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     showHeader = true,
     emptyProps,
     defaultSort = [],
+    onSortingChange,
+    onPaginationChange,
+    onColumnFiltersChange,
     ...otherProps
   } = props
 
@@ -162,9 +164,16 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       columnFilters,
       sorting,
     },
+    onPaginationChange,
     enableSorting: !disableSortBy,
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
+    onSortingChange: (columnSort) => {
+      setSorting(columnSort)
+      onSortingChange?.(columnSort)
+    },
+    onColumnFiltersChange: (columnFilter) => {
+      setColumnFilters(columnFilter)
+      onColumnFiltersChange?.(columnFilter)
+    },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   })
