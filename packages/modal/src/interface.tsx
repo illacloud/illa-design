@@ -27,6 +27,7 @@ export interface ModalProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "title">,
     BoxProps {
   visible?: boolean
+  withoutLine?: boolean
   withoutPadding?: boolean
   confirmLoading?: boolean
   mask?: boolean
