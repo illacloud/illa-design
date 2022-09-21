@@ -7,7 +7,7 @@ import { applyBgHoverStyle, applyNormalStyle } from "./style"
 export const Tr = forwardRef<HTMLTableRowElement, TrProps>((props, ref) => {
   const { hoverable, ...otherProps } = props
   const context = useContext(TableContext)
-
+  console.log({hoverable})
   return (
     <tr
       css={[

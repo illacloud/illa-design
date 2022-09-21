@@ -60,27 +60,65 @@ export const Basic: Story<TableProps<DemoData, string>> = (args) => {
 }
 
 interface DemoData extends TableData {
-  col1: string
-  col2: string
+  name: string
+  company: string
+  phone: string
+  address: string
 }
 
 export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
   const data = useMemo(
-    () => [
-      {
-        col1: "A",
-        col2: "D",
-      } as DemoData,
-      {
-        col1: "C",
-        col2: "F",
-        disableRowSelect: true,
-      } as DemoData,
-      {
-        col1: "B",
-        col2: "E",
-      } as DemoData,
-    ],
+    () => [{
+      "name": "Gerard Gislason",
+      "company": "Ameliorated explicit open system",
+      "phone": "(701) 882-0009 x344",
+      "address": "2741 Terry Glen Apt. 601",
+    }, {
+      "name": "Anne Lockman",
+      "company": "Customizable explicit solution",
+      "phone": "689.992.6307",
+      "address": "191 Schimmel Cliff Apt. 474",
+    }, {
+      "name": "Sue Hamill",
+      "company": "Proactive mission-critical open architecture",
+      "phone": "(686) 565-4880",
+      "address": "27002 Wilfredo Hill Suite 824",
+    }, {
+      "name": "Rosalie Keebler",
+      "company": "De-engineered bi-directional hardware",
+      "phone": "1-379-349-3046 x439",
+      "address": "29436 Keebler RestSuite 320",
+    }, {
+      "name": "Mrs. Florence Rohan I",
+      "company": "Customer-focused client-server budgetary management",
+      "phone": "1-718-234-7813 x1812",
+      "address": "2188 Brakus Islands Apt. 031",
+    }, {
+      "name": "Stacey Little",
+      "company": "Distributed interactive monitoring",
+      "phone": "(700) 403-5346",
+      "address": "47653 Reinger Row Apt. 480",
+    }, {
+      "name": "Kristie Zemlak",
+      "company": "Synchronised context-sensitive implementation",
+      "phone": "698-202-3176 x8337",
+      "address": "5700 Isac Spurs Suite 919",
+    }, {
+      "name": "Rhonda Torphy PhD",
+      "company": "User-friendly responsive hardware",
+      "phone": "470-744-4824 x376",
+      "address": "9826 Vincenzo Land Apt. 616",
+    }, {
+      "name": "Elizabeth Franecki",
+      "company": "Compatible upward-trending system engine",
+      "phone": "506-644-1590",
+      "address": "9316 Manuel Lodge Apt. 678",
+    }, {
+      "name": "Tasha Rohan",
+      "company": "Cloned scalable website",
+      "phone": "983.587.1143",
+      "address": "0434 Jermey Street Suite 577",
+    }],
     [],
   )
 
@@ -90,33 +128,42 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         header: "Common",
         columns: [
           {
-            header: "Header 1",
-            accessorKey: "col1", // accessor is the "key" in the data
+            "header": "name",
+            "accessorKey": "name", // accessor is the "key" in the data
           },
           {
-            header: "Header 2",
-            accessorKey: "col2",
+            "header": "company",
+            "accessorKey": "company",
+          },
+          {
+            "header": "phone",
+            "accessorKey": "phone",
+          },
+          {
+            "header": "address",
+            "accessorKey": "address",
           },
         ],
       },
     ]
     return c
   }, [])
-  return <Table w="100px" h="160px" data={data} columns={columns} {...args} />
+  return <Table data={data} columns={columns} {...args} />
+
 }
 
 export const NoDataTable: Story<TableProps<DemoData, string>> = (args) => {
   const columns = useMemo(() => {
     const c: ColumnDef<DemoData>[] = [
-        {
-          header: "Header 1",
-          accessorKey: "col1", // accessor is the "key" in the data
-        },
-        {
-          header: "Header 2",
-          accessorKey: "col2",
-        },
-      ]
+      {
+        header: "Header 1",
+        accessorKey: "col1", // accessor is the "key" in the data
+      },
+      {
+        header: "Header 2",
+        accessorKey: "col2",
+      },
+    ]
     return c
   }, [])
   return <div>

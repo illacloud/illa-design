@@ -3,7 +3,6 @@ import { TdProps } from "./interface"
 import {
   applyBorderStyle,
   applyContentContainer,
-  applyNormalBg,
   applyNormalStyle,
   applySizeStyle,
 } from "./style"
@@ -33,7 +32,6 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
     return (
       <td
         css={css(
-          applyNormalBg(),
           applyNormalStyle(),
           applySizeStyle(size ?? tableContext?.size ?? "medium"),
           applyBorderStyle(
