@@ -68,57 +68,68 @@ interface DemoData extends TableData {
 
 export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
   const data = useMemo(
-    () => [{
-      "name": "Gerard Gislason",
-      "company": "Ameliorated explicit open system",
-      "phone": "(701) 882-0009 x344",
-      "address": "2741 Terry Glen Apt. 601",
-    }, {
-      "name": "Anne Lockman",
-      "company": "Customizable explicit solution",
-      "phone": "689.992.6307",
-      "address": "191 Schimmel Cliff Apt. 474",
-    }, {
-      "name": "Sue Hamill",
-      "company": "Proactive mission-critical open architecture",
-      "phone": "(686) 565-4880",
-      "address": "27002 Wilfredo Hill Suite 824",
-    }, {
-      "name": "Rosalie Keebler",
-      "company": "De-engineered bi-directional hardware",
-      "phone": "1-379-349-3046 x439",
-      "address": "29436 Keebler RestSuite 320",
-    }, {
-      "name": "Mrs. Florence Rohan I",
-      "company": "Customer-focused client-server budgetary management",
-      "phone": "1-718-234-7813 x1812",
-      "address": "2188 Brakus Islands Apt. 031",
-    }, {
-      "name": "Stacey Little",
-      "company": "Distributed interactive monitoring",
-      "phone": "(700) 403-5346",
-      "address": "47653 Reinger Row Apt. 480",
-    }, {
-      "name": "Kristie Zemlak",
-      "company": "Synchronised context-sensitive implementation",
-      "phone": "698-202-3176 x8337",
-      "address": "5700 Isac Spurs Suite 919",
-    }, {
-      "name": "Rhonda Torphy PhD",
-      "company": "User-friendly responsive hardware",
-      "phone": "470-744-4824 x376",
-      "address": "9826 Vincenzo Land Apt. 616",
-    }, {
-      "name": "Elizabeth Franecki",
-      "company": "Compatible upward-trending system engine",
-      "phone": "506-644-1590",
-      "address": "9316 Manuel Lodge Apt. 678",
-    }, {
-      "name": "Tasha Rohan",
-      "company": "Cloned scalable website",
-      "phone": "983.587.1143",
-      "address": "0434 Jermey Street Suite 577",
-    }],
+    () => [
+      {
+        name: "Gerard Gislason",
+        company: "Ameliorated explicit open system",
+        phone: "(701) 882-0009 x344",
+        address: "2741 Terry Glen Apt. 601",
+      },
+      {
+        name: "Anne Lockman",
+        company: "Customizable explicit solution",
+        phone: "689.992.6307",
+        address: "191 Schimmel Cliff Apt. 474",
+      },
+      {
+        name: "Sue Hamill",
+        company: "Proactive mission-critical open architecture",
+        phone: "(686) 565-4880",
+        address: "27002 Wilfredo Hill Suite 824",
+      },
+      {
+        name: "Rosalie Keebler",
+        company: "De-engineered bi-directional hardware",
+        phone: "1-379-349-3046 x439",
+        address: "29436 Keebler RestSuite 320",
+      },
+      {
+        name: "Mrs. Florence Rohan I",
+        company: "Customer-focused client-server budgetary management",
+        phone: "1-718-234-7813 x1812",
+        address: "2188 Brakus Islands Apt. 031",
+      },
+      {
+        name: "Stacey Little",
+        company: "Distributed interactive monitoring",
+        phone: "(700) 403-5346",
+        address: "47653 Reinger Row Apt. 480",
+      },
+      {
+        name: "Kristie Zemlak",
+        company: "Synchronised context-sensitive implementation",
+        phone: "698-202-3176 x8337",
+        address: "5700 Isac Spurs Suite 919",
+      },
+      {
+        name: "Rhonda Torphy PhD",
+        company: "User-friendly responsive hardware",
+        phone: "470-744-4824 x376",
+        address: "9826 Vincenzo Land Apt. 616",
+      },
+      {
+        name: "Elizabeth Franecki",
+        company: "Compatible upward-trending system engine",
+        phone: "506-644-1590",
+        address: "9316 Manuel Lodge Apt. 678",
+      },
+      {
+        name: "Tasha Rohan",
+        company: "Cloned scalable website",
+        phone: "983.587.1143",
+        address: "0434 Jermey Street Suite 577",
+      },
+    ],
     [],
   )
 
@@ -128,20 +139,25 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         header: "Common",
         columns: [
           {
-            "header": "name",
-            "accessorKey": "name", // accessor is the "key" in the data
+            header: "name",
+            accessorKey: "name", // accessor is the "key" in the data
           },
           {
-            "header": "company",
-            "accessorKey": "company",
+            header: "company",
+            accessorKey: "company",
           },
           {
-            "header": "phone",
-            "accessorKey": "phone",
+            header: "phone",
+            accessorKey: "phone",
           },
           {
-            "header": "address",
-            "accessorKey": "address",
+            header: "address",
+            accessorKey: "address",
+            cell: (props) => {
+              console.log("cell", props, props.getValue(), props.renderValue())
+              return props.getValue()
+            },
+            enableSorting: false,
           },
         ],
       },
@@ -149,7 +165,6 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
     return c
   }, [])
   return <Table data={data} columns={columns} {...args} />
-
 }
 
 export const NoDataTable: Story<TableProps<DemoData, string>> = (args) => {
@@ -166,8 +181,10 @@ export const NoDataTable: Story<TableProps<DemoData, string>> = (args) => {
     ]
     return c
   }, [])
-  return <div>
-    <Table data={[]} columns={[]} {...args} />
-    <Table data={[]} columns={columns} {...args} />
-  </div>
+  return (
+    <div>
+      <Table data={[]} columns={[]} {...args} />
+      <Table data={[]} columns={columns} {...args} />
+    </div>
+  )
 }

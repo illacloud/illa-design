@@ -115,7 +115,9 @@ export function applyNormalBg(): SerializedStyles {
 export function applyBgHoverStyle(hoverable?: boolean): SerializedStyles {
   const hoverableStyle = css`
     &:hover {
-      background-color: ${chroma(globalColor(`--${illaPrefix}-grayBlue-09`)).alpha(0.5).hex()};
+      background-color: ${chroma(globalColor(`--${illaPrefix}-grayBlue-09`))
+        .alpha(0.5)
+        .hex()};
     }
   `
   return css`

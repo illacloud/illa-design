@@ -67,17 +67,17 @@ const SelectAddon: FC<{
       css(
         addon === "before"
           ? {
-            borderRight: 0,
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: 0,
-            ":hover": { borderRight: 0 },
-          }
+              borderRight: 0,
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+              ":hover": { borderRight: 0 },
+            }
           : {
-            borderLeft: 0,
-            borderTopLeftRadius: 0,
-            borderBottomLeftRadius: 0,
-            ":hover": { borderLeft: 0 },
-          },
+              borderLeft: 0,
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+              ":hover": { borderLeft: 0 },
+            },
       ),
       buttonProps?._css,
     ),

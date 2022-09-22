@@ -218,9 +218,9 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext(),
-                            )}
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
                           {header.column.getCanSort() &&
                             (header.column.getIsSorted() ? (
                               header.column.getIsSorted() === "desc" ? (
@@ -293,9 +293,9 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                            header.column.columnDef.footer,
-                            header.getContext(),
-                          )}
+                              header.column.columnDef.footer,
+                              header.getContext(),
+                            )}
                       </Th>
                     ))}
                   </Tr>
