@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react"
+import { ReactElement, useEffect, useState } from "react"
 import { TableContextProps, TableProps } from "./interface"
 import {
   applyBorderedStyle,
@@ -119,6 +119,10 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     hoverable,
     showHeader = true,
     emptyProps,
+    defaultSort = [],
+    onSortingChange,
+    onPaginationChange,
+    onColumnFiltersChange,
     ...otherProps
   } = props
 
@@ -132,8 +136,14 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     showFooter,
   } as TableContextProps
 
-  const [sorting, setSorting] = useState<SortingState>([])
+  const [sorting, setSorting] = useState<SortingState>(defaultSort)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+
+  useEffect(() => {
+    if (defaultSort?.length) {
+      setSorting(defaultSort)
+    }
+  }, [defaultSort])
 
   const table = useReactTable({
     data,
@@ -154,9 +164,16 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       columnFilters,
       sorting,
     },
+    onPaginationChange,
     enableSorting: !disableSortBy,
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
+    onSortingChange: (columnSort) => {
+      setSorting(columnSort)
+      onSortingChange?.(columnSort)
+    },
+    onColumnFiltersChange: (columnFilter) => {
+      setColumnFilters(columnFilter)
+      onColumnFiltersChange?.(columnFilter)
+    },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   })

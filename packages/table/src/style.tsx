@@ -1,3 +1,4 @@
+import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { TableAlign, TableLayout, TableSize } from "./interface"
@@ -114,10 +115,13 @@ export function applyNormalBg(): SerializedStyles {
 export function applyBgHoverStyle(hoverable?: boolean): SerializedStyles {
   const hoverableStyle = css`
     &:hover {
-      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+      background-color: ${chroma(globalColor(`--${illaPrefix}-grayBlue-09`))
+        .alpha(0.5)
+        .hex()};
     }
   `
   return css`
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
     ${hoverable ? hoverableStyle : null}
   `
 }

@@ -42,6 +42,7 @@ import {
   TriangleTop,
 } from "./triangle"
 import { css } from "@emotion/react"
+import { applyBoxStyle } from "@illa-design/theme"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -345,9 +346,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <AnimatePresence>
             {finalVisible && (
               <div
-                css={css`
+                css={[css`
                   display: inline-flex;
-                `}
+                `, applyBoxStyle(props)]}
                 {...getFloatingProps({
                   onClick: (e) => {
                     if (closeOnInnerClick) {

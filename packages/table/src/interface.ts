@@ -8,6 +8,13 @@ import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
 import { Column, ColumnDef } from "@tanstack/react-table"
 import { EmptyProps } from "@illa-design/empty"
+import {
+  ColumnFiltersState,
+  ColumnSort,
+  OnChangeFn,
+  PaginationState,
+  SortingState,
+} from "@tanstack/table-core"
 
 export type TableSize = "small" | "medium" | "large"
 
@@ -32,9 +39,13 @@ export interface TableProps<D extends TableData, TValue>
   tableLayout?: TableLayout
   bordered?: boolean
   hoverable?: boolean
+  defaultSort?: ColumnSort[]
   disableSortBy?: boolean
   loading?: boolean
   emptyProps?: EmptyProps
+  onSortingChange?: OnChangeFn<SortingState>
+  onPaginationChange?: OnChangeFn<PaginationState>
+  onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
 }
 
 export interface TableContextProps {

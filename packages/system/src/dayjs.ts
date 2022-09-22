@@ -28,7 +28,7 @@ export function getDayjsValue(
   }
 
   if (Array.isArray(time)) {
-    return time.map((t) => t ? formatValue(t) : t)
+    return time.map((t) => (t ? formatValue(t) : t))
   }
 
   return formatValue(time)
