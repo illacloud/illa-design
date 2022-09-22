@@ -1,5 +1,17 @@
 # @illa-design/back-top
 
+## 1.0.2
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/button@1.0.2
+  - @illa-design/icon@1.0.2
+  - @illa-design/system@1.0.2
+  - @illa-design/theme@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes

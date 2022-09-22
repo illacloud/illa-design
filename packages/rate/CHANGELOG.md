@@ -1,5 +1,17 @@
 # @illa-design/rate
 
+## 1.0.2
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@1.0.2
+  - @illa-design/system@1.0.2
+  - @illa-design/theme@1.0.2
+  - @illa-design/trigger@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @illa-design/config-provider
 
+## 1.0.2
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/system@1.0.2
+  - @illa-design/theme@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes

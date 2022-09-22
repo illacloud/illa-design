@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/space",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Illa Design space.",
   "keywords": [
     "space",
@@ -39,8 +39,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/divider": "1.0.1",
-    "@illa-design/theme": "1.0.1",
-    "@illa-design/system": "1.0.1"
+    "@illa-design/divider": "1.0.2",
+    "@illa-design/theme": "1.0.2",
+    "@illa-design/system": "1.0.2"
   }
 }
