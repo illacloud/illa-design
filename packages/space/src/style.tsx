@@ -6,21 +6,26 @@ export function applyContainer(
   align: SpaceAlign,
   wrap: boolean,
 ): SerializedStyles {
-  let cssDirection: string
+  let cssDirection: SerializedStyles = css``
   switch (direction) {
     case "horizontal":
-      cssDirection = "row"
+      cssDirection = css`
+        flex-direction: row;
+        justify-content: ${align};
+      `
       break
     case "vertical":
-      cssDirection = "column"
+      cssDirection = css`
+        flex-direction: column;
+        align-items: ${align};
+      `
       break
   }
   return css`
     display: inline-flex;
     vertical-align: middle;
-    flex-direction: ${cssDirection};
-    align-items: ${align};
     flex-wrap: ${wrap ? "wrap" : "nowrap"};
+    ${cssDirection};
   `
 }
 

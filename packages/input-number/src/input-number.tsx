@@ -281,7 +281,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
           setIsUserInputting(false)
           onBlur && onBlur(e)
         }}
-        {...deleteCssProps(rest)}
+        {...rest}
       />
     )
   },

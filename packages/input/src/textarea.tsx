@@ -138,7 +138,7 @@ export const TextArea = forwardRef<HTMLSpanElement, TextAreaProps>(
         )
         autoStyle ? setAutoSizeStyle(autoStyle) : null
       }
-    }, [value, defaultValue, placeholder])
+    }, [value, defaultValue, placeholder, autoSize, props.autoSize])
 
     const onClear = () => {
       if (!("value" in props) || !props.value) {
