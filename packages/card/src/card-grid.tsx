@@ -1,8 +1,7 @@
 import { Children, cloneElement, forwardRef, ReactElement } from "react"
 import { CardGridProps } from "./interface"
 import { applyCardGrid } from "./style"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const CardGrid = forwardRef<HTMLDivElement, CardGridProps>(
   (props, ref) => {
@@ -10,7 +9,11 @@ export const CardGrid = forwardRef<HTMLDivElement, CardGridProps>(
     const renderChildren = Children.map(
       children as ReactElement,
       (element: JSX.Element) => {
-        if (element && element.type && element.type.displayName === "Card") {
+        if (
+          element &&
+          element.type &&
+          element.type.displayName === "IllaCard"
+        ) {
           return cloneElement(element, { isGridMode: true })
         }
         return element

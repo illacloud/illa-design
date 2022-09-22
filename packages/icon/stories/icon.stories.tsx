@@ -122,6 +122,10 @@ import {
   WindowRightIcon,
   HeartOutlineIcon,
   StartOutlineIcon,
+  BarChartIcon,
+  LineChartIcon,
+  ScatterPlotIcon,
+  PieChartIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -577,4 +581,17 @@ export const HeartOutline: Story<IconProps> = (props: IconProps) => (
 
 export const StarOutLine: Story<IconProps> = (props: IconProps) => (
   <StartOutlineIcon {...props} />
+)
+
+export const BarChart: Story<IconProps> = (props: IconProps) => (
+  <BarChartIcon {...props} />
+)
+export const LineChart: Story<IconProps> = (props: IconProps) => (
+  <LineChartIcon {...props} />
+)
+export const ScatterPointer: Story<IconProps> = (props: IconProps) => (
+  <ScatterPlotIcon {...props} />
+)
+export const PieChart: Story<IconProps> = (props: IconProps) => (
+  <PieChartIcon {...props} />
 )

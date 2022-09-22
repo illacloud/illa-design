@@ -69,6 +69,7 @@ export function applyModal(
 export function applyModalHeader(
   isSimple?: boolean,
   closable?: boolean,
+  withoutLine?: boolean,
 ): SerializedStyles {
   const simpleCss = isSimple
     ? css`
@@ -78,15 +79,30 @@ export function applyModalHeader(
         border: none;
       `
     : ""
+
+  let border = css``
+  if (!withoutLine) {
+    border = css`
+      border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    `
+  }
+
+  const paddingCss = closable
+    ? css`
+        padding: 16px 40px;
+      `
+    : css`
+        padding: 16px;
+      `
+
   return css`
-    padding: 16px;
-    ${closable ? "padding-right:40px" : ""};
+    ${paddingCss};
     width: 100%;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    ${simpleCss}
+    ${border};
+    ${simpleCss};
   `
 }
 
