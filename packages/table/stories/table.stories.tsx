@@ -154,7 +154,6 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
             header: "address",
             accessorKey: "address",
             cell: (props) => {
-              console.log("cell", props, props.getValue(), props.renderValue())
               return props.getValue()
             },
             enableSorting: false,
