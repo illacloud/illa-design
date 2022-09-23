@@ -126,6 +126,8 @@ import {
   LineChartIcon,
   ScatterPlotIcon,
   PieChartIcon,
+  LockIcon,
+  UnlockIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -594,4 +596,11 @@ export const ScatterPointer: Story<IconProps> = (props: IconProps) => (
 )
 export const PieChart: Story<IconProps> = (props: IconProps) => (
   <PieChartIcon {...props} />
+)
+export const Lock: Story<IconProps> = (props: IconProps) => (
+  <LockIcon {...props} />
+)
+
+export const Unlock: Story<IconProps> = (props: IconProps) => (
+  <UnlockIcon {...props} />
 )
