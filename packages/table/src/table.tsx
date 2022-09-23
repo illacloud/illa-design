@@ -119,6 +119,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     hoverable,
     showHeader = true,
     emptyProps,
+    columnVisibility,
     defaultSort = [],
     onSortingChange,
     onPaginationChange,
@@ -161,6 +162,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       },
     },
     state: {
+      columnVisibility,
       columnFilters,
       sorting,
     },

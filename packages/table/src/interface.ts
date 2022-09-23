@@ -14,6 +14,7 @@ import {
   OnChangeFn,
   PaginationState,
   SortingState,
+  VisibilityState,
 } from "@tanstack/table-core"
 
 export type TableSize = "small" | "medium" | "large"
@@ -43,6 +44,7 @@ export interface TableProps<D extends TableData, TValue>
   disableSortBy?: boolean
   loading?: boolean
   emptyProps?: EmptyProps
+  columnVisibility?: VisibilityState;
   onSortingChange?: OnChangeFn<SortingState>
   onPaginationChange?: OnChangeFn<PaginationState>
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
