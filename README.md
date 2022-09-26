@@ -13,7 +13,7 @@
 
 ![cover](https://cdn.illafamily.com/design-cover.png)
 
-[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/2tGBuJkgd6)
+[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/zKf3WKCufR)
 [![storybook](https://cdn.illafamily.com/storybook.svg)](https://design.illafamily.com)
 [![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
 [![license](https://img.shields.io/github/license/illa-family/illa-design)](./LICENSE)
