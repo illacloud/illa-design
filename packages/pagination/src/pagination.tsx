@@ -53,8 +53,6 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       defaultValue: defaultPageSize,
       value: pageSize,
     })
-    const curPageVal = currentPage ?? curPage
-    const itemCountVal = pageSize ?? itemCount
 
     const configProviderProps = useContext<ConfigProviderProps>(
       ConfigProviderContext,
