@@ -18,6 +18,7 @@ import { JumperInput } from "./jump-input"
 import { PageSizeSelector } from "./page-size-selector"
 import { SimplePagination } from "./simple-pagination"
 import { PaginationProps } from "./interface"
+import { useMergeValue } from "@illa-design/system"
 
 export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
   (props, ref) => {
@@ -44,8 +45,14 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       ...otherProps
     } = props
 
-    const [curPage, setCurPage] = useState(defaultCurrent - 1)
-    const [itemCount, setItemCount] = useState(defaultPageSize)
+    const [curPage, setCurPage] = useMergeValue(0, {
+      defaultValue: defaultCurrent - 1,
+      value: currentPage,
+    })
+    const [itemCount, setItemCount] = useMergeValue(10, {
+      defaultValue: defaultPageSize,
+      value: pageSize,
+    })
     const curPageVal = currentPage ?? curPage
     const itemCountVal = pageSize ?? itemCount
 
@@ -60,16 +67,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     if (total <= 0) {
       pageSum = 0
     } else {
-      pageSum = Math.ceil(total / itemCountVal)
+      pageSum = Math.ceil(total / itemCount)
     }
-
-    useEffect(() => {
-      onPageSizeChange?.(itemCountVal, curPageVal + 1)
-    }, [itemCount])
-
-    useEffect(() => {
-      onChange?.(curPageVal + 1, itemCountVal)
-    }, [curPage])
 
     const prevDisable = curPage == 0 || disabled || pageSum == 0
     const nextDisable = curPage == pageSum - 1 || disabled || pageSum == 0
@@ -91,8 +90,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       totalElement = (
         <div css={totalTextCss}>
           {showTotal(total, [
-            curPageVal * itemCountVal + 1,
-            (curPageVal + 1) * itemCountVal,
+            curPage * itemCount + 1,
+            (curPage + 1) * itemCount,
           ])}
         </div>
       )
@@ -101,6 +100,17 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     const _preIcon: ReactNode = prevIcon ?? <PreIcon />
     const _nextIcon: ReactNode = nextIcon ?? <NextIcon />
     const _moreIcon: ReactNode = moreIcon ?? <MoreIcon />
+
+    const changeCurrentPage = (currentPage: number) => {
+      if (!("currentPage" in props)) {
+        setCurPage(currentPage)
+      }
+    }
+    const changePageSize = (pageSize: number) => {
+      if (!("pageSize" in props)) {
+        setItemCount(pageSize)
+      }
+    }
 
     return (
       <div
@@ -117,7 +127,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
             size={size}
             onCurrentChange={(pageNum) => {
               if (pageNum == 0) return
-              setCurPage(pageNum - 1)
+              changeCurrentPage(pageNum - 1)
+              onChange?.(pageNum - 1, itemCount)
             }}
             nextIcon={_nextIcon}
             prevIcon={_preIcon}
@@ -129,7 +140,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
               css={applyDefaultItemWithMarginCss(size, prevDisable)}
               onClick={() => {
                 if (prevDisable) return
-                setCurPage(curPage - 1)
+                changeCurrentPage(curPage - 1)
+                onChange?.(curPage - 1, itemCount)
               }}
             >
               {_preIcon}
@@ -142,7 +154,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
                 wholeDisable={disabled}
                 size={size}
                 onCurPageIndexChanged={(index) => {
-                  setCurPage(index)
+                  changeCurrentPage(index)
+                  onChange?.(index, itemCount)
                 }}
               />
             )}
@@ -150,7 +163,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
               css={applyDefaultItemCss(size, nextDisable)}
               onClick={() => {
                 if (nextDisable) return
-                setCurPage(curPage + 1)
+                changeCurrentPage(curPage + 1)
+                onChange?.(curPage + 1, itemCount)
               }}
             >
               {_nextIcon}
@@ -164,9 +178,11 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
             size={size}
             onEnterPress={(pageNum) => {
               if (pageNum > pageSum - 1) {
-                setCurPage(pageSum - 1)
+                changeCurrentPage(pageSum - 1)
+                onChange?.(pageSum - 1, itemCount)
               } else {
-                setCurPage(pageNum - 1)
+                changeCurrentPage(pageNum - 1)
+                onChange?.(pageNum - 1, itemCount)
               }
             }}
           />
@@ -177,8 +193,10 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
             wholeDisable={disabled}
             size={size}
             onPageSizeSelected={(pageSize) => {
-              setItemCount(pageSize)
-              setCurPage(0)
+              changePageSize(pageSize)
+              changeCurrentPage(0)
+              onPageSizeChange?.(pageSize, 0)
+              onChange?.(0, pageSize)
             }}
           />
         )}

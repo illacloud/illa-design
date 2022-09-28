@@ -47,7 +47,8 @@ export interface TableProps<D extends TableData, TValue>
   loading?: boolean
   emptyProps?: EmptyProps
   pagination?: boolean | PaginationProps
-  rowSelection?: RowSelectionProps<D>
+  multiRowSelection?: boolean
+  checkAll?: boolean
   columnVisibility?: VisibilityState
   onSortingChange?: OnChangeFn<SortingState>
   onPaginationChange?: OnChangeFn<PaginationState>
@@ -57,7 +58,6 @@ export interface TableProps<D extends TableData, TValue>
 
 export interface RowSelectionProps<D = any> {
   checkAll?: boolean
-  onChange?: OnChangeFn<RowSelectionState>
 }
 
 export interface TableContextProps {

@@ -22,6 +22,7 @@ import {
   ColumnFiltersState,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   SortingState,
   useReactTable,
@@ -37,6 +38,7 @@ import { Empty } from "@illa-design/empty"
 import { Pagination } from "@illa-design/pagination"
 import { isObject } from "@illa-design/system"
 import { Checkbox } from "@illa-design/checkbox"
+import { PaginationState } from "@tanstack/table-core"
 
 export function Table<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -125,7 +127,8 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     emptyProps,
     columnVisibility,
     pagination,
-    rowSelection,
+    multiRowSelection,
+    checkAll = true,
     defaultSort = [],
     onSortingChange,
     onPaginationChange,
@@ -146,11 +149,19 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
 
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [rowSelection, setRowSelection] = useState({})
+  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  })
 
-  const tablePageOption = {
-    pageIndex: (isObject(pagination) ? pagination.currentPage : 10) ?? 10,
-    pageSize: (isObject(pagination) ? pagination.pageSize : 10) ?? 10,
-  }
+  const currentPagination = useMemo(
+    () => ({
+      pageIndex,
+      pageSize,
+    }),
+    [pageIndex, pageSize],
+  )
 
   useEffect(() => {
     if (defaultSort?.length) {
@@ -159,34 +170,42 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
   }, [defaultSort])
 
   const currentColumns = useMemo(() => {
-    if (rowSelection) {
+    if (multiRowSelection) {
       const rowSelectionColumn: ColumnDef<D, TValue>[] = [
         {
           id: "select",
-          header: !rowSelection?.checkAll
-            ? ({ table }) => (
-                <Checkbox
-                  checked={table.getIsAllRowsSelected()}
-                  indeterminate={table.getIsSomeRowsSelected()}
-                  onChange={(v, event) => {
-                    table?.getToggleAllRowsSelectedHandler()?.(event)
-                  }}
-                />
-              )
+          header: checkAll
+            ? ({ table }) => {
+                return (
+                  <Checkbox
+                    {...{
+                      checked: table.getIsAllRowsSelected(),
+                      indeterminate: table.getIsSomeRowsSelected(),
+                      onChange: (v, event) => {
+                        table?.getToggleAllRowsSelectedHandler()?.(event)
+                      },
+                    }}
+                  />
+                )
+              }
             : "",
-          cell: ({ row }) => (
-            <Checkbox
-              checked={row.getIsSelected()}
-              indeterminate={row.getIsSomeSelected()}
-              onChange={row.getToggleSelectedHandler()}
-            />
-          ),
+          cell: ({ row }) => {
+            return (
+              <Checkbox
+                {...{
+                  checked: row.getIsSelected(),
+                  indeterminate: row.getIsSomeSelected(),
+                  onChange: row.getToggleSelectedHandler(),
+                }}
+              />
+            )
+          },
         },
       ]
       return rowSelectionColumn.concat(columns)
     }
     return columns
-  }, [columns, rowSelection])
+  }, [columns, multiRowSelection])
 
   const table = useReactTable({
     data,
@@ -207,10 +226,14 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       columnVisibility,
       columnFilters,
       sorting,
-      pagination: tablePageOption,
+      rowSelection,
+      pagination: currentPagination,
     },
-    onPaginationChange,
     enableSorting: !disableSortBy,
+    onPaginationChange: (pagination) => {
+      setPagination(pagination)
+      onPaginationChange?.(pagination)
+    },
     onSortingChange: (columnSort) => {
       setSorting(columnSort)
       onSortingChange?.(columnSort)
@@ -219,9 +242,13 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       setColumnFilters(columnFilter)
       onColumnFiltersChange?.(columnFilter)
     },
-    onRowSelectionChange,
+    onRowSelectionChange: (rowSelection) => {
+      setRowSelection(rowSelection)
+      onRowSelectionChange?.(rowSelection)
+    },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   })
 
   return (
@@ -319,7 +346,17 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
               {pagination ? (
                 <tr>
                   <td>
-                    <Pagination pageSize={table.getPageCount()} simple />
+                    <Pagination
+                      total={data.length}
+                      pageSize={pageSize}
+                      currentPage={pageIndex}
+                      hideOnSinglePage={false}
+                      simple
+                      onChange={(pageNumber: number, pageSize: number) => {
+                        setPagination({ pageIndex: pageNumber, pageSize })
+                        table.setPageIndex(pageNumber)
+                      }}
+                    />
                   </td>
                 </tr>
               ) : null}
