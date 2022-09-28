@@ -13,9 +13,11 @@ import {
   ColumnSort,
   OnChangeFn,
   PaginationState,
+  RowSelectionState,
   SortingState,
   VisibilityState,
 } from "@tanstack/table-core"
+import { PaginationProps } from "@illa-design/pagination"
 
 export type TableSize = "small" | "medium" | "large"
 
@@ -44,10 +46,18 @@ export interface TableProps<D extends TableData, TValue>
   disableSortBy?: boolean
   loading?: boolean
   emptyProps?: EmptyProps
-  columnVisibility?: VisibilityState;
+  pagination?: boolean | PaginationProps
+  rowSelection?: RowSelectionProps<D>
+  columnVisibility?: VisibilityState
   onSortingChange?: OnChangeFn<SortingState>
   onPaginationChange?: OnChangeFn<PaginationState>
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
+  onRowSelectionChange?: OnChangeFn<RowSelectionState>
+}
+
+export interface RowSelectionProps<D = any> {
+  checkAll?: boolean
+  onChange?: OnChangeFn<RowSelectionState>
 }
 
 export interface TableContextProps {

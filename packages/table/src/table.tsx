@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from "react"
+import { ReactElement, useEffect, useMemo, useState } from "react"
 import { TableContextProps, TableProps } from "./interface"
 import {
   applyBorderedStyle,
@@ -18,6 +18,7 @@ import { TFoot } from "./tfoot"
 import { TableData } from "./table-data"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import {
+  ColumnDef,
   ColumnFiltersState,
   flexRender,
   getCoreRowModel,
@@ -33,6 +34,9 @@ import {
 import { rankItem } from "@tanstack/match-sorter-utils"
 import { Spin } from "@illa-design/spin"
 import { Empty } from "@illa-design/empty"
+import { Pagination } from "@illa-design/pagination"
+import { isObject } from "@illa-design/system"
+import { Checkbox } from "@illa-design/checkbox"
 
 export function Table<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -120,10 +124,13 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     showHeader = true,
     emptyProps,
     columnVisibility,
+    pagination,
+    rowSelection,
     defaultSort = [],
     onSortingChange,
     onPaginationChange,
     onColumnFiltersChange,
+    onRowSelectionChange,
     ...otherProps
   } = props
 
@@ -140,15 +147,50 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
+  const tablePageOption = {
+    pageIndex: (isObject(pagination) ? pagination.currentPage : 10) ?? 10,
+    pageSize: (isObject(pagination) ? pagination.pageSize : 10) ?? 10,
+  }
+
   useEffect(() => {
     if (defaultSort?.length) {
       setSorting(defaultSort)
     }
   }, [defaultSort])
 
+  const currentColumns = useMemo(() => {
+    if (rowSelection) {
+      const rowSelectionColumn: ColumnDef<D, TValue>[] = [
+        {
+          id: "select",
+          header: !rowSelection?.checkAll
+            ? ({ table }) => (
+                <Checkbox
+                  checked={table.getIsAllRowsSelected()}
+                  indeterminate={table.getIsSomeRowsSelected()}
+                  onChange={(v, event) => {
+                    table?.getToggleAllRowsSelectedHandler()?.(event)
+                  }}
+                />
+              )
+            : "",
+          cell: ({ row }) => (
+            <Checkbox
+              checked={row.getIsSelected()}
+              indeterminate={row.getIsSomeSelected()}
+              onChange={row.getToggleSelectedHandler()}
+            />
+          ),
+        },
+      ]
+      return rowSelectionColumn.concat(columns)
+    }
+    return columns
+  }, [columns, rowSelection])
+
   const table = useReactTable({
     data,
-    columns,
+    columns: currentColumns,
     filterFns: {
       fuzzy: (row, columnId, value, addMeta) => {
         // Rank the item
@@ -165,6 +207,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       columnVisibility,
       columnFilters,
       sorting,
+      pagination: tablePageOption,
     },
     onPaginationChange,
     enableSorting: !disableSortBy,
@@ -176,6 +219,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       setColumnFilters(columnFilter)
       onColumnFiltersChange?.(columnFilter)
     },
+    onRowSelectionChange,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   })
@@ -241,13 +285,6 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
               </Thead>
             )}
             <TBody>
-              {table.getRowModel().rows.length ? null : columns?.length ? (
-                <tr>
-                  <td colSpan={99} style={{ textAlign: "center" }}>
-                    <Empty {...emptyProps} />
-                  </td>
-                </tr>
-              ) : null}
               {table.getRowModel().rows.map((row) => (
                 <Tr key={row.id} hoverable>
                   {row.getVisibleCells().map((cell) => (
@@ -272,6 +309,20 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                   ))}
                 </Tr>
               ))}
+              {table.getRowModel().rows.length ? null : columns?.length ? (
+                <tr>
+                  <td colSpan={99} style={{ textAlign: "center" }}>
+                    <Empty {...emptyProps} />
+                  </td>
+                </tr>
+              ) : null}
+              {pagination ? (
+                <tr>
+                  <td>
+                    <Pagination pageSize={table.getPageCount()} simple />
+                  </td>
+                </tr>
+              ) : null}
             </TBody>
             {showFooter && (
               <TFoot>
