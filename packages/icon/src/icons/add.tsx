@@ -7,7 +7,7 @@ export const AddIcon = createIcon({
     <path
       fillRule="evenodd"
       clipRule="evenodd"
-      d="M8.5 3a1 1 0 0 0-1 1v3h-3a1 1 0 0 0 0 2h3v3a1 1 0 1 0 2 0V9h3a1 1 0 1 0 0-2h-3V4a1 1 0 0 0-1-1z"
+      d="M8 3C7.44772 3 7 3.44772 7 4V7H4C3.44772 7 3 7.44772 3 8C3 8.55228 3.44772 9 4 9H7V12C7 12.5523 7.44772 13 8 13C8.55228 13 9 12.5523 9 12V9H12C12.5523 9 13 8.55228 13 8C13 7.44772 12.5523 7 12 7H9V4C9 3.44772 8.55228 3 8 3Z"
       fill="currentColor"
     />
   ),
