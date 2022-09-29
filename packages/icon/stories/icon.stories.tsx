@@ -128,6 +128,7 @@ import {
   PieChartIcon,
   LockIcon,
   UnlockIcon,
+  DownloadIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -603,4 +604,8 @@ export const Lock: Story<IconProps> = (props: IconProps) => (
 
 export const Unlock: Story<IconProps> = (props: IconProps) => (
   <UnlockIcon {...props} />
+)
+
+export const Download: Story<IconProps> = (props: IconProps) => (
+  <DownloadIcon {...props} />
 )
