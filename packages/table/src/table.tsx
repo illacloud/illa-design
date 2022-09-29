@@ -1,6 +1,7 @@
 import { ReactElement, useEffect, useMemo, useState } from "react"
 import { TableContextProps, TableProps } from "./interface"
 import {
+  actionButtonStyle,
   applyBorderedStyle,
   applyContainerStyle,
   applyHeaderIconLeft,
@@ -40,6 +41,9 @@ import { Pagination } from "@illa-design/pagination"
 import { isNumber } from "@illa-design/system"
 import { Checkbox } from "@illa-design/checkbox"
 import { PaginationState } from "@tanstack/table-core"
+import { downloadDataAsCSV, transformTableIntoCsvData } from "./utils"
+import { DownloadIcon } from "@illa-design/icon"
+import { Button } from "@illa-design/button"
 
 export function Table<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -131,6 +135,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     pagination,
     multiRowSelection,
     checkAll = true,
+    download,
     defaultSort = [],
     onSortingChange,
     onPaginationChange,
@@ -263,7 +268,15 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       })
     }
   }, [pagination])
-  console.log(table.getCoreRowModel(), "table")
+
+  const downloadTableDataAsCsv = () => {
+    const csvData = transformTableIntoCsvData(table, multiRowSelection)
+    downloadDataAsCSV({
+      csvData: csvData,
+      delimiter: ",",
+      fileName: `table.csv`,
+    })
+  }
 
   return (
     <div
@@ -392,8 +405,17 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
           </table>
         </TableContext.Provider>
       </Spin>
-      {overFlow === "pagination" ? (
+      {overFlow === "pagination" || download ? (
         <div css={applyToolBarStyle(bordered)}>
+          <div css={actionButtonStyle}>
+            {download ? (
+              <Button
+                variant={"text"}
+                leftIcon={<DownloadIcon size={"16px"} />}
+                onClick={downloadTableDataAsCsv}
+              />
+            ) : null}
+          </div>
           {overFlow === "pagination" ? (
             <Pagination
               total={data.length}

@@ -51,6 +51,7 @@ export interface TableProps<D extends TableData, TValue>
   pagination?: PaginationProps
   multiRowSelection?: boolean
   checkAll?: boolean
+  download?: boolean
   columnVisibility?: VisibilityState
   onSortingChange?: OnChangeFn<SortingState>
   onPaginationChange?: OnChangeFn<PaginationState>

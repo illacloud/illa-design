@@ -176,6 +176,7 @@ export function applyBorderedStyle(bordered?: boolean): SerializedStyles {
 
 export function applyToolBarStyle(bordered?: boolean): SerializedStyles {
   return css`
+    position: relative;
     text-align: center;
     padding: 8px 0;
     ${bordered
@@ -183,6 +184,11 @@ export function applyToolBarStyle(bordered?: boolean): SerializedStyles {
       : ""};
   `
 }
+
+export const actionButtonStyle = css`
+  position: absolute;
+  right: 16px;
+`
 
 export const spinStyle = css`
   width: 100%;
