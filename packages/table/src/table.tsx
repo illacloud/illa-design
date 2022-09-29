@@ -37,7 +37,7 @@ import { rankItem } from "@tanstack/match-sorter-utils"
 import { Spin } from "@illa-design/spin"
 import { Empty } from "@illa-design/empty"
 import { Pagination } from "@illa-design/pagination"
-import { isObject } from "@illa-design/system"
+import { isNumber } from "@illa-design/system"
 import { Checkbox } from "@illa-design/checkbox"
 import { PaginationState } from "@tanstack/table-core"
 
@@ -112,6 +112,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
   const {
     size = "medium",
     tableLayout = "auto",
+    overFlow = "scroll",
     columns = [],
     data = [],
     loading = false,
@@ -163,12 +164,6 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     }),
     [pageIndex, pageSize],
   )
-
-  useEffect(() => {
-    if (defaultSort?.length) {
-      setSorting(defaultSort)
-    }
-  }, [defaultSort])
 
   const currentColumns = useMemo(() => {
     if (multiRowSelection) {
@@ -250,7 +245,25 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    manualPagination: overFlow === "scroll",
   })
+
+  useEffect(() => {
+    if (defaultSort?.length) {
+      setSorting(defaultSort)
+    }
+  }, [defaultSort])
+
+  useEffect(() => {
+    if (pagination) {
+      const { pageSize: _pageSize, currentPage } = pagination
+      setPagination({
+        pageIndex: isNumber(currentPage) ? currentPage : pageIndex,
+        pageSize: isNumber(_pageSize) ? _pageSize : pageSize,
+      })
+    }
+  }, [pagination])
+  console.log(table.getCoreRowModel(), "table")
 
   return (
     <div
@@ -379,21 +392,23 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
           </table>
         </TableContext.Provider>
       </Spin>
-      <div css={applyToolBarStyle(bordered)}>
-        {pagination ? (
-          <Pagination
-            total={data.length}
-            pageSize={pageSize}
-            currentPage={pageIndex}
-            hideOnSinglePage={false}
-            simple
-            onChange={(pageNumber: number, pageSize: number) => {
-              setPagination({ pageIndex: pageNumber, pageSize })
-              table.setPageIndex(pageNumber)
-            }}
-          />
-        ) : null}
-      </div>
+      {overFlow === "pagination" ? (
+        <div css={applyToolBarStyle(bordered)}>
+          {overFlow === "pagination" ? (
+            <Pagination
+              total={data.length}
+              pageSize={pageSize}
+              currentPage={pageIndex}
+              hideOnSinglePage={false}
+              simple
+              onChange={(pageNumber: number, pageSize: number) => {
+                setPagination({ pageIndex: pageNumber, pageSize })
+                table.setPageIndex(pageNumber)
+              }}
+            />
+          ) : null}
+        </div>
+      ) : null}
     </div>
   )
 }

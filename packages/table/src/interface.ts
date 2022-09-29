@@ -22,6 +22,7 @@ import { PaginationProps } from "@illa-design/pagination"
 export type TableSize = "small" | "medium" | "large"
 
 export type TableLayout = "auto" | "fixed"
+export type TableOverFlow = "pagination" | "scroll"
 
 export type TableAlign =
   | "left"
@@ -46,7 +47,8 @@ export interface TableProps<D extends TableData, TValue>
   disableSortBy?: boolean
   loading?: boolean
   emptyProps?: EmptyProps
-  pagination?: boolean | PaginationProps
+  overFlow?: TableOverFlow
+  pagination?: PaginationProps
   multiRowSelection?: boolean
   checkAll?: boolean
   columnVisibility?: VisibilityState
