@@ -29,8 +29,8 @@ export function applyContainerStyle(): SerializedStyles {
   return css(
     css`
       overflow: auto;
-      display: inline-flex;
-      vertical-align: center;
+      //display: inline-flex;
+      //vertical-align: center;
     `,
   )
 }
@@ -172,6 +172,16 @@ export function applyBorderedStyle(bordered?: boolean): SerializedStyles {
         border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       `
     : css``
+}
+
+export function applyToolBarStyle(bordered?: boolean): SerializedStyles {
+  return css`
+    text-align: center;
+    padding: 8px 0;
+    ${bordered
+      ? `border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};`
+      : ""};
+  `
 }
 
 export const spinStyle = css`

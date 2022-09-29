@@ -6,6 +6,7 @@ import {
   applyHeaderIconLeft,
   applyPreContainer,
   applyTableStyle,
+  applyToolBarStyle,
   spinStyle,
 } from "./style"
 import { TableContext } from "./table-context"
@@ -343,23 +344,6 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                   </td>
                 </tr>
               ) : null}
-              {pagination ? (
-                <tr>
-                  <td>
-                    <Pagination
-                      total={data.length}
-                      pageSize={pageSize}
-                      currentPage={pageIndex}
-                      hideOnSinglePage={false}
-                      simple
-                      onChange={(pageNumber: number, pageSize: number) => {
-                        setPagination({ pageIndex: pageNumber, pageSize })
-                        table.setPageIndex(pageNumber)
-                      }}
-                    />
-                  </td>
-                </tr>
-              ) : null}
             </TBody>
             {showFooter && (
               <TFoot>
@@ -395,6 +379,21 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
           </table>
         </TableContext.Provider>
       </Spin>
+      <div css={applyToolBarStyle(bordered)}>
+        {pagination ? (
+          <Pagination
+            total={data.length}
+            pageSize={pageSize}
+            currentPage={pageIndex}
+            hideOnSinglePage={false}
+            simple
+            onChange={(pageNumber: number, pageSize: number) => {
+              setPagination({ pageIndex: pageNumber, pageSize })
+              table.setPageIndex(pageNumber)
+            }}
+          />
+        ) : null}
+      </div>
     </div>
   )
 }
