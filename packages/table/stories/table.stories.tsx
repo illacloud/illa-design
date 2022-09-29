@@ -12,6 +12,7 @@ import {
 } from "../src"
 import { useMemo } from "react"
 import { ColumnDef } from "@tanstack/react-table"
+import { filterFns } from "@tanstack/table-core"
 
 export default {
   title: "DATA DISPLAY/Table",
@@ -164,6 +165,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
       {
         header: "phone",
         accessorKey: "phone",
+        filterFn: filterFns.equals
       },
       {
         header: "address",
@@ -177,7 +179,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
     return c
   }, [])
   return (
-    <Table data={data} columns={columns} multiRowSelection download {...args} />
+    <Table data={data} columns={columns} multiRowSelection download filter {...args} />
   )
 }
 

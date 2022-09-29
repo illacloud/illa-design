@@ -23,27 +23,42 @@ import {
   ColumnDef,
   ColumnFiltersState,
   flexRender,
-  getCoreRowModel,
+  getCoreRowModel, getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   SortingState,
   useReactTable,
 } from "@tanstack/react-table"
 import {
+  FilterIcon,
   SorterDefaultIcon,
   SorterDownIcon,
   SorterUpIcon,
+  DownloadIcon,
 } from "@illa-design/icon"
 import { rankItem } from "@tanstack/match-sorter-utils"
 import { Spin } from "@illa-design/spin"
 import { Empty } from "@illa-design/empty"
 import { Pagination } from "@illa-design/pagination"
-import { isNumber } from "@illa-design/system"
+import { isNumber, isString } from "@illa-design/system"
 import { Checkbox } from "@illa-design/checkbox"
-import { PaginationState } from "@tanstack/table-core"
-import { downloadDataAsCSV, transformTableIntoCsvData } from "./utils"
-import { DownloadIcon } from "@illa-design/icon"
+import { PaginationState, filterFns } from "@tanstack/table-core"
+import {
+  doesNotContain,
+  downloadDataAsCSV,
+  empty,
+  lessThan,
+  moreThan,
+  notEmpty,
+  notLessThan,
+  notMoreThan,
+  transformTableIntoCsvData, notEqualTo, FilterOptions,
+} from "./utils"
 import { Button } from "@illa-design/button"
+import { Trigger } from "@illa-design/trigger"
+import { Select } from "@illa-design/select"
+import { Input } from "@illa-design/input"
+import { FilterFn } from "@tanstack/table-core/src/features/Filters"
 
 export function Table<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -136,6 +151,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     multiRowSelection,
     checkAll = true,
     download,
+    filter,
     defaultSort = [],
     onSortingChange,
     onPaginationChange,
@@ -157,6 +173,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [rowSelection, setRowSelection] = useState({})
+  const [filterOption, setFilterOption] = useState([{}])
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
@@ -177,18 +194,18 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
           id: "select",
           header: checkAll
             ? ({ table }) => {
-                return (
-                  <Checkbox
-                    {...{
-                      checked: table.getIsAllRowsSelected(),
-                      indeterminate: table.getIsSomeRowsSelected(),
-                      onChange: (v, event) => {
-                        table?.getToggleAllRowsSelectedHandler()?.(event)
-                      },
-                    }}
-                  />
-                )
-              }
+              return (
+                <Checkbox
+                  {...{
+                    checked: table.getIsAllRowsSelected(),
+                    indeterminate: table.getIsSomeRowsSelected(),
+                    onChange: (v, event) => {
+                      table?.getToggleAllRowsSelectedHandler()?.(event)
+                    },
+                  }}
+                />
+              )
+            }
             : "",
           cell: ({ row }) => {
             return (
@@ -222,6 +239,16 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
         // Return if the item should be filtered in/out
         return itemRank.passed
       },
+      equals: filterFns.equals,
+      notEqualTo,
+      contains: filterFns.includesString,
+      doesNotContain,
+      lessThan,
+      notLessThan,
+      moreThan,
+      notMoreThan,
+      empty,
+      notEmpty,
     },
     state: {
       columnVisibility,
@@ -230,6 +257,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       rowSelection,
       pagination: currentPagination,
     },
+    enableColumnFilters: true,
     enableSorting: !disableSortBy,
     onPaginationChange: (pagination) => {
       setPagination(pagination)
@@ -240,6 +268,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       onSortingChange?.(columnSort)
     },
     onColumnFiltersChange: (columnFilter) => {
+      console.log(columnFilter, "columnFilter change")
       setColumnFilters(columnFilter)
       onColumnFiltersChange?.(columnFilter)
     },
@@ -249,10 +278,11 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     manualPagination: overFlow === "scroll",
   })
-
+  console.log(columnFilters, "columnFilters")
   useEffect(() => {
     if (defaultSort?.length) {
       setSorting(defaultSort)
@@ -277,6 +307,20 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       fileName: `table.csv`,
     })
   }
+
+  const ColumnsOption = useMemo(() => {
+    const res: { value: string; label: string; }[] = []
+    table.getAllColumns().forEach((column, index) => {
+      if (!(multiRowSelection && index === 0)) {
+        const label = column.columnDef.header
+        res.push({
+          value: column.id,
+          label: isString(label) ? label : "-",
+        })
+      }
+    })
+    return res
+  }, [columns, multiRowSelection])
 
   return (
     <div
@@ -318,19 +362,19 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                           {header.column.getCanSort() &&
-                            (header.column.getIsSorted() ? (
-                              header.column.getIsSorted() === "desc" ? (
-                                <SorterDownIcon _css={applyHeaderIconLeft} />
-                              ) : (
-                                <SorterUpIcon _css={applyHeaderIconLeft} />
-                              )
+                          (header.column.getIsSorted() ? (
+                            header.column.getIsSorted() === "desc" ? (
+                              <SorterDownIcon _css={applyHeaderIconLeft} />
                             ) : (
-                              <SorterDefaultIcon _css={applyHeaderIconLeft} />
-                            ))}
+                              <SorterUpIcon _css={applyHeaderIconLeft} />
+                            )
+                          ) : (
+                            <SorterDefaultIcon _css={applyHeaderIconLeft} />
+                          ))}
                         </div>
                       </Th>
                     ))}
@@ -393,9 +437,9 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                              header.column.columnDef.footer,
-                              header.getContext(),
-                            )}
+                            header.column.columnDef.footer,
+                            header.getContext(),
+                          )}
                       </Th>
                     ))}
                   </Tr>
@@ -405,7 +449,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
           </table>
         </TableContext.Provider>
       </Spin>
-      {overFlow === "pagination" || download ? (
+      {overFlow === "pagination" || download || filter ? (
         <div css={applyToolBarStyle(bordered)}>
           <div css={actionButtonStyle}>
             {download ? (
@@ -414,6 +458,47 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                 leftIcon={<DownloadIcon size={"16px"} />}
                 onClick={downloadTableDataAsCsv}
               />
+            ) : null}
+            {filter ? (
+              <Trigger colorScheme={"white"} position={"bottom"} trigger={"click"} content={
+
+                <div>
+                  <div>
+                    <Select options={ColumnsOption} />
+                    <Select options={FilterOptions} />
+                    <Input />
+                  </div>
+                  {columnFilters.map((filter, index) => {
+                    return <div key={index}>
+                      <Select value={filter.id} options={ColumnsOption} onChange={(id) => {
+                        const c = columnFilters
+                        c[index].id = id
+                        setColumnFilters(c)
+                      }} />
+                      <Select options={FilterOptions} onChange={
+                        (filterFn) => {
+                          setFilterOption([{ id: filter.id, filterFn }])
+                        }
+                      } />
+                      <Input value={isString(filter.value) ? filter.value : undefined} onChange={(value) => {
+                        console.log(value, "filter")
+                        const c = columnFilters
+                        c[index].value = value
+                        setColumnFilters(c)
+                      }} />
+                    </div>
+                  })}
+                </div>
+              }>
+                <Button
+                  variant={"text"}
+                  leftIcon={<FilterIcon size={"16px"} />}
+                  onClick={() => {
+                    table.getColumn("name").columnDef.filterFn = "equals"
+                    setColumnFilters([{ id: "name", value: "Eliza" }])
+                  }}
+                />
+              </Trigger>
             ) : null}
           </div>
           {overFlow === "pagination" ? (
