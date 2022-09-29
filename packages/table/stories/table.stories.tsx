@@ -129,6 +129,24 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         phone: "983.587.1143",
         address: "0434 Jermey Street Suite 577",
       },
+      {
+        name: "Rhonda Torphy PhD",
+        company: "User-friendly responsive hardware",
+        phone: "470-744-4824 x376",
+        address: "9826 Vincenzo Land Apt. 616",
+      },
+      {
+        name: "Elizabeth",
+        company: "Compatible upward-trending system engine",
+        phone: "506-644-1590",
+        address: "9316 Manuel Lodge Apt. 678",
+      },
+      {
+        name: "Tasha",
+        company: "Cloned scalable website",
+        phone: "983.587.1143",
+        address: "0434 Jermey Street Suite 577",
+      },
     ],
     [],
   )
@@ -136,34 +154,31 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
   const columns = useMemo(() => {
     const c: ColumnDef<DemoData>[] = [
       {
-        header: "Common",
-        columns: [
-          {
-            header: "name",
-            accessorKey: "name", // accessor is the "key" in the data
-          },
-          {
-            header: "company",
-            accessorKey: "company",
-          },
-          {
-            header: "phone",
-            accessorKey: "phone",
-          },
-          {
-            header: "address",
-            accessorKey: "address",
-            cell: (props) => {
-              return props.getValue()
-            },
-            enableSorting: false,
-          },
-        ],
+        header: "name",
+        accessorKey: "name", // accessor is the "key" in the data
+      },
+      {
+        header: "company",
+        accessorKey: "company",
+      },
+      {
+        header: "phone",
+        accessorKey: "phone",
+      },
+      {
+        header: "address",
+        accessorKey: "address",
+        cell: (props) => {
+          return props.getValue()
+        },
+        enableSorting: false,
       },
     ]
     return c
   }, [])
-  return <Table data={data} columns={columns} {...args} />
+  return (
+    <Table data={data} columns={columns} multiRowSelection download {...args} />
+  )
 }
 
 export const NoDataTable: Story<TableProps<DemoData, string>> = (args) => {
