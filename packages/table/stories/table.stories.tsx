@@ -155,19 +155,24 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
   const columns = useMemo(() => {
     const c: ColumnDef<DemoData>[] = [
       {
+        id: 'name',
         header: "name",
         accessorKey: "name", // accessor is the "key" in the data
+        filterFn: 'notEmpty'
       },
       {
+        id: 'company',
         header: "company",
         accessorKey: "company",
       },
       {
+        id: 'phone',
         header: "phone",
         accessorKey: "phone",
         filterFn: filterFns.equals
       },
       {
+        id: 'address',
         header: "address",
         accessorKey: "address",
         cell: (props) => {

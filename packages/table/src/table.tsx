@@ -171,9 +171,10 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
   } as TableContextProps
 
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([{id: 'name', value: 'Gerard'}])
   const [rowSelection, setRowSelection] = useState({})
   const [filterOption, setFilterOption] = useState([{}])
+  const [currentColumns, setColumns] = useState<ColumnDef<D, TValue>[]>(columns)
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
@@ -187,7 +188,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     [pageIndex, pageSize],
   )
 
-  const currentColumns = useMemo(() => {
+  const _columns = useMemo(() => {
     if (multiRowSelection) {
       const rowSelectionColumn: ColumnDef<D, TValue>[] = [
         {
@@ -220,14 +221,14 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
           },
         },
       ]
-      return rowSelectionColumn.concat(columns)
+      return rowSelectionColumn.concat(currentColumns)
     }
-    return columns
-  }, [columns, multiRowSelection])
+    return currentColumns
+  }, [currentColumns, multiRowSelection])
 
   const table = useReactTable({
     data,
-    columns: currentColumns,
+    columns: _columns,
     filterFns: {
       fuzzy: (row, columnId, value, addMeta) => {
         // Rank the item
@@ -282,12 +283,16 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     getPaginationRowModel: getPaginationRowModel(),
     manualPagination: overFlow === "scroll",
   })
-  console.log(columnFilters, "columnFilters")
+
   useEffect(() => {
     if (defaultSort?.length) {
       setSorting(defaultSort)
     }
   }, [defaultSort])
+
+  useEffect(() => {
+    setColumns(columns)
+  }, [columns])
 
   useEffect(() => {
     if (pagination) {
@@ -477,7 +482,12 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                       }} />
                       <Select options={FilterOptions} onChange={
                         (filterFn) => {
-                          setFilterOption([{ id: filter.id, filterFn }])
+                          const colIndex = currentColumns?.findIndex((current)=>{
+                            return current.id === filter.id
+                          })
+                          const c = currentColumns
+                          c[colIndex].filterFn = filterFn
+                          setColumns(c)
                         }
                       } />
                       <Input value={isString(filter.value) ? filter.value : undefined} onChange={(value) => {
@@ -493,10 +503,6 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                 <Button
                   variant={"text"}
                   leftIcon={<FilterIcon size={"16px"} />}
-                  onClick={() => {
-                    table.getColumn("name").columnDef.filterFn = "equals"
-                    setColumnFilters([{ id: "name", value: "Eliza" }])
-                  }}
                 />
               </Trigger>
             ) : null}
