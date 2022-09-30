@@ -1,5 +1,5 @@
 // thx chakra ui
-import { forwardRef, ReactElement } from "react"
+import { Children, forwardRef, ReactElement } from "react"
 import { Icon } from "./icon"
 import { IconProps } from "./interface"
 
@@ -42,12 +42,13 @@ export function createIcon(options: CreateIconOptions) {
     fill = "none",
     defaultProps = {},
   } = options
-
   // eslint-disable-next-line react/display-name
   return forwardRef<SVGSVGElement, IconProps>((props, ref) => (
     <Icon ref={ref} viewBox={viewBox} fill={fill} {...defaultProps} {...props}>
       <title>{title}</title>
-      {path ?? <path fill="currentColor" d={pathDefinition} />}
+      {Children.toArray(path) ?? (
+        <path fill="currentColor" d={pathDefinition} />
+      )}
     </Icon>
   ))
 }
