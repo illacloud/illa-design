@@ -29,6 +29,8 @@ export function applyContainerStyle(): SerializedStyles {
   return css(
     css`
       overflow: auto;
+      display: flex;
+      flex-direction: column;
     `,
   )
 }
@@ -38,6 +40,8 @@ export function applyPinedStyle(pined?: boolean): SerializedStyles {
     ? css`
         position: sticky;
         top: 0;
+        // TODO: zIndex @xiaoyu 
+        z-index: 1;
       `
     : css``
 }
@@ -183,13 +187,18 @@ export function applyToolBarStyle(bordered?: boolean): SerializedStyles {
   `
 }
 
-export const actionButtonStyle = css`
-  position: absolute;
-  right: 16px;
-`
+export function applyActionButtonStyle(
+  showPagination?: boolean,
+): SerializedStyles {
+  return css`
+    right: 16px;
+    ${showPagination ? "position: absolute;" : "float: right;"};
+  `
+}
 
 export const spinStyle = css`
   width: 100%;
+  overflow: scroll;
 `
 
 export const filterStyle = css`

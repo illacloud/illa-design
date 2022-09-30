@@ -13,10 +13,7 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table"
-import {
-  FilterFnOption,
-  PaginationState,
-} from "@tanstack/table-core"
+import { FilterFnOption, PaginationState } from "@tanstack/table-core"
 import { Checkbox } from "@illa-design/checkbox"
 import { rankItem } from "@tanstack/match-sorter-utils"
 import {
@@ -35,7 +32,7 @@ import {
 } from "./utils"
 import { isNumber, isString } from "@illa-design/system"
 import {
-  actionButtonStyle,
+  applyActionButtonStyle,
   applyBorderedStyle,
   applyContainerStyle,
   applyHeaderIconLeft,
@@ -454,7 +451,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       </Spin>
       {overFlow === "pagination" || download || filter ? (
         <div css={applyToolBarStyle(bordered)}>
-          <div css={actionButtonStyle}>
+          <div css={applyActionButtonStyle(overFlow === "pagination")}>
             {download ? (
               <Button
                 variant={"text"}
