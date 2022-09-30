@@ -64,6 +64,7 @@ import {
   LineProgressWidgetIcon,
   LinkIcon,
   LoadingIcon,
+  LockIcon,
   MinusIcon,
   ModalWidgetIcon,
   MoreIcon,
@@ -110,6 +111,7 @@ import {
   TextWidgetIcon,
   TimeIcon,
   TimelineWidgetIcon,
+  UnlockIcon,
   UpIcon,
   UploadIcon,
   VerticalCenterIcon,
@@ -564,4 +566,11 @@ export const ScatterPointer: Story<IconProps> = (props: IconProps) => (
 )
 export const PieChart: Story<IconProps> = (props: IconProps) => (
   <PieChartIcon {...props} />
+)
+export const Lock: Story<IconProps> = (props: IconProps) => (
+  <LockIcon {...props} />
+)
+
+export const Unlock: Story<IconProps> = (props: IconProps) => (
+  <UnlockIcon {...props} />
 )
