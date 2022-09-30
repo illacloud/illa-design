@@ -46,7 +46,9 @@ export function createIcon(options: CreateIconOptions) {
   return forwardRef<SVGSVGElement, IconProps>((props, ref) => (
     <Icon ref={ref} viewBox={viewBox} fill={fill} {...defaultProps} {...props}>
       <title>{title}</title>
-      {Children.toArray(path) ?? (
+      {path ? (
+        Children.toArray(path)
+      ) : (
         <path fill="currentColor" d={pathDefinition} />
       )}
     </Icon>
