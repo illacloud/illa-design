@@ -7,6 +7,7 @@ import { Input } from "@illa-design/input"
 import { FiltersEditorProps } from "./interface"
 import { editorStyle, filterStyle } from "./style"
 import { FilterOptions } from "./utils"
+import { isString } from "@illa-design/system"
 
 export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
   const {
@@ -22,29 +23,31 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
     return (
       <>
         {columnFilters.map((filter, index) => {
+          const { id, value, filterFn } = filter
           return (
             <div css={filterStyle} key={index}>
               <Select
                 w="200px"
-                value={filter.id}
+                value={id}
                 options={columnsOption}
                 onChange={(id) => {
-                  onChange(index, id, filter.value)
+                  onChange(index, { id, value, filterFn })
                 }}
               />
               <Select
                 w="200px"
+                value={filterFn as string}
                 options={FilterOptions}
                 onChange={(filterFn) => {
                   onChangeFilterFn(index, filter.id, filterFn)
-                  onChange(index, filter.id, filter.value)
+                  onChange(index, { id, value, filterFn })
                 }}
               />
               <Input
                 w="200px"
-                value={filter.value}
+                value={isString(value) ? value : undefined}
                 onChange={(value) => {
-                  onChange(index, filter.id, value)
+                  onChange(index, { id, value, filterFn })
                 }}
               />
               <Button

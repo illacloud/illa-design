@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useMemo, useState } from "react"
-import { TableContextProps, TableProps } from "./interface"
+import { FilterOptionsState, TableContextProps, TableProps } from "./interface"
 import {
   actionButtonStyle,
   applyBorderedStyle,
@@ -44,7 +44,7 @@ import { Empty } from "@illa-design/empty"
 import { Pagination } from "@illa-design/pagination"
 import { isNumber, isString } from "@illa-design/system"
 import { Checkbox } from "@illa-design/checkbox"
-import { PaginationState, filterFns } from "@tanstack/table-core"
+import { PaginationState, filterFns, FilterFnOption } from "@tanstack/table-core"
 import {
   doesNotContain,
   downloadDataAsCSV,
@@ -172,10 +172,8 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
   } as TableContextProps
 
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([
-    { id: "name", value: "Gerard" },
-  ])
-  const [filterOption, setFilterOption] = useState<ColumnFiltersState>([
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [filterOption, setFilterOption] = useState<FilterOptionsState>([
     { id: "", value: "" },
   ])
   const [rowSelection, setRowSelection] = useState({})
@@ -200,18 +198,18 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
           id: "select",
           header: checkAll
             ? ({ table }) => {
-                return (
-                  <Checkbox
-                    {...{
-                      checked: table.getIsAllRowsSelected(),
-                      indeterminate: table.getIsSomeRowsSelected(),
-                      onChange: (v, event) => {
-                        table?.getToggleAllRowsSelectedHandler()?.(event)
-                      },
-                    }}
-                  />
-                )
-              }
+              return (
+                <Checkbox
+                  {...{
+                    checked: table.getIsAllRowsSelected(),
+                    indeterminate: table.getIsSomeRowsSelected(),
+                    onChange: (v, event) => {
+                      table?.getToggleAllRowsSelectedHandler()?.(event)
+                    },
+                  }}
+                />
+              )
+            }
             : "",
           cell: ({ row }) => {
             return (
@@ -274,7 +272,6 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       onSortingChange?.(columnSort)
     },
     onColumnFiltersChange: (columnFilter) => {
-      console.log(columnFilter, "columnFilter change")
       setColumnFilters(columnFilter)
       onColumnFiltersChange?.(columnFilter)
     },
@@ -309,6 +306,14 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     }
   }, [pagination])
 
+  useEffect(() => {
+    setColumnFilters(
+      filterOption.filter((item) => {
+        return item.id.length && item.value
+      }),
+    )
+  }, [filterOption])
+
   const downloadTableDataAsCsv = () => {
     const csvData = transformTableIntoCsvData(table, multiRowSelection)
     downloadDataAsCSV({
@@ -333,7 +338,6 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
   }, [columns, multiRowSelection])
 
   const addOrUpdateFilters = (index?: number, filter?: ColumnFilter) => {
-    console.log("addOrUpdateFilters")
     const filters = [...filterOption]
     if (filters) {
       if (isNumber(index) && filter && index < filters.length) {
@@ -342,11 +346,10 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
         filters.push({ id: "", value: "" })
       }
     }
-    console.log(filters, "filters")
     setFilterOption(filters)
   }
 
-  const removeFilters = (index: number) => {
+  const removeFilters = (index: number, id: string) => {
     const filters = [...filterOption]
     if (filters) {
       filters.splice(index, 1)
@@ -355,18 +358,20 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
       }
     }
     setFilterOption(filters)
+    updateColumns(index, id, "auto")
   }
 
-  useEffect(() => {
-    if (filterOption[0].id.length) {
-      setColumnFilters(
-        filterOption.filter((item) => {
-          return item.id.length
-        }),
-      )
+  const updateColumns = (index: number, id: string, filterFn: FilterFnOption<D>) => {
+    if (!filterFn) return
+    const colIndex = currentColumns?.findIndex((current) => {
+      return current.id === id
+    })
+    const col = [...currentColumns]
+    if (col[colIndex]) {
+      col[colIndex].filterFn = filterFn
+      setColumns(col)
     }
-  }, [filterOption])
-  console.log({ filterOption, columnFilters, currentColumns, _columns })
+  }
 
   return (
     <div
@@ -408,19 +413,19 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                           {header.column.getCanSort() &&
-                            (header.column.getIsSorted() ? (
-                              header.column.getIsSorted() === "desc" ? (
-                                <SorterDownIcon _css={applyHeaderIconLeft} />
-                              ) : (
-                                <SorterUpIcon _css={applyHeaderIconLeft} />
-                              )
+                          (header.column.getIsSorted() ? (
+                            header.column.getIsSorted() === "desc" ? (
+                              <SorterDownIcon _css={applyHeaderIconLeft} />
                             ) : (
-                              <SorterDefaultIcon _css={applyHeaderIconLeft} />
-                            ))}
+                              <SorterUpIcon _css={applyHeaderIconLeft} />
+                            )
+                          ) : (
+                            <SorterDefaultIcon _css={applyHeaderIconLeft} />
+                          ))}
                         </div>
                       </Th>
                     ))}
@@ -483,9 +488,9 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                              header.column.columnDef.footer,
-                              header.getContext(),
-                            )}
+                            header.column.columnDef.footer,
+                            header.getContext(),
+                          )}
                       </Th>
                     ))}
                   </Tr>
@@ -515,23 +520,13 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                   <FiltersEditor
                     columnFilters={filterOption}
                     columnsOption={ColumnsOption}
-                    onChange={(index, id, value) => {
-                      console.log("onChange", index, id, value)
-                      addOrUpdateFilters(index, { id, value })
+                    onChange={(index, filters) => {
+                      addOrUpdateFilters(index, filters)
                     }}
-                    onChangeFilterFn={(index, id, filterFn) => {
-                      const colIndex = currentColumns?.findIndex((current) => {
-                        return current.id === id
-                      })
-                      const c = [...currentColumns]
-                      c[colIndex].filterFn = filterFn
-                      setColumns(c)
-                    }}
-                    onAdd={() => {
-                      addOrUpdateFilters()
-                    }}
-                    onDelete={(index) => {
-                      removeFilters(index)
+                    onChangeFilterFn={updateColumns}
+                    onAdd={addOrUpdateFilters}
+                    onDelete={(index, filters) => {
+                      removeFilters(index, filters.id)
                     }}
                   />
                 }

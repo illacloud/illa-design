@@ -79,7 +79,8 @@ export interface TableContextProps {
 
 export interface TBodyProps
   extends HTMLAttributes<HTMLTableSectionElement>,
-    BoxProps {}
+    BoxProps {
+}
 
 export interface TrProps extends HTMLAttributes<HTMLTableRowElement>, BoxProps {
   hoverable?: boolean
@@ -97,7 +98,8 @@ export interface TdProps
 
 export interface TFootProps
   extends HTMLAttributes<HTMLTableSectionElement>,
-    BoxProps {}
+    BoxProps {
+}
 
 export interface THeadProps
   extends HTMLAttributes<HTMLTableSectionElement>,
@@ -121,16 +123,22 @@ export interface TableFilterProps<D extends TableData> extends BoxProps {
 }
 
 export interface FiltersEditorProps {
-  columnFilters: ColumnFilter[]
+  columnFilters: FilterOptionsState
   columnsOption: { value: string; label: string }[]
   onAdd: () => void
-  onDelete: (index: number, columnFilters: ColumnFilter) => void
-  onChange: (index: number, id: string, value: unknown) => void
-  // onChangeId: (index: number, id: string, value: unknown) => void
-  // onChangeValue: (index: number, id: string, value: unknown) => void
+  onDelete: (index: number, columnFilters: FilterOptions) => void
+  onChange: (index: number, columnFilters: FilterOptions) => void
   onChangeFilterFn: (
     index: number,
     id: string,
     filterFn: FilterFnOption<any>,
   ) => void
 }
+
+export type FilterOptions = {
+  id: string
+  value: unknown
+  filterFn?: FilterFnOption<any>
+}
+
+export type FilterOptionsState = FilterOptions[]
