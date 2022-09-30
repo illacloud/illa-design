@@ -198,10 +198,16 @@ export const filterStyle = css`
   display: inline-flex;
   flex-direction: row;
   align-items: center;
+  gap: 8px;
 `
 
 export const editorStyle = css`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  padding: 16px;
+`
+export const editorButtonStyle = css`
+  text-align: end;
+  margin-right: 30px;
 `

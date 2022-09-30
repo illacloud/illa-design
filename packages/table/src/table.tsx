@@ -44,7 +44,11 @@ import { Empty } from "@illa-design/empty"
 import { Pagination } from "@illa-design/pagination"
 import { isNumber, isString } from "@illa-design/system"
 import { Checkbox } from "@illa-design/checkbox"
-import { PaginationState, filterFns, FilterFnOption } from "@tanstack/table-core"
+import {
+  PaginationState,
+  filterFns,
+  FilterFnOption,
+} from "@tanstack/table-core"
 import {
   doesNotContain,
   downloadDataAsCSV,
@@ -198,18 +202,18 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
           id: "select",
           header: checkAll
             ? ({ table }) => {
-              return (
-                <Checkbox
-                  {...{
-                    checked: table.getIsAllRowsSelected(),
-                    indeterminate: table.getIsSomeRowsSelected(),
-                    onChange: (v, event) => {
-                      table?.getToggleAllRowsSelectedHandler()?.(event)
-                    },
-                  }}
-                />
-              )
-            }
+                return (
+                  <Checkbox
+                    {...{
+                      checked: table.getIsAllRowsSelected(),
+                      indeterminate: table.getIsSomeRowsSelected(),
+                      onChange: (v, event) => {
+                        table?.getToggleAllRowsSelectedHandler()?.(event)
+                      },
+                    }}
+                  />
+                )
+              }
             : "",
           cell: ({ row }) => {
             return (
@@ -361,7 +365,11 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     updateColumns(index, id, "auto")
   }
 
-  const updateColumns = (index: number, id: string, filterFn: FilterFnOption<D>) => {
+  const updateColumns = (
+    index: number,
+    id: string,
+    filterFn: FilterFnOption<D>,
+  ) => {
     if (!filterFn) return
     const colIndex = currentColumns?.findIndex((current) => {
       return current.id === id
@@ -413,19 +421,19 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext(),
-                            )}
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
                           {header.column.getCanSort() &&
-                          (header.column.getIsSorted() ? (
-                            header.column.getIsSorted() === "desc" ? (
-                              <SorterDownIcon _css={applyHeaderIconLeft} />
+                            (header.column.getIsSorted() ? (
+                              header.column.getIsSorted() === "desc" ? (
+                                <SorterDownIcon _css={applyHeaderIconLeft} />
+                              ) : (
+                                <SorterUpIcon _css={applyHeaderIconLeft} />
+                              )
                             ) : (
-                              <SorterUpIcon _css={applyHeaderIconLeft} />
-                            )
-                          ) : (
-                            <SorterDefaultIcon _css={applyHeaderIconLeft} />
-                          ))}
+                              <SorterDefaultIcon _css={applyHeaderIconLeft} />
+                            ))}
                         </div>
                       </Th>
                     ))}
@@ -488,9 +496,9 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                            header.column.columnDef.footer,
-                            header.getContext(),
-                          )}
+                              header.column.columnDef.footer,
+                              header.getContext(),
+                            )}
                       </Th>
                     ))}
                   </Tr>
@@ -506,12 +514,14 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
             {download ? (
               <Button
                 variant={"text"}
+                colorScheme={"grayBlue"}
                 leftIcon={<DownloadIcon size={"16px"} />}
                 onClick={downloadTableDataAsCsv}
               />
             ) : null}
             {filter ? (
               <Trigger
+                withoutPadding
                 closeWhenScroll={false}
                 colorScheme={"white"}
                 position={"bottom-end"}
@@ -533,6 +543,7 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
               >
                 <Button
                   variant={"text"}
+                  colorScheme={"grayBlue"}
                   leftIcon={<FilterIcon size={"16px"} />}
                 />
               </Trigger>

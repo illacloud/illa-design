@@ -5,7 +5,7 @@ import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
 import { FiltersEditorProps } from "./interface"
-import { editorStyle, filterStyle } from "./style"
+import { editorButtonStyle, editorStyle, filterStyle } from "./style"
 import { FilterOptions } from "./utils"
 import { isString } from "@illa-design/system"
 
@@ -28,6 +28,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
             <div css={filterStyle} key={index}>
               <Select
                 w="200px"
+                mg="8px 4px"
                 value={id}
                 options={columnsOption}
                 onChange={(id) => {
@@ -36,6 +37,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
               />
               <Select
                 w="200px"
+                mg="8px 4px"
                 value={filterFn as string}
                 options={FilterOptions}
                 onChange={(filterFn) => {
@@ -45,6 +47,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
               />
               <Input
                 w="200px"
+                mg="8px 4px"
                 value={isString(value) ? value : undefined}
                 onChange={(value) => {
                   onChange(index, { id, value, filterFn })
@@ -58,7 +61,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
                 }}
                 leftIcon={
                   <DeleteIcon
-                    color={globalColor(`--${illaPrefix}-grayBlue-08`)}
+                    color={globalColor(`--${illaPrefix}-grayBlue-06`)}
                   />
                 }
               />
@@ -72,9 +75,8 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
   return (
     <div css={editorStyle}>
       {recordList}
-      <span>
+      <span css={editorButtonStyle}>
         <Button
-          mb="8px"
           pd="1px 8px"
           colorScheme="techPurple"
           size="medium"
@@ -84,7 +86,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
             <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />
           }
         >
-          new
+          New
         </Button>
       </span>
     </div>
