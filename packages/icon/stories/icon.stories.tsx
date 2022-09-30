@@ -2,6 +2,7 @@ import { Meta, Story } from "@storybook/react"
 import {
   AddIcon,
   ArrayIcon,
+  BarChartIcon,
   BugIcon,
   ButtonWidgetIcon,
   CalendarIcon,
@@ -23,6 +24,7 @@ import {
   DividerWidgetIcon,
   DocsIcon,
   DownIcon,
+  DownloadIcon,
   DragIcon,
   DragPointIcon,
   EditableTextWidgetIcon,
@@ -47,6 +49,7 @@ import {
   FunctionIcon,
   FxIcon,
   HeartIcon,
+  HeartOutlineIcon,
   HorizontalCenterIcon,
   HorizontalEndIcon,
   HorizontalFullIcon,
@@ -56,17 +59,16 @@ import {
   ImageWidgetIcon,
   InfoCircleIcon,
   InfoIcon,
-  JSTransformerIcon,
   LeafIcon,
   LikeIcon,
+  LineChartIcon,
   LineProgressWidgetIcon,
   LinkIcon,
   LoadingIcon,
+  LockIcon,
   MinusIcon,
   ModalWidgetIcon,
-  MongoDbIcon,
   MoreIcon,
-  MySqlIcon,
   NavigationWidgetIcon,
   NextDoubleIcon,
   NextIcon,
@@ -77,21 +79,20 @@ import {
   PaginationPreIcon,
   PenIcon,
   PersonIcon,
+  PieChartIcon,
   PlusIcon,
-  PostgresIcon,
   PreDoubleIcon,
   PreIcon,
   RadioButtonWidgetIcon,
   RadioGroupWidgetIcon,
   RateWidgetIcon,
-  RedisIcon,
   ReduceIcon,
   ResetIcon,
-  RestApiIcon,
   Result403Icon,
   Result404Icon,
   Result500Icon,
   RightIcon,
+  ScatterPlotIcon,
   SearchIcon,
   SelectWidgetIcon,
   ShareIcon,
@@ -99,6 +100,7 @@ import {
   SorterDownIcon,
   SorterUpIcon,
   StarIcon,
+  StartOutlineIcon,
   StringIcon,
   SuccessIcon,
   SwitchWidgetIcon,
@@ -110,6 +112,7 @@ import {
   TextWidgetIcon,
   TimeIcon,
   TimelineWidgetIcon,
+  UnlockIcon,
   UpIcon,
   UploadIcon,
   VerticalCenterIcon,
@@ -120,15 +123,6 @@ import {
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
-  HeartOutlineIcon,
-  StartOutlineIcon,
-  BarChartIcon,
-  LineChartIcon,
-  ScatterPlotIcon,
-  PieChartIcon,
-  LockIcon,
-  UnlockIcon,
-  DownloadIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -343,10 +337,6 @@ export const Result500: Story<IconProps> = (props: IconProps) => (
   <Result500Icon {...props} />
 )
 
-export const RestApi: Story<IconProps> = (props: IconProps) => (
-  <RestApiIcon {...props} />
-)
-
 export const PaginationPre: Story<IconProps> = (props: IconProps) => (
   <PaginationPreIcon {...props} />
 )
@@ -387,7 +377,7 @@ export const Number: Story<IconProps> = (props: IconProps) => (
   <NumberIcon {...props} />
 )
 
-// Can not use `Object` as variable name, `Object` may be treat as
+// Can not use `Object` as variable name, `Object` may be treated as
 // keyword and cause icon story crash
 export const Object_Icon: Story<IconProps> = (props: IconProps) => (
   <ObjectIcon {...props} />
@@ -396,26 +386,6 @@ Object_Icon.storyName = "Object"
 
 export const String: Story<IconProps> = (props: IconProps) => (
   <StringIcon {...props} />
-)
-
-export const Postgres: Story<IconProps> = (props: IconProps) => (
-  <PostgresIcon {...props} />
-)
-
-export const MySql: Story<IconProps> = (props: IconProps) => (
-  <MySqlIcon {...props} />
-)
-
-export const Redis: Story<IconProps> = (props: IconProps) => (
-  <RedisIcon {...props} />
-)
-
-export const MongoDb: Story<IconProps> = (props: IconProps) => (
-  <MongoDbIcon {...props} />
-)
-
-export const JSTransformer: Story<IconProps> = (props: IconProps) => (
-  <JSTransformerIcon {...props} />
 )
 
 export const Drag: Story<IconProps> = (props: IconProps) => (
