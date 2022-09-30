@@ -40,6 +40,8 @@ export function applyPinedStyle(pined?: boolean): SerializedStyles {
     ? css`
         position: sticky;
         top: 0;
+        // TODO: zIndex @xiaoyu 
+        z-index: 1;
       `
     : css``
 }
