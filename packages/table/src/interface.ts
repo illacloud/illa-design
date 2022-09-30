@@ -6,19 +6,26 @@ import {
 } from "react"
 import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
-import { Column, ColumnDef } from "@tanstack/react-table"
+import { Column, ColumnDef, ColumnFilter } from "@tanstack/react-table"
 import { EmptyProps } from "@illa-design/empty"
 import {
   ColumnFiltersState,
   ColumnSort,
+  FilterFnOption,
   OnChangeFn,
   PaginationState,
+  RowSelectionState,
   SortingState,
+  VisibilityState,
 } from "@tanstack/table-core"
+import { PaginationProps } from "@illa-design/pagination"
+import { Params } from "illa-builder/src/redux/resource/resourceState"
+import { FiltersEditor } from "./filters-editor"
 
 export type TableSize = "small" | "medium" | "large"
 
 export type TableLayout = "auto" | "fixed"
+export type TableOverFlow = "pagination" | "scroll"
 
 export type TableAlign =
   | "left"
@@ -43,9 +50,21 @@ export interface TableProps<D extends TableData, TValue>
   disableSortBy?: boolean
   loading?: boolean
   emptyProps?: EmptyProps
+  overFlow?: TableOverFlow
+  pagination?: PaginationProps
+  multiRowSelection?: boolean
+  checkAll?: boolean
+  download?: boolean
+  filter?: boolean
+  columnVisibility?: VisibilityState
   onSortingChange?: OnChangeFn<SortingState>
   onPaginationChange?: OnChangeFn<PaginationState>
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
+  onRowSelectionChange?: OnChangeFn<RowSelectionState>
+}
+
+export interface RowSelectionProps<D = any> {
+  checkAll?: boolean
 }
 
 export interface TableContextProps {
@@ -100,3 +119,24 @@ export interface TableFilterProps<D extends TableData> extends BoxProps {
   renderFilterContent?: (columnProps: Column<D, unknown>) => ReactNode
   columnProps: Column<D, unknown>
 }
+
+export interface FiltersEditorProps {
+  columnFilters: FilterOptionsState
+  columnsOption: { value: string; label: string }[]
+  onAdd: () => void
+  onDelete: (index: number, columnFilters: FilterOptions) => void
+  onChange: (index: number, columnFilters: FilterOptions) => void
+  onChangeFilterFn: (
+    index: number,
+    id: string,
+    filterFn: FilterFnOption<any>,
+  ) => void
+}
+
+export type FilterOptions = {
+  id: string
+  value: unknown
+  filterFn?: FilterFnOption<any>
+}
+
+export type FilterOptionsState = FilterOptions[]

@@ -43,6 +43,7 @@
     "@illa-design/trigger": "1.0.2",
     "@illa-design/button": "1.0.2",
     "@illa-design/checkbox": "1.0.2",
+    "@illa-design/pagination": "1.0.2",
     "@tanstack/react-table": "^8.5.11",
     "@tanstack/match-sorter-utils": "^8.1.1",
     "@illa-design/theme": "1.0.2",
