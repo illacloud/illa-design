@@ -190,6 +190,7 @@ export const actionButtonStyle = css`
 
 export const spinStyle = css`
   width: 100%;
+  overflow: scroll;
 `
 
 export const filterStyle = css`
