@@ -108,6 +108,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           size={size}
           error={error}
           disabled={disabled}
+          maxLength={maxLength}
           placeholder={placeholder}
           allowClear={allowClear}
           textCenterHorizontal={textCenterHorizontal}

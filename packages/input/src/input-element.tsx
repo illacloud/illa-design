@@ -121,6 +121,7 @@ export const InputElement = forwardRef<HTMLInputElement, InputElementProps>(
     return (
       <>
         <input
+          maxLength={maxLength}
           ref={inputRef}
           css={css(applyInputStyle(textCenterHorizontal), _css)}
           {...inputProps}
