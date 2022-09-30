@@ -55,6 +55,15 @@ export const downloadDataAsCSV = (props: {
   }
 }
 
+export const equalTo: FilterFn<any> = (
+  row,
+  columnId: string,
+  filterValue: unknown,
+) => {
+  console.log(row.getValue(columnId) == filterValue)
+  return row.getValue(columnId) == filterValue
+}
+
 export const notEqualTo: FilterFn<any> = (
   row,
   columnId: string,
@@ -142,7 +151,7 @@ export const doesNotContain: FilterFn<any> = (
 }
 
 export const FilterOptions = [
-  { label: "is equal to", value: "equals" },
+  { label: "is equal to", value: "equalTo" },
   { label: "not equal to", value: "notEqualTo" },
   { label: "contains", value: "contains" },
   { label: "does not contain", value: "doesNotContain" },
@@ -150,6 +159,4 @@ export const FilterOptions = [
   { label: "not less than", value: "notLessThan" },
   { label: "more than", value: "moreThan" },
   { label: "not more than", value: "notMoreThan" },
-  { label: "empty", value: "empty" },
-  { label: "not empty", value: "notEmpty" },
 ]

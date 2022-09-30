@@ -24,6 +24,7 @@ import {
   doesNotContain,
   downloadDataAsCSV,
   empty,
+  equalTo,
   lessThan,
   moreThan,
   notEmpty,
@@ -174,7 +175,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         // Return if the item should be filtered in/out
         return itemRank.passed
       },
-      equals: filterFns.equals,
+      equalTo,
       notEqualTo,
       contains: filterFns.includesString,
       doesNotContain,
