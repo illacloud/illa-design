@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/back-top",
-  "version": "0.0.17",
+  "version": "1.0.2",
   "description": "Illa Design BackTop.",
   "keywords": [
     "backtop",
@@ -40,9 +40,9 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "0.0.17",
-    "@illa-design/button": "0.0.17",
-    "@illa-design/system": "0.0.17",
-    "@illa-design/theme": "0.0.17"
+    "@illa-design/icon": "1.0.2",
+    "@illa-design/button": "1.0.2",
+    "@illa-design/system": "1.0.2",
+    "@illa-design/theme": "1.0.2"
   }
 }
