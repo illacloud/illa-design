@@ -1,22 +1,21 @@
 import {
-  forwardRef,
-  useEffect,
-  useContext,
-  useCallback,
   ChangeEvent,
+  forwardRef,
+  useCallback,
+  useContext,
+  useEffect,
 } from "react"
 import { useMergeValue } from "@illa-design/system"
 import { CheckmarkIcon, ReduceIcon } from "@illa-design/icon"
 import { CheckboxProps } from "./interface"
 import {
-  applyMergeCss,
   applyCheckboxSize,
   applyCheckState,
+  applyMergeCss,
   childrenContainerCss,
 } from "./style"
 import { CheckboxGroupContext } from "./context"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
   (props, ref) => {
