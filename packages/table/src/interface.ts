@@ -79,8 +79,7 @@ export interface TableContextProps {
 
 export interface TBodyProps
   extends HTMLAttributes<HTMLTableSectionElement>,
-    BoxProps {
-}
+    BoxProps {}
 
 export interface TrProps extends HTMLAttributes<HTMLTableRowElement>, BoxProps {
   hoverable?: boolean
@@ -98,8 +97,7 @@ export interface TdProps
 
 export interface TFootProps
   extends HTMLAttributes<HTMLTableSectionElement>,
-    BoxProps {
-}
+    BoxProps {}
 
 export interface THeadProps
   extends HTMLAttributes<HTMLTableSectionElement>,

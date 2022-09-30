@@ -49,6 +49,10 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
                 w="200px"
                 mg="8px 4px"
                 value={isString(value) ? value : undefined}
+                disabled={
+                  (filterFn as string) === "empty" ||
+                  (filterFn as string) === "notEmpty"
+                }
                 onChange={(value) => {
                   onChange(index, { id, value, filterFn })
                 }}
