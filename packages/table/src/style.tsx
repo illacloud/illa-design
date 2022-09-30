@@ -29,8 +29,6 @@ export function applyContainerStyle(): SerializedStyles {
   return css(
     css`
       overflow: auto;
-      display: inline-flex;
-      vertical-align: center;
     `,
   )
 }
@@ -174,6 +172,43 @@ export function applyBorderedStyle(bordered?: boolean): SerializedStyles {
     : css``
 }
 
+export function applyToolBarStyle(bordered?: boolean): SerializedStyles {
+  return css`
+    position: relative;
+    text-align: center;
+    padding: 8px 0;
+    ${bordered
+      ? `border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};`
+      : ""};
+  `
+}
+
+export const actionButtonStyle = css`
+  position: absolute;
+  right: 16px;
+`
+
 export const spinStyle = css`
   width: 100%;
+`
+
+export const filterStyle = css`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+export const filterLabelStyle = css`
+  width: 48px;
+`
+
+export const editorStyle = css`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  padding: 16px;
+`
+export const editorButtonStyle = css`
+  text-align: end;
+  margin-right: 30px;
 `

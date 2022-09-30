@@ -51,6 +51,7 @@ export default defineConfig({
         "@illa-design/icon",
         "@illa-design/popover",
         "@illa-design/checkbox",
+        "@illa-design/pagination",
         "react-table",
       ],
       output: {
@@ -62,6 +63,7 @@ export default defineConfig({
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/popover": "@illa-design/popover",
           "@illa-design/checkbox": "@illa-design/checkbox",
+          "@illa-design/pagination": "@illa-design/pagination",
           "react-table": "react-table",
         },
       },

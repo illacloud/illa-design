@@ -193,7 +193,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
               w="8px"
               h="4px"
               css={applyTriangleStyle(colorScheme, placement)}
-            />)}
+            />
+          )}
           <div
             ref={tipsContainerRef}
             css={applyTipsText(
@@ -346,9 +347,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <AnimatePresence>
             {finalVisible && (
               <div
-                css={[css`
-                  display: inline-flex;
-                `, applyBoxStyle(props)]}
+                css={[
+                  css`
+                    display: inline-flex;
+                  `,
+                  applyBoxStyle(props),
+                ]}
                 {...getFloatingProps({
                   onClick: (e) => {
                     if (closeOnInnerClick) {

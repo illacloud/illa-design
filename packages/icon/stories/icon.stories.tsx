@@ -24,6 +24,7 @@ import {
   DividerWidgetIcon,
   DocsIcon,
   DownIcon,
+  DownloadIcon,
   DragIcon,
   DragPointIcon,
   EditableTextWidgetIcon,
@@ -573,4 +574,8 @@ export const Lock: Story<IconProps> = (props: IconProps) => (
 
 export const Unlock: Story<IconProps> = (props: IconProps) => (
   <UnlockIcon {...props} />
+)
+
+export const Download: Story<IconProps> = (props: IconProps) => (
+  <DownloadIcon {...props} />
 )
