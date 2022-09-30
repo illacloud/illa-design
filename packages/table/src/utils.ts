@@ -137,6 +137,18 @@ export const notMoreThan: FilterFn<any> = (
   return !more(rowValue, filterValue)
 }
 
+export const contains: FilterFn<any> = (
+  row,
+  columnId: string,
+  filterValue: unknown,
+) => {
+  const rowValue = row.getValue<string>(columnId)
+  if (isString(rowValue) && isString(filterValue)) {
+    return rowValue.includes(filterValue)
+  }
+  return false
+}
+
 export const doesNotContain: FilterFn<any> = (
   row,
   columnId: string,

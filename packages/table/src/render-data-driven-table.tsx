@@ -15,12 +15,12 @@ import {
 } from "@tanstack/react-table"
 import {
   FilterFnOption,
-  filterFns,
   PaginationState,
 } from "@tanstack/table-core"
 import { Checkbox } from "@illa-design/checkbox"
 import { rankItem } from "@tanstack/match-sorter-utils"
 import {
+  contains,
   doesNotContain,
   downloadDataAsCSV,
   empty,
@@ -177,7 +177,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       },
       equalTo,
       notEqualTo,
-      contains: filterFns.includesString,
+      contains,
       doesNotContain,
       lessThan,
       notLessThan,
