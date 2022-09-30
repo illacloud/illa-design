@@ -60,7 +60,6 @@ export const equalTo: FilterFn<any> = (
   columnId: string,
   filterValue: unknown,
 ) => {
-  console.log(row.getValue(columnId) == filterValue)
   return row.getValue(columnId) == filterValue
 }
 

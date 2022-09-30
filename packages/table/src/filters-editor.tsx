@@ -1,11 +1,16 @@
-import { FC, useCallback, useMemo } from "react"
+import { FC, useMemo } from "react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Button } from "@illa-design/button"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
 import { FiltersEditorProps } from "./interface"
-import { editorButtonStyle, editorStyle, filterStyle } from "./style"
+import {
+  editorButtonStyle,
+  editorStyle,
+  filterLabelStyle,
+  filterStyle,
+} from "./style"
 import { FilterOptions } from "./utils"
 import { isString } from "@illa-design/system"
 
@@ -26,6 +31,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
           const { id, value, filterFn } = filter
           return (
             <div css={filterStyle} key={index}>
+              <div css={filterLabelStyle}>{index === 0 ? "Where" : "and"}</div>
               <Select
                 w="200px"
                 mg="8px 4px"
@@ -74,7 +80,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
         })}
       </>
     )
-  }, [columnFilters])
+  }, [columnFilters, columnsOption, onChange, onChangeFilterFn, onDelete])
 
   return (
     <div css={editorStyle}>

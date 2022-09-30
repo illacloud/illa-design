@@ -29,8 +29,6 @@ export function applyContainerStyle(): SerializedStyles {
   return css(
     css`
       overflow: auto;
-      //display: inline-flex;
-      //vertical-align: center;
     `,
   )
 }
@@ -195,10 +193,13 @@ export const spinStyle = css`
 `
 
 export const filterStyle = css`
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+`
+
+export const filterLabelStyle = css`
+  width: 48px;
 `
 
 export const editorStyle = css`

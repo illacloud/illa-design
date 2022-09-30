@@ -159,7 +159,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       return rowSelectionColumn.concat(currentColumns)
     }
     return currentColumns
-  }, [currentColumns, multiRowSelection])
+  }, [checkAll, currentColumns, multiRowSelection])
 
   const table = useReactTable({
     data,
@@ -239,7 +239,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize: isNumber(_pageSize) ? _pageSize : pageSize,
       })
     }
-  }, [pagination])
+  }, [pageIndex, pageSize, pagination])
 
   useEffect(() => {
     setColumnFilters(
@@ -270,7 +270,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       }
     })
     return res
-  }, [columns, multiRowSelection])
+  }, [multiRowSelection, table])
 
   const updateColumns = useCallback(
     (index: number, id: string, filterFn: FilterFnOption<D>) => {
@@ -322,7 +322,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       setPagination({ pageIndex: pageNumber, pageSize })
       table.setPageIndex(pageNumber)
     },
-    [table.setPageIndex, setPagination],
+    [table, setPagination],
   )
 
   return (
@@ -465,7 +465,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
             ) : null}
             {filter ? (
               <Trigger
+                maxW="unset"
                 withoutPadding
+                showArrow={false}
                 closeWhenScroll={false}
                 colorScheme={"white"}
                 position={"bottom-end"}

@@ -43,7 +43,6 @@ const Template: Story<PaginationProps> = (args) => {
       currentPage={pageIndex}
       {...args}
       onChange={(pageIndex: number, pageSize: number) => {
-        console.log({ pageIndex, pageSize })
         setPagination({ pageIndex: pageIndex, pageSize })
       }}
     />
