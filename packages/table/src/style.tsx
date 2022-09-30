@@ -193,3 +193,15 @@ export const actionButtonStyle = css`
 export const spinStyle = css`
   width: 100%;
 `
+
+export const filterStyle = css`
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+export const editorStyle = css`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+`

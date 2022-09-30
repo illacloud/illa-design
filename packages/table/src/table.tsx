@@ -20,7 +20,7 @@ import { TFoot } from "./tfoot"
 import { TableData } from "./table-data"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import {
-  ColumnDef,
+  ColumnDef, ColumnFilter,
   ColumnFiltersState,
   flexRender,
   getCoreRowModel, getFilteredRowModel,
@@ -58,7 +58,9 @@ import { Button } from "@illa-design/button"
 import { Trigger } from "@illa-design/trigger"
 import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
-import { FilterFn } from "@tanstack/table-core/src/features/Filters"
+import { FiltersEditor } from "./filters-editor"
+import { BodyContent, RestApiAction } from "illa-builder/src/redux/currentApp/action/restapiAction"
+import { Params } from "illa-builder/src/redux/resource/resourceState"
 
 export function Table<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -171,9 +173,9 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
   } as TableContextProps
 
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([{id: 'name', value: 'Gerard'}])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([{ id: "name", value: "Gerard" }])
+  const [filterOption, setFilterOption] = useState<ColumnFiltersState>([{ id: "", value: "" }])
   const [rowSelection, setRowSelection] = useState({})
-  const [filterOption, setFilterOption] = useState([{}])
   const [currentColumns, setColumns] = useState<ColumnDef<D, TValue>[]>(columns)
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -327,6 +329,40 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
     return res
   }, [columns, multiRowSelection])
 
+  const addOrUpdateFilters = (index?: number, filter?: ColumnFilter) => {
+    console.log("addOrUpdateFilters")
+    const filters = [...filterOption]
+    if (filters) {
+      if (isNumber(index) && filter && index < filters.length) {
+        filters[index] = filter
+      } else {
+        filters.push({ id: "", value: "" })
+      }
+    }
+    console.log(filters, "filters")
+    setFilterOption(filters)
+  }
+
+  const removeFilters = (index: number) => {
+    const filters = [...filterOption]
+    if (filters) {
+      filters.splice(index, 1)
+      if (filters.length == 0) {
+        filters.push({ id: "", value: "" })
+      }
+    }
+    setFilterOption(filters)
+  }
+
+  useEffect(() => {
+    if (filterOption[0].id.length) {
+      setColumnFilters(filterOption.filter((item) => {
+        return item.id.length
+      }))
+    }
+  }, [filterOption])
+  console.log({ filterOption, columnFilters, currentColumns, _columns })
+
   return (
     <div
       css={[
@@ -465,40 +501,29 @@ function RenderDataDrivenTable<D extends TableData, TValue>(
               />
             ) : null}
             {filter ? (
-              <Trigger colorScheme={"white"} position={"bottom"} trigger={"click"} content={
-
-                <div>
-                  <div>
-                    <Select options={ColumnsOption} />
-                    <Select options={FilterOptions} />
-                    <Input />
-                  </div>
-                  {columnFilters.map((filter, index) => {
-                    return <div key={index}>
-                      <Select value={filter.id} options={ColumnsOption} onChange={(id) => {
-                        const c = columnFilters
-                        c[index].id = id
-                        setColumnFilters(c)
-                      }} />
-                      <Select options={FilterOptions} onChange={
-                        (filterFn) => {
-                          const colIndex = currentColumns?.findIndex((current)=>{
-                            return current.id === filter.id
-                          })
-                          const c = currentColumns
-                          c[colIndex].filterFn = filterFn
-                          setColumns(c)
-                        }
-                      } />
-                      <Input value={isString(filter.value) ? filter.value : undefined} onChange={(value) => {
-                        console.log(value, "filter")
-                        const c = columnFilters
-                        c[index].value = value
-                        setColumnFilters(c)
-                      }} />
-                    </div>
-                  })}
-                </div>
+              <Trigger colorScheme={"white"} position={"bottom-end"} trigger={"click"} content={
+                <FiltersEditor
+                  columnFilters={filterOption}
+                  columnsOption={ColumnsOption}
+                  onChange={(index, id, value) => {
+                    console.log("onChange", index, id, value)
+                    addOrUpdateFilters(index, { id, value })
+                  }}
+                  onChangeFilterFn={(index, id, filterFn) => {
+                    const colIndex = currentColumns?.findIndex((current) => {
+                      return current.id === id
+                    })
+                    const c = [...currentColumns]
+                    c[colIndex].filterFn = filterFn
+                    setColumns(c)
+                  }
+                  }
+                  onAdd={() => {
+                    addOrUpdateFilters()
+                  }}
+                  onDelete={(index) => {
+                    removeFilters(index)
+                  }} />
               }>
                 <Button
                   variant={"text"}

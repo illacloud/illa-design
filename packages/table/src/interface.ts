@@ -6,11 +6,11 @@ import {
 } from "react"
 import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
-import { Column, ColumnDef } from "@tanstack/react-table"
+import { Column, ColumnDef, ColumnFilter } from "@tanstack/react-table"
 import { EmptyProps } from "@illa-design/empty"
 import {
   ColumnFiltersState,
-  ColumnSort,
+  ColumnSort, FilterFnOption,
   OnChangeFn,
   PaginationState,
   RowSelectionState,
@@ -18,6 +18,8 @@ import {
   VisibilityState,
 } from "@tanstack/table-core"
 import { PaginationProps } from "@illa-design/pagination"
+import { Params } from "illa-builder/src/redux/resource/resourceState"
+import { FiltersEditor } from "./filters-editor"
 
 export type TableSize = "small" | "medium" | "large"
 
@@ -115,4 +117,15 @@ export interface ThProps
 export interface TableFilterProps<D extends TableData> extends BoxProps {
   renderFilterContent?: (columnProps: Column<D, unknown>) => ReactNode
   columnProps: Column<D, unknown>
+}
+
+export interface FiltersEditorProps {
+  columnFilters: ColumnFilter[]
+  columnsOption: {value: string, label: string}[]
+  onAdd: () => void
+  onDelete: (index: number, columnFilters: ColumnFilter) => void
+  onChange: (index: number, id: string, value: unknown) => void
+  // onChangeId: (index: number, id: string, value: unknown) => void
+  // onChangeValue: (index: number, id: string, value: unknown) => void
+  onChangeFilterFn: (index: number, id: string, filterFn: FilterFnOption<any>) => void
 }
