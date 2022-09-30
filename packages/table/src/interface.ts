@@ -10,7 +10,8 @@ import { Column, ColumnDef, ColumnFilter } from "@tanstack/react-table"
 import { EmptyProps } from "@illa-design/empty"
 import {
   ColumnFiltersState,
-  ColumnSort, FilterFnOption,
+  ColumnSort,
+  FilterFnOption,
   OnChangeFn,
   PaginationState,
   RowSelectionState,
@@ -121,11 +122,15 @@ export interface TableFilterProps<D extends TableData> extends BoxProps {
 
 export interface FiltersEditorProps {
   columnFilters: ColumnFilter[]
-  columnsOption: {value: string, label: string}[]
+  columnsOption: { value: string; label: string }[]
   onAdd: () => void
   onDelete: (index: number, columnFilters: ColumnFilter) => void
   onChange: (index: number, id: string, value: unknown) => void
   // onChangeId: (index: number, id: string, value: unknown) => void
   // onChangeValue: (index: number, id: string, value: unknown) => void
-  onChangeFilterFn: (index: number, id: string, filterFn: FilterFnOption<any>) => void
+  onChangeFilterFn: (
+    index: number,
+    id: string,
+    filterFn: FilterFnOption<any>,
+  ) => void
 }

@@ -155,24 +155,24 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
   const columns = useMemo(() => {
     const c: ColumnDef<DemoData>[] = [
       {
-        id: 'name',
+        id: "name",
         header: "name",
         accessorKey: "name", // accessor is the "key" in the data
-        filterFn: 'notEmpty'
+        filterFn: "notEmpty",
       },
       {
-        id: 'company',
+        id: "company",
         header: "company",
         accessorKey: "company",
       },
       {
-        id: 'phone',
+        id: "phone",
         header: "phone",
         accessorKey: "phone",
-        filterFn: filterFns.equals
+        filterFn: filterFns.equals,
       },
       {
-        id: 'address',
+        id: "address",
         header: "address",
         accessorKey: "address",
         cell: (props) => {
@@ -184,7 +184,14 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
     return c
   }, [])
   return (
-    <Table data={data} columns={columns} multiRowSelection download filter {...args} />
+    <Table
+      data={data}
+      columns={columns}
+      multiRowSelection
+      download
+      filter
+      {...args}
+    />
   )
 }
 

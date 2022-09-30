@@ -55,7 +55,11 @@ export const downloadDataAsCSV = (props: {
   }
 }
 
-export const notEqualTo: FilterFn<any> = (row, columnId: string, filterValue: unknown) => {
+export const notEqualTo: FilterFn<any> = (
+  row,
+  columnId: string,
+  filterValue: unknown,
+) => {
   return row.getValue(columnId) !== filterValue
 }
 
