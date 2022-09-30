@@ -29,6 +29,8 @@ export function applyContainerStyle(): SerializedStyles {
   return css(
     css`
       overflow: auto;
+      display: flex;
+      flex-direction: column;
     `,
   )
 }
@@ -183,10 +185,14 @@ export function applyToolBarStyle(bordered?: boolean): SerializedStyles {
   `
 }
 
-export const actionButtonStyle = css`
-  position: absolute;
-  right: 16px;
-`
+export function applyActionButtonStyle(
+  showPagination?: boolean,
+): SerializedStyles {
+  return css`
+    right: 16px;
+    ${showPagination ? "position: absolute;" : "float: right;"};
+  `
+}
 
 export const spinStyle = css`
   width: 100%;
