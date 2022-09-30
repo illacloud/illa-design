@@ -1,5 +1,16 @@
 # @illa-design/tree
 
+## 1.0.3
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/system@1.0.3
+  - @illa-design/theme@1.0.3
+  - @illa-design/tree-common@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes

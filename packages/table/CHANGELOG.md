@@ -1,5 +1,20 @@
 # @illa-design/table
 
+## 1.0.3
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/button@1.0.3
+  - @illa-design/checkbox@1.0.3
+  - @illa-design/icon@1.0.3
+  - @illa-design/pagination@1.0.3
+  - @illa-design/system@1.0.3
+  - @illa-design/theme@1.0.3
+  - @illa-design/trigger@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes
