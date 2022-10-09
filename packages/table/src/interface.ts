@@ -6,7 +6,7 @@ import {
 } from "react"
 import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
-import { Column, ColumnDef, ColumnFilter } from "@tanstack/react-table"
+import { Column, ColumnDef } from "@tanstack/react-table"
 import { EmptyProps } from "@illa-design/empty"
 import {
   ColumnFiltersState,
@@ -19,8 +19,6 @@ import {
   VisibilityState,
 } from "@tanstack/table-core"
 import { PaginationProps } from "@illa-design/pagination"
-import { Params } from "illa-builder/src/redux/resource/resourceState"
-import { FiltersEditor } from "./filters-editor"
 
 export type TableSize = "small" | "medium" | "large"
 
