@@ -7,13 +7,13 @@ import "@testing-library/jest-dom"
 test("Switch renders with different size", () => {
   render(<Switch data-testid="test-medium" />)
   expect(screen.getByTestId("test-medium")).toHaveStyle({
-    minWidth: "29px",
-    height: "18px",
+    minWidth: "26px",
+    height: "16px",
   })
   expect(screen.getByTestId("test-medium").firstChild).toHaveStyle({
     width: "12px",
     height: "12px",
-    top: "3px",
+    top: "2px",
   })
   expect(screen.getByTestId("test-medium").lastChild).toHaveStyle({
     "font-size": "12px",

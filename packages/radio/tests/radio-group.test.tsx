@@ -68,7 +68,7 @@ test("RadioGroup options renders with spacing", () => {
   )
   expect(screen.getByTestId("radio-group-spacing")).toBeInTheDocument()
   expect(screen.getByTestId("radio-group-spacing")).toHaveStyle(`
-    gap: 15px;
+    gap: 6px 15px;
   `)
 })
 
@@ -82,7 +82,7 @@ test("RadioGroup options renders with spacing", () => {
   )
   expect(screen.getByTestId("radio-group-spacing-16")).toBeInTheDocument()
   expect(screen.getByTestId("radio-group-spacing-16")).toHaveStyle(`
-    gap: 16px;
+    gap: 6px 16px;
   `)
 })
 
