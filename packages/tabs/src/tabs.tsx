@@ -20,7 +20,7 @@ export type TabChildren = {
   firstTabKey?: string
 }
 
-export function getTabChildren(children: ReactElement) {
+function getTabChildren(children: ReactElement) {
   const headerChildren: TabHeaderChildProps[] = []
   const paneChildren: ReactElement[] = []
   let firstTabKey: string | undefined
@@ -45,7 +45,7 @@ export function getTabChildren(children: ReactElement) {
   }
 }
 
-export function removeHeaderAndPane(index: number, tabsArr: TabChildren) {
+function removeHeaderAndPane(index: number, tabsArr: TabChildren) {
   if (index < 0) return tabsArr
   const newHeaders = [...tabsArr.headers]
   newHeaders.splice(index, 1)
@@ -58,10 +58,7 @@ export function removeHeaderAndPane(index: number, tabsArr: TabChildren) {
   }
 }
 
-export function getSelectedIndex(
-  key?: string,
-  headers?: TabHeaderChildProps[],
-) {
+function getSelectedIndex(key?: string, headers?: TabHeaderChildProps[]) {
   if (!headers) return -1
   return headers.findIndex((item) => key === item.tabKey)
 }
@@ -106,15 +103,21 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     if (!defaultActiveKey) setActiveKeyState(tabs.firstTabKey)
   }, [children])
 
-  let headerAnimated = true
-  let paneAnimated = false
+  const headerAnimated = useMemo(() => {
+    if (typeof animated === "boolean") {
+      return animated
+    } else if (isObject(animated)) {
+      return animated.inkBar ?? true
+    }
+  }, [animated])
 
-  if (typeof animated === "boolean") {
-    headerAnimated = paneAnimated = animated
-  } else if (isObject(animated)) {
-    headerAnimated = animated.inkBar ?? headerAnimated
-    paneAnimated = animated.tabPane ?? paneAnimated
-  }
+  const paneAnimated = useMemo(() => {
+    if (typeof animated === "boolean") {
+      return animated
+    } else if (isObject(animated)) {
+      return animated.tabPane ?? false
+    }
+  }, [animated])
 
   const _activeKey = activeKey ?? activeKeyState
 
