@@ -60,6 +60,7 @@ export const equalTo: FilterFn<any> = (
   columnId: string,
   filterValue: unknown,
 ) => {
+  console.log(row.renderValue(columnId), row, "equalTo")
   return row.getValue(columnId) == filterValue
 }
 
@@ -142,6 +143,7 @@ export const contains: FilterFn<any> = (
   columnId: string,
   filterValue: unknown,
 ) => {
+  console.log(row.renderValue(columnId), row, "contains")
   const rowValue = row.getValue<string>(columnId)
   if (isString(rowValue) && isString(filterValue)) {
     return rowValue.includes(filterValue)

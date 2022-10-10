@@ -13,6 +13,7 @@ import { isAhead, isHorizontalLayout } from "./utils"
 import { TabLineHeader } from "./headers/tab-line-header"
 import { isObject } from "@illa-design/system"
 import { applyBoxStyle } from "@illa-design/theme"
+import { TabsContext } from "./tabs-context"
 
 export type TabChildren = {
   headers: TabHeaderChildProps[]
@@ -74,10 +75,6 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     variant = "line",
     addIcon,
     deleteIcon,
-    onChange,
-    onAddTab,
-    onDeleteTab,
-    onClickTab,
     tabBarSpacing,
     tabPosition = "top",
     activeKey,
@@ -85,6 +82,10 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     suffix,
     colorScheme,
     withoutContent = false,
+    onChange,
+    onAddTab,
+    onDeleteTab,
+    onClickTab,
     ...rest
   } = props
 
@@ -99,6 +100,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
   useMemo(() => {
     const tabs = getTabChildren(children as ReactElement)
+    console.log(tabs, "tabs")
     setChildren(tabs)
     if (!defaultActiveKey) setActiveKeyState(tabs.firstTabKey)
   }, [children])
@@ -121,6 +123,24 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
   const _activeKey = activeKey ?? activeKeyState
 
+  const handleDeleteTab = (key: string) => {
+    const index = _children.headers.findIndex((item) => {
+      return item.tabKey === key
+    })
+    if (index === getSelectedIndex(_activeKey, _children.headers)) {
+      if (index === _children.headers.length - 1) {
+        setActiveKeyState(_children.headers[index - 1].tabKey)
+        onChange && onChange(_children.headers[index - 1].tabKey)
+      } else {
+        setActiveKeyState(_children.headers[index + 1].tabKey)
+        onChange && onChange(_children.headers[index + 1].tabKey)
+      }
+    }
+    const newArr = removeHeaderAndPane(index, _children)
+    setChildren(newArr)
+    onDeleteTab && onDeleteTab(key)
+  }
+
   const headerProps: TabHeaderProps = {
     selectedIndex: getSelectedIndex(_activeKey, _children.headers),
     animated: headerAnimated,
@@ -137,23 +157,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     onAddTab: onAddTab,
     tabBarSpacing: tabBarSpacing,
     tabPosition: tabPosition,
-    handleDeleteTab: (key) => {
-      const index = _children.headers.findIndex((item) => {
-        return item.tabKey === key
-      })
-      if (index === getSelectedIndex(_activeKey, _children.headers)) {
-        if (index === _children.headers.length - 1) {
-          setActiveKeyState(_children.headers[index - 1].tabKey)
-          onChange && onChange(_children.headers[index - 1].tabKey)
-        } else {
-          setActiveKeyState(_children.headers[index + 1].tabKey)
-          onChange && onChange(_children.headers[index + 1].tabKey)
-        }
-      }
-      const newArr = removeHeaderAndPane(index, _children)
-      setChildren(newArr)
-      onDeleteTab && onDeleteTab(key)
-    },
+    handleDeleteTab,
     deleteIcon: deleteIcon,
     suffix: suffix,
     prefix: prefix,
@@ -181,29 +185,40 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {isAhead(tabPosition) && _variant === "line" && (
-        <TabLineHeader {...headerProps} />
-      )}
-      {tabPosition === "top" && _variant != "line" && (
-        <TabCommonHeader {...headerProps} />
-      )}
-      {!withoutContent && (
-        <TabContent
-          animated={paneAnimated}
-          tabPanes={_children?.panes}
-          selectedIndex={getSelectedIndex(
-            activeKey ?? activeKeyState,
-            _children.headers,
-          )}
-          variant={_variant}
-        />
-      )}
-      {!isAhead(tabPosition) && _variant === "line" && (
-        <TabLineHeader {...headerProps} />
-      )}
-      {!isAhead(tabPosition) && _variant != "line" && (
-        <TabCommonHeader {...headerProps} />
-      )}
+      <TabsContext.Provider
+        value={{
+          size,
+          tabPosition,
+          colorScheme,
+          suffix,
+          prefix,
+          handleDeleteTab,
+          handleSelectTab: (key) => {
+            onClickTab && onClickTab(key)
+            setActiveKeyState(key)
+            onChange && onChange(key)
+          },
+        }}
+      >
+        {children}
+        {isAhead(tabPosition) && _variant === "line" && (
+          <TabLineHeader {...headerProps} />
+        )}
+        {tabPosition === "top" && _variant != "line" && (
+          <TabCommonHeader {...headerProps} />
+        )}
+        {!withoutContent && (
+          <TabContent
+            animated={paneAnimated}
+            tabPanes={_children?.panes}
+            selectedIndex={getSelectedIndex(
+              activeKey ?? activeKeyState,
+              _children.headers,
+            )}
+            variant={_variant}
+          />
+        )}
+      </TabsContext.Provider>
     </div>
   )
 })
