@@ -77,11 +77,18 @@ export function applyTabHeaderContainerCss(
   tabPosition?: TabPosition,
 ): SerializedStyles {
   const cardTypeCss = applyCardTypeHeaderCss(tabPosition)
+  const textTypeCss =
+    tabPosition === "left" || tabPosition === "right"
+      ? css`
+          flex-direction: column;
+        `
+      : css``
   return css`
     display: inline-flex;
     width: 100%;
     align-items: center;
     ${variant === "card" ? cardTypeCss : ""}
+    ${variant === "text" ? textTypeCss : ""}
   `
 }
 

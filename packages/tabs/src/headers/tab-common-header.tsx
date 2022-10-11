@@ -15,7 +15,6 @@ import {
   containerHideScrollBarCss,
   tabCapsuleHeaderContainerCss,
   tabCardHeaderContainerCss,
-  tabHeaderContainerCss,
   tabLineHeaderContainerCss,
   tabsContentCss,
   applyTabHeaderContainerCss,
