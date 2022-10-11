@@ -49,7 +49,7 @@ export interface TabsProps
 }
 
 export interface TabProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "title">,
+  extends Omit<HTMLAttributes<HTMLSpanElement>, "title">,
     BoxProps {
   title: string | ReactNode
   tabKey: string
@@ -64,8 +64,6 @@ export interface TabProps
   variant?: TabVariant
   colorScheme?: TabsColorScheme
   tabPosition?: TabPosition
-  handleSelectTab: (key: string) => void
-  handleDeleteTab?: (key: string) => void
 }
 
 export interface TabsContextProps
@@ -82,7 +80,7 @@ export interface TabsContextProps
   disabled?: boolean
   closable?: boolean
 
-  selectedIndex?: number
+  selectedKey?: string
   handleSelectTab?: (key: string) => void
   handleDeleteTab?: (key: string) => void
 }

@@ -1,9 +1,6 @@
 import { Meta, Story } from "@storybook/react"
-import { Tabs, TabsProps } from "../src"
-import { TabPane } from "../src"
+import { Tabs, TabPane, TabsProps } from "../src"
 import { ReactNode } from "react"
-import { TabList } from "../src/tab-list"
-import { Tab } from "../src/tab"
 import { Space } from "@illa-design/space"
 
 //👇 This default export determines where your story goes in the story list
@@ -86,13 +83,6 @@ const Template: Story<TabsProps> = (props) => {
             </TabPane>
           )
         })}
-      </Tabs>
-      <Tabs {...props}>
-        <TabList>
-          <Tab title="Item One" tabKey={"1"} />
-          <Tab title="Item Two" tabKey={"2"} />
-          <Tab title="Item Three" tabKey={"3"} />
-        </TabList>
       </Tabs>
     </Space>
   )

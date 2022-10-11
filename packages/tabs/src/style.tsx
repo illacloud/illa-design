@@ -1,6 +1,7 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { TabPosition, TabsColorScheme, TabsSize, TabVariant } from "./interface"
+import { isHorizontalLayout } from "./utils"
 
 export function applyPaddingSizeCss(size: TabsSize): SerializedStyles {
   let paddingSize
@@ -24,18 +25,34 @@ export function applyPaddingSizeCss(size: TabsSize): SerializedStyles {
   return paddingSize
 }
 
-export const commonContainerCss = css`
-  display: inline-flex;
-  flex-direction: column;
-  width: 100%;
-`
+export function applyCommonContainerCss(
+  tabPosition?: TabPosition,
+): SerializedStyles {
+  return css`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: ${tabPosition === "bottom" ? "column-reverse" : "column"};
+  `
+}
 
-export const horizontalContainerCss = css`
-  display: inline-flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-`
+export function applyHorizontalContainerCss(
+  tabPosition?: TabPosition,
+): SerializedStyles {
+  return css`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: ${tabPosition === "right" ? "row-reverse" : "row"};
+  `
+}
+
+export function applyContainerCss(tabPosition?: TabPosition): SerializedStyles {
+  if (isHorizontalLayout(tabPosition)) {
+    return applyHorizontalContainerCss(tabPosition)
+  }
+  return applyCommonContainerCss(tabPosition)
+}
 
 export const tabHeaderContainerCss = css`
   display: inline-flex;
@@ -295,15 +312,15 @@ export function applyTextColorCss(
     `
   } else {
     textColorCss = css`
-          color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 
-          &:hover {
-            background-color: ${
-              variant !== "capsule"
-                ? globalColor(`--${illaPrefix}-grayBlue-09`)
-                : undefined
-            }
-        `
+      &:hover {
+        background-color: ${
+          variant !== "capsule"
+            ? globalColor(`--${illaPrefix}-grayBlue-09`)
+            : undefined
+        }
+    `
   }
   if (!disabled && variant === "text") {
     if (isSelected) {
@@ -313,11 +330,11 @@ export function applyTextColorCss(
       `
     } else {
       textColorCss = css`
-              color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 
-              &:hover {
-                background-color: ${globalColor(`--${illaPrefix}-gray-09`)}
-            `
+        &:hover {
+          background-color: ${globalColor(`--${illaPrefix}-gray-09`)}
+      `
     }
   }
   return textColorCss
@@ -504,7 +521,7 @@ export function applyHorizontalPreNextIconCss(
     cursor: pointer;
     ${verticalPaddingCss}
     ${colorCss}
-      position: relative;
+    position: relative;
     width: 100%;
     justify-content: center;
   `
@@ -520,6 +537,14 @@ export function applyCommonPreNextIconCss(
     css`
       cursor: not-allowed;
     `
+  let variantCss =
+    variant === "card"
+      ? css`
+          top: -0.5px;
+          border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+        `
+      : ""
+
   return css`
     cursor: pointer;
     display: inline-flex;
@@ -528,7 +553,9 @@ export function applyCommonPreNextIconCss(
     height: 100%;
     font-size: 12px;
     text-align: center;
+    position: relative;
     padding: 0 12px ${variant === "capsule" ? 11 : 0}px 4px;
+    ${variantCss};
     ${colorCss};
   `
 }
@@ -574,4 +601,5 @@ export const tabsContentCss = css`
   display: inline-flex;
   align-items: center;
   flex-direction: inherit;
+  height: 100%;
 `
