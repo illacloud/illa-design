@@ -60,6 +60,27 @@ export const tabHeaderContainerCss = css`
   align-items: center;
 `
 
+export function applyTabHeaderContainerCss(
+  variant?: TabVariant,
+  tabPosition?: TabPosition,
+): SerializedStyles {
+  const cardTypeCss =
+    tabPosition === "bottom"
+      ? css`
+          border-top: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+        `
+      : css`
+          border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+        `
+
+  return css`
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    ${variant === "card" ? cardTypeCss : ""}
+  `
+}
+
 export function applyHeaderContainerCss(
   isHorizontal: boolean,
 ): SerializedStyles {
@@ -465,6 +486,24 @@ export const tabCardContentContainerCss = css`
   border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-top: 0;
 `
+
+export function applyCardContentContainerCss(
+  tabPosition?: TabPosition,
+): SerializedStyles {
+  const positionCss =
+    tabPosition === "bottom"
+      ? css`
+          border-bottom: 0;
+        `
+      : css`
+          border-top: 0;
+        `
+  return css`
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    ${tabContentContainerCss};
+    ${positionCss};
+  `
+}
 
 export function applyTabContentWrapperCss(
   showPaneIndex: number,

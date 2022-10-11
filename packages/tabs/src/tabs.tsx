@@ -187,7 +187,13 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   console.log("render")
 
   const _variant = useMemo(() => {
-    if (tabPosition && tabPosition !== "top") {
+    if (variant === "capsule" && tabPosition !== "top") {
+      return "line"
+    }
+    if (
+      variant === "card" &&
+      (tabPosition === "left" || tabPosition === "right")
+    ) {
       return "line"
     }
     return variant
@@ -201,19 +207,15 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       {...rest}
     >
       {_variant === "line" && <TabLineHeader {...headerProps} />}
-      {tabPosition === "top" && _variant != "line" && (
-        <TabCommonHeader {...headerProps} />
-      )}
+      {_variant != "line" && <TabCommonHeader {...headerProps} />}
       {!withoutContent && (
         <TabContent
           animated={paneAnimated}
           tabPanes={_children?.panes}
           selectedIndex={selectedIndex}
           variant={_variant}
+          tabPosition={tabPosition}
         />
-      )}
-      {!isAhead(tabPosition) && _variant != "line" && (
-        <TabCommonHeader {...headerProps} />
       )}
     </div>
   )

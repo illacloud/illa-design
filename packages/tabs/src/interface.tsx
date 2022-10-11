@@ -99,6 +99,7 @@ export interface TabContentProps extends HTMLAttributes<HTMLDivElement> {
   selectedIndex: number
   animated?: boolean
   variant: TabVariant
+  tabPosition?: TabPosition
 }
 
 export type TabHeaderProps = TabsProps & {

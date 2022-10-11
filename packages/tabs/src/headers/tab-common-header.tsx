@@ -18,6 +18,7 @@ import {
   tabHeaderContainerCss,
   tabLineHeaderContainerCss,
   tabsContentCss,
+  applyTabHeaderContainerCss,
 } from "../style"
 import { TabHeaderChild } from "./tab-header-child"
 import { AddIcon, NextIcon, PreIcon } from "@illa-design/icon"
@@ -44,6 +45,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       tabBarSpacing,
       prefix,
       suffix,
+      tabPosition,
       colorScheme = "blue",
       addIcon = <AddIcon />,
     } = props
@@ -121,7 +123,10 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
 
           <div ref={scrollRef} css={containerHideScrollBarCss}>
             <div css={containerCss}>
-              <div ref={childRef} css={tabHeaderContainerCss}>
+              <div
+                ref={childRef}
+                css={applyTabHeaderContainerCss(variant, tabPosition)}
+              >
                 {tabHeaderChild &&
                   tabHeaderChild?.map((item, index) => {
                     const childProps: TabHeaderChildProps = {
@@ -151,7 +156,6 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                   </span>
                 )}
               </div>
-              {variant === "card" && <div css={cardDividerContainerCss} />}
             </div>
           </div>
           {needScroll && (
