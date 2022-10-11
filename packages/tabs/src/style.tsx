@@ -60,19 +60,23 @@ export const tabHeaderContainerCss = css`
   align-items: center;
 `
 
+export function applyCardTypeHeaderCss(
+  tabPosition?: TabPosition,
+): SerializedStyles {
+  return tabPosition === "bottom"
+    ? css`
+        border-top: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+      `
+    : css`
+        border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+      `
+}
+
 export function applyTabHeaderContainerCss(
   variant?: TabVariant,
   tabPosition?: TabPosition,
 ): SerializedStyles {
-  const cardTypeCss =
-    tabPosition === "bottom"
-      ? css`
-          border-top: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
-        `
-      : css`
-          border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
-        `
-
+  const cardTypeCss = applyCardTypeHeaderCss(tabPosition)
   return css`
     display: inline-flex;
     width: 100%;
@@ -238,21 +242,31 @@ export function applyCapsuleHoverBackgroundCss(
 export function applyCardHeaderChildCss(
   isSelected?: boolean,
   disabled?: boolean,
+  tabPosition?: TabPosition,
 ): SerializedStyles {
   const selectedBoxCss = isSelected
     ? css`
         border: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-        border-bottom: solid white;
+        ${tabPosition === "bottom"
+          ? "border-top: solid white;"
+          : "border-bottom: solid white;"};
       `
     : css`
         border: solid transparent;
       `
   return css`
     position: relative;
-    top: 1px;
+    ${tabPosition === "bottom"
+      ? css`
+          border-radius: 0 0 4px 4px;
+          bottom: 1px;
+        `
+      : css`
+          border-radius: 4px 4px 0 0;
+          top: 1px;
+        `};
     ${applyCommonHeaderChildCss()};
     ${selectedBoxCss};
-    border-radius: 4px 4px 0 0;
     border-width: 1px;
     border-bottom-width: 1.5px;
     z-index: 2;
@@ -570,6 +584,7 @@ export function applyCommonPreNextIconCss(
   isPre: boolean,
   variant?: TabVariant,
   disabled?: boolean,
+  tabPosition?: TabPosition,
 ): SerializedStyles {
   let colorCss =
     disabled &&
@@ -578,10 +593,16 @@ export function applyCommonPreNextIconCss(
     `
   let variantCss =
     variant === "card"
-      ? css`
-          top: -0.5px;
-          border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
-        `
+      ? tabPosition === "bottom"
+        ? css`
+            top: 0.5px;
+            border-top: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+          `
+        : css`
+            top: -0.5px;
+            border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)}
+              1px;
+          `
       : ""
 
   return css`

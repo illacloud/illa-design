@@ -115,7 +115,12 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                 )
                 scrollRef.current?.scrollTo(dis, 0)
               }}
-              css={applyCommonPreNextIconCss(true, variant, preDisable)}
+              css={applyCommonPreNextIconCss(
+                true,
+                variant,
+                preDisable,
+                tabPosition,
+              )}
             >
               <PreIcon />
             </span>
@@ -142,6 +147,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                       handleDeleteTab: handleDeleteTab,
                       tabBarSpacing: tabBarSpacing,
                       colorScheme: colorScheme,
+                      tabPosition,
                     }
                     return <TabHeaderChild key={item.tabKey} {...childProps} />
                   })}
@@ -173,7 +179,12 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                   0,
                 )
               }}
-              css={applyCommonPreNextIconCss(false, variant, nextDisable)}
+              css={applyCommonPreNextIconCss(
+                false,
+                variant,
+                nextDisable,
+                tabPosition,
+              )}
             >
               <NextIcon />
             </span>

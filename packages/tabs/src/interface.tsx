@@ -117,6 +117,7 @@ export type TabHeaderChildProps = Pick<
   tabKey: string
   handleSelectTab: (key: string) => void
   variant?: TabVariant
+  tabPosition?: TabPosition
   deleteIcon?: ReactNode
   size?: TabsSize
   handleDeleteTab?: (key: string) => void
