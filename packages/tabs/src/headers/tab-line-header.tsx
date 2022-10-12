@@ -13,8 +13,6 @@ import {
   applyHorizontalBlueLineCss,
   applyHorizontalPreNextIconCss,
   applyCommonPreNextIconCss,
-  containerHideScrollBarCss,
-  containerHorizontalHideScrollBarCss,
   tabHeaderContainerCss,
   tabHeaderHorizontalContainerCss,
   tabLineHeaderContainerCss,
@@ -23,6 +21,7 @@ import {
   applyCommonIconLineCss,
   applyLineHeaderContainerCss,
   tabsContentCss,
+  applyScrollContainerCss,
 } from "../style"
 import { TabHeaderChild } from "./tab-header-child"
 import { DownIcon, NextIcon, PreIcon, UpIcon } from "@illa-design/icon"
@@ -31,10 +30,12 @@ import {
   checkAndAdjustSelectedItemPosition,
   getChildrenHeightArr,
   getChildrenWidthArr,
-  getLeftTargetPosition,
-  getTargetPosition,
+  getOffsetSize,
+  getScrollDist,
+  getScrollSize,
   isAhead,
   isHorizontalLayout,
+  scrollTabList,
 } from "../utils"
 import { TabHeaderProps } from "../interface"
 
@@ -68,7 +69,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       colorScheme = "blue",
     } = props
 
-    const scrollRef = useRef<HTMLDivElement | null>(null)
+    const scrollRef = useRef<HTMLDivElement>(null)
     const childRef = useRef<HTMLDivElement | null>(null)
     const scrolling = useScrolling(scrollRef)
     const [preDisable, setPreDisable] = useState(true)
@@ -94,45 +95,48 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       }
       target = _isHorizontalLayout ? target : target + PADDING
       setBlueLinePosition(target)
-    }, [selectedIndex, tabBarSpacing, childRef, tabHeaderChild])
+    }, [
+      selectedIndex,
+      tabBarSpacing,
+      childRef,
+      tabHeaderChild,
+      _isHorizontalLayout,
+    ])
 
-    const getOffsetSize = () =>
-      (_isHorizontalLayout
-        ? scrollRef?.current?.offsetHeight
-        : scrollRef?.current?.offsetWidth) ?? 0
-    const getScrollSize = () =>
-      (_isHorizontalLayout
-        ? scrollRef?.current?.scrollHeight
-        : scrollRef?.current?.scrollWidth) ?? 0
-    const getScrollDist = () =>
-      (_isHorizontalLayout
-        ? scrollRef?.current?.scrollTop
-        : scrollRef?.current?.scrollLeft) ?? 0
-
-    const _handleSelectTab = useCallback((key: string, index: number) => {
-      const dist = checkAndAdjustSelectedItemPosition(
-        getChildrenSize(_isHorizontalLayout, childRef.current),
-        getOffsetSize() ?? 0,
-        getScrollDist() ?? 0,
-        index,
-      )
-      _isHorizontalLayout
-        ? scrollRef.current?.scrollTo(0, dist)
-        : scrollRef.current?.scrollTo(dist, 0)
-      handleSelectTab(key)
-    }, [])
+    const _handleSelectTab = useCallback(
+      (key: string, index: number) => {
+        const dist = checkAndAdjustSelectedItemPosition(
+          getChildrenSize(_isHorizontalLayout, childRef.current),
+          getOffsetSize(_isHorizontalLayout, scrollRef),
+          getScrollDist(_isHorizontalLayout, scrollRef),
+          index,
+        )
+        _isHorizontalLayout
+          ? scrollRef.current?.scrollTo(0, dist)
+          : scrollRef.current?.scrollTo(dist, 0)
+        handleSelectTab(key)
+      },
+      [_isHorizontalLayout, handleSelectTab],
+    )
 
     useEffect(() => {
       checkPreAndNextDisable()
       if (!scrollRef?.current) return
-      setNeedScroll(getScrollSize() > getOffsetSize())
-    }, [scrollRef.current, childRef.current])
+      setNeedScroll(
+        getScrollSize(_isHorizontalLayout, scrollRef) >
+          getOffsetSize(_isHorizontalLayout, scrollRef),
+      )
+    }, [_isHorizontalLayout])
 
     const checkPreAndNextDisable = () => {
       if (!scrollRef.current) return
-      setPreDisable(getScrollDist() === 0)
+      setPreDisable(getScrollDist(_isHorizontalLayout, scrollRef) === 0)
       setNextDisable(
-        Math.abs(getScrollDist() + getOffsetSize() - getScrollSize()) < 1,
+        Math.abs(
+          getScrollDist(_isHorizontalLayout, scrollRef) +
+            getOffsetSize(_isHorizontalLayout, scrollRef) -
+            getScrollSize(_isHorizontalLayout, scrollRef),
+        ) < 1,
       )
     }
 
@@ -141,7 +145,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         () =>
           getChildrenSize(_isHorizontalLayout, childRef.current)[selectedIndex],
       )
-    }, [childRef.current])
+    }, [_isHorizontalLayout, selectedIndex])
 
     useEffect(() => {
       if (!scrolling) {
@@ -156,7 +160,9 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       for (let i = 0; i < len; i++) {
         size += sizeArr[i]
       }
-      return size > getOffsetSize() ? size : getOffsetSize()
+      return size > getOffsetSize(_isHorizontalLayout, scrollRef)
+        ? size
+        : getOffsetSize(_isHorizontalLayout, scrollRef)
     }
 
     let [
@@ -164,7 +170,6 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       tabsContainerCss,
       applyLineCss,
       applyBlueLineCss,
-      scrollContainerCss,
       applyPreNextIconCss,
     ] = _isHorizontalLayout
       ? [
@@ -172,7 +177,6 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
           tabHeaderHorizontalContainerCss,
           applyDividerHorizontalLineCss,
           applyHorizontalBlueLineCss,
-          containerHorizontalHideScrollBarCss,
           applyHorizontalPreNextIconCss,
           applyHorizontalIconLineCss(tabPosition === "left"),
         ]
@@ -181,7 +185,6 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
           tabHeaderContainerCss,
           applyDividerCommonLineCss,
           applyCommonBlueLineCss,
-          containerHideScrollBarCss,
           applyCommonPreNextIconCss,
           applyCommonIconLineCss(tabPosition === "top"),
         ]
@@ -204,23 +207,24 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
           {needScroll && (
             <span
               onClick={() => {
-                if (preDisable || !scrollRef || !scrollRef?.current) return
-                let dis = getLeftTargetPosition(
-                  getChildrenSize(_isHorizontalLayout, childRef.current),
-                  getOffsetSize(),
-                  getScrollDist(),
+                scrollTabList(
+                  true,
+                  preDisable,
+                  _isHorizontalLayout,
+                  scrollRef,
+                  childRef,
+                  checkPreAndNextDisable,
                 )
-                _isHorizontalLayout
-                  ? scrollRef.current?.scrollTo(0, dis)
-                  : scrollRef.current?.scrollTo(dis, 0)
-                checkPreAndNextDisable()
               }}
               css={applyPreNextIconCss(true, "line", preDisable)}
             >
               {_preIcon}
             </span>
           )}
-          <div ref={scrollRef} css={scrollContainerCss}>
+          <div
+            ref={scrollRef}
+            css={applyScrollContainerCss(_isHorizontalLayout)}
+          >
             <div css={headerContainer} ref={ref}>
               {!_isAhead && (
                 <div css={applyLineCss(childRef && dividerSize())}>
@@ -271,16 +275,14 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
           {needScroll && (
             <span
               onClick={() => {
-                if (nextDisable || !scrollRef || !scrollRef?.current) return
-                const dis = getTargetPosition(
-                  getChildrenSize(_isHorizontalLayout, childRef.current),
-                  getOffsetSize(),
-                  getScrollDist() ?? 0,
+                scrollTabList(
+                  false,
+                  nextDisable,
+                  _isHorizontalLayout,
+                  scrollRef,
+                  childRef,
+                  checkPreAndNextDisable,
                 )
-                _isHorizontalLayout
-                  ? scrollRef.current?.scrollTo(0, dis)
-                  : scrollRef.current?.scrollTo(dis, 0)
-                checkPreAndNextDisable()
               }}
               css={applyPreNextIconCss(false, "line", nextDisable)}
             >

@@ -1,4 +1,6 @@
 import { TabPosition } from "./interface"
+import { RefObject } from "react"
+import { getChildrenSize } from "./headers/tab-line-header"
 
 export const isHorizontalLayout = (tabPosition?: TabPosition) => {
   return tabPosition === "left" || tabPosition === "right"
@@ -89,4 +91,66 @@ export const checkAndAdjustSelectedItemPosition = (
     return selectedIndexPosition
   }
   return currentPosition
+}
+
+export const getOffsetSize = (
+  isHorizontalLayout: boolean,
+  scrollRef: RefObject<HTMLDivElement>,
+) =>
+  (isHorizontalLayout
+    ? scrollRef?.current?.offsetHeight
+    : scrollRef?.current?.offsetWidth) ?? 0
+
+export const getScrollSize = (
+  isHorizontalLayout: boolean,
+  scrollRef: RefObject<HTMLDivElement>,
+) =>
+  (isHorizontalLayout
+    ? scrollRef?.current?.scrollHeight
+    : scrollRef?.current?.scrollWidth) ?? 0
+
+export const getScrollDist = (
+  isHorizontalLayout: boolean,
+  scrollRef: RefObject<HTMLDivElement>,
+) =>
+  (isHorizontalLayout
+    ? scrollRef?.current?.scrollTop
+    : scrollRef?.current?.scrollLeft) ?? 0
+
+export const getDividerSize = (
+  isHorizontalLayout: boolean,
+  scrollRef: RefObject<HTMLDivElement>,
+  childRef: RefObject<HTMLDivElement>,
+) => {
+  const sizeArr = getChildrenSize(isHorizontalLayout, childRef.current)
+  let size = 0
+  const len = sizeArr?.length
+  for (let i = 0; i < len; i++) {
+    size += sizeArr[i]
+  }
+  return size > getOffsetSize(isHorizontalLayout, scrollRef)
+    ? size
+    : getOffsetSize(isHorizontalLayout, scrollRef)
+}
+
+export const scrollTabList = (
+  isLeft: boolean,
+  preDisable: boolean,
+  isHorizontalLayout: boolean,
+  scrollRef: RefObject<HTMLDivElement>,
+  childRef: RefObject<HTMLDivElement>,
+  callBack?: () => void,
+) => {
+  if (preDisable || !scrollRef || !scrollRef?.current) return
+  const getPosition = isLeft ? getLeftTargetPosition : getTargetPosition
+  let dis = getPosition(
+    getChildrenSize(isHorizontalLayout, childRef.current),
+    getOffsetSize(isHorizontalLayout, scrollRef),
+    getScrollDist(isHorizontalLayout, scrollRef),
+  )
+  console.log(scrollRef.current, scrollRef.current?.scrollTo, "scrollRef")
+  isHorizontalLayout
+    ? scrollRef.current?.scrollTo(0, dis)
+    : scrollRef.current?.scrollTo(dis, 0)
+  callBack?.()
 }

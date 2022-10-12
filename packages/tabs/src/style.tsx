@@ -206,6 +206,14 @@ export const containerHorizontalHideScrollBarCss = css`
   box-sizing: border-box;
 `
 
+export function applyScrollContainerCss(
+  isHorizontal: boolean,
+): SerializedStyles {
+  return isHorizontal
+    ? containerHorizontalHideScrollBarCss
+    : containerHideScrollBarCss
+}
+
 export const tabCardHeaderContainerCss = css`
   display: inline-flex;
   flex-direction: column;
@@ -625,6 +633,12 @@ export function applyCommonPreNextIconCss(
     ${variantCss};
     ${colorCss};
   `
+}
+
+export function applyPreNextIconCss(isHorizontal: boolean) {
+  return isHorizontal
+    ? applyHorizontalPreNextIconCss
+    : applyCommonPreNextIconCss
 }
 
 export function applyHorizontalIconLineCss(isLeft: boolean): SerializedStyles {
