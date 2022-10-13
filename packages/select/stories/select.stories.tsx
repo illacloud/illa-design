@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Space } from "@illa-design/space"
-import { JSTransformerIcon, PenIcon } from "@illa-design/icon"
+import { PenIcon } from "@illa-design/icon"
 import { Select, SelectProps, Option } from "../src"
 import { BsFacebook } from "react-icons/bs"
 
@@ -98,7 +98,6 @@ const Template: Story<SelectProps> = (args) => (
       {Array.from({ length: 10 }, (i, idx) => {
         return (
           <Option value={idx} key={idx} disabled={true}>
-            <JSTransformerIcon style={{ marginRight: 8 }} />
             {`option-${idx}`}
           </Option>
         )
