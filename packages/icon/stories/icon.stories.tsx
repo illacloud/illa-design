@@ -105,6 +105,7 @@ import {
   SuccessIcon,
   SwitchWidgetIcon,
   TableWidgetIcon,
+  TabsWidgetIcon,
   TextAlignCenterIcon,
   TextAlignLeftIcon,
   TextAlignRightIcon,
@@ -578,4 +579,8 @@ export const Unlock: Story<IconProps> = (props: IconProps) => (
 
 export const Download: Story<IconProps> = (props: IconProps) => (
   <DownloadIcon {...props} />
+)
+
+export const TabsWidget: Story<IconProps> = (props: IconProps) => (
+  <TabsWidgetIcon {...props} />
 )
