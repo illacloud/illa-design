@@ -1,7 +1,6 @@
 import { Select, Option } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import { JSTransformerIcon } from "@illa-design/icon"
 
 it("Select render correctly", () => {
   mount(<Select placeholder={"test select"} value={"test"} />)
@@ -225,12 +224,10 @@ describe("Select renders with placeholder", () => {
     unmount()
   })
 
-  it("With `showSearch` enabled, placeholder shoule be same placeholder prop if option is custom option", () => {
+  it("With `showSearch` enabled, placeholder should be same placeholder prop if option is custom option", () => {
     mount(
       <Select showSearch placeholder={"placeholder"}>
-        <Option value={1}>
-          <JSTransformerIcon /> option
-        </Option>
+        <Option value={1}>option</Option>
       </Select>,
     )
     cy.findByPlaceholderText("placeholder").click()
@@ -238,8 +235,8 @@ describe("Select renders with placeholder", () => {
     cy.findByText("option").click()
     // click select to input search, and placeholder shoule be still be `placeholder`
     cy.findByText("option").click()
-    cy.findByPlaceholderText("option").should("not.exist")
-    cy.findByPlaceholderText("placeholder").should("be.visible")
+    cy.findByPlaceholderText("option").should("be.visible")
+    cy.findByPlaceholderText("placeholder").should("not.exist")
     unmount()
   })
 })

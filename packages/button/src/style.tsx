@@ -609,7 +609,7 @@ export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
         flex-direction: row;
         align-items: center;
         font-size: 12px;
-        margin-right: 6px;
+        margin-right: 4px;
       `
     case "medium":
     case "large":
@@ -618,7 +618,7 @@ export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
         flex-direction: row;
         align-items: center;
         font-size: 12px;
-        margin-right: 8px;
+        margin-right: 4px;
       `
   }
 }

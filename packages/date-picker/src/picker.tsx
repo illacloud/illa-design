@@ -82,6 +82,7 @@ export const Picker = forwardRef<HTMLDivElement, RenderSinglePickerProps>(
     const tryUpdatePopupVisible = (visible: boolean) => {
       if (currentPopupVisible !== visible) {
         setCurrentPopupVisible(visible)
+        onVisibleChange?.(visible)
         if (!visible) {
           setInputValue(undefined)
           setValueShow(undefined)

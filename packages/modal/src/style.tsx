@@ -59,7 +59,6 @@ export function applyModal(
     overflow: auto;
     white-space: initial;
     box-sizing: border-box;
-    line-height: 1.5;
     border-radius: 8px;
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
     ${centerCss}

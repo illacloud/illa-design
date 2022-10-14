@@ -23,8 +23,8 @@ export function applySwitch(
   checked: boolean,
   size: SwitchSize,
 ): SerializedStyles {
-  const minWidth = size === "medium" ? "29px" : "40px"
-  const height = size === "medium" ? "18px" : "24px"
+  const minWidth = size === "medium" ? "26px" : "40px"
+  const height = size === "medium" ? "16px" : "24px"
   const isInnerColor: boolean = innerColor.indexOf(colorScheme) > -1
   let bgc = checked
     ? isInnerColor
@@ -65,7 +65,7 @@ export function applySwitchDot(
   disabled: boolean,
 ): SerializedStyles {
   const dotSize = size === "medium" ? "12px" : "16px"
-  const dotSpacing = size === "medium" ? "3px" : "4px"
+  const dotSpacing = size === "medium" ? "2px" : "4px"
   const dotPosition = checked
     ? `
         left: 100%;
