@@ -202,7 +202,7 @@ exports[`Button Group renders attached with round shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   font-size: 12px;
-  margin-right: 8px;
+  margin-right: 4px;
 }
 
 .emotion-12 {
@@ -890,7 +890,7 @@ exports[`Button Group renders attached with square shape 1`] = `
   -ms-flex-align: center;
   align-items: center;
   font-size: 12px;
-  margin-right: 8px;
+  margin-right: 4px;
 }
 
 .emotion-12 {
@@ -1515,7 +1515,7 @@ exports[`Button Group renders with spacing 1`] = `
   -ms-flex-align: center;
   align-items: center;
   font-size: 12px;
-  margin-right: 8px;
+  margin-right: 4px;
 }
 
 .emotion-12 {
