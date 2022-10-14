@@ -11,6 +11,7 @@ it("Dropdown renders with dropList", () => {
   const clickItemEvent = cy.stub().as("clickItemEvent")
   mount(
     <Dropdown
+      trigger="click"
       dropList={
         <DropList onClickItem={clickItemEvent}>
           <Item title={"Blog"} key={"1"} disabled />
@@ -27,7 +28,7 @@ it("Dropdown renders with dropList", () => {
     </Dropdown>,
   )
   cy.findByText("Hover")
-    .trigger("mouseenter")
+    .click()
     .then(() => {
       cy.findByText("Tutorial")
         .should("exist")
@@ -45,6 +46,7 @@ it("Dropdown render DropList with disabled", () => {
   const clickItemEvent = cy.stub().as("clickItemEvent")
   mount(
     <Dropdown
+      trigger={"click"}
       dropList={
         <DropList onClickItem={clickItemEvent}>
           <Item title={"Blog"} key={"1"} disabled />
@@ -58,7 +60,7 @@ it("Dropdown render DropList with disabled", () => {
     </Dropdown>,
   )
   cy.findByText("Hover")
-    .trigger("mouseenter")
+    .click()
     .then(() => {
       cy.findByText("Blog")
         .should("exist")

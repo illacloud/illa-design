@@ -10,7 +10,7 @@ it("Trigger renders correctly", () => {
       <Button>Hello Trigger Custom</Button>
     </Trigger>,
   )
-  cy.findByText("Hello Trigger Custom").trigger("mouseover")
+  cy.findByText("Hello Trigger Custom").trigger("mouseenter")
   cy.findByText("Trigger Success Custom").should("exist")
   unmount()
 })
@@ -21,7 +21,7 @@ it("Trigger renders without padding", () => {
       <Button>Button</Button>
     </Trigger>,
   )
-  cy.findByText("Button").trigger("mouseover")
+  cy.findByText("Button").trigger("mouseenter")
   cy.findByText("Trigger")
     .parent()
     .parent()
@@ -35,7 +35,7 @@ it("Trigger renders without shadow", () => {
       <Button>Button</Button>
     </Trigger>,
   )
-  cy.findByText("Button").trigger("mouseover")
+  cy.findByText("Button").trigger("mouseenter")
   cy.findByText("Trigger").parent().should("not.have.a.property", "box-shadow")
   unmount()
 })
@@ -46,7 +46,7 @@ it("Trigger renders without triangle", () => {
       <Button>Button</Button>
     </Trigger>,
   )
-  cy.findByText("Button").trigger("mouseover")
+  cy.findByText("Button").trigger("mouseenter")
   cy.findByTitle("TriangleIconBottom").should("not.exist")
   unmount()
 })
@@ -57,7 +57,7 @@ it("Trigger renders without auto fit position", () => {
       <Button>Button</Button>
     </Trigger>,
   )
-  cy.findByText("Button").trigger("mouseover")
+  cy.findByText("Button").trigger("mouseenter")
   cy.findByTitle("TriangleIconTop").should("exist")
   unmount()
 })
@@ -185,15 +185,14 @@ it("Trigger renders with alignPoint", () => {
     </Trigger>,
   )
   cy.get("button").click(24, 24)
-  cy.wait(100)
+  cy.wait(200)
   cy.findByText("Trigger")
     .parent()
     .parent()
     .parent()
     .parent()
-    .should("have.css", "top", "32px")
+    .should("have.css", "top", "36px")
     .should("have.css", "left", "32px")
-
   unmount()
 })
 
@@ -236,7 +235,7 @@ it("Trigger renders with closeOnInnerClick", () => {
     <Trigger
       popupVisible={true}
       closeOnInnerClick
-      position="bl"
+      position="bottom-start"
       onVisibleChange={mock}
       content={<div>Close Click Me</div>}
     >
@@ -252,7 +251,11 @@ it("Trigger renders with closeOnInnerClick", () => {
 it("Trigger renders with contextmenu", () => {
   const mock = cy.stub().as("mock")
   mount(
-    <Trigger position="bl" onVisibleChange={mock} content={<div>Hello</div>}>
+    <Trigger
+      position="bottom-start"
+      onVisibleChange={mock}
+      content={<div>Hello</div>}
+    >
       <Button>Button</Button>
     </Trigger>,
   )
@@ -260,124 +263,4 @@ it("Trigger renders with contextmenu", () => {
   cy.wait(100)
   cy.get("@mock").should("to.be.calledWith", true)
   unmount()
-})
-
-it("Popup should follow trigger when upper container scroll", () => {
-  mount(
-    <div style={{ height: 100, overflow: "auto" }} data-testid="container">
-      <Trigger trigger="click" content="TriggerHello" showArrow={false}>
-        <Button>Button</Button>
-      </Trigger>
-      <div style={{ height: 300 }} />
-    </div>,
-  )
-  cy.findByText("Button").click()
-  cy.findByText("TriggerHello").should("exist")
-  cy.findByTestId("container").scrollTo("bottom")
-  cy.wait(100)
-  cy.findByTestId("container").scrollTo("top")
-  cy.wait(400)
-
-  cy.findByText("Button").then((button) => {
-    const { bottom } = button[0].getBoundingClientRect()
-    const OFFSET = 10
-
-    cy.findByText("TriggerHello").then((trigger) => {
-      const {
-        top: triggerTop,
-        bottom: triggerBottom,
-        height: triggerHeight,
-      } = trigger[0].getBoundingClientRect()
-
-      // popup should close to button
-      expect(triggerTop).to.be.greaterThan(bottom)
-      expect(triggerBottom).to.be.greaterThan(bottom)
-      expect(triggerTop).to.be.most(bottom + triggerHeight + OFFSET)
-    })
-  })
-
-  unmount()
-})
-
-/**
- * Check scollbar visible to test `disabledOutsideScrollable`
- *
- * It should have been tested by scrolling. However, cy.scrollto()
- *  can trigger the scroll regardless of whether the parameters are
- *  set or not, and it cannot simulate the actual mouse wheel scrolling,
- *  so determine whether there is a scrollbar to test whether it takes effect.
- *
- */
-describe("Test `disabledOutsideScrollable`", () => {
-  it("Scrollbar should be removed", () => {
-    const loremIpsum = Array(100)
-      .fill(0)
-      .map(
-        () =>
-          `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-      )
-
-      .join("\n\n")
-    mount(
-      <>
-        <Trigger
-          trigger="click"
-          content="TriggerHello"
-          showArrow={false}
-          disabledOutsideScrollable
-        >
-          <Button>Button</Button>
-        </Trigger>
-        {loremIpsum}
-        <span>bottom</span>
-      </>,
-    )
-
-    cy.get("body").then((body) => {
-      const originBodyWidth = body[0].offsetWidth
-
-      cy.findByText("Button").click()
-      cy.findByText("TriggerHello").should("exist")
-
-      cy.get("body").then((body) => {
-        const bodyWidthWithoutScrollbar = body[0].offsetWidth
-        expect(bodyWidthWithoutScrollbar).to.be.greaterThan(originBodyWidth)
-      })
-    })
-
-    unmount()
-  })
-
-  it("Scrollbar should still exist", () => {
-    const loremIpsum = Array(100)
-      .fill(0)
-      .map(
-        () =>
-          `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-      )
-
-      .join("\n\n")
-    mount(
-      <>
-        <Trigger trigger="click" content="TriggerHello" showArrow={false}>
-          <Button>Button</Button>
-        </Trigger>
-        {loremIpsum}
-      </>,
-    )
-
-    cy.get("body").then((body) => {
-      const originBodyWidth = body[0].offsetWidth
-
-      cy.findByText("Button").click()
-      cy.findByText("TriggerHello").should("exist")
-
-      cy.get("body").then((body) => {
-        const bodyWidthWithoutScrollbar = body[0].offsetWidth
-        expect(bodyWidthWithoutScrollbar).to.be.equal(originBodyWidth)
-      })
-    })
-
-    unmount()
-  })
 })
