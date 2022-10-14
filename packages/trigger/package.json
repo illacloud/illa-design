@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/trigger",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Illa Design trigger.",
   "keywords": [
     "trigger",
@@ -39,10 +39,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.3",
-    "@illa-design/config-provider": "1.0.3",
-    "@illa-design/theme": "1.0.3",
-    "@illa-design/system": "1.0.3",
+    "@illa-design/icon": "1.0.4",
+    "@illa-design/config-provider": "1.0.4",
+    "@illa-design/theme": "1.0.4",
+    "@illa-design/system": "1.0.4",
     "@floating-ui/react-dom-interactions": "^0.9.3"
   }
 }

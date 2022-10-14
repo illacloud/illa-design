@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/checkbox",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Illa Design Checkbox.",
   "keywords": [
     "radio",
@@ -39,8 +39,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.3",
-    "@illa-design/system": "1.0.3",
-    "@illa-design/theme": "1.0.3"
+    "@illa-design/icon": "1.0.4",
+    "@illa-design/system": "1.0.4",
+    "@illa-design/theme": "1.0.4"
   }
 }
