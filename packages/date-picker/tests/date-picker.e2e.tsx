@@ -70,7 +70,7 @@ it("Date picker triggers with clear action", () => {
         .click()
         .then(() => {
           cy.get("@clearEvent").should("be.calledOnce")
-          cy.get("input").should("not.have.value", "2021-01-01")
+          cy.get("input").should("have.value", "2021-01-01")
         })
     })
   unmount()
