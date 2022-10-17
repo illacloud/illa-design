@@ -45,8 +45,13 @@ function baseFixCls(size?: InputNumberProps["size"]): SerializedStyles {
   `
 }
 
+export const disabledStyle = css`
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+`
+
 export function applyAddonCss(
   size?: InputNumberProps["size"],
+  disabled?: boolean,
 ): SerializedStyles {
   return css`
     ${baseFixCls(size)}
@@ -58,11 +63,15 @@ export function applyAddonCss(
     height: 100%;
     box-sizing: border-box;
     text-align: center;
+    cursor: ${disabled ? "not-allowed" : "pointer"};
 
-    &:hover {
-      cursor: pointer;
-      color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    }
+    ${disabled
+      ? disabledStyle
+      : css`
+          &:hover {
+            color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+          }
+        `};
 
     &:first-of-type {
       border-right: 0;
