@@ -63,6 +63,7 @@ export function applyModal(
     top: 100px;
     overflow: hidden;
     max-height: 70%;
+    height: 100%;
     margin: 0 auto;
     width: ${isSimple ? "400px" : "520px"};
     text-align: left;
@@ -141,8 +142,8 @@ export function applyModalContent(
   return css`
     padding: 24px;
     font-size: 14px;
-    flex-grow: 1;
-    flex-shrink: 1;
+    flex: 1;
+    overflow: hidden;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${simpleCss};
     ${paddingCSS}
