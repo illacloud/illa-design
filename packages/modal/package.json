@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/modal",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Illa Design Modal.",
   "keywords": [
     "modal",
@@ -39,12 +39,12 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/button": "1.0.2",
-    "@illa-design/config-provider": "1.0.2",
-    "@illa-design/alert": "1.0.2",
-    "@illa-design/icon": "1.0.2",
-    "@illa-design/system": "1.0.2",
-    "@illa-design/theme": "1.0.2",
+    "@illa-design/button": "1.0.4",
+    "@illa-design/config-provider": "1.0.4",
+    "@illa-design/alert": "1.0.4",
+    "@illa-design/icon": "1.0.4",
+    "@illa-design/system": "1.0.4",
+    "@illa-design/theme": "1.0.4",
     "react-hotkeys-hook": "^3.4.6"
   }
 }

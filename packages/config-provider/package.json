@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/config-provider",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Illa Design Config Provider.",
   "keywords": [
     "config-provider",
@@ -39,7 +39,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/system": "1.0.2",
-    "@illa-design/theme": "1.0.2"
+    "@illa-design/system": "1.0.4",
+    "@illa-design/theme": "1.0.4"
   }
 }
