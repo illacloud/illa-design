@@ -206,6 +206,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   padding: 0 12px;
   border-color: #e5e6ebff;
   cursor: not-allowed;
+  background-color: #f2f3f5ff;
 }
 
 .emotion-118:first-of-type {
@@ -1130,6 +1131,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   padding: 0 12px;
   border-color: #e5e6ebff;
   cursor: not-allowed;
+  background-color: #f2f3f5ff;
 }
 
 .emotion-118:first-of-type {
@@ -2060,6 +2062,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   padding: 0 12px;
   border-color: #e5e6ebff;
   cursor: not-allowed;
+  background-color: #f2f3f5ff;
 }
 
 .emotion-118:first-of-type {

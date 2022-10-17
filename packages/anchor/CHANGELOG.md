@@ -1,5 +1,27 @@
 # @illa-design/anchor
 
+## 1.0.4
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/affix@1.0.4
+  - @illa-design/system@1.0.4
+  - @illa-design/theme@1.0.4
+
+## 1.0.3
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/affix@1.0.3
+  - @illa-design/system@1.0.3
+  - @illa-design/theme@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes

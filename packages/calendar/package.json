@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/calendar",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Illa Design Calendar.",
   "keywords": [
     "calendar",
@@ -39,9 +39,9 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.2",
-    "@illa-design/select": "1.0.2",
-    "@illa-design/system": "1.0.2",
-    "@illa-design/theme": "1.0.2"
+    "@illa-design/icon": "1.0.4",
+    "@illa-design/select": "1.0.4",
+    "@illa-design/system": "1.0.4",
+    "@illa-design/theme": "1.0.4"
   }
 }
