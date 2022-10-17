@@ -1,6 +1,5 @@
 import { ChangeEvent, HTMLAttributes, ReactElement, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
-import { TabListContext } from "./tab-list-context"
 
 export declare type TabPosition = "left" | "right" | "top" | "bottom"
 export declare type TabsSize = "small" | "medium" | "large"

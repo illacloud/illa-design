@@ -30,7 +30,6 @@ export function applyCommonContainerCss(
 ): SerializedStyles {
   return css`
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: ${tabPosition === "bottom" ? "column-reverse" : "column"};
   `
