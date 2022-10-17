@@ -63,7 +63,6 @@ export function applyModal(
     top: 100px;
     overflow: hidden;
     max-height: 70%;
-    height: 100%;
     margin: 0 auto;
     width: ${isSimple ? "400px" : "520px"};
     text-align: left;
