@@ -4,30 +4,20 @@ import {
   ArrayIcon,
   BarChartIcon,
   BugIcon,
-  ButtonWidgetIcon,
   CalendarIcon,
   CaretDownIcon,
   CaretLeftIcon,
   CaretRightIcon,
-  ChartWidgetIcon,
-  CheckboxWidgetIcon,
   CheckmarkIcon,
-  CircleProgressWidgetIcon,
   CloseIcon,
   ComponentIcon,
-  ContainerWidgetIcon,
   CopyIcon,
-  DateRangeWidgetIcon,
-  DateTimeWidgetIcon,
-  DateWidgetIcon,
   DeleteIcon,
-  DividerWidgetIcon,
   DocsIcon,
   DownIcon,
   DownloadIcon,
   DragIcon,
   DragPointIcon,
-  EditableTextWidgetIcon,
   EmptyIcon,
   ErrorIcon,
   ExitIcon,
@@ -44,7 +34,6 @@ import {
   FileWordIcon,
   FileWPSIcon,
   FilterIcon,
-  FormWidgetIcon,
   FullScreenIcon,
   FunctionIcon,
   FxIcon,
@@ -56,25 +45,20 @@ import {
   HorizontalStartIcon,
   IconProps,
   ImageDefaultIcon,
-  ImageWidgetIcon,
   InfoCircleIcon,
   InfoIcon,
   LeafIcon,
   LikeIcon,
   LineChartIcon,
-  LineProgressWidgetIcon,
   LinkIcon,
   LoadingIcon,
   LockIcon,
   MinusIcon,
-  ModalWidgetIcon,
   MoreIcon,
-  NavigationWidgetIcon,
   NextDoubleIcon,
   NextIcon,
   NullIcon,
   NumberIcon,
-  NumberInputWidgetIcon,
   ObjectIcon,
   PaginationPreIcon,
   PenIcon,
@@ -83,9 +67,6 @@ import {
   PlusIcon,
   PreDoubleIcon,
   PreIcon,
-  RadioButtonWidgetIcon,
-  RadioGroupWidgetIcon,
-  RateWidgetIcon,
   ReduceIcon,
   ResetIcon,
   Result403Icon,
@@ -94,7 +75,6 @@ import {
   RightIcon,
   ScatterPlotIcon,
   SearchIcon,
-  SelectWidgetIcon,
   ShareIcon,
   SorterDefaultIcon,
   SorterDownIcon,
@@ -103,16 +83,10 @@ import {
   StartOutlineIcon,
   StringIcon,
   SuccessIcon,
-  SwitchWidgetIcon,
-  TableWidgetIcon,
-  TabsWidgetIcon,
   TextAlignCenterIcon,
   TextAlignLeftIcon,
   TextAlignRightIcon,
-  TextInputWidgetIcon,
-  TextWidgetIcon,
   TimeIcon,
-  TimelineWidgetIcon,
   UnlockIcon,
   UpIcon,
   UploadIcon,
@@ -397,62 +371,6 @@ export const Docs: Story<IconProps> = (props: IconProps) => (
   <DocsIcon {...props} />
 )
 
-export const TextWidget: Story<IconProps> = (props: IconProps) => (
-  <TextWidgetIcon {...props} />
-)
-
-export const EditableTextWidget: Story<IconProps> = (props: IconProps) => (
-  <EditableTextWidgetIcon {...props} />
-)
-
-export const ButtonWidget: Story<IconProps> = (props: IconProps) => (
-  <ButtonWidgetIcon {...props} />
-)
-
-export const TextInputWidget: Story<IconProps> = (props: IconProps) => (
-  <TextInputWidgetIcon {...props} />
-)
-
-export const SelectWidget: Story<IconProps> = (props: IconProps) => (
-  <SelectWidgetIcon {...props} />
-)
-
-export const ContainerWidget: Story<IconProps> = (props: IconProps) => (
-  <ContainerWidgetIcon {...props} />
-)
-
-export const ChartWidget: Story<IconProps> = (props: IconProps) => (
-  <ChartWidgetIcon {...props} />
-)
-
-export const ImageWidget: Story<IconProps> = (props: IconProps) => (
-  <ImageWidgetIcon {...props} />
-)
-
-export const FormWidget: Story<IconProps> = (props: IconProps) => (
-  <FormWidgetIcon {...props} />
-)
-
-export const TableWidget: Story<IconProps> = (props: IconProps) => (
-  <TableWidgetIcon {...props} />
-)
-
-export const ModalWidget: Story<IconProps> = (props: IconProps) => (
-  <ModalWidgetIcon {...props} />
-)
-
-export const NavigationWidget: Story<IconProps> = (props: IconProps) => (
-  <NavigationWidgetIcon {...props} />
-)
-
-export const SwitchWidget: Story<IconProps> = (props: IconProps) => (
-  <SwitchWidgetIcon {...props} />
-)
-
-export const RadioGroupWidget: Story<IconProps> = (props: IconProps) => (
-  <RadioGroupWidgetIcon {...props} />
-)
-
 export const Reset: Story<IconProps> = (props: IconProps) => (
   <ResetIcon {...props} />
 )
@@ -497,50 +415,6 @@ export const VerticalEnd: Story<IconProps> = (props: IconProps) => (
 
 export const Fx: Story<IconProps> = (props: IconProps) => <FxIcon {...props} />
 
-export const CheckboxWidget: Story<IconProps> = (props: IconProps) => (
-  <CheckboxWidgetIcon {...props} />
-)
-
-export const CircleProgressWidget: Story<IconProps> = (props: IconProps) => (
-  <CircleProgressWidgetIcon {...props} />
-)
-
-export const LineProgressWidget: Story<IconProps> = (props: IconProps) => (
-  <LineProgressWidgetIcon {...props} />
-)
-
-export const DividerWidget: Story<IconProps> = (props: IconProps) => (
-  <DividerWidgetIcon {...props} />
-)
-
-export const NumberInputWidget: Story<IconProps> = (props: IconProps) => (
-  <NumberInputWidgetIcon {...props} />
-)
-
-export const RadioButtonWidget: Story<IconProps> = (props: IconProps) => (
-  <RadioButtonWidgetIcon {...props} />
-)
-
-export const RateWidget: Story<IconProps> = (props: IconProps) => (
-  <RateWidgetIcon {...props} />
-)
-
-export const TimelineWidget: Story<IconProps> = (props: IconProps) => (
-  <TimelineWidgetIcon {...props} />
-)
-
-export const DateWidget: Story<IconProps> = (props: IconProps) => (
-  <DateWidgetIcon {...props} />
-)
-
-export const DateRangeWidget: Story<IconProps> = (props: IconProps) => (
-  <DateRangeWidgetIcon {...props} />
-)
-
-export const DateTimeWidget: Story<IconProps> = (props: IconProps) => (
-  <DateTimeWidgetIcon {...props} />
-)
-
 export const FullScreen: Story<IconProps> = (props: IconProps) => (
   <FullScreenIcon {...props} />
 )
@@ -579,8 +453,4 @@ export const Unlock: Story<IconProps> = (props: IconProps) => (
 
 export const Download: Story<IconProps> = (props: IconProps) => (
   <DownloadIcon {...props} />
-)
-
-export const TabsWidget: Story<IconProps> = (props: IconProps) => (
-  <TabsWidgetIcon {...props} />
 )

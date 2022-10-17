@@ -40,6 +40,7 @@ it("Dropdown renders with dropList", () => {
   const clickMenuItemEvent = cy.stub().as("clickMenuItemEvent")
   mount(
     <Dropdown
+      trigger={"click"}
       dropList={
         <Menu onClickMenuItem={clickMenuItemEvent}>
           <Item title={"Blog"} key={"1"} />
@@ -53,7 +54,7 @@ it("Dropdown renders with dropList", () => {
     </Dropdown>,
   )
   cy.findByText("Hover")
-    .trigger("mouseenter")
+    .click()
     .then(() => {
       cy.findByText("Blog")
         .should("exist")

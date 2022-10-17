@@ -40,7 +40,7 @@ export function applyPinedStyle(pined?: boolean): SerializedStyles {
     ? css`
         position: sticky;
         top: 0;
-        // TODO: zIndex @xiaoyu 
+        // TODO: zIndex @xiaoyu
         z-index: 1;
       `
     : css``
@@ -181,6 +181,7 @@ export function applyToolBarStyle(bordered?: boolean): SerializedStyles {
     position: relative;
     text-align: center;
     padding: 8px 0;
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
     ${bordered
       ? `border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};`
       : ""};

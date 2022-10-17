@@ -3,17 +3,20 @@ import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 import * as dayjs from "dayjs"
 
-it("visible change", () => {
+it("Date picker renders with `onVisibleChangeEvent`", () => {
   const onVisibleChange = cy.stub().as("onVisibleChange")
   mount(
     <DatePicker placeholder={"DatePicker"} onVisibleChange={onVisibleChange} />,
   )
-  cy.findByPlaceholderText("DatePicker").click()
-  cy.get("@onVisibleChange").should("be.calledOnce")
+  cy.findByPlaceholderText("DatePicker")
+    .click()
+    .then(() => {
+      cy.get("@onVisibleChange").should("be.calledWith", true)
+    })
   unmount()
 })
 
-it("use shortcuts", () => {
+it("Date picker renders with shortcuts", () => {
   mount(
     <DatePicker
       placeholder={"shortcuts DatePicker"}
@@ -31,7 +34,7 @@ it("use shortcuts", () => {
   unmount()
 })
 
-it("show time picker, typeof showTime is boolean", () => {
+it("Date picker renders with showtime flag", () => {
   mount(<DatePicker showTime popupVisible />)
   cy.findAllByText("01").first().click()
   cy.findByText("OK").click()
@@ -41,7 +44,7 @@ it("show time picker, typeof showTime is boolean", () => {
   unmount()
 })
 
-it("show time picker, typeof showTime is Object, extends of TimePickerProps", () => {
+it("Date picker renders with showtime object", () => {
   const disabledHours = () => {
     return [1]
   }
@@ -50,7 +53,7 @@ it("show time picker, typeof showTime is Object, extends of TimePickerProps", ()
   unmount()
 })
 
-it("clear data", () => {
+it("Date picker triggers with clear action", () => {
   const clearEvent = cy.stub().as("clearEvent")
   mount(
     <DatePicker
@@ -67,13 +70,13 @@ it("clear data", () => {
         .click()
         .then(() => {
           cy.get("@clearEvent").should("be.calledOnce")
-          cy.get("input").should("not.have.value", "2021-01-01")
+          cy.get("input").should("have.value", "2021-01-01")
         })
     })
   unmount()
 })
 
-it("click Today button", () => {
+it("Date picker triggers today button", () => {
   mount(
     <DatePicker showNowBtn showTime popupVisible format={"YYYY-MM-DD HH:mm"} />,
   )
