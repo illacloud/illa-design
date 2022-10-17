@@ -29,6 +29,7 @@ import {
   maskAnimation,
   modalAnimation,
   modalCloseIconStyle,
+  modalContainer,
 } from "./style"
 import { confirm } from "./confirm"
 import { destroyList, setModalConfig } from "./config"
@@ -38,7 +39,6 @@ import { Button } from "@illa-design/button"
 import { CloseIcon } from "@illa-design/icon"
 import { AlertType as ConfirmType } from "@illa-design/alert"
 import FocusLock from "react-focus-lock"
-import { RemoveScroll } from "react-remove-scroll"
 import useModal from "./useModal"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import { useHotkeys } from "react-hotkeys-hook"
@@ -123,10 +123,23 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
 
     const renderModal = () => {
       const element = (
-        <RemoveScroll>
+        <div css={modalContainer}>
           {title && (
             <div css={applyModalHeader(simple, showCloseIcon, withoutLine)}>
               <div css={applyModalTitle(simple)}>{title}</div>
+              {showCloseIcon && (
+                <>
+                  {closeElement ? (
+                    cloneElement(closeElement as ReactElement, {
+                      onClick: onCancel,
+                    })
+                  ) : (
+                    <div css={modalCloseIconStyle} onClick={onCancel}>
+                      <CloseIcon size="14px" />
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           )}
           {children && (
@@ -135,20 +148,7 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
             </div>
           )}
           {renderFooter()}
-          {showCloseIcon && (
-            <>
-              {closeElement ? (
-                cloneElement(closeElement as ReactElement, {
-                  onClick: onCancel,
-                })
-              ) : (
-                <div css={modalCloseIconStyle} onClick={onCancel}>
-                  <CloseIcon size="14px" />
-                </div>
-              )}
-            </>
-          )}
-        </RemoveScroll>
+        </div>
       )
       return (
         <motion.div
