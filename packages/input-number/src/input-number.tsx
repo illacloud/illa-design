@@ -236,7 +236,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         }}
         addonBefore={{
           render: renderStepButton ? (
-            <span css={applyAddonCss(size)} {...stepEvents("minus")}>
+            <span css={applyAddonCss(size, disabled)} {...stepEvents("minus")}>
               {icons && icons.plus ? icons.plus : <MinusIcon />}
             </span>
           ) : null,
@@ -244,7 +244,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         }}
         addonAfter={{
           render: renderStepButton ? (
-            <span css={applyAddonCss(size)} {...stepEvents("plus")}>
+            <span css={applyAddonCss(size, disabled)} {...stepEvents("plus")}>
               {icons && icons.minus ? icons.minus : <PlusIcon />}
             </span>
           ) : null,

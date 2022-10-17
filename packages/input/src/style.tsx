@@ -13,6 +13,7 @@ export const inputOutlineStyle = css`
 export const disableOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 export const disableFillStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
@@ -348,6 +349,7 @@ export function applySuffixCls(size?: InputProps["size"]): SerializedStyles {
 export function applyAddonCss(
   variant: InputProps["variant"],
   size: InputProps["size"],
+  disabled: InputProps["disabled"],
 ): SerializedStyles {
   let inputStyle: SerializedStyles
   switch (variant) {
@@ -371,6 +373,9 @@ export function applyAddonCss(
     case "outline":
       inputStyle = css`
         border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+        background-color: ${disabled
+          ? globalColor(`--${illaPrefix}-grayBlue-09`)
+          : "unset"};
 
         &:first-of-type {
           border-right: 0;
