@@ -27,6 +27,7 @@ export const inputOutlineStyle = css`
 export const disableOutlineStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 export const errorFocusStyle = css`
   background-color: unset;

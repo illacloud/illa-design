@@ -13,6 +13,14 @@ export const applyModalMask = css`
   background-color: ${globalColor(`--${illaPrefix}-blackAlpha-02`)};
 `
 
+export const modalContainer = css`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+`
+
 export function applyModalWrapper(isCenter?: boolean): SerializedStyles {
   const centerCss = isCenter
     ? css`
@@ -53,10 +61,10 @@ export function applyModal(
   return css`
     position: relative;
     top: 100px;
+    overflow: hidden;
     margin: 0 auto;
     width: ${isSimple ? "400px" : "520px"};
     text-align: left;
-    overflow: auto;
     white-space: initial;
     box-sizing: border-box;
     border-radius: 8px;
@@ -130,10 +138,10 @@ export function applyModalContent(
       `
     : ""
   return css`
-    position: relative;
     padding: 24px;
     font-size: 14px;
-    overflow: auto;
+    flex: 1;
+    overflow: hidden;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${simpleCss};
     ${paddingCSS}

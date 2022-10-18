@@ -40,24 +40,8 @@ export function applyPinedStyle(pined?: boolean): SerializedStyles {
     ? css`
         position: sticky;
         top: 0;
-        // TODO: zIndex @xiaoyu
-        z-index: 1;
       `
     : css``
-}
-
-export function applyResizing(canResize?: boolean): SerializedStyles {
-  if (canResize) {
-    return css`
-      width: 10px;
-      height: 100%;
-      z-index: 10;
-      position: absolute;
-      right: 0;
-      transform: translateX(50%);
-    `
-  }
-  return css``
 }
 
 export function applyBorderStyle(
@@ -199,7 +183,6 @@ export function applyActionButtonStyle(
 
 export const spinStyle = css`
   width: 100%;
-  overflow: scroll;
 `
 
 export const filterStyle = css`
