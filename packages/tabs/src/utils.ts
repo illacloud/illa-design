@@ -148,7 +148,7 @@ export const scrollTabList = (
     getOffsetSize(isHorizontalLayout, scrollRef),
     getScrollDist(isHorizontalLayout, scrollRef),
   )
-  console.log(scrollRef.current, scrollRef.current?.scrollTo, "scrollRef")
+
   isHorizontalLayout
     ? scrollRef.current?.scrollTo(0, dis)
     : scrollRef.current?.scrollTo(dis, 0)

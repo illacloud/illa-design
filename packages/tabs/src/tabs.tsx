@@ -105,7 +105,6 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
   useMemo(() => {
     const tabs = getTabChildren(children as ReactElement)
-    console.log(tabs, "tabs")
     setChildren(tabs)
     if (!defaultActiveKey) setActiveKeyState(tabs.firstTabKey)
   }, [children, defaultActiveKey])
@@ -183,7 +182,6 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     prefix,
     colorScheme,
   }
-  console.log("render")
 
   const _variant = useMemo(() => {
     if (variant === "capsule" && tabPosition !== "top") {
