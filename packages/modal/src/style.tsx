@@ -141,8 +141,8 @@ export function applyModalContent(
   return css`
     padding: 24px;
     font-size: 14px;
-    flex-grow: 1;
-    flex-shrink: 1;
+    flex: 1;
+    overflow: hidden;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${simpleCss};
     ${paddingCSS}

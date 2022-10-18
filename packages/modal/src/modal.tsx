@@ -42,6 +42,7 @@ import FocusLock from "react-focus-lock"
 import useModal from "./useModal"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import { useHotkeys } from "react-hotkeys-hook"
+import { css } from "@emotion/react"
 
 export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
   (props, ref) => {
@@ -174,7 +175,13 @@ export const Modal: ModalComponent = forwardRef<HTMLDivElement, ModalProps>(
           }}
         >
           {focusLock ? (
-            <FocusLock disabled={!visible} autoFocus={autoFocus}>
+            <FocusLock
+              disabled={!visible}
+              autoFocus={autoFocus}
+              css={css`
+                height: 100%;
+              `}
+            >
               {element}
             </FocusLock>
           ) : (
