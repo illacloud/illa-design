@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import { TabPosition, TabsColorScheme, TabsSize, TabVariant } from "./interface"
 import { isHorizontalLayout } from "./utils"
 
@@ -348,7 +348,6 @@ export function applyTextColorCss(
   isSelected?: boolean,
   variant?: TabVariant,
 ) {
-  const textColorScheme = isInnerColor(colorScheme) ? colorScheme : "blue"
   let textColorCss
   if (disabled) {
     textColorCss = css`
@@ -357,7 +356,7 @@ export function applyTextColorCss(
     `
   } else if (isSelected) {
     textColorCss = css`
-      color: ${globalColor(`--${illaPrefix}-${textColorScheme}-02`)};
+      color: ${getColor(colorScheme, "02")};
     `
   } else {
     textColorCss = css`
@@ -374,7 +373,7 @@ export function applyTextColorCss(
   if (!disabled && variant === "text") {
     if (isSelected) {
       textColorCss = css`
-        color: ${globalColor(`--${illaPrefix}-${textColorScheme}-02`)};
+        color: ${getColor(colorScheme, "02")};
         font-weight: 500;
       `
     } else {
@@ -445,14 +444,11 @@ export const colors: TabsColorScheme[] = [
   "techPurple",
 ]
 
-const isInnerColor = (colorScheme: string) => colors.includes(colorScheme)
-
 export function applyCommonBlueLineCss(
   width: number,
   position: number,
   colorScheme: TabsColorScheme,
 ): SerializedStyles {
-  const lineColorScheme = isInnerColor(colorScheme) ? colorScheme : "blue"
   return css`
     width: ${width - 32}px;
     height: 2px;
@@ -461,7 +457,7 @@ export function applyCommonBlueLineCss(
     left: ${position}px;
     bottom: 0;
     transition: left 200ms, width 200ms;
-    background-color: ${globalColor(`--${illaPrefix}-${lineColorScheme}-02`)};
+    background-color: ${getColor(colorScheme, "02")};
   `
 }
 
@@ -471,7 +467,6 @@ export function applyHorizontalBlueLineCss(
   colorScheme: TabsColorScheme,
   size?: TabsSize,
 ): SerializedStyles {
-  const lineColorScheme = isInnerColor(colorScheme) ? colorScheme : "blue"
   let padding = 7
   switch (size) {
     case "large":
@@ -489,7 +484,7 @@ export function applyHorizontalBlueLineCss(
     top: ${padding + position}px;
     transition: top 200ms, height 200ms;
     bottom: 0;
-    background-color: ${globalColor(`--${illaPrefix}-${lineColorScheme}-03`)};
+    background-color: ${getColor(colorScheme, "03")};
   `
 }
 
