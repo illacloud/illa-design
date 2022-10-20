@@ -14,9 +14,6 @@ export default {
     deleteIcon: {
       control: false,
     },
-    activeKey: {
-      control: false,
-    },
     animated: {
       control: {
         type: "boolean",
