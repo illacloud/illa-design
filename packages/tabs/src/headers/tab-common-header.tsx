@@ -23,16 +23,15 @@ import { AddIcon, DownIcon, NextIcon, PreIcon, UpIcon } from "@illa-design/icon"
 import useScrolling from "react-use/lib/useScrolling"
 import {
   checkAndAdjustSelectedItemPosition,
-  getChildrenWidthArr,
-  getLeftTargetPosition,
   getOffsetSize,
   getScrollDist,
   getScrollSize,
-  getTargetPosition,
   isHorizontalLayout,
   scrollTabList,
 } from "../utils"
 import { getChildrenSize } from "./tab-line-header"
+import useMeasure from "react-use-measure"
+import { ResizeObserver } from "@juggle/resize-observer"
 
 export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
   (props, ref) => {
@@ -50,6 +49,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       prefix,
       suffix,
       tabPosition,
+      align,
       colorScheme = "blue",
       addIcon = <AddIcon />,
     } = props
@@ -70,6 +70,9 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     const scrollRef = useRef<HTMLDivElement | null>(null)
     const childRef = useRef<HTMLDivElement | null>(null)
     const scrolling = useScrolling(scrollRef)
+    const [resizeRef, { width, height }] = useMeasure({
+      polyfill: ResizeObserver,
+    })
     const [preDisable, setPreDisable] = useState(true)
     const [nextDisable, setNextDisable] = useState(false)
     const [needScroll, setNeedScroll] = useState(false)
@@ -90,14 +93,6 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       [isHorizontal, handleSelectTab],
     )
 
-    useEffect(() => {
-      if (!scrollRef?.current) return
-      setNeedScroll(
-        getScrollSize(isHorizontal, scrollRef) >
-          getOffsetSize(isHorizontal, scrollRef),
-      )
-    }, [needScroll, isHorizontal])
-
     const checkPreAndNextDisable = () => {
       if (!scrollRef.current) return
       setPreDisable(getScrollDist(isHorizontal, scrollRef) === 0)
@@ -109,11 +104,20 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         ) < 1,
       )
     }
+
     useEffect(() => {
       if (!scrolling) {
         checkPreAndNextDisable()
       }
-    }, [scrolling])
+    }, [scrolling, needScroll])
+
+    useEffect(() => {
+      if (!scrollRef?.current) return
+      setNeedScroll(
+        getScrollSize(isHorizontal, scrollRef) >
+          getOffsetSize(isHorizontal, scrollRef),
+      )
+    }, [isHorizontal, width, height])
 
     const [preIcon, nextIcon] = useMemo(() => {
       if (isHorizontal) {
@@ -124,9 +128,9 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     }, [isHorizontal])
 
     return (
-      <div css={applyHeaderContainerCss(isHorizontal)} ref={ref}>
+      <div css={applyHeaderContainerCss(variant, tabPosition, align)} ref={ref}>
         {prefix}
-        <div css={tabsContentCss}>
+        <div css={tabsContentCss} ref={resizeRef}>
           {needScroll && (
             <span
               onClick={() => {

@@ -22,6 +22,7 @@ import {
   applyLineHeaderContainerCss,
   tabsContentCss,
   applyScrollContainerCss,
+  applyHeaderContainerCss,
 } from "../style"
 import { TabHeaderChild } from "./tab-header-child"
 import { DownIcon, NextIcon, PreIcon, UpIcon } from "@illa-design/icon"
@@ -38,6 +39,8 @@ import {
   scrollTabList,
 } from "../utils"
 import { TabHeaderProps } from "../interface"
+import useMeasure from "react-use-measure"
+import { ResizeObserver } from "@juggle/resize-observer"
 
 const PADDING = 16
 
@@ -66,12 +69,17 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       tabBarSpacing,
       suffix,
       prefix,
+      variant,
+      align,
       colorScheme = "blue",
     } = props
 
     const scrollRef = useRef<HTMLDivElement>(null)
     const childRef = useRef<HTMLDivElement | null>(null)
     const scrolling = useScrolling(scrollRef)
+    const [resizeRef, { width, height }] = useMeasure({
+      polyfill: ResizeObserver,
+    })
     const [preDisable, setPreDisable] = useState(true)
     const [nextDisable, setNextDisable] = useState(false)
     const [needScroll, setNeedScroll] = useState(false)
@@ -119,15 +127,6 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       [_isHorizontalLayout, handleSelectTab],
     )
 
-    useEffect(() => {
-      checkPreAndNextDisable()
-      if (!scrollRef?.current) return
-      setNeedScroll(
-        getScrollSize(_isHorizontalLayout, scrollRef) >
-          getOffsetSize(_isHorizontalLayout, scrollRef),
-      )
-    }, [_isHorizontalLayout])
-
     const checkPreAndNextDisable = () => {
       if (!scrollRef.current) return
       setPreDisable(getScrollDist(_isHorizontalLayout, scrollRef) === 0)
@@ -141,17 +140,25 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     }
 
     useEffect(() => {
+      if (!scrolling) {
+        checkPreAndNextDisable()
+      }
+    }, [scrolling, needScroll])
+
+    useEffect(() => {
+      if (!scrollRef?.current) return
+      setNeedScroll(
+        getScrollSize(_isHorizontalLayout, scrollRef) >
+          getOffsetSize(_isHorizontalLayout, scrollRef),
+      )
+    }, [_isHorizontalLayout, width, height])
+
+    useEffect(() => {
       setBlueLineWidth(
         () =>
           getChildrenSize(_isHorizontalLayout, childRef.current)[selectedIndex],
       )
     }, [_isHorizontalLayout, selectedIndex])
-
-    useEffect(() => {
-      if (!scrolling) {
-        checkPreAndNextDisable()
-      }
-    }, [scrolling])
 
     const dividerSize = () => {
       const sizeArr = getChildrenSize(_isHorizontalLayout, childRef.current)
@@ -198,12 +205,9 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     }, [_isHorizontalLayout])
 
     return (
-      <div
-        css={applyLineHeaderContainerCss(_isHorizontalLayout, tabPosition)}
-        ref={ref}
-      >
+      <div css={applyHeaderContainerCss(variant, tabPosition, align)} ref={ref}>
         {prefix}
-        <div css={tabsContentCss}>
+        <div css={tabsContentCss} ref={resizeRef}>
           {needScroll && (
             <span
               onClick={() => {

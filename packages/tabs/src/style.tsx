@@ -1,6 +1,12 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
-import { TabPosition, TabsColorScheme, TabsSize, TabVariant } from "./interface"
+import {
+  TabAlign,
+  TabPosition,
+  TabsColorScheme,
+  TabsSize,
+  TabVariant,
+} from "./interface"
 import { isHorizontalLayout } from "./utils"
 
 export function applyPaddingSizeCss(size: TabsSize): SerializedStyles {
@@ -91,18 +97,7 @@ export function applyTabHeaderContainerCss(
   `
 }
 
-export function applyHeaderContainerCss(
-  isHorizontal: boolean,
-): SerializedStyles {
-  return css`
-    display: inline-flex;
-    flex-direction: ${isHorizontal ? "column" : "row"};
-    align-items: end;
-  `
-}
-
 export function applyLineHeaderContainerCss(
-  isHorizontal: boolean,
   position?: TabPosition,
 ): SerializedStyles {
   let borderCss: SerializedStyles
@@ -137,9 +132,26 @@ export function applyLineHeaderContainerCss(
       break
     }
   }
+  return borderCss
+}
+
+export function applyHeaderContainerCss(
+  variant?: TabVariant,
+  position?: TabPosition,
+  align?: TabAlign,
+): SerializedStyles {
+  const isHorizontal = isHorizontalLayout(position)
+  let borderCss: SerializedStyles = css``
+  if (variant === "line") {
+    borderCss = applyLineHeaderContainerCss(position)
+  }
+
   return css`
-    ${applyHeaderContainerCss(isHorizontal)}
-    ${borderCss}
+    display: inline-flex;
+    flex-direction: ${isHorizontal ? "column" : "row"};
+    align-items: end;
+    justify-content: ${align};
+    ${borderCss};
   `
 }
 

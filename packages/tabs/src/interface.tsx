@@ -1,7 +1,8 @@
-import { ChangeEvent, HTMLAttributes, ReactElement, ReactNode } from "react"
+import { HTMLAttributes, ReactElement, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
 
 export declare type TabPosition = "left" | "right" | "top" | "bottom"
+export declare type TabAlign = "flex-start" | "center" | "flex-end"
 export declare type TabsSize = "small" | "medium" | "large"
 export declare type TabVariant = "line" | "text" | "card" | "capsule"
 export type TabsColorScheme =
@@ -29,6 +30,7 @@ export interface TabsProps
   animated?: boolean | { tabPane?: boolean; inkBar?: boolean }
   size?: TabsSize
   variant?: TabVariant
+  align?: TabAlign
   activeKey?: string
   defaultActiveKey?: string
   editable?: boolean
@@ -45,52 +47,6 @@ export interface TabsProps
   prefix?: ReactNode
   suffix?: ReactNode
   withoutContent?: boolean
-}
-
-export interface TabProps
-  extends Omit<HTMLAttributes<HTMLSpanElement>, "title">,
-    BoxProps {
-  title: string | ReactNode
-  tabKey: string
-  isSelected?: boolean
-  deleteIcon?: ReactNode
-  tabBarSpacing?: number
-  disabled?: boolean
-  closable?: boolean
-  activeKey?: string
-  editable?: boolean
-  size?: TabsSize
-  variant?: TabVariant
-  colorScheme?: TabsColorScheme
-  tabPosition?: TabPosition
-}
-
-export interface TabsContextProps
-  extends Pick<
-    TabsProps,
-    | "size"
-    | "variant"
-    | "colorScheme"
-    | "tabPosition"
-    | "tabBarSpacing"
-    | "prefix"
-    | "suffix"
-  > {
-  disabled?: boolean
-  closable?: boolean
-
-  selectedKey?: string
-  handleSelectTab?: (key: string) => void
-  handleDeleteTab?: (key: string) => void
-}
-
-export interface TabListContextProps {}
-
-export interface TabListProps {
-  tabHeaderChild?: TabHeaderChildProps[]
-  handleSelectTab?: (key: string) => void
-  selectedIndex?: number
-  handleDeleteTab?: (key: string) => void
 }
 
 export interface TabContentProps extends HTMLAttributes<HTMLDivElement> {
