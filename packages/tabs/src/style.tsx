@@ -1,6 +1,13 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { TabPosition, TabsColorScheme, TabsSize, TabVariant } from "./interface"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  TabAlign,
+  TabPosition,
+  TabsColorScheme,
+  TabsSize,
+  TabVariant,
+} from "./interface"
+import { isHorizontalLayout } from "./utils"
 
 export function applyPaddingSizeCss(size: TabsSize): SerializedStyles {
   let paddingSize
@@ -24,18 +31,33 @@ export function applyPaddingSizeCss(size: TabsSize): SerializedStyles {
   return paddingSize
 }
 
-export const commonContainerCss = css`
-  display: inline-flex;
-  flex-direction: column;
-  width: 100%;
-`
+export function applyCommonContainerCss(
+  tabPosition?: TabPosition,
+): SerializedStyles {
+  return css`
+    width: 100%;
+    display: flex;
+    flex-direction: ${tabPosition === "bottom" ? "column-reverse" : "column"};
+  `
+}
 
-export const horizontalContainerCss = css`
-  display: inline-flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-`
+export function applyHorizontalContainerCss(
+  tabPosition?: TabPosition,
+): SerializedStyles {
+  return css`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: ${tabPosition === "right" ? "row-reverse" : "row"};
+  `
+}
+
+export function applyContainerCss(tabPosition?: TabPosition): SerializedStyles {
+  if (isHorizontalLayout(tabPosition)) {
+    return applyHorizontalContainerCss(tabPosition)
+  }
+  return applyCommonContainerCss(tabPosition)
+}
 
 export const tabHeaderContainerCss = css`
   display: inline-flex;
@@ -43,18 +65,39 @@ export const tabHeaderContainerCss = css`
   align-items: center;
 `
 
-export function applyHeaderContainerCss(
-  isHorizontal: boolean,
+export function applyCardTypeHeaderCss(
+  tabPosition?: TabPosition,
 ): SerializedStyles {
+  return tabPosition === "bottom"
+    ? css`
+        border-top: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+      `
+    : css`
+        border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+      `
+}
+
+export function applyTabHeaderContainerCss(
+  variant?: TabVariant,
+  tabPosition?: TabPosition,
+): SerializedStyles {
+  const cardTypeCss = applyCardTypeHeaderCss(tabPosition)
+  const textTypeCss =
+    tabPosition === "left" || tabPosition === "right"
+      ? css`
+          flex-direction: column;
+        `
+      : css``
   return css`
     display: inline-flex;
-    flex-direction: ${isHorizontal ? "column" : "row"};
-    align-items: end;
+    width: 100%;
+    align-items: center;
+    ${variant === "card" ? cardTypeCss : ""}
+    ${variant === "text" ? textTypeCss : ""}
   `
 }
 
 export function applyLineHeaderContainerCss(
-  isHorizontal: boolean,
   position?: TabPosition,
 ): SerializedStyles {
   let borderCss: SerializedStyles
@@ -89,9 +132,26 @@ export function applyLineHeaderContainerCss(
       break
     }
   }
+  return borderCss
+}
+
+export function applyHeaderContainerCss(
+  variant?: TabVariant,
+  position?: TabPosition,
+  align?: TabAlign,
+): SerializedStyles {
+  const isHorizontal = isHorizontalLayout(position)
+  let borderCss: SerializedStyles = css``
+  if (variant === "line") {
+    borderCss = applyLineHeaderContainerCss(position)
+  }
+
   return css`
-    ${applyHeaderContainerCss(isHorizontal)}
-    ${borderCss}
+    display: inline-flex;
+    flex-direction: ${isHorizontal ? "column" : "row"};
+    align-items: end;
+    justify-content: ${align};
+    ${borderCss};
   `
 }
 
@@ -157,6 +217,14 @@ export const containerHorizontalHideScrollBarCss = css`
   box-sizing: border-box;
 `
 
+export function applyScrollContainerCss(
+  isHorizontal: boolean,
+): SerializedStyles {
+  return isHorizontal
+    ? containerHorizontalHideScrollBarCss
+    : containerHideScrollBarCss
+}
+
 export const tabCardHeaderContainerCss = css`
   display: inline-flex;
   flex-direction: column;
@@ -200,21 +268,31 @@ export function applyCapsuleHoverBackgroundCss(
 export function applyCardHeaderChildCss(
   isSelected?: boolean,
   disabled?: boolean,
+  tabPosition?: TabPosition,
 ): SerializedStyles {
   const selectedBoxCss = isSelected
     ? css`
         border: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-        border-bottom: solid white;
+        ${tabPosition === "bottom"
+          ? "border-top: solid white;"
+          : "border-bottom: solid white;"};
       `
     : css`
         border: solid transparent;
       `
   return css`
     position: relative;
-    top: 1px;
+    ${tabPosition === "bottom"
+      ? css`
+          border-radius: 0 0 4px 4px;
+          bottom: 1px;
+        `
+      : css`
+          border-radius: 4px 4px 0 0;
+          top: 1px;
+        `};
     ${applyCommonHeaderChildCss()};
     ${selectedBoxCss};
-    border-radius: 4px 4px 0 0;
     border-width: 1px;
     border-bottom-width: 1.5px;
     z-index: 2;
@@ -282,7 +360,6 @@ export function applyTextColorCss(
   isSelected?: boolean,
   variant?: TabVariant,
 ) {
-  const textColorScheme = isInnerColor(colorScheme) ? colorScheme : "blue"
   let textColorCss
   if (disabled) {
     textColorCss = css`
@@ -291,33 +368,33 @@ export function applyTextColorCss(
     `
   } else if (isSelected) {
     textColorCss = css`
-      color: ${globalColor(`--${illaPrefix}-${textColorScheme}-02`)};
+      color: ${getColor(colorScheme, "02")};
     `
   } else {
     textColorCss = css`
-          color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 
-          &:hover {
-            background-color: ${
-              variant !== "capsule"
-                ? globalColor(`--${illaPrefix}-grayBlue-09`)
-                : undefined
-            }
-        `
+      &:hover {
+        background-color: ${
+          variant !== "capsule"
+            ? globalColor(`--${illaPrefix}-grayBlue-09`)
+            : undefined
+        }
+    `
   }
   if (!disabled && variant === "text") {
     if (isSelected) {
       textColorCss = css`
-        color: ${globalColor(`--${illaPrefix}-${textColorScheme}-02`)};
+        color: ${getColor(colorScheme, "02")};
         font-weight: 500;
       `
     } else {
       textColorCss = css`
-              color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+        color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 
-              &:hover {
-                background-color: ${globalColor(`--${illaPrefix}-gray-09`)}
-            `
+        &:hover {
+          background-color: ${globalColor(`--${illaPrefix}-gray-09`)}
+      `
     }
   }
   return textColorCss
@@ -379,14 +456,11 @@ export const colors: TabsColorScheme[] = [
   "techPurple",
 ]
 
-const isInnerColor = (colorScheme: string) => colors.includes(colorScheme)
-
 export function applyCommonBlueLineCss(
   width: number,
   position: number,
   colorScheme: TabsColorScheme,
 ): SerializedStyles {
-  const lineColorScheme = isInnerColor(colorScheme) ? colorScheme : "blue"
   return css`
     width: ${width - 32}px;
     height: 2px;
@@ -395,7 +469,7 @@ export function applyCommonBlueLineCss(
     left: ${position}px;
     bottom: 0;
     transition: left 200ms, width 200ms;
-    background-color: ${globalColor(`--${illaPrefix}-${lineColorScheme}-02`)};
+    background-color: ${getColor(colorScheme, "02")};
   `
 }
 
@@ -405,7 +479,6 @@ export function applyHorizontalBlueLineCss(
   colorScheme: TabsColorScheme,
   size?: TabsSize,
 ): SerializedStyles {
-  const lineColorScheme = isInnerColor(colorScheme) ? colorScheme : "blue"
   let padding = 7
   switch (size) {
     case "large":
@@ -423,7 +496,7 @@ export function applyHorizontalBlueLineCss(
     top: ${padding + position}px;
     transition: top 200ms, height 200ms;
     bottom: 0;
-    background-color: ${globalColor(`--${illaPrefix}-${lineColorScheme}-03`)};
+    background-color: ${getColor(colorScheme, "03")};
   `
 }
 
@@ -448,6 +521,24 @@ export const tabCardContentContainerCss = css`
   border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-top: 0;
 `
+
+export function applyCardContentContainerCss(
+  tabPosition?: TabPosition,
+): SerializedStyles {
+  const positionCss =
+    tabPosition === "bottom"
+      ? css`
+          border-bottom: 0;
+        `
+      : css`
+          border-top: 0;
+        `
+  return css`
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    ${tabContentContainerCss};
+    ${positionCss};
+  `
+}
 
 export function applyTabContentWrapperCss(
   showPaneIndex: number,
@@ -504,7 +595,7 @@ export function applyHorizontalPreNextIconCss(
     cursor: pointer;
     ${verticalPaddingCss}
     ${colorCss}
-      position: relative;
+    position: relative;
     width: 100%;
     justify-content: center;
   `
@@ -514,12 +605,27 @@ export function applyCommonPreNextIconCss(
   isPre: boolean,
   variant?: TabVariant,
   disabled?: boolean,
+  tabPosition?: TabPosition,
 ): SerializedStyles {
   let colorCss =
     disabled &&
     css`
       cursor: not-allowed;
     `
+  let variantCss =
+    variant === "card"
+      ? tabPosition === "bottom"
+        ? css`
+            top: 0.5px;
+            border-top: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+          `
+        : css`
+            top: -0.5px;
+            border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)}
+              1px;
+          `
+      : ""
+
   return css`
     cursor: pointer;
     display: inline-flex;
@@ -528,9 +634,17 @@ export function applyCommonPreNextIconCss(
     height: 100%;
     font-size: 12px;
     text-align: center;
+    position: relative;
     padding: 0 12px ${variant === "capsule" ? 11 : 0}px 4px;
+    ${variantCss};
     ${colorCss};
   `
+}
+
+export function applyPreNextIconCss(isHorizontal: boolean) {
+  return isHorizontal
+    ? applyHorizontalPreNextIconCss
+    : applyCommonPreNextIconCss
 }
 
 export function applyHorizontalIconLineCss(isLeft: boolean): SerializedStyles {
@@ -574,4 +688,5 @@ export const tabsContentCss = css`
   display: inline-flex;
   align-items: center;
   flex-direction: inherit;
+  height: 100%;
 `

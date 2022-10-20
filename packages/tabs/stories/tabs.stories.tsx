@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/react"
-import { Tabs, TabsProps } from "../src"
-import { TabPane } from "../src"
+import { Tabs, TabPane, TabsProps } from "../src"
 import { ReactNode } from "react"
+import { Space } from "@illa-design/space"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -12,9 +12,6 @@ export default {
       control: false,
     },
     deleteIcon: {
-      control: false,
-    },
-    activeKey: {
       control: false,
     },
     animated: {
@@ -74,15 +71,17 @@ const Template: Story<TabsProps> = (props) => {
   ]
 
   return (
-    <Tabs style={{ width: 400, height: 200 }} {...props}>
-      {tabArr.map((item) => {
-        return (
-          <TabPane title={item.title} key={item.key} disabled={item.disabled}>
-            {item.content}
-          </TabPane>
-        )
-      })}
-    </Tabs>
+    <Space>
+      <Tabs style={{ width: 400, height: 200 }} {...props}>
+        {tabArr.map((item) => {
+          return (
+            <TabPane title={item.title} key={item.key} disabled={item.disabled}>
+              {item.content}
+            </TabPane>
+          )
+        })}
+      </Tabs>
+    </Space>
   )
 }
 

@@ -10,24 +10,28 @@ import { TabHeaderChildProps, TabHeaderProps } from "../interface"
 import {
   addButtonCss,
   applyHeaderContainerCss,
-  applyCommonPreNextIconCss,
-  cardDividerContainerCss,
-  containerHideScrollBarCss,
   tabCapsuleHeaderContainerCss,
   tabCardHeaderContainerCss,
-  tabHeaderContainerCss,
   tabLineHeaderContainerCss,
   tabsContentCss,
+  applyTabHeaderContainerCss,
+  applyScrollContainerCss,
+  applyPreNextIconCss,
 } from "../style"
 import { TabHeaderChild } from "./tab-header-child"
-import { AddIcon, NextIcon, PreIcon } from "@illa-design/icon"
+import { AddIcon, DownIcon, NextIcon, PreIcon, UpIcon } from "@illa-design/icon"
 import useScrolling from "react-use/lib/useScrolling"
 import {
   checkAndAdjustSelectedItemPosition,
-  getChildrenWidthArr,
-  getLeftTargetPosition,
-  getTargetPosition,
+  getOffsetSize,
+  getScrollDist,
+  getScrollSize,
+  isHorizontalLayout,
+  scrollTabList,
 } from "../utils"
+import { getChildrenSize } from "./tab-line-header"
+import useMeasure from "react-use-measure"
+import { ResizeObserver } from "@juggle/resize-observer"
 
 export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
   (props, ref) => {
@@ -44,6 +48,8 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       tabBarSpacing,
       prefix,
       suffix,
+      tabPosition,
+      align,
       colorScheme = "blue",
       addIcon = <AddIcon />,
     } = props
@@ -57,71 +63,102 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       return tabLineHeaderContainerCss
     }, [variant])
 
+    const isHorizontal = useMemo(() => {
+      return isHorizontalLayout(tabPosition)
+    }, [tabPosition])
+
     const scrollRef = useRef<HTMLDivElement | null>(null)
     const childRef = useRef<HTMLDivElement | null>(null)
     const scrolling = useScrolling(scrollRef)
+    const [resizeRef, { width, height }] = useMeasure({
+      polyfill: ResizeObserver,
+    })
     const [preDisable, setPreDisable] = useState(true)
     const [nextDisable, setNextDisable] = useState(false)
     const [needScroll, setNeedScroll] = useState(false)
 
-    const _handleSelectTab = useCallback((key: string, index: number) => {
-      const dist = checkAndAdjustSelectedItemPosition(
-        getChildrenWidthArr(childRef.current),
-        scrollRef?.current?.offsetWidth ?? 0,
-        scrollRef.current?.scrollLeft ?? 0,
-        index,
+    const _handleSelectTab = useCallback(
+      (key: string, index: number) => {
+        const dist = checkAndAdjustSelectedItemPosition(
+          getChildrenSize(isHorizontal, childRef.current),
+          getOffsetSize(isHorizontal, scrollRef),
+          getScrollDist(isHorizontal, scrollRef),
+          index,
+        )
+        isHorizontal
+          ? scrollRef.current?.scrollTo(0, dist)
+          : scrollRef.current?.scrollTo(dist, 0)
+        handleSelectTab(key)
+      },
+      [isHorizontal, handleSelectTab],
+    )
+
+    const checkPreAndNextDisable = () => {
+      if (!scrollRef.current) return
+      setPreDisable(getScrollDist(isHorizontal, scrollRef) === 0)
+      setNextDisable(
+        Math.abs(
+          getScrollDist(isHorizontal, scrollRef) +
+            getOffsetSize(isHorizontal, scrollRef) -
+            getScrollSize(isHorizontal, scrollRef),
+        ) < 1,
       )
-      scrollRef.current?.scrollTo(dist, 0)
-      handleSelectTab(key)
-    }, [])
+    }
+
+    useEffect(() => {
+      if (!scrolling) {
+        checkPreAndNextDisable()
+      }
+    }, [scrolling, needScroll])
 
     useEffect(() => {
       if (!scrollRef?.current) return
       setNeedScroll(
-        scrollRef?.current.scrollWidth > scrollRef?.current.offsetWidth,
+        getScrollSize(isHorizontal, scrollRef) >
+          getOffsetSize(isHorizontal, scrollRef),
       )
-    }, [childRef.current, scrollRef.current, needScroll])
+    }, [isHorizontal, width, height])
 
-    useEffect(() => {
-      if (!scrolling && scrollRef?.current) {
-        setPreDisable(scrollRef?.current?.scrollLeft === 0)
-        const [scrollLeft, offsetWidth, scrollWidth] = [
-          scrollRef.current.scrollLeft,
-          scrollRef.current.offsetWidth,
-          scrollRef.current.scrollWidth,
-        ]
-        if (offsetWidth != 0 && scrollWidth != 0) {
-          setNextDisable(Math.abs(scrollLeft + offsetWidth - scrollWidth) < 1)
-        }
+    const [preIcon, nextIcon] = useMemo(() => {
+      if (isHorizontal) {
+        return [<UpIcon key="upIcon" />, <DownIcon key="downIcon" />]
+      } else {
+        return [<PreIcon key="preIcon" />, <NextIcon key="nextIcon" />]
       }
-    }, [scrolling])
+    }, [isHorizontal])
 
     return (
-      <div css={applyHeaderContainerCss(false)} ref={ref}>
+      <div css={applyHeaderContainerCss(variant, tabPosition, align)} ref={ref}>
         {prefix}
-        <div css={tabsContentCss}>
+        <div css={tabsContentCss} ref={resizeRef}>
           {needScroll && (
             <span
               onClick={() => {
-                if (preDisable || !scrollRef?.current || !childRef.current)
-                  return
-                const childrenWidthArr = getChildrenWidthArr(childRef.current)
-                const dis = getLeftTargetPosition(
-                  childrenWidthArr,
-                  scrollRef?.current?.offsetWidth ?? 0,
-                  scrollRef.current?.scrollLeft ?? 0,
+                scrollTabList(
+                  true,
+                  preDisable,
+                  isHorizontal,
+                  scrollRef,
+                  childRef,
                 )
-                scrollRef.current?.scrollTo(dis, 0)
               }}
-              css={applyCommonPreNextIconCss(true, variant, preDisable)}
+              css={applyPreNextIconCss(isHorizontal)(
+                true,
+                variant,
+                preDisable,
+                tabPosition,
+              )}
             >
-              <PreIcon />
+              {preIcon}
             </span>
           )}
 
-          <div ref={scrollRef} css={containerHideScrollBarCss}>
+          <div ref={scrollRef} css={applyScrollContainerCss(isHorizontal)}>
             <div css={containerCss}>
-              <div ref={childRef} css={tabHeaderContainerCss}>
+              <div
+                ref={childRef}
+                css={applyTabHeaderContainerCss(variant, tabPosition)}
+              >
                 {tabHeaderChild &&
                   tabHeaderChild?.map((item, index) => {
                     const childProps: TabHeaderChildProps = {
@@ -137,6 +174,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                       handleDeleteTab: handleDeleteTab,
                       tabBarSpacing: tabBarSpacing,
                       colorScheme: colorScheme,
+                      tabPosition,
                     }
                     return <TabHeaderChild key={item.tabKey} {...childProps} />
                   })}
@@ -151,27 +189,27 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                   </span>
                 )}
               </div>
-              {variant === "card" && <div css={cardDividerContainerCss} />}
             </div>
           </div>
           {needScroll && (
             <span
               onClick={() => {
-                if (nextDisable || !childRef.current || !scrollRef?.current)
-                  return
-                const childrenWidthArr = getChildrenWidthArr(childRef.current)
-                scrollRef.current?.scrollTo(
-                  getTargetPosition(
-                    childrenWidthArr,
-                    scrollRef?.current?.offsetWidth ?? 0,
-                    scrollRef.current?.scrollLeft ?? 0,
-                  ),
-                  0,
+                scrollTabList(
+                  false,
+                  nextDisable,
+                  isHorizontal,
+                  scrollRef,
+                  childRef,
                 )
               }}
-              css={applyCommonPreNextIconCss(false, variant, nextDisable)}
+              css={applyPreNextIconCss(isHorizontal)(
+                false,
+                variant,
+                nextDisable,
+                tabPosition,
+              )}
             >
-              <NextIcon />
+              {nextIcon}
             </span>
           )}
         </div>

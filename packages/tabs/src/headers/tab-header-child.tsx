@@ -19,6 +19,7 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
     size = "medium",
     variant,
     closable,
+    tabPosition,
     deleteIcon = <CloseIcon size={"8"} />,
     handleDeleteTab,
     tabBarSpacing,
@@ -39,7 +40,7 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
 
   return (
     <span
-      css={applyChildCss(isSelected, disabled)}
+      css={applyChildCss(isSelected, disabled, tabPosition)}
       key={tabKey}
       onClick={() => {
         if (disabled) return
