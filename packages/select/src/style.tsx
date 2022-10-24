@@ -106,6 +106,7 @@ export function applySelectView(
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: pointer;
     display: flex;
+    overflow: hidden;
     height: ${optionHeight}px;
 
     &:hover {
@@ -306,6 +307,7 @@ export const optionLabelStyle = css`
 export function applySelectViewStyle(): SerializedStyles {
   return css`
     display: flex;
+    flex-direction: row;
     width: 100%;
   `
 }

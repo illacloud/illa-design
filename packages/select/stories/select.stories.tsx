@@ -80,7 +80,7 @@ const Template: Story<SelectProps> = (args) => (
 
     <Select
       showSearch={true}
-      w={"280px"}
+      maxW="150px"
       options={options}
       defaultValue={"Shenzhen"}
       addonBefore={{ render: "222" }}
