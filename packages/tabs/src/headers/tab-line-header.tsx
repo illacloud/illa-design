@@ -19,7 +19,6 @@ import {
   tabLineHeaderHorizontalContainerCss,
   applyHorizontalIconLineCss,
   applyCommonIconLineCss,
-  applyLineHeaderContainerCss,
   tabsContentCss,
   applyScrollContainerCss,
   applyHeaderContainerCss,
@@ -147,11 +146,14 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
 
     useEffect(() => {
       if (!scrollRef?.current) return
-      setNeedScroll(
-        getScrollSize(_isHorizontalLayout, scrollRef) >
-          getOffsetSize(_isHorizontalLayout, scrollRef),
-      )
-    }, [_isHorizontalLayout, width, height])
+      const childrenSize = getChildrenSize(
+        _isHorizontalLayout,
+        childRef.current,
+      )?.reduce((a, b) => a + b, 0)
+      const offsetSize = getOffsetSize(_isHorizontalLayout, scrollRef)
+
+      setNeedScroll(childrenSize > offsetSize)
+    }, [_isHorizontalLayout, width, height, tabHeaderChild?.length])
 
     useEffect(() => {
       setBlueLineWidth(

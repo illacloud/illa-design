@@ -113,11 +113,14 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
 
     useEffect(() => {
       if (!scrollRef?.current) return
-      setNeedScroll(
-        getScrollSize(isHorizontal, scrollRef) >
-          getOffsetSize(isHorizontal, scrollRef),
-      )
-    }, [isHorizontal, width, height])
+      const childrenSize = getChildrenSize(
+        isHorizontal,
+        childRef.current,
+      )?.reduce((a, b) => a + b, 0)
+      const offsetSize = getOffsetSize(isHorizontal, scrollRef)
+
+      setNeedScroll(childrenSize > offsetSize)
+    }, [isHorizontal, width, height, tabHeaderChild?.length])
 
     const [preIcon, nextIcon] = useMemo(() => {
       if (isHorizontal) {
