@@ -2,6 +2,7 @@ import { HTMLAttributes, ReactElement, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
 
 export declare type TabPosition = "left" | "right" | "top" | "bottom"
+export declare type TabAlign = "flex-start" | "center" | "flex-end"
 export declare type TabsSize = "small" | "medium" | "large"
 export declare type TabVariant = "line" | "text" | "card" | "capsule"
 export type TabsColorScheme =
@@ -29,6 +30,7 @@ export interface TabsProps
   animated?: boolean | { tabPane?: boolean; inkBar?: boolean }
   size?: TabsSize
   variant?: TabVariant
+  align?: TabAlign
   activeKey?: string
   defaultActiveKey?: string
   editable?: boolean
@@ -52,6 +54,7 @@ export interface TabContentProps extends HTMLAttributes<HTMLDivElement> {
   selectedIndex: number
   animated?: boolean
   variant: TabVariant
+  tabPosition?: TabPosition
 }
 
 export type TabHeaderProps = TabsProps & {
@@ -69,6 +72,7 @@ export type TabHeaderChildProps = Pick<
   tabKey: string
   handleSelectTab: (key: string) => void
   variant?: TabVariant
+  tabPosition?: TabPosition
   deleteIcon?: ReactNode
   size?: TabsSize
   handleDeleteTab?: (key: string) => void

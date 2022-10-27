@@ -1,4 +1,11 @@
-import { forwardRef, ReactElement, useState, useMemo, Children } from "react"
+import {
+  forwardRef,
+  ReactElement,
+  useState,
+  useMemo,
+  Children,
+  useCallback,
+} from "react"
 import {
   TabHeaderChildProps,
   TabHeaderProps,
@@ -7,9 +14,8 @@ import {
 } from "./interface"
 import { TabPane } from "./tab-pane"
 import { TabContent } from "./tab-content"
-import { commonContainerCss, horizontalContainerCss } from "./style"
+import { applyContainerCss } from "./style"
 import { TabCommonHeader } from "./headers/tab-common-header"
-import { isAhead, isHorizontalLayout } from "./utils"
 import { TabLineHeader } from "./headers/tab-line-header"
 import { isObject } from "@illa-design/system"
 import { applyBoxStyle } from "@illa-design/theme"
@@ -20,7 +26,7 @@ export type TabChildren = {
   firstTabKey?: string
 }
 
-export function getTabChildren(children: ReactElement) {
+function getTabChildren(children: ReactElement) {
   const headerChildren: TabHeaderChildProps[] = []
   const paneChildren: ReactElement[] = []
   let firstTabKey: string | undefined
@@ -45,7 +51,7 @@ export function getTabChildren(children: ReactElement) {
   }
 }
 
-export function removeHeaderAndPane(index: number, tabsArr: TabChildren) {
+function removeHeaderAndPane(index: number, tabsArr: TabChildren) {
   if (index < 0) return tabsArr
   const newHeaders = [...tabsArr.headers]
   newHeaders.splice(index, 1)
@@ -58,10 +64,7 @@ export function removeHeaderAndPane(index: number, tabsArr: TabChildren) {
   }
 }
 
-export function getSelectedIndex(
-  key?: string,
-  headers?: TabHeaderChildProps[],
-) {
+function getSelectedIndex(key?: string, headers?: TabHeaderChildProps[]) {
   if (!headers) return -1
   return headers.findIndex((item) => key === item.tabKey)
 }
@@ -77,17 +80,18 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     variant = "line",
     addIcon,
     deleteIcon,
-    onChange,
-    onAddTab,
-    onDeleteTab,
-    onClickTab,
     tabBarSpacing,
     tabPosition = "top",
+    align = "flex-start",
     activeKey,
     prefix,
     suffix,
     colorScheme,
     withoutContent = false,
+    onChange,
+    onAddTab,
+    onDeleteTab,
+    onClickTab,
     ...rest
   } = props
 
@@ -104,41 +108,39 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     const tabs = getTabChildren(children as ReactElement)
     setChildren(tabs)
     if (!defaultActiveKey) setActiveKeyState(tabs.firstTabKey)
-  }, [children])
+  }, [children, defaultActiveKey])
 
-  let headerAnimated = true
-  let paneAnimated = false
+  const headerAnimated = useMemo(() => {
+    if (typeof animated === "boolean") {
+      return animated
+    } else if (isObject(animated)) {
+      return animated.inkBar ?? true
+    }
+  }, [animated])
 
-  if (typeof animated === "boolean") {
-    headerAnimated = paneAnimated = animated
-  } else if (isObject(animated)) {
-    headerAnimated = animated.inkBar ?? headerAnimated
-    paneAnimated = animated.tabPane ?? paneAnimated
-  }
+  const paneAnimated = useMemo(() => {
+    if (typeof animated === "boolean") {
+      return animated
+    } else if (isObject(animated)) {
+      return animated.tabPane ?? false
+    }
+  }, [animated])
 
-  const _activeKey = activeKey ?? activeKeyState
+  const _activeKey = useMemo(
+    () => activeKey ?? activeKeyState,
+    [activeKey, activeKeyState],
+  )
 
-  const headerProps: TabHeaderProps = {
-    selectedIndex: getSelectedIndex(_activeKey, _children.headers),
-    animated: headerAnimated,
-    tabHeaderChild: _children?.headers,
-    handleSelectTab: (key) => {
-      onClickTab && onClickTab(key)
-      setActiveKeyState(key)
-      onChange && onChange(key)
-    },
-    size: size,
-    variant: variant,
-    editable: editable,
-    addIcon: addIcon,
-    onAddTab: onAddTab,
-    tabBarSpacing: tabBarSpacing,
-    tabPosition: tabPosition,
-    handleDeleteTab: (key) => {
+  const selectedIndex = useMemo(() => {
+    return getSelectedIndex(_activeKey, _children.headers)
+  }, [_activeKey, _children])
+
+  const handleDeleteTab = useCallback(
+    (key: string) => {
       const index = _children.headers.findIndex((item) => {
         return item.tabKey === key
       })
-      if (index === getSelectedIndex(_activeKey, _children.headers)) {
+      if (index === selectedIndex) {
         if (index === _children.headers.length - 1) {
           setActiveKeyState(_children.headers[index - 1].tabKey)
           onChange && onChange(_children.headers[index - 1].tabKey)
@@ -151,21 +153,46 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       setChildren(newArr)
       onDeleteTab && onDeleteTab(key)
     },
-    deleteIcon: deleteIcon,
-    suffix: suffix,
-    prefix: prefix,
-    colorScheme: colorScheme,
+    [_children, selectedIndex, onChange, onDeleteTab],
+  )
+
+  const handleSelectTab = useCallback(
+    (key) => {
+      onClickTab && onClickTab(key)
+      setActiveKeyState(key)
+      onChange && onChange(key)
+    },
+    [onChange, onClickTab],
+  )
+
+  const headerProps: TabHeaderProps = {
+    selectedIndex,
+    animated: headerAnimated,
+    tabHeaderChild: _children?.headers,
+    handleSelectTab,
+    size,
+    align,
+    variant,
+    editable,
+    addIcon,
+    onAddTab,
+    tabBarSpacing,
+    tabPosition,
+    handleDeleteTab,
+    deleteIcon,
+    suffix,
+    prefix,
+    colorScheme,
   }
 
-  const containerCss = useMemo(() => {
-    if (isHorizontalLayout(tabPosition)) {
-      return horizontalContainerCss
-    }
-    return commonContainerCss
-  }, [tabPosition])
-
   const _variant = useMemo(() => {
-    if (tabPosition && tabPosition !== "top") {
+    if (variant === "capsule" && tabPosition !== "top") {
+      return "line"
+    }
+    if (
+      variant === "card" &&
+      (tabPosition === "left" || tabPosition === "right")
+    ) {
       return "line"
     }
     return variant
@@ -173,33 +200,21 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
   return (
     <div
-      css={[containerCss, applyBoxStyle(props)]}
+      css={[applyContainerCss(tabPosition), applyBoxStyle(props)]}
       placeholder={placeholder}
       ref={ref}
       {...rest}
     >
-      {isAhead(tabPosition) && _variant === "line" && (
-        <TabLineHeader {...headerProps} />
-      )}
-      {tabPosition === "top" && _variant != "line" && (
-        <TabCommonHeader {...headerProps} />
-      )}
+      {_variant === "line" && <TabLineHeader {...headerProps} />}
+      {_variant != "line" && <TabCommonHeader {...headerProps} />}
       {!withoutContent && (
         <TabContent
           animated={paneAnimated}
           tabPanes={_children?.panes}
-          selectedIndex={getSelectedIndex(
-            activeKey ?? activeKeyState,
-            _children.headers,
-          )}
+          selectedIndex={selectedIndex}
           variant={_variant}
+          tabPosition={tabPosition}
         />
-      )}
-      {!isAhead(tabPosition) && _variant === "line" && (
-        <TabLineHeader {...headerProps} />
-      )}
-      {!isAhead(tabPosition) && _variant != "line" && (
-        <TabCommonHeader {...headerProps} />
       )}
     </div>
   )
