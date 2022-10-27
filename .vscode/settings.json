@@ -1,0 +1,7 @@
+{
+  "i18n-ally.localesPaths": [
+    "packages/config-provider/src/locale",
+    "coverage/lcov-report/config-provider/src/locale",
+    "jest-coverage/lcov-report/config-provider/src/locale"
+  ]
+}

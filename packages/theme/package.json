@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/theme",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Illa Design theme.",
   "keywords": [
     "theme",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
-    "@illa-design/system": "1.0.4",
+    "@illa-design/system": "1.0.5",
     "chroma-js": "^2.1.2",
     "color": "^4.2.3",
     "compute-scroll-into-view": "^1.0.17",
