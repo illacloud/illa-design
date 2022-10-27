@@ -28,7 +28,6 @@ export function applySizeStyle(size: TableSize): SerializedStyles {
 export function applyContainerStyle(): SerializedStyles {
   return css(
     css`
-      overflow: auto;
       display: flex;
       flex-direction: column;
     `,
@@ -138,8 +137,16 @@ export function applyPreContainer(align: TableAlign): SerializedStyles {
     align-items: center;
     flex-direction: row;
     flex-grow: 1;
+    width: 100%;
   `
 }
+
+export const headerStyle = css`
+  flex: 0 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
 
 export function applyTableStyle(tableLayout: TableLayout): SerializedStyles {
   return css`
@@ -183,6 +190,8 @@ export function applyActionButtonStyle(
 
 export const spinStyle = css`
   width: 100%;
+  overflow: auto;
+  flex: 1;
 `
 
 export const filterStyle = css`

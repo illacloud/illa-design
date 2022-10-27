@@ -39,6 +39,7 @@ import {
   applyPreContainer,
   applyTableStyle,
   applyToolBarStyle,
+  headerStyle,
   spinStyle,
 } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
@@ -359,12 +360,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                           css={applyPreContainer(align)}
                           onClick={() => header.column.toggleSorting()}
                         >
-                          {header.isPlaceholder
-                            ? null
-                            : flexRender(
+                          {header.isPlaceholder ? null : (
+                            <span css={headerStyle}>
+                              {flexRender(
                                 header.column.columnDef.header,
                                 header.getContext(),
                               )}
+                            </span>
+                          )}
                           {header.column.getCanSort() &&
                             (header.column.getIsSorted() ? (
                               header.column.getIsSorted() === "desc" ? (
@@ -407,13 +410,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                   ))}
                 </Tr>
               ))}
-              {table.getRowModel().rows.length ? null : columns?.length ? (
+              {table.getRowModel().rows.length ? null : (
                 <tr>
                   <td colSpan={99} style={{ textAlign: "center" }}>
                     <Empty {...emptyProps} />
                   </td>
                 </tr>
-              ) : null}
+              )}
             </TBody>
             {showFooter && (
               <TFoot>
