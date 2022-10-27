@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/anchor",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Illa Design Anchor.",
   "keywords": [
     "anchor",
@@ -39,8 +39,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/affix": "1.0.4",
-    "@illa-design/system": "1.0.4",
-    "@illa-design/theme": "1.0.4"
+    "@illa-design/affix": "1.0.5",
+    "@illa-design/system": "1.0.5",
+    "@illa-design/theme": "1.0.5"
   }
 }
