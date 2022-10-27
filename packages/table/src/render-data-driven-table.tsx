@@ -38,7 +38,7 @@ import {
   applyHeaderIconLeft,
   applyPreContainer,
   applyTableStyle,
-  applyToolBarStyle,
+  toolBarStyle,
   headerStyle,
   spinStyle,
 } from "./style"
@@ -453,7 +453,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         </TableContext.Provider>
       </Spin>
       {overFlow === "pagination" || download || filter ? (
-        <div css={applyToolBarStyle(bordered)}>
+        <div css={toolBarStyle}>
           <div css={applyActionButtonStyle(overFlow === "pagination")}>
             {download ? (
               <Button

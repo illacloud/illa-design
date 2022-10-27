@@ -63,13 +63,9 @@ export function applyBorderStyle(
   }
   let stripedStyle: SerializedStyles = css()
   if (striped) {
-    if (lastRow) {
-      stripedStyle = css``
-    } else {
-      stripedStyle = css`
-        border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      `
-    }
+    stripedStyle = css`
+      border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    `
   }
   return css(borderStyle, stripedStyle)
 }
@@ -151,6 +147,7 @@ export const headerStyle = css`
 export function applyTableStyle(tableLayout: TableLayout): SerializedStyles {
   return css`
     width: 100%;
+    height: fit-content;
     box-sizing: border-box;
     display: table;
     border-spacing: 0;
@@ -167,17 +164,12 @@ export function applyBorderedStyle(bordered?: boolean): SerializedStyles {
     : css``
 }
 
-export function applyToolBarStyle(bordered?: boolean): SerializedStyles {
-  return css`
-    position: relative;
-    text-align: center;
-    padding: 8px 0;
-    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-    ${bordered
-      ? `border-top: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};`
-      : ""};
-  `
-}
+export const toolBarStyle = css`
+  position: relative;
+  text-align: center;
+  padding: 8px 0;
+  background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+`
 
 export function applyActionButtonStyle(
   showPagination?: boolean,
