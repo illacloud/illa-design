@@ -191,6 +191,7 @@ export function applyActionButtonStyle(
 export const spinStyle = css`
   width: 100%;
   overflow: auto;
+  flex: 1;
 `
 
 export const filterStyle = css`

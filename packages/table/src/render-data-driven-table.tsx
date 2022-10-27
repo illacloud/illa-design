@@ -410,13 +410,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                   ))}
                 </Tr>
               ))}
-              {table.getRowModel().rows.length ? null : columns?.length ? (
+              {table.getRowModel().rows.length ? null : (
                 <tr>
                   <td colSpan={99} style={{ textAlign: "center" }}>
                     <Empty {...emptyProps} />
                   </td>
                 </tr>
-              ) : null}
+              )}
             </TBody>
             {showFooter && (
               <TFoot>
