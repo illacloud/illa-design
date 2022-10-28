@@ -4,6 +4,7 @@ import {
   ReactNode,
   SyntheticEvent,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react"
@@ -198,20 +199,22 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
       },
     }
 
-    const suffixIcon = loading ? (
-      <LoadingIcon
-        spin
-        css={css`
-          color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
-        `}
-      />
-    ) : showSearch && popupVisible ? (
-      <SearchIcon />
-    ) : popupVisible ? (
-      <ExpandIcon css={css({ transform: "rotate(180deg)" })} />
-    ) : (
-      <ExpandIcon />
-    )
+    const suffixIcon = useMemo(() => {
+      return loading ? (
+        <LoadingIcon
+          spin
+          css={css`
+            color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+          `}
+        />
+      ) : showSearch && popupVisible ? (
+        <SearchIcon />
+      ) : popupVisible ? (
+        <ExpandIcon css={css({ transform: "rotate(180deg)" })} />
+      ) : (
+        <ExpandIcon />
+      )
+    }, [loading, popupVisible, showSearch])
 
     const renderSingle = () => {
       let _inputValue: string

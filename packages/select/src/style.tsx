@@ -161,7 +161,6 @@ export function applySelectViewText(
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    display: flex;
     ${showInput ? "" : css({ display: "none !important" })};
   `
 }
@@ -173,6 +172,7 @@ export function applyIconStyle(): SerializedStyles {
     }
 
     display: flex;
+    margin-left: 16px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
