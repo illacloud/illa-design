@@ -161,6 +161,7 @@ export function applySelectViewText(
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    display: flex;
     ${showInput ? "" : css({ display: "none !important" })};
   `
 }
