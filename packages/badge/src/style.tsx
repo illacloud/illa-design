@@ -36,7 +36,6 @@ export function applyBadgeDot(
   if (!hasStatus && hasChildren) {
     position += `
       position: absolute;
-      z-index: 2;
       transform: translate(50%, -50%);
       transform-origin: 100% 0;
       right: 0px;
@@ -62,7 +61,6 @@ export function applyBadgeNumberOrText(
   const position = hasChildren
     ? `
     position: absolute;
-    z-index: 2;
     transform: translate(50%, -50%);
     transform-origin: 100% 0;
     right: 0px;

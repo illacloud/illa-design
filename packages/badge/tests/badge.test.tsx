@@ -92,7 +92,6 @@ test("Badge renders with children", () => {
   )
   expect(screen.getByTestId("test-with-children").lastChild).toHaveStyle({
     position: "absolute",
-    "z-index": 2,
   })
 })
 
