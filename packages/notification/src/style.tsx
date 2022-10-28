@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { MessageType, NoticePosition } from "./interface"
 import { AlertType, iconColorMap } from "@illa-design/alert"
 import { Variants } from "framer-motion"
@@ -23,7 +23,7 @@ export function applyNotificationWrapper(
     flex-direction: column;
     ${align};
     position: fixed;
-    z-index: 1499;
+    z-index: ${zIndex.notification};
     ${positionMap[position]};
   `
 }

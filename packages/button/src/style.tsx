@@ -5,7 +5,7 @@ import {
   ButtonSize,
   ButtonVariant,
 } from "./interface"
-import { getColor } from "@illa-design/theme"
+import { getColor, zIndex } from "@illa-design/theme"
 
 // button
 export function applyTagContainer(
@@ -677,7 +677,7 @@ export function applySpacing(
       margin-left: ${index != 0 ? "-1px" : "0px"};
 
       &:hover {
-        z-index: 2;
+        z-index: ${zIndex.button};
       }
     `
   } else {
@@ -686,7 +686,7 @@ export function applySpacing(
       margin-left: ${index == 0 ? "0px" : spacing};
 
       &:hover {
-        z-index: 2;
+        z-index: ${zIndex.button};
       }
     `
   }

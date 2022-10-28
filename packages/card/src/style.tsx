@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { CardSize } from "./interface"
 
 export function applyCard(
@@ -142,7 +142,7 @@ export function applyCardGrid(hoverable: boolean): SerializedStyles {
       0 1px 0 0 ${borderColor} inset;
 
     &:hover {
-      z-index: ${hoverable ? 1 : ""};
+      z-index: ${hoverable ? zIndex.card : ""};
     }
   `
 }

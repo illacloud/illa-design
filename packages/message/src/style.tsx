@@ -1,5 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { MessagePosition } from "@illa-design/notification"
+import { zIndex } from "@illa-design/theme"
 
 export function applyMessageWrapper(
   position: MessagePosition,
@@ -10,7 +11,7 @@ export function applyMessageWrapper(
     padding: 0 10px;
     align-items: center;
     position: fixed;
-    z-index: 1500;
+    z-index: ${zIndex.message};
     ${position === "top" ? "top" : "bottom"}:20px;
     box-sizing: border-box;
     pointer-events: none;

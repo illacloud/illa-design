@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import {
   TabAlign,
   TabPosition,
@@ -295,7 +295,7 @@ export function applyCardHeaderChildCss(
     ${selectedBoxCss};
     border-width: 1px;
     border-bottom-width: 1.5px;
-    z-index: 2;
+    z-index: ${zIndex.tabs};
     margin: 0 2px;
     ${applyHoverBackgroundCss(isSelected, disabled)}
     color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
