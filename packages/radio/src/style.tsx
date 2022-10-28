@@ -96,7 +96,6 @@ export function applyRadioContainerVertical(
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 6px ${currentSpacing};
-    margin-bottom: ${currentSpacing};
   `
 }
 
