@@ -13,13 +13,26 @@ import {
 } from "@illa-design/config-provider"
 
 export const JumperInput: FC<JumperInputProps> = (props) => {
-  const { onEnterPress, wholeDisable, size } = props
-  const [compositionValue, setCompositionValue] = useState<string>("")
+  const { onEnterPress, wholeDisable, size, currentPage, totalPages } = props
+  const [compositionValue, setCompositionValue] = useState<string>()
   const configProviderProps = useContext<ConfigProviderProps>(
     ConfigProviderContext,
   )
   const locale = configProviderProps?.locale?.pagination ?? def.pagination
   const goToText = locale["go"]
+
+  const handleJump = () => {
+    if (!compositionValue) {
+      return
+    }
+
+    let page = isNaN(Number(compositionValue))
+      ? currentPage
+      : Number(compositionValue)
+
+    setCompositionValue(undefined)
+    onEnterPress(page)
+  }
 
   return (
     <span css={paginationContainer}>
@@ -34,9 +47,8 @@ export const JumperInput: FC<JumperInputProps> = (props) => {
             const value = val?.replace(/[^\d]/, "")
             setCompositionValue(value)
           }}
-          onPressEnter={() => {
-            onEnterPress(Number.parseInt(compositionValue))
-          }}
+          onPressEnter={handleJump}
+          onBlur={handleJump}
           requirePadding={false}
           variant={"fill"}
         />

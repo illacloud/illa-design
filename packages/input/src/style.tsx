@@ -1,6 +1,6 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { InputProps, InputSize, StateValue } from "./interface"
 
 export const inputFillStyle = css`
@@ -143,7 +143,7 @@ function applyStatus(stateValue: StateValue): SerializedStyles {
         ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
       ${stateValue?.error ? errorFocusStyle : ""}
       background-color: white;
-      z-index: 1;
+      z-index: ${zIndex.input};
     `
   } else if (stateValue?.error) {
     mainStyle = css`
@@ -153,7 +153,7 @@ function applyStatus(stateValue: StateValue): SerializedStyles {
     mainStyle = css`
       &:hover {
         border-color: ${getColor(stateValue.borderColor, "06")};
-        z-index: 1;
+        z-index: ${zIndex.input};
         ${hoverStyle}
       }
     `

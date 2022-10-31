@@ -39,7 +39,7 @@ const Template: Story<PaginationProps> = (args) => {
 
   return (
     <Pagination
-      total={20}
+      total={40}
       currentPage={pageIndex}
       {...args}
       onChange={(pageIndex: number, pageSize: number) => {

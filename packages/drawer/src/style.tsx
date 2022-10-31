@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { Variants } from "framer-motion"
 import { DrawerPlacement } from "./interface"
 
@@ -24,7 +24,7 @@ export function applyDrawerWrapper(isFixed?: boolean): SerializedStyles {
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: ${zIndex.drawer};
   `
 }
 
