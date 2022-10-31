@@ -63,15 +63,15 @@ test("Pagination renders with jumper", () => {
   })
   fireEvent.change(input, { target: { value: "6" } })
   fireEvent.keyDown(input, { keyCode: 13 })
-  expect(input).toHaveDisplayValue("6")
-  expect(screen.getByText("6")).toHaveStyle({
-    color: `${globalColor(`--${illaPrefix}-blue-01`)}`,
-  })
+  expect(changeEvent).toBeCalledTimes(1)
+
   fireEvent.change(input, { target: { value: "-1" } })
   fireEvent.keyDown(input, { keyCode: 13 })
+  expect(changeEvent).toBeCalledTimes(2)
   expect(screen.getByText("1")).toHaveStyle({
     color: `${globalColor(`--${illaPrefix}-blue-01`)}`,
   })
+
   fireEvent.change(input, { target: { value: "11" } })
   fireEvent.keyDown(input, { keyCode: 13 })
   expect(screen.getByText("10")).toHaveStyle({
@@ -124,6 +124,7 @@ test("Pagination renders with simple jumper", () => {
   )
   const input = screen.getByRole(`textbox`)
   fireEvent.change(input, { target: { value: "6" } })
+  fireEvent.keyDown(input, { keyCode: 13 })
   expect(input).toHaveDisplayValue("6")
   expect(changeEvent).toBeCalled()
   fireEvent.change(input, { target: { value: "-1" } })
