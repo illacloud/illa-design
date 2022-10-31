@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { SimplePaginationProps } from "./interface"
 import {
   applyCommonItemCss,
@@ -27,10 +27,22 @@ export const SimplePagination: FC<SimplePaginationProps> = (props) => {
     defaultSelectedPageIndex,
   )
 
-  useEffect(() => {
-    onCurrentChange(currentPage + 1)
-    setCompositionValue(`${currentPage + 1}`)
-  }, [currentPage])
+  const handleJump = (page: number) => {
+    setCurrentPage(page)
+    onCurrentChange(page + 1)
+    setCompositionValue(`${page + 1}`)
+  }
+
+  const onInputJump = () => {
+    const value = Number.parseInt(compositionValue)
+    if (value == 0) {
+      handleJump(0)
+    } else if (value > pageSum) {
+      handleJump(pageSum - 1)
+    } else {
+      handleJump(value - 1)
+    }
+  }
 
   return (
     <span css={paginationContainer}>
@@ -41,7 +53,7 @@ export const SimplePagination: FC<SimplePaginationProps> = (props) => {
         )}
         onClick={() => {
           if (currentPage - 1 < 0 || wholeDisabled) return
-          setCurrentPage(currentPage - 1)
+          handleJump(currentPage - 1)
         }}
       >
         {prevIcon}
@@ -53,15 +65,9 @@ export const SimplePagination: FC<SimplePaginationProps> = (props) => {
           onChange={(val) => {
             const value = val?.replace(/[^\d]/, "")
             setCompositionValue(value)
-            if (value.length > 0) {
-              setCurrentPage(Number.parseInt(value) - 1)
-            }
           }}
-          onBlur={() => {
-            if (Number.parseInt(compositionValue) > pageSum) {
-              setCurrentPage(pageSum - 1)
-            }
-          }}
+          onBlur={onInputJump}
+          onPressEnter={onInputJump}
           textCenterHorizontal={true}
           requirePadding={false}
           variant={"fill"}
@@ -76,7 +82,7 @@ export const SimplePagination: FC<SimplePaginationProps> = (props) => {
         )}
         onClick={() => {
           if (currentPage + 1 > pageSum - 1 || wholeDisabled) return
-          setCurrentPage(currentPage + 1)
+          handleJump(currentPage + 1)
         }}
       >
         {nextIcon}

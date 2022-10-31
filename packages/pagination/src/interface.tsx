@@ -50,6 +50,8 @@ export interface JumperInputProps extends HTMLAttributes<HTMLSpanElement> {
   onEnterPress: (pageNum: number) => void
   wholeDisable: boolean | undefined
   size: PaginationSize
+  totalPages: number
+  currentPage: number
 }
 
 export interface SimplePaginationProps extends HTMLAttributes<HTMLSpanElement> {

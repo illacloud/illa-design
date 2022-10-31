@@ -172,6 +172,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
 
         {!simple && showJumper && (
           <JumperInput
+            currentPage={curPage}
+            totalPages={pageSum}
             wholeDisable={disabled}
             size={size}
             onEnterPress={(pageNum) => {
