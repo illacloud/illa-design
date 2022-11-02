@@ -153,6 +153,7 @@ export function applyTableStyle(tableLayout: TableLayout): SerializedStyles {
     border-spacing: 0;
     border-collapse: separate;
     table-layout: ${tableLayout};
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   `
 }
 
