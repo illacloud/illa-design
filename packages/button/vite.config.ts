@@ -25,8 +25,8 @@ export default defineConfig({
     }),
   ],
   build: {
-    sourcemap: false,
-    minify: false,
+    sourcemap: true,
+    minify: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/button",
