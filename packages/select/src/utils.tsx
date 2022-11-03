@@ -107,7 +107,7 @@ export function flatChildren(
 
   const handleOption = (child: ReactElement, origin: OptionInfo["_origin"]) => {
     const propValue = child.props?.value
-    const propLabel = child.props?.children.toString()
+    const propLabel = child.props?.children?.toString()
     const optionValue = propValue === undefined ? propLabel : propValue
 
     let isValidOption = true
