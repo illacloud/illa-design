@@ -168,6 +168,7 @@ export function applyBorderedStyle(bordered?: boolean): SerializedStyles {
 export const toolBarStyle = css`
   position: relative;
   text-align: center;
+  overflow: auto;
   padding: 8px 0;
   background-color: ${globalColor(`--${illaPrefix}-white-01`)};
 `
