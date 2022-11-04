@@ -251,6 +251,17 @@ export function applyInputContainer(
   `
 }
 
+export function applyInputBorderStyle(
+  searchButton?: boolean,
+): SerializedStyles {
+  return searchButton
+    ? css`
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      `
+    : css``
+}
+
 export function applyInputStyle(
   textCenterHorizontal?: boolean,
 ): SerializedStyles {

@@ -2,7 +2,12 @@ import { ChangeEvent, forwardRef, useState, KeyboardEvent } from "react"
 import { SearchProps } from "./interface"
 import { useMergeValue } from "@illa-design/system"
 import { SearchIcon } from "@illa-design/icon"
-import { applyContainerCss, applyInputContainer, applySuffixCls } from "./style"
+import {
+  applyContainerCss,
+  applyInputBorderStyle,
+  applyInputContainer,
+  applySuffixCls,
+} from "./style"
 import { InputElement } from "./input-element"
 import { Button } from "@illa-design/button"
 import { css } from "@emotion/react"
@@ -71,17 +76,22 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
 
   return (
     <div ref={ref} css={[applyContainerCss(size), applyBoxStyle(props)]}>
-      <span css={applyInputContainer(stateValue, requirePadding)}>
+      <span
+        css={[
+          applyInputContainer(stateValue, requirePadding),
+          applyInputBorderStyle(searchButton),
+        ]}
+      >
         <InputElement
           {...searchProp}
           ref={inputRef}
           onFocus={(e) => {
             setFocus(true)
-            props.onFocus && props.onFocus(e)
+            onFocus && onFocus(e)
           }}
           onBlur={(e) => {
             setFocus(false)
-            props.onBlur && props.onBlur(e)
+            onBlur && onBlur(e)
           }}
           value={value}
           onValueChange={onValueChange}
@@ -92,8 +102,8 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
             onClear?.()
           }}
           onPressEnter={(e: KeyboardEvent<HTMLInputElement>) => {
-            !disabled && props.onSearch?.(value)
-            props.onPressEnter?.(e)
+            !disabled && onSearch?.(value)
+            onPressEnter?.(e)
           }}
         />
         {!searchButton ? (
@@ -107,10 +117,12 @@ export const Search = forwardRef<HTMLDivElement, SearchProps>((props, ref) => {
       {searchButton ? (
         <span>
           <Button
+            _css={css({ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 })}
+            bdRadius={borderRadius}
             size={size}
             leftIcon={<SearchIcon />}
             onClick={() => {
-              props.onSearch?.(value)
+              onSearch?.(value)
             }}
           />
         </span>
