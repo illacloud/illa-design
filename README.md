@@ -1,6 +1,6 @@
 
 <div align="center">
-    <img alt="ILLA Design Logo" width="120px" height="120px" src="https://cdn.illafamily.com/logo.svg"/>
+    <img alt="ILLA Design Logo" width="120px" height="120px" src="./.github/assets/images/logo.svg"/>
 </div>
 
 <h1 align="center">ILLA Design</h1>
@@ -11,10 +11,10 @@
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-design/graphs/contributors">contributors</a></p>
 </div>
 
-![cover](https://cdn.illafamily.com/design-cover.png)
+![cover](./.github/assets/images/design-cover.png)
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/zKf3WKCufR)
-[![storybook](https://cdn.illafamily.com/storybook.svg)](https://design.illafamily.com)
+[![storybook](./.github/assets/images/storybook.svg)](https://design.illafamily.com)
 [![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
 [![license](https://img.shields.io/github/license/illa-family/illa-design)](./LICENSE)
 [![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
@@ -33,7 +33,7 @@
 
 You can review all components in Storybook.
 
-[![storybook](https://cdn.illafamily.com/storybook.svg)](https://design.illafamily.com)
+[![storybook](./.github/assets/images/storybook.svg)](https://design.illafamily.com)
 
 ## 🖥 Fast Try
 
