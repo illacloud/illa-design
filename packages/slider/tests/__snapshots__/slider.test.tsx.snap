@@ -184,6 +184,11 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   line-height: 18px;
 }
 
+.emotion-117:hover [title="inputStepEmbed"] {
+  visibility: visible;
+  opacity: 1;
+}
+
 .emotion-118 {
   width: 100%;
   height: 100%;
@@ -224,15 +229,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
 }
 
 .emotion-119 {
-  position: relative;
-}
-
-.emotion-119:hover [title="inputStepEmbed"] {
-  visibility: visible;
-  opacity: 1;
-}
-
-.emotion-120 {
   width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -250,60 +246,60 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   text-align: start;
 }
 
-.emotion-120::-webkit-input-placeholder {
+.emotion-119::-webkit-input-placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120::-moz-placeholder {
+.emotion-119::-moz-placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:-ms-input-placeholder {
+.emotion-119:-ms-input-placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120::placeholder {
+.emotion-119::placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:-moz-read-only {
+.emotion-119:-moz-read-only {
   color: #1d2129ff;
 }
 
-.emotion-120:read-only {
+.emotion-119:read-only {
   color: #1d2129ff;
 }
 
-.emotion-120:-moz-read-only::placeholder {
+.emotion-119:-moz-read-only::placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:read-only::placeholder {
+.emotion-119:read-only::placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:disabled {
+.emotion-119:disabled {
   cursor: not-allowed;
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled::-webkit-input-placeholder {
+.emotion-119:disabled::-webkit-input-placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled::-moz-placeholder {
+.emotion-119:disabled::-moz-placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled:-ms-input-placeholder {
+.emotion-119:disabled:-ms-input-placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled::placeholder {
+.emotion-119:disabled::placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-121 {
+.emotion-120 {
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
   opacity: 0;
@@ -312,7 +308,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   font-size: 10px;
 }
 
-.emotion-122 {
+.emotion-121 {
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -325,22 +321,22 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
   transition: 0.2s ease-in-out;
 }
 
-.emotion-122:hover {
+.emotion-121:hover {
   cursor: pointer;
   background-color: #dadee5ff;
 }
 
-.emotion-122:first-of-type {
+.emotion-121:first-of-type {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
 
-.emotion-122:last-of-type {
+.emotion-121:last-of-type {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
-.emotion-123 {
+.emotion-122 {
   vertical-align: middle;
 }
 
@@ -826,20 +822,20 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
           class="emotion-118"
         >
           <input
-            class="emotion-119 emotion-120"
+            class="emotion-119"
             disabled=""
             style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
             value="0"
           />
           <div
-            class="emotion-121"
+            class="emotion-120"
             title="inputStepEmbed"
           >
             <span
-              class="emotion-122"
+              class="emotion-121"
             >
               <svg
-                class="emotion-123"
+                class="emotion-122"
                 color="currentColor"
                 fill="none"
                 height="1em"
@@ -858,10 +854,10 @@ exports[`Test the slider styles in vertical or reverse Slider renders with rever
               </svg>
             </span>
             <span
-              class="emotion-122"
+              class="emotion-121"
             >
               <svg
-                class="emotion-123"
+                class="emotion-122"
                 color="currentColor"
                 fill="none"
                 height="1em"
@@ -1109,6 +1105,11 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   line-height: 18px;
 }
 
+.emotion-117:hover [title="inputStepEmbed"] {
+  visibility: visible;
+  opacity: 1;
+}
+
 .emotion-118 {
   width: 100%;
   height: 100%;
@@ -1149,15 +1150,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-119 {
-  position: relative;
-}
-
-.emotion-119:hover [title="inputStepEmbed"] {
-  visibility: visible;
-  opacity: 1;
-}
-
-.emotion-120 {
   width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -1175,60 +1167,60 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   text-align: start;
 }
 
-.emotion-120::-webkit-input-placeholder {
+.emotion-119::-webkit-input-placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120::-moz-placeholder {
+.emotion-119::-moz-placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:-ms-input-placeholder {
+.emotion-119:-ms-input-placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120::placeholder {
+.emotion-119::placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:-moz-read-only {
+.emotion-119:-moz-read-only {
   color: #1d2129ff;
 }
 
-.emotion-120:read-only {
+.emotion-119:read-only {
   color: #1d2129ff;
 }
 
-.emotion-120:-moz-read-only::placeholder {
+.emotion-119:-moz-read-only::placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:read-only::placeholder {
+.emotion-119:read-only::placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:disabled {
+.emotion-119:disabled {
   cursor: not-allowed;
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled::-webkit-input-placeholder {
+.emotion-119:disabled::-webkit-input-placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled::-moz-placeholder {
+.emotion-119:disabled::-moz-placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled:-ms-input-placeholder {
+.emotion-119:disabled:-ms-input-placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled::placeholder {
+.emotion-119:disabled::placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-121 {
+.emotion-120 {
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
   opacity: 0;
@@ -1237,7 +1229,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   font-size: 10px;
 }
 
-.emotion-122 {
+.emotion-121 {
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -1250,22 +1242,22 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   transition: 0.2s ease-in-out;
 }
 
-.emotion-122:hover {
+.emotion-121:hover {
   cursor: pointer;
   background-color: #dadee5ff;
 }
 
-.emotion-122:first-of-type {
+.emotion-121:first-of-type {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
 
-.emotion-122:last-of-type {
+.emotion-121:last-of-type {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
-.emotion-123 {
+.emotion-122 {
   vertical-align: middle;
 }
 
@@ -1751,20 +1743,20 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
           class="emotion-118"
         >
           <input
-            class="emotion-119 emotion-120"
+            class="emotion-119"
             disabled=""
             style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
             value="0"
           />
           <div
-            class="emotion-121"
+            class="emotion-120"
             title="inputStepEmbed"
           >
             <span
-              class="emotion-122"
+              class="emotion-121"
             >
               <svg
-                class="emotion-123"
+                class="emotion-122"
                 color="currentColor"
                 fill="none"
                 height="1em"
@@ -1783,10 +1775,10 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
               </svg>
             </span>
             <span
-              class="emotion-122"
+              class="emotion-121"
             >
               <svg
-                class="emotion-123"
+                class="emotion-122"
                 color="currentColor"
                 fill="none"
                 height="1em"
@@ -2040,6 +2032,11 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   line-height: 18px;
 }
 
+.emotion-117:hover [title="inputStepEmbed"] {
+  visibility: visible;
+  opacity: 1;
+}
+
 .emotion-118 {
   width: 100%;
   height: 100%;
@@ -2080,15 +2077,6 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
 }
 
 .emotion-119 {
-  position: relative;
-}
-
-.emotion-119:hover [title="inputStepEmbed"] {
-  visibility: visible;
-  opacity: 1;
-}
-
-.emotion-120 {
   width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2106,60 +2094,60 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   text-align: start;
 }
 
-.emotion-120::-webkit-input-placeholder {
+.emotion-119::-webkit-input-placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120::-moz-placeholder {
+.emotion-119::-moz-placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:-ms-input-placeholder {
+.emotion-119:-ms-input-placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120::placeholder {
+.emotion-119::placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:-moz-read-only {
+.emotion-119:-moz-read-only {
   color: #1d2129ff;
 }
 
-.emotion-120:read-only {
+.emotion-119:read-only {
   color: #1d2129ff;
 }
 
-.emotion-120:-moz-read-only::placeholder {
+.emotion-119:-moz-read-only::placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:read-only::placeholder {
+.emotion-119:read-only::placeholder {
   color: #a9aeb8ff;
 }
 
-.emotion-120:disabled {
+.emotion-119:disabled {
   cursor: not-allowed;
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled::-webkit-input-placeholder {
+.emotion-119:disabled::-webkit-input-placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled::-moz-placeholder {
+.emotion-119:disabled::-moz-placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled:-ms-input-placeholder {
+.emotion-119:disabled:-ms-input-placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-120:disabled::placeholder {
+.emotion-119:disabled::placeholder {
   color: #bbc0c9ff;
 }
 
-.emotion-121 {
+.emotion-120 {
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
   opacity: 0;
@@ -2168,7 +2156,7 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   font-size: 10px;
 }
 
-.emotion-122 {
+.emotion-121 {
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -2181,22 +2169,22 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
   transition: 0.2s ease-in-out;
 }
 
-.emotion-122:hover {
+.emotion-121:hover {
   cursor: pointer;
   background-color: #dadee5ff;
 }
 
-.emotion-122:first-of-type {
+.emotion-121:first-of-type {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
 
-.emotion-122:last-of-type {
+.emotion-121:last-of-type {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
-.emotion-123 {
+.emotion-122 {
   vertical-align: middle;
 }
 
@@ -2682,20 +2670,20 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
           class="emotion-118"
         >
           <input
-            class="emotion-119 emotion-120"
+            class="emotion-119"
             disabled=""
             style="width: 58px; height: 32px; font-size: 14px; overflow: visible;"
             value="0"
           />
           <div
-            class="emotion-121"
+            class="emotion-120"
             title="inputStepEmbed"
           >
             <span
-              class="emotion-122"
+              class="emotion-121"
             >
               <svg
-                class="emotion-123"
+                class="emotion-122"
                 color="currentColor"
                 fill="none"
                 height="1em"
@@ -2714,10 +2702,10 @@ exports[`Test the slider styles in vertical or reverse Slider renders with verti
               </svg>
             </span>
             <span
-              class="emotion-122"
+              class="emotion-121"
             >
               <svg
-                class="emotion-123"
+                class="emotion-122"
                 color="currentColor"
                 fill="none"
                 height="1em"
