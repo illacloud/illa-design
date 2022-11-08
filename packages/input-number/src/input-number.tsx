@@ -205,7 +205,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
 
     return (
       <Input
-        css={[applyInputNumber]}
+        _css={applyInputNumber()}
         size={size}
         ref={ref}
         inputRef={refInput}
