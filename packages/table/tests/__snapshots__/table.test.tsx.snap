@@ -3,11 +3,15 @@
 exports[`Table renders with borders. 1`] = `
 .emotion-0 {
   width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   box-sizing: border-box;
   display: table;
   border-spacing: 0;
   border-collapse: separate;
   table-layout: auto;
+  background-color: #ffffffff;
 }
 
 .emotion-2 {
@@ -222,11 +226,15 @@ exports[`Table renders with borders. 1`] = `
 exports[`Table renders with different align. 1`] = `
 .emotion-0 {
   width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   box-sizing: border-box;
   display: table;
   border-spacing: 0;
   border-collapse: separate;
   table-layout: auto;
+  background-color: #ffffffff;
 }
 
 .emotion-2 {
