@@ -66,7 +66,8 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
     const [_, dispatch] = useReducer((v) => v + 1, 0)
     const { theme: themeContext } = useContext(MenuContext)
     const theme = themeProp || themeContext || DEFAULT_THEME
-    const isPopButton = mode === "popButton"
+    const isPopButton = useMemo(() => mode === "popButton", [mode])
+    const isHorizontal = useMemo(() => mode === "horizontal", [mode])
     const mergedCollapse = collapse || inDropdown || isPopButton
     const isRenderCollapseButton =
       hasCollapseButton &&
@@ -142,7 +143,10 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
       <div
         ref={ref}
         style={usedStyle}
-        css={[applyMenuCss(collapse, isPopButton, theme), applyBoxStyle(props)]}
+        css={[
+          applyMenuCss(collapse, isPopButton, isHorizontal, theme),
+          applyBoxStyle(props),
+        ]}
         {...omit(deleteCssProps(restProps), ["isMenu"])}
       >
         <MenuContext.Provider

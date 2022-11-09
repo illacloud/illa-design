@@ -4,6 +4,7 @@ import {
   MouseEvent,
   useState,
   ReactElement,
+  useMemo,
 } from "react"
 import { NextIcon, DownIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
@@ -65,7 +66,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
 
   const needPopOnBottom = mode === "horizontal" && !inDropdown
 
-  function renderIcon() {
+  const renderIcon = useMemo(() => {
     const icon = needPopOnBottom ? <DownIcon /> : <NextIcon />
 
     return (
@@ -78,7 +79,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
         {icon}
       </span>
     )
-  }
+  }, [collapse, inDropdown, isHorizontal, needPopOnBottom])
 
   const mergedTriggerProps = {
     colorScheme: theme === "light" ? "white" : "gray",
@@ -123,7 +124,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
       >
         <Indent level={level} levelIndent={levelIndent} />
         <span>{title}</span>
-        {renderIcon()}
+        {renderIcon}
       </div>
     </Dropdown>
   )

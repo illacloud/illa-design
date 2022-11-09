@@ -92,7 +92,7 @@ export function applySubMenuHeaderCss(
 export function applyPopSubMenuCss(isHorizontal: boolean): SerializedStyles {
   if (isHorizontal) {
     return css`
-      display: inline-block;
+      display: inline-flex;
       vertical-align: middle;
     `
   }
