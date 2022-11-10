@@ -2,7 +2,7 @@ export * from "./styles"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import { Theme } from "./interface"
+import { Theme, MenuHorizontalAlign } from "./interface"
 
 export function applyPopButtonCss(theme: Theme): SerializedStyles {
   return css`
@@ -18,5 +18,13 @@ export function applyPopButtonCss(theme: Theme): SerializedStyles {
     background: ${theme === "dark"
       ? globalColor(`--${illaPrefix}-grayBlue-02`)
       : "none"};
+  `
+}
+
+export function applyAlignStyle(
+  horizontalAlign?: MenuHorizontalAlign,
+): SerializedStyles {
+  return css`
+    justify-content: ${horizontalAlign};
   `
 }

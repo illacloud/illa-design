@@ -1,4 +1,5 @@
 import React, {
+  FC,
   ReactElement,
   ReactNode,
   useEffect,
@@ -10,7 +11,7 @@ import useMeasure from "react-use-measure"
 import { ResizeObserver } from "@juggle/resize-observer"
 import { OverflowWrapperProps } from "./interface"
 import { SubMenu } from "./sub-menu"
-import { overflowMenuItemCss } from "./style"
+import { applyAlignStyle, overflowMenuItemCss } from "./style"
 import { overflowWrapperCss, subMenuPlaceholderCss } from "./styles"
 
 function getNodeWidth(node: HTMLElement) {
@@ -30,8 +31,8 @@ function px2Number(str: string): number {
   return Number.isNaN(num) ? 0 : num
 }
 
-export const OverflowWrapper = (props: OverflowWrapperProps) => {
-  const { children } = props
+export const OverflowWrapper: FC<OverflowWrapperProps> = (props) => {
+  const { children, horizontalAlign } = props
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const [measureWrapperRef, measureWrapperInfo] = useMeasure({
     polyfill: ResizeObserver,
@@ -145,7 +146,7 @@ export const OverflowWrapper = (props: OverflowWrapperProps) => {
         wrapperRef.current = el
         measureWrapperRef(el as HTMLDivElement)
       }}
-      css={overflowWrapperCss}
+      css={[overflowWrapperCss, applyAlignStyle(horizontalAlign)]}
     >
       {renderChildren()}
     </div>

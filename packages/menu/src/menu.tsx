@@ -30,6 +30,7 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
       levelIndent = 28,
       collapseDefaultIcon = <PreIcon />,
       collapseActiveIcon = <NextIcon />,
+      horizontalAlign = "flex-start",
       autoOpen,
       accordion,
       inDropdown,
@@ -105,7 +106,9 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
         <>
           <div css={applyMenuInnerCss(isHorizontal)}>
             {isRenderWithOverflowWrapper ? (
-              <OverflowWrapper>{childrenList}</OverflowWrapper>
+              <OverflowWrapper horizontalAlign={horizontalAlign}>
+                {childrenList}
+              </OverflowWrapper>
             ) : (
               childrenList
             )}

@@ -94,10 +94,13 @@ export function applyPopSubMenuCss(isHorizontal: boolean): SerializedStyles {
     return css`
       display: inline-flex;
       vertical-align: middle;
+      gap: 8px;
     `
   }
 
-  return css``
+  return css`
+    display: flex;
+  `
 }
 
 export function applyPopSubMenuCollapseIconCss(

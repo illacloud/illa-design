@@ -13,11 +13,13 @@ import { BoxProps } from "@illa-design/theme"
 export type MenuVariant = "inline" | "pop"
 export type Theme = "light" | "dark"
 type Mode = "vertical" | "horizontal" | "popButton"
+export type MenuHorizontalAlign = "flex-start" | "center" | "flex-end"
 
 export interface MenuProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   theme?: Theme
   mode?: Mode
   variant?: MenuVariant
+  horizontalAlign?: MenuHorizontalAlign
   levelIndent?: number
   accordion?: boolean
   collapseDefaultIcon?: ReactNode
@@ -72,8 +74,9 @@ export interface SubMenuProps
   children?: ReactNode
 }
 
-export interface OverflowWrapperProps {
+export interface OverflowWrapperProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
+  horizontalAlign?: MenuHorizontalAlign
 }
 
 export interface MenuComponent
