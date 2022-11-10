@@ -72,6 +72,7 @@ export interface SubMenuProps
   level?: number
   selectable?: boolean
   children?: ReactNode
+  showArrow?: boolean
 }
 
 export interface OverflowWrapperProps extends HTMLAttributes<HTMLDivElement> {

@@ -29,6 +29,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     _key = "",
     selectable,
     _css,
+    showArrow = true,
     ...restProps
   } = props
 
@@ -129,7 +130,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
       >
         <Indent level={level} levelIndent={levelIndent} />
         <span>{title}</span>
-        {renderIcon}
+        {showArrow ? renderIcon : null}
       </div>
     </Dropdown>
   )

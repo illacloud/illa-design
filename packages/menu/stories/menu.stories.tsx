@@ -47,7 +47,7 @@ Basic.args = {
 export const VerticalMenu = (args: MenuProps) => {
   return (
     <Menu
-      style={{ width: 200, height: 600 }}
+      style={{ height: 600 }}
       hasCollapseButton
       defaultOpenKeys={["0"]}
       defaultSelectedKeys={["0_1"]}

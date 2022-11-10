@@ -96,6 +96,7 @@ export const OverflowWrapper: FC<OverflowWrapperProps> = (props) => {
         data-sub-menu-marker
         data-sub-menu-placeholder-marker={isPlaceholder}
         _css={isPlaceholder ? subMenuPlaceholderCss : undefined}
+        showArrow={false}
         {...props}
       >
         {children}

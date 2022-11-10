@@ -21,6 +21,7 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     children,
     _key = "",
     selectable,
+    showArrow = true,
     ...restProps
   } = props
 
@@ -56,43 +57,43 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     level: level + 1,
   })
 
-  const header = (
-    <div
-      onClick={subMenuClickHandler}
-      css={applySubMenuHeaderCss(isSelected, false, isHorizontal, false, theme)}
-    >
-      <Indent level={level} levelIndent={levelIndent} />
-      <span>{title}</span>
-      <span css={applySubMenuIconCss(isOpen, false, inDropdown)}>
-        <DownIcon />
-      </span>
-    </div>
-  )
-
-  const content = (
-    <motion.div
-      css={applySubMenuListCss(isOpen)}
-      animate={isOpen ? "open" : "closed"}
-      transition={{ duration: 0.2 }}
-      variants={{
-        open: {
-          height: "auto",
-          opacity: 1,
-        },
-        closed: {
-          height: 0,
-          opacity: 0,
-        },
-      }}
-    >
-      {childrenList}
-    </motion.div>
-  )
-
   return (
     <div ref={ref} {...restProps}>
-      {header}
-      {content}
+      <div
+        onClick={subMenuClickHandler}
+        css={applySubMenuHeaderCss(
+          isSelected,
+          false,
+          isHorizontal,
+          false,
+          theme,
+        )}
+      >
+        <Indent level={level} levelIndent={levelIndent} />
+        <span>{title}</span>
+        {showArrow ? (
+          <span css={applySubMenuIconCss(isOpen, false, inDropdown)}>
+            <DownIcon />
+          </span>
+        ) : null}
+      </div>
+      <motion.div
+        css={applySubMenuListCss(isOpen)}
+        animate={isOpen ? "open" : "closed"}
+        transition={{ duration: 0.2 }}
+        variants={{
+          open: {
+            height: "auto",
+            opacity: 1,
+          },
+          closed: {
+            height: 0,
+            opacity: 0,
+          },
+        }}
+      >
+        {childrenList}
+      </motion.div>
     </div>
   )
 })
