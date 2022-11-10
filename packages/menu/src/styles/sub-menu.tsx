@@ -1,5 +1,4 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 import { Theme } from "../interface"
 import { applyPopButtonCss, themeColor } from "../style"
@@ -68,7 +67,6 @@ export function applySubMenuHeaderCss(
   `
 
   // add more padding to padding-right to avoid title overlap with icon
-  const padding = isCollapse ? `0 16px` : `0 54px 0 24px`
   const ellipsisTextCss = isCollapse
     ? css``
     : css`
@@ -82,7 +80,7 @@ export function applySubMenuHeaderCss(
     overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
-    padding: ${padding};
+    padding: 0 16px;
     line-height: 40px;
     ${ellipsisTextCss}
     ${isSelected && selectedCss};
@@ -97,6 +95,7 @@ export function applyPopSubMenuCss(isHorizontal?: boolean): SerializedStyles {
     return css`
       display: inline-flex;
       vertical-align: middle;
+      align-items: center;
       gap: 8px;
     `
   }
