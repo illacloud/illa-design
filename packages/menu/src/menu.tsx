@@ -157,6 +157,8 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
             mode,
             theme,
             variant,
+            isHorizontal,
+            isPopButton,
             collapse: mergedCollapse,
             inDropdown,
             levelIndent,

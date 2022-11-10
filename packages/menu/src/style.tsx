@@ -4,6 +4,25 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 import { Theme, MenuHorizontalAlign } from "./interface"
 
+export const themeColor = {
+  light: {
+    hoverBg: globalColor(`--${illaPrefix}-grayBlue-09`),
+    disabledColor: globalColor(`--${illaPrefix}-grayBlue-05`),
+    selectedColor: globalColor(`--${illaPrefix}-blue-01`),
+    selectedBg: globalColor(`--${illaPrefix}-grayBlue-09`),
+    horizontalSelectedBg: globalColor(`--${illaPrefix}-blue-02`),
+    color: globalColor(`--${illaPrefix}-grayBlue-03`),
+  },
+  dark: {
+    hoverBg: globalColor(`--${illaPrefix}-grayBlue-03`),
+    disabledColor: globalColor(`--${illaPrefix}-grayBlue-04`),
+    selectedColor: globalColor(`--${illaPrefix}-blue-04`),
+    selectedBg: globalColor(`--${illaPrefix}-grayBlue-03`),
+    horizontalSelectedBg: globalColor(`--${illaPrefix}-blue-02`),
+    color: globalColor(`--${illaPrefix}-grayBlue-08`),
+  },
+}
+
 export function applyPopButtonCss(theme: Theme): SerializedStyles {
   return css`
     width: 40px;

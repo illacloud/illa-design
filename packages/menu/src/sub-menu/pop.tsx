@@ -35,6 +35,8 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   const {
     mode,
     theme,
+    isPopButton,
+    isHorizontal,
     variant,
     levelIndent,
     onClickMenuItem,
@@ -46,9 +48,6 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   } = useContext(MenuContext)
 
   const [popupVisible, setPopupVisible] = useState(false)
-
-  const isHorizontal = mode === "horizontal"
-  const isPopButton = mode === "popButton"
 
   const subMenuClickHandler = (event: MouseEvent) => {
     onClickSubMenu && onClickSubMenu(_key, level as number, "pop")
@@ -116,7 +115,13 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
         ref={ref}
         onClick={subMenuClickHandler}
         css={[
-          applySubMenuHeaderCss(isSelected, isPopButton, collapse, theme),
+          applySubMenuHeaderCss(
+            isSelected,
+            isPopButton,
+            isHorizontal,
+            collapse,
+            theme,
+          ),
           applyPopSubMenuCss(isHorizontal),
           _css,
         ]}
