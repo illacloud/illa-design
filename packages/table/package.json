@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/table",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Illa Design Table.",
   "keywords": [
     "table",
@@ -39,14 +39,14 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.5",
-    "@illa-design/trigger": "1.0.5",
-    "@illa-design/button": "1.0.5",
-    "@illa-design/checkbox": "1.0.5",
-    "@illa-design/pagination": "1.0.5",
+    "@illa-design/icon": "1.0.6",
+    "@illa-design/trigger": "1.0.6",
+    "@illa-design/button": "1.0.6",
+    "@illa-design/checkbox": "1.0.6",
+    "@illa-design/pagination": "1.0.6",
     "@tanstack/react-table": "^8.5.11",
     "@tanstack/match-sorter-utils": "^8.1.1",
-    "@illa-design/theme": "1.0.5",
-    "@illa-design/system": "1.0.5"
+    "@illa-design/theme": "1.0.6",
+    "@illa-design/system": "1.0.6"
   }
 }

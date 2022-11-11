@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/message",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Illa Design Message.",
   "keywords": [
     "message",
@@ -39,14 +39,14 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/alert": "1.0.5",
-    "@illa-design/notification": "1.0.5",
-    "@illa-design/icon": "1.0.5",
-    "@illa-design/system": "1.0.5",
-    "@illa-design/theme": "1.0.5"
+    "@illa-design/alert": "1.0.6",
+    "@illa-design/notification": "1.0.6",
+    "@illa-design/icon": "1.0.6",
+    "@illa-design/system": "1.0.6",
+    "@illa-design/theme": "1.0.6"
   },
   "peerDependencies": {
-    "@illa-design/theme": "1.0.5",
-    "@illa-design/system": "1.0.5"
+    "@illa-design/theme": "1.0.6",
+    "@illa-design/system": "1.0.6"
   }
 }
