@@ -99,6 +99,7 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
       popupVisible={popupVisible}
       dropList={
         <Menu
+          bdRadius="8px"
           selectedKeys={selectedKeys}
           onClickMenuItem={menuItemClickHandler}
           theme={theme}
