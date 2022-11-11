@@ -66,7 +66,12 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   )
 
   return mergedNeedTooltip ? (
-    <Trigger content={title} trigger={"hover"} position={"right"}>
+    <Trigger
+      content={title}
+      trigger={"hover"}
+      position={"right"}
+      showArrow={false}
+    >
       {itemNode}
     </Trigger>
   ) : (

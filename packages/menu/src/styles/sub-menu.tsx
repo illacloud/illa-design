@@ -73,6 +73,8 @@ export function applySubMenuHeaderCss(
         text-overflow: ellipsis;
       `
 
+  const padding = isHorizontal ? `0 16px` : `0 24px`
+
   return css`
     font-size: 14px;
     color: ${themeColor[theme].color};
@@ -80,8 +82,11 @@ export function applySubMenuHeaderCss(
     overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
-    padding: 0 16px;
+    padding: ${padding};
     line-height: 40px;
+    transition-duration: 0.2s;
+    transition-easing-function: ease-in-out;
+    transition-properties: background;
     ${ellipsisTextCss}
     ${isSelected && selectedCss};
     ${isSelected && isHorizontal && horizontalSelectedCss};

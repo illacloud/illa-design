@@ -8,9 +8,9 @@ export const themeColor = {
   light: {
     hoverBg: globalColor(`--${illaPrefix}-grayBlue-09`),
     disabledColor: globalColor(`--${illaPrefix}-grayBlue-05`),
-    selectedColor: globalColor(`--${illaPrefix}-blue-01`),
+    selectedColor: globalColor(`--${illaPrefix}-blue-03`),
     selectedBg: globalColor(`--${illaPrefix}-grayBlue-09`),
-    horizontalSelectedBg: globalColor(`--${illaPrefix}-blue-02`),
+    horizontalSelectedBg: globalColor(`--${illaPrefix}-blue-03`),
     color: globalColor(`--${illaPrefix}-grayBlue-03`),
   },
   dark: {
