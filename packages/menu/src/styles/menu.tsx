@@ -6,10 +6,14 @@ import { Theme } from "../interface"
 export function applyMenuCss(
   isCollapse?: boolean,
   isPopButton?: boolean,
+  isHorizontal?: boolean,
   theme: Theme = "light",
 ): SerializedStyles {
   const collapseCss = css`
     width: 48px;
+  `
+  const horizontalCss = css`
+    display: flex;
   `
 
   const bgColor =
@@ -30,6 +34,7 @@ export function applyMenuCss(
     transition: width 0.2s ease-in-out;
     background-color: ${mergedBgColor};
     ${isCollapse && collapseCss};
+    ${isHorizontal && horizontalCss};
     ${themeCss};
   `
 }
