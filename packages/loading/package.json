@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/loading",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Illa Design Loading.",
   "keywords": [
     "loading",
@@ -39,8 +39,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/system": "1.0.5",
-    "@illa-design/theme": "1.0.5",
-    "@illa-design/icon": "1.0.5"
+    "@illa-design/system": "1.0.6",
+    "@illa-design/theme": "1.0.6",
+    "@illa-design/icon": "1.0.6"
   }
 }

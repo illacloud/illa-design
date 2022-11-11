@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/cascader",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Illa Design Cascader.",
   "keywords": [
     "cascader",
@@ -41,13 +41,13 @@
     "e2e": "npx cypress open-ct --browser chrome"
   },
   "dependencies": {
-    "@illa-design/checkbox": "1.0.5",
-    "@illa-design/empty": "1.0.5",
-    "@illa-design/icon": "1.0.5",
-    "@illa-design/select": "1.0.5",
-    "@illa-design/list": "1.0.5",
-    "@illa-design/trigger": "1.0.5",
-    "@illa-design/system": "1.0.5",
-    "@illa-design/theme": "1.0.5"
+    "@illa-design/checkbox": "1.0.6",
+    "@illa-design/empty": "1.0.6",
+    "@illa-design/icon": "1.0.6",
+    "@illa-design/select": "1.0.6",
+    "@illa-design/list": "1.0.6",
+    "@illa-design/trigger": "1.0.6",
+    "@illa-design/system": "1.0.6",
+    "@illa-design/theme": "1.0.6"
   }
 }

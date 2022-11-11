@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/drawer",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Illa Design Drawer.",
   "keywords": [
     "drawer",
@@ -39,11 +39,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.5",
-    "@illa-design/modal": "1.0.5",
-    "@illa-design/button": "1.0.5",
-    "@illa-design/config-provider": "1.0.5",
-    "@illa-design/system": "1.0.5",
-    "@illa-design/theme": "1.0.5"
+    "@illa-design/icon": "1.0.6",
+    "@illa-design/modal": "1.0.6",
+    "@illa-design/button": "1.0.6",
+    "@illa-design/config-provider": "1.0.6",
+    "@illa-design/system": "1.0.6",
+    "@illa-design/theme": "1.0.6"
   }
 }
