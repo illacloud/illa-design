@@ -1,8 +1,7 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Theme } from "../interface"
-import { applyPopButtonCss } from "../style"
+import { applyPopButtonCss, themeColor } from "../style"
 
 export function applyItemTitleCss(): SerializedStyles {
   const titleEllipsis = css`
@@ -29,25 +28,6 @@ export function applyItemCss(
     position: relative;
     padding: 0 16px;
   `
-
-  const themeColor = {
-    light: {
-      hoverBg: globalColor(`--${illaPrefix}-grayBlue-09`),
-      disabledColor: globalColor(`--${illaPrefix}-grayBlue-05`),
-      selectedColor: globalColor(`--${illaPrefix}-blue-01`),
-      selectedBg: globalColor(`--${illaPrefix}-grayBlue-09`),
-      horizontalSelectedBg: globalColor(`--${illaPrefix}-blue-02`),
-      color: globalColor(`--${illaPrefix}-grayBlue-03`),
-    },
-    dark: {
-      hoverBg: globalColor(`--${illaPrefix}-grayBlue-03`),
-      disabledColor: globalColor(`--${illaPrefix}-grayBlue-04`),
-      selectedColor: globalColor(`--${illaPrefix}-blue-04`),
-      selectedBg: globalColor(`--${illaPrefix}-grayBlue-03`),
-      horizontalSelectedBg: globalColor(`--${illaPrefix}-blue-02`),
-      color: globalColor(`--${illaPrefix}-grayBlue-08`),
-    },
-  }
 
   const hoverCss = css`
     &:hover {
@@ -88,6 +68,9 @@ export function applyItemCss(
     font-size: 14px;
     color: ${themeColor[theme].color};
     line-height: 40px;
+    transition-duration: 0.2s;
+    transition-easing-function: ease-in-out;
+    transition-properties: background;
     ${isHorizontal && horizontalCss};
     /* margin between vertical item */
     ${!isHorizontal &&

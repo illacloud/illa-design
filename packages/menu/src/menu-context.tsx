@@ -19,6 +19,8 @@ export const MenuContext = createContext<
     onClickMenuItem?: (key: string, event: MouseEvent) => void
     onClickSubMenu?: (key: string, level: number, variant: MenuVariant) => void
     collectInlineMenuKeys?: (key: string, isUnmount?: boolean) => void
+    isPopButton?: boolean
+    isHorizontal?: boolean
   }
 >({
   mode: "horizontal",

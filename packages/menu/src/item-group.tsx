@@ -45,7 +45,12 @@ const ForwardRefItemGroup = forwardRef<HTMLDivElement, ItemGroupProps>(
     return (
       <div ref={ref} css={[applyItemGroupCss(theme), _css]} {...restProps}>
         {mergedNeedTooltip ? (
-          <Trigger content={title} trigger={"hover"} position={"right"}>
+          <Trigger
+            content={title}
+            trigger={"hover"}
+            position={"right"}
+            showArrow={false}
+          >
             {groupTitle}
           </Trigger>
         ) : (

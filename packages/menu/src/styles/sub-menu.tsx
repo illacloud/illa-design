@@ -1,8 +1,7 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 import { Theme } from "../interface"
-import { applyPopButtonCss } from "../style"
+import { applyPopButtonCss, themeColor } from "../style"
 
 export function applySubMenuIconCss(
   isOpen?: boolean,
@@ -38,22 +37,10 @@ export function applySubMenuListCss(isOpen: boolean): SerializedStyles {
 export function applySubMenuHeaderCss(
   isSelected?: boolean,
   isPopButton?: boolean,
+  isHorizontal?: boolean,
   isCollapse?: boolean,
   theme: Theme = "light",
 ): SerializedStyles {
-  const themeColor = {
-    light: {
-      hoverBg: globalColor(`--${illaPrefix}-grayBlue-09`),
-      color: globalColor(`--${illaPrefix}-grayBlue-03`),
-      selectedColor: globalColor(`--${illaPrefix}-blue-01`),
-    },
-    dark: {
-      hoverBg: globalColor(`--${illaPrefix}-grayBlue-03`),
-      color: globalColor(`--${illaPrefix}-grayBlue-08`),
-      selectedColor: globalColor(`--${illaPrefix}-blue-04`),
-    },
-  }
-
   const selectedCss = css`
     color: ${themeColor[theme].selectedColor};
   `
@@ -65,8 +52,21 @@ export function applySubMenuHeaderCss(
     }
   `
 
+  const horizontalSelectedCss = css`
+    background: none;
+    &:after {
+      content: "";
+      display: block;
+      height: 2px;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      background-color: ${themeColor[theme].horizontalSelectedBg};
+      position: absolute;
+    }
+  `
+
   // add more padding to padding-right to avoid title overlap with icon
-  const padding = isCollapse ? `0 16px` : `0 54px 0 24px`
   const ellipsisTextCss = isCollapse
     ? css``
     : css`
@@ -80,24 +80,32 @@ export function applySubMenuHeaderCss(
     overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
-    padding: ${padding};
-    line-height: 40px;
+    padding: ${isHorizontal ? `0 16px` : `0 24px`};
+    line-height: ${isHorizontal ? `48px` : `40px`};
+    transition-duration: 0.2s;
+    transition-easing-function: ease-in-out;
+    transition-properties: background;
     ${ellipsisTextCss}
     ${isSelected && selectedCss};
+    ${isSelected && isHorizontal && horizontalSelectedCss};
     ${isPopButton && applyPopButtonCss(theme)}
     ${hoverCss};
   `
 }
 
-export function applyPopSubMenuCss(isHorizontal: boolean): SerializedStyles {
+export function applyPopSubMenuCss(isHorizontal?: boolean): SerializedStyles {
   if (isHorizontal) {
     return css`
-      display: inline-block;
+      display: inline-flex;
       vertical-align: middle;
+      align-items: center;
+      gap: 8px;
     `
   }
 
-  return css``
+  return css`
+    display: flex;
+  `
 }
 
 export function applyPopSubMenuCollapseIconCss(
