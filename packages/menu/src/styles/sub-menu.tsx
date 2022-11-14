@@ -34,6 +34,12 @@ export function applySubMenuListCss(isOpen: boolean): SerializedStyles {
   `
 }
 
+export const subMenuCss = css`
+  &:not(:last-of-type) {
+    margin-bottom: 8px;
+  }
+`
+
 export function applySubMenuHeaderCss(
   isSelected?: boolean,
   isPopButton?: boolean,

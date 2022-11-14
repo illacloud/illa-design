@@ -7,7 +7,11 @@ import {
 } from "react"
 import { motion } from "framer-motion"
 import { DownIcon } from "@illa-design/icon"
-import { applySubMenuListCss, applySubMenuHeaderCss } from "../style"
+import {
+  applySubMenuListCss,
+  applySubMenuHeaderCss,
+  subMenuCss,
+} from "../style"
 import { MenuContext } from "../menu-context"
 import { Indent } from "../indent"
 import { SubMenuProps } from "../interface"
@@ -58,7 +62,7 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
   })
 
   return (
-    <div ref={ref} {...restProps}>
+    <div ref={ref} css={subMenuCss} {...restProps}>
       <div
         onClick={subMenuClickHandler}
         css={applySubMenuHeaderCss(
