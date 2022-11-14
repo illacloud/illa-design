@@ -71,12 +71,12 @@ export function applyItemCss(
     transition-duration: 0.2s;
     transition-easing-function: ease-in-out;
     transition-properties: background;
-    ${isHorizontal && horizontalCss};
     /* margin between vertical item */
-    ${!isHorizontal &&
-    css`
-      margin-bottom: 8px;
-    `}
+    ${isHorizontal
+      ? horizontalCss
+      : css`
+          margin-top: 8px;
+        `};
     ${isDisabled ? disabledCss : hoverCss};
     ${isSelected && selectedCss};
     ${isSelected && isHorizontal && horizontalSelectedCss};

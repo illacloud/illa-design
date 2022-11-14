@@ -128,7 +128,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     useHover(context, {
       enabled: trigger === "hover",
       move: true,
-      restMs: 100,
+      restMs: 200,
       delay: {
         open: openDelay,
         close: closeDelay,

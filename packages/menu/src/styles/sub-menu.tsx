@@ -111,6 +111,7 @@ export function applyPopSubMenuCss(isHorizontal?: boolean): SerializedStyles {
 
   return css`
     display: flex;
+    gap: 8px;
   `
 }
 
