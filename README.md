@@ -8,15 +8,15 @@
 <p align="center">Accelerate your internal tools development.</p>
 
 <div align="center">
-  <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-design/graphs/contributors">contributors</a></p>
+  <p>Create with ❤︎ by <a href="https://github.com/illacloud/illa-design/graphs/contributors">contributors</a></p>
 </div>
 
 ![cover](./.github/assets/images/design-cover.png)
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/zKf3WKCufR)
 [![storybook](./.github/assets/images/storybook.svg)](https://design.illafamily.com)
-[![codecov](https://codecov.io/gh/illa-family/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illa-family/illa-design)
-[![license](https://img.shields.io/github/license/illa-family/illa-design)](./LICENSE)
+[![codecov](https://codecov.io/gh/illacloud/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illacloud/illa-design)
+[![license](https://img.shields.io/github/license/illacloud/illa-design)](./LICENSE)
 [![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
 
 ## ✨ Features
@@ -70,7 +70,7 @@ const App = () => (
 Step 1: Clone locally.
 
 ```bash
-$ git clone https://github.com/illa-family/illa-design.git
+$ git clone https://github.com/illacloud/illa-design.git
 $ cd illa-design
 $ yarn
 ```
@@ -89,7 +89,7 @@ Join ILLA Community to share your ideas, suggestions or questions and connect wi
 
 <b>Discussion</b>
 
-[![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illa-family/discussions)
+[![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)
 
 <b>Hangout together!</b>
 
