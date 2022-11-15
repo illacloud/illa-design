@@ -2,8 +2,8 @@
   "name": "illa-design",
   "private": true,
   "description": "illa UI Component",
-  "repository": "git@github.com:illa-family/illa-design.git",
-  "author": "illa Family",
+  "repository": "git@github.com:illacloud/illa-design.git",
+  "author": "illa Cloud",
   "license": "Apache-2.0",
   "dependencies": {
     "@changesets/changelog-github": "^0.4.2",

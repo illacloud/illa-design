@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@1.6.3/schema.json",
   "changelog": [
     "@changesets/changelog-github",
-    { "repo": "illa-family/illa-design" }
+    { "repo": "illacloud/illa-design" }
   ],
   "commit": false,
   "linked": [],

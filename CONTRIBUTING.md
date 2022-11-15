@@ -15,11 +15,11 @@ Here's the table of contents:
 
 ## Setup the Project
 
-1. Fork the repo (click the Fork button at the top right of [this page](https://github.com/illa-family/illa-design)
+1. Fork the repo (click the Fork button at the top right of [this page](https://github.com/illacloud/illa-design)
 2. Clone your fork locally
 3. Setup all the dependencies and packages by running `yarn`.
 
-> If you have some problems, you can [take an issue](https://github.com/illa-family/illa-design/issues/new/choose) or talk with others on [Discord](https://discord.gg/2tGBuJkgd6)
+> If you have some problems, you can [take an issue](https://github.com/illacloud/illa-design/issues/new/choose) or talk with others on [Discord](https://discord.gg/2tGBuJkgd6)
 
 ### Commands:
 
