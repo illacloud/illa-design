@@ -375,11 +375,10 @@ export function applyTextColorCss(
       color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 
       &:hover {
-        background-color: ${
-          variant !== "capsule"
-            ? globalColor(`--${illaPrefix}-grayBlue-09`)
-            : undefined
-        }
+        background-color: ${variant !== "capsule"
+          ? globalColor(`--${illaPrefix}-grayBlue-09`)
+          : undefined};
+      }
     `
   }
   if (!disabled && variant === "text") {
@@ -393,7 +392,8 @@ export function applyTextColorCss(
         color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 
         &:hover {
-          background-color: ${globalColor(`--${illaPrefix}-gray-09`)}
+          background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+        }
       `
     }
   }
