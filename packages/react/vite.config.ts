@@ -103,6 +103,7 @@ export default defineConfig({
         "@illa-design/menu",
         "@illa-design/tree-select",
         "@illa-design/loading",
+        "@illa-design/dropdown",
       ],
       output: {
         globals: {
@@ -167,6 +168,7 @@ export default defineConfig({
           "@illa-design/tree": "@illa-design/tree",
           "@illa-design/tree-select": "@illa-design/tree-select",
           "@illa-design/loading": "@illa-design/loading",
+          "@illa-design/dropdown": "@illa-design/dropdown",
         },
       },
     },
