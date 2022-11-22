@@ -122,6 +122,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   })
 
   const _columns = useMemo(() => {
+    const current = currentColumns?.filter((item) => item.header)
     if (multiRowSelection) {
       const rowSelectionColumn: ColumnDef<D, TValue>[] = [
         {
@@ -154,9 +155,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
           },
         },
       ]
-      return rowSelectionColumn.concat(currentColumns)
+      return rowSelectionColumn.concat(current)
     }
-    return currentColumns
+    return current
   }, [checkAll, currentColumns, multiRowSelection])
 
   const table = useReactTable({
@@ -209,8 +210,12 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       onColumnFiltersChange?.(columnFilter)
     },
     onRowSelectionChange: (rowSelection) => {
-      setRowSelection(rowSelection)
-      onRowSelectionChange?.(rowSelection)
+      new Promise((resolve) => {
+        setRowSelection(rowSelection)
+        resolve(true)
+      }).then(() => {
+        onRowSelectionChange?.(table.getState().rowSelection)
+      })
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
