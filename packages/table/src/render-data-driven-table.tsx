@@ -17,6 +17,8 @@ import { FilterFnOption, PaginationState } from "@tanstack/table-core"
 import { Checkbox } from "@illa-design/checkbox"
 import { rankItem } from "@tanstack/match-sorter-utils"
 import {
+  after,
+  before,
   contains,
   doesNotContain,
   downloadDataAsCSV,
@@ -184,6 +186,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       notMoreThan,
       empty,
       notEmpty,
+      before,
+      after,
     },
     state: {
       columnVisibility,

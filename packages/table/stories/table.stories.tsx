@@ -77,6 +77,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "Ameliorated explicit open system",
         phone: "(701) 882-0009 x344",
         address: "2741 Terry Glen Apt. 601",
+        date: "2021-01-01",
       },
       {
         id: 2,
@@ -84,6 +85,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "Customizable explicit solution",
         phone: "689.992.6307",
         address: "191 Schimmel Cliff Apt. 474",
+        date: "2021-01-02",
       },
       {
         id: 3,
@@ -91,6 +93,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "Proactive mission-critical open architecture",
         phone: "(686) 565-4880",
         address: "27002 Wilfredo Hill Suite 824",
+        date: "2021-01-03",
       },
       {
         id: 4,
@@ -98,6 +101,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "De-engineered bi-directional hardware",
         phone: "1-379-349-3046 x439",
         address: "29436 Keebler RestSuite 320",
+        date: "2021-01-03",
       },
       {
         id: 5,
@@ -105,6 +109,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "Customer-focused client-server budgetary management",
         phone: "1-718-234-7813 x1812",
         address: "2188 Brakus Islands Apt. 031",
+        date: "2021-01-03",
       },
       {
         id: 6,
@@ -112,6 +117,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "Distributed interactive monitoring",
         phone: "(700) 403-5346",
         address: "47653 Reinger Row Apt. 480",
+        date: "2021-01-03",
       },
       {
         id: 7,
@@ -119,6 +125,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "Synchronised context-sensitive implementation",
         phone: "698-202-3176 x8337",
         address: "5700 Isac Spurs Suite 919",
+        date: "2021-02-03",
       },
       {
         id: 8,
@@ -126,6 +133,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "User-friendly responsive hardware",
         phone: "470-744-4824 x376",
         address: "9826 Vincenzo Land Apt. 616",
+        date: "2022-02-03",
       },
       {
         id: 9,
@@ -133,6 +141,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "Compatible upward-trending system engine",
         phone: "506-644-1590",
         address: "9316 Manuel Lodge Apt. 678",
+        date: "2022-02-03",
       },
       {
         id: 10,
@@ -140,6 +149,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "Cloned scalable website",
         phone: "983.587.1143",
         address: "0434 Jermey Street Suite 577",
+        date: "2022-02-03",
       },
       {
         id: 11,
@@ -147,6 +157,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "User-friendly responsive hardware",
         phone: "470-1744-4824 x376",
         address: "9826 Vincenzo Land Apt. 616",
+        date: "2022-02-05",
       },
       {
         id: 12,
@@ -154,6 +165,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "Compatible upward-trending system engine",
         phone: "506-644-1590",
         address: "9316 Manuel Lodge Apt. 678",
+        date: "2022-02-03",
       },
       {
         id: 13,
@@ -161,6 +173,7 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         company: "Cloned scalable website",
         phone: "983.587.1143",
         address: "0434 Jermey Street Suite 577",
+        date: "2022-02-08",
       },
     ],
     [],
@@ -198,6 +211,11 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         header: "address",
         accessorKey: "address",
         enableSorting: false,
+      },
+      {
+        id: "date",
+        header: "date",
+        accessorKey: "date",
       },
     ]
     return c
