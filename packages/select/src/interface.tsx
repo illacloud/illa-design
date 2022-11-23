@@ -28,7 +28,7 @@ export type SelectColorScheme =
   | "techPurple"
   | "grayBlue"
 
-export interface SelectOptionProps
+export interface OptionProps
   extends Omit<HTMLAttributes<HTMLLIElement>, "onMouseEnter" | "onMouseLeave"> {
   _key?: any
   disabled?: boolean
@@ -42,22 +42,19 @@ export interface SelectOptionProps
   colorScheme?: SelectColorScheme
   size?: SelectSize
   onClick?: (value: SyntheticEvent) => void
-  onMouseEnter?: (value: SelectOptionProps["value"]) => void
+  onMouseEnter?: (value: OptionProps["value"]) => void
   onMouseLeave?: () => void
-  onClickOption?: (
-    value: SelectOptionProps["value"],
-    disabled?: boolean,
-  ) => void
+  onClickOption?: (value: OptionProps["value"], disabled?: boolean) => void
 }
 
-export interface OptionInfo extends PropsWithChildren<SelectOptionProps> {
+export interface OptionInfo extends PropsWithChildren<OptionProps> {
   child: ReactElement
   _valid: boolean
   _index: number
   _origin: "children" | "options" | "userCreatedOptions" | "userCreatingOption"
 }
 
-export type OptionInfoMap = Map<SelectOptionProps["value"], OptionInfo>
+export type OptionInfoMap = Map<OptionProps["value"], OptionInfo>
 
 export type LabeledValue = {
   value: string | number

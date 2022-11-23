@@ -6,10 +6,6 @@ import { SerializedStyles } from "@emotion/serialize"
 export const searchListWrapper = css`
   padding: 4px 0;
 `
-export const searchEmptyWrapperStyle = css`
-  height: 100%;
-`
-
 export const optionListWrapper = css`
   padding: 4px 0;
 

@@ -1,5 +1,5 @@
 // thx arco.design
-import { CascaderProps, FieldNamesType, CascaderOptionProps } from "./interface"
+import { CascaderProps, FieldNamesType, OptionProps } from "./interface"
 import { isArray, isFunction, isNumber, isString } from "@illa-design/system"
 import isEqual from "react-fast-compare"
 
@@ -18,7 +18,7 @@ export type ConfigType<T> = {
   fieldNames?: FieldNamesType
 }
 
-export interface NodeProps<T> extends CascaderOptionProps {
+export interface NodeProps<T> extends OptionProps {
   value: string
   label: string
   isLeaf?: boolean

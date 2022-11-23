@@ -3,19 +3,18 @@ import isEqual from "react-fast-compare"
 import { Empty } from "@illa-design/empty"
 import { Checkbox } from "@illa-design/checkbox"
 import { Node } from "../node"
-import { CascaderOptionProps, SearchPopupProps } from "../interface"
+import { OptionProps, SearchPopupProps } from "../interface"
 import {
   applyOptionStyle,
   flexCenterStyle,
   optionLabelStyle,
   optionListStyle,
-  searchEmptyWrapperStyle,
   searchListWrapper,
   textMargin,
 } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
 
-export const SearchPopup = <T extends CascaderOptionProps>(
+export const SearchPopup = <T extends OptionProps>(
   props: SearchPopupProps<T>,
 ) => {
   const { store, multiple, onChange, inputValue, value = [] } = props
@@ -122,8 +121,6 @@ export const SearchPopup = <T extends CascaderOptionProps>(
       </ul>
     </div>
   ) : (
-    <div css={[searchListWrapper, applyBoxStyle(props)]}>
-      <Empty css={[flexCenterStyle, searchEmptyWrapperStyle]} />
-    </div>
+    <Empty css={flexCenterStyle} />
   )
 }
