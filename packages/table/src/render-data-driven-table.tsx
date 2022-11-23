@@ -124,11 +124,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   })
 
   const _columns = useMemo(() => {
-    const current = currentColumns?.filter((item) => item.header)
+    const current = currentColumns?.filter((item) => {
+      // @ts-ignore accessorKey is not in the interface
+      return item.id || item.accessorKey
+    })
     if (multiRowSelection) {
       const rowSelectionColumn: ColumnDef<D, TValue>[] = [
         {
-          id: "select",
+          accessorKey: "select",
           header: checkAll
             ? ({ table }) => {
                 return (
