@@ -2,7 +2,7 @@ import { Children, cloneElement, Key, ReactElement } from "react"
 import {
   OptionInfo,
   OptionInfoMap,
-  OptionProps,
+  SelectOptionProps,
   SelectProps,
 } from "./interface"
 import { Option } from "./option"
@@ -82,7 +82,7 @@ export function flatChildren(
     customNodeCount = 0,
   }: {
     optionInfoMap?: OptionInfoMap
-    optionValueList?: Array<OptionProps["value"]>
+    optionValueList?: Array<SelectOptionProps["value"]>
     customNodeCount?: number
   } = {},
 ) {
