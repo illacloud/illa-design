@@ -132,6 +132,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       const rowSelectionColumn: ColumnDef<D, TValue>[] = [
         {
           accessorKey: "select",
+          enableSorting: false,
           header: checkAll
             ? ({ table }) => {
                 return (
