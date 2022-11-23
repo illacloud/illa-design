@@ -12,7 +12,7 @@ import { Trigger } from "@illa-design/trigger"
 import { SelectView } from "./select-view"
 import {
   SelectProps,
-  SelectOptionProps,
+  OptionProps,
   OptionInfo,
   InputValueChangeReason,
   LabeledValue,
@@ -56,7 +56,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 
   const [currentVisible, setCurrentVisible] = useState<boolean>()
   const refValueMap = useRef<
-    { value: SelectOptionProps["value"]; option: OptionInfo }[]
+    { value: OptionProps["value"]; option: OptionInfo }[]
   >([])
   const [stateValue, setValue] = useState(
     getValidValue(defaultValue, multiple, labelInValue),
@@ -69,7 +69,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     value: "inputValue" in props ? props.inputValue || "" : undefined,
   })
   const [userCreatedOptions, setUserCreatedOptions] = useState<string[]>([])
-  const [valueActive, setValueActive] = useState<SelectOptionProps["value"]>(
+  const [valueActive, setValueActive] = useState<OptionProps["value"]>(
     isArray(currentValue) ? currentValue[0] : currentValue,
   )
 
@@ -144,9 +144,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     }
   }, [inputValue])
 
-  const getOptionInfoByValue = (
-    value: SelectOptionProps["value"],
-  ): OptionInfo => {
+  const getOptionInfoByValue = (value: OptionProps["value"]): OptionInfo => {
     const option = optionInfoMap?.get(value)
     if (option) {
       const index = refValueMap.current?.findIndex(
@@ -273,16 +271,15 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   }, [currentValue])
 
   const handleOptionClick = (
-    optionValue: SelectOptionProps["value"],
+    optionValue: OptionProps["value"],
     disabled: boolean,
   ) => {
     if (disabled) {
       return
     }
     if (multiple) {
-      ;(currentValue as Array<SelectOptionProps["value"]>)?.indexOf(
-        optionValue,
-      ) === -1
+      ;(currentValue as Array<OptionProps["value"]>)?.indexOf(optionValue) ===
+      -1
         ? checkOption(optionValue)
         : uncheckOption(optionValue)
       // clear InputValue
