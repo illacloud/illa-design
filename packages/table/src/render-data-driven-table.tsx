@@ -122,6 +122,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     pageIndex: 0,
     pageSize: 10,
   })
+  const [selectedRow, setSelectedRow] = useState<number>()
 
   const _columns = useMemo(() => {
     const current = currentColumns?.filter((item) => {
@@ -405,8 +406,15 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
               </Thead>
             )}
             <TBody>
-              {table.getRowModel().rows.map((row) => (
-                <Tr key={row.id} hoverable>
+              {table.getRowModel().rows.map((row, index) => (
+                <Tr
+                  key={row.id}
+                  hoverable
+                  selected={selectedRow === index}
+                  onClick={() => {
+                    setSelectedRow(index)
+                  }}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <Td
                       key={cell.id}

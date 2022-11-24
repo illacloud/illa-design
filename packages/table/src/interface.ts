@@ -81,6 +81,7 @@ export interface TBodyProps
 
 export interface TrProps extends HTMLAttributes<HTMLTableRowElement>, BoxProps {
   hoverable?: boolean
+  selected?: boolean
 }
 
 export interface TdProps
