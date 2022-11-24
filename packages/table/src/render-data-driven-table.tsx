@@ -132,6 +132,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       const rowSelectionColumn: ColumnDef<D, TValue>[] = [
         {
           accessorKey: "select",
+          enableSorting: false,
           header: checkAll
             ? ({ table }) => {
                 return (
@@ -254,6 +255,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   useEffect(() => {
     setColumnFilters(
       filterOption.filter((item) => {
+        if (item.filterFn === "notEmpty" || item.filterFn === "empty") {
+          return item.id.length
+        }
         return item.id.length && item.value
       }),
     )
