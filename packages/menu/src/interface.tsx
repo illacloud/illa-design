@@ -80,6 +80,11 @@ export interface OverflowWrapperProps extends HTMLAttributes<HTMLDivElement> {
   horizontalAlign?: MenuHorizontalAlign
 }
 
+export interface OverflowSubMenuProps extends OverflowWrapperProps {
+  children?: ReactNode
+  isPlaceholder?: boolean
+}
+
 export interface MenuComponent
   extends ForwardRefExoticComponent<
     PropsWithChildren<MenuProps> & RefAttributes<HTMLDivElement>
