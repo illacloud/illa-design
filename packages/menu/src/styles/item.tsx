@@ -3,15 +3,11 @@ import { SerializedStyles } from "@emotion/serialize"
 import { Theme } from "../interface"
 import { applyPopButtonCss, themeColor } from "../style"
 
-export function applyItemTitleCss(): SerializedStyles {
-  const titleEllipsis = css`
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  `
-
-  return titleEllipsis
-}
+export const itemTitleCss = css`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`
 
 export function applyItemCss(
   isHorizontal?: boolean,
@@ -60,23 +56,21 @@ export function applyItemCss(
     }
   `
 
-  const padding = isCollapse ? 16 : 24
-
   return css`
     display: flex;
-    padding: 0 ${padding}px;
+    padding: 0 24px;
     font-size: 14px;
     color: ${themeColor[theme].color};
     line-height: 40px;
     transition-duration: 0.2s;
     transition-easing-function: ease-in-out;
     transition-properties: background;
-    ${isHorizontal && horizontalCss};
     /* margin between vertical item */
-    ${!isHorizontal &&
-    css`
-      margin-bottom: 8px;
-    `}
+    ${isHorizontal
+      ? horizontalCss
+      : css`
+          margin-top: 8px;
+        `};
     ${isDisabled ? disabledCss : hoverCss};
     ${isSelected && selectedCss};
     ${isSelected && isHorizontal && horizontalSelectedCss};

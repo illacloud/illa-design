@@ -17,6 +17,8 @@ import { FilterFnOption, PaginationState } from "@tanstack/table-core"
 import { Checkbox } from "@illa-design/checkbox"
 import { rankItem } from "@tanstack/match-sorter-utils"
 import {
+  after,
+  before,
   contains,
   doesNotContain,
   downloadDataAsCSV,
@@ -122,10 +124,15 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   })
 
   const _columns = useMemo(() => {
+    const current = currentColumns?.filter((item) => {
+      // @ts-ignore accessorKey is not in the interface
+      return item.id || item.accessorKey
+    })
     if (multiRowSelection) {
       const rowSelectionColumn: ColumnDef<D, TValue>[] = [
         {
-          id: "select",
+          accessorKey: "select",
+          enableSorting: false,
           header: checkAll
             ? ({ table }) => {
                 return (
@@ -154,9 +161,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
           },
         },
       ]
-      return rowSelectionColumn.concat(currentColumns)
+      return rowSelectionColumn.concat(current)
     }
-    return currentColumns
+    return current
   }, [checkAll, currentColumns, multiRowSelection])
 
   const table = useReactTable({
@@ -183,6 +190,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       notMoreThan,
       empty,
       notEmpty,
+      before,
+      after,
     },
     state: {
       columnVisibility,
@@ -209,8 +218,12 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       onColumnFiltersChange?.(columnFilter)
     },
     onRowSelectionChange: (rowSelection) => {
-      setRowSelection(rowSelection)
-      onRowSelectionChange?.(rowSelection)
+      new Promise((resolve) => {
+        setRowSelection(rowSelection)
+        resolve(true)
+      }).then(() => {
+        onRowSelectionChange?.(table.getState().rowSelection)
+      })
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -242,6 +255,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   useEffect(() => {
     setColumnFilters(
       filterOption.filter((item) => {
+        if (item.filterFn === "notEmpty" || item.filterFn === "empty") {
+          return item.id.length
+        }
         return item.id.length && item.value
       }),
     )
@@ -258,17 +274,20 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   const ColumnsOption = useMemo(() => {
     const res: { value: string; label: string }[] = []
-    table.getAllColumns().forEach((column, index) => {
-      if (!(multiRowSelection && index === 0)) {
-        const label = column.columnDef.header
+    currentColumns.forEach((column, index) => {
+      // [TODO] fix ts-error @xiaoyu
+      // @ts-ignore custom is not in the interface
+      if (!(multiRowSelection && index === 0) && !column.custom) {
+        const label = column.header
         res.push({
-          value: column.id,
+          // @ts-ignore accessorKey is not in the interface
+          value: column.id || column.accessorKey,
           label: isString(label) ? label : "-",
         })
       }
     })
     return res
-  }, [multiRowSelection, table])
+  }, [multiRowSelection, currentColumns])
 
   const updateColumns = useCallback(
     (index: number, id: string, filterFn: FilterFnOption<D>) => {

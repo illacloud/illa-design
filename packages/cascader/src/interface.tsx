@@ -10,7 +10,7 @@ export interface CascaderProps<T>
     BoxProps {
   value?: (string | string[])[]
   defaultValue?: (string | string[])[]
-  options?: OptionProps[]
+  options?: CascaderOptionProps[]
   placeholder?: string
   showSearch?:
     | boolean
@@ -29,11 +29,12 @@ export interface CascaderProps<T>
   arrowIcon?: ReactNode | null
   removeIcon?: ReactNode | null
   fieldNames?: FieldNamesType
+  readonly?: boolean
   // events
   onSearch?: (inputValue: string) => void
   onChange?: (
     value: (string | string[])[],
-    selectedOptions: OptionProps[] | OptionProps[][],
+    selectedOptions: CascaderOptionProps[] | CascaderOptionProps[][],
     extra: { dropdownVisible?: boolean },
   ) => void
   onClear?: (visible?: boolean) => void
@@ -42,11 +43,11 @@ export interface CascaderProps<T>
   onVisibleChange?: (visible: boolean) => void
 }
 
-export interface OptionProps {
+export interface CascaderOptionProps {
   value?: string
   label?: string
   disabled?: boolean
-  children?: OptionProps[]
+  children?: CascaderOptionProps[]
   isLeaf?: boolean
 
   [key: string]: any

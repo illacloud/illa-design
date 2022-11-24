@@ -23,10 +23,13 @@ exports[`Menu renders with horizontal selected 1`] = `
   font-size: 14px;
   color: #787e85ff;
   line-height: 40px;
-  margin-bottom: 8px;
+  transition-duration: 0.2s;
+  transition-easing-function: ease-in-out;
+  transition-properties: background;
+  margin-top: 8px;
   cursor: not-allowed;
   color: #bbc0c9ff;
-  color: #134ae0ff;
+  color: #1e6fffff;
   background-color: #f2f3f5ff;
 }
 
@@ -45,7 +48,10 @@ exports[`Menu renders with horizontal selected 1`] = `
   font-size: 14px;
   color: #787e85ff;
   line-height: 40px;
-  margin-bottom: 8px;
+  transition-duration: 0.2s;
+  transition-easing-function: ease-in-out;
+  transition-properties: background;
+  margin-top: 8px;
 }
 
 .emotion-4:hover {

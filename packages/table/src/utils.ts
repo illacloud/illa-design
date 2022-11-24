@@ -1,6 +1,6 @@
 import { Table } from "@tanstack/table-core"
 import { FilterFn } from "@tanstack/table-core/src/features/Filters"
-import { isString } from "@illa-design/system"
+import { dayjsPro, isString } from "@illa-design/system"
 
 export const transformTableIntoCsvData = (
   table: Table<any>,
@@ -161,6 +161,30 @@ export const doesNotContain: FilterFn<any> = (
   return false
 }
 
+export const before: FilterFn<any> = (
+  row,
+  columnId: string,
+  filterValue: unknown,
+) => {
+  const rowValue = row.getValue<string>(columnId)
+  if (isString(filterValue)) {
+    return dayjsPro(rowValue).isBefore(dayjsPro(filterValue))
+  }
+  return false
+}
+
+export const after: FilterFn<any> = (
+  row,
+  columnId: string,
+  filterValue: unknown,
+) => {
+  const rowValue = row.getValue<string>(columnId)
+  if (isString(filterValue)) {
+    return dayjsPro(rowValue).isAfter(dayjsPro(filterValue))
+  }
+  return false
+}
+
 export const FilterOptions = [
   { label: "is equal to", value: "equalTo" },
   { label: "not equal to", value: "notEqualTo" },
@@ -170,4 +194,8 @@ export const FilterOptions = [
   { label: "not less than", value: "notLessThan" },
   { label: "more than", value: "moreThan" },
   { label: "not more than", value: "notMoreThan" },
+  { label: "is empty", value: "empty" },
+  { label: "is not empty", value: "notEmpty" },
+  { label: "before", value: "before" },
+  { label: "after", value: "after" },
 ]

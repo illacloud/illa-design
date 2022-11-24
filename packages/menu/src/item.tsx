@@ -5,7 +5,7 @@ import { MenuContext } from "./menu-context"
 import { ItemProps } from "./interface"
 import { Indent } from "./indent"
 import { applyItemCss } from "./style"
-import { applyItemTitleCss } from "./styles"
+import { itemTitleCss } from "./styles"
 
 // eslint-disable-next-line react/display-name
 const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
@@ -61,7 +61,7 @@ const ForwardRefItem = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
       onClick={clickItemHandler}
     >
       {needIndent ? <Indent level={level} levelIndent={levelIndent} /> : null}
-      <div css={applyItemTitleCss()}>{title}</div>
+      <div css={itemTitleCss}>{title}</div>
     </div>
   )
 

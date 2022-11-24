@@ -3,7 +3,7 @@ import isEqual from "react-fast-compare"
 import { isNumber } from "@illa-design/system"
 import { LoadingIcon, NextIcon } from "@illa-design/icon"
 import { Checkbox } from "@illa-design/checkbox"
-import { CascaderPanelProps, OptionProps } from "../interface"
+import { CascaderPanelProps, CascaderOptionProps } from "../interface"
 import { Node } from "../node"
 import useRefs, { useForceUpdate, useUpdate } from "../hooks"
 import {
@@ -18,7 +18,7 @@ import { Empty } from "@illa-design/empty"
 import { motion } from "framer-motion"
 import { applyBoxStyle } from "@illa-design/theme"
 
-export const DefaultPopup = <T extends OptionProps>(
+export const DefaultPopup = <T extends CascaderOptionProps>(
   props: CascaderPanelProps<T>,
 ) => {
   const [activeOptionList, setActiveOptionList] =

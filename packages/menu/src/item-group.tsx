@@ -1,4 +1,4 @@
-import { forwardRef, ReactElement, useContext } from "react"
+import { forwardRef, ReactElement, useContext, useMemo } from "react"
 import { Trigger } from "@illa-design/trigger"
 import { processChildren } from "./util"
 import { ItemGroupProps } from "./interface"
@@ -15,31 +15,56 @@ const ForwardRefItemGroup = forwardRef<HTMLDivElement, ItemGroupProps>(
   (props, ref) => {
     const { children, title, level, _css, ...restProps } = props
     const {
+      isPopButton,
+      isHorizontal,
       levelIndent,
-      mode,
       collapse,
       theme = "light",
       inDropdown,
     } = useContext(MenuContext)
-    const isPopButton = mode === "popButton"
-    const isHorizontal = mode === "horizontal"
-    const mergedNeedTooltip = level === 1 && collapse && !inDropdown
-    const childrenList = processChildren(children as ReactElement, {
-      level,
-      needTooltip: mergedNeedTooltip,
-    })
 
-    const titleNode = collapse ? (
-      <div css={applyCollapseGroupTitleCss(theme)}></div>
-    ) : (
-      <span>{title}</span>
+    const mergedNeedTooltip = useMemo(
+      () => level === 1 && collapse && !inDropdown,
+      [level, collapse, inDropdown],
     )
 
-    const groupTitle = (
-      <div css={applyGroupTitleCss(isHorizontal, isPopButton, collapse, theme)}>
-        <Indent level={level} levelIndent={levelIndent} />
-        {titleNode}
-      </div>
+    const childrenList = useMemo(
+      () =>
+        processChildren(children as ReactElement, {
+          level,
+          needTooltip: mergedNeedTooltip,
+        }),
+      [children, level, mergedNeedTooltip],
+    )
+
+    const titleNode = useMemo(
+      () =>
+        collapse ? (
+          <div css={applyCollapseGroupTitleCss(theme)}></div>
+        ) : (
+          <span>{title}</span>
+        ),
+      [collapse, theme, title],
+    )
+
+    const groupTitle = useMemo(
+      () => (
+        <div
+          css={applyGroupTitleCss(isHorizontal, isPopButton, collapse, theme)}
+        >
+          <Indent level={level} levelIndent={levelIndent} />
+          {titleNode}
+        </div>
+      ),
+      [
+        isHorizontal,
+        isPopButton,
+        collapse,
+        theme,
+        level,
+        levelIndent,
+        titleNode,
+      ],
     )
 
     return (

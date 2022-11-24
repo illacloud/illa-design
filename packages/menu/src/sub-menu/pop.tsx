@@ -50,21 +50,17 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
 
   const [popupVisible, setPopupVisible] = useState(false)
 
-  const subMenuClickHandler = (event: MouseEvent) => {
-    onClickSubMenu && onClickSubMenu(_key, level as number, "pop")
-    selectable && onClickMenuItem && onClickMenuItem(_key, event)
-  }
+  const isSelected = useMemo(
+    () =>
+      (selectable && selectedKeys.includes(_key)) ||
+      isChildrenSelected(children as ReactElement, selectedKeys),
+    [selectable, selectedKeys, _key, children],
+  )
 
-  const menuItemClickHandler = (key: string, event: MouseEvent) => {
-    onClickMenuItem && onClickMenuItem(key, event)
-    setPopupVisible(false)
-  }
-
-  const isSelected =
-    (selectable && selectedKeys.includes(_key)) ||
-    isChildrenSelected(children as ReactElement, selectedKeys)
-
-  const needPopOnBottom = mode === "horizontal" && !inDropdown
+  const needPopOnBottom = useMemo(
+    () => mode === "horizontal" && !inDropdown,
+    [mode, inDropdown],
+  )
 
   const renderIcon = useMemo(() => {
     const icon = needPopOnBottom ? <DownIcon /> : <NextIcon />
@@ -92,13 +88,30 @@ export const Pop = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     ...triggerProps,
   }
 
+  const changePopupVisible = (visible: boolean) => {
+    if (popupVisible !== visible) {
+      setPopupVisible(visible)
+    }
+  }
+
+  const subMenuClickHandler = (event: MouseEvent) => {
+    onClickSubMenu && onClickSubMenu(_key, level as number, "pop")
+    selectable && onClickMenuItem && onClickMenuItem(_key, event)
+  }
+
+  const menuItemClickHandler = (key: string, event: MouseEvent) => {
+    onClickMenuItem && onClickMenuItem(key, event)
+    changePopupVisible(false)
+  }
+
   return (
     <Dropdown
       trigger="hover"
-      onVisibleChange={(visible: boolean) => setPopupVisible(visible)}
+      onVisibleChange={changePopupVisible}
       popupVisible={popupVisible}
       dropList={
         <Menu
+          mb="8px"
           bdRadius="8px"
           selectedKeys={selectedKeys}
           onClickMenuItem={menuItemClickHandler}

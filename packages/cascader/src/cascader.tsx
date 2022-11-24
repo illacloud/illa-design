@@ -8,10 +8,16 @@ import {
   useState,
 } from "react"
 import isEqual from "react-fast-compare"
-import { isArray, isObject, isString, KeyCode } from "@illa-design/system"
+import {
+  isArray,
+  isObject,
+  isString,
+  KeyCode,
+  mergeRefs,
+} from "@illa-design/system"
 import { SelectView } from "@illa-design/select"
 import { Trigger } from "@illa-design/trigger"
-import { CascaderProps, OptionProps } from "./interface"
+import { CascaderProps, CascaderOptionProps } from "./interface"
 import { Store } from "./node"
 import { DefaultPopup } from "./popup/default-popup"
 import { SearchPopup } from "./popup/search-popup"
@@ -45,7 +51,7 @@ const formatValue = (
 }
 
 export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
-  <T extends OptionProps>(
+  <T extends CascaderOptionProps>(
     props: CascaderProps<T>,
     ref: ForwardedRef<HTMLDivElement>,
   ) => {
@@ -61,6 +67,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       fieldNames,
       trigger = "click",
       expandTrigger = "click",
+      readonly,
       // event
       onChange,
       onSearch,
@@ -92,14 +99,14 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
 
     const handleVisibleChange = useCallback(
       (value: boolean) => {
-        if (value !== currentVisible) {
+        if (value !== currentVisible && !disabled && !readonly) {
           onVisibleChange?.(value)
           if (!("popupVisible" in props)) {
             setCurrentVisible(value)
           }
         }
       },
-      [onVisibleChange, currentVisible],
+      [onVisibleChange, currentVisible, disabled, readonly],
     )
 
     const handleChange = (newValue: string[][]) => {
@@ -147,7 +154,9 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       })
     }
 
-    const getSelectedOptionsByValue = (values: string[][]): OptionProps[][] => {
+    const getSelectedOptionsByValue = (
+      values: string[][],
+    ): CascaderOptionProps[][] => {
       const nodes = store.getCheckedNodes().concat(stashNodes.current)
       const result: any[] = []
       values.map((value) => {
@@ -167,7 +176,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         let valueShow = isArray(value) ? value.map((x) => String(x)) : []
 
         if (options.length) {
-          valueShow = options?.map((x: OptionProps) => x.label ?? "")
+          valueShow = options?.map((x: CascaderOptionProps) => x.label ?? "")
         }
         if (valueShow.every((v) => isString(v))) {
           text = valueShow.join(" / ")
@@ -248,9 +257,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
           <div css={applyPopupStyle()}>
             {showSearchPanel ? (
               <SearchPopup
-                _css={css`
-                  min-width: ${selectViewRef?.current?.offsetWidth}px;
-                `}
+                minW={`${selectViewRef?.current?.offsetWidth}px`}
                 multiple={multiple}
                 store={store}
                 value={mergeValue}
@@ -278,46 +285,44 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         openDelay={0}
         closeDelay={0}
         maxW=""
-        disabled={disabled}
+        disabled={disabled || readonly}
         withoutPadding
         closeOnClick
         clickOutsideToClose
         popupVisible={currentVisible}
         onVisibleChange={handleVisibleChange}
       >
-        <div ref={ref}>
-          <SelectView
-            ref={selectViewRef}
-            inputValue={inputValue}
-            value={multiple ? mergeValue : mergeValue && mergeValue[0]}
-            popupVisible={currentVisible}
-            multiple={multiple}
-            isEmptyValue={
-              !mergeValue || (isArray(mergeValue) && mergeValue.length === 0)
+        <SelectView
+          ref={mergeRefs(ref, selectViewRef)}
+          inputValue={inputValue}
+          value={multiple ? mergeValue : mergeValue && mergeValue[0]}
+          popupVisible={currentVisible}
+          multiple={multiple}
+          isEmptyValue={
+            !mergeValue || (isArray(mergeValue) && mergeValue.length === 0)
+          }
+          onKeyDown={(e) => {
+            if (disabled) {
+              return
             }
-            onKeyDown={(e) => {
-              if (disabled) {
-                return
-              }
-              e.stopPropagation()
-              const keyCode = e.keyCode || e.which
-              if (keyCode === KeyCode.Enter && !currentVisible) {
-                handleVisibleChange(true)
-                e.preventDefault()
-              }
-            }}
-            onRemoveCheckedItem={(item, index, event) => {
-              event?.stopPropagation()
-              if (item.disabled) {
-                return
-              }
-              const newValue = mergeValue?.filter((_, i) => i !== index) ?? []
-              handleChange(newValue)
-            }}
-            {...props}
-            {...selectViewEventHandlers}
-          />
-        </div>
+            e.stopPropagation()
+            const keyCode = e.keyCode || e.which
+            if (keyCode === KeyCode.Enter && !currentVisible) {
+              handleVisibleChange(true)
+              e.preventDefault()
+            }
+          }}
+          onRemoveCheckedItem={(item, index, event) => {
+            event?.stopPropagation()
+            if (item.disabled) {
+              return
+            }
+            const newValue = mergeValue?.filter((_, i) => i !== index) ?? []
+            handleChange(newValue)
+          }}
+          {...props}
+          {...selectViewEventHandlers}
+        />
       </Trigger>
     )
   },
