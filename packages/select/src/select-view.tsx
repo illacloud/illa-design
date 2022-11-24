@@ -364,7 +364,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
           css={applySelectView(stateValue)}
           onClick={onClick}
           onFocus={(event) => {
-            if (disabled) {
+            if (disabled || readOnly) {
               return
             }
             if (canFocusInput) {
@@ -391,7 +391,7 @@ export const SelectView = forwardRef<HTMLDivElement, SelectViewProps>(
             }
           >
             {multiple ? renderMultiple() : renderSingle()}
-            {!disabled && !isEmptyValue && allowClear ? (
+            {!disabled && !readOnly && !isEmptyValue && allowClear ? (
               <span
                 title="selectRemoveIcon"
                 css={iconPointerStyle(size)}

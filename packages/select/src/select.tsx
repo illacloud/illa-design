@@ -183,7 +183,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   }
 
   const tryUpdatePopupVisible = (value: boolean) => {
-    if (currentVisible !== value) {
+    if (currentVisible !== value && !readOnly && !disabled) {
       setCurrentVisible(value)
       onVisibleChange?.(value)
     }

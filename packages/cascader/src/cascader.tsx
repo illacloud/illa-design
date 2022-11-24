@@ -67,6 +67,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
       fieldNames,
       trigger = "click",
       expandTrigger = "click",
+      readonly,
       // event
       onChange,
       onSearch,
@@ -98,14 +99,14 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
 
     const handleVisibleChange = useCallback(
       (value: boolean) => {
-        if (value !== currentVisible) {
+        if (value !== currentVisible && !disabled && !readonly) {
           onVisibleChange?.(value)
           if (!("popupVisible" in props)) {
             setCurrentVisible(value)
           }
         }
       },
-      [onVisibleChange, currentVisible],
+      [onVisibleChange, currentVisible, disabled, readonly],
     )
 
     const handleChange = (newValue: string[][]) => {
@@ -284,7 +285,7 @@ export const Cascader = forwardRef<HTMLDivElement, CascaderProps<any>>(
         openDelay={0}
         closeDelay={0}
         maxW=""
-        disabled={disabled}
+        disabled={disabled || readonly}
         withoutPadding
         closeOnClick
         clickOutsideToClose

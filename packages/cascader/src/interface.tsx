@@ -29,7 +29,7 @@ export interface CascaderProps<T>
   arrowIcon?: ReactNode | null
   removeIcon?: ReactNode | null
   fieldNames?: FieldNamesType
-  readOnly?: boolean
+  readonly?: boolean
   // events
   onSearch?: (inputValue: string) => void
   onChange?: (
