@@ -131,10 +131,24 @@ export interface FiltersEditorProps {
   ) => void
 }
 
+export type CustomFilterFn =
+  | "equalTo"
+  | "notEqualTo"
+  | "contains"
+  | "doesNotContain"
+  | "lessThan"
+  | "notLessThan"
+  | "moreThan"
+  | "notMoreThan"
+  | "empty"
+  | "notEmpty"
+  | "before"
+  | "after"
+
 export type FilterOptions = {
   id: string
   value: unknown
-  filterFn?: FilterFnOption<any>
+  filterFn?: FilterFnOption<any> & CustomFilterFn
 }
 
 export type FilterOptionsState = FilterOptions[]
