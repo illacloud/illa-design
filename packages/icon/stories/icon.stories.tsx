@@ -72,7 +72,7 @@ import {
   Result403Icon,
   Result404Icon,
   Result500Icon,
-  RightIcon,
+  SuccessCircleIcon,
   ScatterPlotIcon,
   SearchIcon,
   ShareIcon,
@@ -168,8 +168,8 @@ export const Search: Story<IconProps> = (props: IconProps) => (
 export const Link: Story<IconProps> = (props: IconProps) => (
   <LinkIcon {...props} />
 )
-export const Right: Story<IconProps> = (props: IconProps) => (
-  <RightIcon {...props} />
+export const SuccessCircle: Story<IconProps> = (props: IconProps) => (
+  <SuccessCircleIcon {...props} />
 )
 export const Error: Story<IconProps> = (props: IconProps) => (
   <ErrorIcon {...props} />

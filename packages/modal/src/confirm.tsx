@@ -5,7 +5,7 @@ import { destroyList, getModalConfig } from "./config"
 import {
   ErrorIcon,
   InfoCircleIcon,
-  RightIcon,
+  SuccessCircleIcon,
   WarningCircleIcon,
 } from "@illa-design/icon"
 import { applyModalConfirmTitle } from "./style"
@@ -33,7 +33,7 @@ export const normalizeConfig = (_config: ConfirmProps): ConfirmProps => {
           icon = <InfoCircleIcon />
           break
         case "success":
-          icon = <RightIcon />
+          icon = <SuccessCircleIcon />
           break
         case "warning":
           icon = <WarningCircleIcon />

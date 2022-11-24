@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { CopyIcon, RightIcon } from "@illa-design/icon"
+import { CopyIcon, SuccessCircleIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export class Copyable {
@@ -7,7 +7,7 @@ export class Copyable {
     <CopyIcon color={globalColor(`--${illaPrefix}-grayBlue-01`)} />
   )
   copiedIcon: ReactNode = (
-    <RightIcon color={globalColor(`--${illaPrefix}-green-03`)} />
+    <SuccessCircleIcon color={globalColor(`--${illaPrefix}-green-03`)} />
   )
   copiedToolTip: boolean | string | ReactNode
   copyToolTip: boolean | string | ReactNode

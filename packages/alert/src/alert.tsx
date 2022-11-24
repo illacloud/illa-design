@@ -5,7 +5,7 @@ import {
   CloseIcon,
   ErrorIcon,
   InfoCircleIcon,
-  RightIcon,
+  SuccessCircleIcon,
   WarningCircleIcon,
 } from "@illa-design/icon"
 import {
@@ -18,12 +18,11 @@ import {
   applyAlertIcon,
   applyAlertTitle,
 } from "./style"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 const iconMap = {
   info: <InfoCircleIcon />,
-  success: <RightIcon />,
+  success: <SuccessCircleIcon />,
   warning: <WarningCircleIcon />,
   error: <ErrorIcon />,
 }
