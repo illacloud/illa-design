@@ -35,6 +35,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
               <Select
                 w="200px"
                 mg="8px 4px"
+                colorScheme="techPurple"
                 value={id}
                 options={columnsOption}
                 onChange={(id) => {
@@ -44,6 +45,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
               <Select
                 w="200px"
                 mg="8px 4px"
+                colorScheme="techPurple"
                 value={filterFn as string}
                 options={FilterOptions}
                 onChange={(filterFn) => {
@@ -54,6 +56,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
               <Input
                 w="200px"
                 mg="8px 4px"
+                borderColor="techPurple"
                 value={isString(value) ? value : undefined}
                 disabled={
                   (filterFn as string) === "empty" ||
