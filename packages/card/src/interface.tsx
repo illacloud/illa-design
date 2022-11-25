@@ -8,24 +8,21 @@ export interface CardProps
     BoxProps {
   size?: CardSize
   hoverable?: boolean
-  loading?: boolean
   bordered?: boolean
-  cover?: ReactNode
   title?: ReactNode
-  actions?: ReactNode[]
   extra?: ReactNode
-  isGridMode?: boolean
 }
 
 export interface CardMetaProps
   extends Omit<HTMLAttributes<HTMLElement>, "title">,
     BoxProps {
   avatar?: ReactNode
+  size?: CardSize
+  hoverable?: boolean
+  bordered?: boolean
+  nickname?: string
   title?: ReactNode
+  cover?: ReactNode
   description?: ReactNode
   actionList?: ReactNode[]
-}
-
-export interface CardGridProps extends HTMLAttributes<HTMLElement>, BoxProps {
-  hoverable?: boolean
 }

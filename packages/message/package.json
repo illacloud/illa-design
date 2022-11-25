@@ -39,8 +39,6 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/alert": "1.0.7",
-    "@illa-design/notification": "1.0.7",
     "@illa-design/icon": "1.0.7",
     "@illa-design/system": "1.0.7",
     "@illa-design/theme": "1.0.7"

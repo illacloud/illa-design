@@ -1,7 +1,7 @@
 import { createIcon } from "../create-icon"
 
-export const RightIcon = createIcon({
-  title: "RightIcon",
+export const SuccessCircleIcon = createIcon({
+  title: "SuccessCircleIcon",
   viewBox: "0 0 12 12",
   path: (
     <>
@@ -21,4 +21,4 @@ export const RightIcon = createIcon({
   ),
 })
 
-RightIcon.displayName = "RightIcon"
+SuccessCircleIcon.displayName = "SuccessCircleIcon"

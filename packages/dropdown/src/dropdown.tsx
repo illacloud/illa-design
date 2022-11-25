@@ -1,15 +1,14 @@
 import {
+  Children,
+  cloneElement,
   FC,
   ReactElement,
-  Children,
-  isValidElement,
-  cloneElement,
-  SyntheticEvent,
   ReactNode,
+  SyntheticEvent,
 } from "react"
 import { DropdownProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"
-import { useMergeValue, omit } from "@illa-design/system"
+import { omit, useMergeValue } from "@illa-design/system"
 import { css } from "@emotion/react"
 
 const getContent = (dropList: ReactNode) => {
@@ -104,11 +103,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
         : {})}
       {...otherProps}
     >
-      {isValidElement(children)
-        ? cloneElement(children, {
-            disabled,
-          })
-        : children}
+      {children}
     </Trigger>
   )
 }

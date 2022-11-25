@@ -1,84 +1,29 @@
-import {
-  HTMLAttributes,
-  ReactNode,
-  ForwardRefExoticComponent,
-  PropsWithChildren,
-  RefAttributes,
-} from "react"
-import { AlertType } from "@illa-design/alert"
+import { HTMLAttributes, ReactNode } from "react"
+import { BoxProps } from "@illa-design/theme"
 
-export type MessagePosition = "top" | "bottom"
-
-export type NoticeType = "Notification" | "Message"
-
-export type NotificationType = AlertType | "normal"
-
-export type MessageType = NotificationType | "loading"
-
-export type ConfigProps = {
-  maxCount?: number
-  getContainer?: () => HTMLElement
-  duration?: number
-}
-
-export type NoticePosition =
+export type NotificationPosition =
   | "topLeft"
   | "topRight"
   | "bottomLeft"
   | "bottomRight"
 
-export interface NotificationProps extends HTMLAttributes<HTMLDivElement> {
-  position?: NoticePosition
-  removeId?: string
-  notice?: NoticeProps
-  shouldClear?: boolean
-}
+export type NotificationType =
+  | "info"
+  | "error"
+  | "success"
+  | "warning"
+  | "normal"
 
-export interface NotificationComponent
-  extends ForwardRefExoticComponent<
-    PropsWithChildren<NotificationProps> & RefAttributes<HTMLDivElement>
-  > {
-  info: (config: NoticeProps) => void
-  success: (config: NoticeProps) => void
-  warning: (config: NoticeProps) => void
-  error: (config: NoticeProps) => void
-  normal: (config: NoticeProps) => void
-  config: (config: ConfigProps) => void
-  remove: (id: string) => void
-  clear: () => void
-  add: (config: NoticeProps) => void
-}
-
-export interface NoticeProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
+export interface NotificationProps extends BoxProps {
+  type?: NotificationType
   action?: ReactNode
   closable?: boolean
-  onClose?: () => void
-  afterClose?: () => void
-  type?: MessageType
-  title?: ReactNode
-  content?: ReactNode
-  icon?: ReactNode
-  closeElement?: ReactNode
   showIcon?: boolean
-  position?: NoticePosition | MessagePosition
   duration?: number
   id?: string
-  noticeType?: NoticeType
-  update?: boolean
-  removeHook?: (id: string) => void
-}
-
-export interface NotificationSet {
-  topRight: NoticeProps[]
-  topLeft: NoticeProps[]
-  bottomLeft: NoticeProps[]
-  bottomRight: NoticeProps[]
-}
-
-export interface NotificationWrapper {
-  topRight?: HTMLDivElement
-  topLeft?: HTMLDivElement
-  bottomLeft?: HTMLDivElement
-  bottomRight?: HTMLDivElement
+  position?: NotificationPosition
+  icon?: ReactNode
+  title?: string | ReactNode
+  content?: string | ReactNode
+  onClose?: (id?: string) => void
 }
