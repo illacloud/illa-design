@@ -1,18 +1,17 @@
 import { forwardRef, useContext } from "react"
 import { CollapseItemProps } from "./interface"
 import { CollapseContext } from "./collapse-context"
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import {
-  collapseItemStyle,
   applyCollapseItemContentStyle,
-  collapseItemExtraStyle,
-  applyCollapseItemHeaderStyle,
   applyCollapseItemHeaderIconStyle,
+  applyCollapseItemHeaderStyle,
   applyCollapseItemHeaderTitleStyle,
   CollapseItemAnimation,
+  collapseItemExtraStyle,
+  collapseItemStyle,
 } from "./style"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
   (props, ref) => {

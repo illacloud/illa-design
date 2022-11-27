@@ -10,8 +10,7 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Calendar = forwardRef<HTMLDivElement, CalenderProps>(
   (props, ref) => {

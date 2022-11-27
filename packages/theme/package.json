@@ -43,7 +43,6 @@
     "@illa-design/system": "1.0.7",
     "chroma-js": "^2.1.2",
     "color": "^4.2.3",
-    "compute-scroll-into-view": "^1.0.17",
     "framer-motion": "^6.5.1",
     "react-use-measure": "^2.1.1",
     "@juggle/resize-observer": "^3.4.0",

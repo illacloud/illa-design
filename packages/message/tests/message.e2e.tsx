@@ -1,9 +1,12 @@
-import { Message } from "../src"
+import { Message, MessageGroup, useMessage } from "../src"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
+import { List } from "@illa-design/list/src"
 
 it("Message renders with duration", () => {
-  Message.info({
+  const message = useMessage()
+  mount(<MessageGroup />)
+  message.info({
     content: "Default",
     duration: 5000,
   })
@@ -11,10 +14,13 @@ it("Message renders with duration", () => {
   cy.contains("Default").should("be.visible")
   cy.tick(5000)
   cy.contains("Default").should("not.exist")
+  unmount()
 })
 
 it("Message renders with mouse action", () => {
-  Message.info({
+  const message = useMessage()
+  mount(<MessageGroup />)
+  message.info({
     content: "Content",
     duration: 5000,
   })
@@ -24,25 +30,31 @@ it("Message renders with mouse action", () => {
   cy.contains("Content").should("be.visible").trigger("mouseleave")
   cy.tick(5000)
   cy.contains("Content").should("not.exist")
+  unmount()
 })
 
 it("Message renders with remove action", () => {
-  Message.info({
+  const message = useMessage()
+  mount(<MessageGroup />)
+  message.info({
     content: "Remove",
     id: "remove",
   })
   cy.contains("Remove").should("be.visible")
-  Message.remove("remove")
+  message.remove("remove")
   cy.contains("Remove").should("not.be.exist")
+  unmount()
 })
 
 it("Message renders with clear action", () => {
-  Message.info({
+  const message = useMessage()
+  mount(<MessageGroup />)
+  message.info({
     content: "ItemA",
     id: "itemA",
   })
 
-  Message.info({
+  message.info({
     content: "ItemB",
     id: "itemB",
   })
@@ -52,7 +64,7 @@ it("Message renders with clear action", () => {
     .then(() => {
       cy.contains("ItemB")
         .should("be.visible")
-        .then(() => Message.clear())
+        .then(() => message.clear())
     })
 
   cy.contains("ItemA").should("not.be.exist")

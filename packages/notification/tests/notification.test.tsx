@@ -1,19 +1,25 @@
-import { render, screen, act, fireEvent } from "@testing-library/react"
+import { act, fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { iconColorMap } from "@illa-design/alert"
 import userEvent from "@testing-library/user-event"
 import { Button } from "@illa-design/button"
-import { Notification, NotificationType } from "../src"
+import {
+  Notification,
+  NotificationGroup,
+  NotificationType,
+  useNotification,
+} from "../src"
 
 describe("Open Notification", () => {
+  const notification = useNotification()
+
   beforeEach(() => {
     act(() => {
       jest.useFakeTimers()
     })
   })
   afterEach(() => {
-    Notification.clear()
+    notification.clear()
     act(() => {
       jest.runAllTimers()
     })
@@ -40,7 +46,8 @@ describe("Open Notification", () => {
   })
 
   test("Notification renders with no icon", () => {
-    Notification.normal({
+    render(<NotificationGroup />)
+    notification.normal({
       title: "Notify",
     })
     expect(screen.getByText("Notify").parentNode?.parentNode).toHaveStyle({
@@ -49,14 +56,13 @@ describe("Open Notification", () => {
   })
 
   test("Notification renders with close action", async () => {
+    render(<NotificationGroup />)
     const handleClose = jest.fn()
-    const handleAfterClose = jest.fn()
-    Notification.info({
+    notification.info({
       title: "Close",
       content: "Content",
       closable: true,
       onClose: handleClose,
-      afterClose: handleAfterClose,
     })
     const closBtn = screen.getByText("CloseIcon").parentNode?.parentNode
     expect(closBtn).toBeInTheDocument()
@@ -70,7 +76,8 @@ describe("Open Notification", () => {
   })
 
   test("Notification renders with action button", async () => {
-    Notification.info({
+    render(<NotificationGroup />)
+    notification.info({
       title: `Action`,
       content: "Content",
       action: <Button data-testid={"notify-action"}>OK</Button>,
@@ -84,7 +91,8 @@ describe("Open Notification", () => {
   })
 
   test("Notification renders with mouse action", async () => {
-    Notification.info({
+    render(<NotificationGroup />)
+    notification.info({
       title: `Default`,
       content: "Content",
       duration: 800,
@@ -99,11 +107,12 @@ describe("Open Notification", () => {
   })
 
   test("Notification renders with update", async () => {
-    Notification.info({
+    render(<NotificationGroup />)
+    notification.info({
       title: "Title",
       duration: 0,
     })
-    Notification.info({
+    notification.info({
       title: "updateBefore",
       id: "Before",
       duration: 0,
@@ -111,7 +120,7 @@ describe("Open Notification", () => {
     })
     const instance = screen.getByTestId("updateBtn")
     expect(instance.innerHTML).toBe("updateBefore")
-    Notification.info({
+    notification.info({
       title: "After",
       id: "Before",
       action: <span data-testid="updateBtn">After</span>,
@@ -120,18 +129,18 @@ describe("Open Notification", () => {
   })
 
   test("Notification renders with global config", async () => {
-    Notification.info({
+    render(<NotificationGroup />)
+    notification.info({
       title: "Before",
       id: "before",
     })
     render(<div data-testid="container" id={"container"} />)
-    Notification.config({
+    notification.config({
       maxCount: 1,
       duration: 0,
-      getContainer: () => document.getElementById("container") as HTMLElement,
     })
 
-    Notification.info({
+    notification.info({
       title: "Old",
       id: "old",
     })
@@ -140,7 +149,7 @@ describe("Open Notification", () => {
 
     const instance = screen.getByText("Old")
     expect(instance).toBeInTheDocument()
-    Notification.info({
+    notification.info({
       title: "New",
       id: "new",
     })

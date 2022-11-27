@@ -1,9 +1,11 @@
-import { Notification } from "../src"
-import "@cypress/react"
+import { NotificationGroup, useNotification } from "../src"
+import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
 
 it("Notification renders with duration", () => {
-  Notification.info({
+  const notification = useNotification()
+  mount(<NotificationGroup />)
+  notification.info({
     content: "Default",
     duration: 5000,
   })
@@ -11,10 +13,13 @@ it("Notification renders with duration", () => {
   cy.contains("Default").should("be.visible")
   cy.tick(5000)
   cy.contains("Default").should("not.exist")
+  unmount()
 })
 
 it("Notification renders with mouse action", () => {
-  Notification.info({
+  const notification = useNotification()
+  mount(<NotificationGroup />)
+  notification.info({
     content: "Content",
     duration: 5000,
   })
@@ -25,25 +30,31 @@ it("Notification renders with mouse action", () => {
   cy.contains("Content").should("be.visible").trigger("mouseleave")
   cy.tick(5000)
   cy.contains("Content").should("not.exist")
+  unmount()
 })
 
 it("Notification renders with remove action and clear action", () => {
-  Notification.info({
+  const notification = useNotification()
+  mount(<NotificationGroup />)
+  notification.info({
     content: "Remove",
     id: "remove",
   })
   cy.contains("Remove").should("be.visible")
-  Notification.remove("remove")
+  notification.remove("remove")
   cy.contains("Remove").should("not.be.exist")
+  unmount()
 })
 
 it("Notification renders with clear action", () => {
-  Notification.info({
+  const notification = useNotification()
+  mount(<NotificationGroup />)
+  notification.info({
     content: "ItemA",
     id: "itemA",
   })
 
-  Notification.info({
+  notification.info({
     content: "ItemB",
     id: "itemB",
   })
@@ -53,9 +64,10 @@ it("Notification renders with clear action", () => {
     .then(() => {
       cy.contains("ItemB")
         .should("be.visible")
-        .then(() => Notification.clear())
+        .then(() => notification.clear())
     })
 
   cy.contains("ItemA").should("not.be.exist")
   cy.contains("ItemB").should("not.be.exist")
+  unmount()
 })

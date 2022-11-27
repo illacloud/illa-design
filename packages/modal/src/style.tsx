@@ -2,91 +2,49 @@ import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Variants } from "framer-motion"
 import { iconColorMap } from "@illa-design/alert"
-import { AlignType } from "./interface"
+import { ModalAlignType } from "./interface"
 
 export const applyModalMask = css`
-  position: fixed;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   background-color: ${globalColor(`--${illaPrefix}-blackAlpha-02`)};
 `
 
-export const modalContainer = css`
+export const applyModalContainer = css`
+  position: fixed;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
   overflow: hidden;
+  align-items: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 `
 
-export function applyModalWrapper(isCenter?: boolean): SerializedStyles {
-  const centerCss = isCenter
-    ? css`
-        text-align: center;
-        white-space: nowrap;
-
-        &::after {
-          display: inline-block;
-          vertical-align: middle;
-          width: 0;
-          height: 100%;
-          content: "";
-        }
-      `
-    : ""
+export function applyModal(): SerializedStyles {
   return css`
-    ${centerCss};
-    position: fixed;
-    left: 0;
-    top: 0;
-    overflow: auto;
-    width: 100%;
-    height: 100%;
-  `
-}
-
-export function applyModal(
-  isCenter?: boolean,
-  isSimple?: boolean,
-): SerializedStyles {
-  const centerCss = isCenter
-    ? css`
-        top: 0;
-        vertical-align: middle;
-        display: inline-block;
-      `
-    : ""
-  return css`
-    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    position: absolute;
     top: 100px;
-    overflow: hidden;
-    margin: 0 auto;
-    width: ${isSimple ? "400px" : "520px"};
+    margin-bottom: 100px;
+    overflow: auto;
+    max-height: calc(100% - 200px);
+    min-width: 520px;
     text-align: left;
     white-space: initial;
     box-sizing: border-box;
     border-radius: 8px;
+    border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-    ${centerCss}
   `
 }
 
 export function applyModalHeader(
-  isSimple?: boolean,
   closable?: boolean,
   withoutLine?: boolean,
 ): SerializedStyles {
-  const simpleCss = isSimple
-    ? css`
-        padding-top: 16px;
-        padding-bottom: 8px;
-        height: unset;
-        border: none;
-      `
-    : ""
-
   let border = css``
   if (!withoutLine) {
     border = css`
@@ -108,42 +66,30 @@ export function applyModalHeader(
     box-sizing: border-box;
     display: flex;
     align-items: center;
+    justify-content: center;
     ${border};
-    ${simpleCss};
   `
 }
 
-export function applyModalTitle(isSimple?: boolean): SerializedStyles {
+export function applyModalTitle(): SerializedStyles {
   return css`
     text-align: center;
-    flex: 1;
     font-size: 16px;
-    font-weight: ${isSimple ? 500 : 600};
+    font-weight: 600;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
-export function applyModalContent(
-  isSimple?: boolean,
-  withoutPadding?: boolean,
-): SerializedStyles {
+export function applyModalContent(withoutPadding?: boolean): SerializedStyles {
   const paddingCSS = withoutPadding
     ? css`
         padding: 0;
       `
     : ""
-  const simpleCss = isSimple
-    ? css`
-        padding: 8px 24px;
-      `
-    : ""
   return css`
-    padding: 24px;
     font-size: 14px;
-    flex: 1;
-    overflow: hidden;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    ${simpleCss};
+    padding: 8px 24px;
     ${paddingCSS}
   `
 }
@@ -164,27 +110,25 @@ export const modalCloseIconStyle = css`
 `
 
 export function applyModalFooter(
-  isSimple?: boolean,
-  footerAlign?: AlignType,
+  footerAlign?: ModalAlignType,
+  withoutLine?: boolean,
 ): SerializedStyles {
-  const simpleCss = isSimple
-    ? css`
-        text-align: center;
-        border: none;
-      `
-    : ""
   const textAlignCss = footerAlign
     ? css`
         text-align: ${footerAlign};
       `
     : ""
+  const line = withoutLine
+    ? css``
+    : css`
+        border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
   return css`
     text-align: right;
     width: 100%;
     box-sizing: border-box;
     padding: 16px 24px;
-    border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    ${simpleCss};
+    ${line};
     ${textAlignCss};
   `
 }

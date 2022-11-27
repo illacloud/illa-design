@@ -1,7 +1,7 @@
-import { useState, createContext } from "react"
+import { createContext, useState } from "react"
 import { mount, unmount } from "@cypress/react"
 import "@testing-library/cypress"
-import { Modal, ModalProps, ModalReturnProps } from "../src"
+import { Modal, ModalGroup, ModalProps, useModal } from "../src"
 import { Button } from "@illa-design/button"
 import { AlertType } from "@illa-design/alert"
 
@@ -11,6 +11,7 @@ const NormalModal = (props: ModalProps) => {
   const [visible, setVisible] = useState(false)
   const [show, setShow] = useState(false)
   const [confirmLoading, setConfirmLoading] = useState(false)
+
   function onOk() {
     Promise.resolve().then(() => {
       setConfirmLoading(true)
@@ -20,8 +21,10 @@ const NormalModal = (props: ModalProps) => {
       }, 1500)
     })
   }
+
   return (
     <>
+      <ModalGroup />
       <Button
         onClick={() => {
           setVisible(true)
@@ -39,7 +42,7 @@ const NormalModal = (props: ModalProps) => {
       <Modal
         title="Title"
         visible={visible}
-        confirmLoading={confirmLoading}
+        okLoading={confirmLoading}
         onOk={onOk}
         onCancel={() => {
           setVisible(false)
@@ -62,16 +65,16 @@ const NormalModal = (props: ModalProps) => {
 
 const ContextModal = (props: ModalProps & { type?: AlertType }) => {
   const { type = "info" } = props
-  const [modal, contextHolder] = Modal.useModal()
+  const modal = useModal()
   const ConfigContext = createContext({})
   return (
     <ConfigContext.Provider value="Jarvey">
-      {contextHolder}
       <Button
         onClick={() => {
-          modal[type]({
+          modal.show({
             ...props,
-            content: (
+            type: type,
+            children: (
               <ConfigContext.Consumer>
                 {(name) => `Current user: ${name}`}
               </ConfigContext.Consumer>
@@ -84,21 +87,20 @@ const ContextModal = (props: ModalProps & { type?: AlertType }) => {
       </Button>
       <Button
         onClick={() => {
-          modal[type]({ title: "Type", content: `${type}` })
+          modal.show({ type: type, title: "Type", children: `${type}` })
         }}
       >
         {type + "button"}
       </Button>
       <Button
         onClick={() => {
-          let instance: ModalReturnProps
-          instance = modal.info({
+          modal.info({
             closable: true,
             closeElement: <button>Close</button>,
-            content: (
+            children: (
               <Button
                 onClick={() => {
-                  instance.close()
+                  modal.warning
                 }}
               >
                 Off
@@ -110,35 +112,6 @@ const ContextModal = (props: ModalProps & { type?: AlertType }) => {
         Open
       </Button>
     </ConfigContext.Provider>
-  )
-}
-
-const APIModal = (props: ModalProps) => {
-  let instance: ModalReturnProps
-  return (
-    <>
-      <Button onClick={() => Modal.confirm({ content: "Hello", ...props })}>
-        Confirm
-      </Button>
-      <Button
-        onClick={() => {
-          instance = Modal.error({
-            content: (
-              <Button
-                onClick={() => {
-                  instance.close()
-                }}
-              >
-                Close with API
-              </Button>
-            ),
-            ...props,
-          })
-        }}
-      >
-        ShowApiModal
-      </Button>
-    </>
   )
 }
 
@@ -184,17 +157,6 @@ it("Modal renders with delay ok", () => {
   cy.findByText("OK")
     .parent()
     .should("have.css", "background-color", "rgb(153, 190, 255)")
-  unmount()
-})
-
-it("Modal api renders with click the OK button", () => {
-  const afterCloseEvent = cy.stub().as("afterCloseEvent")
-  mount(<APIModal title={"Hello"} afterClose={afterCloseEvent} />)
-  cy.findByRole("button", { name: "ShowApiModal" }).click()
-  cy.findByRole("button", { name: "Close with API" })
-    .click()
-    .should("not.exist")
-  cy.get("@afterCloseEvent").should("to.be.called")
   unmount()
 })
 
@@ -290,27 +252,6 @@ describe("Test the onOK event", () => {
     cy.findByRole("button", { name: "Show" }).click()
     cy.findByRole("button", { name: "OK" }).click()
     cy.get("@okReject").should("to.be.called")
-    unmount()
-  })
-
-  it("Modal api renders with onOk event", () => {
-    mount(<APIModal onOk={cy.spy(handlers, "okResolve").as("okResolve")} />)
-    cy.findByRole("button", { name: "Confirm" }).click()
-    cy.findByRole("button", { name: "OK" }).click().should("not.exist")
-    cy.get("@okResolve").should("to.be.called")
-    unmount()
-
-    mount(<APIModal onOk={cy.spy(handlers, "okReject").as("okReject")} />)
-    cy.findByRole("button", { name: "Confirm" }).click()
-    cy.findByRole("button", { name: "OK" }).click()
-    cy.get("@okReject").should("to.be.called")
-    cy.findByRole("button", { name: "Cancel" }).click()
-    unmount()
-
-    mount(<APIModal onOk={cy.spy(handlers, "okNull").as("okNull")} />)
-    cy.findByRole("button", { name: "Confirm" }).click()
-    cy.findByRole("button", { name: "OK" }).click().should("not.exist")
-    cy.get("@okNull").should("to.be.called")
     unmount()
   })
 })

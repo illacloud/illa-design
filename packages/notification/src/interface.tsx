@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from "react"
+import { ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
 
 export type NotificationPosition =
