@@ -1823,6 +1823,15 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@illa-design/anchor@1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@illa-design/anchor/-/anchor-1.0.7.tgz#93572e40dcfca901f3f9d675a8135d6f8debaba7"
+  integrity sha512-xQXtEeFH7PWIN9/rWIUdAikijKbbkVtByScL1fgIDihN4W8fWCHR/E4R8ci+iLZhVIWUpG0AMaS+jRsSNIiANw==
+  dependencies:
+    "@illa-design/affix" "1.0.7"
+    "@illa-design/system" "1.0.7"
+    "@illa-design/theme" "1.0.7"
+
 "@istanbuljs/load-nyc-config@^1.0.0", "@istanbuljs/load-nyc-config@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"
@@ -5836,11 +5845,6 @@ compression@^1.7.4:
     on-headers "~1.0.2"
     safe-buffer "5.1.2"
     vary "~1.1.2"
-
-compute-scroll-into-view@^1.0.17:
-  version "1.0.17"
-  resolved "https://registry.yarnpkg.com/compute-scroll-into-view/-/compute-scroll-into-view-1.0.17.tgz#6a88f18acd9d42e9cf4baa6bec7e0522607ab7ab"
-  integrity sha512-j4dx+Fb0URmzbwwMUrhqWM2BEWHdFGx+qZ9qqASHRPqvTYdqvWnHg0H1hIbcyLnvgnoNAVMlwkepyqM3DaIFUg==
 
 concat-map@0.0.1:
   version "0.0.1"
