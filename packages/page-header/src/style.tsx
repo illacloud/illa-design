@@ -21,7 +21,7 @@ export const backIconCss = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  &: hover {
+  &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `
