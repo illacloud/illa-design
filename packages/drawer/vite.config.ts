@@ -50,6 +50,7 @@ export default defineConfig({
         "@illa-design/icon",
         "@illa-design/button",
         "@illa-design/config-provider",
+        "react-remove-scroll",
       ],
       output: {
         globals: {
@@ -59,6 +60,7 @@ export default defineConfig({
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/button": "@illa-design/button",
+          "react-remove-scroll": "react-remove-scroll",
           "@illa-design/config-provider": "@illa-design/config-provider",
         },
       },
