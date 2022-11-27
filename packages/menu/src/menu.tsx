@@ -93,7 +93,7 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
       }
       setOpenKeys(accordion ? validOpenKeys.slice(0, 1) : validOpenKeys)
       prevInlineMenuKeys.current = inlineMenuKeys.current.slice()
-    }, [inlineMenuKeys.current.toString()])
+    }, [accordion, autoOpen, openKeys, setOpenKeys])
 
     function renderChildren() {
       const childrenList = processChildren(children as ReactElement, {

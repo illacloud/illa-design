@@ -43,7 +43,7 @@
     "@illa-design/system": "1.0.7",
     "chroma-js": "^2.1.2",
     "color": "^4.2.3",
-    "framer-motion": "^6.5.1",
+    "framer-motion": "^7.6.12",
     "react-use-measure": "^2.1.1",
     "@juggle/resize-observer": "^3.4.0",
     "debounce": "^1.2.1"

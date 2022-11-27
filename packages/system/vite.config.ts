@@ -50,6 +50,7 @@ export default defineConfig({
         "react-fast-compare",
         "react-focus-lock",
         "react-use",
+        "uuid",
       ],
       output: {
         globals: {
@@ -60,6 +61,7 @@ export default defineConfig({
           "react-fast-compare": "react-fast-compare",
           "react-focus-lock": "react-focus-lock",
           "react-use": "react-use",
+          uuid: "uuid",
         },
       },
     },

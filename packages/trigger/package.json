@@ -43,6 +43,6 @@
     "@illa-design/config-provider": "1.0.7",
     "@illa-design/theme": "1.0.7",
     "@illa-design/system": "1.0.7",
-    "@floating-ui/react-dom-interactions": "^0.9.3"
+    "@floating-ui/react-dom-interactions": "^0.12.0"
   }
 }

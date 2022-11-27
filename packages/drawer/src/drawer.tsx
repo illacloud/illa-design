@@ -97,45 +97,49 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
     )
   }
 
-  return createPortal(
-    <AnimatePresence>
-      {visible && (
-        <div ref={ref} css={applyDrawerWrapper(true)}>
-          {mask ? (
-            <motion.div
-              variants={maskAnimation}
-              animate="animate"
-              exit="exit"
-              initial="initial"
-              transition={{ duration: 0.3 }}
-              css={applyDrawerMask}
-              onClick={(e) => {
-                maskClosable && onCancel && onCancel(e)
-              }}
-            />
-          ) : null}
-          <motion.div
-            variants={applyDrawerSlider(placement)}
-            animate="animate"
-            exit="exit"
-            initial="initial"
-            transition={{ duration: 0.3 }}
-            css={[applyDrawerStyle(w, h, placement), applyBoxStyle(props)]}
-            onAnimationComplete={(definition) => {
-              if (definition === "animate") {
-                afterOpen?.()
-              }
-              if (definition === "exit") {
-                afterClose?.()
-              }
-            }}
-          >
-            {renderDrawer()}
-          </motion.div>
-        </div>
+  return (
+    <>
+      {createPortal(
+        <AnimatePresence>
+          {visible && (
+            <div ref={ref} css={applyDrawerWrapper(true)}>
+              {mask ? (
+                <motion.div
+                  variants={maskAnimation}
+                  animate="animate"
+                  exit="exit"
+                  initial="initial"
+                  transition={{ duration: 0.3 }}
+                  css={applyDrawerMask}
+                  onClick={(e) => {
+                    maskClosable && onCancel && onCancel(e)
+                  }}
+                />
+              ) : null}
+              <motion.div
+                variants={applyDrawerSlider(placement)}
+                animate="animate"
+                exit="exit"
+                initial="initial"
+                transition={{ duration: 0.3 }}
+                css={[applyDrawerStyle(w, h, placement), applyBoxStyle(props)]}
+                onAnimationComplete={(definition) => {
+                  if (definition === "animate") {
+                    afterOpen?.()
+                  }
+                  if (definition === "exit") {
+                    afterClose?.()
+                  }
+                }}
+              >
+                {renderDrawer()}
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body,
       )}
-    </AnimatePresence>,
-    document.body,
+    </>
   )
 })
 

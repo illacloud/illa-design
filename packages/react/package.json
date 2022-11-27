@@ -82,7 +82,6 @@
     "@illa-design/modal": "1.0.7",
     "@illa-design/steps": "1.0.7",
     "@illa-design/back-top": "1.0.7",
-    "@illa-design/tree": "1.0.7",
     "@illa-design/drawer": "1.0.7",
     "@illa-design/collapse": "1.0.7",
     "@illa-design/table": "1.0.7",
@@ -93,7 +92,6 @@
     "@illa-design/menu": "1.0.7",
     "@illa-design/loading": "1.0.7",
     "@illa-design/tabs": "1.0.7",
-    "@illa-design/skeleton": "1.0.7",
-    "@illa-design/tree-select": "1.0.7"
+    "@illa-design/skeleton": "1.0.7"
   }
 }
