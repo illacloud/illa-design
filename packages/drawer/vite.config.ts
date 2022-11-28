@@ -51,6 +51,7 @@ export default defineConfig({
         "@illa-design/button",
         "@illa-design/config-provider",
         "react-remove-scroll",
+        "react-focus-lock",
       ],
       output: {
         globals: {
@@ -62,6 +63,7 @@ export default defineConfig({
           "@illa-design/button": "@illa-design/button",
           "react-remove-scroll": "react-remove-scroll",
           "@illa-design/config-provider": "@illa-design/config-provider",
+          "react-focus-lock": "react-focus-lock",
         },
       },
     },

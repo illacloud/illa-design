@@ -28,7 +28,7 @@ export default {
 
 const Template: Story<AlertProps> = (args) => {
   return (
-    <>
+    <Space direction="horizontal">
       <Alert {...args} style={{ marginBottom: "12px" }} />
       <Alert
         {...args}
@@ -41,7 +41,7 @@ const Template: Story<AlertProps> = (args) => {
           </Space>
         }
       />
-    </>
+    </Space>
   )
 }
 

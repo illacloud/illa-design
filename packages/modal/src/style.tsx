@@ -1,7 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { Variants } from "framer-motion"
-import { iconColorMap } from "@illa-design/alert"
 import { ModalAlignType } from "./interface"
 
 export const applyModalMask = css`
@@ -20,6 +19,7 @@ export const applyModalContainer = css`
   right: 0;
   top: 0;
   bottom: 0;
+  z-index: ${zIndex.modal};
 `
 
 export function applyModal(): SerializedStyles {
@@ -136,24 +136,6 @@ export function applyModalFooter(
 export const applyModalCancelBtn = css`
   margin-right: 8px;
 `
-
-export function applyModalConfirmTitle(
-  type: keyof typeof iconColorMap,
-): SerializedStyles {
-  return css`
-    position: relative;
-    padding-left: 24px;
-    display: inline-block;
-
-    > svg {
-      color: ${iconColorMap[type]};
-      position: absolute;
-      line-height: 0;
-      top: 4px;
-      left: 0;
-    }
-  `
-}
 
 export const maskAnimation: Variants = {
   initial: {

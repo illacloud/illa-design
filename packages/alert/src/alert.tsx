@@ -1,4 +1,11 @@
-import { forwardRef, MouseEvent, ReactNode, useMemo, useState } from "react"
+import {
+  forwardRef,
+  MouseEvent,
+  ReactNode,
+  useCallback,
+  useMemo,
+  useState,
+} from "react"
 import { AlertProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
 import {
@@ -75,10 +82,13 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     return icon ? icon : iconMap[type]
   }, [icon, type])
 
-  const onHandleClose = (e: MouseEvent) => {
-    setVisible(false)
-    onClose && onClose(e)
-  }
+  const onHandleClose = useCallback(
+    (e: MouseEvent) => {
+      setVisible(false)
+      onClose?.(e)
+    },
+    [onClose],
+  )
 
   return (
     <AnimatePresence>

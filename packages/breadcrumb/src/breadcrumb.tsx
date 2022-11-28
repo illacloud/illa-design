@@ -1,11 +1,10 @@
 import { Children, forwardRef, Fragment } from "react"
 import { BreadcrumbProps } from "./interface"
 import { css } from "@emotion/react"
-import { separatorCss, itemCss, wrapCss } from "./style"
+import { itemCss, separatorCss, wrapCss } from "./style"
 import { BreadcrumbContext } from "./breadcrumb-context"
 import { BreadcrumbItem } from "./breadcrumbItem"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
   (props, ref) => {
@@ -17,8 +16,7 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
 
     const renderItem = (list: any, idx: number) => {
       if (!maxCount || list.length < maxCount) return true
-      if (idx === 0 || idx > list.length - maxCount) return true
-      return false
+      return idx === 0 || idx > list.length - maxCount
     }
 
     const routeItems =
