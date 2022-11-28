@@ -88,7 +88,7 @@ export function applyFilterInput(
 ): SerializedStyles {
   if (!stateValue?.focus) {
     return css`
-      &:not(:first-child) {
+      &:not(:first-of-type) {
         width: 0 !important;
         position: absolute;
         bottom: 0;
