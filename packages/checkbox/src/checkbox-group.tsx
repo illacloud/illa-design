@@ -62,7 +62,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
           e,
         )
       },
-      [currentValue, onChange, allOptionValues],
+      [currentValue, setCurrentValue, onChange, allOptionValues],
     )
 
     return (
