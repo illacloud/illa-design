@@ -1,5 +1,10 @@
 import { TableData } from "./table-data"
-import { FilterOptionsState, TableContextProps, TableProps } from "./interface"
+import {
+  FilterOperator,
+  FilterOptionsState,
+  TableContextProps,
+  TableProps,
+} from "./interface"
 import { ReactElement, useCallback, useEffect, useMemo, useState } from "react"
 import {
   ColumnDef,
@@ -30,6 +35,7 @@ import {
   notEqualTo,
   notLessThan,
   notMoreThan,
+  customGlobalFn,
   transformTableIntoCsvData,
 } from "./utils"
 import { isNumber, isString } from "@illa-design/system"
@@ -113,6 +119,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [filterOperator, setFilterOperator] = useState<FilterOperator>("and")
   const [filterOption, setFilterOption] = useState<FilterOptionsState>([
     { id: "", value: "" },
   ])
@@ -195,7 +202,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     },
     state: {
       columnVisibility,
-      columnFilters,
+      globalFilter: { filters: columnFilters, operator: filterOperator },
       sorting,
       rowSelection,
       pagination: {
@@ -205,6 +212,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     },
     enableColumnFilters: true,
     enableSorting: !disableSortBy,
+    globalFilterFn: customGlobalFn,
     onPaginationChange: (pagination) => {
       setPagination(pagination)
       onPaginationChange?.(pagination)
@@ -493,11 +501,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 trigger={"click"}
                 content={
                   <FiltersEditor
+                    filterOperator={filterOperator}
                     columnFilters={filterOption}
                     columnsOption={ColumnsOption}
                     onChange={(index, filters) => {
                       addOrUpdateFilters(index, filters)
                     }}
+                    onChangeOperator={setFilterOperator}
                     onChangeFilterFn={updateColumns}
                     onAdd={addOrUpdateFilters}
                     onDelete={(index, filters) => {

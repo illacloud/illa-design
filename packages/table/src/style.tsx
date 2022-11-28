@@ -196,7 +196,7 @@ export const filterStyle = css`
 `
 
 export const filterLabelStyle = css`
-  width: 48px;
+  width: 90px;
 `
 
 export const editorStyle = css`
