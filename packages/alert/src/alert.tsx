@@ -108,7 +108,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
       }
     }
     return <></>
-  }, [icon, showIcon, type])
+  }, [content, icon, showIcon, type])
 
   const onHandleClose = useCallback(
     (e: MouseEvent) => {
