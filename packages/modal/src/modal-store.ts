@@ -7,6 +7,7 @@ export interface ModalHandler {
   success: (message: ModalProps) => string
   warning: (message: ModalProps) => string
   show: (message: ModalProps) => string
+  update: (modalId: string, modal: ModalProps) => void
 }
 
 export interface SubListener {

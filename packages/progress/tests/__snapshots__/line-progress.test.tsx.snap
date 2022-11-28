@@ -239,6 +239,9 @@ exports[`Progress renders with colors 4`] = `
 }
 
 .emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
   -webkit-box-flex-wrap: nowrap;
@@ -255,6 +258,9 @@ exports[`Progress renders with colors 4`] = `
 }
 
 .emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   margin-right: 4px;
   margin-bottom: 0px;
@@ -268,6 +274,9 @@ exports[`Progress renders with colors 4`] = `
 }
 
 .emotion-8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
@@ -382,6 +391,9 @@ exports[`Progress renders with colors 5`] = `
 }
 
 .emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
   -webkit-box-flex-wrap: nowrap;
@@ -398,6 +410,9 @@ exports[`Progress renders with colors 5`] = `
 }
 
 .emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   margin-right: 4px;
   margin-bottom: 0px;
@@ -411,6 +426,9 @@ exports[`Progress renders with colors 5`] = `
 }
 
 .emotion-8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
@@ -525,6 +543,9 @@ exports[`Progress renders with colors 6`] = `
 }
 
 .emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
   -webkit-box-flex-wrap: nowrap;
@@ -541,6 +562,9 @@ exports[`Progress renders with colors 6`] = `
 }
 
 .emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   margin-right: 4px;
   margin-bottom: 0px;
@@ -554,6 +578,9 @@ exports[`Progress renders with colors 6`] = `
 }
 
 .emotion-8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
@@ -739,6 +766,9 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle;
   -webkit-box-flex-wrap: nowrap;
@@ -755,6 +785,9 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   margin-right: 4px;
   margin-bottom: 0px;
@@ -768,6 +801,9 @@ exports[`Progress renders with steps 1`] = `
 }
 
 .emotion-8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   margin-right: 0px;
   margin-bottom: 0px;
