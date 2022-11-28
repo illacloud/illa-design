@@ -1,12 +1,13 @@
-import { forwardRef, useContext } from "react"
+import { forwardRef, useCallback, useContext, useMemo } from "react"
 import { BreadcrumbItemProps } from "./interface"
 import { itemCss, itemCurrentCss, itemHoverCss } from "./style"
 import { css } from "@emotion/react"
 import { BreadcrumbContext } from "./breadcrumb-context"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+
+const { Item } = Menu
 
 export const BreadcrumbItem = forwardRef<HTMLDivElement, BreadcrumbItemProps>(
   (props, ref) => {
@@ -15,25 +16,27 @@ export const BreadcrumbItem = forwardRef<HTMLDivElement, BreadcrumbItemProps>(
     const { isCurrent, path, breadcrumbName, children } =
       useContext(BreadcrumbContext)
 
-    const { Item } = Menu
-
-    const dropItem = children?.length && (
-      <Menu>
-        {children.map((cItem: any, cIdx: number) => {
-          return <Item key={cIdx + ""} title={cItem.breadcrumbName}></Item>
-        })}
-      </Menu>
-    )
+    const dropItem = useMemo(() => {
+      return (
+        children?.length && (
+          <Menu>
+            {children.map((cItem: any, cIdx: number) => {
+              return <Item key={cIdx + ""} title={cItem.breadcrumbName}></Item>
+            })}
+          </Menu>
+        )
+      )
+    }, [children])
 
     const finalDrop = dropList || dropItem
 
-    const handleItemCss = () => {
+    const handleItemCss = useCallback(() => {
       return css`
         ${itemCss};
         ${isCurrent && itemCurrentCss};
         ${path && itemHoverCss}
       `
-    }
+    }, [isCurrent, path])
 
     const item = (
       <div
