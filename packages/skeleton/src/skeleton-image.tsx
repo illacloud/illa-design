@@ -2,7 +2,7 @@ import { SkeletonImageProps } from "./interface"
 import { applyAnimation, applyImageStyle } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
-export function Image(props: SkeletonImageProps) {
+export function SkeletonImage(props: SkeletonImageProps) {
   const { shape = "circle", size = "medium", animation, ...restProps } = props
 
   return (
@@ -16,3 +16,5 @@ export function Image(props: SkeletonImageProps) {
     />
   )
 }
+
+SkeletonImage.displayName = "SkeletonImage"
