@@ -8,13 +8,13 @@ export interface AlertProps
     BoxProps {
   action?: ReactNode
   closable?: boolean
+  showIcon?: boolean
+  banner?: boolean
+  type?: AlertType
   onClose?: (event: MouseEvent) => void
   afterClose?: () => void
-  type?: AlertType
   title?: ReactNode
   content?: ReactNode
   icon?: ReactNode
   closeElement?: ReactNode
-  showIcon?: boolean
-  banner?: boolean
 }
