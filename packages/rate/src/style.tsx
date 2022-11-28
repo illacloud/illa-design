@@ -15,7 +15,11 @@ export const rateScale = keyframes`
   }
 `
 export function applyRate(disabled: boolean): SerializedStyles {
-  const cursor = disabled ? `cursor: not-allowed;` : ""
+  const cursor = disabled
+    ? css`
+        cursor: not-allowed;
+      `
+    : css``
   return css`
     display: inline-block;
     user-select: none;
@@ -27,7 +31,6 @@ export const applyRateInner = css`
   display: flex;
   align-items: center;
   font-size: 24px;
-  line-height: 1;
   min-height: 32px;
 `
 

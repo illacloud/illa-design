@@ -30,7 +30,7 @@ test("Card renders with different hoverable", () => {
 })
 
 test("Card renders with Meta", () => {
-  render(
+  const { asFragment } = render(
     <CardMeta
       title="CardMeta"
       description="MetaContent"
@@ -40,12 +40,9 @@ test("Card renders with Meta", () => {
         <ShareIcon key="share" />,
         <MoreIcon key="more" />,
       ]}
-    ></CardMeta>,
+    />,
   )
-  expect(screen.getByText("CardMeta").parentNode?.parentNode).toMatchSnapshot()
-  expect(screen.getByText("CardMeta").parentNode?.nextSibling).toHaveStyle({
-    marginTop: 16,
-  })
+  expect(asFragment()).toMatchSnapshot()
 })
 
 test("Card renders with Cover", () => {

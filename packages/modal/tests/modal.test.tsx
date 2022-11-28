@@ -3,50 +3,11 @@ import { Modal, ModalGroup, useModal } from "../src"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
+jest.mock("uuid", () => ({ v4: () => `${Math.random()}` }))
+
 test("Modal renders with title ", () => {
   render(<Modal visible={true} title={"Modal Title"} />)
   expect(screen.getByText("Modal Title")).toBeInTheDocument()
-})
-
-test("Modal renders by modal api", () => {
-  render(<ModalGroup />)
-  const modal = useModal()
-  const modalId = modal.info({
-    visible: true,
-    title: "Info",
-    children: "A message",
-  })
-  expect(screen.getByText("Info").firstElementChild).toHaveStyle({
-    position: "absolute",
-  })
-  const ele = screen.getByText("A message")
-  expect(ele).toBeInTheDocument()
-  modal.update(modalId, { children: "new message" })
-  const newEle = screen.getByText("new message")
-  expect(ele).toBe(newEle)
-})
-
-test("Modal api renders with config", () => {
-  render(<ModalGroup />)
-  const modal = useModal()
-  modal.warning({
-    visible: true,
-    title: "Warning",
-    children: "A message",
-    // @ts-ignore
-    "data-testid": "warn",
-  })
-  expect(screen.getByTestId("warn").firstChild).toHaveStyle({ width: "400px" })
-  modal.success({
-    visible: true,
-    title: "Success",
-    children: "A message",
-    // @ts-ignore
-    "data-testid": "success",
-  })
-  expect(screen.getByTestId("success").firstChild).toHaveStyle({
-    width: "520px",
-  })
 })
 
 test("Modal renders with withoutPadding ", () => {

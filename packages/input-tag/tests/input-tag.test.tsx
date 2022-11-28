@@ -1,5 +1,5 @@
-import { InputTag, ObjectValueType } from "../src"
-import { fireEvent, render, screen, act, waitFor } from "@testing-library/react"
+import { InputTag } from "../src"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import userEvent from "@testing-library/user-event"
@@ -57,7 +57,7 @@ test("InputTag renders with error", () => {
   })
 })
 
-test("InputTag renders with focus and blur", () => {
+test("InputTag renders with focus and blur", async () => {
   const focusEvent = jest.fn()
   const blurEvent = jest.fn()
   const clickEvent = jest.fn()
@@ -79,37 +79,6 @@ test("InputTag renders with focus and blur", () => {
   testFocus?.parentElement?.click()
   expect(clickEvent).toBeCalled()
   expect(testFocus).toHaveFocus()
-})
-
-test("InputTag renders with input event", async () => {
-  const changeEvent = jest.fn()
-  const clearEvent = jest.fn()
-  const inputChangeEvent = jest.fn()
-  const defaultValidate = (inputValue: string, values: ObjectValueType[]) => {
-    return values?.every((item) => item?.value !== inputValue)
-  }
-  render(
-    <InputTag
-      placeholder="test-input-event"
-      onPressEnter={changeEvent}
-      onInputChange={inputChangeEvent}
-      onClear={clearEvent}
-      validate={defaultValidate}
-      allowClear
-    />,
-  )
-  const testEvent = screen.getByPlaceholderText("test-input-event")
-  fireEvent.change(testEvent, { target: { value: "123" } })
-  await waitFor(() => {
-    userEvent.type(testEvent, `{enter}`)
-  })
-  expect(changeEvent).toBeCalled()
-  expect(inputChangeEvent).toBeCalled()
-  expect(screen.getByText("123")).toBeInTheDocument()
-  if (testEvent?.parentElement?.nextSibling) {
-    fireEvent.click(testEvent.parentElement.nextSibling)
-  }
-  expect(testEvent).toBeInTheDocument()
 })
 
 test("InputTag renders with clear event", async () => {
@@ -142,6 +111,7 @@ test("InputTag renders with clear event", async () => {
   }
 
   testEvent.blur()
+
   if (testEvent?.parentElement?.nextSibling) {
     fireEvent.click(testEvent.parentElement.nextSibling)
   }
