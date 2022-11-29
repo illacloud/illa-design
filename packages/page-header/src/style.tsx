@@ -1,11 +1,11 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 
 export const headerCss = css`
   display: flex;
-  line-height: 28px;
-  justify-content: space-between;
-  margin-top: 10px;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 8px;
 `
 export const headerLeftCss = css`
   display: flex;
@@ -25,18 +25,28 @@ export const backIconCss = css`
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `
-export const titleCss = css`
-  font-size: 20px;
+
+export const titleStyle = css`
+  margin-left: 16px;
+  height: 28px;
+  flex-grow: 0;
   font-weight: 600;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  font-size: 20px;
+  color: ${getColor("grayBlue", "02")};
 `
+
 export const separateCss = css`
   width: 1px;
   margin: 0 12px;
   height: 16px;
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  background-color: ${getColor("grayBlue", "08")};
 `
+
 export const subTitleCss = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   font-size: 14px;
+`
+
+export const divideStyle = css`
+  flex-grow: 1;
 `

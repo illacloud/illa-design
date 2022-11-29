@@ -1,16 +1,16 @@
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import { PageHeaderProps } from "./interface"
 import {
-  backIconCss,
+  divideStyle,
   headerCss,
-  headerLeftCss,
   separateCss,
   subTitleCss,
-  titleCss,
+  titleStyle,
 } from "./style"
 import { Breadcrumb } from "@illa-design/breadcrumb"
 import { PreIcon } from "@illa-design/icon"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { Divider } from "@illa-design/divider"
 
 export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
   (props, ref) => {
@@ -24,26 +24,41 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
       ...otherProps
     } = props
 
-    const backEle = backIcon === true ? <PreIcon /> : backIcon
+    const backEle = useMemo(() => {
+      return typeof backIcon === "boolean" ? (
+        backIcon ? (
+          <PreIcon
+            onClick={(e) => {
+              onBack?.(e)
+            }}
+          />
+        ) : (
+          <span
+            onClick={(e) => {
+              onBack?.(e)
+            }}
+          >
+            {backIcon}
+          </span>
+        )
+      ) : (
+        <></>
+      )
+    }, [backIcon, onBack])
 
     return (
       <div ref={ref} css={applyBoxStyle(props)} {...deleteCssProps(otherProps)}>
         {breadcrumb && <Breadcrumb {...breadcrumb} />}
         <div css={headerCss}>
-          <div css={headerLeftCss}>
-            {backIcon && (
-              <div css={backIconCss} onClick={onBack}>
-                {backEle}
-              </div>
-            )}
-            {title && <div css={titleCss}>{title}</div>}
-            {subTitle && (
-              <>
-                <span css={separateCss}></span>
-                <div css={subTitleCss}>{subTitle}</div>
-              </>
-            )}
-          </div>
+          {backEle}
+          {title && <div css={titleStyle}>{title}</div>}
+          {subTitle && (
+            <>
+              <Divider direction="vertical" ml="12px" mr="12px" />
+              <div css={subTitleCss}>{subTitle}</div>
+            </>
+          )}
+          <div css={divideStyle} />
           {extra}
         </div>
       </div>
