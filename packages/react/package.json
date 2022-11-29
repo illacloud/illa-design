@@ -92,6 +92,8 @@
     "@illa-design/menu": "1.0.7",
     "@illa-design/loading": "1.0.7",
     "@illa-design/tabs": "1.0.7",
-    "@illa-design/skeleton": "1.0.7"
+    "@illa-design/skeleton": "1.0.7",
+    "@illa-design/dropdown": "1.0.7",
+    "@illa-design/cascader": "1.0.7"
   }
 }
