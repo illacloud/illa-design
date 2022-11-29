@@ -3,7 +3,7 @@ import { SkeletonTextProps } from "./interface"
 import { applyAnimation, applyLineStyle, textContainerStyle } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
-export function Text(props: SkeletonTextProps) {
+export function SkeletonText(props: SkeletonTextProps) {
   const { rows = 3, width = "80%", animation, ...restProps } = props
 
   const lines = Array.from({ length: rows }, (_, idx) => {
@@ -32,3 +32,5 @@ export function Text(props: SkeletonTextProps) {
     </ul>
   )
 }
+
+SkeletonText.displayName = "SkeletonText"

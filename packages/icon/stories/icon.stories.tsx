@@ -98,6 +98,7 @@ import {
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
+  SlashIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -365,6 +366,10 @@ export const String: Story<IconProps> = (props: IconProps) => (
 
 export const Drag: Story<IconProps> = (props: IconProps) => (
   <DragIcon {...props} />
+)
+
+export const Slash: Story<IconProps> = (props: IconProps) => (
+  <SlashIcon {...props} />
 )
 
 export const Docs: Story<IconProps> = (props: IconProps) => (

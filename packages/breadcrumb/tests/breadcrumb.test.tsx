@@ -1,26 +1,20 @@
 import { Breadcrumb, BreadcrumbItem } from "../src"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { PreIcon } from "@illa-design/icon"
 
-test("base Breadcrumb ", () => {
-  render(
+test("Breadcrumb renders correctly.", () => {
+  const { asFragment } = render(
     <Breadcrumb>
       <BreadcrumbItem>Home</BreadcrumbItem>
       <BreadcrumbItem>Channel</BreadcrumbItem>
       <BreadcrumbItem>News</BreadcrumbItem>
     </Breadcrumb>,
   )
-  expect(screen.getByText("Home")).toBeInTheDocument()
-  expect(screen.getByText("Channel")).toBeInTheDocument()
-  expect(screen.getByText("Channel")).toBeInTheDocument()
-  expect(screen.getAllByText("/")[1]).toHaveStyle({
-    color: globalColor(`--${illaPrefix}-grayBlue-06`),
-  })
+  expect(asFragment()).toBeInTheDocument()
 })
 
-test("separator custom", () => {
+test("Breadcrumb renders with custom separator.", () => {
   render(
     <Breadcrumb separator={">"}>
       <BreadcrumbItem>Home</BreadcrumbItem>
@@ -38,7 +32,7 @@ test("separator custom", () => {
   expect(screen.getByTitle("PreIcon")).toBeInTheDocument()
 })
 
-test("render from routes", () => {
+test("Breadcrumb renders with custom routes.", () => {
   const routes = [
     {
       path: "/",
@@ -54,7 +48,7 @@ test("render from routes", () => {
   expect(screen.getByText("Channel")).toBeInTheDocument()
 })
 
-test("maxCount", () => {
+test("Breadcrumb renders with custom max count.", () => {
   render(
     <Breadcrumb maxCount={3}>
       <BreadcrumbItem>Home</BreadcrumbItem>

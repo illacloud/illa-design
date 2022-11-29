@@ -1,11 +1,4 @@
-import {
-  forwardRef,
-  MouseEvent,
-  ReactNode,
-  useCallback,
-  useMemo,
-  useState,
-} from "react"
+import { forwardRef, MouseEvent, useCallback, useMemo, useState } from "react"
 import { AlertProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
 import {
@@ -16,23 +9,15 @@ import {
   WarningCircleIcon,
 } from "@illa-design/icon"
 import {
-  applyAlert,
-  applyAlertAction,
-  applyAlertCloseBtn,
   applyAlertContainer,
-  applyAlertContent,
-  applyAlertContentWrapper,
-  applyAlertIcon,
-  applyAlertTitle,
+  closeIconStyle,
+  contentStyle,
+  iconColorMap,
+  leftContentStyle,
+  leftIconStyle,
+  titleStyle,
 } from "./style"
-import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
-
-const iconMap = {
-  info: <InfoCircleIcon />,
-  success: <SuccessCircleIcon />,
-  warning: <WarningCircleIcon />,
-  error: <ErrorIcon />,
-}
+import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 
 const variants = {
   enter: {
@@ -74,13 +59,56 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     onClose,
     afterClose,
     ...restProps
-  }: AlertProps & { children?: ReactNode | undefined } = props
+  } = props
 
   const [visible, setVisible] = useState<boolean>(true)
 
-  const renderIcon = useMemo(() => {
-    return icon ? icon : iconMap[type]
-  }, [icon, type])
+  const leftIcon = useMemo(() => {
+    if (showIcon) {
+      if (icon) {
+        return <span css={leftIconStyle}>{icon}</span>
+      }
+      switch (type) {
+        case "success":
+          return (
+            <SuccessCircleIcon
+              mr="8px"
+              fs="16px"
+              mt={content ? "2px" : "0"}
+              c={iconColorMap["success"]}
+            />
+          )
+        case "warning":
+          return (
+            <WarningCircleIcon
+              mr="8px"
+              fs="16px"
+              mt={content ? "2px" : "0"}
+              c={iconColorMap["warning"]}
+            />
+          )
+        case "error":
+          return (
+            <ErrorIcon
+              mr="8px"
+              fs="16px"
+              mt={content ? "2px" : "0"}
+              c={iconColorMap["error"]}
+            />
+          )
+        case "info":
+          return (
+            <InfoCircleIcon
+              mr="8px"
+              fs="16px"
+              mt={content ? "2px" : "0"}
+              c={iconColorMap["info"]}
+            />
+          )
+      }
+    }
+    return <></>
+  }, [content, icon, showIcon, type])
 
   const onHandleClose = useCallback(
     (e: MouseEvent) => {
@@ -94,7 +122,10 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     <AnimatePresence>
       {visible && (
         <motion.div
-          css={[applyAlertContainer(type, banner), applyBoxStyle(restProps)]}
+          css={[
+            applyAlertContainer(type, banner, content !== undefined),
+            applyBoxStyle(restProps),
+          ]}
           variants={variants}
           animate={"show"}
           exit={"hidden"}
@@ -102,31 +133,22 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
           ref={ref}
           onAnimationComplete={(definition) => {
             if (definition === "hidden") {
-              afterClose && afterClose()
+              afterClose?.()
             }
           }}
+          {...deleteCssProps(restProps)}
         >
-          <div
-            css={applyAlert(!!content, showIcon, closable)}
-            {...deleteCssProps(restProps)}
-          >
-            {showIcon && (
-              <div css={applyAlertIcon(type, !!content)}>{renderIcon}</div>
-            )}
-            <div css={applyAlertContentWrapper}>
-              {title && <div css={applyAlertTitle(!!content)}>{title}</div>}
-              {content && <div css={applyAlertContent}>{content}</div>}
-            </div>
-            {action && <div css={applyAlertAction}>{action}</div>}
-            {closable && (
-              <div
-                css={applyAlertCloseBtn(type, !!content)}
-                onClick={onHandleClose}
-              >
-                {closeElement || <CloseIcon />}
-              </div>
-            )}
+          {leftIcon}
+          <div css={leftContentStyle}>
+            {title && <div css={titleStyle}>{title}</div>}
+            {content && <div css={contentStyle}>{content}</div>}
           </div>
+          {action}
+          {closable && (
+            <div css={closeIconStyle} onClick={onHandleClose}>
+              {closeElement || <CloseIcon c={iconColorMap[type]} fs="8px" />}
+            </div>
+          )}
         </motion.div>
       )}
     </AnimatePresence>

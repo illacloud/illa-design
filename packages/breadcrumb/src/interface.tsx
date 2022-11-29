@@ -20,18 +20,10 @@ export interface BreadcrumbProps
 }
 
 export interface BreadcrumbItemProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends HTMLAttributes<HTMLAnchorElement>,
     BoxProps {
+  last?: boolean
+  href?: string
   dropList?: ReactNode
   dropdownProps?: DropdownProps
-}
-
-export interface BreadcrumbContextProps {
-  isCurrent: boolean
-  path?: string
-  breadcrumbName?: string
-  children?: {
-    path?: string
-    breadcrumbName?: string
-  }[]
 }

@@ -1,17 +1,25 @@
 import { css, keyframes, SerializedStyles } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor } from "@illa-design/theme"
 import { SpinColorScheme, SpinSize } from "./interface"
 
-export const containerCss = css`
-  display: inline-flex;
-  position: relative;
-`
+export function applyContainerStyle(block?: boolean): SerializedStyles {
+  return css`
+    display: ${block ? "inline-flex" : "flex"};
+    position: relative;
+  `
+}
 
-export const tipCss = css`
-  size: 14px;
-  line-height: 22px;
-  color: ${globalColor(`--${illaPrefix}-blue-03`)};
-`
+export function applyTipsStyle(
+  colorScheme: SpinColorScheme,
+  size: SpinSize,
+): SerializedStyles {
+  return css`
+    size: ${size === "small" ? "12px" : "14px"};
+    margin-top: 8px;
+    line-height: 22px;
+    color: ${getColor(colorScheme, "03")};
+  `
+}
 
 export function applySizeCss(
   size: SpinSize,
@@ -38,9 +46,9 @@ export function applySizeCss(
   const animationCss = loading ? rotateAnimation : null
 
   return css`
+    color: ${getColor(colorScheme, "03")};
     ${animationCss};
     ${sizeCss};
-    color: ${getColor(colorScheme, "03")};
   `
 }
 
@@ -51,7 +59,7 @@ export function applySpinContainerCss(
     let background
     if (loading) {
       background = css`
-        background-color: ${globalColor(`--${illaPrefix}-white-03`)};
+        background-color: ${getColor("white", "03")};
       `
     }
     return css`
@@ -60,9 +68,12 @@ export function applySpinContainerCss(
       position: absolute;
       top: 0;
       left: 0;
+      right: 0;
+      bottom: 0;
       display: inline-flex;
       justify-content: center;
       align-items: center;
+      transition: opacity 0.1s linear;
       width: 100%;
       height: 100%;
     `

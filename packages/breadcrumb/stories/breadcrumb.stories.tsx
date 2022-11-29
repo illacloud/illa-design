@@ -1,13 +1,13 @@
 import { Meta, Story } from "@storybook/react"
-import { Breadcrumb, BreadcrumbProps } from "../src"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbProps } from "../src"
+import { AiFillHome } from "react-icons/all"
 
 export default {
   title: "NAVIGATION/Breadcrumb",
   component: Breadcrumb,
-  args: {},
 } as Meta
 
-const Template: Story<BreadcrumbProps> = (args) => {
+export const Basic: Story<BreadcrumbProps> = (args: BreadcrumbProps) => {
   const routes = [
     {
       path: "/",
@@ -32,7 +32,18 @@ const Template: Story<BreadcrumbProps> = (args) => {
       breadcrumbName: "News",
     },
   ]
-  return <Breadcrumb routes={routes} {...args} />
+  return <Breadcrumb {...args} routes={routes} {...args} />
 }
 
-export const Basic = Template.bind({})
+export const Children: Story<BreadcrumbProps> = (args: BreadcrumbProps) => {
+  return (
+    <Breadcrumb {...args}>
+      <BreadcrumbItem>
+        <AiFillHome />
+      </BreadcrumbItem>
+      <BreadcrumbItem href="/home">Home</BreadcrumbItem>
+      <BreadcrumbItem href="/channel">Channel</BreadcrumbItem>
+      <BreadcrumbItem href="/news">News</BreadcrumbItem>
+    </Breadcrumb>
+  )
+}
