@@ -4,37 +4,42 @@ import { Variants } from "framer-motion"
 import { ModalAlignType } from "./interface"
 
 export const applyModalMask = css`
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   background-color: ${globalColor(`--${illaPrefix}-blackAlpha-02`)};
 `
 
 export const applyModalContainer = css`
   position: fixed;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  align-items: center;
+  overflow: auto;
+  text-align: center;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   z-index: ${zIndex.modal};
+  &:after {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 100%;
+    content: "";
+  }
 `
 
 export function applyModal(): SerializedStyles {
   return css`
-    display: inline-flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100px;
-    margin-bottom: 100px;
-    overflow: auto;
-    max-height: calc(100% - 200px);
+    box-sizing: content-box;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    overflow: hidden;
     min-width: 520px;
-    text-align: left;
-    white-space: initial;
-    box-sizing: border-box;
+    width: 520px;
+    margin: 24px auto;
     border-radius: 8px;
     border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
@@ -62,7 +67,6 @@ export function applyModalHeader(
 
   return css`
     ${paddingCss};
-    width: 100%;
     box-sizing: border-box;
     display: flex;
     align-items: center;

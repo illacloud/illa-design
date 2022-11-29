@@ -32,6 +32,8 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
       defaultActiveKey,
       activeKey,
       onChange,
+      showExpandIcon,
+      triggerRegion,
       ...otherProps
     } = props
 

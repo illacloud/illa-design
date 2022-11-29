@@ -116,7 +116,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   return (
     <AnimatePresence>
       {visible && (
-        <div css={applyModalContainer}>
+        <>
           {mask ? (
             <motion.div
               css={applyModalMask}
@@ -132,78 +132,83 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
               transition={{ duration: 0.2 }}
             />
           ) : null}
-          <motion.div
-            ref={ref}
-            variants={modalAnimation}
-            animate="animate"
-            exit="exit"
-            initial="initial"
-            css={[applyModal, applyBoxStyle(props)]}
-            onAnimationComplete={(definition) => {
-              if (definition === "animate") {
-                afterOpen?.()
-              }
-              if (definition === "exit") {
-                afterClose?.()
-              }
-            }}
-            {...deleteCssProps(otherProps)}
-          >
-            {title && (
-              <div css={applyModalHeader(closable, withoutLine)}>
-                {normalIcon}
-                <div css={applyModalTitle()}>{title}</div>
-                {closable && (
-                  <>
-                    {closeElement ? (
-                      closeElement
-                    ) : (
-                      <div css={modalCloseIconStyle} onClick={onCancel}>
-                        <CloseIcon size="14px" />
-                      </div>
-                    )}
-                  </>
-                )}
-              </div>
-            )}
-            {focusLock ? (
-              <FocusLock disabled={!visible} autoFocus={autoFocus}>
-                {children && (
-                  <div css={applyModalContent(withoutPadding)}>{children}</div>
-                )}
-              </FocusLock>
-            ) : (
-              children && (
-                <div css={applyModalContent(withoutPadding)}>{children}</div>
-              )
-            )}
-            {footer && (
-              <div css={applyModalFooter(footerAlign, withoutLine)}>
-                {!hideCancel && (
-                  <Button
-                    css={applyModalCancelBtn}
-                    onClick={onCancel}
-                    colorScheme="gray"
-                    size="medium"
-                    {...cancelButtonProps}
-                  >
-                    {cancelText || locale.cancelText}
-                  </Button>
-                )}
-                {
-                  <Button
-                    loading={okLoading}
-                    size="medium"
-                    onClick={onOk}
-                    {...okButtonProps}
-                  >
-                    {okText || locale.okText}
-                  </Button>
+          <div css={applyModalContainer}>
+            <motion.div
+              ref={ref}
+              role="dialog"
+              variants={modalAnimation}
+              animate="animate"
+              exit="exit"
+              initial="initial"
+              css={[applyModal(), applyBoxStyle(props)]}
+              onAnimationComplete={(definition) => {
+                if (definition === "animate") {
+                  afterOpen?.()
                 }
-              </div>
-            )}
-          </motion.div>
-        </div>
+                if (definition === "exit") {
+                  afterClose?.()
+                }
+              }}
+              {...deleteCssProps(otherProps)}
+            >
+              {title && (
+                <div css={applyModalHeader(closable, withoutLine)}>
+                  {normalIcon}
+                  <div css={applyModalTitle()}>{title}</div>
+                  {closable && (
+                    <>
+                      {closeElement ? (
+                        closeElement
+                      ) : (
+                        <div css={modalCloseIconStyle} onClick={onCancel}>
+                          <CloseIcon size="14px" />
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              )}
+              {focusLock ? (
+                <FocusLock disabled={!visible} autoFocus={autoFocus}>
+                  {children && (
+                    <div css={applyModalContent(withoutPadding)}>
+                      {children}
+                    </div>
+                  )}
+                </FocusLock>
+              ) : (
+                children && (
+                  <div css={applyModalContent(withoutPadding)}>{children}</div>
+                )
+              )}
+              {footer && (
+                <div css={applyModalFooter(footerAlign, withoutLine)}>
+                  {!hideCancel && (
+                    <Button
+                      css={applyModalCancelBtn}
+                      onClick={onCancel}
+                      colorScheme="gray"
+                      size="medium"
+                      {...cancelButtonProps}
+                    >
+                      {cancelText || locale.cancelText}
+                    </Button>
+                  )}
+                  {
+                    <Button
+                      loading={okLoading}
+                      size="medium"
+                      onClick={onOk}
+                      {...okButtonProps}
+                    >
+                      {okText || locale.okText}
+                    </Button>
+                  }
+                </div>
+              )}
+            </motion.div>
+          </div>
+        </>
       )}
     </AnimatePresence>
   )
