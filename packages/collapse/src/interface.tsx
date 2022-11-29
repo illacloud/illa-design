@@ -1,28 +1,19 @@
-import {
-  ForwardRefExoticComponent,
-  HTMLAttributes,
-  PropsWithChildren,
-  ReactNode,
-  MouseEvent,
-  RefAttributes,
-} from "react"
+import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
 
 export type CollapsePosition = "left" | "right"
 
-export type CollapseMode = "default" | "builder"
+export type CollapseTriggerRegion = "header" | "icon"
 
 export interface CollapseProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange">,
+    CollapseContextProps,
     BoxProps {
+  accordion?: boolean
+  bordered?: boolean
+  lazyload?: boolean
   activeKey?: string | string[]
   defaultActiveKey?: string | string[]
-  mode?: CollapseMode
-  accordion?: boolean
-  expandIcon?: ReactNode
-  expandIconPosition?: CollapsePosition
-  bordered?: boolean
-  destroyOnHide?: boolean
   onChange?: (
     key?: string,
     keys?: string[],
@@ -32,30 +23,18 @@ export interface CollapseProps
 
 export interface CollapseItemProps
   extends HTMLAttributes<HTMLDivElement>,
+    CollapseContextProps,
     BoxProps {
-  header?: ReactNode
-  name: string
   disabled?: boolean
-  expandIcon?: ReactNode
-  showExpandIcon?: boolean
+  name: string
   extra?: ReactNode
-  destroyOnHide?: boolean
+  header?: ReactNode
 }
 
 export interface CollapseContextProps {
-  mode?: CollapseMode
-  expandIcon?: ReactNode
-  activeKeys: string[]
+  showExpandIcon?: boolean
+  triggerRegion?: CollapseTriggerRegion
   expandIconPosition?: CollapsePosition
+  expandIcon?: ReactNode
   destroyOnHide?: boolean
-  onToggle: (key: string, e: MouseEvent<HTMLDivElement>) => void
-}
-
-export interface CollapseComponent
-  extends ForwardRefExoticComponent<
-    PropsWithChildren<CollapseProps> & RefAttributes<HTMLDivElement>
-  > {
-  Item: ForwardRefExoticComponent<
-    CollapseItemProps & RefAttributes<HTMLDivElement>
-  >
 }
