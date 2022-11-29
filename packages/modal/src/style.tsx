@@ -4,7 +4,8 @@ import { Variants } from "framer-motion"
 import { ModalAlignType } from "./interface"
 
 export const applyModalMask = css`
-  position: absolute;
+  z-index: ${zIndex.modal};
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
