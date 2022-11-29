@@ -20,11 +20,11 @@ export type SpinColorScheme =
   | "techPurple"
 
 export interface SpinProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
+  block?: boolean
   loading?: boolean
   size?: SpinSize
   icon?: ReactNode
   element?: ReactNode
   tip?: string | ReactNode
   colorScheme?: SpinColorScheme
-  placeholder?: string
 }
