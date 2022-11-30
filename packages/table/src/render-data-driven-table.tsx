@@ -124,7 +124,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     checkAll = true,
     download,
     filter,
-    selectedRow: selected,
+    rowSelection: selected,
     defaultSort = [],
     onSortingChange,
     onPaginationChange,
