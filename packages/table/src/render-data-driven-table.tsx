@@ -5,6 +5,7 @@ import {
   TableContextProps,
   TableProps,
 } from "./interface"
+import isEqual from "react-fast-compare"
 import { ReactElement, useCallback, useEffect, useMemo, useState } from "react"
 import {
   ColumnDef,
@@ -18,7 +19,11 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table"
-import { FilterFnOption, PaginationState } from "@tanstack/table-core"
+import {
+  FilterFnOption,
+  PaginationState,
+  RowSelectionState,
+} from "@tanstack/table-core"
 import { Checkbox } from "@illa-design/checkbox"
 import { rankItem } from "@tanstack/match-sorter-utils"
 import {
@@ -38,7 +43,7 @@ import {
   customGlobalFn,
   transformTableIntoCsvData,
 } from "./utils"
-import { isNumber, isString } from "@illa-design/system"
+import { isNumber, isObject, isString } from "@illa-design/system"
 import {
   applyActionButtonStyle,
   applyBorderedStyle,
@@ -73,19 +78,19 @@ import { FiltersEditor } from "./filters-editor"
 import { Pagination } from "@illa-design/pagination"
 
 const getSelectedRow = (
-  rowSelection?: number | Record<string, boolean>[],
+  rowSelection?: number | Record<string, boolean>,
   multiRowSelection?: boolean,
 ) => {
   if (multiRowSelection) {
-    return Array.isArray(rowSelection)
+    return isObject(rowSelection)
       ? rowSelection
       : isNumber(rowSelection)
-      ? [{ [rowSelection]: true }]
-      : []
+      ? { [rowSelection]: true }
+      : {}
   }
-  return Array.isArray(rowSelection)
-    ? rowSelection.length
-      ? Number(Object.keys(rowSelection[0])[0])
+  return isObject(rowSelection)
+    ? Object.keys(rowSelection).length
+      ? Number(Object.keys(rowSelection)[0])
       : undefined
     : isNumber(rowSelection)
     ? rowSelection
@@ -119,6 +124,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     checkAll = true,
     download,
     filter,
+    selectedRow: selected,
     defaultSort = [],
     onSortingChange,
     onPaginationChange,
@@ -143,13 +149,17 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   const [filterOption, setFilterOption] = useState<FilterOptionsState>([
     { id: "", value: "" },
   ])
-  const [rowSelection, setRowSelection] = useState({})
+  const [rowSelection, setRowSelection] = useState(
+    multiRowSelection && isObject(selected) ? selected : {},
+  )
+  const [selectedRow, setSelectedRow] = useState<number | undefined>(
+    !multiRowSelection && isNumber(selected) ? selected : undefined,
+  )
   const [currentColumns, setColumns] = useState<ColumnDef<D, TValue>[]>(columns)
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
   })
-  const [selectedRow, setSelectedRow] = useState<number>()
 
   const _columns = useMemo(() => {
     const current = currentColumns?.filter((item) => {
@@ -239,6 +249,33 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     getPaginationRowModel: getPaginationRowModel(),
     manualPagination: overFlow === "scroll",
   })
+
+  useEffect(() => {
+    if (multiRowSelection) {
+      const _selectedRow = getSelectedRow(selectedRow, multiRowSelection)
+      if (isObject(_selectedRow) && !isEqual(_selectedRow, rowSelection)) {
+        setRowSelection(_selectedRow)
+        onRowSelectionChange?.(_selectedRow)
+      }
+    } else {
+      const _selectedRow = getSelectedRow(rowSelection, multiRowSelection)
+      if (isNumber(_selectedRow) && _selectedRow !== selectedRow) {
+        setSelectedRow(_selectedRow)
+        setRowSelection({ [_selectedRow]: true })
+        onRowSelectionChange?.(_selectedRow)
+      }
+    }
+  }, [multiRowSelection])
+
+  useEffect(() => {
+    const _selectedRow = getSelectedRow(selected, multiRowSelection)
+    if (multiRowSelection) {
+      !isEqual(_selectedRow, rowSelection) &&
+        setRowSelection(_selectedRow as RowSelectionState)
+    } else {
+      _selectedRow !== selectedRow && setSelectedRow(_selectedRow as number)
+    }
+  }, [selected])
 
   useEffect(() => {
     if (defaultSort?.length) {

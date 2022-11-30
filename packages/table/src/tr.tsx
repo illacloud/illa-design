@@ -2,7 +2,11 @@ import { forwardRef, useContext } from "react"
 import { TrProps } from "./interface"
 import { applyBoxStyle } from "@illa-design/theme"
 import { TableContext } from "./table-context"
-import { applyBgHoverStyle, applyNormalStyle } from "./style"
+import {
+  applyBgHoverStyle,
+  applyNormalStyle,
+  applySelectedStyle,
+} from "./style"
 
 export const Tr = forwardRef<HTMLTableRowElement, TrProps>((props, ref) => {
   const { hoverable, selected, ...otherProps } = props
@@ -13,6 +17,7 @@ export const Tr = forwardRef<HTMLTableRowElement, TrProps>((props, ref) => {
       css={[
         applyNormalStyle(),
         applyBgHoverStyle(hoverable ?? context?.hoverable),
+        applySelectedStyle(selected),
         applyBoxStyle(props),
       ]}
       ref={ref}

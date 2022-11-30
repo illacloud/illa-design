@@ -54,6 +54,7 @@ export interface TableProps<D extends TableData, TValue>
   checkAll?: boolean
   download?: boolean
   filter?: boolean
+  selectedRow?: RowSelectionState | number
   columnVisibility?: VisibilityState
   onSortingChange?: OnChangeFn<SortingState>
   onPaginationChange?: OnChangeFn<PaginationState>
