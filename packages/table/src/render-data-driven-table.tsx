@@ -173,6 +173,10 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     return current
   }, [checkAll, currentColumns, multiRowSelection])
 
+  const globalFilter = useMemo(() => {
+    return { filters: columnFilters, operator: filterOperator }
+  }, [columnFilters, filterOperator])
+
   const table = useReactTable({
     data,
     columns: _columns,
@@ -202,7 +206,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     },
     state: {
       columnVisibility,
-      globalFilter: { filters: columnFilters, operator: filterOperator },
+      globalFilter,
       sorting,
       rowSelection,
       pagination: {
