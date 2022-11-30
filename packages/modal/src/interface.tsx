@@ -1,6 +1,7 @@
 import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { ButtonProps } from "@illa-design/button"
 import { BoxProps } from "@illa-design/theme"
+import { MessageProps } from "@illa-design/message"
 
 export type ModalAlignType = "left" | "center" | "right" | ""
 export type ModalType = "info" | "error" | "success" | "warning"
@@ -32,4 +33,9 @@ export interface ModalProps
   onOk?: (e?: MouseEvent) => Promise<any> | void
   afterOpen?: () => void
   afterClose?: () => void
+}
+
+export interface ModalShowProps extends ModalProps {
+  blockOkHide?: boolean
+  blockCancelHide?: boolean
 }

@@ -1,13 +1,15 @@
 import { v4 } from "uuid"
-import { ModalProps } from "./interface"
+import { ModalProps, ModalShowProps } from "./interface"
 
 export interface ModalHandler {
-  info: (message: ModalProps) => string
-  error: (message: ModalProps) => string
-  success: (message: ModalProps) => string
-  warning: (message: ModalProps) => string
-  show: (message: ModalProps) => string
-  update: (modalId: string, modal: ModalProps) => void
+  info: (message: ModalShowProps) => string
+  error: (message: ModalShowProps) => string
+  success: (message: ModalShowProps) => string
+  warning: (message: ModalShowProps) => string
+  show: (message: ModalShowProps) => string
+  update: (modalId: string, modal: ModalShowProps) => void
+  close: (modalId: string) => void
+  getModalById: (modalId: string) => ModalProps | undefined
 }
 
 export interface SubListener {
@@ -16,18 +18,18 @@ export interface SubListener {
 }
 
 export interface ModalStoreHandler {
-  getModals: () => ModalProps[]
-  setModals: (modals: ModalProps[]) => void
+  getModals: () => ModalShowProps[]
+  setModals: (modals: ModalShowProps[]) => void
   subscribe: (onStoreChange: () => void) => SubListener
   unSubscribe: (listenerId: string) => void
-  add: (modal: ModalProps) => void
+  add: (modal: ModalShowProps) => void
   remove: (modalId: string) => void
-  update: (modalId: string, modal: ModalProps) => void
+  update: (modalId: string, modal: ModalShowProps) => void
 }
 
 export interface ModalStore {
   listener: SubListener[]
-  modals: ModalProps[]
+  modals: ModalShowProps[]
 }
 
 const store = {
@@ -40,7 +42,7 @@ function createModalStore(): ModalStoreHandler {
     getModals: () => {
       return store.modals
     },
-    setModals: (modals: ModalProps[]) => {
+    setModals: (modals: ModalShowProps[]) => {
       store.modals = modals
       store.listener.forEach((listener) => {
         listener.onStoreChange()
@@ -67,10 +69,10 @@ function createModalStore(): ModalStoreHandler {
       const index = store.modals.findIndex((modal) => modal.id === modalId)
       if (index != -1) {
         store.modals[index] = modal
+        store.listener.forEach((listener) => {
+          listener.onStoreChange()
+        })
       }
-      store.listener.forEach((listener) => {
-        listener.onStoreChange()
-      })
     },
     add: (modal) => {
       store.modals.push(modal)
