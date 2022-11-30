@@ -58,7 +58,7 @@ export interface TableProps<D extends TableData, TValue>
   onSortingChange?: OnChangeFn<SortingState>
   onPaginationChange?: OnChangeFn<PaginationState>
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
-  onRowSelectionChange?: OnChangeFn<RowSelectionState>
+  onRowSelectionChange?: (rowSelection?: RowSelectionState | number) => void
 }
 
 export interface RowSelectionProps<D = any> {

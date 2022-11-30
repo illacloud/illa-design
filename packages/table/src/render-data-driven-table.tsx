@@ -72,6 +72,26 @@ import { Trigger } from "@illa-design/trigger"
 import { FiltersEditor } from "./filters-editor"
 import { Pagination } from "@illa-design/pagination"
 
+const getSelectedRow = (
+  rowSelection?: number | Record<string, boolean>[],
+  multiRowSelection?: boolean,
+) => {
+  if (multiRowSelection) {
+    return Array.isArray(rowSelection)
+      ? rowSelection
+      : isNumber(rowSelection)
+      ? [{ [rowSelection]: true }]
+      : []
+  }
+  return Array.isArray(rowSelection)
+    ? rowSelection.length
+      ? Number(Object.keys(rowSelection[0])[0])
+      : undefined
+    : isNumber(rowSelection)
+    ? rowSelection
+    : undefined
+}
+
 export function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
 ): ReactElement {
@@ -397,9 +417,16 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 <Tr
                   key={row.id}
                   hoverable
-                  selected={selectedRow === index}
+                  selected={
+                    multiRowSelection
+                      ? row.getIsSelected()
+                      : selectedRow === index
+                  }
                   onClick={() => {
-                    setSelectedRow(index)
+                    if (!multiRowSelection) {
+                      onRowSelectionChange?.(index)
+                      setSelectedRow(index)
+                    }
                   }}
                 >
                   {row.getVisibleCells().map((cell) => (
