@@ -180,30 +180,6 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   const table = useReactTable({
     data,
     columns: _columns,
-    filterFns: {
-      fuzzy: (row, columnId, value, addMeta) => {
-        // Rank the item
-        const itemRank = rankItem(row.getValue(columnId), value)
-        // Store the itemRank info
-        addMeta({
-          itemRank,
-        })
-        // Return if the item should be filtered in/out
-        return itemRank.passed
-      },
-      equalTo,
-      notEqualTo,
-      contains,
-      doesNotContain,
-      lessThan,
-      notLessThan,
-      moreThan,
-      notMoreThan,
-      empty,
-      notEmpty,
-      before,
-      after,
-    },
     state: {
       columnVisibility,
       globalFilter,
@@ -214,7 +190,6 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize,
       },
     },
-    enableColumnFilters: true,
     enableSorting: !disableSortBy,
     globalFilterFn: customGlobalFn,
     onPaginationChange: (pagination) => {
