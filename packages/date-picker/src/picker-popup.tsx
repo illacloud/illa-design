@@ -10,13 +10,13 @@ import {
   triContentCommonCss,
   vertShortcuts,
 } from "./style"
-import { Calendar } from "@illa-design/calendar"
 import { Dayjs } from "dayjs"
 import { Button } from "@illa-design/button"
 import { TimePickerPopup } from "@illa-design/time-picker"
 import { isObject } from "@illa-design/system"
 import { getFinalValue } from "./utils"
 import { ShortcutsComp } from "./shortcut"
+import { Calendar } from "@illa-design/calendar"
 
 export const PickerPopUp = forwardRef<HTMLDivElement, DatePickerPopUpProps>(
   (props, ref) => {

@@ -1,5 +1,10 @@
 import { TableData } from "./table-data"
-import { FilterOptionsState, TableContextProps, TableProps } from "./interface"
+import {
+  FilterOperator,
+  FilterOptionsState,
+  TableContextProps,
+  TableProps,
+} from "./interface"
 import { ReactElement, useCallback, useEffect, useMemo, useState } from "react"
 import {
   ColumnDef,
@@ -30,6 +35,7 @@ import {
   notEqualTo,
   notLessThan,
   notMoreThan,
+  customGlobalFn,
   transformTableIntoCsvData,
 } from "./utils"
 import { isNumber, isString } from "@illa-design/system"
@@ -113,6 +119,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [filterOperator, setFilterOperator] = useState<FilterOperator>("and")
   const [filterOption, setFilterOption] = useState<FilterOptionsState>([
     { id: "", value: "" },
   ])
@@ -167,36 +174,16 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     return current
   }, [checkAll, currentColumns, multiRowSelection])
 
+  const globalFilter = useMemo(() => {
+    return { filters: columnFilters, operator: filterOperator }
+  }, [columnFilters, filterOperator])
+
   const table = useReactTable({
     data,
     columns: _columns,
-    filterFns: {
-      fuzzy: (row, columnId, value, addMeta) => {
-        // Rank the item
-        const itemRank = rankItem(row.getValue(columnId), value)
-        // Store the itemRank info
-        addMeta({
-          itemRank,
-        })
-        // Return if the item should be filtered in/out
-        return itemRank.passed
-      },
-      equalTo,
-      notEqualTo,
-      contains,
-      doesNotContain,
-      lessThan,
-      notLessThan,
-      moreThan,
-      notMoreThan,
-      empty,
-      notEmpty,
-      before,
-      after,
-    },
     state: {
       columnVisibility,
-      columnFilters,
+      globalFilter,
       sorting,
       rowSelection,
       pagination: {
@@ -204,8 +191,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize,
       },
     },
-    enableColumnFilters: true,
     enableSorting: !disableSortBy,
+    globalFilterFn: customGlobalFn,
     onPaginationChange: (pagination) => {
       setPagination(pagination)
       onPaginationChange?.(pagination)
@@ -501,11 +488,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 trigger={"click"}
                 content={
                   <FiltersEditor
+                    filterOperator={filterOperator}
                     columnFilters={filterOption}
                     columnsOption={ColumnsOption}
                     onChange={(index, filters) => {
                       addOrUpdateFilters(index, filters)
                     }}
+                    onChangeOperator={setFilterOperator}
                     onChangeFilterFn={updateColumns}
                     onAdd={addOrUpdateFilters}
                     onDelete={(index, filters) => {

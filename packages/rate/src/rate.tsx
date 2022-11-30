@@ -1,5 +1,5 @@
-import { forwardRef, Fragment, useState } from "react"
-import NP from "number-precision"
+import { forwardRef, Fragment, useCallback, useMemo, useState } from "react"
+import { divide, times } from "number-precision"
 import { RateProps } from "./interface"
 import { HeartIcon, StarIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
@@ -35,105 +35,140 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
 
   const mergedValue = stars !== void 0 ? stars : value
 
-  const resetHoverIndex = () => {
+  const resetHoverIndex = useCallback(() => {
     if (hoverIndex) {
       setHoverIndex(0)
       onHoverChange && onHoverChange(0)
     }
-  }
+  }, [hoverIndex, onHoverChange])
 
-  const onMouseEnter = (index: number, isHalf: boolean) => {
-    const newHoverIndex = isHalf && allowHalf ? index + 0.5 : index + 1
-    if (newHoverIndex !== hoverIndex) {
-      setHoverIndex(newHoverIndex)
-      onHoverChange && onHoverChange(newHoverIndex)
-    }
-  }
+  const onMouseEnter = useCallback(
+    (index: number, isHalf: boolean) => {
+      const newHoverIndex = isHalf && allowHalf ? index + 0.5 : index + 1
+      if (newHoverIndex !== hoverIndex) {
+        setHoverIndex(newHoverIndex)
+        onHoverChange && onHoverChange(newHoverIndex)
+      }
+    },
+    [allowHalf, hoverIndex, onHoverChange],
+  )
 
-  const onClick = (index: number, isHalf: boolean) => {
-    const newValue = isHalf && allowHalf ? index + 0.5 : index + 1
-    setAnimation(true)
-    if (newValue !== mergedValue) {
-      setValue(newValue)
-      onChange && onChange(newValue)
-    } else if (allowClear) {
-      setValue(0)
-      onChange && onChange(0)
-      resetHoverIndex()
-    }
-  }
+  const onClick = useCallback(
+    (index: number, isHalf: boolean) => {
+      const newValue = isHalf && allowHalf ? index + 0.5 : index + 1
+      setAnimation(true)
+      if (newValue !== mergedValue) {
+        setValue(newValue)
+        onChange && onChange(newValue)
+      } else if (allowClear) {
+        setValue(0)
+        onChange && onChange(0)
+        resetHoverIndex()
+      }
+    },
+    [allowClear, allowHalf, mergedValue, onChange, resetHoverIndex],
+  )
 
-  const renderCharacter = (index: number) => {
-    const fixedValue = allowHalf
-      ? NP.times(+NP.divide(mergedValue || 0, 0.5).toFixed(0), 0.5)
-      : Math.round(mergedValue)
-    const _usedIndex = hoverIndex || fixedValue
-    let _usedCharacter =
-      typeof character === "function" ? character(index) : character
+  const userCharacter = useCallback(
+    (index: number) => {
+      let usedCharacter =
+        typeof character === "function" ? character(index) : character
+      if (heart) {
+        usedCharacter = <HeartIcon />
+      }
+      return usedCharacter
+    },
+    [character, heart],
+  )
 
-    if (heart) {
-      _usedCharacter = <HeartIcon />
-    }
-    const leftProps =
-      readonly || disabled
-        ? {}
-        : {
-            onMouseEnter: () => {
-              onMouseEnter(index, true)
-            },
-            onClick: () => {
-              onClick(index, true)
-            },
-          }
-    const rightProps =
-      readonly || disabled
-        ? {}
-        : {
-            onMouseEnter: () => {
-              onMouseEnter(index, false)
-            },
-            onClick: () => {
-              onClick(index, false)
-            },
-          }
-    const tooltip = tooltips && tooltips[index]
-    const CharacterWrapper = tooltip ? Trigger : Fragment
-    const tooltipProps = tooltip ? { content: tooltip } : {}
-
-    return (
-      <CharacterWrapper key={index} {...tooltipProps}>
-        <div
-          css={applyRateCharacter(
-            disabled ?? false,
-            readonly ?? false,
-            animation && index + 1 < mergedValue,
-          )}
-          style={animation ? { animationDelay: `${50 * index}ms` } : {}}
-          onAnimationEnd={() => {
-            if (animation && index + 1 >= mergedValue - 1) {
-              setAnimation(false)
+  const renderCharacter = useCallback(
+    (index: number) => {
+      const fixedValue = allowHalf
+        ? times(+divide(mergedValue || 0, 0.5).toFixed(0), 0.5)
+        : Math.round(mergedValue)
+      const userIndex = hoverIndex || fixedValue
+      const leftProps =
+        readonly || disabled
+          ? {}
+          : {
+              onMouseEnter: () => {
+                onMouseEnter(index, true)
+              },
+              onClick: () => {
+                onClick(index, true)
+              },
             }
-          }}
-        >
+      const rightProps =
+        readonly || disabled
+          ? {}
+          : {
+              onMouseEnter: () => {
+                onMouseEnter(index, false)
+              },
+              onClick: () => {
+                onClick(index, false)
+              },
+            }
+      const tooltip = tooltips && tooltips[index]
+      const CharacterWrapper = tooltip ? Trigger : Fragment
+      const tooltipProps = tooltip ? { content: tooltip } : {}
+
+      return (
+        <CharacterWrapper key={index} {...tooltipProps}>
           <div
-            css={applyRateCharacterLeft(
-              allowHalf && index + 0.5 === _usedIndex,
-              !heart,
+            css={applyRateCharacter(
+              disabled ?? false,
+              readonly ?? false,
+              animation && index + 1 < mergedValue,
             )}
-            {...leftProps}
+            style={animation ? { animationDelay: `${50 * index}ms` } : {}}
+            onAnimationEnd={() => {
+              if (animation && index + 1 >= mergedValue - 1) {
+                setAnimation(false)
+              }
+            }}
           >
-            {_usedCharacter}
+            <div
+              css={applyRateCharacterLeft(
+                allowHalf && index + 0.5 === userIndex,
+                !heart,
+              )}
+              {...leftProps}
+            >
+              {userCharacter(index)}
+            </div>
+            <div
+              css={applyRateCharacterRight(index + 1 <= userIndex, !heart)}
+              {...rightProps}
+            >
+              {userCharacter(index)}
+            </div>
           </div>
-          <div
-            css={applyRateCharacterRight(index + 1 <= _usedIndex, !heart)}
-            {...rightProps}
-          >
-            {_usedCharacter}
-          </div>
-        </div>
-      </CharacterWrapper>
-    )
-  }
+        </CharacterWrapper>
+      )
+    },
+    [
+      allowHalf,
+      animation,
+      disabled,
+      heart,
+      hoverIndex,
+      mergedValue,
+      onClick,
+      onMouseEnter,
+      readonly,
+      tooltips,
+      userCharacter,
+    ],
+  )
+
+  const starList = useMemo(() => {
+    const list = []
+    for (let i = 0; i < count; i++) {
+      list.push(renderCharacter(i))
+    }
+    return list
+  }, [count, renderCharacter])
 
   return (
     <div
@@ -142,11 +177,7 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
       {...deleteCssProps(restProps)}
       onMouseLeave={resetHoverIndex}
     >
-      <div css={applyRateInner}>
-        {Array.apply(null, Array(count)).map((_, index) =>
-          renderCharacter(index),
-        )}
-      </div>
+      <div css={applyRateInner}>{starList}</div>
     </div>
   )
 })

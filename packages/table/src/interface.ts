@@ -120,11 +120,13 @@ export interface TableFilterProps<D extends TableData> extends BoxProps {
 }
 
 export interface FiltersEditorProps {
+  filterOperator: FilterOperator
   columnFilters: FilterOptionsState
   columnsOption: { value: string; label: string }[]
   onAdd: () => void
   onDelete: (index: number, columnFilters: FilterOptions) => void
   onChange: (index: number, columnFilters: FilterOptions) => void
+  onChangeOperator: (filterOperator: FilterOperator) => void
   onChangeFilterFn: (
     index: number,
     id: string,
@@ -153,3 +155,5 @@ export type FilterOptions = {
 }
 
 export type FilterOptionsState = FilterOptions[]
+
+export type FilterOperator = "and" | "or"

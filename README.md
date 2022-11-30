@@ -13,7 +13,8 @@
 
 ![cover](./.github/assets/images/design-cover.png)
 
-[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/zKf3WKCufR)
+[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
+[![Follow on Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white)](https://twitter.com/illacloudHQ)
 [![storybook](./.github/assets/images/storybook.svg)](https://design.illafamily.com)
 [![codecov](https://codecov.io/gh/illacloud/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illacloud/illa-design)
 [![license](https://img.shields.io/github/license/illacloud/illa-design)](./LICENSE)
@@ -93,7 +94,7 @@ Join ILLA Community to share your ideas, suggestions or questions and connect wi
 
 <b>Hangout together!</b>
 
-[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/2tGBuJkgd6)
+[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
 
 ## 🌱 Contributing
 

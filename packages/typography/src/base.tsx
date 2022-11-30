@@ -29,7 +29,7 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
-import { CopyIcon, RightIcon } from "@illa-design/icon"
+import { SuccessCircleIcon, CopyIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { mergedToString } from "@illa-design/system"
 
@@ -94,7 +94,7 @@ function getCopyable(
   }
   if (originCopyable.copiedIcon == undefined) {
     originCopyable.copiedIcon = (
-      <RightIcon color={globalColor(`--${illaPrefix}-green-03`)} />
+      <SuccessCircleIcon color={globalColor(`--${illaPrefix}-green-03`)} />
     )
   }
   return originCopyable

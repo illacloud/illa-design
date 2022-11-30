@@ -49,8 +49,9 @@ export default defineConfig({
         "@illa-design/theme",
         "@illa-design/button",
         "@illa-design/config-provider",
-        "@illa-design/alert",
         "@illa-design/icon",
+        "react-hotkeys-hook",
+        "react-focus-lock",
       ],
       output: {
         globals: {
@@ -60,8 +61,9 @@ export default defineConfig({
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/button": "@illa-design/button",
           "@illa-design/config-provider": "@illa-design/config-provider",
-          "@illa-design/alert": "@illa-design/alert",
           "@illa-design/icon": "@illa-design/icon",
+          "react-hotkeys-hook": "react-hotkeys-hook",
+          "react-focus-lock": "react-focus-lock",
         },
       },
     },

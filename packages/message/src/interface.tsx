@@ -1,44 +1,23 @@
-import {
-  ConfigProps,
-  NoticeProps,
-  MessagePosition,
-} from "@illa-design/notification"
-import {
-  ForwardRefExoticComponent,
-  HTMLAttributes,
-  PropsWithChildren,
-  RefAttributes,
-} from "react"
+import { HTMLAttributes, ReactNode } from "react"
+import { BoxProps } from "@illa-design/theme"
 
-export interface MessageSet {
-  top: NoticeProps[]
-  bottom: NoticeProps[]
-}
+export type MessagePosition = "top" | "bottom"
+export type MessageType =
+  | "info"
+  | "error"
+  | "success"
+  | "warning"
+  | "loading"
+  | "normal"
 
-export interface MessageProps extends HTMLAttributes<HTMLDivElement> {
+export interface MessageProps extends BoxProps {
+  type?: MessageType
+  closable?: boolean
+  showIcon?: boolean
+  duration?: number
+  id?: string
   position?: MessagePosition
-  removeId?: string
-  notice?: NoticeProps
-  shouldClear?: boolean
-}
-
-export interface MessageComponent
-  extends ForwardRefExoticComponent<
-    PropsWithChildren<MessageProps> & RefAttributes<HTMLDivElement>
-  > {
-  info: (config: NoticeProps | string) => void
-  success: (config: NoticeProps | string) => void
-  warning: (config: NoticeProps | string) => void
-  error: (config: NoticeProps | string) => void
-  normal: (config: NoticeProps | string) => void
-  loading: (config: NoticeProps | string) => void
-  config: (config: ConfigProps) => void
-  remove: (id: string) => void
-  clear: () => void
-  add: (config: NoticeProps) => void
-}
-
-export interface MessageWrapper {
-  top?: HTMLDivElement
-  bottom?: HTMLDivElement
+  icon?: ReactNode
+  content?: string | ReactNode
+  onClose?: (id?: string) => void
 }

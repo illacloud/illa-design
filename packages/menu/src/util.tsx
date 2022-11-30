@@ -1,5 +1,5 @@
 // thx arco
-import React, { ReactChildren, ReactElement, ReactNode } from "react"
+import React, { Children, cloneElement, ReactElement, ReactNode } from "react"
 
 export type MenuInfo = {
   keyPath: string[]
@@ -14,7 +14,7 @@ export type MenuInfo = {
 const flatMenuGroup = (children: ReactElement): ReactElement[] => {
   let validMenuItems: ReactElement[] = []
 
-  React.Children.forEach(children, (item) => {
+  Children.forEach(children, (item) => {
     const menuType =
       item &&
       item.type &&
@@ -31,9 +31,9 @@ const flatMenuGroup = (children: ReactElement): ReactElement[] => {
 
 export const processChildren = (
   children: ReactElement,
-  props: any,
-): Array<Exclude<unknown, boolean | null | undefined>> => {
-  return React.Children.map(children, (item, index) => {
+  props: object,
+): ReactNode => {
+  const newChildren = Children.map(children, (item, index) => {
     if (!item || !item.props) {
       return item
     }
@@ -46,7 +46,7 @@ export const processChildren = (
     if (!isMenuSubComponent && item.props.children) {
       const _props = isHTMLElement ? {} : props
 
-      return React.cloneElement(item, {
+      return cloneElement(item, {
         ..._props,
         _key: item.key,
         children: processChildren(item.props.children, props),
@@ -55,13 +55,15 @@ export const processChildren = (
 
     return isHTMLElement
       ? item
-      : React.cloneElement(item, {
+      : cloneElement(item, {
           ...props,
           // Properties of the component itself have higher priority
           ...item.props,
           _key: item.key || `$menu-${index}`,
         })
   })
+
+  return <>{newChildren}</>
 }
 
 export function isChildrenSelected(
@@ -75,7 +77,7 @@ export function isChildrenSelected(
       return
     }
 
-    React.Children.forEach(_children, (c) => {
+    Children.forEach(_children, (c) => {
       if (c && c.props && c.type && !selected) {
         const menuType = (c.type as unknown as { menuType: string }).menuType
         const selectable = c.props.selectable
@@ -90,6 +92,7 @@ export function isChildrenSelected(
       }
     })
   }
+
   loop(children)
   return selected
 }

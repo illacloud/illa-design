@@ -1,12 +1,11 @@
-import { cloneElement, forwardRef, ReactElement } from "react"
+import { cloneElement, forwardRef, ReactElement, useMemo } from "react"
 import { SpinProps } from "./interface"
 import { LoadingIcon } from "@illa-design/icon"
-import { isObject } from "@illa-design/system"
 import {
+  applyContainerStyle,
   applySizeCss,
   applySpinContainerCss,
-  containerCss,
-  tipCss,
+  applyTipsStyle,
 } from "./styles"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
@@ -15,43 +14,41 @@ export const Spin = forwardRef<HTMLDivElement, SpinProps>((props, ref) => {
     loading = true,
     size = "medium",
     colorScheme = "blue",
+    block = true,
     icon,
     element,
     tip,
     children,
-    placeholder,
     ...rest
   } = props
 
-  let loadingIcon
-  if (icon) {
-    loadingIcon = cloneElement(icon as ReactElement, {
-      css: applySizeCss(size, loading, colorScheme),
-    })
-  } else if (element) {
-    loadingIcon = element
-  } else {
-    loadingIcon = <LoadingIcon css={applySizeCss(size, loading, colorScheme)} />
-  }
-  let tipView
-  if (isObject(tip)) {
-    tipView = <span>{tip}</span>
-  } else {
-    tipView = <span css={tipCss}>{tip}</span>
-  }
+  const loadingIcon = useMemo(() => {
+    if (icon) {
+      return cloneElement(icon as ReactElement, {
+        style: applySizeCss(size, loading, colorScheme).styles,
+      })
+    } else if (element) {
+      return element
+    } else {
+      return <LoadingIcon css={applySizeCss(size, loading, colorScheme)} />
+    }
+  }, [colorScheme, element, icon, loading, size])
+
+  const tipView = useMemo(() => {
+    return tip && <span css={applyTipsStyle(colorScheme, size)}>{tip}</span>
+  }, [colorScheme, tip, size])
 
   return (
     <div
-      placeholder={placeholder}
-      css={[containerCss, applyBoxStyle(props)]}
+      css={[applyContainerStyle(block), applyBoxStyle(props)]}
       ref={ref}
       {...deleteCssProps(rest)}
     >
       {children}
       {loading && (
         <div css={applySpinContainerCss(loading)}>
-          <span>{loadingIcon}</span>
-          <span>{tip && tipView} </span>
+          {loadingIcon}
+          {tipView}
         </div>
       )}
     </div>

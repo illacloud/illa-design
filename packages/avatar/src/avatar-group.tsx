@@ -1,12 +1,12 @@
-import { Children, CSSProperties, forwardRef, ReactNode } from "react"
+import { Children, forwardRef, ReactNode } from "react"
 import { AvatarGroupProps } from "./interface"
 import { css } from "@emotion/react"
 import { Avatar } from "./avatar"
 import {
   applyBoxStyle,
+  deleteCssProps,
   globalColor,
   illaPrefix,
-  deleteCssProps,
 } from "@illa-design/theme"
 import { AvatarGroupContext } from "./avatar-group-context"
 
@@ -60,38 +60,36 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
     const newNodeList = Children.map(nodeList, (child, index) => {
       const isFirstAvatar = index === 0
 
-      const style = {
-        marginLeft: `${isFirstAvatar ? "0px" : marginLeft}`,
-        border: `solid 2px ${globalColor(`--${illaPrefix}-white-01`)}`,
-        borderRadius: "50%",
-        zIndex: `${zIndexAscend ? index : nodeList.length - index}`,
-      } as CSSProperties
+      const style = css`
+        margin-left: ${isFirstAvatar ? "0px" : marginLeft};
+        border: solid 2px ${globalColor(`--${illaPrefix}-white-01`)};
+        border-radius: 50%;
+        z-index: ${zIndexAscend ? index : nodeList.length - index};
+      `
 
-      return (
-        <AvatarGroupContext.Provider
-          value={{
-            zIndexAscend,
-            maxCount,
-            colorScheme,
-            size,
-          }}
-        >
-          {child}
-        </AvatarGroupContext.Provider>
-      )
+      return <span css={style}>{child}</span>
     })
     return (
-      <div
-        css={css`
-          display: inline-block;
-          ${avatarGroupCss};
-          ${applyBoxStyle(props)};
-        `}
-        ref={ref}
-        {...deleteCssProps(otherProps)}
+      <AvatarGroupContext.Provider
+        value={{
+          zIndexAscend,
+          maxCount,
+          colorScheme,
+          size,
+        }}
       >
-        {newNodeList}
-      </div>
+        <div
+          css={css`
+            display: inline-block;
+            ${avatarGroupCss};
+            ${applyBoxStyle(props)};
+          `}
+          ref={ref}
+          {...deleteCssProps(otherProps)}
+        >
+          {newNodeList}
+        </div>
+      </AvatarGroupContext.Provider>
     )
   },
 )

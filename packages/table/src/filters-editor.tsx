@@ -11,17 +11,19 @@ import {
   filterLabelStyle,
   filterStyle,
 } from "./style"
-import { FilterOptions } from "./utils"
+import { FilterOperatorOptions, FilterOptions } from "./utils"
 import { isString } from "@illa-design/system"
 
 export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
   const {
+    filterOperator,
     columnFilters,
     columnsOption,
     onDelete,
     onAdd,
     onChange,
     onChangeFilterFn,
+    onChangeOperator,
   } = props
 
   const recordList = useMemo(() => {
@@ -31,7 +33,23 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
           const { id, value, filterFn } = filter
           return (
             <div css={filterStyle} key={index}>
-              <div css={filterLabelStyle}>{index === 0 ? "Where" : "and"}</div>
+              <div css={filterLabelStyle}>
+                {index === 0 ? (
+                  "Where"
+                ) : index === 1 ? (
+                  <Select
+                    w="86px"
+                    colorScheme="techPurple"
+                    value={filterOperator}
+                    options={FilterOperatorOptions}
+                    onChange={(operator) => {
+                      onChangeOperator(operator)
+                    }}
+                  />
+                ) : (
+                  filterOperator
+                )}
+              </div>
               <Select
                 w="200px"
                 mg="8px 4px"
@@ -83,7 +101,15 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
         })}
       </>
     )
-  }, [columnFilters, columnsOption, onChange, onChangeFilterFn, onDelete])
+  }, [
+    columnFilters,
+    columnsOption,
+    filterOperator,
+    onChange,
+    onChangeFilterFn,
+    onChangeOperator,
+    onDelete,
+  ])
 
   return (
     <div css={editorStyle}>

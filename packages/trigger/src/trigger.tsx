@@ -144,7 +144,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }),
     useRole(context, { role: "tooltip" }),
     useDismiss(context, {
-      outsidePointerDown: clickOutsideToClose,
+      outsidePress: clickOutsideToClose,
       ancestorScroll: closeWhenScroll,
     }),
   ])

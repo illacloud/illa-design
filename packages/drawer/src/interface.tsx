@@ -22,5 +22,4 @@ export interface DrawerProps
   onCancel?: (e?: MouseEvent) => void
   afterOpen?: () => void
   afterClose?: () => void
-  getPopupContainer?: () => Element
 }

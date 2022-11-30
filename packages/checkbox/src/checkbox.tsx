@@ -49,7 +49,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
       return () => {
         context.unRegisterValue?.(value)
       }
-    }, [value])
+    }, [context, value])
 
     return (
       <label

@@ -1,4 +1,4 @@
-import { CSSProperties, forwardRef } from "react"
+import { CSSProperties, forwardRef, useMemo } from "react"
 import { BadgeProps } from "./interface"
 import { isObject } from "@illa-design/system"
 import {
@@ -11,8 +11,7 @@ import {
 } from "./style"
 
 import { Count } from "./count"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   const {
@@ -41,7 +40,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
 
   const hasChildren = !!children
 
-  const renderBadge = () => {
+  const renderBadge = useMemo(() => {
     // display status dot
     if (status) {
       return (
@@ -89,7 +88,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
         style={dotStyle}
       />
     ) : null
-  }
+  }, [colorStyle, count, dot, dotStyle, hasChildren, maxCount, status, text])
   return (
     <span
       css={[applyBadge, applyBoxStyle(props)]}
@@ -97,7 +96,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
       {...deleteCssProps(restProps)}
     >
       {children}
-      {renderBadge()}
+      {renderBadge}
     </span>
   )
 })
