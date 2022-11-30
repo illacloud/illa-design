@@ -37,6 +37,7 @@ export function applyModal(): SerializedStyles {
     display: inline-block;
     position: relative;
     vertical-align: middle;
+    text-align: left;
     overflow: hidden;
     min-width: 520px;
     width: 520px;
