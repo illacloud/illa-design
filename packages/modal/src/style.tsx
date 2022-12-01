@@ -15,6 +15,7 @@ export const applyModalMask = css`
 
 export const applyModalContainer = css`
   position: fixed;
+  cursor: auto;
   overflow: auto;
   text-align: center;
   left: 0;
