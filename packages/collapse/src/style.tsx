@@ -21,12 +21,11 @@ export const collapseStyle = css`
 
 export function applyChildrenContainerStyle(
   active?: boolean,
-  rawHeight?: number,
 ): SerializedStyles {
   return css`
-    height: ${active ? `${rawHeight}px` ?? "auto" : 0};
+    display: ${active ? "block" : "none"};
     overflow: hidden;
-    transition: height 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
+    transition: height 0.2s ease-in-out;
   `
 }
 

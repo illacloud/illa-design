@@ -5,6 +5,7 @@ import {
   useContext,
   useMemo,
   useRef,
+  useState,
 } from "react"
 import { CollapseItemProps } from "./interface"
 import { CollapseContext } from "./collapse-context"
@@ -20,7 +21,7 @@ import {
   expandIconStyle,
 } from "./style"
 import { CaretLeftIcon, CaretRightIcon } from "@illa-design/icon"
-import useMeasure from "react-use-measure"
+import { Transition } from "react-transition-group"
 import { getColor } from "@illa-design/theme"
 
 export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
@@ -41,10 +42,6 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
     } = props
 
     const collapseContext = useContext(CollapseContext)
-
-    const [childrenRef, childrenMeasure] = useMeasure({
-      polyfill: ResizeObserver,
-    })
 
     const ll = lazyload ? lazyload : collapseContext.lazyload ?? false
     const alreadyLoad = useRef(false)
@@ -84,44 +81,22 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
         let keys = new Set<string>(collapseContext.activeKey)
         if (active) {
           keys.delete(name)
+          collapseContext?.onToggle?.(
+            name,
+            Array.from<string>(keys.values()),
+            e,
+          )
         } else {
           keys.add(name)
+          collapseContext?.onToggle?.(
+            name,
+            Array.from<string>(keys.values()),
+            e,
+          )
         }
-        collapseContext?.onToggle?.(name, Array.from<string>(keys.values()), e)
       },
       [active, collapseContext, name],
     )
-
-    const childrenMetaNode = useMemo(() => {
-      if (ll) {
-        if (active) {
-          if (!alreadyLoad.current) {
-            alreadyLoad.current = true
-          }
-          return children
-        } else {
-          if (doh) {
-            return null
-          } else {
-            if (alreadyLoad.current) {
-              return children
-            } else {
-              return null
-            }
-          }
-        }
-      } else {
-        if (active) {
-          return children
-        } else {
-          if (doh) {
-            return null
-          } else {
-            return children
-          }
-        }
-      }
-    }, [active, children, doh, ll])
 
     return (
       <div css={collapseStyle} ref={ref} {...otherProps}>
@@ -179,16 +154,41 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
             </div>
           )}
         </div>
-        <div
-          css={applyChildrenContainerStyle(
-            active,
-            active ? childrenMeasure.height : 0,
-          )}
+        <Transition
+          in={active}
+          addEndListener={(node, done) => {
+            node.addEventListener("transitionend", done, false)
+          }}
+          mountOnEnter={doh || ll}
+          unmountOnExit={doh}
+          onEnter={(e: HTMLElement) => {
+            e.style.height = "0"
+            e.style.display = "block"
+          }}
+          onEntering={(e: HTMLElement) => {
+            e.style.height = `${e.scrollHeight}px`
+          }}
+          onEntered={(e: HTMLElement) => {
+            e.style.height = "auto"
+          }}
+          onExit={(e: HTMLElement) => {
+            e.style.display = "block"
+            e.style.height = `${e.offsetHeight}px`
+            // have to trigger reflow to get animation effect on exit
+            e.offsetHeight // eslint-disable-line
+          }}
+          onExiting={(e: HTMLElement) => {
+            e.style.height = "0"
+          }}
+          onExited={(e: HTMLElement) => {
+            e.style.display = "none"
+            e.style.height = "auto"
+          }}
         >
-          <div ref={childrenRef} css={applyChildrenContentStyle()}>
-            {childrenMetaNode}
+          <div css={applyChildrenContainerStyle(active)}>
+            <div css={applyChildrenContentStyle()}>{children}</div>
           </div>
-        </div>
+        </Transition>
       </div>
     )
   },

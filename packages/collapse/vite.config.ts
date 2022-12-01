@@ -48,6 +48,7 @@ export default defineConfig({
         "@illa-design/system",
         "@illa-design/icon",
         "@illa-design/theme",
+        "react-transition-group",
       ],
       output: {
         globals: {
@@ -56,6 +57,7 @@ export default defineConfig({
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
+          "react-transition-group": "react-transition-group",
         },
       },
     },
