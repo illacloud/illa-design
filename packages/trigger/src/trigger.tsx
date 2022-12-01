@@ -1,14 +1,4 @@
-import {
-  cloneElement,
-  FC,
-  ReactElement,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
 import { TriggerProps } from "./interface"
-import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
   applyDefaultContentSize,
@@ -18,6 +8,13 @@ import {
   applyTriangleStyle,
   applyVerticalContainer,
 } from "./style"
+import {
+  TriangleBottom,
+  TriangleLeft,
+  TriangleRight,
+  TriangleTop,
+} from "./triangle"
+import { css } from "@emotion/react"
 import {
   autoUpdate,
   flip,
@@ -34,15 +31,18 @@ import {
   useInteractions,
   useRole,
 } from "@floating-ui/react-dom-interactions"
-import { isFunction, mergeRefs } from "@illa-design/system"
+import { mergeRefs } from "@illa-design/system"
+import { applyBoxStyle, zIndex } from "@illa-design/theme"
+import { AnimatePresence, motion } from "framer-motion"
 import {
-  TriangleBottom,
-  TriangleLeft,
-  TriangleRight,
-  TriangleTop,
-} from "./triangle"
-import { css } from "@emotion/react"
-import { applyBoxStyle } from "@illa-design/theme"
+  cloneElement,
+  FC,
+  ReactElement,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -350,6 +350,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
                 css={[
                   css`
                     display: inline-flex;
+                    z-index: ${zIndex.trigger};
                   `,
                   applyBoxStyle(props),
                 ]}

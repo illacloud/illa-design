@@ -9,4 +9,5 @@ export const zIndex = {
   drawer: 1001,
   notification: 1002,
   message: 1003,
+  trigger: 1004,
 }
