@@ -14,6 +14,7 @@ import {
   TriangleRight,
   TriangleTop,
 } from "./triangle"
+import { TriggerProviderContext } from "./triggerContext"
 import { css } from "@emotion/react"
 import {
   autoUpdate,
@@ -32,12 +33,13 @@ import {
   useRole,
 } from "@floating-ui/react-dom-interactions"
 import { mergeRefs } from "@illa-design/system"
-import { applyBoxStyle, zIndex } from "@illa-design/theme"
+import { applyBoxStyle } from "@illa-design/theme"
 import { AnimatePresence, motion } from "framer-motion"
 import {
   cloneElement,
   FC,
   ReactElement,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -69,11 +71,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
     onVisibleChange,
     trigger = "hover",
     alignPoint,
+    renderInBody,
   } = props
 
   const tipsContainerRef = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState<boolean>(false)
   const finalVisible = popupVisible === undefined ? visible : popupVisible
+  const triggerContext = useContext(TriggerProviderContext)
+  const _renderInBody = renderInBody ?? triggerContext.renderInBody ?? true
 
   useEffect(() => {
     if (defaultPopupVisible) {
@@ -342,7 +347,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
           },
         }),
       )}
-      <FloatingPortal root={childrenRef.current || document.body}>
+      <FloatingPortal
+        root={
+          _renderInBody ? document.body : childrenRef?.current || document.body
+        }
+      >
         {!disabled && (
           <AnimatePresence>
             {finalVisible && (
