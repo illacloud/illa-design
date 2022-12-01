@@ -10,16 +10,17 @@ import { CollapseItemProps } from "./interface"
 import { CollapseContext } from "./collapse-context"
 import {
   applyChildrenContainerStyle,
+  applyChildrenContentStyle,
   applyCollapseExtraStyle,
   applyCollapseTitleStyle,
-  CollapseItemAnimation,
+  applyPositionIconAnimateStyle,
   collapseStyle,
   collapseTitleContainerStyle,
   dividerStyle,
   expandIconStyle,
 } from "./style"
-import { motion } from "framer-motion"
 import { CaretLeftIcon, CaretRightIcon } from "@illa-design/icon"
+import useMeasure from "react-use-measure"
 import { getColor } from "@illa-design/theme"
 
 export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
@@ -40,6 +41,10 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
     } = props
 
     const collapseContext = useContext(CollapseContext)
+
+    const [childrenRef, childrenMeasure] = useMeasure({
+      polyfill: ResizeObserver,
+    })
 
     const ll = lazyload ? lazyload : collapseContext.lazyload ?? false
     const alreadyLoad = useRef(false)
@@ -93,31 +98,13 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
           if (!alreadyLoad.current) {
             alreadyLoad.current = true
           }
-          return (
-            <motion.div
-              variants={CollapseItemAnimation}
-              animate={"enter"}
-              exit={"exit"}
-              css={applyChildrenContainerStyle(false)}
-            >
-              {children}
-            </motion.div>
-          )
+          return children
         } else {
           if (doh) {
             return null
           } else {
             if (alreadyLoad.current) {
-              return (
-                <motion.div
-                  variants={CollapseItemAnimation}
-                  animate={"enter"}
-                  exit={"exit"}
-                  css={applyChildrenContainerStyle(true)}
-                >
-                  {children}
-                </motion.div>
-              )
+              return children
             } else {
               return null
             }
@@ -125,30 +112,12 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
         }
       } else {
         if (active) {
-          return (
-            <motion.div
-              variants={CollapseItemAnimation}
-              animate={"enter"}
-              exit={"exit"}
-              css={applyChildrenContainerStyle(false)}
-            >
-              {children}
-            </motion.div>
-          )
+          return children
         } else {
           if (doh) {
             return null
           } else {
-            return (
-              <motion.div
-                variants={CollapseItemAnimation}
-                animate={"enter"}
-                exit={"exit"}
-                css={applyChildrenContainerStyle(true)}
-              >
-                {children}
-              </motion.div>
-            )
+            return children
           }
         }
       }
@@ -173,7 +142,14 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
                 }
               }}
             >
-              {ei ? ei : <CaretRightIcon c={getColor("gray", "03")} />}
+              {ei ? (
+                ei
+              ) : (
+                <CaretRightIcon
+                  css={applyPositionIconAnimateStyle(active, eip)}
+                  c={getColor("gray", "03")}
+                />
+              )}
             </div>
           )}
           <div css={applyCollapseTitleStyle(se && eip === "left")}>
@@ -192,11 +168,27 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
                 }
               }}
             >
-              {ei ? ei : <CaretLeftIcon c={getColor("gray", "03")} />}
+              {ei ? (
+                ei
+              ) : (
+                <CaretLeftIcon
+                  css={applyPositionIconAnimateStyle(active, eip)}
+                  c={getColor("gray", "03")}
+                />
+              )}
             </div>
           )}
         </div>
-        {childrenMetaNode}
+        <div
+          css={applyChildrenContainerStyle(
+            active,
+            active ? childrenMeasure.height : 0,
+          )}
+        >
+          <div ref={childrenRef} css={applyChildrenContentStyle()}>
+            {childrenMetaNode}
+          </div>
+        </div>
       </div>
     )
   },

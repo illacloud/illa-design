@@ -1,6 +1,7 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { Variants } from "framer-motion"
 import { getColor } from "@illa-design/theme"
+import { CollapsePosition } from "./interface"
 
 export function applyCollapseStyle(bordered?: boolean): SerializedStyles {
   const borderCSS = bordered
@@ -17,18 +18,22 @@ export const collapseStyle = css`
   display: flex;
   flex-direction: column;
 `
-export const CollapseItemAnimation: Variants = {
-  enter: { height: "auto", opacity: 1 },
-  exit: { height: 0, opacity: 0 },
-}
 
 export function applyChildrenContainerStyle(
-  hidden?: boolean,
+  active?: boolean,
+  rawHeight?: number,
 ): SerializedStyles {
   return css`
-    padding: 8px 32px;
-    display: ${hidden ? "none" : "block"};
+    height: ${active ? `${rawHeight}px` ?? "auto" : 0};
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
+  `
+}
+
+export function applyChildrenContentStyle(): SerializedStyles {
+  return css`
     background-color: ${getColor("grayBlue", "09")};
+    padding: 8px 32px;
   `
 }
 
@@ -55,6 +60,19 @@ export function applyCollapseTitleStyle(showIcon: boolean): SerializedStyles {
     overflow: hidden;
     flex-shrink: 1;
     color: ${getColor("gray", "02")};
+  `
+}
+
+export function applyPositionIconAnimateStyle(
+  active: boolean,
+  position?: CollapsePosition,
+): SerializedStyles {
+  return css`
+    transform: rotate(
+      ${active ? (position === "left" ? "90deg" : "-90deg") : "0deg"}
+    );
+    transition: transform 200ms ease-in-out;
+    transform-origin: center;
   `
 }
 
