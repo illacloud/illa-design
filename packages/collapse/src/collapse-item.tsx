@@ -1,28 +1,20 @@
-import {
-  forwardRef,
-  MouseEvent,
-  useCallback,
-  useContext,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
-import { CollapseItemProps } from "./interface"
 import { CollapseContext } from "./collapse-context"
+import { CollapseItemProps } from "./interface"
 import {
   applyChildrenContainerStyle,
   applyChildrenContentStyle,
   applyCollapseExtraStyle,
+  applyCollapseTitleContainerStyle,
   applyCollapseTitleStyle,
   applyPositionIconAnimateStyle,
   collapseStyle,
-  collapseTitleContainerStyle,
   dividerStyle,
   expandIconStyle,
 } from "./style"
 import { CaretLeftIcon, CaretRightIcon } from "@illa-design/icon"
-import { Transition } from "react-transition-group"
 import { getColor } from "@illa-design/theme"
+import { forwardRef, MouseEvent, useCallback, useContext, useMemo } from "react"
+import { Transition } from "react-transition-group"
 
 export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
   (props, ref) => {
@@ -44,7 +36,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
     const collapseContext = useContext(CollapseContext)
 
     const ll = lazyload ? lazyload : collapseContext.lazyload ?? false
-    const alreadyLoad = useRef(false)
+
     const doh = destroyOnHide
       ? destroyOnHide
       : collapseContext.destroyOnHide ?? false
@@ -78,6 +70,9 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
 
     const expandFun = useCallback(
       (e?: MouseEvent<HTMLDivElement>) => {
+        if (disabled) {
+          return
+        }
         let keys = new Set<string>(collapseContext.activeKey)
         if (active) {
           keys.delete(name)
@@ -95,13 +90,13 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
           )
         }
       },
-      [active, collapseContext, name],
+      [active, collapseContext, disabled, name],
     )
 
     return (
       <div css={collapseStyle} ref={ref} {...otherProps}>
         <div
-          css={collapseTitleContainerStyle}
+          css={applyCollapseTitleContainerStyle(disabled)}
           onClick={(e) => {
             if (tr === "header") {
               expandFun(e)
@@ -122,12 +117,12 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
               ) : (
                 <CaretRightIcon
                   css={applyPositionIconAnimateStyle(active, eip)}
-                  c={getColor("gray", "03")}
+                  c={disabled ? getColor("gray", "05") : getColor("gray", "03")}
                 />
               )}
             </div>
           )}
-          <div css={applyCollapseTitleStyle(se && eip === "left")}>
+          <div css={applyCollapseTitleStyle(se && eip === "left", disabled)}>
             {header}
           </div>
           <div css={dividerStyle} />
@@ -148,7 +143,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
               ) : (
                 <CaretLeftIcon
                   css={applyPositionIconAnimateStyle(active, eip)}
-                  c={getColor("gray", "03")}
+                  c={disabled ? getColor("gray", "05") : getColor("gray", "03")}
                 />
               )}
             </div>

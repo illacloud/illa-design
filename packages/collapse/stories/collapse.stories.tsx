@@ -83,6 +83,7 @@ export const Template: Story<CollapseProps> = (args) => {
           Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
         </CollapseItem>
         <CollapseItem
+          disabled
           header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get"
           name="3"
         >

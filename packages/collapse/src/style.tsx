@@ -1,7 +1,7 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { Variants } from "framer-motion"
-import { getColor } from "@illa-design/theme"
 import { CollapsePosition } from "./interface"
+import { css, SerializedStyles } from "@emotion/react"
+import { getColor } from "@illa-design/theme"
+import { Variants } from "framer-motion"
 
 export function applyCollapseStyle(bordered?: boolean): SerializedStyles {
   const borderCSS = bordered
@@ -36,12 +36,17 @@ export function applyChildrenContentStyle(): SerializedStyles {
   `
 }
 
-export const collapseTitleContainerStyle = css`
-  display: flex;
-  align-items: center;
-  padding: 8px 12px;
-  flex-direction: row;
-`
+export function applyCollapseTitleContainerStyle(
+  disabled?: boolean,
+): SerializedStyles {
+  return css`
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    flex-direction: row;
+    cursor: ${disabled ? "not-allowed" : "auto"};
+  `
+}
 
 export const expandIconStyle = css`
   display: flex;
@@ -50,7 +55,10 @@ export const expandIconStyle = css`
   font-size: 8px;
 `
 
-export function applyCollapseTitleStyle(showIcon: boolean): SerializedStyles {
+export function applyCollapseTitleStyle(
+  showIcon: boolean,
+  disabled?: boolean,
+): SerializedStyles {
   return css`
     margin-left: ${showIcon ? "4px" : "0"};
     font-size: 14px;
@@ -58,7 +66,7 @@ export function applyCollapseTitleStyle(showIcon: boolean): SerializedStyles {
     white-space: nowrap;
     overflow: hidden;
     flex-shrink: 1;
-    color: ${getColor("gray", "02")};
+    color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
   `
 }
 
