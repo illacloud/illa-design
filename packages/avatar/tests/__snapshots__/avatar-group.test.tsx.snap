@@ -18,6 +18,13 @@ exports[`AvatarGroup renders with large props 1`] = `
 }
 
 .emotion-1 {
+  margin-left: 0px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 5;
+}
+
+.emotion-2 {
   vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -25,7 +32,7 @@ exports[`AvatarGroup renders with large props 1`] = `
   display: inline-flex;
 }
 
-.emotion-2 {
+.emotion-3 {
   background-color: #e07800ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -54,74 +61,122 @@ exports[`AvatarGroup renders with large props 1`] = `
   border-radius: 50%;
 }
 
+.emotion-4 {
+  margin-left: -20px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 4;
+}
+
+.emotion-7 {
+  margin-left: -20px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.emotion-10 {
+  margin-left: -20px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.emotion-13 {
+  margin-left: -20px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
 <div
     class="emotion-0"
   >
-    <div
+    <span
       class="emotion-1"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          A
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            A
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-4"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          B
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            B
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-7"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          C
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            C
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-10"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          D
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            D
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-13"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          E
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            E
+          </span>
+        </div>
       </div>
-    </div>
+    </span>
   </div>
 </DocumentFragment>
 `;
@@ -144,6 +199,13 @@ exports[`AvatarGroup renders with medium props 1`] = `
 }
 
 .emotion-1 {
+  margin-left: 0px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 5;
+}
+
+.emotion-2 {
   vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -151,7 +213,7 @@ exports[`AvatarGroup renders with medium props 1`] = `
   display: inline-flex;
 }
 
-.emotion-2 {
+.emotion-3 {
   background-color: #e07800ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -180,74 +242,122 @@ exports[`AvatarGroup renders with medium props 1`] = `
   border-radius: 50%;
 }
 
+.emotion-4 {
+  margin-left: -12px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 4;
+}
+
+.emotion-7 {
+  margin-left: -12px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.emotion-10 {
+  margin-left: -12px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.emotion-13 {
+  margin-left: -12px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
 <div
     class="emotion-0"
   >
-    <div
+    <span
       class="emotion-1"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          A
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            A
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-4"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          B
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            B
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-7"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          C
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            C
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-10"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          D
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            D
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-13"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          E
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            E
+          </span>
+        </div>
       </div>
-    </div>
+    </span>
   </div>
 </DocumentFragment>
 `;
@@ -270,6 +380,13 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
 }
 
 .emotion-1 {
+  margin-left: 0px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.emotion-2 {
   vertical-align: middle;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -277,7 +394,7 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
   display: inline-flex;
 }
 
-.emotion-2 {
+.emotion-3 {
   background-color: #c2c2c2ff;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -306,74 +423,122 @@ exports[`AvatarGroup renders with zIndexAscend 1`] = `
   border-radius: 50%;
 }
 
+.emotion-4 {
+  margin-left: -8px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.emotion-7 {
+  margin-left: -8px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.emotion-10 {
+  margin-left: -8px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.emotion-13 {
+  margin-left: -8px;
+  border: solid 2px #ffffffff;
+  border-radius: 50%;
+  z-index: 4;
+}
+
 <div
     class="emotion-0"
   >
-    <div
+    <span
       class="emotion-1"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          A
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            A
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-4"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          B
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            B
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-7"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          C
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            C
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-10"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          D
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            D
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      class="emotion-1"
+    </span>
+    <span
+      class="emotion-13"
     >
       <div
         class="emotion-2"
       >
-        <span
-          style="transform: scale(1);"
+        <div
+          class="emotion-3"
         >
-          E
-        </span>
+          <span
+            style="transform: scale(1);"
+          >
+            E
+          </span>
+        </div>
       </div>
-    </div>
+    </span>
   </div>
 </DocumentFragment>
 `;

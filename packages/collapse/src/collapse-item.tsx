@@ -1,18 +1,20 @@
-import { forwardRef, useContext } from "react"
-import { CollapseItemProps } from "./interface"
 import { CollapseContext } from "./collapse-context"
-import { motion, AnimatePresence } from "framer-motion"
+import { CollapseItemProps } from "./interface"
 import {
-  collapseItemStyle,
-  applyCollapseItemContentStyle,
-  collapseItemExtraStyle,
-  applyCollapseItemHeaderStyle,
-  applyCollapseItemHeaderIconStyle,
-  applyCollapseItemHeaderTitleStyle,
-  CollapseItemAnimation,
+  applyChildrenContainerStyle,
+  applyChildrenContentStyle,
+  applyCollapseExtraStyle,
+  applyCollapseTitleContainerStyle,
+  applyCollapseTitleStyle,
+  applyPositionIconAnimateStyle,
+  collapseStyle,
+  dividerStyle,
+  expandIconStyle,
 } from "./style"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { CaretLeftIcon, CaretRightIcon } from "@illa-design/icon"
+import { getColor } from "@illa-design/theme"
+import { forwardRef, MouseEvent, useCallback, useContext, useMemo } from "react"
+import { Transition } from "react-transition-group"
 
 export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
   (props, ref) => {
@@ -24,77 +26,164 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
       disabled,
       destroyOnHide,
       expandIcon,
-      showExpandIcon = true,
+      showExpandIcon,
+      lazyload,
+      triggerRegion,
+      expandIconPosition,
       ...otherProps
     } = props
-    const ctx = useContext(CollapseContext)
-    const isExpanded = ctx.activeKeys.indexOf(name) > -1
-    const icon = showExpandIcon
-      ? "expandIcon" in props
-        ? expandIcon
-        : ctx.expandIcon
-      : null
-    const unmountOnExit = destroyOnHide ?? ctx.destroyOnHide
-    const mount = unmountOnExit ? isExpanded : true
+
+    const collapseContext = useContext(CollapseContext)
+
+    const ll = lazyload ? lazyload : collapseContext.lazyload ?? false
+
+    const doh = destroyOnHide
+      ? destroyOnHide
+      : collapseContext.destroyOnHide ?? false
+
+    const se = showExpandIcon
+      ? showExpandIcon
+      : collapseContext.showExpandIcon ?? false
+    const eip = expandIconPosition
+      ? expandIconPosition
+      : collapseContext.expandIconPosition ?? false
+
+    const ei = expandIcon ? expandIcon : collapseContext.expandIcon
+
+    const tr = triggerRegion
+      ? triggerRegion
+      : collapseContext.triggerRegion ?? "header"
+
+    const active = useMemo(() => {
+      if (collapseContext.activeKey) {
+        if (typeof collapseContext.activeKey === "string") {
+          return name === collapseContext.activeKey
+        } else {
+          return collapseContext.activeKey?.some((value) => {
+            return value === name
+          })
+        }
+      } else {
+        return false
+      }
+    }, [collapseContext.activeKey, name])
+
+    const expandFun = useCallback(
+      (e?: MouseEvent<HTMLDivElement>) => {
+        if (disabled) {
+          return
+        }
+        let keys = new Set<string>(collapseContext.activeKey)
+        if (active) {
+          keys.delete(name)
+          collapseContext?.onToggle?.(
+            name,
+            Array.from<string>(keys.values()),
+            e,
+          )
+        } else {
+          keys.add(name)
+          collapseContext?.onToggle?.(
+            name,
+            Array.from<string>(keys.values()),
+            e,
+          )
+        }
+      },
+      [active, collapseContext, disabled, name],
+    )
+
     return (
-      <div
-        ref={ref}
-        css={[collapseItemStyle, applyBoxStyle(props)]}
-        {...deleteCssProps(otherProps)}
-      >
+      <div css={collapseStyle} ref={ref} {...otherProps}>
         <div
-          role={"button"}
+          css={applyCollapseTitleContainerStyle(disabled)}
           onClick={(e) => {
-            !disabled && ctx.onToggle(name, e)
+            if (tr === "header") {
+              expandFun(e)
+            }
           }}
-          css={applyCollapseItemHeaderStyle(
-            isExpanded,
-            ctx.expandIconPosition,
-            disabled,
-            ctx.mode,
-          )}
         >
-          {icon && (
-            <span
-              css={applyCollapseItemHeaderIconStyle(
-                isExpanded,
-                ctx.expandIconPosition,
-                disabled,
-                ctx.mode,
-              )}
-            >
-              {icon}
-            </span>
-          )}
-          <div css={applyCollapseItemHeaderTitleStyle(isExpanded, disabled)}>
-            {header}
-          </div>
-          {extra && (
+          {se && eip === "left" && (
             <div
-              css={collapseItemExtraStyle}
+              css={expandIconStyle}
               onClick={(e) => {
-                e.stopPropagation()
+                if (tr === "icon") {
+                  expandFun(e)
+                }
               }}
             >
-              {extra}
+              {ei ? (
+                ei
+              ) : (
+                <CaretRightIcon
+                  css={applyPositionIconAnimateStyle(active, eip)}
+                  c={disabled ? getColor("gray", "05") : getColor("gray", "03")}
+                />
+              )}
+            </div>
+          )}
+          <div css={applyCollapseTitleStyle(se && eip === "left", disabled)}>
+            {header}
+          </div>
+          <div css={dividerStyle} />
+          <div css={applyCollapseExtraStyle(se && eip === "right")}>
+            {extra}
+          </div>
+          {se && eip === "right" && (
+            <div
+              css={expandIconStyle}
+              onClick={(e) => {
+                if (tr === "icon") {
+                  expandFun(e)
+                }
+              }}
+            >
+              {ei ? (
+                ei
+              ) : (
+                <CaretLeftIcon
+                  css={applyPositionIconAnimateStyle(active, eip)}
+                  c={disabled ? getColor("gray", "05") : getColor("gray", "03")}
+                />
+              )}
             </div>
           )}
         </div>
-        <AnimatePresence initial={false}>
-          {mount && (
-            <motion.div
-              css={applyCollapseItemContentStyle(ctx.mode)}
-              role={"region"}
-              variants={CollapseItemAnimation}
-              animate={unmountOnExit ? "enter" : isExpanded ? "enter" : "exit"}
-              exit={"exit"}
-              initial={unmountOnExit ? "exit" : false}
-              transition={{ duration: 0.2 }}
-            >
-              {children}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <Transition
+          in={active}
+          addEndListener={(node, done) => {
+            node.addEventListener("transitionend", done, false)
+          }}
+          mountOnEnter={doh || ll}
+          unmountOnExit={doh}
+          onEnter={(e: HTMLElement) => {
+            e.style.height = "0"
+            e.style.display = "block"
+          }}
+          onEntering={(e: HTMLElement) => {
+            e.style.height = `${e.scrollHeight}px`
+          }}
+          onEntered={(e: HTMLElement) => {
+            e.style.height = "auto"
+          }}
+          onExit={(e: HTMLElement) => {
+            e.style.display = "block"
+            e.style.height = `${e.offsetHeight}px`
+            // have to trigger reflow to get animation effect on exit
+            e.offsetHeight // eslint-disable-line
+          }}
+          onExiting={(e: HTMLElement) => {
+            e.style.height = "0"
+          }}
+          onExited={(e: HTMLElement) => {
+            e.style.display = "none"
+            e.style.height = "auto"
+          }}
+        >
+          <div css={applyChildrenContainerStyle(active)}>
+            <div css={applyChildrenContentStyle()}>{children}</div>
+          </div>
+        </Transition>
       </div>
     )
   },

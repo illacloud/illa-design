@@ -1,87 +1,120 @@
-import { Children, forwardRef, Fragment } from "react"
+import {
+  Children,
+  cloneElement,
+  forwardRef,
+  Fragment,
+  ReactElement,
+  useMemo,
+} from "react"
 import { BreadcrumbProps } from "./interface"
-import { css } from "@emotion/react"
-import { separatorCss, itemCss, wrapCss } from "./style"
-import { BreadcrumbContext } from "./breadcrumb-context"
+import { breadcrumbContainerStyle, dividerStyle, dotStyle } from "./style"
+import { SlashIcon } from "@illa-design/icon"
+import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 import { BreadcrumbItem } from "./breadcrumbItem"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { DropList } from "@illa-design/dropdown"
+
+const Item = DropList.Item
 
 export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
   (props, ref) => {
-    const { separator, routes, maxCount, ...restProps } = props
+    const { separator, routes, maxCount, children, ...otherProps } = props
 
-    function Separator() {
-      return <span css={separatorCss}>{separator ? separator : "/"}</span>
-    }
-
-    const renderItem = (list: any, idx: number) => {
-      if (!maxCount || list.length < maxCount) return true
-      if (idx === 0 || idx > list.length - maxCount) return true
-      return false
-    }
-
-    const routeItems =
-      routes?.length &&
-      routes.map((item, idx: number) => {
-        return (
-          <Fragment key={idx}>
-            <BreadcrumbContext.Provider
-              value={{
-                isCurrent: idx === routes.length - 1,
-                path: item.path,
-                breadcrumbName: item.breadcrumbName,
-                children: item.children,
-              }}
-            >
-              {renderItem(routes, idx) ? (
-                <BreadcrumbItem key={idx} />
-              ) : (
-                idx === 1 && <span css={itemCss}>...</span>
-              )}
-            </BreadcrumbContext.Provider>
-            {idx < routes.length - 1 &&
-              (renderItem(routes, idx) ? (
-                <Separator />
-              ) : idx === 1 ? (
-                <Separator />
-              ) : null)}
-          </Fragment>
+    const separatorNode = useMemo(() => {
+      return typeof separator === "string" ? (
+        <span css={dividerStyle}>{separator}</span>
+      ) : (
+        separator ?? (
+          <SlashIcon ml="12px" mr="12px" fs="8px" c={getColor("gray", "06")} />
         )
-      })
-
-    let childLiItem = Children.toArray(props.children)
-    const normalItems = Children.map(childLiItem, (ele, idx) => {
-      return (
-        <Fragment key={idx}>
-          <BreadcrumbContext.Provider
-            value={{
-              isCurrent: idx === childLiItem.length - 1,
-            }}
-          >
-            {renderItem(childLiItem, idx) ? (
-              <>{ele}</>
-            ) : (
-              idx === 1 && <span css={itemCss}>...</span>
-            )}
-          </BreadcrumbContext.Provider>
-          {idx < childLiItem.length - 1 &&
-            (renderItem(childLiItem, idx) ? (
-              <Separator />
-            ) : idx === 1 ? (
-              <Separator />
-            ) : null)}
-        </Fragment>
       )
-    })
+    }, [separator])
+
+    const childrenNode = useMemo(() => {
+      if (routes) {
+        return routes.map((child, index) => {
+          return (
+            <>
+              <BreadcrumbItem
+                key={child.path}
+                last={index === routes.length - 1}
+                dropList={
+                  child.children ? (
+                    <DropList>
+                      {child.children?.map((c) => {
+                        return (
+                          <Item
+                            key={c.path ?? ""}
+                            title={c.breadcrumbName}
+                            onClick={() => {
+                              if (c.path) {
+                                window.location.href = c.path
+                              }
+                            }}
+                          />
+                        )
+                      })}
+                    </DropList>
+                  ) : undefined
+                }
+              >
+                {child.breadcrumbName}
+              </BreadcrumbItem>
+              {index !== routes.length - 1 && separatorNode}
+            </>
+          )
+        })
+      } else {
+        return Children.map(children, (child, index) => {
+          return (
+            <Fragment key={index}>
+              {index !== Children.count(children) - 1
+                ? child
+                : cloneElement(child as ReactElement, { last: true })}
+              {index !== Children.count(children) - 1 && separatorNode}
+            </Fragment>
+          )
+        })
+      }
+    }, [children, routes, separatorNode])
+
+    const maxChildren = useMemo(() => {
+      if (maxCount != undefined && childrenNode) {
+        if (childrenNode.length > maxCount) {
+          if (maxCount == 0) {
+            return <span css={dotStyle}>...</span>
+          } else if (maxCount === 1) {
+            return childrenNode[childrenNode.length - 1]
+          } else if (maxCount === 2) {
+            return (
+              <>
+                {childrenNode[0]}
+                <span css={dotStyle}>...</span>
+                {separatorNode}
+                {childrenNode[childrenNode.length - 1]}
+              </>
+            )
+          } else {
+            return (
+              <>
+                {childrenNode[0]}
+                <span css={dotStyle}>...</span>
+                {separatorNode}
+                {childrenNode[childrenNode.length - 2]}
+                {childrenNode[childrenNode.length - 1]}
+              </>
+            )
+          }
+        }
+      }
+      return childrenNode
+    }, [childrenNode, maxCount, separatorNode])
 
     return (
       <div
-        ref={ref}
-        css={css(wrapCss, applyBoxStyle(props))}
-        {...deleteCssProps(restProps)}
+        css={[breadcrumbContainerStyle, applyBoxStyle(props)]}
+        {...deleteCssProps(otherProps)}
       >
-        {routes?.length ? routeItems : normalItems}
+        {maxChildren}
       </div>
     )
   },

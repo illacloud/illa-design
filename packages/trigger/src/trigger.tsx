@@ -1,14 +1,4 @@
-import {
-  cloneElement,
-  FC,
-  ReactElement,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
 import { TriggerProps } from "./interface"
-import { AnimatePresence, motion } from "framer-motion"
 import {
   applyAnimation,
   applyDefaultContentSize,
@@ -18,6 +8,14 @@ import {
   applyTriangleStyle,
   applyVerticalContainer,
 } from "./style"
+import {
+  TriangleBottom,
+  TriangleLeft,
+  TriangleRight,
+  TriangleTop,
+} from "./triangle"
+import { TriggerProviderContext } from "./triggerContext"
+import { css } from "@emotion/react"
 import {
   autoUpdate,
   flip,
@@ -34,15 +32,19 @@ import {
   useInteractions,
   useRole,
 } from "@floating-ui/react-dom-interactions"
-import { isFunction, mergeRefs } from "@illa-design/system"
-import {
-  TriangleBottom,
-  TriangleLeft,
-  TriangleRight,
-  TriangleTop,
-} from "./triangle"
-import { css } from "@emotion/react"
+import { mergeRefs } from "@illa-design/system"
 import { applyBoxStyle } from "@illa-design/theme"
+import { AnimatePresence, motion } from "framer-motion"
+import {
+  cloneElement,
+  FC,
+  ReactElement,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
@@ -69,11 +71,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
     onVisibleChange,
     trigger = "hover",
     alignPoint,
+    renderInBody,
   } = props
 
   const tipsContainerRef = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState<boolean>(false)
   const finalVisible = popupVisible === undefined ? visible : popupVisible
+  const triggerContext = useContext(TriggerProviderContext)
+  const _renderInBody = renderInBody ?? triggerContext.renderInBody ?? true
 
   useEffect(() => {
     if (defaultPopupVisible) {
@@ -144,7 +149,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     }),
     useRole(context, { role: "tooltip" }),
     useDismiss(context, {
-      outsidePointerDown: clickOutsideToClose,
+      outsidePress: clickOutsideToClose,
       ancestorScroll: closeWhenScroll,
     }),
   ])
@@ -342,7 +347,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
           },
         }),
       )}
-      <FloatingPortal root={document.body}>
+      <FloatingPortal
+        root={
+          _renderInBody ? document.body : childrenRef?.current || document.body
+        }
+      >
         {!disabled && (
           <AnimatePresence>
             {finalVisible && (
@@ -350,6 +359,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
                 css={[
                   css`
                     display: inline-flex;
+                    z-index: 1;
                   `,
                   applyBoxStyle(props),
                 ]}

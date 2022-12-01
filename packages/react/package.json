@@ -77,17 +77,14 @@
     "@illa-design/timeline": "1.0.7",
     "@illa-design/card": "1.0.7",
     "@illa-design/rate": "1.0.7",
-    "@illa-design/affix": "1.0.7",
     "@illa-design/calendar": "1.0.7",
     "@illa-design/time-picker": "1.0.7",
     "@illa-design/modal": "1.0.7",
     "@illa-design/steps": "1.0.7",
     "@illa-design/back-top": "1.0.7",
-    "@illa-design/tree": "1.0.7",
     "@illa-design/drawer": "1.0.7",
     "@illa-design/collapse": "1.0.7",
     "@illa-design/table": "1.0.7",
-    "@illa-design/anchor": "1.0.7",
     "@illa-design/date-picker": "1.0.7",
     "@illa-design/result": "1.0.7",
     "@illa-design/page-header": "1.0.7",
@@ -96,6 +93,7 @@
     "@illa-design/loading": "1.0.7",
     "@illa-design/tabs": "1.0.7",
     "@illa-design/skeleton": "1.0.7",
-    "@illa-design/tree-select": "1.0.7"
+    "@illa-design/dropdown": "1.0.7",
+    "@illa-design/cascader": "1.0.7"
   }
 }

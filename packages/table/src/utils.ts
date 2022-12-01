@@ -1,6 +1,8 @@
 import { Table } from "@tanstack/table-core"
 import { FilterFn } from "@tanstack/table-core/src/features/Filters"
 import { dayjsPro, isString } from "@illa-design/system"
+import { FilterOperator, FilterOptionsState } from "./interface"
+import { FilterMeta } from "@tanstack/table-core/src/types"
 
 export const transformTableIntoCsvData = (
   table: Table<any>,
@@ -185,6 +187,11 @@ export const after: FilterFn<any> = (
   return false
 }
 
+export const FilterOperatorOptions = [
+  { label: "and", value: "and" },
+  { label: "or", value: "or" },
+]
+
 export const FilterOptions = [
   { label: "is equal to", value: "equalTo" },
   { label: "not equal to", value: "notEqualTo" },
@@ -199,3 +206,51 @@ export const FilterOptions = [
   { label: "before", value: "before" },
   { label: "after", value: "after" },
 ]
+
+const FilterOptionsMap = {
+  equalTo,
+  notEqualTo,
+  contains,
+  doesNotContain,
+  lessThan,
+  notLessThan,
+  moreThan,
+  notMoreThan,
+  empty,
+  notEmpty,
+  before,
+  after,
+}
+
+type CustomFilterFn = keyof typeof FilterOptionsMap
+
+type GlobalFilterOptions = {
+  id: string
+  value: unknown
+  filterFn?: CustomFilterFn
+}[]
+
+export const customGlobalFn: FilterFn<any> = (
+  row,
+  columnId: string,
+  filterValue: { filters: GlobalFilterOptions; operator: FilterOperator },
+  addMeta: (meta: FilterMeta) => void,
+) => {
+  const { filters, operator } = filterValue
+  if (filters) {
+    const result = filters.map((filter) => {
+      const { value, filterFn, id } = filter
+      if (filterFn) {
+        const operator = FilterOptionsMap[filterFn]
+        return operator(row, id, value, addMeta)
+      }
+    })
+
+    if (operator === "and") {
+      return result.every((r) => r)
+    } else {
+      return result.some((r) => r)
+    }
+  }
+  return true
+}

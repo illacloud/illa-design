@@ -29,15 +29,19 @@ export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
 export const Popup = forwardRef<HTMLDivElement, PopupProps>((props, ref) => {
   const { top, left, zIndex, children, isInViewport, ...otherProps } = props
 
-  return createPortal(
-    <div
-      ref={ref}
-      css={applyPopupContainer(top, left, zIndex, isInViewport)}
-      {...otherProps}
-    >
-      {children}
-    </div>,
-    document.body,
+  return (
+    <>
+      {createPortal(
+        <div
+          ref={ref}
+          css={applyPopupContainer(top, left, zIndex, isInViewport)}
+          {...otherProps}
+        >
+          {children}
+        </div>,
+        document.body,
+      )}
+    </>
   )
 })
 

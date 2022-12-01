@@ -1,5 +1,5 @@
-import { ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
+import { ReactNode } from "react"
 
 export type TriggerColorScheme =
   | string
@@ -33,7 +33,12 @@ export type TriggerPosition =
 
 export type TriggerTrigger = "hover" | "click" | "focus" | "contextmenu"
 
-export interface TriggerProps extends BoxProps {
+export interface TriggerContext {
+  renderInBody?: boolean
+  children?: ReactNode
+}
+
+export interface TriggerProps extends BoxProps, TriggerContext {
   children?: ReactNode
   colorScheme?: TriggerColorScheme
   inline?: boolean

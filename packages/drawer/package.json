@@ -40,10 +40,11 @@
   },
   "dependencies": {
     "@illa-design/icon": "1.0.7",
-    "@illa-design/modal": "1.0.7",
     "@illa-design/button": "1.0.7",
     "@illa-design/config-provider": "1.0.7",
     "@illa-design/system": "1.0.7",
-    "@illa-design/theme": "1.0.7"
+    "@illa-design/theme": "1.0.7",
+    "react-remove-scroll": "^2.5.4",
+    "react-focus-lock": "^2.8.1"
   }
 }

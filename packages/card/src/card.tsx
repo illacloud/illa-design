@@ -1,80 +1,29 @@
-import { Children, cloneElement, forwardRef, ReactElement } from "react"
-import { CardGrid } from "./card-grid"
-import { Meta } from "./meta"
+import { forwardRef } from "react"
 import { CardProps } from "./interface"
-import { Loading } from "@illa-design/loading"
 import {
   applyCard,
-  applyCardActionItem,
-  applyCardActions,
-  applyCardActionsRight,
   applyCardBody,
-  applyCardCover,
   applyCardHeader,
   applyCardHeaderExtra,
   applyCardHeaderTitle,
 } from "./style"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const {
     title,
-    actions,
     extra,
     size = "medium",
     hoverable,
-    cover,
-    loading,
     bordered = true,
     children,
-    isGridMode,
     ...restProps
   } = props
-
-  let isContainGrid = false
-  let isContainMeta = false
-
-  Children.forEach(children, (element) => {
-    if (element && (element as ReactElement).type) {
-      if ((element as ReactElement).type === CardGrid) {
-        isContainGrid = true
-      } else if ((element as ReactElement).type === Meta) {
-        isContainMeta = true
-      }
-    }
-  })
-
-  const actionList =
-    actions && actions.length ? (
-      <div css={applyCardActions(isContainMeta)}>
-        <div css={applyCardActionsRight}>
-          {actions.map((action, index) => (
-            <span key={`action-${index}`} css={applyCardActionItem}>
-              {action}
-            </span>
-          ))}
-        </div>
-      </div>
-    ) : null
-
-  const handledChildren = Children.map(
-    children as ReactElement,
-    (element: JSX.Element) => {
-      if (element && element.type && element.type === Meta) {
-        return cloneElement(element, { actionList })
-      }
-      return element
-    },
-  )
 
   return (
     <div
       ref={ref}
-      css={[
-        applyCard(bordered, hoverable ?? false, isGridMode),
-        applyBoxStyle(props),
-      ]}
+      css={[applyCard(bordered, hoverable ?? false), applyBoxStyle(props)]}
       {...deleteCssProps(restProps)}
     >
       {title || extra ? (
@@ -83,13 +32,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
           {extra && <div css={applyCardHeaderExtra}>{extra}</div>}
         </div>
       ) : null}
-
-      {cover ? <div css={applyCardCover}>{cover}</div> : null}
-
-      <div css={applyCardBody(size, loading ?? false, isContainGrid)}>
-        {loading ? <Loading size={size} colorScheme="blue" /> : handledChildren}
-        {isContainMeta ? null : actionList}
-      </div>
+      <div css={applyCardBody(size)}>{children}</div>
     </div>
   )
 })

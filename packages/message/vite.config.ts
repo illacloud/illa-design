@@ -47,8 +47,6 @@ export default defineConfig({
         "react-dom",
         "@illa-design/system",
         "@illa-design/theme",
-        "@illa-design/alert",
-        "@illa-design/notification",
         "@illa-design/icon",
       ],
       output: {
@@ -57,8 +55,6 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/alert": "@illa-design/alert",
-          "@illa-design/notification": "@illa-design/notification",
           "@illa-design/icon": "@illa-design/icon",
         },
       },

@@ -1,61 +1,45 @@
-import {
-  ForwardRefExoticComponent,
-  HTMLAttributes,
-  PropsWithChildren,
-  ReactNode,
-  MouseEvent,
-  RefAttributes,
-} from "react"
+import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
 
 export type CollapsePosition = "left" | "right"
 
-export type CollapseMode = "default" | "builder"
+export type CollapseTriggerRegion = "header" | "icon"
+
+export interface CollapseContextProps {
+  activeKey?: string | string[]
+  lazyload?: boolean
+  showExpandIcon?: boolean
+  triggerRegion?: CollapseTriggerRegion
+  expandIconPosition?: CollapsePosition
+  expandIcon?: ReactNode
+  destroyOnHide?: boolean
+  onToggle?: (
+    key: string,
+    keys: string[],
+    e?: MouseEvent<HTMLDivElement>,
+  ) => void
+}
 
 export interface CollapseProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange">,
+    Omit<CollapseContextProps, "onToggle">,
     BoxProps {
-  activeKey?: string | string[]
-  defaultActiveKey?: string | string[]
-  mode?: CollapseMode
   accordion?: boolean
-  expandIcon?: ReactNode
-  expandIconPosition?: CollapsePosition
   bordered?: boolean
-  destroyOnHide?: boolean
+  defaultActiveKey?: string | string[]
   onChange?: (
-    key?: string,
-    keys?: string[],
+    key: string,
+    keys: string[],
     e?: MouseEvent<HTMLDivElement>,
   ) => void
 }
 
 export interface CollapseItemProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange">,
+    Omit<CollapseContextProps, "onToggle" | "activeKey">,
     BoxProps {
-  header?: ReactNode
   name: string
   disabled?: boolean
-  expandIcon?: ReactNode
-  showExpandIcon?: boolean
   extra?: ReactNode
-  destroyOnHide?: boolean
-}
-
-export interface CollapseContextProps {
-  mode?: CollapseMode
-  expandIcon?: ReactNode
-  activeKeys: string[]
-  expandIconPosition?: CollapsePosition
-  destroyOnHide?: boolean
-  onToggle: (key: string, e: MouseEvent<HTMLDivElement>) => void
-}
-
-export interface CollapseComponent
-  extends ForwardRefExoticComponent<
-    PropsWithChildren<CollapseProps> & RefAttributes<HTMLDivElement>
-  > {
-  Item: ForwardRefExoticComponent<
-    CollapseItemProps & RefAttributes<HTMLDivElement>
-  >
+  header?: ReactNode
 }

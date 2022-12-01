@@ -1,223 +1,158 @@
-import { forwardRef, useState, useCallback, useLayoutEffect } from "react"
 import {
-  NotificationProps,
-  NoticeProps,
-  ConfigProps,
-  NoticePosition,
-  NotificationType,
-  NotificationSet,
-  NotificationWrapper,
-  NotificationComponent,
-} from "./interface"
-import { motion, AnimatePresence } from "framer-motion"
-import { Notice } from "./notice"
-import { applyNotificationSlide, applyNotificationWrapper } from "./style"
-import { render } from "react-dom"
+  forwardRef,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react"
+import { NotificationProps } from "./interface"
+import { motion } from "framer-motion"
+import { notificationStore } from "./notification-store"
+import { applyBoxStyle, getColor } from "@illa-design/theme"
+import {
+  applyContentStyle,
+  applyContentWrapperStyle,
+  applyNotification,
+  applyNotificationAction,
+  applyNotificationCloseBtn,
+  applyNotificationContentStyle,
+  applyNotificationSlide,
+  applyNotificationTitle,
+} from "./style"
+import {
+  CloseIcon,
+  ErrorIcon,
+  InfoCircleIcon,
+  SuccessCircleIcon,
+  WarningCircleIcon,
+} from "@illa-design/icon"
 
-let maxCount: number
-let duration: number
-let container: HTMLElement = document.body
+export const Notification = forwardRef<HTMLDivElement, NotificationProps>(
+  (props, ref) => {
+    const {
+      type,
+      action,
+      closable,
+      showIcon = true,
+      duration,
+      id = "",
+      position = "topRight",
+      icon,
+      content,
+      title,
+      onClose,
+    } = props
 
-function getId(noticeProps: NoticeProps) {
-  if (noticeProps.id) {
-    return noticeProps.id
-  }
-  return `illa_notice_id_${Date.now()}_${Math.random()}`
-}
+    const handlerId = useRef<number | undefined>()
 
-const notificationTypes: NotificationType[] = [
-  "info",
-  "success",
-  "error",
-  "warning",
-  "normal",
-]
-
-const notificationPositions: NoticePosition[] = [
-  "topLeft",
-  "topRight",
-  "bottomLeft",
-  "bottomRight",
-]
-
-let notificationContainer: NotificationWrapper
-const initContainer = () => {
-  notificationContainer = {}
-  notificationPositions.forEach((position) => {
-    notificationContainer[position] = document.createElement("div")
-    container.appendChild(notificationContainer[position] as Node)
-  })
-}
-initContainer()
-
-export const Notification: NotificationComponent = forwardRef<
-  HTMLDivElement,
-  NotificationProps
->((props, ref) => {
-  const { notice, shouldClear, position = "topRight", removeId } = props
-  const [notificationSet, setNotificationSet] = useState<NotificationSet>({
-    topRight: [],
-    topLeft: [],
-    bottomLeft: [],
-    bottomRight: [],
-  })
-  const getRemoves = useCallback(
-    (id: string, notificationSet: NotificationSet) => {
-      let removeIndex = -1,
-        pos = "topRight"
-      Object.keys(notificationSet).forEach((position) => {
-        const index = notificationSet[
-          position as keyof NotificationSet
-        ].findIndex((notice: NoticeProps) => notice.id === id)
-        if (index > -1) {
-          removeIndex = index
-          pos = position
-        }
-      })
-      return [removeIndex, pos]
-    },
-    [],
-  )
-
-  if (removeId !== void 0) {
-    const [index, pos] = getRemoves(removeId, notificationSet)
-
-    if (index > -1) {
-      const newNotices = notificationSet[pos as keyof NotificationSet].filter(
-        (notice) => notice.id !== removeId,
-      )
-      setNotificationSet({ ...notificationSet, [position]: newNotices })
-    }
-  }
-
-  useLayoutEffect(() => {
-    if (shouldClear) {
-      setNotificationSet({
-        ...notificationSet,
-        [position]: [],
-      })
-    }
-  }, [shouldClear])
-
-  const hasUpdate = notificationSet[position].findIndex(
-    (notice) => notice.update,
-  )
-  if (hasUpdate > -1) {
-    const newNotices = notificationSet[position].map((notice) => {
-      if (notice.update) {
-        delete notice.update
-      }
-      return notice
-    })
-    setNotificationSet({ ...notificationSet, [position]: newNotices })
-  }
-
-  useLayoutEffect(() => {
-    if (notice) {
-      const isUpdate =
-        notificationSet[position].findIndex((item) => item.id === notice.id) >
-        -1
-      const _notice = { ...notice }
-      if (isUpdate) {
-        const newNotices = notificationSet[position].map((item) => {
-          if (item.id === _notice.id) {
-            _notice.update = true
-            return _notice
-          }
-          return item
-        })
-        setNotificationSet({ ...notificationSet, [position]: newNotices })
+    const delayClose = useCallback(() => {
+      let timeId: number | undefined
+      if (duration) {
+        timeId = window.setTimeout(() => {
+          notificationStore.remove(id)
+          onClose?.()
+        }, duration)
       } else {
-        const newNotices = [...notificationSet[position]]
-        if (newNotices.length >= maxCount) {
-          newNotices.shift()
-        }
-        _notice.id = getId(_notice)
-        newNotices.push(_notice)
-        setNotificationSet({ ...notificationSet, [position]: newNotices })
+        timeId = window.setTimeout(() => {
+          notificationStore.remove(id)
+          onClose?.()
+          handlerId.current = undefined
+        }, notificationStore.getConfig()?.duration ?? 3000)
       }
-    }
-  }, [notice])
+      handlerId.current = timeId
+    }, [duration, id, onClose])
 
-  return (
-    <div ref={ref} css={[applyNotificationWrapper(position)]}>
-      <AnimatePresence>
-        {notificationSet[position].map((notice) => (
-          <motion.div
-            key={notice.id}
-            layout
-            variants={applyNotificationSlide(position)}
-            animate={"animate"}
-            exit={"exit"}
-            initial={"initial"}
-            transition={{ duration: 0.2 }}
-            onAnimationComplete={(definition) => {
-              if (definition === "exit") {
-                notice.afterClose && notice.afterClose()
-              }
+    useEffect(() => {
+      delayClose()
+      return () => {
+        if (handlerId.current) {
+          clearTimeout(handlerId.current)
+          handlerId.current = undefined
+        }
+      }
+    }, [delayClose])
+
+    const normalIcon: ReactNode = useMemo(() => {
+      if (showIcon) {
+        if (icon) {
+          return icon
+        } else {
+          switch (type) {
+            case "info":
+              return (
+                <InfoCircleIcon mt="2px" fs="16px" c={getColor("blue", "03")} />
+              )
+            case "error":
+              return <ErrorIcon fs="16px" mt="2px" c={getColor("red", "03")} />
+            case "success":
+              return (
+                <SuccessCircleIcon
+                  fs="16px"
+                  mt="2px"
+                  c={getColor("green", "03")}
+                />
+              )
+            case "warning":
+              return (
+                <WarningCircleIcon
+                  fs="16px"
+                  mt="2px"
+                  c={getColor("red", "03")}
+                />
+              )
+            case "normal":
+            default:
+              return <></>
+          }
+        }
+      } else {
+        return <></>
+      }
+    }, [showIcon, icon, type])
+
+    return (
+      <motion.div
+        ref={ref}
+        css={[applyNotification(closable), applyBoxStyle(props)]}
+        layout
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={applyNotificationSlide(position)}
+        onMouseEnter={() => {
+          if (handlerId.current) {
+            clearTimeout(handlerId.current)
+            handlerId.current = undefined
+          }
+        }}
+        onMouseLeave={() => {
+          delayClose()
+        }}
+      >
+        <div css={applyContentWrapperStyle}>
+          {normalIcon}
+          <div css={applyContentStyle(showIcon)}>
+            {title && <div css={applyNotificationTitle}>{title}</div>}
+            {content && (
+              <div css={applyNotificationContentStyle}>{content}</div>
+            )}
+          </div>
+        </div>
+        {action && <div css={applyNotificationAction}>{action}</div>}
+        {closable && (
+          <div
+            css={applyNotificationCloseBtn}
+            onClick={() => {
+              onClose?.()
             }}
           >
-            <Notice
-              {...notice}
-              noticeType="Notification"
-              removeHook={Notification.remove}
-            />
-          </motion.div>
-        ))}
-      </AnimatePresence>
-    </div>
-  )
-}) as NotificationComponent
-
-Notification.remove = (id: string) => {
-  notificationPositions.forEach((position) => {
-    render(
-      <Notification removeId={id} position={position} />,
-      notificationContainer[position] as HTMLDivElement,
+            <CloseIcon />
+          </div>
+        )}
+      </motion.div>
     )
-  })
-}
+  },
+)
 
-Notification.add = (notice: NoticeProps) => {
-  const { position = "topRight" } = notice
-  const noticeProps = {
-    duration,
-    ...notice,
-  }
-  render(
-    <Notification notice={noticeProps} position={position as NoticePosition} />,
-    notificationContainer[position as NoticePosition] as HTMLDivElement,
-  )
-}
-
-Notification.config = (options: ConfigProps = {}) => {
-  if (options.maxCount) {
-    maxCount = options.maxCount
-  }
-  if (options.duration !== void 0 && isFinite(options.duration)) {
-    duration = options.duration
-  }
-  if (options.getContainer && options.getContainer() !== container) {
-    container = options.getContainer()
-    Notification.clear()
-    initContainer()
-  }
-}
-Notification.clear = () => {
-  notificationPositions.forEach((position) => {
-    render(
-      <Notification shouldClear position={position} />,
-      notificationContainer[position] as HTMLDivElement,
-    )
-  })
-}
-
-notificationTypes.forEach((type) => {
-  Notification[type] = (noticeProps: NoticeProps) => {
-    return Notification.add({
-      ...noticeProps,
-      type,
-    })
-  }
-})
-Notification.displayName = "Notification"
+Notification.displayName = "Notice"

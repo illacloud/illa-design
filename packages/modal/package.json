@@ -41,10 +41,11 @@
   "dependencies": {
     "@illa-design/button": "1.0.7",
     "@illa-design/config-provider": "1.0.7",
-    "@illa-design/alert": "1.0.7",
     "@illa-design/icon": "1.0.7",
     "@illa-design/system": "1.0.7",
     "@illa-design/theme": "1.0.7",
-    "react-hotkeys-hook": "^3.4.6"
+    "@illa-design/trigger": "1.0.7",
+    "react-hotkeys-hook": "^3.4.6",
+    "react-focus-lock": "^2.8.1"
   }
 }

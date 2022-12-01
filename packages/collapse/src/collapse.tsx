@@ -1,15 +1,12 @@
-import { forwardRef, MouseEvent } from "react"
-import { CollapseProps, CollapseComponent } from "./interface"
+import { forwardRef, MouseEvent, useCallback } from "react"
+import { CollapseProps } from "./interface"
 import { CollapseContext } from "./collapse-context"
-import { CollapseItem } from "./collapse-item"
-import { CaretRightIcon, CaretLeftIcon } from "@illa-design/icon"
 import { useMergeValue } from "@illa-design/system"
 import { applyCollapseStyle } from "./style"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 const getActiveKeys = (
-  keys: CollapseProps["activeKey"],
+  keys: string | string[],
   accordion?: boolean,
 ): string[] => {
   if (typeof keys === "string") {
@@ -22,79 +19,74 @@ const getActiveKeys = (
   return res
 }
 
-export const Collapse: CollapseComponent = forwardRef<
-  HTMLDivElement,
-  CollapseProps
->((props, ref) => {
-  const [activeKeys, setActiveKeys] = useMergeValue<string[]>([], {
-    defaultValue:
-      "defaultActiveKey" in props
-        ? getActiveKeys(props.defaultActiveKey, props.accordion)
+export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
+  (props, ref) => {
+    const {
+      children,
+      bordered = true,
+      expandIcon,
+      lazyload = true,
+      expandIconPosition = "left",
+      destroyOnHide,
+      accordion,
+      defaultActiveKey,
+      activeKey,
+      onChange,
+      showExpandIcon = true,
+      triggerRegion = "header",
+      ...otherProps
+    } = props
+
+    const [activeKeys, setActiveKeys] = useMergeValue<string[]>([], {
+      defaultValue: defaultActiveKey
+        ? getActiveKeys(defaultActiveKey, accordion)
         : undefined,
-    value:
-      "activeKey" in props
-        ? getActiveKeys(props.activeKey, props.accordion)
-        : undefined,
-  })
+      value: activeKey ? getActiveKeys(activeKey, accordion) : undefined,
+    })
 
-  const {
-    children,
-    bordered,
-    expandIcon,
-    expandIconPosition = "left",
-    mode = "default",
-    destroyOnHide,
-    accordion,
-    defaultActiveKey,
-    activeKey,
-    onChange,
-    ...otherProps
-  } = props
+    const changeFun = useCallback(
+      (key: string, keys: string[], e?: MouseEvent<HTMLDivElement>) => {
+        let newKeys: string[] = []
+        if (accordion) {
+          if (keys.some((value) => value === key)) {
+            newKeys = [key]
+          } else {
+            newKeys = []
+          }
+        } else {
+          newKeys = keys
+        }
+        if (activeKey === undefined) {
+          setActiveKeys(newKeys)
+        }
+        onChange?.(key, newKeys, e)
+      },
+      [accordion, activeKey, onChange, setActiveKeys],
+    )
 
-  const onItemClick = (key: string, e: MouseEvent<HTMLDivElement>): void => {
-    let newActiveKeys = [...activeKeys]
-    const index = activeKeys.indexOf(key)
-    if (index > -1) {
-      newActiveKeys.splice(index, 1)
-    } else if (accordion) {
-      newActiveKeys = [key]
-    } else {
-      newActiveKeys.push(key)
-    }
-    if (!("activeKey" in props)) {
-      setActiveKeys(newActiveKeys)
-    }
-    onChange?.(key, newActiveKeys, e)
-  }
-
-  return (
-    <CollapseContext.Provider
-      value={{
-        activeKeys,
-        mode,
-        onToggle: onItemClick,
-        expandIcon:
-          "expandIcon" in props ? (
-            expandIcon
-          ) : expandIconPosition === "right" ? (
-            <CaretLeftIcon />
-          ) : (
-            <CaretRightIcon />
-          ),
-        destroyOnHide,
-        expandIconPosition,
-      }}
-    >
-      <div
-        ref={ref}
-        css={[applyCollapseStyle(bordered), applyBoxStyle(props)]}
-        {...deleteCssProps(otherProps)}
+    return (
+      <CollapseContext.Provider
+        value={{
+          destroyOnHide,
+          lazyload,
+          expandIconPosition,
+          triggerRegion,
+          expandIcon,
+          showExpandIcon,
+          activeKey: activeKeys,
+          onToggle: changeFun,
+        }}
       >
-        {children}
-      </div>
-    </CollapseContext.Provider>
-  )
-}) as CollapseComponent
+        <div
+          ref={ref}
+          css={[applyCollapseStyle(bordered), applyBoxStyle(props)]}
+          {...deleteCssProps(otherProps)}
+        >
+          {children}
+        </div>
+      </CollapseContext.Provider>
+    )
+  },
+)
 
-Collapse.Item = CollapseItem
 Collapse.displayName = "Collapse"

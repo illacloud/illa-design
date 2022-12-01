@@ -1,4 +1,4 @@
-import { Card, Meta, CardGrid } from "../src"
+import { Card, CardMeta } from "../src"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { Avatar } from "@illa-design/avatar"
@@ -30,20 +30,24 @@ test("Card renders with different hoverable", () => {
 })
 
 test("Card renders with Meta", () => {
-  render(
-    <Card actions={[<LikeIcon />, <ShareIcon />, <MoreIcon />]}>
-      <Meta title="CardMeta" description="MetaContent" avatar={<Avatar />} />
-    </Card>,
+  const { asFragment } = render(
+    <CardMeta
+      title="CardMeta"
+      description="MetaContent"
+      avatar={<Avatar />}
+      actionList={[
+        <LikeIcon key="like" />,
+        <ShareIcon key="share" />,
+        <MoreIcon key="more" />,
+      ]}
+    />,
   )
-  expect(screen.getByText("CardMeta").parentNode?.parentNode).toMatchSnapshot()
-  expect(screen.getByText("CardMeta").parentNode?.nextSibling).toHaveStyle({
-    marginTop: 16,
-  })
+  expect(asFragment()).toMatchSnapshot()
 })
 
 test("Card renders with Cover", () => {
   render(
-    <Card
+    <CardMeta
       title="Cover"
       cover={
         <div
@@ -62,35 +66,4 @@ test("Card renders with Cover", () => {
     />,
   )
   expect(screen.getByText("Cover").parentNode?.nextSibling).toMatchSnapshot()
-})
-
-test("Card renders with CardGrid", () => {
-  render(
-    <Card bordered={true} style={{ width: "100%" }}>
-      {new Array(7).fill(null).map((_, index) => {
-        const hoverable = index % 2 === 0
-        return (
-          <CardGrid key={index} hoverable={hoverable} style={{ width: "25%" }}>
-            <Card
-              style={{ width: "100%" }}
-              title={`Card${index}`}
-              extra={<Link>More</Link>}
-            >
-              {new Array(2).fill(null).map((_, index) => (
-                <p style={{ margin: 0 }} key={index}>
-                  {hoverable ? "Card allow to hover" : "Card content"}
-                </p>
-              ))}
-            </Card>
-          </CardGrid>
-        )
-      })}
-    </Card>,
-  )
-  expect(
-    screen.getByText("Card0").parentNode?.parentNode?.parentNode,
-  ).toHaveStyle({
-    position: "relative",
-    boxSizing: "border-box",
-  })
 })

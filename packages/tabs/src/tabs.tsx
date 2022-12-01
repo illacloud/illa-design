@@ -157,7 +157,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   )
 
   const handleSelectTab = useCallback(
-    (key) => {
+    (key: string) => {
       onClickTab && onClickTab(key)
       setActiveKeyState(key)
       onChange && onChange(key)

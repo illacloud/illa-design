@@ -54,11 +54,12 @@ export interface TableProps<D extends TableData, TValue>
   checkAll?: boolean
   download?: boolean
   filter?: boolean
+  rowSelection?: RowSelectionState | number
   columnVisibility?: VisibilityState
   onSortingChange?: OnChangeFn<SortingState>
   onPaginationChange?: OnChangeFn<PaginationState>
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
-  onRowSelectionChange?: OnChangeFn<RowSelectionState>
+  onRowSelectionChange?: (rowSelection?: RowSelectionState | number) => void
 }
 
 export interface RowSelectionProps<D = any> {
@@ -81,6 +82,7 @@ export interface TBodyProps
 
 export interface TrProps extends HTMLAttributes<HTMLTableRowElement>, BoxProps {
   hoverable?: boolean
+  selected?: boolean
 }
 
 export interface TdProps
@@ -119,11 +121,13 @@ export interface TableFilterProps<D extends TableData> extends BoxProps {
 }
 
 export interface FiltersEditorProps {
+  filterOperator: FilterOperator
   columnFilters: FilterOptionsState
   columnsOption: { value: string; label: string }[]
   onAdd: () => void
   onDelete: (index: number, columnFilters: FilterOptions) => void
   onChange: (index: number, columnFilters: FilterOptions) => void
+  onChangeOperator: (filterOperator: FilterOperator) => void
   onChangeFilterFn: (
     index: number,
     id: string,
@@ -152,3 +156,5 @@ export type FilterOptions = {
 }
 
 export type FilterOptionsState = FilterOptions[]
+
+export type FilterOperator = "and" | "or"

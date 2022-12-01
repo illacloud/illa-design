@@ -104,6 +104,7 @@ export default defineConfig({
         "@illa-design/tree-select",
         "@illa-design/loading",
         "@illa-design/dropdown",
+        "@illa-design/cascader",
       ],
       output: {
         globals: {
@@ -169,6 +170,7 @@ export default defineConfig({
           "@illa-design/tree-select": "@illa-design/tree-select",
           "@illa-design/loading": "@illa-design/loading",
           "@illa-design/dropdown": "@illa-design/dropdown",
+          "@illa-design/cascader": "@illa-design/cascader",
         },
       },
     },

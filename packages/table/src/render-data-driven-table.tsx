@@ -1,5 +1,11 @@
 import { TableData } from "./table-data"
-import { FilterOptionsState, TableContextProps, TableProps } from "./interface"
+import {
+  FilterOperator,
+  FilterOptionsState,
+  TableContextProps,
+  TableProps,
+} from "./interface"
+import isEqual from "react-fast-compare"
 import { ReactElement, useCallback, useEffect, useMemo, useState } from "react"
 import {
   ColumnDef,
@@ -13,7 +19,11 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table"
-import { FilterFnOption, PaginationState } from "@tanstack/table-core"
+import {
+  FilterFnOption,
+  PaginationState,
+  RowSelectionState,
+} from "@tanstack/table-core"
 import { Checkbox } from "@illa-design/checkbox"
 import { rankItem } from "@tanstack/match-sorter-utils"
 import {
@@ -30,9 +40,10 @@ import {
   notEqualTo,
   notLessThan,
   notMoreThan,
+  customGlobalFn,
   transformTableIntoCsvData,
 } from "./utils"
-import { isNumber, isString } from "@illa-design/system"
+import { isNumber, isObject, isString } from "@illa-design/system"
 import {
   applyActionButtonStyle,
   applyBorderedStyle,
@@ -66,6 +77,26 @@ import { Trigger } from "@illa-design/trigger"
 import { FiltersEditor } from "./filters-editor"
 import { Pagination } from "@illa-design/pagination"
 
+const getSelectedRow = (
+  rowSelection?: number | Record<string, boolean>,
+  multiRowSelection?: boolean,
+) => {
+  if (multiRowSelection) {
+    return isObject(rowSelection)
+      ? rowSelection
+      : isNumber(rowSelection)
+      ? { [rowSelection]: true }
+      : {}
+  }
+  return isObject(rowSelection)
+    ? Object.keys(rowSelection).length
+      ? Number(Object.keys(rowSelection)[0])
+      : undefined
+    : isNumber(rowSelection)
+    ? rowSelection
+    : undefined
+}
+
 export function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
 ): ReactElement {
@@ -93,6 +124,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     checkAll = true,
     download,
     filter,
+    rowSelection: selected,
     defaultSort = [],
     onSortingChange,
     onPaginationChange,
@@ -113,10 +145,16 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [filterOperator, setFilterOperator] = useState<FilterOperator>("and")
   const [filterOption, setFilterOption] = useState<FilterOptionsState>([
     { id: "", value: "" },
   ])
-  const [rowSelection, setRowSelection] = useState({})
+  const [rowSelection, setRowSelection] = useState(
+    multiRowSelection && isObject(selected) ? selected : {},
+  )
+  const [selectedRow, setSelectedRow] = useState<number | undefined>(
+    !multiRowSelection && isNumber(selected) ? selected : undefined,
+  )
   const [currentColumns, setColumns] = useState<ColumnDef<D, TValue>[]>(columns)
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -166,36 +204,16 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     return current
   }, [checkAll, currentColumns, multiRowSelection])
 
+  const globalFilter = useMemo(() => {
+    return { filters: columnFilters, operator: filterOperator }
+  }, [columnFilters, filterOperator])
+
   const table = useReactTable({
     data,
     columns: _columns,
-    filterFns: {
-      fuzzy: (row, columnId, value, addMeta) => {
-        // Rank the item
-        const itemRank = rankItem(row.getValue(columnId), value)
-        // Store the itemRank info
-        addMeta({
-          itemRank,
-        })
-        // Return if the item should be filtered in/out
-        return itemRank.passed
-      },
-      equalTo,
-      notEqualTo,
-      contains,
-      doesNotContain,
-      lessThan,
-      notLessThan,
-      moreThan,
-      notMoreThan,
-      empty,
-      notEmpty,
-      before,
-      after,
-    },
     state: {
       columnVisibility,
-      columnFilters,
+      globalFilter,
       sorting,
       rowSelection,
       pagination: {
@@ -203,8 +221,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize,
       },
     },
-    enableColumnFilters: true,
     enableSorting: !disableSortBy,
+    globalFilterFn: customGlobalFn,
     onPaginationChange: (pagination) => {
       setPagination(pagination)
       onPaginationChange?.(pagination)
@@ -231,6 +249,33 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     getPaginationRowModel: getPaginationRowModel(),
     manualPagination: overFlow === "scroll",
   })
+
+  useEffect(() => {
+    if (multiRowSelection) {
+      const _selectedRow = getSelectedRow(selectedRow, multiRowSelection)
+      if (isObject(_selectedRow) && !isEqual(_selectedRow, rowSelection)) {
+        setRowSelection(_selectedRow)
+        onRowSelectionChange?.(_selectedRow)
+      }
+    } else {
+      const _selectedRow = getSelectedRow(rowSelection, multiRowSelection)
+      if (isNumber(_selectedRow) && _selectedRow !== selectedRow) {
+        setSelectedRow(_selectedRow)
+        setRowSelection({ [_selectedRow]: true })
+        onRowSelectionChange?.(_selectedRow)
+      }
+    }
+  }, [multiRowSelection])
+
+  useEffect(() => {
+    const _selectedRow = getSelectedRow(selected, multiRowSelection)
+    if (multiRowSelection) {
+      !isEqual(_selectedRow, rowSelection) &&
+        setRowSelection(_selectedRow as RowSelectionState)
+    } else {
+      _selectedRow !== selectedRow && setSelectedRow(_selectedRow as number)
+    }
+  }, [selected])
 
   useEffect(() => {
     if (defaultSort?.length) {
@@ -405,8 +450,22 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
               </Thead>
             )}
             <TBody>
-              {table.getRowModel().rows.map((row) => (
-                <Tr key={row.id} hoverable>
+              {table.getRowModel().rows.map((row, index) => (
+                <Tr
+                  key={row.id}
+                  hoverable
+                  selected={
+                    multiRowSelection
+                      ? row.getIsSelected()
+                      : selectedRow === index
+                  }
+                  onClick={() => {
+                    if (!multiRowSelection) {
+                      onRowSelectionChange?.(index)
+                      setSelectedRow(index)
+                    }
+                  }}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <Td
                       key={cell.id}
@@ -493,11 +552,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 trigger={"click"}
                 content={
                   <FiltersEditor
+                    filterOperator={filterOperator}
                     columnFilters={filterOption}
                     columnsOption={ColumnsOption}
                     onChange={(index, filters) => {
                       addOrUpdateFilters(index, filters)
                     }}
+                    onChangeOperator={setFilterOperator}
                     onChangeFilterFn={updateColumns}
                     onAdd={addOrUpdateFilters}
                     onDelete={(index, filters) => {

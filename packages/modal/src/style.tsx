@@ -1,92 +1,57 @@
+import { ModalAlignType } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { Variants } from "framer-motion"
-import { iconColorMap } from "@illa-design/alert"
-import { AlignType } from "./interface"
 
 export const applyModalMask = css`
+  z-index: ${zIndex.modal};
   position: fixed;
   left: 0;
+  right: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  bottom: 0;
   background-color: ${globalColor(`--${illaPrefix}-blackAlpha-02`)};
 `
 
-export const modalContainer = css`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
+export const applyModalContainer = css`
+  position: fixed;
+  cursor: auto;
+  overflow: auto;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: ${zIndex.modal};
+  &:after {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 100%;
+    content: "";
+  }
 `
 
-export function applyModalWrapper(isCenter?: boolean): SerializedStyles {
-  const centerCss = isCenter
-    ? css`
-        text-align: center;
-        white-space: nowrap;
-
-        &::after {
-          display: inline-block;
-          vertical-align: middle;
-          width: 0;
-          height: 100%;
-          content: "";
-        }
-      `
-    : ""
+export function applyModal(): SerializedStyles {
   return css`
-    ${centerCss};
-    position: fixed;
-    left: 0;
-    top: 0;
-    overflow: auto;
-    width: 100%;
-    height: 100%;
-  `
-}
-
-export function applyModal(
-  isCenter?: boolean,
-  isSimple?: boolean,
-): SerializedStyles {
-  const centerCss = isCenter
-    ? css`
-        top: 0;
-        vertical-align: middle;
-        display: inline-block;
-      `
-    : ""
-  return css`
+    box-sizing: content-box;
+    display: inline-block;
     position: relative;
-    top: 100px;
-    overflow: hidden;
-    margin: 0 auto;
-    width: ${isSimple ? "400px" : "520px"};
+    vertical-align: middle;
     text-align: left;
-    white-space: initial;
-    box-sizing: border-box;
+    min-width: 520px;
+    width: 520px;
+    margin: 24px auto;
     border-radius: 8px;
+    border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-    ${centerCss}
   `
 }
 
 export function applyModalHeader(
-  isSimple?: boolean,
   closable?: boolean,
   withoutLine?: boolean,
 ): SerializedStyles {
-  const simpleCss = isSimple
-    ? css`
-        padding-top: 16px;
-        padding-bottom: 8px;
-        height: unset;
-        border: none;
-      `
-    : ""
-
   let border = css``
   if (!withoutLine) {
     border = css`
@@ -104,46 +69,33 @@ export function applyModalHeader(
 
   return css`
     ${paddingCss};
-    width: 100%;
     box-sizing: border-box;
     display: flex;
     align-items: center;
+    justify-content: center;
     ${border};
-    ${simpleCss};
   `
 }
 
-export function applyModalTitle(isSimple?: boolean): SerializedStyles {
+export function applyModalTitle(): SerializedStyles {
   return css`
     text-align: center;
-    flex: 1;
     font-size: 16px;
-    font-weight: ${isSimple ? 500 : 600};
+    font-weight: 600;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   `
 }
 
-export function applyModalContent(
-  isSimple?: boolean,
-  withoutPadding?: boolean,
-): SerializedStyles {
+export function applyModalContent(withoutPadding?: boolean): SerializedStyles {
   const paddingCSS = withoutPadding
     ? css`
         padding: 0;
       `
     : ""
-  const simpleCss = isSimple
-    ? css`
-        padding: 8px 24px;
-      `
-    : ""
   return css`
-    padding: 24px;
     font-size: 14px;
-    flex: 1;
-    overflow: hidden;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    ${simpleCss};
+    padding: 8px 24px;
     ${paddingCSS}
   `
 }
@@ -164,27 +116,25 @@ export const modalCloseIconStyle = css`
 `
 
 export function applyModalFooter(
-  isSimple?: boolean,
-  footerAlign?: AlignType,
+  footerAlign?: ModalAlignType,
+  withoutLine?: boolean,
 ): SerializedStyles {
-  const simpleCss = isSimple
-    ? css`
-        text-align: center;
-        border: none;
-      `
-    : ""
   const textAlignCss = footerAlign
     ? css`
         text-align: ${footerAlign};
       `
     : ""
+  const line = withoutLine
+    ? css``
+    : css`
+        border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      `
   return css`
     text-align: right;
     width: 100%;
     box-sizing: border-box;
     padding: 16px 24px;
-    border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    ${simpleCss};
+    ${line};
     ${textAlignCss};
   `
 }
@@ -192,24 +142,6 @@ export function applyModalFooter(
 export const applyModalCancelBtn = css`
   margin-right: 8px;
 `
-
-export function applyModalConfirmTitle(
-  type: keyof typeof iconColorMap,
-): SerializedStyles {
-  return css`
-    position: relative;
-    padding-left: 24px;
-    display: inline-block;
-
-    > svg {
-      color: ${iconColorMap[type]};
-      position: absolute;
-      line-height: 0;
-      top: 4px;
-      left: 0;
-    }
-  `
-}
 
 export const maskAnimation: Variants = {
   initial: {

@@ -107,6 +107,17 @@ export function applyBgHoverStyle(hoverable?: boolean): SerializedStyles {
   `
 }
 
+export function applySelectedStyle(selected?: boolean): SerializedStyles {
+  if (!selected) return css``
+
+  return css`
+    background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+    &:hover {
+      background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+    }
+  `
+}
+
 export const applyHeaderIconLeft = css`
   margin-left: 4px;
   width: 16px;
@@ -196,7 +207,7 @@ export const filterStyle = css`
 `
 
 export const filterLabelStyle = css`
-  width: 48px;
+  width: 90px;
 `
 
 export const editorStyle = css`

@@ -1,12 +1,12 @@
-import { forwardRef, ReactElement } from "react"
+import { forwardRef, useMemo } from "react"
 import { isObject } from "@illa-design/system"
 import {
   SkeletonImageProps,
   SkeletonProps,
   SkeletonTextProps,
 } from "./interface"
-import { Text } from "./text"
-import { Image } from "./image"
+import { SkeletonText } from "./skeleton-text"
+import { SkeletonImage } from "./skeleton-image"
 import { skeletonImageStyle, skeletonStyle, skeletonTextStyle } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
@@ -25,47 +25,48 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       ...restProps
     } = props
 
-    function renderText() {
+    const renderText = useMemo(() => {
       if (!text) {
-        return null
+        return <></>
       }
-
       const textProps = getProps(text) as SkeletonTextProps
 
       return (
-        <Text css={[skeletonTextStyle]} animation={animation} {...textProps} />
+        <SkeletonText
+          css={[skeletonTextStyle]}
+          animation={animation}
+          {...textProps}
+        />
       )
-    }
+    }, [animation, text])
 
-    function renderImage() {
+    const renderImage = useMemo(() => {
       if (!image) {
         return null
       }
       const imageProps = getProps(image) as SkeletonImageProps
 
       return (
-        <Image
+        <SkeletonImage
           css={[skeletonImageStyle]}
           animation={animation}
           {...imageProps}
         />
       )
-    }
+    }, [animation, image])
 
-    function renderSkeleton() {
-      return (
-        <div
-          ref={ref}
-          css={[skeletonStyle, applyBoxStyle(props)]}
-          {...deleteCssProps(restProps)}
-        >
-          {renderImage()}
-          {renderText()}
-        </div>
-      )
-    }
-
-    return visible ? renderSkeleton() : (children as ReactElement)
+    return visible ? (
+      <div
+        ref={ref}
+        css={[skeletonStyle, applyBoxStyle(props)]}
+        {...deleteCssProps(restProps)}
+      >
+        {renderImage}
+        {renderText}
+      </div>
+    ) : (
+      <>{children}</>
+    )
   },
 )
 

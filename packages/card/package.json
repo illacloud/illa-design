@@ -42,6 +42,7 @@
     "@illa-design/icon": "1.0.7",
     "@illa-design/spin": "1.0.7",
     "@illa-design/system": "1.0.7",
-    "@illa-design/theme": "1.0.7"
+    "@illa-design/theme": "1.0.7",
+    "@illa-design/space": "1.0.7"
   }
 }

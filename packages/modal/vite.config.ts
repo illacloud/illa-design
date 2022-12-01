@@ -1,6 +1,6 @@
-import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
 import typescript from "@rollup/plugin-typescript"
+import react from "@vitejs/plugin-react"
+import { defineConfig } from "vite"
 
 const path = require("path")
 
@@ -49,8 +49,10 @@ export default defineConfig({
         "@illa-design/theme",
         "@illa-design/button",
         "@illa-design/config-provider",
-        "@illa-design/alert",
         "@illa-design/icon",
+        "react-hotkeys-hook",
+        "react-focus-lock",
+        "@illa-design/trigger",
       ],
       output: {
         globals: {
@@ -60,8 +62,10 @@ export default defineConfig({
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/button": "@illa-design/button",
           "@illa-design/config-provider": "@illa-design/config-provider",
-          "@illa-design/alert": "@illa-design/alert",
           "@illa-design/icon": "@illa-design/icon",
+          "react-hotkeys-hook": "react-hotkeys-hook",
+          "react-focus-lock": "react-focus-lock",
+          "@illa-design/trigger": "@illa-design/trigger",
         },
       },
     },

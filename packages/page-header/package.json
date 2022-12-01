@@ -42,6 +42,7 @@
     "@illa-design/icon": "1.0.7",
     "@illa-design/breadcrumb": "1.0.7",
     "@illa-design/system": "1.0.7",
-    "@illa-design/theme": "1.0.7"
+    "@illa-design/theme": "1.0.7",
+    "@illa-design/divider": "1.0.7"
   }
 }
