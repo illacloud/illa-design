@@ -45,19 +45,22 @@ export default defineConfig({
       external: [
         "react",
         "react-dom",
-        "@illa-design/system",
-        "@illa-design/theme",
         "@illa-design/icon",
         "@illa-design/config-provider",
+        "@illa-design/theme",
+        "@illa-design/system",
+        "@floating-ui/react-dom-interactions",
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
-          "@illa-design/system": "@illa-design/system",
-          "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/config-provider": "@illa-design/config-provider",
+          "@illa-design/theme": "@illa-design/theme",
+          "@illa-design/system": "@illa-design/system",
+          "@floating-ui/react-dom-interactions":
+            "@floating-ui/react-dom-interactions",
         },
       },
     },

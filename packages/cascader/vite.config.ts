@@ -45,14 +45,14 @@ export default defineConfig({
       external: [
         "react",
         "react-dom",
-        "@illa-design/system",
-        "@illa-design/theme",
         "@illa-design/checkbox",
         "@illa-design/empty",
         "@illa-design/icon",
         "@illa-design/select",
         "@illa-design/list",
         "@illa-design/trigger",
+        "@illa-design/system",
+        "@illa-design/theme",
       ],
       output: {
         globals: {

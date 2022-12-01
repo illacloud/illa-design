@@ -50,6 +50,8 @@
     }
   },
   "devDependencies": {
+    "@types/color": "^3.0.3",
+    "@types/debounce": "^1.2.1",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
     "eslint": "^8.28.0",

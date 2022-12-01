@@ -49,7 +49,6 @@ export default defineConfig({
         "@illa-design/theme",
         "@illa-design/icon",
         "@illa-design/dropdown",
-        "@illa-design/menu",
       ],
       output: {
         globals: {
@@ -59,7 +58,6 @@ export default defineConfig({
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/dropdown": "@illa-design/dropdown",
-          "@illa-design/menu": "@illa-design/menu",
         },
       },
     },
