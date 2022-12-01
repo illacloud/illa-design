@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/progress",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Illa Design progress.",
   "keywords": [
     "progress",
@@ -39,10 +39,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.7",
-    "@illa-design/space": "1.0.7",
-    "@illa-design/trigger": "1.0.7",
-    "@illa-design/system": "1.0.7",
-    "@illa-design/theme": "1.0.7"
+    "@illa-design/icon": "1.0.8",
+    "@illa-design/space": "1.0.8",
+    "@illa-design/trigger": "1.0.8",
+    "@illa-design/system": "1.0.8",
+    "@illa-design/theme": "1.0.8"
   }
 }

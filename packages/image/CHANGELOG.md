@@ -1,5 +1,16 @@
 # @illa-design/image
 
+## 1.0.8
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@1.0.8
+  - @illa-design/system@1.0.8
+  - @illa-design/theme@1.0.8
+
 ## 1.0.7
 
 ### Patch Changes
