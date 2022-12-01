@@ -49,6 +49,7 @@ export default defineConfig({
         "@illa-design/theme",
         "@illa-design/system",
         "@illa-design/skeleton",
+        "dayjs",
       ],
       output: {
         globals: {
@@ -58,6 +59,7 @@ export default defineConfig({
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/skeleton": "@illa-design/skeleton",
+          dayjs: "dayjs",
         },
       },
     },

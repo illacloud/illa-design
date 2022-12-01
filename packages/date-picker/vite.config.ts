@@ -54,6 +54,7 @@ export default defineConfig({
         "@illa-design/theme",
         "@illa-design/button",
         "@illa-design/input",
+        "dayjs",
       ],
       output: {
         globals: {
@@ -68,6 +69,7 @@ export default defineConfig({
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/button": "@illa-design/button",
           "@illa-design/input": "@illa-design/input",
+          dayjs: "dayjs",
         },
       },
     },

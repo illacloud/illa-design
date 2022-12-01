@@ -52,6 +52,7 @@ export default defineConfig({
         "@illa-design/config-provider",
         "@illa-design/button",
         "@illa-design/radio",
+        "dayjs",
       ],
       output: {
         globals: {
@@ -64,6 +65,7 @@ export default defineConfig({
           "@illa-design/config-provider": "@illa-design/config-provider",
           "@illa-design/button": "@illa-design/button",
           "@illa-design/radio": "@illa-design/radio",
+          dayjs: "dayjs",
         },
       },
     },

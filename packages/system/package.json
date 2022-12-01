@@ -35,6 +35,9 @@
   "bugs": {
     "url": "https://github.com/illacloud/illa-design/issues"
   },
+  "dependencies": {
+    "dayjs": "^1.10.7"
+  },
   "scripts": {
     "build": "vite build"
   }

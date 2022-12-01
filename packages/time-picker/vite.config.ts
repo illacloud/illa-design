@@ -52,6 +52,8 @@ export default defineConfig({
         "@illa-design/system",
         "@illa-design/button",
         "@illa-design/config-provider",
+        "dayjs",
+        "debounce",
       ],
       output: {
         globals: {
@@ -64,6 +66,8 @@ export default defineConfig({
           "@illa-design/system": "@illa-design/system",
           "@illa-design/button": "@illa-design/button",
           "@illa-design/config-provider": "@illa-design/config-provider",
+          dayjs: "dayjs",
+          debounce: "debounce",
         },
       },
     },

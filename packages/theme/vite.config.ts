@@ -42,11 +42,13 @@ export default defineConfig({
           exclude: path.resolve(__dirname, "node_modules/**"),
         }),
       ],
-      external: ["react", "react-dom"],
+      external: ["react", "react-dom", "color", "@illa-design/system"],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
+          color: "color",
+          "@illa-design/system": "@illa-design/system",
         },
       },
     },

@@ -47,6 +47,8 @@ export default defineConfig({
         "react-dom",
         "@illa-design/system",
         "@illa-design/theme",
+        "react-use-measure",
+        "react-use",
       ],
       output: {
         globals: {
@@ -54,6 +56,8 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
+          "react-use-measure": "react-use-measure",
+          "react-use": "react-use",
         },
       },
     },

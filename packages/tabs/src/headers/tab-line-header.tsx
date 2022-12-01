@@ -39,7 +39,6 @@ import {
 } from "../utils"
 import { TabHeaderProps } from "../interface"
 import useMeasure from "react-use-measure"
-import { ResizeObserver } from "@juggle/resize-observer"
 
 const PADDING = 16
 

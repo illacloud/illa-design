@@ -38,8 +38,17 @@
   "scripts": {
     "build": "vite build"
   },
+  "dependencies": {
+    "color": "^4.2.3",
+    "@illa-design/system": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/color": "^3.0.3"
+  },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5",
+    "framer-motion": "^7.6.12"
   }
 }

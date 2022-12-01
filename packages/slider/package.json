@@ -42,7 +42,8 @@
     "@illa-design/input-number": "workspace:*",
     "@illa-design/trigger": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "@illa-design/system": "workspace:*"
+    "@illa-design/system": "workspace:*",
+    "number-precision": "^1.6.0"
   },
   "peerDependencies": {
     "react": "^18.2.0",

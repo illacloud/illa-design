@@ -48,7 +48,8 @@
     "@illa-design/list": "workspace:*",
     "@illa-design/trigger": "workspace:*",
     "@illa-design/system": "workspace:*",
-    "@illa-design/theme": "workspace:*"
+    "@illa-design/theme": "workspace:*",
+    "react-fast-compare": "^3.2.0"
   },
   "peerDependencies": {
     "react": "^18.2.0",

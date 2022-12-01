@@ -59,6 +59,8 @@ export default defineConfig({
         "@tanstack/match-sorter-utils",
         "@illa-design/select",
         "@illa-design/input",
+        "chroma-js",
+        "react-fast-compare",
       ],
       output: {
         globals: {
@@ -77,6 +79,8 @@ export default defineConfig({
           "@tanstack/match-sorter-utils": "@tanstack/match-sorter-utils",
           "@illa-design/select": "@illa-design/select",
           "@illa-design/input": "@illa-design/input",
+          "chroma-js": "chroma-js",
+          "react-fast-compare": "react-fast-compare",
         },
       },
     },

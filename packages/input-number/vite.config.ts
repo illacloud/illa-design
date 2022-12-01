@@ -49,6 +49,7 @@ export default defineConfig({
         "@illa-design/theme",
         "@illa-design/icon",
         "@illa-design/input",
+        "number-precision",
       ],
       output: {
         globals: {
@@ -58,6 +59,7 @@ export default defineConfig({
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/input": "@illa-design/input",
+          "number-precision": "number-precision",
         },
       },
     },

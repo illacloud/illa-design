@@ -50,7 +50,8 @@
     "@illa-design/checkbox": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "@illa-design/system": "workspace:*",
-    "@illa-design/button": "workspace:*"
+    "@illa-design/button": "workspace:*",
+    "chroma-js": "^2.1.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",

@@ -45,7 +45,8 @@
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "react-hotkeys-hook": "^3.4.6",
-    "react-focus-lock": "^2.8.1"
+    "react-focus-lock": "^2.8.1",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",

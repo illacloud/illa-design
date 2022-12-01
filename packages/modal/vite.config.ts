@@ -52,6 +52,7 @@ export default defineConfig({
         "@illa-design/icon",
         "react-hotkeys-hook",
         "react-focus-lock",
+        "uuid",
       ],
       output: {
         globals: {
@@ -64,6 +65,7 @@ export default defineConfig({
           "@illa-design/icon": "@illa-design/icon",
           "react-hotkeys-hook": "react-hotkeys-hook",
           "react-focus-lock": "react-focus-lock",
+          uuid: "uuid",
         },
       },
     },

@@ -5,20 +5,6 @@
   "repository": "git@github.com:illacloud/illa-design.git",
   "author": "illa Cloud",
   "license": "Apache-2.0",
-  "dependencies": {
-    "dayjs": "^1.10.7",
-    "number-precision": "^1.5.2",
-    "react-fast-compare": "^3.2.0",
-    "react-use": "^17.4.0",
-    "uuid": "^8.3.2",
-    "@emotion/react": "^11.10.5",
-    "chroma-js": "^2.1.2",
-    "color": "^4.2.3",
-    "framer-motion": "^7.6.12",
-    "react-use-measure": "^2.1.1",
-    "@juggle/resize-observer": "^3.4.0",
-    "debounce": "^1.2.1"
-  },
   "resolutions": {
     "graceful-fs": "4.2.9"
   },
@@ -50,8 +36,6 @@
     }
   },
   "devDependencies": {
-    "@types/color": "^3.0.3",
-    "@types/debounce": "^1.2.1",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
     "eslint": "^8.28.0",
@@ -108,6 +92,8 @@
     "sinon": "^14.0.2",
     "ts-jest": "^29.0.3",
     "turbo": "^1.6.3",
-    "vite-plugin-istanbul": "^2.7.3"
+    "vite-plugin-istanbul": "^2.7.3",
+    "@emotion/react": "^11.10.5",
+    "framer-motion": "^7.6.12"
   }
 }

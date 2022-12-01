@@ -42,7 +42,8 @@
     "@illa-design/icon": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "@illa-design/system": "workspace:*",
-    "@illa-design/skeleton": "workspace:*"
+    "@illa-design/skeleton": "workspace:*",
+    "dayjs": "^1.10.7"
   },
   "peerDependencies": {
     "react": "^18.2.0",

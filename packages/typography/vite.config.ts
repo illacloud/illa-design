@@ -50,6 +50,7 @@ export default defineConfig({
         "@illa-design/icon",
         "@illa-design/trigger",
         "@illa-design/config-provider",
+        "react-use-measure",
       ],
       output: {
         globals: {
@@ -60,6 +61,7 @@ export default defineConfig({
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/trigger": "@illa-design/trigger",
           "@illa-design/config-provider": "@illa-design/config-provider",
+          "react-use-measure": "react-use-measure",
         },
       },
     },

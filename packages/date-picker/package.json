@@ -47,7 +47,8 @@
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "@illa-design/button": "workspace:*",
-    "@illa-design/input": "workspace:*"
+    "@illa-design/input": "workspace:*",
+    "dayjs": "^1.10.7"
   },
   "peerDependencies": {
     "react": "^18.2.0",

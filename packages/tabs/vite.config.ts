@@ -48,6 +48,8 @@ export default defineConfig({
         "@illa-design/system",
         "@illa-design/theme",
         "@illa-design/icon",
+        "react-use",
+        "react-use-measure",
       ],
       output: {
         globals: {
@@ -56,6 +58,8 @@ export default defineConfig({
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
+          "react-use": "react-use",
+          "react-use-measure": "react-use-measure",
         },
       },
     },

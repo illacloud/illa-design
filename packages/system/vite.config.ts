@@ -42,11 +42,12 @@ export default defineConfig({
           exclude: path.resolve(__dirname, "node_modules/**"),
         }),
       ],
-      external: ["react", "react-dom"],
+      external: ["react", "react-dom", "dayjs"],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
+          dayjs: "dayjs",
         },
       },
     },

@@ -53,6 +53,7 @@ export default defineConfig({
         "@illa-design/trigger",
         "@illa-design/system",
         "@illa-design/theme",
+        "react-fast-compare",
       ],
       output: {
         globals: {
@@ -66,6 +67,7 @@ export default defineConfig({
           "@illa-design/select": "@illa-design/select",
           "@illa-design/list": "@illa-design/list",
           "@illa-design/trigger": "@illa-design/trigger",
+          "react-fast-compare": "react-fast-compare",
         },
       },
     },

@@ -43,7 +43,8 @@
     "@illa-design/config-provider": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "@illa-design/system": "workspace:*",
-    "@illa-design/trigger": "workspace:*"
+    "@illa-design/trigger": "workspace:*",
+    "react-use-measure": "^2.1.1"
   },
   "peerDependencies": {
     "react": "^18.2.0",

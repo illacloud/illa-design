@@ -45,7 +45,8 @@
     "@illa-design/theme": "workspace:*",
     "@illa-design/config-provider": "workspace:*",
     "@illa-design/button": "workspace:*",
-    "@illa-design/radio": "workspace:*"
+    "@illa-design/radio": "workspace:*",
+    "dayjs": "^1.10.7"
   },
   "peerDependencies": {
     "react": "^18.2.0",
