@@ -45,6 +45,8 @@ export default defineConfig({
       external: [
         "react",
         "react-dom",
+        "@emotion/react",
+        "framer-motion",
         "@illa-design/trigger",
         "@illa-design/typography",
         "@illa-design/button",
@@ -58,6 +60,8 @@ export default defineConfig({
         globals: {
           react: "React",
           "react-dom": "ReactDom",
+          "@emotion/react": "@emotion/react",
+          "framer-motion": "framer-motion",
           "@illa-design/trigger": "@illa-design/trigger",
           "@illa-design/typography": "@illa-design/typography",
           "@illa-design/button": "@illa-design/button",

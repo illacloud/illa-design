@@ -45,6 +45,8 @@ export default defineConfig({
       external: [
         "react",
         "react-dom",
+        "@emotion/react",
+        "framer-motion",
         "@illa-design/typography",
         "@illa-design/avatar",
         "@illa-design/divider",
@@ -56,6 +58,8 @@ export default defineConfig({
         globals: {
           react: "React",
           "react-dom": "ReactDom",
+          "@emotion/react": "@emotion/react",
+          "framer-motion": "framer-motion",
           "@illa-design/typography": "@illa-design/typography",
           "@illa-design/avatar": "@illa-design/avatar",
           "@illa-design/divider": "@illa-design/divider",

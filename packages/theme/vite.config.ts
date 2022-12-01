@@ -47,6 +47,8 @@ export default defineConfig({
         globals: {
           react: "React",
           "react-dom": "ReactDom",
+          "@emotion/react": "@emotion/react",
+          "framer-motion": "framer-motion",
           color: "color",
           "@illa-design/system": "@illa-design/system",
         },

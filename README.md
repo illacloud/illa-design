@@ -47,11 +47,11 @@ You can quickly use ILLA Design on codesandbox.
 Step 1: Install
 
 ```bash
-$ yarn add @illa-design/react
+$ yarn add @illa-design/react @emotion/react framer-motion
 
 # or
 
-$ npm i @illa-design/react
+$ npm i @illa-design/react @emotion/react framer-motion
 ```
 
 Step 2: Use
