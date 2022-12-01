@@ -1,7 +1,7 @@
+import { ModalAlignType } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { Variants } from "framer-motion"
-import { ModalAlignType } from "./interface"
 
 export const applyModalMask = css`
   z-index: ${zIndex.modal};
@@ -39,7 +39,6 @@ export function applyModal(): SerializedStyles {
     position: relative;
     vertical-align: middle;
     text-align: left;
-    overflow: hidden;
     min-width: 520px;
     width: 520px;
     margin: 24px auto;

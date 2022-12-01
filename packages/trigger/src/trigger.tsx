@@ -342,7 +342,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
           },
         }),
       )}
-      <FloatingPortal root={document.body}>
+      <FloatingPortal root={childrenRef.current || document.body}>
         {!disabled && (
           <AnimatePresence>
             {finalVisible && (
@@ -350,7 +350,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
                 css={[
                   css`
                     display: inline-flex;
-                    z-index: ${zIndex.trigger};
+                    z-index: 1;
                   `,
                   applyBoxStyle(props),
                 ]}
