@@ -39,12 +39,16 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.7",
-    "@illa-design/system": "1.0.7",
-    "@illa-design/theme": "1.0.7",
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/theme": "workspace:*",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@types/react-transition-group": "^4.4.5"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

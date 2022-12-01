@@ -1,10 +1,9 @@
-import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
+import { css, SerializedStyles } from "@emotion/react"
 import {
   StepSize,
   StepStatus,
-  StepVariant,
   StepStyleConfig,
+  StepVariant,
 } from "../interface"
 import { isVerticalLabel, statusColor } from "../style"
 

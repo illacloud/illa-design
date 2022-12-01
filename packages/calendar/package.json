@@ -39,9 +39,16 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.7",
-    "@illa-design/select": "1.0.7",
-    "@illa-design/system": "1.0.7",
-    "@illa-design/theme": "1.0.7"
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/select": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/config-provider": "workspace:*",
+    "@illa-design/button": "workspace:*",
+    "@illa-design/radio": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

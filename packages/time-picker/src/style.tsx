@@ -1,6 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { SerializedStyles } from "@emotion/serialize"
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { columState } from "./time-column"
 
 export const triggerContentStyle: SerializedStyles = css`

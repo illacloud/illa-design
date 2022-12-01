@@ -1,9 +1,8 @@
 // wrapper container that contains icon & title & description
-import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { StepVariant, LabelPlacement, StepStatus } from "../interface"
-import { statusColor, isVerticalLabel } from "../style"
+import { LabelPlacement, StepStatus, StepVariant } from "../interface"
+import { isVerticalLabel, statusColor } from "../style"
 
 export function applyWrapperStyle({
   direction,

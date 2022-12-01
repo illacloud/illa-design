@@ -1,6 +1,5 @@
-import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
-import { PositionValue, AffixFixedValue } from "./interface"
+import { css, SerializedStyles } from "@emotion/react"
+import { AffixFixedValue, PositionValue } from "./interface"
 
 export function applyFixedPosition(
   positionValue: PositionValue,

@@ -1,6 +1,5 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { SerializedStyles } from "@emotion/serialize"
 import { StepSize } from "../interface"
 
 export function applyDescriptionStyle(size: StepSize): SerializedStyles {

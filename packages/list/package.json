@@ -39,11 +39,15 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/typography": "1.0.7",
-    "@illa-design/avatar": "1.0.7",
-    "@illa-design/divider": "1.0.7",
-    "@illa-design/system": "1.0.7",
-    "@illa-design/theme": "1.0.7",
+    "@illa-design/typography": "workspace:*",
+    "@illa-design/avatar": "workspace:*",
+    "@illa-design/divider": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/theme": "workspace:*",
     "rc-virtual-list": "^3.4.2"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

@@ -1,13 +1,12 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { SerializedStyles } from "@emotion/serialize"
 import {
   StepSize,
   StepStatus,
   StepStyleConfig,
   StepVariant,
 } from "../interface"
-import { statusColor, isVerticalLabel, getConnectorColor } from "../style"
+import { getConnectorColor, isVerticalLabel } from "../style"
 
 export function applyTitleStyle({
   size,

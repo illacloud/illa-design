@@ -1,5 +1,4 @@
-import { SerializedStyles } from "@emotion/serialize"
-import { css } from "@emotion/react"
+import { SerializedStyles, css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export function applyListCss(w?: string): SerializedStyles {
