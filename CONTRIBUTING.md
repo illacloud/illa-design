@@ -17,7 +17,7 @@ Here's the table of contents:
 
 1. Fork the repo (click the Fork button at the top right of [this page](https://github.com/illacloud/illa-design)
 2. Clone your fork locally
-3. Setup all the dependencies and packages by running `yarn`.
+3. Setup all the dependencies and packages by running `pnpm install`.
 
 > If you have some problems, you can [take an issue](https://github.com/illacloud/illa-design/issues/new/choose) or talk with others on [Discord](https://discord.gg/2tGBuJkgd6)
 
@@ -25,31 +25,31 @@ Here's the table of contents:
 
 ```bash
 # start the storybook to preview the components
-$ yarn storybook
+$ pnpm storybook
 
 # lint all code
-$ yarn lint
+$ pnpm lint
 
 # build all components
-$ yarn build-all-components
+$ pnpm build-all-components
 
 # run jest & cypress to test all components
-$ yarn test
+$ pnpm test
 
 # open cypress test UI on chrome
 $ npx cypress run-ct -b chrome
 
 # create a new component
-$ yarn plop
+$ pnpm plop
 
 # pull & buld & start storybook
-$ yarn build-develop
+$ pnpm build-develop
  
 # build storybook project for publish 
-$ yarn build-storybook
+$ pnpm build-storybook
   
 # only run jest
-$ yarn unit-test
+$ pnpm unit-test
 ```
 
 ## Create a New Component
@@ -57,7 +57,7 @@ $ yarn unit-test
 You can run the `plop` script to create a new component.
 
 ```bash
-$ yarn plop
+$ pnpm plop
 ````
 
 Then only add some props you can create a new component.
@@ -106,7 +106,7 @@ We use the [husky](https://github.com/typicode/husky) to check the commit messag
 
 1. Fork of the repository and clone your fork
 2. Create a new branch out of the `develop` branch. We follow the convention `[type/scope]`. For example `fix/accordion-hook` or `docs/menu-typo`. `type` can be either `docs`, `fix`, `feat`, `build`, or any other conventional commit type. `scope` is just a short id that describes the scope of work.
-3. Make and commit your changes following the `Commit Convention`, As you develop, you can run `yarn lint` and `yarn lint` to make sure everything works as expected. Please note that you might have to run `yarn` first in order to install all dependencies.
+3. Make and commit your changes following the `Commit Convention`, As you develop, you can run `pnpm lint` and `pnpm lint` to make sure everything works as expected. Please note that you might have to run `yarn` first in order to install all dependencies.
 4. We have a pull request template, you only need to add some necessary info to let others know what this pr does.
 
 ### Some Rules

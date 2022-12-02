@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/react"
 import { Pagination, PaginationProps } from "../src"
 import { useState } from "react"
-import { PaginationState } from "@tanstack/table-core"
+import { PaginationState } from "@tanstack/react-table"
 
 export default {
   title: "DATA DISPLAY/Pagination",

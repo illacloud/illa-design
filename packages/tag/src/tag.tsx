@@ -1,8 +1,7 @@
 import { forwardRef, useState } from "react"
 import { TagProps } from "./interface"
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { CloseIcon } from "@illa-design/icon"
-import { SerializedStyles } from "@emotion/serialize"
 import { omit } from "@illa-design/system"
 import {
   applyCloseIcon,

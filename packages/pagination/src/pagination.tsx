@@ -1,5 +1,5 @@
 import * as React from "react"
-import { forwardRef, ReactNode, useContext, useEffect, useState } from "react"
+import { forwardRef, ReactNode, useContext } from "react"
 import { MoreIcon, NextIcon, PreIcon } from "@illa-design/icon"
 import {
   ConfigProviderContext,

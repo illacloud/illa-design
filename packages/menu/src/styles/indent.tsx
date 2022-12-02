@@ -1,5 +1,4 @@
-import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
+import { css, SerializedStyles } from "@emotion/react"
 
 export function applyIndentCss(width: number): SerializedStyles {
   return css`

@@ -39,10 +39,20 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.7",
-    "@illa-design/input": "1.0.7",
-    "@illa-design/select": "1.0.7",
-    "@illa-design/system": "1.0.7",
-    "@illa-design/theme": "1.0.7"
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/input": "workspace:*",
+    "@illa-design/select": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/config-provider": "workspace:*"
+  },
+  "devDependencies": {
+    "@tanstack/react-table": "^8.5.11"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5",
+    "framer-motion": "^7.6.12"
   }
 }

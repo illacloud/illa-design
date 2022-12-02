@@ -41,14 +41,22 @@
     "e2e": "npx cypress open-ct --browser chrome"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.7",
-    "@illa-design/empty": "1.0.7",
-    "@illa-design/trigger": "1.0.7",
-    "@illa-design/list": "1.0.7",
-    "@illa-design/input": "1.0.7",
-    "@illa-design/input-tag": "1.0.7",
-    "@illa-design/checkbox": "1.0.7",
-    "@illa-design/theme": "1.0.7",
-    "@illa-design/system": "1.0.7"
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/empty": "workspace:*",
+    "@illa-design/trigger": "workspace:*",
+    "@illa-design/list": "workspace:*",
+    "@illa-design/input": "workspace:*",
+    "@illa-design/input-tag": "workspace:*",
+    "@illa-design/checkbox": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/button": "workspace:*",
+    "chroma-js": "^2.1.2"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5",
+    "framer-motion": "^7.6.12"
   }
 }

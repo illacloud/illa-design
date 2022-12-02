@@ -10,7 +10,6 @@ import {
 } from "react"
 import { getStyle } from "@illa-design/system"
 import useMeasure from "react-use-measure"
-import { ResizeObserver } from "@juggle/resize-observer"
 import { OverflowSubMenuProps, OverflowWrapperProps } from "./interface"
 import { SubMenu } from "./sub-menu"
 import { applyAlignStyle, overflowMenuItemCss } from "./style"

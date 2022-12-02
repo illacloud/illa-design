@@ -1,5 +1,4 @@
-import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
+import { css, SerializedStyles } from "@emotion/react"
 import { Theme } from "../interface"
 import { applyPopButtonCss, themeColor } from "../style"
 

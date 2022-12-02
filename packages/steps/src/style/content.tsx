@@ -1,7 +1,6 @@
 // content that contains title and description
-import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
-import { StepVariant, LabelPlacement } from "../interface"
+import { css, SerializedStyles } from "@emotion/react"
+import { LabelPlacement, StepVariant } from "../interface"
 import { isVerticalLabel } from "../style"
 
 export function applyContentStyle({

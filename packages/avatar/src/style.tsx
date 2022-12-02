@@ -1,12 +1,11 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import {
-  AvatarProps,
   AvatarColorScheme,
+  AvatarProps,
   AvatarShape,
   AvatarSize,
 } from "./interface"
-import { SerializedStyles } from "@emotion/serialize"
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 
 export const colors: AvatarColorScheme[] = [
   "white",

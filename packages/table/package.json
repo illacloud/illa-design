@@ -39,14 +39,26 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.7",
-    "@illa-design/trigger": "1.0.7",
-    "@illa-design/button": "1.0.7",
-    "@illa-design/checkbox": "1.0.7",
-    "@illa-design/pagination": "1.0.7",
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/trigger": "workspace:*",
+    "@illa-design/button": "workspace:*",
+    "@illa-design/checkbox": "workspace:*",
+    "@illa-design/pagination": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/spin": "workspace:*",
+    "@illa-design/empty": "workspace:*",
     "@tanstack/react-table": "^8.5.11",
     "@tanstack/match-sorter-utils": "^8.1.1",
-    "@illa-design/theme": "1.0.7",
-    "@illa-design/system": "1.0.7"
+    "@illa-design/select": "workspace:*",
+    "@illa-design/input": "workspace:*",
+    "chroma-js": "^2.1.2",
+    "react-fast-compare": "^3.2.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5",
+    "framer-motion": "^7.6.12"
   }
 }
