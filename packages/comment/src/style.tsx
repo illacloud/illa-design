@@ -17,7 +17,7 @@ export const contentCss = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   font-size: 14px;
   font-family: SFProDisplay;
-  margin-bottom: 11px;
+  margin-bottom: 8px;
 `
 export const avatarCss = css`
   font-size: 14px;
@@ -29,6 +29,12 @@ export const contentContainerCss = css`
   width: 100%;
   display: inline-flex;
   flex-direction: column;
+`
+
+export const avatarContainerCSS = css`
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
 `
 
 export function applyAuthorDatetimeContainer(dateTimeAligh: string) {
@@ -51,6 +57,8 @@ export function applyAuthorDatetimeContainer(dateTimeAligh: string) {
 export const authorTextCss = css`
   display: inline-flex;
   align-items: flex-end;
+  font-weight: 500;
+  font-family: SFProDisplay;
   font-size: 14px;
   margin-right: 8px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)}; ;
@@ -59,6 +67,8 @@ export const authorTextCss = css`
 export const dateTimeTextCss = css`
   display: inline-flex;
   align-items: flex-end;
+  font-weight: 400;
+  font-family: SFProDisplay;
   font-size: 12px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
@@ -74,9 +84,14 @@ export function applyActionCss(align: string) {
     ${alignCss};
     font-size: 14px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+
+    > *:not(:last-child) {
+      margin-right: 8px;
+    }
   `
 }
 
 export const childrenCss = css`
   margin-left: 48px;
+  margin-top: 20px;
 `

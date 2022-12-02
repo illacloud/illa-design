@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from "react"
+import { forwardRef, useMemo, useState, useRef } from "react"
 import { StatisticProps } from "./interface"
 import { Skeleton } from "@illa-design/skeleton"
 import dayjs, { Dayjs } from "dayjs"
@@ -8,6 +8,7 @@ import {
   applyStatisticDecoratorStyle,
   statisticTitleStyle,
   statisticValueStyle,
+  statisticExtraStyle,
 } from "./style"
 import { isObject } from "@illa-design/system"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
@@ -25,8 +26,10 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
       precision,
       suffix,
       prefix,
+      extra,
       ...restProps
     } = props
+
     const renderValue = useMemo<string | number | Dayjs>(() => {
       if (format) {
         return dayjs(value).format(format)
@@ -55,20 +58,25 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
             visible={!!loading}
             text={{ rows: 1, width: "100%" }}
           >
-            {prefix && (
-              <span css={applyStatisticDecoratorStyle(true, !isObject(prefix))}>
-                {prefix}
-              </span>
-            )}
-            <span css={statisticValueStyle}>{renderValue.toString()}</span>
-            {suffix && (
-              <span
-                css={applyStatisticDecoratorStyle(false, !isObject(suffix))}
-              >
-                {suffix}
-              </span>
-            )}
+            <div>
+              {prefix && (
+                <span
+                  css={applyStatisticDecoratorStyle(true, !isObject(prefix))}
+                >
+                  {prefix}
+                </span>
+              )}
+              <span css={statisticValueStyle}>{renderValue.toString()}</span>
+              {suffix && (
+                <span
+                  css={applyStatisticDecoratorStyle(false, !isObject(suffix))}
+                >
+                  {suffix}
+                </span>
+              )}
+            </div>
           </Skeleton>
+          {extra && <div css={statisticExtraStyle}>{extra}</div>}
         </div>
       </div>
     )

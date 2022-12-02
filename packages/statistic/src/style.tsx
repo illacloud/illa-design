@@ -9,7 +9,13 @@ export const statisticStyle = css`
 
 export const statisticTitleStyle = css`
   margin-bottom: 4px;
-  font-size: 14px;
+  font-size: 12px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+`
+
+export const statisticExtraStyle = css`
+  font-size: 12px;
+  margin-top: 4px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 

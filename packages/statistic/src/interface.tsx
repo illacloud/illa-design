@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from "react"
+import { CSSProperties, HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
 import { BoxProps } from "@illa-design/theme"
 
@@ -15,6 +15,7 @@ export interface StatisticProps
   groupSeparator?: string
   loading?: boolean
   precision?: number
+  extra?: ReactNode
   prefix?: string | ReactNode
   suffix?: string | ReactNode
 }
