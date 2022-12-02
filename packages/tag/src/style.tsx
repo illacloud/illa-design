@@ -1,6 +1,5 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { TagColorScheme, TagVariant, TagSize } from "./interface"
-import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const tagContainer = css`

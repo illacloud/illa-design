@@ -35,26 +35,10 @@
   "bugs": {
     "url": "https://github.com/illacloud/illa-design/issues"
   },
+  "dependencies": {
+    "dayjs": "^1.10.7"
+  },
   "scripts": {
     "build": "vite build"
-  },
-  "dependencies": {
-    "dayjs": "^1.10.7",
-    "number-precision": "^1.5.2",
-    "react-fast-compare": "^3.2.0",
-    "react-use": "^17.4.0",
-    "uuid": "^8.3.2"
-  },
-  "devDependencies": {
-    "@emotion/babel-plugin": "^11.10.5",
-    "@rollup/plugin-typescript": "^9.0.2",
-    "@types/chroma-js": "^2.1.3",
-    "@types/lodash": "^4.14.178",
-    "@types/uuid": "^8.3.4",
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.9",
-    "@vitejs/plugin-react": "^2.2.0",
-    "typescript": "^4.9.3",
-    "vite": "^3.2.4"
   }
 }

@@ -47,11 +47,11 @@ You can quickly use ILLA Design on codesandbox.
 Step 1: Install
 
 ```bash
-$ yarn add @illa-design/react
+$ pnpm add @illa-design/react @emotion/react framer-motion
 
 # or
 
-$ npm i @illa-design/react
+$ npm i @illa-design/react @emotion/react framer-motion
 ```
 
 Step 2: Use
@@ -73,13 +73,13 @@ Step 1: Clone locally.
 ```bash
 $ git clone https://github.com/illacloud/illa-design.git
 $ cd illa-design
-$ yarn
+$ pnpm install
 ```
 
 Step 2: Run.
 
 ```bash
-$ yarn storybook
+$ pnpm storybook
 ```
 
 Then your can open storybook in your browser.

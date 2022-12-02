@@ -4,8 +4,7 @@ import {
   SelectProps,
   SelectStateValue,
 } from "./interface"
-import { SerializedStyles } from "@emotion/serialize"
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import chroma from "chroma-js"
 
 const OPTION_LINE_HEIGHT = 36

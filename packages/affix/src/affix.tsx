@@ -7,12 +7,11 @@ import {
   useState,
 } from "react"
 import { isFunction, throttleByRaf } from "@illa-design/system"
-import useMeasure from "react-use-measure"
-import { ResizeObserver } from "@juggle/resize-observer"
-import useIsomorphicLayoutEffect from "react-use/lib/useIsomorphicLayoutEffect"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { useIsomorphicLayoutEffect } from "react-use"
 import { applyAffixFixedStyle, applySize } from "./style"
 import { AffixProps } from "./interface"
-import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import useMeasure from "react-use-measure"
 
 enum AffixStatus {
   START,

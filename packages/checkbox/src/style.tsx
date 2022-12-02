@@ -1,7 +1,6 @@
 import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import { CheckboxColorScheme, CheckboxProps } from "./interface"
-import { SerializedStyles } from "@emotion/serialize"
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 
 export function applyCheckboxSize(
   checked?: boolean,

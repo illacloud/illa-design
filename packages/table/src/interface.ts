@@ -6,9 +6,9 @@ import {
 } from "react"
 import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
-import { Column, ColumnDef } from "@tanstack/react-table"
-import { EmptyProps } from "@illa-design/empty"
 import {
+  Column,
+  ColumnDef,
   ColumnFiltersState,
   ColumnSort,
   FilterFnOption,
@@ -17,7 +17,8 @@ import {
   RowSelectionState,
   SortingState,
   VisibilityState,
-} from "@tanstack/table-core"
+} from "@tanstack/react-table"
+import { EmptyProps } from "@illa-design/empty"
 import { PaginationProps } from "@illa-design/pagination"
 
 export type TableSize = "small" | "medium" | "large"

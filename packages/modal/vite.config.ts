@@ -45,6 +45,8 @@ export default defineConfig({
       external: [
         "react",
         "react-dom",
+        "@emotion/react",
+        "framer-motion",
         "@illa-design/system",
         "@illa-design/theme",
         "@illa-design/button",
@@ -53,11 +55,14 @@ export default defineConfig({
         "react-hotkeys-hook",
         "react-focus-lock",
         "@illa-design/trigger",
+        "uuid",
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
+          "@emotion/react": "@emotion/react",
+          "framer-motion": "framer-motion",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/button": "@illa-design/button",
@@ -66,6 +71,7 @@ export default defineConfig({
           "react-hotkeys-hook": "react-hotkeys-hook",
           "react-focus-lock": "react-focus-lock",
           "@illa-design/trigger": "@illa-design/trigger",
+          uuid: "uuid",
         },
       },
     },

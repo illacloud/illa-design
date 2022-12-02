@@ -10,7 +10,7 @@ fi
 
 echo "Generate $name ‘s coverage report..."
 
-yarn jest packages/$name
+pnpm jest packages/$name
 
 CYFILE=packages/$name/tests/$name.e2e.tsx
 CYFILE_GLOB=packages/$name/tests/*.e2e.tsx
@@ -19,10 +19,10 @@ CYFILE_GLOB=packages/$name/tests/*.e2e.tsx
 if test -f "$CYFILE"
 then
 # run all e2e test under component tests dir
-yarn cypress run-ct -b chrome -s "$CYFILE_GLOB";
+pnpm cypress run-ct -b chrome -s "$CYFILE_GLOB";
 fi
 
-yarn report:combined
+pnpm report:combined
 
 if command -v open
 then open ./coverage/lcov-report/index.html
