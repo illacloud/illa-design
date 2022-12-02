@@ -10,7 +10,7 @@ import {
   statisticValueStyle,
   statisticExtraStyle,
 } from "./style"
-import { isNumber, isObject } from "@illa-design/system"
+import { isObject } from "@illa-design/system"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
