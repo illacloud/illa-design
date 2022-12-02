@@ -13,8 +13,6 @@ import { applyBoxStyle } from "@illa-design/theme"
 export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
   (props, ref) => {
     const {
-      style,
-      styleValue,
       title,
       mode = "default",
       value = 0,
@@ -70,12 +68,11 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
     return (
       <div
         ref={ref}
-        style={style}
         css={[statisticStyle, applyBoxStyle(props)]}
         {...restProps}
       >
         {title && <div css={statisticTitleStyle}>{title}</div>}
-        <div css={applyStatisticContentStyle(mode)} style={styleValue}>
+        <div css={applyStatisticContentStyle(mode)}>
           {getDateString(valueShow, format)}
         </div>
       </div>

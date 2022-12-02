@@ -17,10 +17,8 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
   (props, ref) => {
     const {
       title,
-      style,
       mode = "default",
       value = 0,
-      styleValue,
       decimalSeparator = ".",
       format,
       groupSeparator = ",",
@@ -50,7 +48,6 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
     return (
       <div
         css={[statisticStyle, applyBoxStyle(props)]}
-        style={style}
         ref={ref}
         {...deleteCssProps(restProps)}
       >
@@ -61,7 +58,7 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
             visible={!!loading}
             text={{ rows: 1, width: "100%" }}
           >
-            <div style={styleValue}>
+            <div>
               {prefix && (
                 <span
                   css={applyStatisticDecoratorStyle(true, !isObject(prefix))}

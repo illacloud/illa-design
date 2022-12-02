@@ -7,11 +7,9 @@ export type StatisticMode = "default" | "builder"
 export interface StatisticProps
   extends Omit<HTMLAttributes<HTMLElement>, "title" | "prefix">,
     BoxProps {
-  style?: CSSProperties
   title?: string | ReactNode
   mode?: StatisticMode
   value?: string | number | Dayjs
-  styleValue?: CSSProperties
   decimalSeparator?: string
   format?: string
   groupSeparator?: string
@@ -25,8 +23,6 @@ export interface StatisticProps
 export interface CountDownProps
   extends Omit<HTMLAttributes<HTMLElement>, "title" | "onChange">,
     BoxProps {
-  style?: CSSProperties
-  styleValue?: CSSProperties
   title?: string | ReactNode
   mode?: StatisticMode
   value?: string | number | Dayjs | Date
