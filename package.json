@@ -9,7 +9,6 @@
     "graceful-fs": "4.2.9"
   },
   "scripts": {
-    "build-develop": "sh ./scripts/build-develop.sh",
     "storybook": "pnpm build-all-components  && npx start-storybook -p 6006",
     "build-storybook": "pnpm build-all-components && npx build-storybook",
     "build-all-components": "npx turbo run build",

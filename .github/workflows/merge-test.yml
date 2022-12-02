@@ -32,14 +32,14 @@ jobs:
           path: |
             **/node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Build
         run: |
-          yarn install --frozen-lockfile
-          yarn build-all-components
+          pnpm install --frozen-lockfile
+          pnpm build-all-components
 
   test:
     needs:
@@ -69,17 +69,17 @@ jobs:
           path: |
             **/node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Build storybook
-        run: yarn build-storybook
+        run: pnpm build-storybook
 
       - name: Run Test
         run: |
-          yarn cypress info
-          yarn test
+          pnpm cypress info
+          pnpm test
 
       - name: Publish to Codecov
         uses: codecov/codecov-action@v3.1.0
