@@ -9,12 +9,12 @@
     "graceful-fs": "4.2.9"
   },
   "scripts": {
-    "storybook": "pnpm build-all-components  && npx start-storybook -p 6006",
-    "build-storybook": "pnpm build-all-components && npx build-storybook",
-    "build-all-components": "npx turbo run build",
-    "test": "npx patch-package && pnpm build-all-components && npx jest && npx cypress run-ct -b chrome",
+    "storybook": "pnpm build-all-components  && pnpm start-storybook -p 6006",
+    "build-storybook": "pnpm build-all-components && pnpm build-storybook",
+    "build-all-components": "turbo run build",
+    "test": "pnpm patch-package && pnpm build-all-components && pnpm jest && pnpm cypress run-ct -b chrome",
     "posttest": "pnpm report:combined",
-    "unit-test": "pnpm build-all-components && npx jest",
+    "unit-test": "pnpm build-all-components && pnpm jest",
     "lint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc.js",
     "format": "prettier --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
@@ -31,7 +31,10 @@
   },
   "pnpm": {
     "peerDependencyRules": {
-      "ignoreMissing": ["react","react-dom"]
+      "ignoreMissing": [
+        "react",
+        "react-dom"
+      ]
     }
   },
   "devDependencies": {
