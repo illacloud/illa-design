@@ -14,15 +14,21 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16]
+        pnpm-version: [7]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ matrix.pnpm-version }}
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Cache node modules & Turbo building
         uses: actions/cache@v2
@@ -49,17 +55,23 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16]
+        pnpm-version: [7]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v3
+        with:
+          version: ${{ matrix.pnpm-version }}
+
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Cache node modules & Turbo building
         uses: actions/cache@v2
@@ -73,9 +85,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Build storybook
-        run: pnpm build-storybook
-
       - name: Run Test
         run: |
           pnpm cypress info
@@ -85,5 +94,4 @@ jobs:
         uses: codecov/codecov-action@v3.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          target: 90%
           files: ./coverage/lcov.info
