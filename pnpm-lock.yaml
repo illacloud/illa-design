@@ -524,11 +524,12 @@ importers:
 
   packages/modal:
     specifiers:
-      '@illa-design/button': workspace:*
-      '@illa-design/config-provider': workspace:*
-      '@illa-design/icon': workspace:*
-      '@illa-design/system': workspace:*
-      '@illa-design/theme': workspace:*
+      '@illa-design/button': 1.0.7
+      '@illa-design/config-provider': 1.0.7
+      '@illa-design/icon': 1.0.7
+      '@illa-design/system': 1.0.7
+      '@illa-design/theme': 1.0.7
+      '@illa-design/trigger': 1.0.7
       react-focus-lock: ^2.8.1
       react-hotkeys-hook: ^3.4.6
       uuid: ^8.3.2
@@ -538,6 +539,7 @@ importers:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      '@illa-design/trigger': link:../trigger
       react-focus-lock: 2.9.2
       react-hotkeys-hook: 3.4.7
       uuid: 8.3.2
