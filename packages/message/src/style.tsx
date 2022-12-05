@@ -1,21 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { getColor, zIndex } from "@illa-design/theme"
 
-export const applyMessageSlide = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      opacity: { duration: 0.2, ease: "linear" },
-    },
-  },
-}
-
 export const messageContainerStyle: SerializedStyles = css`
   pointer-events: visible;
   display: inline-flex;
@@ -23,7 +8,7 @@ export const messageContainerStyle: SerializedStyles = css`
   align-items: center;
   padding: 9px 16px;
   border-radius: 2px;
-  box-shadow: 0 4px 10px 0 ${getColor("white", "01")};
+  box-shadow: 0 4px 10px 0 ${getColor("blackAlpha", "07")};
   border: solid 1px ${getColor("gray", "08")};
   background-color: ${getColor("white", "01")};
   margin-bottom: 16px;

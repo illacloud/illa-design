@@ -4,8 +4,9 @@ import { NotificationProps } from "./interface"
 import { notificationStore } from "./notification-store"
 import { Notification } from "./notification"
 import { applyNotificationContainerStyle } from "./style"
+import { applyBoxStyle, BoxProps } from "@illa-design/theme"
 
-export const NotificationGroup: FC = (props) => {
+export const NotificationGroup: FC<BoxProps> = (props) => {
   const [topLeftNotificationList, setTopLeftNotificationList] = useState<
     NotificationProps[]
   >([])
@@ -72,16 +73,33 @@ export const NotificationGroup: FC = (props) => {
 
   return (
     <>
-      <div css={applyNotificationContainerStyle("topLeft")}>
+      <div
+        css={[applyNotificationContainerStyle("topLeft"), applyBoxStyle(props)]}
+      >
         <AnimatePresence>{topLeftNotification}</AnimatePresence>
       </div>
-      <div css={applyNotificationContainerStyle("topRight")}>
+      <div
+        css={[
+          applyNotificationContainerStyle("topRight"),
+          applyBoxStyle(props),
+        ]}
+      >
         <AnimatePresence>{topRightNotification}</AnimatePresence>
       </div>
-      <div css={applyNotificationContainerStyle("bottomLeft")}>
+      <div
+        css={[
+          applyNotificationContainerStyle("bottomLeft"),
+          applyBoxStyle(props),
+        ]}
+      >
         <AnimatePresence>{bottomLeftNotification}</AnimatePresence>
       </div>
-      <div css={applyNotificationContainerStyle("bottomRight")}>
+      <div
+        css={[
+          applyNotificationContainerStyle("bottomRight"),
+          applyBoxStyle(props),
+        ]}
+      >
         <AnimatePresence>{bottomRightNotification}</AnimatePresence>
       </div>
     </>
