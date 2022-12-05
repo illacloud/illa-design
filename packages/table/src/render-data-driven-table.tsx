@@ -255,13 +255,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       const _selectedRow = getSelectedRow(selectedRow, multiRowSelection)
       if (isObject(_selectedRow) && !isEqual(_selectedRow, rowSelection)) {
         setRowSelection(_selectedRow)
+        setSelectedRow(undefined)
         onRowSelectionChange?.(_selectedRow)
       }
     } else {
       const _selectedRow = getSelectedRow(rowSelection, multiRowSelection)
       if (isNumber(_selectedRow) && _selectedRow !== selectedRow) {
         setSelectedRow(_selectedRow)
-        setRowSelection({ [_selectedRow]: true })
+        setRowSelection({})
         onRowSelectionChange?.(_selectedRow)
       }
     }
