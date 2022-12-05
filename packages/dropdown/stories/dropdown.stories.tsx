@@ -1,10 +1,13 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Dropdown, DropdownProps, DropList } from "../src"
-import { Button } from "@illa-design/button"
-import { Menu } from "@illa-design/menu"
-import { Space } from "@illa-design/space"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  Button,
+  Menu,
+  Space,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
 export default {

@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Col, Row } from "../src"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
 export default {

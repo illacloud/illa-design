@@ -1,10 +1,13 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
 import { Modal, ModalGroup, ModalProps, useModal } from "../src"
-import { Space } from "@illa-design/space"
-import { Button } from "@illa-design/button"
-import { Input } from "@illa-design/input"
-import { MessageGroup, useMessage } from "@illa-design/message"
+import {
+  Space,
+  Button,
+  Input,
+  MessageGroup,
+  useMessage,
+} from "@illa-design/react"
 
 export default {
   title: "FEEDBACK/Modal",

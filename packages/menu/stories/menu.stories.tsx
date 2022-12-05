@@ -5,8 +5,8 @@ import {
   LikeIcon,
   CloseIcon,
   SuccessIcon,
-} from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
+  Trigger,
+} from "@illa-design/react"
 import { Menu, MenuProps } from "../src"
 export default {
   title: "NAVIGATION/Menu",

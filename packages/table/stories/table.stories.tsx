@@ -12,7 +12,7 @@ import {
 } from "../src"
 import { useMemo } from "react"
 import { CellContext, ColumnDef, filterFns } from "@tanstack/react-table"
-import { isNumber } from "@illa-design/system"
+import { isNumber } from "@illa-design/react"
 
 export default {
   title: "DATA DISPLAY/Table",

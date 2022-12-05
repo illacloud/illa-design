@@ -1,8 +1,12 @@
 import * as React from "react"
 import { Meta, Story } from "@storybook/react"
-import { TimePicker, TimePickerProps } from "../src"
-import { TimeRangePicker, RangePickerProps } from "../src"
-import { Space } from "@illa-design/space"
+import {
+  TimePicker,
+  TimePickerProps,
+  TimeRangePicker,
+  RangePickerProps,
+} from "../src"
+import { Space } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
 export default {

@@ -1,10 +1,14 @@
 import { Meta, Story } from "@storybook/react"
 import { Card, CardMeta, CardProps } from "../src"
-import { Space } from "@illa-design/space"
-import { Link } from "@illa-design/link"
-import { LikeIcon, MoreIcon, ShareIcon } from "@illa-design/icon"
-import { Image } from "@illa-design/image"
-import { Button } from "@illa-design/button"
+import {
+  Space,
+  Link,
+  LikeIcon,
+  MoreIcon,
+  ShareIcon,
+  Image,
+  Button,
+} from "@illa-design/react"
 
 export default {
   title: "DATA DISPLAY/Card",

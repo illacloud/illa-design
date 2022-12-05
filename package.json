@@ -94,8 +94,10 @@
     "sinon": "^14.0.2",
     "ts-jest": "^29.0.3",
     "turbo": "^1.6.3",
-    "vite-plugin-istanbul": "^2.7.3",
+    "vite-plugin-istanbul": "^3.0.3",
     "@emotion/react": "^11.10.5",
-    "framer-motion": "^7.6.12"
+    "framer-motion": "^7.6.12",
+    "@storybook/builder-vite": "^0.2.5",
+    "@illa-design/react": "workspace:*"
   }
 }

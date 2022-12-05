@@ -1,5 +1,5 @@
 import { Meta, Story } from "@storybook/react"
-import { Space } from "@illa-design/space"
+import { Space } from "@illa-design/react"
 import { Cascader, CascaderProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list

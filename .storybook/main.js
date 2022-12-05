@@ -1,3 +1,5 @@
+const react = require("@vitejs/plugin-react")
+
 module.exports = {
   stories: ["../packages/**/stories/*.stories.tsx"],
   addons: [
@@ -11,12 +13,28 @@ module.exports = {
     fastRefresh: true,
     strictMode: true,
   },
-  webpackFinal: async (config, { configType }) => {
-    config.module.rules.push({
-      type: "javascript/auto",
-      test: /\.mjs$/,
-      include: /node_modules/,
-    })
+  core: { builder: "@storybook/builder-vite" },
+  async viteFinal(config) {
+    config.plugins = config.plugins.filter(
+      (plugin) =>
+        !(Array.isArray(plugin) && plugin[0]?.name.includes("vite:react")),
+    )
+    config.plugins.push(
+      react({
+        jsxImportSource: "@emotion/react",
+        jsxRuntime: "automatic",
+        babel: {
+          plugins: ["@emotion/babel-plugin"],
+          compact: false,
+        },
+        exclude: [
+          /\.e2e\.([tj])sx?$/,
+          /\.test\.([tj])sx?$/,
+          /\.stories\.([tj])sx?$/,
+        ],
+        include: ["**/**.tsx", "**/**.ts"],
+      }),
+    )
     return config
   },
 }
