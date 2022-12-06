@@ -13,15 +13,12 @@
     "bs": "pnpm build-all-components && pnpm build-storybook",
     "build-all-components": "turbo run build",
     "test": "pnpm patch-package && pnpm build-all-components && pnpm jest && pnpm cypress run-ct -b chrome",
-    "posttest": "pnpm report:combined",
     "unit-test": "pnpm build-all-components && pnpm jest",
     "lint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc.js",
     "format": "prettier --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
     "plop": "plop new",
-    "plop-icon": "plop new-icon",
-    "report:combined": "sh ./scripts/merge-coverage.sh",
-    "report:component": "sh ./scripts/coverage-component.sh"
+    "plop-icon": "plop new-icon"
   },
   "nyc": {
     "report-dir": "cypress-coverage",

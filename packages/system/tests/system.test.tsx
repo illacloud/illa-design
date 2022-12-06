@@ -1,6 +1,5 @@
 import {
   dayjsPro,
-  debounce,
   easingMethod,
   getDayjsValue,
   getSortedDayjsArray,
@@ -24,10 +23,10 @@ import {
   raf,
   useMergeValue,
 } from "../src"
-import { fireEvent, render, screen } from "@testing-library/react"
-import "@testing-library/jest-dom"
 import dayjs, { Dayjs } from "dayjs"
 import { RefObject } from "react"
+import { fireEvent, render, screen } from "@testing-library/react"
+import "@testing-library/jest-dom"
 
 // test omit.ts
 test("System test omit function", () => {
@@ -154,20 +153,6 @@ test("Test raf in jsdom environment", async () => {
   }).then(() => {
     expect(fn).toBeCalled()
   })
-})
-
-// test debounce.ts
-test("mock timers to test debounce", () => {
-  jest.useFakeTimers()
-  const test = jest.fn()
-  const debounced = debounce(test, 1000)
-
-  debounced()
-  debounced()
-
-  jest.runAllTimers()
-
-  expect(test).toHaveBeenCalledTimes(1)
 })
 
 // test useMergeValue.ts
