@@ -50,7 +50,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "lint-staged": "^13.0.3",
     "@emotion/babel-plugin": "^11.10.5",
-    "@rollup/plugin-typescript": "^9.0.2",
+    "@rollup/plugin-typescript": "^10.0.1",
     "@types/chroma-js": "^2.1.3",
     "@types/lodash": "^4.14.178",
     "@types/uuid": "^8.3.4",
