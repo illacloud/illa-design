@@ -9,8 +9,8 @@
     "graceful-fs": "4.2.9"
   },
   "scripts": {
-    "storybook": "pnpm build-all-components  && pnpm start-storybook -p 6006",
-    "build-storybook": "pnpm build-all-components && pnpm build-storybook",
+    "storybook": "pnpm build-all-components && pnpm start-storybook -p 6006",
+    "bs": "pnpm build-all-components && pnpm build-storybook",
     "build-all-components": "turbo run build",
     "test": "pnpm patch-package && pnpm build-all-components && pnpm jest && pnpm cypress run-ct -b chrome",
     "posttest": "pnpm report:combined",

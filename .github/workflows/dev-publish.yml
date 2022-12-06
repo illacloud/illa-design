@@ -99,7 +99,7 @@ jobs:
 
       - name: Build storybook
         run: |
-          pnpm build-storybook
+          pnpm bs
           echo "design.illafamily.com" > "storybook-static/CNAME"
 
       - name: Deploy storybook to Github Pages
