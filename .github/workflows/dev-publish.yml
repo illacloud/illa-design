@@ -85,18 +85,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Run Test
-        run: |
-          pnpm cypress info
-          pnpm test
-
-      - name: Publish to Codecov
-        uses: codecov/codecov-action@v3.1.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          target: 90%
-          files: ./coverage/lcov.info
-
       - name: Build storybook
         run: |
           pnpm bs
