@@ -52,7 +52,6 @@
     "@changesets/cli": "^2.18.1",
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@storybook/addon-a11y": "^6.5.14",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-essentials": "^6.5.14",
@@ -73,6 +72,9 @@
     "@emotion/react": "^11.10.5",
     "framer-motion": "^7.6.12",
     "@storybook/builder-vite": "^0.2.5",
+    "@babel/core": "^7.20.5",
+    "react-refresh": "^0.14.0",
+    "require-from-string": "^2.0.2",
     "@illa-design/react": "workspace:*"
   }
 }
