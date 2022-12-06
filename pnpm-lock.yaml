@@ -55,7 +55,6 @@ importers:
       turbo: ^1.6.3
       typescript: ^4.9.3
       vite: ^3.2.4
-      vite-plugin-istanbul: ^3.0.3
     devDependencies:
       '@babel/core': 7.20.5
       '@changesets/changelog-github': 0.4.7
@@ -105,7 +104,6 @@ importers:
       turbo: 1.6.3
       typescript: 4.9.3
       vite: 3.2.5
-      vite-plugin-istanbul: 3.0.3
 
   packages/affix:
     specifiers:
@@ -15226,17 +15224,6 @@ packages:
       is-buffer: 2.0.5
       unist-util-stringify-position: 2.0.3
       vfile-message: 2.0.4
-    dev: true
-
-  /vite-plugin-istanbul/3.0.3:
-    resolution: {integrity: sha512-2nCYSsY1kgF83S007rg0GPmeL5P+bph8Z5RJ3Pv1kHHx9OMyKt/cLyGCWAYQnBk9VckzXRGEaX3FSLtcSai4Yg==}
-    dependencies:
-      '@istanbuljs/load-nyc-config': 1.1.0
-      istanbul-lib-instrument: 5.2.1
-      picocolors: 1.0.0
-      test-exclude: 6.0.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /vite/3.2.5:

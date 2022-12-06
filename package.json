@@ -68,7 +68,6 @@
     "react-icons": "^4.3.1",
     "sinon": "^14.0.2",
     "turbo": "^1.6.3",
-    "vite-plugin-istanbul": "^3.0.3",
     "@emotion/react": "^11.10.5",
     "framer-motion": "^7.6.12",
     "@storybook/builder-vite": "^0.2.5",
