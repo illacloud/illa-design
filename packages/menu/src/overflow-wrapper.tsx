@@ -53,9 +53,7 @@ const OverflowSubMenu: FC<OverflowSubMenuProps> = (props) => {
 export const OverflowWrapper: FC<OverflowWrapperProps> = (props) => {
   const { children, horizontalAlign, ...restProps } = props
   const wrapperRef = useRef<HTMLDivElement | null>(null)
-  const [measureWrapperRef, measureWrapperInfo] = useMeasure({
-    polyfill: ResizeObserver,
-  })
+  const [measureWrapperRef, measureWrapperInfo] = useMeasure()
   const [lastVisibleIndex, setLastVisibleIndex] = useState<number | null>(null)
   const OVERFLOW_THRESHOLD = 10
 

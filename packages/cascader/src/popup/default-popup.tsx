@@ -145,7 +145,7 @@ export const DefaultPopup = <T extends CascaderOptionProps>(
     <>
       {menus.map((list, level) => {
         if (list.length === 0 && level === 0) {
-          return <Empty css={flexCenterStyle} _css={props._css} />
+          return <Empty key="empty" css={flexCenterStyle} _css={props._css} />
         }
         return list.length === 0 ? null : (
           <div css={[optionListWrapper, applyBoxStyle(props)]} key={level}>

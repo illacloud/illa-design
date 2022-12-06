@@ -66,32 +66,30 @@ export const RangeInput = forwardRef<HTMLDivElement, RangeInputProps>(
     const inputRef = useRef<HTMLInputElement>(null)
     const input1Ref = useRef<HTMLInputElement>(null)
 
-    if (inputGroupRef) {
-      useImperativeHandle(
-        inputGroupRef,
-        () => ({
-          input0: inputRef.current,
-          input1: input1Ref.current,
-          focus: (index?: number) => {
-            const focusedIndex =
-              typeof index === "number" ? index : focusedInputIndex
-            const focusElement =
-              focusedIndex === 0 ? inputRef.current : input1Ref.current
-            if (
-              (focusedInputIndex === 0 && !disabled0) ||
-              (focusedInputIndex === 1 && !disabled1)
-            ) {
-              focusElement?.focus()
-            }
-          },
-          blur: () => {
-            inputRef.current?.blur()
-            input1Ref.current?.blur()
-          },
-        }),
-        [],
-      )
-    }
+    useImperativeHandle(
+      inputGroupRef,
+      () => ({
+        input0: inputRef.current,
+        input1: input1Ref.current,
+        focus: (index?: number) => {
+          const focusedIndex =
+            typeof index === "number" ? index : focusedInputIndex
+          const focusElement =
+            focusedIndex === 0 ? inputRef.current : input1Ref.current
+          if (
+            (focusedInputIndex === 0 && !disabled0) ||
+            (focusedInputIndex === 1 && !disabled1)
+          ) {
+            focusElement?.focus()
+          }
+        },
+        blur: () => {
+          inputRef.current?.blur()
+          input1Ref.current?.blur()
+        },
+      }),
+      [disabled0, disabled1, focusedInputIndex],
+    )
 
     const changeFocusedInput = (index: number) => {
       if (focusedInputIndex !== index) {

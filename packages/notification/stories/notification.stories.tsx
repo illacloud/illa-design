@@ -1,6 +1,5 @@
 import { Meta, Story } from "@storybook/react"
-import { Space } from "@illa-design/space"
-import { Button } from "@illa-design/button"
+import { Space, Button } from "@illa-design/react"
 import { Notification, NotificationProps } from "../src"
 import { useNotification } from "../src/hook"
 import { NotificationGroup } from "../src/notification-group"

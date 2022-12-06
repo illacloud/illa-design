@@ -1,7 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Collapse, CollapseItem, CollapseProps } from "../src"
-import { ShareIcon } from "@illa-design/icon"
-import { Space } from "@illa-design/space"
+import { ShareIcon, Space } from "@illa-design/react"
 
 export default {
   title: "DATA DISPLAY/Collapse",

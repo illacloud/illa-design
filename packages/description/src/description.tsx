@@ -19,8 +19,7 @@ import {
 } from "./style"
 import { css } from "@emotion/react"
 import useWindowSize from "react-use/lib/useWindowSize"
-import { applyBoxStyle } from "@illa-design/theme"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 function getTrList(
   data: DescriptionItem[],

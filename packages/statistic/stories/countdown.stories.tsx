@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { CountDownProps, Countdown } from "../src"
-import { Space } from "@illa-design/space"
+import { Space } from "@illa-design/react"
 
 export default {
   title: "DATA DISPLAY/Countdown",

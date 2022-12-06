@@ -34,9 +34,12 @@ export default defineConfig({
       plugins: [
         typescript({
           tsconfig: path.resolve(__dirname, "tsconfig.json"),
-          rootDir: path.resolve(__dirname, "src"),
-          declaration: true,
-          declarationDir: path.resolve(__dirname, "dist/types"),
+          compilerOptions: {
+            rootDir: path.resolve(__dirname, "src"),
+            outDir: path.resolve(__dirname, "dist", "types"),
+            declaration: true,
+          },
+          include: path.resolve(__dirname, "src/**"),
           exclude: path.resolve(__dirname, "node_modules/**"),
         }),
       ],

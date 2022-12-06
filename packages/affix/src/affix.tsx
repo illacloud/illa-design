@@ -1,6 +1,5 @@
 import {
   forwardRef,
-  useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -53,12 +52,8 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const lastIsFixed = useRef(false)
 
-  const [measureWrapperRef, measureWrapperInfo] = useMeasure({
-    polyfill: ResizeObserver,
-  })
-  const [measureAffixRef, measureAffixInfo] = useMeasure({
-    polyfill: ResizeObserver,
-  })
+  const [measureWrapperRef, measureWrapperInfo] = useMeasure()
+  const [measureAffixRef, measureAffixInfo] = useMeasure()
 
   const setWrapperRefs = (el: HTMLDivElement) => {
     // for size measure
@@ -67,16 +62,13 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     wrapperRef.current = el
   }
 
-  const updatePosition = useCallback(
-    throttleByRaf(() => {
-      /*
-       * check is mounted to avoid:
-       * Warning: Can't perform a React state update on an unmounted component.
-       */
-      mounted.current && setStatus(AffixStatus.START)
-    }),
-    [],
-  )
+  const updatePosition = throttleByRaf(() => {
+    /*
+     * check is mounted to avoid:
+     * Warning: Can't perform a React state update on an unmounted component.
+     */
+    mounted.current && setStatus(AffixStatus.START)
+  })
 
   useImperativeHandle(ref, () => wrapperRef?.current as HTMLDivElement, [])
 

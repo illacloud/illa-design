@@ -1,8 +1,7 @@
 import { Meta, Story } from "@storybook/react"
 import { Drawer, DrawerProps } from "../src"
-import { Space } from "@illa-design/space"
-import { Button } from "@illa-design/button"
-import React from "react"
+import { Button, Space } from "@illa-design/react"
+import { useRef, useState } from "react"
 
 export default {
   title: "FEEDBACK/Drawer",
@@ -10,7 +9,7 @@ export default {
 } as Meta
 
 const Template: Story<DrawerProps> = (args) => {
-  const [visible, setVisible] = React.useState(false)
+  const [visible, setVisible] = useState(false)
   return (
     <Space>
       <Button onClick={() => setVisible(true)}>Open Drawer</Button>
@@ -34,15 +33,14 @@ Basic.args = {
 }
 
 const TemplateWithContainer = () => {
-  const [visibleInner, setVisibleInner] = React.useState(true)
-  const refWrapper = React.useRef(null)
+  const [visibleInner, setVisibleInner] = useState(true)
+  const refWrapper = useRef(null)
   return (
     <>
       <Drawer
         title="Basic"
         visible={visibleInner}
         placement={"left"}
-        getPopupContainer={() => refWrapper && refWrapper.current!}
         onOk={() => {
           setVisibleInner(false)
         }}

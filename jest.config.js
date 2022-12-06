@@ -13,14 +13,14 @@ module.exports = {
   ],
   moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
   modulePathIgnorePatterns: ["<rootDir>/examples"],
-  setupFilesAfterEnv: ['<rootDir>/setup-jest.js'],
+  setupFilesAfterEnv: ["<rootDir>/setup-jest.js"],
   snapshotSerializers: ["@emotion/jest/serializer"],
   testPathIgnorePatterns: [
     "<rootDir>/node_modules/",
     "<rootDir>/plop-templates/",
   ],
   transform: {
-    "^.+\\.(ts|tsx)$": ['ts-jest', { tsconfig: "tsconfig.json", }],
+    "^.+\\.(ts|tsx)$": ["ts-jest", { tsconfig: "tsconfig.json" }],
   },
   preset: "ts-jest",
 }

@@ -1,6 +1,5 @@
 import { Meta, Story } from "@storybook/react"
-import { Space } from "@illa-design/space"
-import { Button } from "@illa-design/button"
+import { Space, Button } from "@illa-design/react"
 import { Message, MessageGroup, MessageProps, useMessage } from "../src"
 
 export default {
