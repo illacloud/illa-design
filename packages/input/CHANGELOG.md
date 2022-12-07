@@ -1,5 +1,17 @@
 # @illa-design/input
 
+## 1.0.10
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/button@1.0.10
+  - @illa-design/icon@1.0.10
+  - @illa-design/system@1.0.10
+  - @illa-design/theme@1.0.10
+
 ## 1.0.9
 
 ### Patch Changes

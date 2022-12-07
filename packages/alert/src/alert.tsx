@@ -17,7 +17,7 @@ import {
   leftIconStyle,
   titleStyle,
 } from "./style"
-import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 const variants = {
   enter: {

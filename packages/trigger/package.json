@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/trigger",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Illa Design trigger.",
   "keywords": [
     "trigger",
@@ -43,12 +43,12 @@
     "@illa-design/config-provider": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "@illa-design/system": "workspace:*",
-    "@floating-ui/react-dom-interactions": "^0.12.0"
+    "@floating-ui/react-dom-interactions": "^0.12.0",
+    "framer-motion": "^7.6.12"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5",
-    "framer-motion": "^7.6.12"
+    "@emotion/react": "^11.10.5"
   }
 }

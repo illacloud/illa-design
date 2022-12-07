@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/grid",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Illa Design Grid.",
   "keywords": [
     "grid",
@@ -45,7 +45,6 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5",
-    "framer-motion": "^7.6.12"
+    "@emotion/react": "^11.10.5"
   }
 }

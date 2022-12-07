@@ -11,7 +11,7 @@
   "scripts": {
     "storybook": "pnpm build-all-components && pnpm start-storybook -p 6006",
     "bs": "pnpm build-all-components && pnpm build-storybook",
-    "build-all-components": "turbo run build",
+    "build-all-components": "NODE_OPTIONS=--max-old-space-size=10240 turbo run build",
     "lint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc.js",
     "format": "prettier --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
