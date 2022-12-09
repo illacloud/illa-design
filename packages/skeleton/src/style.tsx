@@ -43,7 +43,7 @@ export function applyAnimation(animatin?: boolean): SerializedStyles {
 export function applyLineStyle(width?: number | string): SerializedStyles {
   return css([
     css`
-      &:not(last-child) {
+      &:not(:last-child) {
         margin-bottom: 16px;
       }
     `,
