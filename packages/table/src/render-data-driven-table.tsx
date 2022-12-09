@@ -275,9 +275,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   useEffect(() => {
     if (pagination) {
-      const { pageSize: _pageSize, currentPage } = pagination
+      const { pageSize: _pageSize, current } = pagination
       setPagination({
-        pageIndex: isNumber(currentPage) ? currentPage : pageIndex,
+        pageIndex: isNumber(current) ? current : pageIndex,
         pageSize: isNumber(_pageSize) ? _pageSize : pageSize,
       })
     }
@@ -565,7 +565,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
             <Pagination
               total={data.length}
               pageSize={pageSize}
-              currentPage={pageIndex}
+              current={pageIndex}
               hideOnSinglePage={false}
               simple
               onChange={onPageChange}
