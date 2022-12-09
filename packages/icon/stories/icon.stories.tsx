@@ -60,7 +60,6 @@ import {
   NullIcon,
   NumberIcon,
   ObjectIcon,
-  PaginationPreIcon,
   PenIcon,
   PersonIcon,
   PieChartIcon,
@@ -311,10 +310,6 @@ export const Result404: Story<IconProps> = (props: IconProps) => (
 )
 export const Result500: Story<IconProps> = (props: IconProps) => (
   <Result500Icon {...props} />
-)
-
-export const PaginationPre: Story<IconProps> = (props: IconProps) => (
-  <PaginationPreIcon {...props} />
 )
 
 export const Bug: Story<IconProps> = (props: IconProps) => (
