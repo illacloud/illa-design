@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Statistic, StatisticProps } from "../src"
-import { Space, ImageDefaultIcon } from "@illa-design/react"
+import { Space, ImageDefaultIcon, UpIcon } from "@illa-design/react"
 
 export default {
   title: "DATA DISPLAY/Statistic",
@@ -16,6 +16,17 @@ const Template: Story<StatisticProps> = (args) => {
         title={<ImageDefaultIcon />}
         suffix={<ImageDefaultIcon />}
       />
+      <Statistic
+        {...args}
+        prefix={<UpIcon style={{ color: "#ee4d38" }} />}
+        suffix={<UpIcon style={{ color: "#0fbf60" }} />}
+      />
+      <Statistic
+        {...args}
+        precision={2}
+        prefix={<UpIcon style={{ color: "#ee4d38" }} />}
+        suffix="%"
+      />
     </Space>
   )
 }
@@ -23,7 +34,7 @@ const Template: Story<StatisticProps> = (args) => {
 export const Basic = Template.bind({})
 Basic.args = {
   title: "Amount",
-  value: 0,
+  value: 12345,
   prefix: "",
   suffix: "",
 }

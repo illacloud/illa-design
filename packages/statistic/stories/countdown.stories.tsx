@@ -11,6 +11,7 @@ const Template: Story<CountDownProps> = (args) => {
   return (
     <Space size={"large"}>
       <Countdown {...args} />
+      <Countdown {...args} title="Milliseconds" format="HH:mm:ss.SSS" />
     </Space>
   )
 }

@@ -1,10 +1,10 @@
-import { forwardRef, useMemo, useState, useRef } from "react"
+import { forwardRef, useMemo } from "react"
 import { StatisticProps } from "./interface"
 import { Skeleton } from "@illa-design/skeleton"
 import dayjs, { Dayjs } from "dayjs"
 import {
   statisticStyle,
-  applyStatisticContentStyle,
+  statisticContentStyle,
   applyStatisticDecoratorStyle,
   statisticTitleStyle,
   statisticValueStyle,
@@ -17,7 +17,6 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
   (props, ref) => {
     const {
       title,
-      mode = "default",
       value = 0,
       decimalSeparator = ".",
       format,
@@ -52,13 +51,13 @@ export const Statistic = forwardRef<HTMLDivElement, StatisticProps>(
         {...deleteCssProps(restProps)}
       >
         {title && <div css={statisticTitleStyle}>{title}</div>}
-        <div css={applyStatisticContentStyle(mode)}>
+        <div>
           <Skeleton
             animation
             visible={!!loading}
             text={{ rows: 1, width: "100%" }}
           >
-            <div>
+            <div css={statisticContentStyle}>
               {prefix && (
                 <span
                   css={applyStatisticDecoratorStyle(true, !isObject(prefix))}
