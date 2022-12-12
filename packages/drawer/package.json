@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/drawer",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "Illa Design Drawer.",
   "keywords": [
     "drawer",
@@ -45,12 +45,12 @@
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "react-remove-scroll": "^2.5.4",
-    "react-focus-lock": "^2.8.1"
+    "react-focus-lock": "^2.8.1",
+    "framer-motion": "^7.6.12"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5",
-    "framer-motion": "^7.6.12"
+    "@emotion/react": "^11.10.5"
   }
 }

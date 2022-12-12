@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/empty",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "Illa Design Empty.",
   "keywords": [
     "icon",
@@ -48,7 +48,6 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5",
-    "framer-motion": "^7.6.12"
+    "@emotion/react": "^11.10.5"
   }
 }

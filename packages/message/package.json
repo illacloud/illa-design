@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/message",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "Illa Design Message.",
   "keywords": [
     "message",
@@ -42,12 +42,12 @@
     "@illa-design/icon": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "framer-motion": "^7.6.12"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5",
-    "framer-motion": "^7.6.12"
+    "@emotion/react": "^11.10.5"
   }
 }
