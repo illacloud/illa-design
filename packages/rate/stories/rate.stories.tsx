@@ -12,7 +12,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<RateProps> = (args) => {
+const Template: StoryFn<RateProps> = (args) => {
   return (
     <Space size={"large"} direction={"vertical"} style={{ marginTop: 50 }}>
       <Rate {...args} />

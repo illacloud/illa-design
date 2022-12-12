@@ -7,7 +7,7 @@ export default {
   component: Description,
 } as Meta
 
-export const Basic: Story<DescriptionProps> = (args) => (
+export const Basic: StoryFn<DescriptionProps> = (args) => (
   <Description
     {...args}
     data={[

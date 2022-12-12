@@ -19,7 +19,7 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<ListProps<any>> = (args) => (
+export const Basic: StoryFn<ListProps<any>> = (args) => (
   <List
     {...args}
     data={[
@@ -45,7 +45,7 @@ export const Basic: Story<ListProps<any>> = (args) => (
     }}
   />
 )
-export const Normal: Story<ListProps<any>> = (args) => (
+export const Normal: StoryFn<ListProps<any>> = (args) => (
   <List
     {...args}
     data={[

@@ -18,7 +18,7 @@ export default {
   component: Steps,
 } as Meta
 
-const Template: Story<StepsProps> = (args) => {
+const Template: StoryFn<StepsProps> = (args) => {
   const { onChange, ...restArgs } = args
   return (
     <Space direction={"vertical"}>

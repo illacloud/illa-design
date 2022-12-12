@@ -38,7 +38,7 @@ export default {
   },
 } as Meta
 
-export const rangeInput: Story<RangeInputProps> = (props) => {
+export const rangeInput: StoryFn<RangeInputProps> = (props) => {
   return (
     <div>
       <Space direction={"vertical"} wrap>

@@ -14,7 +14,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<TimelineProps> = (props) => {
+const Template: StoryFn<TimelineProps> = (props) => {
   return (
     <Timeline pending {...props}>
       <TimelineItem>The first milestone</TimelineItem>

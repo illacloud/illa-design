@@ -47,7 +47,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<InputProps> = (props) => {
+const Template: StoryFn<InputProps> = (props) => {
   return (
     <div>
       <Space direction={"vertical"} wrap>

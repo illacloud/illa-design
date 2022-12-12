@@ -7,7 +7,7 @@ export default {
   argTypes: {},
 } as Meta
 
-const Template: Story<PageHeaderProps> = (args) => {
+const Template: StoryFn<PageHeaderProps> = (args) => {
   return (
     <PageHeader
       {...args}

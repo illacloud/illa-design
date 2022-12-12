@@ -28,7 +28,6 @@ export interface PaginationProps
   ) => ReactNode
   size?: PaginationSize
   icons?: { prev?: ReactNode; next?: ReactNode; more?: ReactNode }
-  selectProps?: Partial<SelectProps>
   onChange?: (pageNumber: number, pageSize: number) => void
   onPageSizeChange?: (size: number, current: number) => void
   showTotal?: boolean | ((total: number, range: number[]) => ReactNode)

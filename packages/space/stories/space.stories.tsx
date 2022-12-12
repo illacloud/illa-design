@@ -10,7 +10,7 @@ export default {
   component: Space,
 } as Meta
 
-const Template: Story<SpaceProps> = (props) => {
+const Template: StoryFn<SpaceProps> = (props) => {
   return (
     <Space
       {...props}

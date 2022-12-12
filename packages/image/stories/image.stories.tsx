@@ -49,7 +49,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<ImageProps> = (args) => {
+const Template: StoryFn<ImageProps> = (args) => {
   return (
     <div>
       <Image {...args} />

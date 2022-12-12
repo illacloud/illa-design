@@ -21,7 +21,7 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<CommentProps> = (args) => {
+export const Basic: StoryFn<CommentProps> = (args) => {
   const actions = (
     <div data-testid="test-action">
       <span className="custom-comment-action" key="heart" onClick={() => {}}>

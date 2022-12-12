@@ -41,7 +41,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<NotificationProps> = (args) => {
+const Template: StoryFn<NotificationProps> = (args) => {
   const notification = useNotification()
 
   return (

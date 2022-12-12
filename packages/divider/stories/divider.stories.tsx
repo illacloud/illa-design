@@ -7,7 +7,7 @@ export default {
   component: Divider,
 } as Meta
 
-const Template: Story<DividerProps> = (props) => (
+const Template: StoryFn<DividerProps> = (props) => (
   <Divider h="200px" {...props} />
 )
 

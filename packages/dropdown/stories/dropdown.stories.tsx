@@ -50,7 +50,7 @@ const dropList = () => {
   )
 }
 
-export const Basic: Story<DropdownProps> = (args) => (
+export const Basic: StoryFn<DropdownProps> = (args) => (
   <Space>
     <Dropdown dropList={dropList()} {...args}>
       <Button>Hover me</Button>

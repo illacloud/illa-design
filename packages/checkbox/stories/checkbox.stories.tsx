@@ -31,7 +31,7 @@ export default {
   },
 } as Meta
 
-export const checkbox: Story<CheckboxProps> = (args) => {
+export const checkbox: StoryFn<CheckboxProps> = (args) => {
   return (
     <div>
       <Checkbox {...args}>ILLA</Checkbox>

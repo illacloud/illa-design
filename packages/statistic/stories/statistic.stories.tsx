@@ -7,7 +7,7 @@ export default {
   component: Statistic,
 } as Meta
 
-const Template: Story<StatisticProps> = (args) => {
+const Template: StoryFn<StatisticProps> = (args) => {
   return (
     <Space size={"large"}>
       <Statistic {...args} />

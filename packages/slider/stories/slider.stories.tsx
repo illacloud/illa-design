@@ -22,7 +22,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<SliderProps> = (args) => {
+const Template: StoryFn<SliderProps> = (args) => {
   const [value, setValue] = useState(30)
   const [value2, setValue2] = useState(0)
   const [value3, setValue3] = useState([0, 0])

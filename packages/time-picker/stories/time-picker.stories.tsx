@@ -19,7 +19,7 @@ export default {
   },
 } as Meta
 
-export const timePicker: Story<TimePickerProps> = (args) => {
+export const timePicker: StoryFn<TimePickerProps> = (args) => {
   return (
     <Space direction={"vertical"} size={"25px"}>
       <TimePicker {...args} />
@@ -29,7 +29,7 @@ export const timePicker: Story<TimePickerProps> = (args) => {
   )
 }
 
-export const rangePicker: Story<RangePickerProps> = (args) => {
+export const rangePicker: StoryFn<RangePickerProps> = (args) => {
   return (
     <Space wrap>
       <TimeRangePicker {...args} />

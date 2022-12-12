@@ -22,7 +22,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<ModalProps> = (args) => {
+const Template: StoryFn<ModalProps> = (args) => {
   const [visible, setVisible] = React.useState(false)
   const [confirmLoading, setConfirmLoading] = React.useState(false)
 

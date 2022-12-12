@@ -7,7 +7,7 @@ export default {
   component: Countdown,
 } as Meta
 
-const Template: Story<CountDownProps> = (args) => {
+const Template: StoryFn<CountDownProps> = (args) => {
   return (
     <Space size={"large"}>
       <Countdown {...args} />

@@ -18,7 +18,7 @@ export default {
   },
 } as Meta
 
-export const Template: Story<CollapseProps> = (args) => {
+export const Template: StoryFn<CollapseProps> = (args) => {
   return (
     <div>
       <Collapse

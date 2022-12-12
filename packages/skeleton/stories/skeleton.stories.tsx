@@ -14,7 +14,7 @@ export default {
   component: Skeleton,
 } as Meta
 
-const Template: Story<SkeletonProps> = (args) => {
+const Template: StoryFn<SkeletonProps> = (args) => {
   return <Skeleton {...args} />
 }
 

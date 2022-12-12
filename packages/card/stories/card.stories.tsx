@@ -32,7 +32,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<CardProps> = (args) => {
+const Template: StoryFn<CardProps> = (args) => {
   return (
     <Space size="large" direction="vertical">
       <Card style={{ width: 360 }} extra={<Link>More</Link>} {...args}>

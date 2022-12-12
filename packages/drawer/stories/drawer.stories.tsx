@@ -8,7 +8,7 @@ export default {
   component: Drawer,
 } as Meta
 
-const Template: Story<DrawerProps> = (args) => {
+const Template: StoryFn<DrawerProps> = (args) => {
   const [visible, setVisible] = useState(false)
   return (
     <Space>

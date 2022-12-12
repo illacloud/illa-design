@@ -8,7 +8,7 @@ export default {
   argTypes: {},
 } as Meta
 
-const Template: Story<CalenderProps> = (props) => {
+const Template: StoryFn<CalenderProps> = (props) => {
   return <Calendar {...props} />
 }
 

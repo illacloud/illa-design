@@ -7,7 +7,7 @@ export default {
   component: TextArea,
 } as Meta
 
-export const textarea: Story<TextAreaProps> = (props) => {
+export const textarea: StoryFn<TextAreaProps> = (props) => {
   return (
     <div>
       <TextArea {...props} />

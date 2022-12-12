@@ -15,7 +15,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<SwitchProps> = (args) => {
+const Template: StoryFn<SwitchProps> = (args) => {
   return (
     <Space size={"large"}>
       <Switch {...args} />

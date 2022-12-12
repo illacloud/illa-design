@@ -17,7 +17,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<TagProps> = (args) => {
+const Template: StoryFn<TagProps> = (args) => {
   return (
     <Space size="medium">
       <Tag {...args}>Hello</Tag>

@@ -4,6 +4,7 @@ import { PaginationProps } from "./interface"
 import {
   applyDirectorIconStyle,
   applyJumperStyle,
+  applySimpleTextStyle,
   jumperContainerStyle,
   paginationContainer,
   selectorContainerStyle,
@@ -15,7 +16,6 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
-import { InputNumber } from "@illa-design/input-number"
 import { MoreIcon, NextIcon, PreIcon } from "@illa-design/icon"
 import { css } from "@emotion/react"
 import { Select } from "@illa-design/select"
@@ -40,7 +40,6 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       itemRender,
       size = "medium",
       icons,
-      selectProps,
       onChange,
       onPageSizeChange,
       showTotal,
@@ -117,18 +116,28 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
           {showJumper && (
             <div css={jumperContainerStyle}>
               <span css={applyJumperStyle(disabled)}>{locale.go}</span>
-              <InputNumber
-                w="32px"
-                h="32px"
-                ml="16px"
+              <input
+                type="number"
+                min={1}
+                max={totalPageSize}
+                value={finalCurrent}
                 disabled={disabled}
-                size={size}
+                onChange={(e) => {
+                  changeCurrent(Number(e.target.value))
+                }}
               />
             </div>
           )}
         </>
       )
-    }, [disabled, locale.go, showJumper, size])
+    }, [
+      changeCurrent,
+      disabled,
+      finalCurrent,
+      locale.go,
+      showJumper,
+      totalPageSize,
+    ])
 
     const clickNodeShow = useCallback(
       (index: number) => {
@@ -155,34 +164,43 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     )
 
     const selectorComponent = useMemo(() => {
-      const clickList: ReactNode[] = []
-      for (let i = 0; i < totalPageSize; i++) {
-        const index = i + 1
-        const active = finalCurrent === index
-
-        if (clickNodeShow(index)) {
-          clickList.push(
-            <span
-              css={applyDirectorIconStyle(
-                css`
-                  margin-right: ${i != totalPageSize - 1 ? "8px" : "unset"};
-                `,
-                size,
-                disabled,
-                active,
-              )}
-              onClick={() => {
-                if (disabled) {
-                  return
-                }
-                changeCurrent(index)
+      let middleComponent: ReactNode
+      if (simple) {
+        middleComponent = (
+          <div css={selectorContainerStyle}>
+            <input
+              type="number"
+              min={1}
+              max={totalPageSize}
+              value={finalCurrent}
+              disabled={disabled}
+              onChange={(e) => {
+                changeCurrent(Number(e.target.value))
               }}
+            />
+            <span
+              css={applySimpleTextStyle(
+                css`
+                  margin-left: 8px;
+                  margin-right: 8px;
+                `,
+                disabled,
+              )}
             >
-              {i + 1}
-            </span>,
-          )
-        } else {
-          if (clickNodeShow(index - 1))
+              /
+            </span>
+            <span css={applySimpleTextStyle(css``, disabled)}>
+              {totalPageSize}
+            </span>
+          </div>
+        )
+      } else {
+        const clickList: ReactNode[] = []
+        for (let i = 0; i < totalPageSize; i++) {
+          const index = i + 1
+          const active = finalCurrent === index
+
+          if (clickNodeShow(index)) {
             clickList.push(
               <span
                 css={applyDirectorIconStyle(
@@ -191,26 +209,50 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
                   `,
                   size,
                   disabled,
+                  active,
                 )}
                 onClick={() => {
                   if (disabled) {
                     return
                   }
-                  if (index < finalCurrent) {
-                    changeCurrent(finalCurrent - bufferSize - 1)
-                  } else if (index > finalCurrent) {
-                    changeCurrent(finalCurrent + bufferSize + 1)
-                  }
+                  changeCurrent(index)
                 }}
               >
-                {itemRender?.(
-                  finalPageSize,
-                  "more",
-                  icons?.more ?? <MoreIcon />,
-                ) ?? <MoreIcon />}
+                {i + 1}
               </span>,
             )
+          } else {
+            if (clickNodeShow(index - 1))
+              clickList.push(
+                <span
+                  css={applyDirectorIconStyle(
+                    css`
+                      margin-right: ${i != totalPageSize - 1 ? "8px" : "unset"};
+                    `,
+                    size,
+                    disabled,
+                  )}
+                  onClick={() => {
+                    if (disabled) {
+                      return
+                    }
+                    if (index < finalCurrent) {
+                      changeCurrent(finalCurrent - bufferSize - 1)
+                    } else if (index > finalCurrent) {
+                      changeCurrent(finalCurrent + bufferSize + 1)
+                    }
+                  }}
+                >
+                  {itemRender?.(
+                    finalPageSize,
+                    "more",
+                    icons?.more ?? <MoreIcon />,
+                  ) ?? <MoreIcon />}
+                </span>,
+              )
+          }
         }
+        middleComponent = <>{clickList}</>
       }
 
       return (
@@ -236,7 +278,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
               icons?.prev ?? <PreIcon />,
             ) ?? <PreIcon />}
           </span>
-          {clickList}
+          {middleComponent}
           {showMore && (
             <span
               css={applyDirectorIconStyle(
@@ -295,6 +337,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       icons?.prev,
       itemRender,
       showMore,
+      simple,
       size,
       total,
       totalPageSize,
@@ -342,55 +385,42 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
                   setFinalPageSize(value)
                 }
               }}
-              {...selectProps}
             />
           )}
         </>
       )
     }, [
       changeCurrent,
+      disabled,
       finalCurrent,
       finalPageSize,
       locale.page,
       onPageSizeChange,
       pageSize,
       pageSizeChangeResetCurrent,
-      selectProps,
       setFinalPageSize,
       sizeCanChange,
       totalPageSize,
     ])
 
-    return useMemo(() => {
-      if (hideOnSinglePage) {
-        if (total <= finalPageSize) {
-          return <></>
-        }
+    if (hideOnSinglePage) {
+      if (total <= finalPageSize) {
+        return <></>
       }
-      return (
-        <div
-          css={[paginationContainer, applyBoxStyle(props)]}
-          ref={ref}
-          {...deleteCssProps(otherProps)}
-        >
-          {totalComponent}
-          {selectorComponent}
-          {pageSizeComponent}
-          {jumperComponent}
-        </div>
-      )
-    }, [
-      finalPageSize,
-      hideOnSinglePage,
-      jumperComponent,
-      otherProps,
-      pageSizeComponent,
-      props,
-      ref,
-      selectorComponent,
-      total,
-      totalComponent,
-    ])
+    }
+
+    return (
+      <div
+        css={[paginationContainer, applyBoxStyle(props)]}
+        ref={ref}
+        {...deleteCssProps(otherProps)}
+      >
+        {totalComponent}
+        {selectorComponent}
+        {pageSizeComponent}
+        {jumperComponent}
+      </div>
+    )
   },
 )
 

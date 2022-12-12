@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import {
   AddIcon,
   ArrayIcon,
@@ -103,354 +103,335 @@ import {
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "General/Icon",
-
-  argTypes: {
-    spin: {
-      control: {
-        type: "boolean",
-      },
-    },
-    size: {
-      control: {
-        type: "text",
-      },
-    },
-    _css: {
-      control: false,
-    },
-  },
-
-  decorators: [
-    (Story) => (
-      <span style={{ fontSize: "100px" }}>
-        <Story />
-      </span>
-    ),
-  ],
 } as Meta
 
-export const Close: Story<IconProps> = (props: IconProps) => (
+export const Close: StoryFn<IconProps> = (props: IconProps) => (
   <CloseIcon {...props} />
 )
-export const Copy: Story<IconProps> = (props: IconProps) => (
+
+export const Copy: StoryFn<IconProps> = (props: IconProps) => (
   <CopyIcon {...props} />
 )
-export const ImageDefault: Story<IconProps> = (props: IconProps) => (
+export const ImageDefault: StoryFn<IconProps> = (props: IconProps) => (
   <ImageDefaultIcon {...props} />
 )
-export const Loading: Story<IconProps> = (props: IconProps) => (
+export const Loading: StoryFn<IconProps> = (props: IconProps) => (
   <LoadingIcon {...props} />
 )
-export const Like: Story<IconProps> = (props: IconProps) => (
+export const Like: StoryFn<IconProps> = (props: IconProps) => (
   <LikeIcon {...props} />
 )
-export const Share: Story<IconProps> = (props: IconProps) => (
+export const Share: StoryFn<IconProps> = (props: IconProps) => (
   <ShareIcon {...props} />
 )
-export const Star: Story<IconProps> = (props: IconProps) => (
+export const Star: StoryFn<IconProps> = (props: IconProps) => (
   <StarIcon {...props} />
 )
-export const Heart: Story<IconProps> = (props: IconProps) => (
+export const Heart: StoryFn<IconProps> = (props: IconProps) => (
   <HeartIcon {...props} />
 )
-export const Person: Story<IconProps> = (props: IconProps) => (
+export const Person: StoryFn<IconProps> = (props: IconProps) => (
   <PersonIcon {...props} />
 )
-export const EyeOn: Story<IconProps> = (props: IconProps) => (
+export const EyeOn: StoryFn<IconProps> = (props: IconProps) => (
   <EyeOnIcon {...props} />
 )
-export const EyeOff: Story<IconProps> = (props: IconProps) => (
+export const EyeOff: StoryFn<IconProps> = (props: IconProps) => (
   <EyeOffIcon {...props} />
 )
-export const Search: Story<IconProps> = (props: IconProps) => (
+export const Search: StoryFn<IconProps> = (props: IconProps) => (
   <SearchIcon {...props} />
 )
-export const Link: Story<IconProps> = (props: IconProps) => (
+export const Link: StoryFn<IconProps> = (props: IconProps) => (
   <LinkIcon {...props} />
 )
-export const SuccessCircle: Story<IconProps> = (props: IconProps) => (
+export const SuccessCircle: StoryFn<IconProps> = (props: IconProps) => (
   <SuccessCircleIcon {...props} />
 )
-export const Error: Story<IconProps> = (props: IconProps) => (
+export const Error: StoryFn<IconProps> = (props: IconProps) => (
   <ErrorIcon {...props} />
 )
-export const Warning: Story<IconProps> = (props: IconProps) => (
+export const Warning: StoryFn<IconProps> = (props: IconProps) => (
   <WarningIcon {...props} />
 )
-export const WarningCircle: Story<IconProps> = (props: IconProps) => (
+export const WarningCircle: StoryFn<IconProps> = (props: IconProps) => (
   <WarningCircleIcon {...props} />
 )
-export const Success: Story<IconProps> = (props: IconProps) => (
+export const Success: StoryFn<IconProps> = (props: IconProps) => (
   <SuccessIcon {...props} />
 )
-export const Reduce: Story<IconProps> = (props: IconProps) => (
+export const Reduce: StoryFn<IconProps> = (props: IconProps) => (
   <ReduceIcon {...props} />
 )
-export const Empty: Story<IconProps> = (props: IconProps) => (
+export const Empty: StoryFn<IconProps> = (props: IconProps) => (
   <EmptyIcon {...props} />
 )
-export const Checkmark: Story<IconProps> = (props: IconProps) => (
+export const Checkmark: StoryFn<IconProps> = (props: IconProps) => (
   <CheckmarkIcon {...props} />
 )
-export const Info: Story<IconProps> = (props: IconProps) => (
+export const Info: StoryFn<IconProps> = (props: IconProps) => (
   <InfoIcon {...props} />
 )
-export const InfoCircle: Story<IconProps> = (props: IconProps) => (
+export const InfoCircle: StoryFn<IconProps> = (props: IconProps) => (
   <InfoCircleIcon {...props} />
 )
-export const Pre: Story<IconProps> = (props: IconProps) => (
+export const Pre: StoryFn<IconProps> = (props: IconProps) => (
   <PreIcon {...props} />
 )
-export const Next: Story<IconProps> = (props: IconProps) => (
+export const Next: StoryFn<IconProps> = (props: IconProps) => (
   <NextIcon {...props} />
 )
-export const Up: Story<IconProps> = (props: IconProps) => <UpIcon {...props} />
+export const Up: StoryFn<IconProps> = (props: IconProps) => (
+  <UpIcon {...props} />
+)
 
-export const Down: Story<IconProps> = (props: IconProps) => (
+export const Down: StoryFn<IconProps> = (props: IconProps) => (
   <DownIcon {...props} />
 )
-export const CaretDown: Story<IconProps> = (props: IconProps) => (
+export const CaretDown: StoryFn<IconProps> = (props: IconProps) => (
   <CaretDownIcon {...props} />
 )
-export const CaretLeft: Story<IconProps> = (props: IconProps) => (
+export const CaretLeft: StoryFn<IconProps> = (props: IconProps) => (
   <CaretLeftIcon {...props} />
 )
-export const CaretRight: Story<IconProps> = (props: IconProps) => (
+export const CaretRight: StoryFn<IconProps> = (props: IconProps) => (
   <CaretRightIcon {...props} />
 )
-export const Expand: Story<IconProps> = (props: IconProps) => (
+export const Expand: StoryFn<IconProps> = (props: IconProps) => (
   <ExpandIcon {...props} />
 )
-export const More: Story<IconProps> = (props: IconProps) => (
+export const More: StoryFn<IconProps> = (props: IconProps) => (
   <MoreIcon {...props} />
 )
-export const Add: Story<IconProps> = (props: IconProps) => (
+export const Add: StoryFn<IconProps> = (props: IconProps) => (
   <AddIcon {...props} />
 )
-export const Minus: Story<IconProps> = (props: IconProps) => (
+export const Minus: StoryFn<IconProps> = (props: IconProps) => (
   <MinusIcon {...props} />
 )
-export const Plus: Story<IconProps> = (props: IconProps) => (
+export const Plus: StoryFn<IconProps> = (props: IconProps) => (
   <PlusIcon {...props} />
 )
-export const Upload: Story<IconProps> = (props: IconProps) => (
+export const Upload: StoryFn<IconProps> = (props: IconProps) => (
   <UploadIcon {...props} />
 )
-export const Delete: Story<IconProps> = (props: IconProps) => (
+export const Delete: StoryFn<IconProps> = (props: IconProps) => (
   <DeleteIcon {...props} />
 )
-export const FileWord: Story<IconProps> = (props: IconProps) => (
+export const FileWord: StoryFn<IconProps> = (props: IconProps) => (
   <FileWordIcon {...props} />
 )
-export const FileDefault: Story<IconProps> = (props: IconProps) => (
+export const FileDefault: StoryFn<IconProps> = (props: IconProps) => (
   <FileDefaultIcon {...props} />
 )
-export const FileVideo: Story<IconProps> = (props: IconProps) => (
+export const FileVideo: StoryFn<IconProps> = (props: IconProps) => (
   <FileVideoIcon {...props} />
 )
-export const FileExcel: Story<IconProps> = (props: IconProps) => (
+export const FileExcel: StoryFn<IconProps> = (props: IconProps) => (
   <FileExcelIcon {...props} />
 )
-export const FileMusic: Story<IconProps> = (props: IconProps) => (
+export const FileMusic: StoryFn<IconProps> = (props: IconProps) => (
   <FileMusicIcon {...props} />
 )
-export const FilePdf: Story<IconProps> = (props: IconProps) => (
+export const FilePdf: StoryFn<IconProps> = (props: IconProps) => (
   <FilePdfIcon {...props} />
 )
-export const FilePicture: Story<IconProps> = (props: IconProps) => (
+export const FilePicture: StoryFn<IconProps> = (props: IconProps) => (
   <FilePictureIcon {...props} />
 )
-export const FileWPS: Story<IconProps> = (props: IconProps) => (
+export const FileWPS: StoryFn<IconProps> = (props: IconProps) => (
   <FileWPSIcon {...props} />
 )
-export const FilePPT: Story<IconProps> = (props: IconProps) => (
+export const FilePPT: StoryFn<IconProps> = (props: IconProps) => (
   <FilePPTIcon {...props} />
 )
-export const Pen: Story<IconProps> = (props: IconProps) => (
+export const Pen: StoryFn<IconProps> = (props: IconProps) => (
   <PenIcon {...props} />
 )
-export const PreDouble: Story<IconProps> = (props: IconProps) => (
+export const PreDouble: StoryFn<IconProps> = (props: IconProps) => (
   <PreDoubleIcon {...props} />
 )
-export const NextDouble: Story<IconProps> = (props: IconProps) => (
+export const NextDouble: StoryFn<IconProps> = (props: IconProps) => (
   <NextDoubleIcon {...props} />
 )
-export const SorterDefault: Story<IconProps> = (props: IconProps) => (
+export const SorterDefault: StoryFn<IconProps> = (props: IconProps) => (
   <SorterDefaultIcon {...props} />
 )
-export const SorterUp: Story<IconProps> = (props: IconProps) => (
+export const SorterUp: StoryFn<IconProps> = (props: IconProps) => (
   <SorterUpIcon {...props} />
 )
-export const SorterDown: Story<IconProps> = (props: IconProps) => (
+export const SorterDown: StoryFn<IconProps> = (props: IconProps) => (
   <SorterDownIcon {...props} />
 )
 
-export const Filter: Story<IconProps> = (props: IconProps) => (
+export const Filter: StoryFn<IconProps> = (props: IconProps) => (
   <FilterIcon {...props} />
 )
-export const Time: Story<IconProps> = (props: IconProps) => (
+export const Time: StoryFn<IconProps> = (props: IconProps) => (
   <TimeIcon {...props} />
 )
-export const Calendar: Story<IconProps> = (props: IconProps) => (
+export const Calendar: StoryFn<IconProps> = (props: IconProps) => (
   <CalendarIcon {...props} />
 )
 
-export const DragPoint: Story<IconProps> = (props: IconProps) => (
+export const DragPoint: StoryFn<IconProps> = (props: IconProps) => (
   <DragPointIcon {...props} />
 )
 
-export const Leaf: Story<IconProps> = (props: IconProps) => (
+export const Leaf: StoryFn<IconProps> = (props: IconProps) => (
   <LeafIcon {...props} />
 )
-export const Result403: Story<IconProps> = (props: IconProps) => (
+export const Result403: StoryFn<IconProps> = (props: IconProps) => (
   <Result403Icon {...props} />
 )
-export const Result404: Story<IconProps> = (props: IconProps) => (
+export const Result404: StoryFn<IconProps> = (props: IconProps) => (
   <Result404Icon {...props} />
 )
-export const Result500: Story<IconProps> = (props: IconProps) => (
+export const Result500: StoryFn<IconProps> = (props: IconProps) => (
   <Result500Icon {...props} />
 )
 
-export const Bug: Story<IconProps> = (props: IconProps) => (
+export const Bug: StoryFn<IconProps> = (props: IconProps) => (
   <BugIcon {...props} />
 )
 
-export const WindowLeft: Story<IconProps> = (props: IconProps) => (
+export const WindowLeft: StoryFn<IconProps> = (props: IconProps) => (
   <WindowLeftIcon {...props} />
 )
 
-export const WindowRight: Story<IconProps> = (props: IconProps) => (
+export const WindowRight: StoryFn<IconProps> = (props: IconProps) => (
   <WindowRightIcon {...props} />
 )
 
-export const WindowBottom: Story<IconProps> = (props: IconProps) => (
+export const WindowBottom: StoryFn<IconProps> = (props: IconProps) => (
   <WindowBottomIcon {...props} />
 )
 
-export const Array: Story<IconProps> = (props: IconProps) => (
+export const Array: StoryFn<IconProps> = (props: IconProps) => (
   <ArrayIcon {...props} />
 )
 
-export const Component: Story<IconProps> = (props: IconProps) => (
+export const Component: StoryFn<IconProps> = (props: IconProps) => (
   <ComponentIcon {...props} />
 )
 
-export const Function: Story<IconProps> = (props: IconProps) => (
+export const Function: StoryFn<IconProps> = (props: IconProps) => (
   <FunctionIcon {...props} />
 )
 
-export const Null: Story<IconProps> = (props: IconProps) => (
+export const Null: StoryFn<IconProps> = (props: IconProps) => (
   <NullIcon {...props} />
 )
 
-export const Number: Story<IconProps> = (props: IconProps) => (
+export const Number: StoryFn<IconProps> = (props: IconProps) => (
   <NumberIcon {...props} />
 )
 
 // Can not use `Object` as variable name, `Object` may be treated as
 // keyword and cause icon story crash
-export const Object_Icon: Story<IconProps> = (props: IconProps) => (
+export const Object_Icon: StoryFn<IconProps> = (props: IconProps) => (
   <ObjectIcon {...props} />
 )
 Object_Icon.storyName = "Object"
 
-export const String: Story<IconProps> = (props: IconProps) => (
+export const String: StoryFn<IconProps> = (props: IconProps) => (
   <StringIcon {...props} />
 )
 
-export const Drag: Story<IconProps> = (props: IconProps) => (
+export const Drag: StoryFn<IconProps> = (props: IconProps) => (
   <DragIcon {...props} />
 )
 
-export const Slash: Story<IconProps> = (props: IconProps) => (
+export const Slash: StoryFn<IconProps> = (props: IconProps) => (
   <SlashIcon {...props} />
 )
 
-export const Docs: Story<IconProps> = (props: IconProps) => (
+export const Docs: StoryFn<IconProps> = (props: IconProps) => (
   <DocsIcon {...props} />
 )
 
-export const Reset: Story<IconProps> = (props: IconProps) => (
+export const Reset: StoryFn<IconProps> = (props: IconProps) => (
   <ResetIcon {...props} />
 )
 
-export const TextAlignLeft: Story<IconProps> = (props: IconProps) => (
+export const TextAlignLeft: StoryFn<IconProps> = (props: IconProps) => (
   <TextAlignLeftIcon {...props} />
 )
 
-export const TextAlignRight: Story<IconProps> = (props: IconProps) => (
+export const TextAlignRight: StoryFn<IconProps> = (props: IconProps) => (
   <TextAlignRightIcon {...props} />
 )
 
-export const TextAlignCenter: Story<IconProps> = (props: IconProps) => (
+export const TextAlignCenter: StoryFn<IconProps> = (props: IconProps) => (
   <TextAlignCenterIcon {...props} />
 )
 
-export const HorizontalStart: Story<IconProps> = (props: IconProps) => (
+export const HorizontalStart: StoryFn<IconProps> = (props: IconProps) => (
   <HorizontalStartIcon {...props} />
 )
 
-export const HorizontalCenter: Story<IconProps> = (props: IconProps) => (
+export const HorizontalCenter: StoryFn<IconProps> = (props: IconProps) => (
   <HorizontalCenterIcon {...props} />
 )
 
-export const HorizontalEnd: Story<IconProps> = (props: IconProps) => (
+export const HorizontalEnd: StoryFn<IconProps> = (props: IconProps) => (
   <HorizontalEndIcon {...props} />
 )
-export const HorizontalFull: Story<IconProps> = (props: IconProps) => (
+export const HorizontalFull: StoryFn<IconProps> = (props: IconProps) => (
   <HorizontalFullIcon {...props} />
 )
-export const VerticalStart: Story<IconProps> = (props: IconProps) => (
+export const VerticalStart: StoryFn<IconProps> = (props: IconProps) => (
   <VerticalStartIcon {...props} />
 )
 
-export const VerticalCenter: Story<IconProps> = (props: IconProps) => (
+export const VerticalCenter: StoryFn<IconProps> = (props: IconProps) => (
   <VerticalCenterIcon {...props} />
 )
 
-export const VerticalEnd: Story<IconProps> = (props: IconProps) => (
+export const VerticalEnd: StoryFn<IconProps> = (props: IconProps) => (
   <VerticalEndIcon {...props} />
 )
 
-export const Fx: Story<IconProps> = (props: IconProps) => <FxIcon {...props} />
+export const Fx: StoryFn<IconProps> = (props: IconProps) => (
+  <FxIcon {...props} />
+)
 
-export const FullScreen: Story<IconProps> = (props: IconProps) => (
+export const FullScreen: StoryFn<IconProps> = (props: IconProps) => (
   <FullScreenIcon {...props} />
 )
 
-export const Exit: Story<IconProps> = (props: IconProps) => (
+export const Exit: StoryFn<IconProps> = (props: IconProps) => (
   <ExitIcon {...props} />
 )
 
-export const HeartOutline: Story<IconProps> = (props: IconProps) => (
+export const HeartOutline: StoryFn<IconProps> = (props: IconProps) => (
   <HeartOutlineIcon {...props} />
 )
 
-export const StarOutLine: Story<IconProps> = (props: IconProps) => (
+export const StarOutLine: StoryFn<IconProps> = (props: IconProps) => (
   <StartOutlineIcon {...props} />
 )
 
-export const BarChart: Story<IconProps> = (props: IconProps) => (
+export const BarChart: StoryFn<IconProps> = (props: IconProps) => (
   <BarChartIcon {...props} />
 )
-export const LineChart: Story<IconProps> = (props: IconProps) => (
+export const LineChart: StoryFn<IconProps> = (props: IconProps) => (
   <LineChartIcon {...props} />
 )
-export const ScatterPointer: Story<IconProps> = (props: IconProps) => (
+export const ScatterPointer: StoryFn<IconProps> = (props: IconProps) => (
   <ScatterPlotIcon {...props} />
 )
-export const PieChart: Story<IconProps> = (props: IconProps) => (
+export const PieChart: StoryFn<IconProps> = (props: IconProps) => (
   <PieChartIcon {...props} />
 )
-export const Lock: Story<IconProps> = (props: IconProps) => (
+export const Lock: StoryFn<IconProps> = (props: IconProps) => (
   <LockIcon {...props} />
 )
 
-export const Unlock: Story<IconProps> = (props: IconProps) => (
+export const Unlock: StoryFn<IconProps> = (props: IconProps) => (
   <UnlockIcon {...props} />
 )
 
-export const Download: Story<IconProps> = (props: IconProps) => (
+export const Download: StoryFn<IconProps> = (props: IconProps) => (
   <DownloadIcon {...props} />
 )

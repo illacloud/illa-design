@@ -7,7 +7,7 @@ export default {
   component: Breadcrumb,
 } as Meta
 
-export const Basic: Story<BreadcrumbProps> = (args: BreadcrumbProps) => {
+export const Basic: StoryFn<BreadcrumbProps> = (args: BreadcrumbProps) => {
   const routes = [
     {
       path: "/",
@@ -35,7 +35,7 @@ export const Basic: Story<BreadcrumbProps> = (args: BreadcrumbProps) => {
   return <Breadcrumb {...args} routes={routes} {...args} />
 }
 
-export const Children: Story<BreadcrumbProps> = (args: BreadcrumbProps) => {
+export const Children: StoryFn<BreadcrumbProps> = (args: BreadcrumbProps) => {
   return (
     <Breadcrumb {...args}>
       <BreadcrumbItem>

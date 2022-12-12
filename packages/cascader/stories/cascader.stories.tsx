@@ -104,7 +104,7 @@ const options = [
   },
 ]
 
-export const Basic: Story<CascaderProps<any>> = (args) => (
+export const Basic: StoryFn<CascaderProps<any>> = (args) => (
   <Space direction="vertical">
     <Cascader w={"280px"} allowClear showSearch options={options} {...args} />
     <Cascader

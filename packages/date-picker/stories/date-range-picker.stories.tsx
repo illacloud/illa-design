@@ -7,7 +7,7 @@ export default {
   argTypes: {},
 } as Meta
 
-const RangeTemplate: Story<DateRangePickerProps> = (args) => {
+const RangeTemplate: StoryFn<DateRangePickerProps> = (args) => {
   return <DateRangePicker w={"400px"} {...args} />
 }
 

@@ -1,19 +1,14 @@
 const react = require("@vitejs/plugin-react")
 
 module.exports = {
-  stories: ["../packages/**/stories/*.stories.tsx"],
+  stories: ["../packages/pagination/stories/*.stories.tsx"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-storysource",
     "@storybook/addon-a11y",
   ],
-  framework: "@storybook/react",
-  reactOptions: {
-    fastRefresh: true,
-    strictMode: true,
-  },
-  core: { builder: "@storybook/builder-vite" },
+  framework: "@storybook/react-vite",
   async viteFinal(config) {
     config.plugins = config.plugins.filter(
       (plugin) =>

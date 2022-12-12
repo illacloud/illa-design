@@ -13,7 +13,7 @@ export default {
   component: ConfigProvider,
 } as Meta
 
-export const Basic: Story<ConfigProviderProps> = (args) => {
+export const Basic: StoryFn<ConfigProviderProps> = (args) => {
   return (
     <ConfigProvider {...args} locale={zhCN}>
       <ConfigProviderContext.Consumer>

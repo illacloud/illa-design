@@ -65,7 +65,7 @@ const options = [
   "A city with a very long long long long name",
 ]
 
-const Template: Story<SelectProps> = (args) => (
+const Template: StoryFn<SelectProps> = (args) => (
   <Space direction="vertical" style={{ height: "200vh" }}>
     <Select w={"280px"} options={cityOption} {...args} />
 

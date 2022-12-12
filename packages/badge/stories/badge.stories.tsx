@@ -15,7 +15,7 @@ export default {
   component: Badge,
 } as Meta
 
-const Template: Story<BadgeProps> = (args) => {
+const Template: StoryFn<BadgeProps> = (args) => {
   const [num, setNum] = useState(0)
   return (
     <Space size={"large"}>

@@ -6,7 +6,7 @@ export default {
   component: Pagination,
 } as Meta
 
-const Template: Story<PaginationProps> = (args) => {
+const Template: StoryFn<PaginationProps> = (args) => {
   return <Pagination {...args} />
 }
 

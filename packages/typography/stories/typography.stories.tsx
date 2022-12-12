@@ -7,7 +7,7 @@ export default {
   component: Typography,
 } as Meta
 
-export const Basic: Story<HeadingProps> = (args) => {
+export const Basic: StoryFn<HeadingProps> = (args) => {
   return (
     <Typography>
       <Heading level="h4">I am title</Heading>

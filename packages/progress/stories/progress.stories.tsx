@@ -8,7 +8,7 @@ export default {
   component: Progress,
 } as Meta
 
-export const Basic: Story<ProgressProps> = (args) => (
+export const Basic: StoryFn<ProgressProps> = (args) => (
   <Space direction="vertical">
     <Progress type="line" {...args} />
     <Progress type="circle" {...args} />

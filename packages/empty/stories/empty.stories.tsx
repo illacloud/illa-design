@@ -20,4 +20,4 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<EmptyProps> = (props) => <Empty {...props} />
+export const Basic: StoryFn<EmptyProps> = (props) => <Empty {...props} />

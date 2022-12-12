@@ -24,7 +24,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<AlertProps> = (args) => {
+const Template: StoryFn<AlertProps> = (args) => {
   return (
     <div
       style={{

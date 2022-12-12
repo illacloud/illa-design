@@ -7,7 +7,7 @@ export default {
   component: Link,
 } as Meta
 
-export const Basic: Story<LinkProps> = (args) => (
+export const Basic: StoryFn<LinkProps> = (args) => (
   <div>
     <Link {...args} icon>
       Link

@@ -21,7 +21,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<SpinProps> = (props) => {
+const Template: StoryFn<SpinProps> = (props) => {
   return (
     <Spin {...props}>
       <div

@@ -42,7 +42,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<MessageProps> = (args) => {
+const Template: StoryFn<MessageProps> = (args) => {
   const message = useMessage()
   return (
     <>

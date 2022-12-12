@@ -19,7 +19,7 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<ButtonProps> = (args) => {
+export const Basic: StoryFn<ButtonProps> = (args) => {
   return (
     <Space direction="vertical" align="start" wrap>
       <Button {...args}>Hello</Button>

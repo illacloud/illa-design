@@ -29,7 +29,7 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<TriggerProps> = (args) => {
+export const Basic: StoryFn<TriggerProps> = (args) => {
   return (
     <div
       style={{

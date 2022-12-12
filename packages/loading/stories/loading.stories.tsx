@@ -6,7 +6,7 @@ export default {
   component: Loading,
 } as Meta
 
-const Template: Story<LoadingProps> = (args) => {
+const Template: StoryFn<LoadingProps> = (args) => {
   return <Loading {...args} />
 }
 

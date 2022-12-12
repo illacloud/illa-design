@@ -19,7 +19,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<InputTagProps> = (props) => {
+const Template: StoryFn<InputTagProps> = (props) => {
   return (
     <div>
       <InputTag w={"280px"} {...props} />

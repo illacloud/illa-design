@@ -9,7 +9,7 @@ export default {
   component: ButtonGroup,
 } as Meta
 
-export const Basic: Story<ButtonGroupProps> = (args) => {
+export const Basic: StoryFn<ButtonGroupProps> = (args) => {
   return (
     <ButtonGroup {...args}>
       <Button>Hello</Button>

@@ -7,7 +7,7 @@ export default {
   component: Text,
 } as Meta
 
-export const Basic: Story<TextProps> = (args) => (
+export const Basic: StoryFn<TextProps> = (args) => (
   <Typography>
     <Text {...args}>Hello Text</Text>
   </Typography>

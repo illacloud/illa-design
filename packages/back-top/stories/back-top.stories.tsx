@@ -30,7 +30,7 @@ export default {
   ],
 } as Meta
 
-const Template: Story<BackTopProps> = (args) => <BackTop {...args} />
+const Template: StoryFn<BackTopProps> = (args) => <BackTop {...args} />
 
 export const Basic = Template.bind({})
 Basic.args = {}

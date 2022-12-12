@@ -15,7 +15,7 @@ export default {
 
 const { Item, ItemGroup, SubMenu } = Menu
 
-const Template: Story<MenuProps> = (args) => {
+const Template: StoryFn<MenuProps> = (args) => {
   return (
     <>
       <p>Horizontal</p>

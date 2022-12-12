@@ -15,7 +15,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<RadioGroupProps<any>> = (args) => {
+const Template: StoryFn<RadioGroupProps<any>> = (args) => {
   return (
     <Space direction="vertical">
       <RadioGroup w={"280px"} options={["A", "B", "C", "D"]} {...args} />

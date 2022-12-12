@@ -7,7 +7,7 @@ export default {
   component: Search,
 } as Meta
 
-export const search: Story<SearchProps> = (props) => {
+export const search: StoryFn<SearchProps> = (props) => {
   return (
     <div>
       <Search w={"280px"} {...props} />

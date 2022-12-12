@@ -46,7 +46,7 @@ export default {
   args: {},
 } as Meta
 
-const Basic: ComponentStory<typeof CheckboxGroup> = (args) => {
+const Basic: ComponentStoryFn<typeof CheckboxGroup> = (args) => {
   return (
     <div>
       <CheckboxGroup {...args} />

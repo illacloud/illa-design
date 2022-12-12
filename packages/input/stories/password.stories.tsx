@@ -7,7 +7,7 @@ export default {
   component: Password,
 } as Meta
 
-export const password: Story<PasswordProps> = (props) => {
+export const password: StoryFn<PasswordProps> = (props) => {
   return (
     <div>
       <Password w={"280px"} {...props} />

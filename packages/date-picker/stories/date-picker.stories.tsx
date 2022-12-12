@@ -35,15 +35,15 @@ export default {
   },
 } as Meta
 
-const DateTemplate: Story<DatePickerProps> = (args) => {
+const DateTemplate: StoryFn<DatePickerProps> = (args) => {
   return <DatePicker w={"280px"} {...args} showTime />
 }
 
-const MonthTemplate: Story<MonthPickerProps> = (args) => {
+const MonthTemplate: StoryFn<MonthPickerProps> = (args) => {
   return <MonthPicker w={"280px"} {...args} />
 }
 
-const YearTemplate: Story<YearPickerProps> = (args) => {
+const YearTemplate: StoryFn<YearPickerProps> = (args) => {
   return <YearPicker w={"280px"} {...args} />
 }
 

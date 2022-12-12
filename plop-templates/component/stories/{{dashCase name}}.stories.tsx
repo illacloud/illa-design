@@ -6,7 +6,7 @@ export default {
   component: {{properCase name}},
 } as Meta
 
-const Template: Story<{{properCase name}}Props> = (args) => {
+const Template: StoryFn<{{properCase name}}Props> = (args) => {
   return (
       <{{properCase name}} {...args}  />
   )

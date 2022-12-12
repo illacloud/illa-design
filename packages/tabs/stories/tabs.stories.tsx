@@ -41,7 +41,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<TabsProps> = (props) => {
+const Template: StoryFn<TabsProps> = (props) => {
   const tabArr: {
     key: string
     title: string | ReactNode

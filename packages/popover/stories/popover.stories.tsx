@@ -13,7 +13,7 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<PopoverProps> = (args) => (
+export const Basic: StoryFn<PopoverProps> = (args) => (
   <div style={{ margin: "200px" }}>
     <Popover {...args}>
       <Button>Hello Popover</Button>

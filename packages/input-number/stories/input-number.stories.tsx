@@ -28,7 +28,7 @@ export default {
   },
 } as Meta
 
-export const Template: Story<InputNumberProps> = (props) => {
+export const Template: StoryFn<InputNumberProps> = (props) => {
   return (
     <Space wrap direction="vertical">
       <InputNumber w={"200px"} {...props} />

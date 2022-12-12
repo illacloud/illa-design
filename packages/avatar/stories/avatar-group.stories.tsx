@@ -34,7 +34,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<AvatarProps> = (args) => {
+const Template: StoryFn<AvatarProps> = (args) => {
   return (
     <AvatarGroup {...args}>
       <Avatar icon={<BsMailbox />} />

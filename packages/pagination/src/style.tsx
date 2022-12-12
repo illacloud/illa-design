@@ -36,6 +36,30 @@ export const selectorContainerStyle = css`
   align-items: center;
 `
 
+export function applySimpleTextStyle(
+  marginStyle?: SerializedStyles,
+  disabled?: boolean,
+): SerializedStyles {
+  let textColor = css`
+    color: ${getColor("grayBlue", "02")};
+  `
+  if (disabled) {
+    textColor = css`
+      color: ${getColor("grayBlue", "07")};
+    `
+  }
+
+  return css`
+    font-size: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: ${disabled ? "not-allowed" : "auto"};
+    ${marginStyle};
+    ${textColor};
+  `
+}
+
 export function applyDirectorIconStyle(
   marginStyle?: SerializedStyles,
   size?: PaginationSize,

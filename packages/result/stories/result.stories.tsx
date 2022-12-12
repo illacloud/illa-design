@@ -29,7 +29,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<ResultProps> = (props) => {
+const Template: StoryFn<ResultProps> = (props) => {
   return <Result {...props}></Result>
 }
 
