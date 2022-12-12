@@ -11,22 +11,7 @@ const Template: Story<StatisticProps> = (args) => {
   return (
     <Space size={"large"}>
       <Statistic {...args} />
-      <Statistic
-        {...args}
-        title={<ImageDefaultIcon />}
-        suffix={<ImageDefaultIcon />}
-      />
-      <Statistic
-        {...args}
-        prefix={<UpIcon style={{ color: "#ee4d38" }} />}
-        suffix={<UpIcon style={{ color: "#0fbf60" }} />}
-      />
-      <Statistic
-        {...args}
-        precision={2}
-        prefix={<UpIcon style={{ color: "#ee4d38" }} />}
-        suffix="%"
-      />
+      <Statistic {...args} title={<ImageDefaultIcon />} suffix={<UpIcon />} />
     </Space>
   )
 }
