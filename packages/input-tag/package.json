@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/input-tag",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "Illa Design InputTag.",
   "keywords": [
     "input-tag",
@@ -44,12 +44,12 @@
     "@illa-design/tag": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "chroma-js": "^2.1.2"
+    "chroma-js": "^2.1.2",
+    "framer-motion": "^7.6.12"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5",
-    "framer-motion": "^7.6.12"
+    "@emotion/react": "^11.10.5"
   }
 }

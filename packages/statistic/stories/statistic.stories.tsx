@@ -32,6 +32,11 @@ const Template: Story<StatisticProps> = (args) => {
       >
         Start
       </Button>
+      <Statistic
+        {...args}
+        title={<ImageDefaultIcon />}
+        suffix={<ImageDefaultIcon />}
+      />
     </Space>
   )
 }
