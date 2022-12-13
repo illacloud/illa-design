@@ -9,6 +9,9 @@ export interface StatisticProps
   value?: string | number | Dayjs
   decimalSeparator?: string
   format?: string
+  countUp?: boolean
+  countDuration?: number
+  countFrom?: number
   groupSeparator?: string
   loading?: boolean
   precision?: number
