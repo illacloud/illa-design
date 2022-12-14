@@ -17,8 +17,7 @@ const Template: Story<StatisticProps> = (args) => {
       <Statistic {...args} title={<ImageDefaultIcon />} suffix={<UpIcon />} />
       <Statistic
         ref={(ref) => (refGrowth = ref)}
-        title="User Growth Rate"
-        value={123344}
+        {...args}
         precision={2}
         prefix={<UpIcon />}
         suffix="%"
@@ -32,11 +31,6 @@ const Template: Story<StatisticProps> = (args) => {
       >
         Start
       </Button>
-      <Statistic
-        {...args}
-        title={<ImageDefaultIcon />}
-        suffix={<ImageDefaultIcon />}
-      />
     </Space>
   )
 }
@@ -44,7 +38,7 @@ const Template: Story<StatisticProps> = (args) => {
 export const Basic = Template.bind({})
 Basic.args = {
   title: "Amount",
-  value: 12345,
+  value: 50,
   prefix: "",
   suffix: "",
 }
