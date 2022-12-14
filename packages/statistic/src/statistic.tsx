@@ -47,7 +47,7 @@ export const Statistic = forwardRef<any, StatisticProps>((props, ref) => {
 
   const controlRef = useRef<AnimationPlaybackControls | null>()
 
-  function onCountUp(from = countFrom, to = currentValue) {
+  function onCountUp(from = countFrom, to = value) {
     if (from !== to) {
       controlRef.current = animate(from, Number(to), {
         duration: Math.floor(countDuration / 1000),
