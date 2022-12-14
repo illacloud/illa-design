@@ -5,7 +5,6 @@ import {
   useRef,
   useState,
   useImperativeHandle,
-  MutableRefObject,
 } from "react"
 import { StatisticProps } from "./interface"
 import { animate, AnimationPlaybackControls } from "framer-motion"
@@ -40,7 +39,7 @@ export const Statistic = forwardRef<any, StatisticProps>((props, ref) => {
     extra,
     countUp,
     countFrom = 0,
-    countDuration = 1,
+    countDuration = 2000,
     ...restProps
   } = props
 
@@ -48,10 +47,10 @@ export const Statistic = forwardRef<any, StatisticProps>((props, ref) => {
 
   const controlRef = useRef<AnimationPlaybackControls | null>()
 
-  const onCountUp = (from = countFrom, to = currentValue) => {
+  function onCountUp(from = countFrom, to = currentValue) {
     if (from !== to) {
       controlRef.current = animate(from, Number(to), {
-        duration: countDuration,
+        duration: Math.floor(countDuration / 1000),
         ease: "easeOut",
         onUpdate: (latest) => {
           setValue(latest)
@@ -107,7 +106,6 @@ export const Statistic = forwardRef<any, StatisticProps>((props, ref) => {
   return (
     <div
       css={[statisticStyle, applyBoxStyle(props)]}
-      ref={ref}
       {...deleteCssProps(restProps)}
     >
       {title && <div css={statisticTitleStyle}>{title}</div>}

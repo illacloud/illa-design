@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/react"
 import { Statistic, StatisticProps } from "../src"
 import { Space, ImageDefaultIcon, UpIcon, Button } from "@illa-design/react"
-import React, { useRef } from "react"
+import React, { useRef, ElementRef } from "react"
 
 export default {
   title: "DATA DISPLAY/Statistic",
@@ -9,7 +9,7 @@ export default {
 } as Meta
 
 const Template: Story<StatisticProps> = (args) => {
-  let refGrowth = useRef<HTMLElement>(null)
+  let refGrowth: ElementRef<typeof Statistic> = useRef(null)
 
   return (
     <Space size={"large"}>
@@ -25,7 +25,7 @@ const Template: Story<StatisticProps> = (args) => {
       />
       <Button
         onClick={() => {
-          refGrowth && refGrowth.onCountUp()
+          refGrowth.onCountUp()
         }}
         style={{ display: "block", marginTop: 10 }}
       >
