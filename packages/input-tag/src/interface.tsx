@@ -1,78 +1,55 @@
-import { ReactNode, HTMLAttributes, Ref, SyntheticEvent } from "react"
-import { SerializedStyles } from "@emotion/react"
+import { InputHTMLAttributes, ReactNode, SyntheticEvent } from "react"
 import { BoxProps } from "@illa-design/theme"
 
 export type InputTagSize = "small" | "medium" | "large"
-
-export type InputTagBorderColor =
+export type InputTagColorScheme =
   | string
-  | "gray"
-  | "blue"
-  | "purple"
-  | "red"
-  | "green"
-  | "yellow"
-  | "orange"
-  | "cyan"
   | "white"
+  | "blackAlpha"
+  | "gray"
+  | "grayBlue"
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "cyan"
+  | "purple"
   | "techPink"
   | "techPurple"
 
-export interface InputTagProps<T = any>
+export interface InputTagProps
   extends Omit<
-      HTMLAttributes<HTMLDivElement>,
-      "size" | "value" | "defaultValue" | "onChange"
+      InputHTMLAttributes<HTMLInputElement>,
+      "prefix" | "size" | "onChange" | "value" | "defaultValue"
     >,
     BoxProps {
-  inputRef?: Ref<HTMLInputElement>
-  inputValue?: string
-  defaultValue?: T[]
-  value?: T[]
-  size?: InputTagSize
-  borderColor?: InputTagBorderColor
-  placeholder?: string
-  error?: boolean
-  disabled?: boolean
+  colorScheme?: InputTagColorScheme
   autoFocus?: boolean
-  readOnly?: boolean
-  disableInput?: boolean
   allowClear?: boolean
-  // input output both { label: '', value: ''}
-  labelInValue?: boolean
-  suffix?: ReactNode
-  icon?: { removeIcon?: ReactNode; clearIcon?: ReactNode }
-  validate?: (inputValue: string, values: T[]) => boolean | Promise<boolean>
-
-  onClear?: () => void
-  onClick?: (e: SyntheticEvent) => void
-  onFocus?: (e: SyntheticEvent) => void
-  onBlur?: (e: SyntheticEvent) => void
-  onChange?: (value: T[]) => void
-  onRemove?: (value: T, index: number, event?: SyntheticEvent) => void
-  onInputChange?: (inputValue: string, event?: SyntheticEvent) => void
-  onPressEnter?: (e: SyntheticEvent) => void
-}
-
-export type ObjectValueType = {
-  value?: any
-  label?: ReactNode
-  closable?: boolean
-}
-
-export interface RenderTagsProps extends HTMLAttributes<HTMLElement> {
-  size?: InputTagProps["size"]
-  value: ObjectValueType[]
-  readOnly?: boolean
-  disabled?: boolean
-  labelInValue?: boolean
-  onRemove?: InputTagProps["onRemove"]
-  valueChangeHandler?: (value: ObjectValueType[]) => void
-}
-
-export interface InputTagStateValue {
   disabled?: boolean
   error?: boolean
-  focus?: boolean
-  size?: InputTagProps["size"]
-  borderColor: InputTagBorderColor
+  readOnly?: boolean
+  saveOnBlur?: boolean
+  placeholder?: string
+  inputValue?: string
+  size?: InputTagSize
+  suffix?: ReactNode | string
+  defaultValue?: TagObject[]
+  value?: TagObject[]
+  onBlur?: (e: SyntheticEvent) => void
+  onChange?: (value: TagObject[]) => void
+  onClear?: () => void
+  onFocus?: (e: SyntheticEvent) => void
+  onInputChange?: (inputValue: string, event?: SyntheticEvent) => void
+  onKeyDown?: (e: SyntheticEvent) => void
+  onPressEnter?: (e: SyntheticEvent) => void
+  onRemove?: (value: TagObject, index: number, e: SyntheticEvent) => void
+  renderItem?: (value: TagObject) => ReactNode
+}
+
+export interface TagObject {
+  label: string
+  value: unknown
+  closeable?: boolean
 }

@@ -1,179 +1,201 @@
-import { forwardRef, useImperativeHandle, useRef, useState } from "react"
+import { forwardRef, useMemo, useRef } from "react"
+import { InputTagProps, TagObject } from "./interface"
 import { useMergeValue } from "@illa-design/system"
-import { InputElement } from "@illa-design/input"
-import { ErrorIcon } from "@illa-design/icon"
-import { InputTagProps, ObjectValueType } from "./interface"
 import {
-  applyFilterInput,
-  applyInputContainer,
-  applyInputInnerCss,
-  applySuffixCls,
-  pointerStyle,
+  applyInputTagContainerStyle,
+  applyInputTagInputStyle,
+  applySuffixStyle,
+  calcSpanStyle,
+  tagsListStyle,
+  tagStyle,
 } from "./style"
-import { formatValue } from "./utils"
-import { RenderTags } from "./render-tag"
-import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
-
-// default validate func
-const defaultValidate = (inputValue: string, values: ObjectValueType[]) =>
-  inputValue && values?.every((item) => item?.value !== inputValue)
+import { Tag } from "@illa-design/tag"
+import { ClearIcon } from "@illa-design/icon"
+import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
+import useMeasure from "react-use-measure"
 
 export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
   (props, ref) => {
     const {
-      inputRef,
-      value,
-      defaultValue,
-      inputValue,
-      placeholder,
+      colorScheme = "blue",
+      autoFocus,
       allowClear,
-      borderColor = "blue",
-      error,
       disabled,
+      error,
       readOnly,
-      disableInput,
-      suffix,
-      icon,
-      _css,
-      validate = defaultValidate,
-      labelInValue,
+      saveOnBlur,
+      placeholder,
+      inputValue,
       size = "medium",
-      // events
-      onClear,
-      onRemove,
-      onFocus,
+      suffix,
+      defaultValue,
+      value,
       onBlur,
-      onClick,
-      onPaste,
+      onFocus,
       onChange,
-      onPressEnter,
+      onClear,
       onInputChange,
-      ...rest
+      onKeyDown,
+      onPressEnter,
+      onRemove,
+      renderItem,
+      ...otherProps
     } = props
 
-    const [focus, setFocus] = useState(false)
-    const [currentValue, setValue] = useMergeValue<ObjectValueType[]>([], {
-      defaultValue: defaultValue ? formatValue(defaultValue) : undefined,
-      value: value ? formatValue(value) : undefined,
+    const [finalValue, setFinalValue] = useMergeValue<TagObject[]>([], {
+      defaultValue,
+      value,
     })
-    const [currentInputValue, setInputValue] = useMergeValue("", {
+
+    const [finalInputValue, setFinalInputValue] = useMergeValue("", {
+      defaultValue: "",
       value: inputValue,
     })
-    const refInput = useRef<HTMLInputElement>(null)
 
-    const stateValue = {
-      error,
-      disabled,
-      focus,
+    const [calcBlockRef, calcBlockBounds] = useMeasure()
+
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    const tags = useMemo(() => {
+      return finalValue.map((v, i) => {
+        return (
+          <Tag
+            css={tagStyle}
+            key={v.label}
+            size={size}
+            colorScheme="blackAlpha"
+            variant="light"
+            closable={readOnly ? false : v.closeable}
+            onClose={(e) => {
+              const newTagList = [...finalValue]
+              newTagList.splice(i, 1)
+              if (value === undefined) {
+                setFinalValue(newTagList)
+              }
+              onRemove?.(v, i, e)
+              onChange?.(newTagList)
+            }}
+          >
+            {renderItem?.(v) ?? v?.value?.toString()}
+          </Tag>
+        )
+      })
+    }, [
+      finalValue,
+      onChange,
+      onRemove,
+      readOnly,
+      renderItem,
+      setFinalValue,
       size,
-      borderColor,
-    }
+      value,
+    ])
 
-    const valueChangeHandler = (value: ObjectValueType[]) => {
-      if (disabled || readOnly) {
-        return
-      }
-      if (!("value" in props)) {
-        setValue(value)
-      }
-      onChange?.(labelInValue ? value : value?.map((item) => item.value))
-    }
-
-    const tryAddInputValueToTag = async () => {
-      try {
-        const isLegal =
-          typeof validate === "function"
-            ? await validate(currentInputValue, currentValue)
-            : true
-        if (isLegal) {
-          valueChangeHandler(
-            currentValue?.concat({
-              value: currentInputValue,
-              label: currentInputValue,
-            }),
-          )
-          setInputValue("")
+    const saveInputValue = () => {
+      if (finalInputValue !== "") {
+        let newList = [
+          ...finalValue,
+          {
+            label: finalValue.length.toString(),
+            value: finalInputValue,
+            closeable: true,
+          },
+        ]
+        if (value === undefined) {
+          setFinalValue(newList)
         }
-      } catch (error) {
-        throw new Error(`Cannot add inputValue to tag: ${error}`)
+        if (inputValue === undefined) {
+          setFinalInputValue("")
+        }
+        onChange?.(newList)
       }
     }
-
-    useImperativeHandle(
-      inputRef,
-      () => refInput.current as HTMLInputElement,
-      [],
-    )
 
     return (
       <div
-        ref={ref}
-        css={[applyInputContainer(stateValue), applyBoxStyle(props)]}
-        onClick={(e) => {
-          !focus && refInput?.current?.focus?.()
-          onClick?.(e)
+        css={[
+          applyInputTagContainerStyle(
+            size,
+            colorScheme,
+            error ?? false,
+            disabled ?? false,
+          ),
+          applyBoxStyle(otherProps),
+        ]}
+        onClick={() => {
+          inputRef.current?.focus()
         }}
-        {...deleteCssProps(rest)}
+        ref={ref}
+        {...deleteCssProps(otherProps)}
       >
-        <span css={applyInputInnerCss(size)}>
-          <RenderTags
-            value={currentValue}
-            size={size}
-            disabled={disabled}
-            readOnly={readOnly}
-            labelInValue={labelInValue}
-            onRemove={onRemove}
-            valueChangeHandler={valueChangeHandler}
-          />
-          <InputElement
-            ref={refInput}
-            _css={applyFilterInput(stateValue)}
-            size={size}
-            value={currentInputValue}
-            disabled={disabled || disableInput}
-            readOnly={readOnly}
-            autoFitWidth
-            placeholder={!currentValue?.length ? placeholder : ""}
-            onFocus={(event) => {
-              if (!disabled && !readOnly) {
-                setFocus(true)
-                onFocus?.(event)
-              }
-            }}
-            onBlur={(event) => {
-              setFocus(false)
-              onBlur?.(event)
-              setInputValue("")
-            }}
-            onValueChange={(value, event) => {
-              setInputValue(value)
-              onInputChange?.(value, event)
-            }}
-            onPressEnter={async (event) => {
-              onPressEnter?.(event)
-              await tryAddInputValueToTag()
-            }}
-          />
-          {suffix ? <span css={applySuffixCls(size)}>{suffix}</span> : null}
-        </span>
-        {allowClear && !disabled && currentValue?.length ? (
-          <span
-            css={pointerStyle}
-            onClick={(e) => {
-              e.stopPropagation()
-              valueChangeHandler([])
-              if (!focus) {
-                refInput?.current?.focus?.()
-              }
-              onClear?.()
-            }}
-            onMouseDown={(e: any) => {
-              e?.target?.tagName !== "INPUT" && e.preventDefault()
-            }}
-          >
-            <ErrorIcon />
+        {
+          <span css={tagsListStyle}>
+            {tags}
+            <input
+              disabled={disabled}
+              key="inputTagInput"
+              ref={inputRef}
+              placeholder={placeholder}
+              autoFocus={autoFocus}
+              readOnly={readOnly}
+              css={applyInputTagInputStyle(calcBlockBounds.width + 12)}
+              onChange={(e) => {
+                if (inputValue === undefined) {
+                  setFinalInputValue(e.currentTarget.value)
+                }
+                onInputChange?.(e.currentTarget.value)
+              }}
+              onBlur={(e) => {
+                if (saveOnBlur) {
+                  saveInputValue()
+                }
+                onBlur?.(e)
+              }}
+              onFocus={(e) => {
+                onFocus?.(e)
+              }}
+              value={finalInputValue}
+              onKeyDown={(e) => {
+                onKeyDown?.(e)
+                if (e.key === "Enter") {
+                  inputRef.current?.focus()
+                  onPressEnter?.(e)
+                  saveInputValue()
+                }
+                if (e.key === "Backspace" && finalInputValue === "") {
+                  inputRef.current?.focus()
+                  const newTagList = [...finalValue]
+                  newTagList.pop()
+                  if (value === undefined) {
+                    setFinalValue(newTagList)
+                  }
+                  onChange?.(newTagList)
+                }
+              }}
+            />
           </span>
-        ) : null}
+        }
+        {allowClear && !readOnly && !disabled && finalValue.length > 0 && (
+          <ClearIcon
+            flexShrink="0"
+            onClick={() => {
+              onClear?.()
+              if (value === undefined) {
+                setFinalValue([])
+              }
+            }}
+            cursor="pointer"
+            fs="12px"
+            ml="4px"
+            c={getColor("grayBlue", "06")}
+          />
+        )}
+        {suffix && (
+          <span css={applySuffixStyle(size, disabled ?? false)}>{suffix}</span>
+        )}
+        <span ref={calcBlockRef} css={calcSpanStyle}>
+          {finalInputValue.replace(/\s/g, "\u00A0")}
+        </span>
       </div>
     )
   },

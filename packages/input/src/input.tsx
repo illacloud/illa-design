@@ -1,150 +1,163 @@
-import { forwardRef, ReactNode, useMemo, useState } from "react"
-import { useMergeValue } from "@illa-design/system"
+import { forwardRef } from "react"
 import { InputProps } from "./interface"
 import {
-  applyAddonCss,
-  applyContainerCss,
-  applyCountLimitStyle,
-  applyInputContainer,
-  applyLengthErrorStyle,
-  applyPrefixCls,
-  applySuffixCls,
+  applyAddAfterStyle,
+  applyAddBeforeStyle,
+  applyInputContainerStyle,
+  applyInputDisabledStyle,
+  applyInputElementStyle,
+  applyInputStyle,
+  applyMaxLengthBeforeStyle,
+  applyPrefixStyle,
+  applySuffixStyle,
+  applyWordLimitStyle,
 } from "./style"
-import { InputElement } from "./input-element"
-import { formatForRule } from "./utils"
-import { SerializedStyles } from "@emotion/react"
-import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
-
-const inputAddon = (
-  node?: ReactNode,
-  custom?: boolean,
-  style?: SerializedStyles,
-): ReactNode | null => {
-  return node ? custom ? <>{node}</> : <span css={style}>{node}</span> : null
-}
+import { useMergeValue } from "@illa-design/system"
+import { ClearIcon } from "@illa-design/icon"
+import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 
 export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   const {
-    inputRef,
+    colorScheme = "blue",
     allowClear,
-    error,
     disabled,
-    placeholder,
-    maxLength,
-    showCount,
-    prefix,
-    addonAfter,
-    addonBefore,
-    defaultValue,
-    bdRadius: borderRadius,
-    borderColor = "blue",
-    size = "medium",
-    variant = "outline",
-    requirePadding = true,
-    textCenterHorizontal,
-    iconAppearWithSuffix,
-    onClear,
-    onChange,
-    onFocus,
-    onBlur,
-    onPressEnter,
-    withoutNormalBorder,
-    highlight,
+    error,
     readOnly,
-    ...rest
+    showWordLimit,
+    defaultValue,
+    placeholder,
+    value,
+    size = "medium",
+    addAfter,
+    addBefore,
+    prefix,
+    suffix,
+    maxLength,
+    onChange,
+    onClear,
+    onPressEnter,
+    variant = "outline",
+    ...otherProps
   } = props
 
-  const [focus, setFocus] = useState(false)
-
-  const [value, setValue] = useMergeValue("", {
-    defaultValue: defaultValue
-      ? formatForRule(defaultValue, maxLength)
-      : undefined,
-    value: props.value ? formatForRule(props.value, maxLength) : undefined,
+  const [finalValue, setFinalValue] = useMergeValue("", {
+    defaultValue: defaultValue,
+    value: value,
   })
-  const valueLength = value ? value.length : 0
-  let suffix = props.suffix ?? {}
 
-  const lengthError = useMemo(() => {
-    if (maxLength) {
-      return valueLength > maxLength
-    }
-    return false
-  }, [valueLength, maxLength])
+  const [finalError, setFinalError] = useMergeValue(false, {
+    defaultValue: false,
+    value: error,
+  })
 
-  const stateValue = {
-    error: error || lengthError,
-    disabled,
-    focus: highlight ?? focus,
-    variant,
-    size,
-    borderColor,
-    borderRadius,
-    iconAppearWithSuffix,
-    withoutNormalBorder,
-  }
+  const finalMaxLength = maxLength
+    ? typeof maxLength === "number"
+      ? maxLength
+      : maxLength.length
+    : undefined
 
-  if (showCount) {
-    suffix.render = (
-      <span css={applyCountLimitStyle}>
-        <span css={applyLengthErrorStyle(lengthError)}>{valueLength}</span>
-        {maxLength ? <span>/{maxLength}</span> : null}
-      </span>
-    )
-  }
+  const finalMaxLengthErrorOnly = maxLength
+    ? typeof maxLength === "number"
+      ? false
+      : maxLength.errorOnly
+    : undefined
 
   return (
-    <div ref={ref} css={[applyContainerCss(size), applyBoxStyle(rest)]}>
-      {inputAddon(
-        addonBefore?.render,
-        addonBefore?.custom,
-        applyAddonCss(variant, size, disabled),
+    <div
+      css={[applyInputContainerStyle(), applyBoxStyle(otherProps)]}
+      ref={ref}
+      {...deleteCssProps(otherProps)}
+    >
+      {addBefore && (
+        <span css={applyAddBeforeStyle(size, variant, disabled ?? false)}>
+          {addBefore}
+        </span>
       )}
-      <span css={applyInputContainer(stateValue, requirePadding)}>
-        {inputAddon(prefix?.render, prefix?.custom, applyPrefixCls(size))}
-        <InputElement
-          ref={inputRef}
-          value={value}
-          size={size}
-          error={error}
+      <div
+        aria-disabled={disabled}
+        css={
+          disabled
+            ? applyInputDisabledStyle(
+                size,
+                variant,
+                colorScheme,
+                finalError,
+                addBefore !== undefined,
+                addAfter !== undefined,
+              )
+            : applyInputStyle(
+                size,
+                variant,
+                colorScheme,
+                finalError,
+                addBefore !== undefined,
+                addAfter !== undefined,
+              )
+        }
+      >
+        {prefix && (
+          <span css={applyPrefixStyle(size, disabled ?? false)}>{prefix}</span>
+        )}
+        <input
           disabled={disabled}
-          maxLength={maxLength}
-          placeholder={placeholder}
-          allowClear={allowClear}
-          textCenterHorizontal={textCenterHorizontal}
-          iconAppearWithSuffix={iconAppearWithSuffix}
-          onFocus={(e) => {
-            setFocus(true)
-            onFocus?.(e)
-          }}
-          onBlur={(e) => {
-            setFocus(false)
-            onBlur?.(e)
-          }}
-          onClear={() => {
-            if (!("value" in props) || !props.value) {
-              setValue("")
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onPressEnter?.()
             }
-            onClear?.()
           }}
-          onValueChange={(value, event) => {
-            if (!("value" in props)) {
-              setValue(value)
-            }
-            onChange?.(value, event)
-          }}
-          onPressEnter={(e) => {
-            onPressEnter?.(e)
-          }}
+          maxLength={finalMaxLengthErrorOnly ? undefined : finalMaxLength}
           readOnly={readOnly}
-          {...deleteCssProps(rest)}
+          value={finalValue}
+          css={applyInputElementStyle()}
+          placeholder={placeholder}
+          onChange={(event) => {
+            onChange?.(event.target.value, event)
+            if (finalMaxLength && event.target.value.length > finalMaxLength) {
+              if (finalMaxLengthErrorOnly) {
+                if (error === undefined) {
+                  setFinalError(true)
+                }
+              }
+            } else {
+              if (error === undefined) {
+                setFinalError(false)
+              }
+            }
+            if (value === undefined) {
+              setFinalValue(event.target.value)
+            }
+          }}
         />
-        {inputAddon(suffix?.render, suffix?.custom, applySuffixCls(size))}
-      </span>
-      {inputAddon(
-        addonAfter?.render,
-        addonAfter?.custom,
-        applyAddonCss(variant, size, disabled),
+        {allowClear && !readOnly && !disabled && finalValue.length > 0 && (
+          <ClearIcon
+            onClick={() => {
+              onClear?.()
+              if (value === undefined) {
+                setFinalValue("")
+              }
+            }}
+            cursor="pointer"
+            fs="12px"
+            ml="4px"
+            c={getColor("grayBlue", "05")}
+          />
+        )}
+        {!showWordLimit && suffix && (
+          <span css={applySuffixStyle(size, disabled ?? false)}>{suffix}</span>
+        )}
+        {showWordLimit && (
+          <span css={applyWordLimitStyle(size)}>
+            <span css={applyMaxLengthBeforeStyle(finalError)}>
+              {finalValue.length}
+            </span>
+            {`${finalMaxLength !== undefined ? "/" + finalMaxLength : ""}`}
+          </span>
+        )}
+      </div>
+      {addAfter && (
+        <span css={applyAddAfterStyle(size, variant, disabled ?? false)}>
+          {addAfter}
+        </span>
       )}
     </div>
   )

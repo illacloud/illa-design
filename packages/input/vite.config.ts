@@ -53,8 +53,6 @@ export default defineConfig({
         "@illa-design/system",
         "@illa-design/theme",
         "@illa-design/icon",
-        "@illa-design/button",
-        "chroma-js",
       ],
       output: {
         globals: {
@@ -65,8 +63,6 @@ export default defineConfig({
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
-          "@illa-design/button": "@illa-design/button",
-          "chroma-js": "chroma-js",
         },
       },
     },

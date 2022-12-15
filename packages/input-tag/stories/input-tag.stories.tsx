@@ -1,30 +1,18 @@
-import { Meta, Story } from "@storybook/react"
-import { InputTagProps, InputTag } from "../src"
+import { Meta, StoryFn } from "@storybook/react"
+import { InputTag, InputTagProps } from "../src"
+import { PersonIcon, Space } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "DATA INPUT/InputTag",
   component: InputTag,
-  argTypes: {
-    suffix: {
-      control: {
-        type: "text",
-      },
-    },
-    borderColor: {
-      control: {
-        type: "text",
-      },
-    },
-  },
 } as Meta
 
-const Template: StoryFn<InputTagProps> = (props) => {
+export const Basic: StoryFn<InputTagProps> = (props) => {
   return (
-    <div>
-      <InputTag w={"280px"} {...props} />
-    </div>
+    <Space direction="vertical" align="start">
+      <InputTag w="320px" {...props} />
+      <InputTag w="320px" suffix={<PersonIcon />} {...props} />
+    </Space>
   )
 }
-
-export const Basic = Template.bind({})

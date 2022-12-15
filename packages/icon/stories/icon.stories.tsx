@@ -98,6 +98,7 @@ import {
   WindowLeftIcon,
   WindowRightIcon,
   SlashIcon,
+  ClearIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -107,6 +108,10 @@ export default {
 
 export const Close: StoryFn<IconProps> = (props: IconProps) => (
   <CloseIcon {...props} />
+)
+
+export const Clear: StoryFn<IconProps> = (props: IconProps) => (
+  <ClearIcon {...props} />
 )
 
 export const Copy: StoryFn<IconProps> = (props: IconProps) => (

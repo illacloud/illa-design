@@ -55,7 +55,8 @@ export default defineConfig({
         "@illa-design/icon",
         "@illa-design/input",
         "@illa-design/tag",
-        "chroma-js",
+        "@illa-design/space",
+        "react-use-measure",
       ],
       output: {
         globals: {
@@ -68,7 +69,8 @@ export default defineConfig({
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/input": "@illa-design/input",
           "@illa-design/tag": "@illa-design/tag",
-          "chroma-js": "chroma-js",
+          "@illa-design/space": "@illa-design/space",
+          "react-use-measure": "react-use-measure",
         },
       },
     },

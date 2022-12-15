@@ -1,209 +1,123 @@
-import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
-import { InputTagProps, InputTagStateValue } from "./interface"
+import { InputTagColorScheme, InputTagSize } from "./interface"
+import { getColor, getColorShadow, zIndex } from "@illa-design/theme"
 
-export const inputOutlineStyle = css`
-  border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-`
-export const disableOutlineStyle = css`
-  border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-`
-
-export const errorFocusStyle = css`
-  background-color: unset;
-  border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-  box-shadow: 0 0 8px 0
-    ${chroma(globalColor(`--${illaPrefix}-red-01`))
-      .alpha(0.15)
-      .hex()};
-`
-export const errorOutlineStyle = css`
-  background-color: unset;
-  border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-
-  &:hover {
-    border-color: ${globalColor(`--${illaPrefix}-red-02`)};
-  }
-`
-
-function applySizeStyle(size?: string): SerializedStyles {
-  let sizeCss: SerializedStyles
-  switch (size) {
-    default:
-    case "large":
-      sizeCss = css`
-        padding: 8px 16px;
-      `
-      break
-    case "medium":
-      sizeCss = css`
-        padding: 4px 16px;
-      `
-      break
-    case "small":
-      sizeCss = css`
-        padding: 4px 12px;
-      `
-      break
-  }
-  return sizeCss
-}
-
-export function applyInputInnerCss(
-  size?: InputTagProps["size"],
-): SerializedStyles {
-  let paddingCss: SerializedStyles
-  switch (size) {
-    default:
-    case "large":
-      paddingCss = css`
-        gap: 8px;
-      `
-      break
-    case "medium":
-      paddingCss = css`
-        gap: 4px;
-      `
-      break
-    case "small":
-      paddingCss = css`
-        gap: 4px;
-      `
-      break
-  }
+export function applyInputTagInputStyle(w: number): SerializedStyles {
   return css`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex-grow: 1;
-    align-items: center;
-    ${paddingCss}
-  `
-}
-
-export function applyFilterInput(
-  stateValue: InputTagStateValue,
-): SerializedStyles {
-  if (!stateValue?.focus) {
-    return css`
-      &:not(:first-of-type) {
-        width: 0 !important;
-        position: absolute;
-        bottom: 0;
-      }
-    `
-  }
-  return css``
-}
-
-function applyStatus(stateValue: InputTagStateValue): SerializedStyles {
-  let mainStyle: SerializedStyles
-  let disableStyle, hoverStyle, inputStyle, errorStyle: SerializedStyles
-
-  disableStyle = disableOutlineStyle
-  inputStyle = inputOutlineStyle
-  errorStyle = errorOutlineStyle
-  hoverStyle = css``
-
-  if (stateValue?.disabled) {
-    mainStyle = css`
-      cursor: not-allowed;
-      ${disableStyle}
-    `
-  } else if (stateValue?.focus) {
-    const boxShadowColor = getColor(stateValue.borderColor, "01")
-    mainStyle = css`
-      border-color: ${getColor(stateValue.borderColor, "03")};
-      box-shadow: 0 0 8px 0
-        ${boxShadowColor ? chroma(boxShadowColor).alpha(0.15).hex() : ""};
-      ${stateValue?.error ? errorFocusStyle : ""}
-      background-color: white;
-    `
-  } else if (stateValue?.error) {
-    mainStyle = css`
-      ${errorStyle}
-    `
-  } else {
-    mainStyle = css`
-      &:hover {
-        border-color: ${getColor(stateValue.borderColor, "06")};
-        ${hoverStyle}
-      }
-    `
-  }
-  return css`
-    ${inputStyle};
-    ${mainStyle};
-  `
-}
-
-export function applyInputContainer(
-  stateValue: InputTagStateValue,
-): SerializedStyles {
-  return css`
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    width: ${w}px;
     font-size: 14px;
-    line-height: 1.57;
-    cursor: text;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    border-radius: 8px;
-    transition: all 200ms ease-in-out;
-    ${applySizeStyle(stateValue?.size)};
-    ${applyStatus(stateValue)}
+    background: none;
+    outline: none;
+    border: none;
+    padding: 0;
+    font-family: unset;
   `
 }
 
-function baseFixCls(size: InputTagProps["size"]): SerializedStyles {
-  let sizeCss: SerializedStyles
+function getPaddingStyle(size: InputTagSize): SerializedStyles {
+  let pdStyle = css``
   switch (size) {
-    default:
-      sizeCss = css`
-        & > svg {
-          font-size: 16px;
-        }
+    case "small":
+      pdStyle = css`
+        padding: 2px 16px;
+        min-height: 24px;
       `
       break
-    case "small":
-      sizeCss = css``
+    case "medium":
+      pdStyle = css`
+        padding: 2px 16px;
+        min-height: 32px;
+      `
+      break
+    case "large":
+      pdStyle = css`
+        padding: 2px 16px;
+        min-height: 40px;
+      `
+      break
+    default:
       break
   }
-  return css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    font-size: inherit;
-    ${sizeCss}
-  `
+  return pdStyle
 }
 
-export function applySuffixCls(size: InputTagProps["size"]): SerializedStyles {
-  return css`
-    ${baseFixCls(size)}
-    margin-left: 12px;
-  `
-}
+export function applyInputTagContainerStyle(
+  size: InputTagSize,
+  colorScheme: InputTagColorScheme,
+  error: boolean,
+  disabled: boolean,
+): SerializedStyles {
+  let otherStyle = css``
+  if (!disabled) {
+    otherStyle = css`
+      &:hover {
+        border-color: ${error
+          ? getColor("red", "02")
+          : getColor(colorScheme, "06")};
+        z-index: ${zIndex.inputFocus};
+      }
 
-export const pointerStyle = css`
-  cursor: pointer;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
-
-  &:hover {
-    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+      &:focus-within {
+        border-color: ${getColor(error ? "red" : colorScheme, "03")};
+        box-shadow: 0 0 8px 0
+          ${getColorShadow(error ? "red" : colorScheme, "01")};
+        z-index: ${zIndex.inputFocus};
+      }
+    `
   }
+
+  return css`
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: ${disabled ? "not-allowed" : "text"};
+    border-radius: 4px;
+    z-index: ${zIndex.input};
+    border: 1px solid
+      ${error ? getColor("red", "03") : getColor("grayBlue", "08")};
+    background-color: ${disabled ? getColor("grayBlue", "09") : "unset"};
+    ${getPaddingStyle(size)};
+    ${otherStyle};
+  `
+}
+
+export const tagsListStyle = css`
+  display: flex;
+  flex-flow: row wrap;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: hidden;
+  align-items: center;
+  gap: 4px;
 `
 
-// renderTag style
 export const tagStyle = css`
   box-sizing: border-box;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+`
+
+export function applySuffixStyle(
+  size: InputTagSize,
+  disabled: boolean,
+): SerializedStyles {
+  return css`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+    color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
+    margin-left: ${size === "small" ? "8px" : "12px"};
+  `
+}
+
+export const calcSpanStyle = css`
+  position: absolute;
+  visibility: hidden;
+  font-size: 14px;
 `
