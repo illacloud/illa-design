@@ -22,7 +22,7 @@ export const applyModalContainer = css`
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: ${zIndex.modal};
+  z-index: ${zIndex.modal + 1};
   &:after {
     display: inline-block;
     vertical-align: middle;
