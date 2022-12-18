@@ -40,7 +40,8 @@
   },
   "dependencies": {
     "color": "^4.2.3",
-    "@illa-design/system": "workspace:*"
+    "@illa-design/system": "workspace:*",
+    "chroma-js": "^2.4.2"
   },
   "devDependencies": {
     "@types/color": "^3.0.3"

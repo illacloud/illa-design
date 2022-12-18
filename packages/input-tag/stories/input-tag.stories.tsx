@@ -13,6 +13,8 @@ export const Basic: StoryFn<InputTagProps> = (props) => {
     <Space direction="vertical" align="start">
       <InputTag w="320px" {...props} />
       <InputTag w="320px" suffix={<PersonIcon />} {...props} />
+      <InputTag w="320px" addBefore="Before" addAfter="After" {...props} />
+      <InputTag w="320px" prefix="Before" {...props} />
     </Space>
   )
 }

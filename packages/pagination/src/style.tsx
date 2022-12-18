@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor } from "@illa-design/theme"
+import { getColor, getColorShadow } from "@illa-design/theme"
 import { PaginationSize } from "./interface"
 
 export const paginationContainer = css`
@@ -18,6 +18,8 @@ export function applyJumperStyle(disabled?: boolean): SerializedStyles {
   return css`
     font-size: 14px;
     margin-left: 8px;
+    margin-right: 16px;
+    white-space: nowrap;
     color: ${disabled
       ? getColor("grayBlue", "07")
       : getColor("grayBlue", "02")};
@@ -50,7 +52,7 @@ export function applySimpleTextStyle(
   }
 
   return css`
-    font-size: 10px;
+    font-size: 14px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -107,7 +109,7 @@ export function applyDirectorIconStyle(
   }
 
   return css`
-    font-size: 10px;
+    font-size: 14px;
     width: ${s};
     display: inline-flex;
     align-items: center;
@@ -119,5 +121,60 @@ export function applyDirectorIconStyle(
     ${textColor};
     ${bgColor};
     ${hoverStyle};
+  `
+}
+
+export function applySelectorInputStyle(
+  size: PaginationSize,
+): SerializedStyles {
+  let s = "32px"
+
+  switch (size) {
+    case "small":
+      s = "24px"
+      break
+    case "medium":
+      s = "32px"
+      break
+    case "large":
+      s = "40px"
+      break
+  }
+
+  return css`
+    font-size: 14px;
+    color: ${getColor("grayBlue", "02")};
+    width: ${s};
+    box-sizing: border-box;
+    text-align: center;
+    background-color: ${getColor("grayBlue", "09")};
+    border-radius: 4px;
+    height: ${s};
+    outline: none;
+    border: none;
+
+    &:hover {
+      background-color: ${getColor("grayBlue", "08")};
+    }
+
+    &:focus-within {
+      outline: none;
+      background: none;
+      border: 1px solid ${getColor("blue", "03")};
+      box-shadow: 0 0 8px 0 ${getColorShadow("blue", "01")};
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: ${getColor("grayBlue", "05")};
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
   `
 }

@@ -1,50 +1,52 @@
-import { ReactNode, InputHTMLAttributes, Ref } from "react"
-import { InputBorderColor } from "@illa-design/input"
+import { InputHTMLAttributes, ReactNode, SyntheticEvent } from "react"
 import { BoxProps } from "@illa-design/theme"
 
 export type InputNumberSize = "small" | "medium" | "large"
+export type InputNumberMode = "embed" | "button"
+export type InputNumberColorScheme =
+  | string
+  | "white"
+  | "blackAlpha"
+  | "gray"
+  | "grayBlue"
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "cyan"
+  | "purple"
+  | "techPink"
+  | "techPurple"
 
-export interface InputNumberProps<T = any>
+export interface InputNumberProps
   extends Omit<
       InputHTMLAttributes<HTMLInputElement>,
-      "prefix" | "size" | "onChange"
+      "prefix" | "size" | "onChange" | "value" | "defaultValue"
     >,
     BoxProps {
-  inputRef?: Ref<HTMLInputElement>
-  borderColor?: InputBorderColor
-  step?: number
-  precision?: number
-  min?: number
-  max?: number
-  error?: boolean
-  disabled?: boolean
-  readOnly?: boolean
-  defaultValue?: number
-  value?: number | string
-  placeholder?: string
-  width?: string
-  mode?: "embed" | "button"
   size?: InputNumberSize
-  prefix?: ReactNode
-  suffix?: ReactNode
+  colorScheme?: InputNumberColorScheme
+  disabled?: boolean
+  error?: boolean
   hideControl?: boolean
+  readOnly?: boolean
+  max?: number
+  min?: number
+  precision?: number
+  step?: number
+  placeholder?: string
+  mode?: InputNumberMode
+  prefix?: ReactNode | string
+  suffix?: ReactNode | string
+  defaultValue?: number
+  value?: number
   icons?: {
     up?: ReactNode
     down?: ReactNode
     plus?: ReactNode
     minus?: ReactNode
   }
-  formatter?: (value: number | string) => string
-  parser?: (value: string) => number | string
-  // events
-  onFocus?: (e: any) => void
-  onBlur?: (e: any) => void
-  onChange?: (value?: number) => void
-}
-
-export interface InputNumberStateValue {
-  disabled?: boolean
-  error?: boolean
-  focus?: boolean
-  size?: InputNumberProps["size"]
+  onChange?: (value: number) => void
+  onKeyDown?: (e: SyntheticEvent) => void
 }

@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { BsFillArrowUpCircleFill } from "react-icons/bs"
 import { BackTop, BackTopProps } from "../src"
 

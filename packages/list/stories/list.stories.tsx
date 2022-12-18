@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { List, ListItem, ListItemMeta, ListProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list

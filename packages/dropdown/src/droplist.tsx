@@ -42,6 +42,3 @@ export const DropList = forwardRef<HTMLDivElement, DropListProps>(
 
 DropList.displayName = "DropList"
 DropList.Item = DropListItem
-DropList.defaultProps = {
-  isDropList: true,
-}

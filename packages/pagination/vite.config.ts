@@ -55,7 +55,6 @@ export default defineConfig({
         "@illa-design/system",
         "@illa-design/theme",
         "@illa-design/config-provider",
-        "@illa-design/input-number",
       ],
       output: {
         globals: {
@@ -68,7 +67,6 @@ export default defineConfig({
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/config-provider": "@illa-design/config-provider",
-          "@illa-design/input-number": "@illa-design/input-number",
         },
       },
     },

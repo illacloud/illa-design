@@ -6,10 +6,11 @@ import {
   ReactNode,
   RefAttributes,
 } from "react"
-import { TriggerProps } from "@illa-design/trigger"
+import { TriggerColorScheme, TriggerProps } from "@illa-design/trigger"
 
 export interface DropdownProps {
   children?: ReactNode
+  colorScheme?: TriggerColorScheme
   dropList?: ReactNode
   position?: TriggerProps["position"]
   trigger?: TriggerProps["trigger"]
@@ -18,6 +19,7 @@ export interface DropdownProps {
   popupVisible?: boolean
   triggerProps?: Partial<TriggerProps>
   getPopupContainer?: (node: HTMLElement) => Element
+  autoAlignPopupWidth?: boolean
   // events
   onVisibleChange?: (visible: boolean) => void
 }

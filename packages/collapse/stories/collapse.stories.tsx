@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Collapse, CollapseItem, CollapseProps } from "../src"
 import { ShareIcon, Space } from "@illa-design/react"
 

@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { {{properCase name}}, {{properCase name}}Props } from "../src"
 
 export default {

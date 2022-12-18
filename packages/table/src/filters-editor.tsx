@@ -2,9 +2,9 @@ import { FC, useMemo } from "react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Button } from "@illa-design/button"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
-import { Select } from "@illa-design/select"
+import { OptionObject, Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
-import { FiltersEditorProps } from "./interface"
+import { CustomFilterFn, FilterOperator, FiltersEditorProps } from "./interface"
 import {
   editorButtonStyle,
   editorStyle,
@@ -24,6 +24,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
     onChange,
     onChangeFilterFn,
     onChangeOperator,
+    colorScheme,
   } = props
 
   const recordList = useMemo(() => {
@@ -39,11 +40,11 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
                 ) : index === 1 ? (
                   <Select
                     w="86px"
-                    colorScheme="techPurple"
+                    colorScheme={colorScheme}
                     value={filterOperator}
                     options={FilterOperatorOptions}
                     onChange={(operator) => {
-                      onChangeOperator(operator)
+                      onChangeOperator(operator as FilterOperator)
                     }}
                   />
                 ) : (
@@ -53,28 +54,37 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
               <Select
                 w="200px"
                 mg="8px 4px"
-                colorScheme="techPurple"
+                colorScheme={colorScheme}
                 value={id}
                 options={columnsOption}
                 onChange={(id) => {
-                  onChange(index, { id, value, filterFn })
+                  onChange(index, { id: id as string, value, filterFn })
                 }}
               />
               <Select
                 w="200px"
                 mg="8px 4px"
-                colorScheme="techPurple"
+                colorScheme={colorScheme}
                 value={filterFn as string}
                 options={FilterOptions}
                 onChange={(filterFn) => {
-                  onChangeFilterFn(index, filter.id, filterFn)
-                  onChange(index, { id, value, filterFn })
+                  if (filterFn != null) {
+                    let option = filterFn as OptionObject
+                    // @ts-ignore @chenxiaoyu
+                    onChangeFilterFn(index, filter.id, option.value)
+                    onChange(index, {
+                      id,
+                      value,
+                      // @ts-ignore @chenxiaoyu
+                      filterFn: option.value,
+                    })
+                  }
                 }}
               />
               <Input
                 w="200px"
                 mg="8px 4px"
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 value={isString(value) ? value : undefined}
                 disabled={
                   (filterFn as string) === "empty" ||
@@ -102,6 +112,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
       </>
     )
   }, [
+    colorScheme,
     columnFilters,
     columnsOption,
     filterOperator,
@@ -117,7 +128,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
       <span css={editorButtonStyle}>
         <Button
           pd="1px 8px"
-          colorScheme="techPurple"
+          colorScheme={colorScheme}
           size="medium"
           variant="text"
           onClick={onAdd}

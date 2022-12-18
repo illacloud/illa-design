@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Button, useNotification } from "@illa-design/react"
 import { Affix, AffixProps } from "../src"
 import { CSSProperties, useRef } from "react"

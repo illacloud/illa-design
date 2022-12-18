@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Spin, SpinProps } from "../src"
 import { css } from "@emotion/react"
 

@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Tag, TagProps } from "../src"
 
 import { BsFacebook, BsTwitch, BsTwitter } from "react-icons/bs"

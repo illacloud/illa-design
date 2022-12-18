@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Space } from "@illa-design/react"
 import { RadioGroup, RadioGroupProps } from "../src"
 

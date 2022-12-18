@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Space, Button } from "@illa-design/react"
 import { Message, MessageGroup, MessageProps, useMessage } from "../src"
 

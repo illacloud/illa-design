@@ -3,7 +3,7 @@
   "version": "1.0.10",
   "description": "Illa Design InputNumber.",
   "keywords": [
-    "input-number",
+    "input",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illacloud/illa-design.git",
-    "directory": "packages/input-number"
+    "directory": "packages/input"
   },
   "bugs": {
     "url": "https://github.com/illacloud/illa-design/issues"
@@ -39,11 +39,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "workspace:*",
-    "@illa-design/input": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "number-precision": "^1.6.0"
+    "@illa-design/input": "workspace:*",
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/space": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",

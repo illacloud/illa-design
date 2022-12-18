@@ -127,12 +127,17 @@ export interface PositionStyledProps {
   posL?: string
   posB?: string
   posR?: string
+  z?: string | number
   /**
    * over-flow,over-flow-x,over-flow-y
    */
   ov?: string
   ovX?: string
   ovY?: string
+  /**
+   * visibility
+   */
+  v?: string
 }
 
 export interface FontStyledProps {

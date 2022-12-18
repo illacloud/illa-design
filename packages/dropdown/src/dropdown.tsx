@@ -1,106 +1,52 @@
-import {
-  Children,
-  cloneElement,
-  FC,
-  ReactElement,
-  ReactNode,
-  SyntheticEvent,
-} from "react"
+import { FC } from "react"
 import { DropdownProps } from "./interface"
 import { Trigger } from "@illa-design/trigger"
-import { omit, useMergeValue } from "@illa-design/system"
-import { css } from "@emotion/react"
-
-const getContent = (dropList: ReactNode) => {
-  return Children.only(dropList || <span />) as ReactElement
-}
+import { useMergeValue } from "@illa-design/system"
 
 export const Dropdown: FC<DropdownProps> = (props) => {
   const {
     children,
+    colorScheme,
     dropList,
     disabled,
-    position = "right-start",
-    trigger = "hover",
-    triggerProps,
+    position = "bottom-start",
+    trigger = "click",
     defaultPopupVisible,
+    autoAlignPopupWidth,
     popupVisible,
-    getPopupContainer,
     onVisibleChange,
     ...otherProps
   } = props
 
-  const content = getContent(dropList)
-
-  const triggerDefaultProps = {
-    colorScheme: "white",
-    withoutPadding: true,
-    clickOutsideToClose: true,
-    closeOnInnerClick: true,
-    ...triggerProps,
-  }
-
   const [currentPopupVisible, setCurrentPopupVisible] = useMergeValue(false, {
-    defaultValue: props.defaultPopupVisible,
-    value: props.popupVisible,
+    defaultValue: defaultPopupVisible,
+    value: popupVisible,
   })
 
   const changePopupVisible = (visible: boolean) => {
-    setCurrentPopupVisible(visible)
+    if (popupVisible === undefined) {
+      setCurrentPopupVisible(visible)
+    }
     onVisibleChange?.(visible)
-    triggerDefaultProps?.onVisibleChange?.(visible)
-  }
-
-  const onClickMenuItem = (key: string, event: SyntheticEvent) => {
-    let clickMenuEventValue = null
-
-    const content = getContent(dropList)
-    if (content?.props?.onClickMenuItem) {
-      clickMenuEventValue = content.props?.onClickMenuItem(key, event)
-    }
-    if (content?.props?.onClickItem) {
-      clickMenuEventValue = content.props?.onClickItem(key, event)
-    }
-
-    if (clickMenuEventValue instanceof Promise) {
-      clickMenuEventValue?.finally(() => changePopupVisible(false))
-    } else if (clickMenuEventValue !== false) {
-      changePopupVisible(false)
-    }
   }
 
   return (
     <Trigger
       trigger={trigger}
+      colorScheme={colorScheme}
       disabled={disabled}
+      autoAlignPopupWidth={autoAlignPopupWidth}
+      withoutPadding={true}
+      clickOutsideToClose={true}
+      closeOnInnerClick={true}
       position={position}
       showArrow={false}
       alignPoint={trigger === "contextmenu"}
       popupVisible={currentPopupVisible}
-      _css={css`
-        border-radius: 8px;
-      `}
-      content={
-        content?.props?.isMenu
-          ? cloneElement(content as ReactElement, {
-              inDropdown: true,
-              selectable: false,
-              onClickMenuItem,
-            })
-          : content?.props?.isDropList
-          ? cloneElement(content as ReactElement, {
-              onClickItem: onClickMenuItem,
-            })
-          : content
-      }
+      content={dropList}
       onVisibleChange={(visible: boolean) => {
-        if (visible !== popupVisible) {
-          changePopupVisible(visible)
-        }
+        changePopupVisible(visible)
       }}
-      {...(triggerDefaultProps
-        ? omit(triggerDefaultProps, ["onVisibleChange"])
-        : {})}
       {...otherProps}
     >
       {children}

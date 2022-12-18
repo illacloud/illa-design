@@ -1,9 +1,18 @@
 import * as React from "react"
-import { forwardRef, ReactNode, useCallback, useContext, useMemo } from "react"
+import {
+  forwardRef,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import { PaginationProps } from "./interface"
 import {
   applyDirectorIconStyle,
   applyJumperStyle,
+  applySelectorInputStyle,
   applySimpleTextStyle,
   jumperContainerStyle,
   paginationContainer,
@@ -64,10 +73,13 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       value: pageSize,
     })
 
+    const [jumperValue, setJumperValue] = useState("")
+    const [simpleValue, setSimpleValue] = useState("")
+
     const totalPageSize = Math.ceil(total / finalPageSize)
 
     const changeCurrent = useCallback(
-      (toCurrent: number) => {
+      (toCurrent: number): number => {
         let toC = toCurrent
         if (toCurrent < 1) {
           toC = 1
@@ -81,6 +93,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
           setFinalCurrent(toC)
         }
         onChange?.(toC, finalPageSize)
+        return toC
       },
       [current, finalPageSize, onChange, setFinalCurrent, total, totalPageSize],
     )
@@ -117,13 +130,26 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
             <div css={jumperContainerStyle}>
               <span css={applyJumperStyle(disabled)}>{locale.go}</span>
               <input
+                css={applySelectorInputStyle(size)}
+                value={jumperValue}
                 type="number"
                 min={1}
                 max={totalPageSize}
-                value={finalCurrent}
                 disabled={disabled}
                 onChange={(e) => {
-                  changeCurrent(Number(e.target.value))
+                  setJumperValue(e.currentTarget.value)
+                }}
+                onBlur={(e) => {
+                  if (e.currentTarget.value != "") {
+                    changeCurrent(Number(e.currentTarget.value))
+                    setJumperValue("")
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && e.currentTarget.value != "") {
+                    changeCurrent(Number(e.currentTarget.value))
+                    setJumperValue("")
+                  }
                 }}
               />
             </div>
@@ -133,9 +159,10 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     }, [
       changeCurrent,
       disabled,
-      finalCurrent,
+      jumperValue,
       locale.go,
       showJumper,
+      size,
       totalPageSize,
     ])
 
@@ -163,19 +190,34 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       [bufferSize, finalCurrent, totalPageSize, startAndEndBuffer],
     )
 
+    useEffect(() => {
+      setSimpleValue(finalCurrent.toString())
+    }, [finalCurrent])
+
     const selectorComponent = useMemo(() => {
       let middleComponent: ReactNode
       if (simple) {
         middleComponent = (
           <div css={selectorContainerStyle}>
             <input
+              css={applySelectorInputStyle(size)}
               type="number"
               min={1}
               max={totalPageSize}
-              value={finalCurrent}
+              value={simpleValue}
               disabled={disabled}
               onChange={(e) => {
-                changeCurrent(Number(e.target.value))
+                setSimpleValue(e.currentTarget.value)
+              }}
+              onBlur={(e) => {
+                if (e.currentTarget.value != "") {
+                  changeCurrent(Number(e.currentTarget.value))
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && e.currentTarget.value != "") {
+                  changeCurrent(Number(e.currentTarget.value))
+                }
               }}
             />
             <span
@@ -338,6 +380,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       itemRender,
       showMore,
       simple,
+      simpleValue,
       size,
       total,
       totalPageSize,
@@ -348,41 +391,47 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
         <>
           {sizeCanChange && (
             <Select
-              disabled={disabled}
-              ml="8px"
-              defaultValue={finalPageSize + "/" + locale.page}
               options={[
                 {
                   label: `10/${locale.page}`,
-                  value: 10,
+                  value: "10",
                 },
                 {
                   label: `20/${locale.page}`,
-                  value: 20,
+                  value: "20",
                 },
                 {
                   label: `30/${locale.page}`,
-                  value: 30,
+                  value: "30",
                 },
                 {
                   label: `40/${locale.page}`,
-                  value: 40,
+                  value: "40",
                 },
                 {
                   label: `50/${locale.page}`,
-                  value: 50,
+                  value: "50",
                 },
               ]}
+              disabled={disabled}
+              ml="8px"
+              defaultValue={{
+                label: finalPageSize + "/" + locale.page,
+                value: finalPageSize.toString(),
+              }}
               onChange={(value) => {
-                let newCurrent = pageSizeChangeResetCurrent
-                  ? totalPageSize > 0
-                    ? 1
-                    : 0
-                  : Math.ceil((finalCurrent * finalPageSize) / value)
-                onPageSizeChange?.(value, newCurrent)
-                changeCurrent(newCurrent)
-                if (pageSize === undefined) {
-                  setFinalPageSize(value)
+                if (value !== null) {
+                  let v = Number(value.value)
+                  let newCurrent = pageSizeChangeResetCurrent
+                    ? totalPageSize > 0
+                      ? 1
+                      : 0
+                    : Math.ceil((finalCurrent * finalPageSize) / v)
+                  onPageSizeChange?.(v, newCurrent)
+                  changeCurrent(newCurrent)
+                  if (pageSize === undefined) {
+                    setFinalPageSize(v)
+                  }
                 }
               }}
             />

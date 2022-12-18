@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Text, TextProps, Typography } from "../src"
 
 //👇 This default export determines where your story goes in the story list

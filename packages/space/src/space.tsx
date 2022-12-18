@@ -1,4 +1,4 @@
-import { Children, forwardRef, Fragment } from "react"
+import { Children, forwardRef, Fragment, ReactElement } from "react"
 import { SpaceProps } from "./interface"
 import { Divider, DividerDirection } from "@illa-design/divider"
 import { applyContainer, applyDividerSize } from "./style"
@@ -19,7 +19,7 @@ export const Space = forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
   return (
     <div
       css={[
-        applyContainer(direction, align, wrap ?? false),
+        applyContainer(direction, align, wrap ?? false, size),
         applyBoxStyle(props),
       ]}
       ref={ref}
@@ -27,7 +27,7 @@ export const Space = forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
     >
       {childrenArray.map((child, index) => {
         return (
-          <Fragment key={index}>
+          <Fragment key={(child as ReactElement)?.key || index}>
             {index != 0 && divider ? (
               <Divider
                 css={applyDividerSize(size, direction, wrap ?? false, false)}

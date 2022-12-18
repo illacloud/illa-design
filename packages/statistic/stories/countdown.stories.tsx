@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { CountDownProps, Countdown } from "../src"
 import { Space } from "@illa-design/react"
 

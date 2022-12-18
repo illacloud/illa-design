@@ -1,6 +1,11 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { TriggerColorScheme, TriggerPosition } from "./interface"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getColor,
+  getColorShadow,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 import { getAnimation } from "./transform"
 import { Variants } from "framer-motion"
 
@@ -43,7 +48,7 @@ export function applyTipsText(
   }
 
   let shadow = css`
-    box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
+    box-shadow: ${getColorShadow(colorScheme, "01")};
   `
   if (withoutShadow) {
     shadow = css``

@@ -80,8 +80,8 @@ export function applyCollapseIconCss(
     bottom: 24px;
     cursor: pointer;
     transition-duration: 0.2s;
-    transition-easing-function: ease-in-out;
-    transition-properties: background, right;
+    transition-timing-function: ease-in-out;
+    transition-property: background, right;
 
     border-radius: 2px;
 

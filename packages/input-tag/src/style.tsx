@@ -2,7 +2,10 @@ import { css, SerializedStyles } from "@emotion/react"
 import { InputTagColorScheme, InputTagSize } from "./interface"
 import { getColor, getColorShadow, zIndex } from "@illa-design/theme"
 
-export function applyInputTagInputStyle(w: number): SerializedStyles {
+export function applyInputTagInputStyle(
+  size: InputTagSize,
+  w: number,
+): SerializedStyles {
   return css`
     width: ${w}px;
     font-size: 14px;
@@ -11,6 +14,33 @@ export function applyInputTagInputStyle(w: number): SerializedStyles {
     border: none;
     padding: 0;
     font-family: unset;
+    line-height: ${size === "small" ? "20px" : "22px"};
+
+    ::placeholder {
+      font-size: 14px;
+      color: ${getColor("grayBlue", "04")};
+    }
+  `
+}
+
+export function applyAddBeforeAfterStyle(
+  size: InputTagSize,
+  disabled: boolean,
+  marginStyle: SerializedStyles,
+): SerializedStyles {
+  return css`
+    transition: 0.2s ease-in-out;
+    transition-property: border, background-color, box-shadow, background;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+    color: ${getColor("gray", "02")};
+    background-color: ${disabled ? getColor("grayBlue", "09") : "unset"};
+    border: 1px solid ${getColor("grayBlue", "08")};
+    ${getPaddingStyle(size)};
+    ${marginStyle};
   `
 }
 
@@ -19,20 +49,17 @@ function getPaddingStyle(size: InputTagSize): SerializedStyles {
   switch (size) {
     case "small":
       pdStyle = css`
-        padding: 2px 16px;
-        min-height: 24px;
+        padding: 2px 12px;
       `
       break
     case "medium":
       pdStyle = css`
-        padding: 2px 16px;
-        min-height: 32px;
+        padding: 5px 16px;
       `
       break
     case "large":
       pdStyle = css`
-        padding: 2px 16px;
-        min-height: 40px;
+        padding: 9px 16px;
       `
       break
     default:
@@ -46,6 +73,8 @@ export function applyInputTagContainerStyle(
   colorScheme: InputTagColorScheme,
   error: boolean,
   disabled: boolean,
+  hasBefore: boolean,
+  hasAfter: boolean,
 ): SerializedStyles {
   let otherStyle = css``
   if (!disabled) {
@@ -55,6 +84,10 @@ export function applyInputTagContainerStyle(
           ? getColor("red", "02")
           : getColor(colorScheme, "06")};
         z-index: ${zIndex.inputFocus};
+
+        .clear {
+          visibility: visible;
+        }
       }
 
       &:focus-within {
@@ -67,17 +100,20 @@ export function applyInputTagContainerStyle(
   }
 
   return css`
-    transition: all 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    transition-property: border, background-color, box-shadow, background;
     display: flex;
     align-items: center;
     overflow: hidden;
-    width: 100%;
     box-sizing: border-box;
     cursor: ${disabled ? "not-allowed" : "text"};
-    border-radius: 4px;
+    border-radius: ${!hasBefore ? "8px" : "0"} ${!hasAfter ? "8px" : "0"}
+      ${!hasAfter ? "8px" : "0"} ${!hasBefore ? "8px" : "0"};
     z-index: ${zIndex.input};
     border: 1px solid
       ${error ? getColor("red", "03") : getColor("grayBlue", "08")};
+    flex-grow: 1;
+    flex-shrink: 1;
     background-color: ${disabled ? getColor("grayBlue", "09") : "unset"};
     ${getPaddingStyle(size)};
     ${otherStyle};
@@ -101,9 +137,10 @@ export const tagStyle = css`
   text-overflow: ellipsis;
 `
 
-export function applySuffixStyle(
+export function applyPrefixSuffixStyle(
   size: InputTagSize,
   disabled: boolean,
+  marginStyle: SerializedStyles,
 ): SerializedStyles {
   return css`
     display: inline-flex;
@@ -112,7 +149,7 @@ export function applySuffixStyle(
     flex-shrink: 0;
     font-size: 14px;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
-    margin-left: ${size === "small" ? "8px" : "12px"};
+    ${marginStyle};
   `
 }
 
@@ -121,3 +158,13 @@ export const calcSpanStyle = css`
   visibility: hidden;
   font-size: 14px;
 `
+
+export function applyInputContainerStyle(): SerializedStyles {
+  return css`
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    border-radius: 8px;
+    box-sizing: border-box;
+  `
+}

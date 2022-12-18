@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Radio, RadioProps } from "../src"
 import { BsFacebook } from "react-icons/bs"
 

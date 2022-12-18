@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Trigger, TriggerProps } from "../src"
 
 import { Button, Space, Input } from "@illa-design/react"

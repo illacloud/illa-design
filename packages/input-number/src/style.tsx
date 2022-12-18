@@ -1,162 +1,52 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { InputNumberProps } from "./interface"
+import { getColor } from "@illa-design/theme"
+import { InputNumberSize } from "./interface"
 
-function baseFixCls(size?: InputNumberProps["size"]): SerializedStyles {
-  let sizeCss: SerializedStyles
-  switch (size) {
-    default:
-    case "small":
-      sizeCss = css`
-        & > svg {
-          font-size: 8px;
-        }
-
-        padding: 0 7px;
-      `
-      break
-    case "medium":
-      sizeCss = css`
-        & > svg {
-          font-size: 12px;
-        }
-
-        padding: 0 9px;
-      `
-      break
-    case "large":
-      sizeCss = css`
-        & > svg {
-          font-size: 12px;
-        }
-
-        padding: 0 13px;
-      `
-      break
-  }
-  return css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    font-size: inherit;
-    ${sizeCss}
-  `
-}
-
-export const disabledStyle = css`
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+export const controlContainerStyle = css`
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  flex-direction: column;
+  visibility: hidden;
+  align-items: center;
 `
 
-export function applyAddonCss(
-  size?: InputNumberProps["size"],
-  disabled?: boolean,
+export function applyControlBlockStyle(
+  direction: "up" | "bottom",
+  size: InputNumberSize,
 ): SerializedStyles {
   return css`
-    ${baseFixCls(size)}
-    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-    border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    border-width: 1px;
-    border-style: solid;
-    line-height: initial;
-    height: 100%;
-    box-sizing: border-box;
-    text-align: center;
-    cursor: ${disabled ? "not-allowed" : "pointer"};
-
-    ${disabled
-      ? disabledStyle
-      : css`
-          &:hover {
-            color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-          }
-        `};
-
-    &:first-of-type {
-      border-right: 0;
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-    }
-
-    &:last-of-type {
-      border-left: 0;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-    }
-  `
-}
-
-export function applyInputNumber(): SerializedStyles {
-  return css`
-    position: relative;
-
-    &:hover {
-      [title="inputStepEmbed"] {
-        visibility: visible;
-        opacity: 1;
-      }
-    }
-  `
-}
-
-export function applyStepEmbedContainer(
-  size?: InputNumberProps["size"],
-): SerializedStyles {
-  let sizeCss: SerializedStyles
-  switch (size) {
-    default:
-    case "small":
-      sizeCss = css`
-        right: 2px;
-        font-size: 10px;
-      `
-      break
-    case "medium":
-      sizeCss = css`
-        right: 4px;
-        font-size: 12px;
-      `
-      break
-    case "large":
-      sizeCss = css`
-        right: 8px;
-        font-size: 12px;
-      `
-      break
-  }
-  return css`
-    transition: 0.2s ease-in-out;
-    opacity: 0;
-    position: absolute;
-    right: 2px;
-    ${sizeCss}
-  `
-}
-
-export function applyStepEmbed(): SerializedStyles {
-  return css`
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
-    box-sizing: border-box;
-    padding: 0 3px;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-    transition: 0.2s ease-in-out;
+    align-items: center;
+    width: 18px;
+    height: ${size === "small" ? "9px" : "11px"};
+    border-radius: ${direction === "up" ? "3px 3px 0 0" : "0 0 3px 3px"};
+    background-color: ${getColor("grayBlue", "09")};
+    font-size: 10px;
+    color: ${getColor("grayBlue", "04")};
 
     &:hover {
-      cursor: pointer;
-      background-color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+      background-color: ${getColor("grayBlue", "07")};
     }
+  `
+}
 
-    &:first-of-type {
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
+export const hoverControlStyle = css`
+  &:hover {
+    .control {
+      visibility: visible;
     }
+  }
+`
 
-    &:last-of-type {
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
+export function applyActionIconStyle(size: InputNumberSize): SerializedStyles {
+  return css`
+    font-size: 12px;
+    margin-left: ${size === "large" ? "-2px" : "-6px"};
+    margin-right: ${size === "large" ? "-2px" : "-6px"};
+    color: ${getColor("grayBlue", "05")};
+    &:active {
+      color: ${getColor("grayBlue", "02")};
     }
   `
 }

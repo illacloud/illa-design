@@ -26,6 +26,8 @@ export interface InputTagProps
     BoxProps {
   colorScheme?: InputTagColorScheme
   autoFocus?: boolean
+  addBefore?: ReactNode
+  addAfter?: ReactNode
   allowClear?: boolean
   disabled?: boolean
   error?: boolean
@@ -34,6 +36,7 @@ export interface InputTagProps
   placeholder?: string
   inputValue?: string
   size?: InputTagSize
+  prefix?: ReactNode | string
   suffix?: ReactNode | string
   defaultValue?: TagObject[]
   value?: TagObject[]
@@ -50,6 +53,6 @@ export interface InputTagProps
 
 export interface TagObject {
   label: string
-  value: unknown
+  value: string
   closeable?: boolean
 }

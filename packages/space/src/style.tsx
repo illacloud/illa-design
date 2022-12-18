@@ -5,6 +5,7 @@ export function applyContainer(
   direction: SpaceDirection,
   align: SpaceAlign,
   wrap: boolean,
+  size: SpaceSize | SpaceSize[],
 ): SerializedStyles {
   let cssDirection: SerializedStyles = css``
   switch (direction) {
@@ -21,10 +22,50 @@ export function applyContainer(
       `
       break
   }
+
+  let backStyle = css``
+  if (wrap) {
+    if (typeof size == "string") {
+      if (direction == "horizontal") {
+        backStyle = css`
+          margin-bottom: -${getSpaceSize(size)};
+        `
+      } else {
+        backStyle = css`
+          margin-right: -${getSpaceSize(size)};
+        `
+      }
+    } else {
+      if (size.length == 1) {
+        if (direction == "horizontal") {
+          backStyle = css`
+            margin-bottom: -${size[0]};
+          `
+        } else {
+          backStyle = css`
+            margin-right: -${size[0]};
+          `
+        }
+      }
+      if (size.length >= 2) {
+        if (direction == "horizontal") {
+          backStyle = css`
+            margin-bottom: -${size[1]};
+          `
+        } else {
+          backStyle = css`
+            margin-right: -${size[0]};
+          `
+        }
+      }
+    }
+  }
+
   return css`
     display: inline-flex;
     vertical-align: middle;
     flex-wrap: ${wrap ? "wrap" : "nowrap"};
+    ${backStyle};
     ${cssDirection};
   `
 }

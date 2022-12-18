@@ -7,7 +7,7 @@ import {
   LikeIcon,
   ShareIcon,
 } from "@illa-design/react"
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { css } from "@emotion/react"
 import { Steps, StepsProps } from "../src"
 

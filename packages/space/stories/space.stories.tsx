@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Space, SpaceProps } from "../src"
 
 import { Tag } from "@illa-design/react"

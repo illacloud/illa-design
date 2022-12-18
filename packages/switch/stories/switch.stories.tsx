@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { SwitchProps, Switch } from "../src"
 import { Space, CheckmarkIcon, CloseIcon } from "@illa-design/react"
 

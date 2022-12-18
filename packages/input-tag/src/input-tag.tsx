@@ -2,9 +2,11 @@ import { forwardRef, useMemo, useRef } from "react"
 import { InputTagProps, TagObject } from "./interface"
 import { useMergeValue } from "@illa-design/system"
 import {
+  applyAddBeforeAfterStyle,
+  applyInputContainerStyle,
   applyInputTagContainerStyle,
   applyInputTagInputStyle,
-  applySuffixStyle,
+  applyPrefixSuffixStyle,
   calcSpanStyle,
   tagsListStyle,
   tagStyle,
@@ -13,6 +15,7 @@ import { Tag } from "@illa-design/tag"
 import { ClearIcon } from "@illa-design/icon"
 import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 import useMeasure from "react-use-measure"
+import { css } from "@emotion/react"
 
 export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
   (props, ref) => {
@@ -27,6 +30,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       placeholder,
       inputValue,
       size = "medium",
+      prefix,
       suffix,
       defaultValue,
       value,
@@ -39,6 +43,8 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       onPressEnter,
       onRemove,
       renderItem,
+      addBefore,
+      addAfter,
       ...otherProps
     } = props
 
@@ -113,22 +119,52 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
 
     return (
       <div
-        css={[
-          applyInputTagContainerStyle(
-            size,
-            colorScheme,
-            error ?? false,
-            disabled ?? false,
-          ),
-          applyBoxStyle(otherProps),
-        ]}
+        css={[applyInputContainerStyle(), applyBoxStyle(otherProps)]}
         onClick={() => {
           inputRef.current?.focus()
         }}
         ref={ref}
         {...deleteCssProps(otherProps)}
       >
-        {
+        {addBefore && (
+          <span
+            css={applyAddBeforeAfterStyle(
+              size,
+              disabled ?? false,
+              css`
+                margin-right: -1px;
+                border-radius: 4px 0 0 4px;
+              `,
+            )}
+          >
+            {addBefore}
+          </span>
+        )}
+        <div
+          css={[
+            applyInputTagContainerStyle(
+              size,
+              colorScheme,
+              error ?? false,
+              disabled ?? false,
+              addBefore !== undefined,
+              addAfter !== undefined,
+            ),
+          ]}
+        >
+          {prefix && (
+            <span
+              css={applyPrefixSuffixStyle(
+                size,
+                disabled ?? false,
+                css`
+                  margin-right: ${size === "small" ? "8px" : "12px"};
+                `,
+              )}
+            >
+              {prefix}
+            </span>
+          )}
           <span css={tagsListStyle}>
             {tags}
             <input
@@ -138,7 +174,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               placeholder={placeholder}
               autoFocus={autoFocus}
               readOnly={readOnly}
-              css={applyInputTagInputStyle(calcBlockBounds.width + 12)}
+              css={applyInputTagInputStyle(size, calcBlockBounds.width + 12)}
               onChange={(e) => {
                 if (inputValue === undefined) {
                   setFinalInputValue(e.currentTarget.value)
@@ -174,28 +210,55 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               }}
             />
           </span>
-        }
-        {allowClear && !readOnly && !disabled && finalValue.length > 0 && (
-          <ClearIcon
-            flexShrink="0"
-            onClick={() => {
-              onClear?.()
-              if (value === undefined) {
-                setFinalValue([])
-              }
-            }}
-            cursor="pointer"
-            fs="12px"
-            ml="4px"
-            c={getColor("grayBlue", "06")}
-          />
+          {allowClear && !readOnly && !disabled && finalValue.length > 0 && (
+            <ClearIcon
+              className="clear"
+              flexShrink="0"
+              onClick={(e) => {
+                e.stopPropagation()
+                onClear?.()
+                if (value === undefined) {
+                  setFinalValue([])
+                }
+                onChange?.([])
+              }}
+              cursor="pointer"
+              fs="12px"
+              ml="4px"
+              c={getColor("grayBlue", "06")}
+            />
+          )}
+          {suffix && (
+            <span
+              css={applyPrefixSuffixStyle(
+                size,
+                disabled ?? false,
+                css`
+                  margin-left: ${size === "small" ? "8px" : "12px"};
+                `,
+              )}
+            >
+              {suffix}
+            </span>
+          )}
+          <span ref={calcBlockRef} css={calcSpanStyle}>
+            {finalInputValue.replace(/\s/g, "\u00A0")}
+          </span>
+        </div>
+        {addAfter && (
+          <span
+            css={applyAddBeforeAfterStyle(
+              size,
+              disabled ?? false,
+              css`
+                margin-left: -1px;
+                border-radius: 0 4px 4px 0;
+              `,
+            )}
+          >
+            {addAfter}
+          </span>
         )}
-        {suffix && (
-          <span css={applySuffixStyle(size, disabled ?? false)}>{suffix}</span>
-        )}
-        <span ref={calcBlockRef} css={calcSpanStyle}>
-          {finalInputValue.replace(/\s/g, "\u00A0")}
-        </span>
       </div>
     )
   },

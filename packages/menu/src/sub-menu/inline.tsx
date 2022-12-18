@@ -51,7 +51,7 @@ export const Inline = forwardRef<HTMLDivElement, SubMenuProps>((props, ref) => {
     return () => {
       collectInlineMenuKeys && collectInlineMenuKeys(_key, true)
     }
-  }, [])
+  }, [_key, collectInlineMenuKeys])
 
   const isOpen = openKeys.includes(_key)
   const isSelected =

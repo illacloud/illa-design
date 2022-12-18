@@ -39,6 +39,7 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     left: ${props.posL};
     bottom: ${props.posB};
     right: ${props.posR};
+    z-index: ${props.z};
     overflow: ${props.ov};
     overflow-x: ${props.ovX};
     overflow-y: ${props.ovY};
@@ -60,6 +61,7 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     font-size: ${props.fs};
     font-family: ${props.ff};
     font-weight: ${props.fw};
+    visibility: ${props.v};
     ${props._css};
   `
 }
@@ -101,9 +103,11 @@ export function deleteCssProps(obj: object): object {
     "posL",
     "posB",
     "posR",
+    "z",
     "ov",
     "ovX",
     "ovY",
+    "v",
     // FlexStyledProps
     "alignItems",
     "alignContent",

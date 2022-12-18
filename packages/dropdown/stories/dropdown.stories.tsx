@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Dropdown, DropdownProps, DropList } from "../src"
 import {
   Button,

@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Statistic, StatisticProps } from "../src"
 import { Space, ImageDefaultIcon } from "@illa-design/react"
 

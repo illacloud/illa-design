@@ -3,6 +3,7 @@ export const zIndex = {
   hide: -1,
   base: 0,
   input: 1,
+  inputFocus: 2,
   tabs: 2,
   button: 2,
   modal: 1000,

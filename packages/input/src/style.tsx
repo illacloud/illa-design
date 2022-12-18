@@ -30,8 +30,9 @@ export function applyInputContainerStyle(): SerializedStyles {
   return css`
     display: flex;
     width: 100%;
+    overflow: hidden;
     flex-direction: row;
-    border-radius: 4px;
+    border-radius: 8px;
     box-sizing: border-box;
   `
 }
@@ -65,7 +66,7 @@ export function applyAddBeforeStyle(
       : disabled
       ? getColor("grayBlue", "09")
       : "unset"};
-    border-radius: 4px 0 0 4px;
+    border-radius: 8px 0 0 8px;
     ${bdStyle};
     ${getPaddingStyle(size)};
   `
@@ -101,7 +102,7 @@ export function applyAddAfterStyle(
       : disabled
       ? getColor("grayBlue", "09")
       : "unset"};
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 8px 8px 0;
     ${bdStyle};
     ${getPaddingStyle(size)};
   `
@@ -131,14 +132,16 @@ export function applyInputStyle(
   }
 
   return css`
-    transition: all 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    transition-property: border, background-color, box-shadow, background;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
     flex-shrink: 1;
-    border-radius: ${!hasBefore ? "4px" : "0"} ${!hasAfter ? "4px" : "0"}
-      ${!hasAfter ? "4px" : "0"} ${!hasBefore ? "4px" : "0"};
+    box-sizing: border-box;
+    border-radius: ${!hasBefore ? "8px" : "0"} ${!hasAfter ? "8px" : "0"}
+      ${!hasAfter ? "8px" : "0"} ${!hasBefore ? "8px" : "0"};
     background-color: ${variant === "fill"
       ? error
         ? getColor("red", "07")
@@ -169,6 +172,10 @@ export function applyInputStyle(
           ? getColor("red", "06")
           : getColor("grayBlue", "08")
         : "unset"};
+
+      .clear {
+        visibility: visible;
+      }
     }
 
     &:focus-within {
@@ -204,15 +211,16 @@ export function applyInputDisabledStyle(
   }
 
   return css`
-    transition: all 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    transition-property: border, background-color, box-shadow, background;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
     flex-shrink: 1;
     cursor: not-allowed;
-    border-radius: ${!hasBefore ? "4px" : "0"} ${!hasAfter ? "4px" : "0"}
-      ${!hasAfter ? "4px" : "0"} ${!hasBefore ? "4px" : "0"};
+    border-radius: ${!hasBefore ? "8px" : "0"} ${!hasAfter ? "8px" : "0"}
+      ${!hasAfter ? "8px" : "0"} ${!hasBefore ? "8px" : "0"};
     background-color: ${variant === "fill"
       ? error
         ? getColor("red", "07")
@@ -232,14 +240,17 @@ export function applyInputDisabledStyle(
   `
 }
 
-export function applyInputElementStyle(): SerializedStyles {
+export function applyInputElementStyle(size: InputSize): SerializedStyles {
   return css`
     font-size: 14px;
     color: ${getColor("grayBlue", "02")};
     outline: none;
+    line-height: ${size === "small" ? "20px" : "22px"};
     border: none;
     flex-shrink: 1;
+    width: 100%;
     flex-grow: 1;
+    font-family: unset;
     background: none;
     padding: 0;
 
@@ -263,6 +274,15 @@ export function applyInputElementStyle(): SerializedStyles {
     &:disabled {
       cursor: not-allowed;
       color: ${getColor("grayBlue", "05")};
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
     }
   `
 }
@@ -315,3 +335,36 @@ export function applyMaxLengthBeforeStyle(error: Boolean): SerializedStyles {
       `
     : css``
 }
+
+export const searchIconContainer = css`
+  color: ${getColor("grayBlue", "05")};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const textareaStyle = css`
+  resize: vertical;
+  outline: none;
+  font-family: unset;
+  background: none;
+  width: 100%;
+  font-size: 14px;
+  min-height: 32px;
+`
+
+export const textareaContainerStyle = css`
+  position: relative;
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  &:hover {
+    .clear {
+      visibility: visible;
+    }
+  }
+`
+
+export const areaLimitStyle = css`
+  margin-top: 4px;
+`

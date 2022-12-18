@@ -9,6 +9,7 @@ import {
   CaretLeftIcon,
   CaretRightIcon,
   CheckmarkIcon,
+  ClearIcon,
   CloseIcon,
   ComponentIcon,
   CopyIcon,
@@ -71,16 +72,17 @@ import {
   Result403Icon,
   Result404Icon,
   Result500Icon,
-  SuccessCircleIcon,
   ScatterPlotIcon,
   SearchIcon,
   ShareIcon,
+  SlashIcon,
   SorterDefaultIcon,
   SorterDownIcon,
   SorterUpIcon,
   StarIcon,
   StartOutlineIcon,
   StringIcon,
+  SuccessCircleIcon,
   SuccessIcon,
   TextAlignCenterIcon,
   TextAlignLeftIcon,
@@ -97,13 +99,11 @@ import {
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
-  SlashIcon,
-  ClearIcon,
 } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "General/Icon",
+  title: "GENERAL/Icon",
 } as Meta
 
 export const Close: StoryFn<IconProps> = (props: IconProps) => (

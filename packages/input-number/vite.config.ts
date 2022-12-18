@@ -52,9 +52,9 @@ export default defineConfig({
         "framer-motion",
         "@illa-design/system",
         "@illa-design/theme",
-        "@illa-design/icon",
         "@illa-design/input",
-        "number-precision",
+        "@illa-design/icon",
+        "@illa-design/space",
       ],
       output: {
         globals: {
@@ -64,9 +64,9 @@ export default defineConfig({
           "framer-motion": "framer-motion",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/icon": "@illa-design/icon",
           "@illa-design/input": "@illa-design/input",
-          "number-precision": "number-precision",
+          "@illa-design/icon": "@illa-design/icon",
+          "@illa-design/space": "@illa-design/space",
         },
       },
     },

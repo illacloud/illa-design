@@ -12,7 +12,7 @@ export const Basic: StoryFn<InputProps> = (props) => {
   return (
     <div>
       <Space direction={"vertical"} align="start">
-        <Input {...props} />
+        <Input w="20px" {...props} />
         <Input suffix={<PersonIcon />} {...props} />
         <Input prefix="prefix" {...props} />
         <Input suffix="suffix" {...props} />

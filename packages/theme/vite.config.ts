@@ -45,7 +45,13 @@ export default defineConfig({
           exclude: path.resolve(__dirname, "node_modules/**"),
         }),
       ],
-      external: ["react", "react-dom", "color", "@illa-design/system"],
+      external: [
+        "react",
+        "react-dom",
+        "color",
+        "@illa-design/system",
+        "chroma-js",
+      ],
       output: {
         globals: {
           react: "React",
@@ -54,6 +60,7 @@ export default defineConfig({
           "framer-motion": "framer-motion",
           color: "color",
           "@illa-design/system": "@illa-design/system",
+          "chroma-js": "chroma-js",
         },
       },
     },

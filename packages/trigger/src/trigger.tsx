@@ -120,10 +120,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
       placement: position,
       open: finalVisible,
       onOpenChange: (v) => {
-        if (popupVisible === undefined) {
-          setVisible(v)
+        if (!disabled && finalVisible !== v) {
+          if (popupVisible === undefined) {
+            setVisible(v)
+          }
+          onVisibleChange?.(v)
         }
-        onVisibleChange?.(v)
       },
       middleware: middleware,
       whileElementsMounted: autoUpdate,
@@ -292,6 +294,9 @@ export const Trigger: FC<TriggerProps> = (props) => {
           ...(props.children as any).props,
           ref: mergeRefs(reference, (props.children as any).ref, childrenRef),
           onContextMenu: (e) => {
+            if (disabled) {
+              return
+            }
             if ((props.children as any).props.onContextMenu != undefined) {
               ;(props.children as any).props.onContextMenu(e)
             }

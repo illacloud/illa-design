@@ -34,6 +34,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     suffix,
     maxLength,
     onChange,
+    type,
     onClear,
     onPressEnter,
     variant = "outline",
@@ -99,6 +100,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           <span css={applyPrefixStyle(size, disabled ?? false)}>{prefix}</span>
         )}
         <input
+          type={type}
           disabled={disabled}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -108,7 +110,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
           maxLength={finalMaxLengthErrorOnly ? undefined : finalMaxLength}
           readOnly={readOnly}
           value={finalValue}
-          css={applyInputElementStyle()}
+          css={applyInputElementStyle(size)}
           placeholder={placeholder}
           onChange={(event) => {
             onChange?.(event.target.value, event)
@@ -130,12 +132,16 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         />
         {allowClear && !readOnly && !disabled && finalValue.length > 0 && (
           <ClearIcon
-            onClick={() => {
+            className="clear"
+            onClick={(e) => {
+              e.stopPropagation()
               onClear?.()
               if (value === undefined) {
                 setFinalValue("")
               }
+              onChange?.("", e)
             }}
+            v="hidden"
             cursor="pointer"
             fs="12px"
             ml="4px"

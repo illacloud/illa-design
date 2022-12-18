@@ -1,110 +1,52 @@
-import { Meta, Story } from "@storybook/react"
-import { Space, PenIcon } from "@illa-design/react"
-import { Select, SelectProps, Option } from "../src"
-import { BsFacebook } from "react-icons/bs"
+import { Meta, StoryFn } from "@storybook/react"
+import { Select, SelectProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "DATA INPUT/Select",
   component: Select,
-  argTypes: {
-    value: {
-      control: {
-        type: "array",
-      },
-    },
-    colorScheme: {
-      options: [
-        "gray",
-        "blue",
-        "purple",
-        "red",
-        "green",
-        "yellow",
-        "orange",
-        "cyan",
-        "white",
-        "techPink",
-        "techPurple",
-        "grayBlue",
-      ],
-      control: {
-        type: "select",
-      },
-    },
-  },
 } as Meta
 
-const cityOption = [
-  {
-    value: "beijing",
-    label: "Beijing",
-    disabled: true,
-  },
-  {
-    value: "shanghai",
-    label: "Shanghai",
-  },
-  {
-    value: "guangdong",
-    label: "Guangdong",
-  },
-]
-
-const options = [
-  "Beijing",
-  "Shanghai",
-  "Guangzhou",
-  "Shenzhen",
-  "Wuhan",
-  "Dongguan",
-  "Dalian",
-  "Shanghai",
-  "Hongkong",
-  "Macau",
-  "A city with a very long long long long name",
-]
-
-const Template: StoryFn<SelectProps> = (args) => (
-  <Space direction="vertical" style={{ height: "200vh" }}>
-    <Select w={"280px"} options={cityOption} {...args} />
-
+export const Basic: StoryFn<SelectProps> = (args) => (
+  <div>
     <Select
-      showSearch={true}
-      w={"280px"}
-      options={options}
-      defaultValue={"Shenzhen"}
-      {...args}
-    />
-
-    <Select
-      showSearch={true}
-      maxW="200px"
-      options={options}
-      defaultValue={"Shenzhen"}
-      addonBefore={{ render: "222" }}
-      addonAfter={{
-        buttonProps: {
-          variant: "outline",
-          colorScheme: "gray",
-          leftIcon: <PenIcon />,
+      value={{ label: "Option 1", value: "Option1" }}
+      options={[
+        {
+          label: "Option 1",
+          value: "option1",
         },
-      }}
+        {
+          label: "Option 2",
+          value: "option2",
+        },
+        {
+          label: "Option 3",
+          value: "option3",
+        },
+      ]}
       {...args}
     />
-
-    <Select w={"280px"} placeholder="Select items" {...args} showSearch>
-      {Array.from({ length: 10 }, (i, idx) => {
-        return (
-          <Option value={idx} key={idx} disabled={true}>
-            {`option-${idx}`}
-          </Option>
-        )
-      })}
-    </Select>
-  </Space>
+    <Select
+      mt="20px"
+      options={[
+        {
+          label: "Option 1",
+          value: "option1",
+        },
+        {
+          label: "Option 2",
+          value: "option2",
+        },
+        {
+          label: "Option 3",
+          value: "option3",
+        },
+      ]}
+      showSearch
+      allowClear
+      filterOption={true}
+      {...args}
+    />
+  </div>
 )
-
-export const Basic = Template.bind({
-  icon: <BsFacebook />,
-})

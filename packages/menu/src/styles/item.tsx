@@ -62,8 +62,8 @@ export function applyItemCss(
     color: ${themeColor[theme].color};
     line-height: 40px;
     transition-duration: 0.2s;
-    transition-easing-function: ease-in-out;
-    transition-properties: background;
+    transition-timing-function: ease-in-out;
+    transition-property: background;
     /* margin between vertical item */
     ${isHorizontal
       ? horizontalCss

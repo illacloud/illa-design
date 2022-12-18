@@ -43,7 +43,6 @@
     "@illa-design/select": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "@illa-design/input-number": "workspace:*",
     "@illa-design/config-provider": "workspace:*"
   },
   "devDependencies": {

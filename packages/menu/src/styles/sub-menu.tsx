@@ -88,8 +88,8 @@ export function applySubMenuHeaderCss(
     padding: ${isHorizontal ? `0 16px` : `0 24px`};
     line-height: ${isHorizontal ? `48px` : `40px`};
     transition-duration: 0.2s;
-    transition-easing-function: ease-in-out;
-    transition-properties: background;
+    transition-timing-function: ease-in-out;
+    transition-property: background;
     ${ellipsisTextCss}
     ${isSelected && selectedCss};
     ${isSelected && isHorizontal && horizontalSelectedCss};

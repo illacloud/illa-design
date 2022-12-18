@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Col, Row } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/react"
 

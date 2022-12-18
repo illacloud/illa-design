@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbProps } from "../src"
 import { AiFillHome } from "react-icons/all"
 

@@ -35,6 +35,22 @@ export type TableAlign =
   | "flex-start"
   | "flex-end"
 
+export type TableColorScheme =
+  | string
+  | "white"
+  | "blackAlpha"
+  | "gray"
+  | "grayBlue"
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "cyan"
+  | "purple"
+  | "techPink"
+  | "techPurple"
+
 export interface TableProps<D extends TableData, TValue>
   extends HTMLAttributes<HTMLDivElement>,
     TableContextProps,
@@ -122,6 +138,7 @@ export interface TableFilterProps<D extends TableData> extends BoxProps {
 }
 
 export interface FiltersEditorProps {
+  colorScheme?: TableColorScheme
   filterOperator: FilterOperator
   columnFilters: FilterOptionsState
   columnsOption: { value: string; label: string }[]
