@@ -25,6 +25,7 @@ export const Basic: StoryFn<SelectProps> = (args) => (
           value: "option3",
         },
       ]}
+      showSearch={true}
       {...args}
     />
     <Select

@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useState } from "react"
+import { forwardRef, useMemo, useRef } from "react"
 import { OptionObject, SelectProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { Dropdown, DropList } from "@illa-design/dropdown"
@@ -41,21 +41,17 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     value: popupVisible,
   })
 
-  const [finalInputValue, setFinalInputValue] = useState("")
+  const [finalInputValue, setFinalInputValue] = useMergeValue("", {
+    defaultValue:
+      value === undefined
+        ? ""
+        : typeof value === "string"
+        ? options?.find((option) => option.value === value)?.label || ""
+        : options?.find((option) => option.value === value.value)?.label || "",
+    value: undefined,
+  })
 
-  const finalShowInputValue = useMemo(() => {
-    if (value === undefined) {
-      return finalInputValue
-    } else {
-      if (typeof value === "string") {
-        return options?.find((option) => option.value === value)?.label || ""
-      } else {
-        return (
-          options?.find((option) => option.value === value.value)?.label || ""
-        )
-      }
-    }
-  }, [finalInputValue, options, value])
+  const lastChooseRef = useRef<string | null>(finalInputValue)
 
   const finalOptions: OptionObject[] = useMemo(() => {
     let newOptions: OptionObject[] = []
@@ -85,9 +81,10 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             const option = finalOptions.find((option) => option.label === key)
             if (option !== undefined) {
               if (value === undefined) {
-                setFinalInputValue(option.label)
-                onInputValueChange?.(option.label)
+                lastChooseRef.current = option.label
               }
+              setFinalInputValue(lastChooseRef.current ?? "")
+              onInputValueChange?.(option.label)
               if (labelInValue) {
                 onChange?.(option)
               } else {
@@ -107,19 +104,19 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
         if (popupVisible === undefined) {
           setFinalPopupVisible(visible)
         }
-        if (visible && showSearch) {
-          if (value === undefined) {
+        if (showSearch) {
+          if (visible) {
             setFinalInputValue("")
+          } else {
+            setFinalInputValue(lastChooseRef.current ?? "")
           }
-          onInputValueChange?.("")
-          onChange?.(null)
         }
         onVisibleChange?.(visible)
       }}
       {...dropdownProps}
     >
       <Input
-        value={finalShowInputValue}
+        value={finalInputValue}
         readOnly={!showSearch}
         addBefore={addBefore}
         error={error}
@@ -142,15 +139,6 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           }
           onClear?.()
           onChange?.(null)
-        }}
-        onBlur={() => {
-          if (
-            options?.find((option) => option.label === finalInputValue) ===
-            undefined
-          ) {
-            setFinalInputValue("")
-            onInputValueChange?.("")
-          }
         }}
         suffix={
           loading ? (
