@@ -705,6 +705,7 @@ importers:
     specifiers:
       '@illa-design/checkbox': workspace:*
       '@illa-design/dropdown': workspace:*
+      '@illa-design/empty': workspace:*
       '@illa-design/icon': workspace:*
       '@illa-design/input': workspace:*
       '@illa-design/input-tag': workspace:*
@@ -714,6 +715,7 @@ importers:
     dependencies:
       '@illa-design/checkbox': link:../checkbox
       '@illa-design/dropdown': link:../dropdown
+      '@illa-design/empty': link:../empty
       '@illa-design/icon': link:../icon
       '@illa-design/input': link:../input
       '@illa-design/input-tag': link:../input-tag

@@ -1,16 +1,18 @@
-import { forwardRef, useMemo } from "react"
+import { forwardRef, useMemo, useState } from "react"
 import { OptionObject, SelectProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { useMergeValue } from "@illa-design/system"
 import { DownIcon, LoadingIcon, UpIcon } from "@illa-design/icon"
 import { getColor } from "@illa-design/theme"
+import { Empty } from "@illa-design/empty"
 
 export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const {
     size = "medium",
     allowClear,
     placeholder,
+    labelInValue,
     colorScheme,
     defaultPopupVisible,
     popupVisible,
@@ -34,18 +36,26 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     ...otherProps
   } = props
 
-  const [finalValue, setFinalValue] = useMergeValue<string | OptionObject>("", {
-    defaultValue: defaultValue,
-    value: value,
-  })
-
   const [finalPopupVisible, setFinalPopupVisible] = useMergeValue(false, {
     defaultValue: defaultPopupVisible,
     value: popupVisible,
   })
 
-  const finalInputValue =
-    typeof finalValue === "string" ? finalValue : finalValue.label
+  const [finalInputValue, setFinalInputValue] = useState("")
+
+  const finalShowInputValue = useMemo(() => {
+    if (value === undefined) {
+      return finalInputValue
+    } else {
+      if (typeof value === "string") {
+        return options?.find((option) => option.value === value)?.label || ""
+      } else {
+        return (
+          options?.find((option) => option.value === value.value)?.label || ""
+        )
+      }
+    }
+  }, [finalInputValue, options, value])
 
   const finalOptions: OptionObject[] = useMemo(() => {
     let newOptions: OptionObject[] = []
@@ -75,16 +85,13 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             const option = finalOptions.find((option) => option.label === key)
             if (option !== undefined) {
               if (value === undefined) {
-                setFinalValue(option.label)
+                setFinalInputValue(option.label)
+                onInputValueChange?.(option.label)
               }
-              if (value === undefined) {
+              if (labelInValue) {
                 onChange?.(option)
               } else {
-                if (typeof value === "string") {
-                  onChange?.(option.label)
-                } else {
-                  onChange?.(option)
-                }
+                onChange?.(option.value)
               }
             }
           }}
@@ -92,6 +99,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           {finalOptions?.map((option) => {
             return <DropList.Item key={option.label} title={option.label} />
           })}
+          {(!finalOptions || finalOptions.length === 0) && <Empty />}
         </DropList>
       }
       disabled={disabled}
@@ -101,7 +109,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
         }
         if (visible && showSearch) {
           if (value === undefined) {
-            setFinalValue("")
+            setFinalInputValue("")
           }
           onInputValueChange?.("")
           onChange?.(null)
@@ -111,7 +119,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       {...dropdownProps}
     >
       <Input
-        value={finalInputValue}
+        value={finalShowInputValue}
         readOnly={!showSearch}
         addBefore={addBefore}
         error={error}
@@ -123,18 +131,26 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
         prefix={prefix}
         placeholder={placeholder}
         onChange={(v) => {
-          if (value === undefined) {
-            setFinalValue(v)
-          }
+          setFinalInputValue(v)
           onInputValueChange?.(v)
         }}
         ref={ref}
         onClear={() => {
           if (value === undefined) {
-            setFinalValue("")
+            setFinalInputValue("")
+            onInputValueChange?.("")
           }
           onClear?.()
           onChange?.(null)
+        }}
+        onBlur={() => {
+          if (
+            options?.find((option) => option.label === finalInputValue) ===
+            undefined
+          ) {
+            setFinalInputValue("")
+            onInputValueChange?.("")
+          }
         }}
         suffix={
           loading ? (

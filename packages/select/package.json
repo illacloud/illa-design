@@ -48,7 +48,8 @@
     "@illa-design/input-tag": "workspace:*",
     "@illa-design/checkbox": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "@illa-design/system": "workspace:*"
+    "@illa-design/system": "workspace:*",
+    "@illa-design/empty": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",

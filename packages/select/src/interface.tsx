@@ -29,6 +29,7 @@ export interface SelectProps
     BoxProps {
   colorScheme?: SelectColorScheme
   allowClear?: boolean
+  labelInValue?: boolean
   trigger?: TriggerTrigger
   defaultPopupVisible?: boolean
   disabled?: boolean

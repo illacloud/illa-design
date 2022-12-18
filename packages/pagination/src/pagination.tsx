@@ -421,7 +421,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
               }}
               onChange={(value) => {
                 if (value !== null) {
-                  let v = Number(value.value)
+                  let v = Number(value)
                   let newCurrent = pageSizeChangeResetCurrent
                     ? totalPageSize > 0
                       ? 1
