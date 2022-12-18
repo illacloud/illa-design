@@ -1,6 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { StatisticMode } from "./interface"
 
 export const statisticStyle = css`
   display: inline-block;
@@ -10,6 +9,7 @@ export const statisticStyle = css`
 export const statisticTitleStyle = css`
   margin-bottom: 4px;
   font-size: 12px;
+  font-weight: 400;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
@@ -19,27 +19,11 @@ export const statisticExtraStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
-export function applyStatisticContentStyle(
-  mode?: StatisticMode,
-): SerializedStyles {
-  let modeCSS: SerializedStyles
-  switch (mode) {
-    case "builder":
-      modeCSS = css`
-        font-size: 14px;
-        line-height: 22px;
-        color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
-      `
-      break
-    default:
-      modeCSS = css`
-        font-size: 24px;
-        font-weight: 500;
-        color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-      `
-  }
-  return modeCSS
-}
+export const statisticContentStyle = css`
+  font-size: 24px;
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`
 
 export function applyStatisticDecoratorStyle(
   isPrefix: boolean,
@@ -49,9 +33,7 @@ export function applyStatisticDecoratorStyle(
   const margin = isPrefix
     ? `margin-right:${spacing}px;`
     : `margin-left:${spacing}px;`
-  const restStyle = isText
-    ? `font-size: 14px;line-height: 1.57;`
-    : `vertical-align: text-bottom;`
+  const restStyle = isText ? `font-size: 14px;` : `font-size: 18px;`
   return css`
     display: inline-block;
     ${margin + restStyle}
