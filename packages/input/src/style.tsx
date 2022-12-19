@@ -12,12 +12,12 @@ function getPaddingStyle(size: InputSize): SerializedStyles {
       break
     case "medium":
       pdStyle = css`
-        padding: 5px 16px;
+        padding: 4px 16px;
       `
       break
     case "large":
       pdStyle = css`
-        padding: 9px 16px;
+        padding: 8px 16px;
       `
       break
     default:
@@ -245,7 +245,7 @@ export function applyInputElementStyle(size: InputSize): SerializedStyles {
     font-size: 14px;
     color: ${getColor("grayBlue", "02")};
     outline: none;
-    line-height: ${size === "small" ? "20px" : "22px"};
+    line-height: ${size === "small" ? "22px" : "24px"};
     border: none;
     flex-shrink: 1;
     width: 100%;

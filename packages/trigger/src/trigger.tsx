@@ -291,14 +291,14 @@ export const Trigger: FC<TriggerProps> = (props) => {
         children as ReactElement,
         getReferenceProps({
           key: "illa-trigger",
-          ...(props.children as any).props,
+          ...(children as any).props,
           ref: mergeRefs(reference, (props.children as any).ref, childrenRef),
           onContextMenu: (e) => {
             if (disabled) {
               return
             }
-            if ((props.children as any).props.onContextMenu != undefined) {
-              ;(props.children as any).props.onContextMenu(e)
+            if ((children as any).props.onContextMenu != undefined) {
+              ;(children as any).props.onContextMenu(e)
             }
             if (trigger === "contextmenu") {
               e.preventDefault()
@@ -330,8 +330,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
             }
           },
           onClick: (e) => {
-            if ((props.children as any).props.onClick != undefined) {
-              ;(props.children as any).props.onClick(e)
+            if ((children as any).props.onClick != undefined) {
+              ;(children as any).props.onClick(e)
             }
             if (alignPoint && trigger === "click") {
               if (childrenRef.current != null) {

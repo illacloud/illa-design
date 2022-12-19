@@ -48,7 +48,7 @@ export function applyTipsText(
   }
 
   let shadow = css`
-    box-shadow: ${getColorShadow(colorScheme, "01")};
+    box-shadow: ${getColorShadow("white" ? "blackAlpha" : colorScheme, "01")};
   `
   if (withoutShadow) {
     shadow = css``

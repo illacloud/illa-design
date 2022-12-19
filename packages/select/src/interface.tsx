@@ -24,7 +24,7 @@ export type SelectColorScheme =
 export interface SelectProps
   extends Omit<
       HTMLAttributes<HTMLDivElement>,
-      "defaultValue" | "onFocus" | "onBlur" | "onChange" | "prefix"
+      "defaultValue" | "onChange" | "prefix" | "onFocus" | "onBlur"
     >,
     BoxProps {
   colorScheme?: SelectColorScheme
@@ -42,17 +42,23 @@ export interface SelectProps
   addBefore?: ReactNode
   prefix?: ReactNode | string
   suffixIcon?: ReactNode
-  defaultValue?: OptionObject
+  defaultValue?: OptionObject | string | OptionObject[] | string[]
   showSearch?: boolean
-  value?: OptionObject | string
+  value?: OptionObject | string | OptionObject[] | string[]
   filterOption?: boolean | ((inputValue: string) => boolean)
-  onChange?: (value: OptionObject | null | string) => void
+  onChange?: (
+    value: null | OptionObject | string | OptionObject[] | string[],
+  ) => void
   onClear?: () => void
   onInputValueChange?: (value: string) => void
-  onKeyDown?: (e: SyntheticEvent<HTMLDivElement>) => void
+  onKeyDown?: (e: SyntheticEvent) => void
   onVisibleChange?: (visible: boolean) => void
   dropdownProps?: DropdownProps
   options?: OptionObject[]
+  onDeselect?: (value: string | OptionObject) => void
+  multiple?: boolean
+  onBlur?: (e: SyntheticEvent) => void
+  onFocus?: (e: SyntheticEvent) => void
 }
 
 export interface SelectOptionProps

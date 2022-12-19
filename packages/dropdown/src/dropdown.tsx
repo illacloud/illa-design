@@ -10,6 +10,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     dropList,
     disabled,
     position = "bottom-start",
+    triggerProps,
     trigger = "click",
     defaultPopupVisible,
     autoAlignPopupWidth,
@@ -47,6 +48,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
       onVisibleChange={(visible: boolean) => {
         changePopupVisible(visible)
       }}
+      {...triggerProps}
       {...otherProps}
     >
       {children}

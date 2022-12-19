@@ -120,9 +120,6 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
     return (
       <div
         css={[applyInputContainerStyle(), applyBoxStyle(otherProps)]}
-        onClick={() => {
-          inputRef.current?.focus()
-        }}
         ref={ref}
         {...deleteCssProps(otherProps)}
       >
@@ -151,6 +148,9 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               addAfter !== undefined,
             ),
           ]}
+          onClick={() => {
+            inputRef.current?.focus()
+          }}
         >
           {prefix && (
             <span
@@ -201,9 +201,12 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 if (e.key === "Backspace" && finalInputValue === "") {
                   inputRef.current?.focus()
                   const newTagList = [...finalValue]
-                  newTagList.pop()
+                  const removedTag = newTagList.pop()
                   if (value === undefined) {
                     setFinalValue(newTagList)
+                  }
+                  if (removedTag) {
+                    onRemove?.(removedTag, newTagList.length, e)
                   }
                   onChange?.(newTagList)
                 }

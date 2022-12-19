@@ -67,5 +67,48 @@ export const Basic: StoryFn<SelectProps> = (args) => (
       ]}
       {...args}
     />
+    <Select
+      mt="20px"
+      multiple
+      showSearch
+      filterOption={true}
+      options={[
+        {
+          label: "Option 1",
+          value: "option1",
+        },
+        {
+          label: "Option 2",
+          value: "option2",
+        },
+        {
+          label: "Option 3",
+          value: "option3",
+        },
+      ]}
+      {...args}
+    />
+    <Select
+      mt="20px"
+      multiple
+      showSearch
+      value={["option2"]}
+      filterOption={true}
+      options={[
+        {
+          label: "Option 1",
+          value: "option1",
+        },
+        {
+          label: "Option 2",
+          value: "option2",
+        },
+        {
+          label: "Option 3",
+          value: "option3",
+        },
+      ]}
+      {...args}
+    />
   </div>
 )

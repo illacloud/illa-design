@@ -18,7 +18,6 @@ export interface DropdownProps {
   defaultPopupVisible?: boolean
   popupVisible?: boolean
   triggerProps?: Partial<TriggerProps>
-  getPopupContainer?: (node: HTMLElement) => Element
   autoAlignPopupWidth?: boolean
   // events
   onVisibleChange?: (visible: boolean) => void

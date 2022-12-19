@@ -25,3 +25,9 @@ export function applySelectContainer(size: SelectSize): SerializedStyles {
     ${pdStyle};
   `
 }
+
+export const dropListItemStyle = css`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
