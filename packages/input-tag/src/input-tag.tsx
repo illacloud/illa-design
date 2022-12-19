@@ -45,13 +45,19 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       renderItem,
       addBefore,
       addAfter,
+      labelInValue,
       ...otherProps
     } = props
 
-    const [finalValue, setFinalValue] = useMergeValue<TagObject[]>([], {
-      defaultValue,
-      value,
-    })
+    const [finalValue, setFinalValue] = useMergeValue<TagObject[] | string[]>(
+      [],
+      {
+        defaultValue: labelInValue
+          ? (defaultValue as TagObject[])
+          : (defaultValue as string[]),
+        value: labelInValue ? (value as TagObject[]) : (value as string[]),
+      },
+    )
 
     const [finalInputValue, setFinalInputValue] = useMergeValue("", {
       defaultValue: "",
@@ -63,30 +69,54 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
     const inputRef = useRef<HTMLInputElement>(null)
 
     const tags = useMemo(() => {
-      return finalValue.map((v, i) => {
-        return (
-          <Tag
-            css={tagStyle}
-            key={v.label}
-            size={size}
-            colorScheme="blackAlpha"
-            variant="light"
-            closable={readOnly ? false : v.closeable}
-            onClose={(e) => {
-              const newTagList = [...finalValue]
-              newTagList.splice(i, 1)
-              if (value === undefined) {
-                setFinalValue(newTagList)
-              }
-              onRemove?.(v, i, e)
-              onChange?.(newTagList)
-            }}
-          >
-            {renderItem?.(v) ?? v?.value?.toString()}
-          </Tag>
-        )
-      })
+      return (
+        <>
+          {finalValue.map((v, i) => {
+            return (
+              <Tag
+                css={tagStyle}
+                key={
+                  labelInValue
+                    ? (v as TagObject).label
+                    : `${i.toString()}:${value}`
+                }
+                visible={true}
+                size={size}
+                colorScheme="blackAlpha"
+                variant="light"
+                closable={
+                  readOnly
+                    ? false
+                    : labelInValue
+                    ? (v as TagObject).closeable
+                    : true
+                }
+                onClose={(e) => {
+                  const newTagList = [...finalValue]
+                  newTagList.splice(i, 1)
+                  if (labelInValue) {
+                    if (value === undefined) {
+                      setFinalValue(newTagList as TagObject[])
+                    }
+                    onChange?.(newTagList as TagObject[])
+                  } else {
+                    if (value === undefined) {
+                      setFinalValue(newTagList as string[])
+                    }
+                    onChange?.(newTagList as string[])
+                  }
+                  onRemove?.(v, i, e)
+                }}
+              >
+                {renderItem?.(v) ??
+                  (labelInValue ? (v as TagObject).label : (v as string))}
+              </Tag>
+            )
+          })}
+        </>
+      )
     }, [
+      labelInValue,
       finalValue,
       onChange,
       onRemove,
@@ -99,14 +129,19 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
 
     const saveInputValue = () => {
       if (finalInputValue !== "") {
-        let newList = [
-          ...finalValue,
-          {
-            label: finalValue.length.toString(),
-            value: finalInputValue,
-            closeable: true,
-          },
-        ]
+        let newList
+        if (labelInValue) {
+          newList = [
+            ...(finalValue as TagObject[]),
+            {
+              label: finalValue.length.toString(),
+              value: finalInputValue,
+              closeable: true,
+            },
+          ]
+        } else {
+          newList = [...(finalValue as string[]), finalInputValue]
+        }
         if (value === undefined) {
           setFinalValue(newList)
         }
@@ -200,7 +235,12 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 }
                 if (e.key === "Backspace" && finalInputValue === "") {
                   inputRef.current?.focus()
-                  const newTagList = [...finalValue]
+                  let newTagList
+                  if (labelInValue) {
+                    newTagList = [...(finalValue as TagObject[])]
+                  } else {
+                    newTagList = [...(finalValue as string[])]
+                  }
                   const removedTag = newTagList.pop()
                   if (value === undefined) {
                     setFinalValue(newTagList)

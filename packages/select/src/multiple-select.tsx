@@ -40,6 +40,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
       onFocus,
       onBlur,
       multiple,
+      autoAlignPopupWidth = true,
       ...otherProps
     } = props
 
@@ -64,11 +65,13 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
         return {
           label: (v as OptionObject).label,
           value: (v as OptionObject).value,
+          closeable: true,
         } as TagObject
       } else {
         return {
-          label: index.toString(),
+          label: options?.find((item) => item.value === v)?.label ?? "",
           value: v,
+          closeable: true,
         } as TagObject
       }
     })
@@ -94,7 +97,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
     return (
       <Dropdown
         colorScheme="white"
-        autoAlignPopupWidth={true}
+        autoAlignPopupWidth={autoAlignPopupWidth}
         trigger={trigger}
         triggerProps={{
           closeOnInnerClick: false,
@@ -191,6 +194,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
         {...dropdownProps}
       >
         <InputTag
+          labelInValue={true}
           inputValue={finalInputValue}
           value={finalTagValue}
           addBefore={addBefore}
@@ -212,23 +216,32 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
           onClear={() => {
             onChange?.(null)
           }}
-          onRemove={(v, index) => {
-            let newList = [...finalValue]
-            newList.splice(index, 1)
+          onRemove={(v) => {
+            let removedTag = v as TagObject
             if (labelInValue) {
+              let newList = [...finalValue] as OptionObject[]
+              const index = newList.findIndex(
+                (item) => removedTag.label === item.label,
+              )
+              newList.splice(index, 1)
               if (value === undefined) {
                 setFinalValue(newList as OptionObject[])
               }
               onDeselect?.({
-                value: v.value,
-                label: v.label,
+                value: removedTag.value,
+                label: removedTag.label,
               } as OptionObject)
               onChange?.(newList as OptionObject[])
             } else {
+              let newList = [...finalValue] as string[]
+              const index = newList.findIndex(
+                (item) => removedTag.value === item,
+              )
+              newList.splice(index, 1)
               if (value === undefined) {
                 setFinalValue(newList as string[])
               }
-              onDeselect?.(v.value)
+              onDeselect?.(removedTag)
               onChange?.(newList as string[])
             }
           }}

@@ -38,6 +38,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
       multiple,
       onBlur,
       trigger = "click",
+      autoAlignPopupWidth = true,
       ...otherProps
     } = props
 
@@ -73,13 +74,14 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
           return option.label.includes(finalInputValue)
         })
       }
+
       return newOptions
     }, [filterOption, finalInputValue, options])
 
     return (
       <Dropdown
         colorScheme="white"
-        autoAlignPopupWidth={true}
+        autoAlignPopupWidth={autoAlignPopupWidth}
         trigger={trigger}
         popupVisible={finalPopupVisible}
         dropList={
@@ -100,7 +102,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
             }}
           >
             {finalOptions?.map((option) => {
-              return <DropList.Item key={option.label} />
+              return <DropList.Item key={option.label} title={option.label} />
             })}
             {(!finalOptions || finalOptions.length === 0) && <Empty />}
           </DropList>

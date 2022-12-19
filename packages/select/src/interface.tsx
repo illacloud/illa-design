@@ -27,6 +27,7 @@ export interface SelectProps
       "defaultValue" | "onChange" | "prefix" | "onFocus" | "onBlur"
     >,
     BoxProps {
+  autoAlignPopupWidth?: boolean
   colorScheme?: SelectColorScheme
   allowClear?: boolean
   labelInValue?: boolean

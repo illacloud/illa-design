@@ -24,6 +24,7 @@ export interface InputTagProps
       "prefix" | "size" | "onChange" | "value" | "defaultValue"
     >,
     BoxProps {
+  labelInValue?: boolean
   colorScheme?: InputTagColorScheme
   autoFocus?: boolean
   addBefore?: ReactNode
@@ -38,17 +39,21 @@ export interface InputTagProps
   size?: InputTagSize
   prefix?: ReactNode | string
   suffix?: ReactNode | string
-  defaultValue?: TagObject[]
-  value?: TagObject[]
+  defaultValue?: string[] | TagObject[]
+  value?: string[] | TagObject[]
   onBlur?: (e: SyntheticEvent) => void
-  onChange?: (value: TagObject[]) => void
+  onChange?: (value: TagObject[] | string[]) => void
   onClear?: () => void
   onFocus?: (e: SyntheticEvent) => void
   onInputChange?: (inputValue: string, event?: SyntheticEvent) => void
   onKeyDown?: (e: SyntheticEvent) => void
   onPressEnter?: (e: SyntheticEvent) => void
-  onRemove?: (value: TagObject, index: number, e: SyntheticEvent) => void
-  renderItem?: (value: TagObject) => ReactNode
+  onRemove?: (
+    value: TagObject | string,
+    index: number,
+    e: SyntheticEvent,
+  ) => void
+  renderItem?: (value: TagObject | string) => ReactNode
 }
 
 export interface TagObject {
