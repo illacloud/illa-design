@@ -124,17 +124,19 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                 css={applyModalMask}
                 variants={maskAnimation}
                 animate="animate"
-                onClick={() => {
-                  if (maskClosable) {
-                    onCancel?.()
-                  }
-                }}
                 exit="exit"
                 initial="initial"
                 transition={{ duration: 0.2 }}
               />
             ) : null}
-            <div css={applyModalContainer}>
+            <div
+              css={applyModalContainer}
+              onClick={() => {
+                if (maskClosable) {
+                  onCancel?.()
+                }
+              }}
+            >
               <motion.div
                 ref={ref}
                 role="dialog"
