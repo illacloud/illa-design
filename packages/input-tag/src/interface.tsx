@@ -1,4 +1,10 @@
-import { InputHTMLAttributes, ReactNode, SyntheticEvent } from "react"
+import {
+  InputHTMLAttributes,
+  MutableRefObject,
+  ReactNode,
+  Ref,
+  SyntheticEvent,
+} from "react"
 import { BoxProps } from "@illa-design/theme"
 
 export type InputTagSize = "small" | "medium" | "large"
@@ -54,10 +60,15 @@ export interface InputTagProps
     e: SyntheticEvent,
   ) => void
   renderItem?: (value: TagObject | string) => ReactNode
+  inputTagRef?: MutableRefObject<InputTagRefHandler | undefined>
 }
 
 export interface TagObject {
   label: string
   value: string
   closeable?: boolean
+}
+
+export interface InputTagRefHandler {
+  focus: () => void
 }

@@ -130,7 +130,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
             }
           }}
         />
-        {allowClear && !readOnly && !disabled && finalValue.length > 0 && (
+        {allowClear && !disabled && finalValue.length > 0 && (
           <ClearIcon
             className="clear"
             onClick={(e) => {

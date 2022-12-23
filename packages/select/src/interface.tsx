@@ -43,32 +43,26 @@ export interface SelectProps
   addBefore?: ReactNode
   prefix?: ReactNode | string
   suffixIcon?: ReactNode
-  defaultValue?: OptionObject | string | OptionObject[] | string[]
+  defaultValue?: SelectOptionObject | string | SelectOptionObject[] | string[]
   showSearch?: boolean
-  value?: OptionObject | string | OptionObject[] | string[]
+  value?: SelectOptionObject | string | SelectOptionObject[] | string[]
   filterOption?: boolean | ((inputValue: string) => boolean)
   onChange?: (
-    value: null | OptionObject | string | OptionObject[] | string[],
+    value: null | SelectOptionObject | string | SelectOptionObject[] | string[],
   ) => void
   onClear?: () => void
   onInputValueChange?: (value: string) => void
   onKeyDown?: (e: SyntheticEvent) => void
   onVisibleChange?: (visible: boolean) => void
   dropdownProps?: DropdownProps
-  options?: OptionObject[]
-  onDeselect?: (value: string | OptionObject) => void
+  options?: SelectOptionObject[]
+  onDeselect?: (value: string | SelectOptionObject) => void
   multiple?: boolean
   onBlur?: (e: SyntheticEvent) => void
   onFocus?: (e: SyntheticEvent) => void
 }
 
-export interface SelectOptionProps
-  extends HTMLAttributes<HTMLDivElement>,
-    BoxProps,
-    OptionObject {}
-
-export interface OptionObject {
+export interface SelectOptionObject {
   label: string
   value: string
-  disabled?: boolean
 }

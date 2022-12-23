@@ -70,6 +70,7 @@
     "@illa-design/pagination": "workspace:*",
     "@illa-design/spin": "workspace:*",
     "@illa-design/notification": "workspace:*",
+    "@illa-design/cascader": "workspace:*",
     "@illa-design/message": "workspace:*",
     "@illa-design/select": "workspace:*",
     "@illa-design/comment": "workspace:*",

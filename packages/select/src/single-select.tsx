@@ -1,5 +1,5 @@
 import { forwardRef, useMemo, useRef } from "react"
-import { OptionObject, SelectProps } from "./interface"
+import { SelectOptionObject, SelectProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { useMergeValue } from "@illa-design/system"
@@ -53,7 +53,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
           ? ""
           : labelInValue
           ? options?.find(
-              (option) => option.value === (value as OptionObject).value,
+              (option) => option.value === (value as SelectOptionObject).value,
             )?.label || ""
           : options?.find((option) => option.value === value)?.label || "",
       value: undefined,
@@ -61,8 +61,8 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
 
     const lastChooseRef = useRef<string | null>(finalInputValue)
 
-    const finalOptions: OptionObject[] = useMemo(() => {
-      let newOptions: OptionObject[] = []
+    const finalOptions: SelectOptionObject[] = useMemo(() => {
+      let newOptions: SelectOptionObject[] = []
       if (options) {
         newOptions = options
       }

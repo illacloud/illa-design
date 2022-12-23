@@ -197,6 +197,26 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
 
+  packages/cascader:
+    specifiers:
+      '@illa-design/checkbox': workspace:*
+      '@illa-design/empty': workspace:*
+      '@illa-design/icon': workspace:*
+      '@illa-design/input': workspace:*
+      '@illa-design/input-tag': workspace:*
+      '@illa-design/system': workspace:*
+      '@illa-design/theme': workspace:*
+      '@illa-design/trigger': workspace:*
+    dependencies:
+      '@illa-design/checkbox': link:../checkbox
+      '@illa-design/empty': link:../empty
+      '@illa-design/icon': link:../icon
+      '@illa-design/input': link:../input
+      '@illa-design/input-tag': link:../input-tag
+      '@illa-design/system': link:../system
+      '@illa-design/theme': link:../theme
+      '@illa-design/trigger': link:../trigger
+
   packages/checkbox:
     specifiers:
       '@illa-design/icon': workspace:*
@@ -590,6 +610,7 @@ importers:
       '@illa-design/badge': workspace:*
       '@illa-design/button': workspace:*
       '@illa-design/card': workspace:*
+      '@illa-design/cascader': workspace:*
       '@illa-design/checkbox': workspace:*
       '@illa-design/collapse': workspace:*
       '@illa-design/comment': workspace:*
@@ -643,6 +664,7 @@ importers:
       '@illa-design/badge': link:../badge
       '@illa-design/button': link:../button
       '@illa-design/card': link:../card
+      '@illa-design/cascader': link:../cascader
       '@illa-design/checkbox': link:../checkbox
       '@illa-design/collapse': link:../collapse
       '@illa-design/comment': link:../comment

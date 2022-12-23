@@ -2,7 +2,7 @@ import { FC, useMemo } from "react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Button } from "@illa-design/button"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
-import { OptionObject, Select } from "@illa-design/select"
+import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
 import { CustomFilterFn, FilterOperator, FiltersEditorProps } from "./interface"
 import {
@@ -69,14 +69,14 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
                 options={FilterOptions}
                 onChange={(filterFn) => {
                   if (filterFn != null) {
-                    let option = filterFn as OptionObject
+                    let option = filterFn as string
                     // @ts-ignore @chenxiaoyu
-                    onChangeFilterFn(index, filter.id, option.value)
+                    onChangeFilterFn(index, filter.id, option)
                     onChange(index, {
                       id,
                       value,
                       // @ts-ignore @chenxiaoyu
-                      filterFn: option.value,
+                      filterFn: option,
                     })
                   }
                 }}

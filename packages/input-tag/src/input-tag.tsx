@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef } from "react"
+import { forwardRef, useImperativeHandle, useMemo, useRef } from "react"
 import { InputTagProps, TagObject } from "./interface"
 import { useMergeValue } from "@illa-design/system"
 import {
@@ -44,6 +44,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       onRemove,
       renderItem,
       addBefore,
+      inputTagRef,
       addAfter,
       labelInValue,
       ...otherProps
@@ -68,10 +69,31 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
 
     const inputRef = useRef<HTMLInputElement>(null)
 
+    useImperativeHandle(
+      inputTagRef,
+      () => {
+        return {
+          focus: () => inputRef.current?.focus(),
+        }
+      },
+      [],
+    )
+
     const tags = useMemo(() => {
       return (
         <>
           {finalValue.map((v, i) => {
+            let closeable: boolean = false
+            if (labelInValue) {
+              if ((v as TagObject).closeable === undefined) {
+                closeable = !readOnly
+              } else {
+                closeable = (v as TagObject).closeable!!
+              }
+            } else {
+              closeable = !readOnly
+            }
+
             return (
               <Tag
                 css={tagStyle}
@@ -84,13 +106,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 size={size}
                 colorScheme="blackAlpha"
                 variant="light"
-                closable={
-                  readOnly
-                    ? false
-                    : labelInValue
-                    ? (v as TagObject).closeable
-                    : true
-                }
+                closable={closeable}
                 onClose={(e) => {
                   const newTagList = [...finalValue]
                   newTagList.splice(i, 1)
@@ -165,7 +181,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               disabled ?? false,
               css`
                 margin-right: -1px;
-                border-radius: 4px 0 0 4px;
+                border-radius: 8px 0 0 8px;
               `,
             )}
           >
@@ -253,7 +269,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               }}
             />
           </span>
-          {allowClear && !readOnly && !disabled && finalValue.length > 0 && (
+          {allowClear && !disabled && finalValue.length > 0 && (
             <ClearIcon
               className="clear"
               flexShrink="0"
@@ -295,7 +311,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               disabled ?? false,
               css`
                 margin-left: -1px;
-                border-radius: 0 4px 4px 0;
+                border-radius: 0 8px 8px 0;
               `,
             )}
           >
