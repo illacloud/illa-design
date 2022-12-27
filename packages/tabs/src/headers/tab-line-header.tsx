@@ -259,6 +259,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                         size={size}
                         tabBarSpacing={tabBarSpacing}
                         colorScheme={colorScheme}
+                        variant={variant}
                       />
                     )
                   })}

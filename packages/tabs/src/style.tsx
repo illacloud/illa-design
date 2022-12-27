@@ -70,10 +70,10 @@ export function applyCardTypeHeaderCss(
 ): SerializedStyles {
   return tabPosition === "bottom"
     ? css`
-        border-top: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+        //border-top: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       `
     : css`
-        border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px;
+        //border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       `
 }
 
@@ -145,13 +145,31 @@ export function applyHeaderContainerCss(
   if (variant === "line") {
     borderCss = applyLineHeaderContainerCss(position)
   }
+  let cardStyle
+  if (variant === "card") {
+    cardStyle = css`
+      ::before {
+        content: "";
+        clear: both;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+        display: block;
+      }
+    `
+  }
 
   return css`
     display: inline-flex;
+    position: relative;
     flex-direction: ${isHorizontal ? "column" : "row"};
     align-items: end;
     justify-content: ${align};
     ${borderCss};
+    ${cardStyle}
   `
 }
 
@@ -231,7 +249,30 @@ export const tabCardHeaderContainerCss = css`
   box-sizing: border-box;
 `
 
+export function applyCapsulePaddingSizeCss(size: TabsSize): SerializedStyles {
+  let paddingSize
+  switch (size) {
+    case "large":
+      paddingSize = css`
+        padding: 5px 16px;
+      `
+      break
+    case "small":
+      paddingSize = css`
+        padding: 1px 12px;
+      `
+      break
+    default:
+      paddingSize = css`
+        padding: 3px 16px;
+      `
+  }
+
+  return paddingSize
+}
+
 export function applyCapsuleHeaderChildCss(
+  size: TabsSize,
   isSelected?: boolean,
   disabled?: boolean,
 ): SerializedStyles {
@@ -245,6 +286,7 @@ export function applyCapsuleHeaderChildCss(
   return css`
     ${applyCommonHeaderChildCss()};
     ${selectedBoxCss};
+    ${applyCapsulePaddingSizeCss(size)}
     margin: 4px 2px;
     border-radius: 4px;
     ${applyCapsuleHoverBackgroundCss(isSelected, disabled)}
@@ -265,38 +307,57 @@ export function applyCapsuleHoverBackgroundCss(
   }
 }
 
+export function applyCardBorderRadius(tabPosition: TabPosition) {
+  switch (tabPosition) {
+    case "top":
+      return css`
+        border-radius: 4px 4px 0px 0px;
+        border-bottom: solid white 0px;
+      `
+    case "right":
+      return css`
+        border-radius: 0px 4px 4px 0px;
+        border-left: solid white 0px;
+      `
+    case "bottom":
+      return css`
+        border-radius: 0px 0px 4px 4px;
+        border-top: solid white 0px;
+      `
+    case "left":
+      return css`
+        border-radius: 4px 0px 0px 4px;
+        border-right: solid white 0px;
+      `
+  }
+}
+
 export function applyCardHeaderChildCss(
+  size: TabsSize,
   isSelected?: boolean,
   disabled?: boolean,
   tabPosition?: TabPosition,
 ): SerializedStyles {
   const selectedBoxCss = isSelected
     ? css`
-        border: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+        border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
         ${tabPosition === "bottom"
           ? "border-top: solid white;"
-          : "border-bottom: solid white;"};
+          : "border-bottom: solid white;"}
       `
     : css`
         border: solid transparent;
       `
   return css`
+    ${tabPosition && applyCardBorderRadius(tabPosition)}
     position: relative;
-    ${tabPosition === "bottom"
-      ? css`
-          border-radius: 0 0 4px 4px;
-          bottom: 1px;
-        `
-      : css`
-          border-radius: 4px 4px 0 0;
-          top: 1px;
-        `};
     ${applyCommonHeaderChildCss()};
+    ${applyTextPaddingSizeCss(size)};
     ${selectedBoxCss};
-    border-width: 1px;
-    border-bottom-width: 1.5px;
     z-index: ${zIndex.tabs};
-    margin: 0 2px;
+    :not(:first-child) {
+      margin-left: 4px;
+    }
     ${applyHoverBackgroundCss(isSelected, disabled)}
     color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     transition: background-color 200ms;
@@ -343,13 +404,127 @@ export const deleteButtonCss = css`
   }
 `
 
+export function applyTextHeaderChildCss(
+  size: TabsSize,
+  isSelected?: boolean,
+  disabled?: boolean,
+) {
+  let hoverStyle
+  if (!(isSelected || disabled)) {
+    hoverStyle = css`
+      &:hover {
+        cursor: pointer;
+        background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+      }
+    `
+  }
+  return css`
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    padding: 1px 4px;
+    :not(:first-child) {
+      margin-left: 8px;
+      &::before {
+        position: absolute;
+        content: "";
+        opacity: 1;
+        left: -10px;
+        width: 0px;
+        height: 8px;
+        border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      }
+    }
+    :not(:last-child) {
+      margin-right: 8px;
+    }
+    ${hoverStyle}
+  `
+}
 export function applyCommonHeaderChildCss(): SerializedStyles {
   return css`
     display: inline-flex;
+    position: relative;
     align-items: center;
-
+    padding: 1px 4px;
     &:hover {
       cursor: pointer;
+    }
+  `
+}
+
+export function applyHoverMarginSizeCss(size: TabsSize): SerializedStyles {
+  let marginSize
+  switch (size) {
+    case "large":
+      marginSize = css`
+        padding: 0;
+        margin: 8px;
+      `
+      break
+    case "small":
+      marginSize = css`
+        padding: 0;
+        margin: 4px 8px;
+      `
+      break
+    default:
+      marginSize = css`
+        padding: 0;
+        margin: 6px 8px;
+      `
+  }
+  return marginSize
+}
+
+export function applyTextPaddingSizeCss(size: TabsSize): SerializedStyles {
+  let paddingSize
+  switch (size) {
+    case "large":
+      paddingSize = css`
+        padding: 9px 16px;
+      `
+      break
+    case "small":
+      paddingSize = css`
+        padding: 5px 16px;
+      `
+      break
+    default:
+      paddingSize = css`
+        padding: 7px 16px;
+      `
+  }
+  return paddingSize
+}
+
+export function applyLineHeaderChildCss(
+  size: TabsSize,
+  isSelected?: boolean,
+  disabled?: boolean,
+): SerializedStyles {
+  let hoverPadding = css``
+  let childHoverPadding = css``
+  if (!(isSelected || disabled)) {
+    hoverPadding = css`
+      ${applyHoverMarginSizeCss(size)};
+      background: getColor("gray", "09");
+    `
+    childHoverPadding = css`
+      padding: 1px 8px;
+    `
+  }
+
+  return css`
+    display: inline-flex;
+    align-items: center;
+    ${applyTextPaddingSizeCss(size)};
+    &:hover {
+      cursor: pointer;
+      ${hoverPadding}
+      & > span {
+        ${childHoverPadding}
+      }
     }
   `
 }
@@ -412,16 +587,14 @@ export function applyTextCss(
 
   return css`
     ${applyTextColorCss(colorScheme, disabled, isSelected, variant)};
-    ${applyPaddingSizeCss(size)};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 14px;
-    padding: 1px 8px;
     line-height: 22px;
     border-radius: 4px;
-    margin-left: ${8 + _tabBarSpacing / 2}px;
-    margin-right: ${8 + _tabBarSpacing / 2}px;
+    margin-left: ${_tabBarSpacing / 2}px;
+    margin-right: ${_tabBarSpacing / 2}px;
     transition: color 200ms, background-color 200ms;
   `
 }
@@ -511,6 +684,7 @@ export const tabContentContainerCss = css`
   display: inline-flex;
   flex-direction: row;
   overflow: hidden;
+  padding-top: 10px;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -536,7 +710,7 @@ export function applyCardContentContainerCss(
   return css`
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${tabContentContainerCss};
-    ${positionCss};
+    ${positionCss}
   `
 }
 

@@ -4,6 +4,8 @@ import {
   applyCapsuleHeaderChildCss,
   applyCardHeaderChildCss,
   applyCommonHeaderChildCss,
+  applyLineHeaderChildCss,
+  applyTextHeaderChildCss,
   applyTextCss,
   deleteButtonCss,
 } from "../style"
@@ -32,6 +34,10 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
       _childCss = applyCardHeaderChildCss
     } else if (variant === "capsule") {
       _childCss = applyCapsuleHeaderChildCss
+    } else if (variant === "line") {
+      _childCss = applyLineHeaderChildCss
+    } else if (variant === "text") {
+      _childCss = applyTextHeaderChildCss
     } else {
       _childCss = applyCommonHeaderChildCss
     }
@@ -40,7 +46,7 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
 
   return (
     <span
-      css={applyChildCss(isSelected, disabled, tabPosition)}
+      css={applyChildCss(size, isSelected, disabled, tabPosition)}
       key={tabKey}
       onClick={() => {
         if (disabled) return
