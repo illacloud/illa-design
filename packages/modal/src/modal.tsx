@@ -138,6 +138,9 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
               }}
             >
               <motion.div
+                onClick={(e) => {
+                  e.stopPropagation()
+                }}
                 ref={ref}
                 role="dialog"
                 variants={modalAnimation}
