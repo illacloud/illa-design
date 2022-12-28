@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { forwardRef, ReactNode } from "react"
 import { InputProps } from "./interface"
 import {
   applyAddAfterStyle,
@@ -7,6 +7,7 @@ import {
   applyInputDisabledStyle,
   applyInputElementStyle,
   applyInputStyle,
+  applyLabelDomElementStyle,
   applyMaxLengthBeforeStyle,
   applyPrefixStyle,
   applySuffixStyle,
@@ -41,7 +42,9 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     ...otherProps
   } = props
 
-  const [finalValue, setFinalValue] = useMergeValue("", {
+  const [finalValue, setFinalValue] = useMergeValue<
+    string | number | ReactNode
+  >("", {
     defaultValue: defaultValue,
     value: value,
   })
@@ -99,62 +102,73 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         {prefix && (
           <span css={applyPrefixStyle(size, disabled ?? false)}>{prefix}</span>
         )}
-        <input
-          type={type}
-          disabled={disabled}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              onPressEnter?.()
-            }
-          }}
-          maxLength={finalMaxLengthErrorOnly ? undefined : finalMaxLength}
-          readOnly={readOnly}
-          value={finalValue}
-          css={applyInputElementStyle(size)}
-          placeholder={placeholder}
-          onChange={(event) => {
-            onChange?.(event.target.value, event)
-            if (finalMaxLength && event.target.value.length > finalMaxLength) {
-              if (finalMaxLengthErrorOnly) {
+        {typeof finalValue !== "object" && (
+          <input
+            type={type}
+            disabled={disabled}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                onPressEnter?.()
+              }
+            }}
+            maxLength={finalMaxLengthErrorOnly ? undefined : finalMaxLength}
+            readOnly={readOnly}
+            value={typeof finalValue === "string" ? finalValue : ""}
+            css={applyInputElementStyle(size)}
+            placeholder={placeholder}
+            onChange={(event) => {
+              onChange?.(event.target.value, event)
+              if (
+                finalMaxLength &&
+                event.target.value.length > finalMaxLength
+              ) {
+                if (finalMaxLengthErrorOnly) {
+                  if (error === undefined) {
+                    setFinalError(true)
+                  }
+                }
+              } else {
                 if (error === undefined) {
-                  setFinalError(true)
+                  setFinalError(false)
                 }
               }
-            } else {
-              if (error === undefined) {
-                setFinalError(false)
-              }
-            }
-            if (value === undefined) {
-              setFinalValue(event.target.value)
-            }
-          }}
-        />
-        {allowClear && !disabled && finalValue.length > 0 && (
-          <ClearIcon
-            className="clear"
-            onClick={(e) => {
-              e.stopPropagation()
-              onClear?.()
               if (value === undefined) {
-                setFinalValue("")
+                setFinalValue(event.target.value)
               }
-              onChange?.("", e)
             }}
-            v="hidden"
-            cursor="pointer"
-            fs="12px"
-            ml="4px"
-            c={getColor("grayBlue", "05")}
           />
         )}
+        {typeof finalValue === "object" && (
+          <div css={applyLabelDomElementStyle(size)}>{finalValue}</div>
+        )}
+        {allowClear &&
+          !disabled &&
+          typeof finalValue === "string" &&
+          finalValue.length > 0 && (
+            <ClearIcon
+              className="clear"
+              onClick={(e) => {
+                e.stopPropagation()
+                onClear?.()
+                if (value === undefined) {
+                  setFinalValue("")
+                }
+                onChange?.("", e)
+              }}
+              v="hidden"
+              cursor="pointer"
+              fs="12px"
+              ml="4px"
+              c={getColor("grayBlue", "05")}
+            />
+          )}
         {!showWordLimit && suffix && (
           <span css={applySuffixStyle(size, disabled ?? false)}>{suffix}</span>
         )}
         {showWordLimit && (
           <span css={applyWordLimitStyle(size)}>
             <span css={applyMaxLengthBeforeStyle(finalError)}>
-              {finalValue.length}
+              {typeof finalValue === "string" ? finalValue.length : 0}
             </span>
             {`${finalMaxLength !== undefined ? "/" + finalMaxLength : ""}`}
           </span>

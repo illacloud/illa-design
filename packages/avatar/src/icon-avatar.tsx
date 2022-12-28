@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { AvatarProps } from "./interface"
 import { applyIconSize, applyMergeCss } from "./style"
-import { PersonIcon } from "@illa-design/icon"
+import { PeopleIcon } from "@illa-design/icon"
 
 export const IconAvatar: FC<AvatarProps> = (props) => {
   const currentColorScheme = props.colorScheme ?? "blue"
@@ -25,7 +25,7 @@ export const IconAvatar: FC<AvatarProps> = (props) => {
     }
   }
 
-  const currentIcon = props.icon ?? <PersonIcon size={iconSize} />
+  const currentIcon = props.icon ?? <PeopleIcon size={iconSize} />
   const finalProps = {
     ...props,
     colorScheme: currentColorScheme,

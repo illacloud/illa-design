@@ -240,6 +240,19 @@ export function applyInputDisabledStyle(
   `
 }
 
+export function applyLabelDomElementStyle(size: InputSize): SerializedStyles {
+  return css`
+    flex-shrink: 1;
+    width: 100%;
+    flex-grow: 1;
+    min-height: ${size === "small" ? "22px" : "24px"};
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: ${getColor("grayBlue", "02")};
+  `
+}
+
 export function applyInputElementStyle(size: InputSize): SerializedStyles {
   return css`
     font-size: 14px;

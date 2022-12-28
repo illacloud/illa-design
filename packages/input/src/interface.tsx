@@ -27,7 +27,7 @@ export type InputColorScheme =
 export interface InputProps
   extends Omit<
       InputHTMLAttributes<HTMLInputElement>,
-      "prefix" | "size" | "onChange" | "maxLength"
+      "prefix" | "size" | "onChange" | "maxLength" | "value" | "defaultValue"
     >,
     BoxProps {
   colorScheme?: InputColorScheme
@@ -36,9 +36,9 @@ export interface InputProps
   error?: boolean
   readOnly?: boolean
   showWordLimit?: boolean
-  defaultValue?: string
+  defaultValue?: string | ReactNode
   placeholder?: string
-  value?: string
+  value?: string | ReactNode
   size?: InputSize
   addAfter?: ReactNode
   addBefore?: ReactNode

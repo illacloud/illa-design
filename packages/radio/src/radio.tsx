@@ -3,7 +3,7 @@ import { useMergeValue } from "@illa-design/system"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import { RadioProps } from "./interface"
 import { RadioGroupContext } from "./radio-group-context"
-import { radioTextCss, applyRadioContainerCss, applyRadioCss } from "./style"
+import { applyRadioContainerCss, applyRadioCss, radioTextCss } from "./style"
 
 export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
   const context = useContext(RadioGroupContext)
@@ -29,7 +29,6 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
   })
 
   const onChangeValue = (event: ChangeEvent<HTMLInputElement>): void => {
-    event.persist()
     if (context) {
       context.onChangeValue && context.onChangeValue(value, event)
     } else if (!("checked" in props) && !currentChecked) {

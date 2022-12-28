@@ -1,7 +1,7 @@
 import { createIcon } from "../create-icon"
 
-export const StarIcon = createIcon({
-  title: "StarIcon",
+export const StarFillIcon = createIcon({
+  title: "StarFillIcon",
   viewBox: "0 0 16 16",
   path: (
     <path
@@ -11,4 +11,4 @@ export const StarIcon = createIcon({
   ),
 })
 
-StarIcon.displayName = "StarIcon"
+StarFillIcon.displayName = "StarFillIcon"

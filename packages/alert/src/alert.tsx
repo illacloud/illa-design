@@ -3,7 +3,7 @@ import { AlertProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
 import {
   CloseIcon,
-  ErrorIcon,
+  ErrorCircleIcon,
   InfoCircleIcon,
   SuccessCircleIcon,
   WarningCircleIcon,
@@ -89,7 +89,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
           )
         case "error":
           return (
-            <ErrorIcon
+            <ErrorCircleIcon
               mr="8px"
               fs="16px"
               mt={content ? "2px" : "0"}

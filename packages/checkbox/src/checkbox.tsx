@@ -6,7 +6,7 @@ import {
   useEffect,
 } from "react"
 import { useMergeValue } from "@illa-design/system"
-import { CheckmarkIcon, ReduceIcon } from "@illa-design/icon"
+import { SuccessIcon, ReduceIcon } from "@illa-design/icon"
 import { CheckboxProps } from "./interface"
 import {
   applyCheckboxSize,
@@ -79,7 +79,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
         {indeterminate ? (
           <ReduceIcon css={applyCheckState(true)} />
         ) : (
-          <CheckmarkIcon css={applyCheckState(currentChecked)} />
+          <SuccessIcon css={applyCheckState(currentChecked)} />
         )}
         {children && <span css={childrenContainerCss}> {children}</span>}
       </label>

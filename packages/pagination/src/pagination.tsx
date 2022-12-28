@@ -25,7 +25,7 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
-import { MoreIcon, NextIcon, PreIcon } from "@illa-design/icon"
+import { MoreIcon, NextIcon, PreviousIcon } from "@illa-design/icon"
 import { css } from "@emotion/react"
 import { Select } from "@illa-design/select"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
@@ -317,8 +317,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
             {itemRender?.(
               finalPageSize,
               "prev",
-              icons?.prev ?? <PreIcon />,
-            ) ?? <PreIcon />}
+              icons?.prev ?? <PreviousIcon />,
+            ) ?? <PreviousIcon />}
           </span>
           {middleComponent}
           {showMore && (

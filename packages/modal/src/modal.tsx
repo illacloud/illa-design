@@ -20,7 +20,7 @@ import {
 } from "@illa-design/config-provider"
 import {
   CloseIcon,
-  ErrorIcon,
+  ErrorCircleIcon,
   InfoCircleIcon,
   SuccessCircleIcon,
   WarningCircleIcon,
@@ -97,7 +97,9 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
             <InfoCircleIcon fs="16px" mr="8px" c={getColor("blue", "03")} />
           )
         case "error":
-          return <ErrorIcon fs="16px" mr="8px" c={getColor("red", "03")} />
+          return (
+            <ErrorCircleIcon fs="16px" mr="8px" c={getColor("red", "03")} />
+          )
         case "success":
           return (
             <SuccessCircleIcon fs="16px" mr="8px" c={getColor("green", "03")} />

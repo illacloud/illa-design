@@ -22,7 +22,7 @@ import {
 } from "./style"
 import {
   CloseIcon,
-  ErrorIcon,
+  ErrorCircleIcon,
   InfoCircleIcon,
   SuccessCircleIcon,
   WarningCircleIcon,
@@ -84,7 +84,9 @@ export const Notification = forwardRef<HTMLDivElement, NotificationProps>(
                 <InfoCircleIcon mt="2px" fs="16px" c={getColor("blue", "03")} />
               )
             case "error":
-              return <ErrorIcon fs="16px" mt="2px" c={getColor("red", "03")} />
+              return (
+                <ErrorCircleIcon fs="16px" mt="2px" c={getColor("red", "03")} />
+              )
             case "success":
               return (
                 <SuccessCircleIcon

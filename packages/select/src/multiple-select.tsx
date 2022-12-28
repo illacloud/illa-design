@@ -20,6 +20,8 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
       colorScheme,
       defaultPopupVisible,
       popupVisible,
+      children,
+      addAfter,
       disabled,
       error,
       loading,
@@ -30,6 +32,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
       options,
       showSearch,
       value,
+      readOnly,
       filterOption,
       onChange,
       onClear,
@@ -53,49 +56,76 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
     })
 
     const [finalValue, setFinalValue] = useMergeValue<
-      string[] | SelectOptionObject[]
+      string[] | SelectOptionObject[] | number[]
     >([], {
+      value: labelInValue ? (value as SelectOptionObject[]) : (value as []),
       defaultValue: labelInValue
-        ? (value as SelectOptionObject[])
-        : (value as string[]),
-      value: labelInValue
         ? (defaultValue as SelectOptionObject[])
-        : (defaultValue as string[]),
-    })
-
-    const finalTagValue: TagObject[] = finalValue.map((v, index) => {
-      if (labelInValue) {
-        return {
-          label: (v as SelectOptionObject).label,
-          value: (v as SelectOptionObject).value,
-          closeable: true,
-        } as TagObject
-      } else {
-        return {
-          label: options?.find((item) => item.value === v)?.label ?? "",
-          value: v,
-          closeable: true,
-        } as TagObject
-      }
+        : (defaultValue as []),
     })
 
     const [finalInputValue, setFinalInputValue] = useState("")
 
     const finalOptions: SelectOptionObject[] = useMemo(() => {
       let newOptions: SelectOptionObject[] = []
-      if (options) {
-        newOptions = options
+      if (options && options.length > 0) {
+        if (typeof options[0] === "string" || typeof options[0] === "number") {
+          newOptions = (options as []).map((option) => ({
+            label: option + "",
+            value: option,
+          }))
+        } else {
+          newOptions = options as SelectOptionObject[]
+        }
       }
       if (filterOption && finalInputValue !== "") {
         newOptions = newOptions.filter((option) => {
           if (typeof filterOption === "function") {
             return filterOption(finalInputValue)
           }
-          return option.label.includes(finalInputValue)
+          return (
+            typeof option.label === "string" &&
+            option.label.includes(finalInputValue)
+          )
         })
       }
       return newOptions
     }, [filterOption, finalInputValue, options])
+
+    const finalTagValue: TagObject[] = useMemo(() => {
+      if (options && options.length > 0) {
+        return finalValue.map((v, index) => {
+          if (labelInValue) {
+            return {
+              label: (v as SelectOptionObject).label,
+              value: (v as SelectOptionObject).value,
+              closeable: !readOnly,
+            } as TagObject
+          } else {
+            if (
+              typeof options[0] === "string" ||
+              typeof options[0] === "number"
+            ) {
+              return {
+                label: (options as []).find((item) => item === v) + "",
+                value: v,
+                closeable: !readOnly,
+              } as TagObject
+            } else {
+              return {
+                label: (options as SelectOptionObject[]).find(
+                  (item) => item.value === v,
+                )?.label,
+                value: v,
+                closeable: !readOnly,
+              } as TagObject
+            }
+          }
+        })
+      } else {
+        return []
+      }
+    }, [finalValue, labelInValue, options])
 
     return (
       <Dropdown
@@ -104,7 +134,8 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
         trigger={trigger}
         triggerProps={{
           closeOnInnerClick: false,
-          closeOnClick: !showSearch,
+          closeOnClick: false,
+          disabled: readOnly,
         }}
         popupVisible={finalPopupVisible}
         dropList={
@@ -113,11 +144,11 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
               inputTagRef.current?.focus()
             }}
             onClickItem={(key) => {
-              const option = finalOptions.find((option) => option.label === key)
+              const option = finalOptions.find((option) => option.value === key)
               if (option) {
                 if (labelInValue) {
                   let selectedValue = (finalValue as SelectOptionObject[]).find(
-                    (v) => v.label === option.label,
+                    (v) => v.value === option.value,
                   )
                   if (selectedValue !== undefined) {
                     onDeselect?.(selectedValue as SelectOptionObject)
@@ -139,35 +170,35 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
                     onChange?.(newList as SelectOptionObject[])
                   }
                 } else {
-                  let selectedValue = (finalValue as string[]).find(
+                  let selectedValue = (finalValue as []).find(
                     (v) => v === option.value,
                   )
                   if (selectedValue !== undefined) {
-                    onDeselect?.(selectedValue as string)
+                    onDeselect?.(selectedValue)
                     let newList = [...finalValue]
                     newList.splice(
                       newList.findIndex((v) => selectedValue === v),
                       1,
                     )
                     if (value === undefined) {
-                      setFinalValue(newList as string[])
+                      setFinalValue(newList as [])
                     }
-                    onChange?.(newList as string[])
+                    onChange?.(newList as [])
                   } else {
                     let newList = [...finalValue]
                     newList.push(option.value)
                     if (value === undefined) {
-                      setFinalValue(newList as string[])
+                      setFinalValue(newList as [])
                     }
-                    onChange?.(newList as string[])
+                    onChange?.(newList as [])
                   }
                 }
               }
             }}
           >
-            {finalOptions?.map((option) => {
+            {finalOptions?.map((option, i) => {
               return (
-                <DropList.Item key={option.label}>
+                <DropList.Item key={option.value.toString()}>
                   <div css={dropListItemStyle}>
                     <Checkbox
                       colorScheme={colorScheme}
@@ -177,7 +208,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
                           ? (finalValue as SelectOptionObject[]).find(
                               (v) => v.label === option.label,
                             ) !== undefined
-                          : (finalValue as string[]).find(
+                          : (finalValue as []).find(
                               (v) => v === option.value,
                             ) !== undefined
                       }
@@ -200,9 +231,11 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
         {...dropdownProps}
       >
         <InputTag
+          readOnly={!showSearch || readOnly}
           labelInValue={true}
           inputValue={finalInputValue}
           value={finalTagValue}
+          addAfter={addAfter}
           addBefore={addBefore}
           error={error}
           onKeyDown={onKeyDown}
@@ -239,16 +272,16 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
               } as SelectOptionObject)
               onChange?.(newList as SelectOptionObject[])
             } else {
-              let newList = [...finalValue] as string[]
+              let newList = [...finalValue] as []
               const index = newList.findIndex(
                 (item) => removedTag.value === item,
               )
               newList.splice(index, 1)
               if (value === undefined) {
-                setFinalValue(newList as string[])
+                setFinalValue(newList as [])
               }
-              onDeselect?.(removedTag)
-              onChange?.(newList as string[])
+              onDeselect?.(removedTag.value)
+              onChange?.(newList as [])
             }
           }}
           suffix={

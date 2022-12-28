@@ -33,10 +33,11 @@ export interface DropListProps extends HTMLAttributes<HTMLDivElement> {
   onClickItem?: (key: string, event: MouseEvent) => void
 }
 
-export interface DropListItemProps extends HTMLAttributes<HTMLDivElement> {
+export interface DropListItemProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   key: string
   _key?: string
-  title?: string
+  title?: string | ReactNode
   fontColor?: string
   disabled?: boolean
 }

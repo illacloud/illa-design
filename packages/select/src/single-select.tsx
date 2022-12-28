@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef } from "react"
+import { forwardRef, ReactNode, useMemo, useRef } from "react"
 import { SelectOptionObject, SelectProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { Dropdown, DropList } from "@illa-design/dropdown"
@@ -13,6 +13,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
       size = "medium",
       allowClear,
       placeholder,
+      addAfter,
       labelInValue,
       colorScheme,
       defaultPopupVisible,
@@ -22,12 +23,14 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
       loading,
       dropdownProps,
       addBefore,
+      children,
       prefix,
       defaultValue,
       options,
       showSearch,
       value,
       filterOption,
+      readOnly,
       onChange,
       onClear,
       onInputValueChange,
@@ -47,31 +50,66 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
       value: popupVisible,
     })
 
+    let dV: string | ReactNode | undefined = undefined
+    if (value === undefined) {
+      dV = undefined
+    } else {
+      if (options === undefined) {
+        dV = undefined
+      } else {
+        if (labelInValue) {
+          dV = (options as SelectOptionObject[]).find(
+            (option) => option.value === (value as SelectOptionObject).value,
+          )?.label
+        } else {
+          if (options.length > 0) {
+            if (
+              typeof options[0] === "string" ||
+              typeof options[0] === "number"
+            ) {
+              dV = (options as [])?.find((v) => v === value)
+            } else if (typeof options[0] === "object") {
+              dV = (options as SelectOptionObject[]).find(
+                (option) => option.value === value,
+              )?.label
+            }
+          }
+        }
+      }
+    }
+
     const [finalInputValue, setFinalInputValue] = useMergeValue("", {
-      defaultValue:
-        value === undefined
-          ? ""
-          : labelInValue
-          ? options?.find(
-              (option) => option.value === (value as SelectOptionObject).value,
-            )?.label || ""
-          : options?.find((option) => option.value === value)?.label || "",
+      defaultValue: dV,
       value: undefined,
     })
 
-    const lastChooseRef = useRef<string | null>(finalInputValue)
+    const lastChooseRef = useRef<string | null | ReactNode>(finalInputValue)
 
     const finalOptions: SelectOptionObject[] = useMemo(() => {
       let newOptions: SelectOptionObject[] = []
-      if (options) {
-        newOptions = options
+      if (options && options.length > 0) {
+        if (typeof options[0] === "string" || typeof options[0] === "number") {
+          newOptions = (options as []).map((option) => ({
+            label: option + "",
+            value: option,
+          }))
+        } else {
+          newOptions = options as SelectOptionObject[]
+        }
       }
-      if (filterOption && finalInputValue !== "") {
+      if (
+        filterOption &&
+        typeof finalInputValue === "string" &&
+        finalInputValue !== ""
+      ) {
         newOptions = newOptions.filter((option) => {
           if (typeof filterOption === "function") {
             return filterOption(finalInputValue)
           }
-          return option.label.includes(finalInputValue)
+          return (
+            typeof option.label === "string" &&
+            option.label.includes(finalInputValue)
+          )
         })
       }
 
@@ -83,28 +121,61 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
         colorScheme="white"
         autoAlignPopupWidth={autoAlignPopupWidth}
         trigger={trigger}
+        triggerProps={{
+          disabled: readOnly,
+        }}
         popupVisible={finalPopupVisible}
         dropList={
           <DropList
             onClickItem={(key) => {
-              const option = finalOptions.find((option) => option.label === key)
-              if (option !== undefined) {
-                if (value === undefined) {
-                  lastChooseRef.current = option.label
+              const option = (options as []).find((o) => {
+                if (typeof o === "object") {
+                  return (o as SelectOptionObject).value === key
+                } else {
+                  return o === key
                 }
-                setFinalInputValue(lastChooseRef.current ?? "")
+              })
+
+              if (option !== undefined) {
                 if (labelInValue) {
+                  if (value === undefined) {
+                    lastChooseRef.current = (option as SelectOptionObject).label
+                    setFinalInputValue(lastChooseRef.current ?? "")
+                  }
                   onChange?.(option)
                 } else {
-                  onChange?.(option.value)
+                  if (typeof option === "object") {
+                    if (value === undefined) {
+                      lastChooseRef.current = (
+                        option as SelectOptionObject
+                      ).label
+                      setFinalInputValue(lastChooseRef.current ?? "")
+                    }
+                    onChange?.(option)
+                  } else {
+                    if (value === undefined) {
+                      lastChooseRef.current = option
+                      setFinalInputValue(lastChooseRef.current ?? "")
+                    }
+                    onChange?.(option)
+                  }
                 }
               }
             }}
           >
-            {finalOptions?.map((option) => {
-              return <DropList.Item key={option.label} title={option.label} />
-            })}
-            {(!finalOptions || finalOptions.length === 0) && <Empty />}
+            {children === undefined || children === null
+              ? finalOptions?.map((option, i) => {
+                  return (
+                    <DropList.Item
+                      key={option.value.toString()}
+                      title={option.label}
+                    />
+                  )
+                })
+              : children}
+            {(!finalOptions || finalOptions.length === 0) && !children && (
+              <Empty />
+            )}
           </DropList>
         }
         disabled={disabled}
@@ -129,8 +200,9 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
           onFocus={onFocus}
           onBlur={onBlur}
           value={finalInputValue}
-          readOnly={!showSearch}
+          readOnly={!showSearch || readOnly}
           addBefore={addBefore}
+          addAfter={addAfter}
           error={error}
           onKeyDown={onKeyDown}
           disabled={disabled}

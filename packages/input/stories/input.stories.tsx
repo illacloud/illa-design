@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { Input, InputProps } from "../src"
-import { PersonIcon, Space } from "@illa-design/react"
+import { PeopleIcon, Space } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -13,7 +13,7 @@ export const Basic: StoryFn<InputProps> = (props) => {
     <div>
       <Space direction={"vertical"} align="start">
         <Input w="20px" {...props} />
-        <Input suffix={<PersonIcon />} {...props} />
+        <Input suffix={<PeopleIcon />} {...props} />
         <Input prefix="prefix" {...props} />
         <Input suffix="suffix" {...props} />
         <Input addBefore="Before" {...props} />

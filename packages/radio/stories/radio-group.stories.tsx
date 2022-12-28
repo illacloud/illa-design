@@ -18,7 +18,7 @@ export default {
 const Template: StoryFn<RadioGroupProps<any>> = (args) => {
   return (
     <Space direction="vertical">
-      <RadioGroup w={"280px"} options={["A", "B", "C", "D"]} {...args} />
+      <RadioGroup w={"200px"} options={["A", "B", "C", "D"]} {...args} />
       <RadioGroup
         w={"280px"}
         options={["pear", "watermelon", "peach"]}

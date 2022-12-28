@@ -25,6 +25,8 @@ export function applyListSelectorSingleItemStyle(
     padding: 9px 16px;
     display: flex;
     flex-direction: row;
+    max-height: 216px;
+    overflow-y: auto;
     align-items: center;
     background-color: ${selected ? getColor("grayBlue", "09") : "unset"};
 
@@ -53,6 +55,8 @@ export function applySelectorGroupStyle(
   }
   return css`
     padding: 8px 0;
+    max-height: 216px;
+    overflow-y: auto;
     ${borderStyle};
   `
 }

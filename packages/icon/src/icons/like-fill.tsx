@@ -1,7 +1,7 @@
 import { createIcon } from "../create-icon"
 
-export const HeartIcon = createIcon({
-  title: "HeartIcon",
+export const LikeFillIcon = createIcon({
+  title: "LikeFillIcon",
   viewBox: "0 0 16 16",
   path: (
     <path
@@ -11,4 +11,4 @@ export const HeartIcon = createIcon({
   ),
 })
 
-HeartIcon.displayName = "HeartIcon"
+LikeFillIcon.displayName = "LikeFillIcon"

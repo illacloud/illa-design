@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { Collapse, CollapseItem, CollapseProps } from "../src"
-import { ShareIcon, Space } from "@illa-design/react"
+import { LikeFillIcon, ShareIcon, Space } from "@illa-design/react"
 
 export default {
   title: "DATA DISPLAY/Collapse",
@@ -63,7 +63,7 @@ export const Template: StoryFn<CollapseProps> = (args) => {
             <CollapseItem
               header="Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get."
               name="1.1"
-              extra={<ShareIcon />}
+              extra={<LikeFillIcon />}
             >
               Life-was-like-a-box-of-chocolates-you-never-know-what-your-gonna-get
             </CollapseItem>

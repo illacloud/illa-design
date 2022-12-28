@@ -41,28 +41,51 @@ export interface SelectProps
   placeholder?: string
   size?: SelectSize
   addBefore?: ReactNode
+  addAfter?: ReactNode
   prefix?: ReactNode | string
   suffixIcon?: ReactNode
-  defaultValue?: SelectOptionObject | string | SelectOptionObject[] | string[]
+  defaultValue?:
+    | SelectOptionObject
+    | string
+    | SelectOptionObject[]
+    | string[]
+    | number
+    | number[]
   showSearch?: boolean
-  value?: SelectOptionObject | string | SelectOptionObject[] | string[]
+  value?:
+    | SelectOptionObject
+    | string
+    | SelectOptionObject[]
+    | string[]
+    | number
+    | number[]
   filterOption?: boolean | ((inputValue: string) => boolean)
   onChange?: (
-    value: null | SelectOptionObject | string | SelectOptionObject[] | string[],
+    value:
+      | null
+      | SelectOptionObject
+      | string
+      | SelectOptionObject[]
+      | string[]
+      | number
+      | number[],
   ) => void
   onClear?: () => void
-  onInputValueChange?: (value: string) => void
+  readOnly?: boolean
+  onInputValueChange?: (value: string | number) => void
   onKeyDown?: (e: SyntheticEvent) => void
   onVisibleChange?: (visible: boolean) => void
   dropdownProps?: DropdownProps
-  options?: SelectOptionObject[]
-  onDeselect?: (value: string | SelectOptionObject) => void
+  options?: SelectOptionObject[] | string[] | number[]
+  onDeselect?: (value: string | number | SelectOptionObject) => void
   multiple?: boolean
   onBlur?: (e: SyntheticEvent) => void
   onFocus?: (e: SyntheticEvent) => void
 }
 
 export interface SelectOptionObject {
-  label: string
-  value: string
+  label: string | ReactNode
+  value: string | number
 }
+
+export interface OptionProps {}

@@ -8,7 +8,7 @@ import {
   useReducer,
 } from "react"
 import { useMergeValue, isFunction, omit } from "@illa-design/system"
-import { NextIcon, PreIcon } from "@illa-design/icon"
+import { NextIcon, PreviousIcon } from "@illa-design/icon"
 import { MenuComponent, MenuProps } from "./interface"
 import { MenuContext } from "./menu-context"
 import { Item } from "./item"
@@ -28,7 +28,7 @@ export const Menu: MenuComponent = forwardRef<HTMLDivElement, MenuProps>(
       mode = "vertical",
       variant = "inline",
       levelIndent = 28,
-      collapseDefaultIcon = <PreIcon />,
+      collapseDefaultIcon = <PreviousIcon />,
       collapseActiveIcon = <NextIcon />,
       horizontalAlign = "flex-start",
       autoOpen,

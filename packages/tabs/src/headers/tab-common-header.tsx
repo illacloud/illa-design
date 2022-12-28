@@ -19,7 +19,13 @@ import {
   applyPreNextIconCss,
 } from "../style"
 import { TabHeaderChild } from "./tab-header-child"
-import { AddIcon, DownIcon, NextIcon, PreIcon, UpIcon } from "@illa-design/icon"
+import {
+  AddIcon,
+  DownIcon,
+  NextIcon,
+  PreviousIcon,
+  UpIcon,
+} from "@illa-design/icon"
 import useScrolling from "react-use/lib/useScrolling"
 import {
   checkAndAdjustSelectedItemPosition,
@@ -125,7 +131,10 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       if (isHorizontal) {
         return [<UpIcon key="upIcon" />, <DownIcon key="downIcon" />]
       } else {
-        return [<PreIcon key="preIcon" />, <NextIcon key="nextIcon" />]
+        return [
+          <PreviousIcon key="previousIcon" />,
+          <NextIcon key="nextIcon" />,
+        ]
       }
     }, [isHorizontal])
 
