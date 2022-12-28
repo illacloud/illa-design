@@ -65,23 +65,10 @@ export const tabHeaderContainerCss = css`
   align-items: center;
 `
 
-export function applyCardTypeHeaderCss(
-  tabPosition?: TabPosition,
-): SerializedStyles {
-  return tabPosition === "bottom"
-    ? css`
-        //border-top: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      `
-    : css`
-        //border-bottom: solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      `
-}
-
 export function applyTabHeaderContainerCss(
   variant?: TabVariant,
   tabPosition?: TabPosition,
 ): SerializedStyles {
-  const cardTypeCss = applyCardTypeHeaderCss(tabPosition)
   const textTypeCss =
     tabPosition === "left" || tabPosition === "right"
       ? css`
@@ -92,7 +79,6 @@ export function applyTabHeaderContainerCss(
     display: inline-flex;
     width: 100%;
     align-items: center;
-    ${variant === "card" ? cardTypeCss : ""}
     ${variant === "text" ? textTypeCss : ""}
   `
 }
