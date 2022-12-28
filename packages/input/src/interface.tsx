@@ -47,7 +47,7 @@ export interface InputProps
   maxLength?: number | { length: number; errorOnly?: boolean }
   onChange?: (value: string, e: SyntheticEvent) => void
   onClear?: () => void
-  onPressEnter?: () => void
+  onPressEnter?: (e: SyntheticEvent) => void
   variant?: InputVariant
 }
 

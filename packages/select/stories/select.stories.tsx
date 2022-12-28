@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from "@storybook/react"
-import { Select, SelectProps } from "../src"
-import { PeopleIcon } from "@illa-design/icon"
+import { Option, Select, SelectProps } from "../src"
+import { AddIcon, PeopleIcon } from "@illa-design/icon"
+import { Space } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -113,5 +114,15 @@ export const Basic: StoryFn<SelectProps> = (args) => (
     />
     <Select mt="20px" options={["option1", "option2", "option3"]} {...args} />
     <Select mt="20px" multiple options={[1, 2, 3]} {...args} />
+    <Select mt="20px" {...args}>
+      <Option value="option1" isSelectOption={false}>
+        <Space size="8px" direction="horizontal" alignItems="center">
+          <AddIcon size="14px" />
+          Add
+        </Space>
+      </Option>
+      <Option value="option2">Option 2</Option>
+      <Option value="option3">Option 3</Option>
+    </Select>
   </div>
 )

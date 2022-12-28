@@ -88,4 +88,7 @@ export interface SelectOptionObject {
   value: string | number
 }
 
-export interface OptionProps {}
+export interface OptionProps extends HTMLAttributes<HTMLDivElement> {
+  isSelectOption?: boolean
+  value: string | number
+}

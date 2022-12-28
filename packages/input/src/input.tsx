@@ -108,7 +108,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
             disabled={disabled}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                onPressEnter?.()
+                onPressEnter?.(e)
               }
             }}
             maxLength={finalMaxLengthErrorOnly ? undefined : finalMaxLength}

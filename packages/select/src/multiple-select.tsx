@@ -1,6 +1,6 @@
 import { forwardRef, useMemo, useRef, useState } from "react"
 import { SelectOptionObject, SelectProps } from "./interface"
-import { Dropdown, DropList } from "@illa-design/dropdown"
+import { Dropdown, DropList, DropListItem } from "@illa-design/dropdown"
 import { useMergeValue } from "@illa-design/system"
 import { DownIcon, LoadingIcon, UpIcon } from "@illa-design/icon"
 import { getColor } from "@illa-design/theme"
@@ -198,7 +198,10 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
           >
             {finalOptions?.map((option, i) => {
               return (
-                <DropList.Item key={option.value.toString()}>
+                <DropListItem
+                  key={option.value.toString()}
+                  value={option.value.toString()}
+                >
                   <div css={dropListItemStyle}>
                     <Checkbox
                       colorScheme={colorScheme}
@@ -215,7 +218,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
                     />
                     {option.label}
                   </div>
-                </DropList.Item>
+                </DropListItem>
               )
             })}
             {(!finalOptions || finalOptions.length === 0) && <Empty />}

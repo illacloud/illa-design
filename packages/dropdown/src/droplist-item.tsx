@@ -6,12 +6,13 @@ import { applyItemCss } from "./style"
 export const DropListItem = forwardRef<HTMLDivElement, DropListItemProps>(
   (props, ref) => {
     const {
-      _key = "",
       title,
       children,
       disabled,
       fontColor,
       onClick,
+      value,
+      isSelectOption = true,
       ...otherProps
     } = props
 
@@ -22,9 +23,9 @@ export const DropListItem = forwardRef<HTMLDivElement, DropListItemProps>(
         ref={ref}
         css={applyItemCss(fontColor, disabled)}
         onClick={(event) => {
-          if (disabled) return
+          if (disabled || !isSelectOption) return
           onClick?.(event)
-          onClickItem?.(_key, event)
+          onClickItem?.(value, title ? title : children, event)
         }}
         {...otherProps}
       >

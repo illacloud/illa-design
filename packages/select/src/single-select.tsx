@@ -1,7 +1,7 @@
 import { forwardRef, ReactNode, useMemo, useRef } from "react"
 import { SelectOptionObject, SelectProps } from "./interface"
 import { Input } from "@illa-design/input"
-import { Dropdown, DropList } from "@illa-design/dropdown"
+import { Dropdown, DropList, DropListItem } from "@illa-design/dropdown"
 import { useMergeValue } from "@illa-design/system"
 import { DownIcon, LoadingIcon, UpIcon } from "@illa-design/icon"
 import { getColor } from "@illa-design/theme"
@@ -127,24 +127,24 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
         popupVisible={finalPopupVisible}
         dropList={
           <DropList
-            onClickItem={(key) => {
-              const option = (options as []).find((o) => {
-                if (typeof o === "object") {
-                  return (o as SelectOptionObject).value === key
-                } else {
-                  return o === key
+            onClickItem={(key, children) => {
+              if (options === undefined) {
+                if (value === undefined) {
+                  lastChooseRef.current = children
+                  setFinalInputValue(lastChooseRef.current ?? "")
                 }
-              })
-
-              if (option !== undefined) {
-                if (labelInValue) {
-                  if (value === undefined) {
-                    lastChooseRef.current = (option as SelectOptionObject).label
-                    setFinalInputValue(lastChooseRef.current ?? "")
+                onChange?.(key)
+              } else {
+                const option = (options as []).find((o) => {
+                  if (typeof o === "object") {
+                    return (o as SelectOptionObject).value === key
+                  } else {
+                    return o === key
                   }
-                  onChange?.(option)
-                } else {
-                  if (typeof option === "object") {
+                })
+
+                if (option !== undefined) {
+                  if (labelInValue) {
                     if (value === undefined) {
                       lastChooseRef.current = (
                         option as SelectOptionObject
@@ -153,11 +153,21 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                     }
                     onChange?.(option)
                   } else {
-                    if (value === undefined) {
-                      lastChooseRef.current = option
-                      setFinalInputValue(lastChooseRef.current ?? "")
+                    if (typeof option === "object") {
+                      if (value === undefined) {
+                        lastChooseRef.current = (
+                          option as SelectOptionObject
+                        ).label
+                        setFinalInputValue(lastChooseRef.current ?? "")
+                      }
+                      onChange?.(option)
+                    } else {
+                      if (value === undefined) {
+                        lastChooseRef.current = option
+                        setFinalInputValue(lastChooseRef.current ?? "")
+                      }
+                      onChange?.(option)
                     }
-                    onChange?.(option)
                   }
                 }
               }
@@ -166,8 +176,9 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
             {children === undefined || children === null
               ? finalOptions?.map((option, i) => {
                   return (
-                    <DropList.Item
+                    <DropListItem
                       key={option.value.toString()}
+                      value={option.value.toString()}
                       title={option.label}
                     />
                   )

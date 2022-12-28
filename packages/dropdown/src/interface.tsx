@@ -30,21 +30,14 @@ export interface DropListProps extends HTMLAttributes<HTMLDivElement> {
   // because emotion deprecate defaultProps on function components.
   // See: https://github.com/reactjs/rfcs/pull/107#issue-255265902
   isDropList?: boolean
-  onClickItem?: (key: string, event: MouseEvent) => void
+  onClickItem?: (key: string, clickedNode: ReactNode, event: MouseEvent) => void
 }
 
 export interface DropListItemProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
-  key: string
-  _key?: string
+  value: string
+  isSelectOption?: boolean
   title?: string | ReactNode
   fontColor?: string
   disabled?: boolean
-}
-
-export interface DropListComponent
-  extends ForwardRefExoticComponent<
-    PropsWithChildren<DropListProps> & RefAttributes<HTMLDivElement>
-  > {
-  Item: ForwardRefExoticComponent<DropListItemProps>
 }
