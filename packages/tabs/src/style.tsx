@@ -350,7 +350,7 @@ export function applyCardHeaderChildCss(
       ? css`
           border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
           ${tabPosition === "bottom"
-            ? "border-top: solid white;"
+            ? "border-top: 2px solid white;"
             : "border-bottom: solid white;"}
         `
       : css`
