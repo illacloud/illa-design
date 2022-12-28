@@ -146,13 +146,19 @@ export function applyHeaderContainerCss(
     borderCss = applyLineHeaderContainerCss(position)
   }
   let cardStyle
-  if (variant === "card") {
+  if (variant === "card" && position !== "left" && position !== "right") {
     cardStyle = css`
       ::before {
         content: "";
         clear: both;
         position: absolute;
-        bottom: 0;
+        ${position === "top"
+          ? css`
+              bottom: 0;
+            `
+          : css`
+              top: 0;
+            `}
         left: 0;
         right: 0;
         height: 1px;
@@ -338,29 +344,38 @@ export function applyCardHeaderChildCss(
   disabled?: boolean,
   tabPosition?: TabPosition,
 ): SerializedStyles {
-  const selectedBoxCss = isSelected
-    ? css`
-        border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-        ${tabPosition === "bottom"
-          ? "border-top: solid white;"
-          : "border-bottom: solid white;"}
-      `
-    : css`
-        border: solid transparent;
-      `
+  const isHorizontal = tabPosition === "top" || tabPosition === "bottom"
+  const selectedBoxCss =
+    isSelected && isHorizontal
+      ? css`
+          border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+          ${tabPosition === "bottom"
+            ? "border-top: solid white;"
+            : "border-bottom: solid white;"}
+        `
+      : css`
+          border: solid transparent;
+        `
+
   return css`
     ${tabPosition && applyCardBorderRadius(tabPosition)}
     position: relative;
     ${applyCommonHeaderChildCss()};
     ${applyTextPaddingSizeCss(size)};
-    ${selectedBoxCss};
     z-index: ${zIndex.tabs};
-    :not(:first-child) {
-      margin-left: 4px;
-    }
     ${applyHoverBackgroundCss(isSelected, disabled)}
     color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     transition: background-color 200ms;
+    ${selectedBoxCss};
+    ${isHorizontal
+      ? css`
+          :not(:first-child) {
+            margin-left: 4px;
+          }
+        `
+      : css`
+          border: none;
+        `}
   `
 }
 
@@ -408,7 +423,9 @@ export function applyTextHeaderChildCss(
   size: TabsSize,
   isSelected?: boolean,
   disabled?: boolean,
+  tabPosition?: TabPosition,
 ) {
+  const isHorizontal = tabPosition === "left" || tabPosition === "right"
   let hoverStyle
   if (!(isSelected || disabled)) {
     hoverStyle = css`
@@ -418,26 +435,32 @@ export function applyTextHeaderChildCss(
       }
     `
   }
+  let horizontalStyle
+  if (!isHorizontal) {
+    horizontalStyle = css`
+      :not(:first-child) {
+        margin-left: 8px;
+        &::before {
+          position: absolute;
+          content: "";
+          opacity: 1;
+          left: -10px;
+          width: 0px;
+          height: 8px;
+          border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+        }
+      }
+      :not(:last-child) {
+        margin-right: 8px;
+      }
+    `
+  }
   return css`
     display: inline-flex;
     position: relative;
     align-items: center;
     padding: 1px 4px;
-    :not(:first-child) {
-      margin-left: 8px;
-      &::before {
-        position: absolute;
-        content: "";
-        opacity: 1;
-        left: -10px;
-        width: 0px;
-        height: 8px;
-        border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      }
-    }
-    :not(:last-child) {
-      margin-right: 8px;
-    }
+    ${horizontalStyle}
     ${hoverStyle}
   `
 }
@@ -650,17 +673,34 @@ export function applyHorizontalBlueLineCss(
   height: number,
   position: number,
   colorScheme: TabsColorScheme,
+  variant?: TabVariant,
   size?: TabsSize,
 ): SerializedStyles {
-  let padding = 7
-  switch (size) {
-    case "large":
-      padding = 9
-      break
-    case "small":
-      padding = 5
-      break
+  let padding
+  if (variant === "capsule") {
+    switch (size) {
+      case "large":
+        padding = 5
+        break
+      case "small":
+        padding = 1
+        break
+      default:
+        padding = 3
+    }
+  } else {
+    switch (size) {
+      case "large":
+        padding = 9
+        break
+      case "small":
+        padding = 5
+        break
+      default:
+        padding = 7
+    }
   }
+
   return css`
     width: 2px;
     height: ${height - padding * 2}px;
@@ -684,7 +724,6 @@ export const tabContentContainerCss = css`
   display: inline-flex;
   flex-direction: row;
   overflow: hidden;
-  padding-top: 10px;
   box-sizing: border-box;
   width: 100%;
   height: 100%;

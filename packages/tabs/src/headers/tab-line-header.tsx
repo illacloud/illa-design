@@ -42,6 +42,9 @@ import useMeasure from "react-use-measure"
 
 const PADDING = 16
 
+const CapsuleHorizontalMargin = 2
+const CapsuleVerticalMargin = 4
+
 export function getChildrenSize(
   isHorizontalLayout?: boolean,
   parent?: HTMLDivElement | null,
@@ -88,6 +91,13 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       return [isHorizontalLayout(tabPosition), isAhead(tabPosition)]
     }, [tabPosition])
 
+    const horizontalCardMargin =
+      variant === "capsule"
+        ? _isHorizontalLayout
+          ? CapsuleVerticalMargin
+          : CapsuleHorizontalMargin
+        : 0
+
     useEffect(() => {
       setBlueLineWidth(
         () =>
@@ -95,16 +105,20 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       )
       if (!scrollRef?.current) return
       const sizeArr = getChildrenSize(_isHorizontalLayout, childRef.current)
+
       let target = 0
       for (let i = 0; i < selectedIndex; i++) {
         target += sizeArr[i]
       }
       target = _isHorizontalLayout ? target : target + PADDING
-      setBlueLinePosition(target)
+      setBlueLinePosition(
+        target + horizontalCardMargin * (2 * (selectedIndex + 1) - 1),
+      )
     }, [
       selectedIndex,
       tabBarSpacing,
       childRef,
+      horizontalCardMargin,
       tabHeaderChild,
       _isHorizontalLayout,
     ])
@@ -154,13 +168,6 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       setNeedScroll(childrenSize > offsetSize)
     }, [_isHorizontalLayout, width, height, tabHeaderChild?.length])
 
-    useEffect(() => {
-      setBlueLineWidth(
-        () =>
-          getChildrenSize(_isHorizontalLayout, childRef.current)[selectedIndex],
-      )
-    }, [_isHorizontalLayout, selectedIndex])
-
     const dividerSize = () => {
       const sizeArr = getChildrenSize(_isHorizontalLayout, childRef.current)
       let size = 0
@@ -204,7 +211,6 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         return [<PreIcon key="preIcon" />, <NextIcon key="nextIcon" />]
       }
     }, [_isHorizontalLayout])
-
     return (
       <div css={applyHeaderContainerCss(variant, tabPosition, align)} ref={ref}>
         {prefix}
@@ -238,6 +244,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                       blueLineWidth,
                       blueLinePosition,
                       colorScheme,
+                      variant,
                       size,
                     )}
                   />
@@ -260,6 +267,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                         tabBarSpacing={tabBarSpacing}
                         colorScheme={colorScheme}
                         variant={variant}
+                        tabPosition={tabPosition}
                       />
                     )
                   })}
@@ -271,6 +279,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                       blueLineWidth,
                       blueLinePosition,
                       colorScheme,
+                      variant,
                       size,
                     )}
                   />

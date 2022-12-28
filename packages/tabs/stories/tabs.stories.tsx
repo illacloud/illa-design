@@ -80,6 +80,7 @@ const Template: Story<TabsProps> = (props) => {
 
   const [type, setType] = useState<TabVariant>("card")
   const [size, setSize] = useState<TabsSize>("medium")
+  const [position, setPosition] = useState<TabPosition>("left")
 
   return (
     <Space direction="vertical">
@@ -103,6 +104,17 @@ const Template: Story<TabsProps> = (props) => {
         <Radio value="large">large</Radio>
       </RadioGroup>
       <RadioGroup
+        name="position"
+        value={position}
+        onChange={setPosition}
+        style={{ marginBottom: 40 }}
+      >
+        <Radio value="left">left</Radio>
+        <Radio value="right">right</Radio>
+        <Radio value="top">top</Radio>
+        <Radio value="bottom">bottom</Radio>
+      </RadioGroup>
+      <RadioGroup
         name="type"
         value={type}
         onChange={setType}
@@ -113,7 +125,7 @@ const Template: Story<TabsProps> = (props) => {
         <Radio value="text">text</Radio>
         <Radio value="capsule">capsule</Radio>
       </RadioGroup>
-      <Tabs variant={type} size={size}>
+      <Tabs variant={type} size={size} tabPosition={position} editable>
         <TabPane key="1" title={"Tab 1"}>
           Content of Tab Panel 1
         </TabPane>
