@@ -35,6 +35,7 @@ export type TriggerTrigger = "hover" | "click" | "focus" | "contextmenu"
 
 export interface TriggerContext {
   renderInBody?: boolean
+  zIndex?: number
   children?: ReactNode
 }
 
