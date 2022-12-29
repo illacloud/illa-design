@@ -115,7 +115,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   }, [title, type])
 
   return (
-    <TriggerProvider renderInBody={false}>
+    <TriggerProvider renderInBody={false} zIndex={10}>
       <AnimatePresence>
         {visible && (
           <>
