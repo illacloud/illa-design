@@ -38,6 +38,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
     mask = true,
     maskClosable = true,
     closable = true,
+    withoutPadding,
     okText,
     cancelText,
     focusLock = true,
@@ -69,7 +70,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
               <CloseIcon />
             </div>
           )}
-          <div css={applyDrawerContent}>{children}</div>
+          <div css={applyDrawerContent(withoutPadding)}>{children}</div>
           {footer && (
             <div css={applyDrawerFooter}>
               <Button

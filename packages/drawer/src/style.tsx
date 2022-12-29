@@ -74,14 +74,23 @@ export const applyDrawerCloseIcon = css`
   line-height: 0;
 `
 
-export const applyDrawerContent = css`
-  position: relative;
-  flex: 1;
-  box-sizing: border-box;
-  height: 100%;
-  overflow: auto;
-  padding: 12px 24px;
-`
+export const applyDrawerContent = (
+  withoutPadding?: boolean,
+): SerializedStyles => {
+  const padding = withoutPadding
+    ? ""
+    : css`
+        padding: 12px 24px;
+      `
+  return css`
+    position: relative;
+    flex: 1;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+    ${padding};
+  `
+}
 
 export const applyDrawerFooter = css`
   box-sizing: border-box;

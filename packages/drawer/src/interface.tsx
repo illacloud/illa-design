@@ -13,6 +13,7 @@ export interface DrawerProps
   placement?: DrawerPlacement
   mask?: boolean
   maskClosable?: boolean
+  withoutPadding?: boolean
   visible?: boolean
   closable?: boolean
   focusLock?: boolean
