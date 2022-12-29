@@ -1,8 +1,7 @@
-import { HTMLAttributes, ReactNode, SyntheticEvent } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
 
-export type StepsDirectionType = "vertical" | "horizontal"
-export type StepsSize = "small" | "medium" | "large"
+export type StepsDirection = "vertical" | "horizontal"
 export type StepsStatus = "wait" | "process" | "finish" | "error"
 export type StepsType = "line" | "dot" | "navigation"
 
@@ -11,25 +10,33 @@ export interface StepsProps
     BoxProps {
   lineless?: boolean
   current?: number
-  direction?: StepsDirectionType
-  labelPlacement?: StepsDirectionType
-  size?: StepsSize
-  status?: StepsStatus
+  items?: StepItem[]
+  direction?: StepsDirection
   type?: StepsType
-  onChange?: (current: number, id: any) => void
+  onChange?: (current: number) => void
 }
 
 export interface StepProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "title" | "onClick">,
+  extends Omit<HTMLAttributes<HTMLDivElement>, "title">,
     BoxProps {
-  index?: number
   lineStatus?: StepsStatus
-  showLine?: boolean
+  lineless?: boolean
+  canClick?: boolean
   icon?: ReactNode
   disabled?: boolean
   status?: StepsStatus
   description?: string | ReactNode
   title?: string | ReactNode
-  stepId?: string
-  onClick?: (index: number, id: string, e: SyntheticEvent) => void
+  index?: number
+  type?: StepsType
+  direction?: StepsDirection
+  last?: boolean
+}
+
+export interface StepItem {
+  icon?: ReactNode
+  disabled?: boolean
+  status?: StepsStatus
+  description?: string | ReactNode
+  title?: string | ReactNode
 }

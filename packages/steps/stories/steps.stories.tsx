@@ -1,26 +1,179 @@
-import { Space } from "@illa-design/react"
 import { Meta, StoryFn } from "@storybook/react"
-import { Step, Steps, StepsProps } from "../src"
+import { Steps, StepsProps } from "../src"
 
 export default {
   title: "NAVIGATION/Steps",
   component: Steps,
 } as Meta
 
-const Basic: StoryFn<StepsProps> = (args) => {
+export const Basic: StoryFn<StepsProps> = (args) => {
   return (
-    <Space direction={"vertical"}>
-      <Steps {...args} style={{ width: 850 }}>
-        <Step title="Succeeded" />
-        <Step title="Processing" />
-        <Step title="Pending" />
-      </Steps>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Steps
+        {...args}
+        style={{ width: 850 }}
+        type="dot"
+        items={[
+          {
+            title: "Finished",
+            description: "Finished",
+          },
+          {
+            title: "In Progress",
+            status: "error",
+          },
+          {
+            title: "Waiting",
+          },
+        ]}
+      />
+      <Steps
+        {...args}
+        style={{ width: 850, marginTop: "20px" }}
+        type="line"
+        items={[
+          {
+            title: "Finished",
+            description: "Finished",
+          },
+          {
+            title: "In Progress",
+          },
+          {
+            title: "Waiting",
+          },
+        ]}
+      />
+      <Steps
+        {...args}
+        style={{ width: 850, marginTop: "20px" }}
+        type="navigation"
+        items={[
+          {
+            title: "Finished",
+            description: "Finished",
+          },
+          {
+            title: "In Progress",
+            status: "error",
+          },
+          {
+            title: "Waiting",
+          },
+        ]}
+      />
+      <Steps
+        {...args}
+        style={{ width: 850, marginTop: "20px" }}
+        type="navigation"
+        items={[
+          {
+            title: "Finished",
+            description:
+              "FinishedFinished" +
+              "FinishedFinished" +
+              "FinishedFinishedFinishedFinishedFin" +
+              "ishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinishedFinished",
+          },
+          {
+            title: "In Progress",
+          },
+          {
+            title: "Waiting",
+          },
+        ]}
+      />
+    </div>
+  )
+}
 
-      <Steps labelPlacement={"vertical"} {...args} style={{ width: 850 }}>
-        <Step title="Succeeded" />
-        <Step title="Processing" />
-        <Step title="Pending" />
-      </Steps>
-    </Space>
+export const Vertical: StoryFn<StepsProps> = (args) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+      }}
+    >
+      <Steps
+        {...args}
+        style={{ height: 300 }}
+        direction="vertical"
+        type="dot"
+        items={[
+          {
+            title: "Finished",
+            description: "Finished",
+          },
+          {
+            title: "In Progress",
+            status: "error",
+          },
+          {
+            title: "Waiting",
+          },
+        ]}
+      />
+      <Steps
+        {...args}
+        style={{ height: 300, marginLeft: "20px" }}
+        direction="vertical"
+        type="line"
+        items={[
+          {
+            title: "Finished",
+            description: "Finished",
+          },
+          {
+            title: "In Progress",
+          },
+          {
+            title: "Waiting",
+          },
+        ]}
+      />
+      <Steps
+        {...args}
+        style={{ height: 300, marginLeft: "20px" }}
+        direction="vertical"
+        type="navigation"
+        items={[
+          {
+            title: "Finished",
+            description: "Finished",
+          },
+          {
+            title: "In Progress",
+            status: "error",
+          },
+          {
+            title: "Waiting",
+          },
+        ]}
+      />
+      <Steps
+        {...args}
+        style={{ height: 300, marginLeft: "20px" }}
+        direction="vertical"
+        type="navigation"
+        items={[
+          {
+            title: "Finished",
+            description: "Finished",
+          },
+          {
+            title: "In Progress",
+          },
+          {
+            title: "Waiting",
+          },
+        ]}
+      />
+    </div>
   )
 }

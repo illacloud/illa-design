@@ -1,16 +1,21 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { StepsStatus } from "./interface"
+import { StepsDirection, StepsStatus } from "./interface"
 import { getColor } from "@illa-design/theme"
 
-export const stepsContainerStyle = css`
-  display: inline-flex;
-  flex-direction: column;
-`
+export function applyStepsContainerStyle(
+  direction: StepsDirection,
+): SerializedStyles {
+  return css`
+    display: flex;
+    width: ${direction === "vertical" ? "auto" : "100%"};
+    flex-direction: ${direction === "vertical" ? "column" : "row"};
+  `
+}
 
 export const stepIconStyle = css`
   width: 24px;
-  font-size: 24px;
   height: 24px;
+  font-size: 24px;
 `
 
 export function applyStepDotStyle(status: StepsStatus): SerializedStyles {
@@ -18,7 +23,7 @@ export function applyStepDotStyle(status: StepsStatus): SerializedStyles {
 
   switch (status) {
     case "wait":
-      c = getColor("grayBlue", "03")
+      c = getColor("grayBlue", "06")
       break
     case "process":
     case "finish":
@@ -31,13 +36,14 @@ export function applyStepDotStyle(status: StepsStatus): SerializedStyles {
 
   return css`
     border-radius: 4px;
+    flex-shrink: 0;
     width: 8px;
     height: 8px;
     background-color: ${c};
   `
 }
 
-export function applyStepLineStyle(status: StepsStatus): SerializedStyles {
+export function applyIndexStyle(status: StepsStatus): SerializedStyles {
   let c = css``
 
   switch (status) {
@@ -68,8 +74,13 @@ export function applyStepLineStyle(status: StepsStatus): SerializedStyles {
   }
 
   return css`
+    flex-shrink: 0;
     width: 24px;
     height: 24px;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 12px;
     ${c};
   `
