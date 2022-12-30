@@ -180,6 +180,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                       key={option.value.toString()}
                       value={option.value.toString()}
                       title={option.label}
+                      disabled={option.disabled}
                     />
                   )
                 })

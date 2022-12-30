@@ -125,7 +125,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
       } else {
         return []
       }
-    }, [finalValue, labelInValue, options])
+    }, [finalValue, labelInValue, options, readOnly])
 
     return (
       <Dropdown
@@ -201,6 +201,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
                 <DropListItem
                   key={option.value.toString()}
                   value={option.value.toString()}
+                  disabled={option.disabled}
                 >
                   <div css={dropListItemStyle}>
                     <Checkbox

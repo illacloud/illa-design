@@ -18,7 +18,7 @@ export function applyHorizontalNavigationContainerStyle(
     display: inline-flex;
     overflow: hidden;
     align-self: start;
-    min-height: 64px;
+    height: 64px;
     flex-direction: column;
     flex: 1;
     ${m};
@@ -40,12 +40,14 @@ export const horizontalNavigationTitleStyle = css`
 `
 
 export const horizontalNavigationDescriptionStyle = css`
-  overflow: hidden;
   margin-left: 40px;
   margin-top: 4px;
   flex-grow: 1;
   margin-right: 40px;
   font-size: 12px;
+  word-wrap: break-word;
+  overflow: hidden;
+  white-space: pre;
   text-overflow: ellipsis;
   color: ${getColor("grayBlue", "04")};
 `

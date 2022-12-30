@@ -108,6 +108,7 @@ export const Basic: StoryFn<SelectProps> = (args) => (
         {
           label: "Option 3",
           value: "option3",
+          disabled: true,
         },
       ]}
       {...args}

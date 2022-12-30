@@ -86,6 +86,8 @@ export interface SelectProps
 export interface SelectOptionObject {
   label: string | ReactNode
   value: string | number
+
+  disabled?: boolean
 }
 
 export interface OptionProps extends HTMLAttributes<HTMLDivElement> {

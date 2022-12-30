@@ -21,8 +21,8 @@ export function applyHorizontalDescriptionStyle(
 ): SerializedStyles {
   return css`
     margin-right: 16px;
-    word-wrap: break-word;
     white-space: pre;
+    word-break: break-word;
     margin-top: 4px;
     margin-left: ${type === "dot" ? "24px" : "40px"};
     font-size: 12px;
