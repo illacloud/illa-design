@@ -1,7 +1,7 @@
 const react = require("@vitejs/plugin-react")
 
 module.exports = {
-  stories: ["../packages/steps/stories/*.stories.tsx"],
+  stories: ["../packages/tabs/stories/*.stories.tsx"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",

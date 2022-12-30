@@ -1,6 +1,7 @@
 import {
   AreaHTMLAttributes,
   InputHTMLAttributes,
+  KeyboardEvent,
   ReactNode,
   SyntheticEvent,
 } from "react"
@@ -47,7 +48,7 @@ export interface InputProps
   maxLength?: number | { length: number; errorOnly?: boolean }
   onChange?: (value: string, e: SyntheticEvent) => void
   onClear?: () => void
-  onPressEnter?: (e: SyntheticEvent) => void
+  onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   variant?: InputVariant
 }
 
@@ -64,7 +65,7 @@ export interface PasswordProps extends Omit<InputProps, "suffix" | "type"> {
   onVisibilityChange?: (visibility: boolean) => void
 }
 
-export interface TextareaProps
+export interface TextAreaProps
   extends Omit<
       AreaHTMLAttributes<HTMLTextAreaElement>,
       "onChange" | "maxLength" | "placeholder" | "value" | "defaultValue"
@@ -84,5 +85,5 @@ export interface TextareaProps
   maxLength?: number | { length: number; errorOnly?: boolean }
   onChange?: (value: string, e: SyntheticEvent) => void
   onClear?: () => void
-  onPressEnter?: () => void
+  onPressEnter?: (e: KeyboardEvent<HTMLTextAreaElement>) => void
 }

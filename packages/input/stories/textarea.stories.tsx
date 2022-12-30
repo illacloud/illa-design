@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react"
-import { Search, Textarea, TextareaProps } from "../src"
+import { Search, TextArea, TextAreaProps } from "../src"
 import { Space } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
@@ -8,11 +8,11 @@ export default {
   component: Search,
 } as Meta
 
-export const Basic: StoryFn<TextareaProps> = (props) => {
+export const Basic: StoryFn<TextAreaProps> = (props) => {
   return (
     <div>
-      <Textarea w="320px" {...props} />
-      <Textarea
+      <TextArea w="320px" {...props} />
+      <TextArea
         mt="12px"
         showWordLimit={true}
         maxLength={{
@@ -21,7 +21,7 @@ export const Basic: StoryFn<TextareaProps> = (props) => {
         }}
         {...props}
       />
-      <Textarea
+      <TextArea
         w="120px"
         autoSize={{
           minRows: 2,

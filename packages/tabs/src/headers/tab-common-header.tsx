@@ -98,7 +98,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       [isHorizontal, handleSelectTab],
     )
 
-    const checkPreAndNextDisable = () => {
+    const checkPreAndNextDisable = useCallback(() => {
       if (!scrollRef.current) return
       setPreDisable(getScrollDist(isHorizontal, scrollRef) === 0)
       setNextDisable(
@@ -108,13 +108,13 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             getScrollSize(isHorizontal, scrollRef),
         ) < 1,
       )
-    }
+    }, [isHorizontal])
 
     useEffect(() => {
       if (!scrolling) {
         checkPreAndNextDisable()
       }
-    }, [scrolling, needScroll])
+    }, [scrolling, needScroll, checkPreAndNextDisable])
 
     useEffect(() => {
       if (!scrollRef?.current) return

@@ -5,7 +5,7 @@ import {
   useRef,
   useState,
 } from "react"
-import { TextareaProps } from "./interface"
+import { TextAreaProps } from "./interface"
 import {
   applyInputDisabledStyle,
   applyInputStyle,
@@ -21,7 +21,7 @@ import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 import autoSizeTextAreaHeight from "./autoSizeTextAreaHeight"
 import { useIsomorphicLayoutEffect } from "framer-motion"
 
-export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
+export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
   (props, ref) => {
     const {
       variant = "outline",
@@ -115,7 +115,7 @@ export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
           placeholder={placeholder}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              onPressEnter?.()
+              onPressEnter?.(e)
             }
           }}
           css={[
@@ -172,4 +172,4 @@ export const Textarea = forwardRef<HTMLDivElement, TextareaProps>(
   },
 )
 
-Textarea.displayName = "Textarea"
+TextArea.displayName = "TextArea"

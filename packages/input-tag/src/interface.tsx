@@ -2,7 +2,7 @@ import {
   InputHTMLAttributes,
   MutableRefObject,
   ReactNode,
-  Ref,
+  KeyboardEvent,
   SyntheticEvent,
 } from "react"
 import { BoxProps } from "@illa-design/theme"
@@ -52,8 +52,8 @@ export interface InputTagProps
   onClear?: () => void
   onFocus?: (e: SyntheticEvent) => void
   onInputChange?: (inputValue: string, event?: SyntheticEvent) => void
-  onKeyDown?: (e: SyntheticEvent) => void
-  onPressEnter?: (e: SyntheticEvent) => void
+  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void
+  onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   onRemove?: (
     value: TagObject | string,
     index: number,

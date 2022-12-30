@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react"
-import { Tabs, TabPane, TabsProps } from "../src"
+import { TabPane, Tabs, TabsProps } from "../src"
 import { ReactNode } from "react"
 import { Space } from "@illa-design/react"
 

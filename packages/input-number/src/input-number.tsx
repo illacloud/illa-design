@@ -30,6 +30,7 @@ export const InputNumber = forwardRef<HTMLDivElement, InputNumberProps>(
       defaultValue,
       value,
       icons,
+      formatter,
       onChange,
       ...otherProps
     } = props
@@ -101,7 +102,7 @@ export const InputNumber = forwardRef<HTMLDivElement, InputNumberProps>(
         css={hoverControlStyle}
         type="number"
         size={size}
-        value={finalValue.toString()}
+        value={formatter ? formatter(finalValue) : finalValue.toString()}
         onChange={(v) => {
           if (value === undefined) {
             setFinalValue(Number(v))
