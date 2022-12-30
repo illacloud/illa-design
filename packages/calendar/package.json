@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/popover",
-  "version": "1.0.10",
-  "description": "Illa Design Popover.",
+  "name": "@illa-design/calendar",
+  "version": "0.0.0",
+  "description": "Illa Design Calendar.",
   "keywords": [
-    "popover",
+    "calendar",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illacloud/illa-design.git",
-    "directory": "packages/popover"
+    "directory": "packages/calendar"
   },
   "bugs": {
     "url": "https://github.com/illacloud/illa-design/issues"
@@ -39,12 +39,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/trigger": "workspace:*",
-    "@illa-design/typography": "workspace:*",
-    "@illa-design/link": "workspace:*",
     "@illa-design/system": "workspace:*",
-    "@illa-design/theme": "workspace:*",
-    "@illa-design/config-provider": "workspace:*"
+    "@illa-design/theme": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",

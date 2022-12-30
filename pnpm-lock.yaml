@@ -185,6 +185,14 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
 
+  packages/calendar:
+    specifiers:
+      '@illa-design/system': workspace:*
+      '@illa-design/theme': workspace:*
+    dependencies:
+      '@illa-design/system': link:../system
+      '@illa-design/theme': link:../theme
+
   packages/card:
     specifiers:
       '@illa-design/icon': workspace:*
@@ -611,6 +619,7 @@ importers:
       '@illa-design/back-top': workspace:*
       '@illa-design/badge': workspace:*
       '@illa-design/button': workspace:*
+      '@illa-design/calendar': workspace:*
       '@illa-design/card': workspace:*
       '@illa-design/cascader': workspace:*
       '@illa-design/checkbox': workspace:*
@@ -665,6 +674,7 @@ importers:
       '@illa-design/back-top': link:../back-top
       '@illa-design/badge': link:../badge
       '@illa-design/button': link:../button
+      '@illa-design/calendar': link:../calendar
       '@illa-design/card': link:../card
       '@illa-design/cascader': link:../cascader
       '@illa-design/checkbox': link:../checkbox
