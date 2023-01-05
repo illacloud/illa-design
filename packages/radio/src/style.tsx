@@ -187,7 +187,6 @@ export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
     `
   }
   return css`
-    flex: 1;
     position: relative;
     display: flex;
     align-items: center;

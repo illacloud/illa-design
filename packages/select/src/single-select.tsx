@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, useMemo, useRef } from "react"
+import { forwardRef, ReactNode, useCallback, useMemo, useRef } from "react"
 import { SelectOptionObject, SelectProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { Dropdown, DropList, DropListItem } from "@illa-design/dropdown"
@@ -50,37 +50,54 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
       value: popupVisible,
     })
 
-    let dV: string | ReactNode | undefined = undefined
-    if (value === undefined) {
-      dV = undefined
-    } else {
-      if (options === undefined) {
-        dV = undefined
-      } else {
-        if (labelInValue) {
-          dV = (options as SelectOptionObject[]).find(
-            (option) => option.value === (value as SelectOptionObject).value,
-          )?.label
+    const getValueFromProps = useCallback(
+      (
+        dealValue?:
+          | SelectOptionObject
+          | string
+          | SelectOptionObject[]
+          | string[]
+          | number
+          | number[],
+      ) => {
+        let dV: number | string | ReactNode | undefined = undefined
+        if (dealValue === undefined) {
+          dV = undefined
         } else {
-          if (options.length > 0) {
-            if (
-              typeof options[0] === "string" ||
-              typeof options[0] === "number"
-            ) {
-              dV = (options as [])?.find((v) => v === value)
-            } else if (typeof options[0] === "object") {
+          if (options === undefined) {
+            dV = undefined
+          } else {
+            if (labelInValue) {
               dV = (options as SelectOptionObject[]).find(
-                (option) => option.value === value,
+                (option) =>
+                  option.value === (dealValue as SelectOptionObject).value,
               )?.label
+            } else {
+              if (options.length > 0) {
+                if (
+                  typeof options[0] === "string" ||
+                  typeof options[0] === "number"
+                ) {
+                  dV = (options as [])?.find((v) => v === dealValue)
+                } else if (typeof options[0] === "object") {
+                  dV = (options as SelectOptionObject[]).find(
+                    (option) => option.value === dealValue,
+                  )?.label
+                }
+              }
             }
           }
         }
-      }
-    }
+        return dV
+      },
+      [labelInValue, options],
+    )
 
-    const [finalInputValue, setFinalInputValue] = useMergeValue("", {
-      defaultValue: dV,
-      value: undefined,
+    const [finalInputValue, setFinalInputValue] = useMergeValue<
+      number | string | ReactNode | undefined
+    >("", {
+      defaultValue: getValueFromProps(defaultValue),
+      value: getValueFromProps(value),
     })
 
     const lastChooseRef = useRef<string | null | ReactNode>(finalInputValue)
@@ -99,8 +116,10 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
       }
       if (
         filterOption &&
-        typeof finalInputValue === "string" &&
-        finalInputValue !== ""
+        finalInputValue &&
+        finalInputValue !== "" &&
+        (typeof finalInputValue === "string" ||
+          typeof finalInputValue === "number")
       ) {
         newOptions = newOptions.filter((option) => {
           if (typeof filterOption === "function") {
@@ -108,7 +127,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
           }
           return (
             typeof option.label === "string" &&
-            option.label.includes(finalInputValue)
+            option.label.includes(finalInputValue.toString())
           )
         })
       }
@@ -127,6 +146,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
         popupVisible={finalPopupVisible}
         dropList={
           <DropList
+            maxH="264px"
             onClickItem={(key, children) => {
               if (options === undefined) {
                 if (value === undefined) {
@@ -139,10 +159,9 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                   if (typeof o === "object") {
                     return (o as SelectOptionObject).value === key
                   } else {
-                    return o === key
+                    return String(o) === key
                   }
                 })
-
                 if (option !== undefined) {
                   if (labelInValue) {
                     if (value === undefined) {

@@ -7,6 +7,7 @@ import {
   RefAttributes,
 } from "react"
 import { TriggerColorScheme, TriggerProps } from "@illa-design/trigger"
+import { BoxProps } from "@illa-design/theme"
 
 export interface DropdownProps {
   children?: ReactNode
@@ -23,13 +24,10 @@ export interface DropdownProps {
   onVisibleChange?: (visible: boolean) => void
 }
 
-export interface DropListProps extends HTMLAttributes<HTMLDivElement> {
+export interface DropListProps
+  extends HTMLAttributes<HTMLDivElement>,
+    BoxProps {
   disabled?: boolean
-  width?: string
-  // you should explicitly set `isDropList: true` if you apply `css` prop on DropList component
-  // because emotion deprecate defaultProps on function components.
-  // See: https://github.com/reactjs/rfcs/pull/107#issue-255265902
-  isDropList?: boolean
   onClickItem?: (key: string, clickedNode: ReactNode, event: MouseEvent) => void
 }
 

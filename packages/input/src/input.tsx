@@ -113,7 +113,11 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
             }}
             maxLength={finalMaxLengthErrorOnly ? undefined : finalMaxLength}
             readOnly={readOnly}
-            value={typeof finalValue === "string" ? finalValue : ""}
+            value={
+              typeof finalValue === "string" || typeof finalValue === "number"
+                ? finalValue
+                : ""
+            }
             css={applyInputElementStyle(size)}
             placeholder={placeholder}
             onChange={(event) => {
@@ -143,8 +147,8 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         )}
         {allowClear &&
           !disabled &&
-          typeof finalValue === "string" &&
-          finalValue.length > 0 && (
+          (typeof finalValue === "string" || typeof finalValue === "number") &&
+          finalValue.toString().length > 0 && (
             <ClearIcon
               className="clear"
               onClick={(e) => {

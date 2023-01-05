@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef, useState } from "react"
+import { forwardRef, ReactNode, useMemo, useRef, useState } from "react"
 import { SelectOptionObject, SelectProps } from "./interface"
 import { Dropdown, DropList, DropListItem } from "@illa-design/dropdown"
 import { useMergeValue } from "@illa-design/system"
@@ -64,7 +64,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
         : (defaultValue as []),
     })
 
-    const [finalInputValue, setFinalInputValue] = useState("")
+    const [finalInputValue, setFinalInputValue] = useState<number | string>("")
 
     const finalOptions: SelectOptionObject[] = useMemo(() => {
       let newOptions: SelectOptionObject[] = []
@@ -78,14 +78,14 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
           newOptions = options as SelectOptionObject[]
         }
       }
-      if (filterOption && finalInputValue !== "") {
+      if (filterOption && finalInputValue && finalInputValue !== "") {
         newOptions = newOptions.filter((option) => {
           if (typeof filterOption === "function") {
             return filterOption(finalInputValue)
           }
           return (
             typeof option.label === "string" &&
-            option.label.includes(finalInputValue)
+            option.label.includes(finalInputValue.toString())
           )
         })
       }
@@ -140,11 +140,14 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
         popupVisible={finalPopupVisible}
         dropList={
           <DropList
+            maxH="264px"
             onClick={() => {
               inputTagRef.current?.focus()
             }}
             onClickItem={(key) => {
-              const option = finalOptions.find((option) => option.value === key)
+              const option = finalOptions.find(
+                (option) => String(option.value) === key,
+              )
               if (option) {
                 if (labelInValue) {
                   let selectedValue = (finalValue as SelectOptionObject[]).find(
@@ -237,7 +240,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
         <InputTag
           readOnly={!showSearch || readOnly}
           labelInValue={true}
-          inputValue={finalInputValue}
+          inputValue={finalInputValue.toString()}
           value={finalTagValue}
           addAfter={addAfter}
           addBefore={addBefore}

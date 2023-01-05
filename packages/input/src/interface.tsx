@@ -37,9 +37,9 @@ export interface InputProps
   error?: boolean
   readOnly?: boolean
   showWordLimit?: boolean
-  defaultValue?: string | ReactNode
+  defaultValue?: number | string | ReactNode
   placeholder?: string
-  value?: string | ReactNode
+  value?: number | string | ReactNode
   size?: InputSize
   addAfter?: ReactNode
   addBefore?: ReactNode

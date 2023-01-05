@@ -59,7 +59,7 @@ export interface SelectProps
     | string[]
     | number
     | number[]
-  filterOption?: boolean | ((inputValue: string) => boolean)
+  filterOption?: boolean | ((inputValue: string | number) => boolean)
   onChange?: (
     value:
       | null
@@ -86,7 +86,6 @@ export interface SelectProps
 export interface SelectOptionObject {
   label: string | ReactNode
   value: string | number
-
   disabled?: boolean
 }
 

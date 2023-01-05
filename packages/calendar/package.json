@@ -40,7 +40,13 @@
   },
   "dependencies": {
     "@illa-design/system": "workspace:*",
-    "@illa-design/theme": "workspace:*"
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/config-provider": "workspace:*",
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/button": "workspace:*",
+    "@illa-design/radio": "workspace:*",
+    "@illa-design/select": "workspace:*",
+    "dayjs": "^1.11.7"
   },
   "peerDependencies": {
     "react": "^18.2.0",

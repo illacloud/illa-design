@@ -11,7 +11,10 @@ export default {
 
 export const Basic: StoryFn<SelectProps> = (args) => (
   <div>
+    <Select value={1} options={[1, 2, 3]} {...args} />
+    <Select mt="20px" options={[1, 2, 3]} multiple {...args} />
     <Select
+      mt="20px"
       value="option1"
       options={[
         {

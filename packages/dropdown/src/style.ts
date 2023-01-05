@@ -1,12 +1,11 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export function applyListCss(w?: string): SerializedStyles {
+export function applyListCss(): SerializedStyles {
   return css`
     position: relative;
     border-radius: 8px;
-    width: ${w};
-    overflow: hidden;
+    overflow: auto;
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
     padding: 8px 0;
   `
