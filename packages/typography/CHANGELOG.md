@@ -1,5 +1,18 @@
 # @illa-design/system
 
+## 1.0.12
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/config-provider@1.0.12
+  - @illa-design/icon@1.0.12
+  - @illa-design/system@1.0.12
+  - @illa-design/theme@1.0.12
+  - @illa-design/trigger@1.0.12
+
 ## 1.0.11
 
 ### Patch Changes
