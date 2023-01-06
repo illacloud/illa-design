@@ -47,7 +47,8 @@ export interface BigCalendarProps
 }
 
 export interface CardCalendarProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange">,
+    BoxProps {
   colorScheme: CalendarColorScheme
   value: Dayjs
   currentDate: Dayjs

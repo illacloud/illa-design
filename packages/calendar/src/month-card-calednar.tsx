@@ -1,5 +1,5 @@
 import { forwardRef, ReactNode, useContext, useMemo } from "react"
-import { BigCalendarProps, CardCalendarProps } from "./interface"
+import { CardCalendarProps } from "./interface"
 import {
   applyMenuContainerStyle,
   applyMonthCardBlockStyle,
@@ -15,7 +15,7 @@ import {
   PreviousDoubleIcon,
   PreviousIcon,
 } from "@illa-design/icon"
-import { getColor } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
@@ -42,6 +42,7 @@ export const MonthCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
       onChange,
       onCurrentDateChange,
       panelTodayBtn,
+      ...otherProps
     } = props
 
     const configProviderProps = useContext<ConfigProviderProps>(
@@ -96,7 +97,11 @@ export const MonthCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
     }, [configProviderProps?.locale, currentDate, locale])
 
     return (
-      <div css={applyMonthCardCalendarStyle()} ref={ref}>
+      <div
+        css={[applyMonthCardCalendarStyle(), applyBoxStyle(otherProps)]}
+        ref={ref}
+        {...deleteCssProps(otherProps)}
+      >
         <div css={applyMonthCardTitleContainerStyle()}>
           <div css={applyMenuContainerStyle()}>
             <span

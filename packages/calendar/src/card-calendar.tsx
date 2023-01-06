@@ -17,6 +17,7 @@ export const CardCalendar = forwardRef<HTMLDivElement, CalendarProps>(
       mode,
       defaultMode,
       onPanelChange,
+      panel,
       ...otherProps
     } = props
 
@@ -52,6 +53,7 @@ export const CardCalendar = forwardRef<HTMLDivElement, CalendarProps>(
             }
             onChange?.(v)
           }}
+          {...otherProps}
         />
       )
     } else {
@@ -74,6 +76,7 @@ export const CardCalendar = forwardRef<HTMLDivElement, CalendarProps>(
             }
             onChange?.(v)
           }}
+          {...otherProps}
         />
       )
     }

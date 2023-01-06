@@ -64,6 +64,9 @@ export function applyMonthCardTitleStyle(): SerializedStyles {
   return css`
     font-size: 14px;
     flex-grow: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-left: 32px;
     margin-right: 32px;
     color: ${getColor("grayBlue", "02")};

@@ -76,6 +76,16 @@ export function applyMonthBlockDayStyle(
   isSelected: boolean,
   colorScheme: CalendarColorScheme,
 ): SerializedStyles {
+  let hoverStyle = css``
+
+  if (!isSelected && !today) {
+    hoverStyle = css`
+      &:hover {
+        background-color: ${getColor("grayBlue", "09")};
+      }
+    `
+  }
+
   return css`
     display: inline-flex;
     align-items: center;
@@ -93,5 +103,6 @@ export function applyMonthBlockDayStyle(
     background-color: ${isSelected && isInThisMonth
       ? getColor(colorScheme, "03")
       : "unset"};
+    ${hoverStyle};
   `
 }
