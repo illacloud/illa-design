@@ -13,7 +13,6 @@ import { CloseIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 import {
   applyDrawerCloseIcon,
-  applyDrawerContent,
   applyDrawerFooter,
   applyDrawerHeader,
   applyDrawerMask,
@@ -23,6 +22,7 @@ import {
   applyDrawerTitle,
   applyDrawerWrapper,
   applyModalCancelBtn,
+  fullStyle,
   maskAnimation,
 } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
@@ -57,7 +57,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
 
   const renderDrawer = () => {
     const element = (
-      <RemoveScroll>
+      <RemoveScroll css={fullStyle}>
         <div css={applyDrawerScroll} {...deleteCssProps(otherProps)}>
           {title && (
             <div css={applyDrawerHeader}>
@@ -69,7 +69,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
               <CloseIcon />
             </div>
           )}
-          <div css={applyDrawerContent}>{children}</div>
+          {children}
           {footer && (
             <div css={applyDrawerFooter}>
               <Button
@@ -89,7 +89,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
       </RemoveScroll>
     )
     return focusLock ? (
-      <FocusLock disabled={!visible} autoFocus={autoFocus}>
+      <FocusLock css={fullStyle} disabled={!visible} autoFocus={autoFocus}>
         {element}
       </FocusLock>
     ) : (
