@@ -4,6 +4,8 @@ import {
   ConfigProviderContext,
   ConfigProviderProps,
   def,
+  koKR,
+  zhCN,
 } from "@illa-design/config-provider"
 import {
   applyCalendarContainerStyle,
@@ -23,6 +25,7 @@ import { MonthBigCalendar } from "./month-big-calendar"
 import { YearBigCalendar } from "./year-big-calendar"
 import { Select } from "@illa-design/select"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { getMonthString } from "./util"
 
 export const CompleteCalendar = forwardRef<HTMLDivElement, CalendarProps>(
   (props, ref) => {
@@ -60,17 +63,29 @@ export const CompleteCalendar = forwardRef<HTMLDivElement, CalendarProps>(
       value: mode,
     })
 
+    const title = useMemo(() => {
+      if (
+        configProviderProps?.locale === zhCN ||
+        configProviderProps?.locale === koKR
+      ) {
+        return `${currentDate.year()} ${locale["year"]} ${
+          selectType === "month"
+            ? `${currentDate.month() + 1} ${locale["month"]}`
+            : ""
+        }`
+      } else {
+        return `${getMonthString(
+          currentDate.month(),
+          locale,
+        )} ${currentDate.year()}`
+      }
+    }, [configProviderProps?.locale, currentDate, locale, selectType])
+
     const headerDom = useMemo(() => {
       if (headerType === "button") {
         return (
           <>
-            <div css={headerTextStyle}>{`${currentDate.year()} ${
-              locale["year"]
-            } ${
-              selectType === "month"
-                ? `${currentDate.month() + 1} ${locale["month"]}`
-                : ""
-            }`}</div>
+            <div css={headerTextStyle}>{title}</div>
             <div css={headerPageStyle}>
               <span
                 css={headerPageIconStyle}

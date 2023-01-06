@@ -6,13 +6,6 @@ export function applyYearBigCalendarContainerStyle(): SerializedStyles {
   return css``
 }
 
-export function applyDividerStyle(): SerializedStyles {
-  return css`
-    width: 100%;
-    border-top: 1px solid ${getColor("grayBlue", "08")};
-  `
-}
-
 export function applyMonthContainerStyle(): SerializedStyles {
   return css`
     display: grid;
@@ -60,6 +53,7 @@ export function applyMonthDayContainerStyle(): SerializedStyles {
 export function applyMonthBlockHeaderContainerStyle(): SerializedStyles {
   return css`
     display: grid;
+    gap: 4px;
     grid-template-columns: repeat(7, 1fr);
   `
 }

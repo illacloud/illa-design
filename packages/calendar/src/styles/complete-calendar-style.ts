@@ -36,6 +36,10 @@ export const headerPageIconStyle = css`
   justify-content: center;
   width: 32px;
   height: 32px;
+  &:hover {
+    background-color: ${getColor("grayBlue", "09")};
+    border-radius: 4px;
+  }
 `
 
 export const headerSpaceStyle = css`

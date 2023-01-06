@@ -3,7 +3,7 @@ import { HTMLAttributes } from "react"
 import { Dayjs } from "dayjs"
 import { BoxProps } from "@illa-design/theme"
 
-export type CalendarMode = "day" | "week" | "month" | "year"
+export type CalendarMode = "month" | "year"
 
 export type CalendarHeaderType = "button" | "select"
 
@@ -44,4 +44,14 @@ export interface BigCalendarProps
   value: Dayjs
   currentDate: Dayjs
   onChange: (date: Dayjs) => void
+}
+
+export interface CardCalendarProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+  colorScheme: CalendarColorScheme
+  value: Dayjs
+  currentDate: Dayjs
+  onChange: (date: Dayjs) => void
+  onCurrentDateChange: (date: Dayjs) => void
+  panelTodayBtn?: boolean
 }

@@ -4,9 +4,10 @@ import {
   ConfigProviderContext,
   ConfigProviderProps,
   def,
+  koKR,
+  zhCN,
 } from "@illa-design/config-provider"
 import {
-  applyDividerStyle,
   applyMonthBlockDayStyle,
   applyMonthBlockHeaderContainerStyle,
   applyMonthBlockHeaderStyle,
@@ -17,6 +18,8 @@ import {
   applyYearBigCalendarContainerStyle,
 } from "./styles/year-big-calendar-style"
 import dayjs from "dayjs"
+import { getMonthString } from "./util"
+import { applyDividerStyle } from "./style"
 
 export const YearBigCalendar = forwardRef<HTMLDivElement, BigCalendarProps>(
   (props, ref) => {
@@ -61,15 +64,20 @@ export const YearBigCalendar = forwardRef<HTMLDivElement, BigCalendarProps>(
           </div>,
         )
       }
+
+      let title =
+        configProviderProps.locale === zhCN ||
+        configProviderProps.locale === koKR
+          ? `${m + 1}${locale["month"]}`
+          : getMonthString(m, locale)
+
       let monthDom = (
         <div
           className="container"
           key={`${m} ${currentDate.year()} ${currentDate.month()}`}
           css={applyMonthBlockStyle()}
         >
-          <div css={applyMonthBlockTitleStyle()}>{`${m + 1} ${
-            locale["month"]
-          }`}</div>
+          <div css={applyMonthBlockTitleStyle()}>{title}</div>
           <div css={applyMonthBlockHeaderContainerStyle()}>
             <span css={applyMonthBlockHeaderStyle()}>{locale["Sunday"]}</span>
             <span css={applyMonthBlockHeaderStyle()}>{locale["Monday"]}</span>
