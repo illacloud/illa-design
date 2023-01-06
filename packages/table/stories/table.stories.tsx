@@ -11,9 +11,8 @@ import {
   Tr,
 } from "../src"
 import { useMemo } from "react"
-import { ColumnDef } from "@tanstack/react-table"
-import { filterFns } from "@tanstack/table-core"
-import { isNumber } from "@illa-design/system"
+import { CellContext, ColumnDef, filterFns } from "@tanstack/react-table"
+import { isNumber } from "@illa-design/react"
 
 export default {
   title: "DATA DISPLAY/Table",
@@ -185,8 +184,8 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
         id: "id",
         header: "id",
         accessorKey: "id", // accessor is the "key" in the data
-        cell: (props) => {
-          const formatVal = Number(props?.getValue())
+        cell: (p: CellContext<DemoData, unknown>) => {
+          const formatVal = Number(p.getValue() ?? 0)
           return isNumber(formatVal) ? `${(formatVal * 100).toFixed(2)}%` : "-"
         },
       },

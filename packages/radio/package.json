@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/radio",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Illa Design Radio.",
   "keywords": [
     "radio",
@@ -39,8 +39,13 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/space": "1.0.8",
-    "@illa-design/theme": "1.0.8",
-    "@illa-design/system": "1.0.8"
+    "@illa-design/space": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/system": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5"
   }
 }

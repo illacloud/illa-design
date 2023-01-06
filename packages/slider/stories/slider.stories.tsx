@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/react"
 import { Slider, SliderProps } from "../src"
-import React from "react"
-import { Space } from "@illa-design/space"
+import { useState } from "react"
+import { Space } from "@illa-design/react"
 
 export default {
   title: "DATA INPUT/Slider",
@@ -23,9 +23,9 @@ export default {
 } as Meta
 
 const Template: Story<SliderProps> = (args) => {
-  const [value, setValue] = React.useState(30)
-  const [value2, setValue2] = React.useState(0)
-  const [value3, setValue3] = React.useState([0, 0])
+  const [value, setValue] = useState(30)
+  const [value2, setValue2] = useState(0)
+  const [value3, setValue3] = useState([0, 0])
   return (
     <Space size={"large"} direction={args.vertical ? "horizontal" : "vertical"}>
       <Slider

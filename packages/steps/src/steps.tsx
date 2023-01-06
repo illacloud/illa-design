@@ -1,11 +1,16 @@
-import React, { forwardRef, ReactElement, ReactNode } from "react"
+import React, {
+  Children,
+  cloneElement,
+  forwardRef,
+  ReactElement,
+  ReactNode,
+} from "react"
 import { StepsProps } from "./interface"
-import { applyStepsStyle } from "./style"
 import { Step } from "./step"
 import { deleteCssProps } from "@illa-design/theme"
+import { applyStepsStyle } from "./style/steps"
 
-// eslint-disable-next-line react/display-name
-const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
+export const Steps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
   const {
     variant = "line",
     direction = "horizontal",
@@ -19,7 +24,7 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
     ...restProps
   } = props
 
-  function filterStepComponent(child: ReactNode) {
+  const filterStepComponent = (child: ReactNode) => {
     return (
       child &&
       (child as ReactElement).type &&
@@ -28,11 +33,11 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
     )
   }
 
-  function fillStepComponent(
+  const fillStepComponent = (
     child: ReactNode,
     index: number,
     arr: ReactNode[],
-  ) {
+  ) => {
     if (!child) {
       return null
     }
@@ -54,7 +59,7 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
       ...(child as ReactElement).props,
     }
 
-    return React.cloneElement(child as ReactElement, childProps)
+    return cloneElement(child as ReactElement, childProps)
   }
 
   return (
@@ -63,16 +68,11 @@ const ForwardRefSteps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
       css={[applyStepsStyle({ direction })]}
       {...deleteCssProps(restProps)}
     >
-      {React.Children.toArray(children)
+      {Children.toArray(children)
         .filter(filterStepComponent)
         .map(fillStepComponent)}
     </div>
   )
 })
 
-export const Steps = ForwardRefSteps as typeof ForwardRefSteps & {
-  Step: typeof Step
-}
-
 Steps.displayName = "Steps"
-Steps.Step = Step

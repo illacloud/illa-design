@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/input-number",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Illa Design InputNumber.",
   "keywords": [
     "input-number",
@@ -39,9 +39,15 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.8",
-    "@illa-design/input": "1.0.8",
-    "@illa-design/system": "1.0.8",
-    "@illa-design/theme": "1.0.8"
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/input": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "number-precision": "^1.6.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5"
   }
 }

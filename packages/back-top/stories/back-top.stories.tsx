@@ -19,9 +19,9 @@ export default {
       <>
         <Story />
         <div
-          css={css`
-            white-space: pre-wrap;
-          `}
+          style={{
+            whiteSpace: "pre-wrap",
+          }}
         >
           {loremIpsumArticle}
         </div>
@@ -48,9 +48,9 @@ CustomIcon.args = {}
 export const OtherTarget = (args) => {
   return (
     <div
-      css={css`
-        position: relative;
-      `}
+      style={{
+        position: "relative",
+      }}
     >
       <BackTop
         target={() => document.getElementById("target")}
@@ -59,10 +59,10 @@ export const OtherTarget = (args) => {
       ></BackTop>
       <div
         id="target"
-        css={css`
-          height: 300px;
-          overflow: auto;
-        `}
+        style={{
+          height: "300px",
+          overflow: "auto",
+        }}
       >
         {loremIpsumArticle}
       </div>

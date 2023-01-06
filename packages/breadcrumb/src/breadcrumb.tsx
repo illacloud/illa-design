@@ -19,15 +19,14 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
   (props, ref) => {
     const { separator, routes, maxCount, children, ...otherProps } = props
 
-    const separatorNode = useMemo(() => {
-      return typeof separator === "string" ? (
+    const separatorNode =
+      typeof separator === "string" ? (
         <span css={dividerStyle}>{separator}</span>
       ) : (
         separator ?? (
           <SlashIcon ml="12px" mr="12px" fs="8px" c={getColor("gray", "06")} />
         )
       )
-    }, [separator])
 
     const childrenNode = useMemo(() => {
       if (routes) {

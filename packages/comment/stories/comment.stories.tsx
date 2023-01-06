@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Comment, CommentProps } from "../src"
-import { Avatar } from "@illa-design/avatar"
+import { Avatar } from "@illa-design/react"
 import { css } from "@emotion/react"
 
 //👇 This default export determines where your story goes in the story list

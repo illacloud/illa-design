@@ -11,36 +11,21 @@ import {
   ColumnDef,
   ColumnFilter,
   ColumnFiltersState,
+  FilterFnOption,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  PaginationState,
+  RowSelectionState,
   SortingState,
   useReactTable,
 } from "@tanstack/react-table"
-import {
-  FilterFnOption,
-  PaginationState,
-  RowSelectionState,
-} from "@tanstack/table-core"
 import { Checkbox } from "@illa-design/checkbox"
-import { rankItem } from "@tanstack/match-sorter-utils"
 import {
-  after,
-  before,
-  contains,
-  doesNotContain,
-  downloadDataAsCSV,
-  empty,
-  equalTo,
-  lessThan,
-  moreThan,
-  notEmpty,
-  notEqualTo,
-  notLessThan,
-  notMoreThan,
   customGlobalFn,
+  downloadDataAsCSV,
   transformTableIntoCsvData,
 } from "./utils"
 import { isNumber, isObject, isString } from "@illa-design/system"
@@ -51,9 +36,9 @@ import {
   applyHeaderIconLeft,
   applyPreContainer,
   applyTableStyle,
-  toolBarStyle,
   headerStyle,
   spinStyle,
+  toolBarStyle,
 } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import { Spin } from "@illa-design/spin"
@@ -255,13 +240,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       const _selectedRow = getSelectedRow(selectedRow, multiRowSelection)
       if (isObject(_selectedRow) && !isEqual(_selectedRow, rowSelection)) {
         setRowSelection(_selectedRow)
+        setSelectedRow(undefined)
         onRowSelectionChange?.(_selectedRow)
       }
     } else {
       const _selectedRow = getSelectedRow(rowSelection, multiRowSelection)
       if (isNumber(_selectedRow) && _selectedRow !== selectedRow) {
         setSelectedRow(_selectedRow)
-        setRowSelection({ [_selectedRow]: true })
+        setRowSelection({})
         onRowSelectionChange?.(_selectedRow)
       }
     }

@@ -1,5 +1,45 @@
 # @illa-design/table
 
+## 1.0.10
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/button@1.0.10
+  - @illa-design/checkbox@1.0.10
+  - @illa-design/empty@1.0.10
+  - @illa-design/icon@1.0.10
+  - @illa-design/input@1.0.10
+  - @illa-design/pagination@1.0.10
+  - @illa-design/select@1.0.10
+  - @illa-design/spin@1.0.10
+  - @illa-design/system@1.0.10
+  - @illa-design/theme@1.0.10
+  - @illa-design/trigger@1.0.10
+
+## 1.0.9
+
+### Patch Changes
+
+- fix bugs
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/button@1.0.9
+  - @illa-design/checkbox@1.0.9
+  - @illa-design/empty@1.0.9
+  - @illa-design/icon@1.0.9
+  - @illa-design/input@1.0.9
+  - @illa-design/pagination@1.0.9
+  - @illa-design/select@1.0.9
+  - @illa-design/spin@1.0.9
+  - @illa-design/system@1.0.9
+  - @illa-design/theme@1.0.9
+  - @illa-design/trigger@1.0.9
+
 ## 1.0.8
 
 ### Patch Changes
@@ -9,8 +49,12 @@
 - Updated dependencies []:
   - @illa-design/button@1.0.8
   - @illa-design/checkbox@1.0.8
+  - @illa-design/empty@1.0.8
   - @illa-design/icon@1.0.8
+  - @illa-design/input@1.0.8
   - @illa-design/pagination@1.0.8
+  - @illa-design/select@1.0.8
+  - @illa-design/spin@1.0.8
   - @illa-design/system@1.0.8
   - @illa-design/theme@1.0.8
   - @illa-design/trigger@1.0.8

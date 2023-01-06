@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/cascader",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Illa Design Cascader.",
   "keywords": [
     "cascader",
@@ -41,13 +41,20 @@
     "e2e": "npx cypress open-ct --browser chrome"
   },
   "dependencies": {
-    "@illa-design/checkbox": "1.0.8",
-    "@illa-design/empty": "1.0.8",
-    "@illa-design/icon": "1.0.8",
-    "@illa-design/select": "1.0.8",
-    "@illa-design/list": "1.0.8",
-    "@illa-design/trigger": "1.0.8",
-    "@illa-design/system": "1.0.8",
-    "@illa-design/theme": "1.0.8"
+    "@illa-design/checkbox": "workspace:*",
+    "@illa-design/empty": "workspace:*",
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/select": "workspace:*",
+    "@illa-design/list": "workspace:*",
+    "@illa-design/trigger": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "react-fast-compare": "^3.2.0",
+    "framer-motion": "^7.6.12"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/back-top",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Illa Design BackTop.",
   "keywords": [
     "backtop",
@@ -40,9 +40,14 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.8",
-    "@illa-design/button": "1.0.8",
-    "@illa-design/system": "1.0.8",
-    "@illa-design/theme": "1.0.8"
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/button": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/theme": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5"
   }
 }

@@ -9,6 +9,7 @@ import {
   contentContainerCss,
   contentCss,
   dateTimeTextCss,
+  avatarContainerCSS,
   singleCommentContainerCss,
 } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
@@ -44,7 +45,7 @@ export const Comment = forwardRef<HTMLDivElement, CommentProps>(
         {...deleteCssProps(rest)}
       >
         <div css={singleCommentContainerCss}>
-          <span>{avatar}</span>
+          <span css={avatarContainerCSS}>{avatar}</span>
           <div css={contentContainerCss}>
             <div css={applyAuthorDatetimeContainer(dateTimeAlign)}>
               <span css={authorTextCss}> {author}</span>

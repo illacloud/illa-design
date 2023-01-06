@@ -72,6 +72,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     trigger = "hover",
     alignPoint,
     renderInBody,
+    zIndex,
   } = props
 
   const tipsContainerRef = useRef<HTMLDivElement>(null)
@@ -79,6 +80,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
   const finalVisible = popupVisible === undefined ? visible : popupVisible
   const triggerContext = useContext(TriggerProviderContext)
   const _renderInBody = renderInBody ?? triggerContext.renderInBody ?? true
+  const _zIndex = zIndex ?? triggerContext.zIndex ?? 1
 
   useEffect(() => {
     if (defaultPopupVisible) {
@@ -359,7 +361,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
                 css={[
                   css`
                     display: inline-flex;
-                    z-index: 1;
+                    z-index: ${_zIndex};
                   `,
                   applyBoxStyle(props),
                 ]}

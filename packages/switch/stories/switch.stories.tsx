@@ -1,7 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { SwitchProps, Switch } from "../src"
-import { Space } from "@illa-design/space"
-import { CheckmarkIcon, CloseIcon } from "@illa-design/icon"
+import { Space, CheckmarkIcon, CloseIcon } from "@illa-design/react"
 
 export default {
   title: "DATA INPUT/Switch",

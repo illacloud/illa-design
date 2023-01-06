@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/tag",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "This component displays as a tag with an optional link and/or button to remove the given tag.",
   "keywords": [
     "tag",
@@ -40,8 +40,13 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.8",
-    "@illa-design/theme": "1.0.8",
-    "@illa-design/system": "1.0.8"
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/system": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5"
   }
 }

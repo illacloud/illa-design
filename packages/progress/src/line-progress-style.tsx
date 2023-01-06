@@ -1,5 +1,4 @@
-import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { ProgressColorScheme } from "./interface"
 import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 

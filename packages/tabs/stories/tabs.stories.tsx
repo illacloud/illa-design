@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/react"
 import { Tabs, TabPane, TabsProps } from "../src"
 import { ReactNode } from "react"
-import { Space } from "@illa-design/space"
+import { Space } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
 export default {

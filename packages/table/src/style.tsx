@@ -26,12 +26,11 @@ export function applySizeStyle(size: TableSize): SerializedStyles {
 }
 
 export function applyContainerStyle(): SerializedStyles {
-  return css(
-    css`
-      display: flex;
-      flex-direction: column;
-    `,
-  )
+  return css`
+    display: flex;
+    flex-direction: column;
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+  `
 }
 
 export function applyPinedStyle(pined?: boolean): SerializedStyles {
@@ -164,7 +163,6 @@ export function applyTableStyle(tableLayout: TableLayout): SerializedStyles {
     border-spacing: 0;
     border-collapse: separate;
     table-layout: ${tableLayout};
-    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   `
 }
 
