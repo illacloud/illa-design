@@ -1,5 +1,16 @@
 # @illa-design/dropdown
 
+## 1.0.11
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/system@1.0.11
+  - @illa-design/theme@1.0.11
+  - @illa-design/trigger@1.0.11
+
 ## 1.0.10
 
 ### Patch Changes
