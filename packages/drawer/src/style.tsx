@@ -29,10 +29,10 @@ export function applyDrawerWrapper(isFixed?: boolean): SerializedStyles {
 }
 
 export const applyDrawerScroll = css`
-  overflow: auto;
+  position: relative;
+  overflow-y: auto;
+  width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
 `
 
 export const applyDrawerMask = css`
@@ -74,16 +74,10 @@ export const applyDrawerCloseIcon = css`
   line-height: 0;
 `
 
-export const applyDrawerContent = css`
-  position: relative;
-  flex: 1;
-  box-sizing: border-box;
-  height: 100%;
-  overflow: auto;
-  padding: 12px 24px;
-`
-
 export const applyDrawerFooter = css`
+  width: 100%;
+  position: absolute;
+  bottom: 0;
   box-sizing: border-box;
   flex-shrink: 0;
   text-align: right;
@@ -139,3 +133,8 @@ export function applyDrawerSlider(placement?: DrawerPlacement): Variants {
     },
   }
 }
+
+export const fullStyle = css`
+  width: 100%;
+  height: 100%;
+`
