@@ -33,6 +33,7 @@ importers:
       '@typescript-eslint/eslint-plugin': ^5.48.0
       '@typescript-eslint/parser': ^5.48.0
       '@vitejs/plugin-react': ^3.0.1
+      dayjs: ^1.11.7
       eslint: ^8.28.0
       eslint-config-prettier: ^8.5.0
       eslint-config-react: ^1.1.7
@@ -82,6 +83,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.48.0_lvvmdqjxoqtnsuxdrtwmxv5aoq
       '@typescript-eslint/parser': 5.48.0_ha6vam6werchizxrnqvarmz2zu
       '@vitejs/plugin-react': 3.0.1_vite@4.0.4
+      dayjs: 1.11.7
       eslint: 8.29.0
       eslint-config-prettier: 8.5.0_eslint@8.29.0
       eslint-config-react: 1.1.7
@@ -805,13 +807,13 @@ importers:
       '@illa-design/skeleton': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
-      dayjs: ^1.10.7
+      dayjs: ^1.11.7
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/skeleton': link:../skeleton
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
-      dayjs: 1.11.6
+      dayjs: 1.11.7
 
   packages/steps:
     specifiers:
@@ -835,9 +837,9 @@ importers:
 
   packages/system:
     specifiers:
-      dayjs: ^1.10.7
+      dayjs: ^1.11.7
     dependencies:
-      dayjs: 1.11.6
+      dayjs: 1.11.7
 
   packages/table:
     specifiers:
@@ -6068,13 +6070,8 @@ packages:
     resolution: {integrity: sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==}
     dev: true
 
-  /dayjs/1.11.6:
-    resolution: {integrity: sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==}
-    dev: false
-
   /dayjs/1.11.7:
     resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
-    dev: false
 
   /debounce/1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}

@@ -2,13 +2,13 @@ import { forwardRef, ReactNode, useContext, useMemo } from "react"
 import { CardCalendarProps } from "./interface"
 import {
   applyMenuContainerStyle,
-  applyMonthCardBlockStyle,
-  applyMonthCardCalendarStyle,
-  applyMonthCardTitleContainerStyle,
-  applyMonthCardTitleStyle,
+  applyDayCardBlockStyle,
+  applyDayCardCalendarStyle,
+  applyDayCardTitleContainerStyle,
+  applyDayCardTitleStyle,
   menuButtonStyle,
-  monthCardTodayStyle,
-} from "./styles/month-card-calendar-style"
+  dayCardTodayStyle,
+} from "./styles/day-card-calendar-style"
 import {
   NextDoubleIcon,
   NextIcon,
@@ -33,7 +33,7 @@ import {
   applyMonthDayContainerStyle,
 } from "./styles/year-big-calendar-style"
 
-export const MonthCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
+export const DayCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
   (props, ref) => {
     const {
       colorScheme,
@@ -98,11 +98,11 @@ export const MonthCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
 
     return (
       <div
-        css={[applyMonthCardCalendarStyle(), applyBoxStyle(otherProps)]}
+        css={[applyDayCardCalendarStyle(), applyBoxStyle(otherProps)]}
         ref={ref}
         {...deleteCssProps(otherProps)}
       >
-        <div css={applyMonthCardTitleContainerStyle()}>
+        <div css={applyDayCardTitleContainerStyle()}>
           <div css={applyMenuContainerStyle()}>
             <span
               css={menuButtonStyle}
@@ -121,7 +121,7 @@ export const MonthCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
               <PreviousIcon fs="12px" c={getColor("grayBlue", "02")} />
             </span>
           </div>
-          <div css={applyMonthCardTitleStyle()}>{title}</div>
+          <div css={applyDayCardTitleStyle()}>{title}</div>
           <div css={applyMenuContainerStyle()}>
             <span
               css={menuButtonStyle}
@@ -142,7 +142,7 @@ export const MonthCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
           </div>
         </div>
         <div css={applyDividerStyle()} />
-        <div css={applyMonthCardBlockStyle()}>
+        <div css={applyDayCardBlockStyle()}>
           <div css={applyMonthBlockHeaderContainerStyle()}>
             <span css={applyMonthBlockHeaderStyle()}>{locale["Sunday"]}</span>
             <span css={applyMonthBlockHeaderStyle()}>{locale["Monday"]}</span>
@@ -160,7 +160,7 @@ export const MonthCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
           <>
             <div css={applyDividerStyle()} />
             <div
-              css={monthCardTodayStyle}
+              css={dayCardTodayStyle}
               onClick={() => {
                 const today = dayjs(new Date())
                 onChange?.(today)
@@ -181,4 +181,4 @@ export const MonthCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
   },
 )
 
-MonthCardCalendar.displayName = "MonthCardCalendar"
+DayCardCalendar.displayName = "DayCardCalendar"

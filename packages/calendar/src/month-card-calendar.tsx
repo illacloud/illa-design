@@ -3,15 +3,15 @@ import { CardCalendarProps } from "./interface"
 import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 import {
   applyMonthBlockStyle,
-  yearCardContainerStyle,
-  yearCardContentContainerStyle,
-} from "./styles/year-card-calendar-style"
+  monthCardContainerStyle,
+  monthCardContentContainerStyle,
+} from "./styles/month-card-calendar-style"
 import {
   applyMenuContainerStyle,
-  applyMonthCardTitleContainerStyle,
-  applyMonthCardTitleStyle,
+  applyDayCardTitleContainerStyle,
+  applyDayCardTitleStyle,
   menuButtonStyle,
-} from "./styles/month-card-calendar-style"
+} from "./styles/day-card-calendar-style"
 import { NextDoubleIcon, PreviousDoubleIcon } from "@illa-design/icon"
 import { applyDividerStyle } from "./style"
 import { getMonthString } from "./util"
@@ -21,7 +21,7 @@ import {
   def,
 } from "@illa-design/config-provider"
 
-export const YearCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
+export const MonthCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
   (props, ref) => {
     const {
       colorScheme,
@@ -42,10 +42,10 @@ export const YearCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
     return (
       <div
         ref={ref}
-        css={[yearCardContainerStyle, applyBoxStyle(otherProps)]}
+        css={[monthCardContainerStyle, applyBoxStyle(otherProps)]}
         {...deleteCssProps(otherProps)}
       >
-        <div css={applyMonthCardTitleContainerStyle()}>
+        <div css={applyDayCardTitleContainerStyle()}>
           <div css={applyMenuContainerStyle()}>
             <span
               css={menuButtonStyle}
@@ -56,7 +56,7 @@ export const YearCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
               <PreviousDoubleIcon fs="12px" c={getColor("grayBlue", "02")} />
             </span>
           </div>
-          <div css={applyMonthCardTitleStyle()}>{currentDate.year()}</div>
+          <div css={applyDayCardTitleStyle()}>{currentDate.year()}</div>
           <div css={applyMenuContainerStyle()}>
             <span
               css={menuButtonStyle}
@@ -69,7 +69,7 @@ export const YearCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
           </div>
         </div>
         <div css={applyDividerStyle()} />
-        <div css={yearCardContentContainerStyle}>
+        <div css={monthCardContentContainerStyle}>
           {Array.from({ length: 12 }).map((_, index) => {
             return (
               <div
@@ -93,4 +93,4 @@ export const YearCardCalendar = forwardRef<HTMLDivElement, CardCalendarProps>(
   },
 )
 
-YearCardCalendar.displayName = "YearCardCalendar"
+MonthCardCalendar.displayName = "MonthCardCalendar"

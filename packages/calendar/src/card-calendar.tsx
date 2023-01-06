@@ -1,8 +1,8 @@
 import { forwardRef, useState } from "react"
 import { CalendarMode, CalendarProps } from "./interface"
 import { useMergeValue } from "@illa-design/system"
-import { MonthCardCalendar } from "./month-card-calednar"
-import { YearCardCalendar } from "./year-card-calendar"
+import { DayCardCalendar } from "./day-card-calednar"
+import { MonthCardCalendar } from "./month-card-calendar"
 import dayjs, { Dayjs } from "dayjs"
 
 export const CardCalendar = forwardRef<HTMLDivElement, CalendarProps>(
@@ -36,9 +36,9 @@ export const CardCalendar = forwardRef<HTMLDivElement, CalendarProps>(
 
     const [currentDate, setCurrentDate] = useState(selectedDate)
 
-    if (finalMode === "month") {
+    if (finalMode === "day") {
       return (
-        <MonthCardCalendar
+        <DayCardCalendar
           colorScheme={colorScheme}
           value={selectedDate}
           currentDate={currentDate}
@@ -56,9 +56,9 @@ export const CardCalendar = forwardRef<HTMLDivElement, CalendarProps>(
           {...otherProps}
         />
       )
-    } else {
+    } else if (finalMode === "month") {
       return (
-        <YearCardCalendar
+        <MonthCardCalendar
           colorScheme={colorScheme}
           value={selectedDate}
           currentDate={currentDate}
@@ -79,6 +79,8 @@ export const CardCalendar = forwardRef<HTMLDivElement, CalendarProps>(
           {...otherProps}
         />
       )
+    } else {
+      return <></>
     }
   },
 )

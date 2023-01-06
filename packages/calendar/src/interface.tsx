@@ -3,7 +3,7 @@ import { HTMLAttributes } from "react"
 import { Dayjs } from "dayjs"
 import { BoxProps } from "@illa-design/theme"
 
-export type CalendarMode = "month" | "year"
+export type CalendarMode = "month" | "year" | "day"
 
 export type CalendarHeaderType = "button" | "select"
 

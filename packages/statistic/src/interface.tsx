@@ -1,4 +1,4 @@
-import { CSSProperties, HTMLAttributes, ReactNode } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 import { Dayjs } from "dayjs"
 import { BoxProps } from "@illa-design/theme"
 

@@ -1,74 +1,43 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { getColor } from "@illa-design/theme"
+import { CalendarColorScheme } from "../interface"
 
-export function applyMonthCardCalendarStyle(): SerializedStyles {
-  return css`
-    display: inline-flex;
-    flex-direction: column;
-    border-radius: 2px;
-    box-sizing: border-box;
-    border: 1px solid ${getColor("grayBlue", "08")};
-  `
-}
-
-export function applyMonthCardTitleContainerStyle(): SerializedStyles {
-  return css`
-    display: inline-flex;
-    width: 100%;
-    box-sizing: border-box;
-    align-items: center;
-    padding: 4px 8px;
-  `
-}
-
-export function applyMonthCardBlockStyle(): SerializedStyles {
-  return css`
-    box-sizing: border-box;
-    padding: 16px;
-    width: 100%;
-    height: 100%;
-  `
-}
-
-export const monthCardTodayStyle = css`
-  padding: 9px 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${getColor("grayBlue", "02")};
-  font-size: 14px;
-`
-
-export function applyMenuContainerStyle(): SerializedStyles {
-  return css`
-    display: inline-flex;
-    align-items: center;
-  `
-}
-
-export const menuButtonStyle = css`
-  height: 32px;
-  width: 32px;
-  border-radius: 4px;
+export const monthCardContainerStyle = css`
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    background-color: ${getColor("grayBlue", "09")};
-  }
+  flex-direction: column;
+  border-radius: 2px;
+  box-sizing: border-box;
+  border: 1px solid ${getColor("grayBlue", "08")};
 `
 
-export function applyMonthCardTitleStyle(): SerializedStyles {
+export const monthCardContentContainerStyle = css`
+  display: grid;
+  padding: 16px;
+  row-gap: 16px;
+  column-gap: 40px;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+`
+
+export function applyMonthBlockStyle(
+  isSelected: boolean,
+  colorScheme: CalendarColorScheme,
+): SerializedStyles {
   return css`
-    font-size: 14px;
-    flex-grow: 1;
     display: inline-flex;
     align-items: center;
+    font-size: 14px;
+    color: ${isSelected ? getColor("white", "01") : getColor("grayBlue", "02")};
     justify-content: center;
-    margin-left: 32px;
-    margin-right: 32px;
-    color: ${getColor("grayBlue", "02")};
+    border-radius: 12px;
+    width: 56px;
+    height: 24px;
+    background-color: ${isSelected ? getColor(colorScheme, "03") : "unset"};
+
+    &:hover {
+      background-color: ${isSelected
+        ? getColor(colorScheme, "03")
+        : getColor("grayBlue", "09")};
+    }
   `
 }
