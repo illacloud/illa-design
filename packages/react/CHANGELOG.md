@@ -1,5 +1,70 @@
 # @illa-design/react
 
+## 1.0.12
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/affix@1.0.12
+  - @illa-design/alert@1.0.12
+  - @illa-design/avatar@1.0.12
+  - @illa-design/back-top@1.0.12
+  - @illa-design/badge@1.0.12
+  - @illa-design/button@1.0.12
+  - @illa-design/calendar@1.0.12
+  - @illa-design/card@1.0.12
+  - @illa-design/cascader@1.0.12
+  - @illa-design/checkbox@1.0.12
+  - @illa-design/collapse@1.0.12
+  - @illa-design/comment@1.0.12
+  - @illa-design/config-provider@1.0.12
+  - @illa-design/date-picker@1.0.12
+  - @illa-design/description@1.0.12
+  - @illa-design/divider@1.0.12
+  - @illa-design/drawer@1.0.12
+  - @illa-design/dropdown@1.0.12
+  - @illa-design/empty@1.0.12
+  - @illa-design/grid@1.0.12
+  - @illa-design/icon@1.0.12
+  - @illa-design/image@1.0.12
+  - @illa-design/input@1.0.12
+  - @illa-design/input-number@1.0.12
+  - @illa-design/input-tag@1.0.12
+  - @illa-design/link@1.0.12
+  - @illa-design/list@1.0.12
+  - @illa-design/loading@1.0.12
+  - @illa-design/menu@1.0.12
+  - @illa-design/message@1.0.12
+  - @illa-design/modal@1.0.12
+  - @illa-design/notification@1.0.12
+  - @illa-design/page-header@1.0.12
+  - @illa-design/pagination@1.0.12
+  - @illa-design/popconfirm@1.0.12
+  - @illa-design/popover@1.0.12
+  - @illa-design/progress@1.0.12
+  - @illa-design/radio@1.0.12
+  - @illa-design/rate@1.0.12
+  - @illa-design/result@1.0.12
+  - @illa-design/select@1.0.12
+  - @illa-design/skeleton@1.0.12
+  - @illa-design/slider@1.0.12
+  - @illa-design/space@1.0.12
+  - @illa-design/spin@1.0.12
+  - @illa-design/statistic@1.0.12
+  - @illa-design/steps@1.0.12
+  - @illa-design/switch@1.0.12
+  - @illa-design/system@1.0.12
+  - @illa-design/table@1.0.12
+  - @illa-design/tabs@1.0.12
+  - @illa-design/tag@1.0.12
+  - @illa-design/theme@1.0.12
+  - @illa-design/time-picker@1.0.12
+  - @illa-design/timeline@1.0.12
+  - @illa-design/trigger@1.0.12
+  - @illa-design/typography@1.0.12
+
 ## 1.0.11
 
 ### Patch Changes

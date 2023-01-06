@@ -1,5 +1,18 @@
 # @illa-design/pageheader
 
+## 1.0.12
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/breadcrumb@1.0.12
+  - @illa-design/divider@1.0.12
+  - @illa-design/icon@1.0.12
+  - @illa-design/system@1.0.12
+  - @illa-design/theme@1.0.12
+
 ## 1.0.11
 
 ### Patch Changes
