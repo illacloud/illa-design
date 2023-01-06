@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Popover, PopoverProps } from "../src"
-import { Button } from "@illa-design/button"
+import { Button } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
 export default {

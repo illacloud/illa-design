@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Alert, AlertProps } from "../src"
-import { Button } from "@illa-design/button"
+import { Button } from "@illa-design/react"
 
 export default {
   title: "FEEDBACK/Alert",

@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/theme",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Illa Design theme.",
   "keywords": [
     "theme",
@@ -39,17 +39,15 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@illa-design/system": "1.0.8",
-    "chroma-js": "^2.1.2",
     "color": "^4.2.3",
-    "framer-motion": "^7.6.12",
-    "react-use-measure": "^2.1.1",
-    "@juggle/resize-observer": "^3.4.0",
-    "debounce": "^1.2.1"
+    "@illa-design/system": "workspace:*"
   },
   "devDependencies": {
-    "@types/color": "^3.0.3",
-    "@types/debounce": "^1.2.1"
+    "@types/color": "^3.0.3"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5"
   }
 }

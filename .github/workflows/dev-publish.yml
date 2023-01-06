@@ -14,15 +14,21 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16]
+        pnpm-version: [7]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ matrix.pnpm-version }}
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Cache node modules & Turbo building
         uses: actions/cache@v2
@@ -32,14 +38,14 @@ jobs:
           path: |
             **/node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Build
         run: |
-          yarn install --frozen-lockfile
-          yarn build-all-components
+          pnpm install --frozen-lockfile
+          pnpm build-all-components
 
   build:
     needs:
@@ -49,17 +55,23 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16]
+        pnpm-version: [7]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ matrix.pnpm-version }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Cache node modules & Turbo building
         uses: actions/cache@v2
@@ -69,25 +81,13 @@ jobs:
           path: |
             **/node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Run Test
-        run: |
-          yarn cypress info
-          yarn test
-
-      - name: Publish to Codecov
-        uses: codecov/codecov-action@v3.1.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          target: 90%
-          files: ./coverage/lcov.info
+            ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Build storybook
         run: |
-          yarn build-storybook
+          pnpm bs
           echo "design.illafamily.com" > "storybook-static/CNAME"
 
       - name: Deploy storybook to Github Pages

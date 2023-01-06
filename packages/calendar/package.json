@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/calendar",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Illa Design Calendar.",
   "keywords": [
     "calendar",
@@ -39,9 +39,18 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.8",
-    "@illa-design/select": "1.0.8",
-    "@illa-design/system": "1.0.8",
-    "@illa-design/theme": "1.0.8"
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/select": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/config-provider": "workspace:*",
+    "@illa-design/button": "workspace:*",
+    "@illa-design/radio": "workspace:*",
+    "dayjs": "^1.10.7"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5"
   }
 }

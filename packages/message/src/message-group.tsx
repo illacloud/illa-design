@@ -4,8 +4,9 @@ import { MessageProps } from "./interface"
 import { applyBottomContainer, applyTopContainer } from "./style"
 import { messageStore } from "./message-store"
 import { Message } from "./message"
+import { applyBoxStyle, BoxProps } from "@illa-design/theme"
 
-export const MessageGroup: FC = (props) => {
+export const MessageGroup: FC<BoxProps> = (props) => {
   const [topMessageList, setTopMessageList] = useState<MessageProps[]>([])
   const [bottomMessageList, setBottomMessageList] = useState<MessageProps[]>([])
 
@@ -41,10 +42,10 @@ export const MessageGroup: FC = (props) => {
 
   return (
     <>
-      <div css={applyTopContainer}>
+      <div css={[applyTopContainer, applyBoxStyle(props)]}>
         <AnimatePresence>{topMessage}</AnimatePresence>
       </div>
-      <div css={applyBottomContainer}>
+      <div css={[applyBottomContainer, applyBoxStyle(props)]}>
         <AnimatePresence>{bottomMessage}</AnimatePresence>
       </div>
     </>

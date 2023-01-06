@@ -31,7 +31,6 @@ import {
 } from "../utils"
 import { getChildrenSize } from "./tab-line-header"
 import useMeasure from "react-use-measure"
-import { ResizeObserver } from "@juggle/resize-observer"
 
 export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
   (props, ref) => {

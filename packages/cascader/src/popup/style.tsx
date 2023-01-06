@@ -1,7 +1,6 @@
 // panel
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { SerializedStyles } from "@emotion/serialize"
 
 export const searchListWrapper = css`
   padding: 4px 0;

@@ -1,6 +1,5 @@
 import { Meta, Story } from "@storybook/react"
-import { Space } from "@illa-design/space"
-import { PenIcon } from "@illa-design/icon"
+import { Space, PenIcon } from "@illa-design/react"
 import { Select, SelectProps, Option } from "../src"
 import { BsFacebook } from "react-icons/bs"
 

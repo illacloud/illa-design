@@ -36,15 +36,20 @@ export default defineConfig({
       plugins: [
         typescript({
           tsconfig: path.resolve(__dirname, "tsconfig.json"),
-          rootDir: path.resolve(__dirname, "src"),
-          declaration: true,
-          declarationDir: path.resolve(__dirname, "dist/types"),
+          compilerOptions: {
+            rootDir: path.resolve(__dirname, "src"),
+            outDir: path.resolve(__dirname, "dist", "types"),
+            declaration: true,
+          },
+          include: path.resolve(__dirname, "src/**"),
           exclude: path.resolve(__dirname, "node_modules/**"),
         }),
       ],
       external: [
         "react",
         "react-dom",
+        "@emotion/react",
+        "framer-motion",
         "@illa-design/system",
         "@illa-design/theme",
         "@illa-design/button",
@@ -53,11 +58,14 @@ export default defineConfig({
         "react-hotkeys-hook",
         "react-focus-lock",
         "@illa-design/trigger",
+        "uuid",
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDom",
+          "@emotion/react": "@emotion/react",
+          "framer-motion": "framer-motion",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/button": "@illa-design/button",
@@ -66,6 +74,7 @@ export default defineConfig({
           "react-hotkeys-hook": "react-hotkeys-hook",
           "react-focus-lock": "react-focus-lock",
           "@illa-design/trigger": "@illa-design/trigger",
+          uuid: "uuid",
         },
       },
     },

@@ -1,8 +1,6 @@
-import { Table } from "@tanstack/table-core"
-import { FilterFn } from "@tanstack/table-core/src/features/Filters"
+import { FilterFn, FilterMeta, Table } from "@tanstack/react-table"
 import { dayjsPro, isString } from "@illa-design/system"
-import { FilterOperator, FilterOptionsState } from "./interface"
-import { FilterMeta } from "@tanstack/table-core/src/types"
+import { FilterOperator } from "./interface"
 
 export const transformTableIntoCsvData = (
   table: Table<any>,

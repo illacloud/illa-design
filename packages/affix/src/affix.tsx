@@ -1,18 +1,16 @@
 import {
   forwardRef,
-  useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
   useState,
 } from "react"
 import { isFunction, throttleByRaf } from "@illa-design/system"
-import useMeasure from "react-use-measure"
-import { ResizeObserver } from "@juggle/resize-observer"
-import useIsomorphicLayoutEffect from "react-use/lib/useIsomorphicLayoutEffect"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { useIsomorphicLayoutEffect } from "react-use"
 import { applyAffixFixedStyle, applySize } from "./style"
 import { AffixProps } from "./interface"
-import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import useMeasure from "react-use-measure"
 
 enum AffixStatus {
   START,
@@ -54,12 +52,8 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const lastIsFixed = useRef(false)
 
-  const [measureWrapperRef, measureWrapperInfo] = useMeasure({
-    polyfill: ResizeObserver,
-  })
-  const [measureAffixRef, measureAffixInfo] = useMeasure({
-    polyfill: ResizeObserver,
-  })
+  const [measureWrapperRef, measureWrapperInfo] = useMeasure()
+  const [measureAffixRef, measureAffixInfo] = useMeasure()
 
   const setWrapperRefs = (el: HTMLDivElement) => {
     // for size measure
@@ -68,16 +62,13 @@ export const Affix = forwardRef<HTMLDivElement, AffixProps>((props, ref) => {
     wrapperRef.current = el
   }
 
-  const updatePosition = useCallback(
-    throttleByRaf(() => {
-      /*
-       * check is mounted to avoid:
-       * Warning: Can't perform a React state update on an unmounted component.
-       */
-      mounted.current && setStatus(AffixStatus.START)
-    }),
-    [],
-  )
+  const updatePosition = throttleByRaf(() => {
+    /*
+     * check is mounted to avoid:
+     * Warning: Can't perform a React state update on an unmounted component.
+     */
+    mounted.current && setStatus(AffixStatus.START)
+  })
 
   useImperativeHandle(ref, () => wrapperRef?.current as HTMLDivElement, [])
 

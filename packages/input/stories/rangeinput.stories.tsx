@@ -1,7 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { RangeInputProps, RangeInput } from "../src"
-import { Space } from "@illa-design/space"
-import { PersonIcon } from "@illa-design/icon"
+import { Space, PersonIcon } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
 export default {

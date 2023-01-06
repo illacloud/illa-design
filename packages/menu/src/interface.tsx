@@ -7,7 +7,7 @@ import {
   RefAttributes,
 } from "react"
 import { TriggerProps } from "@illa-design/trigger"
-import { SerializedStyles } from "@emotion/serialize"
+import { SerializedStyles } from "@emotion/react"
 import { BoxProps } from "@illa-design/theme"
 
 export type MenuVariant = "inline" | "pop"

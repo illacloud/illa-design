@@ -2,16 +2,14 @@ import React, { forwardRef } from "react"
 import { CloseIcon, SuccessIcon } from "@illa-design/icon"
 import { isFunction } from "@illa-design/system"
 import { StepProps, StepStatus } from "./interface"
-import {
-  applyDescriptionStyle,
-  applyIconStyle,
-  applyTitleStyle,
-  applyContentStyle,
-  applyWrapperStyle,
-  applyConnectionNodeStyle,
-  isVerticalLabel,
-} from "./style"
 import { deleteCssProps } from "@illa-design/theme"
+import { applyIconStyle } from "./style/icon"
+import { isVerticalLabel } from "./style"
+import { applyConnectionNodeStyle } from "./style/connector-node"
+import { applyWrapperStyle } from "./style/wrapper"
+import { applyContentStyle } from "./style/content"
+import { applyTitleStyle } from "./style/title"
+import { applyDescriptionStyle } from "./style/description"
 
 export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
   const {
@@ -41,7 +39,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
 
   const hoverable = !!onClick && !disabled && current !== index
 
-  function onClickStep() {
+  const onClickStep = () => {
     onClick && !disabled && current !== index && onClick(index, id)
   }
 
@@ -57,7 +55,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     }
   }
 
-  function renderIcon(status: StepStatus) {
+  const renderIcon = (status: StepStatus) => {
     if (variant === "dot") {
       return null
     }
@@ -91,7 +89,7 @@ export const Step = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
     ? customDot(iconNode, { index, status: currentStatus, title, description })
     : iconNode
 
-  function renderConnectionNode() {
+  const renderConnectionNode = () => {
     if (lastStep || lineless) {
       return null
     }

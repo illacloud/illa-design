@@ -1,10 +1,9 @@
-import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
+import { css, SerializedStyles } from "@emotion/react"
 import {
   LabelPlacement,
   StepSize,
-  StepStyleConfig,
   StepStatus,
+  StepStyleConfig,
 } from "../interface"
 import { getConnectorColor } from "../style"
 

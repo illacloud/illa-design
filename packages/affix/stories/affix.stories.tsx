@@ -1,8 +1,7 @@
 import { Meta, Story } from "@storybook/react"
-import { Button } from "@illa-design/button"
+import { Button, useNotification } from "@illa-design/react"
 import { Affix, AffixProps } from "../src"
 import { CSSProperties, useRef } from "react"
-import { useNotification } from "@illa-design/notification"
 
 export default {
   title: "OTHERS /Affix",

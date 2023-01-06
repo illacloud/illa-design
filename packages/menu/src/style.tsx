@@ -1,8 +1,7 @@
 export * from "./styles"
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { SerializedStyles } from "@emotion/serialize"
-import { Theme, MenuHorizontalAlign } from "./interface"
+import { MenuHorizontalAlign, Theme } from "./interface"
 
 export const themeColor = {
   light: {

@@ -1,12 +1,5 @@
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { StepVariant, LabelPlacement, StepStatus } from "./interface"
-export * from "./style/steps"
-export * from "./style/icon"
-export * from "./style/content"
-export * from "./style/description"
-export * from "./style/title"
-export * from "./style/wrapper"
-export * from "./style/connector-node"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { LabelPlacement, StepStatus, StepVariant } from "./interface"
 
 export const statusColor = {
   finish: {
@@ -45,11 +38,7 @@ export function isVerticalLabel({
   }
 
   // if variant === dot, contents should be vertical
-  if (variant === "dot" && direction === "horizontal") {
-    return true
-  }
-
-  return false
+  return variant === "dot" && direction === "horizontal"
 }
 
 export function getConnectorColor({
@@ -59,9 +48,7 @@ export function getConnectorColor({
   nextStepError: boolean
   status: StepStatus
 }) {
-  const defaultColor = globalColor(`--${illaPrefix}-grayBlue-08`)
-  let color = defaultColor
-
+  let color = getColor("grayBlue", "08")
   if (nextStepError) {
     color = statusColor.error.color
   } else if (status === "finish") {

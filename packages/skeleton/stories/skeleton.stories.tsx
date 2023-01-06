@@ -1,9 +1,12 @@
 import { Meta, Story } from "@storybook/react"
 import { useState } from "react"
-import { Switch } from "@illa-design/switch"
-import { Avatar } from "@illa-design/avatar"
-import { Typography, Paragraph } from "@illa-design/typography"
-import { css } from "@emotion/react"
+import {
+  Avatar,
+  Paragraph,
+  Space,
+  Switch,
+  Typography,
+} from "@illa-design/react"
 import { Skeleton, SkeletonProps } from "../src"
 
 export default {
@@ -54,39 +57,22 @@ export const Animation = () => {
   const [animation, setAnimation] = useState(true)
 
   const content = (
-    <div
-      css={css`
-        display: flex;
-      `}
-    >
-      <Avatar
-        size="medium"
-        css={css`
-          margin-right: 16px;
-        `}
-      />
+    <Space>
+      <Avatar size="medium" ml="16px" />
       <Typography>
-        {Array.from({ length: 3 }, () => (
-          <Paragraph
-            css={css`
-              margin-bottom: 16px;
-            `}
-          >
-            Nothing you can sing that can't be sung. Nothing you can say but you
-            can learn how to play the game. It's easy.
+        {Array.from({ length: 3 }, (v, k) => (
+          <Paragraph key={k} mb="16px">
+            Nothing you can sing that can&apos;t be sung. Nothing you can say
+            but you can learn how to play the game. It&apos;s easy.
           </Paragraph>
         ))}
       </Typography>
-    </div>
+    </Space>
   )
 
   return (
-    <>
-      <div
-        css={css`
-          margin-bottom: 16px;
-        `}
-      >
+    <Space>
+      <div>
         <label>Animation:</label>
         <Switch
           defaultChecked
@@ -97,6 +83,6 @@ export const Animation = () => {
       <Skeleton image animation={animation} visible={animation}>
         {content}
       </Skeleton>
-    </>
+    </Space>
   )
 }

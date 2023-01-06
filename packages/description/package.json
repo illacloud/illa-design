@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/description",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Illa Design Description.",
   "keywords": [
     "description",
@@ -39,8 +39,14 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "1.0.8",
-    "@illa-design/system": "1.0.8",
-    "@illa-design/theme": "1.0.8"
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "react-use": "^17.4.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5"
   }
 }

@@ -3,7 +3,7 @@ import { Tag, TagProps } from "../src"
 
 import { BsFacebook, BsTwitch, BsTwitter } from "react-icons/bs"
 
-import { Space } from "@illa-design/space"
+import { Space } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
 export default {

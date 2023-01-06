@@ -21,16 +21,15 @@ import { css } from "@emotion/react"
 import { measureElement } from "./measure-element"
 import { BaseProps } from "./interface"
 import { Copyable, CopyableBuilder } from "./copyable-config"
-import useMeasure from "react-use-measure"
-import { ResizeObserver } from "@juggle/resize-observer"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Trigger } from "@illa-design/trigger"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
+import useMeasure from "react-use-measure"
 import { SuccessCircleIcon, CopyIcon } from "@illa-design/icon"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { mergedToString } from "@illa-design/system"
 
 function getEllipsis(
