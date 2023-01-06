@@ -56,6 +56,7 @@ export const blockContainerStyle = css`
 `
 
 export function applyBlockDayStyle(
+  today: boolean,
   isInThisMonth: boolean,
   isSelected: boolean,
   colorScheme: CalendarColorScheme,
@@ -63,9 +64,11 @@ export function applyBlockDayStyle(
   return css`
     display: inline-flex;
     align-items: center;
+    box-sizing: border-box;
     justify-content: center;
     height: 32px;
     width: 32px;
+    border: ${today ? `1px solid ${getColor(colorScheme, "03")}` : "unset"};
     border-radius: 16px;
     color: ${isSelected
       ? getColor("white", "01")

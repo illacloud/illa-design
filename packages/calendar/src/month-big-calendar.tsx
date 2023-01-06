@@ -14,6 +14,7 @@ import {
   applyWeekTitleStyle,
   blockContainerStyle,
 } from "./styles/month-big-calendar-style"
+import dayjs from "dayjs"
 
 export const MonthBigCalendar = forwardRef<HTMLDivElement, BigCalendarProps>(
   (props, ref) => {
@@ -27,6 +28,7 @@ export const MonthBigCalendar = forwardRef<HTMLDivElement, BigCalendarProps>(
 
     const dayList: ReactNode[] = []
     const firstDay = currentDate.startOf("month").startOf("week")
+    const today = dayjs(new Date())
 
     for (let i = 0; i < 42; i++) {
       const currentDay = firstDay.add(i, "day")
@@ -41,6 +43,9 @@ export const MonthBigCalendar = forwardRef<HTMLDivElement, BigCalendarProps>(
         >
           <div
             css={applyBlockDayStyle(
+              today.year() === currentDay.year() &&
+                today.month() === currentDay.month() &&
+                today.date() === currentDay.date(),
               currentDay.year() === currentDate.year() &&
                 currentDay.month() === currentDate.month(),
               currentDay.year() === value.year() &&

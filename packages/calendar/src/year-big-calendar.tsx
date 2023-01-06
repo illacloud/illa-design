@@ -16,6 +16,7 @@ import {
   applyMonthDayContainerStyle,
   applyYearBigCalendarContainerStyle,
 } from "./styles/year-big-calendar-style"
+import dayjs from "dayjs"
 
 export const YearBigCalendar = forwardRef<HTMLDivElement, BigCalendarProps>(
   (props, ref) => {
@@ -26,6 +27,7 @@ export const YearBigCalendar = forwardRef<HTMLDivElement, BigCalendarProps>(
     )
 
     const locale = configProviderProps?.locale?.calendar ?? def.calendar
+    const today = dayjs(new Date())
 
     const dayList: ReactNode[] = []
 
@@ -41,6 +43,9 @@ export const YearBigCalendar = forwardRef<HTMLDivElement, BigCalendarProps>(
           <div
             key={`${m} ${currentDay.year()} ${currentDay.month()} ${currentDay.date()}`}
             css={applyMonthBlockDayStyle(
+              today.year() === currentDay.year() &&
+                today.month() === currentDay.month() &&
+                today.date() === currentDay.date(),
               currentDay.year() === currentDate.year() &&
                 currentDay.month() === m,
               currentDay.year() === value.year() &&

@@ -1,6 +1,7 @@
 import { HTMLAttributes } from "react"
 
 import { Dayjs } from "dayjs"
+import { BoxProps } from "@illa-design/theme"
 
 export type CalendarMode = "day" | "week" | "month" | "year"
 
@@ -23,10 +24,9 @@ export type CalendarColorScheme =
   | "techPurple"
 
 export interface CalendarProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue">,
+    BoxProps {
   colorScheme?: CalendarColorScheme
-  allowSelect?: boolean
-  isWeek?: boolean
   panel?: boolean
   panelTodayBtn?: boolean
   defaultMode?: CalendarMode

@@ -1,5 +1,5 @@
 import { forwardRef, useContext, useMemo, useState } from "react"
-import { CalendarProps } from "./interface"
+import { CalendarMode, CalendarProps } from "./interface"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
@@ -22,6 +22,7 @@ import { RadioGroup } from "@illa-design/radio"
 import { MonthBigCalendar } from "./month-big-calendar"
 import { YearBigCalendar } from "./year-big-calendar"
 import { Select } from "@illa-design/select"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const CompleteCalendar = forwardRef<HTMLDivElement, CalendarProps>(
   (props, ref) => {
@@ -31,6 +32,11 @@ export const CompleteCalendar = forwardRef<HTMLDivElement, CalendarProps>(
       colorScheme = "blue",
       headerType = "button",
       onChange,
+      panelTodayBtn,
+      mode,
+      defaultMode,
+      onPanelChange,
+      ...otherProps
     } = props
 
     const configProviderProps = useContext<ConfigProviderProps>(
@@ -49,7 +55,10 @@ export const CompleteCalendar = forwardRef<HTMLDivElement, CalendarProps>(
 
     const [currentDate, setCurrentDate] = useState(selectedDate)
 
-    const [selectType, setSelectType] = useState<"month" | "year">("month")
+    const [selectType, setSelectType] = useMergeValue<CalendarMode>("month", {
+      defaultValue: defaultMode,
+      value: mode,
+    })
 
     const headerDom = useMemo(() => {
       if (headerType === "button") {
@@ -68,8 +77,10 @@ export const CompleteCalendar = forwardRef<HTMLDivElement, CalendarProps>(
                 onClick={() => {
                   if (selectType === "month") {
                     setCurrentDate(currentDate.subtract(1, "month"))
+                    onPanelChange?.(currentDate.subtract(1, "month"))
                   } else {
                     setCurrentDate(currentDate.subtract(1, "year"))
+                    onPanelChange?.(currentDate.subtract(1, "month"))
                   }
                 }}
               >
@@ -80,8 +91,10 @@ export const CompleteCalendar = forwardRef<HTMLDivElement, CalendarProps>(
                 onClick={() => {
                   if (selectType === "month") {
                     setCurrentDate(currentDate.add(1, "month"))
+                    onPanelChange?.(currentDate.add(1, "month"))
                   } else {
                     setCurrentDate(currentDate.add(1, "year"))
+                    onPanelChange?.(currentDate.add(1, "month"))
                   }
                 }}
               >
@@ -103,6 +116,7 @@ export const CompleteCalendar = forwardRef<HTMLDivElement, CalendarProps>(
               options={yearOptions}
               onChange={(v) => {
                 setCurrentDate(currentDate.set("year", v as number))
+                onPanelChange?.(currentDate.set("year", v as number))
               }}
             />
             {selectType === "month" && (
@@ -113,33 +127,47 @@ export const CompleteCalendar = forwardRef<HTMLDivElement, CalendarProps>(
                 ml="8px"
                 onChange={(v) => {
                   setCurrentDate(currentDate.set("month", (v as number) - 1))
+                  onPanelChange?.(currentDate.set("month", (v as number) - 1))
                 }}
               />
             )}
           </div>
         )
       }
-    }, [currentDate, headerType, locale, selectType])
+    }, [currentDate, headerType, locale, onPanelChange, selectType])
 
     return (
-      <div css={applyCalendarContainerStyle()} ref={ref}>
+      <div
+        css={[applyCalendarContainerStyle(), applyBoxStyle(props)]}
+        ref={ref}
+        {...deleteCssProps(otherProps)}
+      >
         <div css={applyCalendarHeaderStyle()}>
           {headerDom}
-          <Button
-            ml="32px"
-            colorScheme="gray"
-            variant="fill"
-            onClick={() => {
-              const today = dayjs(new Date())
-              if (value === undefined) {
-                setCurrentDate(today)
-                setSelectedDate(today)
-              }
-              onChange?.(today)
-            }}
-          >
-            {locale["today"]}
-          </Button>
+          {panelTodayBtn && (
+            <Button
+              ml="32px"
+              colorScheme="gray"
+              variant="fill"
+              onClick={() => {
+                const today = dayjs(new Date())
+                if (value === undefined) {
+                  setCurrentDate(today)
+                  setSelectedDate(today)
+                  if (
+                    today.year() !== currentDate.year() ||
+                    (selectType === "month" &&
+                      today.month() !== currentDate.month())
+                  ) {
+                    onPanelChange?.(today)
+                  }
+                }
+                onChange?.(today)
+              }}
+            >
+              {locale["today"]}
+            </Button>
+          )}
           <div css={headerSpaceStyle} />
           <RadioGroup
             value={selectType}
@@ -167,6 +195,12 @@ export const CompleteCalendar = forwardRef<HTMLDivElement, CalendarProps>(
                 setSelectedDate(v)
               }
               setCurrentDate(v)
+              if (
+                v.year() !== currentDate.year() ||
+                v.month() !== currentDate.month()
+              ) {
+                onPanelChange?.(v)
+              }
               onChange?.(v)
             }}
             colorScheme={colorScheme}
@@ -180,6 +214,9 @@ export const CompleteCalendar = forwardRef<HTMLDivElement, CalendarProps>(
                 setSelectedDate(v)
               }
               setCurrentDate(v)
+              if (v.year() !== currentDate.year()) {
+                onPanelChange?.(v)
+              }
               onChange?.(v)
             }}
             colorScheme={colorScheme}

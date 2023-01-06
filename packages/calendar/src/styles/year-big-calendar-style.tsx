@@ -77,6 +77,7 @@ export function applyMonthBlockHeaderStyle(): SerializedStyles {
 }
 
 export function applyMonthBlockDayStyle(
+  today: boolean,
   isInThisMonth: boolean,
   isSelected: boolean,
   colorScheme: CalendarColorScheme,
@@ -88,6 +89,8 @@ export function applyMonthBlockDayStyle(
     width: 32px;
     height: 32px;
     border-radius: 16px;
+    box-sizing: border-box;
+    border: ${today ? `1px solid ${getColor(colorScheme, "03")}` : "unset"};
     color: ${isInThisMonth
       ? isSelected
         ? getColor("white", "01")
