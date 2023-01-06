@@ -100,7 +100,7 @@ export function applySelectView(
     transition: all 200ms ease-in-out;
     box-sizing: border-box;
     width: 100%;
-    font-size: 14px;
+    font-size: inherit;
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     cursor: pointer;
@@ -156,7 +156,7 @@ export function applySelectViewText(
 ): SerializedStyles {
   return css`
     width: 100%;
-    font-size: 14px;
+    font-size: inherit;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -263,7 +263,7 @@ export function applyOptionStyle(
     box-sizing: border-box;
     width: 100%;
     padding: 0 12px;
-    font-size: 14px;
+    font-size: inherit;
     text-align: left;
     cursor: pointer;
     line-height: ${OPTION_LINE_HEIGHT}px;
@@ -309,5 +309,6 @@ export function applySelectViewStyle(): SerializedStyles {
     display: flex;
     flex-direction: row;
     width: 100%;
+    font-size: 14px;
   `
 }
