@@ -43,6 +43,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     withoutLine = true,
     okLoading,
     maskClosable = true,
+    maskStyle,
     hideCancel,
     closable,
     closeElement,
@@ -121,7 +122,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
           <>
             {mask ? (
               <motion.div
-                css={applyModalMask}
+                css={[applyModalMask, maskStyle]}
                 variants={maskAnimation}
                 animate="animate"
                 exit="exit"
