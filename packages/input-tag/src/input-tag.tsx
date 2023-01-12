@@ -154,8 +154,8 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               await tryAddInputValueToTag()
             }}
           />
-          {suffix ? <span css={applySuffixCls(size)}>{suffix}</span> : null}
         </span>
+        {suffix ? <span css={applySuffixCls(size)}>{suffix}</span> : null}
         {allowClear && !disabled && currentValue?.length ? (
           <span
             css={pointerStyle}
