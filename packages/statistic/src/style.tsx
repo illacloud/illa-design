@@ -4,12 +4,12 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export const statisticStyle = css`
   display: inline-block;
   line-height: 1.33;
+  font-size: 12px;
+  font-weight: 400;
 `
 
 export const statisticTitleStyle = css`
   margin-bottom: 4px;
-  font-size: 12px;
-  font-weight: 400;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 

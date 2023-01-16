@@ -1,6 +1,7 @@
 import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { ButtonProps } from "@illa-design/button"
 import { BoxProps } from "@illa-design/theme"
+import { SerializedStyles } from "@emotion/react"
 
 export type ModalAlignType = "left" | "center" | "right" | ""
 export type ModalType = "info" | "error" | "success" | "warning"
@@ -16,6 +17,7 @@ export interface ModalProps
   mask?: boolean
   okLoading?: boolean
   title?: ReactNode | string
+  maskStyle?: SerializedStyles
   maskClosable?: boolean
   hideCancel?: boolean
   closable?: boolean

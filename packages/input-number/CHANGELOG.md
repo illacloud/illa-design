@@ -1,4 +1,4 @@
-# @illa-design/affix
+# @illa-design/input-number
 
 ## 1.0.12
 
@@ -7,6 +7,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.12
+  - @illa-design/input@1.0.12
   - @illa-design/system@1.0.12
   - @illa-design/theme@1.0.12
 
@@ -17,6 +19,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.11
+  - @illa-design/input@1.0.11
   - @illa-design/system@1.0.11
   - @illa-design/theme@1.0.11
 
@@ -27,6 +31,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.10
+  - @illa-design/input@1.0.10
   - @illa-design/system@1.0.10
   - @illa-design/theme@1.0.10
 
@@ -39,6 +45,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.9
+  - @illa-design/input@1.0.9
   - @illa-design/system@1.0.9
   - @illa-design/theme@1.0.9
 
@@ -49,6 +57,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.8
+  - @illa-design/input@1.0.8
   - @illa-design/system@1.0.8
   - @illa-design/theme@1.0.8
 
@@ -59,6 +69,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.7
+  - @illa-design/input@1.0.7
   - @illa-design/system@1.0.7
   - @illa-design/theme@1.0.7
 
@@ -69,6 +81,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.6
+  - @illa-design/input@1.0.6
   - @illa-design/system@1.0.6
   - @illa-design/theme@1.0.6
 
@@ -79,6 +93,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.5
+  - @illa-design/input@1.0.5
   - @illa-design/system@1.0.5
   - @illa-design/theme@1.0.5
 
@@ -89,6 +105,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.4
+  - @illa-design/input@1.0.4
   - @illa-design/system@1.0.4
   - @illa-design/theme@1.0.4
 
@@ -99,6 +117,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.3
+  - @illa-design/input@1.0.3
   - @illa-design/system@1.0.3
   - @illa-design/theme@1.0.3
 
@@ -109,6 +129,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.2
+  - @illa-design/input@1.0.2
   - @illa-design/system@1.0.2
   - @illa-design/theme@1.0.2
 
@@ -119,6 +141,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.1
+  - @illa-design/input@1.0.1
   - @illa-design/system@1.0.1
   - @illa-design/theme@1.0.1
 
@@ -131,6 +155,8 @@
 ### Patch Changes
 
 - Updated dependencies []:
+  - @illa-design/icon@1.0.0
+  - @illa-design/input@1.0.0
   - @illa-design/system@1.0.0
   - @illa-design/theme@1.0.0
 
@@ -141,6 +167,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.17
+  - @illa-design/input@0.0.17
   - @illa-design/system@0.0.17
   - @illa-design/theme@0.0.17
 
@@ -151,6 +179,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.16
+  - @illa-design/input@0.0.16
   - @illa-design/system@0.0.16
   - @illa-design/theme@0.0.16
 
@@ -161,6 +191,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.15
+  - @illa-design/input@0.0.15
   - @illa-design/system@0.0.15
   - @illa-design/theme@0.0.15
 
@@ -171,6 +203,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.14
+  - @illa-design/input@0.0.14
   - @illa-design/system@0.0.14
   - @illa-design/theme@0.0.14
 
@@ -181,6 +215,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.13
+  - @illa-design/input@0.0.13
   - @illa-design/system@0.0.13
   - @illa-design/theme@0.0.13
 
@@ -191,6 +227,8 @@
 - bugfix
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.12
+  - @illa-design/input@0.0.12
   - @illa-design/system@0.0.12
   - @illa-design/theme@0.0.12
 
@@ -201,6 +239,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.11
+  - @illa-design/input@0.0.11
   - @illa-design/system@0.0.11
   - @illa-design/theme@0.0.11
 
@@ -211,6 +251,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.10
+  - @illa-design/input@0.0.10
   - @illa-design/system@0.0.10
   - @illa-design/theme@0.0.10
 
@@ -221,6 +263,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.9
+  - @illa-design/input@0.0.9
   - @illa-design/system@0.0.9
   - @illa-design/theme@0.0.9
 
@@ -231,6 +275,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.8
+  - @illa-design/input@0.0.8
   - @illa-design/system@0.0.8
   - @illa-design/theme@0.0.8
 
@@ -241,6 +287,8 @@
 - bugfix
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.7
+  - @illa-design/input@0.0.7
   - @illa-design/system@0.0.7
   - @illa-design/theme@0.0.7
 
@@ -251,6 +299,8 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.6
+  - @illa-design/input@0.0.6
   - @illa-design/system@0.0.6
   - @illa-design/theme@0.0.6
 
@@ -260,6 +310,8 @@
 
 - Updated dependencies []:
   - @illa-design/system@0.0.5
+  - @illa-design/input@0.0.5
+  - @illa-design/icon@0.0.5
   - @illa-design/theme@0.0.5
 
 ## 0.0.4
@@ -269,6 +321,8 @@
 - update version
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.4
+  - @illa-design/input@0.0.4
   - @illa-design/system@0.0.4
   - @illa-design/theme@0.0.4
 
@@ -279,6 +333,8 @@
 - fix some bugs
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.3
+  - @illa-design/input@0.0.3
   - @illa-design/system@0.0.3
   - @illa-design/theme@0.0.3
 
@@ -289,6 +345,8 @@
 - update all components version
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.2
+  - @illa-design/input@0.0.2
   - @illa-design/system@0.0.2
   - @illa-design/theme@0.0.2
 
@@ -299,5 +357,17 @@
 - release the first version
 
 - Updated dependencies []:
+  - @illa-design/icon@0.0.1
+  - @illa-design/input@0.0.1
   - @illa-design/system@0.0.1
   - @illa-design/theme@0.0.1
+
+## 0.0.0
+
+### Patch Changes
+
+- init publish
+
+- Updated dependencies []:
+  - @illa-design/system@0.0.0
+  - @illa-design/theme@0.0.0

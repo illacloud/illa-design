@@ -43,6 +43,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     withoutLine = true,
     okLoading,
     maskClosable = true,
+    maskStyle,
     hideCancel,
     closable,
     closeElement,
@@ -117,27 +118,32 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   }, [title, type])
 
   return (
-    <TriggerProvider renderInBody={false}>
+    <TriggerProvider renderInBody={false} zIndex={10}>
       <AnimatePresence>
         {visible && (
           <>
             {mask ? (
               <motion.div
-                css={applyModalMask}
+                css={[applyModalMask, maskStyle]}
                 variants={maskAnimation}
                 animate="animate"
-                onClick={() => {
-                  if (maskClosable) {
-                    onCancel?.()
-                  }
-                }}
                 exit="exit"
                 initial="initial"
                 transition={{ duration: 0.2 }}
               />
             ) : null}
-            <div css={applyModalContainer}>
+            <div
+              css={applyModalContainer}
+              onClick={() => {
+                if (maskClosable) {
+                  onCancel?.()
+                }
+              }}
+            >
               <motion.div
+                onClick={(e) => {
+                  e.stopPropagation()
+                }}
                 ref={ref}
                 role="dialog"
                 variants={modalAnimation}

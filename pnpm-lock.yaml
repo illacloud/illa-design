@@ -486,12 +486,12 @@ importers:
 
   packages/modal:
     specifiers:
-      '@illa-design/button': 1.0.10
-      '@illa-design/config-provider': 1.0.10
-      '@illa-design/icon': 1.0.10
-      '@illa-design/system': 1.0.10
-      '@illa-design/theme': 1.0.10
-      '@illa-design/trigger': 1.0.10
+      '@illa-design/button': 1.0.12
+      '@illa-design/config-provider': 1.0.12
+      '@illa-design/icon': 1.0.12
+      '@illa-design/system': 1.0.12
+      '@illa-design/theme': 1.0.12
+      '@illa-design/trigger': 1.0.12
       framer-motion: ^7.6.12
       react-focus-lock: ^2.8.1
       react-hotkeys-hook: ^3.4.6

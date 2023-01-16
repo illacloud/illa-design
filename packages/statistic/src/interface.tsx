@@ -30,4 +30,5 @@ export interface CountDownProps
   start?: boolean
   onFinish?: () => void
   onChange?: (value: number) => void
+  valueStyle?: CSSProperties
 }
