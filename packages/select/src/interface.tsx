@@ -21,6 +21,8 @@ export type SelectColorScheme =
   | "techPink"
   | "techPurple"
 
+export type SelectVariant = "outline" | "fill"
+
 export interface SelectProps
   extends Omit<
       HTMLAttributes<HTMLDivElement>,
@@ -30,6 +32,7 @@ export interface SelectProps
   autoAlignPopupWidth?: boolean
   colorScheme?: SelectColorScheme
   allowClear?: boolean
+  variant?: SelectVariant
   labelInValue?: boolean
   trigger?: TriggerTrigger
   defaultPopupVisible?: boolean

@@ -129,7 +129,7 @@ export function applyRadioButtonContainer(
 }
 
 export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
-  const { colorScheme } = stateValue
+  const { colorScheme = "blue" } = stateValue
   let sizeCss, stateCss
   switch (stateValue?.size) {
     case "small":
@@ -186,7 +186,15 @@ export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
       }
     `
   }
+
+  const equalStyle = stateValue.forceEqualWidth
+    ? css`
+        flex: 1;
+      `
+    : css``
+
   return css`
+    ${equalStyle};
     position: relative;
     display: flex;
     align-items: center;

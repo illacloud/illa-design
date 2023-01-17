@@ -39,6 +39,7 @@ export interface RadioGroupContextProps<T> {
   value?: T
   colorScheme?: RadioColorScheme
   disabled?: boolean
+  forceEqualWidth?: boolean
   defaultValue?: T
   options?: (
     | string
@@ -62,5 +63,6 @@ export interface RadioStatus {
   size?: RadioSize
   checked?: boolean
   disabled?: boolean
-  colorScheme: RadioColorScheme
+  forceEqualWidth?: boolean
+  colorScheme?: RadioColorScheme
 }

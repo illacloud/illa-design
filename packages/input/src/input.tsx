@@ -32,6 +32,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     addAfter,
     addBefore,
     prefix,
+    inputRef,
     suffix,
     maxLength,
     onChange,
@@ -104,6 +105,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         )}
         {typeof finalValue !== "object" && (
           <input
+            ref={inputRef}
             type={type}
             disabled={disabled}
             onKeyDown={(e) => {

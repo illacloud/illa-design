@@ -41,6 +41,7 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
     checked: currentChecked,
     size: context?.size,
     disabled: !!(context?.disabled || props?.disabled),
+    forceEqualWidth: context?.forceEqualWidth,
     colorScheme,
   }
 

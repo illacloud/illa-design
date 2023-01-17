@@ -2,6 +2,7 @@ import {
   AreaHTMLAttributes,
   InputHTMLAttributes,
   KeyboardEvent,
+  MutableRefObject,
   ReactNode,
   SyntheticEvent,
 } from "react"
@@ -48,6 +49,7 @@ export interface InputProps
   maxLength?: number | { length: number; errorOnly?: boolean }
   onChange?: (value: string, e: SyntheticEvent) => void
   onClear?: () => void
+  inputRef?: MutableRefObject<HTMLInputElement>
   onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   variant?: InputVariant
 }

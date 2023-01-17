@@ -31,6 +31,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
       value,
       filterOption,
       readOnly,
+      variant,
       onChange,
       onClear,
       onInputValueChange,
@@ -228,6 +229,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
         {...dropdownProps}
       >
         <Input
+          variant={variant}
           onFocus={onFocus}
           onBlur={onBlur}
           value={finalInputValue}
