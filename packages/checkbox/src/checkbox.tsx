@@ -1,13 +1,7 @@
-import {
-  ChangeEvent,
-  forwardRef,
-  useCallback,
-  useContext,
-  useEffect,
-} from "react"
+import { ChangeEvent, forwardRef, useContext } from "react"
 import { useMergeValue } from "@illa-design/system"
-import { SuccessIcon, ReduceIcon } from "@illa-design/icon"
-import { CheckboxProps } from "./interface"
+import { ReduceIcon, SuccessIcon } from "@illa-design/icon"
+import { CheckboxOption, CheckboxProps } from "./interface"
 import {
   applyCheckboxSize,
   applyCheckState,
@@ -19,37 +13,29 @@ import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
   (props, ref) => {
-    const context = useContext(CheckboxGroupContext)
-    const { onGroupChange } = context
-    const mergeProps = { ...props }
     const {
-      children,
-      disabled,
       value,
-      onChange,
+      disabled,
       checked,
-      indeterminate,
       defaultChecked,
+      indeterminate,
+      onChange,
       colorScheme = "blue",
+      children,
       ...otherProps
-    } = mergeProps
-    if (context.isGroup) {
-      mergeProps.checked =
-        context.checkboxGroupValue?.indexOf(props.value) !== -1
-      mergeProps.disabled = "disabled" in props ? disabled : context?.disabled
-    }
+    } = props
+
+    const context = useContext(CheckboxGroupContext)
+
+    const finalChecked =
+      checked ?? context.value?.some((item) => item === value)
+    const finalDefaultChecked =
+      defaultChecked ?? context.defaultValue?.some((item) => item === value)
 
     const [currentChecked, setCurrentChecked] = useMergeValue(false, {
-      value: mergeProps.checked,
-      defaultValue: mergeProps.defaultChecked,
+      value: finalChecked,
+      defaultValue: finalDefaultChecked,
     })
-
-    useEffect(() => {
-      context.registerValue?.(value)
-      return () => {
-        context.unRegisterValue?.(value)
-      }
-    }, [context, value])
 
     return (
       <label
@@ -60,21 +46,17 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
         <input
           type="checkbox"
           css={applyCheckboxSize(currentChecked || indeterminate, colorScheme)}
-          value={value}
+          value={
+            typeof value === "object" ? (value as CheckboxOption).value : value
+          }
           checked={currentChecked}
           disabled={disabled}
-          onChange={useCallback(
-            (e: ChangeEvent<HTMLInputElement>) => {
-              e.persist()
-              e.stopPropagation()
-              setCurrentChecked(e?.target?.checked)
-              if (context?.isGroup) {
-                onGroupChange?.(value, e?.target?.checked, e)
-              }
-              onChange?.(e?.target?.checked, e)
-            },
-            [onGroupChange, context?.isGroup, onChange, value],
-          )}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            if (checked === undefined) {
+              setCurrentChecked(e.target.checked)
+            }
+            onChange?.(e.target.checked, e)
+          }}
         />
         {indeterminate ? (
           <ReduceIcon css={applyCheckState(true)} />

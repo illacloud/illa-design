@@ -5,36 +5,8 @@ import { Checkbox, CheckboxProps } from "../src"
 export default {
   title: "DATA INPUT/Checkbox",
   component: Checkbox,
-  argTypes: {
-    value: {
-      control: false,
-    },
-    colorScheme: {
-      options: [
-        "gray",
-        "blue",
-        "purple",
-        "red",
-        "green",
-        "yellow",
-        "orange",
-        "cyan",
-        "white",
-        "techPink",
-        "techPurple",
-        "grayBlue",
-      ],
-      control: {
-        type: "select",
-      },
-    },
-  },
 } as Meta
 
-export const checkbox: StoryFn<CheckboxProps> = (args) => {
-  return (
-    <div>
-      <Checkbox {...args}>ILLA</Checkbox>
-    </div>
-  )
+export const Basic: StoryFn<CheckboxProps> = (args) => {
+  return <Checkbox {...args}>ILLA</Checkbox>
 }

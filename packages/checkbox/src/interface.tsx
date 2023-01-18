@@ -1,4 +1,4 @@
-import { ReactText, LabelHTMLAttributes, SyntheticEvent } from "react"
+import { LabelHTMLAttributes, SyntheticEvent } from "react"
 import { BoxProps } from "@illa-design/theme"
 
 export type CheckboxColorScheme =
@@ -15,10 +15,16 @@ export type CheckboxColorScheme =
   | "techPink"
   | "techPurple"
 
-export interface CheckboxProps<T extends ReactText = any>
+export interface CheckboxOption {
+  label?: string
+  value?: string
+  disabled?: boolean
+}
+
+export interface CheckboxProps
   extends Omit<LabelHTMLAttributes<HTMLLabelElement>, "onChange">,
     BoxProps {
-  value?: T
+  value?: string | number
   disabled?: boolean
   checked?: boolean
   defaultChecked?: boolean
@@ -27,38 +33,18 @@ export interface CheckboxProps<T extends ReactText = any>
   colorScheme?: CheckboxColorScheme
 }
 
-export interface CheckboxGroupContextProps<T extends ReactText = any> {
-  disabled?: boolean
-  isGroup: boolean
-  checkboxGroupValue: ReactText[]
-  onGroupChange?: (
-    _optionValue: T,
-    _checked: boolean,
-    e: SyntheticEvent,
-  ) => void
-  registerValue?: (value: ReactText) => void
-  unRegisterValue?: (value: ReactText) => void
-}
-
-export interface CheckboxGroupProps<T extends ReactText = any>
+export interface CheckboxGroupProps
   extends Omit<
       LabelHTMLAttributes<HTMLDivElement>,
       "onChange" | "defaultValue"
     >,
     BoxProps {
-  value?: T[]
-  defaultValue?: T[]
+  value?: (string | number)[]
+  defaultValue?: (string | number)[]
   disabled?: boolean
-  options?: (
-    | T
-    | {
-        label?: string
-        value?: string
-        disabled?: boolean
-      }
-  )[]
+  options?: (string | number | CheckboxOption)[]
   direction?: "vertical" | "horizontal"
   spacing?: string | number
-  onChange?: (value: T[], event: SyntheticEvent) => void
+  onChange?: (value: (string | number)[], event: SyntheticEvent) => void
   colorScheme?: CheckboxColorScheme
 }

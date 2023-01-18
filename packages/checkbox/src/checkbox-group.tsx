@@ -1,12 +1,12 @@
 import {
+  Children,
+  cloneElement,
   forwardRef,
-  ReactText,
-  SyntheticEvent,
-  useCallback,
-  useState,
+  PropsWithChildren,
+  ReactElement,
 } from "react"
 import { isArray, useMergeValue } from "@illa-design/system"
-import { CheckboxGroupProps } from "./interface"
+import { CheckboxGroupProps, CheckboxOption, CheckboxProps } from "./interface"
 import { SerializedStyles } from "@emotion/react"
 import { Checkbox } from "./checkbox"
 import {
@@ -31,12 +31,13 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
       ...otherProps
     } = props
 
-    const [currentValue, setCurrentValue] = useMergeValue([], {
-      defaultValue:
-        "defaultValue" in props ? props.defaultValue || [] : undefined,
-      value: "value" in props ? value || [] : undefined,
-    })
-    const [allOptionValues, setAllOptionValues] = useState<ReactText[]>([])
+    const [currentValue, setCurrentValue] = useMergeValue<(string | number)[]>(
+      [],
+      {
+        value: value,
+        defaultValue: defaultValue,
+      },
+    )
 
     let checkboxGroupCss: SerializedStyles
     switch (direction) {
@@ -48,61 +49,92 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
         break
     }
 
-    const onGroupChange = useCallback(
-      (optionValue: any, checked: boolean, e: SyntheticEvent) => {
-        const newVal = currentValue.slice()
-        if (checked) {
-          newVal.push(optionValue)
-        } else {
-          newVal.splice(currentValue?.indexOf(optionValue), 1)
-        }
-        setCurrentValue(newVal)
-        onChange?.(
-          newVal.filter((v) => allOptionValues?.indexOf(v) > -1),
-          e,
-        )
-      },
-      [currentValue, setCurrentValue, onChange, allOptionValues],
-    )
-
     return (
       <div
         css={[checkboxGroupCss, applyBoxStyle(props)]}
         ref={ref}
         {...deleteCssProps(otherProps)}
       >
-        <CheckboxGroupContext.Provider
-          value={{
-            isGroup: true,
-            checkboxGroupValue: currentValue,
-            onGroupChange,
-            disabled,
-            registerValue: (v: ReactText) => {
-              setAllOptionValues((allOptionValues) => {
-                return Array.from(new Set([...allOptionValues, v]))
-              })
-            },
-            unRegisterValue: (v: ReactText) => {
-              setAllOptionValues((allOptionValues) => {
-                return allOptionValues.filter((x) => x !== v)
-              })
-            },
-          }}
-        >
+        <CheckboxGroupContext.Provider value={props}>
           {isArray(options)
             ? options?.map((option, index) => {
-                return (
-                  <Checkbox
-                    key={`check-${index}`}
-                    value={option.value || option}
-                    disabled={disabled || option?.disabled}
-                    colorScheme={colorScheme}
-                  >
-                    {option.label || option}
-                  </Checkbox>
-                )
+                if (typeof option === "string" || typeof option === "number") {
+                  return (
+                    <Checkbox
+                      key={index}
+                      value={option}
+                      disabled={disabled}
+                      colorScheme={colorScheme}
+                      onChange={(checked, event) => {
+                        let finalValue = []
+                        if (checked) {
+                          finalValue = [...currentValue, option]
+                        } else {
+                          finalValue = currentValue.filter((v) => v !== option)
+                        }
+                        console.log(option, checked)
+                        if (value === undefined) {
+                          setCurrentValue(finalValue)
+                        }
+                        onChange?.(finalValue as [], event)
+                      }}
+                    >
+                      {option.toString()}
+                    </Checkbox>
+                  )
+                } else {
+                  const optionObject = option as CheckboxOption
+                  return (
+                    <Checkbox
+                      key={`${optionObject.value}-${index}`}
+                      value={optionObject.value}
+                      disabled={disabled ?? optionObject.disabled}
+                      colorScheme={colorScheme}
+                      onChange={(checked, event) => {
+                        let finalValue = []
+                        if (checked) {
+                          finalValue = [...currentValue, optionObject.value]
+                        } else {
+                          finalValue = currentValue.filter(
+                            (value) => value !== optionObject.value,
+                          )
+                        }
+                        if (value === undefined) {
+                          setCurrentValue(finalValue as [])
+                        }
+                        onChange?.(finalValue as [], event)
+                      }}
+                    >
+                      {optionObject.label}
+                    </Checkbox>
+                  )
+                }
               })
-            : children}
+            : Children.map(children, (child, index) => {
+                const item = child as ReactElement<
+                  PropsWithChildren<CheckboxProps>
+                >
+                return cloneElement(item, {
+                  ...item.props,
+                  onChange: (checked, event) => {
+                    item.props.onChange?.(checked, event)
+                    let finalValue: (string | number)[] = []
+                    if (checked) {
+                      if (item.props.value) {
+                        finalValue = [...currentValue, item.props.value]
+                      }
+                    } else {
+                      finalValue = currentValue.filter(
+                        (value) => value !== item.props.value,
+                      )
+                    }
+                    if (value === undefined) {
+                      setCurrentValue(finalValue as [])
+                    }
+                    onChange?.(finalValue as [], event)
+                  },
+                } as CheckboxProps)
+              })}
         </CheckboxGroupContext.Provider>
       </div>
     )
