@@ -25,11 +25,9 @@ module.exports = {
       // Add dependencies to pre-optimization
       optimizeDeps: {
         include: [
-          "@emotion/react",
           "@emotion/react/jsx-dev-runtime",
           "framer-motion",
           "@illa-design/react",
-          "@floating-ui/react-dom-interactions",
         ],
       },
     })

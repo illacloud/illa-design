@@ -1,11 +1,10 @@
 import { Meta, StoryFn } from "@storybook/react"
-import { Search, TextArea, TextAreaProps } from "../src"
-import { Space } from "@illa-design/react"
+import { TextArea, TextAreaProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "DATA INPUT/Textarea",
-  component: Search,
+  component: TextArea,
 } as Meta
 
 export const Basic: StoryFn<TextAreaProps> = (props) => {
