@@ -2,8 +2,11 @@ import {
   AreaHTMLAttributes,
   InputHTMLAttributes,
   KeyboardEvent,
+  LegacyRef,
   MutableRefObject,
   ReactNode,
+  Ref,
+  RefAttributes,
   SyntheticEvent,
 } from "react"
 import { BoxProps } from "@illa-design/theme"
@@ -49,7 +52,7 @@ export interface InputProps
   maxLength?: number | { length: number; errorOnly?: boolean }
   onChange?: (value: string, e: SyntheticEvent) => void
   onClear?: () => void
-  inputRef?: MutableRefObject<HTMLInputElement>
+  inputRef?: Ref<HTMLInputElement>
   onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   variant?: InputVariant
 }
