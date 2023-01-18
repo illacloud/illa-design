@@ -43,6 +43,7 @@ export interface InputTagProps
   placeholder?: string
   inputValue?: string
   size?: InputTagSize
+  inputRef?: MutableRefObject<HTMLInputElement>
   prefix?: ReactNode | string
   suffix?: ReactNode | string
   defaultValue?: string[] | TagObject[]

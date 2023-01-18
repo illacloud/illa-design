@@ -26,6 +26,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
       error,
       loading,
       dropdownProps,
+      variant,
       addBefore,
       prefix,
       defaultValue,
