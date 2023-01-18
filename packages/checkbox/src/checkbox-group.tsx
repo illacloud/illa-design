@@ -72,7 +72,6 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
                         } else {
                           finalValue = currentValue.filter((v) => v !== option)
                         }
-                        console.log(option, checked)
                         if (value === undefined) {
                           setCurrentValue(finalValue)
                         }
