@@ -7,7 +7,7 @@ import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 export const Space = forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
   const {
     size = "small",
-    align = "center",
+    align = "start",
     direction = "horizontal",
     divider,
     wrap,
