@@ -1,5 +1,5 @@
 import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
+import react from "@vitejs/plugin-react-swc"
 import typescript from "@rollup/plugin-typescript"
 
 // https://vitejs.dev/config/

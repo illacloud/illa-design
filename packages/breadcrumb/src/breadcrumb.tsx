@@ -30,7 +30,7 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
       if (routes) {
         return routes.map((child, index) => {
           return (
-            <>
+            <Fragment key={index}>
               <BreadcrumbItem
                 key={child.path}
                 last={index === routes.length - 1}
@@ -58,7 +58,7 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
                 {child.breadcrumbName}
               </BreadcrumbItem>
               {index !== routes.length - 1 && separatorNode}
-            </>
+            </Fragment>
           )
         })
       } else {

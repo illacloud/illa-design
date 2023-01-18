@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Meta, StoryFn } from "@storybook/react"
 import {
   ImageDefaultIcon,
-  LikeIcon,
   CloseIcon,
   SuccessIcon,
   Trigger,
@@ -141,15 +140,6 @@ export const PopButton = (args: MenuProps) => {
           <>
             <ImageDefaultIcon style={{ marginRight: 8 }} />
             Menu 1
-          </>
-        }
-      />
-      <Item
-        key="0_1"
-        title={
-          <>
-            <LikeIcon style={{ marginRight: 8 }} />
-            Menu 2
           </>
         }
       />

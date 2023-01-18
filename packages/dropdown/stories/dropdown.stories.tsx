@@ -7,6 +7,7 @@ import {
   Space,
   globalColor,
   illaPrefix,
+  DropListItem,
 } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
@@ -20,43 +21,28 @@ export default {
   },
 } as Meta
 
-const menuList = () => {
-  const { Item } = Menu
-  return (
-    <Menu>
-      <Item title={"Blog"} key={"1"} disabled />
-      <Item title={"Tutorial"} key={"2"} />
-      <Item title={"Docs"} key={"3"} />
-      <Item title={"Community"} key={"4"} />
-      <Item title={"Github"} key={"5"} />
-    </Menu>
-  )
-}
-
 const dropList = () => {
-  const { Item } = DropList
   return (
     <DropList>
-      <Item
+      <DropListItem
+        value="blog"
         title={"Blog"}
         key={"1"}
+        disabled
         fontColor={`${globalColor(`--${illaPrefix}-red-02`)}`}
       />
-      <Item title={"Tutorial"} key={"2"} />
-      <Item title={"Docs"} key={"3"} fontColor={"blue"} />
-      <Item title={"Community"} key={"4"} />
-      <Item title={"Github"} key={"5"} />
+      <DropListItem value="tutorial" title={"Tutorial"} key={"2"} />
+      <DropListItem value="docs" title={"Docs"} key={"3"} fontColor={"blue"} />
+      <DropListItem value="community" title={"Community"} key={"4"} />
+      <DropListItem value="github" title={"Github"} key={"5"} />
     </DropList>
   )
 }
 
 export const Basic: StoryFn<DropdownProps> = (args) => (
   <Space>
-    <Dropdown dropList={dropList()} {...args}>
+    <Dropdown dropList={dropList()} trigger="hover" {...args}>
       <Button>Hover me</Button>
-    </Dropdown>
-    <Dropdown dropList={menuList()} trigger={"click"} {...args}>
-      <Button>Click me</Button>
     </Dropdown>
     <Dropdown dropList={dropList()} trigger={"contextmenu"} {...args}>
       <div
