@@ -255,7 +255,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
               onInputValueChange?.("")
             }
             onClear?.()
-            onChange?.(null)
+            onChange?.(undefined)
           }}
           suffix={
             loading ? (

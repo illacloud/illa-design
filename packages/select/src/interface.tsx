@@ -23,7 +23,15 @@ export type SelectColorScheme =
 
 export type SelectVariant = "outline" | "fill"
 
-export interface SelectProps
+export type SelectValue =
+  | SelectOptionObject
+  | string
+  | SelectOptionObject[]
+  | string[]
+  | number
+  | number[]
+
+export interface SelectProps<T extends SelectValue = SelectValue>
   extends Omit<
       HTMLAttributes<HTMLDivElement>,
       "defaultValue" | "onChange" | "prefix" | "onFocus" | "onBlur"
@@ -47,32 +55,11 @@ export interface SelectProps
   addAfter?: ReactNode
   prefix?: ReactNode | string
   suffixIcon?: ReactNode
-  defaultValue?:
-    | SelectOptionObject
-    | string
-    | SelectOptionObject[]
-    | string[]
-    | number
-    | number[]
+  defaultValue?: T
   showSearch?: boolean
-  value?:
-    | SelectOptionObject
-    | string
-    | SelectOptionObject[]
-    | string[]
-    | number
-    | number[]
+  value?: T
   filterOption?: boolean | ((inputValue: string | number) => boolean)
-  onChange?: (
-    value:
-      | null
-      | SelectOptionObject
-      | string
-      | SelectOptionObject[]
-      | string[]
-      | number
-      | number[],
-  ) => void
+  onChange?: (value?: T) => void
   onClear?: () => void
   readOnly?: boolean
   onInputValueChange?: (value: string | number) => void
