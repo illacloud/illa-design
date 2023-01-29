@@ -44,7 +44,9 @@ export interface ItemGroupProps
   label?: string | ReactNode
 }
 
-export interface ItemProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
+export interface MenuItemProps
+  extends HTMLAttributes<HTMLDivElement>,
+    BoxProps {
   disabled?: boolean
   value: string
 }
