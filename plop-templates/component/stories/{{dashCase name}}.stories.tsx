@@ -6,10 +6,8 @@ export default {
   component: {{properCase name}},
 } as Meta
 
-const Template: StoryFn<{{properCase name}}Props> = (args) => {
+export const Basic: StoryFn<{{properCase name}}Props> = (args) => {
   return (
       <{{properCase name}} {...args}  />
   )
 }
-
-export const Basic = Template.bind({})
