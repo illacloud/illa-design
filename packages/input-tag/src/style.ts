@@ -14,7 +14,11 @@ export function applyInputTagInputStyle(
     border: none;
     padding: 0;
     font-family: unset;
-    line-height: ${size === "small" ? "22px" : "24px"};
+    line-height: ${size === "large"
+      ? "32px"
+      : size === "small"
+      ? "22px"
+      : "24px"};
 
     ::placeholder {
       font-size: 14px;
@@ -53,13 +57,9 @@ function getPaddingStyle(size: InputTagSize): SerializedStyles {
       `
       break
     case "medium":
-      pdStyle = css`
-        padding: 4px 16px;
-      `
-      break
     case "large":
       pdStyle = css`
-        padding: 8px 16px;
+        padding: 4px 16px;
       `
       break
     default:
