@@ -11,11 +11,7 @@ const getStories = () =>
 
 module.exports = {
   stories: async () => [...getStories()],
-  addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-storysource",
-  ],
+  addons: ["@storybook/addon-essentials", "@storybook/addon-a11y"],
   framework: "@storybook/react-vite",
   async viteFinal(config) {
     config.devtool = "inline-source-map"
