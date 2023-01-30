@@ -7,7 +7,7 @@ export const messageContainerStyle: SerializedStyles = css`
   flex-direction: row;
   align-items: center;
   padding: 9px 16px;
-  border-radius: 8px;
+  border-radius: 4px;
   box-shadow: 0 4px 10px 0 ${getColor("blackAlpha", "07")};
   border: solid 1px ${getColor("gray", "08")};
   background-color: ${getColor("white", "01")};

@@ -38,7 +38,7 @@ export interface SubMenuProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   popup?: boolean | ((level: number) => boolean)
 }
 
-export interface ItemGroupProps
+export interface MenuItemGroupProps
   extends HTMLAttributes<HTMLDivElement>,
     BoxProps {
   label?: string | ReactNode
