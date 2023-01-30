@@ -1,38 +1,41 @@
 import { useState } from "react"
 import { Meta, StoryFn } from "@storybook/react"
 import {
-  ImageDefaultIcon,
   CloseIcon,
+  ImageDefaultIcon,
   SuccessIcon,
   Trigger,
 } from "@illa-design/react"
-import { Menu, MenuProps } from "../src"
+import { Menu, MenuItem, MenuProps, SubMenu } from "../src"
+
 export default {
   title: "NAVIGATION/Menu",
   component: Menu,
 } as Meta
-
-const { Item, ItemGroup, SubMenu } = Menu
 
 const Template: StoryFn<MenuProps> = (args) => {
   return (
     <>
       <p>Horizontal</p>
       <Menu {...args}>
-        <Item title={"Blog"} key={"1"} disabled />
-        <Item title={"Tutorial"} key={"2"} />
-        <Item title={"Docs"} key={"3"} />
-        <Item title={"Community"} key={"4"} />
-        <Item title={"Github"} key={"5"} />
+        <MenuItem value={"1"} disabled>
+          Blog
+        </MenuItem>
+        <MenuItem value={"2"}>Tutorial</MenuItem>
+        <MenuItem value={"3"}>Docs</MenuItem>
+        <MenuItem value={"4"}>Community</MenuItem>
+        <MenuItem value={"5"}>Github</MenuItem>
       </Menu>
 
       <p>Horizontal overflow</p>
       <Menu {...args} style={{ width: 200 }}>
-        <Item title={"Blog"} key={"1"} disabled />
-        <Item title={"Tutorial"} key={"2"} />
-        <Item title={"Docs"} key={"3"} />
-        <Item title={"Community"} key={"4"} />
-        <Item title={"Github"} key={"5"} />
+        <MenuItem value={"1"} disabled>
+          Blog
+        </MenuItem>
+        <MenuItem value={"2"}>Tutorial</MenuItem>
+        <MenuItem value={"3"}>Docs</MenuItem>
+        <MenuItem value={"4"}>Community</MenuItem>
+        <MenuItem value={"5"}>Github</MenuItem>
       </Menu>
     </>
   )
@@ -53,72 +56,60 @@ export const VerticalMenu = (args: MenuProps) => {
       {...args}
     >
       <SubMenu
-        key="0"
-        title={
-          <>
-            <ImageDefaultIcon style={{ marginRight: 16 }} /> Navigation 1
-          </>
-        }
+        value="0"
+        label={<ImageDefaultIcon style={{ marginRight: 16 }} />}
       >
-        <Item key="0_0" title={"Menu 1"} />
-        <Item key="0_1" title={"Menu 2"} />
-        <Item key="0_2" title={"Menu 3"} disabled />
+        <MenuItem value="0_0">Menu 1</MenuItem>
+        <MenuItem value="0_1">Menu 2</MenuItem>
+        <MenuItem value="0_2" disabled>
+          Menu 3
+        </MenuItem>
       </SubMenu>
       <SubMenu
-        key="1"
-        title={
+        value="1"
+        label={
           <>
             <ImageDefaultIcon style={{ marginRight: 16 }} /> Navigation 2
           </>
         }
       >
-        <Item key="1_0" title={"Menu 1"} />
-        <Item key="1_1" title={"Menu 2"} />
-        <Item key="1_2" title={"Menu 3"} />
-        <SubMenu key="0_0_0_0" title={"Second Sub Menu"}>
-          <Item key="0_0_1_1" title={"Menu 2"} />
-          <Item key="0_0_1_2" title={"Menu 3"} />
+        <MenuItem value="1_0">Menu 1</MenuItem>
+        <MenuItem value="1_1">Menu 2</MenuItem>
+        <MenuItem value="1_2">Menu 3</MenuItem>
+        <SubMenu value="0_0_0_0" label={"Second Sub Menu"}>
+          <MenuItem value="0_0_1_1">Menu 2</MenuItem>
+          <MenuItem value="0_0_1_2">Menu 3</MenuItem>
         </SubMenu>
       </SubMenu>
       <SubMenu
-        key="2"
-        title={
+        value="2"
+        label={
           <>
             <ImageDefaultIcon style={{ marginRight: 16 }} /> Navigation 3
           </>
         }
       >
-        <ItemGroup key="2_0" title="Menu Group 1">
-          <Item key="2_0_0" title={"Menu 1"} />
-          <Item key="2_0_1" title={"Menu 2"} />
-        </ItemGroup>
-        <ItemGroup key="2_1" title="Menu Group 1">
-          <Item key="2_1_0" title={"Menu 3"} />
-          <Item key="2_1_1" title={"Menu 4"} />
-        </ItemGroup>
+        <MenuItem value="2_0_0">Menu 1</MenuItem>
+        <MenuItem value="2_0_1">Menu 2</MenuItem>
+        <MenuItem value="2_1_0">Menu 3</MenuItem>
+        <MenuItem value="2_1_1">Menu 4</MenuItem>
       </SubMenu>
-      <ItemGroup key="4_0_0" title="Menu Group">
-        <Item key="4_0_0" title={"Menu 1"} />
-        <Item key="4_0_1" title={"Menu 2"} />
-      </ItemGroup>
-      <Item key="5_0_0" title={"Menu 1"} />
-      <Item key="5_0_1" title={"Menu 2"} />
+      <MenuItem value="4_0_0">Menu 1</MenuItem>
+      <MenuItem value="4_0_1">Menu 2</MenuItem>
+      <MenuItem value="5_0_0">Menu 1</MenuItem>
+      <MenuItem value="5_0_1">Menu 2</MenuItem>
       <SubMenu
-        key="3"
-        title={
+        value="3"
+        label={
           <>
             <ImageDefaultIcon style={{ marginRight: 16 }} /> Navigation 4
           </>
         }
       >
-        <ItemGroup key="3_0" title="Menu Group 1">
-          <Item key="3_0_0" title={"Menu 1"} />
-          <Item key="3_0_1" title={"Menu 2"} />
-        </ItemGroup>
-        <ItemGroup key="3_1" title="Menu Group 1">
-          <Item key="3_1_0" title={"Menu 3"} />
-          <Item key="3_1_1" title={"Menu 4"} />
-        </ItemGroup>
+        <MenuItem value="3_0_0">Menu 1</MenuItem>
+        <MenuItem value="3_0_1">Menu 2</MenuItem>
+        <MenuItem value="3_1_0">Menu 3</MenuItem>
+        <MenuItem value="3_1_1">Menu 4</MenuItem>
       </SubMenu>
     </Menu>
   )
@@ -134,33 +125,18 @@ export const PopButton = (args: MenuProps) => {
   const [visible, setVisible] = useState(false)
   const renderMenu = () => (
     <Menu {...args}>
-      <Item
-        key="0_0"
-        title={
-          <>
-            <ImageDefaultIcon style={{ marginRight: 8 }} />
-            Menu 1
-          </>
-        }
-      />
-      <Item
-        key="0_2"
-        title={
-          <>
-            <ImageDefaultIcon style={{ marginRight: 8 }} />
-            Menu 3
-          </>
-        }
-      />
-      <Item
-        key="0_3"
-        title={
-          <>
-            <ImageDefaultIcon style={{ marginRight: 8 }} />
-            Menu 4
-          </>
-        }
-      />
+      <MenuItem value="0_0">
+        <ImageDefaultIcon style={{ marginRight: 8 }} />
+        Menu 1
+      </MenuItem>
+      <MenuItem value="0_2">
+        <ImageDefaultIcon style={{ marginRight: 8 }} />
+        Menu 3
+      </MenuItem>
+      <MenuItem value="0_3">
+        <ImageDefaultIcon style={{ marginRight: 8 }} />
+        Menu 4
+      </MenuItem>
     </Menu>
   )
   return (
