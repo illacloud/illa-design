@@ -12,8 +12,8 @@ export default defineConfig({
     }),
   ],
   build: {
-    sourcemap: true,
-    minify: true,
+    sourcemap: "hidden",
+    minify: "esbuild",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/system",
@@ -32,7 +32,13 @@ export default defineConfig({
           exclude: path.resolve(__dirname, "node_modules/**"),
         }),
       ],
-      external: ["react", "react-dom", "dayjs"],
+      external: [
+        "react",
+        "react-dom",
+        "@emotion/react",
+        "framer-motion",
+        "dayjs",
+      ],
       output: {
         globals: {
           react: "React",

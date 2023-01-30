@@ -13,8 +13,8 @@ export default defineConfig({
     }),
   ],
   build: {
-    sourcemap: true,
-    minify: true,
+    sourcemap: "hidden",
+    minify: "esbuild",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/table",

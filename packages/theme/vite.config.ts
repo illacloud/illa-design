@@ -12,8 +12,8 @@ export default defineConfig({
     }),
   ],
   build: {
-    sourcemap: true,
-    minify: true,
+    sourcemap: "hidden",
+    minify: "esbuild",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/theme",
@@ -35,6 +35,8 @@ export default defineConfig({
       external: [
         "react",
         "react-dom",
+        "@emotion/react",
+        "framer-motion",
         "color",
         "@illa-design/system",
         "chroma-js",

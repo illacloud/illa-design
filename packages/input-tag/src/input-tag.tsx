@@ -68,6 +68,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
     const [calcBlockRef, calcBlockBounds] = useMeasure()
 
     const inputRef = useRef<HTMLInputElement>(null)
+    const inputStateRef = useRef<boolean>(false)
 
     useImperativeHandle(
       inputTagRef,
@@ -242,7 +243,16 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 onFocus?.(e)
               }}
               value={finalInputValue}
+              onCompositionStart={() => {
+                inputStateRef.current = true
+              }}
+              onCompositionEnd={() => {
+                inputStateRef.current = false
+              }}
               onKeyDown={(e) => {
+                if (inputStateRef.current) {
+                  return
+                }
                 onKeyDown?.(e)
                 if (e.key === "Enter") {
                   inputRef.current?.focus()

@@ -16,7 +16,7 @@ export default defineConfig({
     minify: "esbuild",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@illa-design/tag",
+      name: "@illa-design/date-picker",
       fileName: (format) => `${format}/index.js`,
     },
     rollupOptions: {
@@ -39,7 +39,6 @@ export default defineConfig({
         "framer-motion",
         "@illa-design/system",
         "@illa-design/theme",
-        "@illa-design/icon",
       ],
       output: {
         globals: {
@@ -49,7 +48,6 @@ export default defineConfig({
           "framer-motion": "framer-motion",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
-          "@illa-design/icon": "@illa-design/icon",
         },
       },
     },
