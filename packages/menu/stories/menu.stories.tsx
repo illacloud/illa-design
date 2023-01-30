@@ -148,23 +148,7 @@ export const PopButton = (args: MenuProps) => {
       position="top"
       onVisibleChange={(v) => setVisible(v)}
     >
-      <div
-        style={{
-          position: "absolute",
-          width: 50,
-          height: 50,
-          top: 400,
-          left: 200,
-          borderRadius: "50%",
-          background: "lightblue",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          cursor: "pointer",
-        }}
-      >
-        {visible ? <SuccessIcon /> : <CloseIcon />}
-      </div>
+      <div>{visible ? <SuccessIcon /> : <CloseIcon />}</div>
     </Trigger>
   )
 }
