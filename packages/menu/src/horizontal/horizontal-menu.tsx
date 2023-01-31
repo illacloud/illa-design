@@ -1,8 +1,17 @@
-import { forwardRef, MouseEvent, ReactNode } from "react"
+import {
+  forwardRef,
+  MouseEvent,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { MenuProps, SubMenuProps } from "../interface"
 import {
+  applyActionContainerStyle,
   applyHorizontalSubMenuItemContainer,
   horizontalMenuContainerStyle,
+  horizontalMenuListContainerStyle,
   horizontalSubMenuIcon,
   horizontalSubMenuLabel,
 } from "./style"
@@ -11,7 +20,9 @@ import { MenuContext } from "../menu-context"
 import { HorizontalSubMenu } from "./horizontal-sub-menu"
 import { HorizontalMenuItem } from "./horizontal-menu-item"
 import { DropList, DropListItem } from "@illa-design/dropdown"
-import { useMergeValue } from "@illa-design/system"
+import { mergeRefs, useMergeValue } from "@illa-design/system"
+import { NextIcon, PreviousIcon } from "@illa-design/icon"
+import useMeasure from "react-use-measure"
 
 export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
   (props, ref) => {
@@ -39,6 +50,26 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
       defaultValue: defaultSelectedValues,
       value: selectedValues,
     })
+
+    const [leftScroll, setLeftScroll] = useState<boolean>(false)
+    const [rightScroll, setRightScroll] = useState<boolean>(false)
+
+    const [containerBoundRef, containerBound] = useMeasure()
+    const containerRef = useRef<HTMLDivElement>()
+
+    useEffect(() => {
+      if (containerRef.current) {
+        const { scrollWidth, clientWidth, scrollLeft } = containerRef.current
+        if (
+          clientWidth < scrollWidth &&
+          scrollLeft + clientWidth < scrollWidth
+        ) {
+          if (!rightScroll) {
+            setRightScroll(true)
+          }
+        }
+      }
+    }, [containerBound.width, rightScroll])
 
     const defaultSelectedSubMenu: string[] = []
     const selectedSubMenu: string[] = []
@@ -195,7 +226,70 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
           ref={ref}
           {...deleteCssProps(otherProps)}
         >
-          {c}
+          <div
+            ref={mergeRefs(containerBoundRef, containerRef)}
+            css={horizontalMenuListContainerStyle}
+            onScroll={(event) => {
+              if (event.currentTarget.scrollLeft > 0) {
+                if (!leftScroll) {
+                  setLeftScroll(true)
+                }
+              } else {
+                if (leftScroll) {
+                  setLeftScroll(false)
+                }
+              }
+              if (
+                event.currentTarget.scrollLeft +
+                  event.currentTarget.clientWidth ===
+                event.currentTarget.scrollWidth
+              ) {
+                if (rightScroll) {
+                  setRightScroll(false)
+                }
+              }
+              if (
+                event.currentTarget.clientWidth <
+                event.currentTarget.scrollWidth
+              ) {
+                if (!rightScroll) {
+                  setRightScroll(true)
+                }
+              }
+            }}
+          >
+            {c}
+          </div>
+          {leftScroll && (
+            <div
+              css={applyActionContainerStyle("left")}
+              onClick={() => {
+                if (containerRef.current) {
+                  containerRef.current?.scrollBy({
+                    left: -containerRef.current.clientWidth,
+                    behavior: "smooth",
+                  })
+                }
+              }}
+            >
+              <PreviousIcon />
+            </div>
+          )}
+          {rightScroll && (
+            <div
+              css={applyActionContainerStyle("right")}
+              onClick={() => {
+                if (containerRef.current) {
+                  containerRef.current?.scrollBy({
+                    left: containerRef.current.clientWidth,
+                    behavior: "smooth",
+                  })
+                }
+              }}
+            >
+              <NextIcon />
+            </div>
+          )}
         </div>
       </MenuContext.Provider>
     )

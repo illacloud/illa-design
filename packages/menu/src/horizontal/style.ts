@@ -4,12 +4,67 @@ import { getColor } from "@illa-design/theme"
 
 export const horizontalMenuContainerStyle = css`
   height: 48px;
-  display: flex;
-  overflow-x: auto;
+  position: relative;
   width: 100%;
-  flex-direction: row;
+  overflow-x: hidden;
   border-bottom: 1px solid ${getColor("grayBlue", "08")};
 `
+
+export const horizontalMenuListContainerStyle = css`
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  height: 100%;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`
+
+export function applyActionContainerStyle(
+  action: "left" | "right",
+): SerializedStyles {
+  const positionStyle =
+    action === "left"
+      ? css`
+          left: 0;
+          top: 0;
+          bottom: 0;
+        `
+      : css`
+          right: 0;
+          top: 0;
+          bottom: 0;
+        `
+  const bgStyle =
+    action === "left"
+      ? css`
+          mask: linear-gradient(
+            90deg,
+            #000 0,
+            #000 calc(100% - 10px),
+            transparent
+          );
+        `
+      : css`
+          mask: linear-gradient(
+            90deg,
+            #000 0,
+            #000 calc(100% - 10px),
+            transparent
+          );
+        `
+  return css`
+    background-color: transparent;
+    color: ${getColor("grayBlue", "02")};
+    position: absolute;
+    width: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    ${positionStyle};
+  `
+}
 
 export function applyHorizontalSubMenuItemContainer(
   colorScheme: MenuColorScheme,

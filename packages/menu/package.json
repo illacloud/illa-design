@@ -43,7 +43,8 @@
     "@illa-design/dropdown": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "framer-motion": "^7.6.12"
+    "framer-motion": "^7.6.12",
+    "react-use-measure": "^2.1.1"
   },
   "peerDependencies": {
     "react": "^18.2.0",
