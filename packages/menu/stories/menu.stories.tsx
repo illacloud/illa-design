@@ -29,9 +29,14 @@ export const Horizontal: StoryFn<MenuProps> = (args) => {
                 icon: <AiFillInstagram />,
               } as MenuItemProps,
               { value: "second:second", label: "Second" } as MenuItemProps,
+              {
+                value: "third:third",
+                label: "Third",
+                disabled: true,
+              } as MenuItemProps,
             ],
           } as SubMenuProps,
-          { value: "second", label: "Second" } as MenuItemProps,
+          { value: "second", label: "Second", disabled: true } as MenuItemProps,
           {
             icon: <BsTwitter />,
             value: "third",
@@ -44,6 +49,32 @@ export const Horizontal: StoryFn<MenuProps> = (args) => {
         style={{ marginTop: 20 }}
         mode="horizontal"
         selectedValues={["first:first"]}
+        items={[
+          {
+            value: "first",
+            label: "First",
+            icon: <AiFillFacebook />,
+            subItems: [
+              {
+                value: "first:first",
+                label: "First",
+                icon: <AiFillInstagram />,
+              } as MenuItemProps,
+              { value: "second:second", label: "Second" } as MenuItemProps,
+            ],
+          } as SubMenuProps,
+          { value: "second", label: "Second" } as MenuItemProps,
+          {
+            icon: <BsTwitter />,
+            value: "third",
+            label: "Third",
+          } as MenuItemProps,
+        ]}
+        {...args}
+      />
+      <Menu
+        style={{ marginTop: 20, width: "200px" }}
+        mode="horizontal"
         items={[
           {
             value: "first",

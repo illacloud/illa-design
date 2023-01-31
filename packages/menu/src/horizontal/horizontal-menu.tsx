@@ -73,6 +73,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
             <DropListItem
               value={subItem.value}
               key={subItem.value}
+              disabled={subItem.disabled}
               title={
                 <div
                   css={applyHorizontalSubMenuItemContainer(
@@ -169,6 +170,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
               item.selected ?? finalSelectedValues.some((v) => v === item.value)
             }
             onClick={(e) => {
+              if (item.disabled) return
               onClickMenuItem?.(item.value, [item.value], e)
               if (selectedValues === undefined) {
                 if (!finalSelectedValues.includes(item.value)) {

@@ -49,9 +49,21 @@ export function applyHorizontalSubMenuContainer(
     : selected
     ? css`
         color: ${getColor(colorScheme, "03")};
+
+        &:hover {
+          .horizontalLine {
+            opacity: 1;
+          }
+        }
       `
     : css`
         color: ${getColor("grayBlue", "02")};
+
+        &:hover {
+          .horizontalLine {
+            opacity: 1;
+          }
+        }
       `
 
   return css`
@@ -62,12 +74,6 @@ export function applyHorizontalSubMenuContainer(
     padding: 0 16px;
     flex-direction: row;
     ${colorStyle};
-
-    &:hover {
-      .horizontalLine {
-        opacity: 1;
-      }
-    }
   `
 }
 
