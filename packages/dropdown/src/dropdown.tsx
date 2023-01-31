@@ -6,7 +6,7 @@ import { useMergeValue } from "@illa-design/system"
 export const Dropdown: FC<DropdownProps> = (props) => {
   const {
     children,
-    colorScheme,
+    colorScheme = "white",
     dropList,
     disabled,
     position = "bottom-start",

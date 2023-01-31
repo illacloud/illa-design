@@ -39,8 +39,6 @@ export default defineConfig({
         "@illa-design/theme",
         "@illa-design/icon",
         "@illa-design/dropdown",
-        "@illa-design/trigger",
-        "react-use-measure",
       ],
       output: {
         globals: {
@@ -52,8 +50,6 @@ export default defineConfig({
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/dropdown": "@illa-design/dropdown",
-          "@illa-design/trigger": "@illa-design/trigger",
-          "react-use-measure": "react-use-measure",
         },
       },
     },

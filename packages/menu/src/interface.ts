@@ -1,52 +1,68 @@
 import { HTMLAttributes, ReactNode, SyntheticEvent } from "react"
-import { TriggerProps } from "@illa-design/trigger"
 import { BoxProps } from "@illa-design/theme"
 
-export type MenuVariant = "inline" | "pop"
-export type MenuMode = "vertical" | "horizontal" | "popButton" | "pop"
+export type MenuMode = "vertical" | "horizontal"
+
+type ItemType = SubMenuProps | MenuItemProps
+
+export type MenuColorScheme =
+  | string
+  | "white"
+  | "blackAlpha"
+  | "gray"
+  | "grayBlue"
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "cyan"
+  | "purple"
+  | "techPurple"
+  | "techPink"
 
 export interface MenuProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
-  accordion?: boolean
-  autoOpen?: boolean
-  autoScrollIntoView?: boolean
-  collapse?: boolean
-  hasCollapseButton?: boolean
-  selectable?: boolean
-  levelIndent?: number
+  colorScheme?: MenuColorScheme
+  items?: ItemType[]
   mode?: MenuMode
-  defaultOpenKeys?: string[]
-  defaultSelectedKeys?: string[]
-  ellipsis?: boolean | { text?: ReactNode }
-  openKeys?: string[]
-  scrollConfig?: { [key: string]: any }
-  selectedKeys?: string[]
-  triggerProps?: Partial<TriggerProps>
+  defaultOpenedSubMenuValues?: string[]
+  defaultSelectedValues?: string[]
+  openedSubMenuValues?: string[]
+  selectedValues?: string[]
   onClickMenuItem?: (
-    key: string,
+    value: string,
+    valuePath: string[],
     event: SyntheticEvent,
-    keyPath: string[],
   ) => void
-  onClickSubMenu?: (key: string, openKeys: string[], keyPath: string[]) => void
-  onCollapseChange?: (collapse: boolean) => void
+  onClickSubMenu?: (
+    value: string,
+    openSubMenuValues: string[],
+    valuePath: string[],
+  ) => void
 }
 
 export interface SubMenuProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
+  opened?: boolean
+  selected?: boolean
   value: string
-  selectable?: boolean
+  disabled?: boolean
+  icon?: ReactNode
   label?: string | ReactNode
-  triggerProps?: Partial<TriggerProps>
-  popup?: boolean | ((level: number) => boolean)
-}
-
-export interface MenuItemGroupProps
-  extends HTMLAttributes<HTMLDivElement>,
-    BoxProps {
-  label?: string | ReactNode
+  subItems?: MenuItemProps[]
+  children?: ReactNode
+  onVisibleChange?: (visible: boolean) => void
 }
 
 export interface MenuItemProps
   extends HTMLAttributes<HTMLDivElement>,
     BoxProps {
+  selected?: boolean
   disabled?: boolean
   value: string
+  icon?: ReactNode
+  label?: ReactNode
+}
+
+export interface MenuContextProps {
+  colorScheme?: MenuColorScheme
 }

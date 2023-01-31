@@ -29,6 +29,7 @@ import {
   useFloating,
   useFocus,
   useHover,
+  safePolygon,
   useInteractions,
   useRole,
 } from "@floating-ui/react"
@@ -88,6 +89,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         setVisible(true)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const middleware = useMemo(() => {
@@ -142,6 +144,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         open: openDelay,
         close: closeDelay,
       },
+      handleClose: safePolygon(),
     }),
     useClick(context, {
       enabled: trigger === "click",

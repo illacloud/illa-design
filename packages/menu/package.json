@@ -41,10 +41,8 @@
   "dependencies": {
     "@illa-design/icon": "workspace:*",
     "@illa-design/dropdown": "workspace:*",
-    "@illa-design/trigger": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "react-use-measure": "^2.1.1",
     "framer-motion": "^7.6.12"
   },
   "peerDependencies": {
