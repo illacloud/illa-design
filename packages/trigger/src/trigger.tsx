@@ -144,7 +144,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
         open: openDelay,
         close: closeDelay,
       },
-      handleClose: safePolygon(),
+      handleClose: safePolygon({
+        restMs: 200,
+        buffer: 1,
+      }),
     }),
     useClick(context, {
       enabled: trigger === "click",

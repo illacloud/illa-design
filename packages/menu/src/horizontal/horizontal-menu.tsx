@@ -52,26 +52,6 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
       value: selectedValues,
     })
 
-    const [leftScroll, setLeftScroll] = useState<boolean>(false)
-    const [rightScroll, setRightScroll] = useState<boolean>(false)
-
-    const [containerBoundRef, containerBound] = useMeasure()
-    const containerRef = useRef<HTMLDivElement>()
-
-    useEffect(() => {
-      if (containerRef.current) {
-        const { scrollWidth, clientWidth, scrollLeft } = containerRef.current
-        if (
-          clientWidth < scrollWidth &&
-          scrollLeft + clientWidth < scrollWidth
-        ) {
-          if (!rightScroll) {
-            setRightScroll(true)
-          }
-        }
-      }
-    }, [containerBound.width, rightScroll])
-
     const defaultSelectedSubMenu: string[] = []
     const selectedSubMenu: string[] = []
 
@@ -95,6 +75,26 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
       defaultValue: defaultSelectedValues ? defaultSelectedSubMenu : undefined,
       value: selectedValues ? selectedSubMenu : undefined,
     })
+
+    const [leftScroll, setLeftScroll] = useState<boolean>(false)
+    const [rightScroll, setRightScroll] = useState<boolean>(false)
+
+    const [containerBoundRef, containerBound] = useMeasure()
+    const containerRef = useRef<HTMLDivElement>()
+
+    useEffect(() => {
+      if (containerRef.current) {
+        const { scrollWidth, clientWidth, scrollLeft } = containerRef.current
+        if (
+          clientWidth < scrollWidth &&
+          scrollLeft + clientWidth < scrollWidth
+        ) {
+          if (!rightScroll) {
+            setRightScroll(true)
+          }
+        }
+      }
+    }, [containerBound.width, rightScroll])
 
     const c: ReactNode[] | undefined = items?.map((item, index, array) => {
       if ("children" in item || "subItems" in item || "opened" in item) {
