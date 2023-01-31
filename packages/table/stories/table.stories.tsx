@@ -247,7 +247,6 @@ export const NoDataTable: StoryFn<TableProps<DemoData, string>> = (args) => {
   }, [])
   return (
     <div>
-      <Table data={[]} columns={[]} {...args} />
       <Table data={[]} columns={columns} {...args} />
     </div>
   )

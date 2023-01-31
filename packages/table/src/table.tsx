@@ -6,9 +6,17 @@ import { RenderDataDrivenTable } from "./render-data-driven-table"
 export function Table<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
 ) {
-  const { columns, data } = props
+  const {
+    columns,
+    data,
+    onSortingChange,
+    onColumnFiltersChange,
+    onRowSelectionChange,
+    onPaginationChange,
+    ...otherProps
+  } = props
   if (columns == undefined || data == undefined) {
-    return RenderDirectTable(props)
+    return RenderDirectTable(otherProps)
   } else {
     return RenderDataDrivenTable(props)
   }
