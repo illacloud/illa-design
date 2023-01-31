@@ -15,6 +15,7 @@ export const horizontalMenuListContainerStyle = css`
   flex-direction: row;
   overflow-x: auto;
   height: 100%;
+  width: 100%;
 
   &::-webkit-scrollbar {
     display: none;
@@ -39,29 +40,21 @@ export function applyActionContainerStyle(
   const bgStyle =
     action === "left"
       ? css`
-          mask: linear-gradient(
-            90deg,
-            #000 0,
-            #000 calc(100% - 10px),
-            transparent
-          );
+          mask-image: linear-gradient(90deg, #000 0, transparent);
         `
       : css`
-          mask: linear-gradient(
-            90deg,
-            #000 0,
-            #000 calc(100% - 10px),
-            transparent
-          );
+          mask-image: linear-gradient(-90deg, #000 0, transparent);
         `
   return css`
-    background-color: transparent;
+    background: transparent;
     color: ${getColor("grayBlue", "02")};
     position: absolute;
     width: 28px;
     display: inline-flex;
+    cursor: pointer;
     align-items: center;
     justify-content: center;
+    ${bgStyle};
     ${positionStyle};
   `
 }

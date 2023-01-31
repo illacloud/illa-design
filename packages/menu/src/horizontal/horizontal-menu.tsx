@@ -242,7 +242,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
               }
               if (
                 event.currentTarget.scrollLeft +
-                  event.currentTarget.clientWidth ===
+                  event.currentTarget.clientWidth >=
                 event.currentTarget.scrollWidth
               ) {
                 if (rightScroll) {
