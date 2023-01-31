@@ -23,6 +23,7 @@ import { DropList, DropListItem } from "@illa-design/dropdown"
 import { mergeRefs, useMergeValue } from "@illa-design/system"
 import { NextIcon, PreviousIcon } from "@illa-design/icon"
 import useMeasure from "react-use-measure"
+import { AnimatePresence, motion } from "framer-motion"
 
 export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
   (props, ref) => {
@@ -260,36 +261,48 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
           >
             {c}
           </div>
-          {leftScroll && (
-            <div
-              css={applyActionContainerStyle("left")}
-              onClick={() => {
-                if (containerRef.current) {
-                  containerRef.current?.scrollBy({
-                    left: -containerRef.current.clientWidth,
-                    behavior: "smooth",
-                  })
-                }
-              }}
-            >
-              <PreviousIcon />
-            </div>
-          )}
-          {rightScroll && (
-            <div
-              css={applyActionContainerStyle("right")}
-              onClick={() => {
-                if (containerRef.current) {
-                  containerRef.current?.scrollBy({
-                    left: containerRef.current.clientWidth,
-                    behavior: "smooth",
-                  })
-                }
-              }}
-            >
-              <NextIcon />
-            </div>
-          )}
+          <AnimatePresence initial={false}>
+            {leftScroll && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                exit={{ opacity: 0 }}
+                css={applyActionContainerStyle("left")}
+                onClick={() => {
+                  if (containerRef.current) {
+                    containerRef.current?.scrollBy({
+                      left: -containerRef.current.clientWidth,
+                      behavior: "smooth",
+                    })
+                  }
+                }}
+              >
+                <PreviousIcon />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <AnimatePresence initial={false}>
+            {rightScroll && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                exit={{ opacity: 0 }}
+                css={applyActionContainerStyle("right")}
+                onClick={() => {
+                  if (containerRef.current) {
+                    containerRef.current?.scrollBy({
+                      left: containerRef.current.clientWidth,
+                      behavior: "smooth",
+                    })
+                  }
+                }}
+              >
+                <NextIcon />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </MenuContext.Provider>
     )
