@@ -26,6 +26,7 @@ export const jaJP = {
   upload: {
     upload: "アップロード",
     dragTip: "ここにファイルをドラッグ アンド ドロップします",
+    dragHover: "ファイルを解放してアップロードを開始します",
     selectFile: "ファイルを選択",
     beginUpload: "アップロードを開始",
   },

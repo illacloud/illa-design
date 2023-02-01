@@ -48,6 +48,10 @@ export function isFunction<T extends Function = Function>(
   return typeof value === "function"
 }
 
+export function isFile(obj: any): obj is File {
+  return Object.prototype.toString.call(obj) === "[object File]"
+}
+
 // thx arco
 export const isServerRendering = (function () {
   try {

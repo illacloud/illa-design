@@ -26,6 +26,7 @@ export const koKR = {
   upload: {
     upload: "업로드",
     dragTip: "파일을 여기로 드래그 앤 드래그",
+    dragHover: "파일을 해제하고 업로드 시작",
     selectFile: "파일 선택",
     beginUpload: "업로드 시작",
   },

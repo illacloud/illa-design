@@ -26,6 +26,7 @@ export const enUS = {
   upload: {
     upload: "Upload",
     dragTip: "Drag and drop the file",
+    dragHover: "Release to upload",
     selectFile: "Select File",
     beginUpload: "Upload File",
   },
