@@ -159,6 +159,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
               }
             }}
             onClick={() => {
+              if (subMenu.disabled) return
               const openedSet = new Set([
                 ...items
                   ?.filter((i) => "opened" in i && i.opened === true)

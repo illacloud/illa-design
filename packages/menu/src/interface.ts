@@ -63,6 +63,10 @@ export interface MenuItemProps
   label?: ReactNode
 }
 
+export interface VerticalMenuItemProps extends MenuItemProps {
+  sub?: boolean
+}
+
 export interface MenuContextProps {
   colorScheme?: MenuColorScheme
 }

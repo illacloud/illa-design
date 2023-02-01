@@ -1,34 +1,35 @@
 import { forwardRef, useContext } from "react"
-import { MenuItemProps } from "../interface"
+import { MenuItemProps, VerticalMenuItemProps } from "../interface"
 import { MenuContext } from "../menu-context"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import {
-  applyVerticalSubMenuContainer,
+  applyVerticalMenuItemContainer,
   verticalSubMenuIcon,
   verticalSubMenuLabel,
 } from "./style"
 
-export const VerticalMenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
-  (props, ref) => {
-    const { selected, disabled, icon, label, value, ...otherProps } = props
+export const VerticalMenuItem = forwardRef<
+  HTMLDivElement,
+  VerticalMenuItemProps
+>((props, ref) => {
+  const { selected, disabled, icon, label, value, sub, ...otherProps } = props
 
-    const menuContext = useContext(MenuContext)
-    const colorScheme = menuContext?.colorScheme ?? "blue"
+  const menuContext = useContext(MenuContext)
+  const colorScheme = menuContext?.colorScheme ?? "blue"
 
-    return (
-      <div
-        css={[
-          applyVerticalSubMenuContainer(colorScheme, selected, disabled),
-          applyBoxStyle(otherProps),
-        ]}
-        ref={ref}
-        {...deleteCssProps(otherProps)}
-      >
-        {icon && <span css={verticalSubMenuIcon}>{icon}</span>}
-        {label && <span css={verticalSubMenuLabel}>{label}</span>}
-      </div>
-    )
-  },
-)
+  return (
+    <div
+      css={[
+        applyVerticalMenuItemContainer(colorScheme, selected, disabled, sub),
+        applyBoxStyle(otherProps),
+      ]}
+      ref={ref}
+      {...deleteCssProps(otherProps)}
+    >
+      {icon && <span css={verticalSubMenuIcon}>{icon}</span>}
+      {label && <span css={verticalSubMenuLabel}>{label}</span>}
+    </div>
+  )
+})
 
 VerticalMenuItem.displayName = "VerticalMenuItem"

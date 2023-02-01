@@ -1,4 +1,4 @@
-import { forwardRef, MouseEvent, ReactNode } from "react"
+import { forwardRef, ReactNode } from "react"
 import { MenuProps, SubMenuProps } from "../interface"
 import { useMergeValue } from "@illa-design/system"
 import { MenuContext } from "../menu-context"
@@ -9,7 +9,6 @@ import {
   verticalSubMenuIcon,
   verticalSubMenuLabel,
 } from "./style"
-import { DropList, DropListItem } from "@illa-design/dropdown"
 import { VerticalSubMenu } from "./vertical-sub-menu"
 import { VerticalMenuItem } from "./vertical-menu-item"
 
@@ -70,11 +69,28 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
 
         const subItems = subMenu.subItems?.map((subItem, index, array) => {
           return (
-            <DropListItem
+            <VerticalMenuItem
               value={subItem.value}
               key={subItem.value}
+              sub={true}
               disabled={subItem.disabled}
-              title={
+              onClick={(e) => {
+                if (subItem.disabled) return
+                onClickMenuItem?.(
+                  subItem.value,
+                  [subMenu.value, subItem.value],
+                  e,
+                )
+                if (selectedValues === undefined) {
+                  if (!finalSelectedValues.includes(subItem.value)) {
+                    setFinalSelectedValues([subItem.value])
+                  }
+                  if (!finalSelectedSubMenu.includes(subMenu.value)) {
+                    setFinalSelectedSubMenu([subMenu.value])
+                  }
+                }
+              }}
+              label={
                 <div
                   css={applyVerticalSubMenuItemContainer(
                     colorScheme,
@@ -110,23 +126,8 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
               subMenu.opened ??
               finalOpenedSubMenuValues.some((v) => v === subMenu.value)
             }
-            onVisibleChange={(opened) => {
-              if (openedSubMenuValues === undefined) {
-                if (opened) {
-                  if (!finalOpenedSubMenuValues.includes(subMenu.value)) {
-                    setFinalOpenedSubMenuValues([
-                      ...finalOpenedSubMenuValues,
-                      subMenu.value,
-                    ])
-                  }
-                } else {
-                  setFinalOpenedSubMenuValues(
-                    finalOpenedSubMenuValues.filter((v) => v !== subMenu.value),
-                  )
-                }
-              }
-            }}
             onClick={() => {
+              if (subMenu.disabled) return
               const openedSet = new Set([
                 ...items
                   ?.filter((i) => "opened" in i && i.opened === true)
@@ -134,29 +135,21 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
                 ...finalOpenedSubMenuValues,
               ])
               onClickSubMenu?.(subMenu.value, [...openedSet], [item.value])
+              if (openedSubMenuValues === undefined) {
+                if (!finalOpenedSubMenuValues.includes(subMenu.value)) {
+                  setFinalOpenedSubMenuValues([
+                    ...finalOpenedSubMenuValues,
+                    subMenu.value,
+                  ])
+                } else {
+                  setFinalOpenedSubMenuValues(
+                    finalOpenedSubMenuValues.filter((v) => v !== subMenu.value),
+                  )
+                }
+              }
             }}
           >
-            <DropList
-              w="200px"
-              bdRadius="2px"
-              onClickItem={(
-                value: string,
-                clickedNode: ReactNode,
-                event: MouseEvent,
-              ) => {
-                onClickMenuItem?.(value, [item.value, value], event)
-                if (selectedValues === undefined) {
-                  if (!finalSelectedValues.includes(value)) {
-                    setFinalSelectedValues([value])
-                  }
-                  if (!finalSelectedSubMenu.includes(item.value)) {
-                    setFinalSelectedSubMenu([item.value])
-                  }
-                }
-              }}
-            >
-              {subItems}
-            </DropList>
+            {subItems}
           </VerticalSubMenu>
         )
       } else {
@@ -166,6 +159,7 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
             value={item.value}
             icon={item.icon}
             label={item.label}
+            sub={false}
             disabled={item.disabled}
             selected={
               item.selected ?? finalSelectedValues.some((v) => v === item.value)

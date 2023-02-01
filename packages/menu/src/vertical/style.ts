@@ -2,7 +2,16 @@ import { css, SerializedStyles } from "@emotion/react"
 import { MenuColorScheme } from "../interface"
 import { getColor } from "@illa-design/theme"
 
-export function applyVerticalSubMenuContainer(
+export function applyVerticalListContainer(): SerializedStyles {
+  return css`
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    flex-direction: column;
+  `
+}
+
+export function applyVerticalSubMenuContentContainer(
   colorScheme: MenuColorScheme,
   selected?: boolean,
   disabled?: boolean,
@@ -14,12 +23,14 @@ export function applyVerticalSubMenuContainer(
     : selected
     ? css`
         color: ${getColor(colorScheme, "03")};
+
         &:hover {
           background-color: ${getColor("grayBlue", "09")};
         }
       `
     : css`
         color: ${getColor("grayBlue", "02")};
+
         &:hover {
           background-color: ${getColor("grayBlue", "09")};
         }
@@ -35,6 +46,54 @@ export function applyVerticalSubMenuContainer(
     padding: 0 24px;
     flex-direction: row;
     ${colorStyle};
+  `
+}
+
+export function applyVerticalMenuItemContainer(
+  colorScheme: MenuColorScheme,
+  selected?: boolean,
+  disabled?: boolean,
+  sub?: boolean,
+): SerializedStyles {
+  const colorStyle = disabled
+    ? css`
+        color: ${getColor("grayBlue", "05")};
+      `
+    : selected
+    ? css`
+        color: ${getColor(colorScheme, "03")};
+
+        &:hover {
+          background-color: ${getColor("grayBlue", "09")};
+        }
+      `
+    : css`
+        color: ${getColor("grayBlue", "02")};
+
+        &:hover {
+          background-color: ${getColor("grayBlue", "09")};
+        }
+      `
+
+  const paddingStyle = sub
+    ? css`
+        padding: 0 24px 0 40px;
+      `
+    : css`
+        padding: 0 24px 0 24px;
+      `
+
+  return css`
+    cursor: ${disabled ? "not-allowed" : "pointer"};
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    width: 100%;
+    padding: 0 24px 0 40px;
+    height: 48px;
+    flex-direction: row;
+    ${colorStyle};
+    ${paddingStyle};
   `
 }
 
@@ -62,7 +121,6 @@ export const verticalMenuContainerStyle = css`
   display: flex;
   padding: 8px 0;
   overflow-y: auto;
-  background: ${getColor("white", "01")};
   border-radius: 2px;
   width: 200px;
   flex-direction: column;

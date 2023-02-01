@@ -1,15 +1,16 @@
 import { forwardRef, useContext } from "react"
 import { SubMenuProps } from "../interface"
 import { MenuContext } from "../menu-context"
-import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import {
-  applyVerticalSubMenuContainer,
+  applyVerticalListContainer,
+  applyVerticalSubMenuContentContainer,
   verticalDivider,
   verticalSubMenuIcon,
   verticalSubMenuLabel,
 } from "./style"
-import { DownIcon } from "@illa-design/icon"
-import { Dropdown } from "@illa-design/dropdown"
+import { deleteCssProps } from "@illa-design/theme"
+import { DownIcon, UpIcon } from "@illa-design/icon"
+import { AnimatePresence, motion } from "framer-motion"
 
 export const VerticalSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
   (props, ref) => {
@@ -28,29 +29,39 @@ export const VerticalSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
     const colorScheme = menuContext?.colorScheme ?? "blue"
 
     return (
-      <Dropdown
-        trigger="hover"
-        position="right-start"
-        popupVisible={opened}
-        autoAlignPopupWidth={true}
-        disabled={disabled}
-        onVisibleChange={onVisibleChange}
-        dropList={children}
-      >
+      <>
         <div
-          css={[
-            applyVerticalSubMenuContainer(colorScheme, selected, disabled),
-            applyBoxStyle(otherProps),
-          ]}
+          css={applyVerticalSubMenuContentContainer(
+            colorScheme,
+            selected,
+            disabled,
+          )}
           ref={ref}
           {...deleteCssProps(otherProps)}
         >
           {icon && <span css={verticalSubMenuIcon}>{icon}</span>}
           {label && <span css={verticalSubMenuLabel}>{label}</span>}
           <div css={verticalDivider} />
-          {children && <DownIcon ml="8px" fs="14px" />}
+          {children && opened ? (
+            <UpIcon ml="8px" fs="14px" />
+          ) : (
+            <DownIcon ml="8px" fs="14px" />
+          )}
         </div>
-      </Dropdown>
+        <AnimatePresence>
+          {opened && (
+            <motion.div
+              css={applyVerticalListContainer()}
+              initial={{ height: 0 }}
+              animate={{ height: "auto" }}
+              transition={{ duration: 0.2 }}
+              exit={{ height: 0 }}
+            >
+              {children}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </>
     )
   },
 )
