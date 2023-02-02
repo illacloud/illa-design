@@ -15,7 +15,9 @@ function getBody(xhr: XMLHttpRequest) {
   }
 }
 
-const uploadRequest: UploadRequestProps = function (options: RequestOptions) {
+const uploadRequestSender: UploadRequestProps = function (
+  options: RequestOptions,
+) {
   const {
     onProgress = initialHandler,
     onError = initialHandler,
@@ -79,4 +81,4 @@ const uploadRequest: UploadRequestProps = function (options: RequestOptions) {
   }
 }
 
-export default uploadRequest
+export default uploadRequestSender

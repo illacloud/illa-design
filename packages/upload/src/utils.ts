@@ -1,4 +1,5 @@
-import { isArray } from "@illa-design/system"
+import { isArray, isFunction } from "@illa-design/system"
+import { UploadItem, InternalDataTransferItem } from "./interface"
 
 export const isAcceptFile = (
   file: File,
@@ -18,31 +19,23 @@ export const isAcceptFile = (
       const typeText = type && type.toLowerCase()
       const fileType = (file.type || "").toLowerCase()
       const baseFileType = fileType.split("/")[0] // audio/mpeg => audio;
-
-      // This is something like */*,*  allow all files
       if (/^\*(\/\*)?$/.test(typeText)) {
         return true
       }
-      // `${baseFileType}/${fileExtension}` === typeText
-      // filetype is audio/mpeg, but accept is audio/mp3, should return true
       if (
         typeText === fileType ||
         `${baseFileType}${fileExtension.replace(".", "/")}` === typeText
       ) {
-        // 类似excel文件这种
-        // 比如application/vnd.ms-excel和application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-        // 本身就带有.字符的，不能走下面的.jpg等文件扩展名判断处理
-        // 所以优先对比input的accept类型和文件对象的type值
         return true
       }
       if (/\/\*/.test(typeText)) {
-        // image/* 这种通配的形式处理
+        // image/*
         return fileType.replace(/\/.*$/, "") === typeText.replace(/\/.*$/, "")
       }
       if (/\..*/.test(typeText)) {
-        // .jpg 等后缀名
+        // .jpg
         let affixList = [typeText]
-        // accept=".jpg", jpeg后缀类型同样可以上传，反之亦然
+        // accept=".jpg", jpeg
         if (typeText === ".jpg" || typeText === ".jpeg") {
           affixList = [".jpg", ".jpeg"]
         }
@@ -54,7 +47,7 @@ export const isAcceptFile = (
   return !!file
 }
 
-export const getFiles = (fileList, accept) => {
+export const getFiles = (fileList: FileList, accept?: string) => {
   if (!fileList) {
     return
   }
@@ -68,20 +61,19 @@ export const getFiles = (fileList, accept) => {
 }
 
 export const loopDirectory = (
-  items: DataTransferItemList,
-  accept,
-  callback,
+  items: InternalDataTransferItem[],
+  callback: (files: File[]) => void,
+  accept?: string | string[],
 ) => {
   const files: File[] = []
 
-  let restFileCount = 0 // 剩余上传文件的数量
+  let restFileCount = 0 // 剩 余上传文件的数量
   const onFinish = () => {
     !restFileCount && callback(files)
   }
 
-  const _loopDirectory = (item) => {
+  const _loopDirectory = (item: InternalDataTransferItem) => {
     restFileCount += 1
-
     if (item.isFile) {
       item.file((file) => {
         restFileCount -= 1
@@ -95,11 +87,10 @@ export const loopDirectory = (
       })
       return
     } else if (item.isDirectory) {
-      // item 是个文件夹
       const reader = item.createReader()
       let flag = false
       const readEntries = () => {
-        reader.readEntries((entries) => {
+        reader.readEntries((entries: InternalDataTransferItem[]) => {
           if (!flag) {
             restFileCount -= 1
             flag = true
@@ -115,16 +106,22 @@ export const loopDirectory = (
       readEntries()
       return
     }
-
     restFileCount -= 1
     onFinish()
   }
 
-  const list = [].slice.call(items)
-
-  list.forEach((item: DataTransferItem) => {
+  items.forEach((item: DataTransferItem) => {
     if (item.webkitGetAsEntry) {
-      _loopDirectory(item.webkitGetAsEntry())
+      _loopDirectory(item.webkitGetAsEntry() as any)
     }
   })
+}
+
+export const getFileURL = (file: UploadItem) => {
+  const { originFile } = file
+  return file.url !== undefined
+    ? file.url
+    : originFile && isFunction(URL.createObjectURL)
+    ? URL.createObjectURL(originFile)
+    : undefined
 }

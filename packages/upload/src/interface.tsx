@@ -22,12 +22,10 @@ export type CustomIconType = {
   errorIcon?: ReactNode
   successIcon?: ReactNode
   fileName?: (file: UploadItem) => ReactNode
-  // 2.34.0
   progressRender?: (
     file: UploadItem,
     originDom: ReactNode,
   ) => React.ReactElement
-  // 2.34.0
   imageRender?: (file: UploadItem) => React.ReactNode
 }
 
@@ -67,18 +65,10 @@ export interface UploadProps {
     file: UploadItem,
     fileList: UploadItem[],
   ) => ReactNode
-  /**
-   * @zh 自定义展示上传文件列表
-   * @en Custom uploadList
-   */
   renderUploadList?: (
     fileList: UploadItem[],
     uploadListProps: UploadListProps,
   ) => ReactNode
-  /**
-   * @zh 上传文件改变时的回调。文件开始上传，失败，成功时会触发。注意：如果需要实时获取文件的上传进度，请在 `onProgress` 中处理。
-   * @en Callback when uploading state is changing
-   */
   onChange?: (fileList: UploadItem[], file: UploadItem) => void
   onRemove?: (
     file: UploadItem,
@@ -98,13 +88,9 @@ export type RequestOptions = Pick<
   UploadProps,
   "headers" | "name" | "data" | "action"
 > & {
-  /** 更新当前文件的上传进度 。percent: 当前上传进度百分比 */
   onProgress: (percent: number, event?: ProgressEvent) => void
-  /** 上传成功后，调用onSuccess方法，传入的response参数将会附加到当前上传文件的reponse字段上 */
   onSuccess: (response?: object) => void
-  /** 上传失败后，调用onError方法，传入的 response 参数将会附加到当前上传文件的response字段 */
   onError: (response?: object) => void
-  /** 当前上传文件 */
   file: File
 }
 
@@ -122,7 +108,6 @@ export interface UploadFile<T = any> {
   url?: string
   status?: UploadStatus
   percent?: number
-  thumbUrl?: string
   crossOrigin?: React.ImgHTMLAttributes<HTMLImageElement>["crossOrigin"]
   originFileObj?: UploadFileObj
   response?: T
@@ -135,35 +120,13 @@ export interface UploadFile<T = any> {
 
 export interface UploadListProps {
   listType?: string
-  imagePreview?: boolean
   fileList?: UploadItem[]
   showUploadList?: boolean | CustomIconType
-  progressProps?: Partial<ProgressProps>
   onUpload?: (file: UploadItem) => void
-  /**
-   * @zh 中止文件上传的回调
-   * @en Callback when the cancel icon is clicked
-   */
   onAbort?: (file: UploadItem) => void
-  /**
-   * @zh 点击删除文件时的回调。返回 false 或者 Promise.reject 的时候不会执行删除
-   * @en Callback when the remove icon is clicked.Remove actions will be aborted when the return value is false or a Promise which resolve(false) or reject
-   */
   onRemove?: (file: UploadItem) => void
-  /**
-   * @zh 重新上传的回调
-   * @en Callback when the re-upload icon is clicked
-   */
   onReupload?: (file: UploadItem) => void
-  /**
-   * @zh 点击预览时候的回调。
-   * @en Callback when the preview icon is clicked
-   */
   onPreview?: (file: UploadItem) => void
-  /**
-   * @zh 禁用
-   * @en Whether to disable
-   */
   disabled?: boolean
   renderUploadItem?: (
     originNode: ReactNode,
@@ -174,50 +137,21 @@ export interface UploadListProps {
     fileList: UploadItem[],
     uploadListProps: Omit<UploadListProps, "renderUploadList">,
   ) => ReactNode
-  prefixCls?: string
+  progressProps?: Partial<ProgressProps>
 }
 
 export type UploadItem = {
-  /**
-   * @zh 当前上传文件的唯一标示
-   * @en Unique identifier
-   */
   uid: string
-  /**
-   * @zh 当前上传文件的状态
-   * @en Uploading status
-   */
   status?: UploadStatus
-  /**
-   * @zh 文件对象
-   * @en File Object
-   */
   originFile?: File
-  /**
-   * @zh 上传进度百分比
-   * @en Upload progress percentage
-   */
   percent?: number
-  /**
-   * @zh 当前文件上传请求返回的响应
-   * @en Response of upload request
-   */
   response?: object
-  /**
-   * @zh 文件 url
-   * @en File url
-   */
   url?: string
-  /**
-   * @zh 文件名
-   * @en File name
-   */
   name?: string
   children?: ReactNode
 }
 
 export interface UploaderProps extends UploadProps {
-  prefixCls?: string
   limit?: number
   hide?: boolean
   onFileStatusChange?: (file: UploadItem) => void
@@ -236,15 +170,11 @@ export type TriggerProps = {
   onDragLeave?: (e: React.DragEvent) => void
   onDragOver?: (e: React.DragEvent) => void
   onDragFiles: (files: File[]) => void
-  prefixCls?: string
 }
 
 export type UploadInstance = {
-  /** 手动上传时，调用该方法，开始上传。不传参数时，会默认上传全部init状态的文件 */
   submit: (file?: UploadItem) => void
-  /** 中止文件上传 */
   abort: (file: UploadItem) => void
-  /** 重新上传文件 */
   reupload: (file: UploadItem) => void
 }
 
@@ -255,4 +185,12 @@ export interface UploadProgressProps extends CustomIconType {
   onReupload?: UploadListProps["onReupload"]
   onUpload?: UploadListProps["onUpload"]
   onAbort?: UploadListProps["onAbort"]
+}
+
+export interface InternalDataTransferItem extends DataTransferItem {
+  isFile: boolean
+  file: (cd: (file: File & { webkitRelativePath?: string }) => void) => void
+  createReader: () => any
+  isDirectory: boolean
+  name: string
 }

@@ -79,7 +79,8 @@ export const textItemImageStyle = css`
   height: 40px;
   flex-shrink: 0;
   border-radius: 4px;
-  & > img {
+  & > img,
+  & > svg {
     width: 100%;
     height: 100%;
     border-radius: 4px;
@@ -122,7 +123,7 @@ export const getTextItemNameStyle = (status: string = "init") => {
     font-size: 14px;
     display: flex;
     line-height: 22px;
-
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
     ${errorStyle};
   `
 }
@@ -162,12 +163,21 @@ export const textItemDeleteIconStyle = css`
   }
 `
 
-export const triggerNodeContainerStyle = css`
-  cursor: pointer;
-  display: inline-block;
-  vertical-align: top;
-  width: auto;
-`
+export const getTriggerNodeContainerStyle = (drag?: boolean) => {
+  const listWidthStyle = drag
+    ? css`
+        width: 100%;
+      `
+    : css`
+        max-width: 100%;
+      `
+  return css`
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    ${listWidthStyle};
+  `
+}
 
 export const inputStyle = css`
   visibility: hidden;
@@ -341,8 +351,8 @@ export const successIconStyle = css`
 export const uploadProgressStatus = css`
   position: relative;
   cursor: pointer;
-  line-height: 16px;
-  height: 16px;
+  //line-height: 16px;
+  //height: 16px;
 `
 
 export const uploadProgressStyle = css`
@@ -356,10 +366,32 @@ export const uploadProgressStyle = css`
 
 export const uploadProgressFailStyle = css`
   font-size: 14px;
+  cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-blue-01`)};
 `
 
-export const pictureItemUploading = css``
+export const pictureItemUploading = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const pictureItemStyle = css`
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  vertical-align: middle;
+  background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+  & > img {
+    width: 100%;
+    height: 100%;
+  }
+`
 
 export const pictureItemMask = css`
   position: absolute;
@@ -385,24 +417,42 @@ export const pictureItemOperationsStyle = css`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  & span {
-    color: ${globalColor(`--${illaPrefix}-white-02`)};
-  }
+  color: ${globalColor(`--${illaPrefix}-white-02`)};
 `
 
-export const pictureItemStyle = css`
-  position: relative;
-  overflow: hidden;
+export const pictureItemErrorIconStyle = css`
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
+`
+
+export const pictureItemPreviewStyle = css`
+  color: ${globalColor(`--${illaPrefix}-white-02`)};
+  text-decoration: none;
+`
+
+export const errorImageContainerStyle = css`
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  text-align: center;
-  vertical-align: middle;
-  background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-  & img {
-    width: 100%;
-    height: 100%;
-  }
+  padding: 8px;
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
+  border: 1px solid ${globalColor(`--${illaPrefix}-red-03`)};
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
+export const errorImageStyle = css`
+  width: 50%;
+  height: 50%;
+  display: block;
+  margin: auto;
+`
+
+export const errorImageNameStyle = css`
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 export const listItemStyle = css`

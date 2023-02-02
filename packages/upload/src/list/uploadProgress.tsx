@@ -7,7 +7,6 @@ import {
   CaretRightIcon,
   CloseIcon,
 } from "@illa-design/icon"
-import { Popover } from "@illa-design/popover"
 import { isFunction } from "@illa-design/system"
 import {
   ConfigProviderContext,
@@ -21,11 +20,10 @@ import {
 } from "../style"
 
 const UploadProgress: FC<UploadProgressProps> = (props) => {
-  const { file, progressProps, progressRender } = props
+  const { file, progressProps, progressRender, onReupload, onUpload, onAbort } =
+    props
   const { locale } = useContext<ConfigProviderProps>(ConfigProviderContext)
   const { status, percent = 0 } = file
-  // const widthStyle =
-  //   progressProps && progressProps.w ? { width: progressProps.w } : {}
 
   const handleKeyDown = (
     event: KeyboardEvent<HTMLSpanElement>,
@@ -38,15 +36,15 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
   }
 
   const handleFileReupload = () => {
-    props.onReupload && props.onReupload(file)
+    onReupload && onReupload(file)
   }
 
   const handleFileUpload = () => {
-    props.onUpload && props.onUpload(file)
+    onUpload && onUpload(file)
   }
 
   const handleFileAbort = () => {
-    props.onAbort && props.onAbort(file)
+    onAbort && onAbort(file)
   }
 
   const dom = (
@@ -103,11 +101,7 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
               onClick={handleFileUpload}
               onKeyDown={(e) => handleKeyDown(e, handleFileUpload)}
             >
-              {props.startIcon || (
-                <Popover content={locale?.upload.start}>
-                  <CaretRightIcon />
-                </Popover>
-              )}
+              {props.startIcon || <CaretRightIcon />}
             </span>
           )}
 
@@ -119,11 +113,7 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
               aria-label={locale?.upload.cancel}
               onKeyDown={(e) => handleKeyDown(e, handleFileAbort)}
             >
-              {props.cancelIcon || (
-                <Popover content={locale?.upload.cancel}>
-                  <CloseIcon />
-                </Popover>
-              )}
+              {props.cancelIcon || <CloseIcon />}
             </span>
           )}
         </div>

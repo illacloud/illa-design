@@ -49,9 +49,21 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
       : {},
   )
 
-  uploadStateRef.current = innerUploadState
+  const {
+    listType = "text",
+    renderUploadItem,
+    showUploadList = true,
+    autoUpload = true,
+    renderUploadList,
+    beforeUpload = () => true,
+    progressProps,
+    imagePreview,
+    onProgress,
+    onChange,
+    onReupload,
+  } = props
 
-  console.log({ innerUploadState }, uploadStateRef.current)
+  uploadStateRef.current = innerUploadState
 
   const deleteUploadFile = (file: UploadItem) => {
     const obj = { ...uploadStateRef.current }
@@ -60,7 +72,7 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
     if (!("fileList" in props)) {
       setInnerUploadState(obj)
     }
-    props.onChange && props.onChange(getFileList(obj), file)
+    onChange && onChange(getFileList(obj), file)
   }
 
   const uploadFile = (file: UploadItem) => {
@@ -72,13 +84,11 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
     }, 0)
   }
 
-  // 重新上传
-  const reuploadFile = async (file: UploadItem) => {
-    uploaderRef.current && (await uploaderRef.current.reupload(file))
-    props.onReupload && props.onReupload(file)
+  const reuploadFile = (file: UploadItem) => {
+    uploaderRef.current && uploaderRef.current.reupload(file)
+    onReupload && onReupload(file)
   }
 
-  // 移除文件，如果正在上传，终止上传
   const removeFile = (file: UploadItem) => {
     if (file) {
       const { onRemove } = props
@@ -99,7 +109,6 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
     }
   }
 
-  // 中止文件上传
   const abortFile = (file: UploadItem) => {
     if (file) {
       uploaderRef.current && uploaderRef.current.abort(file)
@@ -121,27 +130,14 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
           uploadFile(x)
         })
       },
-      // file: fileList中的file对象
       abort: (file: UploadItem) => {
         abortFile(file)
       },
-      // file: fileList中的file对象
       reupload: (file: UploadItem) => {
         reuploadFile(file)
       },
     }
   })
-
-  const {
-    listType = "text",
-    renderUploadItem,
-    showUploadList = true,
-    autoUpload = true,
-    renderUploadList,
-    beforeUpload = () => true,
-    progressProps,
-    imagePreview,
-  } = props
 
   const fileList = getFileList(uploadStateRef.current)
   const limit = isNumber(props.limit)
@@ -153,6 +149,36 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
     props.disabled ?? (!limit.hideOnExceedLimit && exceedLimit)
 
   const isPictureCard = listType === "picture-card"
+
+  const handleProgress = (file: UploadItem, e?: ProgressEvent) => {
+    if (file) {
+      if (!("fileList" in props)) {
+        setInnerUploadState((v) => {
+          return {
+            ...v,
+            [file.uid]: file,
+          }
+        })
+      }
+      onProgress && onProgress(file, e)
+    }
+  }
+
+  const handleFileStatusChange = (file: UploadItem) => {
+    if (!("fileList" in props)) {
+      setInnerUploadState((v) => {
+        return {
+          ...v,
+          [file.uid]: file,
+        }
+      })
+    }
+    onChange &&
+      onChange(
+        getFileList({ ...uploadStateRef.current, [file.uid]: file }),
+        file,
+      )
+  }
 
   const uploadCompontent = (
     <div css={getUploaderContinerStyle(listType)}>
@@ -167,34 +193,8 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
         limit={limit.maxCount}
         hide={limit.hideOnExceedLimit && exceedLimit}
         disabled={disabledUploadDom}
-        onProgress={(file: UploadItem, e?: ProgressEvent) => {
-          if (file) {
-            if (!("fileList" in props)) {
-              setInnerUploadState((v) => {
-                return {
-                  ...v,
-                  [file.uid]: file,
-                }
-              })
-            }
-            props.onProgress && props.onProgress(file, e)
-          }
-        }}
-        onFileStatusChange={(file: UploadItem) => {
-          if (!("fileList" in props)) {
-            setInnerUploadState((v) => {
-              return {
-                ...v,
-                [file.uid]: file,
-              }
-            })
-          }
-          props.onChange &&
-            props.onChange(
-              getFileList({ ...uploadStateRef.current, [file.uid]: file }),
-              file,
-            )
-        }}
+        onProgress={handleProgress}
+        onFileStatusChange={handleFileStatusChange}
       />
     </div>
   )
@@ -204,7 +204,6 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
       {!isPictureCard && uploadCompontent}
       {showUploadList && (
         <UploadList
-          imagePreview={imagePreview}
           progressProps={progressProps}
           showUploadList={showUploadList}
           disabled={props.disabled}

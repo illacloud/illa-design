@@ -10,7 +10,7 @@ export default {
 } as Meta
 
 const Template: Story<UploadProps> = (props) => {
-  const [listType, setListType] = React.useState("picture-card")
+  const [listType, setListType] = React.useState("picture-list")
   return (
     <div>
       <Space direction={"vertical"} wrap>
@@ -24,20 +24,15 @@ const Template: Story<UploadProps> = (props) => {
       </Space>
       <div>
         <Upload
-          action={"/"}
-          autoUpload={false}
+          action={"https://www.mocky.io/v2/5cc8019d300000980a055e76"}
+          autoUpload={true}
           multiple
-          // drag={true}
+          drag={true}
+          directory={true}
           listType={listType}
           defaultFileList={[
             {
               uid: "-3",
-              name: "image.png",
-              status: "done",
-              url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-            },
-            {
-              uid: "-4",
               name: "image.png",
               status: "done",
               url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",

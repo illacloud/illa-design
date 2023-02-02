@@ -15,6 +15,7 @@ import {
   FilePictureIcon,
   DeleteIcon,
   ErrorIcon,
+  ImageDefaultIcon,
 } from "@illa-design/icon"
 import { Popover } from "@illa-design/popover"
 import { ConfigProviderProps } from "@illa-design/config-provider"
@@ -30,11 +31,11 @@ import {
   textItemProgressStyle,
   textItemStyle,
 } from "../style"
+import { getFileURL } from "../utils"
 
 const getIconType = (file: UploadItem) => {
   let type = ""
   if (file.originFile && file.originFile.type) {
-    // 上传文件
     type = file.originFile.type
   } else {
     const name = file.name || ""
@@ -70,7 +71,7 @@ const TextItem = (
     locale: ConfigProviderProps["locale"]
   },
 ) => {
-  const { disabled, file, locale } = props
+  const { disabled, file, locale, onRemove } = props
 
   const Icon = getIconType(file)
 
@@ -78,21 +79,16 @@ const TextItem = (
     ? (props.showUploadList as CustomIconType)
     : {}
 
-  // custom icons
+  const imageUrl = getFileURL(file)
   const actionIcons = isObject(showUploadList)
     ? (showUploadList as CustomIconType)
     : {}
 
-  const fileName = file.name || (file.originFile && file.originFile.name)
-  const url =
-    file.url !== undefined
-      ? file.url
-      : file.originFile && isFunction(URL.createObjectURL)
-      ? URL.createObjectURL(file.originFile)
-      : undefined
+  const fileName = isFunction(showUploadList.fileName)
+    ? showUploadList.fileName(file)
+    : file.name || (file.originFile && file.originFile.name)
 
   let triggerProps = {}
-  // 重新上传后，如果成功，但是鼠标仍然hover在内容区，错误提示不会消失。所以需要设置 popupVisible 为false，来隐藏tooltip
   if (file.status !== STATUS.FAIL) {
     triggerProps = {
       popupVisible: false,
@@ -100,7 +96,7 @@ const TextItem = (
   }
 
   const handleItemRemove = () => {
-    props.onRemove && props.onRemove(file)
+    onRemove && onRemove(file)
   }
 
   const handleKeyDown = (
@@ -120,8 +116,10 @@ const TextItem = (
           <div css={textItemImageStyle}>
             {isFunction(showUploadList.imageRender) ? (
               showUploadList.imageRender(file)
+            ) : imageUrl ? (
+              <img src={imageUrl} />
             ) : (
-              <img src={url} />
+              <ImageDefaultIcon />
             )}
           </div>
         )}
@@ -132,13 +130,9 @@ const TextItem = (
         )}
         <div css={textItemStyle}>
           <div css={textItemMainContentStyle}>
-            {isFunction(showUploadList.fileName) ? (
-              <span css={getTextItemNameStyle(file.status)}>
-                {showUploadList.fileName(file)}
-              </span>
-            ) : file.url ? (
+            {imageUrl ? (
               <a
-                href={file.url}
+                href={imageUrl}
                 target="_blank"
                 rel="noreferrer"
                 css={getTextItemNameStyle(file.status)}

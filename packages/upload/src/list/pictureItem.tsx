@@ -1,4 +1,4 @@
-import React, { KeyboardEvent } from "react"
+import React, { KeyboardEvent, MouseEvent } from "react"
 import {
   UploadListProps,
   STATUS,
@@ -8,13 +8,25 @@ import {
 import { isFunction, isObject } from "@illa-design/system"
 import UploadProgress from "./uploadProgress"
 import { ConfigProviderProps } from "@illa-design/config-provider"
-import { CloseIcon, EyeOnIcon, UploadIcon, DeleteIcon } from "@illa-design/icon"
 import {
+  EyeOnIcon,
+  UploadIcon,
+  DeleteIcon,
+  ImageDefaultIcon,
+  ErrorIcon,
+} from "@illa-design/icon"
+import {
+  errorImageContainerStyle,
+  errorImageNameStyle,
+  errorImageStyle,
+  pictureItemErrorIconStyle,
   pictureItemMask,
   pictureItemOperationsStyle,
+  pictureItemPreviewStyle,
   pictureItemStyle,
   pictureItemUploading,
 } from "../style"
+import { getFileURL } from "../utils"
 
 const PictureItem = (
   props: UploadListProps & {
@@ -22,22 +34,26 @@ const PictureItem = (
     locale: ConfigProviderProps["locale"]
   },
 ) => {
-  const { disabled, file, showUploadList, locale } = props
-  const { status, originFile } = file
+  const {
+    disabled,
+    file,
+    showUploadList,
+    locale,
+    onRemove,
+    onPreview,
+    onReupload,
+  } = props
+  const { status } = file
 
-  const url =
-    file.url !== undefined
-      ? file.url
-      : originFile && isFunction(URL.createObjectURL)
-      ? URL.createObjectURL(originFile)
-      : undefined
+  const url = getFileURL(file)
+
   const actionIcons = isObject(showUploadList)
     ? (showUploadList as CustomIconType)
     : {}
 
   const handleKeyDown = (
     event: KeyboardEvent<HTMLSpanElement>,
-    callback?: () => void,
+    callback?: (e?: any) => void,
   ) => {
     const keyCode = event.code
     if (keyCode === "Enter") {
@@ -45,17 +61,85 @@ const PictureItem = (
     }
   }
 
-  const handleImagePreview = () => {
-    props.onPreview && props.onPreview(file)
+  const handleImagePreview = (e?: MouseEvent<HTMLAnchorElement>) => {
+    onPreview && onPreview(file)
   }
 
   const handleImageReupload = () => {
-    props.onReupload && props.onReupload(file)
+    onReupload && onReupload(file)
   }
 
   const handleImageRemove = () => {
-    props.onRemove && props.onRemove(file)
+    onRemove && onRemove(file)
   }
+
+  const imageDom = url ? <img src={url} alt={file.name} /> : null
+
+  const image = isFunction(actionIcons.imageRender) ? (
+    actionIcons.imageRender(file)
+  ) : status === STATUS.FAIL ? (
+    <div css={errorImageContainerStyle}>
+      {imageDom ?? (
+        <>
+          <ImageDefaultIcon css={errorImageStyle} />
+          <div css={errorImageNameStyle}>{file.name}</div>
+        </>
+      )}
+    </div>
+  ) : (
+    imageDom
+  )
+
+  const removeIcon =
+    !disabled && actionIcons.removeIcon !== null ? (
+      <span
+        onClick={handleImageRemove}
+        role="button"
+        aria-label={locale?.upload.delete}
+        tabIndex={0}
+        onKeyDown={(e) => handleKeyDown(e, handleImageRemove)}
+      >
+        {actionIcons.removeIcon || <DeleteIcon />}
+      </span>
+    ) : null
+
+  const previewIcon =
+    file.status !== STATUS.FAIL && actionIcons.previewIcon !== null ? (
+      <a
+        href={url}
+        tabIndex={1}
+        target="_blank"
+        rel="noopener noreferrer"
+        role="button"
+        css={pictureItemPreviewStyle}
+        aria-label={locale?.upload.preview}
+        onKeyDown={(e) => handleKeyDown(e, handleImagePreview)}
+        onClick={handleImagePreview}
+      >
+        {actionIcons.previewIcon || <EyeOnIcon />}
+      </a>
+    ) : null
+
+  const errorIcon =
+    file.status === STATUS.FAIL && actionIcons.errorIcon !== null ? (
+      <div css={pictureItemErrorIconStyle}>
+        <span>{actionIcons.errorIcon || <ErrorIcon />}</span>
+      </div>
+    ) : null
+
+  const reuploadIcon =
+    file.status === STATUS.FAIL &&
+    (actionIcons.reuploadIcon !== null || onReupload) ? (
+      <span
+        onClick={handleImageReupload}
+        tabIndex={2}
+        role="button"
+        aria-label={locale?.upload.reupload}
+        onKeyDown={(e) => handleKeyDown(e, handleImageReupload)}
+      >
+        {actionIcons.reuploadIcon || <UploadIcon />}
+      </span>
+    ) : null
 
   return (
     <div css={pictureItemStyle}>
@@ -73,59 +157,13 @@ const PictureItem = (
         </div>
       ) : (
         <>
-          {isFunction(actionIcons.imageRender) ? (
-            actionIcons.imageRender(file)
-          ) : (
-            <img src={url} alt={file.name} />
-          )}
+          {image}
           <div role="radiogroup" css={pictureItemMask}>
-            {file.status === STATUS.FAIL && (
-              <div css={pictureItemOperationsStyle}>
-                {actionIcons.errorIcon !== null && (
-                  <span>{actionIcons.errorIcon || <CloseIcon />}</span>
-                )}
-              </div>
-            )}
             <div css={pictureItemOperationsStyle}>
-              {file.status !== STATUS.FAIL &&
-                actionIcons.previewIcon !== null && (
-                  <span
-                    tabIndex={0}
-                    role="button"
-                    aria-label={locale?.upload.preview}
-                    onKeyDown={(e) => handleKeyDown(e, handleImagePreview)}
-                    onClick={handleImagePreview}
-                  >
-                    {actionIcons.previewIcon || <EyeOnIcon />}
-                  </span>
-                )}
-              {file.status === STATUS.FAIL &&
-                actionIcons.reuploadIcon !== null && (
-                  <span
-                    onClick={() => {
-                      props.onReupload && props.onReupload(file)
-                    }}
-                    tabIndex={0}
-                    role="button"
-                    aria-label={locale?.upload.reupload}
-                    onKeyDown={(e) => handleKeyDown(e, handleImageReupload)}
-                  >
-                    {actionIcons.reuploadIcon || <UploadIcon />}
-                  </span>
-                )}
-              {!disabled && actionIcons.removeIcon !== null && (
-                <span
-                  onClick={() => {
-                    props.onRemove && props.onRemove(file)
-                  }}
-                  role="button"
-                  aria-label={locale?.upload.delete}
-                  tabIndex={0}
-                  onKeyDown={(e) => handleKeyDown(e, handleImageRemove)}
-                >
-                  {actionIcons.removeIcon || <DeleteIcon />}
-                </span>
-              )}
+              {previewIcon}
+              {reuploadIcon}
+              {errorIcon}
+              {removeIcon}
             </div>
           </div>
         </>

@@ -22,11 +22,11 @@ import {
   dragTipsStyle,
   getDragContainerStyle,
   getPictureCardContainerStyle,
+  getTriggerNodeContainerStyle,
   listTypeButtonStyle,
   pictureCardContentStyle,
   pictureCardIconStyle,
   pictureCardTextStyle,
-  triggerNodeContainerStyle,
 } from "./style"
 
 const TriggerNode = (props: PropsWithChildren<TriggerProps>) => {
@@ -34,7 +34,21 @@ const TriggerNode = (props: PropsWithChildren<TriggerProps>) => {
   const [isDragging, setIsDragging] = useState(false)
   const [dragEnterCount, setDragEnterCount] = useState(0) // the number of times ondragenter was triggered
 
-  const { tip, children, disabled, drag, listType, accept, multiple } = props
+  const {
+    tip,
+    children,
+    disabled,
+    drag,
+    listType,
+    accept,
+    directory,
+    multiple,
+    onClick,
+    onDrop,
+    onDragFiles,
+    onDragLeave,
+    onDragOver,
+  } = props
 
   const cloneProps = {
     disabled,
@@ -47,69 +61,75 @@ const TriggerNode = (props: PropsWithChildren<TriggerProps>) => {
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const keyCode = event.code
     if (keyCode === "Enter") {
-      !disabled && props.onClick?.()
+      onClick?.()
     }
   }
 
-  const handleUploadClick = () => {
-    if (disabled) {
-      return
-    }
-    props.onClick()
-  }
   if (children === null) {
     return null
   }
 
-  return (
-    <div
-      css={triggerNodeContainerStyle}
-      onClick={handleUploadClick}
-      onKeyDown={handleKeyDown}
-      onDragEnter={() => {
-        setDragEnterCount(dragEnterCount + 1)
-      }}
-      onDragLeave={(e: React.DragEvent) => {
-        e.preventDefault()
-        /**  When dragging into a child element, it will trigger the dragleave and dragenter of the parent node.
-         * Record the number of triggers of dragenter, and subtract 1 each time dragleave.
-         * When dragEnterCount is equal to 0,  it means that the mouse has left the current node, then the drag state is cancelled.
-         * https://github.com/arco-design/arco-design/issues/210
-         */
+  const handleDragEnter = () => {
+    setDragEnterCount(dragEnterCount + 1)
+  }
 
-        if (dragEnterCount === 0) {
-          setIsDragging(false)
-          !disabled && props.onDragLeave?.(e)
-        } else {
-          setDragEnterCount(dragEnterCount - 1)
-        }
-      }}
-      onDrop={(e: React.DragEvent) => {
-        e.preventDefault()
-        if (!disabled && props.drag !== false) {
-          setIsDragging(false)
-          if (props.directory) {
-            loopDirectory(e.dataTransfer.items, accept, (files: File[]) => {
-              props.onDragFiles && props.onDragFiles(files)
-            })
-          } else {
-            const files = getFiles(e.dataTransfer.files, accept)
-            props.onDragFiles &&
-              props.onDragFiles(
-                (multiple ? files : files?.slice(0, 1) || []) as File[],
-              )
-          }
-          props.onDrop && props.onDrop(e)
-        }
-      }}
-      onDragOver={(e: React.DragEvent) => {
-        e.preventDefault()
-        if (!disabled && !isDragging) {
-          setIsDragging(true)
-          props.onDragOver?.(e)
-        }
-      }}
-    >
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault()
+    /**  When dragging into a child element, it will trigger the dragleave and dragenter of the parent node.
+     * Record the number of triggers of dragenter, and subtract 1 each time dragleave.
+     * When dragEnterCount is equal to 0,  it means that the mouse has left the current node, then the drag state is cancelled.
+     */
+    if (dragEnterCount === 0) {
+      setIsDragging(false)
+      onDragLeave?.(e)
+    } else {
+      setDragEnterCount(dragEnterCount - 1)
+    }
+  }
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+    if (!isDragging) {
+      setIsDragging(true)
+      onDragOver?.(e)
+    }
+  }
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    if (!drag) {
+      return
+    }
+    setIsDragging(false)
+    if (directory) {
+      loopDirectory(
+        Array.prototype.slice.call(e.dataTransfer.items),
+        (files: File[]) => {
+          onDragFiles && onDragFiles(files)
+        },
+        accept,
+      )
+    } else {
+      const files = getFiles(e.dataTransfer.files, accept)
+      onDragFiles &&
+        onDragFiles((multiple ? files : files?.slice(0, 1) || []) as File[])
+    }
+    onDrop && onDrop(e)
+  }
+
+  const events = disabled
+    ? {}
+    : {
+        onDragEnter: handleDragEnter,
+        onDragLeave: handleDragLeave,
+        onDragOver: handleDragOver,
+        onDrop: handleDrop,
+        onClick: onClick,
+        onKeyDown: handleKeyDown,
+      }
+
+  return (
+    <div css={getTriggerNodeContainerStyle(drag)} {...events}>
       {isValidElement(children) ? (
         <div>{cloneElement(children, cloneProps)}</div>
       ) : listType === "picture-card" ? (
@@ -133,9 +153,7 @@ const TriggerNode = (props: PropsWithChildren<TriggerProps>) => {
             <PlusIcon />
           </div>
           <div css={dragContentContainerStyle}>
-            <div css={dragTextStyle}>
-              {isDragging ? locale?.upload.dragHover : locale?.upload.dragTip}
-            </div>
+            <div css={dragTextStyle}>{locale?.upload.dragTip}</div>
             {tip && <div css={dragTipsStyle}>{tip}</div>}
           </div>
         </div>
