@@ -14,6 +14,7 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
       direction = "horizontal",
       variant = "solid",
       text,
+      textAlign,
       colorScheme = "grayBlue",
       ...otherProps
     } = props
@@ -36,19 +37,17 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
         break
     }
 
-    return (
-      <>
-        {text && text?.length > 0 ? (
-          <DividerWithText ref={ref} {...props} />
-        ) : (
-          <div
-            css={[dividerCss, applyBoxStyle(props)]}
-            ref={ref}
-            {...deleteCssProps(otherProps)}
-          />
-        )}
-      </>
-    )
+    if (text && text?.length > 0) {
+      return <DividerWithText ref={ref} {...props} />
+    } else {
+      return (
+        <div
+          css={[dividerCss, applyBoxStyle(props)]}
+          ref={ref}
+          {...deleteCssProps(otherProps)}
+        />
+      )
+    }
   },
 )
 

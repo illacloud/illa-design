@@ -30,7 +30,7 @@ export function applyInputContainerStyle(): SerializedStyles {
   return css`
     display: flex;
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
     flex-direction: row;
     border-radius: 8px;
     box-sizing: border-box;

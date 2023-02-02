@@ -23,9 +23,11 @@ export const DropListItem = forwardRef<HTMLDivElement, DropListItemProps>(
         ref={ref}
         css={applyItemCss(fontColor, disabled)}
         onClick={(event) => {
-          if (disabled || !isSelectOption) return
+          if (disabled) return
           onClick?.(event)
-          onClickItem?.(value, title ? title : children, event)
+          if (isSelectOption) {
+            onClickItem?.(value, title ? title : children, event)
+          }
         }}
         {...otherProps}
       >

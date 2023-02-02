@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { MenuColorScheme } from "../interface"
+import { MenuColorScheme, MenuHorizontalAlign } from "../interface"
 import { getColor } from "@illa-design/theme"
 
 export const horizontalMenuContainerStyle = css`
@@ -10,17 +10,23 @@ export const horizontalMenuContainerStyle = css`
   border-bottom: 1px solid ${getColor("grayBlue", "08")};
 `
 
-export const horizontalMenuListContainerStyle = css`
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  height: 100%;
-  width: 100%;
+export function applyHorizontalMenuListContainerStyle(
+  horizontalAlign: MenuHorizontalAlign,
+  isScroll: boolean,
+): SerializedStyles {
+  return css`
+    display: flex;
+    flex-direction: row;
+    justify-content: ${isScroll ? "flex-start" : horizontalAlign};
+    overflow-x: auto;
+    height: 100%;
+    width: 100%;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  `
+}
 
 export function applyActionContainerStyle(
   action: "left" | "right",

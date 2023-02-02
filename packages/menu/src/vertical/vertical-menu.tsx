@@ -19,6 +19,7 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
       defaultSelectedValues,
       openedSubMenuValues,
       selectedValues,
+      horizontalAlign,
       colorScheme = "blue",
       onClickSubMenu,
       onClickMenuItem,

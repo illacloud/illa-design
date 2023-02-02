@@ -81,5 +81,6 @@ export interface SelectOptionObject {
 
 export interface OptionProps extends HTMLAttributes<HTMLDivElement> {
   isSelectOption?: boolean
+  disabled?: boolean
   value: string | number
 }

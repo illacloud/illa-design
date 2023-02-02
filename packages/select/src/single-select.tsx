@@ -1,5 +1,14 @@
-import { forwardRef, ReactNode, useCallback, useMemo, useRef } from "react"
-import { SelectOptionObject, SelectProps } from "./interface"
+import {
+  Children,
+  forwardRef,
+  PropsWithChildren,
+  ReactElement,
+  ReactNode,
+  useCallback,
+  useMemo,
+  useRef,
+} from "react"
+import { OptionProps, SelectOptionObject, SelectProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { Dropdown, DropList, DropListItem } from "@illa-design/dropdown"
 import { useMergeValue } from "@illa-design/system"
@@ -66,7 +75,15 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
           dV = undefined
         } else {
           if (options === undefined) {
-            dV = undefined
+            Children.forEach(children, (child) => {
+              const item = child as ReactElement<PropsWithChildren<OptionProps>>
+              if (
+                item.props.isSelectOption !== false &&
+                item.props.value === dealValue
+              ) {
+                dV = item.props.children
+              }
+            })
           } else {
             if (labelInValue) {
               dV = (options as SelectOptionObject[]).find(
@@ -91,7 +108,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
         }
         return dV
       },
-      [labelInValue, options],
+      [children, labelInValue, options],
     )
 
     const [finalInputValue, setFinalInputValue] = useMergeValue<
@@ -180,7 +197,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                         ).label
                         setFinalInputValue(lastChooseRef.current ?? "")
                       }
-                      onChange?.(option)
+                      onChange?.((option as SelectOptionObject).value)
                     } else {
                       if (value === undefined) {
                         lastChooseRef.current = option

@@ -3,7 +3,7 @@ import { BoxProps } from "@illa-design/theme"
 
 export type MenuMode = "vertical" | "horizontal"
 
-type ItemType = SubMenuProps | MenuItemProps
+export type MenuItemType = SubMenuProps | MenuItemProps
 
 export type MenuColorScheme =
   | string
@@ -21,9 +21,12 @@ export type MenuColorScheme =
   | "techPurple"
   | "techPink"
 
+export type MenuHorizontalAlign = "flex-start" | "center" | "flex-end"
+
 export interface MenuProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
+  horizontalAlign?: MenuHorizontalAlign
   colorScheme?: MenuColorScheme
-  items?: ItemType[]
+  items?: MenuItemType[]
   mode?: MenuMode
   defaultOpenedSubMenuValues?: string[]
   defaultSelectedValues?: string[]

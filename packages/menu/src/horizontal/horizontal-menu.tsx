@@ -9,9 +9,9 @@ import {
 import { MenuProps, SubMenuProps } from "../interface"
 import {
   applyActionContainerStyle,
+  applyHorizontalMenuListContainerStyle,
   applyHorizontalSubMenuItemContainer,
   horizontalMenuContainerStyle,
-  horizontalMenuListContainerStyle,
   horizontalSubMenuIcon,
   horizontalSubMenuLabel,
 } from "./style"
@@ -35,6 +35,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
       colorScheme = "blue",
       onClickSubMenu,
       onClickMenuItem,
+      horizontalAlign = "flex-start",
       items,
       ...otherProps
     } = props
@@ -230,7 +231,10 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
         >
           <div
             ref={mergeRefs(containerBoundRef, containerRef)}
-            css={horizontalMenuListContainerStyle}
+            css={applyHorizontalMenuListContainerStyle(
+              horizontalAlign,
+              leftScroll || rightScroll,
+            )}
             onScroll={(event) => {
               if (event.currentTarget.scrollLeft > 0) {
                 if (!leftScroll) {

@@ -3,11 +3,10 @@ import { Meta, StoryFn } from "@storybook/react"
 import { Dropdown, DropdownProps, DropList } from "../src"
 import {
   Button,
-  Menu,
-  Space,
+  DropListItem,
   globalColor,
   illaPrefix,
-  DropListItem,
+  Space,
 } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
