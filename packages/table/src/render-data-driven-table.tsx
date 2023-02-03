@@ -264,7 +264,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   }, [selected])
 
   useEffect(() => {
-    setSorting(defaultSort)
+    if (defaultSort?.length || defaultSort?.length !== sorting?.length) {
+      setSorting(defaultSort)
+    }
   }, [defaultSort])
 
   useEffect(() => {
@@ -365,8 +367,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   const onPageChange = useCallback(
     (pageNumber: number, pageSize: number) => {
-      setPagination({ pageIndex: pageNumber, pageSize })
-      table.setPageIndex(pageNumber)
+      setPagination({ pageIndex: pageNumber - 1, pageSize })
+      table.setPageIndex(pageNumber - 1)
     },
     [table, setPagination],
   )
@@ -563,7 +565,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
             <Pagination
               total={data.length}
               pageSize={pageSize}
-              current={pageIndex}
+              current={pageIndex + 1}
               hideOnSinglePage={false}
               simple
               onChange={onPageChange}
