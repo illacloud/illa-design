@@ -264,9 +264,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   }, [selected])
 
   useEffect(() => {
-    if (defaultSort?.length) {
-      setSorting(defaultSort)
-    }
+    setSorting(defaultSort)
   }, [defaultSort])
 
   useEffect(() => {
