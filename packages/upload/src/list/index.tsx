@@ -5,7 +5,7 @@ import {
   ConfigProviderContext,
   ConfigProviderProps,
 } from "@illa-design/config-provider"
-import { UploadListProps } from "../interface"
+import { UploadItem, UploadListProps } from "../interface"
 import { isFunction } from "@illa-design/system"
 import {
   getUploadListContainerStyle,
@@ -20,8 +20,10 @@ const UploadList = (props: UploadListProps) => {
     fileList = [],
     renderUploadList,
     renderUploadItem,
+    onPreview,
     ...rest
   } = props
+
   if (isFunction(renderUploadList)) {
     return (
       <div css={getUploadListContainerStyle(listType)}>
@@ -30,15 +32,17 @@ const UploadList = (props: UploadListProps) => {
     )
   }
 
+  const handlePictureItemPreview = (file: UploadItem) => {
+    onPreview?.(file)
+  }
+
   const fileListNodes = fileList?.map((file, index) => {
     let originNode: ReactNode =
       listType === "picture-card" ? (
         <div css={listItemStyle}>
           <PictureItem
             {...props}
-            onPreview={(file) => {
-              props.onPreview && props.onPreview?.(file)
-            }}
+            onPreview={handlePictureItemPreview}
             file={file}
             locale={locale}
           />
@@ -49,7 +53,6 @@ const UploadList = (props: UploadListProps) => {
     if (isFunction(renderUploadItem)) {
       originNode = renderUploadItem(originNode, file, fileList)
     }
-
     return listType === "picture-card" ? (
       <Fragment key={index}>{originNode}</Fragment>
     ) : (

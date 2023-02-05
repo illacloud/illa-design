@@ -1,4 +1,4 @@
-import React, { KeyboardEvent } from "react"
+import React, { KeyboardEvent, useCallback } from "react"
 import {
   STATUS,
   CustomIconType,
@@ -15,11 +15,11 @@ import {
   FilePictureIcon,
   DeleteIcon,
   ErrorIcon,
-  ImageDefaultIcon,
 } from "@illa-design/icon"
 import { Popover } from "@illa-design/popover"
 import { ConfigProviderProps } from "@illa-design/config-provider"
 import {
+  errorListItemStyle,
   getTextItemContainerStyle,
   getTextItemContentContainerStyle,
   getTextItemNameStyle,
@@ -65,6 +65,16 @@ const getIconType = (file: UploadItem) => {
   return FileDefaultIcon
 }
 
+const handleKeyDown = (
+  event: KeyboardEvent<HTMLSpanElement>,
+  callback?: () => void,
+) => {
+  const keyCode = event.code
+  if (keyCode === "Enter") {
+    callback?.()
+  }
+}
+
 const TextItem = (
   props: UploadListProps & {
     file: UploadItem
@@ -72,18 +82,14 @@ const TextItem = (
   },
 ) => {
   const { disabled, file, locale, onRemove } = props
-
   const Icon = getIconType(file)
-
   const showUploadList = isObject(props.showUploadList)
     ? (props.showUploadList as CustomIconType)
     : {}
-
   const imageUrl = getFileURL(file)
   const actionIcons = isObject(showUploadList)
     ? (showUploadList as CustomIconType)
     : {}
-
   const fileName = isFunction(showUploadList.fileName)
     ? showUploadList.fileName(file)
     : file.name || (file.originFile && file.originFile.name)
@@ -95,33 +101,25 @@ const TextItem = (
     }
   }
 
-  const handleItemRemove = () => {
-    onRemove && onRemove(file)
-  }
+  const handleItemRemove = useCallback(() => {
+    onRemove?.(file)
+  }, [onRemove])
 
-  const handleKeyDown = (
-    event: KeyboardEvent<HTMLSpanElement>,
-    callback?: () => void,
-  ) => {
-    const keyCode = event.code
-    if (keyCode === "Enter") {
-      callback?.()
-    }
-  }
+  const imageNode = imageUrl ? <img src={imageUrl} /> : <Icon />
+
+  const pictureListIcon = isFunction(showUploadList.imageRender) ? (
+    showUploadList.imageRender(file)
+  ) : file.status === STATUS.FAIL ? (
+    <div css={errorListItemStyle}>{imageNode}</div>
+  ) : (
+    <>{imageNode}</>
+  )
 
   return (
     <div css={getTextItemContainerStyle(props.listType)}>
       <div css={getTextItemContentContainerStyle(props.listType)}>
         {props.listType === "picture-list" && (
-          <div css={textItemImageStyle}>
-            {isFunction(showUploadList.imageRender) ? (
-              showUploadList.imageRender(file)
-            ) : imageUrl ? (
-              <img src={imageUrl} />
-            ) : (
-              <ImageDefaultIcon />
-            )}
-          </div>
+          <div css={textItemImageStyle}>{pictureListIcon}</div>
         )}
         {props.listType === "text" && actionIcons.fileIcon !== null && (
           <span css={textItemIconStyle}>
@@ -146,7 +144,7 @@ const TextItem = (
               {file.status === STATUS.FAIL &&
                 actionIcons.errorIcon !== null && (
                   <Popover
-                    content={locale?.upload.error || "failed"}
+                    content={locale?.upload.error}
                     {...triggerProps}
                     hasCloseIcon={false}
                     trigger="hover"

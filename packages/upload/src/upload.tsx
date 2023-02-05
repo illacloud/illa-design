@@ -57,13 +57,13 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
     renderUploadList,
     beforeUpload = () => true,
     progressProps,
-    imagePreview,
     onProgress,
     onChange,
     onReupload,
   } = props
 
-  uploadStateRef.current = innerUploadState
+  uploadStateRef.current =
+    "fileList" in props ? getUploadState(props.fileList) : innerUploadState
 
   const deleteUploadFile = (file: UploadItem) => {
     const obj = { ...uploadStateRef.current }
@@ -90,23 +90,24 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
   }
 
   const removeFile = (file: UploadItem) => {
-    if (file) {
-      const { onRemove } = props
-      Promise.resolve(
-        isFunction(onRemove)
-          ? onRemove(file, getFileList(uploadStateRef.current))
-          : onRemove,
-      )
-        .then((val) => {
-          if (val !== false) {
-            uploaderRef.current && uploaderRef.current.abort(file)
-            deleteUploadFile(file)
-          }
-        })
-        .catch((e) => {
-          console.error(e)
-        })
+    if (!file) {
+      return
     }
+    const { onRemove } = props
+    Promise.resolve(
+      isFunction(onRemove)
+        ? onRemove(file, getFileList(uploadStateRef.current))
+        : onRemove,
+    )
+      .then((val) => {
+        if (val !== false) {
+          uploaderRef.current && uploaderRef.current.abort(file)
+          deleteUploadFile(file)
+        }
+      })
+      .catch((e) => {
+        console.error(e)
+      })
   }
 
   const abortFile = (file: UploadItem) => {

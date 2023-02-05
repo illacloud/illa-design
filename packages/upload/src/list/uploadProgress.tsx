@@ -24,6 +24,12 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
     props
   const { locale } = useContext<ConfigProviderProps>(ConfigProviderContext)
   const { status, percent = 0 } = file
+  const progressStatus =
+    status === STATUS.FAIL
+      ? "error"
+      : status === STATUS.SUCCESS
+      ? "success"
+      : "normal"
 
   const handleKeyDown = (
     event: KeyboardEvent<HTMLSpanElement>,
@@ -78,18 +84,12 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
           <Progress
             showText={false}
             type="miniCircle"
-            w={"16px"}
-            h={"16px"}
-            status={
-              status === STATUS.FAIL
-                ? "error"
-                : status === STATUS.SUCCESS
-                ? "success"
-                : "normal"
-            }
+            w="16px"
+            h="16px"
+            status={progressStatus}
             percent={percent}
-            color={"blue"}
-            trailColor={"gray"}
+            color="blue"
+            trailColor="blackAlpha"
             {...progressProps}
           />
           {status === STATUS.INIT && props.startIcon !== null && (

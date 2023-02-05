@@ -46,10 +46,10 @@ const PictureItem = (
   const { status } = file
 
   const url = getFileURL(file)
-
   const actionIcons = isObject(showUploadList)
     ? (showUploadList as CustomIconType)
     : {}
+  const imageDom = url ? <img src={url} alt={file.name} /> : null
 
   const handleKeyDown = (
     event: KeyboardEvent<HTMLSpanElement>,
@@ -62,18 +62,16 @@ const PictureItem = (
   }
 
   const handleImagePreview = (e?: MouseEvent<HTMLAnchorElement>) => {
-    onPreview && onPreview(file)
+    onPreview?.(file)
   }
 
   const handleImageReupload = () => {
-    onReupload && onReupload(file)
+    onReupload?.(file)
   }
 
   const handleImageRemove = () => {
-    onRemove && onRemove(file)
+    onRemove?.(file)
   }
-
-  const imageDom = url ? <img src={url} alt={file.name} /> : null
 
   const image = isFunction(actionIcons.imageRender) ? (
     actionIcons.imageRender(file)
@@ -87,7 +85,7 @@ const PictureItem = (
       )}
     </div>
   ) : (
-    imageDom
+    <>{imageDom}</>
   )
 
   const removeIcon =

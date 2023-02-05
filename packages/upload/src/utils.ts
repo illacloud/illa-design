@@ -47,7 +47,7 @@ export const isAcceptFile = (
   return !!file
 }
 
-export const getFiles = (fileList: FileList, accept?: string) => {
+export const getAcceptedFiles = (fileList: FileList, accept?: string) => {
   if (!fileList) {
     return
   }

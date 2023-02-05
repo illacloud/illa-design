@@ -442,6 +442,18 @@ export const errorImageContainerStyle = css`
   justify-content: space-between;
 `
 
+export const errorListItemStyle = css`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
+  border: 1px solid ${globalColor(`--${illaPrefix}-red-03`)};
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+`
+
 export const errorImageStyle = css`
   width: 50%;
   height: 50%;

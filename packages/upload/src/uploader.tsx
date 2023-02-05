@@ -32,7 +32,6 @@ class Uploader extends React.Component<
     await this.uploadFile(file)
   }
 
-  // 提供 ref 调用。终止
   abort = (file?: UploadItem) => {
     const { uploadRequests } = this.state
     if (file) {
@@ -73,8 +72,6 @@ class Uploader extends React.Component<
     })
   }
 
-  delete = this.deleteUploadRequest
-
   updateFileStatus = (file: UploadItem) => {
     const { onFileStatusChange } = this.props
     onFileStatusChange && onFileStatusChange(file)
@@ -92,7 +89,7 @@ class Uploader extends React.Component<
       if (targetFile) {
         targetFile.status = STATUS.UPLOADING
         targetFile.percent = percent
-        this.props.onProgress && this.props.onProgress(targetFile, event)
+        this.props.onProgress?.(targetFile, event)
       }
     }
     const onSuccess = (response?: object) => {
@@ -137,7 +134,7 @@ class Uploader extends React.Component<
     })
   }
 
-  uploadOneFile = (file: File, index: number) => {
+  uploadSingleFile = (file: File, index: number) => {
     const uploadItem: UploadItem = {
       uid: getUID(),
       originFile: file,
@@ -145,7 +142,6 @@ class Uploader extends React.Component<
       status: STATUS.INIT,
       name: file.name,
     }
-    // update file upload state to init
     this.updateFileStatus(uploadItem)
     if (this.props.autoUpload) {
       setTimeout(async () => {
@@ -168,20 +164,19 @@ class Uploader extends React.Component<
 
     files.forEach((file, index) => {
       if (isAcceptFile(file, this.props.accept) || !directory) {
-        // windows can upload file type not in accept bug
         if (isFunction(this.props.beforeUpload)) {
           Promise.resolve(this.props.beforeUpload(file, files))
             .then((val) => {
               if (val !== false) {
                 const newFile = isFile(val) ? val : file
-                this.uploadOneFile(newFile as File, index)
+                this.uploadSingleFile(newFile as File, index)
               }
             })
             .catch((e) => {
               console.error(e)
             })
         } else {
-          this.uploadOneFile(file, index)
+          this.uploadSingleFile(file, index)
         }
       }
     })

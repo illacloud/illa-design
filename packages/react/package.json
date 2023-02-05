@@ -95,7 +95,8 @@
     "@illa-design/skeleton": "workspace:*",
     "@illa-design/dropdown": "workspace:*",
     "@illa-design/affix": "workspace:*",
-    "@illa-design/cascader": "workspace:*"
+    "@illa-design/cascader": "workspace:*",
+    "@illa-design/upload": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",
