@@ -76,6 +76,7 @@ export interface TextAreaProps
       "onChange" | "maxLength" | "placeholder" | "value" | "defaultValue"
     >,
     BoxProps {
+  textAreaRef?: Ref<HTMLTextAreaElement>
   colorScheme?: InputColorScheme
   readOnly?: boolean
   variant?: InputVariant

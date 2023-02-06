@@ -15,7 +15,7 @@ import {
   textareaContainerStyle,
   textareaStyle,
 } from "./style"
-import { useMergeValue } from "@illa-design/system"
+import { mergeRefs, useMergeValue } from "@illa-design/system"
 import { ClearIcon } from "@illa-design/icon"
 import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 import autoSizeTextAreaHeight from "./autoSizeTextAreaHeight"
@@ -26,6 +26,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
     const {
       variant = "outline",
       colorScheme = "blue",
+      textAreaRef,
       allowClear,
       disabled,
       error,
@@ -64,7 +65,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
         : maxLength.errorOnly
       : undefined
 
-    const textareaRef =
+    const internalTextAreaRef =
       useRef<HTMLTextAreaElement>() as MutableRefObject<HTMLTextAreaElement>
 
     const [textAreaStyle, setTextAreaStyle] = useState<CSSProperties>({})
@@ -72,7 +73,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
     const resizeTextAreaHeight = () => {
       const textAreaStyle = autoSizeTextAreaHeight(
         props.autoSize,
-        textareaRef.current,
+        internalTextAreaRef.current,
       )
       if (textAreaStyle) {
         setTextAreaStyle(textAreaStyle)
@@ -90,7 +91,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
         {...deleteCssProps(otherProps)}
       >
         <textarea
-          ref={textareaRef}
+          ref={mergeRefs(internalTextAreaRef, textAreaRef)}
           value={finalValue}
           style={textAreaStyle}
           maxLength={finalMaxLengthErrorOnly ? undefined : finalMaxLength}
