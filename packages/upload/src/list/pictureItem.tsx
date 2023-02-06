@@ -20,13 +20,25 @@ import {
   errorImageNameStyle,
   errorImageStyle,
   pictureItemErrorIconStyle,
+  pictureItemIconStyle,
   pictureItemMask,
   pictureItemOperationsStyle,
   pictureItemPreviewStyle,
   pictureItemStyle,
   pictureItemUploading,
+  pictureItemUploadingMask,
 } from "../style"
-import { getFileURL } from "../utils"
+import { getFileURL, getIconType } from "../utils"
+
+const handleKeyDown = (
+  event: KeyboardEvent<HTMLSpanElement>,
+  callback?: (e?: any) => void,
+) => {
+  const keyCode = event.code
+  if (keyCode === "Enter") {
+    callback?.()
+  }
+}
 
 const PictureItem = (
   props: UploadListProps & {
@@ -49,17 +61,8 @@ const PictureItem = (
   const actionIcons = isObject(showUploadList)
     ? (showUploadList as CustomIconType)
     : {}
-  const imageDom = url ? <img src={url} alt={file.name} /> : null
-
-  const handleKeyDown = (
-    event: KeyboardEvent<HTMLSpanElement>,
-    callback?: (e?: any) => void,
-  ) => {
-    const keyCode = event.code
-    if (keyCode === "Enter") {
-      callback?.()
-    }
-  }
+  const Icon = getIconType(file)
+  const imageDom = url ? <img src={url} alt={file.name} /> : <Icon />
 
   const handleImagePreview = (e?: MouseEvent<HTMLAnchorElement>) => {
     onPreview?.(file)
@@ -77,7 +80,7 @@ const PictureItem = (
     actionIcons.imageRender(file)
   ) : status === STATUS.FAIL ? (
     <div css={errorImageContainerStyle}>
-      {imageDom ?? (
+      {<div css={pictureItemIconStyle}>{imageDom}</div> ?? (
         <>
           <ImageDefaultIcon css={errorImageStyle} />
           <div css={errorImageNameStyle}>{file.name}</div>
@@ -85,7 +88,7 @@ const PictureItem = (
       )}
     </div>
   ) : (
-    <>{imageDom}</>
+    <div css={pictureItemIconStyle}>{imageDom}</div>
   )
 
   const removeIcon =
@@ -141,26 +144,27 @@ const PictureItem = (
 
   return (
     <div css={pictureItemStyle}>
+      {image}
       {status === STATUS.UPLOADING ? (
-        <div css={pictureItemUploading}>
-          <UploadProgress
-            onReupload={props.onReupload}
-            onUpload={props.onUpload}
-            onAbort={props.onAbort}
-            listType="picture-card"
-            file={file}
-            progressProps={props.progressProps}
-            {...actionIcons}
-          />
+        <div role="radiogroup" css={pictureItemUploadingMask}>
+          <div css={pictureItemUploading}>
+            <UploadProgress
+              onReupload={props.onReupload}
+              onUpload={props.onUpload}
+              onAbort={props.onAbort}
+              listType="picture-card"
+              file={file}
+              progressProps={props.progressProps}
+              {...actionIcons}
+            />
+          </div>
         </div>
       ) : (
         <>
-          {image}
           <div role="radiogroup" css={pictureItemMask}>
             <div css={pictureItemOperationsStyle}>
               {previewIcon}
               {reuploadIcon}
-              {errorIcon}
               {removeIcon}
             </div>
           </div>

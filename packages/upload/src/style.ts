@@ -413,6 +413,25 @@ export const pictureItemMask = css`
   }
 `
 
+export const pictureItemUploadingMask = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  line-height: 100px;
+  transition: opacity 0.1s linear;
+  background: ${globalColor(`--${illaPrefix}-blackAlpha-02`)};
+  opacity: 1;
+  display: block;
+  & svg {
+    color: ${globalColor(`--${illaPrefix}-white-01`)};
+  }
+`
+
 export const pictureItemOperationsStyle = css`
   display: flex;
   justify-content: center;
@@ -434,13 +453,26 @@ export const errorImageContainerStyle = css`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 8px;
   color: ${globalColor(`--${illaPrefix}-red-03`)};
   border: 1px solid ${globalColor(`--${illaPrefix}-red-03`)};
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`
+
+export const pictureItemIconStyle = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & img,
+  & svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 `
 
 export const errorListItemStyle = css`

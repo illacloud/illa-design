@@ -7,15 +7,7 @@ import {
 } from "../interface"
 import { isObject, isFunction } from "@illa-design/system"
 import UploadProgress from "./uploadProgress"
-import {
-  FileDefaultIcon,
-  FilePdfIcon,
-  FileMusicIcon,
-  FileVideoIcon,
-  FilePictureIcon,
-  DeleteIcon,
-  ErrorIcon,
-} from "@illa-design/icon"
+import { DeleteIcon, ErrorIcon } from "@illa-design/icon"
 import { Popover } from "@illa-design/popover"
 import { ConfigProviderProps } from "@illa-design/config-provider"
 import {
@@ -31,39 +23,7 @@ import {
   textItemProgressStyle,
   textItemStyle,
 } from "../style"
-import { getFileURL } from "../utils"
-
-const getIconType = (file: UploadItem) => {
-  let type = ""
-  if (file.originFile && file.originFile.type) {
-    type = file.originFile.type
-  } else {
-    const name = file.name || ""
-    const fileExtension = name.split(".").pop() || ""
-    type = fileExtension
-    if (["png", "jpg", "jpeg", "bmp", "gif"].indexOf(fileExtension) > -1) {
-      type = "image"
-    } else if (["mp4", "m2v", "mkv"].indexOf(fileExtension) > -1) {
-      type = "video"
-    } else if (["mp3", "wav", "wmv"].indexOf(fileExtension) > -1) {
-      type = "audio"
-    }
-  }
-
-  if (type.indexOf("image") > -1) {
-    return FilePictureIcon
-  }
-  if (type.indexOf("pdf") > -1) {
-    return FilePdfIcon
-  }
-  if (type.indexOf("audio") > -1) {
-    return FileMusicIcon
-  }
-  if (type.indexOf("video") > -1) {
-    return FileVideoIcon
-  }
-  return FileDefaultIcon
-}
+import { getFileURL, getIconType } from "../utils"
 
 const handleKeyDown = (
   event: KeyboardEvent<HTMLSpanElement>,

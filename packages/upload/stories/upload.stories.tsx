@@ -31,12 +31,12 @@ const Template: Story<UploadProps> = (props) => {
           // directory={true}
           listType={listType}
           defaultFileList={[
-            {
-              uid: "-3",
-              name: "image.png",
-              status: "done",
-              url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-            },
+            // {
+            //   uid: "-3",
+            //   name: "image.png",
+            //   status: "done",
+            //   url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+            // },
             {
               uid: "-xxx",
               percent: 50,
@@ -49,12 +49,12 @@ const Template: Story<UploadProps> = (props) => {
               name: "image.png",
               status: "error",
             },
-            {
-              uid: "-6",
-              name: "image.png",
-              status: "init",
-              url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-            },
+            // {
+            //   uid: "-6",
+            //   name: "image.png",
+            //   status: "init",
+            //   url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+            // },
           ]}
         />
       </div>
