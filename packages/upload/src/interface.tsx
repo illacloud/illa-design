@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react"
 import { ProgressProps } from "@illa-design/progress"
+import { ButtonVariant } from "@illa-design/button"
 
 export const STATUS: {
   [key: string]: UploadStatus
@@ -41,6 +42,10 @@ export type UploadRequestProps = (
 export type UploadListType = "text" | "picture" | "picture-card"
 
 export interface UploadProps {
+  text?: string
+  colorScheme?: string
+  loading?: boolean
+  variant?: ButtonVariant
   listType?: string
   defaultFileList?: UploadItem[]
   imagePreview?: boolean
@@ -158,6 +163,10 @@ export interface UploaderProps extends UploadProps {
 }
 
 export type TriggerNodeProps = {
+  text?: string
+  colorScheme?: string
+  loading?: boolean
+  variant?: ButtonVariant
   tip?: string | React.ReactNode
   multiple?: boolean
   accept?: string

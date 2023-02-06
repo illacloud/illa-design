@@ -36,6 +36,10 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
 
   const {
     tip,
+    text,
+    colorScheme,
+    variant,
+    loading,
     children,
     disabled,
     drag,
@@ -135,7 +139,9 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
         >
           <div css={pictureCardContentStyle}>
             <PlusIcon css={pictureCardIconStyle} />
-            <div css={pictureCardTextStyle}>{locale?.upload.upload}</div>
+            <div css={pictureCardTextStyle}>
+              {text ?? locale?.upload.upload}
+            </div>
           </div>
         </div>
       ) : drag ? (
@@ -148,7 +154,7 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
             <PlusIcon />
           </div>
           <div css={dragContentContainerStyle}>
-            <div css={dragTextStyle}>{locale?.upload.dragTip}</div>
+            <div css={dragTextStyle}>{text ?? locale?.upload.dragTip}</div>
             {tip && <div css={dragTipsStyle}>{tip}</div>}
           </div>
         </div>
@@ -158,10 +164,13 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
           aria-label={locale?.upload.upload}
           type="button"
           size="medium"
+          loading={loading}
+          colorScheme={colorScheme}
+          variant={variant}
           css={listTypeButtonStyle}
           leftIcon={<UploadIcon />}
         >
-          {locale?.upload.upload}
+          {text ?? locale?.upload.upload}
         </Button>
       )}
     </div>

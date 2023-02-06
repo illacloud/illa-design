@@ -57,6 +57,7 @@ export const getTextItemContentContainerStyle = (listType: string = "text") => {
     display: flex;
     ${paddingStyle};
     flex-wrap: nowrap;
+    overflow: hidden;
     width: 100%;
     box-sizing: border-box;
     background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
@@ -79,8 +80,8 @@ export const textItemImageStyle = css`
   height: 40px;
   flex-shrink: 0;
   border-radius: 4px;
-  & > img,
-  & > svg {
+  & img,
+  & svg {
     width: 100%;
     height: 100%;
     border-radius: 4px;
@@ -93,7 +94,6 @@ export const textItemMainContentStyle = css`
   text-overflow: ellipsis;
   white-space: nowrap;
   flex-wrap: nowrap;
-  text-overflow: ellipsis;
   flex-shrink: 1;
   flex-grow: 1;
   align-items: center;
@@ -118,10 +118,10 @@ export const getTextItemNameStyle = (status: string = "init") => {
   return css`
     margin-left: 12px;
     text-decoration: none;
-    align-self: center;
-    align-items: center;
     font-size: 14px;
-    display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     line-height: 22px;
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
     ${errorStyle};
@@ -130,7 +130,8 @@ export const getTextItemNameStyle = (status: string = "init") => {
 
 export const textItemErrorIconStyle = css`
   margin-left: 2px;
-  width: 12px;
+  min-width: 12px;
+  flex-grow: 0;
   height: 22px;
   cursor: pointer;
   display: flex;
