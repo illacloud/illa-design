@@ -71,12 +71,12 @@ export interface TableProps<D extends TableData, TValue>
   checkAll?: boolean
   download?: boolean
   filter?: boolean
-  rowSelection?: RowSelectionState | number
+  rowSelection?: RowSelectionState
   columnVisibility?: VisibilityState
   onSortingChange?: OnChangeFn<SortingState>
   onPaginationChange?: OnChangeFn<PaginationState>
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
-  onRowSelectionChange?: (rowSelection?: RowSelectionState | number) => void
+  onRowSelectionChange?: (rowSelection?: RowSelectionState) => void
 }
 
 export interface RowSelectionProps<D = any> {

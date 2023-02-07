@@ -62,24 +62,13 @@ import { Trigger } from "@illa-design/trigger"
 import { FiltersEditor } from "./filters-editor"
 import { Pagination } from "@illa-design/pagination"
 
-const getSelectedRow = (
-  rowSelection?: number | Record<string, boolean>,
-  multiRowSelection?: boolean,
-) => {
-  if (multiRowSelection) {
-    return isObject(rowSelection)
-      ? rowSelection
-      : isNumber(rowSelection)
-      ? { [rowSelection]: true }
-      : {}
-  }
-  return isObject(rowSelection)
-    ? Object.keys(rowSelection).length
-      ? Number(Object.keys(rowSelection)[0])
-      : undefined
-    : isNumber(rowSelection)
-    ? rowSelection
-    : undefined
+const getFilter = (filterOption: FilterOptionsState) => {
+  return filterOption.filter((item) => {
+    if (item.filterFn === "notEmpty" || item.filterFn === "empty") {
+      return item.id.length
+    }
+    return item.id.length && item.value
+  })
 }
 
 export function RenderDataDrivenTable<D extends TableData, TValue>(
@@ -109,7 +98,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     checkAll = true,
     download,
     filter,
-    rowSelection: selected,
+    rowSelection: selected = {},
     defaultSort = [],
     onSortingChange,
     onPaginationChange,
@@ -134,12 +123,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   const [filterOption, setFilterOption] = useState<FilterOptionsState>([
     { id: "", value: "" },
   ])
-  const [rowSelection, setRowSelection] = useState(
-    multiRowSelection && isObject(selected) ? selected : {},
-  )
-  const [selectedRow, setSelectedRow] = useState<number | undefined>(
-    !multiRowSelection && isNumber(selected) ? selected : undefined,
-  )
+  const [rowSelection, setRowSelection] = useState(selected)
   const [currentColumns, setColumns] = useState<ColumnDef<D, TValue>[]>(columns)
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -194,8 +178,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   }, [columnFilters, filterOperator])
 
   const currentSort = useMemo(() => {
-    return defaultSort ? defaultSort : sorting
-  },[defaultSort, sorting])
+    return defaultSort.length ? defaultSort : sorting
+  }, [defaultSort, sorting])
 
   const table = useReactTable({
     data,
@@ -240,32 +224,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   })
 
   useEffect(() => {
-    if (multiRowSelection) {
-      const _selectedRow = getSelectedRow(selectedRow, multiRowSelection)
-      if (isObject(_selectedRow) && !isEqual(_selectedRow, rowSelection)) {
+    if (!multiRowSelection) {
+      if (rowSelection && Object.keys(rowSelection)?.length > 1) {
+        const _selectedRow = { [Object.keys(rowSelection)[0]]: true }
         setRowSelection(_selectedRow)
-        setSelectedRow(undefined)
-        onRowSelectionChange?.(_selectedRow)
-      }
-    } else {
-      const _selectedRow = getSelectedRow(rowSelection, multiRowSelection)
-      if (isNumber(_selectedRow) && _selectedRow !== selectedRow) {
-        setSelectedRow(_selectedRow)
-        setRowSelection({})
         onRowSelectionChange?.(_selectedRow)
       }
     }
   }, [multiRowSelection])
-
-  useEffect(() => {
-    const _selectedRow = getSelectedRow(selected, multiRowSelection)
-    if (multiRowSelection) {
-      !isEqual(_selectedRow, rowSelection) &&
-        setRowSelection(_selectedRow as RowSelectionState)
-    } else {
-      _selectedRow !== selectedRow && setSelectedRow(_selectedRow as number)
-    }
-  }, [selected])
 
   useEffect(() => {
     setColumns(columns)
@@ -280,17 +246,6 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       })
     }
   }, [pagination])
-
-  useEffect(() => {
-    setColumnFilters(
-      filterOption.filter((item) => {
-        if (item.filterFn === "notEmpty" || item.filterFn === "empty") {
-          return item.id.length
-        }
-        return item.id.length && item.value
-      }),
-    )
-  }, [filterOption])
 
   const downloadTableDataAsCsv = useCallback(() => {
     const csvData = transformTableIntoCsvData(table, multiRowSelection)
@@ -344,6 +299,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         }
       }
       setFilterOption(filters)
+      setColumnFilters(getFilter(filters))
     },
     [filterOption, setFilterOption],
   )
@@ -358,6 +314,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         }
       }
       setFilterOption(filters)
+      setColumnFilters(getFilter(filters))
       updateColumns(index, id, "auto")
     },
     [filterOption, setFilterOption, updateColumns],
@@ -437,15 +394,11 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 <Tr
                   key={row.id}
                   hoverable
-                  selected={
-                    multiRowSelection
-                      ? row.getIsSelected()
-                      : selectedRow === index
-                  }
-                  onClick={() => {
+                  selected={row.getIsSelected()}
+                  onClick={(e) => {
                     if (!multiRowSelection) {
-                      onRowSelectionChange?.(index)
-                      setSelectedRow(index)
+                      table.resetRowSelection()
+                      row.getToggleSelectedHandler()(e)
                     }
                   }}
                 >
@@ -560,7 +513,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
           </div>
           {overFlow === "pagination" ? (
             <Pagination
-              total={data.length}
+              total={Object.keys(table.getRowModel().rowsById).length}
               pageSize={pageSize}
               current={pageIndex + 1}
               hideOnSinglePage={false}
