@@ -22,8 +22,8 @@ import { HorizontalMenuItem } from "./horizontal-menu-item"
 import { DropList, DropListItem } from "@illa-design/dropdown"
 import { mergeRefs, useMergeValue } from "@illa-design/system"
 import { NextIcon, PreviousIcon } from "@illa-design/icon"
-import useMeasure from "react-use-measure"
 import { AnimatePresence, motion } from "framer-motion"
+import useMeasure from "react-use-measure"
 
 export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
   (props, ref) => {
@@ -80,8 +80,9 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
     const [leftScroll, setLeftScroll] = useState<boolean>(false)
     const [rightScroll, setRightScroll] = useState<boolean>(false)
 
+    const containerRef = useRef<HTMLDivElement>(null)
+
     const [containerBoundRef, containerBound] = useMeasure()
-    const containerRef = useRef<HTMLDivElement>()
 
     useEffect(() => {
       if (containerRef.current) {
@@ -90,9 +91,9 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
           clientWidth < scrollWidth &&
           scrollLeft + clientWidth < scrollWidth
         ) {
-          if (!rightScroll) {
-            setRightScroll(true)
-          }
+          setRightScroll(true)
+        } else {
+          setRightScroll(false)
         }
       }
     }, [containerBound.width, rightScroll])
@@ -229,11 +230,11 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
       >
         <div
           css={[horizontalMenuContainerStyle, applyBoxStyle(otherProps)]}
-          ref={ref}
+          ref={mergeRefs(ref, containerBoundRef)}
           {...deleteCssProps(otherProps)}
         >
           <div
-            ref={mergeRefs(containerBoundRef, containerRef)}
+            ref={containerRef}
             css={applyHorizontalMenuListContainerStyle(
               horizontalAlign,
               leftScroll || rightScroll,
