@@ -63,7 +63,7 @@ const TextItem = (
 
   const handleItemRemove = useCallback(() => {
     onRemove?.(file)
-  }, [onRemove])
+  }, [onRemove, file])
 
   const imageNode = imageUrl ? <img src={imageUrl} /> : <Icon />
 
@@ -73,6 +73,31 @@ const TextItem = (
     <div css={errorListItemStyle}>{imageNode}</div>
   ) : (
     <>{imageNode}</>
+  )
+
+  const errorIcon = file.status === STATUS.FAIL &&
+    actionIcons.errorIcon !== null && (
+      <Popover
+        content={locale?.upload.error}
+        {...triggerProps}
+        hasCloseIcon={false}
+        trigger="hover"
+        disabled={file.status !== STATUS.FAIL}
+      >
+        {actionIcons.errorIcon || <ErrorIcon />}
+      </Popover>
+    )
+
+  const deleteIcon = !disabled && actionIcons.removeIcon !== null && (
+    <span
+      onClick={handleItemRemove}
+      tabIndex={0}
+      aria-label={locale?.upload.delete}
+      css={textItemDeleteIconStyle}
+      onKeyDown={(e) => handleKeyDown(e, handleItemRemove)}
+    >
+      {actionIcons.removeIcon || <DeleteIcon />}
+    </span>
   )
 
   return (
@@ -100,20 +125,7 @@ const TextItem = (
             ) : (
               <span css={getTextItemNameStyle(file.status)}>{fileName}</span>
             )}
-            <div css={textItemErrorIconStyle}>
-              {file.status === STATUS.FAIL &&
-                actionIcons.errorIcon !== null && (
-                  <Popover
-                    content={locale?.upload.error}
-                    {...triggerProps}
-                    hasCloseIcon={false}
-                    trigger="hover"
-                    disabled={file.status !== STATUS.FAIL}
-                  >
-                    {actionIcons.errorIcon || <ErrorIcon />}
-                  </Popover>
-                )}
-            </div>
+            <div css={textItemErrorIconStyle}>{errorIcon}</div>
           </div>
           <div css={textItemProgressStyle}>
             <UploadProgress
@@ -127,17 +139,7 @@ const TextItem = (
           </div>
         </div>
       </div>
-      {!disabled && actionIcons.removeIcon !== null && (
-        <span
-          onClick={handleItemRemove}
-          tabIndex={0}
-          aria-label={locale?.upload.delete}
-          css={textItemDeleteIconStyle}
-          onKeyDown={(e) => handleKeyDown(e, handleItemRemove)}
-        >
-          {actionIcons.removeIcon || <DeleteIcon />}
-        </span>
-      )}
+      {deleteIcon}
     </div>
   )
 }

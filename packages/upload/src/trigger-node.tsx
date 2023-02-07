@@ -6,6 +6,7 @@ import React, {
   cloneElement,
   useEffect,
   KeyboardEvent,
+  useCallback,
 } from "react"
 import { Button } from "@illa-design/button"
 import { UploadIcon, PlusIcon } from "@illa-design/icon"
@@ -32,7 +33,7 @@ import {
 const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
   const { locale } = useContext<ConfigProviderProps>(ConfigProviderContext)
   const [isDragging, setIsDragging] = useState(false)
-  const [dragEnterCount, setDragEnterCount] = useState(0) // the number of times ondragenter was triggered
+  const [dragEnterCount, setDragEnterCount] = useState(0)
 
   const {
     tip,
@@ -62,59 +63,67 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
     setDragEnterCount(0)
   }, [isDragging])
 
-  if (children === null) {
-    return null
-  }
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      const keyCode = event.code
+      if (keyCode === "Enter") {
+        onClick?.()
+      }
+    },
+    [onClick],
+  )
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const keyCode = event.code
-    if (keyCode === "Enter") {
-      onClick?.()
-    }
-  }
-
-  const handleDragEnter = () => {
+  const handleDragEnter = useCallback(() => {
     setDragEnterCount(dragEnterCount + 1)
-  }
+  }, [dragEnterCount])
 
-  const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault()
-    if (dragEnterCount === 0) {
+  const handleDragLeave = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      if (dragEnterCount === 0) {
+        setIsDragging(false)
+        onDragLeave?.(e)
+      } else {
+        setDragEnterCount(dragEnterCount - 1)
+      }
+    },
+    [dragEnterCount, onDragLeave],
+  )
+
+  const handleDragOver = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      if (!isDragging) {
+        setIsDragging(true)
+        onDragOver?.(e)
+      }
+    },
+    [isDragging, onDragOver],
+  )
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      if (!drag) {
+        return
+      }
       setIsDragging(false)
-      onDragLeave?.(e)
-    } else {
-      setDragEnterCount(dragEnterCount - 1)
-    }
-  }
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault()
-    if (!isDragging) {
-      setIsDragging(true)
-      onDragOver?.(e)
-    }
-  }
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault()
-    if (!drag) {
-      return
-    }
-    setIsDragging(false)
-    if (directory) {
-      loopDirectory(
-        Array.prototype.slice.call(e.dataTransfer.items),
-        (files: File[]) => {
-          onDragFiles?.(files)
-        },
-        accept,
-      )
-    } else {
-      const files = getAcceptedFiles(e.dataTransfer.files, accept)
-      onDragFiles?.((multiple ? files : files?.slice(0, 1) || []) as File[])
-    }
-    onDrop?.(e)
-  }
+      if (directory) {
+        loopDirectory(
+          Array.prototype.slice.call(e.dataTransfer.items),
+          (files: File[]) => {
+            onDragFiles?.(files)
+          },
+          accept,
+        )
+      } else {
+        const files = getAcceptedFiles(e.dataTransfer.files, accept)
+        onDragFiles?.((multiple ? files : files?.slice(0, 1) || []) as File[])
+      }
+      onDrop?.(e)
+    },
+    [drag, directory, onDrop, accept, onDragFiles, multiple],
+  )
 
   const events = disabled
     ? {}
@@ -126,6 +135,10 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
         onClick: onClick,
         onKeyDown: handleKeyDown,
       }
+
+  if (children === null) {
+    return null
+  }
 
   return (
     <div css={getTriggerNodeContainerStyle(drag)} {...events}>

@@ -65,9 +65,7 @@ const uploadRequestSender: UploadRequestProps = function (
   formData.append(name || "file", file)
 
   xhr.open("post", action || "", true)
-  // if (withCredentials && "withCredentials" in xhr) {
-  //   xhr.withCredentials = true
-  // }
+
   Object.keys(headers).forEach((h) => {
     if (headers[h] !== null) {
       xhr.setRequestHeader(h, headers[h])

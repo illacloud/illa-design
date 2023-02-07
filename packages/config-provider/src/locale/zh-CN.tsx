@@ -24,7 +24,9 @@ export const zhCN = {
     go: "前往",
   },
   upload: {
+    error: "失败",
     upload: "上传",
+    reupload: "点击重试",
     dragTip: "拖拽文件至此处",
     dragHover: "释放文件并开始上传",
     selectFile: "选择文件",

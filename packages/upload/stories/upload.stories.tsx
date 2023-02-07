@@ -11,9 +11,30 @@ export default {
 
 const Template: Story<UploadProps> = (props) => {
   const [listType, setListType] = React.useState("picture-list")
+  const [drag, setDrag] = React.useState(false)
+
+  const handleOnChange = (fileList: UploadItem[], file: UploadItem) => {
+    console.log("change: ", fileList, file)
+  }
   return (
     <div>
       <Space direction={"vertical"} wrap>
+        <RadioGroup
+          name="drag"
+          value={drag}
+          onChange={setDrag}
+          style={{ marginLeft: 20, marginBottom: 20 }}
+          options={[
+            {
+              label: "true",
+              value: true,
+            },
+            {
+              label: "false",
+              value: false,
+            },
+          ]}
+        ></RadioGroup>
         <RadioGroup
           name="listType"
           value={listType}
@@ -27,9 +48,11 @@ const Template: Story<UploadProps> = (props) => {
           action={"https://www.mocky.io/v2/5cc8019d300000980a055e76"}
           autoUpload={true}
           multiple
-          // drag={true}
+          drag={drag}
           // directory={true}
+          tip={"测试一下"}
           listType={listType}
+          onChange={handleOnChange}
           defaultFileList={[
             // {
             //   uid: "-3",

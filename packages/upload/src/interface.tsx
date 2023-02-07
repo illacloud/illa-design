@@ -159,6 +159,7 @@ export type UploadItem = {
 export interface UploaderProps extends UploadProps {
   limit?: number
   hide?: boolean
+  children?: React.ReactNode
   onFileStatusChange?: (file: UploadItem) => void
 }
 
@@ -185,6 +186,12 @@ export type UploadInstance = {
   submit: (file?: UploadItem) => void
   abort: (file: UploadItem) => void
   reupload: (file: UploadItem) => void
+}
+
+export type UploaderInstance = {
+  upload: (file: UploadItem) => void
+  reupload: (file: UploadItem) => void
+  abort: (file?: UploadItem) => void
 }
 
 export interface UploadProgressProps extends CustomIconType {

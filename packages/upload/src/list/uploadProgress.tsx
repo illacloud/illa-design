@@ -19,6 +19,16 @@ import {
   uploadProgressStyle,
 } from "../style"
 
+const handleKeyDown = (
+  event: KeyboardEvent<HTMLSpanElement>,
+  callback?: () => void,
+) => {
+  const keyCode = event.code
+  if (keyCode === "Enter") {
+    callback?.()
+  }
+}
+
 const UploadProgress: FC<UploadProgressProps> = (props) => {
   const { file, progressProps, progressRender, onReupload, onUpload, onAbort } =
     props
@@ -31,16 +41,6 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
       ? "success"
       : "normal"
 
-  const handleKeyDown = (
-    event: KeyboardEvent<HTMLSpanElement>,
-    callback?: () => void,
-  ) => {
-    const keyCode = event.code
-    if (keyCode === "Enter") {
-      callback?.()
-    }
-  }
-
   const handleFileReupload = () => {
     onReupload && onReupload(file)
   }
@@ -52,6 +52,32 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
   const handleFileAbort = () => {
     onAbort && onAbort(file)
   }
+
+  const startIcon = status === STATUS.INIT && props.startIcon !== null && (
+    <span
+      css={uploadProgressStyle}
+      tabIndex={0}
+      role="button"
+      aria-label={locale?.upload.start}
+      onClick={handleFileUpload}
+      onKeyDown={(e) => handleKeyDown(e, handleFileUpload)}
+    >
+      {props.startIcon || <CaretRightIcon />}
+    </span>
+  )
+
+  const cancelIcon = status === STATUS.UPLOADING &&
+    props.cancelIcon !== null && (
+      <span
+        css={uploadProgressStyle}
+        onClick={handleFileAbort}
+        tabIndex={0}
+        aria-label={locale?.upload.cancel}
+        onKeyDown={(e) => handleKeyDown(e, handleFileAbort)}
+      >
+        {props.cancelIcon || <CloseIcon />}
+      </span>
+    )
 
   const dom = (
     <>
@@ -68,7 +94,7 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
             (props.listType === "picture-card" ? (
               <UploadIcon />
             ) : (
-              locale?.upload.reupload || "click to retry"
+              locale?.upload.reupload
             ))}
         </span>
       )}
@@ -92,30 +118,8 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
             trailColor="blackAlpha"
             {...progressProps}
           />
-          {status === STATUS.INIT && props.startIcon !== null && (
-            <span
-              css={uploadProgressStyle}
-              tabIndex={0}
-              role="button"
-              aria-label={locale?.upload.start}
-              onClick={handleFileUpload}
-              onKeyDown={(e) => handleKeyDown(e, handleFileUpload)}
-            >
-              {props.startIcon || <CaretRightIcon />}
-            </span>
-          )}
-
-          {status === STATUS.UPLOADING && props.cancelIcon !== null && (
-            <span
-              css={uploadProgressStyle}
-              onClick={handleFileAbort}
-              tabIndex={0}
-              aria-label={locale?.upload.cancel}
-              onKeyDown={(e) => handleKeyDown(e, handleFileAbort)}
-            >
-              {props.cancelIcon || <CloseIcon />}
-            </span>
-          )}
+          {startIcon}
+          {cancelIcon}
         </div>
       )}
     </>

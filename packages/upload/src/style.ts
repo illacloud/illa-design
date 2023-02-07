@@ -326,9 +326,11 @@ export const dragContentContainerStyle = css`
 `
 
 export const dragTextStyle = css`
-  height: 24px;
+  min-height: 24px;
   font-size: 16px;
   font-weight: 500;
+  text-align: center;
+  word-wrap: break-word;
 `
 
 export const dragTipsStyle = css`

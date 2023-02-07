@@ -1,5 +1,17 @@
-import { forwardRef, useImperativeHandle, useRef, useState } from "react"
-import { UploadProps, UploadItem, STATUS, UploadInstance } from "./interface"
+import {
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useState,
+  useCallback,
+} from "react"
+import {
+  UploadProps,
+  UploadItem,
+  STATUS,
+  UploadInstance,
+  UploaderInstance,
+} from "./interface"
 import Uploader from "./uploader"
 import { isFunction, isNumber, isArray } from "@illa-design/system"
 import UploadList from "./list"
@@ -37,7 +49,7 @@ const getFileList = (uploadState: UploadStateType): UploadItem[] => {
 }
 
 export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
-  const uploaderRef = useRef<Uploader>(null)
+  const uploaderRef = useRef<UploaderInstance>(null)
   const uploadStateRef = useRef<UploadStateType>({})
   const [innerUploadState, setInnerUploadState] = useState<{
     [key: string]: UploadItem
@@ -49,6 +61,9 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
       : {},
   )
 
+  uploadStateRef.current =
+    "fileList" in props ? getUploadState(props.fileList) : innerUploadState
+
   const {
     listType = "text",
     renderUploadItem,
@@ -59,74 +74,78 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
     progressProps,
     onProgress,
     onChange,
+    onRemove,
     onReupload,
   } = props
 
-  uploadStateRef.current =
-    "fileList" in props ? getUploadState(props.fileList) : innerUploadState
+  const deleteUploadFile = useCallback(
+    (file: UploadItem) => {
+      const obj = { ...uploadStateRef.current }
+      delete obj[file.uid]
 
-  const deleteUploadFile = (file: UploadItem) => {
-    const obj = { ...uploadStateRef.current }
-    delete obj[file.uid]
+      if (!("fileList" in props)) {
+        setInnerUploadState(obj)
+      }
+      onChange && onChange(getFileList(obj), file)
+    },
+    [onChange, props],
+  )
 
-    if (!("fileList" in props)) {
-      setInnerUploadState(obj)
-    }
-    onChange && onChange(getFileList(obj), file)
-  }
-
-  const uploadFile = (file: UploadItem) => {
+  const uploadFile = useCallback((file: UploadItem) => {
     if (!file) {
       return
     }
     setTimeout(() => {
       uploaderRef.current && uploaderRef.current.upload(file)
     }, 0)
-  }
+  }, [])
 
-  const reuploadFile = (file: UploadItem) => {
-    uploaderRef.current && uploaderRef.current.reupload(file)
-    onReupload && onReupload(file)
-  }
+  const reuploadFile = useCallback(
+    (file: UploadItem) => {
+      uploaderRef.current && uploaderRef.current.reupload(file)
+      onReupload && onReupload(file)
+    },
+    [onReupload],
+  )
 
-  const removeFile = (file: UploadItem) => {
-    if (!file) {
-      return
-    }
-    const { onRemove } = props
-    Promise.resolve(
-      isFunction(onRemove)
-        ? onRemove(file, getFileList(uploadStateRef.current))
-        : onRemove,
-    )
-      .then((val) => {
-        if (val !== false) {
-          uploaderRef.current && uploaderRef.current.abort(file)
-          deleteUploadFile(file)
-        }
-      })
-      .catch((e) => {
-        console.error(e)
-      })
-  }
+  const removeFile = useCallback(
+    (file: UploadItem) => {
+      if (!file) {
+        return
+      }
+      Promise.resolve(
+        isFunction(onRemove)
+          ? onRemove(file, getFileList(uploadStateRef.current))
+          : onRemove,
+      )
+        .then((val) => {
+          if (val !== false) {
+            uploaderRef.current && uploaderRef.current.abort(file)
+            deleteUploadFile(file)
+          }
+        })
+        .catch((e) => {
+          console.error(e)
+        })
+    },
+    [deleteUploadFile, onRemove],
+  )
 
-  const abortFile = (file: UploadItem) => {
+  const abortFile = useCallback((file: UploadItem) => {
     if (file) {
       uploaderRef.current && uploaderRef.current.abort(file)
     }
-  }
+  }, [])
 
   useImperativeHandle(ref, () => {
     return {
       submit: (file?: UploadItem) => {
-        let list: UploadItem[] = []
-        if (file) {
-          list = [file]
-        } else {
-          list = getFileList(uploadStateRef.current).filter(
-            (x) => x.status === STATUS.INIT,
-          )
-        }
+        let list: UploadItem[] =
+          (file
+            ? [file]
+            : getFileList(uploadStateRef.current).filter(
+                (x) => x.status === STATUS.INIT,
+              )) || []
         list.forEach((x) => {
           uploadFile(x)
         })
@@ -151,8 +170,25 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
 
   const isPictureCard = listType === "picture-card"
 
-  const handleProgress = (file: UploadItem, e?: ProgressEvent) => {
-    if (file) {
+  const handleProgress = useCallback(
+    (file: UploadItem, e?: ProgressEvent) => {
+      if (file) {
+        if (!("fileList" in props)) {
+          setInnerUploadState((v) => {
+            return {
+              ...v,
+              [file.uid]: file,
+            }
+          })
+        }
+        onProgress && onProgress(file, e)
+      }
+    },
+    [onProgress, props],
+  )
+
+  const handleFileStatusChange = useCallback(
+    (file: UploadItem) => {
       if (!("fileList" in props)) {
         setInnerUploadState((v) => {
           return {
@@ -161,25 +197,14 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
           }
         })
       }
-      onProgress && onProgress(file, e)
-    }
-  }
-
-  const handleFileStatusChange = (file: UploadItem) => {
-    if (!("fileList" in props)) {
-      setInnerUploadState((v) => {
-        return {
-          ...v,
-          [file.uid]: file,
-        }
-      })
-    }
-    onChange &&
-      onChange(
-        getFileList({ ...uploadStateRef.current, [file.uid]: file }),
-        file,
-      )
-  }
+      onChange &&
+        onChange(
+          getFileList({ ...uploadStateRef.current, [file.uid]: file }),
+          file,
+        )
+    },
+    [onChange, props],
+  )
 
   const uploadCompontent = (
     <div css={getUploaderContinerStyle(listType)}>
