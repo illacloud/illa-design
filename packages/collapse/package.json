@@ -35,7 +35,7 @@
   "bugs": {
     "url": "https://github.com/illacloud/illa-design/issues"
   },
-  "scripts": {
+   "scripts": {
     "build": "vite build"
   },
   "dependencies": {
@@ -45,7 +45,9 @@
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@types/react-transition-group": "^4.4.5"
+    "@types/react-transition-group": "^4.4.5",
+    "@vitejs/plugin-react-swc":"^3.0.1",
+    "@rollup/plugin-typescript":"^10.0.1"
   },
   "peerDependencies": {
     "react": "^18.2.0",
