@@ -168,10 +168,12 @@ export type CustomFilterFn =
   | "before"
   | "after"
 
+export type FilterFn = FilterFnOption<any> & CustomFilterFn
+
 export type FilterOptions = {
   id: string
   value: unknown
-  filterFn?: FilterFnOption<any> & CustomFilterFn
+  filterFn?: FilterFn
 }
 
 export type FilterOptionsState = FilterOptions[]
