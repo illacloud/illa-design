@@ -128,7 +128,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     showFooter,
   } as TableContextProps
 
-  const [sorting, setSorting] = useState<SortingState>(defaultSort)
+  const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [filterOperator, setFilterOperator] = useState<FilterOperator>("and")
   const [filterOption, setFilterOption] = useState<FilterOptionsState>([
@@ -193,13 +193,17 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     return { filters: columnFilters, operator: filterOperator }
   }, [columnFilters, filterOperator])
 
+  const currentSort = useMemo(() => {
+    return defaultSort ? defaultSort : sorting
+  },[defaultSort, sorting])
+
   const table = useReactTable({
     data,
     columns: _columns,
     state: {
       columnVisibility,
       globalFilter,
-      sorting,
+      sorting: currentSort,
       rowSelection,
       pagination: {
         pageIndex,
@@ -264,12 +268,6 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   }, [selected])
 
   useEffect(() => {
-    if (defaultSort?.length || defaultSort?.length !== sorting?.length) {
-      setSorting(defaultSort)
-    }
-  }, [defaultSort])
-
-  useEffect(() => {
     setColumns(columns)
   }, [columns])
 
@@ -281,7 +279,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize: isNumber(_pageSize) ? _pageSize : pageSize,
       })
     }
-  }, [pageIndex, pageSize, pagination])
+  }, [pagination])
 
   useEffect(() => {
     setColumnFilters(
@@ -368,7 +366,6 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   const onPageChange = useCallback(
     (pageNumber: number, pageSize: number) => {
       setPagination({ pageIndex: pageNumber - 1, pageSize })
-      table.setPageIndex(pageNumber - 1)
     },
     [table, setPagination],
   )
