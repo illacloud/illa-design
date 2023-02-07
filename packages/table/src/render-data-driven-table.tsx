@@ -95,6 +95,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     columnVisibility,
     pagination,
     multiRowSelection,
+    enableRowSelection = true,
     checkAll = true,
     download,
     filter,
@@ -135,7 +136,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       // @ts-ignore accessorKey is not in the interface
       return item.id || item.accessorKey
     })
-    if (multiRowSelection) {
+    if (multiRowSelection && enableRowSelection) {
       const rowSelectionColumn: ColumnDef<D, TValue>[] = [
         {
           accessorKey: "select",
@@ -171,7 +172,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       return rowSelectionColumn.concat(current)
     }
     return current
-  }, [checkAll, currentColumns, multiRowSelection])
+  }, [checkAll, currentColumns, multiRowSelection, enableRowSelection])
 
   const globalFilter = useMemo(() => {
     return { filters: columnFilters, operator: filterOperator }
@@ -194,6 +195,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize,
       },
     },
+    enableMultiRowSelection: multiRowSelection,
     enableSorting: !disableSortBy,
     globalFilterFn: customGlobalFn,
     onPaginationChange: (pagination) => {
@@ -232,6 +234,12 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       }
     }
   }, [multiRowSelection])
+
+  useEffect(() => {
+    if (!enableRowSelection) {
+      table.resetRowSelection()
+    }
+  }, [enableRowSelection])
 
   useEffect(() => {
     setColumns(columns)
@@ -394,10 +402,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 <Tr
                   key={row.id}
                   hoverable
-                  selected={row.getIsSelected()}
+                  selected={enableRowSelection ? row.getIsSelected() : false}
                   onClick={(e) => {
-                    if (!multiRowSelection) {
-                      table.resetRowSelection()
+                    if (enableRowSelection) {
                       row.getToggleSelectedHandler()(e)
                     }
                   }}

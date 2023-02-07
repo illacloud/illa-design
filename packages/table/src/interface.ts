@@ -68,6 +68,7 @@ export interface TableProps<D extends TableData, TValue>
   overFlow?: TableOverFlow
   pagination?: PaginationProps
   multiRowSelection?: boolean
+  enableRowSelection?: boolean
   checkAll?: boolean
   download?: boolean
   filter?: boolean
