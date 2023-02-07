@@ -25,6 +25,7 @@ export const enUS = {
   },
   upload: {
     upload: "Upload",
+    reupload: "Click to reupload",
     dragTip: "Drag and drop the file",
     selectFile: "Select File",
     beginUpload: "Upload File",

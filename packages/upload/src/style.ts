@@ -158,6 +158,9 @@ export const textItemDeleteIconStyle = css`
   align-self: center;
   color: ${globalColor(`--${illaPrefix}-gray-05`)};
   cursor: pointer;
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  }
   & > svg {
     width: 12px;
     height: 12px;

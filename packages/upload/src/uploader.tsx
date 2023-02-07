@@ -41,6 +41,10 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
     fileList,
     action,
     headers,
+    text,
+    colorScheme,
+    variant,
+    loading,
     name,
     autoUpload,
     data,
@@ -304,6 +308,10 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
               tip={tip}
               multiple={multiple}
               accept={accept}
+              text={text}
+              colorScheme={colorScheme}
+              variant={variant}
+              loading={loading}
               disabled={disabled}
               drag={drag}
               listType={listType}

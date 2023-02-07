@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { Space, PersonIcon, RadioGroup } from "@illa-design/react"
-import { Upload, UploadProps } from "../src"
+import { Upload, UploadProps, UploadItem } from "../src"
 import React from "react"
 
 //👇 This default export determines where your story goes in the story list
@@ -13,9 +13,6 @@ const Template: Story<UploadProps> = (props) => {
   const [listType, setListType] = React.useState("picture-list")
   const [drag, setDrag] = React.useState(false)
 
-  const handleOnChange = (fileList: UploadItem[], file: UploadItem) => {
-    console.log("change: ", fileList, file)
-  }
   return (
     <div>
       <Space direction={"vertical"} wrap>
@@ -49,35 +46,13 @@ const Template: Story<UploadProps> = (props) => {
           autoUpload={true}
           multiple
           drag={drag}
-          // directory={true}
-          tip={"测试一下"}
           listType={listType}
-          onChange={handleOnChange}
           defaultFileList={[
-            // {
-            //   uid: "-3",
-            //   name: "image.png",
-            //   status: "done",
-            //   url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-            // },
-            {
-              uid: "-xxx",
-              percent: 50,
-              name: "image.png",
-              status: "uploading",
-              url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-            },
             {
               uid: "-5",
               name: "image.png",
               status: "error",
             },
-            // {
-            //   uid: "-6",
-            //   name: "image.png",
-            //   status: "init",
-            //   url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-            // },
           ]}
         />
       </div>
