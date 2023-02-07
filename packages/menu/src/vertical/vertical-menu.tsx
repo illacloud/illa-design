@@ -75,6 +75,7 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
               key={subItem.value}
               sub={true}
               disabled={subItem.disabled}
+              hidden={subItem.hidden}
               onClick={(e) => {
                 if (subItem.disabled) return
                 onClickMenuItem?.(
@@ -119,6 +120,7 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
             icon={subMenu.icon}
             label={subMenu.label}
             disabled={subMenu.disabled}
+            hidden={subMenu.hidden}
             selected={
               subMenu.selected ??
               finalSelectedSubMenu.some((v) => v === subMenu.value)
@@ -162,6 +164,7 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
             label={item.label}
             sub={false}
             disabled={item.disabled}
+            hidden={item.hidden}
             selected={
               item.selected ?? finalSelectedValues.some((v) => v === item.value)
             }

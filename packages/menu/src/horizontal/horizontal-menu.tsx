@@ -107,6 +107,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
               value={subItem.value}
               key={subItem.value}
               disabled={subItem.disabled}
+              hidden={subItem.hidden}
               title={
                 <div
                   css={applyHorizontalSubMenuItemContainer(
@@ -135,6 +136,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
             icon={subMenu.icon}
             label={subMenu.label}
             disabled={subMenu.disabled}
+            hidden={subMenu.hidden}
             selected={
               subMenu.selected ??
               finalSelectedSubMenu.some((v) => v === subMenu.value)
@@ -200,6 +202,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
             icon={item.icon}
             label={item.label}
             disabled={item.disabled}
+            hidden={item.hidden}
             selected={
               item.selected ?? finalSelectedValues.some((v) => v === item.value)
             }

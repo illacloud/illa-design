@@ -46,6 +46,7 @@ export interface MenuProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
 
 export interface SubMenuProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   opened?: boolean
+  hidden?: boolean
   selected?: boolean
   value: string
   disabled?: boolean
@@ -63,6 +64,7 @@ export interface MenuItemProps
   disabled?: boolean
   value: string
   icon?: ReactNode
+  hidden?: boolean
   label?: ReactNode
 }
 

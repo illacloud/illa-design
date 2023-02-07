@@ -18,6 +18,7 @@ export const HorizontalSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
       opened,
       selected,
       disabled,
+      hidden,
       icon,
       label,
       onVisibleChange,
@@ -26,6 +27,10 @@ export const HorizontalSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
 
     const menuContext = useContext(MenuContext)
     const colorScheme = menuContext?.colorScheme ?? "blue"
+
+    if (hidden) {
+      return null
+    }
 
     return (
       <Dropdown

@@ -161,10 +161,15 @@ export const horizontalSubMenuIcon = css`
   font-size: 14px;
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
   justify-content: center;
   margin-right: 8px;
 `
 
 export const horizontalSubMenuLabel = css`
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-size: 14px;
 `

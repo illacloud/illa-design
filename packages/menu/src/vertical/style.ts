@@ -103,6 +103,7 @@ export const verticalDivider = css`
 
 export const verticalSubMenuIcon = css`
   font-size: 14px;
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -111,8 +112,10 @@ export const verticalSubMenuIcon = css`
 
 export const verticalSubMenuLabel = css`
   overflow-wrap: break-word;
+  overflow: hidden;
   word-break: break-all;
   text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 14px;
   flex-shrink: 1;
 `

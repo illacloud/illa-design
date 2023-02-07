@@ -11,10 +11,15 @@ import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const HorizontalMenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
   (props, ref) => {
-    const { selected, disabled, icon, label, value, ...otherProps } = props
+    const { selected, disabled, icon, label, value, hidden, ...otherProps } =
+      props
 
     const menuContext = useContext(MenuContext)
     const colorScheme = menuContext?.colorScheme ?? "blue"
+
+    if (hidden) {
+      return null
+    }
 
     return (
       <div

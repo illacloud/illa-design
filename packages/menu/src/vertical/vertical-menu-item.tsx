@@ -12,10 +12,15 @@ export const VerticalMenuItem = forwardRef<
   HTMLDivElement,
   VerticalMenuItemProps
 >((props, ref) => {
-  const { selected, disabled, icon, label, value, sub, ...otherProps } = props
+  const { selected, disabled, icon, label, value, sub, hidden, ...otherProps } =
+    props
 
   const menuContext = useContext(MenuContext)
   const colorScheme = menuContext?.colorScheme ?? "blue"
+
+  if (hidden) {
+    return null
+  }
 
   return (
     <div
