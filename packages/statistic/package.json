@@ -43,7 +43,8 @@
     "@illa-design/theme": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/skeleton": "workspace:*",
-    "dayjs": "^1.11.7"
+    "dayjs": "^1.11.7",
+    "framer-motion": "^7.6.12"
   },
   "peerDependencies": {
     "react": "^18.2.0",

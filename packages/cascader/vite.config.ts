@@ -12,7 +12,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    sourcemap: "inline",
+    sourcemap: true,
     minify: "esbuild",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
@@ -36,7 +36,6 @@ export default defineConfig({
         "react",
         "react-dom",
         "@emotion/react",
-        "framer-motion",
         "@illa-design/theme",
         "@illa-design/system",
       ],
@@ -45,7 +44,6 @@ export default defineConfig({
           react: "React",
           "react-dom": "ReactDom",
           "@emotion/react": "@emotion/react",
-          "framer-motion": "framer-motion",
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/system": "@illa-design/system",
         },

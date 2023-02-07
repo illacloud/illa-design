@@ -13,7 +13,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    sourcemap: "inline",
+    sourcemap: true,
     minify: "esbuild",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),

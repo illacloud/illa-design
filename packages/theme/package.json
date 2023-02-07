@@ -44,7 +44,8 @@
     "chroma-js": "^2.4.2"
   },
   "devDependencies": {
-    "@types/color": "^3.0.3"
+    "@types/color": "^3.0.3",
+    "@types/chroma-js": "^2.1.4"
   },
   "peerDependencies": {
     "react": "^18.2.0",
