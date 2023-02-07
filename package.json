@@ -62,6 +62,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.3.1",
     "turbo": "^1.7.2",
-    "@emotion/react": "^11.10.5"
+    "@emotion/react": "^11.10.5",
+    "@illa-design/react": "workspace:*"
   }
 }

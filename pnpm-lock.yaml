@@ -13,6 +13,7 @@ importers:
       '@commitlint/cli': ^15.0.0
       '@commitlint/config-conventional': ^15.0.0
       '@emotion/react': ^11.10.5
+      '@illa-design/react': workspace:*
       '@rollup/plugin-typescript': ^10.0.1
       '@storybook/addon-a11y': 7.0.0-beta.36
       '@storybook/addon-essentials': 7.0.0-beta.36
@@ -50,6 +51,7 @@ importers:
       '@commitlint/cli': 15.0.0
       '@commitlint/config-conventional': 15.0.0
       '@emotion/react': 11.10.5_3grbeiqrb6djg67fiejiqngkdi
+      '@illa-design/react': link:packages/react
       '@rollup/plugin-typescript': 10.0.1_typescript@4.9.4
       '@storybook/addon-a11y': 7.0.0-beta.36_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-essentials': 7.0.0-beta.36_biqbaboplfbrettd7655fr4n2y
