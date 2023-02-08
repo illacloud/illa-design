@@ -12,6 +12,7 @@ export const Basic: StoryFn<InputNumberProps> = (props) => {
   return (
     <Space direction="vertical" align="start">
       <InputNumber w="320px" {...props} />
+      <InputNumber w="320px" precision={3} {...props} />
     </Space>
   )
 }

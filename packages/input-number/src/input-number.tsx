@@ -106,9 +106,17 @@ export const InputNumber = forwardRef<HTMLDivElement, InputNumberProps>(
         value={formatter ? formatter(finalValue) : finalValue.toString()}
         onChange={(v) => {
           if (value === undefined) {
-            setFinalValue(Number(v))
+            if (precision && precision >= step) {
+              setFinalValue(Number(Number(v).toFixed(precision)))
+            } else {
+              setFinalValue(Number(v))
+            }
           }
-          onChange?.(Number(v))
+          if (precision && precision >= step) {
+            onChange?.(Number(Number(v).toFixed(precision)))
+          } else {
+            onChange?.(Number(v))
+          }
         }}
         readOnly={readOnly}
         placeholder={placeholder}
