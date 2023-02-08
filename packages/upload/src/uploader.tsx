@@ -18,8 +18,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import TriggerNode from "./trigger-node"
 import { isFunction, isFile, isNumber } from "@illa-design/system"
 import { isAcceptFile } from "./utils"
-
-import getUID from "./uid"
+import { v4 } from "uuid"
 
 const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
   const [uploadRequests, setUploadrequests] = useState<{ [key: string]: any }>(
@@ -188,7 +187,7 @@ const Uploader = forwardRef<UploaderInstance, UploaderProps>((props, ref) => {
   const uploadSingleFile = useCallback(
     (file: File, index: number) => {
       const uploadItem: UploadItem = {
-        uid: getUID(),
+        uid: v4(),
         originFile: file,
         percent: 0,
         status: STATUS.INIT,

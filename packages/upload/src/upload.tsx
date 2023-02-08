@@ -15,7 +15,8 @@ import {
 import Uploader from "./uploader"
 import { isFunction, isNumber, isArray } from "@illa-design/system"
 import UploadList from "./list"
-import getUID from "./uid"
+import { v4 } from "uuid"
+
 import { getUploaderContinerStyle } from "./style"
 
 export type UploadState = {
@@ -33,7 +34,7 @@ const getUploadState = (fileList?: UploadItem[]): UploadStateType => {
     return res
   }
   fileList.forEach((file, index) => {
-    const uid = file.uid || getUID()
+    const uid = file.uid || v4()
     res[uid] = {
       status: STATUS.SUCCESS,
       percent: 100,

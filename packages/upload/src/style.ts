@@ -167,21 +167,12 @@ export const textItemDeleteIconStyle = css`
   }
 `
 
-export const getTriggerNodeContainerStyle = (drag?: boolean) => {
-  const listWidthStyle = drag
-    ? css`
-        width: 100%;
-      `
-    : css`
-        max-width: 100%;
-      `
-  return css`
-    cursor: pointer;
-    display: inline-block;
-    vertical-align: top;
-    ${listWidthStyle};
-  `
-}
+export const triggerNodeContainerStyle = css`
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+`
 
 export const inputStyle = css`
   visibility: hidden;
@@ -211,7 +202,8 @@ export const inputContentContainer = css`
 `
 
 export const listTypeButtonStyle = css`
-  width: 100px;
+  width: 100%;
+  max-width: 100%;
   font-family: "SF Pro Text";
   display: flex;
   flex-direction: row;

@@ -23,11 +23,11 @@ import {
   dragTipsStyle,
   getDragContainerStyle,
   getPictureCardContainerStyle,
-  getTriggerNodeContainerStyle,
   listTypeButtonStyle,
   pictureCardContentStyle,
   pictureCardIconStyle,
   pictureCardTextStyle,
+  triggerNodeContainerStyle,
 } from "./style"
 
 const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
@@ -125,23 +125,24 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
     [drag, directory, onDrop, accept, onDragFiles, multiple],
   )
 
-  const events = disabled
-    ? {}
-    : {
-        onDragEnter: handleDragEnter,
-        onDragLeave: handleDragLeave,
-        onDragOver: handleDragOver,
-        onDrop: handleDrop,
-        onClick: onClick,
-        onKeyDown: handleKeyDown,
-      }
+  const events =
+    disabled || loading
+      ? {}
+      : {
+          onDragEnter: handleDragEnter,
+          onDragLeave: handleDragLeave,
+          onDragOver: handleDragOver,
+          onDrop: handleDrop,
+          onClick: onClick,
+          onKeyDown: handleKeyDown,
+        }
 
   if (children === null) {
     return null
   }
 
   return (
-    <div css={getTriggerNodeContainerStyle(drag)} {...events}>
+    <div css={triggerNodeContainerStyle} {...events}>
       {isValidElement(children) ? (
         <div>{cloneElement(children, cloneChildrenProps)}</div>
       ) : listType === "picture-card" ? (
