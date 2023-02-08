@@ -96,7 +96,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     emptyProps,
     columnVisibility,
     pagination,
-    multiRowSelection,
+    multiRowSelection = false,
     enableRowSelection = true,
     checkAll = true,
     download,

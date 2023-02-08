@@ -223,7 +223,6 @@ export const CombineHeader: StoryFn<TableProps<DemoData, string>> = (args) => {
     <Table
       data={data}
       columns={columns}
-      multiRowSelection
       download
       filter
       {...args}
