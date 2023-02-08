@@ -55,6 +55,7 @@ export interface TableProps<D extends TableData, TValue>
   extends HTMLAttributes<HTMLDivElement>,
     TableContextProps,
     BoxProps {
+  colorScheme?: TableColorScheme
   columns?: ColumnDef<D, TValue>[]
   data?: D[]
   pinedHeader?: boolean
@@ -147,11 +148,6 @@ export interface FiltersEditorProps {
   onDelete: (index: number, columnFilters: FilterOptions) => void
   onChange: (index: number, columnFilters: FilterOptions) => void
   onChangeOperator: (filterOperator: FilterOperator) => void
-  onChangeFilterFn: (
-    index: number,
-    id: string,
-    filterFn: FilterFnOption<any>,
-  ) => void
 }
 
 export type CustomFilterFn =
