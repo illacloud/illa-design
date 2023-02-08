@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, useMemo, useRef, useState } from "react"
+import { forwardRef, useMemo, useRef, useState } from "react"
 import { SelectOptionObject, SelectProps } from "./interface"
 import { Dropdown, DropList, DropListItem } from "@illa-design/dropdown"
 import { useMergeValue } from "@illa-design/system"
@@ -204,7 +204,17 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
               return (
                 <DropListItem
                   key={option.value.toString()}
+                  colorScheme={colorScheme}
                   value={option.value.toString()}
+                  selected={
+                    typeof finalValue[0] === "object"
+                      ? (finalValue as SelectOptionObject[]).find(
+                          (i) => i.value === option.value,
+                        ) !== undefined
+                      : typeof finalValue[0] === "string"
+                      ? (finalValue as string[]).includes(String(option.value))
+                      : (finalValue as number[]).includes(Number(option.value))
+                  }
                   disabled={option.disabled}
                 >
                   <div css={dropListItemStyle}>

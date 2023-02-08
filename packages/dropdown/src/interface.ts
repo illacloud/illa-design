@@ -34,8 +34,11 @@ export interface DropListProps
 export interface DropListItemProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   value: string
+  colorScheme?: TriggerColorScheme
+  selected?: boolean
+
+  deleted?: boolean
   isSelectOption?: boolean
   title?: string | ReactNode
-  fontColor?: string
   disabled?: boolean
 }

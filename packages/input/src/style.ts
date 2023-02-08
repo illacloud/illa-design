@@ -12,7 +12,7 @@ function getPaddingStyle(size: InputSize): SerializedStyles {
       break
     case "medium":
       pdStyle = css`
-        padding: 4px 16px;
+        padding: 3px 16px;
       `
       break
     case "large":
@@ -32,7 +32,6 @@ export function applyInputContainerStyle(): SerializedStyles {
     width: 100%;
     overflow: auto;
     flex-direction: row;
-    border-radius: 8px;
     box-sizing: border-box;
   `
 }
@@ -41,6 +40,7 @@ export function applyAddBeforeStyle(
   size: InputSize,
   variant: InputVariant,
   disabled: boolean,
+  borderList: string[],
 ): SerializedStyles {
   let bdStyle = css``
   switch (variant) {
@@ -66,7 +66,7 @@ export function applyAddBeforeStyle(
       : disabled
       ? getColor("grayBlue", "09")
       : "unset"};
-    border-radius: 8px 0 0 8px;
+    border-radius: ${borderList[0]} 0 0 ${borderList[3]};
     ${bdStyle};
     ${getPaddingStyle(size)};
   `
@@ -76,6 +76,7 @@ export function applyAddAfterStyle(
   size: InputSize,
   variant: InputVariant,
   disabled: boolean,
+  borderList: string[],
 ): SerializedStyles {
   let bdStyle = css``
   switch (variant) {
@@ -102,7 +103,7 @@ export function applyAddAfterStyle(
       : disabled
       ? getColor("grayBlue", "09")
       : "unset"};
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 ${borderList[1]} ${borderList[2]} 0;
     ${bdStyle};
     ${getPaddingStyle(size)};
   `
@@ -115,6 +116,7 @@ export function applyInputStyle(
   error: boolean,
   hasBefore: boolean,
   hasAfter: boolean,
+  borderList: string[],
 ): SerializedStyles {
   let bdLeftStyle = css``
   let bdRightStyle = css``
@@ -140,8 +142,9 @@ export function applyInputStyle(
     flex-grow: 1;
     flex-shrink: 1;
     box-sizing: border-box;
-    border-radius: ${!hasBefore ? "8px" : "0"} ${!hasAfter ? "8px" : "0"}
-      ${!hasAfter ? "8px" : "0"} ${!hasBefore ? "8px" : "0"};
+    border-radius: ${!hasBefore ? borderList[0] : "0"}
+      ${!hasAfter ? borderList[1] : "0"} ${!hasAfter ? borderList[2] : "0"}
+      ${!hasBefore ? borderList[3] : "0"};
     background-color: ${variant === "fill"
       ? error
         ? getColor("red", "07")
@@ -194,6 +197,7 @@ export function applyInputDisabledStyle(
   error: boolean,
   hasBefore: boolean,
   hasAfter: boolean,
+  borderList: string[],
 ): SerializedStyles {
   let bdLeftStyle = css``
   let bdRightStyle = css``
@@ -219,8 +223,9 @@ export function applyInputDisabledStyle(
     flex-grow: 1;
     flex-shrink: 1;
     cursor: not-allowed;
-    border-radius: ${!hasBefore ? "8px" : "0"} ${!hasAfter ? "8px" : "0"}
-      ${!hasAfter ? "8px" : "0"} ${!hasBefore ? "8px" : "0"};
+    border-radius: ${!hasBefore ? borderList[0] : "0"}
+      ${!hasAfter ? borderList[1] : "0"} ${!hasAfter ? borderList[2] : "0"}
+      ${!hasBefore ? borderList[3] : "0"};
     background-color: ${variant === "fill"
       ? error
         ? getColor("red", "07")
@@ -371,6 +376,7 @@ export const textareaContainerStyle = css`
   display: flex;
   align-items: end;
   flex-direction: column;
+
   &:hover {
     .clear {
       visibility: visible;

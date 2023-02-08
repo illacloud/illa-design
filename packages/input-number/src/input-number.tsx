@@ -17,6 +17,7 @@ export const InputNumber = forwardRef<HTMLDivElement, InputNumberProps>(
       size = "medium",
       colorScheme = "blue",
       disabled,
+      precision,
       error,
       hideControl,
       readOnly,

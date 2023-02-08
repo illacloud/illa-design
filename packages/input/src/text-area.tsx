@@ -140,30 +140,34 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
             textareaStyle,
           ]}
         />
-        {allowClear && !readOnly && !disabled && finalValue.length > 0 && (
-          <ClearIcon
-            className="clear"
-            onClick={(e) => {
-              onClear?.()
-              if (value === undefined) {
-                setFinalValue("")
-              }
-              onChange?.("", e)
-            }}
-            pos="absolute"
-            posT="10px"
-            posR="5px"
-            cursor="pointer"
-            fs="12px"
-            ml="4px"
-            z={3}
-            c={getColor("grayBlue", "05")}
-          />
-        )}
+        {allowClear &&
+          !readOnly &&
+          !disabled &&
+          finalValue &&
+          finalValue?.length > 0 && (
+            <ClearIcon
+              className="clear"
+              onClick={(e) => {
+                onClear?.()
+                if (value === undefined) {
+                  setFinalValue("")
+                }
+                onChange?.("", e)
+              }}
+              pos="absolute"
+              posT="10px"
+              posR="5px"
+              cursor="pointer"
+              fs="12px"
+              ml="4px"
+              z={3}
+              c={getColor("grayBlue", "05")}
+            />
+          )}
         {showWordLimit && (
           <span css={[applyWordLimitStyle("medium"), areaLimitStyle]}>
             <span css={applyMaxLengthBeforeStyle(finalError)}>
-              {finalValue.length}
+              {finalValue?.length ?? 0}
             </span>
             {`${finalMaxLength !== undefined ? "/" + finalMaxLength : ""}`}
           </span>

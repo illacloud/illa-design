@@ -1,13 +1,7 @@
 import * as React from "react"
 import { Meta, StoryFn } from "@storybook/react"
-import { Dropdown, DropdownProps, DropList } from "../src"
-import {
-  Button,
-  DropListItem,
-  globalColor,
-  illaPrefix,
-  Space,
-} from "@illa-design/react"
+import { DropListItem, Dropdown, DropdownProps, DropList } from "../src"
+import { Button, globalColor, illaPrefix, Space } from "@illa-design/react"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -23,15 +17,9 @@ export default {
 const dropList = () => {
   return (
     <DropList>
-      <DropListItem
-        value="blog"
-        title={"Blog"}
-        key={"1"}
-        disabled
-        fontColor={`${globalColor(`--${illaPrefix}-red-02`)}`}
-      />
+      <DropListItem value="blog" title={"Blog"} key={"1"} disabled />
       <DropListItem value="tutorial" title={"Tutorial"} key={"2"} />
-      <DropListItem value="docs" title={"Docs"} key={"3"} fontColor={"blue"} />
+      <DropListItem value="docs" title={"Docs"} key={"3"} selected />
       <DropListItem value="community" title={"Community"} key={"4"} />
       <DropListItem value="github" title={"Github"} key={"5"} />
     </DropList>

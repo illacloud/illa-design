@@ -1,5 +1,6 @@
 import {
   Children,
+  cloneElement,
   forwardRef,
   PropsWithChildren,
   ReactElement,
@@ -8,7 +9,12 @@ import {
   useMemo,
   useRef,
 } from "react"
-import { OptionProps, SelectOptionObject, SelectProps } from "./interface"
+import {
+  OptionProps,
+  SelectOptionObject,
+  SelectProps,
+  SelectValue,
+} from "./interface"
 import { Input } from "@illa-design/input"
 import { Dropdown, DropList, DropListItem } from "@illa-design/dropdown"
 import { useMergeValue } from "@illa-design/system"
@@ -118,6 +124,13 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
       value: getValueFromProps(value),
     })
 
+    const [finalSelectValue, setFinalSelectValue] = useMergeValue<
+      SelectValue | undefined
+    >(undefined, {
+      defaultValue: defaultValue,
+      value: value,
+    })
+
     const lastChooseRef = useRef<string | null | ReactNode>(finalInputValue)
 
     const finalOptions: SelectOptionObject[] = useMemo(() => {
@@ -170,6 +183,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                 if (value === undefined) {
                   lastChooseRef.current = children
                   setFinalInputValue(lastChooseRef.current ?? "")
+                  setFinalSelectValue(key)
                 }
                 onChange?.(key)
               } else {
@@ -187,6 +201,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                         option as SelectOptionObject
                       ).label
                       setFinalInputValue(lastChooseRef.current ?? "")
+                      setFinalSelectValue((option as SelectOptionObject).value)
                     }
                     onChange?.(option)
                   } else {
@@ -196,12 +211,16 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                           option as SelectOptionObject
                         ).label
                         setFinalInputValue(lastChooseRef.current ?? "")
+                        setFinalSelectValue(
+                          (option as SelectOptionObject).value,
+                        )
                       }
                       onChange?.((option as SelectOptionObject).value)
                     } else {
                       if (value === undefined) {
                         lastChooseRef.current = option
                         setFinalInputValue(lastChooseRef.current ?? "")
+                        setFinalSelectValue(option)
                       }
                       onChange?.(option)
                     }
@@ -216,12 +235,25 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                     <DropListItem
                       key={option.value.toString()}
                       value={option.value.toString()}
+                      colorScheme={colorScheme}
                       title={option.label}
+                      selected={option.value === finalSelectValue}
                       disabled={option.disabled}
                     />
                   )
                 })
-              : children}
+              : Children.map(children, (child) => {
+                  const item = child as ReactElement<
+                    PropsWithChildren<OptionProps>
+                  >
+                  if (item.props.isSelectOption === false) {
+                    return child
+                  }
+                  return cloneElement(item, {
+                    selected: item.props.value === finalSelectValue,
+                    colorScheme: colorScheme,
+                  })
+                })}
             {(!finalOptions || finalOptions.length === 0) && !children && (
               <Empty />
             )}
@@ -270,6 +302,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
             if (value === undefined) {
               setFinalInputValue("")
               onInputValueChange?.("")
+              setFinalSelectValue(undefined)
             }
             onClear?.()
             onChange?.(undefined)

@@ -30,6 +30,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     value,
     size = "medium",
     addAfter,
+    bdRadius,
     addBefore,
     prefix,
     inputRef,
@@ -42,6 +43,8 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     variant = "outline",
     ...otherProps
   } = props
+
+  const borderList = bdRadius?.split("") ?? ["8px", "8px", "8px", "8px"]
 
   const [finalValue, setFinalValue] = useMergeValue<
     string | number | ReactNode
@@ -74,7 +77,14 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
       {...deleteCssProps(otherProps)}
     >
       {addBefore && (
-        <span css={applyAddBeforeStyle(size, variant, disabled ?? false)}>
+        <span
+          css={applyAddBeforeStyle(
+            size,
+            variant,
+            disabled ?? false,
+            borderList,
+          )}
+        >
           {addBefore}
         </span>
       )}
@@ -89,6 +99,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
                 finalError,
                 addBefore !== undefined,
                 addAfter !== undefined,
+                borderList,
               )
             : applyInputStyle(
                 size,
@@ -97,6 +108,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
                 finalError,
                 addBefore !== undefined,
                 addAfter !== undefined,
+                borderList,
               )
         }
       >
@@ -181,7 +193,9 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         )}
       </div>
       {addAfter && (
-        <span css={applyAddAfterStyle(size, variant, disabled ?? false)}>
+        <span
+          css={applyAddAfterStyle(size, variant, disabled ?? false, borderList)}
+        >
           {addAfter}
         </span>
       )}
