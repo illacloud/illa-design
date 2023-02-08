@@ -529,8 +529,8 @@ export function applyPaddingStyle(
     case "small":
       return css`
         padding: ${variant == "outline" || variant == "dashed"
-          ? "1px 11px"
-          : "2px 12px"};
+          ? "1px 7px"
+          : "2px 8px"};
       `
     case "medium":
       return css`
