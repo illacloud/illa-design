@@ -1,13 +1,7 @@
-import {
-  HTMLAttributes,
-  ReactNode,
-  TdHTMLAttributes,
-  ThHTMLAttributes,
-} from "react"
+import { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react"
 import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
 import {
-  Column,
   ColumnDef,
   ColumnFiltersState,
   ColumnSort,
@@ -134,11 +128,6 @@ export interface ThProps
   lastRow?: boolean
 }
 
-export interface TableFilterProps<D extends TableData> extends BoxProps {
-  renderFilterContent?: (columnProps: Column<D, unknown>) => ReactNode
-  columnProps: Column<D, unknown>
-}
-
 export interface FiltersEditorProps {
   colorScheme?: TableColorScheme
   filterOperator: FilterOperator
@@ -175,3 +164,11 @@ export type FilterOptions = {
 export type FilterOptionsState = FilterOptions[]
 
 export type FilterOperator = "and" | "or"
+
+export interface TableFilterProps {
+  onChange: (filters: FilterOptions[], operator: FilterOperator) => void
+  colorScheme?: TableColorScheme
+  filterOperator: FilterOperator
+  filterOption: FilterOptionsState
+  columnsOption: { value: string; label: string }[]
+}
