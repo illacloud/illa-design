@@ -77,6 +77,7 @@ export function applyHorizontalSubMenuItemContainer(
     : selected
     ? css`
         color: ${getColor(colorScheme, "03")};
+        font-weight: 500;
       `
     : css`
         color: ${getColor("grayBlue", "02")};
@@ -103,6 +104,7 @@ export function applyHorizontalSubMenuContainer(
     : selected
     ? css`
         color: ${getColor(colorScheme, "03")};
+        font-weight: 500;
 
         &:hover {
           .horizontalLine {
