@@ -1,24 +1,11 @@
 import { FC, useCallback, useState } from "react"
 import { Button } from "@illa-design/button"
 import { FilterIcon } from "@illa-design/icon"
-import {
-  FilterOperator,
-  FilterOptionsState,
-  TableColorScheme,
-  FilterOptions,
-} from "./interface"
+import { FilterOptionsState, TableFilterProps } from "./interface"
 import { isNumber } from "@illa-design/system"
 import { FiltersEditor } from "./filters-editor"
 import { Trigger } from "@illa-design/trigger"
 import { ColumnFilter } from "@tanstack/react-table"
-
-export interface TableFilterProps {
-  onChange: (filters: FilterOptions[], operator: FilterOperator) => void
-  colorScheme?: TableColorScheme
-  filterOperator: FilterOperator
-  filterOption: FilterOptionsState
-  columnsOption: { value: string; label: string }[]
-}
 
 const getFilter = (filterOption: FilterOptionsState) => {
   return filterOption.filter((item) => {

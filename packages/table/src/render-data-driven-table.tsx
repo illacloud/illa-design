@@ -5,20 +5,16 @@ import {
   TableContextProps,
   TableProps,
 } from "./interface"
-import isEqual from "react-fast-compare"
 import { ReactElement, useCallback, useEffect, useMemo, useState } from "react"
 import {
   ColumnDef,
-  ColumnFilter,
   ColumnFiltersState,
-  FilterFnOption,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   PaginationState,
-  RowSelectionState,
   SortingState,
   useReactTable,
 } from "@tanstack/react-table"
@@ -28,7 +24,7 @@ import {
   downloadDataAsCSV,
   transformTableIntoCsvData,
 } from "./utils"
-import { isNumber, isObject, isString } from "@illa-design/system"
+import { isNumber, isString } from "@illa-design/system"
 import {
   applyActionButtonStyle,
   applyBorderedStyle,
@@ -48,7 +44,6 @@ import { Tr } from "./tr"
 import { Th } from "./th"
 import {
   DownloadIcon,
-  FilterIcon,
   SorterDefaultIcon,
   SorterDownIcon,
   SorterUpIcon,
@@ -58,19 +53,8 @@ import { Td } from "./td"
 import { Empty } from "@illa-design/empty"
 import { TFoot } from "./tfoot"
 import { Button } from "@illa-design/button"
-import { Trigger } from "@illa-design/trigger"
-import { FiltersEditor } from "./filters-editor"
 import { Pagination } from "@illa-design/pagination"
 import { TableFilter } from "./table-filter"
-
-const getFilter = (filterOption: FilterOptionsState) => {
-  return filterOption.filter((item) => {
-    if (item.filterFn === "notEmpty" || item.filterFn === "empty") {
-      return item.id.length
-    }
-    return item.id.length && item.value
-  })
-}
 
 export function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -96,7 +80,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     emptyProps,
     columnVisibility,
     pagination,
-    multiRowSelection,
+    multiRowSelection = false,
     enableRowSelection = true,
     checkAll = true,
     download,
