@@ -23,6 +23,7 @@ export function applyVerticalSubMenuContentContainer(
     : selected
     ? css`
         color: ${getColor(colorScheme, "03")};
+        font-weight: 500;
 
         &:hover {
           background-color: ${getColor("grayBlue", "09")};
@@ -62,6 +63,7 @@ export function applyVerticalMenuItemContainer(
     : selected
     ? css`
         color: ${getColor(colorScheme, "03")};
+        font-weight: 500;
 
         &:hover {
           background-color: ${getColor("grayBlue", "09")};
@@ -141,6 +143,7 @@ export function applyVerticalSubMenuItemContainer(
     : selected
     ? css`
         color: ${getColor(colorScheme, "03")};
+        font-weight: 500;
       `
     : css`
         color: ${getColor("grayBlue", "02")};
