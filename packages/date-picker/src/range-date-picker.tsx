@@ -737,6 +737,7 @@ export const RangeDatePicker: FC<RangeDatePickerProps> = (props) => {
         popupVisible={mergedPopupVisible}
         colorScheme="white"
         maxW="auto"
+        showArrow={false}
         {...triggerProps}
       >
         <span>

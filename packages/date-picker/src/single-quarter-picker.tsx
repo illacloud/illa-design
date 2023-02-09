@@ -337,6 +337,7 @@ export const SingleQuarterPicker: FC<SingleQuarterPickerProps> = (props) => {
         onVisibleChange={visibleChange}
         popupVisible={mergedPopupVisible}
         colorScheme="white"
+        showArrow={false}
         {...triggerProps}
       >
         <span>
