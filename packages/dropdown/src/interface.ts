@@ -28,15 +28,18 @@ export interface DropListProps
   extends HTMLAttributes<HTMLDivElement>,
     BoxProps {
   disabled?: boolean
-  onClickItem?: (key: string, clickedNode: ReactNode, event: MouseEvent) => void
+  onClickItem?: (
+    key: string | number,
+    clickedNode: ReactNode,
+    event: MouseEvent,
+  ) => void
 }
 
 export interface DropListItemProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
-  value: string
+  value: string | number
   colorScheme?: TriggerColorScheme
   selected?: boolean
-
   deleted?: boolean
   isSelectOption?: boolean
   title?: string | ReactNode

@@ -120,8 +120,46 @@ export const Basic: StoryFn<SelectProps> = (args) => {
           },
         ]}
       />
+      <Select
+        {...args}
+        mt="20px"
+        options={[
+          {
+            label: "Option 1",
+            value: 1,
+          },
+          {
+            label: "Option 2",
+            value: 2,
+          },
+          {
+            label: "Option 3",
+            value: 3,
+          },
+        ]}
+      />
+      <Select
+        {...args}
+        mt="20px"
+        multiple
+        options={[
+          {
+            label: "Option 1",
+            value: 1,
+          },
+          {
+            label: "Option 2",
+            value: 2,
+          },
+          {
+            label: "Option 3",
+            value: 3,
+          },
+        ]}
+      />
       <Select mt="20px" options={["option1", "option2", "option3"]} {...args} />
       <Select mt="20px" multiple options={[1, 2, 3]} {...args} />
+      <Select mt="20px" options={[1, 2, 3]} {...args} />
       <Select
         mt="20px"
         {...args}

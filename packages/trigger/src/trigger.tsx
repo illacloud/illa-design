@@ -23,18 +23,17 @@ import {
   hide,
   Middleware,
   offset,
-  useMergeRefs,
+  safePolygon,
   size,
   useClick,
   useDismiss,
   useFloating,
   useFocus,
   useHover,
-  safePolygon,
   useInteractions,
+  useMergeRefs,
   useRole,
 } from "@floating-ui/react"
-import { mergeRefs } from "@illa-design/system"
 import { applyBoxStyle } from "@illa-design/theme"
 import { AnimatePresence, motion } from "framer-motion"
 import {

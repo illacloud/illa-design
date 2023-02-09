@@ -5,7 +5,11 @@ import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import { TriggerColorScheme } from "@illa-design/trigger"
 
 export const DropListContext = createContext<{
-  onClickItem?: (key: string, clickedNode: ReactNode, event: MouseEvent) => void
+  onClickItem?: (
+    key: string | number,
+    clickedNode: ReactNode,
+    event: MouseEvent,
+  ) => void
 }>({})
 
 export const DropList = forwardRef<HTMLDivElement, DropListProps>(
