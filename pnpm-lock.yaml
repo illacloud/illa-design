@@ -1225,7 +1225,7 @@ importers:
 
   packages/trigger:
     specifiers:
-      '@floating-ui/react': ^0.18.0
+      '@floating-ui/react': ^0.19.1
       '@illa-design/config-provider': workspace:*
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
@@ -1234,7 +1234,7 @@ importers:
       '@vitejs/plugin-react-swc': ^3.0.1
       framer-motion: ^7.6.12
     dependencies:
-      '@floating-ui/react': 0.18.0
+      '@floating-ui/react': 0.19.1
       '@illa-design/config-provider': link:../config-provider
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
@@ -3294,18 +3294,18 @@ packages:
     resolution: {integrity: sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ==}
     dev: true
 
-  /@floating-ui/core/1.1.0:
-    resolution: {integrity: sha512-zbsLwtnHo84w1Kc8rScAo5GMk1GdecSlrflIbfnEBJwvTSj1SL6kkOYV+nHraMCPEy+RNZZUaZyL8JosDGCtGQ==}
+  /@floating-ui/core/1.2.0:
+    resolution: {integrity: sha512-GHUXPEhMEmTpnpIfesFA2KAoMJPb1SPQw964tToQwt+BbGXdhqTCWT1rOb0VURGylsxsYxiGMnseJ3IlclVpVA==}
     dev: false
 
-  /@floating-ui/dom/1.1.0:
-    resolution: {integrity: sha512-TSogMPVxbRe77QCj1dt8NmRiJasPvuc+eT5jnJ6YpLqgOD2zXc5UA3S1qwybN+GVCDNdKfpKy1oj8RpzLJvh6A==}
+  /@floating-ui/dom/1.2.0:
+    resolution: {integrity: sha512-QXzg57o1cjLz3cGETzKXjI3kx1xyS49DW9l7kV2jw2c8Yftd434t2hllX0sVGn2Q8MtcW/4pNm8bfE1/4n6mng==}
     dependencies:
-      '@floating-ui/core': 1.1.0
+      '@floating-ui/core': 1.2.0
     dev: false
 
-  /@floating-ui/react-dom/1.2.1:
-    resolution: {integrity: sha512-YCLlqibZtgUhxUpxkSp1oekvYgH/jI4KdZEJv85E62twlZHN43xdlQNe6JcF4ROD3/Zu6juNHN+aOygN+6yZjg==}
+  /@floating-ui/react-dom/1.2.2:
+    resolution: {integrity: sha512-DbmFBLwFrZhtXgCI2ra7wXYT8L2BN4/4AMQKyu05qzsVji51tXOfF36VE2gpMB6nhJGHa85PdEg75FB4+vnLFQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -3315,11 +3315,11 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@floating-ui/dom': 1.1.0
+      '@floating-ui/dom': 1.2.0
     dev: false
 
-  /@floating-ui/react/0.18.0:
-    resolution: {integrity: sha512-zxgwWigxaph1TIBdezCDdc3eo+4FUDKY2MiBR3gywZtx5Eeb0KBRRZ9PyzznTXuYO5Y9BFHAC0Yikqp7rr+oKQ==}
+  /@floating-ui/react/0.19.1:
+    resolution: {integrity: sha512-h7hr53rLp+VVvWvbu0dOBvGsLeeZwn1DTLIllIaLYjGWw20YhAgEqegHU+nc7BJ30ttxq4Sq6hqARm0ne6chXQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -3329,7 +3329,7 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@floating-ui/react-dom': 1.2.1
+      '@floating-ui/react-dom': 1.2.2
       aria-hidden: 1.2.2
       tabbable: 6.0.1
     transitivePeerDependencies:
@@ -4834,11 +4834,13 @@ packages:
     dev: true
 
   /@types/lodash.debounce/4.0.7:
-    resolution: {integrity: sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@types/lodash.debounce/-/lodash.debounce-4.0.7.tgz}
+    dependencies:
+      '@types/lodash': 4.14.191
     dev: true
 
   /@types/lodash/4.14.191:
-    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.191.tgz}
     dev: true
 
   /@types/mdx/2.0.3:
@@ -8912,7 +8914,7 @@ packages:
     dev: true
 
   /lodash.debounce/4.0.8:
-    resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz}
 
   /lodash.get/4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
