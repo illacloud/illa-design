@@ -1,4 +1,8 @@
-import { ModeType, PrivateCType, RangeDatePickerProps } from "../../interface"
+import {
+  DatePickerModeType,
+  PrivateCType,
+  RangeDatePickerProps,
+} from "../../interface"
 import { Dayjs } from "dayjs"
 import { ReactNode } from "react"
 
@@ -25,6 +29,6 @@ export interface RangePickerPanelProps
   timeValues?: Dayjs[]
   isTimePanel?: boolean
   valueShowHover?: Dayjs[]
-  panelModes?: ModeType[]
-  setPanelModes?: (modes: ModeType[]) => void
+  panelModes?: DatePickerModeType[]
+  setPanelModes?: (modes: DatePickerModeType[]) => void
 }

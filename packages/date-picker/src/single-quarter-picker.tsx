@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useRef, useState, MouseEvent, useEffect } from "react"
 import {
   GetHeaderOperationsFun,
-  ModeType,
+  DatePickerModeType,
   SingleQuarterPickerProps,
 } from "./interface"
 import { PickerContext } from "./context"
@@ -96,7 +96,7 @@ export const SingleQuarterPicker: FC<SingleQuarterPickerProps> = (props) => {
     (getDayjsValue(pickerValue as Dayjs, format) as Dayjs) || pageShowDate
 
   const panelValue = valueShow || mergedValue
-  const [panelMode, setPanelMode] = useState<ModeType>("quarter")
+  const [panelMode, setPanelMode] = useState<DatePickerModeType>("quarter")
 
   function focusInput() {
     refInput.current?.focus?.()
@@ -253,7 +253,7 @@ export const SingleQuarterPicker: FC<SingleQuarterPickerProps> = (props) => {
     setPageShowDate(newPageShowDate)
   }
 
-  function getHeaderOperations(pickMode: ModeType = "quarter") {
+  function getHeaderOperations(pickMode: DatePickerModeType = "quarter") {
     if (pickMode === "date" || pickMode === "week") {
       return {
         onPrev: () => changePageShowDate("prev", "month"),

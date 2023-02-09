@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useRef, useState, MouseEvent, useEffect } from "react"
 import {
   GetHeaderOperationsFun,
-  ModeType,
+  DatePickerModeType,
   SingleQuarterPickerProps,
   SingleWeekPickerProps,
 } from "./interface"
@@ -98,7 +98,7 @@ export const SingleWeekPicker: FC<SingleWeekPickerProps> = (props) => {
     (getDayjsValue(pickerValue as Dayjs, format) as Dayjs) || pageShowDate
 
   const panelValue = valueShow || mergedValue
-  const [panelMode, setPanelMode] = useState<ModeType>("week")
+  const [panelMode, setPanelMode] = useState<DatePickerModeType>("week")
 
   function focusInput() {
     refInput.current?.focus?.()
@@ -255,7 +255,7 @@ export const SingleWeekPicker: FC<SingleWeekPickerProps> = (props) => {
     setPageShowDate(newPageShowDate)
   }
 
-  function getHeaderOperations(pickMode: ModeType = "week") {
+  function getHeaderOperations(pickMode: DatePickerModeType = "week") {
     if (pickMode === "date" || pickMode === "week") {
       return {
         onPrev: () => changePageShowDate("prev", "month"),

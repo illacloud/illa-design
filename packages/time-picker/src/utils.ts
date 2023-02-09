@@ -1,4 +1,4 @@
-import { CalendarValue } from "./"
+import { TimePickerValue } from "./"
 import type { Dayjs } from "dayjs"
 import { dayjsPro, getDayjsValue, isDayjs } from "@illa-design/system"
 
@@ -26,8 +26,8 @@ export function getFormat(format?: string) {
 
 export function getDefaultValue(
   format: string,
-  value?: CalendarValue | CalendarValue[],
-  defaultValue?: CalendarValue | CalendarValue[],
+  value?: TimePickerValue | TimePickerValue[],
+  defaultValue?: TimePickerValue | TimePickerValue[],
   utcOffset?: number,
   timezone?: string,
 ) {

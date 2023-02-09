@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useRef, useState, MouseEvent, useEffect } from "react"
 import {
   GetHeaderOperationsFun,
-  ModeType,
+  DatePickerModeType,
   SingleDatePickerProps,
 } from "./interface"
 import { PickerContext } from "./context"
@@ -103,7 +103,7 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
     (getDayjsValue(pickerValue as Dayjs, format) as Dayjs) || pageShowDate
 
   const panelValue = valueShow || mergedValue
-  const [panelMode, setPanelMode] = useState<ModeType>("date")
+  const [panelMode, setPanelMode] = useState<DatePickerModeType>("date")
 
   const defaultTimeValue =
     (isObject(showTime) &&
@@ -329,7 +329,7 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
     setPageShowDate(newPageShowDate)
   }
 
-  function getHeaderOperations(pickMode: ModeType = "date") {
+  function getHeaderOperations(pickMode: DatePickerModeType = "date") {
     if (pickMode === "date" || pickMode === "week") {
       return {
         onPrev: () => changePageShowDate("prev", "month"),

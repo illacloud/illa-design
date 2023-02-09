@@ -1,6 +1,6 @@
 import { FC, useCallback } from "react"
 import { QuarterPickerPanelProps } from "./interface"
-import { ModeType } from "../../interface"
+import { DatePickerModeType } from "../../interface"
 import { BasicBodySection } from "../basic-body-section"
 import { Dayjs } from "dayjs"
 import { padStart } from "../../utils/pad"
@@ -55,7 +55,7 @@ export const QuarterPickerPanel: FC<QuarterPickerPanelProps> = (props) => {
   )
 
   const onChangePanel = useCallback(
-    (mode: ModeType) => {
+    (mode: DatePickerModeType) => {
       setPanelMode?.(mode)
     },
     [setPanelMode],

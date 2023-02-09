@@ -1,6 +1,10 @@
 import { Dayjs } from "dayjs"
 import { ReactNode } from "react"
-import { SingleMonthPickerProps, PrivateCType, ModeType } from "../../interface"
+import {
+  SingleMonthPickerProps,
+  PrivateCType,
+  DatePickerModeType,
+} from "../../interface"
 
 export interface MonthPickerPanelProps
   extends SingleMonthPickerProps,
@@ -13,7 +17,7 @@ export interface MonthPickerPanelProps
   isRangePicker?: boolean
   onSuperPrev?: () => void
   onSuperNext?: () => void
-  panelMode?: ModeType
-  setPanelMode?: (mode: ModeType) => void
-  originMode?: ModeType
+  panelMode?: DatePickerModeType
+  setPanelMode?: (mode: DatePickerModeType) => void
+  originMode?: DatePickerModeType
 }
