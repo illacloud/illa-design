@@ -75,6 +75,7 @@ export function applyInputTagContainerStyle(
   disabled: boolean,
   hasBefore: boolean,
   hasAfter: boolean,
+  borderList: string[],
 ): SerializedStyles {
   let otherStyle = css``
   if (!disabled) {
@@ -107,8 +108,9 @@ export function applyInputTagContainerStyle(
     overflow: hidden;
     box-sizing: border-box;
     cursor: ${disabled ? "not-allowed" : "text"};
-    border-radius: ${!hasBefore ? "8px" : "0"} ${!hasAfter ? "8px" : "0"}
-      ${!hasAfter ? "8px" : "0"} ${!hasBefore ? "8px" : "0"};
+    border-radius: ${!hasBefore ? borderList[0] : "0"}
+      ${!hasAfter ? borderList[1] : "0"} ${!hasAfter ? borderList[2] : "0"}
+      ${!hasBefore ? borderList[3] : "0"};
     z-index: ${zIndex.input};
     border: 1px solid
       ${error ? getColor("red", "03") : getColor("grayBlue", "08")};
@@ -164,7 +166,6 @@ export function applyInputContainerStyle(): SerializedStyles {
     display: flex;
     width: 100%;
     flex-direction: row;
-    border-radius: 8px;
     box-sizing: border-box;
   `
 }

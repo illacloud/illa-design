@@ -44,11 +44,19 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       onRemove,
       renderItem,
       addBefore,
+      bdRadius,
       inputTagRef,
       addAfter,
       labelInValue,
       ...otherProps
     } = props
+
+    let borderList = bdRadius?.split("") ?? ["8px", "8px", "8px", "8px"]
+    if (borderList.length == 2) {
+      borderList = [borderList[0], borderList[1], borderList[0], borderList[1]]
+    } else if (borderList.length == 3) {
+      borderList = [borderList[0], borderList[1], borderList[2], borderList[1]]
+    }
 
     const [finalValue, setFinalValue] = useMergeValue<TagObject[] | string[]>(
       [],
@@ -182,7 +190,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               disabled ?? false,
               css`
                 margin-right: -1px;
-                border-radius: 8px 0 0 8px;
+                border-radius: ${borderList[0]} 0 0 ${borderList[3]};
               `,
             )}
           >
@@ -198,6 +206,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               disabled ?? false,
               addBefore !== undefined,
               addAfter !== undefined,
+              borderList,
             ),
           ]}
           onClick={() => {
@@ -321,7 +330,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               disabled ?? false,
               css`
                 margin-left: -1px;
-                border-radius: 0 8px 8px 0;
+                border-radius: 0 ${borderList[1]} ${borderList[2]} 0;
               `,
             )}
           >
