@@ -29,6 +29,7 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     border-radius: ${props.bdRadius};
     border: ${props.bd};
     //ColorStyledProps
+    background: ${props.bg};
     background-color: ${props.bgColor};
     border-color: ${props.bdColor};
     color: ${props.c};
@@ -93,6 +94,7 @@ export function deleteCssProps(obj: object): object {
     "bdRadius",
     "bd",
     //ColorStyledProps
+    "bg",
     "bgColor",
     "bdColor",
     "c",

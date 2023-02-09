@@ -104,6 +104,10 @@ export interface ShapeStyledProps {
 
 export interface ColorStyledProps {
   /**
+   * background
+   */
+  bg?: string
+  /**
    * border-color
    */
   bdColor?: string

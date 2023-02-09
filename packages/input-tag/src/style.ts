@@ -57,12 +57,14 @@ function getPaddingStyle(size: InputTagSize): SerializedStyles {
       `
       break
     case "medium":
-    case "large":
       pdStyle = css`
         padding: 3px 16px;
       `
       break
-    default:
+    case "large":
+      pdStyle = css`
+        padding: 7px 16px;
+      `
       break
   }
   return pdStyle

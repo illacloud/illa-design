@@ -17,7 +17,7 @@ function getPaddingStyle(size: InputSize): SerializedStyles {
       break
     case "large":
       pdStyle = css`
-        padding: 8px 16px;
+        padding: 7px 16px;
       `
       break
     default:
