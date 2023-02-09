@@ -96,10 +96,11 @@ export const RangeDateInput = forwardRef<
         onPressEnter?.()
       }
       if (keyCode === "Tab") {
+        changeFocusedInput(Number(!focusedInputIndex))
         onPressTab?.(e)
       }
     },
-    [onPressEnter, onPressTab],
+    [changeFocusedInput, focusedInputIndex, onPressEnter, onPressTab],
   )
 
   function onChangeInput(e: ChangeEvent<HTMLInputElement>) {
