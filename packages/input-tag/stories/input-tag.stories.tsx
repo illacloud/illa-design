@@ -11,7 +11,7 @@ export default {
 export const Basic: StoryFn<InputTagProps> = (props) => {
   return (
     <Space direction="vertical" align="start">
-      <InputTag w="320px" {...props} />
+      <InputTag w="320px" bdRadius="0" {...props} />
       <InputTag w="320px" suffix={<PeopleIcon />} {...props} />
       <InputTag w="320px" addBefore="Before" addAfter="After" {...props} />
       <InputTag w="320px" prefix="Before" {...props} />

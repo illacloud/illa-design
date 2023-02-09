@@ -182,7 +182,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
               cursor="pointer"
               fs="12px"
               ml="4px"
-              c={getColor("grayBlue", "05")}
+              c={getColor("grayBlue", "06")}
             />
           )}
         {!showWordLimit && suffix && (

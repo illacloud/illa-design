@@ -171,7 +171,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
               fs="12px"
               ml="4px"
               z={3}
-              c={getColor("grayBlue", "05")}
+              c={getColor("grayBlue", "06")}
             />
           )}
         {showWordLimit && (
