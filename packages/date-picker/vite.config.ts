@@ -39,6 +39,11 @@ export default defineConfig({
         "framer-motion",
         "@illa-design/system",
         "@illa-design/theme",
+        "@illa-design/trigger",
+        "@illa-design/config-provider",
+        "@illa-design/icon",
+        "@illa-design/button",
+        "@illa-design/time-picker",
       ],
       output: {
         globals: {
@@ -48,6 +53,11 @@ export default defineConfig({
           "framer-motion": "framer-motion",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",
+          "@illa-design/trigger": "@illa-design/trigger",
+          "@illa-design/config-provider": "@illa-design/config-provider",
+          "@illa-design/icon": "@illa-design/icon",
+          "@illa-design/button": "@illa-design/button",
+          "@illa-design/time-picker": "@illa-design/time-picker",
         },
       },
     },

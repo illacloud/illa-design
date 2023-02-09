@@ -41,7 +41,7 @@ import { RangeDateInput } from "./input/rangeInput"
 import { RangePickerPanel } from "./panels/range"
 import { BasicFooterSection } from "./panels/basic-footer-section"
 
-export const RangePicker: FC<RangeDatePickerProps> = (props) => {
+export const RangeDatePicker: FC<RangeDatePickerProps> = (props) => {
   const {
     allowClear = true,
     placeholder,
