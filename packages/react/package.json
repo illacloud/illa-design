@@ -97,7 +97,8 @@
     "@illa-design/affix": "workspace:*",
     "@illa-design/table": "workspace:*",
     "@illa-design/calendar": "workspace:*",
-    "@illa-design/date-picker": "workspace:*"
+    "@illa-design/date-picker": "workspace:*",
+    "@illa-design/time-picker": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",

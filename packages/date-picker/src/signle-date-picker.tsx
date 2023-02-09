@@ -430,6 +430,7 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
         onVisibleChange={visibleChange}
         popupVisible={mergedPopupVisible}
         colorScheme="white"
+        showArrow={false}
         {...triggerProps}
       >
         <span>

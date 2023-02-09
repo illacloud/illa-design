@@ -203,6 +203,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
               scrollSticky={scrollSticky}
             />
           }
+          showArrow={false}
           {...triggerProps}
         >
           <div css={applyBoxStyle(props)} ref={ref}>

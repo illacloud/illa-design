@@ -231,6 +231,7 @@ export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
               changeFocusedInputIndex={changeFocusedInputIndex}
             />
           }
+          showArrow={false}
           {...triggerProps}
         >
           <div css={applyBoxStyle(props)} ref={ref}>
