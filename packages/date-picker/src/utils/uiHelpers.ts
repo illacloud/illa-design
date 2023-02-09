@@ -66,7 +66,6 @@ export const getCellStatus = (
     rangeValues,
     valueShowHover,
   )
-  console.log("value", value)
   const rangeStart = getDateValue(sortedRangeValues, 0) as Dayjs
   const rangeEnd = getDateValue(sortedRangeValues, 1) as Dayjs
   const hoverRangeStart = getDateValue(sortedHoverRangeValues, 0) as Dayjs
@@ -158,10 +157,6 @@ export const getCellStatus = (
       (rangeEnd as Dayjs).isAfter(hoverRangeEnd) &&
       isInRange(hoverRangeEnd, isSameTime, rangeStart, rangeEnd)
   }
-
-  console.log("isRangeStartSelected", isRangeStartSelected)
-  console.log("isRangeEndSelected", isRangeEndSelected)
-  console.log("selected", selected)
 
   return {
     isDisabled: disabled,
