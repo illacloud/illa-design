@@ -349,7 +349,7 @@ importers:
       '@illa-design/theme': link:../theme
       '@illa-design/time-picker': link:../time-picker
       '@illa-design/trigger': link:../trigger
-      dayjs: registry.npmjs.org/dayjs/1.11.7
+      dayjs: 1.11.7
     devDependencies:
       '@rollup/plugin-typescript': 10.0.1
       '@vitejs/plugin-react-swc': 3.0.1
