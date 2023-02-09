@@ -331,13 +331,25 @@ importers:
 
   packages/date-picker:
     specifiers:
+      '@illa-design/button': workspace:*
+      '@illa-design/config-provider': workspace:*
+      '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@illa-design/time-picker': workspace:*
+      '@illa-design/trigger': workspace:*
       '@rollup/plugin-typescript': ^10.0.1
       '@vitejs/plugin-react-swc': ^3.0.1
+      dayjs: ^1.11.7
     dependencies:
+      '@illa-design/button': link:../button
+      '@illa-design/config-provider': link:../config-provider
+      '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      '@illa-design/time-picker': link:../time-picker
+      '@illa-design/trigger': link:../trigger
+      dayjs: registry.npmjs.org/dayjs/1.11.7
     devDependencies:
       '@rollup/plugin-typescript': 10.0.1
       '@vitejs/plugin-react-swc': 3.0.1
@@ -6138,7 +6150,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       globby: 11.1.0
-      graceful-fs: registry.npmjs.org/graceful-fs/4.2.9
+      graceful-fs: 4.2.9
       is-glob: 4.0.3
       is-path-cwd: 2.2.0
       is-path-inside: 3.0.3
@@ -7502,7 +7514,7 @@ packages:
     dependencies:
       minimist: 1.2.7
       neo-async: 2.6.2
-      source-map: registry.npmjs.org/source-map/0.6.1
+      source-map: 0.6.1
       wordwrap: 1.0.0
     optionalDependencies:
       uglify-js: registry.npmjs.org/uglify-js/3.17.4
@@ -8542,7 +8554,7 @@ packages:
     resolution: {integrity: sha512-OfCBkGEw4nN6JLtgRidPX6QxjBQGQf72q3si2uvqyFEMbycSFFHwAZeXx6cJgFM9wmLrf9zBwCP3Ivqa+LLZPw==}
     engines: {node: '>=6'}
     dependencies:
-      graceful-fs: registry.npmjs.org/graceful-fs/4.2.9
+      graceful-fs: 4.2.9
       js-yaml: 3.14.1
       pify: 4.0.1
       strip-bom: 3.0.0
@@ -10783,7 +10795,7 @@ packages:
     resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
     dependencies:
       buffer-from: 1.1.2
-      source-map: registry.npmjs.org/source-map/0.6.1
+      source-map: 0.6.1
     dev: true
 
   /source-map-url/0.4.1:
@@ -10805,7 +10817,6 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
     requiresBuild: true
-    dev: false
 
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
