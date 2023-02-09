@@ -19,6 +19,7 @@ import {
   uploadProgressStyle,
 } from "../style"
 import { handleKeyDown } from "../utils"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 const UploadProgress: FC<UploadProgressProps> = (props) => {
   const { file, progressProps, progressRender, onReupload, onUpload, onAbort } =
@@ -105,8 +106,8 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
             h="16px"
             status={progressStatus}
             percent={percent}
-            color="blue"
-            trailColor="blackAlpha"
+            color={globalColor(`--${illaPrefix}-blue-03`)}
+            trailColor={globalColor(`--${illaPrefix}-blue-06`)}
             {...progressProps}
           />
           {startIcon}

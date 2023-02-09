@@ -161,7 +161,9 @@ export const getFileURL = (file: UploadItem) => {
   const { originFile } = file
   const url =
     file.url ||
-    (file?.response && "url" in file.response && file.response.url) ||
+    (file?.response &&
+      file?.response.hasOwnProperty("url") &&
+      (file.response as { url: string }).url) ||
     undefined
   return url !== undefined
     ? file.url
