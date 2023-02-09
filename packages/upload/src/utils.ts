@@ -7,6 +7,7 @@ import {
   FilePictureIcon,
   FileVideoIcon,
 } from "@illa-design/icon"
+import { KeyboardEvent } from "react"
 
 export const getIconType = (file: UploadItem) => {
   let type = ""
@@ -167,4 +168,14 @@ export const getFileURL = (file: UploadItem) => {
     : originFile && isFunction(URL.createObjectURL)
     ? URL.createObjectURL(originFile)
     : undefined
+}
+
+export const handleKeyDown = (
+  event: KeyboardEvent<HTMLSpanElement>,
+  callback?: () => void,
+) => {
+  const keyCode = event.code
+  if (keyCode === "Enter") {
+    callback?.()
+  }
 }

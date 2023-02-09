@@ -128,26 +128,6 @@ export const getTextItemNameStyle = (status: string = "init") => {
   `
 }
 
-export const textItemErrorIconStyle = css`
-  margin-left: 2px;
-  min-width: 12px;
-  flex-grow: 0;
-  height: 22px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  align-self: center;
-  justify-content: center;
-  color: ${globalColor(`--${illaPrefix}-red-03`)};
-  & > img,
-  & > svg {
-    width: 100%;
-    height: 12px;
-    display: flex;
-    margin: auto;
-  }
-`
-
 export const textItemProgressStyle = css`
   margin-left: auto;
   width: auto;
@@ -435,10 +415,6 @@ export const pictureItemOperationsStyle = css`
   align-items: center;
   gap: 10px;
   color: ${globalColor(`--${illaPrefix}-white-02`)};
-`
-
-export const pictureItemErrorIconStyle = css`
-  color: ${globalColor(`--${illaPrefix}-red-03`)};
 `
 
 export const pictureItemPreviewStyle = css`

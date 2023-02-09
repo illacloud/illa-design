@@ -1,46 +1,23 @@
-import React, { KeyboardEvent, useCallback } from "react"
-import {
-  STATUS,
-  CustomIconType,
-  UploadListProps,
-  UploadItem,
-} from "../interface"
+import { useCallback } from "react"
+import { STATUS, CustomIconType, ListItemProps } from "../interface"
 import { isObject, isFunction } from "@illa-design/system"
 import UploadProgress from "./uploadProgress"
-import { DeleteIcon, ErrorIcon } from "@illa-design/icon"
-import { Popover } from "@illa-design/popover"
-import { ConfigProviderProps } from "@illa-design/config-provider"
+import { DeleteIcon } from "@illa-design/icon"
 import {
   errorListItemStyle,
   getTextItemContainerStyle,
   getTextItemContentContainerStyle,
   getTextItemNameStyle,
   textItemDeleteIconStyle,
-  textItemErrorIconStyle,
   textItemIconStyle,
   textItemImageStyle,
   textItemMainContentStyle,
   textItemProgressStyle,
   textItemStyle,
 } from "../style"
-import { getFileURL, getIconType } from "../utils"
+import { getFileURL, getIconType, handleKeyDown } from "../utils"
 
-const handleKeyDown = (
-  event: KeyboardEvent<HTMLSpanElement>,
-  callback?: () => void,
-) => {
-  const keyCode = event.code
-  if (keyCode === "Enter") {
-    callback?.()
-  }
-}
-
-const TextItem = (
-  props: UploadListProps & {
-    file: UploadItem
-    locale: ConfigProviderProps["locale"]
-  },
-) => {
+const TextItem = (props: ListItemProps) => {
   const { disabled, file, locale, onRemove } = props
   const Icon = getIconType(file)
   const showUploadList = isObject(props.showUploadList)
@@ -74,19 +51,6 @@ const TextItem = (
   ) : (
     <>{imageNode}</>
   )
-
-  const errorIcon = file.status === STATUS.FAIL &&
-    actionIcons.errorIcon !== null && (
-      <Popover
-        content={locale?.upload.error}
-        {...triggerProps}
-        hasCloseIcon={false}
-        trigger="hover"
-        disabled={file.status !== STATUS.FAIL}
-      >
-        {actionIcons.errorIcon || <ErrorIcon />}
-      </Popover>
-    )
 
   const deleteIcon = !disabled && actionIcons.removeIcon !== null && (
     <span
@@ -125,7 +89,6 @@ const TextItem = (
             ) : (
               <span css={getTextItemNameStyle(file.status)}>{fileName}</span>
             )}
-            <div css={textItemErrorIconStyle}>{errorIcon}</div>
           </div>
           <div css={textItemProgressStyle}>
             <UploadProgress

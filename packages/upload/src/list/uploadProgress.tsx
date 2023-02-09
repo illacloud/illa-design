@@ -1,4 +1,4 @@
-import React, { FC, KeyboardEvent, useContext } from "react"
+import { FC, useContext } from "react"
 import { STATUS, UploadProgressProps } from "../interface"
 import { Progress } from "@illa-design/progress"
 import {
@@ -18,16 +18,7 @@ import {
   uploadProgressStatus,
   uploadProgressStyle,
 } from "../style"
-
-const handleKeyDown = (
-  event: KeyboardEvent<HTMLSpanElement>,
-  callback?: () => void,
-) => {
-  const keyCode = event.code
-  if (keyCode === "Enter") {
-    callback?.()
-  }
-}
+import { handleKeyDown } from "../utils"
 
 const UploadProgress: FC<UploadProgressProps> = (props) => {
   const { file, progressProps, progressRender, onReupload, onUpload, onAbort } =
@@ -87,14 +78,14 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
           css={uploadProgressFailStyle}
           tabIndex={0}
           role="button"
-          aria-label={locale?.upload.reupload}
+          aria-label={locale?.upload.retry}
           onKeyDown={(e) => handleKeyDown(e, handleFileReupload)}
         >
           {props.reuploadIcon ||
             (props.listType === "picture-card" ? (
               <UploadIcon />
             ) : (
-              locale?.upload.reupload
+              locale?.upload.retry
             ))}
         </span>
       )}

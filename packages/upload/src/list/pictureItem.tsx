@@ -1,25 +1,16 @@
-import React, { KeyboardEvent, MouseEvent } from "react"
-import {
-  UploadListProps,
-  STATUS,
-  CustomIconType,
-  UploadItem,
-} from "../interface"
+import { STATUS, CustomIconType, ListItemProps } from "../interface"
 import { isFunction, isObject } from "@illa-design/system"
 import UploadProgress from "./uploadProgress"
-import { ConfigProviderProps } from "@illa-design/config-provider"
 import {
   EyeOnIcon,
   UploadIcon,
   DeleteIcon,
   ImageDefaultIcon,
-  ErrorIcon,
 } from "@illa-design/icon"
 import {
   errorImageContainerStyle,
   errorImageNameStyle,
   errorImageStyle,
-  pictureItemErrorIconStyle,
   pictureItemIconStyle,
   pictureItemMask,
   pictureItemOperationsStyle,
@@ -28,24 +19,9 @@ import {
   pictureItemUploading,
   pictureItemUploadingMask,
 } from "../style"
-import { getFileURL, getIconType } from "../utils"
+import { getFileURL, getIconType, handleKeyDown } from "../utils"
 
-const handleKeyDown = (
-  event: KeyboardEvent<HTMLSpanElement>,
-  callback?: (e?: any) => void,
-) => {
-  const keyCode = event.code
-  if (keyCode === "Enter") {
-    callback?.()
-  }
-}
-
-const PictureItem = (
-  props: UploadListProps & {
-    file: UploadItem
-    locale: ConfigProviderProps["locale"]
-  },
-) => {
+const PictureItem = (props: ListItemProps) => {
   const {
     disabled,
     file,
@@ -64,7 +40,7 @@ const PictureItem = (
   const Icon = getIconType(file)
   const imageDom = url ? <img src={url} alt={file.name} /> : <Icon />
 
-  const handleImagePreview = (e?: MouseEvent<HTMLAnchorElement>) => {
+  const handleImagePreview = () => {
     onPreview?.(file)
   }
 
@@ -121,13 +97,6 @@ const PictureItem = (
       </a>
     ) : null
 
-  const errorIcon =
-    file.status === STATUS.FAIL && actionIcons.errorIcon !== null ? (
-      <div css={pictureItemErrorIconStyle}>
-        <span>{actionIcons.errorIcon || <ErrorIcon />}</span>
-      </div>
-    ) : null
-
   const reuploadIcon =
     file.status === STATUS.FAIL &&
     (actionIcons.reuploadIcon !== null || onReupload) ? (
@@ -135,7 +104,7 @@ const PictureItem = (
         onClick={handleImageReupload}
         tabIndex={2}
         role="button"
-        aria-label={locale?.upload.reupload}
+        aria-label={locale?.upload.retry}
         onKeyDown={(e) => handleKeyDown(e, handleImageReupload)}
       >
         {actionIcons.reuploadIcon || <UploadIcon />}

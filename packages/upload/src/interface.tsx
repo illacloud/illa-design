@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react"
 import { ProgressProps } from "@illa-design/progress"
 import { ButtonVariant } from "@illa-design/button"
+import { ConfigProviderProps } from "@illa-design/config-provider"
 
 export const STATUS: {
   [key: string]: UploadStatus
@@ -20,7 +21,6 @@ export type CustomIconType = {
   reuploadIcon?: ReactNode
   cancelIcon?: ReactNode
   startIcon?: ReactNode
-  errorIcon?: ReactNode
   successIcon?: ReactNode
   fileName?: (file: UploadItem) => ReactNode
   progressRender?: (
@@ -210,4 +210,9 @@ export interface InternalDataTransferItem extends DataTransferItem {
   fullPath: string
   isDirectory: boolean
   name: string
+}
+
+export interface ListItemProps extends UploadListProps {
+  file: UploadItem
+  locale: ConfigProviderProps["locale"]
 }

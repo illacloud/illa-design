@@ -61,6 +61,7 @@ const UploadList = (props: UploadListProps) => {
       </div>
     )
   })
+
   return <div css={getUploadListContainerStyle(listType)}>{fileListNodes}</div>
 }
 
