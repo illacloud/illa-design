@@ -10,7 +10,7 @@ import { MessageProps } from "./interface"
 import { applyMessageTextStyle, messageContainerStyle } from "./style"
 import {
   CloseIcon,
-  ErrorIcon,
+  ErrorCircleIcon,
   InfoCircleIcon,
   LoadingIcon,
   WarningCircleIcon,
@@ -72,7 +72,7 @@ export const Message = forwardRef<HTMLDivElement, MessageProps>(
             case "info":
               return <InfoCircleIcon fs="16px" c={getColor("blue", "03")} />
             case "error":
-              return <ErrorIcon fs="16px" c={getColor("red", "03")} />
+              return <ErrorCircleIcon fs="16px" c={getColor("red", "03")} />
             case "success":
               return <SuccessCircleIcon fs="16px" c={getColor("green", "03")} />
             case "warning":

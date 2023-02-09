@@ -1,4 +1,4 @@
-# @illa-design/cascader
+# @illa-design/select
 
 ## 1.0.12
 
@@ -39,11 +39,13 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/button@1.0.10
   - @illa-design/checkbox@1.0.10
   - @illa-design/empty@1.0.10
   - @illa-design/icon@1.0.10
+  - @illa-design/input@1.0.10
+  - @illa-design/input-tag@1.0.10
   - @illa-design/list@1.0.10
-  - @illa-design/select@1.0.10
   - @illa-design/system@1.0.10
   - @illa-design/theme@1.0.10
   - @illa-design/trigger@1.0.10
@@ -57,11 +59,13 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/button@1.0.9
   - @illa-design/checkbox@1.0.9
   - @illa-design/empty@1.0.9
   - @illa-design/icon@1.0.9
+  - @illa-design/input@1.0.9
+  - @illa-design/input-tag@1.0.9
   - @illa-design/list@1.0.9
-  - @illa-design/select@1.0.9
   - @illa-design/system@1.0.9
   - @illa-design/theme@1.0.9
   - @illa-design/trigger@1.0.9
@@ -73,11 +77,13 @@
 - fix bugs
 
 - Updated dependencies []:
+  - @illa-design/button@1.0.8
   - @illa-design/checkbox@1.0.8
   - @illa-design/empty@1.0.8
   - @illa-design/icon@1.0.8
+  - @illa-design/input@1.0.8
+  - @illa-design/input-tag@1.0.8
   - @illa-design/list@1.0.8
-  - @illa-design/select@1.0.8
   - @illa-design/system@1.0.8
   - @illa-design/theme@1.0.8
   - @illa-design/trigger@1.0.8
@@ -92,8 +98,9 @@
   - @illa-design/checkbox@1.0.7
   - @illa-design/empty@1.0.7
   - @illa-design/icon@1.0.7
+  - @illa-design/input@1.0.7
+  - @illa-design/input-tag@1.0.7
   - @illa-design/list@1.0.7
-  - @illa-design/select@1.0.7
   - @illa-design/system@1.0.7
   - @illa-design/theme@1.0.7
   - @illa-design/trigger@1.0.7
@@ -108,8 +115,9 @@
   - @illa-design/checkbox@1.0.6
   - @illa-design/empty@1.0.6
   - @illa-design/icon@1.0.6
+  - @illa-design/input@1.0.6
+  - @illa-design/input-tag@1.0.6
   - @illa-design/list@1.0.6
-  - @illa-design/select@1.0.6
   - @illa-design/system@1.0.6
   - @illa-design/theme@1.0.6
   - @illa-design/trigger@1.0.6
@@ -124,8 +132,9 @@
   - @illa-design/checkbox@1.0.5
   - @illa-design/empty@1.0.5
   - @illa-design/icon@1.0.5
+  - @illa-design/input@1.0.5
+  - @illa-design/input-tag@1.0.5
   - @illa-design/list@1.0.5
-  - @illa-design/select@1.0.5
   - @illa-design/system@1.0.5
   - @illa-design/theme@1.0.5
   - @illa-design/trigger@1.0.5
@@ -140,8 +149,9 @@
   - @illa-design/checkbox@1.0.4
   - @illa-design/empty@1.0.4
   - @illa-design/icon@1.0.4
+  - @illa-design/input@1.0.4
+  - @illa-design/input-tag@1.0.4
   - @illa-design/list@1.0.4
-  - @illa-design/select@1.0.4
   - @illa-design/system@1.0.4
   - @illa-design/theme@1.0.4
   - @illa-design/trigger@1.0.4
@@ -156,8 +166,9 @@
   - @illa-design/checkbox@1.0.3
   - @illa-design/empty@1.0.3
   - @illa-design/icon@1.0.3
+  - @illa-design/input@1.0.3
+  - @illa-design/input-tag@1.0.3
   - @illa-design/list@1.0.3
-  - @illa-design/select@1.0.3
   - @illa-design/system@1.0.3
   - @illa-design/theme@1.0.3
   - @illa-design/trigger@1.0.3
@@ -172,8 +183,9 @@
   - @illa-design/checkbox@1.0.2
   - @illa-design/empty@1.0.2
   - @illa-design/icon@1.0.2
+  - @illa-design/input@1.0.2
+  - @illa-design/input-tag@1.0.2
   - @illa-design/list@1.0.2
-  - @illa-design/select@1.0.2
   - @illa-design/system@1.0.2
   - @illa-design/theme@1.0.2
   - @illa-design/trigger@1.0.2
@@ -188,8 +200,9 @@
   - @illa-design/checkbox@1.0.1
   - @illa-design/empty@1.0.1
   - @illa-design/icon@1.0.1
+  - @illa-design/input@1.0.1
+  - @illa-design/input-tag@1.0.1
   - @illa-design/list@1.0.1
-  - @illa-design/select@1.0.1
   - @illa-design/system@1.0.1
   - @illa-design/theme@1.0.1
   - @illa-design/trigger@1.0.1
@@ -206,8 +219,9 @@
   - @illa-design/checkbox@1.0.0
   - @illa-design/empty@1.0.0
   - @illa-design/icon@1.0.0
+  - @illa-design/input@1.0.0
+  - @illa-design/input-tag@1.0.0
   - @illa-design/list@1.0.0
-  - @illa-design/select@1.0.0
   - @illa-design/system@1.0.0
   - @illa-design/theme@1.0.0
   - @illa-design/trigger@1.0.0
@@ -222,8 +236,9 @@
   - @illa-design/checkbox@0.0.17
   - @illa-design/empty@0.0.17
   - @illa-design/icon@0.0.17
+  - @illa-design/input@0.0.17
+  - @illa-design/input-tag@0.0.17
   - @illa-design/list@0.0.17
-  - @illa-design/select@0.0.17
   - @illa-design/system@0.0.17
   - @illa-design/theme@0.0.17
   - @illa-design/trigger@0.0.17
@@ -238,8 +253,9 @@
   - @illa-design/checkbox@0.0.16
   - @illa-design/empty@0.0.16
   - @illa-design/icon@0.0.16
+  - @illa-design/input@0.0.16
+  - @illa-design/input-tag@0.0.16
   - @illa-design/list@0.0.16
-  - @illa-design/select@0.0.16
   - @illa-design/system@0.0.16
   - @illa-design/theme@0.0.16
   - @illa-design/trigger@0.0.16
@@ -254,8 +270,9 @@
   - @illa-design/checkbox@0.0.15
   - @illa-design/empty@0.0.15
   - @illa-design/icon@0.0.15
+  - @illa-design/input@0.0.15
+  - @illa-design/input-tag@0.0.15
   - @illa-design/list@0.0.15
-  - @illa-design/select@0.0.15
   - @illa-design/system@0.0.15
   - @illa-design/theme@0.0.15
   - @illa-design/trigger@0.0.15
@@ -270,8 +287,9 @@
   - @illa-design/checkbox@0.0.14
   - @illa-design/empty@0.0.14
   - @illa-design/icon@0.0.14
+  - @illa-design/input@0.0.14
+  - @illa-design/input-tag@0.0.14
   - @illa-design/list@0.0.14
-  - @illa-design/select@0.0.14
   - @illa-design/system@0.0.14
   - @illa-design/theme@0.0.14
   - @illa-design/trigger@0.0.14
@@ -286,8 +304,9 @@
   - @illa-design/checkbox@0.0.13
   - @illa-design/empty@0.0.13
   - @illa-design/icon@0.0.13
+  - @illa-design/input@0.0.13
+  - @illa-design/input-tag@0.0.13
   - @illa-design/list@0.0.13
-  - @illa-design/select@0.0.13
   - @illa-design/system@0.0.13
   - @illa-design/theme@0.0.13
   - @illa-design/trigger@0.0.13
@@ -302,8 +321,9 @@
   - @illa-design/checkbox@0.0.12
   - @illa-design/empty@0.0.12
   - @illa-design/icon@0.0.12
+  - @illa-design/input@0.0.12
+  - @illa-design/input-tag@0.0.12
   - @illa-design/list@0.0.12
-  - @illa-design/select@0.0.12
   - @illa-design/system@0.0.12
   - @illa-design/theme@0.0.12
   - @illa-design/trigger@0.0.12
@@ -318,8 +338,9 @@
   - @illa-design/checkbox@0.0.11
   - @illa-design/empty@0.0.11
   - @illa-design/icon@0.0.11
+  - @illa-design/input@0.0.11
+  - @illa-design/input-tag@0.0.11
   - @illa-design/list@0.0.11
-  - @illa-design/select@0.0.11
   - @illa-design/system@0.0.11
   - @illa-design/theme@0.0.11
   - @illa-design/trigger@0.0.11
@@ -334,8 +355,9 @@
   - @illa-design/checkbox@0.0.10
   - @illa-design/empty@0.0.10
   - @illa-design/icon@0.0.10
+  - @illa-design/input@0.0.10
+  - @illa-design/input-tag@0.0.10
   - @illa-design/list@0.0.10
-  - @illa-design/select@0.0.10
   - @illa-design/system@0.0.10
   - @illa-design/theme@0.0.10
   - @illa-design/trigger@0.0.10
@@ -350,8 +372,9 @@
   - @illa-design/checkbox@0.0.9
   - @illa-design/empty@0.0.9
   - @illa-design/icon@0.0.9
+  - @illa-design/input@0.0.9
+  - @illa-design/input-tag@0.0.9
   - @illa-design/list@0.0.9
-  - @illa-design/select@0.0.9
   - @illa-design/system@0.0.9
   - @illa-design/theme@0.0.9
   - @illa-design/trigger@0.0.9
@@ -366,8 +389,9 @@
   - @illa-design/checkbox@0.0.8
   - @illa-design/empty@0.0.8
   - @illa-design/icon@0.0.8
+  - @illa-design/input@0.0.8
+  - @illa-design/input-tag@0.0.8
   - @illa-design/list@0.0.8
-  - @illa-design/select@0.0.8
   - @illa-design/system@0.0.8
   - @illa-design/theme@0.0.8
   - @illa-design/trigger@0.0.8
@@ -382,8 +406,9 @@
   - @illa-design/checkbox@0.0.7
   - @illa-design/empty@0.0.7
   - @illa-design/icon@0.0.7
+  - @illa-design/input@0.0.7
+  - @illa-design/input-tag@0.0.7
   - @illa-design/list@0.0.7
-  - @illa-design/select@0.0.7
   - @illa-design/system@0.0.7
   - @illa-design/theme@0.0.7
   - @illa-design/trigger@0.0.7
@@ -398,8 +423,9 @@
   - @illa-design/checkbox@0.0.6
   - @illa-design/empty@0.0.6
   - @illa-design/icon@0.0.6
+  - @illa-design/input@0.0.6
+  - @illa-design/input-tag@0.0.6
   - @illa-design/list@0.0.6
-  - @illa-design/select@0.0.6
   - @illa-design/system@0.0.6
   - @illa-design/theme@0.0.6
   - @illa-design/trigger@0.0.6
@@ -408,12 +434,15 @@
 
 ### Patch Changes
 
+- update version
+
 - Updated dependencies []:
-  - @illa-design/select@0.0.5
   - @illa-design/system@0.0.5
+  - @illa-design/input@0.0.5
   - @illa-design/checkbox@0.0.5
   - @illa-design/empty@0.0.5
   - @illa-design/icon@0.0.5
+  - @illa-design/input-tag@0.0.5
   - @illa-design/list@0.0.5
   - @illa-design/theme@0.0.5
   - @illa-design/trigger@0.0.5
@@ -428,8 +457,9 @@
   - @illa-design/checkbox@0.0.4
   - @illa-design/empty@0.0.4
   - @illa-design/icon@0.0.4
+  - @illa-design/input@0.0.4
+  - @illa-design/input-tag@0.0.4
   - @illa-design/list@0.0.4
-  - @illa-design/select@0.0.4
   - @illa-design/system@0.0.4
   - @illa-design/theme@0.0.4
   - @illa-design/trigger@0.0.4
@@ -444,8 +474,9 @@
   - @illa-design/checkbox@0.0.3
   - @illa-design/empty@0.0.3
   - @illa-design/icon@0.0.3
+  - @illa-design/input@0.0.3
+  - @illa-design/input-tag@0.0.3
   - @illa-design/list@0.0.3
-  - @illa-design/select@0.0.3
   - @illa-design/system@0.0.3
   - @illa-design/theme@0.0.3
   - @illa-design/trigger@0.0.3
@@ -460,8 +491,9 @@
   - @illa-design/checkbox@0.0.2
   - @illa-design/empty@0.0.2
   - @illa-design/icon@0.0.2
+  - @illa-design/input@0.0.2
+  - @illa-design/input-tag@0.0.2
   - @illa-design/list@0.0.2
-  - @illa-design/select@0.0.2
   - @illa-design/system@0.0.2
   - @illa-design/theme@0.0.2
   - @illa-design/trigger@0.0.2
@@ -476,8 +508,9 @@
   - @illa-design/checkbox@0.0.1
   - @illa-design/empty@0.0.1
   - @illa-design/icon@0.0.1
+  - @illa-design/input@0.0.1
+  - @illa-design/input-tag@0.0.1
   - @illa-design/list@0.0.1
-  - @illa-design/select@0.0.1
   - @illa-design/system@0.0.1
   - @illa-design/theme@0.0.1
   - @illa-design/trigger@0.0.1

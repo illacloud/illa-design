@@ -8,7 +8,7 @@
     "component"
   ],
   "sideEffects": false,
-  "author": "illa Cloud <opensource@illasoft.com>",
+  "author": "ILLA Cloud <opensource@illasoft.com>",
   "homepage": "https://github.com/illacloud/illa-design",
   "license": "Apache-2.0",
   "main": "dist/umd/index.js",
@@ -39,25 +39,31 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/icon": "workspace:*",
-    "@illa-design/trigger": "workspace:*",
     "@illa-design/button": "workspace:*",
     "@illa-design/checkbox": "workspace:*",
-    "@illa-design/pagination": "workspace:*",
-    "@illa-design/theme": "workspace:*",
-    "@illa-design/system": "workspace:*",
-    "@illa-design/spin": "workspace:*",
     "@illa-design/empty": "workspace:*",
-    "@tanstack/react-table": "^8.5.11",
-    "@tanstack/match-sorter-utils": "^8.1.1",
-    "@illa-design/select": "workspace:*",
+    "@illa-design/icon": "workspace:*",
     "@illa-design/input": "workspace:*",
+    "@illa-design/pagination": "workspace:*",
+    "@illa-design/select": "workspace:*",
+    "@illa-design/spin": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/trigger": "workspace:*",
+    "@tanstack/match-sorter-utils": "^8.1.1",
+    "@tanstack/react-table": "^8.5.11",
     "chroma-js": "^2.1.2",
-    "react-fast-compare": "^3.2.0"
+    "react-fast-compare": "^3.2.0",
+    "react-use": "^17.4.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^10.0.1",
+    "@types/chroma-js": "^2.1.4",
+    "@vitejs/plugin-react-swc": "^3.0.1"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.10.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5"
+    "react-dom": "^18.2.0"
   }
 }

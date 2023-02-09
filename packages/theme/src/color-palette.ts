@@ -1,5 +1,6 @@
 import Color from "color"
 import { globalColor, hasGlobalColor, illaPrefix } from "./global-color"
+import chroma from "chroma-js"
 
 const formats = ["hex", "rgb", "hsl"]
 
@@ -122,4 +123,9 @@ export const getColor = (color: string, step: string) => {
     colorStyle = globalColor(`--${illaPrefix}-${color}-${step}`)
   }
   return colorStyle
+}
+
+export const getColorShadow = (color: string, step: string): string => {
+  return `0 0 8px 0
+        ${chroma(getColor(color, step)).alpha(0.15).hex()}`
 }

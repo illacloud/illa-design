@@ -8,7 +8,7 @@
     "component"
   ],
   "sideEffects": false,
-  "author": "illa Cloud <opensource@illasoft.com>",
+  "author": "ILLA Cloud <opensource@illasoft.com>",
   "homepage": "https://github.com/illacloud/illa-design",
   "license": "Apache-2.0",
   "main": "dist/umd/index.js",
@@ -35,7 +35,7 @@
   "bugs": {
     "url": "https://github.com/illacloud/illa-design/issues"
   },
-  "scripts": {
+   "scripts": {
     "build": "vite build"
   },
   "dependencies": {
@@ -49,6 +49,11 @@
     "react-focus-lock": "^2.8.1",
     "uuid": "^8.3.2",
     "framer-motion": "^7.6.12"
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.4",
+    "@vitejs/plugin-react-swc":"^3.0.1",
+    "@rollup/plugin-typescript":"^10.0.1"
   },
   "peerDependencies": {
     "react": "^18.2.0",

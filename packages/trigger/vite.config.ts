@@ -1,5 +1,5 @@
 import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
+import react from "@vitejs/plugin-react-swc"
 import typescript from "@rollup/plugin-typescript"
 
 const path = require("path")
@@ -9,24 +9,11 @@ export default defineConfig({
   plugins: [
     react({
       jsxImportSource: "@emotion/react",
-      jsxRuntime: "automatic",
-      babel: {
-        plugins: ["@emotion/babel-plugin"],
-        compact: false,
-      },
-      // Exclude storybook stories
-      exclude: [
-        /\.stories\.([tj])sx?$/,
-        /\.e2e\.([tj])sx?$/,
-        /\.test\.([tj])sx?$/,
-      ],
-      // Only .tsx files
-      include: ["**/*.tsx", "**/*.ts"],
     }),
   ],
   build: {
     sourcemap: true,
-    minify: true,
+    minify: "esbuild",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/trigger",
@@ -54,7 +41,7 @@ export default defineConfig({
         "@illa-design/config-provider",
         "@illa-design/theme",
         "@illa-design/system",
-        "@floating-ui/react-dom-interactions",
+        "@floating-ui/react",
       ],
       output: {
         globals: {
@@ -66,8 +53,7 @@ export default defineConfig({
           "@illa-design/config-provider": "@illa-design/config-provider",
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/system": "@illa-design/system",
-          "@floating-ui/react-dom-interactions":
-            "@floating-ui/react-dom-interactions",
+          "@floating-ui/react": "@floating-ui/react",
         },
       },
     },

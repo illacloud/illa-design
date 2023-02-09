@@ -1,12 +1,6 @@
 import { createContext } from "react"
-import { CheckboxGroupContextProps } from "./interface"
+import { CheckboxGroupProps } from "./interface"
 
-export const CheckboxGroupContext = createContext<CheckboxGroupContextProps>({
-  isGroup: false,
-  checkboxGroupValue: [],
-  onGroupChange: () => {},
-  registerValue: () => {},
-  unRegisterValue: () => {},
-})
+export const CheckboxGroupContext = createContext<CheckboxGroupProps>({})
 
 CheckboxGroupContext.displayName = "CheckboxGroupContext"

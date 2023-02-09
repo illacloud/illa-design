@@ -1,6 +1,7 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { SwitchProps, Switch } from "../src"
-import { Space, CheckmarkIcon, CloseIcon } from "@illa-design/react"
+import { Space, CloseIcon } from "@illa-design/react"
+import { BiCheckbox, BiCheckboxChecked } from "react-icons/all"
 
 export default {
   title: "DATA INPUT/Switch",
@@ -15,15 +16,15 @@ export default {
   },
 } as Meta
 
-const Template: Story<SwitchProps> = (args) => {
+const Template: StoryFn<SwitchProps> = (args) => {
   return (
     <Space size={"large"}>
       <Switch {...args} />
       <Switch
         {...args}
-        checkedText={<CheckmarkIcon />}
+        checkedText={<BiCheckboxChecked />}
         uncheckedText={<CloseIcon />}
-        checkedIcon={<CheckmarkIcon />}
+        checkedIcon={<BiCheckbox />}
         uncheckedIcon={<CloseIcon />}
       />
     </Space>

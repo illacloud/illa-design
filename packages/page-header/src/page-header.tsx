@@ -8,7 +8,7 @@ import {
   titleStyle,
 } from "./style"
 import { Breadcrumb } from "@illa-design/breadcrumb"
-import { PreIcon } from "@illa-design/icon"
+import { PreviousIcon } from "@illa-design/icon"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import { Divider } from "@illa-design/divider"
 
@@ -27,7 +27,7 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
     const backEle = useMemo(() => {
       return typeof backIcon === "boolean" ? (
         backIcon ? (
-          <PreIcon
+          <PreviousIcon
             onClick={(e) => {
               onBack?.(e)
             }}

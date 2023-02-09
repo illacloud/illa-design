@@ -24,7 +24,7 @@ import {
   applyHeaderContainerCss,
 } from "../style"
 import { TabHeaderChild } from "./tab-header-child"
-import { DownIcon, NextIcon, PreIcon, UpIcon } from "@illa-design/icon"
+import { DownIcon, NextIcon, PreviousIcon, UpIcon } from "@illa-design/icon"
 import useScrolling from "react-use/lib/useScrolling"
 import {
   checkAndAdjustSelectedItemPosition,
@@ -125,7 +125,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       [_isHorizontalLayout, handleSelectTab],
     )
 
-    const checkPreAndNextDisable = () => {
+    const checkPreAndNextDisable = useCallback(() => {
       if (!scrollRef.current) return
       setPreDisable(getScrollDist(_isHorizontalLayout, scrollRef) === 0)
       setNextDisable(
@@ -135,13 +135,13 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
             getScrollSize(_isHorizontalLayout, scrollRef),
         ) < 1,
       )
-    }
+    }, [_isHorizontalLayout])
 
     useEffect(() => {
       if (!scrolling) {
         checkPreAndNextDisable()
       }
-    }, [scrolling, needScroll])
+    }, [scrolling, needScroll, checkPreAndNextDisable])
 
     useEffect(() => {
       if (!scrollRef?.current) return
@@ -201,7 +201,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       if (_isHorizontalLayout) {
         return [<UpIcon key="upIcon" />, <DownIcon key="downIcon" />]
       } else {
-        return [<PreIcon key="preIcon" />, <NextIcon key="nextIcon" />]
+        return [<PreviousIcon key="preIcon" />, <NextIcon key="nextIcon" />]
       }
     }, [_isHorizontalLayout])
 

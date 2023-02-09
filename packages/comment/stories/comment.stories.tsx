@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Comment, CommentProps } from "../src"
 import { Avatar } from "@illa-design/react"
 import { css } from "@emotion/react"
@@ -21,7 +21,7 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<CommentProps> = (args) => {
+export const Basic: StoryFn<CommentProps> = (args) => {
   const actions = (
     <div data-testid="test-action">
       <span className="custom-comment-action" key="heart" onClick={() => {}}>
@@ -36,11 +36,7 @@ export const Basic: Story<CommentProps> = (args) => {
     </div>
   )
   return (
-    <div
-      css={css`
-        width: 400px;
-      `}
-    >
+    <div>
       <Comment
         align={{ actions: "right" }}
         actions={actions}

@@ -5,7 +5,7 @@ import { Trigger } from "@illa-design/trigger"
 import { mergedToString } from "@illa-design/system"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
-export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
+export const Text = forwardRef<HTMLDivElement, TextProps>((props, ref) => {
   // get props
   const {
     colorScheme = "blackAlpha",
@@ -40,13 +40,9 @@ export const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
     </Base>
   )
   const text = (
-    <span
-      css={[applyBoxStyle(props)]}
-      ref={ref}
-      {...deleteCssProps(otherProps)}
-    >
+    <div css={[applyBoxStyle(props)]} ref={ref} {...deleteCssProps(otherProps)}>
       {base}
-    </span>
+    </div>
   )
 
   if (showTooltip) {

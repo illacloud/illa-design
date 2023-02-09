@@ -1,71 +1,44 @@
-import { Meta, Story } from "@storybook/react"
-import { Space } from "@illa-design/react"
-import { Cascader, CascaderProps } from "../src"
+import { Meta, StoryFn } from "@storybook/react"
+import { Cascader, CascaderOptionObject, CascaderProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {
   title: "DATA INPUT/Cascader",
   component: Cascader,
-  argTypes: {
-    value: {
-      control: {
-        type: "array",
-      },
-    },
-  },
 } as Meta
 
-const options = [
+const options: CascaderOptionObject[] = [
   {
     value: "beijing",
     label: "Beijing",
     children: [
       {
-        value: "chaoyang",
-        label: "Chaoyang",
+        value: "Beijing",
+        label: "Beijing",
         children: [
           {
-            value: "datunli",
-            label: "Datunli",
+            value: "chaoyang",
+            label: "Chaoyang",
+            children: [
+              {
+                value: "datunli",
+                label: "Datunli",
+              },
+            ],
+          },
+          {
+            value: "dongcheng",
+            label: "Dongcheng",
+          },
+          {
+            value: "xicheng",
+            label: "Xicheng",
+          },
+          {
+            value: "haidian",
+            label: "Haidian",
           },
         ],
-      },
-      {
-        value: "dongcheng",
-        label: "Dongcheng",
-      },
-      {
-        value: "xicheng",
-        label: "Xicheng",
-        disabled: true,
-      },
-      {
-        value: "haidian",
-        label: "Haidian",
-      },
-      {
-        value: "fengtai",
-        label: "fengtai",
-      },
-      {
-        value: "shijingshan",
-        label: "Shijingshan",
-      },
-      {
-        value: "mentougou",
-        label: "Mentougou",
-      },
-      {
-        value: "fangshan",
-        label: "Fangshan",
-      },
-      {
-        value: "tongzhou",
-        label: "Tongzhou",
-      },
-      {
-        value: "shunyi",
-        label: "Shunyi",
       },
     ],
   },
@@ -85,37 +58,34 @@ const options = [
       },
     ],
   },
-  {
-    value: "guangdong",
-    label: "Guangdong",
-    children: [
-      {
-        value: "shenzhen",
-        label: "Shenzhen",
-        children: [
-          {
-            value: "nanshan",
-            label:
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi distinctio dolorem earum excepturi fugiat id illo illum iure laboriosam minus modi, nam neque non odit officiis provident repudiandae sunt velit!",
-          },
-        ],
-      },
-    ],
-  },
 ]
 
-export const Basic: Story<CascaderProps<any>> = (args) => (
-  <Space direction="vertical">
-    <Cascader w={"280px"} allowClear showSearch options={options} {...args} />
+export const Basic: StoryFn<CascaderProps> = (args) => (
+  <div>
+    <Cascader options={options} allowClear={true} {...args} />
     <Cascader
-      w={"280px"}
+      style={{ marginTop: "20px" }}
+      allowClear={true}
+      filterOption={true}
       options={options}
-      multiple
-      value={[["beijing", "xicheng"]]}
-      allowClear
+      showSearch
       {...args}
     />
-    <Cascader w={"280px"} multiple options={options} {...args} />
-    <Cascader w={"280px"} options={[]} value={undefined} {...args} />
-  </Space>
+    <Cascader
+      multiple
+      style={{ marginTop: "20px" }}
+      options={options}
+      allowClear={true}
+      {...args}
+    />
+    <Cascader
+      multiple
+      style={{ marginTop: "20px" }}
+      allowClear={true}
+      filterOption={true}
+      options={options}
+      showSearch
+      {...args}
+    />
+  </div>
 )

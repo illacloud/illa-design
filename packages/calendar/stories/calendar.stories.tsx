@@ -1,15 +1,13 @@
-import * as React from "react"
-import { Meta, Story } from "@storybook/react"
-import { Calendar, CalenderProps } from "../src"
+import { Meta, StoryFn } from "@storybook/react"
+import { Calendar, CalendarProps } from "../src"
 
 export default {
   title: "DATA DISPLAY/Calendar",
   component: Calendar,
-  argTypes: {},
 } as Meta
 
-const Template: Story<CalenderProps> = (props) => {
-  return <Calendar {...props} />
+const Template: StoryFn<CalendarProps> = (args) => {
+  return <Calendar {...args} />
 }
 
 export const Basic = Template.bind({})

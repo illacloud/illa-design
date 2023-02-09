@@ -12,6 +12,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
       children,
       options,
       disabled,
+      forceEqualWidth,
       colorScheme,
       direction = "horizontal",
       spacing = direction === "horizontal" ? "24px" : "16px",
@@ -48,6 +49,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
       value,
       spacing,
       colorScheme,
+      forceEqualWidth,
     }
 
     return (

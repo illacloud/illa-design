@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Timeline, TimelineProps, TimelineItem } from "../src"
 
 export default {
@@ -14,7 +14,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<TimelineProps> = (props) => {
+const Template: StoryFn<TimelineProps> = (props) => {
   return (
     <Timeline pending {...props}>
       <TimelineItem>The first milestone</TimelineItem>

@@ -5,20 +5,23 @@ import {
   TableContextProps,
   TableProps,
 } from "./interface"
-import isEqual from "react-fast-compare"
-import { ReactElement, useCallback, useEffect, useMemo, useState } from "react"
+import {
+  ReactElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import {
   ColumnDef,
-  ColumnFilter,
   ColumnFiltersState,
-  FilterFnOption,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   PaginationState,
-  RowSelectionState,
   SortingState,
   useReactTable,
 } from "@tanstack/react-table"
@@ -28,7 +31,7 @@ import {
   downloadDataAsCSV,
   transformTableIntoCsvData,
 } from "./utils"
-import { isNumber, isObject, isString } from "@illa-design/system"
+import { isNumber, isString } from "@illa-design/system"
 import {
   applyActionButtonStyle,
   applyBorderedStyle,
@@ -48,7 +51,6 @@ import { Tr } from "./tr"
 import { Th } from "./th"
 import {
   DownloadIcon,
-  FilterIcon,
   SorterDefaultIcon,
   SorterDownIcon,
   SorterUpIcon,
@@ -58,29 +60,9 @@ import { Td } from "./td"
 import { Empty } from "@illa-design/empty"
 import { TFoot } from "./tfoot"
 import { Button } from "@illa-design/button"
-import { Trigger } from "@illa-design/trigger"
-import { FiltersEditor } from "./filters-editor"
 import { Pagination } from "@illa-design/pagination"
-
-const getSelectedRow = (
-  rowSelection?: number | Record<string, boolean>,
-  multiRowSelection?: boolean,
-) => {
-  if (multiRowSelection) {
-    return isObject(rowSelection)
-      ? rowSelection
-      : isNumber(rowSelection)
-      ? { [rowSelection]: true }
-      : {}
-  }
-  return isObject(rowSelection)
-    ? Object.keys(rowSelection).length
-      ? Number(Object.keys(rowSelection)[0])
-      : undefined
-    : isNumber(rowSelection)
-    ? rowSelection
-    : undefined
-}
+import { TableFilter } from "./table-filter"
+import { useClickAway } from "react-use"
 
 export function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -98,6 +80,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     children,
     disableSortBy,
     pinedHeader,
+    colorScheme,
     align = "left",
     showFooter,
     hoverable,
@@ -105,11 +88,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     emptyProps,
     columnVisibility,
     pagination,
-    multiRowSelection,
+    multiRowSelection = false,
+    enableRowSelection = true,
+    clickOutsideToResetRowSelect,
     checkAll = true,
     download,
     filter,
-    rowSelection: selected,
+    rowSelection: selected = {},
     defaultSort = [],
     onSortingChange,
     onPaginationChange,
@@ -128,18 +113,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     showFooter,
   } as TableContextProps
 
+  const containerRef = useRef<HTMLDivElement>(null)
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [filterOperator, setFilterOperator] = useState<FilterOperator>("and")
   const [filterOption, setFilterOption] = useState<FilterOptionsState>([
     { id: "", value: "" },
   ])
-  const [rowSelection, setRowSelection] = useState(
-    multiRowSelection && isObject(selected) ? selected : {},
-  )
-  const [selectedRow, setSelectedRow] = useState<number | undefined>(
-    !multiRowSelection && isNumber(selected) ? selected : undefined,
-  )
+  const [rowSelection, setRowSelection] = useState(selected)
   const [currentColumns, setColumns] = useState<ColumnDef<D, TValue>[]>(columns)
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -151,7 +132,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       // @ts-ignore accessorKey is not in the interface
       return item.id || item.accessorKey
     })
-    if (multiRowSelection) {
+    if (multiRowSelection && enableRowSelection) {
       const rowSelectionColumn: ColumnDef<D, TValue>[] = [
         {
           accessorKey: "select",
@@ -187,11 +168,15 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       return rowSelectionColumn.concat(current)
     }
     return current
-  }, [checkAll, currentColumns, multiRowSelection])
+  }, [checkAll, currentColumns, multiRowSelection, enableRowSelection])
 
   const globalFilter = useMemo(() => {
     return { filters: columnFilters, operator: filterOperator }
   }, [columnFilters, filterOperator])
+
+  const enableMultiRowSelection = useMemo(() => {
+    return multiRowSelection && enableRowSelection
+  }, [multiRowSelection, enableRowSelection])
 
   const table = useReactTable({
     data,
@@ -206,6 +191,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize,
       },
     },
+    enableMultiRowSelection,
     enableSorting: !disableSortBy,
     globalFilterFn: customGlobalFn,
     onPaginationChange: (pagination) => {
@@ -235,39 +221,37 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     manualPagination: overFlow === "scroll",
   })
 
-  useEffect(() => {
-    if (multiRowSelection) {
-      const _selectedRow = getSelectedRow(selectedRow, multiRowSelection)
-      if (isObject(_selectedRow) && !isEqual(_selectedRow, rowSelection)) {
-        setRowSelection(_selectedRow)
-        setSelectedRow(undefined)
-        onRowSelectionChange?.(_selectedRow)
-      }
-    } else {
-      const _selectedRow = getSelectedRow(rowSelection, multiRowSelection)
-      if (isNumber(_selectedRow) && _selectedRow !== selectedRow) {
-        setSelectedRow(_selectedRow)
-        setRowSelection({})
-        onRowSelectionChange?.(_selectedRow)
-      }
+  useClickAway(containerRef, () => {
+    // when multiRowSelection is false, click outside the table, reset the row selection
+    if (clickOutsideToResetRowSelect && !multiRowSelection) {
+      table.resetRowSelection()
     }
-  }, [multiRowSelection])
+  })
 
   useEffect(() => {
-    const _selectedRow = getSelectedRow(selected, multiRowSelection)
-    if (multiRowSelection) {
-      !isEqual(_selectedRow, rowSelection) &&
-        setRowSelection(_selectedRow as RowSelectionState)
-    } else {
-      _selectedRow !== selectedRow && setSelectedRow(_selectedRow as number)
-    }
-  }, [selected])
-
-  useEffect(() => {
-    if (defaultSort?.length) {
+    if ("defaultSort" in props && defaultSort) {
       setSorting(defaultSort)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultSort])
+
+  useEffect(() => {
+    if (!enableMultiRowSelection) {
+      if (rowSelection && Object.keys(rowSelection)?.length > 1) {
+        const _selectedRow = { [Object.keys(rowSelection)[0]]: true }
+        setRowSelection(_selectedRow)
+        onRowSelectionChange?.(_selectedRow)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enableMultiRowSelection])
+
+  useEffect(() => {
+    if (!enableRowSelection) {
+      table.resetRowSelection()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enableRowSelection])
 
   useEffect(() => {
     setColumns(columns)
@@ -275,24 +259,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   useEffect(() => {
     if (pagination) {
-      const { pageSize: _pageSize, currentPage } = pagination
+      const { pageSize: _pageSize, current } = pagination
       setPagination({
-        pageIndex: isNumber(currentPage) ? currentPage : pageIndex,
+        pageIndex: isNumber(current) ? current : pageIndex,
         pageSize: isNumber(_pageSize) ? _pageSize : pageSize,
       })
     }
-  }, [pageIndex, pageSize, pagination])
-
-  useEffect(() => {
-    setColumnFilters(
-      filterOption.filter((item) => {
-        if (item.filterFn === "notEmpty" || item.filterFn === "empty") {
-          return item.id.length
-        }
-        return item.id.length && item.value
-      }),
-    )
-  }, [filterOption])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pagination])
 
   const downloadTableDataAsCsv = useCallback(() => {
     const csvData = transformTableIntoCsvData(table, multiRowSelection)
@@ -303,7 +277,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     })
   }, [table, multiRowSelection])
 
-  const ColumnsOption = useMemo(() => {
+  const columnsOption = useMemo(() => {
     const res: { value: string; label: string }[] = []
     currentColumns.forEach((column, index) => {
       // [TODO] fix ts-error @xiaoyu
@@ -320,61 +294,16 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     return res
   }, [multiRowSelection, currentColumns])
 
-  const updateColumns = useCallback(
-    (index: number, id: string, filterFn: FilterFnOption<D>) => {
-      if (!filterFn) return
-      const colIndex = currentColumns?.findIndex((current) => {
-        return current.id === id
-      })
-      const col = [...currentColumns]
-      if (col[colIndex]) {
-        col[colIndex].filterFn = filterFn
-        setColumns(col)
-      }
-    },
-    [currentColumns, setColumns],
-  )
-
-  const addOrUpdateFilters = useCallback(
-    (index?: number, filter?: ColumnFilter) => {
-      const filters = [...filterOption]
-      if (filters) {
-        if (isNumber(index) && filter && index < filters.length) {
-          filters[index] = filter
-        } else {
-          filters.push({ id: "", value: "" })
-        }
-      }
-      setFilterOption(filters)
-    },
-    [filterOption, setFilterOption],
-  )
-
-  const removeFilters = useCallback(
-    (index: number, id: string) => {
-      const filters = [...filterOption]
-      if (filters) {
-        filters.splice(index, 1)
-        if (filters.length == 0) {
-          filters.push({ id: "", value: "" })
-        }
-      }
-      setFilterOption(filters)
-      updateColumns(index, id, "auto")
-    },
-    [filterOption, setFilterOption, updateColumns],
-  )
-
   const onPageChange = useCallback(
     (pageNumber: number, pageSize: number) => {
-      setPagination({ pageIndex: pageNumber, pageSize })
-      table.setPageIndex(pageNumber)
+      setPagination({ pageIndex: pageNumber - 1, pageSize })
     },
-    [table, setPagination],
+    [setPagination],
   )
 
   return (
     <div
+      ref={containerRef}
       css={[
         applyContainerStyle(),
         applyBoxStyle(props),
@@ -440,15 +369,10 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 <Tr
                   key={row.id}
                   hoverable
-                  selected={
-                    multiRowSelection
-                      ? row.getIsSelected()
-                      : selectedRow === index
-                  }
-                  onClick={() => {
-                    if (!multiRowSelection) {
-                      onRowSelectionChange?.(index)
-                      setSelectedRow(index)
+                  selected={enableRowSelection ? row.getIsSelected() : false}
+                  onClick={(e) => {
+                    if (enableRowSelection) {
+                      row.getToggleSelectedHandler()(e)
                     }
                   }}
                 >
@@ -528,44 +452,23 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
               />
             ) : null}
             {filter ? (
-              <Trigger
-                maxW="unset"
-                withoutPadding
-                showArrow={false}
-                closeWhenScroll={false}
-                colorScheme={"white"}
-                position={"bottom-end"}
-                trigger={"click"}
-                content={
-                  <FiltersEditor
-                    filterOperator={filterOperator}
-                    columnFilters={filterOption}
-                    columnsOption={ColumnsOption}
-                    onChange={(index, filters) => {
-                      addOrUpdateFilters(index, filters)
-                    }}
-                    onChangeOperator={setFilterOperator}
-                    onChangeFilterFn={updateColumns}
-                    onAdd={addOrUpdateFilters}
-                    onDelete={(index, filters) => {
-                      removeFilters(index, filters.id)
-                    }}
-                  />
-                }
-              >
-                <Button
-                  variant={"text"}
-                  colorScheme={"grayBlue"}
-                  leftIcon={<FilterIcon size={"16px"} />}
-                />
-              </Trigger>
+              <TableFilter
+                colorScheme={colorScheme}
+                filterOperator={filterOperator}
+                filterOption={filterOption}
+                columnsOption={columnsOption}
+                onChange={(filters, operator) => {
+                  setColumnFilters(filters)
+                  setFilterOperator(operator)
+                }}
+              />
             ) : null}
           </div>
           {overFlow === "pagination" ? (
             <Pagination
-              total={data.length}
+              total={Object.keys(table.getRowModel().rowsById).length}
               pageSize={pageSize}
-              currentPage={pageIndex}
+              current={pageIndex + 1}
               hideOnSinglePage={false}
               simple
               onChange={onPageChange}

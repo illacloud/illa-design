@@ -86,6 +86,9 @@ export const zhCN = {
     October: "十月",
     November: "十一月",
     December: "十二月",
+    okText: "确定",
+    nowText: "此刻",
+    timeText: "选择时间",
   },
   modal: {
     okText: "确定",

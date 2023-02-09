@@ -1,5 +1,5 @@
 import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
+import react from "@vitejs/plugin-react-swc"
 import typescript from "@rollup/plugin-typescript"
 
 const path = require("path")
@@ -9,19 +9,6 @@ export default defineConfig({
   plugins: [
     react({
       jsxImportSource: "@emotion/react",
-      jsxRuntime: "automatic",
-      babel: {
-        plugins: ["@emotion/babel-plugin"],
-        compact: false,
-      },
-      // Exclude storybook stories
-      exclude: [
-        /\.stories\.([tj])sx?$/,
-        /\.e2e\.([tj])sx?$/,
-        /\.test\.([tj])sx?$/,
-      ],
-      // Only .tsx files
-      include: ["**/*.tsx", "**/*.ts"],
     }),
   ],
   build: {
@@ -52,7 +39,6 @@ export default defineConfig({
         "@illa-design/theme",
         "@illa-design/icon",
         "@illa-design/dropdown",
-        "@illa-design/trigger",
         "react-use-measure",
       ],
       output: {
@@ -65,7 +51,6 @@ export default defineConfig({
           "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/dropdown": "@illa-design/dropdown",
-          "@illa-design/trigger": "@illa-design/trigger",
           "react-use-measure": "react-use-measure",
         },
       },

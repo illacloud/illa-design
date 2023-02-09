@@ -1,15 +1,15 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Button, ButtonGroup, ButtonGroupProps } from "../src"
 
 import { BsFacebook } from "react-icons/bs"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "General/ButtonGroup",
+  title: "GENERAL/ButtonGroup",
   component: ButtonGroup,
 } as Meta
 
-export const Basic: Story<ButtonGroupProps> = (args) => {
+export const Basic: StoryFn<ButtonGroupProps> = (args) => {
   return (
     <ButtonGroup {...args}>
       <Button>Hello</Button>

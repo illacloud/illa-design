@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import {
   CopyableBuilder,
   EllipsisBuilder,
@@ -13,7 +13,7 @@ export default {
   component: Paragraph,
 } as Meta
 
-export const Basic: Story<ParagraphProps> = (args) => (
+export const Basic: StoryFn<ParagraphProps> = (args) => (
   <Typography>
     <Paragraph
       {...args}

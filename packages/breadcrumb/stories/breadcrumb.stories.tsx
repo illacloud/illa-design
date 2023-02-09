@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbProps } from "../src"
 import { AiFillHome } from "react-icons/all"
 
@@ -7,7 +7,7 @@ export default {
   component: Breadcrumb,
 } as Meta
 
-export const Basic: Story<BreadcrumbProps> = (args: BreadcrumbProps) => {
+export const Basic: StoryFn<BreadcrumbProps> = (args: BreadcrumbProps) => {
   const routes = [
     {
       path: "/",
@@ -35,7 +35,7 @@ export const Basic: Story<BreadcrumbProps> = (args: BreadcrumbProps) => {
   return <Breadcrumb {...args} routes={routes} {...args} />
 }
 
-export const Children: Story<BreadcrumbProps> = (args: BreadcrumbProps) => {
+export const Children: StoryFn<BreadcrumbProps> = (args: BreadcrumbProps) => {
   return (
     <Breadcrumb {...args}>
       <BreadcrumbItem>

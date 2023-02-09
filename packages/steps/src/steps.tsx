@@ -1,76 +1,105 @@
-import React, {
-  Children,
-  cloneElement,
-  forwardRef,
-  ReactElement,
-  ReactNode,
-} from "react"
-import { StepsProps } from "./interface"
-import { Step } from "./step"
-import { deleteCssProps } from "@illa-design/theme"
-import { applyStepsStyle } from "./style/steps"
+import React, { forwardRef } from "react"
+import { StepsProps, StepsStatus } from "./interface"
+import { applyStepsContainerStyle } from "./style"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { useMergeValue } from "@illa-design/system"
+import { NavigateStep } from "./navigate-step"
+import { DotStep } from "./dot-step"
 
 export const Steps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
   const {
-    variant = "line",
-    direction = "horizontal",
-    labelPlacement = "horizontal",
-    current = 1,
-    status = "process",
-    lineless,
-    customDot,
-    onChange,
     children,
-    ...restProps
+    direction = "horizontal",
+    lineless,
+    current,
+    type = "dot",
+    items,
+    onChange,
+    ...otherProps
   } = props
 
-  const filterStepComponent = (child: ReactNode) => {
-    return (
-      child &&
-      (child as ReactElement).type &&
-      ((child as ReactElement).type as { displayName?: string }).displayName ===
-        "Step"
-    )
-  }
-
-  const fillStepComponent = (
-    child: ReactNode,
-    index: number,
-    arr: ReactNode[],
-  ) => {
-    if (!child) {
-      return null
-    }
-
-    index += 1
-
-    const childProps = {
-      index,
-      current,
-      variant,
-      status: current === index ? status : undefined,
-      customDot,
-      direction,
-      labelPlacement,
-      lineless,
-      lastStep: index === arr.length,
-      nextStepError: status === "error" && current === index + 1,
-      onClick: onChange,
-      ...(child as ReactElement).props,
-    }
-
-    return cloneElement(child as ReactElement, childProps)
-  }
+  const [finalCurrent, setFinalCurrent] = useMergeValue(-1, {
+    value: current,
+    defaultValue: 0,
+  })
 
   return (
     <div
+      css={[applyStepsContainerStyle(direction), applyBoxStyle(props)]}
       ref={ref}
-      css={[applyStepsStyle({ direction })]}
-      {...deleteCssProps(restProps)}
+      {...deleteCssProps(otherProps)}
     >
-      {Children.toArray(children)
-        .filter(filterStepComponent)
-        .map(fillStepComponent)}
+      {items &&
+        items.map((item, index) => {
+          let nodeStatus: StepsStatus = "wait"
+          if (item.status === undefined) {
+            nodeStatus =
+              finalCurrent > index
+                ? "finish"
+                : finalCurrent === index
+                ? "process"
+                : "wait"
+          } else {
+            nodeStatus = item.status
+          }
+          let lineStatus: StepsStatus = finalCurrent > index ? "finish" : "wait"
+          if (index + 1 < items.length) {
+            lineStatus =
+              items[index + 1].status === "error" ? "error" : lineStatus
+          }
+          switch (type) {
+            case "navigation":
+              return (
+                <NavigateStep
+                  key={index}
+                  status={nodeStatus}
+                  lineless={lineless || index !== finalCurrent}
+                  last={index === items.length - 1}
+                  canClick={true}
+                  lineStatus={nodeStatus}
+                  icon={item.icon}
+                  disabled={item.disabled}
+                  type={type}
+                  direction={direction}
+                  description={item.description}
+                  title={item.title}
+                  index={index}
+                  onClick={() => {
+                    if (current === undefined) {
+                      setFinalCurrent(index)
+                    }
+                    onChange?.(index)
+                  }}
+                />
+              )
+            case "dot":
+            case "line":
+            default:
+              return (
+                <DotStep
+                  key={index}
+                  status={nodeStatus}
+                  lineless={lineless}
+                  last={index === items.length - 1}
+                  canClick={false}
+                  lineStatus={lineStatus}
+                  icon={item.icon}
+                  disabled={item.disabled}
+                  type={type}
+                  direction={direction}
+                  description={item.description}
+                  title={item.title}
+                  index={index}
+                  onClick={() => {
+                    if (current === undefined) {
+                      setFinalCurrent(index)
+                    }
+                    onChange?.(index)
+                  }}
+                />
+              )
+          }
+        })}
     </div>
   )
 })

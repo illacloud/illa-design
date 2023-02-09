@@ -8,7 +8,7 @@
     "component"
   ],
   "sideEffects": false,
-  "author": "illa Cloud <opensource@illasoft.com>",
+  "author": "ILLA Cloud <opensource@illasoft.com>",
   "homepage": "https://github.com/illacloud/illa-design",
   "license": "Apache-2.0",
   "main": "dist/umd/index.js",
@@ -40,17 +40,19 @@
     "e2e:ci": "npx cypress run-ct --browser chrome",
     "e2e": "npx cypress open-ct --browser chrome"
   },
+  "devDependencies": {
+    "@vitejs/plugin-react-swc":"^3.0.1",
+    "@rollup/plugin-typescript":"^10.0.1"
+  },
   "dependencies": {
-    "@illa-design/checkbox": "workspace:*",
-    "@illa-design/empty": "workspace:*",
     "@illa-design/icon": "workspace:*",
-    "@illa-design/select": "workspace:*",
-    "@illa-design/list": "workspace:*",
+    "@illa-design/input": "workspace:*",
     "@illa-design/trigger": "workspace:*",
-    "@illa-design/system": "workspace:*",
+    "@illa-design/input-tag": "workspace:*",
+    "@illa-design/checkbox": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "react-fast-compare": "^3.2.0",
-    "framer-motion": "^7.6.12"
+    "@illa-design/system": "workspace:*",
+    "@illa-design/empty": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",

@@ -238,7 +238,7 @@ export const Base: FC<BaseProps> = (props) => {
     return () => {
       isMount = false
     }
-  }, [width, finalShowExpand])
+  }, [width, finalShowExpand, originEllipsis.rows, props.children])
 
   return base
 }

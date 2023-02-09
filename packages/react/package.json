@@ -8,7 +8,7 @@
     "react"
   ],
   "sideEffects": false,
-  "author": "illa Cloud <opensource@illasoft.com>",
+  "author": "ILLA Cloud <opensource@illasoft.com>",
   "homepage": "https://github.com/illacloud/illa-design",
   "license": "Apache-2.0",
   "main": "dist/umd/index.js",
@@ -35,8 +35,12 @@
   "bugs": {
     "url": "https://github.com/illacloud/illa-design/issues"
   },
-  "scripts": {
+   "scripts": {
     "build": "vite build"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react-swc":"^3.0.1",
+    "@rollup/plugin-typescript":"^10.0.1"
   },
   "dependencies": {
     "@illa-design/system": "workspace:*",
@@ -61,15 +65,16 @@
     "@illa-design/badge": "workspace:*",
     "@illa-design/statistic": "workspace:*",
     "@illa-design/input": "workspace:*",
+    "@illa-design/input-tag": "workspace:*",
+    "@illa-design/input-number": "workspace:*",
     "@illa-design/switch": "workspace:*",
     "@illa-design/alert": "workspace:*",
-    "@illa-design/input-tag": "workspace:*",
     "@illa-design/grid": "workspace:*",
     "@illa-design/popconfirm": "workspace:*",
     "@illa-design/pagination": "workspace:*",
     "@illa-design/spin": "workspace:*",
     "@illa-design/notification": "workspace:*",
-    "@illa-design/input-number": "workspace:*",
+    "@illa-design/cascader": "workspace:*",
     "@illa-design/message": "workspace:*",
     "@illa-design/select": "workspace:*",
     "@illa-design/comment": "workspace:*",
@@ -77,25 +82,22 @@
     "@illa-design/timeline": "workspace:*",
     "@illa-design/card": "workspace:*",
     "@illa-design/rate": "workspace:*",
-    "@illa-design/calendar": "workspace:*",
-    "@illa-design/time-picker": "workspace:*",
     "@illa-design/modal": "workspace:*",
     "@illa-design/steps": "workspace:*",
     "@illa-design/back-top": "workspace:*",
     "@illa-design/drawer": "workspace:*",
     "@illa-design/collapse": "workspace:*",
-    "@illa-design/table": "workspace:*",
-    "@illa-design/date-picker": "workspace:*",
     "@illa-design/result": "workspace:*",
     "@illa-design/page-header": "workspace:*",
-    "@illa-design/slider": "workspace:*",
     "@illa-design/menu": "workspace:*",
     "@illa-design/loading": "workspace:*",
     "@illa-design/tabs": "workspace:*",
     "@illa-design/skeleton": "workspace:*",
     "@illa-design/dropdown": "workspace:*",
     "@illa-design/affix": "workspace:*",
-    "@illa-design/cascader": "workspace:*"
+    "@illa-design/table": "workspace:*",
+    "@illa-design/calendar": "workspace:*",
+    "@illa-design/date-picker": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",
