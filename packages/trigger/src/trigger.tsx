@@ -23,6 +23,7 @@ import {
   hide,
   Middleware,
   offset,
+  useMergeRefs,
   size,
   useClick,
   useDismiss,
@@ -293,6 +294,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
     </motion.div>
   )
 
+  const mergedRef = useMergeRefs([
+    reference,
+    (props.children as any).ref,
+    childrenRef,
+  ])
+
   return (
     <>
       {cloneElement(
@@ -300,7 +307,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         getReferenceProps({
           key: "illa-trigger",
           ...(children as any).props,
-          ref: mergeRefs(reference, (props.children as any).ref, childrenRef),
+          ref: mergedRef,
           onContextMenu: (e) => {
             if (disabled) {
               return
@@ -362,7 +369,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
       )}
       <FloatingPortal
         root={
-          _renderInBody ? document.body : childrenRef?.current || document.body
+          _renderInBody ? document.body : childrenRef?.current ?? document.body
         }
       >
         {!disabled && (

@@ -16,12 +16,6 @@ export function applyMotionDiv() {
   `
 }
 
-export function applyTipsContainer(): SerializedStyles {
-  return css`
-    display: inline-flex;
-  `
-}
-
 export function applyTipsText(
   colorScheme: TriggerColorScheme,
   maxWidth: string,
