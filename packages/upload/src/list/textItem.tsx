@@ -1,4 +1,4 @@
-import { useCallback } from "react"
+import { useCallback, useContext } from "react"
 import { STATUS, CustomIconType, ListItemProps } from "../interface"
 import { isObject, isFunction } from "@illa-design/system"
 import UploadProgress from "./uploadProgress"
@@ -14,12 +14,20 @@ import {
   textItemMainContentStyle,
   textItemOperationIconStyle,
   textItemProgressStyle,
-  textItemStyle,
 } from "../style"
 import { getFileURL, getIconType, handleKeyDown } from "../utils"
+import {
+  ConfigProviderContext,
+  ConfigProviderProps,
+  def,
+} from "@illa-design/config-provider"
 
 const TextItem = (props: ListItemProps) => {
-  const { disabled, file, locale, onRemove } = props
+  const { disabled, file, onRemove } = props
+  const configProviderProps = useContext<ConfigProviderProps>(
+    ConfigProviderContext,
+  )
+  const locale = configProviderProps?.locale?.upload ?? def.upload
   const Icon = getIconType(file)
   const showUploadList = isObject(props.showUploadList)
     ? (props.showUploadList as CustomIconType)
@@ -57,7 +65,7 @@ const TextItem = (props: ListItemProps) => {
     <span
       onClick={handleItemRemove}
       tabIndex={0}
-      aria-label={locale?.upload.delete}
+      aria-label={locale.delete}
       css={textItemDeleteIconStyle}
       onKeyDown={(e) => handleKeyDown(e, handleItemRemove)}
     >

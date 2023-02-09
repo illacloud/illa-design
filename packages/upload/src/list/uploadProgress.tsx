@@ -11,6 +11,7 @@ import { isFunction } from "@illa-design/system"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
+  def,
 } from "@illa-design/config-provider"
 import {
   successIconStyle,
@@ -24,7 +25,10 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 const UploadProgress: FC<UploadProgressProps> = (props) => {
   const { file, progressProps, progressRender, onReupload, onUpload, onAbort } =
     props
-  const { locale } = useContext<ConfigProviderProps>(ConfigProviderContext)
+  const configProviderProps = useContext<ConfigProviderProps>(
+    ConfigProviderContext,
+  )
+  const locale = configProviderProps?.locale?.upload ?? def.upload
   const { status, percent = 0 } = file
   const progressStatus =
     status === STATUS.FAIL
@@ -50,7 +54,7 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
       css={uploadProgressStyle}
       tabIndex={0}
       role="button"
-      aria-label={locale?.upload.start}
+      aria-label={locale.start}
       onClick={handleFileUpload}
       onKeyDown={(e) => handleKeyDown(e, handleFileUpload)}
     >
@@ -64,7 +68,7 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
         css={uploadProgressStyle}
         onClick={handleFileAbort}
         tabIndex={0}
-        aria-label={locale?.upload.cancel}
+        aria-label={locale.cancel}
         onKeyDown={(e) => handleKeyDown(e, handleFileAbort)}
       >
         {props.cancelIcon || <CloseIcon />}
@@ -79,15 +83,11 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
           css={uploadProgressFailStyle}
           tabIndex={0}
           role="button"
-          aria-label={locale?.upload.retry}
+          aria-label={locale.retry}
           onKeyDown={(e) => handleKeyDown(e, handleFileReupload)}
         >
           {props.reuploadIcon ||
-            (props.listType === "picture-card" ? (
-              <UploadIcon />
-            ) : (
-              locale?.upload.retry
-            ))}
+            (props.listType === "picture-card" ? <UploadIcon /> : locale.retry)}
         </span>
       )}
 

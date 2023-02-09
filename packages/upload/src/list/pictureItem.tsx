@@ -20,18 +20,22 @@ import {
   pictureItemUploadingMask,
 } from "../style"
 import { getFileURL, getIconType, handleKeyDown } from "../utils"
+import { useContext } from "react"
+import {
+  ConfigProviderContext,
+  ConfigProviderProps,
+  def,
+} from "@illa-design/config-provider"
 
 const PictureItem = (props: ListItemProps) => {
-  const {
-    disabled,
-    file,
-    showUploadList,
-    locale,
-    onRemove,
-    onPreview,
-    onReupload,
-  } = props
+  const { disabled, file, showUploadList, onRemove, onPreview, onReupload } =
+    props
   const { status } = file
+
+  const configProviderProps = useContext<ConfigProviderProps>(
+    ConfigProviderContext,
+  )
+  const locale = configProviderProps?.locale?.upload ?? def.upload
 
   const url = getFileURL(file)
   const actionIcons = isObject(showUploadList)
@@ -72,7 +76,7 @@ const PictureItem = (props: ListItemProps) => {
       <span
         onClick={handleImageRemove}
         role="button"
-        aria-label={locale?.upload.delete}
+        aria-label={locale.delete}
         tabIndex={0}
         onKeyDown={(e) => handleKeyDown(e, handleImageRemove)}
       >
@@ -89,7 +93,7 @@ const PictureItem = (props: ListItemProps) => {
         rel="noopener noreferrer"
         role="button"
         css={pictureItemPreviewStyle}
-        aria-label={locale?.upload.preview}
+        aria-label={locale.preview}
         onKeyDown={(e) => handleKeyDown(e, handleImagePreview)}
         onClick={handleImagePreview}
       >
@@ -104,7 +108,7 @@ const PictureItem = (props: ListItemProps) => {
         onClick={handleImageReupload}
         tabIndex={2}
         role="button"
-        aria-label={locale?.upload.retry}
+        aria-label={locale.retry}
         onKeyDown={(e) => handleKeyDown(e, handleImageReupload)}
       >
         {actionIcons.reuploadIcon || <UploadIcon />}

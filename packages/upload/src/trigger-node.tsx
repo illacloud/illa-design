@@ -15,6 +15,7 @@ import { TriggerNodeProps } from "./interface"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
+  def,
 } from "@illa-design/config-provider"
 import { getAcceptedFiles, loopDirectory } from "./utils"
 import {
@@ -32,7 +33,10 @@ import {
 } from "./style"
 
 const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
-  const { locale } = useContext<ConfigProviderProps>(ConfigProviderContext)
+  const configProviderProps = useContext<ConfigProviderProps>(
+    ConfigProviderContext,
+  )
+  const locale = configProviderProps?.locale?.upload ?? def.upload
   const [isDragging, setIsDragging] = useState(false)
   const [dragEnterCount, setDragEnterCount] = useState(0)
 
@@ -150,33 +154,31 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
         <div
           css={getPictureCardContainerStyle(!!disabled)}
           tabIndex={0}
-          aria-label={locale?.upload.upload}
+          aria-label={locale.upload}
         >
           <div css={pictureCardContentStyle}>
             <PlusIcon css={pictureCardIconStyle} />
-            <div css={pictureCardTextStyle}>
-              {text ?? locale?.upload.upload}
-            </div>
+            <div css={pictureCardTextStyle}>{text ?? locale.upload}</div>
           </div>
         </div>
       ) : drag ? (
         <div
           tabIndex={0}
-          aria-label={locale?.upload.dragTip}
+          aria-label={locale.dragTip}
           css={getDragContainerStyle(!!disabled)}
         >
           <div css={dragIconStyle}>
             <PlusIcon />
           </div>
           <div css={dragContentContainerStyle}>
-            <div css={dragTextStyle}>{text ?? locale?.upload.dragTip}</div>
+            <div css={dragTextStyle}>{text ?? locale.dragTip}</div>
             {tip && <div css={dragTipsStyle}>{tip}</div>}
           </div>
         </div>
       ) : (
         <Button
           {...cloneChildrenProps}
-          aria-label={locale?.upload.upload}
+          aria-label={locale.upload}
           type="button"
           size="medium"
           loading={loading}
@@ -185,7 +187,7 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
           css={listTypeButtonStyle}
           leftIcon={<UploadIcon />}
         >
-          {text ?? locale?.upload.upload}
+          {text ?? locale.upload}
         </Button>
       )}
     </div>

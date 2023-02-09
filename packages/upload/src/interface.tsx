@@ -214,5 +214,4 @@ export interface InternalDataTransferItem extends DataTransferItem {
 
 export interface ListItemProps extends UploadListProps {
   file: UploadItem
-  locale: ConfigProviderProps["locale"]
 }
