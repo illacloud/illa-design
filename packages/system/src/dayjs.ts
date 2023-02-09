@@ -226,3 +226,36 @@ export function toLocal(
 export function isValidTimeString(str: string | undefined, format: string) {
   return typeof str === "string" && dayjs(str, format).format(format) === str
 }
+
+export const isInRange = (
+  current: Dayjs,
+  isSameTime: (current: Dayjs, target: Dayjs) => boolean,
+  startDate?: Dayjs,
+  endDate?: Dayjs,
+): boolean => {
+  if (startDate && endDate) {
+    return (
+      isSameTime(current, startDate) ||
+      isSameTime(current, endDate) ||
+      current.isBetween(startDate, endDate, null)
+    )
+  }
+  return false
+}
+
+export function getValueWithTime(date: Dayjs, time?: Dayjs): Dayjs {
+  const y = date.year()
+  const m = date.month()
+  const d = date.date()
+
+  if (time) {
+    let returnTime = time
+    returnTime = returnTime.set("year", y)
+    returnTime = returnTime.set("month", m)
+    returnTime = returnTime.set("date", d)
+
+    return returnTime
+  }
+
+  return date
+}

@@ -331,13 +331,25 @@ importers:
 
   packages/date-picker:
     specifiers:
+      '@illa-design/button': workspace:*
+      '@illa-design/config-provider': workspace:*
+      '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@illa-design/time-picker': workspace:*
+      '@illa-design/trigger': workspace:*
       '@rollup/plugin-typescript': ^10.0.1
       '@vitejs/plugin-react-swc': ^3.0.1
+      dayjs: ^1.11.7
     dependencies:
+      '@illa-design/button': link:../button
+      '@illa-design/config-provider': link:../config-provider
+      '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      '@illa-design/time-picker': link:../time-picker
+      '@illa-design/trigger': link:../trigger
+      dayjs: registry.npmjs.org/dayjs/1.11.7
     devDependencies:
       '@rollup/plugin-typescript': 10.0.1
       '@vitejs/plugin-react-swc': 3.0.1
