@@ -23,7 +23,7 @@ import { CalendarIcon } from "@illa-design/icon"
 import { BasicFooterSection } from "./panels/basic-footer-section"
 import { MonthPickerPanel } from "./panels/month"
 
-export const SingleDatePicker: FC<SingleMonthPickerProps> = (props) => {
+export const SingleMonthPicker: FC<SingleMonthPickerProps> = (props) => {
   const {
     allowClear = true,
     placeholder,

@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { RangePickerPanel } from "../src/panels/range"
-import { RangePicker } from "../src/RangePicker"
+import { RangeDatePicker } from "../src/range-date-picker"
 import { RangeDatePickerProps } from "../src/interface"
 
 export default {
@@ -11,27 +11,27 @@ export default {
 export const YearRangePickerWithInput: StoryFn<RangeDatePickerProps> = (
   args,
 ) => {
-  return <RangePicker {...args} mode="year" />
+  return <RangeDatePicker {...args} mode="year" />
 }
 
 export const QuaRangePickerWithInput: StoryFn<RangeDatePickerProps> = (
   args,
 ) => {
-  return <RangePicker {...args} mode="quarter" />
+  return <RangeDatePicker {...args} mode="quarter" />
 }
 
 export const WeekRangePickerWithInput: StoryFn<RangeDatePickerProps> = (
   args,
 ) => {
-  return <RangePicker {...args} mode="week" />
+  return <RangeDatePicker {...args} mode="week" />
 }
 export const MonthRangePickerWithInput: StoryFn<RangeDatePickerProps> = (
   args,
 ) => {
-  return <RangePicker {...args} mode="month" />
+  return <RangeDatePicker {...args} mode="month" />
 }
 export const DateRangePickerWithInput: StoryFn<RangeDatePickerProps> = (
   args,
 ) => {
-  return <RangePicker {...args} mode="date" showTime={true} />
+  return <RangeDatePicker {...args} mode="date" showTime={true} />
 }
