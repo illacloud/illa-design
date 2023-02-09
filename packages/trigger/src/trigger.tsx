@@ -105,7 +105,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
         size({
           apply({ availableWidth, availableHeight, elements }) {
             // Do things with the data, e.g.
-            console.log("longbo", childrenRef.current?.clientWidth)
             Object.assign(elements.floating.style, {
               width: `${childrenRef.current?.clientWidth}px`,
             })
