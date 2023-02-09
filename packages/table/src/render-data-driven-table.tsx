@@ -114,7 +114,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   } as TableContextProps
 
   const containerRef = useRef<HTMLDivElement>(null)
-  const [sorting, setSorting] = useState<SortingState>([])
+  const [sorting, setSorting] = useState<SortingState>(defaultSort)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [filterOperator, setFilterOperator] = useState<FilterOperator>("and")
   const [filterOption, setFilterOption] = useState<FilterOptionsState>([
@@ -174,10 +174,6 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     return { filters: columnFilters, operator: filterOperator }
   }, [columnFilters, filterOperator])
 
-  const currentSort = useMemo(() => {
-    return defaultSort.length ? defaultSort : sorting
-  }, [defaultSort, sorting])
-
   const enableMultiRowSelection = useMemo(() => {
     return multiRowSelection && enableRowSelection
   }, [multiRowSelection, enableRowSelection])
@@ -188,7 +184,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     state: {
       columnVisibility,
       globalFilter,
-      sorting: currentSort,
+      sorting,
       rowSelection,
       pagination: {
         pageIndex,
@@ -233,6 +229,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   })
 
   useEffect(() => {
+    if ("defaultSort" in props && defaultSort) {
+      setSorting(defaultSort)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultSort])
+
+  useEffect(() => {
     if (!enableMultiRowSelection) {
       if (rowSelection && Object.keys(rowSelection)?.length > 1) {
         const _selectedRow = { [Object.keys(rowSelection)[0]]: true }
@@ -240,12 +243,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         onRowSelectionChange?.(_selectedRow)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enableMultiRowSelection])
 
   useEffect(() => {
     if (!enableRowSelection) {
       table.resetRowSelection()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enableRowSelection])
 
   useEffect(() => {
@@ -260,6 +265,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize: isNumber(_pageSize) ? _pageSize : pageSize,
       })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagination])
 
   const downloadTableDataAsCsv = useCallback(() => {
@@ -292,7 +298,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     (pageNumber: number, pageSize: number) => {
       setPagination({ pageIndex: pageNumber - 1, pageSize })
     },
-    [table, setPagination],
+    [setPagination],
   )
 
   return (
