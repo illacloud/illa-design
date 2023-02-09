@@ -39,9 +39,17 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
       onClear,
       onPressEnter,
       readOnly,
+      bdRadius,
       showWordLimit,
       ...otherProps
     } = props
+
+    let borderList = bdRadius?.split("") ?? ["8px", "8px", "8px", "8px"]
+    if (borderList.length == 2) {
+      borderList = [borderList[0], borderList[1], borderList[0], borderList[1]]
+    } else if (borderList.length == 3) {
+      borderList = [borderList[0], borderList[1], borderList[2], borderList[1]]
+    }
 
     const [finalError, setFinalError] = useMergeValue(false, {
       defaultValue: false,
@@ -128,6 +136,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
                   finalError,
                   false,
                   false,
+                  borderList,
                 )
               : applyInputStyle(
                   "medium",
@@ -136,6 +145,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
                   finalError,
                   false,
                   false,
+                  borderList,
                 ),
             textareaStyle,
           ]}

@@ -44,7 +44,12 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     ...otherProps
   } = props
 
-  const borderList = bdRadius?.split("") ?? ["8px", "8px", "8px", "8px"]
+  let borderList = bdRadius?.split("") ?? ["8px", "8px", "8px", "8px"]
+  if (borderList.length == 2) {
+    borderList = [borderList[0], borderList[1], borderList[0], borderList[1]]
+  } else if (borderList.length == 3) {
+    borderList = [borderList[0], borderList[1], borderList[2], borderList[1]]
+  }
 
   const [finalValue, setFinalValue] = useMergeValue<
     string | number | ReactNode
