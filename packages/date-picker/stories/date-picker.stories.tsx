@@ -1,11 +1,12 @@
 import { Meta, StoryFn } from "@storybook/react"
-import { DatePicker, DatePickerProps } from "../src"
+import { SingleDatePicker } from "../src/signle-date-picker"
+import { SingleDatePickerProps } from "../src/interface"
 
 export default {
   title: "DATA INPUT/DatePicker",
-  component: DatePicker,
+  component: SingleDatePicker,
 } as Meta
 
-export const Basic: StoryFn<DatePickerProps> = (args) => {
-  return <DatePicker {...args} />
+export const DatePickerWithInput: StoryFn<SingleDatePickerProps> = (args) => {
+  return <SingleDatePicker {...args} showTime />
 }

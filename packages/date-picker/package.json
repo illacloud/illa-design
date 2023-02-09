@@ -44,11 +44,17 @@
   },
   "dependencies": {
     "@illa-design/system": "workspace:*",
-    "@illa-design/theme": "workspace:*"
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/trigger": "workspace:*",
+    "@illa-design/config-provider": "workspace:*",
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/button": "workspace:*",
+    "@illa-design/time-picker": "workspace:*",
+    "dayjs": "^1.11.7"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.10.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5"
+    "react-dom": "^18.2.0"
   }
 }
