@@ -3,6 +3,7 @@ import { TriggerPosition, TriggerProps } from "@illa-design/trigger"
 import { Dayjs } from "dayjs"
 import { InputColorScheme, InputSize } from "./input/interface"
 import { TimePickerProps, RangePickerProps } from "@illa-design/time-picker"
+import { BoxProps } from "@illa-design/theme"
 
 export type DatePickerModeType = "date" | "month" | "week" | "year" | "quarter"
 export type DatePickerValue = number | string | Date | Dayjs
@@ -24,7 +25,7 @@ export interface DisabledTimeProps {
   disabledSeconds?: () => number[]
 }
 
-export interface PublicPickerProps {
+export interface PublicDatePickerProps extends BoxProps {
   allowClear?: boolean
   dayStartOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6
   position?: TriggerPosition
@@ -63,7 +64,7 @@ export interface PublicPickerProps {
   inputSuffix?: ReactNode
 }
 
-export interface SinglePickerProps extends PublicPickerProps {
+export interface SinglePickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string
@@ -72,7 +73,7 @@ export interface SinglePickerProps extends PublicPickerProps {
   mode?: DatePickerModeType
 }
 
-export interface SingleYearPickerProps extends PublicPickerProps {
+export interface SingleYearPickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string
@@ -80,7 +81,7 @@ export interface SingleYearPickerProps extends PublicPickerProps {
   value?: DatePickerValue
 }
 
-export interface SingleWeekPickerProps extends PublicPickerProps {
+export interface SingleWeekPickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string
@@ -89,7 +90,7 @@ export interface SingleWeekPickerProps extends PublicPickerProps {
   value?: DatePickerValue
 }
 
-export interface SingleDatePickerProps extends PublicPickerProps {
+export interface SingleDatePickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string | ((value: Dayjs) => string)
@@ -107,7 +108,7 @@ export interface SingleDatePickerProps extends PublicPickerProps {
   disabledTime?: (current?: Dayjs, type?: "start" | "end") => DisabledTimeProps
 }
 
-export interface SingleMonthPickerProps extends PublicPickerProps {
+export interface SingleMonthPickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string
@@ -116,7 +117,7 @@ export interface SingleMonthPickerProps extends PublicPickerProps {
   value?: DatePickerValue
 }
 
-export interface SingleQuarterPickerProps extends PublicPickerProps {
+export interface SingleQuarterPickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string
@@ -126,7 +127,7 @@ export interface SingleQuarterPickerProps extends PublicPickerProps {
 
 export interface RangeDatePickerProps
   extends Omit<
-    PublicPickerProps,
+    PublicDatePickerProps,
     | "onChange"
     | "onSelect"
     | "onOk"

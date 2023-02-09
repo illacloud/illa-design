@@ -1,4 +1,12 @@
-import { ChangeEvent, FC, useRef, useState, MouseEvent, useEffect } from "react"
+import {
+  ChangeEvent,
+  FC,
+  useRef,
+  useState,
+  MouseEvent,
+  useEffect,
+  forwardRef,
+} from "react"
 import {
   GetHeaderOperationsFun,
   DatePickerModeType,
@@ -22,8 +30,12 @@ import {
 import { CalendarIcon } from "@illa-design/icon"
 import { BasicFooterSection } from "./panels/basic-footer-section"
 import { MonthPickerPanel } from "./panels/month"
+import { applyBoxStyle } from "@illa-design/theme"
 
-export const SingleMonthPicker: FC<SingleMonthPickerProps> = (props) => {
+export const SingleMonthPicker = forwardRef<
+  HTMLDivElement,
+  SingleMonthPickerProps
+>((props, ref) => {
   const {
     allowClear = true,
     placeholder,
@@ -170,7 +182,7 @@ export const SingleMonthPicker: FC<SingleMonthPickerProps> = (props) => {
   }
 
   function onClickConfirmBtn() {
-    const pv = getLocaleDayjsValue(panelValue, "en")
+    const pv = getLocaleDayjsValue(panelValue, "en-us")
     onConfirmValue()
     onOk && onOk(pv && pv.format(format), pv)
   }
@@ -185,8 +197,8 @@ export const SingleMonthPicker: FC<SingleMonthPickerProps> = (props) => {
     setInputValue(undefined)
     setHoverPlaceholderValue(undefined)
     const localTime = getLocaleDayjsValue(
-      toLocal(date as Dayjs, utcOffset, timezone).locale("en"),
-      "en",
+      toLocal(date as Dayjs, utcOffset, timezone).locale("en-us"),
+      "en-us",
     )
     onSelect &&
       onSelect(
@@ -277,7 +289,7 @@ export const SingleMonthPicker: FC<SingleMonthPickerProps> = (props) => {
   }
 
   function onSelectNow() {
-    const now = getLocaleDayjsValue(getNow(utcOffset, timezone), "en")
+    const now = getLocaleDayjsValue(getNow(utcOffset, timezone), "en-us")
     handlePickerValueChange(now)
     onHandleSelect(now?.format(format), now)
   }
@@ -338,9 +350,10 @@ export const SingleMonthPicker: FC<SingleMonthPickerProps> = (props) => {
         popupVisible={mergedPopupVisible}
         colorScheme="white"
         showArrow={false}
+        withoutPadding
         {...triggerProps}
       >
-        <span>
+        <div css={applyBoxStyle(props)} ref={ref}>
           <DateInput
             ref={refInput}
             placeholder={placeholder as string | undefined}
@@ -360,8 +373,10 @@ export const SingleMonthPicker: FC<SingleMonthPickerProps> = (props) => {
             editable={editable}
             suffixIcon={suffixIcon}
           />
-        </span>
+        </div>
       </Trigger>
     </PickerContext.Provider>
   )
-}
+})
+
+SingleMonthPicker.displayName = "SingleMonthPicker"

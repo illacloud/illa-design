@@ -65,7 +65,7 @@ export const enUS = {
     year: "Year",
     month: "Month",
     day: "Day",
-    today: "today",
+    today: "Today",
     week: "Week",
     Monday: "Mon",
     Tuesday: "Tue",

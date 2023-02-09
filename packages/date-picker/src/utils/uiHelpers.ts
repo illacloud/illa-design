@@ -1,9 +1,13 @@
-import dayjs, { Dayjs } from "dayjs"
+import { Dayjs } from "dayjs"
 import { RowType } from "../panels/interface"
-import { getSortedDayjsArray, isArray, isInRange } from "@illa-design/system"
+import {
+  getNow,
+  getSortedDayjsArray,
+  isArray,
+  isInRange,
+} from "@illa-design/system"
 import { getAvailableDayjsLength, getIsRangeStartOrEnd } from "./dateHelper"
-import { DatePickerModeType } from "../interface"
-import { DatePickerValue } from "../interface"
+import { DatePickerModeType, DatePickerValue } from "../interface"
 
 function getDateValue(date?: DatePickerValue[], index?: number) {
   if (!date) {
@@ -73,16 +77,19 @@ export const getCellStatus = (
   const isInView = !cellDateObj.isPrev && !cellDateObj.isNext
   const selected =
     value && isSameTime(cellDateObj.time as Dayjs, value as Dayjs)
-  let isToday = isSameTime(cellDateObj.time as Dayjs, dayjs())
+  let isToday = isSameTime(
+    cellDateObj.time as Dayjs,
+    getNow(utcOffset, timezone),
+  )
   const checkIsInView = mode !== "week" ? isInView : true
 
   if (mode === "week") {
-    isToday = dayjs().isSame(cellDateObj.time, "date")
+    isToday = getNow(utcOffset, timezone).isSame(cellDateObj.time, "date")
   }
 
   if (mode === "quarter") {
     // @ts-ignore
-    isToday = dayjs().isSame(cellDateObj.time, "quarter")
+    isToday = getNow(utcOffset, timezone).isSame(cellDateObj.time, "quarter")
   }
 
   const isRangeStart = getIsRangeStartOrEnd(

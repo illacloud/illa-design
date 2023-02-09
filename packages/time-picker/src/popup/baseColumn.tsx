@@ -103,6 +103,7 @@ export const BaseColumn: FC<TimeColumnProps> = (props) => {
 
   return (
     <div
+      className="time-list"
       css={listStyle}
       ref={scrollContainerRef}
       onWheel={scrollSticky ? onScrollList : undefined}

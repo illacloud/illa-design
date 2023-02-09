@@ -24,7 +24,7 @@ export const WeekPickerPanel: FC<WeekPickerPanelProps> = (props) => {
     (current: Dayjs, target: Dayjs) =>
       current
         .locale({
-          ...dayjsPro.Ls[localeName || "en"],
+          ...dayjsPro.Ls[localeName || "en-us"],
           weekStart: 0,
         })
         .isSame(target, "week"),

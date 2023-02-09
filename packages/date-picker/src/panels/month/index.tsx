@@ -6,7 +6,7 @@ import {
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
-import dayjs, { Dayjs } from "dayjs"
+import { Dayjs } from "dayjs"
 import { padStart } from "../../utils/pad"
 import { BasicBodySection } from "../basic-body-section"
 import { monthPanelStyle } from "./style"
@@ -65,7 +65,7 @@ export const MonthPickerPanel: FC<MonthPickerPanelProps> = (props) => {
     const showYear = pageShowDate ? pageShowDate.year() : dayjsPro().year()
     const months = MONTHS.map((month, index) => ({
       name: DATE_PICKER_LOCALE?.[month],
-      time: dayjs(
+      time: dayjsPro(
         `${showYear}-${padStart(index + 1, 2, "0")}`,
         "YYYY-MM",
       ).endOf("month"),
