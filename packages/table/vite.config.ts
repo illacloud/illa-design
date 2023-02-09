@@ -36,6 +36,7 @@ export default defineConfig({
       external: [
         "react",
         "react-dom",
+        "react-use",
         "@emotion/react",
         "framer-motion",
         "@illa-design/icon",
@@ -58,6 +59,7 @@ export default defineConfig({
         globals: {
           react: "React",
           "react-dom": "ReactDom",
+          "react-use": "react-use",
           "@emotion/react": "@emotion/react",
           "framer-motion": "framer-motion",
           "@illa-design/icon": "@illa-design/icon",

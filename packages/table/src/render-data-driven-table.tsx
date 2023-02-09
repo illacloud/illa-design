@@ -5,7 +5,14 @@ import {
   TableContextProps,
   TableProps,
 } from "./interface"
-import { ReactElement, useCallback, useEffect, useMemo, useState } from "react"
+import {
+  ReactElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -55,6 +62,7 @@ import { TFoot } from "./tfoot"
 import { Button } from "@illa-design/button"
 import { Pagination } from "@illa-design/pagination"
 import { TableFilter } from "./table-filter"
+import { useClickAway } from "react-use"
 
 export function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -82,6 +90,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     pagination,
     multiRowSelection = false,
     enableRowSelection = true,
+    clickOutsideToResetRowSelect,
     checkAll = true,
     download,
     filter,
@@ -104,6 +113,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     showFooter,
   } as TableContextProps
 
+  const containerRef = useRef<HTMLDivElement>(null)
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [filterOperator, setFilterOperator] = useState<FilterOperator>("and")
@@ -215,6 +225,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     manualPagination: overFlow === "scroll",
   })
 
+  useClickAway(containerRef, () => {
+    // when multiRowSelection is false, click outside the table, reset the row selection
+    if (clickOutsideToResetRowSelect && !multiRowSelection) {
+      table.resetRowSelection()
+    }
+  })
+
   useEffect(() => {
     if (!enableMultiRowSelection) {
       if (rowSelection && Object.keys(rowSelection)?.length > 1) {
@@ -280,6 +297,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   return (
     <div
+      ref={containerRef}
       css={[
         applyContainerStyle(),
         applyBoxStyle(props),
