@@ -86,6 +86,9 @@ export const enUS = {
     October: "October",
     November: "November",
     December: "December",
+    okText: "OK",
+    nowText: "Now",
+    timeText: "Time",
   },
   modal: {
     okText: "OK",
