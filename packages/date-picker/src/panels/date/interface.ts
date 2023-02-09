@@ -1,5 +1,9 @@
 import { Dayjs } from "dayjs"
-import { PrivateCType, SingleDatePickerProps, ModeType } from "../../interface"
+import {
+  PrivateCType,
+  SingleDatePickerProps,
+  DatePickerModeType,
+} from "../../interface"
 
 export interface DatePickerPanelProps
   extends SingleDatePickerProps,
@@ -20,6 +24,6 @@ export interface DatePickerPanelProps
   index?: number
   timeValue?: Dayjs
   isTimePanel?: boolean
-  panelMode?: ModeType
-  setPanelMode?: (mode: ModeType) => void
+  panelMode?: DatePickerModeType
+  setPanelMode?: (mode: DatePickerModeType) => void
 }

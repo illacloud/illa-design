@@ -1,7 +1,7 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/theme"
 import { CellStatus } from "../utils/uiHelpers"
-import { ModeType } from "../interface"
+import { DatePickerModeType } from "../interface"
 
 export const weekListHeaderStyle = css`
   display: flex;
@@ -184,7 +184,7 @@ export const applyDateCellStyle = ({
 }
 
 export type DateValueCellSelectedArg = CellStatus & {
-  mode: ModeType
+  mode: DatePickerModeType
 }
 export const applyDateValueCellStyle = ({
   isDisabled,

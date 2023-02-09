@@ -23,7 +23,7 @@ import {
 import { YearPickerPanel } from "../year"
 import { MonthPickerPanel } from "../month"
 import { dayjsPro, getDayjsValue, isObject } from "@illa-design/system"
-import { GetHeaderOperationsFun, ModeType } from "../../interface"
+import { GetHeaderOperationsFun, DatePickerModeType } from "../../interface"
 import { TimePickerPopup } from "@illa-design/time-picker"
 import {
   ConfigProviderContext,
@@ -91,7 +91,7 @@ export const DatePickerPanel: FC<DatePickerPanelProps> = (props) => {
   )
 
   const onChangePanel = useCallback(
-    (mode: ModeType) => {
+    (mode: DatePickerModeType) => {
       setPanelMode?.(mode)
     },
     [setPanelMode],

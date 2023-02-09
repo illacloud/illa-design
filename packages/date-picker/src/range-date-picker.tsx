@@ -9,7 +9,7 @@ import {
 } from "react"
 import {
   GetHeaderOperationsFun,
-  ModeType,
+  DatePickerModeType,
   RangeDatePickerProps,
 } from "./interface"
 import { getFormat } from "./utils/uiHelpers"
@@ -134,7 +134,10 @@ export const RangeDatePicker: FC<RangeDatePickerProps> = (props) => {
   const [popupVisible, setPopupVisible] = useState<boolean>(
     !!props.popupVisible,
   )
-  const [panelModes, setPanelModes] = useState<ModeType[]>([mode, mode])
+  const [panelModes, setPanelModes] = useState<DatePickerModeType[]>([
+    mode,
+    mode,
+  ])
   const [isTimePanel, setIsTimePanel] = useState<boolean>(false)
 
   const mergedPopupVisible =
@@ -199,7 +202,10 @@ export const RangeDatePicker: FC<RangeDatePickerProps> = (props) => {
     )
   }
 
-  function isSamePanel(innerValue: Dayjs[] | undefined, pickerMode: ModeType) {
+  function isSamePanel(
+    innerValue: Dayjs[] | undefined,
+    pickerMode: DatePickerModeType,
+  ) {
     if (
       innerValue &&
       innerValue.length === 2 &&
@@ -652,7 +658,7 @@ export const RangeDatePicker: FC<RangeDatePickerProps> = (props) => {
     setFixedPageShowDates(newPageShowDates)
   }
 
-  function getHeaderOperations(pickerMode: ModeType = mode) {
+  function getHeaderOperations(pickerMode: DatePickerModeType = mode) {
     if (pickerMode === "date" || pickerMode === "week") {
       return {
         onPrev: () => changePageShowDates("prev", "month"),

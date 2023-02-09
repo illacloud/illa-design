@@ -1,5 +1,9 @@
 import { DayjsPro } from "@illa-design/system"
-import { TimePickerProps, RangePickerProps, CalendarValue } from "../interface"
+import {
+  TimePickerProps,
+  RangePickerProps,
+  TimePickerValue,
+} from "../interface"
 
 type ListItem = {
   label?: string
@@ -40,7 +44,7 @@ export interface TimePickerPopupProps extends TimePickerProps {
   confirmBtnDisabled?: boolean
   onConfirmValue?: (value: DayjsPro) => void
   isRangePicker?: boolean
-  valueShow?: CalendarValue
+  valueShow?: TimePickerValue
   setValueShow?: (valueShow: DayjsPro) => void
   hideFooter?: boolean
 }

@@ -1,6 +1,6 @@
 import { FC, useCallback, useContext, useMemo } from "react"
 import { MonthPickerPanelProps } from "./interface"
-import { ModeType } from "../../interface"
+import { DatePickerModeType } from "../../interface"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
@@ -79,7 +79,7 @@ export const MonthPickerPanel: FC<MonthPickerPanelProps> = (props) => {
   }, [DATE_PICKER_LOCALE, pageShowDate])
 
   const onChangePanel = useCallback(
-    (mode: ModeType) => {
+    (mode: DatePickerModeType) => {
       setPanelMode?.(mode)
     },
     [setPanelMode],

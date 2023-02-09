@@ -2,10 +2,10 @@ import dayjs, { Dayjs } from "dayjs"
 import { RowType } from "../panels/interface"
 import { getSortedDayjsArray, isArray, isInRange } from "@illa-design/system"
 import { getAvailableDayjsLength, getIsRangeStartOrEnd } from "./dateHelper"
-import { ModeType } from "../interface"
-import { CalendarValue } from "../interface"
+import { DatePickerModeType } from "../interface"
+import { DatePickerValue } from "../interface"
 
-function getDateValue(date?: CalendarValue[], index?: number) {
+function getDateValue(date?: DatePickerValue[], index?: number) {
   if (!date) {
     return undefined
   }
@@ -15,8 +15,8 @@ function getDateValue(date?: CalendarValue[], index?: number) {
 }
 
 export const getDependency = (
-  rangeValues?: CalendarValue[],
-  valueShowHover?: CalendarValue[],
+  rangeValues?: DatePickerValue[],
+  valueShowHover?: DatePickerValue[],
 ) => {
   const selectedLength = getAvailableDayjsLength(rangeValues)
   const hoverLength = getAvailableDayjsLength(valueShowHover)
@@ -53,12 +53,12 @@ export interface CellStatus {
 export const getCellStatus = (
   cellDateObj: RowType,
   disabled: boolean,
-  mode: ModeType,
+  mode: DatePickerModeType,
   isSameTime: (current: Dayjs, target: Dayjs) => boolean,
   hideNotInViewDates?: boolean,
-  value?: CalendarValue,
-  rangeValues?: CalendarValue[],
-  valueShowHover?: CalendarValue[],
+  value?: DatePickerValue,
+  rangeValues?: DatePickerValue[],
+  valueShowHover?: DatePickerValue[],
   utcOffset?: number,
   timezone?: string,
 ): CellStatus => {
@@ -187,7 +187,7 @@ export const getCellStatus = (
 }
 
 export const getFormat = (
-  mode: ModeType,
+  mode: DatePickerModeType,
   format?: string | ((value: Dayjs) => string),
   showTime?: boolean,
 ) => {

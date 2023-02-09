@@ -1,6 +1,6 @@
 import { Dayjs } from "dayjs"
 import { ReactNode, MouseEvent } from "react"
-import { CalendarValue, ModeType } from "../interface"
+import { DatePickerValue, DatePickerModeType } from "../interface"
 
 export interface RowType {
   time?: Dayjs
@@ -17,8 +17,8 @@ export interface BasicPanelBodyProps {
   onMouseLeaveCell?: (date: Dayjs, disabled: boolean) => void
   dateRender?: (currentDate: Dayjs) => ReactNode
   rows?: RowType[][]
-  value?: CalendarValue
-  rangeValues?: CalendarValue[]
+  value?: DatePickerValue
+  rangeValues?: DatePickerValue[]
   isSameTime: (current: Dayjs, target: Dayjs) => boolean
   mode?: "date" | "week" | "month" | "year" | "quarter"
   originMode?: "date" | "week" | "month" | "year" | "quarter"
@@ -43,9 +43,9 @@ export interface BasicRowProps
     | "valueShowHover"
     | "format"
   > {
-  mode: ModeType
-  value?: CalendarValue
-  rangeValues?: CalendarValue[]
+  mode: DatePickerModeType
+  value?: DatePickerValue
+  rangeValues?: DatePickerValue[]
 }
 
 export interface WeekListHeaderProps {
@@ -59,9 +59,9 @@ export interface BasicHeaderSectionProps {
   onNext?: () => void
   onSuperPrev?: () => void
   onSuperNext?: () => void
-  mode?: ModeType
+  mode?: DatePickerModeType
   value?: Dayjs
-  onChangePanel?: (mode: ModeType) => void
+  onChangePanel?: (mode: DatePickerModeType) => void
   superNextIcon?: ReactNode
   superPrevIcon?: ReactNode
   nextIcon?: ReactNode
@@ -81,6 +81,6 @@ export interface BasicFooterProps {
   onSelectNow?: () => void
   showNowBtn?: boolean
   extra?: ReactNode
-  mode?: ModeType
+  mode?: DatePickerModeType
   placeLeft?: boolean
 }

@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 import {
   PrivateCType,
   SingleQuarterPickerProps,
-  ModeType,
+  DatePickerModeType,
 } from "../../interface"
 
 export interface QuarterPickerPanelProps
@@ -17,6 +17,6 @@ export interface QuarterPickerPanelProps
   isRangePicker?: boolean
   onSuperPrev?: () => void
   onSuperNext?: () => void
-  panelMode?: ModeType
-  setPanelMode?: (mode: ModeType) => void
+  panelMode?: DatePickerModeType
+  setPanelMode?: (mode: DatePickerModeType) => void
 }
