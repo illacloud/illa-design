@@ -28,6 +28,10 @@ export const leftIconStyle = css`
   font-size: 16px;
 `
 
+export const leftIconSizeStyle = css`
+  flex-shrink: 0;
+`
+
 export const titleContainerStyle = css`
   display: flex;
   flex-direction: row;
