@@ -1050,6 +1050,7 @@ importers:
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
       react-transition-group: ^4.4.5
+      uuid: ^8.3.2
     dependencies:
       '@illa-design/button': link:../button
       '@illa-design/config-provider': link:../config-provider
@@ -1062,6 +1063,7 @@ importers:
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
       react-transition-group: 4.4.5
+      uuid: 8.3.2
 
 packages:
 

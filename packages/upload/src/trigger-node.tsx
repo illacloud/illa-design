@@ -6,6 +6,7 @@ import {
   cloneElement,
   useEffect,
   KeyboardEvent,
+  DragEvent,
   useCallback,
 } from "react"
 import { Button } from "@illa-design/button"
@@ -78,7 +79,7 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
   }, [dragEnterCount])
 
   const handleDragLeave = useCallback(
-    (e: React.DragEvent) => {
+    (e: DragEvent) => {
       e.preventDefault()
       if (dragEnterCount === 0) {
         setIsDragging(false)
@@ -91,7 +92,7 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
   )
 
   const handleDragOver = useCallback(
-    (e: React.DragEvent) => {
+    (e: DragEvent) => {
       e.preventDefault()
       if (!isDragging) {
         setIsDragging(true)
@@ -102,7 +103,7 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
   )
 
   const handleDrop = useCallback(
-    (e: React.DragEvent) => {
+    (e: DragEvent) => {
       e.preventDefault()
       if (!drag) {
         return

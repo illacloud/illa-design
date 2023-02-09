@@ -24,8 +24,12 @@ export const enUS = {
     go: "Go to ",
   },
   upload: {
+    start: "Start",
+    cancel: "Cancel",
     upload: "Upload",
-    reupload: "Click to reupload",
+    delete: "Delete",
+    preview: "Preview",
+    retry: "Click to retry",
     dragTip: "Drag and drop the file",
     selectFile: "Select File",
     beginUpload: "Upload File",

@@ -24,17 +24,28 @@ export const uploadListItemStyle = css`
 `
 
 export const getTextItemContainerStyle = (listType: string = "text") => {
+  const paddingStyle =
+    listType === "text"
+      ? css`
+          padding: 7px 12px;
+        `
+      : css`
+          padding: 12px;
+        `
+
   const basicStyle = css`
     display: flex;
     gap: 12px;
+    box-sizing: border-box;
+    ${paddingStyle};
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
   `
   if (listType === "text") {
     return css`
       ${basicStyle};
-      width: 100%;
       min-height: 36px;
     `
   }
@@ -44,23 +55,20 @@ export const getTextItemContainerStyle = (listType: string = "text") => {
   `
 }
 
+export const textItemOperationIconStyle = css`
+  display: flex;
+  gap: 16px;
+  flex-shrink: 0;
+`
+
 export const getTextItemContentContainerStyle = (listType: string = "text") => {
-  let paddingStyle =
-    listType === "text"
-      ? css`
-          padding: 7px 10px 7px 10px;
-        `
-      : css`
-          padding: 12px 24px 12px 12px;
-        `
   return css`
     display: flex;
-    ${paddingStyle};
     flex-wrap: nowrap;
     overflow: hidden;
+    gap: 12px;
     width: 100%;
     box-sizing: border-box;
-    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
     border-radius: 2px;
   `
 }
@@ -101,11 +109,15 @@ export const textItemMainContentStyle = css`
 
 export const textItemIconStyle = css`
   width: 16px;
-  height: 16px;
+  height: 20px;
   display: flex;
   justify-content: center;
   align-self: center;
   align-items: center;
+  & > svg {
+    width: 100%;
+    height: 100%;
+  }
 `
 
 export const getTextItemNameStyle = (status: string = "init") => {
@@ -116,7 +128,6 @@ export const getTextItemNameStyle = (status: string = "init") => {
     `
   }
   return css`
-    margin-left: 12px;
     text-decoration: none;
     font-size: 14px;
     overflow: hidden;
@@ -138,12 +149,14 @@ export const textItemDeleteIconStyle = css`
   align-self: center;
   color: ${globalColor(`--${illaPrefix}-gray-05`)};
   cursor: pointer;
+  width: 16px;
+  height: 16px;
   &:hover {
     color: ${globalColor(`--${illaPrefix}-gray-02`)};
   }
   & > svg {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
   }
 `
 
@@ -262,6 +275,7 @@ export const getDragContainerStyle = (disabled: boolean) => {
   if (disabled) {
     return css`
       ${basicStyle};
+      cursor: not-allowed;
       background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
       color: ${globalColor(`--${illaPrefix}-gray-05`)};
     `
@@ -320,17 +334,22 @@ export const successIconStyle = css`
   color: ${globalColor(`--${illaPrefix}-green-03`)};
   display: flex;
   align-items: center;
+  width: 16px;
+  height: 16px;
   & > svg {
-    width: 12px;
-    height: 12px;
+    width: 100%;
+    height: 100%;
   }
 `
 
 export const uploadProgressStatus = css`
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  //line-height: 16px;
-  //height: 16px;
+  wdith: 16px;
+  height: 16px;
 `
 
 export const uploadProgressStyle = css`
@@ -338,7 +357,12 @@ export const uploadProgressStyle = css`
   transform: translateX(-50%) translateY(-50%);
   top: 50%;
   left: 50%;
-  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
   color: ${globalColor(`--${illaPrefix}-white-03`)};
 `
 
@@ -453,7 +477,6 @@ export const errorListItemStyle = css`
   width: 100%;
   height: 100%;
   color: ${globalColor(`--${illaPrefix}-red-03`)};
-  border: 1px solid ${globalColor(`--${illaPrefix}-red-03`)};
   border-radius: 4px;
   display: flex;
   align-items: center;

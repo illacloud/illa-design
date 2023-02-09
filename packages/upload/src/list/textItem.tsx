@@ -12,6 +12,7 @@ import {
   textItemIconStyle,
   textItemImageStyle,
   textItemMainContentStyle,
+  textItemOperationIconStyle,
   textItemProgressStyle,
   textItemStyle,
 } from "../style"
@@ -75,34 +76,34 @@ const TextItem = (props: ListItemProps) => {
             {actionIcons.fileIcon || <Icon />}
           </span>
         )}
-        <div css={textItemStyle}>
-          <div css={textItemMainContentStyle}>
-            {imageUrl ? (
-              <a
-                href={imageUrl}
-                target="_blank"
-                rel="noreferrer"
-                css={getTextItemNameStyle(file.status)}
-              >
-                {fileName}
-              </a>
-            ) : (
-              <span css={getTextItemNameStyle(file.status)}>{fileName}</span>
-            )}
-          </div>
-          <div css={textItemProgressStyle}>
-            <UploadProgress
-              file={file}
-              progressProps={props.progressProps}
-              onReupload={props.onReupload}
-              onUpload={props.onUpload}
-              onAbort={props.onAbort}
-              {...actionIcons}
-            />
-          </div>
+        <div css={textItemMainContentStyle}>
+          {imageUrl ? (
+            <a
+              href={imageUrl}
+              target="_blank"
+              rel="noreferrer"
+              css={getTextItemNameStyle(file.status)}
+            >
+              {fileName}
+            </a>
+          ) : (
+            <span css={getTextItemNameStyle(file.status)}>{fileName}</span>
+          )}
         </div>
       </div>
-      {deleteIcon}
+      <div css={textItemOperationIconStyle}>
+        <div css={textItemProgressStyle}>
+          <UploadProgress
+            file={file}
+            progressProps={props.progressProps}
+            onReupload={props.onReupload}
+            onUpload={props.onUpload}
+            onAbort={props.onAbort}
+            {...actionIcons}
+          />
+        </div>
+        {deleteIcon}
+      </div>
     </div>
   )
 }

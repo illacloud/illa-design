@@ -24,6 +24,11 @@ export const jaJP = {
     go: "に行く",
   },
   upload: {
+    start: "始める",
+    cancel: "キャンセル",
+    delete: "消去",
+    preview: "プレビュー",
+    retry: "クリックして再試行",
     upload: "アップロード",
     dragTip: "ここにファイルをドラッグ アンド ドロップします",
     dragHover: "ファイルを解放してアップロードを開始します",

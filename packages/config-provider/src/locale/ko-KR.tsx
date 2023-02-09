@@ -24,6 +24,11 @@ export const koKR = {
     go: "가다",
   },
   upload: {
+    start: "시작",
+    cancel: "취소",
+    delete: "삭제",
+    preview: "시사",
+    retry: "다시 시도하려면 클릭하세요",
     upload: "업로드",
     dragTip: "파일을 여기로 드래그 앤 드래그",
     dragHover: "파일을 해제하고 업로드 시작",

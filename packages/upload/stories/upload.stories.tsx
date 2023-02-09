@@ -45,6 +45,7 @@ const Template: Story<UploadProps> = (props) => {
           action={"https://www.mocky.io/v2/5cc8019d300000980a055e76"}
           autoUpload={true}
           multiple
+          disabled
           drag={drag}
           listType={listType}
           defaultFileList={[
@@ -52,6 +53,16 @@ const Template: Story<UploadProps> = (props) => {
               uid: "-5",
               name: "image.png",
               status: "error",
+            },
+            {
+              uid: "-3",
+              name: "image.png",
+              status: "uploading",
+            },
+            {
+              uid: "-1",
+              name: "image.png",
+              status: "init",
             },
           ]}
         />
