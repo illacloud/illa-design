@@ -1,9 +1,9 @@
 {
-  "name": "@illa-design/table",
-  "version": "1.0.12",
-  "description": "Illa Design Table.",
+  "name": "@illa-design/time-picker",
+  "version": "0.0.0",
+  "description": "Illa Design DatePicker.",
   "keywords": [
-    "table",
+    "time-picker",
     "react",
     "component"
   ],
@@ -30,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/illacloud/illa-design.git",
-    "directory": "packages/table"
+    "directory": "packages/time-picker"
   },
   "bugs": {
     "url": "https://github.com/illacloud/illa-design/issues"
@@ -38,28 +38,20 @@
   "scripts": {
     "build": "vite build"
   },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^10.0.1",
+    "@types/lodash.debounce": "^4.0.7",
+    "@vitejs/plugin-react-swc": "^3.0.1"
+  },
   "dependencies": {
-    "@illa-design/button": "workspace:*",
-    "@illa-design/checkbox": "workspace:*",
-    "@illa-design/empty": "workspace:*",
-    "@illa-design/icon": "workspace:*",
-    "@illa-design/input": "workspace:*",
-    "@illa-design/pagination": "workspace:*",
-    "@illa-design/select": "workspace:*",
-    "@illa-design/spin": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "@illa-design/trigger": "workspace:*",
-    "@tanstack/match-sorter-utils": "^8.1.1",
-    "@tanstack/react-table": "^8.5.11",
-    "chroma-js": "^2.1.2",
-    "react-fast-compare": "^3.2.0",
-    "react-use": "^17.4.0"
-  },
-  "devDependencies": {
-    "@rollup/plugin-typescript": "^10.0.1",
-    "@types/chroma-js": "^2.1.4",
-    "@vitejs/plugin-react-swc": "^3.0.1"
+    "@illa-design/config-provider": "workspace:*",
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/button": "workspace:*",
+    "lodash.debounce": "^4.0.8",
+    "dayjs": "^1.11.7"
   },
   "peerDependencies": {
     "@emotion/react": "^11.10.5",

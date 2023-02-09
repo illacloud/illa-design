@@ -64,6 +64,7 @@ export interface TableProps<D extends TableData, TValue>
   pagination?: PaginationProps
   multiRowSelection?: boolean
   enableRowSelection?: boolean
+  clickOutsideToResetRowSelect?: boolean
   checkAll?: boolean
   download?: boolean
   filter?: boolean

@@ -220,13 +220,17 @@ export const CombineHeader: StoryFn<TableProps<DemoData, string>> = (args) => {
     return c
   }, [])
   return (
-    <Table
-      data={data}
-      columns={columns}
-      download
-      filter
-      {...args}
-    />
+    <div>
+      <Table
+        data={data}
+        columns={columns}
+        download
+        filter
+        {...args}
+      />
+      <button>231</button>
+    </div>
+
   )
 }
 
