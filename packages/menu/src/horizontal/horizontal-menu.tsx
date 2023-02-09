@@ -176,14 +176,18 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
             <DropList
               w="100%"
               onClickItem={(
-                value: string,
+                value: string | number,
                 clickedNode: ReactNode,
                 event: MouseEvent,
               ) => {
-                onClickMenuItem?.(value, [item.value, value], event)
+                onClickMenuItem?.(
+                  value as string,
+                  [item.value, value as string],
+                  event,
+                )
                 if (selectedValues === undefined) {
-                  if (!finalSelectedValues.includes(value)) {
-                    setFinalSelectedValues([value])
+                  if (!finalSelectedValues.includes(value as string)) {
+                    setFinalSelectedValues([value as string])
                   }
                   if (!finalSelectedSubMenu.includes(item.value)) {
                     setFinalSelectedSubMenu([item.value])
