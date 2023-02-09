@@ -19,4 +19,5 @@ export interface QuarterPickerPanelProps
   onSuperNext?: () => void
   panelMode?: DatePickerModeType
   setPanelMode?: (mode: DatePickerModeType) => void
+  valueShowHover?: Dayjs[]
 }

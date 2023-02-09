@@ -20,4 +20,5 @@ export interface MonthPickerPanelProps
   panelMode?: DatePickerModeType
   setPanelMode?: (mode: DatePickerModeType) => void
   originMode?: DatePickerModeType
+  valueShowHover?: Dayjs[]
 }

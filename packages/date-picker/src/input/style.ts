@@ -73,6 +73,7 @@ export const inputBaseWrapperStyle = css`
   border-radius: 4px;
   box-sizing: border-box;
   transition: 0.2s ease-in-out;
+  width: 100%;
 `
 
 export const applyShowClearIconStyle = (showClearIcon?: boolean) => {

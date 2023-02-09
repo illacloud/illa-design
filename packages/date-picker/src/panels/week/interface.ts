@@ -18,4 +18,5 @@ export interface WeekPickerPanelProps
   localeName?: string
   panelMode?: DatePickerModeType
   setPanelMode?: (mode: DatePickerModeType) => void
+  valueShowHover?: Dayjs[]
 }

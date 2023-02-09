@@ -1,4 +1,12 @@
-import { ChangeEvent, FC, useRef, useState, MouseEvent, useEffect } from "react"
+import {
+  ChangeEvent,
+  FC,
+  useRef,
+  useState,
+  MouseEvent,
+  useEffect,
+  forwardRef,
+} from "react"
 import {
   GetHeaderOperationsFun,
   DatePickerModeType,
@@ -22,8 +30,12 @@ import {
 import { CalendarIcon } from "@illa-design/icon"
 import { BasicFooterSection } from "./panels/basic-footer-section"
 import { QuarterPickerPanel } from "./panels/quarter"
+import { applyBoxStyle } from "@illa-design/theme"
 
-export const SingleQuarterPicker: FC<SingleQuarterPickerProps> = (props) => {
+export const SingleQuarterPicker = forwardRef<
+  HTMLDivElement,
+  SingleQuarterPickerProps
+>((props, ref) => {
   const {
     allowClear = true,
     placeholder,
@@ -170,7 +182,7 @@ export const SingleQuarterPicker: FC<SingleQuarterPickerProps> = (props) => {
   }
 
   function onClickConfirmBtn() {
-    const pv = getLocaleDayjsValue(panelValue, "en")
+    const pv = getLocaleDayjsValue(panelValue, "en-us")
     onConfirmValue()
     onOk && onOk(pv && pv.format(format), pv)
   }
@@ -185,8 +197,8 @@ export const SingleQuarterPicker: FC<SingleQuarterPickerProps> = (props) => {
     setInputValue(undefined)
     setHoverPlaceholderValue(undefined)
     const localTime = getLocaleDayjsValue(
-      toLocal(date as Dayjs, utcOffset, timezone).locale("en"),
-      "en",
+      toLocal(date as Dayjs, utcOffset, timezone).locale("en-us"),
+      "en-us",
     )
     onSelect &&
       onSelect(
@@ -277,7 +289,7 @@ export const SingleQuarterPicker: FC<SingleQuarterPickerProps> = (props) => {
   }
 
   function onSelectNow() {
-    const now = getLocaleDayjsValue(getNow(utcOffset, timezone), "en")
+    const now = getLocaleDayjsValue(getNow(utcOffset, timezone), "en-us")
     handlePickerValueChange(now)
     onHandleSelect(now?.format(format), now)
   }
@@ -338,9 +350,10 @@ export const SingleQuarterPicker: FC<SingleQuarterPickerProps> = (props) => {
         popupVisible={mergedPopupVisible}
         colorScheme="white"
         showArrow={false}
+        withoutPadding
         {...triggerProps}
       >
-        <span>
+        <div css={applyBoxStyle(props)} ref={ref}>
           <DateInput
             ref={refInput}
             placeholder={placeholder as string | undefined}
@@ -360,8 +373,10 @@ export const SingleQuarterPicker: FC<SingleQuarterPickerProps> = (props) => {
             editable={editable}
             suffixIcon={suffixIcon}
           />
-        </span>
+        </div>
       </Trigger>
     </PickerContext.Provider>
   )
-}
+})
+
+SingleQuarterPicker.displayName = "SingleQuarterPicker"

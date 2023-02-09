@@ -70,6 +70,7 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           <WeekPickerPanel
             setPageShowDate={(d) => setRangePageShowDates?.(d ? [d, d] : [], 0)}
             onPrev={onPrev}
+            valueShowHover={valueShowHover}
             onSuperPrev={onSuperPrev}
             isRangePicker
             rangeValues={value}
@@ -89,6 +90,7 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           <WeekPickerPanel
             setPageShowDate={(d) => setRangePageShowDates?.(d ? [d, d] : [], 1)}
             onNext={onNext}
+            valueShowHover={valueShowHover}
             onSuperNext={onSuperNext}
             isRangePicker
             rangeValues={value}
@@ -133,6 +135,7 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
     return (
       <>
         <DatePickerPanel
+          valueShowHover={valueShowHover}
           onPrev={onPrev}
           onSuperPrev={onSuperPrev}
           isRangePicker
@@ -164,6 +167,7 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           }
         />
         <DatePickerPanel
+          valueShowHover={valueShowHover}
           onNext={onNext}
           onSuperNext={onSuperNext}
           isRangePicker
@@ -202,6 +206,7 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
     return (
       <>
         <MonthPickerPanel
+          valueShowHover={valueShowHover}
           onSuperPrev={onSuperPrev}
           isRangePicker
           rangeValues={value}
@@ -220,6 +225,7 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           }
         />
         <MonthPickerPanel
+          valueShowHover={valueShowHover}
           onSuperPrev={onSuperPrev}
           isRangePicker
           rangeValues={value}
@@ -245,6 +251,7 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
     return (
       <>
         <YearPickerPanel
+          valueShowHover={valueShowHover}
           onSuperPrev={onSuperPrev}
           isRangePicker
           rangeValues={value}
@@ -257,6 +264,7 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           pageShowDate={startShowDate}
         />
         <YearPickerPanel
+          valueShowHover={valueShowHover}
           onSuperNext={onSuperNext}
           isRangePicker
           rangeValues={value}
@@ -276,6 +284,7 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
     return (
       <>
         <QuarterPickerPanel
+          valueShowHover={valueShowHover}
           onSuperPrev={onSuperPrev}
           isRangePicker
           rangeValues={value}
@@ -294,6 +303,7 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           }
         />
         <QuarterPickerPanel
+          valueShowHover={valueShowHover}
           onSuperNext={onSuperNext}
           isRangePicker
           rangeValues={value}

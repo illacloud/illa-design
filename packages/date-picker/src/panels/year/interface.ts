@@ -17,4 +17,5 @@ export interface YearPickerPanelProps
   onSuperPrev?: () => void
   onSuperNext?: () => void
   originMode?: DatePickerModeType
+  valueShowHover?: Dayjs[]
 }

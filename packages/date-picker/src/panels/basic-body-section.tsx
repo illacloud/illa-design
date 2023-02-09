@@ -13,7 +13,6 @@ import {
 } from "./style"
 import { isDisabledDate } from "../utils/dateHelper"
 import { getCellStatus } from "../utils/uiHelpers"
-import { TimePicker } from "@illa-design/time-picker"
 
 export const BasicRowsSection: FC<BasicRowProps> = (props) => {
   const {
