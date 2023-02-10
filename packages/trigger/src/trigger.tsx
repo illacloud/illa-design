@@ -14,7 +14,7 @@ import {
   TriangleRight,
   TriangleTop,
 } from "./triangle"
-import { TriggerProviderContext } from "./triggerContext"
+import { TriggerProviderContext } from "./trigger-context"
 import { css } from "@emotion/react"
 import {
   autoUpdate,
@@ -23,6 +23,7 @@ import {
   hide,
   Middleware,
   offset,
+  safePolygon,
   size,
   useClick,
   useDismiss,
@@ -30,9 +31,9 @@ import {
   useFocus,
   useHover,
   useInteractions,
+  useMergeRefs,
   useRole,
-} from "@floating-ui/react-dom-interactions"
-import { mergeRefs } from "@illa-design/system"
+} from "@floating-ui/react"
 import { applyBoxStyle } from "@illa-design/theme"
 import { AnimatePresence, motion } from "framer-motion"
 import {
@@ -88,6 +89,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         setVisible(true)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const middleware = useMemo(() => {
@@ -101,14 +103,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
     if (autoAlignPopupWidth) {
       middleware.push(
         size({
-          apply({ rects }) {
-            if (autoAlignPopupWidth) {
-              if (tipsContainerRef?.current !== null) {
-                Object.assign(tipsContainerRef.current.style, {
-                  width: `${rects.reference.width}px`,
-                })
-              }
-            }
+          apply({ availableWidth, availableHeight, elements }) {
+            // Do things with the data, e.g.
+            Object.assign(elements.floating.style, {
+              width: `${childrenRef.current?.clientWidth}px`,
+            })
           },
         }),
       )
@@ -122,10 +121,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
       placement: position,
       open: finalVisible,
       onOpenChange: (v) => {
-        if (popupVisible === undefined) {
-          setVisible(v)
+        if (!disabled && finalVisible !== v) {
+          if (popupVisible === undefined) {
+            setVisible(v)
+          }
+          onVisibleChange?.(v)
         }
-        onVisibleChange?.(v)
       },
       middleware: middleware,
       whileElementsMounted: autoUpdate,
@@ -140,6 +141,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
         open: openDelay,
         close: closeDelay,
       },
+      handleClose: safePolygon({
+        restMs: 200,
+        buffer: 1,
+      }),
     }),
     useClick(context, {
       enabled: trigger === "click",
@@ -167,7 +172,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "top-start":
     case "top-end":
       centerNode = (
-        <div css={applyVerticalContainer}>
+        <div css={applyVerticalContainer(autoAlignPopupWidth)}>
           <div
             ref={tipsContainerRef}
             css={applyTipsText(
@@ -194,7 +199,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "bottom-start":
     case "bottom-end":
       centerNode = (
-        <div css={applyVerticalContainer}>
+        <div css={applyVerticalContainer(autoAlignPopupWidth)}>
           {showArrow && (
             <TriangleBottom
               w="8px"
@@ -221,7 +226,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "right-start":
     case "right-end":
       centerNode = (
-        <div css={applyHorizontalContainer}>
+        <div css={applyHorizontalContainer(autoAlignPopupWidth)}>
           {showArrow && (
             <TriangleRight
               w="4px"
@@ -248,7 +253,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "left-start":
     case "left-end":
       centerNode = (
-        <div css={applyHorizontalContainer}>
+        <div css={applyHorizontalContainer(autoAlignPopupWidth)}>
           <div
             ref={tipsContainerRef}
             css={applyTipsText(
@@ -275,7 +280,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const tipsNode = (
     <motion.div
-      css={applyMotionDiv()}
+      css={applyMotionDiv(autoAlignPopupWidth)}
       variants={applyAnimation(placement, showArrow)}
       initial="initial"
       animate="animate"
@@ -285,17 +290,26 @@ export const Trigger: FC<TriggerProps> = (props) => {
     </motion.div>
   )
 
+  const mergedRef = useMergeRefs([
+    reference,
+    (props.children as any).ref,
+    childrenRef,
+  ])
+
   return (
     <>
       {cloneElement(
         children as ReactElement,
         getReferenceProps({
           key: "illa-trigger",
-          ...(props.children as any).props,
-          ref: mergeRefs(reference, (props.children as any).ref, childrenRef),
+          ...(children as any).props,
+          ref: mergedRef,
           onContextMenu: (e) => {
-            if ((props.children as any).props.onContextMenu != undefined) {
-              ;(props.children as any).props.onContextMenu(e)
+            if (disabled) {
+              return
+            }
+            if ((children as any).props.onContextMenu != undefined) {
+              ;(children as any).props.onContextMenu(e)
             }
             if (trigger === "contextmenu") {
               e.preventDefault()
@@ -327,8 +341,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
             }
           },
           onClick: (e) => {
-            if ((props.children as any).props.onClick != undefined) {
-              ;(props.children as any).props.onClick(e)
+            if ((children as any).props.onClick != undefined) {
+              ;(children as any).props.onClick(e)
             }
             if (alignPoint && trigger === "click") {
               if (childrenRef.current != null) {
@@ -351,7 +365,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
       )}
       <FloatingPortal
         root={
-          _renderInBody ? document.body : childrenRef?.current || document.body
+          _renderInBody ? document.body : childrenRef?.current ?? document.body
         }
       >
         {!disabled && (

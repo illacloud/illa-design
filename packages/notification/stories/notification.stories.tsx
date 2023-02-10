@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Space, Button } from "@illa-design/react"
 import { Notification, NotificationProps } from "../src"
 import { useNotification } from "../src/hook"
@@ -41,7 +41,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<NotificationProps> = (args) => {
+const Template: StoryFn<NotificationProps> = (args) => {
   const notification = useNotification()
 
   return (

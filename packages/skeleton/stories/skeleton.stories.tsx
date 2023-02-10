@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { useState } from "react"
 import {
   Avatar,
@@ -14,7 +14,7 @@ export default {
   component: Skeleton,
 } as Meta
 
-const Template: Story<SkeletonProps> = (args) => {
+const Template: StoryFn<SkeletonProps> = (args) => {
   return <Skeleton {...args} />
 }
 

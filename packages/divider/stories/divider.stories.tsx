@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Divider, DividerProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -7,7 +7,7 @@ export default {
   component: Divider,
 } as Meta
 
-const Template: Story<DividerProps> = (props) => (
+const Template: StoryFn<DividerProps> = (props) => (
   <Divider h="200px" {...props} />
 )
 

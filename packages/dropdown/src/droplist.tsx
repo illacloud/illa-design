@@ -1,47 +1,37 @@
-import {
-  forwardRef,
-  createContext,
-  MouseEvent,
-  isValidElement,
-  Children,
-  cloneElement,
-} from "react"
-import { DropListComponent, DropListProps } from "./interface"
-import { DropListItem } from "./item"
+import { createContext, forwardRef, MouseEvent, ReactNode } from "react"
+import { DropListProps } from "./interface"
 import { applyListCss } from "./style"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { TriggerColorScheme } from "@illa-design/trigger"
 
 export const DropListContext = createContext<{
-  onClickItem?: (key: string, event: MouseEvent) => void
+  onClickItem?: (
+    key: string | number,
+    clickedNode: ReactNode,
+    event: MouseEvent,
+  ) => void
 }>({})
 
 export const DropList = forwardRef<HTMLDivElement, DropListProps>(
   (props, ref) => {
-    const { children, onClickItem, width, isDropList, ...otherProps } = props
+    const { children, onClickItem, ...otherProps } = props
 
     return (
-      <div ref={ref} css={applyListCss(width)} {...otherProps}>
+      <div
+        ref={ref}
+        css={[applyListCss(), applyBoxStyle(props)]}
+        {...deleteCssProps(otherProps)}
+      >
         <DropListContext.Provider
           value={{
             onClickItem,
           }}
         >
-          {Children.map(children, (item, index) => {
-            if (isValidElement(item)) {
-              return cloneElement(item, {
-                ...item.props,
-                _key: item.key || `$item-${index}`,
-              })
-            }
-            return item
-          })}
+          {children}
         </DropListContext.Provider>
       </div>
     )
   },
-) as DropListComponent
+)
 
 DropList.displayName = "DropList"
-DropList.Item = DropListItem
-DropList.defaultProps = {
-  isDropList: true,
-}

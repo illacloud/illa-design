@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Loading, LoadingProps } from "../src"
 
 export default {
@@ -6,7 +6,7 @@ export default {
   component: Loading,
 } as Meta
 
-const Template: Story<LoadingProps> = (args) => {
+const Template: StoryFn<LoadingProps> = (args) => {
   return <Loading {...args} />
 }
 

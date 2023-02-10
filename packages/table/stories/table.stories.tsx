@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import {
   Table,
   TableData,
@@ -27,7 +27,7 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<TableProps<DemoData, string>> = (args) => {
+export const Basic: StoryFn<TableProps<DemoData, string>> = (args) => {
   return (
     <Table {...args}>
       <Thead>
@@ -67,7 +67,7 @@ interface DemoData extends TableData {
   address: string
 }
 
-export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
+export const CombineHeader: StoryFn<TableProps<DemoData, string>> = (args) => {
   const data = useMemo(
     () => [
       {
@@ -220,18 +220,14 @@ export const CombineHeader: Story<TableProps<DemoData, string>> = (args) => {
     return c
   }, [])
   return (
-    <Table
-      data={data}
-      columns={columns}
-      multiRowSelection
-      download
-      filter
-      {...args}
-    />
+    <div>
+      <Table data={data} columns={columns} download filter {...args} />
+      <button>231</button>
+    </div>
   )
 }
 
-export const NoDataTable: Story<TableProps<DemoData, string>> = (args) => {
+export const NoDataTable: StoryFn<TableProps<DemoData, string>> = (args) => {
   const columns = useMemo(() => {
     const c: ColumnDef<DemoData>[] = [
       {
@@ -247,7 +243,6 @@ export const NoDataTable: Story<TableProps<DemoData, string>> = (args) => {
   }, [])
   return (
     <div>
-      <Table data={[]} columns={[]} {...args} />
       <Table data={[]} columns={columns} {...args} />
     </div>
   )

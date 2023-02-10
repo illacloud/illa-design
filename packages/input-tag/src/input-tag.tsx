@@ -1,179 +1,342 @@
-import { forwardRef, useImperativeHandle, useRef, useState } from "react"
+import { forwardRef, useImperativeHandle, useMemo, useRef } from "react"
+import { InputTagProps, TagObject } from "./interface"
 import { useMergeValue } from "@illa-design/system"
-import { InputElement } from "@illa-design/input"
-import { ErrorIcon } from "@illa-design/icon"
-import { InputTagProps, ObjectValueType } from "./interface"
 import {
-  applyFilterInput,
-  applyInputContainer,
-  applyInputInnerCss,
-  applySuffixCls,
-  pointerStyle,
+  applyAddBeforeAfterStyle,
+  applyInputContainerStyle,
+  applyInputTagContainerStyle,
+  applyInputTagInputStyle,
+  applyPrefixSuffixStyle,
+  calcSpanStyle,
+  tagsListStyle,
+  tagStyle,
 } from "./style"
-import { formatValue } from "./utils"
-import { RenderTags } from "./render-tag"
-import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
-
-// default validate func
-const defaultValidate = (inputValue: string, values: ObjectValueType[]) =>
-  inputValue && values?.every((item) => item?.value !== inputValue)
+import { Tag } from "@illa-design/tag"
+import { ClearIcon } from "@illa-design/icon"
+import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
+import useMeasure from "react-use-measure"
+import { css } from "@emotion/react"
 
 export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
   (props, ref) => {
     const {
-      inputRef,
-      value,
-      defaultValue,
-      inputValue,
-      placeholder,
+      colorScheme = "blue",
+      autoFocus,
       allowClear,
-      borderColor = "blue",
-      error,
       disabled,
+      error,
       readOnly,
-      disableInput,
-      suffix,
-      icon,
-      _css,
-      validate = defaultValidate,
-      labelInValue,
+      saveOnBlur,
+      placeholder,
+      inputValue,
       size = "medium",
-      // events
-      onClear,
-      onRemove,
-      onFocus,
+      prefix,
+      suffix,
+      defaultValue,
+      value,
       onBlur,
-      onClick,
-      onPaste,
+      onFocus,
       onChange,
-      onPressEnter,
+      onClear,
       onInputChange,
-      ...rest
+      onKeyDown,
+      onPressEnter,
+      onRemove,
+      renderItem,
+      addBefore,
+      bdRadius,
+      inputTagRef,
+      addAfter,
+      labelInValue,
+      ...otherProps
     } = props
 
-    const [focus, setFocus] = useState(false)
-    const [currentValue, setValue] = useMergeValue<ObjectValueType[]>([], {
-      defaultValue: defaultValue ? formatValue(defaultValue) : undefined,
-      value: value ? formatValue(value) : undefined,
-    })
-    const [currentInputValue, setInputValue] = useMergeValue("", {
+    let borderList = bdRadius?.split(" ") ?? ["8px", "8px", "8px", "8px"]
+    if (borderList.length == 2) {
+      borderList = [borderList[0], borderList[1], borderList[0], borderList[1]]
+    } else if (borderList.length == 3) {
+      borderList = [borderList[0], borderList[1], borderList[2], borderList[1]]
+    }
+
+    const [finalValue, setFinalValue] = useMergeValue<TagObject[] | string[]>(
+      [],
+      {
+        defaultValue: labelInValue
+          ? (defaultValue as TagObject[])
+          : (defaultValue as string[]),
+        value: labelInValue ? (value as TagObject[]) : (value as string[]),
+      },
+    )
+
+    const [finalInputValue, setFinalInputValue] = useMergeValue("", {
+      defaultValue: "",
       value: inputValue,
     })
-    const refInput = useRef<HTMLInputElement>(null)
 
-    const stateValue = {
-      error,
-      disabled,
-      focus,
-      size,
-      borderColor,
-    }
+    const [calcBlockRef, calcBlockBounds] = useMeasure()
 
-    const valueChangeHandler = (value: ObjectValueType[]) => {
-      if (disabled || readOnly) {
-        return
-      }
-      if (!("value" in props)) {
-        setValue(value)
-      }
-      onChange?.(labelInValue ? value : value?.map((item) => item.value))
-    }
-
-    const tryAddInputValueToTag = async () => {
-      try {
-        const isLegal =
-          typeof validate === "function"
-            ? await validate(currentInputValue, currentValue)
-            : true
-        if (isLegal) {
-          valueChangeHandler(
-            currentValue?.concat({
-              value: currentInputValue,
-              label: currentInputValue,
-            }),
-          )
-          setInputValue("")
-        }
-      } catch (error) {
-        throw new Error(`Cannot add inputValue to tag: ${error}`)
-      }
-    }
+    const inputRef = useRef<HTMLInputElement>(null)
+    const inputStateRef = useRef<boolean>(false)
 
     useImperativeHandle(
-      inputRef,
-      () => refInput.current as HTMLInputElement,
+      inputTagRef,
+      () => {
+        return {
+          focus: () => inputRef.current?.focus(),
+        }
+      },
       [],
     )
 
+    const tags = useMemo(() => {
+      return (
+        <>
+          {finalValue.map((v, i) => {
+            let closeable: boolean = false
+            if (labelInValue) {
+              if ((v as TagObject).closeable === undefined) {
+                closeable = !readOnly
+              } else {
+                closeable = (v as TagObject).closeable!!
+              }
+            } else {
+              closeable = !readOnly
+            }
+
+            return (
+              <Tag
+                css={tagStyle}
+                key={
+                  labelInValue
+                    ? (v as TagObject).label
+                    : `${i.toString()}:${value}`
+                }
+                visible={true}
+                size={size}
+                colorScheme="blackAlpha"
+                variant="light"
+                closable={closeable}
+                onClose={(e) => {
+                  const newTagList = [...finalValue]
+                  newTagList.splice(i, 1)
+                  if (labelInValue) {
+                    if (value === undefined) {
+                      setFinalValue(newTagList as TagObject[])
+                    }
+                    onChange?.(newTagList as TagObject[])
+                  } else {
+                    if (value === undefined) {
+                      setFinalValue(newTagList as string[])
+                    }
+                    onChange?.(newTagList as string[])
+                  }
+                  onRemove?.(v, i, e)
+                }}
+              >
+                {renderItem?.(v) ??
+                  (labelInValue ? (v as TagObject).label : (v as string))}
+              </Tag>
+            )
+          })}
+        </>
+      )
+    }, [
+      labelInValue,
+      finalValue,
+      onChange,
+      onRemove,
+      readOnly,
+      renderItem,
+      setFinalValue,
+      size,
+      value,
+    ])
+
+    const saveInputValue = () => {
+      if (finalInputValue !== "") {
+        let newList
+        if (labelInValue) {
+          newList = [
+            ...(finalValue as TagObject[]),
+            {
+              label: finalValue.length.toString(),
+              value: finalInputValue,
+              closeable: true,
+            },
+          ]
+        } else {
+          newList = [...(finalValue as string[]), finalInputValue]
+        }
+        if (value === undefined) {
+          setFinalValue(newList)
+        }
+        if (inputValue === undefined) {
+          setFinalInputValue("")
+        }
+        onChange?.(newList)
+      }
+    }
+
     return (
       <div
+        css={[applyInputContainerStyle(), applyBoxStyle(otherProps)]}
         ref={ref}
-        css={[applyInputContainer(stateValue), applyBoxStyle(props)]}
-        onClick={(e) => {
-          !focus && refInput?.current?.focus?.()
-          onClick?.(e)
-        }}
-        {...deleteCssProps(rest)}
+        {...deleteCssProps(otherProps)}
       >
-        <span css={applyInputInnerCss(size)}>
-          <RenderTags
-            value={currentValue}
-            size={size}
-            disabled={disabled}
-            readOnly={readOnly}
-            labelInValue={labelInValue}
-            onRemove={onRemove}
-            valueChangeHandler={valueChangeHandler}
-          />
-          <InputElement
-            ref={refInput}
-            _css={applyFilterInput(stateValue)}
-            size={size}
-            value={currentInputValue}
-            disabled={disabled || disableInput}
-            readOnly={readOnly}
-            autoFitWidth
-            placeholder={!currentValue?.length ? placeholder : ""}
-            onFocus={(event) => {
-              if (!disabled && !readOnly) {
-                setFocus(true)
-                onFocus?.(event)
-              }
-            }}
-            onBlur={(event) => {
-              setFocus(false)
-              onBlur?.(event)
-              setInputValue("")
-            }}
-            onValueChange={(value, event) => {
-              setInputValue(value)
-              onInputChange?.(value, event)
-            }}
-            onPressEnter={async (event) => {
-              onPressEnter?.(event)
-              await tryAddInputValueToTag()
-            }}
-          />
-        </span>
-        {suffix ? <span css={applySuffixCls(size)}>{suffix}</span> : null}
-        {allowClear && !disabled && currentValue?.length ? (
+        {addBefore && (
           <span
-            css={pointerStyle}
-            onClick={(e) => {
-              e.stopPropagation()
-              valueChangeHandler([])
-              if (!focus) {
-                refInput?.current?.focus?.()
-              }
-              onClear?.()
-            }}
-            onMouseDown={(e: any) => {
-              e?.target?.tagName !== "INPUT" && e.preventDefault()
-            }}
+            css={applyAddBeforeAfterStyle(
+              size,
+              disabled ?? false,
+              css`
+                margin-right: -1px;
+                border-radius: ${borderList[0]} 0 0 ${borderList[3]};
+              `,
+            )}
           >
-            <ErrorIcon />
+            {addBefore}
           </span>
-        ) : null}
+        )}
+        <div
+          css={[
+            applyInputTagContainerStyle(
+              size,
+              colorScheme,
+              error ?? false,
+              disabled ?? false,
+              addBefore !== undefined,
+              addAfter !== undefined,
+              borderList,
+            ),
+          ]}
+          onClick={() => {
+            inputRef.current?.focus()
+          }}
+        >
+          {prefix && (
+            <span
+              css={applyPrefixSuffixStyle(
+                size,
+                disabled ?? false,
+                css`
+                  margin-right: ${size === "small" ? "8px" : "12px"};
+                `,
+              )}
+            >
+              {prefix}
+            </span>
+          )}
+          <span css={tagsListStyle}>
+            {tags}
+            <input
+              disabled={disabled}
+              key="inputTagInput"
+              ref={inputRef}
+              placeholder={placeholder}
+              autoFocus={autoFocus}
+              readOnly={readOnly}
+              css={applyInputTagInputStyle(size, calcBlockBounds.width + 12)}
+              onChange={(e) => {
+                if (inputValue === undefined) {
+                  setFinalInputValue(e.currentTarget.value)
+                }
+                onInputChange?.(e.currentTarget.value)
+              }}
+              onBlur={(e) => {
+                if (saveOnBlur) {
+                  saveInputValue()
+                }
+                onBlur?.(e)
+              }}
+              onFocus={(e) => {
+                onFocus?.(e)
+              }}
+              value={finalInputValue}
+              onCompositionStart={() => {
+                inputStateRef.current = true
+              }}
+              onCompositionEnd={() => {
+                inputStateRef.current = false
+              }}
+              onKeyDown={(e) => {
+                if (inputStateRef.current) {
+                  return
+                }
+                onKeyDown?.(e)
+                if (e.key === "Enter") {
+                  inputRef.current?.focus()
+                  onPressEnter?.(e)
+                  saveInputValue()
+                }
+                if (e.key === "Backspace" && finalInputValue === "") {
+                  inputRef.current?.focus()
+                  let newTagList
+                  if (labelInValue) {
+                    newTagList = [...(finalValue as TagObject[])]
+                  } else {
+                    newTagList = [...(finalValue as string[])]
+                  }
+                  const removedTag = newTagList.pop()
+                  if (value === undefined) {
+                    setFinalValue(newTagList)
+                  }
+                  if (removedTag) {
+                    onRemove?.(removedTag, newTagList.length, e)
+                  }
+                  onChange?.(newTagList)
+                }
+              }}
+            />
+          </span>
+          {allowClear && !disabled && finalValue.length > 0 && (
+            <ClearIcon
+              className="clear"
+              flexShrink="0"
+              onClick={(e) => {
+                e.stopPropagation()
+                onClear?.()
+                if (value === undefined) {
+                  setFinalValue([])
+                }
+                onChange?.([])
+              }}
+              cursor="pointer"
+              fs="12px"
+              ml="4px"
+              c={getColor("grayBlue", "06")}
+            />
+          )}
+          {suffix && (
+            <span
+              css={applyPrefixSuffixStyle(
+                size,
+                disabled ?? false,
+                css`
+                  margin-left: ${size === "small" ? "8px" : "12px"};
+                `,
+              )}
+            >
+              {suffix}
+            </span>
+          )}
+          <span ref={calcBlockRef} css={calcSpanStyle}>
+            {finalInputValue.replace(/\s/g, "\u00A0")}
+          </span>
+        </div>
+        {addAfter && (
+          <span
+            css={applyAddBeforeAfterStyle(
+              size,
+              disabled ?? false,
+              css`
+                margin-left: -1px;
+                border-radius: 0 ${borderList[1]} ${borderList[2]} 0;
+              `,
+            )}
+          >
+            {addAfter}
+          </span>
+        )}
       </div>
     )
   },

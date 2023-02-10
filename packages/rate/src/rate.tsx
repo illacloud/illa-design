@@ -1,7 +1,7 @@
 import { forwardRef, Fragment, useCallback, useMemo, useState } from "react"
 import { divide, times } from "number-precision"
 import { RateProps } from "./interface"
-import { HeartIcon, StarIcon } from "@illa-design/icon"
+import { LikeFillIcon, StarFillIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import {
   applyRate,
@@ -15,7 +15,7 @@ import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
   const {
     defaultValue,
-    character = <StarIcon />,
+    character = <StarFillIcon />,
     count = 5,
     value: stars,
     tooltips,
@@ -74,7 +74,7 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>((props, ref) => {
       let usedCharacter =
         typeof character === "function" ? character(index) : character
       if (heart) {
-        usedCharacter = <HeartIcon />
+        usedCharacter = <LikeFillIcon />
       }
       return usedCharacter
     },

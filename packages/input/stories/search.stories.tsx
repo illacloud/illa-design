@@ -1,16 +1,12 @@
-import { Meta, Story } from "@storybook/react"
-import { SearchProps, Search } from "../src"
+import { Meta, StoryFn } from "@storybook/react"
+import { Search, SearchProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "DATA INPUT/Input",
+  title: "DATA INPUT/Search",
   component: Search,
 } as Meta
 
-export const search: Story<SearchProps> = (props) => {
-  return (
-    <div>
-      <Search w={"280px"} {...props} />
-    </div>
-  )
+export const Basic: StoryFn<SearchProps> = (props) => {
+  return <Search {...props} />
 }

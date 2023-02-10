@@ -1,25 +1,31 @@
-import { SerializedStyles, css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { css, SerializedStyles } from "@emotion/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { TriggerColorScheme } from "@illa-design/trigger"
 
-export function applyListCss(w?: string): SerializedStyles {
+export function applyListCss(): SerializedStyles {
   return css`
     position: relative;
     border-radius: 8px;
-    width: ${w};
-    overflow: hidden;
+    overflow: auto;
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
     padding: 8px 0;
   `
 }
 
 export function applyItemCss(
-  fontColor?: string,
+  colorScheme: TriggerColorScheme,
   isDisabled?: boolean,
+  selected?: boolean,
+  deleted?: boolean,
 ): SerializedStyles {
   const hoverCss = css`
+    color: ${deleted ? getColor("red", "01") : getColor("grayBlue", "02")};
+
     &:hover {
       cursor: pointer;
-      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+      background-color: ${deleted
+        ? getColor("red", "07")
+        : getColor("grayBlue", "09")};
     }
   `
 
@@ -28,15 +34,29 @@ export function applyItemCss(
     color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   `
 
+  const selectedStyle = css`
+    color: ${getColor(colorScheme, "01")};
+    background: ${getColor(colorScheme, "07")};
+  `
+
+  let finalStyle
+
+  if (selected) {
+    finalStyle = selectedStyle
+  } else {
+    if (isDisabled) {
+      finalStyle = disabledCss
+    } else {
+      finalStyle = hoverCss
+    }
+  }
+
   return css`
     font-size: 14px;
-    color: ${fontColor
-      ? fontColor
-      : globalColor(`--${illaPrefix}-grayBlue-02`)};
     line-height: 32px;
-    position: relative;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
     padding: 0 16px;
-
-    ${isDisabled ? disabledCss : hoverCss};
+    ${finalStyle};
   `
 }

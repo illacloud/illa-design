@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Description, DescriptionProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -7,7 +7,7 @@ export default {
   component: Description,
 } as Meta
 
-export const Basic: Story<DescriptionProps> = (args) => (
+export const Basic: StoryFn<DescriptionProps> = (args) => (
   <Description
     {...args}
     data={[

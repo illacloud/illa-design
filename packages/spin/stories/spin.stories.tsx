@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Spin, SpinProps } from "../src"
 import { css } from "@emotion/react"
 
@@ -21,7 +21,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<SpinProps> = (props) => {
+const Template: StoryFn<SpinProps> = (props) => {
   return (
     <Spin {...props}>
       <div

@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Text, TextProps, Typography } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -7,7 +7,7 @@ export default {
   component: Text,
 } as Meta
 
-export const Basic: Story<TextProps> = (args) => (
+export const Basic: StoryFn<TextProps> = (args) => (
   <Typography>
     <Text {...args}>Hello Text</Text>
   </Typography>

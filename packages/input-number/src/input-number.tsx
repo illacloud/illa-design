@@ -1,287 +1,164 @@
-import {
-  forwardRef,
-  useState,
-  useRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  SyntheticEvent,
-} from "react"
-import NP from "number-precision"
+import { forwardRef } from "react"
 import { InputNumberProps } from "./interface"
 import { Input } from "@illa-design/input"
-import { UpIcon, DownIcon, MinusIcon, PlusIcon } from "@illa-design/icon"
-import { isNumber } from "@illa-design/system"
+import { DownIcon, MinusIcon, PlusIcon, UpIcon } from "@illa-design/icon"
+import { Space } from "@illa-design/space"
+import { useMergeValue } from "@illa-design/system"
 import {
-  applyAddonCss,
-  applyInputNumber,
-  applyStepEmbed,
-  applyStepEmbedContainer,
+  applyActionIconStyle,
+  applyControlBlockStyle,
+  controlContainerStyle,
+  hoverControlStyle,
 } from "./style"
-import { deleteCssProps } from "@illa-design/theme"
 
-type StepMethods = "minus" | "plus"
-
-const getPrecision = (precision?: number, step?: number) => {
-  if (isNumber(precision)) {
-    const decimal = `${step}`.split(".")[1]
-    const stepPrecision = (decimal && decimal.length) || 0
-    return Math.max(stepPrecision, precision)
-  }
-  return null
-}
-
-export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
+export const InputNumber = forwardRef<HTMLDivElement, InputNumberProps>(
   (props, ref) => {
     const {
-      inputRef,
-      defaultValue,
-      value,
-      error,
-      disabled,
-      readOnly,
-      hideControl,
-      placeholder,
-      suffix,
-      prefix,
-      icons,
-      precision,
       size = "medium",
+      colorScheme = "blue",
+      disabled,
+      precision,
+      error,
+      hideControl,
+      readOnly,
+      max = Number.MAX_SAFE_INTEGER,
+      min = Number.MIN_SAFE_INTEGER,
       step = 1,
+      placeholder,
       mode = "embed",
-      min = -Infinity,
-      max = Infinity,
-      parser = (input) => input?.replace(/[^\w\.-]+/g, ""),
+      prefix,
+      suffix,
+      defaultValue,
+      value = "",
+      icons,
       formatter,
-      onBlur,
-      onFocus,
       onChange,
-      onKeyDown,
-      ...rest
+      ...otherProps
     } = props
 
-    const refInput = useRef<HTMLInputElement>(null)
-    const timerRef = useRef<any>(null)
-    const hasOperateRef = useRef(false)
+    const [finalValue, setFinalValue] = useMergeValue<"" | number>("", {
+      defaultValue: defaultValue,
+      value: value,
+    })
 
-    const renderStepEmbed = !hideControl && !readOnly && mode === "embed"
-    const renderStepButton = !hideControl && mode === "button"
-    const [inputValue, setInputValue] = useState<string>("")
-    const [displayValue, setDisplayValue] = useState<string>("")
-    const [isUserInputting, setIsUserInputting] = useState(false)
-    const [currentValue, setCurrentValue] = useState<InputNumberProps["value"]>(
-      "defaultValue" in props ? defaultValue : undefined,
-    )
-    const mergedValue = (() => {
-      const val = "value" in props ? value : currentValue
-      return typeof val === "string" && val !== "" ? +val : val
-    })()
-
-    const isEmptyValue =
-      mergedValue === "" || mergedValue === undefined || mergedValue === null
-
-    const mergedPrecision = getPrecision(precision, step)
-
-    const getLegalValue = useCallback(
-      (changedValue: any) => {
-        let finalValue: string | number | undefined = Number(changedValue)
-        if (!changedValue && changedValue !== 0) {
-          finalValue = undefined
-        } else if (!isNumber(finalValue)) {
-          finalValue = changedValue === "-" ? changedValue : ""
+    const plusStep = (): void => {
+      if (finalValue === "") {
+        if (0 <= max && 0 >= min) {
+          if (value === undefined) {
+            setFinalValue(0)
+          }
+          onChange?.(0)
         }
-        if (finalValue !== undefined) {
-          if (finalValue < min) {
-            finalValue = min
-          }
-          if (finalValue > max) {
-            finalValue = max
-          }
-        }
-        return isNumber(finalValue)
-          ? isNumber(mergedPrecision)
-            ? Number(finalValue.toFixed(mergedPrecision))
-            : finalValue
-          : undefined
-      },
-      [min, max, mergedPrecision],
-    )
-
-    const setValue = (val?: number) => {
-      setCurrentValue(val)
-      const plusVal = isNumber(val) ? +val : undefined
-      const newValue = isNumber(plusVal) ? plusVal : undefined
-      if (newValue !== mergedValue) {
-        onChange && onChange(newValue)
-      }
-    }
-
-    const handleArrowKey = (
-      event: SyntheticEvent,
-      method: StepMethods,
-      needRepeat = false,
-    ) => {
-      event.persist()
-      event.preventDefault()
-      setIsUserInputting(false)
-
-      if (disabled) {
-        return
-      }
-
-      let finalValue = min === -Infinity ? 0 : min
-
-      if (!isEmptyValue) {
-        finalValue = NP[method](mergedValue, step)
-      }
-
-      setValue(getLegalValue(finalValue))
-      refInput?.current?.focus?.()
-
-      // auto change while holding
-      if (needRepeat) {
-        const isFirstRepeat = timerRef.current === null
-        timerRef.current = setTimeout(
-          () => event.target.dispatchEvent(event.nativeEvent),
-          isFirstRepeat ? 1000 : 200,
-        )
-      }
-    }
-
-    const stop = () => {
-      timerRef.current && clearTimeout(timerRef.current)
-      timerRef.current = null
-    }
-
-    const stepEvents = (method: StepMethods) => {
-      return readOnly
-        ? {}
-        : {
-            onMouseDown: (e: SyntheticEvent) => handleArrowKey(e, method, true),
-            onMouseLeave: stop,
-            onMouseUp: stop,
-          }
-    }
-
-    useEffect(() => {
-      let val: string | number
-      if (isUserInputting) {
-        val = inputValue
-      } else if (isNumber(mergedValue) && isNumber(mergedPrecision)) {
-        val = mergedValue.toFixed(mergedPrecision)
-      } else if (mergedValue == null) {
-        val = ""
       } else {
-        val = mergedValue?.toString()
+        if (finalValue + step <= max && finalValue + step >= min) {
+          if (value === undefined) {
+            setFinalValue(finalValue + step)
+          }
+          onChange?.(finalValue + step)
+        }
       }
-      val = formatter ? formatter(val) : val
-      setDisplayValue(val)
-    }, [inputValue, isUserInputting, mergedValue, value, precision, formatter])
-
-    useEffect(() => {
-      hasOperateRef.current = false
-    }, [value])
-
-    useEffect(() => {
-      const outOfRange = isNumber(mergedValue)
-        ? (isNumber(min) && mergedValue < min) ||
-          (isNumber(max) && mergedValue > max)
-        : false
-      // Don't correct the illegal value caused by prop value. Wait for user to take actions.
-      if (outOfRange && hasOperateRef.current) {
-        setValue(getLegalValue(mergedValue))
-      }
-    }, [min, max, mergedValue, getLegalValue])
-
-    useImperativeHandle(
-      inputRef,
-      () => refInput.current as HTMLInputElement,
-      [],
-    )
-
-    const stateValue = {
-      size,
     }
+    const minusStep = (): void => {
+      if (finalValue === "") {
+        if (0 <= max && 0 >= min) {
+          if (value === undefined) {
+            setFinalValue(0)
+          }
+          onChange?.(0)
+        }
+      } else {
+        if (finalValue - step <= max && finalValue - step >= min) {
+          if (value === undefined) {
+            setFinalValue(finalValue - step)
+          }
+          onChange?.(finalValue - step)
+        }
+      }
+    }
+
+    const control = (
+      <div className="control" css={controlContainerStyle}>
+        <div
+          css={applyControlBlockStyle("up", size)}
+          onClick={() => {
+            plusStep()
+          }}
+        >
+          {icons?.up ?? <UpIcon />}
+        </div>
+        <div
+          css={applyControlBlockStyle("bottom", size)}
+          onClick={() => {
+            minusStep()
+          }}
+        >
+          {icons?.down ?? <DownIcon />}
+        </div>
+      </div>
+    )
 
     return (
       <Input
-        _css={applyInputNumber()}
-        size={size}
         ref={ref}
-        inputRef={refInput}
-        error={error}
-        disabled={disabled}
+        css={hoverControlStyle}
+        type="number"
+        size={size}
+        value={formatter ? formatter(finalValue) : finalValue.toString()}
+        onChange={(v) => {
+          if (value === undefined) {
+            if (precision && precision >= step) {
+              setFinalValue(Number(Number(v).toFixed(precision)))
+            } else {
+              setFinalValue(Number(v))
+            }
+          }
+          if (precision && precision >= step) {
+            onChange?.(Number(Number(v).toFixed(precision)))
+          } else {
+            onChange?.(Number(v))
+          }
+        }}
         readOnly={readOnly}
         placeholder={placeholder}
-        value={displayValue}
-        textCenterHorizontal={mode === "button"}
-        prefix={{ render: prefix }}
-        suffix={{
-          render: (
-            <>
-              {renderStepEmbed ? (
-                <div css={applyStepEmbedContainer(size)} title="inputStepEmbed">
-                  <span css={applyStepEmbed} {...stepEvents("plus")}>
-                    {icons && icons.up ? icons.up : <UpIcon />}
-                  </span>
-                  <span css={applyStepEmbed} {...stepEvents("minus")}>
-                    {icons && icons.down ? icons.down : <DownIcon />}
-                  </span>
-                </div>
-              ) : null}
-              {suffix && <span>{suffix}</span>}
-            </>
-          ),
-          custom: true,
-        }}
-        addonBefore={{
-          render: renderStepButton ? (
-            <span css={applyAddonCss(size, disabled)} {...stepEvents("minus")}>
-              {icons && icons.plus ? icons.plus : <MinusIcon />}
+        prefix={prefix}
+        suffix={
+          <Space mr="-8px">
+            {suffix}
+            {!hideControl &&
+              !readOnly &&
+              !disabled &&
+              mode === "embed" &&
+              control}
+          </Space>
+        }
+        addBefore={
+          mode === "button" ? (
+            <span
+              css={applyActionIconStyle(size)}
+              onClick={() => {
+                minusStep()
+              }}
+            >
+              {icons?.minus ?? <MinusIcon />}
             </span>
-          ) : null,
-          custom: true,
-        }}
-        addonAfter={{
-          render: renderStepButton ? (
-            <span css={applyAddonCss(size, disabled)} {...stepEvents("plus")}>
-              {icons && icons.minus ? icons.minus : <PlusIcon />}
+          ) : undefined
+        }
+        addAfter={
+          mode === "button" ? (
+            <span
+              css={applyActionIconStyle(size)}
+              onClick={() => {
+                plusStep()
+              }}
+            >
+              {icons?.plus ?? <PlusIcon />}
             </span>
-          ) : null,
-          custom: true,
-        }}
-        onChange={(value: any) => {
-          setIsUserInputting(true)
-          let targetValue = value?.trim()?.replace?.(/。/g, ".")
-          targetValue = parser ? parser(targetValue) : targetValue
-          if (isNumber(+targetValue) || targetValue === "-" || !targetValue) {
-            const formatValue = getLegalValue(targetValue)
-            setInputValue(targetValue)
-            setValue(formatValue)
-          }
-        }}
-        onKeyDown={(e) => {
-          e.stopPropagation()
-          const key = e.key
-          if (key === "ArrowDown") {
-            handleArrowKey(e, "minus")
-          } else if (key === "ArrowUp") {
-            handleArrowKey(e, "plus")
-          }
-          stop()
-          onKeyDown && onKeyDown(e)
-        }}
-        onFocus={(e) => {
-          hasOperateRef.current = true
-          setInputValue(refInput?.current?.value as string)
-          onFocus && onFocus(e)
-        }}
-        onBlur={(e) => {
-          setValue(getLegalValue(mergedValue))
-          setIsUserInputting(false)
-          onBlur && onBlur(e)
-        }}
-        {...rest}
+          ) : undefined
+        }
+        colorScheme={colorScheme}
+        disabled={disabled}
+        error={error}
+        {...otherProps}
       />
     )
   },

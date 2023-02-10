@@ -3,7 +3,7 @@ import { AlertProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
 import {
   CloseIcon,
-  ErrorIcon,
+  ErrorCircleIcon,
   InfoCircleIcon,
   SuccessCircleIcon,
   WarningCircleIcon,
@@ -14,6 +14,7 @@ import {
   contentStyle,
   iconColorMap,
   leftContentStyle,
+  leftIconSizeStyle,
   leftIconStyle,
   titleStyle,
 } from "./style"
@@ -66,7 +67,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const leftIcon = useMemo(() => {
     if (showIcon) {
       if (icon) {
-        return <span css={leftIconStyle}>{icon}</span>
+        return <span css={[leftIconStyle, leftIconSizeStyle]}>{icon}</span>
       }
       switch (type) {
         case "success":
@@ -76,6 +77,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
               fs="16px"
               mt={content ? "2px" : "0"}
               c={iconColorMap["success"]}
+              css={leftIconSizeStyle}
             />
           )
         case "warning":
@@ -85,15 +87,17 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
               fs="16px"
               mt={content ? "2px" : "0"}
               c={iconColorMap["warning"]}
+              css={leftIconSizeStyle}
             />
           )
         case "error":
           return (
-            <ErrorIcon
+            <ErrorCircleIcon
               mr="8px"
               fs="16px"
               mt={content ? "2px" : "0"}
               c={iconColorMap["error"]}
+              css={leftIconSizeStyle}
             />
           )
         case "info":
@@ -103,6 +107,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
               fs="16px"
               mt={content ? "2px" : "0"}
               c={iconColorMap["info"]}
+              css={leftIconSizeStyle}
             />
           )
       }

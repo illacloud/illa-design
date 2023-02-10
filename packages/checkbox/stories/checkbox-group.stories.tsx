@@ -1,5 +1,6 @@
-import { Meta, ComponentStory } from "@storybook/react"
-import { CheckboxGroup } from "../src"
+import { Meta, StoryFn } from "@storybook/react"
+import { Checkbox, Space } from "@illa-design/react"
+import { CheckboxGroup, CheckboxGroupProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -46,23 +47,24 @@ export default {
   args: {},
 } as Meta
 
-const Basic: ComponentStory<typeof CheckboxGroup> = (args) => {
+export const Group: StoryFn<CheckboxGroupProps> = (args) => {
   return (
-    <div>
+    <Space direction="vertical" align="start">
       <CheckboxGroup {...args} />
-      <br />
       <CheckboxGroup
         {...args}
         options={[
-          { label: "A", value: "A" },
-          { label: "B", value: "B" },
-          { label: "C", value: "C" },
+          { label: "AA", value: "A" },
+          { label: "BB", value: "B" },
+          { label: "CC", value: "C" },
         ]}
       />
-      <br />
       <CheckboxGroup {...args} options={["Option A", "Option B", "Option C"]} />
-    </div>
+      <CheckboxGroup>
+        <Checkbox value="A">Option A</Checkbox>
+        <Checkbox value="A">Option B</Checkbox>
+        <Checkbox value="A">Option C</Checkbox>
+      </CheckboxGroup>
+    </Space>
   )
 }
-
-export const checkboxGroup = Basic.bind({})

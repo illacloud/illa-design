@@ -86,6 +86,9 @@ export const jaJP = {
     October: "10月",
     November: "11月",
     December: "12月",
+    nowText: "今",
+    okText: "もちろん",
+    timeText: "時間の選択",
   },
   modal: {
     okText: "もちろん",

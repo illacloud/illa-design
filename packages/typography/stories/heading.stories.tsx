@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import {
   CopyableBuilder,
   EllipsisBuilder,
@@ -13,7 +13,7 @@ export default {
   component: Heading,
 } as Meta
 
-export const Basic: Story<HeadingProps> = (args) => {
+export const Basic: StoryFn<HeadingProps> = (args) => {
   return (
     <Typography>
       <Heading

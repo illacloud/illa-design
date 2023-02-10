@@ -1,16 +1,12 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Password, PasswordProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: "DATA INPUT/Input",
+  title: "DATA INPUT/Password",
   component: Password,
 } as Meta
 
-export const password: Story<PasswordProps> = (props) => {
-  return (
-    <div>
-      <Password w={"280px"} {...props} />
-    </div>
-  )
+export const Basic: StoryFn<PasswordProps> = (props) => {
+  return <Password {...props} />
 }

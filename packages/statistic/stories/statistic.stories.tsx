@@ -1,16 +1,15 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Statistic, StatisticProps } from "../src"
 import { Space, ImageDefaultIcon, UpIcon, Button } from "@illa-design/react"
-import React, { useRef, ElementRef } from "react"
+import { useRef, ElementRef } from "react"
 
 export default {
   title: "DATA DISPLAY/Statistic",
   component: Statistic,
 } as Meta
 
-const Template: Story<StatisticProps> = (args) => {
+const Template: StoryFn<StatisticProps> = (args) => {
   let refGrowth: ElementRef<typeof Statistic> = useRef(null)
-
   return (
     <Space size={"large"}>
       <Statistic {...args} />

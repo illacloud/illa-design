@@ -1,13 +1,7 @@
-import {
-  HTMLAttributes,
-  ReactNode,
-  TdHTMLAttributes,
-  ThHTMLAttributes,
-} from "react"
+import { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react"
 import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
 import {
-  Column,
   ColumnDef,
   ColumnFiltersState,
   ColumnSort,
@@ -35,10 +29,27 @@ export type TableAlign =
   | "flex-start"
   | "flex-end"
 
+export type TableColorScheme =
+  | string
+  | "white"
+  | "blackAlpha"
+  | "gray"
+  | "grayBlue"
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "cyan"
+  | "purple"
+  | "techPink"
+  | "techPurple"
+
 export interface TableProps<D extends TableData, TValue>
   extends HTMLAttributes<HTMLDivElement>,
     TableContextProps,
     BoxProps {
+  colorScheme?: TableColorScheme
   columns?: ColumnDef<D, TValue>[]
   data?: D[]
   pinedHeader?: boolean
@@ -52,15 +63,17 @@ export interface TableProps<D extends TableData, TValue>
   overFlow?: TableOverFlow
   pagination?: PaginationProps
   multiRowSelection?: boolean
+  enableRowSelection?: boolean
+  clickOutsideToResetRowSelect?: boolean
   checkAll?: boolean
   download?: boolean
   filter?: boolean
-  rowSelection?: RowSelectionState | number
+  rowSelection?: RowSelectionState
   columnVisibility?: VisibilityState
   onSortingChange?: OnChangeFn<SortingState>
   onPaginationChange?: OnChangeFn<PaginationState>
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
-  onRowSelectionChange?: (rowSelection?: RowSelectionState | number) => void
+  onRowSelectionChange?: (rowSelection?: RowSelectionState) => void
 }
 
 export interface RowSelectionProps<D = any> {
@@ -116,12 +129,8 @@ export interface ThProps
   lastRow?: boolean
 }
 
-export interface TableFilterProps<D extends TableData> extends BoxProps {
-  renderFilterContent?: (columnProps: Column<D, unknown>) => ReactNode
-  columnProps: Column<D, unknown>
-}
-
 export interface FiltersEditorProps {
+  colorScheme?: TableColorScheme
   filterOperator: FilterOperator
   columnFilters: FilterOptionsState
   columnsOption: { value: string; label: string }[]
@@ -129,11 +138,6 @@ export interface FiltersEditorProps {
   onDelete: (index: number, columnFilters: FilterOptions) => void
   onChange: (index: number, columnFilters: FilterOptions) => void
   onChangeOperator: (filterOperator: FilterOperator) => void
-  onChangeFilterFn: (
-    index: number,
-    id: string,
-    filterFn: FilterFnOption<any>,
-  ) => void
 }
 
 export type CustomFilterFn =
@@ -150,12 +154,22 @@ export type CustomFilterFn =
   | "before"
   | "after"
 
+export type FilterFn = FilterFnOption<any> & CustomFilterFn
+
 export type FilterOptions = {
   id: string
   value: unknown
-  filterFn?: FilterFnOption<any> & CustomFilterFn
+  filterFn?: FilterFn
 }
 
 export type FilterOptionsState = FilterOptions[]
 
 export type FilterOperator = "and" | "or"
+
+export interface TableFilterProps {
+  onChange: (filters: FilterOptions[], operator: FilterOperator) => void
+  colorScheme?: TableColorScheme
+  filterOperator: FilterOperator
+  filterOption: FilterOptionsState
+  columnsOption: { value: string; label: string }[]
+}

@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Drawer, DrawerProps } from "../src"
 import { Button, Space } from "@illa-design/react"
 import { useRef, useState } from "react"
@@ -8,7 +8,7 @@ export default {
   component: Drawer,
 } as Meta
 
-const Template: Story<DrawerProps> = (args) => {
+const Template: StoryFn<DrawerProps> = (args) => {
   const [visible, setVisible] = useState(false)
   return (
     <Space>

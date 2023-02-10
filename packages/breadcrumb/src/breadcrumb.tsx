@@ -11,9 +11,7 @@ import { breadcrumbContainerStyle, dividerStyle, dotStyle } from "./style"
 import { SlashIcon } from "@illa-design/icon"
 import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 import { BreadcrumbItem } from "./breadcrumbItem"
-import { DropList } from "@illa-design/dropdown"
-
-const Item = DropList.Item
+import { DropList, DropListItem } from "@illa-design/dropdown"
 
 export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
   (props, ref) => {
@@ -32,7 +30,7 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
       if (routes) {
         return routes.map((child, index) => {
           return (
-            <>
+            <Fragment key={index}>
               <BreadcrumbItem
                 key={child.path}
                 last={index === routes.length - 1}
@@ -41,7 +39,8 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
                     <DropList>
                       {child.children?.map((c) => {
                         return (
-                          <Item
+                          <DropListItem
+                            value={c.path ?? ""}
                             key={c.path ?? ""}
                             title={c.breadcrumbName}
                             onClick={() => {
@@ -59,7 +58,7 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
                 {child.breadcrumbName}
               </BreadcrumbItem>
               {index !== routes.length - 1 && separatorNode}
-            </>
+            </Fragment>
           )
         })
       } else {

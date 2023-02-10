@@ -8,7 +8,7 @@
     "component"
   ],
   "sideEffects": false,
-  "author": "illa Cloud <opensource@illasoft.com>",
+  "author": "ILLA Cloud <opensource@illasoft.com>",
   "homepage": "https://github.com/illacloud/illa-design",
   "license": "Apache-2.0",
   "main": "dist/umd/index.js",
@@ -36,9 +36,13 @@
     "url": "https://github.com/illacloud/illa-design/issues"
   },
   "dependencies": {
-    "dayjs": "^1.10.7"
+    "dayjs": "^1.11.7"
   },
   "scripts": {
     "build": "vite build"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react-swc":"^3.0.1",
+    "@rollup/plugin-typescript":"^10.0.1"
   }
 }

@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { InputNumber, InputNumberProps } from "../src"
 import { Space } from "@illa-design/react"
 
@@ -6,33 +6,13 @@ import { Space } from "@illa-design/react"
 export default {
   title: "DATA INPUT/InputNumber",
   component: InputNumber,
-  argTypes: {
-    mode: {
-      options: ["embed", "button"],
-    },
-    value: {
-      control: {
-        type: "text",
-      },
-    },
-    prefix: {
-      control: {
-        type: "text",
-      },
-    },
-    suffix: {
-      control: {
-        type: "text",
-      },
-    },
-  },
 } as Meta
 
-export const Template: Story<InputNumberProps> = (props) => {
+export const Basic: StoryFn<InputNumberProps> = (props) => {
   return (
-    <Space wrap direction="vertical">
-      <InputNumber w={"200px"} {...props} />
-      <InputNumber w={"200px"} mode="button" {...props} />
+    <Space direction="vertical" align="start">
+      <InputNumber w="320px" {...props} />
+      <InputNumber w="320px" precision={3} {...props} />
     </Space>
   )
 }

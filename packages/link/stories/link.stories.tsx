@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Link, LinkProps } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -7,7 +7,7 @@ export default {
   component: Link,
 } as Meta
 
-export const Basic: Story<LinkProps> = (args) => (
+export const Basic: StoryFn<LinkProps> = (args) => (
   <div>
     <Link {...args} icon>
       Link

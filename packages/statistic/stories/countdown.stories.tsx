@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { CountDownProps, Countdown } from "../src"
 import { Space } from "@illa-design/react"
 
@@ -7,7 +7,7 @@ export default {
   component: Countdown,
 } as Meta
 
-const Template: Story<CountDownProps> = (args) => {
+const Template: StoryFn<CountDownProps> = (args) => {
   return (
     <Space size={"large"}>
       <Countdown {...args} />
