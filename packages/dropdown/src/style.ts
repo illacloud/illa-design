@@ -54,7 +54,8 @@ export function applyItemCss(
   return css`
     font-size: 14px;
     line-height: 32px;
-    position: relative;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
     padding: 0 16px;
     ${finalStyle};
   `

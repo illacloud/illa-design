@@ -29,7 +29,7 @@ export const InputNumber = forwardRef<HTMLDivElement, InputNumberProps>(
       prefix,
       suffix,
       defaultValue,
-      value,
+      value = "",
       icons,
       formatter,
       onChange,

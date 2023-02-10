@@ -14,7 +14,7 @@ import {
   TriangleRight,
   TriangleTop,
 } from "./triangle"
-import { TriggerProviderContext } from "./triggerContext"
+import { TriggerProviderContext } from "./trigger-context"
 import { css } from "@emotion/react"
 import {
   autoUpdate,
@@ -23,18 +23,17 @@ import {
   hide,
   Middleware,
   offset,
-  useMergeRefs,
+  safePolygon,
   size,
   useClick,
   useDismiss,
   useFloating,
   useFocus,
   useHover,
-  safePolygon,
   useInteractions,
+  useMergeRefs,
   useRole,
 } from "@floating-ui/react"
-import { mergeRefs } from "@illa-design/system"
 import { applyBoxStyle } from "@illa-design/theme"
 import { AnimatePresence, motion } from "framer-motion"
 import {
@@ -104,14 +103,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
     if (autoAlignPopupWidth) {
       middleware.push(
         size({
-          apply({ rects }) {
-            if (autoAlignPopupWidth) {
-              if (tipsContainerRef?.current !== null) {
-                Object.assign(tipsContainerRef.current.style, {
-                  width: `${rects.reference.width}px`,
-                })
-              }
-            }
+          apply({ availableWidth, availableHeight, elements }) {
+            // Do things with the data, e.g.
+            Object.assign(elements.floating.style, {
+              width: `${childrenRef.current?.clientWidth}px`,
+            })
           },
         }),
       )
@@ -176,7 +172,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "top-start":
     case "top-end":
       centerNode = (
-        <div css={applyVerticalContainer}>
+        <div css={applyVerticalContainer(autoAlignPopupWidth)}>
           <div
             ref={tipsContainerRef}
             css={applyTipsText(
@@ -203,7 +199,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "bottom-start":
     case "bottom-end":
       centerNode = (
-        <div css={applyVerticalContainer}>
+        <div css={applyVerticalContainer(autoAlignPopupWidth)}>
           {showArrow && (
             <TriangleBottom
               w="8px"
@@ -230,7 +226,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "right-start":
     case "right-end":
       centerNode = (
-        <div css={applyHorizontalContainer}>
+        <div css={applyHorizontalContainer(autoAlignPopupWidth)}>
           {showArrow && (
             <TriangleRight
               w="4px"
@@ -257,7 +253,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     case "left-start":
     case "left-end":
       centerNode = (
-        <div css={applyHorizontalContainer}>
+        <div css={applyHorizontalContainer(autoAlignPopupWidth)}>
           <div
             ref={tipsContainerRef}
             css={applyTipsText(
@@ -284,7 +280,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const tipsNode = (
     <motion.div
-      css={applyMotionDiv()}
+      css={applyMotionDiv(autoAlignPopupWidth)}
       variants={applyAnimation(placement, showArrow)}
       initial="initial"
       animate="animate"

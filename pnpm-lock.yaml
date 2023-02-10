@@ -24,7 +24,7 @@ importers:
       '@types/react-dom': ^18.0.9
       '@typescript-eslint/eslint-plugin': ^5.48.0
       '@typescript-eslint/parser': ^5.48.0
-      '@vitejs/plugin-react-swc': ^3.0.1
+      '@vitejs/plugin-react-swc': ^3.1.0
       eslint: ^8.28.0
       eslint-config-prettier: ^8.5.0
       eslint-config-react: ^1.1.7
@@ -41,9 +41,9 @@ importers:
       react-dom: ^18.2.0
       react-icons: ^4.3.1
       storybook: 7.0.0-beta.36
-      turbo: ^1.7.2
+      turbo: ^1.7.4
       typescript: ^4.9.4
-      vite: ^4.0.4
+      vite: ^4.1.1
     devDependencies:
       '@babel/core': registry.npmjs.org/@babel/core/7.20.12
       '@changesets/changelog-github': 0.4.7
@@ -1239,7 +1239,7 @@ importers:
 
   packages/trigger:
     specifiers:
-      '@floating-ui/react': ^0.18.0
+      '@floating-ui/react': ^0.19.1
       '@illa-design/config-provider': workspace:*
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
@@ -1248,7 +1248,7 @@ importers:
       '@vitejs/plugin-react-swc': ^3.0.1
       framer-motion: ^7.6.12
     dependencies:
-      '@floating-ui/react': registry.npmjs.org/@floating-ui/react/0.18.1
+      '@floating-ui/react': registry.npmjs.org/@floating-ui/react/0.19.1
       '@illa-design/config-provider': link:../config-provider
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
@@ -2356,7 +2356,7 @@ packages:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==}
     dependencies:
       pascal-case: 3.1.2
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /camelcase-keys/6.2.2:
@@ -2377,7 +2377,7 @@ packages:
     resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
       upper-case-first: 2.0.2
     dev: true
 
@@ -2417,7 +2417,7 @@ packages:
       path-case: 3.0.4
       sentence-case: 3.0.4
       snake-case: 3.0.4
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /chardet/0.7.0:
@@ -2562,7 +2562,7 @@ packages:
     resolution: {integrity: sha512-I2hSBi7Vvs7BEuJDr5dDHfzb/Ruj3FyvFyh7KLilAjNQw3Be+xgqUBA2W6scVEcL0hL1dwPRtIqEPVUCKkSsyQ==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
       upper-case: 2.0.2
     dev: true
 
@@ -2834,7 +2834,7 @@ packages:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /dot-prop/5.3.0:
@@ -3679,7 +3679,7 @@ packages:
     resolution: {integrity: sha512-H/vuk5TEEVZwrR0lp2zed9OCo1uAILMlx0JEMgC26rzyJJ3N1v6XkwHHXJQdR2doSjcGPM6OKPYoJgf0plJ11Q==}
     dependencies:
       capital-case: 1.0.4
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /hoist-non-react-statics/3.3.2:
@@ -4314,7 +4314,7 @@ packages:
   /lower-case/2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /lru-cache/4.1.5:
@@ -4506,7 +4506,7 @@ packages:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /node-fetch/2.6.7:
@@ -4800,7 +4800,7 @@ packages:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /parent-module/1.0.1:
@@ -4838,14 +4838,14 @@ packages:
     resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /path-case/3.0.4:
     resolution: {integrity: sha512-qO4qCFjXqVTrcbPt/hQfhTQ+VhFsqNKOPtytgNKkKxSoEp3XPUQ8ObFuePylOIok5gjn69ry8XiULxCwot3Wfg==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /path-exists/4.0.0:
@@ -5419,7 +5419,7 @@ packages:
   /rxjs/7.6.0:
     resolution: {integrity: sha512-DDa7d8TFNUalGC9VqXvQ1euWNN7sc63TrUCuM9J998+ViviahMIjKSOU7rfcgFOF+FCD71BhDRv4hrFz+ImDLQ==}
     dependencies:
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /safe-buffer/5.2.1:
@@ -5479,7 +5479,7 @@ packages:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
       upper-case-first: 2.0.2
     dev: true
 
@@ -5591,7 +5591,7 @@ packages:
     resolution: {integrity: sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /source-map-support/0.5.21:
@@ -5863,7 +5863,7 @@ packages:
   /title-case/3.0.3:
     resolution: {integrity: sha512-e1zGYRvbffpcHIrnuqT0Dh+gEJtDaxDSoG4JAIpq4oDFyooziLBIiYQv0GBT4FUAnUop5uZ1hiIAj7oAF6sOCA==}
     dependencies:
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /tmp/0.0.33:
@@ -6008,13 +6008,13 @@ packages:
   /upper-case-first/2.0.2:
     resolution: {integrity: sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /upper-case/2.0.2:
     resolution: {integrity: sha512-KgdgDGJt2TpuwBUIjgG6lzw2GWFRCW9Qkfkiv0DxqHHLYJHmtmdUIKcZd8rHgFSjopVTlw6ggzCm1b8MFQwikg==}
     dependencies:
-      tslib: 2.4.1
+      tslib: registry.npmjs.org/tslib/2.4.1
     dev: true
 
   /uri-js/4.4.1:
@@ -8166,10 +8166,10 @@ packages:
       '@floating-ui/dom': registry.npmjs.org/@floating-ui/dom/1.2.0
     dev: false
 
-  registry.npmjs.org/@floating-ui/react/0.18.1:
-    resolution: {integrity: sha512-Uqntjem19/3ghAwKSaMU/719P/riiox13rkAzMhCthmAAhTzvvmNka52L5s9Gi/cjAfNNR5/RjkD0YKqTecWzQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@floating-ui/react/-/react-0.18.1.tgz}
+  registry.npmjs.org/@floating-ui/react/0.19.1:
+    resolution: {integrity: sha512-h7hr53rLp+VVvWvbu0dOBvGsLeeZwn1DTLIllIaLYjGWw20YhAgEqegHU+nc7BJ30ttxq4Sq6hqARm0ne6chXQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@floating-ui/react/-/react-0.19.1.tgz}
     name: '@floating-ui/react'
-    version: 0.18.1
+    version: 0.19.1
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'

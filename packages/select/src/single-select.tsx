@@ -191,9 +191,10 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                   if (typeof o === "object") {
                     return (o as SelectOptionObject).value === key
                   } else {
-                    return String(o) === key
+                    return o === key
                   }
                 })
+
                 if (option !== undefined) {
                   if (labelInValue) {
                     if (value === undefined) {
@@ -234,7 +235,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                   return (
                     <DropListItem
                       key={option.value.toString()}
-                      value={option.value.toString()}
+                      value={option.value}
                       colorScheme={colorScheme}
                       title={option.label}
                       selected={option.value === finalSelectValue}

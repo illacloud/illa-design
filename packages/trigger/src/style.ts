@@ -9,10 +9,11 @@ import {
 import { getAnimation } from "./transform"
 import { Variants } from "framer-motion"
 
-export function applyMotionDiv() {
+export function applyMotionDiv(autoAlignPopupWidth?: boolean) {
   return css`
     display: inline-flex;
     pointer-events: auto;
+    width: ${autoAlignPopupWidth ? "100%" : "auto"};
   `
 }
 
@@ -175,12 +176,22 @@ export const applyDefaultContentSize = css`
   font-size: 14px;
 `
 
-export const applyVerticalContainer = css`
-  display: inline-flex;
-  flex-direction: column;
-`
+export function applyVerticalContainer(
+  autoAlignPopupWidth?: boolean,
+): SerializedStyles {
+  return css`
+    display: inline-flex;
+    flex-direction: column;
+    width: ${autoAlignPopupWidth ? "100%" : "auto"};
+  `
+}
 
-export const applyHorizontalContainer = css`
-  display: inline-flex;
-  flex-direction: row;
-`
+export function applyHorizontalContainer(
+  autoAlignPopupWidth?: boolean,
+): SerializedStyles {
+  return css`
+    display: inline-flex;
+    flex-direction: row;
+    width: ${autoAlignPopupWidth ? "100%" : "auto"};
+  `
+}

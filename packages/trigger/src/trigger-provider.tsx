@@ -1,10 +1,6 @@
+import { FC } from "react"
 import { TriggerContext } from "./interface"
-import { createContext, FC } from "react"
-
-export const TriggerProviderContext = createContext<TriggerContext>({
-  renderInBody: true,
-  zIndex: 1,
-} as TriggerContext)
+import { TriggerProviderContext } from "./trigger-context"
 
 export const TriggerProvider: FC<TriggerContext> = (props) => {
   const { renderInBody, zIndex } = props

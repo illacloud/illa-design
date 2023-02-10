@@ -5,9 +5,9 @@ import { MultipleSelect } from "./multiple-select"
 
 export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   if (props.multiple) {
-    return <MultipleSelect {...props} />
+    return <MultipleSelect ref={ref} {...props} />
   } else {
-    return <SingleSelect {...props} />
+    return <SingleSelect ref={ref} {...props} />
   }
 })
 
