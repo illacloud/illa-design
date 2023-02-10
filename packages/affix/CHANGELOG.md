@@ -1,5 +1,15 @@
 # @illa-design/affix
 
+## 1.0.14
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/system@1.0.14
+  - @illa-design/theme@1.0.14
+
 ## 1.0.13
 
 ### Patch Changes

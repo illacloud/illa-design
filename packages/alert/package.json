@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/alert",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Illa Design Alert.",
   "keywords": [
     "alert",
@@ -35,12 +35,12 @@
   "bugs": {
     "url": "https://github.com/illacloud/illa-design/issues"
   },
-   "scripts": {
+  "scripts": {
     "build": "vite build"
   },
   "devDependencies": {
-    "@vitejs/plugin-react-swc":"^3.0.1",
-    "@rollup/plugin-typescript":"^10.0.1"
+    "@vitejs/plugin-react-swc": "^3.0.1",
+    "@rollup/plugin-typescript": "^10.0.1"
   },
   "dependencies": {
     "@illa-design/icon": "workspace:*",
