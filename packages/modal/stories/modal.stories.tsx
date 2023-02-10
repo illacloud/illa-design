@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Modal, ModalGroup, ModalProps, useModal } from "../src"
 import {
   Space,
@@ -22,7 +22,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<ModalProps> = (args) => {
+const Template: StoryFn<ModalProps> = (args) => {
   const [visible, setVisible] = React.useState(false)
   const [confirmLoading, setConfirmLoading] = React.useState(false)
 

@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Avatar, AvatarGroup, AvatarProps } from "../src"
 
 import { BsGithub, BsMailbox, BsTwitch } from "react-icons/bs"
@@ -34,7 +34,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<AvatarProps> = (args) => {
+const Template: StoryFn<AvatarProps> = (args) => {
   return (
     <AvatarGroup {...args}>
       <Avatar icon={<BsMailbox />} />

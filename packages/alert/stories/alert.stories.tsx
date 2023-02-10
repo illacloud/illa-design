@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Alert, AlertProps } from "../src"
 import { Button } from "@illa-design/react"
 
@@ -24,7 +24,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<AlertProps> = (args) => {
+const Template: StoryFn<AlertProps> = (args) => {
   return (
     <div
       style={{

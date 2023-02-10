@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { RateProps, Rate } from "../src"
 import { Space } from "@illa-design/react"
 
@@ -12,7 +12,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<RateProps> = (args) => {
+const Template: StoryFn<RateProps> = (args) => {
   return (
     <Space size={"large"} direction={"vertical"} style={{ marginTop: 50 }}>
       <Rate {...args} />

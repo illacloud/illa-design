@@ -1,5 +1,5 @@
 import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
+import react from "@vitejs/plugin-react-swc"
 import typescript from "@rollup/plugin-typescript"
 
 const path = require("path")
@@ -9,24 +9,11 @@ export default defineConfig({
   plugins: [
     react({
       jsxImportSource: "@emotion/react",
-      jsxRuntime: "automatic",
-      babel: {
-        plugins: ["@emotion/babel-plugin"],
-        compact: false,
-      },
-      // Exclude storybook stories
-      exclude: [
-        /\.stories\.([tj])sx?$/,
-        /\.e2e\.([tj])sx?$/,
-        /\.test\.([tj])sx?$/,
-      ],
-      // Only .tsx files
-      include: ["**/*.tsx", "**/*.ts"],
     }),
   ],
   build: {
     sourcemap: true,
-    minify: true,
+    minify: "esbuild",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/theme",
@@ -45,7 +32,15 @@ export default defineConfig({
           exclude: path.resolve(__dirname, "node_modules/**"),
         }),
       ],
-      external: ["react", "react-dom", "color", "@illa-design/system"],
+      external: [
+        "react",
+        "react-dom",
+        "@emotion/react",
+        "framer-motion",
+        "color",
+        "@illa-design/system",
+        "chroma-js",
+      ],
       output: {
         globals: {
           react: "React",
@@ -54,6 +49,7 @@ export default defineConfig({
           "framer-motion": "framer-motion",
           color: "color",
           "@illa-design/system": "@illa-design/system",
+          "chroma-js": "chroma-js",
         },
       },
     },

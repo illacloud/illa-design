@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Heading, HeadingProps, Paragraph, Text, Typography } from "../src"
 
 //👇 This default export determines where your story goes in the story list
@@ -7,7 +7,7 @@ export default {
   component: Typography,
 } as Meta
 
-export const Basic: Story<HeadingProps> = (args) => {
+export const Basic: StoryFn<HeadingProps> = (args) => {
   return (
     <Typography>
       <Heading level="h4">I am title</Heading>

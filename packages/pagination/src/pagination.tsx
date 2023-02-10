@@ -1,205 +1,473 @@
 import * as React from "react"
-import { forwardRef, ReactNode, useContext } from "react"
-import { MoreIcon, NextIcon, PreIcon } from "@illa-design/icon"
+import {
+  forwardRef,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
+import { PaginationProps } from "./interface"
+import {
+  applyDirectorIconStyle,
+  applyJumperStyle,
+  applySelectorInputStyle,
+  applySimpleTextStyle,
+  jumperContainerStyle,
+  paginationContainer,
+  selectorContainerStyle,
+  totalStyle,
+} from "./style"
+import { isFunction, useMergeValue } from "@illa-design/system"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
+import { MoreIcon, NextIcon, PreviousIcon } from "@illa-design/icon"
+import { css } from "@emotion/react"
+import { Select } from "@illa-design/select"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
-import {
-  applyDefaultItemCss,
-  applyDefaultItemWithMarginCss,
-  paginationContainer,
-  totalTextCss,
-} from "./style"
-import { PageNumGroup } from "./page-num-group"
-import { JumperInput } from "./jump-input"
-import { PageSizeSelector } from "./page-size-selector"
-import { SimplePagination } from "./simple-pagination"
-import { PaginationProps } from "./interface"
-import { useMergeValue } from "@illa-design/system"
 
 export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
   (props, ref) => {
     const {
-      currentPage,
-      pageSize,
-      total = 0,
-      defaultCurrent = 1,
-      defaultPageSize = 10,
       disabled,
-      hideOnSinglePage = true,
-      size = "medium",
-      showTotal,
-      sizeCanChange = true,
-      sizeOptions = [10, 20, 30, 40, 50],
-      simple,
+      hideOnSinglePage,
+      pageSizeChangeResetCurrent,
       showJumper,
-      placeholder,
+      showMore,
+      simple,
+      sizeCanChange,
+      bufferSize = 0,
+      current,
+      defaultCurrent,
+      pageSize,
+      defaultPageSize,
+      total = 0,
+      itemRender,
+      size = "medium",
+      icons,
       onChange,
       onPageSizeChange,
-      prevIcon,
-      nextIcon,
-      moreIcon,
+      showTotal,
       ...otherProps
     } = props
 
-    const [curPage, setCurPage] = useMergeValue(0, {
-      defaultValue: defaultCurrent - 1,
-      value: currentPage,
-    })
-    const [itemCount, setItemCount] = useMergeValue(10, {
-      defaultValue: defaultPageSize,
-      value: pageSize,
-    })
+    const startAndEndBuffer = 5
 
     const configProviderProps = useContext<ConfigProviderProps>(
       ConfigProviderContext,
     )
+
     const locale = configProviderProps?.locale?.pagination ?? def.pagination
 
-    const totalText = locale["total"]
+    const [finalCurrent, setFinalCurrent] = useMergeValue<number>(1, {
+      defaultValue: defaultCurrent,
+      value: current,
+    })
 
-    let pageSum: number
-    if (total <= 0) {
-      pageSum = 0
-    } else {
-      pageSum = Math.ceil(total / itemCount)
-    }
+    const [finalPageSize, setFinalPageSize] = useMergeValue(10, {
+      defaultValue: defaultPageSize,
+      value: pageSize,
+    })
 
-    const prevDisable = curPage == 0 || disabled || pageSum == 0
-    const nextDisable = curPage == pageSum - 1 || disabled || pageSum == 0
+    const [jumperValue, setJumperValue] = useState("")
+    const [simpleValue, setSimpleValue] = useState("")
 
-    if (hideOnSinglePage && pageSum == 1) {
-      return <></>
-    }
+    const totalPageSize = Math.ceil(total / finalPageSize)
 
-    let totalElement: ReactNode = null
-    if (typeof showTotal === "boolean" && showTotal) {
-      totalElement = (
-        <span css={totalTextCss}>
-          {totalText.replace("{0}", total.toString())}
-        </span>
+    const changeCurrent = useCallback(
+      (toCurrent: number): number => {
+        let toC = toCurrent
+        if (toCurrent < 1) {
+          toC = 1
+        } else if (toCurrent > totalPageSize) {
+          toC = totalPageSize
+        }
+        if (total === 0) {
+          toC = 0
+        }
+        if (current === undefined) {
+          setFinalCurrent(toC)
+        }
+        onChange?.(toC, finalPageSize)
+        return toC
+      },
+      [current, finalPageSize, onChange, setFinalCurrent, total, totalPageSize],
+    )
+
+    const totalComponent = useMemo(() => {
+      if (isFunction(showTotal)) {
+        return (
+          <div css={totalStyle}>
+            {showTotal(total, [
+              (finalCurrent - 1) * finalPageSize,
+              (finalCurrent - 1) * finalPageSize + finalPageSize <= total
+                ? (finalCurrent - 1) * finalPageSize + finalPageSize
+                : (finalCurrent - 1) * finalPageSize + (total % finalPageSize),
+            ])}
+          </div>
+        )
+      } else {
+        return (
+          <>
+            {showTotal && (
+              <span css={totalStyle}>
+                {locale.total.replace("{0}", total?.toString() ?? "")}
+              </span>
+            )}
+          </>
+        )
+      }
+    }, [finalCurrent, finalPageSize, locale.total, showTotal, total])
+
+    const jumperComponent = useMemo(() => {
+      return (
+        <>
+          {showJumper && (
+            <div css={jumperContainerStyle}>
+              <span css={applyJumperStyle(disabled)}>{locale.go}</span>
+              <input
+                css={applySelectorInputStyle(size)}
+                value={jumperValue}
+                type="number"
+                min={1}
+                max={totalPageSize}
+                disabled={disabled}
+                onChange={(e) => {
+                  setJumperValue(e.currentTarget.value)
+                }}
+                onBlur={(e) => {
+                  if (e.currentTarget.value != "") {
+                    changeCurrent(Number(e.currentTarget.value))
+                    setJumperValue("")
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && e.currentTarget.value != "") {
+                    changeCurrent(Number(e.currentTarget.value))
+                    setJumperValue("")
+                  }
+                }}
+              />
+            </div>
+          )}
+        </>
       )
-    }
+    }, [
+      changeCurrent,
+      disabled,
+      jumperValue,
+      locale.go,
+      showJumper,
+      size,
+      totalPageSize,
+    ])
 
-    if (typeof showTotal === "function") {
-      totalElement = (
-        <div css={totalTextCss}>
-          {showTotal(total, [
-            curPage * itemCount + 1,
-            (curPage + 1) * itemCount,
-          ])}
+    const clickNodeShow = useCallback(
+      (index: number) => {
+        let show = false
+
+        if (
+          finalCurrent + bufferSize >= index &&
+          finalCurrent - bufferSize <= index
+        ) {
+          show = true
+        }
+
+        if (index === 1 || index == totalPageSize) {
+          show = true
+        }
+
+        if (finalCurrent < startAndEndBuffer && index < startAndEndBuffer) {
+          show = true
+        }
+
+        return show
+      },
+      [bufferSize, finalCurrent, totalPageSize, startAndEndBuffer],
+    )
+
+    useEffect(() => {
+      setSimpleValue(finalCurrent.toString())
+    }, [finalCurrent])
+
+    const selectorComponent = useMemo(() => {
+      let middleComponent: ReactNode
+      if (simple) {
+        middleComponent = (
+          <div css={selectorContainerStyle}>
+            <input
+              css={applySelectorInputStyle(size)}
+              type="number"
+              min={1}
+              max={totalPageSize}
+              value={simpleValue}
+              disabled={disabled}
+              onChange={(e) => {
+                setSimpleValue(e.currentTarget.value)
+              }}
+              onBlur={(e) => {
+                if (e.currentTarget.value != "") {
+                  changeCurrent(Number(e.currentTarget.value))
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && e.currentTarget.value != "") {
+                  changeCurrent(Number(e.currentTarget.value))
+                }
+              }}
+            />
+            <span
+              css={applySimpleTextStyle(
+                css`
+                  margin-left: 8px;
+                  margin-right: 8px;
+                `,
+                disabled,
+              )}
+            >
+              /
+            </span>
+            <span css={applySimpleTextStyle(css``, disabled)}>
+              {totalPageSize}
+            </span>
+          </div>
+        )
+      } else {
+        const clickList: ReactNode[] = []
+        for (let i = 0; i < totalPageSize; i++) {
+          const index = i + 1
+          const active = finalCurrent === index
+
+          if (clickNodeShow(index)) {
+            clickList.push(
+              <span
+                css={applyDirectorIconStyle(
+                  css`
+                    margin-right: ${i != totalPageSize - 1 ? "8px" : "unset"};
+                  `,
+                  size,
+                  disabled,
+                  active,
+                )}
+                onClick={() => {
+                  if (disabled) {
+                    return
+                  }
+                  changeCurrent(index)
+                }}
+              >
+                {i + 1}
+              </span>,
+            )
+          } else {
+            if (clickNodeShow(index - 1))
+              clickList.push(
+                <span
+                  css={applyDirectorIconStyle(
+                    css`
+                      margin-right: ${i != totalPageSize - 1 ? "8px" : "unset"};
+                    `,
+                    size,
+                    disabled,
+                  )}
+                  onClick={() => {
+                    if (disabled) {
+                      return
+                    }
+                    if (index < finalCurrent) {
+                      changeCurrent(finalCurrent - bufferSize - 1)
+                    } else if (index > finalCurrent) {
+                      changeCurrent(finalCurrent + bufferSize + 1)
+                    }
+                  }}
+                >
+                  {itemRender?.(
+                    finalPageSize,
+                    "more",
+                    icons?.more ?? <MoreIcon />,
+                  ) ?? <MoreIcon />}
+                </span>,
+              )
+          }
+        }
+        middleComponent = <>{clickList}</>
+      }
+
+      return (
+        <div css={selectorContainerStyle}>
+          <span
+            css={applyDirectorIconStyle(
+              css`
+                margin-right: 8px;
+              `,
+              size,
+              disabled || finalCurrent === 1 || total === 0,
+            )}
+            onClick={() => {
+              if (disabled || finalCurrent === 1 || total === 0) {
+                return
+              }
+              changeCurrent(finalCurrent - 1)
+            }}
+          >
+            {itemRender?.(
+              finalPageSize,
+              "prev",
+              icons?.prev ?? <PreviousIcon />,
+            ) ?? <PreviousIcon />}
+          </span>
+          {middleComponent}
+          {showMore && (
+            <span
+              css={applyDirectorIconStyle(
+                css`
+                  margin-left: 8px;
+                `,
+                size,
+                disabled,
+              )}
+              onClick={() => {
+                if (disabled) {
+                  return
+                }
+                changeCurrent(finalCurrent + bufferSize + 1)
+              }}
+            >
+              {itemRender?.(
+                finalPageSize,
+                "more",
+                icons?.more ?? <MoreIcon />,
+              ) ?? <MoreIcon />}
+            </span>
+          )}
+          <span
+            css={applyDirectorIconStyle(
+              css`
+                margin-left: 8px;
+              `,
+              size,
+              disabled || finalCurrent === totalPageSize || total === 0,
+            )}
+            onClick={() => {
+              if (disabled || finalCurrent === totalPageSize || total === 0) {
+                return
+              }
+              changeCurrent(finalCurrent + 1)
+            }}
+          >
+            {itemRender?.(
+              finalPageSize,
+              "next",
+              icons?.next ?? <NextIcon />,
+            ) ?? <NextIcon />}
+          </span>
         </div>
       )
-    }
+    }, [
+      bufferSize,
+      changeCurrent,
+      clickNodeShow,
+      disabled,
+      finalCurrent,
+      finalPageSize,
+      icons?.more,
+      icons?.next,
+      icons?.prev,
+      itemRender,
+      showMore,
+      simple,
+      simpleValue,
+      size,
+      total,
+      totalPageSize,
+    ])
 
-    const _preIcon: ReactNode = prevIcon ?? <PreIcon />
-    const _nextIcon: ReactNode = nextIcon ?? <NextIcon />
-    const _moreIcon: ReactNode = moreIcon ?? <MoreIcon />
+    const pageSizeComponent = useMemo(() => {
+      return (
+        <>
+          {sizeCanChange && (
+            <Select
+              options={[
+                {
+                  label: `10/${locale.page}`,
+                  value: "10",
+                },
+                {
+                  label: `20/${locale.page}`,
+                  value: "20",
+                },
+                {
+                  label: `30/${locale.page}`,
+                  value: "30",
+                },
+                {
+                  label: `40/${locale.page}`,
+                  value: "40",
+                },
+                {
+                  label: `50/${locale.page}`,
+                  value: "50",
+                },
+              ]}
+              disabled={disabled}
+              ml="8px"
+              defaultValue={{
+                label: finalPageSize + "/" + locale.page,
+                value: finalPageSize.toString(),
+              }}
+              onChange={(value) => {
+                if (value !== null) {
+                  let v = Number(value)
+                  let newCurrent = pageSizeChangeResetCurrent
+                    ? totalPageSize > 0
+                      ? 1
+                      : 0
+                    : Math.ceil((finalCurrent * finalPageSize) / v)
+                  onPageSizeChange?.(v, newCurrent)
+                  changeCurrent(newCurrent)
+                  if (pageSize === undefined) {
+                    setFinalPageSize(v)
+                  }
+                }
+              }}
+            />
+          )}
+        </>
+      )
+    }, [
+      changeCurrent,
+      disabled,
+      finalCurrent,
+      finalPageSize,
+      locale.page,
+      onPageSizeChange,
+      pageSize,
+      pageSizeChangeResetCurrent,
+      setFinalPageSize,
+      sizeCanChange,
+      totalPageSize,
+    ])
 
-    const changeCurrentPage = (currentPage: number) => {
-      if (!("currentPage" in props)) {
-        setCurPage(currentPage)
-      }
-    }
-    const changePageSize = (pageSize: number) => {
-      if (!("pageSize" in props)) {
-        setItemCount(pageSize)
+    if (hideOnSinglePage) {
+      if (total <= finalPageSize) {
+        return <></>
       }
     }
 
     return (
       <div
         css={[paginationContainer, applyBoxStyle(props)]}
-        placeholder={placeholder}
         ref={ref}
         {...deleteCssProps(otherProps)}
       >
-        {totalElement}
-        {simple ? (
-          <SimplePagination
-            defaultSelectedPageIndex={curPage}
-            pageSum={pageSum}
-            size={size}
-            onCurrentChange={(pageNum) => {
-              if (pageNum == 0) return
-              changeCurrentPage(pageNum - 1)
-              onChange?.(pageNum - 1, itemCount)
-            }}
-            nextIcon={_nextIcon}
-            prevIcon={_preIcon}
-            wholeDisabled={disabled == true}
-          />
-        ) : (
-          <span css={paginationContainer}>
-            <span
-              css={applyDefaultItemWithMarginCss(size, prevDisable)}
-              onClick={() => {
-                if (prevDisable) return
-                changeCurrentPage(curPage - 1)
-                onChange?.(curPage - 1, itemCount)
-              }}
-            >
-              {_preIcon}
-            </span>
-            {pageSum > 0 && (
-              <PageNumGroup
-                total={pageSum}
-                moreIcon={_moreIcon}
-                selectedIndex={curPage}
-                wholeDisable={disabled}
-                size={size}
-                onCurPageIndexChanged={(index) => {
-                  changeCurrentPage(index)
-                  onChange?.(index, itemCount)
-                }}
-              />
-            )}
-            <span
-              css={applyDefaultItemCss(size, nextDisable)}
-              onClick={() => {
-                if (nextDisable) return
-                changeCurrentPage(curPage + 1)
-                onChange?.(curPage + 1, itemCount)
-              }}
-            >
-              {_nextIcon}
-            </span>
-          </span>
-        )}
-
-        {!simple && showJumper && (
-          <JumperInput
-            currentPage={curPage}
-            totalPages={pageSum}
-            wholeDisable={disabled}
-            size={size}
-            onEnterPress={(pageNum) => {
-              if (pageNum > pageSum - 1) {
-                changeCurrentPage(pageSum - 1)
-                onChange?.(pageSum - 1, itemCount)
-              } else {
-                changeCurrentPage(pageNum - 1)
-                onChange?.(pageNum - 1, itemCount)
-              }
-            }}
-          />
-        )}
-        {!simple && sizeCanChange && (
-          <PageSizeSelector
-            sizeOptions={sizeOptions}
-            wholeDisable={disabled}
-            size={size}
-            onPageSizeSelected={(pageSize) => {
-              changePageSize(pageSize)
-              changeCurrentPage(0)
-              onPageSizeChange?.(pageSize, 0)
-              onChange?.(0, pageSize)
-            }}
-          />
-        )}
+        {totalComponent}
+        {selectorComponent}
+        {pageSizeComponent}
+        {jumperComponent}
       </div>
     )
   },

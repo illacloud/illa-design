@@ -8,7 +8,7 @@
     "component"
   ],
   "sideEffects": false,
-  "author": "illa Cloud <opensource@illasoft.com>",
+  "author": "ILLA Cloud <opensource@illasoft.com>",
   "homepage": "https://github.com/illacloud/illa-design",
   "license": "Apache-2.0",
   "main": "dist/umd/index.js",
@@ -38,23 +38,24 @@
   "scripts": {
     "build": "vite build"
   },
-  "dependencies": {
-    "@illa-design/icon": "workspace:*",
-    "@illa-design/trigger": "workspace:*",
-    "@illa-design/input": "workspace:*",
-    "@illa-design/theme": "workspace:*",
-    "@illa-design/system": "workspace:*",
-    "@illa-design/button": "workspace:*",
-    "@illa-design/config-provider": "workspace:*",
-    "dayjs": "^1.10.7",
-    "debounce": "^1.2.1"
-  },
   "devDependencies": {
-    "@types/debounce": "^1.2.1"
+    "@rollup/plugin-typescript": "^10.0.1",
+    "@types/lodash.debounce": "^4.0.7",
+    "@vitejs/plugin-react-swc": "^3.0.1"
+  },
+  "dependencies": {
+    "@illa-design/system": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/trigger": "workspace:*",
+    "@illa-design/config-provider": "workspace:*",
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/button": "workspace:*",
+    "lodash.debounce": "^4.0.8",
+    "dayjs": "^1.11.7"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.10.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5"
+    "react-dom": "^18.2.0"
   }
 }

@@ -29,6 +29,7 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     border-radius: ${props.bdRadius};
     border: ${props.bd};
     //ColorStyledProps
+    background: ${props.bg};
     background-color: ${props.bgColor};
     border-color: ${props.bdColor};
     color: ${props.c};
@@ -39,6 +40,7 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     left: ${props.posL};
     bottom: ${props.posB};
     right: ${props.posR};
+    z-index: ${props.z};
     overflow: ${props.ov};
     overflow-x: ${props.ovX};
     overflow-y: ${props.ovY};
@@ -60,6 +62,7 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     font-size: ${props.fs};
     font-family: ${props.ff};
     font-weight: ${props.fw};
+    visibility: ${props.v};
     ${props._css};
   `
 }
@@ -91,6 +94,7 @@ export function deleteCssProps(obj: object): object {
     "bdRadius",
     "bd",
     //ColorStyledProps
+    "bg",
     "bgColor",
     "bdColor",
     "c",
@@ -101,9 +105,11 @@ export function deleteCssProps(obj: object): object {
     "posL",
     "posB",
     "posR",
+    "z",
     "ov",
     "ovX",
     "ovY",
+    "v",
     // FlexStyledProps
     "alignItems",
     "alignContent",

@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { {{properCase name}}, {{properCase name}}Props } from "../src"
 
 export default {
@@ -6,10 +6,8 @@ export default {
   component: {{properCase name}},
 } as Meta
 
-const Template: Story<{{properCase name}}Props> = (args) => {
+export const Basic: StoryFn<{{properCase name}}Props> = (args) => {
   return (
       <{{properCase name}} {...args}  />
   )
 }
-
-export const Basic = Template.bind({})

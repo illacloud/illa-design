@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Tag, TagProps } from "../src"
 
 import { BsFacebook, BsTwitch, BsTwitter } from "react-icons/bs"
@@ -17,7 +17,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<TagProps> = (args) => {
+const Template: StoryFn<TagProps> = (args) => {
   return (
     <Space size="medium">
       <Tag {...args}>Hello</Tag>

@@ -8,7 +8,7 @@
       "dependsOn": [
         "^build"
       ],
-      "cache": false
+      "inputs": ["src/**/*.tsx", "src/**/*.ts"]
     }
   }
 }

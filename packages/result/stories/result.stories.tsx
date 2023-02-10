@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Result, ResultProps } from "../src"
 import { Button } from "@illa-design/react"
 
@@ -29,7 +29,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<ResultProps> = (props) => {
+const Template: StoryFn<ResultProps> = (props) => {
   return <Result {...props}></Result>
 }
 

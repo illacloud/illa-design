@@ -1,7 +1,7 @@
 import { createIcon } from "../create-icon"
 
-export const PreDoubleIcon = createIcon({
-  title: "PreDoubleIcon",
+export const PreviousDoubleIcon = createIcon({
+  title: "PreviousDoubleIcon",
   viewBox: "0 0 12 12",
   path: (
     <>
@@ -21,4 +21,4 @@ export const PreDoubleIcon = createIcon({
   ),
 })
 
-PreDoubleIcon.displayName = "PreDoubleIcon"
+PreviousDoubleIcon.displayName = "PreviousDoubleIcon"

@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 
 import {
   ConfigProvider,
@@ -13,7 +13,7 @@ export default {
   component: ConfigProvider,
 } as Meta
 
-export const Basic: Story<ConfigProviderProps> = (args) => {
+export const Basic: StoryFn<ConfigProviderProps> = (args) => {
   return (
     <ConfigProvider {...args} locale={zhCN}>
       <ConfigProviderContext.Consumer>

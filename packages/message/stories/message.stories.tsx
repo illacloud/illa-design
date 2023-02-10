@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Space, Button } from "@illa-design/react"
 import { Message, MessageGroup, MessageProps, useMessage } from "../src"
 
@@ -42,7 +42,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<MessageProps> = (args) => {
+const Template: StoryFn<MessageProps> = (args) => {
   const message = useMessage()
   return (
     <>

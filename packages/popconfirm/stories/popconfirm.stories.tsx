@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { PopConfirm, PopconfirmProps } from "../src"
 import { Button } from "@illa-design/react"
 
@@ -13,7 +13,7 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<PopconfirmProps> = (args) => (
+export const Basic: StoryFn<PopconfirmProps> = (args) => (
   <div style={{ margin: "200px" }}>
     <PopConfirm {...args}>
       <Button>Click</Button>

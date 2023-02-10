@@ -86,6 +86,9 @@ export const koKR = {
     October: "10월",
     November: "11월",
     December: "12월",
+    nowText: "지금 이 순간",
+    okText: "확정",
+    timeText: "시간 선택",
   },
   modal: {
     okText: "확정",

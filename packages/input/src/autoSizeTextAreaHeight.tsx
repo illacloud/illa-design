@@ -1,5 +1,4 @@
-// thanks arco
-// auto set textarea height
+import { isNumber, isObject } from "@illa-design/system"
 
 const mirrorTextAreaStyle = `
   position: absolute;
@@ -73,7 +72,7 @@ function autoSizeTextAreaHeight(
   const getRows = () => {
     let minRows
     let maxRows
-    if (Object.prototype.toString.call(autoSize) === "[object Object]") {
+    if (isObject(autoSize)) {
       minRows = (autoSize as any).minRows
       maxRows = (autoSize as any).maxRows
     }
@@ -96,7 +95,7 @@ function autoSizeTextAreaHeight(
     if (minRows || maxRows) {
       mirrorTextArea.value = ""
       const singleRowHeight = mirrorTextArea.scrollHeight - paddingSize
-      if (typeof minRows === "number") {
+      if (isNumber(minRows)) {
         minHeight = singleRowHeight * minRows
         if (boxSizing === "border-box") {
           minHeight += paddingSize
@@ -104,7 +103,7 @@ function autoSizeTextAreaHeight(
         }
         mirrorTextAreaHeight = Math.max(mirrorTextAreaHeight, minHeight)
       }
-      if (typeof maxRows === "number") {
+      if (isNumber(maxRows)) {
         maxHeight = singleRowHeight * maxRows
         if (boxSizing === "border-box") {
           maxHeight += paddingSize

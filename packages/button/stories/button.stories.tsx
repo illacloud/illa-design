@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Button, ButtonProps } from "../src"
 
 import { Space } from "@illa-design/react"
@@ -19,7 +19,7 @@ export default {
   },
 } as Meta
 
-export const Basic: Story<ButtonProps> = (args) => {
+export const Basic: StoryFn<ButtonProps> = (args) => {
   return (
     <Space direction="vertical" align="start" wrap>
       <Button {...args}>Hello</Button>

@@ -1,5 +1,5 @@
 import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
+import react from "@vitejs/plugin-react-swc"
 import typescript from "@rollup/plugin-typescript"
 
 const path = require("path")
@@ -9,24 +9,11 @@ export default defineConfig({
   plugins: [
     react({
       jsxImportSource: "@emotion/react",
-      jsxRuntime: "automatic",
-      babel: {
-        plugins: ["@emotion/babel-plugin"],
-        compact: false,
-      },
-      // Exclude storybook stories
-      exclude: [
-        /\.stories\.([tj])sx?$/,
-        /\.e2e\.([tj])sx?$/,
-        /\.test\.([tj])sx?$/,
-      ],
-      // Only .tsx files
-      include: ["**/*.tsx", "**/*.ts"],
     }),
   ],
   build: {
     sourcemap: true,
-    minify: true,
+    minify: "esbuild",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/time-picker",
@@ -50,15 +37,13 @@ export default defineConfig({
         "react-dom",
         "@emotion/react",
         "framer-motion",
-        "@illa-design/icon",
-        "@illa-design/trigger",
-        "@illa-design/input",
-        "@illa-design/theme",
         "@illa-design/system",
-        "@illa-design/button",
+        "@illa-design/theme",
+        "@illa-design/trigger",
         "@illa-design/config-provider",
-        "dayjs",
-        "debounce",
+        "@illa-design/icon",
+        "@illa-design/button",
+        "lodash.debounce",
       ],
       output: {
         globals: {
@@ -66,15 +51,13 @@ export default defineConfig({
           "react-dom": "ReactDom",
           "@emotion/react": "@emotion/react",
           "framer-motion": "framer-motion",
-          "@illa-design/icon": "@illa-design/icon",
-          "@illa-design/trigger": "@illa-design/trigger",
-          "@illa-design/input": "@illa-design/input",
-          "@illa-design/theme": "@illa-design/theme",
           "@illa-design/system": "@illa-design/system",
-          "@illa-design/button": "@illa-design/button",
+          "@illa-design/theme": "@illa-design/theme",
+          "@illa-design/trigger": "@illa-design/trigger",
           "@illa-design/config-provider": "@illa-design/config-provider",
-          dayjs: "dayjs",
-          debounce: "debounce",
+          "@illa-design/icon": "@illa-design/icon",
+          "@illa-design/button": "@illa-design/button",
+          "lodash.debounce": "@lodash/debounce",
         },
       },
     },

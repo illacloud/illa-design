@@ -1,5 +1,5 @@
-import { Meta, Story } from "@storybook/react"
-import { Tabs, TabPane, TabsProps } from "../src"
+import { Meta, StoryFn } from "@storybook/react"
+import { TabPane, Tabs, TabsProps } from "../src"
 import { ReactNode } from "react"
 import { Space } from "@illa-design/react"
 
@@ -41,7 +41,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<TabsProps> = (props) => {
+const Template: StoryFn<TabsProps> = (props) => {
   const tabArr: {
     key: string
     title: string | ReactNode

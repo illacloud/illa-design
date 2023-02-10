@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Col, Row } from "../src"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
@@ -7,7 +7,7 @@ export default {
   title: "LAYOUT/Grid",
 } as Meta
 
-export const Basic: Story = () => (
+export const Basic: StoryFn = () => (
   <Row
     style={{ backgroundColor: globalColor(`--${illaPrefix}-blackAlpha-06`) }}
     horizontalGap={{ xs: "40px" }}

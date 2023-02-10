@@ -1,13 +1,13 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Card, CardMeta, CardProps } from "../src"
 import {
-  Space,
-  Link,
-  LikeIcon,
-  MoreIcon,
-  ShareIcon,
-  Image,
   Button,
+  Image,
+  LikeOutlineIcon,
+  Link,
+  MoreIcon,
+  Space,
+  StartOutlineIcon,
 } from "@illa-design/react"
 
 export default {
@@ -32,7 +32,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<CardProps> = (args) => {
+const Template: StoryFn<CardProps> = (args) => {
   return (
     <Space size="large" direction="vertical">
       <Card style={{ width: 360 }} extra={<Link>More</Link>} {...args}>
@@ -59,10 +59,10 @@ const Template: Story<CardProps> = (args) => {
         title="France is a land"
         actionList={[
           <span key="like">
-            <LikeIcon />
+            <LikeOutlineIcon />
           </span>,
           <span key="share">
-            <ShareIcon />
+            <StartOutlineIcon />
           </span>,
           <span key="more">
             <MoreIcon />

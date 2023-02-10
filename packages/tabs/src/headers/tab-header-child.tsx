@@ -36,7 +36,7 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
       _childCss = applyCommonHeaderChildCss
     }
     return [_childCss]
-  }, [variant, isSelected])
+  }, [variant])
 
   return (
     <span

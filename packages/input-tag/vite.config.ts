@@ -1,5 +1,5 @@
 import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
+import react from "@vitejs/plugin-react-swc"
 import typescript from "@rollup/plugin-typescript"
 
 const path = require("path")
@@ -9,24 +9,11 @@ export default defineConfig({
   plugins: [
     react({
       jsxImportSource: "@emotion/react",
-      jsxRuntime: "automatic",
-      babel: {
-        plugins: ["@emotion/babel-plugin"],
-        compact: false,
-      },
-      // Exclude storybook stories
-      exclude: [
-        /\.stories\.([tj])sx?$/,
-        /\.e2e\.([tj])sx?$/,
-        /\.test\.([tj])sx?$/,
-      ],
-      // Only .tsx files
-      include: ["**/*.tsx", "**/*.ts"],
     }),
   ],
   build: {
     sourcemap: true,
-    minify: true,
+    minify: "esbuild",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/input-tag",
@@ -55,7 +42,8 @@ export default defineConfig({
         "@illa-design/icon",
         "@illa-design/input",
         "@illa-design/tag",
-        "chroma-js",
+        "@illa-design/space",
+        "react-use-measure",
       ],
       output: {
         globals: {
@@ -68,7 +56,8 @@ export default defineConfig({
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/input": "@illa-design/input",
           "@illa-design/tag": "@illa-design/tag",
-          "chroma-js": "chroma-js",
+          "@illa-design/space": "@illa-design/space",
+          "react-use-measure": "react-use-measure",
         },
       },
     },

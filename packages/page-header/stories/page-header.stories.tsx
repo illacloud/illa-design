@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { PageHeader, PageHeaderProps } from "../src"
 
 export default {
@@ -7,7 +7,7 @@ export default {
   argTypes: {},
 } as Meta
 
-const Template: Story<PageHeaderProps> = (args) => {
+const Template: StoryFn<PageHeaderProps> = (args) => {
   return (
     <PageHeader
       {...args}

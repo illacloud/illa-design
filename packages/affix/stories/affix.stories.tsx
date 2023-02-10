@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Button, useNotification } from "@illa-design/react"
 import { Affix, AffixProps } from "../src"
 import { CSSProperties, useRef } from "react"
@@ -26,7 +26,7 @@ const loremIpsum = Array(10)
   )
   .join("\n\n")
 
-export const Basic: Story<AffixProps> = (args) => {
+export const Basic: StoryFn<AffixProps> = (args) => {
   return (
     <>
       <Affix {...args}>

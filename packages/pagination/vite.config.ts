@@ -1,5 +1,5 @@
 import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
+import react from "@vitejs/plugin-react-swc"
 import typescript from "@rollup/plugin-typescript"
 
 const path = require("path")
@@ -9,24 +9,11 @@ export default defineConfig({
   plugins: [
     react({
       jsxImportSource: "@emotion/react",
-      jsxRuntime: "automatic",
-      babel: {
-        plugins: ["@emotion/babel-plugin"],
-        compact: false,
-      },
-      // Exclude storybook stories
-      exclude: [
-        /\.stories\.([tj])sx?$/,
-        /\.e2e\.([tj])sx?$/,
-        /\.test\.([tj])sx?$/,
-      ],
-      // Only .tsx files
-      include: ["**/*.tsx", "**/*.ts"],
     }),
   ],
   build: {
     sourcemap: true,
-    minify: true,
+    minify: "esbuild",
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "@illa-design/pagination",
@@ -51,7 +38,6 @@ export default defineConfig({
         "@emotion/react",
         "framer-motion",
         "@illa-design/icon",
-        "@illa-design/input",
         "@illa-design/select",
         "@illa-design/system",
         "@illa-design/theme",
@@ -64,7 +50,6 @@ export default defineConfig({
           "@emotion/react": "@emotion/react",
           "framer-motion": "framer-motion",
           "@illa-design/icon": "@illa-design/icon",
-          "@illa-design/input": "@illa-design/input",
           "@illa-design/select": "@illa-design/select",
           "@illa-design/system": "@illa-design/system",
           "@illa-design/theme": "@illa-design/theme",

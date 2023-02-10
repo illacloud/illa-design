@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryFn } from "@storybook/react"
 import { Avatar, AvatarProps } from "../src"
 import { BsFacebook } from "react-icons/bs"
 
@@ -34,7 +34,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<AvatarProps> = (args) => <Avatar {...args} />
+const Template: StoryFn<AvatarProps> = (args) => <Avatar {...args} />
 
 export const Basic = Template.bind({
   icon: <BsFacebook />,
