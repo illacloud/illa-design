@@ -36,6 +36,10 @@ const UploadList = (props: UploadListProps) => {
     onPreview?.(file)
   }
 
+  if (!fileList || !fileList.length) {
+    return null
+  }
+
   const fileListNodes = fileList?.map((file, index) => {
     let originNode: ReactNode =
       listType === "picture-card" ? (
@@ -44,11 +48,10 @@ const UploadList = (props: UploadListProps) => {
             {...props}
             onPreview={handlePictureItemPreview}
             file={file}
-            locale={locale}
           />
         </div>
       ) : (
-        <TextItem {...props} file={file} locale={locale} />
+        <TextItem {...props} file={file} />
       )
     if (isFunction(renderUploadItem)) {
       originNode = renderUploadItem(originNode, file, fileList)
