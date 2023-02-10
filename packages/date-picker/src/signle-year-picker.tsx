@@ -1,4 +1,12 @@
-import { ChangeEvent, FC, useRef, useState, MouseEvent, useEffect } from "react"
+import {
+  ChangeEvent,
+  FC,
+  useRef,
+  useState,
+  MouseEvent,
+  useEffect,
+  forwardRef,
+} from "react"
 import { SingleYearPickerProps } from "./interface"
 import { PickerContext } from "./context"
 import { Trigger } from "@illa-design/trigger"
@@ -18,8 +26,12 @@ import {
 } from "@illa-design/system"
 import { CalendarIcon } from "@illa-design/icon"
 import { BasicFooterSection } from "./panels/basic-footer-section"
+import { applyBoxStyle } from "@illa-design/theme"
 
-export const SingleYearPicker: FC<SingleYearPickerProps> = (props) => {
+export const SingleYearPicker = forwardRef<
+  HTMLDivElement,
+  SingleYearPickerProps
+>((props, ref) => {
   const {
     allowClear = true,
     placeholder,
@@ -241,8 +253,8 @@ export const SingleYearPicker: FC<SingleYearPickerProps> = (props) => {
     setInputValue(undefined)
     setHoverPlaceholderValue(undefined)
     const localTime = getLocaleDayjsValue(
-      toLocal(date as Dayjs, utcOffset, timezone).locale("en"),
-      "en",
+      toLocal(date as Dayjs, utcOffset, timezone).locale("en-us"),
+      "en-us",
     )
     onSelect &&
       onSelect(
@@ -287,9 +299,11 @@ export const SingleYearPicker: FC<SingleYearPickerProps> = (props) => {
         onVisibleChange={visibleChange}
         popupVisible={mergedPopupVisible}
         colorScheme="white"
+        showArrow={false}
+        withoutPadding
         {...triggerProps}
       >
-        <span>
+        <div css={applyBoxStyle(props)} ref={ref}>
           <DateInput
             ref={refInput}
             placeholder={placeholder as string | undefined}
@@ -309,8 +323,10 @@ export const SingleYearPicker: FC<SingleYearPickerProps> = (props) => {
             editable={editable}
             suffixIcon={suffixIcon}
           />
-        </span>
+        </div>
       </Trigger>
     </PickerContext.Provider>
   )
-}
+})
+
+SingleYearPicker.displayName = "SingleYearPicker"

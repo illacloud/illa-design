@@ -1,12 +1,12 @@
 import { FC, useCallback, useContext, useMemo } from "react"
 import { MonthPickerPanelProps } from "./interface"
-import { ModeType } from "../../interface"
+import { DatePickerModeType } from "../../interface"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
   def,
 } from "@illa-design/config-provider"
-import dayjs, { Dayjs } from "dayjs"
+import { Dayjs } from "dayjs"
 import { padStart } from "../../utils/pad"
 import { BasicBodySection } from "../basic-body-section"
 import { monthPanelStyle } from "./style"
@@ -65,7 +65,7 @@ export const MonthPickerPanel: FC<MonthPickerPanelProps> = (props) => {
     const showYear = pageShowDate ? pageShowDate.year() : dayjsPro().year()
     const months = MONTHS.map((month, index) => ({
       name: DATE_PICKER_LOCALE?.[month],
-      time: dayjs(
+      time: dayjsPro(
         `${showYear}-${padStart(index + 1, 2, "0")}`,
         "YYYY-MM",
       ).endOf("month"),
@@ -79,7 +79,7 @@ export const MonthPickerPanel: FC<MonthPickerPanelProps> = (props) => {
   }, [DATE_PICKER_LOCALE, pageShowDate])
 
   const onChangePanel = useCallback(
-    (mode: ModeType) => {
+    (mode: DatePickerModeType) => {
       setPanelMode?.(mode)
     },
     [setPanelMode],

@@ -4,9 +4,9 @@ import { DayjsPro } from "@illa-design/system"
 import { InputColorScheme, InputSize } from "./input/interface"
 import { BoxProps } from "@illa-design/theme"
 
-export type CalendarValue = DayjsPro | Date | string | number
+export type TimePickerValue = DayjsPro | Date | string | number
 
-export interface PublicPickerProps extends BoxProps {
+export interface PublicTimePickerProps extends BoxProps {
   error?: boolean
   prefix?: ReactNode
   allowClear?: boolean
@@ -36,21 +36,21 @@ export interface PublicPickerProps extends BoxProps {
 type BaseTimePickerProps = {
   onSelect?: (valueString: string, value: DayjsPro) => void
   onChange?: (valueString?: string, value?: DayjsPro) => void
-  defaultValue?: CalendarValue
-  value?: CalendarValue
+  defaultValue?: TimePickerValue
+  value?: TimePickerValue
   showNowBtn?: boolean
   placeholder?: string
 }
 
-export type TimePickerProps = BaseTimePickerProps & PublicPickerProps
+export type TimePickerProps = BaseTimePickerProps & PublicTimePickerProps
 
 type BaseRangePickerProps = {
   onChange?: (valueString?: string[], value?: DayjsPro[]) => void
   onSelect?: (valueString: string[], value: DayjsPro[]) => void
-  defaultValue?: CalendarValue[]
-  value?: CalendarValue[]
+  defaultValue?: TimePickerValue[]
+  value?: TimePickerValue[]
   placeholder?: string[]
   order?: boolean
 }
 
-export type RangePickerProps = BaseRangePickerProps & PublicPickerProps
+export type RangePickerProps = BaseRangePickerProps & PublicTimePickerProps

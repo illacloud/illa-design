@@ -1,5 +1,9 @@
 import { Dayjs } from "dayjs"
-import { PrivateCType, SingleWeekPickerProps, ModeType } from "../../interface"
+import {
+  PrivateCType,
+  SingleWeekPickerProps,
+  DatePickerModeType,
+} from "../../interface"
 
 export interface WeekPickerPanelProps
   extends SingleWeekPickerProps,
@@ -12,6 +16,7 @@ export interface WeekPickerPanelProps
   onSuperPrev?: () => void
   onSuperNext?: () => void
   localeName?: string
-  panelMode?: ModeType
-  setPanelMode?: (mode: ModeType) => void
+  panelMode?: DatePickerModeType
+  setPanelMode?: (mode: DatePickerModeType) => void
+  valueShowHover?: Dayjs[]
 }

@@ -1,6 +1,6 @@
 import { Dayjs } from "dayjs"
 import { ReactNode } from "react"
-import { SingleYearPickerProps, ModeType } from "../../interface"
+import { SingleYearPickerProps, DatePickerModeType } from "../../interface"
 
 export interface YearPickerPanelProps
   extends Pick<
@@ -16,5 +16,6 @@ export interface YearPickerPanelProps
   rangeValues?: Dayjs[]
   onSuperPrev?: () => void
   onSuperNext?: () => void
-  originMode?: ModeType
+  originMode?: DatePickerModeType
+  valueShowHover?: Dayjs[]
 }

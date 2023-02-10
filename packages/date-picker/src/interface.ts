@@ -3,11 +3,12 @@ import { TriggerPosition, TriggerProps } from "@illa-design/trigger"
 import { Dayjs } from "dayjs"
 import { InputColorScheme, InputSize } from "./input/interface"
 import { TimePickerProps, RangePickerProps } from "@illa-design/time-picker"
+import { BoxProps } from "@illa-design/theme"
 
-export type ModeType = "date" | "month" | "week" | "year" | "quarter"
-export type CalendarValue = number | string | Date | Dayjs
+export type DatePickerModeType = "date" | "month" | "week" | "year" | "quarter"
+export type DatePickerValue = number | string | Date | Dayjs
 
-export type GetHeaderOperationsFun = (mode: ModeType) => {
+export type GetHeaderOperationsFun = (mode: DatePickerModeType) => {
   onPrev?: () => void
   onNext?: () => void
   onSuperPrev?: () => void
@@ -24,7 +25,7 @@ export interface DisabledTimeProps {
   disabledSeconds?: () => number[]
 }
 
-export interface PublicPickerProps {
+export interface PublicDatePickerProps extends BoxProps {
   allowClear?: boolean
   dayStartOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6
   position?: TriggerPosition
@@ -51,8 +52,8 @@ export interface PublicPickerProps {
   extra?: ReactNode
   onOk?: (dateString: string | undefined, date: Dayjs | undefined) => void
 
-  defaultPickerValue?: CalendarValue
-  pickerValue?: CalendarValue
+  defaultPickerValue?: DatePickerValue
+  pickerValue?: DatePickerValue
   onPickerValueChange?: (
     dateString: string | undefined,
     value: Dayjs | undefined,
@@ -63,40 +64,40 @@ export interface PublicPickerProps {
   inputSuffix?: ReactNode
 }
 
-export interface SinglePickerProps extends PublicPickerProps {
+export interface SinglePickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string
-  defaultValue?: CalendarValue
-  value?: CalendarValue
-  mode?: ModeType
+  defaultValue?: DatePickerValue
+  value?: DatePickerValue
+  mode?: DatePickerModeType
 }
 
-export interface SingleYearPickerProps extends PublicPickerProps {
+export interface SingleYearPickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string
-  defaultValue?: CalendarValue
-  value?: CalendarValue
+  defaultValue?: DatePickerValue
+  value?: DatePickerValue
 }
 
-export interface SingleWeekPickerProps extends PublicPickerProps {
+export interface SingleWeekPickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string
 
-  defaultValue?: CalendarValue
-  value?: CalendarValue
+  defaultValue?: DatePickerValue
+  value?: DatePickerValue
 }
 
-export interface SingleDatePickerProps extends PublicPickerProps {
+export interface SingleDatePickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string | ((value: Dayjs) => string)
 
-  defaultValue?: CalendarValue
+  defaultValue?: DatePickerValue
 
-  value?: CalendarValue
+  value?: DatePickerValue
 
   showTime?: boolean | TimePickerProps
 
@@ -107,26 +108,26 @@ export interface SingleDatePickerProps extends PublicPickerProps {
   disabledTime?: (current?: Dayjs, type?: "start" | "end") => DisabledTimeProps
 }
 
-export interface SingleMonthPickerProps extends PublicPickerProps {
+export interface SingleMonthPickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string
-  defaultValue?: CalendarValue
+  defaultValue?: DatePickerValue
 
-  value?: CalendarValue
+  value?: DatePickerValue
 }
 
-export interface SingleQuarterPickerProps extends PublicPickerProps {
+export interface SingleQuarterPickerProps extends PublicDatePickerProps {
   disabled?: boolean
   placeholder?: string
   format?: string
-  defaultValue?: CalendarValue
-  value?: CalendarValue
+  defaultValue?: DatePickerValue
+  value?: DatePickerValue
 }
 
 export interface RangeDatePickerProps
   extends Omit<
-    PublicPickerProps,
+    PublicDatePickerProps,
     | "onChange"
     | "onSelect"
     | "onOk"
@@ -145,17 +146,17 @@ export interface RangeDatePickerProps
     value: Dayjs[],
     extra?: { type: "start" | "end" },
   ) => void
-  defaultValue?: CalendarValue[]
-  value?: CalendarValue[]
-  mode?: ModeType
+  defaultValue?: DatePickerValue[]
+  value?: DatePickerValue[]
+  mode?: DatePickerModeType
   showTime?: boolean | RangePickerProps
   placeholder?: string[]
   timepickerProps?: TimePickerProps
   onOk?: (dateString: string[], date: Dayjs[]) => void
   disabledTime?: (current?: Dayjs, type?: "start" | "end") => DisabledTimeProps
   triggerElement?: ReactNode
-  defaultPickerValue?: CalendarValue[]
-  pickerValue?: CalendarValue[]
+  defaultPickerValue?: DatePickerValue[]
+  pickerValue?: DatePickerValue[]
   onPickerValueChange?: (
     dateString: string[] | undefined,
     value: Dayjs[] | undefined,

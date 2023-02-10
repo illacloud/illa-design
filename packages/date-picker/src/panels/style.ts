@@ -1,7 +1,7 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/theme"
 import { CellStatus } from "../utils/uiHelpers"
-import { ModeType } from "../interface"
+import { DatePickerModeType } from "../interface"
 
 export const weekListHeaderStyle = css`
   display: flex;
@@ -11,11 +11,12 @@ export const weekListHeaderStyle = css`
 `
 
 export const bodySectionStyle = css`
-  padding: 16px;
+  padding: 12px 16px 16px 16px;
 `
 
 export const bodyRowSectionStyle = css`
   display: flex;
+  margin-top: 4px;
 `
 
 export const weekListItemStyle = css`
@@ -33,12 +34,9 @@ export const cellStyle = css`
   position: relative;
   flex: 1;
   cursor: pointer;
-  :hover .date-value-cell {
-    background-color: ${getColor("grayBlue", "09")};
-  }
 `
 export const dateValueCellDisabledStyle = css`
-  color: ${getColor("gray", "05")};
+  color: ${getColor("grayBlue", "05")};
   background-color: transparent;
 `
 
@@ -76,7 +74,7 @@ export const dateCellStyle = css`
 `
 
 export const dateCellDisabledDateStyle = css`
-  background-color: ${getColor("gray", "09")};
+  background-color: ${getColor("grayBlue", "09")};
   cursor: not-allowed;
 `
 
@@ -123,7 +121,6 @@ export const dateValueCellStyle = css`
 
 export const dateValueCellInViewStyle = css`
   color: ${getColor("gray", "02")};
-  font-weight: 500;
 `
 
 export const todayCellStyle = css`
@@ -150,13 +147,30 @@ export const applyCellStyle = ({
   isRangeEnd,
   isHoverRangeEnd,
   isToday,
+  isHoverInRange,
+  isInRange,
 }: CellStatus) => {
   return css`
     ${cellStyle};
     ${isDisabled ? cellDisabledStyle : ""};
     ${isToday ? todayCellStyle : ""};
     ${isSelected ? cellSelectedStyle : ""};
-    ${isRangeStart || isRangeEnd ? cellRangeStyle : ""};
+    ${(isRangeStart || isRangeEnd) && !isDisabled && !isSelected
+      ? cellRangeStyle
+      : ""};
+    ${(!isSelected || !isDisabled) &&
+    css`
+      :hover .date-value-cell {
+        background-color: ${getColor("grayBlue", "09")};
+      }
+    `};
+    ${isInRange &&
+    (!isRangeEnd || !isRangeStart) &&
+    css`
+      :hover .date-value-cell {
+        background-color: ${getColor("grayBlue", "07")};
+      }
+    `}
   `
 }
 
@@ -184,7 +198,7 @@ export const applyDateCellStyle = ({
 }
 
 export type DateValueCellSelectedArg = CellStatus & {
-  mode: ModeType
+  mode: DatePickerModeType
 }
 export const applyDateValueCellStyle = ({
   isDisabled,
@@ -194,14 +208,16 @@ export const applyDateValueCellStyle = ({
   isHoverRangeStart,
   isRangeEnd,
   isHoverRangeEnd,
+  isHoverInRange,
   mode,
 }: DateValueCellSelectedArg) => {
   return css`
     ${dateValueCellStyle};
-    ${isDisabled ? dateValueCellDisabledStyle : ""};
     ${isInView ? dateValueCellInViewStyle : ""};
+    ${isDisabled ? dateValueCellDisabledStyle : ""};
     ${isSelected ? dateValueCellSelectedStyle : ""};
-    ${(isHoverRangeStart || isHoverRangeEnd) && !isRangeStart && !isRangeEnd
+    ${isHoverInRange ||
+    ((isHoverRangeStart || isHoverRangeEnd) && !isRangeStart && !isRangeEnd)
       ? dateCellHoverInRangeStyle
       : ""}
     ${(mode === "year" || mode === "month" || mode === "quarter") &&
@@ -220,6 +236,7 @@ export const basicHeaderStyle = css`
   padding: 4px 8px;
   gap: 24px;
   border-bottom: 1px solid ${getColor("gray", "08")};
+  height: 40px;
 `
 
 export const iconGroupStyle = css`
@@ -271,6 +288,7 @@ export const footerNowWrapperStyle = css`
   height: 40px;
   line-height: 40px;
   text-align: center;
+  cursor: pointer;
 `
 
 export const footerBtnWrapperStyle = css`

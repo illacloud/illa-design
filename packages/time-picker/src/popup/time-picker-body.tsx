@@ -253,7 +253,7 @@ export const TimePickerPopup: FC<TimePickerPopupProps> = (props) => {
     (!isRangePicker && disableConfirm && !showNowBtn)
   return (
     <>
-      <div css={timepickerPopupStyle}>
+      <div css={timepickerPopupStyle} className="time-picker-popup">
         {(list.indexOf("H") !== -1 || list.indexOf("h") !== -1) && (
           <HoursColumn
             showList={HOURS}

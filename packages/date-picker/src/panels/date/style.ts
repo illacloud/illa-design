@@ -7,6 +7,14 @@ export const datePanelStyle = css`
 
 export const timePickerBodyPanelStyle = css`
   border-left: 1px solid ${getColor("grayBlue", "08")};
+  height: 325px;
+  .time-list {
+    height: 100%;
+    overflow: hidden;
+  }
+  .time-picker-popup {
+    height: calc(100% - 40px);
+  }
 `
 export const timePickerHeaderPanelStyle = css`
   height: 40px;

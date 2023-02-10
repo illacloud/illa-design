@@ -23,7 +23,7 @@ import {
 import { YearPickerPanel } from "../year"
 import { MonthPickerPanel } from "../month"
 import { dayjsPro, getDayjsValue, isObject } from "@illa-design/system"
-import { GetHeaderOperationsFun, ModeType } from "../../interface"
+import { GetHeaderOperationsFun, DatePickerModeType } from "../../interface"
 import { TimePickerPopup } from "@illa-design/time-picker"
 import {
   ConfigProviderContext,
@@ -72,6 +72,7 @@ export const DatePickerPanel: FC<DatePickerPanelProps> = (props) => {
     setPanelMode,
     utcOffset,
     timezone,
+    valueShowHover,
   } = props
 
   const bodyProps = isRangePicker ? { rangeValues } : { value }
@@ -91,7 +92,7 @@ export const DatePickerPanel: FC<DatePickerPanelProps> = (props) => {
   )
 
   const onChangePanel = useCallback(
-    (mode: ModeType) => {
+    (mode: DatePickerModeType) => {
       setPanelMode?.(mode)
     },
     [setPanelMode],
@@ -101,7 +102,7 @@ export const DatePickerPanel: FC<DatePickerPanelProps> = (props) => {
     return getAllDaysByTime(
       DEFAULT_WEEK_START,
       !!isWeek,
-      pageShowDate ? pageShowDate.locale("zh-cn") : dayjsPro().locale("zh-cn"),
+      pageShowDate ? pageShowDate.locale("en-us") : dayjsPro().locale("en-us"),
     )
   }, [isWeek, pageShowDate])
 
@@ -194,12 +195,13 @@ export const DatePickerPanel: FC<DatePickerPanelProps> = (props) => {
           mode={isWeek ? "week" : "date"}
           format={format}
           hideNotInViewDates={hideNotInViewDates}
+          valueShowHover={valueShowHover}
         />
       </div>
       {showTime && (
         <div css={timePickerBodyPanelStyle}>
           <div css={timePickerHeaderPanelStyle}>
-            {timeValue?.format(timeFormat) ?? DATE_PICKER_LOCALE.timeText}
+            {timeValue?.format("HH:mm:ss") ?? DATE_PICKER_LOCALE.timeText}
           </div>
           <TimePickerPopup
             {...timePickerProps}

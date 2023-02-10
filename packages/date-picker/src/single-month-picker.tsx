@@ -1,7 +1,15 @@
-import { ChangeEvent, FC, useRef, useState, MouseEvent, useEffect } from "react"
+import {
+  ChangeEvent,
+  FC,
+  useRef,
+  useState,
+  MouseEvent,
+  useEffect,
+  forwardRef,
+} from "react"
 import {
   GetHeaderOperationsFun,
-  ModeType,
+  DatePickerModeType,
   SingleMonthPickerProps,
 } from "./interface"
 import { PickerContext } from "./context"
@@ -22,8 +30,12 @@ import {
 import { CalendarIcon } from "@illa-design/icon"
 import { BasicFooterSection } from "./panels/basic-footer-section"
 import { MonthPickerPanel } from "./panels/month"
+import { applyBoxStyle } from "@illa-design/theme"
 
-export const SingleDatePicker: FC<SingleMonthPickerProps> = (props) => {
+export const SingleMonthPicker = forwardRef<
+  HTMLDivElement,
+  SingleMonthPickerProps
+>((props, ref) => {
   const {
     allowClear = true,
     placeholder,
@@ -96,7 +108,7 @@ export const SingleDatePicker: FC<SingleMonthPickerProps> = (props) => {
     (getDayjsValue(pickerValue as Dayjs, format) as Dayjs) || pageShowDate
 
   const panelValue = valueShow || mergedValue
-  const [panelMode, setPanelMode] = useState<ModeType>("month")
+  const [panelMode, setPanelMode] = useState<DatePickerModeType>("month")
 
   function focusInput() {
     refInput.current?.focus?.()
@@ -170,7 +182,7 @@ export const SingleDatePicker: FC<SingleMonthPickerProps> = (props) => {
   }
 
   function onClickConfirmBtn() {
-    const pv = getLocaleDayjsValue(panelValue, "en")
+    const pv = getLocaleDayjsValue(panelValue, "en-us")
     onConfirmValue()
     onOk && onOk(pv && pv.format(format), pv)
   }
@@ -185,8 +197,8 @@ export const SingleDatePicker: FC<SingleMonthPickerProps> = (props) => {
     setInputValue(undefined)
     setHoverPlaceholderValue(undefined)
     const localTime = getLocaleDayjsValue(
-      toLocal(date as Dayjs, utcOffset, timezone).locale("en"),
-      "en",
+      toLocal(date as Dayjs, utcOffset, timezone).locale("en-us"),
+      "en-us",
     )
     onSelect &&
       onSelect(
@@ -253,7 +265,7 @@ export const SingleDatePicker: FC<SingleMonthPickerProps> = (props) => {
     setPageShowDate(newPageShowDate)
   }
 
-  function getHeaderOperations(pickMode: ModeType = "month") {
+  function getHeaderOperations(pickMode: DatePickerModeType = "month") {
     if (pickMode === "date" || pickMode === "week") {
       return {
         onPrev: () => changePageShowDate("prev", "month"),
@@ -277,7 +289,7 @@ export const SingleDatePicker: FC<SingleMonthPickerProps> = (props) => {
   }
 
   function onSelectNow() {
-    const now = getLocaleDayjsValue(getNow(utcOffset, timezone), "en")
+    const now = getLocaleDayjsValue(getNow(utcOffset, timezone), "en-us")
     handlePickerValueChange(now)
     onHandleSelect(now?.format(format), now)
   }
@@ -337,9 +349,11 @@ export const SingleDatePicker: FC<SingleMonthPickerProps> = (props) => {
         onVisibleChange={visibleChange}
         popupVisible={mergedPopupVisible}
         colorScheme="white"
+        showArrow={false}
+        withoutPadding
         {...triggerProps}
       >
-        <span>
+        <div css={applyBoxStyle(props)} ref={ref}>
           <DateInput
             ref={refInput}
             placeholder={placeholder as string | undefined}
@@ -359,8 +373,10 @@ export const SingleDatePicker: FC<SingleMonthPickerProps> = (props) => {
             editable={editable}
             suffixIcon={suffixIcon}
           />
-        </span>
+        </div>
       </Trigger>
     </PickerContext.Provider>
   )
-}
+})
+
+SingleMonthPicker.displayName = "SingleMonthPicker"

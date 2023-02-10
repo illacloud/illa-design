@@ -6,7 +6,7 @@ import {
   dayjsPro,
   getNow,
 } from "@illa-design/system"
-import { CalendarValue, ModeType } from "../interface"
+import { DatePickerValue, DatePickerModeType } from "../interface"
 import { ONE_PAGE_WITH_DAYS } from "../panels/date"
 
 function getFormat(time: unknown) {
@@ -20,7 +20,7 @@ export function isTimeArrayChange(prevTime: Dayjs[], nextTime: Dayjs[]) {
   )
 }
 
-export function getAvailableDayjsLength(value?: CalendarValue[]) {
+export function getAvailableDayjsLength(value?: DatePickerValue[]) {
   if (!value) {
     return 0
   }
@@ -38,9 +38,9 @@ export function getAvailableDayjsLength(value?: CalendarValue[]) {
 
 export function isDisabledDate(
   date: Dayjs,
-  mode: ModeType,
+  mode: DatePickerModeType,
   disabledDate?: (current: Dayjs) => boolean,
-  originMode?: ModeType,
+  originMode?: DatePickerModeType,
 ): boolean {
   if (typeof disabledDate !== "function") {
     return false
@@ -67,7 +67,7 @@ export function getLocaleDayjsValue(
 }
 
 export function getIsRangeStartOrEnd(
-  v: CalendarValue | undefined,
+  v: DatePickerValue | undefined,
   checkIsInView: boolean,
   disabled: boolean,
   currentTime: Dayjs,
@@ -139,8 +139,8 @@ export function getAllDaysByTime(
 
 export const getDefaultValue = (
   format: string,
-  value?: CalendarValue | CalendarValue[],
-  defaultValue?: CalendarValue | CalendarValue[],
+  value?: DatePickerValue | DatePickerValue[],
+  defaultValue?: DatePickerValue | DatePickerValue[],
   utcOffset?: number,
   timezone?: string,
 ) => {

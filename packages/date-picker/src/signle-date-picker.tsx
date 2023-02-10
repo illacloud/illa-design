@@ -1,7 +1,15 @@
-import { ChangeEvent, FC, useRef, useState, MouseEvent, useEffect } from "react"
+import {
+  ChangeEvent,
+  FC,
+  useRef,
+  useState,
+  MouseEvent,
+  useEffect,
+  forwardRef,
+} from "react"
 import {
   GetHeaderOperationsFun,
-  ModeType,
+  DatePickerModeType,
   SingleDatePickerProps,
 } from "./interface"
 import { PickerContext } from "./context"
@@ -24,8 +32,12 @@ import {
 import { CalendarIcon } from "@illa-design/icon"
 import { BasicFooterSection } from "./panels/basic-footer-section"
 import { DatePickerPanel } from "./panels/date"
+import { applyBoxStyle } from "@illa-design/theme"
 
-export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
+export const SingleDatePicker = forwardRef<
+  HTMLDivElement,
+  SingleDatePickerProps
+>((props, ref) => {
   const {
     allowClear = true,
     placeholder,
@@ -103,7 +115,7 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
     (getDayjsValue(pickerValue as Dayjs, format) as Dayjs) || pageShowDate
 
   const panelValue = valueShow || mergedValue
-  const [panelMode, setPanelMode] = useState<ModeType>("date")
+  const [panelMode, setPanelMode] = useState<DatePickerModeType>("date")
 
   const defaultTimeValue =
     (isObject(showTime) &&
@@ -191,7 +203,7 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
   }
 
   function onClickConfirmBtn() {
-    const pv = getLocaleDayjsValue(panelValue, "en")
+    const pv = getLocaleDayjsValue(panelValue, "en-us")
     onConfirmValue()
     const finalValue =
       typeof format === "function" ? format(pv as Dayjs) : pv?.format(format)
@@ -205,17 +217,17 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
     setOpen(false)
   }
 
-  function onHandleSelect(_: string | undefined, date?: Dayjs) {
+  function onHandleSelect(_: string | undefined, date?: Dayjs, now?: boolean) {
     setInputValue(undefined)
     setHoverPlaceholderValue(undefined)
     if (showTime) {
-      const newTime = getValueWithTime(date as Dayjs, timeValue)
+      const newTime = now ? date : getValueWithTime(date as Dayjs, timeValue)
       setValueShow(newTime)
       setPageShowDate(newTime)
 
       const localTime = getLocaleDayjsValue(
         toLocal(newTime as Dayjs, utcOffset, timezone),
-        "en",
+        "en-us",
       )
       const finalValue =
         typeof format === "function"
@@ -225,8 +237,8 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
       onSelect && onSelect(finalValue, localTime)
     } else {
       const localTime = getLocaleDayjsValue(
-        toLocal(date as Dayjs, utcOffset, timezone).locale("en"),
-        "en",
+        toLocal(date as Dayjs, utcOffset, timezone).locale("en-us"),
+        "en-us",
       )
       const finalValue =
         typeof format === "function"
@@ -261,7 +273,7 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
 
     const localNewValueShow = getLocaleDayjsValue(
       toLocal(newValueShow, utcOffset, timezone),
-      "en",
+      "en-us",
     )
     const finalValue =
       typeof format === "function"
@@ -329,7 +341,7 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
     setPageShowDate(newPageShowDate)
   }
 
-  function getHeaderOperations(pickMode: ModeType = "date") {
+  function getHeaderOperations(pickMode: DatePickerModeType = "date") {
     if (pickMode === "date" || pickMode === "week") {
       return {
         onPrev: () => changePageShowDate("prev", "month"),
@@ -353,11 +365,11 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
   }
 
   function onSelectNow() {
-    const now = getLocaleDayjsValue(getNow(utcOffset, timezone), "en")
+    const now = getLocaleDayjsValue(getNow(utcOffset, timezone), "en-us")
     handlePickerValueChange(now)
     const finalValue =
       typeof format === "function" ? format(now as Dayjs) : now?.format(format)
-    onHandleSelect(finalValue, now)
+    onHandleSelect(finalValue, now, true)
   }
 
   function onMouseEnterCell(value: Dayjs, disabled: boolean) {
@@ -430,9 +442,11 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
         onVisibleChange={visibleChange}
         popupVisible={mergedPopupVisible}
         colorScheme="white"
+        showArrow={false}
+        withoutPadding
         {...triggerProps}
       >
-        <span>
+        <div css={applyBoxStyle(props)} ref={ref}>
           <DateInput
             ref={refInput}
             placeholder={placeholder as string | undefined}
@@ -452,8 +466,10 @@ export const SingleDatePicker: FC<SingleDatePickerProps> = (props) => {
             editable={editable}
             suffixIcon={suffixIcon}
           />
-        </span>
+        </div>
       </Trigger>
     </PickerContext.Provider>
   )
-}
+})
+
+SingleDatePicker.displayName = "SingleDatePicker"
