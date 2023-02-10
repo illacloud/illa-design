@@ -1,7 +1,7 @@
 {
   "name": "@illa-design/time-picker",
-  "version": "0.0.0",
-  "description": "Illa Design DatePicker.",
+  "version": "1.0.13",
+  "description": "Illa Design TimePicker.",
   "keywords": [
     "time-picker",
     "react",
