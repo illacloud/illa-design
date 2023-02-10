@@ -1,10 +1,10 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo } from "react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Button } from "@illa-design/button"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
-import { FilterFn, FilterOperator, FiltersEditorProps } from "./interface";
+import { FilterFn, FilterOperator, FiltersEditorProps } from "./interface"
 import {
   editorButtonStyle,
   editorStyle,
@@ -44,7 +44,6 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
                     options={FilterOperatorOptions}
                     onChange={(operator) => {
                       onChangeOperator(operator as FilterOperator)
-
                     }}
                   />
                 ) : (

@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/modal",
-  "version": "1.0.12",
+  "version": "1.0.14",
   "description": "Illa Design Modal.",
   "keywords": [
     "modal",
@@ -35,16 +35,16 @@
   "bugs": {
     "url": "https://github.com/illacloud/illa-design/issues"
   },
-   "scripts": {
+  "scripts": {
     "build": "vite build"
   },
   "dependencies": {
-    "@illa-design/button": "1.0.12",
-    "@illa-design/config-provider": "1.0.12",
-    "@illa-design/icon": "1.0.12",
-    "@illa-design/system": "1.0.12",
-    "@illa-design/theme": "1.0.12",
-    "@illa-design/trigger": "1.0.12",
+    "@illa-design/button": "1.0.14",
+    "@illa-design/config-provider": "1.0.14",
+    "@illa-design/icon": "1.0.14",
+    "@illa-design/system": "1.0.14",
+    "@illa-design/theme": "1.0.14",
+    "@illa-design/trigger": "1.0.14",
     "react-hotkeys-hook": "^3.4.6",
     "react-focus-lock": "^2.8.1",
     "uuid": "^8.3.2",
@@ -52,8 +52,8 @@
   },
   "devDependencies": {
     "@types/uuid": "^8.3.4",
-    "@vitejs/plugin-react-swc":"^3.0.1",
-    "@rollup/plugin-typescript":"^10.0.1"
+    "@vitejs/plugin-react-swc": "^3.0.1",
+    "@rollup/plugin-typescript": "^10.0.1"
   },
   "peerDependencies": {
     "react": "^18.2.0",

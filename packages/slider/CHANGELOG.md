@@ -1,17 +1,4 @@
-# @illa-design/pageheader
-
-## 1.0.14
-
-### Patch Changes
-
-- fix bugs
-
-- Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.14
-  - @illa-design/divider@1.0.14
-  - @illa-design/icon@1.0.14
-  - @illa-design/system@1.0.14
-  - @illa-design/theme@1.0.14
+# @illa-design/slider
 
 ## 1.0.13
 
@@ -20,11 +7,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.13
-  - @illa-design/divider@1.0.13
-  - @illa-design/icon@1.0.13
+  - @illa-design/input-number@1.0.13
   - @illa-design/system@1.0.13
   - @illa-design/theme@1.0.13
+  - @illa-design/trigger@1.0.13
 
 ## 1.0.12
 
@@ -33,11 +19,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.12
-  - @illa-design/divider@1.0.12
-  - @illa-design/icon@1.0.12
+  - @illa-design/input-number@1.0.12
   - @illa-design/system@1.0.12
   - @illa-design/theme@1.0.12
+  - @illa-design/trigger@1.0.12
 
 ## 1.0.11
 
@@ -46,11 +31,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.11
-  - @illa-design/divider@1.0.11
-  - @illa-design/icon@1.0.11
+  - @illa-design/input-number@1.0.11
   - @illa-design/system@1.0.11
   - @illa-design/theme@1.0.11
+  - @illa-design/trigger@1.0.11
 
 ## 1.0.10
 
@@ -59,11 +43,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.10
-  - @illa-design/divider@1.0.10
-  - @illa-design/icon@1.0.10
+  - @illa-design/input-number@1.0.10
   - @illa-design/system@1.0.10
   - @illa-design/theme@1.0.10
+  - @illa-design/trigger@1.0.10
 
 ## 1.0.9
 
@@ -74,11 +57,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.9
-  - @illa-design/divider@1.0.9
-  - @illa-design/icon@1.0.9
+  - @illa-design/input-number@1.0.9
   - @illa-design/system@1.0.9
   - @illa-design/theme@1.0.9
+  - @illa-design/trigger@1.0.9
 
 ## 1.0.8
 
@@ -87,11 +69,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.8
-  - @illa-design/divider@1.0.8
-  - @illa-design/icon@1.0.8
+  - @illa-design/input-number@1.0.8
   - @illa-design/system@1.0.8
   - @illa-design/theme@1.0.8
+  - @illa-design/trigger@1.0.8
 
 ## 1.0.7
 
@@ -100,10 +81,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.7
-  - @illa-design/icon@1.0.7
+  - @illa-design/input-number@1.0.7
   - @illa-design/system@1.0.7
   - @illa-design/theme@1.0.7
+  - @illa-design/trigger@1.0.7
 
 ## 1.0.6
 
@@ -112,10 +93,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.6
-  - @illa-design/icon@1.0.6
+  - @illa-design/input-number@1.0.6
   - @illa-design/system@1.0.6
   - @illa-design/theme@1.0.6
+  - @illa-design/trigger@1.0.6
 
 ## 1.0.5
 
@@ -124,10 +105,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.5
-  - @illa-design/icon@1.0.5
+  - @illa-design/input-number@1.0.5
   - @illa-design/system@1.0.5
   - @illa-design/theme@1.0.5
+  - @illa-design/trigger@1.0.5
 
 ## 1.0.4
 
@@ -136,10 +117,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.4
-  - @illa-design/icon@1.0.4
+  - @illa-design/input-number@1.0.4
   - @illa-design/system@1.0.4
   - @illa-design/theme@1.0.4
+  - @illa-design/trigger@1.0.4
 
 ## 1.0.3
 
@@ -148,10 +129,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.3
-  - @illa-design/icon@1.0.3
+  - @illa-design/input-number@1.0.3
   - @illa-design/system@1.0.3
   - @illa-design/theme@1.0.3
+  - @illa-design/trigger@1.0.3
 
 ## 1.0.2
 
@@ -160,10 +141,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.2
-  - @illa-design/icon@1.0.2
+  - @illa-design/input-number@1.0.2
   - @illa-design/system@1.0.2
   - @illa-design/theme@1.0.2
+  - @illa-design/trigger@1.0.2
 
 ## 1.0.1
 
@@ -172,10 +153,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.1
-  - @illa-design/icon@1.0.1
+  - @illa-design/input-number@1.0.1
   - @illa-design/system@1.0.1
   - @illa-design/theme@1.0.1
+  - @illa-design/trigger@1.0.1
 
 ## 1.0.0
 
@@ -186,10 +167,10 @@
 ### Patch Changes
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@1.0.0
-  - @illa-design/icon@1.0.0
+  - @illa-design/input-number@1.0.0
   - @illa-design/system@1.0.0
   - @illa-design/theme@1.0.0
+  - @illa-design/trigger@1.0.0
 
 ## 0.0.17
 
@@ -198,10 +179,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.17
-  - @illa-design/icon@0.0.17
+  - @illa-design/input-number@0.0.17
   - @illa-design/system@0.0.17
   - @illa-design/theme@0.0.17
+  - @illa-design/trigger@0.0.17
 
 ## 0.0.16
 
@@ -210,10 +191,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.16
-  - @illa-design/icon@0.0.16
+  - @illa-design/input-number@0.0.16
   - @illa-design/system@0.0.16
   - @illa-design/theme@0.0.16
+  - @illa-design/trigger@0.0.16
 
 ## 0.0.15
 
@@ -222,10 +203,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.15
-  - @illa-design/icon@0.0.15
+  - @illa-design/input-number@0.0.15
   - @illa-design/system@0.0.15
   - @illa-design/theme@0.0.15
+  - @illa-design/trigger@0.0.15
 
 ## 0.0.14
 
@@ -234,10 +215,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.14
-  - @illa-design/icon@0.0.14
+  - @illa-design/input-number@0.0.14
   - @illa-design/system@0.0.14
   - @illa-design/theme@0.0.14
+  - @illa-design/trigger@0.0.14
 
 ## 0.0.13
 
@@ -246,10 +227,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.13
-  - @illa-design/icon@0.0.13
+  - @illa-design/input-number@0.0.13
   - @illa-design/system@0.0.13
   - @illa-design/theme@0.0.13
+  - @illa-design/trigger@0.0.13
 
 ## 0.0.12
 
@@ -258,10 +239,10 @@
 - bugfix
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.12
-  - @illa-design/icon@0.0.12
+  - @illa-design/input-number@0.0.12
   - @illa-design/system@0.0.12
   - @illa-design/theme@0.0.12
+  - @illa-design/trigger@0.0.12
 
 ## 0.0.11
 
@@ -270,10 +251,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.11
-  - @illa-design/icon@0.0.11
+  - @illa-design/input-number@0.0.11
   - @illa-design/system@0.0.11
   - @illa-design/theme@0.0.11
+  - @illa-design/trigger@0.0.11
 
 ## 0.0.10
 
@@ -282,10 +263,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.10
-  - @illa-design/icon@0.0.10
+  - @illa-design/input-number@0.0.10
   - @illa-design/system@0.0.10
   - @illa-design/theme@0.0.10
+  - @illa-design/trigger@0.0.10
 
 ## 0.0.9
 
@@ -294,10 +275,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.9
-  - @illa-design/icon@0.0.9
+  - @illa-design/input-number@0.0.9
   - @illa-design/system@0.0.9
   - @illa-design/theme@0.0.9
+  - @illa-design/trigger@0.0.9
 
 ## 0.0.8
 
@@ -306,10 +287,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.8
-  - @illa-design/icon@0.0.8
+  - @illa-design/input-number@0.0.8
   - @illa-design/system@0.0.8
   - @illa-design/theme@0.0.8
+  - @illa-design/trigger@0.0.8
 
 ## 0.0.7
 
@@ -318,10 +299,10 @@
 - bugfix
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.7
-  - @illa-design/icon@0.0.7
+  - @illa-design/input-number@0.0.7
   - @illa-design/system@0.0.7
   - @illa-design/theme@0.0.7
+  - @illa-design/trigger@0.0.7
 
 ## 0.0.6
 
@@ -330,10 +311,10 @@
 - fix bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.6
-  - @illa-design/icon@0.0.6
+  - @illa-design/input-number@0.0.6
   - @illa-design/system@0.0.6
   - @illa-design/theme@0.0.6
+  - @illa-design/trigger@0.0.6
 
 ## 0.0.5
 
@@ -341,9 +322,9 @@
 
 - Updated dependencies []:
   - @illa-design/system@0.0.5
-  - @illa-design/breadcrumb@0.0.5
-  - @illa-design/icon@0.0.5
+  - @illa-design/input-number@0.0.5
   - @illa-design/theme@0.0.5
+  - @illa-design/trigger@0.0.5
 
 ## 0.0.4
 
@@ -352,10 +333,10 @@
 - update version
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.4
-  - @illa-design/icon@0.0.4
+  - @illa-design/input-number@0.0.4
   - @illa-design/system@0.0.4
   - @illa-design/theme@0.0.4
+  - @illa-design/trigger@0.0.4
 
 ## 0.0.3
 
@@ -364,10 +345,10 @@
 - fix some bugs
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.3
-  - @illa-design/icon@0.0.3
+  - @illa-design/input-number@0.0.3
   - @illa-design/system@0.0.3
   - @illa-design/theme@0.0.3
+  - @illa-design/trigger@0.0.3
 
 ## 0.0.2
 
@@ -376,10 +357,10 @@
 - update all components version
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.2
-  - @illa-design/icon@0.0.2
+  - @illa-design/input-number@0.0.2
   - @illa-design/system@0.0.2
   - @illa-design/theme@0.0.2
+  - @illa-design/trigger@0.0.2
 
 ## 0.0.1
 
@@ -388,7 +369,7 @@
 - release the first version
 
 - Updated dependencies []:
-  - @illa-design/breadcrumb@0.0.1
-  - @illa-design/icon@0.0.1
+  - @illa-design/input-number@0.0.1
   - @illa-design/system@0.0.1
   - @illa-design/theme@0.0.1
+  - @illa-design/trigger@0.0.1

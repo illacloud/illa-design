@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/tag",
-  "version": "1.0.12",
+  "version": "1.0.14",
   "description": "This component displays as a tag with an optional link and/or button to remove the given tag.",
   "keywords": [
     "tag",
@@ -36,12 +36,12 @@
   "bugs": {
     "url": "https://github.com/illacloud/illa-design/issues"
   },
-   "scripts": {
+  "scripts": {
     "build": "vite build"
   },
   "devDependencies": {
-    "@vitejs/plugin-react-swc":"^3.0.1",
-    "@rollup/plugin-typescript":"^10.0.1"
+    "@vitejs/plugin-react-swc": "^3.0.1",
+    "@rollup/plugin-typescript": "^10.0.1"
   },
   "dependencies": {
     "@illa-design/icon": "workspace:*",
