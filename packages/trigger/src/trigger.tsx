@@ -14,7 +14,7 @@ import {
   TriangleRight,
   TriangleTop,
 } from "./triangle"
-import { TriggerProviderContext } from "./triggerContext"
+import { TriggerProviderContext } from "./trigger-context"
 import { css } from "@emotion/react"
 import {
   autoUpdate,
