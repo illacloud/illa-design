@@ -152,8 +152,8 @@ export function applyHorizontalLine(
     transition: opacity 0.2s ease-in-out;
     bottom: 0;
     height: 2px;
-    left: 16px;
-    right: 16px;
+    left: 0;
+    right: 0;
     background-color: ${getColor(colorScheme, "03")};
     ${hiddenStyle};
   `

@@ -7,7 +7,7 @@ import {
   horizontalSubMenuLabel,
 } from "./style"
 import { MenuContext } from "../menu-context"
-import { Dropdown, DropList } from "@illa-design/dropdown"
+import { Dropdown } from "@illa-design/dropdown"
 import { DownIcon } from "@illa-design/icon"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
@@ -35,8 +35,7 @@ export const HorizontalSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
     return (
       <Dropdown
         trigger="hover"
-        position="bottom"
-        autoAlignPopupWidth={true}
+        position="bottom-start"
         popupVisible={opened}
         disabled={disabled}
         onVisibleChange={onVisibleChange}

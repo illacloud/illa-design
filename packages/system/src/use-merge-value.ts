@@ -38,7 +38,8 @@ export function useMergeValue<T>(
     }
   }, [value])
 
-  const mergedValue = value === undefined ? stateValue : value
+  const mergedValue =
+    value === undefined ? stateValue ?? defaultStateValue : value
 
   return [mergedValue, setStateValue, stateValue]
 }
