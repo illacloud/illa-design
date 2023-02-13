@@ -142,6 +142,7 @@ export function applySelectorInputStyle(
   }
 
   return css`
+    font-family: inherit;
     font-size: 14px;
     color: ${getColor("grayBlue", "02")};
     width: ${s};
@@ -173,6 +174,7 @@ export function applySelectorInputStyle(
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
     }
+
     &[type="number"] {
       -moz-appearance: textfield;
     }
