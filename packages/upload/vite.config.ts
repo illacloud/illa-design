@@ -43,6 +43,7 @@ export default defineConfig({
         "@illa-design/progress",
         "@illa-design/space",
         "@illa-design/system",
+        "@illa-design/theme",
         "uuid",
       ],
       output: {
@@ -53,6 +54,7 @@ export default defineConfig({
           "framer-motion": "framer-motion",
           "@illa-design/space": "@illa-design/space",
           "@illa-design/button": "@illa-design/button",
+          "@illa-design/theme": "@illa-design/theme",
           "@illa-design/icon": "@illa-design/icon",
           "@illa-design/progress": "@illa-design/progress",
           "@illa-design/system": "@illa-design/system",
