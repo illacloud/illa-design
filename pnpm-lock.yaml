@@ -1287,7 +1287,6 @@ importers:
       '@illa-design/config-provider': workspace:*
       '@illa-design/icon': workspace:*
       '@illa-design/progress': workspace:*
-      '@illa-design/space': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@rollup/plugin-typescript': ^10.0.1
@@ -1300,7 +1299,6 @@ importers:
       '@illa-design/config-provider': link:../config-provider
       '@illa-design/icon': link:../icon
       '@illa-design/progress': link:../progress
-      '@illa-design/space': link:../space
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       framer-motion: 7.6.19
