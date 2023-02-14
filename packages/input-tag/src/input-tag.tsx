@@ -37,6 +37,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       onBlur,
       onFocus,
       onChange,
+      validate,
       onClear,
       onInputChange,
       onKeyDown,
@@ -258,7 +259,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               onCompositionEnd={() => {
                 inputStateRef.current = false
               }}
-              onKeyDown={(e) => {
+              onKeyDown={async (e) => {
                 if (inputStateRef.current) {
                   return
                 }
@@ -266,7 +267,10 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 if (e.key === "Enter") {
                   inputRef.current?.focus()
                   onPressEnter?.(e)
-                  saveInputValue()
+                  const checked = await validate?.(finalInputValue, finalValue)
+                  if (checked) {
+                    saveInputValue()
+                  }
                 }
                 if (e.key === "Backspace" && finalInputValue === "") {
                   inputRef.current?.focus()
