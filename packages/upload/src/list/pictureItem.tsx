@@ -124,7 +124,6 @@ const PictureItem = (props: UploadListItemProps) => {
             <UploadProgress
               onReupload={props.onReupload}
               onUpload={props.onUpload}
-              onAbort={props.onAbort}
               listType="picture-card"
               file={file}
               progressProps={props.progressProps}

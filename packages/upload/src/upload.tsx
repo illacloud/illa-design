@@ -232,7 +232,6 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
           renderUploadItem={renderUploadItem}
           renderUploadList={renderUploadList}
           onUpload={uploadFile}
-          onAbort={abortFile}
           onRemove={removeFile}
           onReupload={reuploadFile}
           onPreview={props.onPreview}

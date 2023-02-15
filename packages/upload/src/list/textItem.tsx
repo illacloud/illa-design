@@ -106,7 +106,6 @@ const TextItem = (props: UploadListItemProps) => {
             progressProps={props.progressProps}
             onReupload={props.onReupload}
             onUpload={props.onUpload}
-            onAbort={props.onAbort}
             {...actionIcons}
           />
         </div>

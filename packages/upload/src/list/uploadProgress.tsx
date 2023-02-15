@@ -23,8 +23,7 @@ import { handleKeyDown } from "../utils"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 const UploadProgress: FC<UploadProgressProps> = (props) => {
-  const { file, progressProps, progressRender, onReupload, onUpload, onAbort } =
-    props
+  const { file, progressProps, progressRender, onReupload, onUpload } = props
   const configProviderProps = useContext<ConfigProviderProps>(
     ConfigProviderContext,
   )
@@ -45,10 +44,6 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
     onUpload && onUpload(file)
   }
 
-  const handleFileAbort = () => {
-    onAbort && onAbort(file)
-  }
-
   const startIcon = status === STATUS.INIT && props.startIcon !== null && (
     <span
       css={uploadProgressStyle}
@@ -61,19 +56,6 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
       {props.startIcon || <CaretRightIcon />}
     </span>
   )
-
-  const cancelIcon = status === STATUS.UPLOADING &&
-    props.cancelIcon !== null && (
-      <span
-        css={uploadProgressStyle}
-        onClick={handleFileAbort}
-        tabIndex={0}
-        aria-label={locale.cancel}
-        onKeyDown={(e) => handleKeyDown(e, handleFileAbort)}
-      >
-        {props.cancelIcon || <CloseIcon />}
-      </span>
-    )
 
   const dom = (
     <>
@@ -111,7 +93,6 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
             {...progressProps}
           />
           {startIcon}
-          {cancelIcon}
         </div>
       )}
     </>

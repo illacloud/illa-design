@@ -127,7 +127,6 @@ export interface UploadListProps {
   fileList?: UploadItem[]
   showUploadList?: boolean | CustomIconType
   onUpload?: (file: UploadItem) => void
-  onAbort?: (file: UploadItem) => void
   onRemove?: (file: UploadItem) => void
   onReupload?: (file: UploadItem) => void
   onPreview?: (file: UploadItem) => void
@@ -199,7 +198,6 @@ export interface UploadProgressProps extends CustomIconType {
   progressProps?: Partial<ProgressProps>
   onReupload?: UploadListProps["onReupload"]
   onUpload?: UploadListProps["onUpload"]
-  onAbort?: UploadListProps["onAbort"]
 }
 
 export interface InternalDataTransferItem extends DataTransferItem {
