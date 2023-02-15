@@ -1,5 +1,19 @@
 # @illa-design/modal
 
+## 1.0.15
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/button@1.0.15
+  - @illa-design/config-provider@1.0.15
+  - @illa-design/icon@1.0.15
+  - @illa-design/system@1.0.15
+  - @illa-design/theme@1.0.15
+  - @illa-design/trigger@1.0.15
+
 ## 1.0.14
 
 ### Patch Changes

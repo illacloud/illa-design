@@ -8,7 +8,7 @@ export function applyInputTagInputStyle(
 ): SerializedStyles {
   return css`
     width: ${w}px;
-    font-size: 14px;
+    font-size: inherit;
     background: none;
     outline: none;
     border: none;
@@ -21,7 +21,6 @@ export function applyInputTagInputStyle(
       : "24px"};
 
     ::placeholder {
-      font-size: 14px;
       color: ${getColor("grayBlue", "04")};
     }
   `
@@ -39,7 +38,6 @@ export function applyAddBeforeAfterStyle(
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 14px;
     color: ${getColor("gray", "02")};
     background-color: ${disabled ? getColor("grayBlue", "09") : "unset"};
     border: 1px solid ${getColor("grayBlue", "08")};
@@ -151,7 +149,6 @@ export function applyPrefixSuffixStyle(
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 14px;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     ${marginStyle};
   `
@@ -160,7 +157,6 @@ export function applyPrefixSuffixStyle(
 export const calcSpanStyle = css`
   position: absolute;
   visibility: hidden;
-  font-size: 14px;
 `
 
 export function applyInputContainerStyle(): SerializedStyles {
@@ -169,5 +165,6 @@ export function applyInputContainerStyle(): SerializedStyles {
     width: 100%;
     flex-direction: row;
     box-sizing: border-box;
+    font-size: 14px;
   `
 }

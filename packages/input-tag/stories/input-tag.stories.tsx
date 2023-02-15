@@ -15,6 +15,13 @@ export const Basic: StoryFn<InputTagProps> = (props) => {
       <InputTag w="320px" suffix={<PeopleIcon />} {...props} />
       <InputTag w="320px" addBefore="Before" addAfter="After" {...props} />
       <InputTag w="320px" prefix="Before" {...props} />
+      <InputTag
+        w="320px"
+        validate={() => {
+          return true
+        }}
+        {...props}
+      />
     </Space>
   )
 }

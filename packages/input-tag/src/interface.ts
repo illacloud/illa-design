@@ -1,8 +1,8 @@
 import {
   InputHTMLAttributes,
+  KeyboardEvent,
   MutableRefObject,
   ReactNode,
-  KeyboardEvent,
   SyntheticEvent,
 } from "react"
 import { BoxProps } from "@illa-design/theme"
@@ -60,6 +60,10 @@ export interface InputTagProps
     index: number,
     e: SyntheticEvent,
   ) => void
+  validate?: (
+    inputValue: string,
+    values: string[] | TagObject[],
+  ) => boolean | Promise<boolean>
   renderItem?: (value: TagObject | string) => ReactNode
   inputTagRef?: MutableRefObject<InputTagRefHandler | undefined>
 }

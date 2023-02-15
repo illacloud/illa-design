@@ -1,6 +1,6 @@
 import { ModalAlignType } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { Variants } from "framer-motion"
 
 export const applyModalMask = css`
@@ -94,7 +94,9 @@ export function applyModalContent(withoutPadding?: boolean): SerializedStyles {
     : ""
   return css`
     font-size: 14px;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    color: ${getColor("grayBlue", "02")};
+    font-weight: 400;
+    line-height: 22px;
     padding: 8px 24px;
     ${paddingCSS}
   `
