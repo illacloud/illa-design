@@ -78,6 +78,17 @@ const Template: StoryFn<ModalProps> = (args) => {
           >
             Warning
           </Button>
+          <Button
+            onClick={() =>
+              modal.info({
+                closable: true,
+                children: "Warning",
+                title: "Warning",
+              })
+            }
+          >
+            Warning
+          </Button>
         </Space>
       </Space>
     </>

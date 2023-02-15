@@ -148,6 +148,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                 role="dialog"
                 variants={modalAnimation}
                 animate="animate"
+                transition={{ duration: 0.2 }}
                 exit="exit"
                 initial="initial"
                 css={[applyModal(), applyBoxStyle(props)]}
@@ -171,7 +172,10 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                           closeElement
                         ) : (
                           <div css={modalCloseIconStyle} onClick={onCancel}>
-                            <CloseIcon size="14px" />
+                            <CloseIcon
+                              size="14px"
+                              c={getColor("grayBlue", "02")}
+                            />
                           </div>
                         )}
                       </>
