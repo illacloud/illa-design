@@ -33,6 +33,7 @@ export function applyInputContainerStyle(): SerializedStyles {
     overflow: auto;
     flex-direction: row;
     box-sizing: border-box;
+    font-size: 14px;
   `
 }
 
@@ -59,7 +60,6 @@ export function applyAddBeforeStyle(
     justify-content: center;
     flex-shrink: 0;
     margin-right: -1px;
-    font-size: 14px;
     color: ${getColor("gray", "02")};
     background-color: ${variant === "fill"
       ? getColor("grayBlue", "09")
@@ -96,7 +96,6 @@ export function applyAddAfterStyle(
     justify-content: center;
     flex-shrink: 0;
     margin-left: -1px;
-    font-size: 14px;
     color: ${getColor("gray", "02")};
     background-color: ${variant === "fill"
       ? getColor("grayBlue", "09")
@@ -253,14 +252,13 @@ export function applyLabelDomElementStyle(size: InputSize): SerializedStyles {
     min-height: ${size === "small" ? "22px" : "24px"};
     display: flex;
     align-items: center;
-    font-size: 14px;
     color: ${getColor("grayBlue", "02")};
   `
 }
 
 export function applyInputElementStyle(size: InputSize): SerializedStyles {
   return css`
-    font-size: 14px;
+    font-size: inherit;
     color: ${getColor("grayBlue", "02")};
     outline: none;
     line-height: ${size === "small" ? "22px" : "24px"};
@@ -273,7 +271,6 @@ export function applyInputElementStyle(size: InputSize): SerializedStyles {
     padding: 0;
 
     ::placeholder {
-      font-size: 14px;
       color: ${getColor("grayBlue", "04")};
     }
 
@@ -314,7 +311,6 @@ export function applyPrefixStyle(
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     margin-right: ${size === "small" ? "8px" : "12px"};
   `
@@ -328,7 +324,6 @@ export function applySuffixStyle(
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
     flex-shrink: 0;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     margin-left: ${size === "small" ? "8px" : "12px"};
@@ -340,7 +335,6 @@ export function applyWordLimitStyle(size: InputSize): SerializedStyles {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
     color: ${getColor("grayBlue", "04")};
     margin-left: ${size === "small" ? "8px" : "12px"};
   `
@@ -367,7 +361,6 @@ export const textareaStyle = css`
   font-family: unset;
   background: none;
   width: 100%;
-  font-size: 14px;
   min-height: 32px;
 `
 
@@ -376,6 +369,7 @@ export const textareaContainerStyle = css`
   display: flex;
   align-items: end;
   flex-direction: column;
+  font-size: 14px;
 
   &:hover {
     .clear {
