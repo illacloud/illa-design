@@ -1,5 +1,18 @@
 # @illa-design/input-number
 
+## 1.0.15
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@1.0.15
+  - @illa-design/input@1.0.15
+  - @illa-design/space@1.0.15
+  - @illa-design/system@1.0.15
+  - @illa-design/theme@1.0.15
+
 ## 1.0.14
 
 ### Patch Changes
