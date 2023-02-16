@@ -42,6 +42,10 @@ export function isNumber(obj: any): obj is number {
   )
 }
 
+export function isFile(obj: any): obj is File {
+  return Object.prototype.toString.call(obj) === "[object File]"
+}
+
 export function isFunction<T extends Function = Function>(
   value: any,
 ): value is T {
