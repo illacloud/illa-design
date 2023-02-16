@@ -1,10 +1,6 @@
-import React, { useContext, ReactNode, Fragment } from "react"
+import React, { ReactNode, Fragment } from "react"
 import PictureItem from "./pictureItem"
 import TextItem from "./textItem"
-import {
-  ConfigProviderContext,
-  ConfigProviderProps,
-} from "@illa-design/config-provider"
 import { UploadItem, UploadListProps } from "../interface"
 import { isFunction } from "@illa-design/system"
 import {
@@ -14,7 +10,6 @@ import {
 } from "../style"
 
 const UploadList = (props: UploadListProps) => {
-  const { locale } = useContext<ConfigProviderProps>(ConfigProviderContext)
   const {
     listType,
     fileList = [],
