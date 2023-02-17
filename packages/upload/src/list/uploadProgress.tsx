@@ -1,12 +1,7 @@
 import { FC, useContext } from "react"
 import { STATUS, UploadProgressProps } from "../interface"
 import { Progress } from "@illa-design/progress"
-import {
-  UploadIcon,
-  SuccessIcon,
-  CaretRightIcon,
-  CloseIcon,
-} from "@illa-design/icon"
+import { UploadIcon, SuccessIcon, CaretRightIcon } from "@illa-design/icon"
 import { isFunction } from "@illa-design/system"
 import {
   ConfigProviderContext,

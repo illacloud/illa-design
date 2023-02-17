@@ -14,7 +14,7 @@ const Template: Story<UploadProps> = (props) => {
   const [drag, setDrag] = React.useState(false)
 
   return (
-    <div style={{ width: "500px" }}>
+    <div>
       <Space direction={"vertical"} wrap>
         <div>
           Drag:
@@ -68,6 +68,11 @@ const Template: Story<UploadProps> = (props) => {
               uid: "-1",
               name: "image.png",
               status: "init",
+            },
+            {
+              uid: "-2",
+              name: "image.png",
+              status: "done",
             },
           ]}
         />

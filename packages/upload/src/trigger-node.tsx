@@ -10,7 +10,7 @@ import {
   useCallback,
 } from "react"
 import { Button } from "@illa-design/button"
-import { UploadIcon, PlusIcon } from "@illa-design/icon"
+import { UploadIcon, AddIcon } from "@illa-design/icon"
 import { TriggerNodeProps } from "./interface"
 import {
   ConfigProviderContext,
@@ -157,7 +157,7 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
           aria-label={locale.upload}
         >
           <div css={pictureCardContentStyle}>
-            <PlusIcon css={pictureCardIconStyle} />
+            <AddIcon css={pictureCardIconStyle} />
             <div css={pictureCardTextStyle}>{text ?? locale.upload}</div>
           </div>
         </div>
@@ -168,7 +168,7 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
           css={getDragContainerStyle(!!disabled)}
         >
           <div css={dragIconStyle}>
-            <PlusIcon />
+            <AddIcon />
           </div>
           <div css={dragContentContainerStyle}>
             <div css={dragTextStyle}>{text ?? locale.dragTip}</div>

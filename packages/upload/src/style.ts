@@ -1,6 +1,12 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
+export const overflowEllipsisCommonStyle = css`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+
 export const getUploadListContainerStyle = (type: string = "text") => {
   if (type === "picture-card") {
     return css`
@@ -39,9 +45,10 @@ export const getTextItemContainerStyle = (listType: string = "text") => {
     box-sizing: border-box;
     ${paddingStyle};
     width: 100%;
+    border-radius: 2px;
     align-items: center;
     justify-content: space-between;
-    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   `
   if (listType === "text") {
     return css`
@@ -58,7 +65,7 @@ export const getTextItemContainerStyle = (listType: string = "text") => {
 export const textItemOperationIconStyle = css`
   display: flex;
   gap: 16px;
-  flex-shrink: 0;
+  flex-shrink: 1;
 `
 
 export const getTextItemContentContainerStyle = (listType: string = "text") => {
@@ -75,12 +82,10 @@ export const getTextItemContentContainerStyle = (listType: string = "text") => {
 
 export const textItemStyle = css`
   display: flex;
-  white-space: nowrap;
-  overflow: hidden;
   flex-shrink: 1;
   flex-grow: 1;
   align-items: center;
-  text-overflow: ellipsis;
+  ${overflowEllipsisCommonStyle};
 `
 
 export const textItemImageStyle = css`
@@ -98,9 +103,7 @@ export const textItemImageStyle = css`
 
 export const textItemMainContentStyle = css`
   display: flex;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  ${overflowEllipsisCommonStyle};
   flex-wrap: nowrap;
   flex-shrink: 1;
   flex-grow: 1;
@@ -111,6 +114,7 @@ export const textItemIconStyle = css`
   width: 16px;
   height: 20px;
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
   align-self: center;
   align-items: center;
@@ -130,11 +134,9 @@ export const getTextItemNameStyle = (status: string = "init") => {
   return css`
     text-decoration: none;
     font-size: 14px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    ${overflowEllipsisCommonStyle};
     line-height: 22px;
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${errorStyle};
   `
 }
@@ -147,16 +149,17 @@ export const textItemProgressStyle = css`
 export const textItemDeleteIconStyle = css`
   display: flex;
   align-self: center;
-  color: ${globalColor(`--${illaPrefix}-gray-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   cursor: pointer;
   width: 16px;
   height: 16px;
   &:hover {
-    color: ${globalColor(`--${illaPrefix}-gray-02`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
   & > svg {
-    width: 16px;
-    height: 16px;
+    margin: auto;
+    width: 12px;
+    height: 12px;
   }
 `
 
@@ -216,19 +219,19 @@ export const getPictureCardContainerStyle = (disabled: boolean) => {
   if (disabled) {
     return css`
       ${basicStyle};
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     `
   }
   return css`
     ${basicStyle};
-    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-    color: ${globalColor(`--${illaPrefix}-gray-04`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     & svg {
-      color: ${globalColor(`--${illaPrefix}-gray-03`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     }
     &:hover {
-      background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     }
     &:active {
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
@@ -258,6 +261,7 @@ export const pictureCardTextStyle = css`
   font-size: 14px;
   text-align: center;
   line-height: 22px;
+  ${overflowEllipsisCommonStyle};
 `
 
 export const getDragContainerStyle = (disabled: boolean) => {
@@ -265,7 +269,7 @@ export const getDragContainerStyle = (disabled: boolean) => {
     width: 100%;
     padding: 24px 16px 48px 16px;
     box-sizing: border-box;
-    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     border-radius: 2px;
     display: flex;
     flex-direction: column;
@@ -276,15 +280,15 @@ export const getDragContainerStyle = (disabled: boolean) => {
     return css`
       ${basicStyle};
       cursor: not-allowed;
-      background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
-      color: ${globalColor(`--${illaPrefix}-gray-05`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     `
   }
   return css`
     ${basicStyle};
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     &:hover {
-      background-color: ${globalColor(`--${illaPrefix}-gray-08`)};
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     }
     &:active {
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
@@ -327,18 +331,18 @@ export const dragTipsStyle = css`
   word-wrap: break-word;
   text-align: center;
   font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-gray-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export const successIconStyle = css`
   color: ${globalColor(`--${illaPrefix}-green-03`)};
   display: flex;
-  align-items: center;
   width: 16px;
   height: 16px;
   & > svg {
-    width: 100%;
-    height: 100%;
+    margin: auto;
+    width: 12px;
+    height: 12px;
   }
 `
 
@@ -368,6 +372,8 @@ export const uploadProgressStyle = css`
 
 export const uploadProgressFailStyle = css`
   font-size: 14px;
+  flex: 1;
+  ${overflowEllipsisCommonStyle};
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-blue-01`)};
 `
@@ -387,6 +393,7 @@ export const pictureItemStyle = css`
   height: 100%;
   box-sizing: border-box;
   text-align: center;
+  border-radius: 2px;
   vertical-align: middle;
   background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   & > img {
@@ -492,8 +499,7 @@ export const errorImageStyle = css`
 
 export const errorImageNameStyle = css`
   font-size: 14px;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  ${overflowEllipsisCommonStyle};
 `
 
 export const listItemStyle = css`

@@ -2,10 +2,13 @@ import { isArray, isFunction } from "@illa-design/system"
 import { UploadItem, InternalDataTransferItem } from "./interface"
 import {
   FileDefaultIcon,
+  FileExcelIcon,
   FileMusicIcon,
   FilePdfIcon,
   FilePictureIcon,
+  FilePPTIcon,
   FileVideoIcon,
+  FileWordIcon,
 } from "@illa-design/icon"
 import { KeyboardEvent } from "react"
 
@@ -23,9 +26,24 @@ export const getIconType = (file: UploadItem) => {
       type = "video"
     } else if (["mp3", "wav", "wmv"].indexOf(fileExtension) > -1) {
       type = "audio"
+    } else if (["doc", "docx"].indexOf(fileExtension) > -1) {
+      type = "doc"
+    } else if (["xls", "xlsx"].indexOf(fileExtension) > -1) {
+      type = "excel"
+    } else if (["ppt", "pptx"].indexOf(fileExtension) > -1) {
+      type = "ppt"
     }
   }
 
+  if (type.indexOf("ppt") > -1) {
+    return FilePPTIcon
+  }
+  if (type.indexOf("doc") > -1) {
+    return FileWordIcon
+  }
+  if (type.indexOf("excel") > -1) {
+    return FileExcelIcon
+  }
   if (type.indexOf("image") > -1) {
     return FilePictureIcon
   }
@@ -38,7 +56,7 @@ export const getIconType = (file: UploadItem) => {
   if (type.indexOf("video") > -1) {
     return FileVideoIcon
   }
-  return FileDefaultIcon
+  if (type.indexOf("")) return FileDefaultIcon
 }
 
 export const isAcceptFile = (
