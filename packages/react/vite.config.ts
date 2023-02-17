@@ -159,6 +159,7 @@ export default defineConfig({
           "@illa-design/dropdown": "@illa-design/dropdown",
           "@illa-design/affix": "@illa-design/affix",
           "@illa-design/cascader": "@illa-design/cascader",
+          "@illa-design/upload": "@illa-design/upload",
         },
       },
     },
