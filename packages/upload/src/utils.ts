@@ -9,6 +9,7 @@ import {
   FilePPTIcon,
   FileVideoIcon,
   FileWordIcon,
+  FileWPSIcon,
 } from "@illa-design/icon"
 import { KeyboardEvent } from "react"
 
@@ -80,6 +81,9 @@ export const getIconType = (file: UploadItem) => {
   }
   if (type.indexOf("video") > -1) {
     return FileVideoIcon
+  }
+  if (type.indexOf("wps") > -1) {
+    return FileWPSIcon
   }
   return FileDefaultIcon
 }
