@@ -2,30 +2,74 @@ import { isArray, isFunction } from "@illa-design/system"
 import { UploadItem, InternalDataTransferItem } from "./interface"
 import {
   FileDefaultIcon,
+  FileExcelIcon,
   FileMusicIcon,
   FilePdfIcon,
   FilePictureIcon,
+  FilePPTIcon,
   FileVideoIcon,
+  FileWordIcon,
+  FileWPSIcon,
 } from "@illa-design/icon"
 import { KeyboardEvent } from "react"
 
 export const getIconType = (file: UploadItem) => {
   let type = ""
-  if (file.originFile && file.originFile.type) {
-    type = file.originFile.type
-  } else {
-    const name = file.name || ""
-    const fileExtension = name.split(".").pop() || ""
-    type = fileExtension
-    if (["png", "jpg", "jpeg", "bmp", "gif"].indexOf(fileExtension) > -1) {
-      type = "image"
-    } else if (["mp4", "m2v", "mkv"].indexOf(fileExtension) > -1) {
-      type = "video"
-    } else if (["mp3", "wav", "wmv"].indexOf(fileExtension) > -1) {
-      type = "audio"
+  let fileExtension = ""
+
+  const name = file.name || ""
+  fileExtension = name.split(".").pop() || ""
+  if (!fileExtension) {
+    if (file.originFile && file.originFile.type) {
+      fileExtension =
+        (file.originFile.type.split("/").pop() || "").split(".").pop() || ""
     }
   }
 
+  type = fileExtension
+  if (
+    [
+      "png",
+      "jpg",
+      "jpeg",
+      "bmp",
+      "gif",
+      "svg",
+      "svg+xml",
+      "webp",
+      "jfif",
+      "dpg",
+      "ico",
+      "heic",
+      "heif",
+    ].indexOf(fileExtension) > -1
+  ) {
+    type = "image"
+  } else if (["mp4", "m2v", "mkv", "mpeg"].indexOf(fileExtension) > -1) {
+    type = "video"
+  } else if (["mp3", "wav", "wmv"].indexOf(fileExtension) > -1) {
+    type = "audio"
+  } else if (
+    ["doc", "docx", "msword", "document"].indexOf(fileExtension) > -1
+  ) {
+    type = "doc"
+  } else if (["xls", "xlsx", "sheet", "ms-excel"].indexOf(fileExtension) > -1) {
+    type = "excel"
+  } else if (
+    ["ppt", "pptx", "ms-powerpoint", "presentation"].indexOf(fileExtension) > -1
+  ) {
+    type = "ppt"
+  }
+
+  if (type.indexOf("ppt") > -1) {
+    return FilePPTIcon
+  }
+  if (type.indexOf("doc") > -1) {
+    return FileWordIcon
+  }
+  if (type.indexOf("excel") > -1) {
+    return FileExcelIcon
+  }
   if (type.indexOf("image") > -1) {
     return FilePictureIcon
   }
@@ -37,6 +81,9 @@ export const getIconType = (file: UploadItem) => {
   }
   if (type.indexOf("video") > -1) {
     return FileVideoIcon
+  }
+  if (type.indexOf("wps") > -1) {
+    return FileWPSIcon
   }
   return FileDefaultIcon
 }
@@ -106,12 +153,10 @@ export const loopDirectory = (
   accept?: string | string[],
 ) => {
   const files: File[] = []
-
-  let restFileCount = 0 // 剩 余上传文件的数量
+  let restFileCount = 0
   const onFinish = () => {
     !restFileCount && callback(files)
   }
-
   const _loopDirectory = (item: InternalDataTransferItem) => {
     restFileCount += 1
     if (item.isFile) {
@@ -180,4 +225,35 @@ export const handleKeyDown = (
   if (keyCode === "Enter") {
     callback?.()
   }
+}
+
+const extname = (url: string = "") => {
+  const temp = url.split("/")
+  const filename = temp[temp.length - 1]
+  const filenameWithoutSuffix = filename.split(/#|\?/)[0]
+  return (/\.[^./\\]*$/.exec(filenameWithoutSuffix) || [""])[0]
+}
+
+export const isImageUrl = (file: UploadItem) => {
+  if (file.originFile && file.originFile.type) {
+    return file.originFile.type.indexOf("image/") === 0
+  }
+  const url: string = (file.url || "") as string
+  const extension = extname(url)
+
+  if (
+    /^data:image\//.test(url) ||
+    /(webp|svg|png|gif|jpg|jpeg|jfif|bmp|dpg|ico|heic|heif)$/i.test(extension)
+  ) {
+    return true
+  }
+  if (/^data:/.test(url)) {
+    // other file types of base64
+    return false
+  }
+  if (extension) {
+    // other file types which have extension
+    return false
+  }
+  return true
 }

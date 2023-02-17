@@ -19,7 +19,7 @@ import {
   pictureItemUploading,
   pictureItemUploadingMask,
 } from "../style"
-import { getFileURL, getIconType, handleKeyDown } from "../utils"
+import { getFileURL, getIconType, handleKeyDown, isImageUrl } from "../utils"
 import { useContext } from "react"
 import {
   ConfigProviderContext,
@@ -42,7 +42,8 @@ const PictureItem = (props: UploadListItemProps) => {
     ? (showUploadList as CustomIconType)
     : {}
   const Icon = getIconType(file)
-  const imageDom = url ? <img src={url} alt={file.name} /> : <Icon />
+  const imageDom =
+    url && isImageUrl(file) ? <img src={url} alt={file.name} /> : <Icon />
 
   const handleImagePreview = () => {
     onPreview?.(file)
