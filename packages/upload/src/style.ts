@@ -228,7 +228,7 @@ export const getPictureCardContainerStyle = (disabled: boolean) => {
     ${basicStyle};
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-    transition: background-colo 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out;
     & svg {
       color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     }
@@ -289,7 +289,7 @@ export const getDragContainerStyle = (disabled: boolean) => {
   return css`
     ${basicStyle};
     color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
-    transition: background-colo 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out;
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     }
@@ -434,7 +434,7 @@ export const pictureItemUploadingMask = css`
   text-align: center;
   font-size: 16px;
   line-height: 100px;
-  transition: opacity 0.1s linear;
+  transition: opacity 200ms ease-in-out;
   background: ${globalColor(`--${illaPrefix}-blackAlpha-02`)};
   opacity: 1;
   display: block;
@@ -515,7 +515,6 @@ export const listItemStyle = css`
   margin-right: 8px;
   margin-bottom: 8px;
   overflow: hidden;
-  transition: all 0.2s cubic-bezier(0.34, 0.69, 0.1, 1);
 `
 
 export const getUploaderContinerStyle = (type: string) => {
