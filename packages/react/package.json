@@ -98,7 +98,8 @@
     "@illa-design/table": "workspace:*",
     "@illa-design/calendar": "workspace:*",
     "@illa-design/date-picker": "workspace:*",
-    "@illa-design/time-picker": "workspace:*"
+    "@illa-design/time-picker": "workspace:*",
+    "@illa-design/upload": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",

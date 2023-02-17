@@ -94,6 +94,7 @@ export default defineConfig({
         "@illa-design/dropdown",
         "@illa-design/affix",
         "@illa-design/cascader",
+        "@illa-design/upload",
       ],
       output: {
         globals: {
