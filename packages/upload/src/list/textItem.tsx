@@ -36,8 +36,9 @@ const TextItem = (props: UploadListItemProps) => {
   const actionIcons = isObject(showUploadList)
     ? (showUploadList as CustomIconType)
     : {}
+
   const fileName = isFunction(showUploadList.fileName)
-    ? showUploadList.fileName(file)
+    ? showUploadList.fileName?.(file)
     : file.name || (file.originFile && file.originFile.name)
 
   let triggerProps = {}
@@ -53,15 +54,15 @@ const TextItem = (props: UploadListItemProps) => {
 
   const imageNode = imageUrl ? <img src={imageUrl} /> : <Icon />
 
-  const pictureListIcon = isFunction(showUploadList.imageRender) ? (
-    showUploadList.imageRender(file)
+  const pictureListIcon = isFunction(showUploadList?.imageRender) ? (
+    showUploadList.imageRender?.(file)
   ) : file.status === STATUS.FAIL ? (
     <div css={errorListItemStyle}>{imageNode}</div>
   ) : (
     <>{imageNode}</>
   )
 
-  const deleteIcon = !disabled && actionIcons.removeIcon !== null && (
+  const deleteIcon = !disabled && actionIcons?.removeIcon !== null && (
     <span
       onClick={handleItemRemove}
       tabIndex={0}
@@ -69,7 +70,7 @@ const TextItem = (props: UploadListItemProps) => {
       css={textItemDeleteIconStyle}
       onKeyDown={(e) => handleKeyDown(e, handleItemRemove)}
     >
-      {actionIcons.removeIcon || <DeleteIcon />}
+      {actionIcons?.removeIcon || <DeleteIcon />}
     </span>
   )
 
@@ -79,9 +80,9 @@ const TextItem = (props: UploadListItemProps) => {
         {props.listType === "picture-list" && (
           <div css={textItemImageStyle}>{pictureListIcon}</div>
         )}
-        {props.listType === "text" && actionIcons.fileIcon !== null && (
+        {props.listType === "text" && actionIcons?.fileIcon !== null && (
           <span css={textItemIconStyle}>
-            {actionIcons.fileIcon || <Icon />}
+            {actionIcons?.fileIcon || <Icon />}
           </span>
         )}
         <div css={textItemMainContentStyle}>

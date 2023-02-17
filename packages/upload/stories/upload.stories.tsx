@@ -10,7 +10,7 @@ export default {
 } as Meta
 
 const Template: Story<UploadProps> = (props) => {
-  const [listType, setListType] = React.useState("picture-list")
+  const [listType, setListType] = React.useState("text")
   const [drag, setDrag] = React.useState(false)
 
   return (

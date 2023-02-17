@@ -14,25 +14,38 @@ import { KeyboardEvent } from "react"
 
 export const getIconType = (file: UploadItem) => {
   let type = ""
-  if (file.originFile && file.originFile.type) {
-    type = file.originFile.type
-  } else {
-    const name = file.name || ""
-    const fileExtension = name.split(".").pop() || ""
-    type = fileExtension
-    if (["png", "jpg", "jpeg", "bmp", "gif"].indexOf(fileExtension) > -1) {
-      type = "image"
-    } else if (["mp4", "m2v", "mkv"].indexOf(fileExtension) > -1) {
-      type = "video"
-    } else if (["mp3", "wav", "wmv"].indexOf(fileExtension) > -1) {
-      type = "audio"
-    } else if (["doc", "docx"].indexOf(fileExtension) > -1) {
-      type = "doc"
-    } else if (["xls", "xlsx"].indexOf(fileExtension) > -1) {
-      type = "excel"
-    } else if (["ppt", "pptx"].indexOf(fileExtension) > -1) {
-      type = "ppt"
+  let fileExtension = ""
+
+  const name = file.name || ""
+  fileExtension = name.split(".").pop() || ""
+  if (!fileExtension) {
+    if (file.originFile && file.originFile.type) {
+      fileExtension =
+        (file.originFile.type.split("/").pop() || "").split(".").pop() || ""
     }
+  }
+
+  type = fileExtension
+  if (
+    ["png", "jpg", "jpeg", "bmp", "gif", "svg", "svg+xml"].indexOf(
+      fileExtension,
+    ) > -1
+  ) {
+    type = "image"
+  } else if (["mp4", "m2v", "mkv", "mpeg"].indexOf(fileExtension) > -1) {
+    type = "video"
+  } else if (["mp3", "wav", "wmv"].indexOf(fileExtension) > -1) {
+    type = "audio"
+  } else if (
+    ["doc", "docx", "msword", "document"].indexOf(fileExtension) > -1
+  ) {
+    type = "doc"
+  } else if (["xls", "xlsx", "sheet", "ms-excel"].indexOf(fileExtension) > -1) {
+    type = "excel"
+  } else if (
+    ["ppt", "pptx", "ms-powerpoint", "presentation"].indexOf(fileExtension) > -1
+  ) {
+    type = "ppt"
   }
 
   if (type.indexOf("ppt") > -1) {
@@ -56,7 +69,7 @@ export const getIconType = (file: UploadItem) => {
   if (type.indexOf("video") > -1) {
     return FileVideoIcon
   }
-  if (type.indexOf("")) return FileDefaultIcon
+  return FileDefaultIcon
 }
 
 export const isAcceptFile = (
