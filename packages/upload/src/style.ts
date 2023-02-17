@@ -153,6 +153,7 @@ export const textItemDeleteIconStyle = css`
   cursor: pointer;
   width: 16px;
   height: 16px;
+  transition: color 200ms ease-in-out;
   &:hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
@@ -227,6 +228,7 @@ export const getPictureCardContainerStyle = (disabled: boolean) => {
     ${basicStyle};
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+    transition: background-colo 200ms ease-in-out;
     & svg {
       color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     }
@@ -287,6 +289,7 @@ export const getDragContainerStyle = (disabled: boolean) => {
   return css`
     ${basicStyle};
     color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+    transition: background-colo 200ms ease-in-out;
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     }
@@ -413,7 +416,7 @@ export const pictureItemMask = css`
   font-size: 16px;
   line-height: 100px;
   opacity: 0;
-  transition: opacity 0.1s linear;
+  transition: opacity 200ms ease-in-out;
   background: ${globalColor(`--${illaPrefix}-blackAlpha-02`)};
   &:hover {
     opacity: 1;

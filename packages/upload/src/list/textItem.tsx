@@ -15,7 +15,7 @@ import {
   textItemOperationIconStyle,
   textItemProgressStyle,
 } from "../style"
-import { getFileURL, getIconType, handleKeyDown } from "../utils"
+import { getFileURL, getIconType, handleKeyDown, isImageUrl } from "../utils"
 import {
   ConfigProviderContext,
   ConfigProviderProps,
@@ -52,7 +52,8 @@ const TextItem = (props: UploadListItemProps) => {
     onRemove?.(file)
   }, [onRemove, file])
 
-  const imageNode = imageUrl ? <img src={imageUrl} /> : <Icon />
+  const imageNode =
+    imageUrl && isImageUrl(file) ? <img src={imageUrl} /> : <Icon />
 
   const pictureListIcon = isFunction(showUploadList?.imageRender) ? (
     showUploadList.imageRender?.(file)

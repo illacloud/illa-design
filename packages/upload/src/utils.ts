@@ -27,9 +27,21 @@ export const getIconType = (file: UploadItem) => {
 
   type = fileExtension
   if (
-    ["png", "jpg", "jpeg", "bmp", "gif", "svg", "svg+xml"].indexOf(
-      fileExtension,
-    ) > -1
+    [
+      "png",
+      "jpg",
+      "jpeg",
+      "bmp",
+      "gif",
+      "svg",
+      "svg+xml",
+      "webp",
+      "jfif",
+      "dpg",
+      "ico",
+      "heic",
+      "heif",
+    ].indexOf(fileExtension) > -1
   ) {
     type = "image"
   } else if (["mp4", "m2v", "mkv", "mpeg"].indexOf(fileExtension) > -1) {
@@ -137,12 +149,10 @@ export const loopDirectory = (
   accept?: string | string[],
 ) => {
   const files: File[] = []
-
-  let restFileCount = 0 // 剩 余上传文件的数量
+  let restFileCount = 0
   const onFinish = () => {
     !restFileCount && callback(files)
   }
-
   const _loopDirectory = (item: InternalDataTransferItem) => {
     restFileCount += 1
     if (item.isFile) {
@@ -211,4 +221,35 @@ export const handleKeyDown = (
   if (keyCode === "Enter") {
     callback?.()
   }
+}
+
+const extname = (url: string = "") => {
+  const temp = url.split("/")
+  const filename = temp[temp.length - 1]
+  const filenameWithoutSuffix = filename.split(/#|\?/)[0]
+  return (/\.[^./\\]*$/.exec(filenameWithoutSuffix) || [""])[0]
+}
+
+export const isImageUrl = (file: UploadItem) => {
+  if (file.originFile && file.originFile.type) {
+    return file.originFile.type.indexOf("image/") === 0
+  }
+  const url: string = (file.url || "") as string
+  const extension = extname(url)
+
+  if (
+    /^data:image\//.test(url) ||
+    /(webp|svg|png|gif|jpg|jpeg|jfif|bmp|dpg|ico|heic|heif)$/i.test(extension)
+  ) {
+    return true
+  }
+  if (/^data:/.test(url)) {
+    // other file types of base64
+    return false
+  }
+  if (extension) {
+    // other file types which have extension
+    return false
+  }
+  return true
 }
