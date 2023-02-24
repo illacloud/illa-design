@@ -1,5 +1,7 @@
 // thx arco.design
 import React, { useState, useEffect, useRef } from "react"
+import { isUndefined } from "./is"
+import { usePrevious } from "./use-previous"
 
 export function useMergeValue<T>(
   defaultStateValue: T,
@@ -9,37 +11,30 @@ export function useMergeValue<T>(
   },
 ): [T, React.Dispatch<React.SetStateAction<T>>, T] {
   const { defaultValue, value } = props || {}
-  const firstRenderRef = useRef<boolean>()
+  const firstRenderRef = useRef(true)
+  const prevPropsValue = usePrevious(props?.value)
 
   const [stateValue, setStateValue] = useState<T>(
-    value !== undefined
+    !isUndefined(value)
       ? value
-      : defaultValue !== undefined
+      : !isUndefined(defaultValue)
       ? defaultValue
       : defaultStateValue,
   )
-
-  // fix：When StrictMode is enabled, React-18 intentionally double-invokes effects for newly mounted components
-  // link：https://github.com/reactwg/react-18/discussions/19
-  useEffect(() => {
-    firstRenderRef.current = true
-    return () => {
-      firstRenderRef.current = undefined
-    }
-  }, [])
 
   useEffect(() => {
     if (firstRenderRef.current) {
       firstRenderRef.current = false
       return
     }
-    if (value === undefined) {
-      setStateValue(value as T)
+    if (value === undefined && prevPropsValue !== value) {
+      setStateValue(value)
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
-  const mergedValue =
-    value === undefined ? stateValue ?? defaultStateValue : value
+  const mergedValue = isUndefined(value) ? stateValue : value
 
   return [mergedValue, setStateValue, stateValue]
 }
