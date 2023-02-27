@@ -6,6 +6,7 @@ import {
   ReactElement,
   ReactNode,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -135,6 +136,12 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
         : getValueFromProps(value),
     )
 
+    useEffect(() => {
+      const show = getValueFromProps(value)
+      setFinalInputValue(show)
+      lastChooseRef.current = show
+    }, [getValueFromProps, value])
+
     const [finalSelectValue, setFinalSelectValue] = useMergeValue<
       SelectValue | undefined
     >(undefined, {
@@ -176,12 +183,6 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
 
       return newOptions
     }, [filterOption, finalInputValue, options])
-
-    console.log(
-      "longbo",
-      placeholder ??
-        (typeof finalInputValue === "string" ? finalInputValue : ""),
-    )
 
     return (
       <Dropdown
