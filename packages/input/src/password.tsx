@@ -5,7 +5,7 @@ import { useMergeValue } from "@illa-design/system"
 import { EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
 import { getColor } from "@illa-design/theme"
 
-export const Password = forwardRef<HTMLDivElement, PasswordProps>(
+export const Password = forwardRef<HTMLInputElement, PasswordProps>(
   (props, ref) => {
     const {
       visibilityToggle = true,
