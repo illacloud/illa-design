@@ -249,6 +249,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
         {...dropdownProps}
       >
         <InputTag
+          ref={ref}
           readOnly={!showSearch || readOnly}
           labelInValue={true}
           inputValue={finalInputValue.toString()}

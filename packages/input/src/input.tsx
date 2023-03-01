@@ -17,7 +17,7 @@ import { useMergeValue } from "@illa-design/system"
 import { ClearIcon } from "@illa-design/icon"
 import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
   const {
     colorScheme = "blue",
     allowClear,
@@ -39,6 +39,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     onChange,
     type,
     onClear,
+    onClick,
     onPressEnter,
     variant = "outline",
     ...otherProps
@@ -79,6 +80,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     <div
       css={[applyInputContainerStyle(), applyBoxStyle(otherProps)]}
       ref={ref}
+      onClick={onClick}
     >
       {addBefore && (
         <span
