@@ -272,6 +272,10 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
             setFinalInputValue(v)
           }}
           onClear={() => {
+            if (value === undefined) {
+              setFinalValue([])
+            }
+            setFinalInputValue("")
             onChange?.(undefined)
           }}
           onRemove={(v) => {
