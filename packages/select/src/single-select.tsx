@@ -24,7 +24,7 @@ import { DownIcon, LoadingIcon, UpIcon } from "@illa-design/icon"
 import { getColor } from "@illa-design/theme"
 import { Empty } from "@illa-design/empty"
 
-export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
+export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
   (props, ref) => {
     const {
       size = "medium",
@@ -329,8 +329,10 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
           onClear={() => {
             if (value === undefined) {
               setFinalInputValue("")
+              setFinalValue("")
               onInputValueChange?.("")
               setFinalSelectValue(undefined)
+              lastChooseRef.current = undefined
             }
             onClear?.()
             onChange?.(undefined)

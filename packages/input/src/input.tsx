@@ -39,6 +39,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     onChange,
     type,
     onClear,
+    onClick,
     onPressEnter,
     variant = "outline",
     ...otherProps
@@ -79,7 +80,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     <div
       css={[applyInputContainerStyle(), applyBoxStyle(otherProps)]}
       ref={ref}
-      {...deleteCssProps(otherProps)}
+      onClick={onClick}
     >
       {addBefore && (
         <span
@@ -159,6 +160,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
                 setFinalValue(event.target.value)
               }
             }}
+            {...deleteCssProps(otherProps)}
           />
         )}
         {typeof finalValue === "object" && (
