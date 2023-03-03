@@ -1,5 +1,18 @@
 # @illa-design/empty
 
+## 1.0.17
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/config-provider@1.0.17
+  - @illa-design/icon@1.0.17
+  - @illa-design/image@1.0.17
+  - @illa-design/system@1.0.17
+  - @illa-design/theme@1.0.17
+
 ## 1.0.16
 
 ### Patch Changes
