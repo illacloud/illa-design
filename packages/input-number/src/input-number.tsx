@@ -11,7 +11,7 @@ import {
   hoverControlStyle,
 } from "./style"
 
-export const InputNumber = forwardRef<HTMLDivElement, InputNumberProps>(
+export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
   (props, ref) => {
     const {
       size = "medium",

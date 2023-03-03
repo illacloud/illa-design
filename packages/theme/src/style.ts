@@ -63,6 +63,8 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     font-family: ${props.ff};
     font-weight: ${props.fw};
     visibility: ${props.v};
+    // UserProps
+    cursor: ${props.cur};
     ${props._css};
   `
 }
@@ -128,6 +130,8 @@ export function deleteCssProps(obj: object): object {
     "fs",
     "ff",
     "fw",
+    //UserProps
+    "cur",
     "_css",
   ])
 }

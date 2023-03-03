@@ -6,7 +6,12 @@ export type BoxProps = SizeStyledProps &
   PositionStyledProps &
   FlexStyledProps &
   CustomStyledProps &
-  FontStyledProps
+  FontStyledProps &
+  UsersProps
+
+export interface UsersProps {
+  cur?: string
+}
 
 export interface SizeStyledProps {
   /**

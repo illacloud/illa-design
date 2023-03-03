@@ -6,8 +6,10 @@ import {
   ReactElement,
   ReactNode,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react"
 import {
   OptionProps,
@@ -22,7 +24,7 @@ import { DownIcon, LoadingIcon, UpIcon } from "@illa-design/icon"
 import { getColor } from "@illa-design/theme"
 import { Empty } from "@illa-design/empty"
 
-export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
+export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
   (props, ref) => {
     const {
       size = "medium",
@@ -60,6 +62,8 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
       autoAlignPopupWidth = true,
       ...otherProps
     } = props
+
+    const inputRef = useRef<HTMLInputElement>(null)
 
     const [finalPopupVisible, setFinalPopupVisible] = useMergeValue(false, {
       defaultValue: defaultPopupVisible,
@@ -117,12 +121,26 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
       [children, labelInValue, options],
     )
 
-    const [finalInputValue, setFinalInputValue] = useMergeValue<
+    const [finalValue, setFinalValue] = useMergeValue<
       number | string | ReactNode | undefined
     >("", {
       defaultValue: getValueFromProps(defaultValue),
       value: getValueFromProps(value),
     })
+
+    const [finalInputValue, setFinalInputValue] = useState<
+      number | string | ReactNode | undefined
+    >(
+      value === undefined
+        ? getValueFromProps(defaultValue)
+        : getValueFromProps(value),
+    )
+
+    useEffect(() => {
+      const show = getValueFromProps(value)
+      setFinalInputValue(show)
+      lastChooseRef.current = show
+    }, [getValueFromProps, value])
 
     const [finalSelectValue, setFinalSelectValue] = useMergeValue<
       SelectValue | undefined
@@ -183,6 +201,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                 if (value === undefined) {
                   lastChooseRef.current = children
                   setFinalInputValue(lastChooseRef.current ?? "")
+                  setFinalValue(lastChooseRef.current ?? "")
                   setFinalSelectValue(key)
                 }
                 onChange?.(key)
@@ -202,6 +221,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                         option as SelectOptionObject
                       ).label
                       setFinalInputValue(lastChooseRef.current ?? "")
+                      setFinalValue(lastChooseRef.current ?? "")
                       setFinalSelectValue((option as SelectOptionObject).value)
                     }
                     onChange?.(option)
@@ -212,6 +232,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                           option as SelectOptionObject
                         ).label
                         setFinalInputValue(lastChooseRef.current ?? "")
+                        setFinalValue(lastChooseRef.current ?? "")
                         setFinalSelectValue(
                           (option as SelectOptionObject).value,
                         )
@@ -221,6 +242,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
                       if (value === undefined) {
                         lastChooseRef.current = option
                         setFinalInputValue(lastChooseRef.current ?? "")
+                        setFinalValue(lastChooseRef.current ?? "")
                         setFinalSelectValue(option)
                       }
                       onChange?.(option)
@@ -267,7 +289,7 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
           }
           if (showSearch) {
             if (visible) {
-              setFinalInputValue("")
+              setFinalInputValue(undefined)
               onInputValueChange?.("")
             } else {
               setFinalInputValue(lastChooseRef.current ?? "")
@@ -279,10 +301,11 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
         {...dropdownProps}
       >
         <Input
+          inputRef={inputRef}
           variant={variant}
           onFocus={onFocus}
           onBlur={onBlur}
-          value={finalInputValue}
+          value={showSearch ? finalInputValue : finalValue}
           readOnly={!showSearch || readOnly}
           addBefore={addBefore}
           addAfter={addAfter}
@@ -293,7 +316,11 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
           size={size}
           allowClear={allowClear}
           prefix={prefix}
-          placeholder={placeholder}
+          placeholder={
+            placeholder ?? lastChooseRef.current !== undefined
+              ? String(lastChooseRef.current)
+              : undefined
+          }
           onChange={(v) => {
             setFinalInputValue(v)
             onInputValueChange?.(v)
@@ -302,8 +329,10 @@ export const SingleSelect = forwardRef<HTMLDivElement, SelectProps>(
           onClear={() => {
             if (value === undefined) {
               setFinalInputValue("")
+              setFinalValue("")
               onInputValueChange?.("")
               setFinalSelectValue(undefined)
+              lastChooseRef.current = undefined
             }
             onClear?.()
             onChange?.(undefined)

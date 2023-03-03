@@ -249,6 +249,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
         {...dropdownProps}
       >
         <InputTag
+          ref={ref}
           readOnly={!showSearch || readOnly}
           labelInValue={true}
           inputValue={finalInputValue.toString()}
@@ -271,6 +272,10 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
             setFinalInputValue(v)
           }}
           onClear={() => {
+            if (value === undefined) {
+              setFinalValue([])
+            }
+            setFinalInputValue("")
             onChange?.(undefined)
           }}
           onRemove={(v) => {
