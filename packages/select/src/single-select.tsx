@@ -317,9 +317,10 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
           allowClear={allowClear}
           prefix={prefix}
           placeholder={
-            placeholder ?? lastChooseRef.current !== undefined
+            placeholder ??
+            (lastChooseRef.current !== undefined
               ? String(lastChooseRef.current)
-              : undefined
+              : undefined)
           }
           onChange={(v) => {
             setFinalInputValue(v)
