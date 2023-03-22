@@ -113,6 +113,10 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               closeable = !readOnly
             }
 
+            if (disabled) {
+              closeable = false
+            }
+
             return (
               <Tag
                 css={tagStyle}
