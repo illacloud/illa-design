@@ -1007,6 +1007,23 @@ importers:
       '@rollup/plugin-typescript': 10.0.1
       '@vitejs/plugin-react-swc': 3.1.0
 
+  packages/slider:
+    specifiers:
+      '@illa-design/icon': workspace:*
+      '@illa-design/system': workspace:*
+      '@illa-design/theme': workspace:*
+      '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
+    dependencies:
+      '@illa-design/icon': link:../icon
+      '@illa-design/system': link:../system
+      '@illa-design/theme': link:../theme
+      '@illa-design/trigger': link:../trigger
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.1.0
+
   packages/space:
     specifiers:
       '@illa-design/divider': workspace:*
@@ -3802,7 +3819,7 @@ packages:
       '@storybook/csf-plugin': 7.0.0-beta.36
       '@storybook/csf-tools': 7.0.0-beta.36
       '@storybook/global': 5.0.0
-      '@storybook/mdx2-csf': 1.0.0-next.5
+      '@storybook/mdx2-csf': 1.0.0-next.6
       '@storybook/node-logger': 7.0.0-beta.36
       '@storybook/postinstall': 7.0.0-beta.36
       '@storybook/preview-api': 7.0.0-beta.36
@@ -4039,7 +4056,7 @@ packages:
       '@storybook/client-logger': 7.0.0-beta.36
       '@storybook/core-common': 7.0.0-beta.36
       '@storybook/csf-plugin': 7.0.0-beta.36
-      '@storybook/mdx2-csf': 1.0.0-next.5
+      '@storybook/mdx2-csf': 1.0.0-next.6
       '@storybook/node-logger': 7.0.0-beta.36
       '@storybook/preview': 7.0.0-beta.36
       '@storybook/preview-api': 7.0.0-beta.36
@@ -4361,8 +4378,8 @@ packages:
     resolution: {integrity: sha512-fNzhk9rq8MNDwXcWl/SYBEv0frBVZ1730hVgXm2cKZWZNMuZrOx86CoORHKzFMmXCyWLMD8I8VnSKsQux1Q8HA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@storybook/manager/-/manager-7.0.0-beta.36.tgz}
     dev: true
 
-  /@storybook/mdx2-csf/1.0.0-next.5:
-    resolution: {integrity: sha512-02w0sgGZaK1agT050yCVhJ+o4rLHANWvLKWjQjeAsYbjneLC5ITt+3GDB4jRiWwJboZ8dHW1fGSK1Vg5fA34aQ==}
+  /@storybook/mdx2-csf/1.0.0-next.6:
+    resolution: {integrity: sha512-m6plojocU/rmrqWd26yvm8D+oHZPZ6PtSSFmZIgpNDEPVmc8s4fBD6LXOAB5MiPI5f8KLUr2HVhOMZ97o5pDTw==}
     dev: true
 
   /@storybook/node-logger/7.0.0-beta.36:
