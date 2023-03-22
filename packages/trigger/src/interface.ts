@@ -1,5 +1,5 @@
 import { BoxProps } from "@illa-design/theme"
-import { ReactNode } from "react"
+import { ReactNode, RefObject } from "react"
 
 export type TriggerColorScheme =
   | string
@@ -63,4 +63,5 @@ export interface TriggerProps extends BoxProps, TriggerContext {
   disabled?: boolean
   onVisibleChange?: (visible: boolean) => void
   alignPoint?: boolean
+  popupContainer?: HTMLElement | RefObject<HTMLElement>
 }

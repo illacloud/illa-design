@@ -74,6 +74,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     alignPoint,
     renderInBody,
     zIndex,
+    popupContainer,
   } = props
 
   const tipsContainerRef = useRef<HTMLDivElement>(null)
@@ -82,6 +83,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
   const triggerContext = useContext(TriggerProviderContext)
   const _renderInBody = renderInBody ?? triggerContext.renderInBody ?? true
   const _zIndex = zIndex ?? triggerContext.zIndex ?? 1
+
+  let _popupContainer =
+    (popupContainer instanceof HTMLElement
+      ? popupContainer
+      : popupContainer?.current) ?? (_renderInBody ? document.body : null)
 
   useEffect(() => {
     if (defaultPopupVisible) {
@@ -364,9 +370,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
         }),
       )}
       <FloatingPortal
-        root={
-          _renderInBody ? document.body : childrenRef?.current ?? document.body
-        }
+        root={_popupContainer ?? childrenRef?.current ?? document.body}
       >
         {!disabled && (
           <AnimatePresence>
