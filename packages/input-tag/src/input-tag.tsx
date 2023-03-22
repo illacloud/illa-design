@@ -1,4 +1,10 @@
-import { forwardRef, useImperativeHandle, useMemo, useRef } from "react"
+import {
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { InputTagProps, TagObject } from "./interface"
 import { useMergeValue } from "@illa-design/system"
 import {
@@ -8,6 +14,7 @@ import {
   applyInputTagInputStyle,
   applyPrefixSuffixStyle,
   calcSpanStyle,
+  inputTagPlaceHolderStyle,
   tagsListStyle,
   tagStyle,
 } from "./style"
@@ -58,6 +65,8 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
     } else if (borderList.length == 3) {
       borderList = [borderList[0], borderList[1], borderList[2], borderList[1]]
     }
+
+    const [focusInput, setFocusInput] = useState(false)
 
     const [finalValue, setFinalValue] = useMergeValue<TagObject[] | string[]>(
       [],
@@ -228,12 +237,15 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
             </span>
           )}
           <span css={tagsListStyle}>
-            {tags}
+            {finalValue.length > 0 || focusInput ? (
+              tags
+            ) : (
+              <span css={inputTagPlaceHolderStyle}>{placeholder}</span>
+            )}
             <input
               disabled={disabled}
               key="inputTagInput"
               ref={inputRef}
-              placeholder={placeholder}
               autoFocus={autoFocus}
               readOnly={readOnly}
               css={applyInputTagInputStyle(size, calcBlockBounds.width + 12)}
@@ -248,9 +260,11 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                   saveInputValue()
                 }
                 onBlur?.(e)
+                setFocusInput(false)
               }}
               onFocus={(e) => {
                 onFocus?.(e)
+                setFocusInput(true)
               }}
               value={finalInputValue}
               onCompositionStart={() => {

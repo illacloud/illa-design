@@ -26,6 +26,10 @@ export function applyInputTagInputStyle(
   `
 }
 
+export const inputTagPlaceHolderStyle = css`
+  color: ${getColor("grayBlue", "04")};
+`
+
 export function applyAddBeforeAfterStyle(
   size: InputTagSize,
   disabled: boolean,
