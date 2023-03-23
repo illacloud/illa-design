@@ -12,6 +12,7 @@ import {
   applyInputContainerStyle,
   applyInputTagContainerStyle,
   applyInputTagInputStyle,
+  applyInputTagPlaceHolderStyle,
   applyPrefixSuffixStyle,
   calcSpanStyle,
   inputTagPlaceHolderStyle,
@@ -240,11 +241,11 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               {prefix}
             </span>
           )}
-          <span css={tagsListStyle}>
+          <div css={tagsListStyle}>
             {finalValue.length > 0 || focusInput ? (
               tags
             ) : (
-              <span css={inputTagPlaceHolderStyle}>{placeholder}</span>
+              <div css={applyInputTagPlaceHolderStyle(size)}>{placeholder}</div>
             )}
             <input
               disabled={disabled}
@@ -309,7 +310,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 }
               }}
             />
-          </span>
+          </div>
           {allowClear && !disabled && finalValue.length > 0 && (
             <ClearIcon
               className="clear"

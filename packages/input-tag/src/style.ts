@@ -26,9 +26,23 @@ export function applyInputTagInputStyle(
   `
 }
 
-export const inputTagPlaceHolderStyle = css`
-  color: ${getColor("grayBlue", "04")};
-`
+export function applyInputTagPlaceHolderStyle(
+  size: InputTagSize,
+): SerializedStyles {
+  return css`
+    color: ${getColor("grayBlue", "04")};
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    line-height: ${size === "large"
+      ? "32px"
+      : size === "small"
+      ? "22px"
+      : "24px"};
+  `
+}
 
 export function applyAddBeforeAfterStyle(
   size: InputTagSize,
@@ -130,6 +144,7 @@ export const tagsListStyle = css`
   display: flex;
   flex-flow: row wrap;
   flex-grow: 1;
+  position: relative;
   flex-shrink: 1;
   overflow: hidden;
   align-items: center;
