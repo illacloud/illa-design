@@ -1,6 +1,6 @@
 import { ChangeEvent, forwardRef } from "react"
 import { isArray, useMergeValue } from "@illa-design/system"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import { RadioGroupProps } from "./interface"
 import { Radio } from "./radio"
 import { applyRadioGroupCss } from "./style"
@@ -59,7 +59,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
           applyRadioGroupCss({ hasChildren, direction, spacing, type }),
           applyBoxStyle(props),
         ]}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <RadioGroupContext.Provider value={contextProp}>
           {options && isArray(options)

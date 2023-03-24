@@ -1,4 +1,10 @@
-import { forwardRef, useImperativeHandle, useMemo, useRef } from "react"
+import {
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { InputTagProps, TagObject } from "./interface"
 import { useMergeValue } from "@illa-design/system"
 import {
@@ -6,8 +12,10 @@ import {
   applyInputContainerStyle,
   applyInputTagContainerStyle,
   applyInputTagInputStyle,
+  applyInputTagPlaceHolderStyle,
   applyPrefixSuffixStyle,
   calcSpanStyle,
+  inputTagPlaceHolderStyle,
   tagsListStyle,
   tagStyle,
 } from "./style"
@@ -59,6 +67,8 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       borderList = [borderList[0], borderList[1], borderList[2], borderList[1]]
     }
 
+    const [focusInput, setFocusInput] = useState(false)
+
     const [finalValue, setFinalValue] = useMergeValue<TagObject[] | string[]>(
       [],
       {
@@ -102,6 +112,10 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               }
             } else {
               closeable = !readOnly
+            }
+
+            if (disabled) {
+              closeable = false
             }
 
             return (
@@ -227,13 +241,16 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               {prefix}
             </span>
           )}
-          <span css={tagsListStyle}>
-            {tags}
+          <div css={tagsListStyle}>
+            {finalValue.length > 0 || focusInput ? (
+              tags
+            ) : (
+              <div css={applyInputTagPlaceHolderStyle(size)}>{placeholder}</div>
+            )}
             <input
               disabled={disabled}
               key="inputTagInput"
               ref={inputRef}
-              placeholder={placeholder}
               autoFocus={autoFocus}
               readOnly={readOnly}
               css={applyInputTagInputStyle(size, calcBlockBounds.width + 12)}
@@ -248,9 +265,11 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                   saveInputValue()
                 }
                 onBlur?.(e)
+                setFocusInput(false)
               }}
               onFocus={(e) => {
                 onFocus?.(e)
+                setFocusInput(true)
               }}
               value={finalInputValue}
               onCompositionStart={() => {
@@ -291,7 +310,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 }
               }}
             />
-          </span>
+          </div>
           {allowClear && !disabled && finalValue.length > 0 && (
             <ClearIcon
               className="clear"

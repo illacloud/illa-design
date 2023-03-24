@@ -35,7 +35,6 @@ export const Dropdown: FC<DropdownProps> = (props) => {
     <Trigger
       trigger={trigger}
       colorScheme={colorScheme}
-      disabled={disabled}
       autoAlignPopupWidth={autoAlignPopupWidth}
       withoutPadding={true}
       clickOutsideToClose={true}
@@ -50,6 +49,7 @@ export const Dropdown: FC<DropdownProps> = (props) => {
       }}
       {...triggerProps}
       {...otherProps}
+      disabled={disabled}
     >
       {children}
     </Trigger>
