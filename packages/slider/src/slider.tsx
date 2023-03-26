@@ -2,15 +2,15 @@ import { useEffect, useRef, useState, forwardRef, MouseEvent } from "react"
 import { Bar } from "./bar"
 import { MarkBar } from "./markBar"
 import { Tick } from "./tick"
-import { applySliderWrapper, applySliderRoad } from "./style"
+import { applySliderWrapper, applySliderRoad, applyBoundBar } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
 import { Trigger } from "@illa-design/trigger"
 import { SliderProps } from "./interface"
 import { DefaultWidth, BarLocation } from "./content"
+import { useOffset } from "./useOffset"
 export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const {
     disabled = false,
-    reverse = false,
     tooltipVisible = true,
     showTicks = true,
     max = 10,
@@ -18,8 +18,8 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     step = 1,
     tooltipPosition = "top",
     defaultValue = 0,
-    isRange = { draggableBar: false },
     value = defaultValue,
+    isRange = Array.isArray(value),
     startMarkShow = false,
     endMarkShow = false,
     formatTooltip = (v) => v,
@@ -28,110 +28,53 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   } = props
   const [currentWidth, setCurrentWidth] = useState(DefaultWidth)
   const [partNumber, setPartNumber] = useState<number | undefined>(undefined)
-  const [partLength, setPartLength] = useState(DefaultWidth / step)
-  const [leftValue, setLeftValue] = useState(0)
-  const [rightValue, setRightValue] = useState(0)
-  const [barLength, setBarLength] = useState(0)
-  const [currentValue, setCurrentValue] = useState<number | number[]>(value)
   const roadRef = useRef<HTMLDivElement | null>(null)
   const [rightTriggerShow, setRightTriggerShow] = useState(false)
   const [leftTriggerShow, setLeftTriggerShow] = useState(false)
+  const leftValue = useRef<number | undefined>(
+    Array.isArray(value) ? value[0] : undefined,
+  )
+  const rightValue = useRef<number>(Array.isArray(value) ? value[1] : value)
+  const {
+    currentValue,
+    leftOffset,
+    rightOffset,
+    barLength,
+    partLength,
+    initOffsetFromState,
+    onDragging,
+    onDragEnd,
+    onClickTick,
+    onDragBar,
+    onDragBarEnd,
+  } = useOffset(min, max, step)
+
+  const dragging = (
+    x: number,
+    startValue: number | number[],
+    location: BarLocation,
+  ) => {
+    setTriggerHidden()
+    onDragging(x, startValue, location)
+  }
+
+  const dragEnd = (
+    x: number,
+    startValue: number | number[],
+    location: BarLocation,
+  ) => {
+    if (location === BarLocation.RIGHT) setRightTriggerShow(true)
+    else setLeftTriggerShow(true)
+    onDragEnd(x, startValue, location, onAfterChange)
+  }
 
   const setTriggerHidden = () => {
     setRightTriggerShow(false)
     setLeftTriggerShow(false)
   }
 
-  const drag = (
-    e: MouseEvent,
-    origin: number,
-    startValue: number | number[],
-    barLocation: string,
-    isEnd?: boolean,
-  ) => {
-    if (!e.clientX || !origin) return
-    if (rightTriggerShow || leftTriggerShow) setTriggerHidden()
-    let dragLength = e.clientX - origin,
-      leftValue: number,
-      rightValue: number,
-      currentVal: number | number[]
-    if (Array.isArray(startValue)) {
-      ;[leftValue, rightValue] = currentValue as number[]
-      switch (barLocation) {
-        case BarLocation.LEFT: {
-          let val = startValue[0] + Math.round(dragLength / partLength)
-          if (val >= max) {
-            currentVal = [rightValue, max]
-          } else if (rightValue <= val) {
-            currentVal = [rightValue, val]
-          } else if (val <= min) {
-            currentVal = [min, Math.max(leftValue, rightValue)]
-          } else {
-            currentVal = [val, rightValue]
-          }
-          setCurrentValue(currentVal)
-          break
-        }
-        default:
-        case BarLocation.RIGHT: {
-          let val = startValue[1] + Math.round(dragLength / partLength)
-          if (val >= max) {
-            currentVal = [leftValue, max]
-          } else if (val <= leftValue && val > min) {
-            currentVal = [val, leftValue]
-          } else if (val <= min) {
-            currentVal = [min, leftValue]
-          } else {
-            currentVal = [leftValue, val]
-          }
-          setCurrentValue(currentVal)
-          break
-        }
-      }
-      isEnd && onAfterChange && onAfterChange(currentVal)
-      return
-    }
-    let val = reverse
-      ? startValue - Math.round(dragLength / partLength)
-      : startValue + Math.round(dragLength / partLength)
-    if (val >= max) {
-      currentVal = max
-      setCurrentValue(max)
-    } else if (val <= min) {
-      currentVal = min
-      setCurrentValue(min)
-    } else {
-      currentVal = val
-      setCurrentValue(val)
-    }
-    isEnd && onAfterChange && onAfterChange(currentVal)
-  }
-
-  const dragBar = (
-    e: MouseEvent,
-    origin: number,
-    startValue: number[],
-    isEnd?: boolean,
-  ) => {
-    const dragLength = e.clientX - origin
-    const currentRangeVal = startValue.map((val) => {
-      const offset = val + Math.round(dragLength / partLength)
-      if (offset <= min) return min
-      else if (offset >= max) return max
-      return offset
-    })
-    setCurrentValue(currentRangeVal)
-    isEnd && onAfterChange && onAfterChange(currentRangeVal)
-  }
-
-  const tickClick = (v: number) => {
-    if (Array.isArray(currentValue)) {
-      let mid = Math.floor((max - min) / 2)
-      if (v > mid) setCurrentValue([currentValue[0], v])
-      else setCurrentValue([v, currentValue[1]])
-    } else {
-      setCurrentValue(v)
-    }
+  const dragBarEnd = (x: number, startValue: number[]) => {
+    onDragBarEnd(x, startValue, onAfterChange)
   }
 
   useEffect(() => {
@@ -142,27 +85,17 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     if (roadRef.current) {
       const { width } = roadRef.current?.getBoundingClientRect()
       const partNum = Math.ceil((max - min) / step)
-      const partLength = width / partNum
-      let leftValue, rightValue, barLength
-      if (Array.isArray(currentValue)) {
-        leftValue = ((currentValue[0] - min) / step) * partLength
-        rightValue = ((max - currentValue[1]) / step) * partLength
-        barLength = ((currentValue[1] - currentValue[0]) / step) * partLength
-      } else {
-        leftValue = reverse ? ((max - currentValue) / step) * partLength : 0
-        rightValue = reverse
-          ? (currentValue / step) * partLength
-          : ((max - currentValue) / step) * partLength
-        barLength = reverse ? rightValue : width - rightValue
-      }
-      setPartLength(Math.floor(partLength))
+      const partLength = width / ((max - min) / step)
       setPartNumber(partNum)
-      setLeftValue(leftValue)
-      setRightValue(rightValue)
       setCurrentWidth(width)
-      setBarLength(barLength)
+      initOffsetFromState(
+        Math.floor(partLength),
+        width,
+        rightValue.current,
+        leftValue.current,
+      )
     }
-  }, [isRange, reverse, currentValue, max, min, step])
+  }, [isRange, max, min, step, initOffsetFromState, leftValue, rightValue])
   return (
     <div ref={ref} css={[applySliderWrapper, applyBoxStyle(props)]}>
       <div css={applySliderRoad()} ref={roadRef}>
@@ -171,19 +104,22 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           [...new Array(partNumber - 1)].map((_, i) => (
             <Tick
               key={i}
-              value={i + 1}
+              value={(i + 1) * step}
               left={(i + 1) * partLength}
-              leftValue={leftValue}
-              rightValue={rightValue}
+              leftValue={leftOffset}
+              rightValue={rightOffset}
               currentWidth={currentWidth}
-              reverse={reverse}
-              isRange={Boolean(isRange)}
               disabled={disabled}
-              tickClick={tickClick}
+              tickClick={onClickTick}
             />
           ))}
-        {startMarkShow && <MarkBar isBoundMark left={0} disabled={disabled} />}
-        {isRange && (
+        {startMarkShow && (
+          <div
+            css={applyBoundBar(false, disabled)}
+            onClick={() => onClickTick(min)}
+          />
+        )}
+        {Boolean(isRange) && (
           <Trigger
             content={
               Array.isArray(currentValue)
@@ -194,11 +130,18 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
             popupVisible={leftTriggerShow && tooltipVisible}
           >
             <MarkBar
-              left={leftValue}
-              drag={drag}
+              isRange={isRange}
+              left={leftOffset}
+              right={-1}
+              drag={dragging}
+              dragEnd={dragEnd}
               value={currentValue}
               location={BarLocation.LEFT}
               disabled={disabled}
+              max={max}
+              step={step}
+              currentWidth={currentWidth}
+              partLength={partLength}
               mouseEnter={() => setLeftTriggerShow(true)}
               mouseOut={() => setLeftTriggerShow(false)}
             />
@@ -214,26 +157,38 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           popupVisible={rightTriggerShow && tooltipVisible}
         >
           <MarkBar
-            right={rightValue}
-            isRightMark
-            drag={drag}
+            right={rightOffset}
+            left={-1}
+            isRange={isRange}
+            drag={dragging}
+            dragEnd={dragEnd}
             value={currentValue}
+            max={max}
+            step={step}
             location={BarLocation.RIGHT}
             disabled={disabled}
+            currentWidth={currentWidth}
+            partLength={partLength}
             mouseEnter={() => setRightTriggerShow(true)}
             mouseOut={() => setRightTriggerShow(false)}
           />
         </Trigger>
-        {Boolean(rightValue) && endMarkShow && (
-          <MarkBar isBoundMark right={0} isRightMark disabled={disabled} />
+        {endMarkShow && (
+          <div
+            css={applyBoundBar(true, disabled)}
+            onClick={() => onClickTick(max)}
+          />
         )}
         <Bar
           width={barLength}
-          left={leftValue}
+          left={leftOffset}
           isRange={isRange}
           value={currentValue as number[]}
-          dragBar={dragBar}
+          dragBar={onDragBar}
           disabled={disabled}
+          containerWidth={currentWidth}
+          partLength={partLength}
+          onDragBarEnd={dragBarEnd}
         />
       </div>
     </div>

@@ -18,10 +18,15 @@ export default {
 
 const Template: StoryFn<SliderProps> = (args) => {
   return (
-    <Space size={"large"}>
-      <Slider />
-      <Slider />
-    </Space>
+    <>
+      <div style={{ width: "200px", height: "200px" }}></div>
+      <Slider value={6} />
+      <div style={{ width: "50px", height: "200px" }}></div>
+      <Slider value={[0, 2]} isRange={true} />
+      <div style={{ width: "50px", height: "200px" }}></div>
+      <Slider value={[0, 2]} isRange={{ draggableBar: true }} />
+      <div style={{ width: "50px", height: "200px" }}></div>
+    </>
   )
 }
 

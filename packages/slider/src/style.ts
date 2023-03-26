@@ -1,4 +1,4 @@
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor } from "@illa-design/theme"
 import { css, SerializedStyles } from "@emotion/react"
 
 export const applySliderWrapper = css`
@@ -19,14 +19,15 @@ export function applySliderRoad(): SerializedStyles {
     position: relative;
   `
 }
-
 export function applySliderBar(
   disabled: boolean,
   draggableBar: boolean,
+  width: number,
 ): SerializedStyles {
   return css`
     height: 2px;
     position: absolute;
+    width: ${width}px;
     background: ${disabled
       ? globalColor("--illa-gray-08")
       : globalColor("--illa-blue-03")};
@@ -34,45 +35,69 @@ export function applySliderBar(
     cursor: ${disabled || !draggableBar ? "auto" : "pointer"};
   `
 }
-
-export function applyMarkBar(
-  left?: number,
-  right?: number,
-  isRightMark?: boolean,
-  isBoundMark?: boolean,
-  disabled?: boolean,
-): SerializedStyles {
+export function applyMarkBar(disabled?: boolean): SerializedStyles {
   return css`
-    height: ${isBoundMark ? "8px" : "12px"};
-    width: ${isBoundMark ? "8px" : "12px"};
-    left: ${left}px;
-    right: ${right}px;
-    position: absolute;
+    height: 12px;
+    width: 12px;
     background-color: white;
     border: 2px solid
       ${disabled
         ? globalColor("--illa-gray-08")
         : globalColor("--illa-blue-03")};
     border-radius: 50%;
-    transform: ${isRightMark ? "translateX(50%)" : "translateX(-50%)"};
+    position: absolute;
+    z-index: 2;
+    cursor: ${disabled ? "auto" : "pointer"};
+  `
+}
+export function applyBoundBar(
+  isRightMark?: boolean,
+  disabled?: boolean,
+): SerializedStyles {
+  return css`
+    position: absolute;
+    left: ${isRightMark ? "auto" : 0}px;
+    right: ${isRightMark ? 0 : "auto"}px;
+    height: 8px;
+    width: 8px;
+    background-color: white;
+    border: 2px solid
+      ${disabled
+        ? globalColor("--illa-gray-08")
+        : globalColor("--illa-blue-03")};
+    border-radius: 50%;
     z-index: 1;
+    transform: ${isRightMark ? "translateX(50%)" : "translateX(-50%)"};
     cursor: ${disabled ? "auto" : "pointer"};
   `
 }
 
-export function applyTick(
+export const applyBarContainer = css`
+  height: 16px;
+  width: 16px;
+`
+
+export function applyTickContainer(
   left: number,
-  background: string,
   disabled: boolean,
 ): SerializedStyles {
   return css`
     height: 5px;
-    width: 2px;
-    background: ${globalColor(background)};
+    width: 8px;
     position: absolute;
     left: ${left}px;
     bottom: 100%;
     transform: translateX(-50%);
     cursor: ${disabled ? "auto" : "pointer"};
+  `
+}
+export function applyTick(background: string): SerializedStyles {
+  return css`
+    height: 5px;
+    width: 2px;
+    background: ${globalColor(background)};
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   `
 }

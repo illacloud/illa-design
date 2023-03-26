@@ -1,6 +1,7 @@
 import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
 import { TriggerPosition } from "@illa-design/trigger"
+import { BarLocation } from "./content"
 
 export type SpecialSliderProps = "defaultValue" | "onChange"
 export interface SliderProps
@@ -8,7 +9,6 @@ export interface SliderProps
     BoxProps {
   disabled?: boolean
   showTicks?: boolean
-  reverse?: boolean
   tooltipVisible?: boolean
   max?: number
   min?: number
@@ -26,33 +26,38 @@ export interface SliderProps
 
 export interface SliderBar {
   isRange: boolean | { draggableBar: boolean }
-  dragBar: (
-    e: MouseEvent,
-    origin: number,
-    startValue: number[],
-    isEnd?: boolean,
-  ) => void
+  dragBar: (x: number, startValue: number[]) => void
   value: number[]
   left: number
   width: number
   disabled: boolean
+  containerWidth: number
+  partLength: number
+  onDragBarEnd: (x: number, startValue: number[]) => void
 }
 
 export interface SliderMarkBar {
-  isBoundMark?: boolean
-  isRightMark?: boolean
-  left?: number
-  right?: number
-  drag?: (
-    e: MouseEvent,
-    origin: number,
+  isRange: boolean | { draggableBar: boolean }
+  dragEnd: (
+    x: number,
     startValue: number | number[],
-    barLocation: string,
-    isEnd?: boolean,
+    location: BarLocation,
   ) => void
-  value?: number | number[]
-  location?: string
+  step: number
+  partLength: number
+  min?: number
+  max: number
+  left: number
+  right: number
+  drag: (
+    x: number,
+    startValue: number | number[],
+    location: BarLocation,
+  ) => void
+  value: number | number[]
+  location: BarLocation
   disabled?: boolean
+  currentWidth: number
   mouseOut?: () => void
   mouseEnter?: () => void
 }
@@ -62,9 +67,39 @@ export interface SliderTick {
   leftValue: number
   rightValue: number
   currentWidth: number
-  reverse: boolean
-  isRange: boolean
   disabled: boolean
   tickClick: (v: number) => void
   value: number
+}
+
+export interface IUseOffsetReturn {
+  currentValue: number | number[]
+  leftOffset: number
+  rightOffset: number
+  barLength: number
+  partLength: number
+  initOffsetFromState: (
+    partLength: number,
+    width: number,
+    rightVal: number,
+    leftVal?: number,
+  ) => void
+  onDragging: (
+    x: number,
+    startValue: number | number[],
+    location: BarLocation,
+  ) => void
+  onDragEnd: (
+    x: number,
+    startValue: number | number[],
+    location: BarLocation,
+    onAfterChange?: ((v: number | number[]) => void) | undefined,
+  ) => void
+  onClickTick: (v: number) => void
+  onDragBar: (x: number, startValue: number[]) => void
+  onDragBarEnd: (
+    x: number,
+    startValue: number[],
+    onAfterChange?: ((v: number[]) => void) | undefined,
+  ) => void
 }

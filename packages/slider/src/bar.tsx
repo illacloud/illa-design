@@ -1,50 +1,72 @@
-import { useEffect, useRef, forwardRef, MouseEvent } from "react"
-import { throttleByRaf, isObject } from "@illa-design/system"
+import { useEffect, useRef, forwardRef } from "react"
+import { isObject } from "@illa-design/system"
 import { applySliderBar } from "./style"
 import { SliderBar } from "./interface"
+import { motion, PanInfo, useMotionValue } from "framer-motion"
 export const Bar = forwardRef<HTMLDivElement, SliderBar>((props, ref) => {
-  const { isRange, dragBar, value, left, width, disabled } = props
-  const clientX = useRef<number>()
+  const {
+    isRange,
+    dragBar,
+    value,
+    left,
+    width,
+    disabled,
+    containerWidth,
+    partLength,
+    onDragBarEnd,
+  } = props
   const startValue = useRef<number[]>([])
-  const isDrag = useRef(false)
-  const onDragStart = (e: MouseEvent) => {
+  const leftVal = useMotionValue(0)
+
+  const onDragStart = () => {
     if (!isRange || (isObject(isRange) && !isRange.draggableBar)) return
-    clientX.current = e.clientX
-    isDrag.current = true
     startValue.current = value
-    document.addEventListener("mousemove", throttleByRaf(onDrag), false)
-    document.addEventListener("mouseup", onDragEnd, false)
   }
-  const onDrag = (e: MouseEvent) => {
-    if (
-      !isRange ||
-      !(isObject(isRange) && isRange.draggableBar) ||
-      !isDrag.current
-    )
+
+  const onDrag = (_: any, info: PanInfo) => {
+    if (!isRange || !(isObject(isRange) && isRange.draggableBar) || disabled)
       return
-    clientX.current &&
-      startValue.current &&
-      dragBar(e, clientX.current, startValue.current)
+    const {
+      offset: { x },
+    } = info
+    dragBar(x, startValue.current)
   }
-  const onDragEnd = (e: any) => {
+
+  const onDragEnd = (_: any, info: PanInfo) => {
     if (!isRange || !(isObject(isRange) && isRange.draggableBar)) return
-    clientX.current && dragBar(e, clientX.current, startValue.current, true)
-    isDrag.current = false
-    document.removeEventListener("mousemove", throttleByRaf(onDrag))
-    document.removeEventListener("mouseup", onDragEnd)
+    const {
+      offset: { x },
+    } = info
+    onDragBarEnd(x, startValue.current)
   }
+
   useEffect(() => {
-    return () => {
-      document.removeEventListener("mousemove", throttleByRaf(onDrag))
-      document.removeEventListener("mouseup", onDragEnd)
-    }
-  }, [])
+    leftVal.set(left)
+  }, [left, isRange, leftVal])
   return (
-    <div
-      style={{ left, width }}
-      css={applySliderBar(disabled, isObject(isRange) && isRange.draggableBar)}
-      onMouseDown={onDragStart}
-    ></div>
+    <motion.div
+      drag={
+        !disabled && isObject(isRange) && isRange.draggableBar ? "x" : false
+      }
+      ref={ref}
+      onDragStart={onDragStart}
+      onDrag={onDrag}
+      onDragEnd={onDragEnd}
+      css={applySliderBar(
+        disabled,
+        isObject(isRange) && isRange.draggableBar,
+        width,
+      )}
+      dragElastic={false}
+      dragConstraints={{ left: 0, right: containerWidth - width }}
+      style={{ x: leftVal }}
+      dragMomentum={false}
+      dragTransition={{
+        timeConstant: 200,
+        power: 0,
+        modifyTarget: (target) => Math.round(target / partLength) * partLength,
+      }}
+    />
   )
 })
 Bar.displayName = "Bar"

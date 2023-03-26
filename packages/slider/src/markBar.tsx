@@ -1,75 +1,113 @@
-import { forwardRef, MouseEventHandler, useEffect, useRef } from "react"
-import { throttleByRaf } from "@illa-design/system"
-import { applyMarkBar } from "./style"
+import { forwardRef, useEffect, useRef, useState } from "react"
+import { applyMarkBar, applyBarContainer } from "./style"
 import { SliderMarkBar } from "./interface"
+import { motion, PanInfo, useMotionValue } from "framer-motion"
+import { BarLocation } from "./content"
+import { modifyTarget, getMarkBound } from "./utils"
 export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
   (props, ref) => {
     const {
-      isBoundMark,
-      isRightMark,
+      isRange,
       left,
       right,
-      drag,
+      dragEnd,
       value,
       location,
       disabled,
-      mouseOut,
+      currentWidth,
+      step,
+      max,
+      partLength,
+      drag,
       mouseEnter,
+      mouseOut,
     } = props
-    const clientX = useRef<number>()
-    const startValue = useRef(value)
-    const isDrag = useRef(false)
-    const onDragStart = (e: MouseEvent) => {
-      if (isBoundMark || disabled) return
-      clientX.current = e.clientX
-      isDrag.current = true
+    const containerRef = useRef<HTMLDivElement | null>(null)
+    const [containerWidth, setContainerWidth] = useState<number>(0)
+    const startValue = useRef<number | number[]>(0)
+    const rightVal = useMotionValue(0)
+
+    const onDragStart = () => {
+      if (disabled) return
       startValue.current = value
-      document.addEventListener("mousemove", throttleByRaf(onDrag), false)
-      document.addEventListener("mouseup", onDragEnd, false)
     }
-    const onDrag = (e: MouseEvent) => {
-      if (isBoundMark || !isDrag.current || disabled) return
-      location &&
-        clientX.current &&
-        startValue.current &&
-        drag &&
-        drag(e as any, clientX.current, startValue.current, location)
+
+    const onDrag = (_: any, info: PanInfo) => {
+      if (disabled) return
+      const {
+        offset: { x },
+      } = info
+      drag(x - containerWidth, startValue.current, location)
     }
-    const onDragEnd = (e: MouseEvent) => {
-      if (isBoundMark || !isDrag.current || disabled) return
-      location &&
-        startValue.current &&
-        clientX.current &&
-        drag &&
-        drag(e as any, clientX.current, startValue.current, location, true)
-      isDrag.current = false
-      document.removeEventListener("mousemove", throttleByRaf(onDrag))
-      document.removeEventListener("mouseup", onDragEnd)
+
+    const onDragEnd = (_: any, info: PanInfo) => {
+      if (disabled) return
+      const {
+        offset: { x },
+      } = info
+      dragEnd(x - containerWidth, startValue.current, location)
     }
-    const onMouseEnter = () => {
-      if (disabled || isBoundMark) return
-      mouseEnter && mouseEnter()
-    }
-    const onMouseOut = () => {
-      if (disabled || isBoundMark) return
-      mouseOut && mouseOut()
-    }
+
     useEffect(() => {
-      return () => {
-        document.removeEventListener("mousemove", throttleByRaf(onDrag))
-        document.removeEventListener("mouseup", onDragEnd)
+      if (isRange) {
+        if (currentWidth && right !== -1 && location === BarLocation.RIGHT) {
+          rightVal.set(currentWidth - right - containerWidth * 3)
+        }
+        if (currentWidth && left !== -1 && location === BarLocation.LEFT) {
+          rightVal.set(left - containerWidth)
+        }
+      } else {
+        rightVal.set(currentWidth - right - containerWidth)
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [currentWidth, right, containerWidth, left, isRange, location, rightVal])
+
+    useEffect(() => {
+      if (containerRef.current) {
+        const { width } = containerRef.current.getBoundingClientRect()
+        setContainerWidth(width / 2)
+      }
+    }, [containerRef])
+
     return (
-      <div
-        ref={ref}
-        css={applyMarkBar(left, right, isRightMark, isBoundMark, disabled)}
-        data-location={location}
-        onMouseDown={onDragStart as any}
-        onMouseEnter={onMouseEnter}
-        onMouseOut={onMouseOut}
-      ></div>
+      <motion.div
+        drag="x"
+        ref={containerRef}
+        onDragStart={onDragStart}
+        onDrag={onDrag}
+        onDragEnd={onDragEnd}
+        css={applyBarContainer}
+        dragElastic={0}
+        dragConstraints={getMarkBound(
+          containerWidth,
+          value,
+          location,
+          partLength,
+          max,
+          step,
+        )}
+        style={{ x: rightVal, zIndex: 2 }}
+        dragMomentum={false}
+        dragTransition={{
+          timeConstant: 200,
+          power: 0,
+          modifyTarget: (target) =>
+            modifyTarget(
+              target,
+              partLength,
+              containerWidth,
+              location,
+              isRange,
+              step,
+            ),
+        }}
+      >
+        <div
+          ref={ref}
+          css={applyMarkBar(disabled)}
+          onMouseEnter={mouseEnter}
+          onMouseOut={mouseOut}
+        />
+      </motion.div>
     )
   },
 )
