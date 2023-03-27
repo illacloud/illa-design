@@ -24,6 +24,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     isRange = Array.isArray(value),
     startMarkShow = false,
     endMarkShow = false,
+    colorScheme,
     formatTooltip = (v) => v,
     onAfterChange,
     onChange,
@@ -108,6 +109,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
               leftValue={leftOffset}
               rightValue={rightOffset}
               currentWidth={currentWidth}
+              colorScheme={colorScheme}
               disabled={disabled}
               tickClick={onClickTick}
             />
@@ -155,6 +157,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
               step={step}
               currentWidth={currentWidth}
               partLength={partLength}
+              colorScheme={colorScheme}
               mouseEnter={() => setLeftTriggerShow(true)}
               mouseOut={() => setLeftTriggerShow(false)}
             />
@@ -182,6 +185,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
             disabled={disabled}
             currentWidth={currentWidth}
             partLength={partLength}
+            colorScheme={colorScheme}
             mouseEnter={() => setRightTriggerShow(true)}
             mouseOut={() => setRightTriggerShow(false)}
           />
@@ -199,6 +203,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           value={currentValue as number[]}
           dragBar={onDragBar}
           disabled={disabled}
+          colorScheme={colorScheme}
           containerWidth={currentWidth}
           partLength={partLength}
           onDragBarEnd={dragBarEnd}

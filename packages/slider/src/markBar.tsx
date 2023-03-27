@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef, useState } from "react"
+import { forwardRef, useEffect, useRef } from "react"
 import { applyMarkBar, applyBarContainer } from "./style"
 import { SliderMarkBar } from "./interface"
 import { motion, PanInfo, useMotionValue } from "framer-motion"
@@ -20,6 +20,7 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       step,
       max,
       partLength,
+      colorScheme,
       drag,
       mouseEnter,
       mouseOut,
@@ -97,7 +98,7 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       >
         <div
           ref={ref}
-          css={applyMarkBar(disabled)}
+          css={applyMarkBar(disabled, colorScheme)}
           onMouseEnter={mouseEnter}
           onMouseOut={mouseOut}
         />

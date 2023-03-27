@@ -1,5 +1,37 @@
-import { globalColor } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 import { css, SerializedStyles } from "@emotion/react"
+import { SliderColorScheme } from "./interface"
+
+const innerColor = [
+  "white",
+  "blackAlpha",
+  "gray",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+  "grayBlue",
+  "techPurple",
+  "techPink",
+]
+
+export function applyBgColor(
+  colorScheme: SliderColorScheme | undefined,
+  disabled: boolean,
+): string {
+  if (disabled) {
+    return `${globalColor(`--${illaPrefix}-gray-08`)}`
+  } else if (!colorScheme) {
+    return `${globalColor(`--${illaPrefix}-blue-03`)}`
+  } else if (innerColor.includes(colorScheme)) {
+    return `${globalColor(`--${illaPrefix}-${colorScheme}-03`)}`
+  } else {
+    return colorScheme
+  }
+}
 
 export const applySliderWrapper = css`
   height: 12px;
@@ -23,27 +55,29 @@ export function applySliderBar(
   disabled: boolean,
   draggableBar: boolean,
   width: number,
+  colorScheme?: SliderColorScheme,
 ): SerializedStyles {
+  // background: ${disabled
+  //   ? globalColor("--illa-gray-08")
+  //   : globalColor("--illa-blue-03")};
   return css`
     height: 2px;
     position: absolute;
     width: ${width}px;
-    background: ${disabled
-      ? globalColor("--illa-gray-08")
-      : globalColor("--illa-blue-03")};
+    background: ${applyBgColor(colorScheme, disabled)};
     border-radius: 2px;
     cursor: ${disabled || !draggableBar ? "auto" : "pointer"};
   `
 }
-export function applyMarkBar(disabled?: boolean): SerializedStyles {
+export function applyMarkBar(
+  disabled: boolean,
+  colorScheme?: SliderColorScheme,
+): SerializedStyles {
   return css`
     height: 12px;
     width: 12px;
     background-color: white;
-    border: 2px solid
-      ${disabled
-        ? globalColor("--illa-gray-08")
-        : globalColor("--illa-blue-03")};
+    border: 2px solid ${applyBgColor(colorScheme, disabled)};
     border-radius: 50%;
     position: absolute;
     z-index: 2;
@@ -51,8 +85,9 @@ export function applyMarkBar(disabled?: boolean): SerializedStyles {
   `
 }
 export function applyBoundBar(
+  disabled: boolean,
   isRightMark?: boolean,
-  disabled?: boolean,
+  colorScheme?: SliderColorScheme,
 ): SerializedStyles {
   return css`
     position: absolute;
@@ -61,10 +96,7 @@ export function applyBoundBar(
     height: 8px;
     width: 8px;
     background-color: white;
-    border: 2px solid
-      ${disabled
-        ? globalColor("--illa-gray-08")
-        : globalColor("--illa-blue-03")};
+    border: 2px solid ${applyBgColor(colorScheme, disabled)};
     border-radius: 50%;
     z-index: 1;
     transform: ${isRightMark ? "translateX(50%)" : "translateX(-50%)"};
@@ -95,7 +127,7 @@ export function applyTick(background: string): SerializedStyles {
   return css`
     height: 5px;
     width: 2px;
-    background: ${globalColor(background)};
+    background: ${background};
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

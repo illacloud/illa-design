@@ -62,7 +62,9 @@ export const useOffset = (
   ) => {
     if (Array.isArray(startValue)) {
       onRangeDragging(x, startValue, location)
-    } else onSingleDragging(x, startValue)
+    } else {
+      onSingleDragging(x, startValue)
+    }
   }
 
   const onSingleDragging = (x: number, startValue: number) => {
@@ -71,9 +73,13 @@ export const useOffset = (
       val: number,
       tempVal = Math.round(x / partLength) * partLength
 
-    if (tempVal >= rightBound) val = rightBound
-    else if (tempVal <= leftBound) val = leftBound
-    else val = tempVal
+    if (tempVal >= rightBound) {
+      val = rightBound
+    } else if (tempVal <= leftBound) {
+      val = leftBound
+    } else {
+      val = tempVal
+    }
     setRightOffset(rightBound - val)
     setBarLength(Math.round(startValue / step) * partLength + val)
   }
@@ -92,9 +98,13 @@ export const useOffset = (
         leftBound = Math.round((min - startValue[0]) / step) * partLength
         rightBound =
           Math.round((startValue[1] - startValue[0] - step) / step) * partLength
-        if (tempVal >= rightBound) val = rightBound
-        else if (tempVal <= leftBound) val = leftBound
-        else val = tempVal
+        if (tempVal >= rightBound) {
+          val = rightBound
+        } else if (tempVal <= leftBound) {
+          val = leftBound
+        } else {
+          val = tempVal
+        }
         setLeftOffset(Math.round(startValue[0] / step) * partLength + val)
         setBarLength(
           Math.round((startValue[1] - startValue[0]) / step) * partLength - val,
@@ -106,8 +116,9 @@ export const useOffset = (
         leftBound =
           Math.round((startValue[0] - startValue[1] + step) / step) * partLength
         rightBound = Math.floor((max - startValue[1]) / step) * partLength
-        if (tempVal >= rightBound) val = rightBound
-        else if (tempVal <= leftBound) {
+        if (tempVal >= rightBound) {
+          val = rightBound
+        } else if (tempVal <= leftBound) {
           val = leftBound
         } else val = tempVal
         setRightOffset(rightBound - val)
@@ -191,9 +202,13 @@ export const useOffset = (
       rightBound = Math.floor((max - startValue[1]) / step) * partLength,
       val: number,
       tempVal = Math.round(x / partLength) * partLength
-    if (tempVal >= rightBound) val = rightBound
-    else if (tempVal <= leftBound) val = leftBound
-    else val = tempVal
+    if (tempVal >= rightBound) {
+      val = rightBound
+    } else if (tempVal <= leftBound) {
+      val = leftBound
+    } else {
+      val = tempVal
+    }
     setRightOffset(rightBound - val)
     setLeftOffset(Math.round(startValue[0] / step) * partLength + val)
   }
@@ -223,7 +238,7 @@ export const useOffset = (
 
   const onClickTick = (v: number) => {
     if (Array.isArray(cacheValue)) {
-      let mid = Math.floor((max - min) / 2)
+      let mid = Math.floor((cacheValue[1] - cacheValue[0]) / 2)
       if (v > mid) {
         const [_, rightValue, barLength] = getOffsetValueFromState(
           v,
