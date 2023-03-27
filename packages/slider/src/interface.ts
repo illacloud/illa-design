@@ -72,6 +72,13 @@ export interface SliderTick {
   value: number
 }
 
+export interface SliderNumTick {
+  left: number
+  disabled: boolean
+  tickClick: (v: number) => void
+  value: number
+}
+
 export interface IUseOffsetReturn {
   currentValue: number | number[]
   leftOffset: number

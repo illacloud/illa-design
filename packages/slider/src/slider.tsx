@@ -9,6 +9,7 @@ import { SliderProps } from "./interface"
 import { DefaultWidth, BarLocation } from "./content"
 import { useOffset } from "./useOffset"
 import { verifyValue } from "./utils"
+import { NumTick } from "./NumTick"
 export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const {
     disabled = false,
@@ -111,6 +112,20 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
               tickClick={onClickTick}
             />
           ))}
+        {partNumber &&
+          showTicks &&
+          [...new Array(partNumber + 1)].map(
+            (_, i) =>
+              i <= Math.floor(max / step) && (
+                <NumTick
+                  key={i}
+                  value={i * step}
+                  left={i * partLength}
+                  disabled={disabled}
+                  tickClick={onClickTick}
+                />
+              ),
+          )}
         {startMarkShow && (
           <div
             css={applyBoundBar(false, disabled)}

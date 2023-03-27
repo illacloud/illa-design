@@ -101,3 +101,22 @@ export function applyTick(background: string): SerializedStyles {
     transform: translateX(-50%);
   `
 }
+export function applyNumTick(
+  left: number,
+  disabled: boolean,
+): SerializedStyles {
+  return css`
+    height: 22px;
+    width: 15px;
+    position: absolute;
+    font-size: 14px;
+    margin-top: 4px;
+    line-height: 22px;
+    text-align: center;
+    color: ${globalColor("--illa-gray-02")};
+    top: 100%;
+    left: ${left}px;
+    transform: translateX(-50%);
+    cursor: ${disabled ? "auto" : "pointer"};
+  `
+}
