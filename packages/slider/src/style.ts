@@ -57,9 +57,6 @@ export function applySliderBar(
   width: number,
   colorScheme?: SliderColorScheme,
 ): SerializedStyles {
-  // background: ${disabled
-  //   ? globalColor("--illa-gray-08")
-  //   : globalColor("--illa-blue-03")};
   return css`
     height: 2px;
     position: absolute;

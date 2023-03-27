@@ -154,6 +154,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
               location={BarLocation.LEFT}
               disabled={disabled}
               max={max}
+              min={min}
               step={step}
               currentWidth={currentWidth}
               partLength={partLength}
@@ -180,6 +181,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
             dragEnd={dragEnd}
             value={currentValue}
             max={max}
+            min={min}
             step={step}
             location={BarLocation.RIGHT}
             disabled={disabled}

@@ -68,8 +68,8 @@ export const useOffset = (
   }
 
   const onSingleDragging = (x: number, startValue: number) => {
-    let leftBound = Math.round((min - startValue) / step) * partLength,
-      rightBound = Math.round((max - startValue) / step) * partLength,
+    let leftBound = Math.floor((min - startValue) / step) * partLength,
+      rightBound = Math.floor((max - startValue) / step) * partLength,
       val: number,
       tempVal = Math.round(x / partLength) * partLength
 
@@ -81,7 +81,7 @@ export const useOffset = (
       val = tempVal
     }
     setRightOffset(rightBound - val)
-    setBarLength(Math.round(startValue / step) * partLength + val)
+    setBarLength(Math.floor(startValue / step) * partLength + val)
   }
 
   const onRangeDragging = (
@@ -95,9 +95,9 @@ export const useOffset = (
       tempVal = Math.round(x / partLength) * partLength
     switch (location) {
       case BarLocation.LEFT: {
-        leftBound = Math.round((min - startValue[0]) / step) * partLength
+        leftBound = Math.floor((min - startValue[0]) / step) * partLength
         rightBound =
-          Math.round((startValue[1] - startValue[0] - step) / step) * partLength
+          Math.floor((startValue[1] - startValue[0] - step) / step) * partLength
         if (tempVal >= rightBound) {
           val = rightBound
         } else if (tempVal <= leftBound) {
@@ -105,7 +105,7 @@ export const useOffset = (
         } else {
           val = tempVal
         }
-        setLeftOffset(Math.round(startValue[0] / step) * partLength + val)
+        setLeftOffset(Math.floor(startValue[0] / step) * partLength + val)
         setBarLength(
           Math.round((startValue[1] - startValue[0]) / step) * partLength - val,
         )
@@ -114,7 +114,7 @@ export const useOffset = (
       default:
       case BarLocation.RIGHT: {
         leftBound =
-          Math.round((startValue[0] - startValue[1] + step) / step) * partLength
+          Math.floor((startValue[0] - startValue[1] + step) / step) * partLength
         rightBound = Math.floor((max - startValue[1]) / step) * partLength
         if (tempVal >= rightBound) {
           val = rightBound
@@ -123,7 +123,7 @@ export const useOffset = (
         } else val = tempVal
         setRightOffset(rightBound - val)
         setBarLength(
-          Math.round((startValue[1] - startValue[0]) / step) * partLength + val,
+          Math.floor((startValue[1] - startValue[0]) / step) * partLength + val,
         )
         break
       }
@@ -172,8 +172,8 @@ export const useOffset = (
       case BarLocation.RIGHT:
       default: {
         let val = startValue[1] + Math.round(x / partLength) * step
-        if (val >= max) {
-          currentVal = [leftValue, max]
+        if (val >= Math.floor(max / step) * step) {
+          currentVal = [leftValue, Math.floor(max / step) * step]
         } else if (val <= leftValue + step) {
           currentVal = [leftValue, leftValue + step]
         } else {

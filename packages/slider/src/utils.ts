@@ -12,6 +12,8 @@ export const modifyTarget = (
   location: BarLocation,
   isRange: boolean | { draggableBar: boolean },
   step: number,
+  max: number,
+  min: number,
 ) => {
   let value = Math.round(target / partLength) * partLength
   if (location === BarLocation.RIGHT && isRange) {
@@ -35,7 +37,7 @@ export const getMarkBound = (
         return {
           left:
             Math.round(value[0] / step + 1) * partLength - containerWidth * 3,
-          right: Math.floor(max / step) * partLength - containerWidth * 3,
+          right: Math.floor(max / step) * partLength - containerWidth * 2,
         }
       }
       case BarLocation.LEFT: {
@@ -48,7 +50,7 @@ export const getMarkBound = (
   }
   return {
     left: -containerWidth,
-    right: Math.floor(max / step) * partLength - containerWidth,
+    right: Math.floor(max / step) * partLength,
   }
 }
 

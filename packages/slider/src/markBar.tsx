@@ -19,6 +19,7 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       currentWidth,
       step,
       max,
+      min,
       partLength,
       colorScheme,
       drag,
@@ -93,6 +94,8 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
               location,
               isRange,
               step,
+              max,
+              min,
             ),
         }}
       >

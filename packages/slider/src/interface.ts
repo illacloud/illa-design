@@ -63,7 +63,7 @@ export interface SliderMarkBar {
   ) => void
   step: number
   partLength: number
-  min?: number
+  min: number
   max: number
   left: number
   right: number
