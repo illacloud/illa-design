@@ -1,0 +1,58 @@
+{
+  "name": "@illa-design/slider",
+  "version": "1.0.17",
+  "description": "Illa Design Slider.",
+  "keywords": [
+    "slider",
+    "react",
+    "component"
+  ],
+  "sideEffects": false,
+  "author": "ILLA Cloud <opensource@illasoft.com>",
+  "homepage": "https://github.com/illacloud/illa-design",
+  "license": "Apache-2.0",
+  "main": "dist/umd/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/umd/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/illacloud/illa-design.git",
+    "directory": "packages/slider"
+  },
+  "bugs": {
+    "url": "https://github.com/illacloud/illa-design/issues"
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react-swc": "^3.0.1",
+    "@rollup/plugin-typescript": "^10.0.1"
+  },
+  "dependencies": {
+    "@illa-design/icon": "workspace:*",
+    "@illa-design/theme": "workspace:*",
+    "@illa-design/system": "workspace:*",
+    "@illa-design/trigger": "workspace:*",
+    "framer-motion": "^7.6.12",
+    "react-use-measure": "^2.1.1"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.10.5"
+  }
+}
