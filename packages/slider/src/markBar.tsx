@@ -4,6 +4,8 @@ import { SliderMarkBar } from "./interface"
 import { motion, PanInfo, useMotionValue } from "framer-motion"
 import { BarLocation } from "./content"
 import { modifyTarget, getMarkBound } from "./utils"
+import useMeasure from "react-use-measure"
+
 export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
   (props, ref) => {
     const {
@@ -22,10 +24,9 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       mouseEnter,
       mouseOut,
     } = props
-    const containerRef = useRef<HTMLDivElement | null>(null)
-    const [containerWidth, setContainerWidth] = useState<number>(0)
     const startValue = useRef<number | number[]>(0)
     const rightVal = useMotionValue(0)
+    const [containerRef, rect] = useMeasure()
 
     const onDragStart = () => {
       if (disabled) return
@@ -37,7 +38,7 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       const {
         offset: { x },
       } = info
-      drag(x - containerWidth, startValue.current, location)
+      drag(x - rect.width / 2, startValue.current, location)
     }
 
     const onDragEnd = (_: any, info: PanInfo) => {
@@ -45,28 +46,21 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       const {
         offset: { x },
       } = info
-      dragEnd(x - containerWidth, startValue.current, location)
+      dragEnd(x - rect.width / 2, startValue.current, location)
     }
 
     useEffect(() => {
       if (isRange) {
         if (currentWidth && right !== -1 && location === BarLocation.RIGHT) {
-          rightVal.set(currentWidth - right - containerWidth * 3)
+          rightVal.set(currentWidth - right - (rect.width / 2) * 3)
         }
         if (currentWidth && left !== -1 && location === BarLocation.LEFT) {
-          rightVal.set(left - containerWidth)
+          rightVal.set(left - rect.width / 2)
         }
       } else {
-        rightVal.set(currentWidth - right - containerWidth)
+        rightVal.set(currentWidth - right - rect.width / 2)
       }
-    }, [currentWidth, right, containerWidth, left, isRange, location, rightVal])
-
-    useEffect(() => {
-      if (containerRef.current) {
-        const { width } = containerRef.current.getBoundingClientRect()
-        setContainerWidth(width / 2)
-      }
-    }, [containerRef])
+    }, [currentWidth, right, rect, left, isRange, location, rightVal])
 
     return (
       <motion.div
@@ -78,7 +72,7 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
         css={applyBarContainer}
         dragElastic={0}
         dragConstraints={getMarkBound(
-          containerWidth,
+          rect.width / 2,
           value,
           location,
           partLength,
@@ -94,7 +88,7 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
             modifyTarget(
               target,
               partLength,
-              containerWidth,
+              rect.width / 2,
               location,
               isRange,
               step,

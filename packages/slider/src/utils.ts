@@ -51,3 +51,37 @@ export const getMarkBound = (
     right: Math.floor(max / step) * partLength - containerWidth,
   }
 }
+
+export const verifyRightValue = (
+  max: number,
+  min: number,
+  step: number,
+  rightVal: number,
+  leftVal: number | undefined,
+): number => {
+  if (rightVal >= max) return max
+  if (leftVal === undefined && rightVal <= min) {
+    return min
+  }
+  return rightVal
+}
+export const verifyLeftValue = (
+  max: number,
+  min: number,
+  step: number,
+  rightVal: number,
+  leftVal: number | undefined,
+): undefined | number => {
+  if (leftVal === undefined) return leftVal
+  if (leftVal <= min) return min
+  if (leftVal >= max) return max
+  return leftVal
+}
+
+export const verifyValue = (value: number | number[]) => {
+  if (Array.isArray(value)) {
+    return !value.every((v) => isNaN(v))
+  } else {
+    return !isNaN(value)
+  }
+}

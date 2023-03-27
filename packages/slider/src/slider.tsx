@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, forwardRef, MouseEvent } from "react"
+import { useEffect, useRef, useState, forwardRef, useMemo } from "react"
 import { Bar } from "./bar"
 import { MarkBar } from "./markBar"
 import { Tick } from "./tick"
@@ -8,6 +8,7 @@ import { Trigger } from "@illa-design/trigger"
 import { SliderProps } from "./interface"
 import { DefaultWidth, BarLocation } from "./content"
 import { useOffset } from "./useOffset"
+import { verifyValue } from "./utils"
 export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const {
     disabled = false,
@@ -31,10 +32,12 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const roadRef = useRef<HTMLDivElement | null>(null)
   const [rightTriggerShow, setRightTriggerShow] = useState(false)
   const [leftTriggerShow, setLeftTriggerShow] = useState(false)
-  const leftValue = useRef<number | undefined>(
-    Array.isArray(value) ? value[0] : undefined,
-  )
-  const rightValue = useRef<number>(Array.isArray(value) ? value[1] : value)
+  const leftValue = useMemo(() => {
+    return Array.isArray(value) ? value[0] : undefined
+  }, [value])
+  const rightValue = useMemo(() => {
+    return Array.isArray(value) ? value[1] : value
+  }, [value])
   const {
     currentValue,
     leftOffset,
@@ -78,7 +81,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   }
 
   useEffect(() => {
-    onChange && onChange(currentValue)
+    verifyValue(currentValue) && onChange && onChange(currentValue)
   }, [currentValue, onChange])
 
   useEffect(() => {
@@ -88,12 +91,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       const partLength = width / ((max - min) / step)
       setPartNumber(partNum)
       setCurrentWidth(width)
-      initOffsetFromState(
-        Math.floor(partLength),
-        width,
-        rightValue.current,
-        leftValue.current,
-      )
+      initOffsetFromState(Math.floor(partLength), width, rightValue, leftValue)
     }
   }, [isRange, max, min, step, initOffsetFromState, leftValue, rightValue])
   return (

@@ -2,6 +2,7 @@ import { Meta, StoryFn } from "@storybook/react"
 import { SliderProps, Slider } from "../src"
 import { Space, CloseIcon } from "@illa-design/react"
 import { BiCheckbox, BiCheckboxChecked } from "react-icons/all"
+import { useCallback, useState } from "react"
 
 export default {
   title: "DATA INPUT/Slider",
@@ -23,9 +24,6 @@ const Template: StoryFn<SliderProps> = (args) => {
       <Slider value={6} />
       <div style={{ width: "50px", height: "200px" }}></div>
       <Slider value={[0, 2]} isRange={true} />
-      <div style={{ width: "50px", height: "200px" }}></div>
-      <Slider value={[0, 2]} isRange={{ draggableBar: true }} />
-      <div style={{ width: "50px", height: "200px" }}></div>
     </>
   )
 }

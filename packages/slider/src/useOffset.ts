@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from "react"
 import { BarLocation } from "./content"
 import { IUseOffsetReturn } from "./interface"
-import { formatValue } from "./utils"
+import { formatValue, verifyRightValue, verifyLeftValue } from "./utils"
 
 export const useOffset = (
   min: number,
@@ -20,14 +20,16 @@ export const useOffset = (
 
   const getOffsetValueFromState = useCallback(
     (rightVal: number, leftVal?: number) => {
+      let rightVerify = verifyRightValue(max, min, step, rightVal, leftVal)
+      let leftVerify = verifyLeftValue(max, min, step, rightVal, leftVal)
       let leftValue, rightValue, barLength
-      if (leftVal !== undefined) {
-        leftValue = Math.round(((leftVal - min) / step) * partLength)
-        rightValue = Math.floor(((max - rightVal) / step) * partLength)
-        barLength = Math.round(((rightVal - leftVal) / step) * partLength)
+      if (leftVerify !== undefined) {
+        leftValue = Math.round(((leftVerify - min) / step) * partLength)
+        rightValue = Math.floor(((max - rightVerify) / step) * partLength)
+        barLength = Math.round(((rightVerify - leftVerify) / step) * partLength)
       } else {
         leftValue = 0
-        rightValue = Math.floor(((max - rightVal) / step) * partLength)
+        rightValue = Math.floor(((max - rightVerify) / step) * partLength)
         barLength = width - rightValue
       }
       return [leftValue, rightValue, barLength]
