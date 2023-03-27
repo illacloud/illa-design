@@ -99,7 +99,8 @@
     "@illa-design/calendar": "workspace:*",
     "@illa-design/date-picker": "workspace:*",
     "@illa-design/time-picker": "workspace:*",
-    "@illa-design/upload": "workspace:*"
+    "@illa-design/upload": "workspace:*",
+    "@illa-design/slider": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",
