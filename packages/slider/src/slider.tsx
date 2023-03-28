@@ -8,7 +8,7 @@ import { Trigger } from "@illa-design/trigger"
 import { SliderProps } from "./interface"
 import { DefaultWidth, BarLocation } from "./content"
 import { useOffset } from "./useOffset"
-import { verifyValue } from "./utils"
+import { getSafeStep, verifyValue } from "./utils"
 import { NumTick } from "./NumTick"
 export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const {
@@ -54,7 +54,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     onClickTick,
     onDragBar,
     onDragBarEnd,
-  } = useOffset(min, max, step, isFocus)
+  } = useOffset(min, max, getSafeStep(step), isFocus)
 
   const dragging = (
     x: number,
@@ -91,8 +91,9 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   useEffect(() => {
     if (roadRef.current) {
       const { width } = roadRef.current?.getBoundingClientRect()
-      const partNum = Math.ceil((max - min) / step)
-      const partLength = width / ((max - min) / step)
+      const safeStep = getSafeStep(step)
+      const partNum = Math.ceil((max - min) / safeStep)
+      const partLength = width / ((max - min) / safeStep)
       setPartNumber(partNum)
       setCurrentWidth(width)
       initOffsetFromState(Math.floor(partLength), width, rightValue, leftValue)
@@ -102,6 +103,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     <div ref={ref} css={[applySliderWrapper, applyBoxStyle(props)]}>
       <div css={applySliderRoad()} ref={roadRef}>
         {partNumber &&
+          partNumber > 0 &&
           showTicks &&
           [...new Array(partNumber - 1)].map((_, i) => (
             <Tick
@@ -117,13 +119,14 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
             />
           ))}
         {partNumber &&
+          partNumber > 0 &&
           showTicks &&
           [...new Array(partNumber + 1)].map(
             (_, i) =>
-              i <= Math.floor(max / step) && (
+              i <= Math.floor((max - min) / step) && (
                 <NumTick
                   key={i}
-                  value={i * step}
+                  value={min + i * step}
                   left={i * partLength}
                   disabled={disabled}
                   tickClick={onClickTick}

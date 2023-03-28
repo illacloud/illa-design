@@ -69,3 +69,5 @@ export const verifyValue = (value: number | number[]) => {
     return !isNaN(value)
   }
 }
+
+export const getSafeStep = (step: number) => (step && step > 0 ? step : 1)
