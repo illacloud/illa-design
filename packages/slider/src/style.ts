@@ -34,8 +34,11 @@ export function applyBgColor(
 }
 
 export const applySliderWrapper = css`
-  height: 12px;
+  height: 45px;
   width: 240px;
+  padding: 0 8px;
+  box-sizing: content-box;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
 `
