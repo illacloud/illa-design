@@ -158,6 +158,8 @@ export const useOffset = (
     }
     onAfterChange && onAfterChange(currentVal)
     setCurrentValue(currentVal)
+    let [_, rightVal] = getOffsetValueFromState(currentVal)
+    setRightOffset(rightVal)
   }
 
   const onRangeEnd = (
@@ -195,6 +197,12 @@ export const useOffset = (
     }
     onAfterChange && onAfterChange(currentVal)
     setCurrentValue(currentVal.join(","))
+    let [leftVal, rightVal] = getOffsetValueFromState(
+      currentVal[1],
+      currentVal[0],
+    )
+    setLeftOffset(leftVal)
+    setRightOffset(rightVal)
   }
 
   const onDragBar = (x: number, startValue: number[]) => {

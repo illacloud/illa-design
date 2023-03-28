@@ -50,19 +50,28 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       } = info
       dragEnd(x - rect.width / 2, startValue.current, location)
     }
-
+    // The position needs to be verified after each update. Since the ball's motion boundary is controlled by itself, when the offset value remains unchanged, rightVal.set() will not be triggered.
     useEffect(() => {
       if (isRange) {
         if (currentWidth && right !== -1 && location === BarLocation.RIGHT) {
-          rightVal.set(currentWidth - right - (rect.width / 2) * 3)
+          if (rightVal.get() !== currentWidth - right - (rect.width / 2) * 3) {
+            rightVal.set(currentWidth - right - (rect.width / 2) * 3)
+            return
+          }
         }
         if (currentWidth && left !== -1 && location === BarLocation.LEFT) {
-          rightVal.set(left - rect.width / 2)
+          if (rightVal.get() !== left - rect.width / 2) {
+            rightVal.set(left - rect.width / 2)
+            return
+          }
         }
       } else {
-        rightVal.set(currentWidth - right - rect.width / 2)
+        if (rightVal.get() !== currentWidth - right - rect.width / 2) {
+          rightVal.set(currentWidth - right - rect.width / 2)
+          return
+        }
       }
-    }, [currentWidth, right, rect, left, isRange, location, rightVal])
+    })
 
     return (
       <motion.div
@@ -84,7 +93,7 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
         style={{ x: rightVal, zIndex: 2 }}
         dragMomentum={false}
         dragTransition={{
-          timeConstant: 200,
+          timeConstant: 0,
           power: 0,
           modifyTarget: (target) =>
             modifyTarget(
