@@ -68,17 +68,24 @@ export function applySliderBar(
 }
 export function applyMarkBar(
   disabled: boolean,
+  focus?: boolean,
   colorScheme?: SliderColorScheme,
 ): SerializedStyles {
   return css`
-    height: 12px;
-    width: 12px;
+    box-sizing: border-box;
+    height: ${focus ? 16 : 12}px;
+    width: ${focus ? 16 : 12}px;
     background-color: white;
     border: 2px solid ${applyBgColor(colorScheme, disabled)};
     border-radius: 50%;
     position: absolute;
     z-index: 2;
     cursor: ${disabled ? "auto" : "pointer"};
+    transition: width 150ms ease-in-out, height 150ms ease-in-out;
+    &:hover {
+      height: 16px;
+      width: 16px;
+    }
   `
 }
 export function applyBoundBar(
@@ -87,6 +94,7 @@ export function applyBoundBar(
   colorScheme?: SliderColorScheme,
 ): SerializedStyles {
   return css`
+    box-sizing: border-box;
     position: absolute;
     left: ${isRightMark ? "auto" : 0}px;
     right: ${isRightMark ? 0 : "auto"}px;
@@ -102,8 +110,8 @@ export function applyBoundBar(
 }
 
 export const applyBarContainer = css`
-  height: 16px;
-  width: 16px;
+  height: 100%;
+  width: 100%;
 `
 
 export function applyTickContainer(

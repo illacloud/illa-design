@@ -15,6 +15,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     disabled = false,
     tooltipVisible = true,
     showTicks = true,
+    isFocus = false,
     max = 10,
     min = 0,
     step = 1,
@@ -46,13 +47,14 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     rightOffset,
     barLength,
     partLength,
+    focus,
     initOffsetFromState,
     onDragging,
     onDragEnd,
     onClickTick,
     onDragBar,
     onDragBarEnd,
-  } = useOffset(min, max, step)
+  } = useOffset(min, max, step, isFocus)
 
   const dragging = (
     x: number,
@@ -171,7 +173,9 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
               : formatTooltip(currentValue)
           }
           position={tooltipPosition}
-          popupVisible={rightTriggerShow && tooltipVisible}
+          popupVisible={
+            (rightTriggerShow && tooltipVisible) || (focus && tooltipVisible)
+          }
         >
           <MarkBar
             right={rightOffset}
@@ -180,6 +184,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
             drag={dragging}
             dragEnd={dragEnd}
             value={currentValue}
+            focus={focus}
             max={max}
             min={min}
             step={step}

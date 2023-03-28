@@ -29,6 +29,7 @@ export interface SliderProps
   max?: number
   min?: number
   step?: number
+  isFocus: boolean
   tooltipPosition?: TriggerPosition
   defaultValue?: number | number[]
   isRange?: boolean | { draggableBar: boolean }
@@ -67,6 +68,7 @@ export interface SliderMarkBar {
   max: number
   left: number
   right: number
+  focus?: boolean
   colorScheme?: SliderColorScheme
   drag: (
     x: number,
@@ -105,6 +107,7 @@ export interface IUseOffsetReturn {
   rightOffset: number
   barLength: number
   partLength: number
+  focus: boolean
   initOffsetFromState: (
     partLength: number,
     width: number,

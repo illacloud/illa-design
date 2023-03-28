@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react"
+import { useState, useCallback, useMemo, useEffect } from "react"
 import { BarLocation } from "./content"
 import { IUseOffsetReturn } from "./interface"
 import { formatValue, verifyRightValue, verifyLeftValue } from "./utils"
@@ -7,6 +7,7 @@ export const useOffset = (
   min: number,
   max: number,
   step: number,
+  isFocus: boolean,
 ): IUseOffsetReturn => {
   const [leftOffset, setLeftOffset] = useState<number>(0)
   const [rightOffset, setRightOffset] = useState<number>(-1)
@@ -14,6 +15,7 @@ export const useOffset = (
   const [currentValue, setCurrentValue] = useState<string | number>("")
   const [partLength, setPartLength] = useState<number>(0)
   const [width, setWidth] = useState<number>(0)
+  const [focus, setFocus] = useState(false)
   const cacheValue = useMemo(() => {
     return formatValue(currentValue)
   }, [currentValue])
@@ -60,6 +62,7 @@ export const useOffset = (
     startValue: number | number[],
     location: BarLocation,
   ) => {
+    setFocus(false)
     if (Array.isArray(startValue)) {
       onRangeDragging(x, startValue, location)
     } else {
@@ -206,6 +209,7 @@ export const useOffset = (
   }
 
   const onDragBar = (x: number, startValue: number[]) => {
+    setFocus(false)
     let leftBound = Math.round((min - startValue[0]) / step) * partLength,
       rightBound = Math.floor((max - startValue[1]) / step) * partLength,
       val: number,
@@ -272,6 +276,9 @@ export const useOffset = (
       setRightOffset(rightValue)
     }
   }
+  useEffect(() => {
+    setFocus(isFocus)
+  }, [isFocus])
 
   return {
     currentValue: cacheValue,
@@ -279,6 +286,7 @@ export const useOffset = (
     rightOffset,
     barLength,
     partLength,
+    focus,
     initOffsetFromState,
     onDragging,
     onDragEnd,

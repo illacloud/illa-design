@@ -3,7 +3,7 @@ import { applyMarkBar, applyBarContainer } from "./style"
 import { SliderMarkBar } from "./interface"
 import { motion, PanInfo, useMotionValue } from "framer-motion"
 import { BarLocation } from "./content"
-import { modifyTarget, getMarkBound } from "./utils"
+import { getMarkBound } from "./utils"
 import useMeasure from "react-use-measure"
 
 export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
@@ -20,6 +20,7 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       step,
       max,
       min,
+      focus,
       partLength,
       colorScheme,
       drag,
@@ -54,8 +55,8 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
     useEffect(() => {
       if (isRange) {
         if (currentWidth && right !== -1 && location === BarLocation.RIGHT) {
-          if (rightVal.get() !== currentWidth - right - (rect.width / 2) * 3) {
-            rightVal.set(currentWidth - right - (rect.width / 2) * 3)
+          if (rightVal.get() !== currentWidth - right - rect.width / 2) {
+            rightVal.set(currentWidth - right - rect.width / 2)
             return
           }
         }
@@ -80,7 +81,7 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
         onDragStart={onDragStart}
         onDrag={onDrag}
         onDragEnd={onDragEnd}
-        css={applyBarContainer}
+        css={applyMarkBar(disabled, focus, colorScheme)}
         dragElastic={0}
         dragConstraints={getMarkBound(
           rect.width / 2,
@@ -96,21 +97,12 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
           timeConstant: 0,
           power: 0,
           modifyTarget: (target) =>
-            modifyTarget(
-              target,
-              partLength,
-              rect.width / 2,
-              location,
-              isRange,
-              step,
-              max,
-              min,
-            ),
+            Math.round(target / partLength) * partLength - rect.width / 2,
         }}
       >
         <div
           ref={ref}
-          css={applyMarkBar(disabled, colorScheme)}
+          css={applyBarContainer}
           onMouseEnter={mouseEnter}
           onMouseOut={mouseOut}
         />
