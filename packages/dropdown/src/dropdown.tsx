@@ -47,9 +47,9 @@ export const Dropdown: FC<DropdownProps> = (props) => {
       onVisibleChange={(visible: boolean) => {
         changePopupVisible(visible)
       }}
+      disabled={disabled}
       {...triggerProps}
       {...otherProps}
-      disabled={disabled}
     >
       {children}
     </Trigger>

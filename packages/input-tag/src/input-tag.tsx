@@ -15,7 +15,6 @@ import {
   applyInputTagPlaceHolderStyle,
   applyPrefixSuffixStyle,
   calcSpanStyle,
-  inputTagPlaceHolderStyle,
   tagsListStyle,
   tagStyle,
 } from "./style"

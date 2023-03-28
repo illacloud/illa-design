@@ -189,9 +189,6 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
         colorScheme="white"
         autoAlignPopupWidth={autoAlignPopupWidth}
         trigger={trigger}
-        triggerProps={{
-          disabled: readOnly,
-        }}
         popupVisible={finalPopupVisible}
         dropList={
           <DropList
@@ -282,7 +279,7 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
             )}
           </DropList>
         }
-        disabled={disabled}
+        disabled={disabled || readOnly}
         onVisibleChange={(visible) => {
           if (popupVisible === undefined) {
             setFinalPopupVisible(visible)
@@ -339,13 +336,14 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
             onChange?.(undefined)
           }}
           suffix={
-            loading ? (
+            !readOnly &&
+            (loading ? (
               <LoadingIcon c={getColor("grayBlue", "05")} spin={true} />
             ) : finalPopupVisible ? (
               <UpIcon />
             ) : (
               <DownIcon />
-            )
+            ))
           }
           {...otherProps}
         />

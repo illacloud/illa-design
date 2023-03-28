@@ -308,13 +308,14 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
             }
           }}
           suffix={
-            loading ? (
+            !readOnly &&
+            (loading ? (
               <LoadingIcon c={getColor("grayBlue", "05")} spin={true} />
             ) : finalPopupVisible ? (
               <UpIcon />
             ) : (
               <DownIcon />
-            )
+            ))
           }
           {...otherProps}
         />
