@@ -250,7 +250,7 @@ export const useOffset = (
 
   const onClickTick = (v: number) => {
     if (Array.isArray(cacheValue)) {
-      let mid = Math.floor((cacheValue[1] - cacheValue[0]) / 2)
+      let mid = Math.floor((cacheValue[1] - cacheValue[0]) / 2) + cacheValue[0]
       if (v > mid) {
         const [_, rightValue, barLength] = getOffsetValueFromState(
           v,

@@ -86,7 +86,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 
   useEffect(() => {
     verifyValue(currentValue) && onChange && onChange(currentValue)
-  }, [currentValue, onChange])
+  }, [currentValue])
 
   useEffect(() => {
     if (roadRef.current) {
