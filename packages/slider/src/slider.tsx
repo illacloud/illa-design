@@ -1,21 +1,28 @@
-import { useEffect, useRef, useState, forwardRef, useMemo } from "react"
+import {
+  useEffect,
+  useRef,
+  useState,
+  forwardRef,
+  useMemo,
+  useImperativeHandle,
+} from "react"
 import { Bar } from "./bar"
 import { MarkBar } from "./markBar"
 import { Tick } from "./tick"
 import { applySliderWrapper, applySliderRoad, applyBoundBar } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
 import { Trigger } from "@illa-design/trigger"
-import { SliderProps } from "./interface"
+import { SliderProps, ICustomRef } from "./interface"
 import { DefaultWidth, BarLocation } from "./content"
 import { useOffset } from "./useOffset"
 import { getSafeStep, verifyValue } from "./utils"
 import { NumTick } from "./NumTick"
-export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
+
+export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
   const {
     disabled = false,
     tooltipVisible = true,
     showTicks = true,
-    isFocus = false,
     max = 10,
     min = 0,
     step = 1,
@@ -31,6 +38,9 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     onChange,
   } = props
   const [currentWidth, setCurrentWidth] = useState(DefaultWidth)
+  const currentRef = useRef<HTMLDivElement>(null)
+  const markBarRef = useRef<HTMLDivElement>(null)
+
   const [partNumber, setPartNumber] = useState<number | undefined>(undefined)
   const roadRef = useRef<HTMLDivElement | null>(null)
   const [rightTriggerShow, setRightTriggerShow] = useState(false)
@@ -47,14 +57,20 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     rightOffset,
     barLength,
     partLength,
-    focus,
     initOffsetFromState,
     onDragging,
     onDragEnd,
     onClickTick,
     onDragBar,
     onDragBarEnd,
-  } = useOffset(min, max, getSafeStep(step), isFocus)
+  } = useOffset(min, max, getSafeStep(step))
+
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      setRightTriggerShow(true)
+      markBarRef.current?.focus()
+    },
+  }))
 
   const dragging = (
     x: number,
@@ -80,6 +96,9 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     setLeftTriggerShow(false)
   }
 
+  const dragBar = (x: number, startValue: number[]) => {
+    onDragBar(x, startValue)
+  }
   const dragBarEnd = (x: number, startValue: number[]) => {
     onDragBarEnd(x, startValue, onAfterChange)
   }
@@ -96,11 +115,11 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       const partLength = width / ((max - min) / safeStep)
       setPartNumber(partNum)
       setCurrentWidth(width)
-      initOffsetFromState(Math.floor(partLength), width, rightValue, leftValue)
+      initOffsetFromState(partLength, width, rightValue, leftValue)
     }
   }, [isRange, max, min, step, initOffsetFromState, leftValue, rightValue])
   return (
-    <div ref={ref} css={[applySliderWrapper, applyBoxStyle(props)]}>
+    <div ref={currentRef} css={[applySliderWrapper, applyBoxStyle(props)]}>
       <div css={applySliderRoad()} ref={roadRef}>
         {partNumber &&
           partNumber > 0 &&
@@ -176,9 +195,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
               : formatTooltip(currentValue)
           }
           position={tooltipPosition}
-          popupVisible={
-            (rightTriggerShow && tooltipVisible) || (focus && tooltipVisible)
-          }
+          popupVisible={rightTriggerShow && tooltipVisible}
         >
           <MarkBar
             right={rightOffset}
@@ -186,8 +203,8 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
             isRange={isRange}
             drag={dragging}
             dragEnd={dragEnd}
+            markBarRef={markBarRef}
             value={currentValue}
-            focus={focus}
             max={max}
             min={min}
             step={step}
@@ -211,7 +228,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           left={leftOffset}
           isRange={isRange}
           value={currentValue as number[]}
-          dragBar={onDragBar}
+          dragBar={dragBar}
           disabled={disabled}
           colorScheme={colorScheme}
           containerWidth={currentWidth}

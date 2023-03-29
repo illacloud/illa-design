@@ -5,10 +5,12 @@ import { motion, PanInfo, useMotionValue } from "framer-motion"
 import { BarLocation } from "./content"
 import { getMarkBound } from "./utils"
 import useMeasure from "react-use-measure"
+import { mergeRefs } from "@illa-design/system"
 
 export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
   (props, ref) => {
     const {
+      markBarRef,
       isRange,
       left,
       right,
@@ -20,7 +22,6 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       step,
       max,
       min,
-      focus,
       partLength,
       colorScheme,
       drag,
@@ -77,11 +78,13 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
     return (
       <motion.div
         drag="x"
-        ref={containerRef}
+        ref={mergeRefs(containerRef, markBarRef)}
+        tabIndex={-1}
         onDragStart={onDragStart}
         onDrag={onDrag}
         onDragEnd={onDragEnd}
-        css={applyMarkBar(disabled, focus, colorScheme)}
+        data-location={location}
+        css={applyMarkBar(disabled, colorScheme)}
         dragElastic={0}
         dragConstraints={getMarkBound(
           rect.width / 2,

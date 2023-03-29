@@ -29,7 +29,6 @@ export interface SliderProps
   max?: number
   min?: number
   step?: number
-  isFocus: boolean
   tooltipPosition?: TriggerPosition
   defaultValue?: number | number[]
   isRange?: boolean | { draggableBar: boolean }
@@ -57,6 +56,7 @@ export interface SliderBar {
 
 export interface SliderMarkBar {
   isRange: boolean | { draggableBar: boolean }
+  markBarRef?: React.RefObject<HTMLDivElement>
   dragEnd: (
     x: number,
     startValue: number | number[],
@@ -68,7 +68,6 @@ export interface SliderMarkBar {
   max: number
   left: number
   right: number
-  focus?: boolean
   colorScheme?: SliderColorScheme
   drag: (
     x: number,
@@ -107,7 +106,6 @@ export interface IUseOffsetReturn {
   rightOffset: number
   barLength: number
   partLength: number
-  focus: boolean
   initOffsetFromState: (
     partLength: number,
     width: number,
@@ -132,4 +130,8 @@ export interface IUseOffsetReturn {
     startValue: number[],
     onAfterChange?: ((v: number[]) => void) | undefined,
   ) => void
+}
+
+export interface ICustomRef {
+  focus: () => void
 }
