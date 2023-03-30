@@ -4,6 +4,7 @@ import {
   useState,
   forwardRef,
   useMemo,
+  MouseEvent,
   useImperativeHandle,
 } from "react"
 import { Bar } from "./bar"
@@ -103,6 +104,16 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     onDragBarEnd(x, startValue, onAfterChange)
   }
 
+  const tickClick = (e: MouseEvent<HTMLElement>) => {
+    const { target } = e
+    if (target) {
+      const { dataset } = target as HTMLElement
+      dataset &&
+        dataset.value !== undefined &&
+        onClickTick(parseInt(dataset.value))
+    }
+  }
+
   useEffect(() => {
     verifyValue(currentValue) && onChange && onChange(currentValue)
   }, [currentValue])
@@ -120,10 +131,10 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
   }, [isRange, max, min, step, initOffsetFromState, leftValue, rightValue])
   return (
     <div ref={currentRef} css={[applySliderWrapper, applyBoxStyle(props)]}>
-      <div css={applySliderRoad()} ref={roadRef}>
-        {partNumber &&
+      <div css={applySliderRoad()} ref={roadRef} onClick={tickClick}>
+        {showTicks &&
+          partNumber &&
           partNumber > 0 &&
-          showTicks &&
           [...new Array(partNumber - 1)].map((_, i) => (
             <Tick
               key={i}
@@ -134,12 +145,11 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
               currentWidth={currentWidth}
               colorScheme={colorScheme}
               disabled={disabled}
-              tickClick={onClickTick}
             />
           ))}
-        {partNumber &&
+        {showTicks &&
+          partNumber &&
           partNumber > 0 &&
-          showTicks &&
           [...new Array(partNumber + 1)].map(
             (_, i) =>
               i <= Math.floor((max - min) / step) && (
@@ -148,7 +158,6 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
                   value={min + i * step}
                   left={i * partLength}
                   disabled={disabled}
-                  tickClick={onClickTick}
                 />
               ),
           )}

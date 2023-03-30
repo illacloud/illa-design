@@ -9,7 +9,6 @@ export const Tick: FC<SliderTick> = (props) => {
     currentWidth,
     disabled,
     colorScheme,
-    tickClick,
     value,
   } = props
   const rightBound = currentWidth - rightValue >= left
@@ -17,13 +16,8 @@ export const Tick: FC<SliderTick> = (props) => {
     colorScheme,
     !(leftValue <= left && rightBound && !disabled),
   )
-
-  const onClick = () => {
-    if (disabled) return
-    tickClick(value)
-  }
   return (
-    <div css={applyTickContainer(left, disabled)} onClick={onClick}>
+    <div css={applyTickContainer(left, disabled)} data-value={value}>
       <div css={applyTick(background)} />
     </div>
   )

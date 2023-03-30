@@ -1,4 +1,4 @@
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor } from "@illa-design/theme"
 import { css, SerializedStyles } from "@emotion/react"
 import { SliderColorScheme } from "./interface"
 
@@ -23,11 +23,11 @@ export function applyBgColor(
   disabled: boolean,
 ): string {
   if (disabled) {
-    return `${globalColor(`--${illaPrefix}-gray-08`)}`
+    return `${getColor("gray", "08")}`
   } else if (!colorScheme) {
-    return `${globalColor(`--${illaPrefix}-blue-03`)}`
+    return `${getColor("blue", "03")}`
   } else if (innerColor.includes(colorScheme)) {
-    return `${globalColor(`--${illaPrefix}-${colorScheme}-03`)}`
+    return `${getColor(colorScheme, "03")}`
   } else {
     return colorScheme
   }
@@ -47,7 +47,7 @@ export function applySliderRoad(): SerializedStyles {
   return css`
     width: 100%;
     height: 2px;
-    background-color: ${globalColor("--illa-gray-08")};
+    background-color: ${getColor("gray", "08")};
     border-radius: 2px;
     display: flex;
     align-items: center;
@@ -156,7 +156,7 @@ export function applyNumTick(
     margin-top: 4px;
     line-height: 22px;
     text-align: center;
-    color: ${globalColor("--illa-gray-02")};
+    color: ${getColor("gray", "02")};
     top: 100%;
     left: ${left}px;
     transform: translateX(-50%);

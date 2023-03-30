@@ -89,14 +89,12 @@ export interface SliderTick {
   currentWidth: number
   disabled: boolean
   colorScheme?: SliderColorScheme
-  tickClick: (v: number) => void
   value: number
 }
 
 export interface SliderNumTick {
   left: number
   disabled: boolean
-  tickClick: (v: number) => void
   value: number
 }
 
