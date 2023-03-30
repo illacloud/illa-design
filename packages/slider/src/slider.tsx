@@ -108,9 +108,15 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     const { target } = e
     if (target) {
       const { dataset } = target as HTMLElement
-      dataset &&
-        dataset.value !== undefined &&
+      if (dataset && dataset.value !== undefined) {
         onClickTick(parseInt(dataset.value))
+        return
+      }
+      const { parentElement } = target as HTMLElement
+      const parentDataset = parentElement?.dataset
+      if (parentElement && parentDataset && parentDataset.value !== undefined) {
+        onClickTick(parseInt(parentDataset.value))
+      }
     }
   }
 
