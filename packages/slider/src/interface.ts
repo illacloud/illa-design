@@ -3,6 +3,22 @@ import { BoxProps } from "@illa-design/theme"
 import { TriggerPosition } from "@illa-design/trigger"
 import { BarLocation } from "./content"
 
+export type SliderColorScheme =
+  | string
+  | "white"
+  | "blackAlpha"
+  | "gray"
+  | "grayBlue"
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "cyan"
+  | "purple"
+  | "techPink"
+  | "techPurple"
+
 export type SpecialSliderProps = "defaultValue" | "onChange"
 export interface SliderProps
   extends Omit<HTMLAttributes<HTMLDivElement>, SpecialSliderProps>,
@@ -19,6 +35,7 @@ export interface SliderProps
   value?: number | number[]
   startMarkShow?: boolean
   endMarkShow?: boolean
+  colorScheme?: SliderColorScheme
   formatTooltip?: (value: number) => string | ReactNode
   onAfterChange?: (val: number | number[]) => void
   onChange?: (val: number | number[]) => void
@@ -33,11 +50,13 @@ export interface SliderBar {
   disabled: boolean
   containerWidth: number
   partLength: number
+  colorScheme?: SliderColorScheme
   onDragBarEnd: (x: number, startValue: number[]) => void
 }
 
 export interface SliderMarkBar {
   isRange: boolean | { draggableBar: boolean }
+  markBarRef?: React.RefObject<HTMLDivElement>
   dragEnd: (
     x: number,
     startValue: number | number[],
@@ -45,10 +64,11 @@ export interface SliderMarkBar {
   ) => void
   step: number
   partLength: number
-  min?: number
+  min: number
   max: number
   left: number
   right: number
+  colorScheme?: SliderColorScheme
   drag: (
     x: number,
     startValue: number | number[],
@@ -56,7 +76,7 @@ export interface SliderMarkBar {
   ) => void
   value: number | number[]
   location: BarLocation
-  disabled?: boolean
+  disabled: boolean
   currentWidth: number
   mouseOut?: () => void
   mouseEnter?: () => void
@@ -68,7 +88,13 @@ export interface SliderTick {
   rightValue: number
   currentWidth: number
   disabled: boolean
-  tickClick: (v: number) => void
+  colorScheme?: SliderColorScheme
+  value: number
+}
+
+export interface SliderNumTick {
+  left: number
+  disabled: boolean
   value: number
 }
 
@@ -102,4 +128,8 @@ export interface IUseOffsetReturn {
     startValue: number[],
     onAfterChange?: ((v: number[]) => void) | undefined,
   ) => void
+}
+
+export interface ICustomRef {
+  focus: () => void
 }

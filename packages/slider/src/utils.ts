@@ -5,21 +5,6 @@ export const formatValue = (val: string | number) => {
   return Array.from(val.split(","), (v) => parseInt(v))
 }
 
-export const modifyTarget = (
-  target: number,
-  partLength: number,
-  containerWidth: number,
-  location: BarLocation,
-  isRange: boolean | { draggableBar: boolean },
-  step: number,
-) => {
-  let value = Math.round(target / partLength) * partLength
-  if (location === BarLocation.RIGHT && isRange) {
-    return step === 1 ? value : value - 3 * containerWidth
-  }
-  return value - containerWidth
-}
-
 export const getMarkBound = (
   containerWidth: number,
   value: number | number[],
@@ -33,9 +18,8 @@ export const getMarkBound = (
       default:
       case BarLocation.RIGHT: {
         return {
-          left:
-            Math.round(value[0] / step + 1) * partLength - containerWidth * 3,
-          right: Math.floor(max / step) * partLength - containerWidth * 3,
+          left: Math.round(value[0] / step + 1) * partLength - containerWidth,
+          right: Math.floor(max / step) * partLength - containerWidth,
         }
       }
       case BarLocation.LEFT: {
@@ -48,7 +32,7 @@ export const getMarkBound = (
   }
   return {
     left: -containerWidth,
-    right: Math.floor(max / step) * partLength - containerWidth,
+    right: Math.floor(max / step) * partLength,
   }
 }
 
@@ -85,3 +69,5 @@ export const verifyValue = (value: number | number[]) => {
     return !isNaN(value)
   }
 }
+
+export const getSafeStep = (step: number) => (step && step > 0 ? step : 1)

@@ -13,6 +13,7 @@ export const Bar = forwardRef<HTMLDivElement, SliderBar>((props, ref) => {
     disabled,
     containerWidth,
     partLength,
+    colorScheme,
     onDragBarEnd,
   } = props
   const startValue = useRef<number[]>([])
@@ -56,6 +57,7 @@ export const Bar = forwardRef<HTMLDivElement, SliderBar>((props, ref) => {
         disabled,
         isObject(isRange) && isRange.draggableBar,
         width,
+        colorScheme,
       )}
       dragElastic={false}
       dragConstraints={{ left: 0, right: containerWidth - width }}

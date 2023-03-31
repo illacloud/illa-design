@@ -1,14 +1,16 @@
-import { forwardRef, useEffect, useRef, useState } from "react"
+import { forwardRef, useEffect, useRef } from "react"
 import { applyMarkBar, applyBarContainer } from "./style"
 import { SliderMarkBar } from "./interface"
 import { motion, PanInfo, useMotionValue } from "framer-motion"
 import { BarLocation } from "./content"
-import { modifyTarget, getMarkBound } from "./utils"
+import { getMarkBound } from "./utils"
 import useMeasure from "react-use-measure"
+import { mergeRefs } from "@illa-design/system"
 
 export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
   (props, ref) => {
     const {
+      markBarRef,
       isRange,
       left,
       right,
@@ -20,6 +22,7 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       step,
       max,
       partLength,
+      colorScheme,
       drag,
       mouseEnter,
       mouseOut,
@@ -48,28 +51,39 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       } = info
       dragEnd(x - rect.width / 2, startValue.current, location)
     }
-
+    // The position needs to be verified after each update. Since the ball's motion boundary is controlled by itself, when the offset value remains unchanged, rightVal.set() will not be triggered.
     useEffect(() => {
       if (isRange) {
         if (currentWidth && right !== -1 && location === BarLocation.RIGHT) {
-          rightVal.set(currentWidth - right - (rect.width / 2) * 3)
+          if (rightVal.get() !== currentWidth - right - rect.width / 2) {
+            rightVal.set(currentWidth - right - rect.width / 2)
+            return
+          }
         }
         if (currentWidth && left !== -1 && location === BarLocation.LEFT) {
-          rightVal.set(left - rect.width / 2)
+          if (rightVal.get() !== left - rect.width / 2) {
+            rightVal.set(left - rect.width / 2)
+            return
+          }
         }
       } else {
-        rightVal.set(currentWidth - right - rect.width / 2)
+        if (rightVal.get() !== currentWidth - right - rect.width / 2) {
+          rightVal.set(currentWidth - right - rect.width / 2)
+          return
+        }
       }
-    }, [currentWidth, right, rect, left, isRange, location, rightVal])
+    })
 
     return (
       <motion.div
         drag="x"
-        ref={containerRef}
+        ref={mergeRefs(containerRef, markBarRef)}
+        tabIndex={-1}
         onDragStart={onDragStart}
         onDrag={onDrag}
         onDragEnd={onDragEnd}
-        css={applyBarContainer}
+        data-location={location}
+        css={applyMarkBar(disabled, colorScheme)}
         dragElastic={0}
         dragConstraints={getMarkBound(
           rect.width / 2,
@@ -82,22 +96,15 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
         style={{ x: rightVal, zIndex: 2 }}
         dragMomentum={false}
         dragTransition={{
-          timeConstant: 200,
+          timeConstant: 0,
           power: 0,
           modifyTarget: (target) =>
-            modifyTarget(
-              target,
-              partLength,
-              rect.width / 2,
-              location,
-              isRange,
-              step,
-            ),
+            Math.round(target / partLength) * partLength - rect.width / 2,
         }}
       >
         <div
           ref={ref}
-          css={applyMarkBar(disabled)}
+          css={applyBarContainer}
           onMouseEnter={mouseEnter}
           onMouseOut={mouseOut}
         />

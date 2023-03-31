@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { SliderTick } from "./interface"
-import { applyTick, applyTickContainer } from "./style"
+import { applyTick, applyTickContainer, applyBgColor } from "./style"
 export const Tick: FC<SliderTick> = (props) => {
   const {
     left,
@@ -8,21 +8,16 @@ export const Tick: FC<SliderTick> = (props) => {
     rightValue,
     currentWidth,
     disabled,
-    tickClick,
+    colorScheme,
     value,
   } = props
   const rightBound = currentWidth - rightValue >= left
-  const background =
-    leftValue <= left && rightBound && !disabled
-      ? "--illa-blue-03"
-      : "--illa-gray-08"
-
-  const onClick = () => {
-    if (disabled) return
-    tickClick(value)
-  }
+  const background = applyBgColor(
+    colorScheme,
+    !(leftValue <= left && rightBound && !disabled),
+  )
   return (
-    <div css={applyTickContainer(left, disabled)} onClick={onClick}>
+    <div css={applyTickContainer(left, disabled)} data-value={value}>
       <div css={applyTick(background)} />
     </div>
   )

@@ -1,15 +1,25 @@
-import { useEffect, useRef, useState, forwardRef, useMemo } from "react"
+import {
+  useEffect,
+  useRef,
+  useState,
+  forwardRef,
+  useMemo,
+  MouseEvent,
+  useImperativeHandle,
+} from "react"
 import { Bar } from "./bar"
 import { MarkBar } from "./markBar"
 import { Tick } from "./tick"
 import { applySliderWrapper, applySliderRoad, applyBoundBar } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
 import { Trigger } from "@illa-design/trigger"
-import { SliderProps } from "./interface"
+import { SliderProps, ICustomRef } from "./interface"
 import { DefaultWidth, BarLocation } from "./content"
 import { useOffset } from "./useOffset"
-import { verifyValue } from "./utils"
-export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
+import { getSafeStep, verifyValue } from "./utils"
+import { NumTick } from "./NumTick"
+
+export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
   const {
     disabled = false,
     tooltipVisible = true,
@@ -23,11 +33,15 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     isRange = Array.isArray(value),
     startMarkShow = false,
     endMarkShow = false,
+    colorScheme,
     formatTooltip = (v) => v,
     onAfterChange,
     onChange,
   } = props
   const [currentWidth, setCurrentWidth] = useState(DefaultWidth)
+  const currentRef = useRef<HTMLDivElement>(null)
+  const markBarRef = useRef<HTMLDivElement>(null)
+
   const [partNumber, setPartNumber] = useState<number | undefined>(undefined)
   const roadRef = useRef<HTMLDivElement | null>(null)
   const [rightTriggerShow, setRightTriggerShow] = useState(false)
@@ -50,7 +64,14 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     onClickTick,
     onDragBar,
     onDragBarEnd,
-  } = useOffset(min, max, step)
+  } = useOffset(min, max, getSafeStep(step))
+
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      setRightTriggerShow(true)
+      markBarRef.current?.focus()
+    },
+  }))
 
   const dragging = (
     x: number,
@@ -76,29 +97,50 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     setLeftTriggerShow(false)
   }
 
+  const dragBar = (x: number, startValue: number[]) => {
+    onDragBar(x, startValue)
+  }
   const dragBarEnd = (x: number, startValue: number[]) => {
     onDragBarEnd(x, startValue, onAfterChange)
   }
 
+  const tickClick = (e: MouseEvent<HTMLElement>) => {
+    const { target } = e
+    if (target) {
+      const { dataset } = target as HTMLElement
+      if (dataset && dataset.value !== undefined) {
+        onClickTick(parseInt(dataset.value))
+        return
+      }
+      const { parentElement } = target as HTMLElement
+      const parentDataset = parentElement?.dataset
+      if (parentElement && parentDataset && parentDataset.value !== undefined) {
+        onClickTick(parseInt(parentDataset.value))
+      }
+    }
+  }
+
   useEffect(() => {
     verifyValue(currentValue) && onChange && onChange(currentValue)
-  }, [currentValue, onChange])
+  }, [currentValue])
 
   useEffect(() => {
     if (roadRef.current) {
       const { width } = roadRef.current?.getBoundingClientRect()
-      const partNum = Math.ceil((max - min) / step)
-      const partLength = width / ((max - min) / step)
+      const safeStep = getSafeStep(step)
+      const partNum = Math.ceil((max - min) / safeStep)
+      const partLength = width / ((max - min) / safeStep)
       setPartNumber(partNum)
       setCurrentWidth(width)
-      initOffsetFromState(Math.floor(partLength), width, rightValue, leftValue)
+      initOffsetFromState(partLength, width, rightValue, leftValue)
     }
   }, [isRange, max, min, step, initOffsetFromState, leftValue, rightValue])
   return (
-    <div ref={ref} css={[applySliderWrapper, applyBoxStyle(props)]}>
-      <div css={applySliderRoad()} ref={roadRef}>
-        {partNumber &&
-          showTicks &&
+    <div ref={currentRef} css={[applySliderWrapper, applyBoxStyle(props)]}>
+      <div css={applySliderRoad()} ref={roadRef} onClick={tickClick}>
+        {showTicks &&
+          partNumber &&
+          partNumber > 0 &&
           [...new Array(partNumber - 1)].map((_, i) => (
             <Tick
               key={i}
@@ -107,10 +149,24 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
               leftValue={leftOffset}
               rightValue={rightOffset}
               currentWidth={currentWidth}
+              colorScheme={colorScheme}
               disabled={disabled}
-              tickClick={onClickTick}
             />
           ))}
+        {showTicks &&
+          partNumber &&
+          partNumber > 0 &&
+          [...new Array(partNumber + 1)].map(
+            (_, i) =>
+              i <= Math.floor((max - min) / step) && (
+                <NumTick
+                  key={i}
+                  value={min + i * step}
+                  left={i * partLength}
+                  disabled={disabled}
+                />
+              ),
+          )}
         {startMarkShow && (
           <div
             css={applyBoundBar(false, disabled)}
@@ -137,9 +193,11 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
               location={BarLocation.LEFT}
               disabled={disabled}
               max={max}
+              min={min}
               step={step}
               currentWidth={currentWidth}
               partLength={partLength}
+              colorScheme={colorScheme}
               mouseEnter={() => setLeftTriggerShow(true)}
               mouseOut={() => setLeftTriggerShow(false)}
             />
@@ -160,13 +218,16 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
             isRange={isRange}
             drag={dragging}
             dragEnd={dragEnd}
+            markBarRef={markBarRef}
             value={currentValue}
             max={max}
+            min={min}
             step={step}
             location={BarLocation.RIGHT}
             disabled={disabled}
             currentWidth={currentWidth}
             partLength={partLength}
+            colorScheme={colorScheme}
             mouseEnter={() => setRightTriggerShow(true)}
             mouseOut={() => setRightTriggerShow(false)}
           />
@@ -182,8 +243,9 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
           left={leftOffset}
           isRange={isRange}
           value={currentValue as number[]}
-          dragBar={onDragBar}
+          dragBar={dragBar}
           disabled={disabled}
+          colorScheme={colorScheme}
           containerWidth={currentWidth}
           partLength={partLength}
           onDragBarEnd={dragBarEnd}

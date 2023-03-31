@@ -1,9 +1,44 @@
-import { globalColor } from "@illa-design/theme"
+import { getColor } from "@illa-design/theme"
 import { css, SerializedStyles } from "@emotion/react"
+import { SliderColorScheme } from "./interface"
+
+const innerColor = [
+  "white",
+  "blackAlpha",
+  "gray",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+  "grayBlue",
+  "techPurple",
+  "techPink",
+]
+
+export function applyBgColor(
+  colorScheme: SliderColorScheme | undefined,
+  disabled: boolean,
+): string {
+  if (disabled) {
+    return `${getColor("gray", "08")}`
+  } else if (!colorScheme) {
+    return `${getColor("blue", "03")}`
+  } else if (innerColor.includes(colorScheme)) {
+    return `${getColor(colorScheme, "03")}`
+  } else {
+    return colorScheme
+  }
+}
 
 export const applySliderWrapper = css`
-  height: 12px;
+  height: 45px;
   width: 240px;
+  padding: 0 8px;
+  box-sizing: content-box;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
 `
@@ -12,7 +47,7 @@ export function applySliderRoad(): SerializedStyles {
   return css`
     width: 100%;
     height: 2px;
-    background-color: ${globalColor("--illa-gray-08")};
+    background-color: ${getColor("gray", "08")};
     border-radius: 2px;
     display: flex;
     align-items: center;
@@ -23,48 +58,56 @@ export function applySliderBar(
   disabled: boolean,
   draggableBar: boolean,
   width: number,
+  colorScheme?: SliderColorScheme,
 ): SerializedStyles {
   return css`
     height: 2px;
     position: absolute;
     width: ${width}px;
-    background: ${disabled
-      ? globalColor("--illa-gray-08")
-      : globalColor("--illa-blue-03")};
+    background: ${applyBgColor(colorScheme, disabled)};
     border-radius: 2px;
     cursor: ${disabled || !draggableBar ? "auto" : "pointer"};
   `
 }
-export function applyMarkBar(disabled?: boolean): SerializedStyles {
+export function applyMarkBar(
+  disabled: boolean,
+  colorScheme?: SliderColorScheme,
+): SerializedStyles {
   return css`
+    box-sizing: border-box;
     height: 12px;
     width: 12px;
     background-color: white;
-    border: 2px solid
-      ${disabled
-        ? globalColor("--illa-gray-08")
-        : globalColor("--illa-blue-03")};
+    border: 2px solid ${applyBgColor(colorScheme, disabled)};
     border-radius: 50%;
     position: absolute;
     z-index: 2;
     cursor: ${disabled ? "auto" : "pointer"};
+    transition: width 150ms ease-in-out, height 150ms ease-in-out;
+    &:hover {
+      height: 16px;
+      width: 16px;
+    }
+    &[data-location="right"]:focus-within {
+      height: 16px;
+      width: 16px;
+    }
   `
 }
 export function applyBoundBar(
+  disabled: boolean,
   isRightMark?: boolean,
-  disabled?: boolean,
+  colorScheme?: SliderColorScheme,
 ): SerializedStyles {
   return css`
+    box-sizing: border-box;
     position: absolute;
     left: ${isRightMark ? "auto" : 0}px;
     right: ${isRightMark ? 0 : "auto"}px;
     height: 8px;
     width: 8px;
     background-color: white;
-    border: 2px solid
-      ${disabled
-        ? globalColor("--illa-gray-08")
-        : globalColor("--illa-blue-03")};
+    border: 2px solid ${applyBgColor(colorScheme, disabled)};
     border-radius: 50%;
     z-index: 1;
     transform: ${isRightMark ? "translateX(50%)" : "translateX(-50%)"};
@@ -73,8 +116,8 @@ export function applyBoundBar(
 }
 
 export const applyBarContainer = css`
-  height: 16px;
-  width: 16px;
+  height: 100%;
+  width: 100%;
 `
 
 export function applyTickContainer(
@@ -95,9 +138,28 @@ export function applyTick(background: string): SerializedStyles {
   return css`
     height: 5px;
     width: 2px;
-    background: ${globalColor(background)};
+    background: ${background};
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+  `
+}
+export function applyNumTick(
+  left: number,
+  disabled: boolean,
+): SerializedStyles {
+  return css`
+    height: 22px;
+    width: 15px;
+    position: absolute;
+    font-size: 14px;
+    margin-top: 4px;
+    line-height: 22px;
+    text-align: center;
+    color: ${getColor("gray", "02")};
+    top: 100%;
+    left: ${left}px;
+    transform: translateX(-50%);
+    cursor: ${disabled ? "auto" : "pointer"};
   `
 }
