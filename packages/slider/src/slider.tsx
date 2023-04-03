@@ -87,6 +87,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     startValue: number | number[],
     location: BarLocation,
   ) => {
+    markBarRef.current?.blur()
     if (location === BarLocation.RIGHT) setRightTriggerShow(true)
     else setLeftTriggerShow(true)
     onDragEnd(x, startValue, location, onAfterChange)
