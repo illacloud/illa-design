@@ -1,5 +1,5 @@
 import { BoxProps } from "@illa-design/theme"
-import { ReactNode, RefObject } from "react"
+import { MutableRefObject, ReactNode, RefObject } from "react"
 
 export type TriggerColorScheme =
   | string
@@ -39,7 +39,12 @@ export interface TriggerContext {
   children?: ReactNode
 }
 
+export interface TriggerRefHandler {
+  rerenderPosition: () => void
+}
+
 export interface TriggerProps extends BoxProps, TriggerContext {
+  ref?: MutableRefObject<TriggerRefHandler | undefined>
   children?: ReactNode
   colorScheme?: TriggerColorScheme
   inline?: boolean

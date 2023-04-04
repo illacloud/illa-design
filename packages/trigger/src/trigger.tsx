@@ -18,6 +18,7 @@ import { TriggerProviderContext } from "./trigger-context"
 import { css } from "@emotion/react"
 import {
   autoUpdate,
+  computePosition,
   flip,
   FloatingPortal,
   hide,
@@ -42,6 +43,7 @@ import {
   ReactElement,
   useContext,
   useEffect,
+  useImperativeHandle,
   useMemo,
   useRef,
   useState,
@@ -49,6 +51,7 @@ import {
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
+    ref,
     children,
     closeWhenScroll = true,
     autoFitPosition = true,
@@ -122,7 +125,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
     return middleware
   }, [autoFitPosition, withoutOffset, autoAlignPopupWidth])
 
-  const { x, y, reference, floating, strategy, placement, context } =
+  const { x, y, reference, floating, strategy, placement, context, elements } =
     useFloating({
       placement: position,
       open: finalVisible,
@@ -301,6 +304,25 @@ export const Trigger: FC<TriggerProps> = (props) => {
     (props.children as any).ref,
     childrenRef,
   ])
+
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        rerenderPosition: () => {
+          computePosition(elements.reference!!, elements.floating!!).then(
+            ({ x, y }) => {
+              Object.assign(elements.floating!!.style, {
+                left: `${x}px`,
+                top: `${y}px`,
+              })
+            },
+          )
+        },
+      }
+    },
+    [floating],
+  )
 
   return (
     <>
