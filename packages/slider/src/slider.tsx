@@ -12,7 +12,7 @@ import { MarkBar } from "./markBar"
 import { Tick } from "./tick"
 import { applySliderWrapper, applySliderRoad, applyBoundBar } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
-import { Trigger } from "@illa-design/trigger"
+import { Trigger, TriggerRefHandler } from "@illa-design/trigger"
 import { SliderProps, ICustomRef } from "./interface"
 import { DefaultWidth, BarLocation } from "./content"
 import { useOffset } from "./useOffset"
@@ -44,6 +44,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
 
   const [partNumber, setPartNumber] = useState<number | undefined>(undefined)
   const roadRef = useRef<HTMLDivElement | null>(null)
+  const tempRef = useRef<TriggerRefHandler | undefined>()
   const [rightTriggerShow, setRightTriggerShow] = useState(false)
   const [leftTriggerShow, setLeftTriggerShow] = useState(false)
   const leftValue = useMemo(() => {
@@ -78,7 +79,8 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     startValue: number | number[],
     location: BarLocation,
   ) => {
-    setTriggerHidden()
+    tempRef.current && tempRef.current?.rerenderPosition()
+    // setTriggerHidden()
     onDragging(x, startValue, location)
   }
 
@@ -210,10 +212,13 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
               ? formatTooltip(currentValue[1])
               : formatTooltip(currentValue)
           }
-          position={tooltipPosition}
-          popupVisible={rightTriggerShow && tooltipVisible}
+          ref={tempRef}
+          trigger="hover"
+          // position={tooltipPosition}
+          // popupVisible={rightTriggerShow && tooltipVisible}
         >
           <MarkBar
+            tempRef={tempRef}
             right={rightOffset}
             left={-1}
             isRange={isRange}
