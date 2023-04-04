@@ -44,7 +44,7 @@ export interface TriggerRefHandler {
 }
 
 export interface TriggerProps extends BoxProps, TriggerContext {
-  ref?: MutableRefObject<TriggerRefHandler | undefined>
+  triggerRef?: MutableRefObject<TriggerRefHandler | undefined>
   children?: ReactNode
   colorScheme?: TriggerColorScheme
   inline?: boolean

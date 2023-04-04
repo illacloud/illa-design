@@ -51,7 +51,7 @@ import {
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
-    ref,
+    triggerRef,
     children,
     closeWhenScroll = true,
     autoFitPosition = true,
@@ -306,22 +306,27 @@ export const Trigger: FC<TriggerProps> = (props) => {
   ])
 
   useImperativeHandle(
-    ref,
+    triggerRef,
     () => {
       return {
         rerenderPosition: () => {
-          computePosition(elements.reference!!, elements.floating!!).then(
-            ({ x, y }) => {
-              Object.assign(elements.floating!!.style, {
-                left: `${x}px`,
-                top: `${y}px`,
-              })
-            },
-          )
+          if (elements.reference && elements.floating) {
+            computePosition(elements.reference, elements.floating, {
+              placement: placement,
+              middleware: middleware,
+            }).then(({ x, y }) => {
+              if (elements.floating) {
+                Object.assign(elements.floating.style, {
+                  left: `${x}px`,
+                  top: `${y}px`,
+                })
+              }
+            })
+          }
         },
       }
     },
-    [floating],
+    [elements.floating, elements.reference, middleware, placement],
   )
 
   return (

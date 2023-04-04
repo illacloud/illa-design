@@ -1,8 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react"
-import { SliderProps, Slider } from "../src"
-import { Space, CloseIcon } from "@illa-design/react"
-import { BiCheckbox, BiCheckboxChecked } from "react-icons/all"
-import { useCallback, useState } from "react"
+import { Slider, SliderProps } from "../src"
 
 export default {
   title: "DATA INPUT/Slider",

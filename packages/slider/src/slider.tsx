@@ -212,13 +212,12 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
               ? formatTooltip(currentValue[1])
               : formatTooltip(currentValue)
           }
-          ref={tempRef}
+          triggerRef={tempRef}
           trigger="hover"
           // position={tooltipPosition}
           // popupVisible={rightTriggerShow && tooltipVisible}
         >
           <MarkBar
-            tempRef={tempRef}
             right={rightOffset}
             left={-1}
             isRange={isRange}
