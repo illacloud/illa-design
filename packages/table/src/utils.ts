@@ -234,6 +234,7 @@ export const customGlobalFn: FilterFn<any> = (
   filterValue: { filters: GlobalFilterOptions; operator: FilterOperator },
   addMeta: (meta: FilterMeta) => void,
 ) => {
+  console.log(filterValue, "filterValue in customGlobalFn")
   const { filters, operator } = filterValue
   if (filters) {
     const result = filters.map((filter) => {

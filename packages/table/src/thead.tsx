@@ -3,7 +3,7 @@ import { THeadProps } from "./interface"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
 import { applyBoxStyle } from "@illa-design/theme"
-import { applyPinedStyle } from "./style"
+import { applyPinedStyle, resizerTableHeaderStyle } from "./style"
 
 export const Thead = forwardRef<HTMLTableSectionElement, THeadProps>(
   (props, ref) => {
@@ -11,7 +11,11 @@ export const Thead = forwardRef<HTMLTableSectionElement, THeadProps>(
     const tableContext = useContext(TableContext)
     return tableContext?.showHeader ? (
       <thead
-        css={css(applyPinedStyle(pinedHeader), applyBoxStyle(props))}
+        css={css(
+          resizerTableHeaderStyle,
+          applyPinedStyle(pinedHeader),
+          applyBoxStyle(props),
+        )}
         ref={ref}
         {...otherProps}
       />

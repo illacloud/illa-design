@@ -71,18 +71,29 @@ export function applyBorderStyle(
 
 export function applyThStyle(): SerializedStyles {
   return css`
+    display: flex;
+    position: relative;
     font-size: 14px;
     font-weight: bold;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+
+    &:last-of-type {
+      flex: 1 1 auto;
+    }
   `
 }
 
 export function applyNormalStyle(): SerializedStyles {
   return css`
+    display: flex;
+    position: relative;
     font-size: 14px;
     min-height: 22px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    &:last-of-type {
+      flex: 1 1 auto;
+    }
   `
 }
 
@@ -217,4 +228,25 @@ export const editorStyle = css`
 export const editorButtonStyle = css`
   text-align: end;
   margin-right: 30px;
+`
+
+export const resizerTableHeaderStyle = css`
+  &:hover {
+    & > tr > th:not(:last-of-type) {
+      border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    }
+  }
+`
+
+export const tableResizerStyle = css`
+  display: inline-block;
+  position: absolute;
+  width: 6px;
+  right: -5px;
+  top: 0;
+  bottom: 0;
+  cursor: col-resize;
+  &:hover {
+    border-right: solid 1px ${globalColor(`--${illaPrefix}-blue-08`)};
+  }
 `

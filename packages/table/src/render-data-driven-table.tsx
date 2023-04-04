@@ -41,6 +41,7 @@ import {
   applyTableStyle,
   headerStyle,
   spinStyle,
+  tableResizerStyle,
   toolBarStyle,
 } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
@@ -191,16 +192,38 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize,
       },
     },
+    columnResizeMode: "onChange",
+    autoResetAll: true,
+    getColumnCanGlobalFilter: (column) => {
+      console.log("getColumnCanGlobalFilter", column)
+      return true
+    },
+    onStateChange: (state) => {
+      console.log("onStateChange", table.getState())
+    },
     enableMultiRowSelection,
     enableSorting: !disableSortBy,
     globalFilterFn: customGlobalFn,
     onPaginationChange: (pagination) => {
-      setPagination(pagination)
-      onPaginationChange?.(pagination)
+      new Promise((resolve) => {
+        setPagination(pagination)
+        resolve(true)
+      }).then(() => {
+        console.log(
+          "onPaginationChange",
+          table.getState().pagination,
+          table.getFilteredRowModel().rows,
+        )
+        onPaginationChange?.(table.getState().pagination)
+      })
     },
     onSortingChange: (columnSort) => {
       setSorting(columnSort)
       onSortingChange?.(columnSort)
+    },
+    onGlobalFilterChange: (globalFilter) => {
+      console.log("onGlobalFilterChange", globalFilter)
+      onColumnFiltersChange?.(globalFilter)
     },
     onColumnFiltersChange: (columnFilter) => {
       setColumnFilters(columnFilter)
@@ -296,7 +319,10 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   const onPageChange = useCallback(
     (pageNumber: number, pageSize: number) => {
-      setPagination({ pageIndex: pageNumber - 1, pageSize })
+      const paginationUpdate = { pageIndex: pageNumber - 1, pageSize }
+      setPagination(paginationUpdate)
+      onPaginationChange?.(paginationUpdate)
+      console.log("onPaginationChange", paginationUpdate)
     },
     [setPagination],
   )
@@ -322,6 +348,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                   <Tr key={headerGroup.id} hoverable>
                     {headerGroup.headers.map((header) => (
                       <Th
+                        w={`${header.getSize()}px`}
                         key={header.id}
                         colSpan={header.colSpan}
                         colIndex={headerGroup.headers.indexOf(header)}
@@ -358,6 +385,11 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                               <SorterDefaultIcon _css={applyHeaderIconLeft} />
                             ))}
                         </div>
+                        <div
+                          css={tableResizerStyle}
+                          onTouchStart={header.getResizeHandler()}
+                          onMouseDown={header.getResizeHandler()}
+                        ></div>
                       </Th>
                     ))}
                   </Tr>
@@ -378,6 +410,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 >
                   {row.getVisibleCells().map((cell) => (
                     <Td
+                      w={`${cell.column.getSize()}px`}
                       key={cell.id}
                       colIndex={row.getVisibleCells().indexOf(cell)}
                       rowIndex={table.getRowModel().rows.indexOf(row)}
