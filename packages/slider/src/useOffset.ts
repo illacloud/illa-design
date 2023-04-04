@@ -80,8 +80,8 @@ export const useOffset = (
     } else {
       val = tempVal
     }
-    setRightOffset(rightBound - val)
-    setBarLength(Math.floor(startValue / step) * partLength + val)
+    onSingleEnd(x, startValue)
+    setBarLength(Math.round(startValue / step) * partLength + val)
   }
 
   const onRangeDragging = (
@@ -105,7 +105,7 @@ export const useOffset = (
         } else {
           val = tempVal
         }
-        setLeftOffset(Math.floor(startValue[0] / step) * partLength + val)
+        onRangeEnd(x, startValue, BarLocation.LEFT)
         setBarLength(
           Math.round((startValue[1] - startValue[0]) / step) * partLength - val,
         )
@@ -121,9 +121,9 @@ export const useOffset = (
         } else if (tempVal <= leftBound) {
           val = leftBound
         } else val = tempVal
-        setRightOffset(rightBound - val)
+        onRangeEnd(x, startValue, BarLocation.RIGHT)
         setBarLength(
-          Math.floor((startValue[1] - startValue[0]) / step) * partLength + val,
+          Math.round((startValue[1] - startValue[0]) / step) * partLength + val,
         )
         break
       }

@@ -26,6 +26,7 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       drag,
       mouseEnter,
       mouseOut,
+      rerenderPosition,
     } = props
     const startValue = useRef<number | number[]>(0)
     const rightVal = useMotionValue(0)
@@ -36,7 +37,10 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       startValue.current = value
     }
 
-    const onDrag = (_: any, info: PanInfo) => {
+    const onDrag = (
+      _: MouseEvent | TouchEvent | PointerEvent,
+      info: PanInfo,
+    ) => {
       if (disabled) return
       const {
         offset: { x },
@@ -44,7 +48,10 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
       drag(x - rect.width / 2, startValue.current, location)
     }
 
-    const onDragEnd = (_: any, info: PanInfo) => {
+    const onDragEnd = (
+      _: MouseEvent | TouchEvent | PointerEvent,
+      info: PanInfo,
+    ) => {
       if (disabled) return
       const {
         offset: { x },
@@ -77,11 +84,16 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
     return (
       <motion.div
         drag="x"
-        ref={mergeRefs(containerRef, markBarRef)}
+        ref={mergeRefs(containerRef, markBarRef, ref)}
         tabIndex={-1}
         onDragStart={onDragStart}
         onDrag={onDrag}
         onDragEnd={onDragEnd}
+        onMouseDown={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()}
+        onUpdate = {() => {
+          rerenderPosition && rerenderPosition()
+        }}
         data-location={location}
         css={applyMarkBar(disabled, colorScheme)}
         dragElastic={0}
@@ -103,7 +115,6 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
         }}
       >
         <div
-          ref={ref}
           css={applyBarContainer}
           onMouseEnter={mouseEnter}
           onMouseOut={mouseOut}

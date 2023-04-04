@@ -6,13 +6,14 @@ import {
   useMemo,
   MouseEvent,
   useImperativeHandle,
+  useCallback,
 } from "react"
 import { Bar } from "./bar"
 import { MarkBar } from "./markBar"
 import { Tick } from "./tick"
 import { applySliderWrapper, applySliderRoad, applyBoundBar } from "./style"
 import { applyBoxStyle } from "@illa-design/theme"
-import { Trigger } from "@illa-design/trigger"
+import { Trigger, TriggerRefHandler } from "@illa-design/trigger"
 import { SliderProps, ICustomRef } from "./interface"
 import { DefaultWidth, BarLocation } from "./content"
 import { useOffset } from "./useOffset"
@@ -23,7 +24,8 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
   const {
     disabled = false,
     tooltipVisible = true,
-    showTicks = true,
+    showTicks = false,
+    hideValue = false,
     max = 10,
     min = 0,
     step = 1,
@@ -44,8 +46,11 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
 
   const [partNumber, setPartNumber] = useState<number | undefined>(undefined)
   const roadRef = useRef<HTMLDivElement | null>(null)
+  const rightTriggerRef = useRef<TriggerRefHandler | undefined>()
+  const leftTriggerRef = useRef<TriggerRefHandler | undefined>()
   const [rightTriggerShow, setRightTriggerShow] = useState(false)
   const [leftTriggerShow, setLeftTriggerShow] = useState(false)
+  const isFirst = useRef<boolean>(true)
   const leftValue = useMemo(() => {
     return Array.isArray(value) ? value[0] : undefined
   }, [value])
@@ -78,7 +83,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     startValue: number | number[],
     location: BarLocation,
   ) => {
-    setTriggerHidden()
+    hideValue && setTriggerHidden()
     onDragging(x, startValue, location)
   }
 
@@ -88,8 +93,11 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     location: BarLocation,
   ) => {
     markBarRef.current?.blur()
-    if (location === BarLocation.RIGHT) setRightTriggerShow(true)
-    else setLeftTriggerShow(true)
+    if (location === BarLocation.RIGHT) {
+      hideValue && setRightTriggerShow(true)
+    } else {
+      hideValue && setLeftTriggerShow(true)
+    }
     onDragEnd(x, startValue, location, onAfterChange)
   }
 
@@ -121,8 +129,19 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     }
   }
 
+  const rightRerenderPosition = useCallback(() => {
+    rightTriggerRef && rightTriggerRef.current?.rerenderPosition()
+  }, [])
+
+  const leftRerenderPosition = useCallback(() => {
+    leftTriggerRef && leftTriggerRef.current?.rerenderPosition()
+  }, [])
+
   useEffect(() => {
-    verifyValue(currentValue) && onChange && onChange(currentValue)
+    !isFirst.current && verifyValue(currentValue) && onChange && onChange(currentValue)
+    if(isFirst.current && verifyValue(currentValue)) {
+      isFirst.current = false
+    }
   }, [currentValue])
 
   useEffect(() => {
@@ -182,6 +201,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
                 : formatTooltip(currentValue)
             }
             position={tooltipPosition}
+            triggerRef={leftTriggerRef}
             popupVisible={leftTriggerShow && tooltipVisible}
           >
             <MarkBar
@@ -201,6 +221,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
               colorScheme={colorScheme}
               mouseEnter={() => setLeftTriggerShow(true)}
               mouseOut={() => setLeftTriggerShow(false)}
+              rerenderPosition={leftRerenderPosition}
             />
           </Trigger>
         )}
@@ -210,6 +231,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
               ? formatTooltip(currentValue[1])
               : formatTooltip(currentValue)
           }
+          triggerRef={rightTriggerRef}
           position={tooltipPosition}
           popupVisible={rightTriggerShow && tooltipVisible}
         >
@@ -231,6 +253,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
             colorScheme={colorScheme}
             mouseEnter={() => setRightTriggerShow(true)}
             mouseOut={() => setRightTriggerShow(false)}
+            rerenderPosition={rightRerenderPosition}
           />
         </Trigger>
         {endMarkShow && (

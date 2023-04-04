@@ -26,6 +26,7 @@ export interface SliderProps
   disabled?: boolean
   showTicks?: boolean
   tooltipVisible?: boolean
+  hideValue?: boolean
   max?: number
   min?: number
   step?: number
@@ -80,6 +81,7 @@ export interface SliderMarkBar {
   currentWidth: number
   mouseOut?: () => void
   mouseEnter?: () => void
+  rerenderPosition?: () => void
 }
 
 export interface SliderTick {
