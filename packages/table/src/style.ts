@@ -143,6 +143,7 @@ export const applyHeaderIconLeft = css`
   width: 16px;
   height: 16px;
   flex-wrap: wrap;
+  flex: 0 0 auto;
 `
 
 export function applyContentContainer(align: TableAlign): SerializedStyles {
@@ -163,29 +164,24 @@ export const applyContentStyle = (lastRow?: boolean) => {
     ${positionStyle};
     z-index: 2;
     opacity: 0;
+    width: 100%;
     min-width: 200px;
     max-width: 100%;
     min-height: 22px;
-    max-height: 88px;
+    max-height: 96px;
     position: absolute;
     left: 0;
     background-color: white;
     border: solid 1px ${globalColor(`--${illaPrefix}-blue-03`)};
-    -ms-overflow-style: none;  // IE 10+
-    scrollbar-width: none;  // Firefox
-    &::-webkit-scrollbar {
-      display: none;  // Safari and Chrome
-    }
-    &::-webkit-scrollbar-corner {
-      background: rgba(0,0,0,0);
-    }
     box-sizing: border-box;
   `
 }
 
 export const showRealContentSizeLimitStyle = css`
+  box-sizing: border-box;
   word-break: break-word;
   overflow-y: scroll;
+  max-height: 96px;
 `
 
 export const textOverflowStyle = css`

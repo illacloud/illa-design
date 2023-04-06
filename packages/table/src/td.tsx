@@ -1,13 +1,14 @@
-import { forwardRef, useContext, useRef } from "react"
+import { forwardRef, useContext, useRef, useState } from "react"
 import { TdProps } from "./interface"
 import {
   applyBorderStyle,
   applyContentContainer,
   applyContentStyle,
   applyNormalStyle,
-  applySizeStyle, showRealContentSizeLimitStyle,
-  textOverflowStyle
-} from "./style";
+  applySizeStyle,
+  showRealContentSizeLimitStyle,
+  textOverflowStyle,
+} from "./style"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
 import { applyBoxStyle } from "@illa-design/theme"
@@ -30,7 +31,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
     } = props
 
     const tableContext = useContext(TableContext)
-    const overflowRef = useRef(false)
+    const [overflow, setOverflow] = useState(false)
 
     return (
       <td
@@ -51,14 +52,16 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
         ref={ref}
         {...otherProps}
       >
-        {overflowRef.current && (
-          <div
-            css={[
-              applySizeStyle(size ?? tableContext?.size ?? "medium"),
-              applyContentStyle(lastRow),
-            ]}
-          >
-            <div css={showRealContentSizeLimitStyle}>{children}</div>
+        {overflow && (
+          <div css={applyContentStyle(lastRow)}>
+            <div
+              css={[
+                applySizeStyle(size ?? tableContext?.size ?? "medium"),
+                showRealContentSizeLimitStyle,
+              ]}
+            >
+              {children}
+            </div>
           </div>
         )}
         <div
@@ -69,7 +72,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
               element.scrollHeight > element.clientHeight ||
               element.scrollWidth > element.clientWidth
             ) {
-              overflowRef.current = true
+              setOverflow(true)
               console.log("元素溢出了！!!!!", colIndex, rowIndex)
             }
           }}
