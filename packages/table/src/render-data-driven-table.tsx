@@ -212,11 +212,6 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         setPagination(pagination)
         resolve(true)
       }).then(() => {
-        console.log(
-          "onPaginationChange",
-          table.getState().pagination,
-          table.getFilteredRowModel().rows,
-        )
         onPaginationChange?.(table.getState().pagination)
       })
     },

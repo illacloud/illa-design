@@ -72,8 +72,8 @@ export interface TableProps<D extends TableData, TValue>
   rowSelection?: RowSelectionState
   columnVisibility?: VisibilityState
   onSortingChange?: OnChangeFn<SortingState>
-  onPaginationChange?: OnChangeFn<PaginationState>
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
+  onPaginationChange?: (paginationState: PaginationState) => void
   onRowSelectionChange?: (rowSelection?: RowSelectionState) => void
 }
 
