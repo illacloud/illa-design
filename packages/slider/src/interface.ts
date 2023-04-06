@@ -122,6 +122,7 @@ export interface IUseOffsetReturn {
     startValue: number | number[],
     location: BarLocation,
     onAfterChange?: ((v: number | number[]) => void) | undefined,
+    onChange?: ((v: number | number[]) => void) | undefined,
   ) => void
   onClickTick: (v: number) => void
   onDragBar: (x: number, startValue: number[]) => void

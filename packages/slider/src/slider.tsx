@@ -19,6 +19,7 @@ import { DefaultWidth, BarLocation } from "./content"
 import { useOffset } from "./useOffset"
 import { getSafeStep, verifyValue } from "./utils"
 import { NumTick } from "./NumTick"
+import { useElementSize } from "./useElementSize"
 
 export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
   const {
@@ -50,7 +51,6 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
   const leftTriggerRef = useRef<TriggerRefHandler | undefined>()
   const [rightTriggerShow, setRightTriggerShow] = useState(false)
   const [leftTriggerShow, setLeftTriggerShow] = useState(false)
-  const isFirst = useRef<boolean>(true)
   const leftValue = useMemo(() => {
     return Array.isArray(value) ? value[0] : undefined
   }, [value])
@@ -71,6 +71,8 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     onDragBarEnd,
   } = useOffset(min, max, getSafeStep(step))
 
+  const width = useElementSize(currentRef)
+
   useImperativeHandle(ref, () => ({
     focus: () => {
       setRightTriggerShow(true)
@@ -83,7 +85,6 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     startValue: number | number[],
     location: BarLocation,
   ) => {
-    hideValue && setTriggerHidden()
     onDragging(x, startValue, location)
   }
 
@@ -93,17 +94,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     location: BarLocation,
   ) => {
     markBarRef.current?.blur()
-    if (location === BarLocation.RIGHT) {
-      hideValue && setRightTriggerShow(true)
-    } else {
-      hideValue && setLeftTriggerShow(true)
-    }
-    onDragEnd(x, startValue, location, onAfterChange)
-  }
-
-  const setTriggerHidden = () => {
-    setRightTriggerShow(false)
-    setLeftTriggerShow(false)
+    onDragEnd(x, startValue, location, onAfterChange, onChange)
   }
 
   const dragBar = (x: number, startValue: number[]) => {
@@ -138,15 +129,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
   }, [])
 
   useEffect(() => {
-    !isFirst.current && verifyValue(currentValue) && onChange && onChange(currentValue)
-    if(isFirst.current && verifyValue(currentValue)) {
-      isFirst.current = false
-    }
-  }, [currentValue])
-
-  useEffect(() => {
     if (roadRef.current) {
-      const { width } = roadRef.current?.getBoundingClientRect()
       const safeStep = getSafeStep(step)
       const partNum = Math.ceil((max - min) / safeStep)
       const partLength = width / ((max - min) / safeStep)
@@ -154,7 +137,16 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
       setCurrentWidth(width)
       initOffsetFromState(partLength, width, rightValue, leftValue)
     }
-  }, [isRange, max, min, step, initOffsetFromState, leftValue, rightValue])
+  }, [
+    isRange,
+    max,
+    min,
+    step,
+    initOffsetFromState,
+    leftValue,
+    rightValue,
+    width,
+  ])
   return (
     <div ref={currentRef} css={[applySliderWrapper, applyBoxStyle(props)]}>
       <div css={applySliderRoad()} ref={roadRef} onClick={tickClick}>
