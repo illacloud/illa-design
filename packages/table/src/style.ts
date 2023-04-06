@@ -22,7 +22,10 @@ export function applySizeStyle(size: TableSize): SerializedStyles {
       `
       break
   }
-  return paddingStyle
+  return css`
+    min-height: 22px;
+    ${paddingStyle};
+  `
 }
 
 export function applyContainerStyle(): SerializedStyles {
@@ -91,8 +94,14 @@ export function applyNormalStyle(): SerializedStyles {
     font-size: 14px;
     min-height: 22px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+
     &:last-of-type {
       flex: 1 1 auto;
+    }
+
+    &:hover > div:first-of-type {
+      display: inherit;
+      opacity: 1;
     }
   `
 }
@@ -122,6 +131,7 @@ export function applySelectedStyle(selected?: boolean): SerializedStyles {
 
   return css`
     background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
     }
@@ -139,12 +149,50 @@ export function applyContentContainer(align: TableAlign): SerializedStyles {
   return css`
     justify-content: ${align};
     display: flex;
-    overflow: auto;
+    //overflow: auto;
     min-height: 22px;
     align-items: center;
     flex-direction: row;
   `
 }
+
+export const applyContentStyle = (lastRow?: boolean) => {
+  const positionStyle = lastRow ? css`bottom: 0;` : css`top: 0;`
+
+  return css`
+    ${positionStyle};
+    z-index: 2;
+    opacity: 0;
+    min-width: 200px;
+    max-width: 100%;
+    min-height: 22px;
+    max-height: 88px;
+    position: absolute;
+    left: 0;
+    background-color: white;
+    border: solid 1px ${globalColor(`--${illaPrefix}-blue-03`)};
+    -ms-overflow-style: none;  // IE 10+
+    scrollbar-width: none;  // Firefox
+    &::-webkit-scrollbar {
+      display: none;  // Safari and Chrome
+    }
+    &::-webkit-scrollbar-corner {
+      background: rgba(0,0,0,0);
+    }
+    box-sizing: border-box;
+  `
+}
+
+export const showRealContentSizeLimitStyle = css`
+  word-break: break-word;
+  overflow-y: scroll;
+`
+
+export const textOverflowStyle = css`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`
 
 export function applyPreContainer(align: TableAlign): SerializedStyles {
   return css`
@@ -230,23 +278,38 @@ export const editorButtonStyle = css`
   margin-right: 30px;
 `
 
-export const resizerTableHeaderStyle = css`
-  &:hover {
-    & > tr > th:not(:last-of-type) {
-      border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    }
-  }
-`
+export const applyResizerTableHeaderStyle = (
+  enableColumnResizing?: boolean,
+) => {
+  return enableColumnResizing
+    ? css`
+        &:hover > tr > th:not(:last-of-type) {
+          border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+        }
+      `
+    : css``
+}
 
 export const tableResizerStyle = css`
   display: inline-block;
   position: absolute;
   width: 6px;
-  right: -5px;
+  right: -3px;
   top: 0;
   bottom: 0;
   cursor: col-resize;
+  z-index: 2;
+
   &:hover {
-    border-right: solid 1px ${globalColor(`--${illaPrefix}-blue-08`)};
+    &:after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      right: 2px;
+      background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+      width: 1px;
+    }
   }
 `

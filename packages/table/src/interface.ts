@@ -58,6 +58,7 @@ export interface TableProps<D extends TableData, TValue>
   hoverable?: boolean
   defaultSort?: ColumnSort[]
   disableSortBy?: boolean
+  enableColumnResizing?: boolean
   loading?: boolean
   emptyProps?: EmptyProps
   overFlow?: TableOverFlow
@@ -88,6 +89,7 @@ export interface TableContextProps {
   size?: TableSize
   align?: TableAlign
   hoverable?: boolean
+  enableColumnResizing?: boolean
 }
 
 export interface TBodyProps

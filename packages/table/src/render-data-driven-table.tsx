@@ -89,6 +89,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     emptyProps,
     columnVisibility,
     pagination,
+    enableColumnResizing,
     multiRowSelection = false,
     enableRowSelection = true,
     clickOutsideToResetRowSelect,
@@ -112,6 +113,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     hoverable,
     showHeader,
     showFooter,
+    enableColumnResizing,
   } as TableContextProps
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -192,6 +194,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize,
       },
     },
+    enableColumnResizing,
     columnResizeMode: "onChange",
     autoResetAll: true,
     getColumnCanGlobalFilter: (column) => {
@@ -344,54 +347,60 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
           >
             {showHeader && (
               <Thead pinedHeader={pinedHeader}>
-                {table.getHeaderGroups().map((headerGroup) => (
+                {table.getHeaderGroups().map((headerGroup, index) => (
                   <Tr key={headerGroup.id} hoverable>
-                    {headerGroup.headers.map((header) => (
-                      <Th
-                        w={`${header.getSize()}px`}
-                        key={header.id}
-                        colSpan={header.colSpan}
-                        colIndex={headerGroup.headers.indexOf(header)}
-                        rowIndex={table.getHeaderGroups().indexOf(headerGroup)}
-                        lastCol={
-                          headerGroup.headers.indexOf(header) ===
-                          headerGroup.headers.length - 1
-                        }
-                        lastRow={
-                          table.getHeaderGroups().indexOf(headerGroup) ===
-                          table.getHeaderGroups().length - 1
-                        }
-                      >
-                        <div
-                          css={applyPreContainer(align)}
-                          onClick={() => header.column.toggleSorting()}
+                    {headerGroup.headers.map((header) => {
+                      const lastCol =
+                        headerGroup.headers.indexOf(header) ===
+                        headerGroup.headers.length - 1
+                      return (
+                        <Th
+                          w={`${header.getSize()}px`}
+                          key={header.id}
+                          colSpan={header.colSpan}
+                          colIndex={headerGroup.headers.indexOf(header)}
+                          rowIndex={table
+                            .getHeaderGroups()
+                            .indexOf(headerGroup)}
+                          lastCol={lastCol}
+                          lastRow={
+                            table.getHeaderGroups().indexOf(headerGroup) ===
+                            table.getHeaderGroups().length - 1
+                          }
                         >
-                          {header.isPlaceholder ? null : (
-                            <span css={headerStyle}>
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
-                            </span>
-                          )}
-                          {header.column.getCanSort() &&
-                            (header.column.getIsSorted() ? (
-                              header.column.getIsSorted() === "desc" ? (
-                                <SorterDownIcon _css={applyHeaderIconLeft} />
+                          <div
+                            css={applyPreContainer(align)}
+                            onClick={() => header.column.toggleSorting()}
+                          >
+                            {header.isPlaceholder ? null : (
+                              <span css={headerStyle}>
+                                {flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext(),
+                                )}
+                              </span>
+                            )}
+                            {header.column.getCanSort() &&
+                              (header.column.getIsSorted() ? (
+                                header.column.getIsSorted() === "desc" ? (
+                                  <SorterDownIcon _css={applyHeaderIconLeft} />
+                                ) : (
+                                  <SorterUpIcon _css={applyHeaderIconLeft} />
+                                )
                               ) : (
-                                <SorterUpIcon _css={applyHeaderIconLeft} />
-                              )
-                            ) : (
-                              <SorterDefaultIcon _css={applyHeaderIconLeft} />
-                            ))}
-                        </div>
-                        <div
-                          css={tableResizerStyle}
-                          onTouchStart={header.getResizeHandler()}
-                          onMouseDown={header.getResizeHandler()}
-                        ></div>
-                      </Th>
-                    ))}
+                                <SorterDefaultIcon _css={applyHeaderIconLeft} />
+                              ))}
+                          </div>
+                          {header.column.getCanResize()&& !lastCol ? (
+                            <div
+                              css={tableResizerStyle}
+                              onTouchStart={header.getResizeHandler()}
+                              onMouseDown={header.getResizeHandler()}
+                            />
+                          ) : null}
+                        </Th>
+                      )
+                    })}
                   </Tr>
                 ))}
               </Thead>

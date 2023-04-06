@@ -1,11 +1,13 @@
-import { forwardRef, useContext } from "react"
+import { forwardRef, useContext, useRef } from "react"
 import { TdProps } from "./interface"
 import {
   applyBorderStyle,
   applyContentContainer,
+  applyContentStyle,
   applyNormalStyle,
-  applySizeStyle,
-} from "./style"
+  applySizeStyle, showRealContentSizeLimitStyle,
+  textOverflowStyle
+} from "./style";
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
 import { applyBoxStyle } from "@illa-design/theme"
@@ -28,6 +30,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
     } = props
 
     const tableContext = useContext(TableContext)
+    const overflowRef = useRef(false)
 
     return (
       <td
@@ -43,12 +46,33 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
             lastRow,
           ),
           applyBoxStyle(props),
+          applyContentContainer(align ?? tableContext?.align ?? "left"),
         )}
         ref={ref}
         {...otherProps}
       >
+        {overflowRef.current && (
+          <div
+            css={[
+              applySizeStyle(size ?? tableContext?.size ?? "medium"),
+              applyContentStyle(lastRow),
+            ]}
+          >
+            <div css={showRealContentSizeLimitStyle}>{children}</div>
+          </div>
+        )}
         <div
-          css={applyContentContainer(align ?? tableContext?.align ?? "left")}
+          css={textOverflowStyle}
+          ref={(element) => {
+            if (!element) return
+            if (
+              element.scrollHeight > element.clientHeight ||
+              element.scrollWidth > element.clientWidth
+            ) {
+              overflowRef.current = true
+              console.log("元素溢出了！!!!!", colIndex, rowIndex)
+            }
+          }}
         >
           {children}
         </div>
