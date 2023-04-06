@@ -17,8 +17,13 @@ export default {
 const Template: StoryFn<SliderProps> = (args) => {
   return (
     <>
-      <div style={{ width: "200px", height: "200px" }}></div>
-      <Slider value={6} />
+      <div style={{ width: "100%", height: "200px" }}>
+        <div style={{ width: "33%" }}></div>
+        <div style={{ width: "67%" }}>
+          <Slider value={6} />
+        </div>
+      </div>
+
       <div style={{ width: "50px", height: "200px" }}></div>
       <Slider value={[0, 2]} isRange={true} />
     </>

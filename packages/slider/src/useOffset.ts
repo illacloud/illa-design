@@ -135,16 +135,18 @@ export const useOffset = (
     startValue: number | number[],
     location: BarLocation,
     onAfterChange?: (v: number | number[]) => void,
+    onChange?: ((v: number | number[]) => void) | undefined,
   ) => {
     if (Array.isArray(startValue)) {
-      onRangeEnd(x, startValue, location, onAfterChange)
-    } else onSingleEnd(x, startValue, onAfterChange)
+      onRangeEnd(x, startValue, location, onAfterChange, onChange)
+    } else onSingleEnd(x, startValue, onAfterChange, onChange)
   }
 
   const onSingleEnd = (
     x: number,
     startValue: number,
     onAfterChange?: (v: number) => void,
+    onChange?: ((v: number | number[]) => void) | undefined,
   ) => {
     let val = startValue + Math.round(x / partLength) * step,
       currentVal,
@@ -157,6 +159,7 @@ export const useOffset = (
       currentVal = val
     }
     onAfterChange && onAfterChange(currentVal)
+    onChange && onChange(currentVal)
     setCurrentValue(currentVal)
     let [_, rightVal] = getOffsetValueFromState(currentVal)
     setRightOffset(rightVal)
@@ -167,6 +170,7 @@ export const useOffset = (
     startValue: number[],
     location: BarLocation,
     onAfterChange?: (v: number[]) => void,
+    onChange?: ((v: number | number[]) => void) | undefined,
   ) => {
     let currentVal,
       [leftValue, rightValue] = startValue
@@ -196,6 +200,7 @@ export const useOffset = (
       }
     }
     onAfterChange && onAfterChange(currentVal)
+    onChange && onChange(currentVal)
     setCurrentValue(currentVal.join(","))
     let [leftVal, rightVal] = getOffsetValueFromState(
       currentVal[1],

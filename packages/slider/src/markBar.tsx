@@ -89,9 +89,13 @@ export const MarkBar = forwardRef<HTMLDivElement, SliderMarkBar>(
         onDragStart={onDragStart}
         onDrag={onDrag}
         onDragEnd={onDragEnd}
-        onMouseDown={(e) => e.stopPropagation()}
+        onMouseDown={(e) => {
+          e.stopPropagation()
+        }}
         onTouchStart={(e) => e.stopPropagation()}
-        onUpdate = {() => {
+        onMouseDownCapture={(e) => e.stopPropagation()}
+        onTouchStartCapture={(e) => e.stopPropagation()}
+        onUpdate={() => {
           rerenderPosition && rerenderPosition()
         }}
         data-location={location}
