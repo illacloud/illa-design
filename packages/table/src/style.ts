@@ -1,6 +1,6 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { TableAlign, TableLayout, TableSize } from "./interface"
 
 export function applySizeStyle(size: TableSize): SerializedStyles {
@@ -41,6 +41,7 @@ export function applyPinedStyle(pined?: boolean): SerializedStyles {
     ? css`
         position: sticky;
         top: 0;
+        z-index: ${zIndex.table + 1};
       `
     : css``
 }
@@ -146,11 +147,14 @@ export const applyHeaderIconLeft = css`
   flex: 0 0 auto;
 `
 
+export const thContentStyle = css`
+  overflow: auto;
+`
+
 export function applyContentContainer(align: TableAlign): SerializedStyles {
   return css`
     justify-content: ${align};
     display: flex;
-    //overflow: auto;
     min-height: 22px;
     align-items: center;
     flex-direction: row;
@@ -158,11 +162,17 @@ export function applyContentContainer(align: TableAlign): SerializedStyles {
 }
 
 export const applyContentStyle = (lastRow?: boolean) => {
-  const positionStyle = lastRow ? css`bottom: 0;` : css`top: 0;`
+  const positionStyle = lastRow
+    ? css`
+        bottom: 0;
+      `
+    : css`
+        top: 0;
+      `
 
   return css`
     ${positionStyle};
-    z-index: 2;
+    z-index: ${zIndex.table};
     opacity: 0;
     width: 100%;
     min-width: 200px;
@@ -295,7 +305,7 @@ export const tableResizerStyle = css`
   top: 0;
   bottom: 0;
   cursor: col-resize;
-  z-index: 2;
+  z-index: ${zIndex.table};
 
   &:hover {
     &:after {

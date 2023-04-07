@@ -6,6 +6,7 @@ import {
   applyContentContainer,
   applySizeStyle,
   applyThStyle,
+  thContentStyle,
 } from "./style"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
@@ -50,7 +51,10 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
         {...otherProps}
       >
         <div
-          css={applyContentContainer(align ?? tableContext?.align ?? "left")}
+          css={[
+            applyContentContainer(align ?? tableContext?.align ?? "left"),
+            thContentStyle,
+          ]}
         >
           {children}
         </div>
