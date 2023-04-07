@@ -199,6 +199,7 @@ export function applyPreContainer(align: TableAlign): SerializedStyles {
     flex-direction: row;
     flex-grow: 1;
     width: 100%;
+    overflow: hidden;
   `
 }
 

@@ -197,10 +197,6 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     enableColumnResizing,
     columnResizeMode: "onChange",
     autoResetAll: true,
-    getColumnCanGlobalFilter: (column) => {
-      console.log("getColumnCanGlobalFilter", column)
-      return true
-    },
     onStateChange: (state) => {
       console.log("onStateChange", table.getState())
     },
@@ -386,7 +382,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                                 <SorterDefaultIcon _css={applyHeaderIconLeft} />
                               ))}
                           </div>
-                          {header.column.getCanResize()&& !lastCol ? (
+                          {header.column.getCanResize() && !lastCol ? (
                             <div
                               css={tableResizerStyle}
                               onTouchStart={header.getResizeHandler()}

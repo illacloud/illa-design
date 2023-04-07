@@ -73,7 +73,6 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
               element.scrollWidth > element.clientWidth
             ) {
               setOverflow(true)
-              console.log("元素溢出了！!!!!", colIndex, rowIndex)
             }
           }}
         >
