@@ -385,8 +385,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                           {header.column.getCanResize() && !lastCol ? (
                             <div
                               css={tableResizerStyle}
-                              onTouchStart={header.getResizeHandler()}
-                              onMouseDown={header.getResizeHandler()}
+                              onTouchStart={(event) => {
+                                header.getResizeHandler()(event)
+                                event.stopPropagation()
+                              }}
+                              onMouseDown={(event) => {
+                                header.getResizeHandler()(event)
+                                event.stopPropagation()
+                              }}
                             />
                           ) : null}
                         </Th>
