@@ -24,6 +24,7 @@ import {
   PaginationState,
   SortingState,
   useReactTable,
+  ColumnSizingState,
 } from "@tanstack/react-table"
 import { Checkbox } from "@illa-design/checkbox"
 import {
@@ -89,6 +90,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     emptyProps,
     columnVisibility,
     pagination,
+    columnSizing: _columnSizing = {},
     enableColumnResizing,
     multiRowSelection = false,
     enableRowSelection = true,
@@ -102,6 +104,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     onPaginationChange,
     onColumnFiltersChange,
     onRowSelectionChange,
+    onColumnSizingChange,
     ...otherProps
   } = props
 
@@ -129,6 +132,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     pageIndex: 0,
     pageSize: 10,
   })
+  const [columnSizing, setColumnSizing] =
+    useState<ColumnSizingState>(_columnSizing)
 
   const _columns = useMemo(() => {
     const current = currentColumns?.filter((item) => {
@@ -189,6 +194,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       globalFilter,
       sorting,
       rowSelection,
+      columnSizing,
       pagination: {
         pageIndex,
         pageSize,
@@ -197,19 +203,19 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     enableColumnResizing,
     columnResizeMode: "onChange",
     autoResetAll: true,
-    onStateChange: (state) => {
-      console.log("onStateChange", table.getState())
-    },
     enableMultiRowSelection,
     enableSorting: !disableSortBy,
     globalFilterFn: customGlobalFn,
+    onColumnSizingChange: (columnSizing) => {
+      setColumnSizing(columnSizing)
+      onColumnSizingChange?.(table.getState().columnSizing)
+    },
     onPaginationChange: (pagination) => {
-      new Promise((resolve) => {
-        setPagination(pagination)
-        resolve(true)
-      }).then(() => {
-        onPaginationChange?.(table.getState().pagination)
-      })
+      setPagination(pagination)
+      onPaginationChange?.(
+        table.getState().pagination,
+        table.getRowModel().rows,
+      )
     },
     onSortingChange: (columnSort) => {
       setSorting(columnSort)
@@ -315,10 +321,10 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     (pageNumber: number, pageSize: number) => {
       const paginationUpdate = { pageIndex: pageNumber - 1, pageSize }
       setPagination(paginationUpdate)
-      onPaginationChange?.(paginationUpdate)
+      onPaginationChange?.(paginationUpdate, table.getRowModel().rows)
       console.log("onPaginationChange", paginationUpdate)
     },
-    [setPagination],
+    [setPagination, table.getRowModel().rows],
   )
 
   return (
