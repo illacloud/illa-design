@@ -116,7 +116,7 @@ export const notLessThan: FilterFn<any> = (
 const more = (a: any, b: any) => {
   const numericB = Number(b)
   const numericA = Number(a)
-  return numericA < numericB
+  return numericA > numericB
 }
 
 export const moreThan: FilterFn<any> = (
