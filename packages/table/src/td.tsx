@@ -1,4 +1,10 @@
-import { forwardRef, useContext, useRef, useState } from "react"
+import {
+  forwardRef,
+  useContext,
+  useRef,
+  useState,
+  useEffect
+} from "react";
 import { TdProps } from "./interface"
 import {
   applyBorderStyle,
@@ -16,6 +22,7 @@ import { applyBoxStyle } from "@illa-design/theme"
 export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
   (props, ref) => {
     const {
+      w,
       size,
       borderedCell,
       striped,
@@ -32,6 +39,15 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
 
     const tableContext = useContext(TableContext)
     const [overflow, setOverflow] = useState(false)
+    const contentRef = useRef<HTMLDivElement>()
+    useEffect(() => {
+      const element = contentRef?.current
+
+      if (element) {
+        const hasOverflow = element.scrollHeight > element.clientHeight
+        setOverflow(hasOverflow)
+      }
+    }, [w])
 
     return (
       <td
@@ -52,7 +68,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
         ref={ref}
         {...otherProps}
       >
-        {overflow && (
+        {overflow ? (
           <div css={applyContentStyle(lastRow)}>
             <div
               css={[
@@ -63,11 +79,12 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
               {children}
             </div>
           </div>
-        )}
+        ) : null}
         <div
           css={textOverflowStyle}
           ref={(element) => {
             if (!element) return
+            contentRef.current = element
             if (
               element.scrollHeight > element.clientHeight ||
               element.scrollWidth > element.clientWidth
