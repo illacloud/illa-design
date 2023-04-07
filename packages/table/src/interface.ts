@@ -12,7 +12,7 @@ import {
   RowSelectionState,
   SortingState,
   VisibilityState,
-  Row,
+  Table,
 } from "@tanstack/react-table"
 import { EmptyProps } from "@illa-design/empty"
 import { PaginationProps } from "@illa-design/pagination"
@@ -78,7 +78,7 @@ export interface TableProps<D extends TableData, TValue>
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
   onPaginationChange?: (
     paginationState: PaginationState,
-    rows: Row<D>[],
+    table: Table<D>,
   ) => void
   onRowSelectionChange?: (rowSelection?: RowSelectionState) => void
   onColumnSizingChange?: (columnSizing?: ColumnSizingState) => void

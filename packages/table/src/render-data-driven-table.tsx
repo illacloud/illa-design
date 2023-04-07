@@ -212,10 +212,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     },
     onPaginationChange: (pagination) => {
       setPagination(pagination)
-      onPaginationChange?.(
-        table.getState().pagination,
-        table.getRowModel().rows,
-      )
+      onPaginationChange?.(table.getState().pagination, table)
     },
     onSortingChange: (columnSort) => {
       setSorting(columnSort)
@@ -321,10 +318,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     (pageNumber: number, pageSize: number) => {
       const paginationUpdate = { pageIndex: pageNumber - 1, pageSize }
       setPagination(paginationUpdate)
-      onPaginationChange?.(paginationUpdate, table.getRowModel().rows)
-      console.log("onPaginationChange", paginationUpdate)
+      onPaginationChange?.(paginationUpdate, table)
     },
-    [setPagination, table.getRowModel().rows],
+    [setPagination, table],
   )
 
   return (
