@@ -8,22 +8,22 @@ export function applySizeStyle(size: TableSize): SerializedStyles {
   switch (size) {
     case "small":
       paddingStyle = css`
-        padding: 12px 16px;
+        padding: 2px 16px;
       `
       break
     case "medium":
       paddingStyle = css`
-        padding: 14px 16px;
+        padding: 4px 16px;
       `
       break
     case "large":
       paddingStyle = css`
-        padding: 16px 16px;
+        padding: 6px 16px;
       `
       break
   }
   return css`
-    min-height: 22px;
+    min-height: 37px;
     ${paddingStyle};
   `
 }
@@ -93,7 +93,7 @@ export function applyNormalStyle(): SerializedStyles {
     display: flex;
     position: relative;
     font-size: 14px;
-    min-height: 22px;
+    min-height: 37px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 
     &:last-of-type {
@@ -155,7 +155,7 @@ export function applyContentContainer(align: TableAlign): SerializedStyles {
   return css`
     justify-content: ${align};
     display: flex;
-    min-height: 22px;
+    min-height: 37px;
     align-items: center;
     flex-direction: row;
   `
@@ -177,7 +177,7 @@ export const applyContentStyle = (lastRow?: boolean) => {
     width: 100%;
     min-width: 200px;
     max-width: 100%;
-    min-height: 22px;
+    min-height: 37px;
     max-height: 96px;
     position: absolute;
     left: 0;
