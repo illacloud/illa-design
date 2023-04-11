@@ -48,7 +48,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
           const hasOverflow = element.scrollHeight > element.clientHeight;
           setOverflow(hasOverflow);
         }
-      }, 300), // 设置延迟时间，比如 300 毫秒
+      }, 300),
       []
     );
 
@@ -58,7 +58,6 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
         checkOverflow(element);
       }
 
-      // 当组件卸载时，取消 debounce 调用
       return () => {
         checkOverflow.cancel();
       };
