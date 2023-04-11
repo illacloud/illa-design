@@ -23,7 +23,8 @@ export function applySizeStyle(size: TableSize): SerializedStyles {
       break
   }
   return css`
-    min-height: 37px;
+    box-sizing: border-box;
+    min-height: 50px;
     ${paddingStyle};
   `
 }
@@ -90,10 +91,11 @@ export function applyThStyle(): SerializedStyles {
 
 export function applyNormalStyle(): SerializedStyles {
   return css`
+    box-sizing: border-box;
     display: flex;
     position: relative;
     font-size: 14px;
-    min-height: 37px;
+    min-height: 50px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 
     &:last-of-type {
@@ -148,16 +150,17 @@ export const applyHeaderIconLeft = css`
 `
 
 export const thContentStyle = css`
-  overflow: auto;
+  overflow: hidden;
 `
 
 export function applyContentContainer(align: TableAlign): SerializedStyles {
   return css`
     justify-content: ${align};
     display: flex;
-    min-height: 37px;
+    min-height: 50px;
     align-items: center;
     flex-direction: row;
+    box-sizing: border-box;
   `
 }
 
@@ -177,7 +180,7 @@ export const applyContentStyle = (lastRow?: boolean) => {
     width: 100%;
     min-width: 200px;
     max-width: 100%;
-    min-height: 37px;
+    min-height: 50px;
     max-height: 96px;
     position: absolute;
     left: 0;
@@ -192,6 +195,9 @@ export const showRealContentSizeLimitStyle = css`
   word-break: break-word;
   overflow-y: scroll;
   max-height: 96px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 `
 
 export const textOverflowStyle = css`

@@ -45,19 +45,14 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
             lastCol,
             lastRow,
           ),
+          applyContentContainer(align ?? tableContext?.align ?? "left"),
+          thContentStyle,
           applyBoxStyle(props),
         )}
         ref={ref}
         {...otherProps}
       >
-        <div
-          css={[
-            applyContentContainer(align ?? tableContext?.align ?? "left"),
-            thContentStyle,
-          ]}
-        >
           {children}
-        </div>
       </th>
     )
   },

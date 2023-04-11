@@ -3,7 +3,7 @@ import {
   useContext,
   useRef,
   useState,
-  useEffect
+  useEffect, useCallback
 } from "react";
 import { TdProps } from "./interface"
 import {
@@ -18,6 +18,7 @@ import {
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
 import { applyBoxStyle } from "@illa-design/theme"
+import debounce from "lodash.debounce"
 
 export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
   (props, ref) => {
@@ -40,14 +41,28 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
     const tableContext = useContext(TableContext)
     const [overflow, setOverflow] = useState(false)
     const contentRef = useRef<HTMLDivElement>()
-    useEffect(() => {
-      const element = contentRef?.current
 
+    const checkOverflow = useCallback(
+      debounce((element) => {
+        if (element) {
+          const hasOverflow = element.scrollHeight > element.clientHeight;
+          setOverflow(hasOverflow);
+        }
+      }, 300), // 设置延迟时间，比如 300 毫秒
+      []
+    );
+
+    useEffect(() => {
+      const element = contentRef?.current;
       if (element) {
-        const hasOverflow = element.scrollHeight > element.clientHeight
-        setOverflow(hasOverflow)
+        checkOverflow(element);
       }
-    }, [w])
+
+      // 当组件卸载时，取消 debounce 调用
+      return () => {
+        checkOverflow.cancel();
+      };
+    }, [w, checkOverflow]);
 
     return (
       <td
