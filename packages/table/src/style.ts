@@ -164,7 +164,7 @@ export function applyContentContainer(align: TableAlign): SerializedStyles {
   `
 }
 
-export const applyContentStyle = (lastRow?: boolean) => {
+export const applyOverflowContentStyle = (lastRow?: boolean) => {
   const positionStyle = lastRow
     ? css`
         bottom: 0;

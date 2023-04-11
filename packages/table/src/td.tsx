@@ -9,7 +9,7 @@ import { TdProps } from "./interface"
 import {
   applyBorderStyle,
   applyContentContainer,
-  applyContentStyle,
+  applyOverflowContentStyle,
   applyNormalStyle,
   applySizeStyle,
   showRealContentSizeLimitStyle,
@@ -83,7 +83,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
         {...otherProps}
       >
         {overflow ? (
-          <div css={applyContentStyle(lastRow)}>
+          <div css={applyOverflowContentStyle(lastRow)}>
             <div
               css={[
                 applySizeStyle(size ?? tableContext?.size ?? "medium"),
