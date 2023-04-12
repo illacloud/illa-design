@@ -52,7 +52,7 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
         ref={ref}
         {...otherProps}
       >
-          {children}
+        {children}
       </th>
     )
   },

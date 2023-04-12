@@ -104,7 +104,7 @@ export function applyNormalStyle(): SerializedStyles {
 
     &:hover > div:first-of-type {
       display: inherit;
-      opacity: 1;
+      visibility: visible;
     }
   `
 }
@@ -164,26 +164,22 @@ export function applyContentContainer(align: TableAlign): SerializedStyles {
   `
 }
 
-export const applyOverflowContentStyle = (lastRow?: boolean) => {
-  const positionStyle = lastRow
-    ? css`
-        bottom: 0;
-      `
-    : css`
-        top: 0;
-      `
-
+export const applyOverflowContentStyle = (
+  lastRow?: boolean,
+  lastCol?: boolean,
+) => {
   return css`
-    ${positionStyle};
     z-index: ${zIndex.table};
-    opacity: 0;
+    visibility: hidden;
     width: 100%;
-    min-width: 200px;
+    min-width: 100px;
     max-width: 100%;
     min-height: 50px;
     max-height: 96px;
     position: absolute;
     left: 0;
+    ${lastCol ? "right" : "left"}: 0;
+    ${lastRow ? "bottom" : "top"}: 0;
     background-color: white;
     border: solid 1px ${globalColor(`--${illaPrefix}-blue-03`)};
     box-sizing: border-box;
@@ -200,10 +196,15 @@ export const showRealContentSizeLimitStyle = css`
   flex-wrap: wrap;
 `
 
+export const tableTdStyle = css`
+  width: 100%;
+`
+
 export const textOverflowStyle = css`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  width: 100%;
 `
 
 export function applyPreContainer(align: TableAlign): SerializedStyles {
@@ -320,8 +321,8 @@ export const tableResizerStyle = css`
       z-index: -1;
       top: 0;
       bottom: 0;
-      right: 2px;
-      background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
+      right: 3px;
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
       width: 1px;
     }
   }

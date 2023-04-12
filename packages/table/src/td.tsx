@@ -1,10 +1,4 @@
-import {
-  forwardRef,
-  useContext,
-  useRef,
-  useState,
-  useEffect, useCallback
-} from "react";
+import { forwardRef, useContext, useRef, useState, useEffect } from "react"
 import { TdProps } from "./interface"
 import {
   applyBorderStyle,
@@ -14,6 +8,7 @@ import {
   applySizeStyle,
   showRealContentSizeLimitStyle,
   textOverflowStyle,
+  tableTdStyle,
 } from "./style"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
@@ -42,30 +37,27 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
     const [overflow, setOverflow] = useState(false)
     const contentRef = useRef<HTMLDivElement>()
 
-    const checkOverflow = useCallback(
-      debounce((element) => {
-        if (element) {
-          const hasOverflow = element.scrollHeight > element.clientHeight;
-          setOverflow(hasOverflow);
-        }
-      }, 300),
-      []
-    );
+    const checkOverflow = debounce((element) => {
+      if (element) {
+        const hasOverflow = element.scrollHeight > element.clientHeight
+        setOverflow(hasOverflow)
+      }
+    }, 300)
 
     useEffect(() => {
-      const element = contentRef?.current;
+      const element = contentRef?.current
       if (element) {
-        checkOverflow(element);
+        checkOverflow(element)
       }
-
       return () => {
-        checkOverflow.cancel();
-      };
-    }, [w, checkOverflow]);
+        checkOverflow.cancel()
+      }
+    }, [w, checkOverflow])
 
     return (
       <td
         css={css(
+          tableTdStyle,
           applyNormalStyle(),
           applySizeStyle(size ?? tableContext?.size ?? "medium"),
           applyBorderStyle(
@@ -83,7 +75,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
         {...otherProps}
       >
         {overflow ? (
-          <div css={applyOverflowContentStyle(lastRow)}>
+          <div css={applyOverflowContentStyle(lastRow, lastCol)}>
             <div
               css={[
                 applySizeStyle(size ?? tableContext?.size ?? "medium"),

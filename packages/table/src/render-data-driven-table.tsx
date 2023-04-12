@@ -320,7 +320,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       setPagination(paginationUpdate)
       onPaginationChange?.(paginationUpdate, table)
     },
-    [setPagination, table],
+    [onPaginationChange, setPagination, table],
   )
 
   return (
