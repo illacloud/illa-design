@@ -37,22 +37,24 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
     const [overflow, setOverflow] = useState(false)
     const contentRef = useRef<HTMLDivElement>()
 
-    const checkOverflow = debounce((element) => {
+    const checkOverflow = (element: HTMLDivElement) => {
       if (element) {
         const hasOverflow = element.scrollHeight > element.clientHeight
         setOverflow(hasOverflow)
       }
-    }, 300)
+    }
 
     useEffect(() => {
+      const debouncedCheckOverflow = debounce(checkOverflow, 300)
+
       const element = contentRef?.current
       if (element) {
-        checkOverflow(element)
+        debouncedCheckOverflow(element)
       }
       return () => {
-        checkOverflow.cancel()
+        debouncedCheckOverflow.cancel()
       }
-    }, [w, checkOverflow])
+    }, [w])
 
     return (
       <td
