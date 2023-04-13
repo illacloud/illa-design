@@ -388,11 +388,17 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                             <div
                               css={tableResizerStyle}
                               onTouchStart={(event) => {
-                                header.getResizeHandler()(event)
                                 event.stopPropagation()
+                                header.getResizeHandler()(event)
                               }}
                               onMouseDown={(event) => {
+                                event.stopPropagation()
                                 header.getResizeHandler()(event)
+                              }}
+                              onMouseDownCapture={(event) => {
+                                event.stopPropagation()
+                              }}
+                              onTouchStartCapture={(event) => {
                                 event.stopPropagation()
                               }}
                             />
