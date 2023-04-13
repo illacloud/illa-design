@@ -77,7 +77,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
         {...otherProps}
       >
         {overflow ? (
-          <div css={applyOverflowContentStyle(lastRow, lastCol)}>
+          <div css={applyOverflowContentStyle((lastRow && rowIndex !== 0), lastCol)}>
             <div
               css={[
                 applySizeStyle(size ?? tableContext?.size ?? "medium"),
