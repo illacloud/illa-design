@@ -7,6 +7,7 @@ import {
 } from "./interface"
 import {
   ReactElement,
+  SyntheticEvent,
   useCallback,
   useEffect,
   useMemo,
@@ -147,18 +148,18 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
           enableSorting: false,
           header: checkAll
             ? ({ table }) => {
-                return (
-                  <Checkbox
-                    {...{
-                      checked: table.getIsAllRowsSelected(),
-                      indeterminate: table.getIsSomeRowsSelected(),
-                      onChange: (v, event) => {
-                        table?.getToggleAllRowsSelectedHandler()?.(event)
-                      },
-                    }}
-                  />
-                )
-              }
+              return (
+                <Checkbox
+                  {...{
+                    checked: table.getIsAllRowsSelected(),
+                    indeterminate: table.getIsSomeRowsSelected(),
+                    onChange: (v, event) => {
+                      table?.getToggleAllRowsSelectedHandler()?.(event)
+                    },
+                  }}
+                />
+              )
+            }
             : "",
           cell: ({ row }) => {
             return (
@@ -219,7 +220,6 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       onSortingChange?.(columnSort)
     },
     onGlobalFilterChange: (globalFilter) => {
-      console.log("onGlobalFilterChange", globalFilter)
       onColumnFiltersChange?.(globalFilter)
     },
     onColumnFiltersChange: (columnFilter) => {
@@ -346,6 +346,12 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                       const lastCol =
                         headerGroup.headers.indexOf(header) ===
                         headerGroup.headers.length - 1
+
+                      const handleResizeEvent = (event: SyntheticEvent) => {
+                        header.getResizeHandler()(event)
+                        event.stopPropagation()
+                      }
+
                       return (
                         <Th
                           w={`${header.getSize()}px`}
@@ -387,20 +393,10 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                           {header.column.getCanResize() && !lastCol ? (
                             <div
                               css={tableResizerStyle}
-                              onTouchStart={(event) => {
-                                event.stopPropagation()
-                                header.getResizeHandler()(event)
-                              }}
-                              onMouseDown={(event) => {
-                                event.stopPropagation()
-                                header.getResizeHandler()(event)
-                              }}
-                              onMouseDownCapture={(event) => {
-                                event.stopPropagation()
-                              }}
-                              onTouchStartCapture={(event) => {
-                                event.stopPropagation()
-                              }}
+                              onTouchStart={handleResizeEvent}
+                              onMouseDown={handleResizeEvent}
+                              onMouseDownCapture={handleResizeEvent}
+                              onTouchStartCapture={handleResizeEvent}
                             />
                           ) : null}
                         </Th>
@@ -475,9 +471,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                              header.column.columnDef.footer,
-                              header.getContext(),
-                            )}
+                            header.column.columnDef.footer,
+                            header.getContext(),
+                          )}
                       </Th>
                     ))}
                   </Tr>

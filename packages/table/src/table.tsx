@@ -10,6 +10,7 @@ export function Table<D extends TableData, TValue>(
     columns,
     data,
     onSortingChange,
+    onColumnSizingChange,
     onColumnFiltersChange,
     onRowSelectionChange,
     onPaginationChange,
