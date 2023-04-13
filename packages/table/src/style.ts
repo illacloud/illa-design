@@ -1,6 +1,6 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { TableAlign, TableLayout, TableSize } from "./interface"
 
 export function applySizeStyle(size: TableSize): SerializedStyles {
@@ -8,21 +8,25 @@ export function applySizeStyle(size: TableSize): SerializedStyles {
   switch (size) {
     case "small":
       paddingStyle = css`
-        padding: 12px 16px;
+        padding: 2px 16px;
       `
       break
     case "medium":
       paddingStyle = css`
-        padding: 14px 16px;
+        padding: 4px 16px;
       `
       break
     case "large":
       paddingStyle = css`
-        padding: 16px 16px;
+        padding: 6px 16px;
       `
       break
   }
-  return paddingStyle
+  return css`
+    box-sizing: border-box;
+    min-height: 50px;
+    ${paddingStyle};
+  `
 }
 
 export function applyContainerStyle(): SerializedStyles {
@@ -38,6 +42,7 @@ export function applyPinedStyle(pined?: boolean): SerializedStyles {
     ? css`
         position: sticky;
         top: 0;
+        z-index: ${zIndex.table + 1};
       `
     : css``
 }
@@ -71,18 +76,36 @@ export function applyBorderStyle(
 
 export function applyThStyle(): SerializedStyles {
   return css`
+    display: flex;
+    position: relative;
     font-size: 14px;
     font-weight: bold;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+
+    &:last-of-type {
+      flex: 1 1 auto;
+    }
   `
 }
 
 export function applyNormalStyle(): SerializedStyles {
   return css`
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
     font-size: 14px;
-    min-height: 22px;
+    min-height: 50px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+
+    &:last-of-type {
+      flex: 1 1 auto;
+    }
+
+    &:hover > div:first-of-type {
+      display: inherit;
+      visibility: visible;
+    }
   `
 }
 
@@ -111,6 +134,7 @@ export function applySelectedStyle(selected?: boolean): SerializedStyles {
 
   return css`
     background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
     }
@@ -122,18 +146,66 @@ export const applyHeaderIconLeft = css`
   width: 16px;
   height: 16px;
   flex-wrap: wrap;
+  flex: 0 0 auto;
+`
+
+export const thContentStyle = css`
+  overflow: hidden;
 `
 
 export function applyContentContainer(align: TableAlign): SerializedStyles {
   return css`
     justify-content: ${align};
     display: flex;
-    overflow: auto;
-    min-height: 22px;
+    min-height: 50px;
     align-items: center;
     flex-direction: row;
+    box-sizing: border-box;
   `
 }
+
+export const applyOverflowContentStyle = (
+  lastRow?: boolean,
+  lastCol?: boolean,
+) => {
+  return css`
+    z-index: ${zIndex.table};
+    visibility: hidden;
+    width: 100%;
+    min-width: 100px;
+    max-width: 100%;
+    min-height: 50px;
+    max-height: 96px;
+    position: absolute;
+    left: 0;
+    ${lastCol ? "right" : "left"}: 0;
+    ${lastRow ? "bottom" : "top"}: 0;
+    background-color: white;
+    border: solid 1px ${globalColor(`--${illaPrefix}-blue-03`)};
+    box-sizing: border-box;
+  `
+}
+
+export const showRealContentSizeLimitStyle = css`
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-y: scroll;
+  max-height: 96px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+`
+
+export const tableTdStyle = css`
+  width: 100%;
+`
+
+export const textOverflowStyle = css`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+`
 
 export function applyPreContainer(align: TableAlign): SerializedStyles {
   return css`
@@ -144,6 +216,7 @@ export function applyPreContainer(align: TableAlign): SerializedStyles {
     flex-direction: row;
     flex-grow: 1;
     width: 100%;
+    overflow: hidden;
   `
 }
 
@@ -217,4 +290,40 @@ export const editorStyle = css`
 export const editorButtonStyle = css`
   text-align: end;
   margin-right: 30px;
+`
+
+export const applyResizerTableHeaderStyle = (
+  enableColumnResizing?: boolean,
+) => {
+  return enableColumnResizing
+    ? css`
+        &:hover > tr > th:not(:last-of-type) {
+          border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+        }
+      `
+    : css``
+}
+
+export const tableResizerStyle = css`
+  display: inline-block;
+  position: absolute;
+  width: 6px;
+  right: -3px;
+  top: 0;
+  bottom: 0;
+  cursor: col-resize;
+  z-index: ${zIndex.table};
+
+  &:hover {
+    &:after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      right: 3px;
+      background-color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+      width: 1px;
+    }
+  }
 `

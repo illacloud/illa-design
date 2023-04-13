@@ -7,6 +7,7 @@ import {
 } from "./interface"
 import {
   ReactElement,
+  SyntheticEvent,
   useCallback,
   useEffect,
   useMemo,
@@ -24,6 +25,7 @@ import {
   PaginationState,
   SortingState,
   useReactTable,
+  ColumnSizingState,
 } from "@tanstack/react-table"
 import { Checkbox } from "@illa-design/checkbox"
 import {
@@ -41,6 +43,7 @@ import {
   applyTableStyle,
   headerStyle,
   spinStyle,
+  tableResizerStyle,
   toolBarStyle,
 } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
@@ -88,6 +91,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     emptyProps,
     columnVisibility,
     pagination,
+    columnSizing: _columnSizing = {},
+    enableColumnResizing,
     multiRowSelection = false,
     enableRowSelection = true,
     clickOutsideToResetRowSelect,
@@ -100,6 +105,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     onPaginationChange,
     onColumnFiltersChange,
     onRowSelectionChange,
+    onColumnSizingChange,
     ...otherProps
   } = props
 
@@ -111,6 +117,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     hoverable,
     showHeader,
     showFooter,
+    enableColumnResizing,
   } as TableContextProps
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -126,6 +133,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     pageIndex: 0,
     pageSize: 10,
   })
+  const [columnSizing, setColumnSizing] =
+    useState<ColumnSizingState>(_columnSizing)
 
   const _columns = useMemo(() => {
     const current = currentColumns?.filter((item) => {
@@ -139,18 +148,18 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
           enableSorting: false,
           header: checkAll
             ? ({ table }) => {
-                return (
-                  <Checkbox
-                    {...{
-                      checked: table.getIsAllRowsSelected(),
-                      indeterminate: table.getIsSomeRowsSelected(),
-                      onChange: (v, event) => {
-                        table?.getToggleAllRowsSelectedHandler()?.(event)
-                      },
-                    }}
-                  />
-                )
-              }
+              return (
+                <Checkbox
+                  {...{
+                    checked: table.getIsAllRowsSelected(),
+                    indeterminate: table.getIsSomeRowsSelected(),
+                    onChange: (v, event) => {
+                      table?.getToggleAllRowsSelectedHandler()?.(event)
+                    },
+                  }}
+                />
+              )
+            }
             : "",
           cell: ({ row }) => {
             return (
@@ -186,21 +195,32 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       globalFilter,
       sorting,
       rowSelection,
+      columnSizing,
       pagination: {
         pageIndex,
         pageSize,
       },
     },
+    enableColumnResizing,
+    columnResizeMode: "onChange",
+    autoResetAll: true,
     enableMultiRowSelection,
     enableSorting: !disableSortBy,
     globalFilterFn: customGlobalFn,
+    onColumnSizingChange: (columnSizing) => {
+      setColumnSizing(columnSizing)
+      onColumnSizingChange?.(table.getState().columnSizing)
+    },
     onPaginationChange: (pagination) => {
       setPagination(pagination)
-      onPaginationChange?.(pagination)
+      onPaginationChange?.(table.getState().pagination, table)
     },
     onSortingChange: (columnSort) => {
       setSorting(columnSort)
       onSortingChange?.(columnSort)
+    },
+    onGlobalFilterChange: (globalFilter) => {
+      onColumnFiltersChange?.(globalFilter)
     },
     onColumnFiltersChange: (columnFilter) => {
       setColumnFilters(columnFilter)
@@ -296,9 +316,11 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   const onPageChange = useCallback(
     (pageNumber: number, pageSize: number) => {
-      setPagination({ pageIndex: pageNumber - 1, pageSize })
+      const paginationUpdate = { pageIndex: pageNumber - 1, pageSize }
+      setPagination(paginationUpdate)
+      onPaginationChange?.(paginationUpdate, table)
     },
-    [setPagination],
+    [onPaginationChange, setPagination, table],
   )
 
   return (
@@ -318,48 +340,68 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
           >
             {showHeader && (
               <Thead pinedHeader={pinedHeader}>
-                {table.getHeaderGroups().map((headerGroup) => (
+                {table.getHeaderGroups().map((headerGroup, index) => (
                   <Tr key={headerGroup.id} hoverable>
-                    {headerGroup.headers.map((header) => (
-                      <Th
-                        key={header.id}
-                        colSpan={header.colSpan}
-                        colIndex={headerGroup.headers.indexOf(header)}
-                        rowIndex={table.getHeaderGroups().indexOf(headerGroup)}
-                        lastCol={
-                          headerGroup.headers.indexOf(header) ===
-                          headerGroup.headers.length - 1
-                        }
-                        lastRow={
-                          table.getHeaderGroups().indexOf(headerGroup) ===
-                          table.getHeaderGroups().length - 1
-                        }
-                      >
-                        <div
-                          css={applyPreContainer(align)}
-                          onClick={() => header.column.toggleSorting()}
+                    {headerGroup.headers.map((header) => {
+                      const lastCol =
+                        headerGroup.headers.indexOf(header) ===
+                        headerGroup.headers.length - 1
+
+                      const handleResizeEvent = (event: SyntheticEvent) => {
+                        header.getResizeHandler()(event)
+                        event.stopPropagation()
+                      }
+
+                      return (
+                        <Th
+                          w={`${header.getSize()}px`}
+                          key={header.id}
+                          colSpan={header.colSpan}
+                          colIndex={headerGroup.headers.indexOf(header)}
+                          rowIndex={table
+                            .getHeaderGroups()
+                            .indexOf(headerGroup)}
+                          lastCol={lastCol}
+                          lastRow={
+                            table.getHeaderGroups().indexOf(headerGroup) ===
+                            table.getHeaderGroups().length - 1
+                          }
                         >
-                          {header.isPlaceholder ? null : (
-                            <span css={headerStyle}>
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
-                            </span>
-                          )}
-                          {header.column.getCanSort() &&
-                            (header.column.getIsSorted() ? (
-                              header.column.getIsSorted() === "desc" ? (
-                                <SorterDownIcon _css={applyHeaderIconLeft} />
+                          <div
+                            css={applyPreContainer(align)}
+                            onClick={() => header.column.toggleSorting()}
+                          >
+                            {header.isPlaceholder ? null : (
+                              <span css={headerStyle}>
+                                {flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext(),
+                                )}
+                              </span>
+                            )}
+                            {header.column.getCanSort() &&
+                              (header.column.getIsSorted() ? (
+                                header.column.getIsSorted() === "desc" ? (
+                                  <SorterDownIcon _css={applyHeaderIconLeft} />
+                                ) : (
+                                  <SorterUpIcon _css={applyHeaderIconLeft} />
+                                )
                               ) : (
-                                <SorterUpIcon _css={applyHeaderIconLeft} />
-                              )
-                            ) : (
-                              <SorterDefaultIcon _css={applyHeaderIconLeft} />
-                            ))}
-                        </div>
-                      </Th>
-                    ))}
+                                <SorterDefaultIcon _css={applyHeaderIconLeft} />
+                              ))}
+                          </div>
+                          {header.column.getCanResize() && !lastCol ? (
+                            <div
+                              css={tableResizerStyle}
+                              onTouchStart={handleResizeEvent}
+                              onMouseDown={handleResizeEvent}
+                              onMouseDownCapture={handleResizeEvent}
+                              onTouchStartCapture={handleResizeEvent}
+                            />
+                          ) : null}
+                        </Th>
+                      )
+                    })}
                   </Tr>
                 ))}
               </Thead>
@@ -378,6 +420,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 >
                   {row.getVisibleCells().map((cell) => (
                     <Td
+                      w={`${cell.column.getSize()}px`}
                       key={cell.id}
                       colIndex={row.getVisibleCells().indexOf(cell)}
                       rowIndex={table.getRowModel().rows.indexOf(row)}
@@ -428,9 +471,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                              header.column.columnDef.footer,
-                              header.getContext(),
-                            )}
+                            header.column.columnDef.footer,
+                            header.getContext(),
+                          )}
                       </Th>
                     ))}
                   </Tr>

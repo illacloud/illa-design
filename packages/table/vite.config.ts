@@ -54,6 +54,7 @@ export default defineConfig({
         "@illa-design/input",
         "chroma-js",
         "react-fast-compare",
+        "lodash.debounce",
       ],
       output: {
         globals: {
@@ -77,6 +78,7 @@ export default defineConfig({
           "@illa-design/input": "@illa-design/input",
           "chroma-js": "chroma-js",
           "react-fast-compare": "react-fast-compare",
+          "lodash.debounce": "@lodash/debounce",
         },
       },
     },

@@ -1,18 +1,24 @@
-import { forwardRef, useContext } from "react"
+import { forwardRef, useContext, useRef, useState, useEffect } from "react"
 import { TdProps } from "./interface"
 import {
   applyBorderStyle,
   applyContentContainer,
+  applyOverflowContentStyle,
   applyNormalStyle,
   applySizeStyle,
+  showRealContentSizeLimitStyle,
+  textOverflowStyle,
+  tableTdStyle,
 } from "./style"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
 import { applyBoxStyle } from "@illa-design/theme"
+import debounce from "lodash.debounce"
 
 export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
   (props, ref) => {
     const {
+      w,
       size,
       borderedCell,
       striped,
@@ -28,10 +34,32 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
     } = props
 
     const tableContext = useContext(TableContext)
+    const [overflow, setOverflow] = useState(false)
+    const contentRef = useRef<HTMLDivElement>()
+
+    const checkOverflow = (element: HTMLDivElement) => {
+      if (element) {
+        const hasOverflow = element.scrollHeight > element.clientHeight
+        setOverflow(hasOverflow)
+      }
+    }
+
+    useEffect(() => {
+      const debouncedCheckOverflow = debounce(checkOverflow, 300)
+
+      const element = contentRef?.current
+      if (element) {
+        debouncedCheckOverflow(element)
+      }
+      return () => {
+        debouncedCheckOverflow.cancel()
+      }
+    }, [w])
 
     return (
       <td
         css={css(
+          tableTdStyle,
           applyNormalStyle(),
           applySizeStyle(size ?? tableContext?.size ?? "medium"),
           applyBorderStyle(
@@ -43,12 +71,35 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
             lastRow,
           ),
           applyBoxStyle(props),
+          applyContentContainer(align ?? tableContext?.align ?? "left"),
         )}
         ref={ref}
         {...otherProps}
       >
+        {overflow ? (
+          <div css={applyOverflowContentStyle((lastRow && rowIndex !== 0), lastCol)}>
+            <div
+              css={[
+                applySizeStyle(size ?? tableContext?.size ?? "medium"),
+                showRealContentSizeLimitStyle,
+              ]}
+            >
+              {children}
+            </div>
+          </div>
+        ) : null}
         <div
-          css={applyContentContainer(align ?? tableContext?.align ?? "left")}
+          css={textOverflowStyle}
+          ref={(element) => {
+            if (!element) return
+            contentRef.current = element
+            if (
+              element.scrollHeight > element.clientHeight ||
+              element.scrollWidth > element.clientWidth
+            ) {
+              setOverflow(true)
+            }
+          }}
         >
           {children}
         </div>
