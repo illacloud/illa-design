@@ -62,7 +62,6 @@ export interface TableProps<D extends TableData, TValue>
   disableSortBy?: boolean
   enableColumnResizing?: boolean
   loading?: boolean
-  columnOverFlow?: boolean
   emptyProps?: EmptyProps
   overFlow?: TableOverFlow
   pagination?: PaginationProps

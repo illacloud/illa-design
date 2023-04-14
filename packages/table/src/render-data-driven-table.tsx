@@ -355,7 +355,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
                       return (
                         <Th
-                          w={enableColumnResizing ?`${header.getSize()}px`: undefined}
+                          w={`${header.getSize()}px`}
                           key={header.id}
                           colSpan={header.colSpan}
                           colIndex={headerGroup.headers.indexOf(header)}
@@ -421,7 +421,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 >
                   {row.getVisibleCells().map((cell) => (
                     <Td
-                      w={enableColumnResizing?`${cell.column.getSize()}px`:undefined}
+                      w={`${cell.column.getSize()}px`}
                       key={cell.id}
                       colIndex={row.getVisibleCells().indexOf(cell)}
                       rowIndex={table.getRowModel().rows.indexOf(row)}
