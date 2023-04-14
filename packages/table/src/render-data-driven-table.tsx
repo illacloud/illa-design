@@ -146,6 +146,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         {
           accessorKey: "select",
           enableSorting: false,
+          enableResizing: false,
           header: checkAll
             ? ({ table }) => {
               return (
@@ -201,7 +202,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize,
       },
     },
-    enableColumnResizing,
+    enableColumnResizing: !!enableColumnResizing,
     columnResizeMode: "onChange",
     autoResetAll: true,
     enableMultiRowSelection,
