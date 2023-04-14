@@ -146,6 +146,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         {
           accessorKey: "select",
           enableSorting: false,
+          enableResizing: false,
           header: checkAll
             ? ({ table }) => {
               return (
@@ -201,7 +202,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize,
       },
     },
-    enableColumnResizing,
+    enableColumnResizing: !!enableColumnResizing,
     columnResizeMode: "onChange",
     autoResetAll: true,
     enableMultiRowSelection,
@@ -354,7 +355,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
                       return (
                         <Th
-                          w={`${header.getSize()}px`}
+                          w={enableColumnResizing ?`${header.getSize()}px`: undefined}
                           key={header.id}
                           colSpan={header.colSpan}
                           colIndex={headerGroup.headers.indexOf(header)}
@@ -420,7 +421,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 >
                   {row.getVisibleCells().map((cell) => (
                     <Td
-                      w={`${cell.column.getSize()}px`}
+                      w={enableColumnResizing?`${cell.column.getSize()}px`:undefined}
                       key={cell.id}
                       colIndex={row.getVisibleCells().indexOf(cell)}
                       rowIndex={table.getRowModel().rows.indexOf(row)}

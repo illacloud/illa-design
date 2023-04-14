@@ -171,6 +171,7 @@ export const applyOverflowContentStyle = (
   return css`
     z-index: ${zIndex.table};
     visibility: hidden;
+    display: none;
     width: 100%;
     min-width: 100px;
     max-width: 100%;
