@@ -196,7 +196,7 @@ export const applyTdStyle = (overflow: boolean) => {
   if (overflow) {
     return css`
       width: 100%;
-      
+
       &:hover > div:first-of-type {
         display: inherit;
         visibility: visible;

@@ -150,18 +150,18 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
           size: 50,
           header: checkAll
             ? ({ table }) => {
-              return (
-                <Checkbox
-                  {...{
-                    checked: table.getIsAllRowsSelected(),
-                    indeterminate: table.getIsSomeRowsSelected(),
-                    onChange: (v, event) => {
-                      table?.getToggleAllRowsSelectedHandler()?.(event)
-                    },
-                  }}
-                />
-              )
-            }
+                return (
+                  <Checkbox
+                    {...{
+                      checked: table.getIsAllRowsSelected(),
+                      indeterminate: table.getIsSomeRowsSelected(),
+                      onChange: (v, event) => {
+                        table?.getToggleAllRowsSelectedHandler()?.(event)
+                      },
+                    }}
+                  />
+                )
+              }
             : "",
           cell: ({ row }) => {
             return (
@@ -473,9 +473,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                            header.column.columnDef.footer,
-                            header.getContext(),
-                          )}
+                              header.column.columnDef.footer,
+                              header.getContext(),
+                            )}
                       </Th>
                     ))}
                   </Tr>
