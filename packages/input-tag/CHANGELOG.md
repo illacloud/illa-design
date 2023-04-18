@@ -1,5 +1,33 @@
 # @illa-design/input-tag
 
+## 1.0.20
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@1.0.20
+  - @illa-design/input@1.0.20
+  - @illa-design/space@1.0.20
+  - @illa-design/system@1.0.20
+  - @illa-design/tag@1.0.20
+  - @illa-design/theme@1.0.20
+
+## 1.0.19
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@1.0.19
+  - @illa-design/input@1.0.19
+  - @illa-design/space@1.0.19
+  - @illa-design/system@1.0.19
+  - @illa-design/tag@1.0.19
+  - @illa-design/theme@1.0.19
+
 ## 1.0.18
 
 ### Patch Changes
