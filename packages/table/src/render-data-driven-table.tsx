@@ -147,6 +147,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
           accessorKey: "select",
           enableSorting: false,
           enableResizing: false,
+          size: 50,
           header: checkAll
             ? ({ table }) => {
               return (

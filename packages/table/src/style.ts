@@ -101,11 +101,6 @@ export function applyNormalStyle(): SerializedStyles {
     &:last-of-type {
       flex: 1 1 auto;
     }
-
-    &:hover > div:first-of-type {
-      display: inherit;
-      visibility: visible;
-    }
   `
 }
 
@@ -197,9 +192,21 @@ export const showRealContentSizeLimitStyle = css`
   flex-wrap: wrap;
 `
 
-export const tableTdStyle = css`
-  width: 100%;
-`
+export const applyTdStyle = (overflow: boolean) => {
+  if (overflow) {
+    return css`
+      width: 100%;
+      
+      &:hover > div:first-of-type {
+        display: inherit;
+        visibility: visible;
+      }
+    `
+  }
+  return css`
+    width: 100%;
+  `
+}
 
 export const textOverflowStyle = css`
   text-overflow: ellipsis;
