@@ -4,6 +4,7 @@ import { BoxProps } from "@illa-design/theme"
 import {
   ColumnDef,
   ColumnFiltersState,
+  ColumnSizingState,
   ColumnSort,
   FilterFnOption,
   OnChangeFn,
@@ -11,6 +12,7 @@ import {
   RowSelectionState,
   SortingState,
   VisibilityState,
+  Table,
 } from "@tanstack/react-table"
 import { EmptyProps } from "@illa-design/empty"
 import { PaginationProps } from "@illa-design/pagination"
@@ -58,6 +60,7 @@ export interface TableProps<D extends TableData, TValue>
   hoverable?: boolean
   defaultSort?: ColumnSort[]
   disableSortBy?: boolean
+  enableColumnResizing?: boolean
   loading?: boolean
   emptyProps?: EmptyProps
   overFlow?: TableOverFlow
@@ -68,12 +71,17 @@ export interface TableProps<D extends TableData, TValue>
   checkAll?: boolean
   download?: boolean
   filter?: boolean
+  columnSizing?: ColumnSizingState
   rowSelection?: RowSelectionState
   columnVisibility?: VisibilityState
   onSortingChange?: OnChangeFn<SortingState>
-  onPaginationChange?: OnChangeFn<PaginationState>
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
+  onPaginationChange?: (
+    paginationState: PaginationState,
+    table: Table<D>,
+  ) => void
   onRowSelectionChange?: (rowSelection?: RowSelectionState) => void
+  onColumnSizingChange?: (columnSizing?: ColumnSizingState) => void
 }
 
 export interface RowSelectionProps<D = any> {
@@ -88,6 +96,7 @@ export interface TableContextProps {
   size?: TableSize
   align?: TableAlign
   hoverable?: boolean
+  enableColumnResizing?: boolean
 }
 
 export interface TBodyProps

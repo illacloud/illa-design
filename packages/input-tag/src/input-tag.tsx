@@ -15,7 +15,6 @@ import {
   applyInputTagPlaceHolderStyle,
   applyPrefixSuffixStyle,
   calcSpanStyle,
-  inputTagPlaceHolderStyle,
   tagsListStyle,
   tagStyle,
 } from "./style"
@@ -103,7 +102,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       return (
         <>
           {finalValue.map((v, i) => {
-            let closeable: boolean = false
+            let closeable: boolean
             if (labelInValue) {
               if ((v as TagObject).closeable === undefined) {
                 closeable = !readOnly
@@ -156,15 +155,16 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
         </>
       )
     }, [
-      labelInValue,
       finalValue,
-      onChange,
-      onRemove,
-      readOnly,
-      renderItem,
-      setFinalValue,
-      size,
+      labelInValue,
+      disabled,
       value,
+      size,
+      renderItem,
+      readOnly,
+      onRemove,
+      onChange,
+      setFinalValue,
     ])
 
     const saveInputValue = () => {

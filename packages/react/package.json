@@ -47,6 +47,7 @@
     "@illa-design/theme": "workspace:*",
     "@illa-design/config-provider": "workspace:*",
     "@illa-design/avatar": "workspace:*",
+    "@illa-design/breadcrumb": "workspace:*",
     "@illa-design/icon": "workspace:*",
     "@illa-design/image": "workspace:*",
     "@illa-design/tag": "workspace:*",
@@ -99,7 +100,8 @@
     "@illa-design/calendar": "workspace:*",
     "@illa-design/date-picker": "workspace:*",
     "@illa-design/time-picker": "workspace:*",
-    "@illa-design/upload": "workspace:*"
+    "@illa-design/upload": "workspace:*",
+    "@illa-design/slider": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",

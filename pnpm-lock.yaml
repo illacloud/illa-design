@@ -834,6 +834,7 @@ importers:
       '@illa-design/avatar': workspace:*
       '@illa-design/back-top': workspace:*
       '@illa-design/badge': workspace:*
+      '@illa-design/breadcrumb': workspace:*
       '@illa-design/button': workspace:*
       '@illa-design/calendar': workspace:*
       '@illa-design/card': workspace:*
@@ -871,6 +872,7 @@ importers:
       '@illa-design/result': workspace:*
       '@illa-design/select': workspace:*
       '@illa-design/skeleton': workspace:*
+      '@illa-design/slider': workspace:*
       '@illa-design/space': workspace:*
       '@illa-design/spin': workspace:*
       '@illa-design/statistic': workspace:*
@@ -894,6 +896,7 @@ importers:
       '@illa-design/avatar': link:../avatar
       '@illa-design/back-top': link:../back-top
       '@illa-design/badge': link:../badge
+      '@illa-design/breadcrumb': link:../breadcrumb
       '@illa-design/button': link:../button
       '@illa-design/calendar': link:../calendar
       '@illa-design/card': link:../card
@@ -931,6 +934,7 @@ importers:
       '@illa-design/result': link:../result
       '@illa-design/select': link:../select
       '@illa-design/skeleton': link:../skeleton
+      '@illa-design/slider': link:../slider
       '@illa-design/space': link:../space
       '@illa-design/spin': link:../spin
       '@illa-design/statistic': link:../statistic
@@ -1003,6 +1007,27 @@ importers:
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.1.0
+
+  packages/slider:
+    specifiers:
+      '@illa-design/icon': workspace:*
+      '@illa-design/system': workspace:*
+      '@illa-design/theme': workspace:*
+      '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
+      framer-motion: ^7.6.12
+      react-use-measure: ^2.1.1
+    dependencies:
+      '@illa-design/icon': link:../icon
+      '@illa-design/system': link:../system
+      '@illa-design/theme': link:../theme
+      '@illa-design/trigger': link:../trigger
+      framer-motion: 7.6.19
+      react-use-measure: 2.1.1
     devDependencies:
       '@rollup/plugin-typescript': 10.0.1
       '@vitejs/plugin-react-swc': 3.1.0
@@ -1116,8 +1141,10 @@ importers:
       '@tanstack/match-sorter-utils': ^8.1.1
       '@tanstack/react-table': ^8.5.11
       '@types/chroma-js': ^2.1.4
+      '@types/lodash.debounce': ^4.0.7
       '@vitejs/plugin-react-swc': ^3.0.1
       chroma-js: ^2.1.2
+      lodash.debounce: ^4.0.8
       react-fast-compare: ^3.2.0
       react-use: ^17.4.0
     dependencies:
@@ -1135,11 +1162,13 @@ importers:
       '@tanstack/match-sorter-utils': 8.7.0
       '@tanstack/react-table': 8.7.0
       chroma-js: 2.4.2
+      lodash.debounce: 4.0.8
       react-fast-compare: 3.2.0
       react-use: 17.4.0
     devDependencies:
       '@rollup/plugin-typescript': 10.0.1
       '@types/chroma-js': 2.1.4
+      '@types/lodash.debounce': 4.0.7
       '@vitejs/plugin-react-swc': 3.1.0
 
   packages/tabs:
@@ -3802,7 +3831,7 @@ packages:
       '@storybook/csf-plugin': 7.0.0-beta.36
       '@storybook/csf-tools': 7.0.0-beta.36
       '@storybook/global': 5.0.0
-      '@storybook/mdx2-csf': 1.0.0-next.5
+      '@storybook/mdx2-csf': 1.0.0-next.8
       '@storybook/node-logger': 7.0.0-beta.36
       '@storybook/postinstall': 7.0.0-beta.36
       '@storybook/preview-api': 7.0.0-beta.36
@@ -3972,7 +4001,7 @@ packages:
       '@storybook/client-logger': 7.0.0-beta.36
       '@storybook/components': 7.0.0-beta.36_biqbaboplfbrettd7655fr4n2y
       '@storybook/core-events': 7.0.0-beta.36
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/docs-tools': 7.0.0-beta.36
       '@storybook/global': 5.0.0
       '@storybook/manager-api': 7.0.0-beta.36_biqbaboplfbrettd7655fr4n2y
@@ -4039,7 +4068,7 @@ packages:
       '@storybook/client-logger': 7.0.0-beta.36
       '@storybook/core-common': 7.0.0-beta.36
       '@storybook/csf-plugin': 7.0.0-beta.36
-      '@storybook/mdx2-csf': 1.0.0-next.5
+      '@storybook/mdx2-csf': 1.0.0-next.8
       '@storybook/node-logger': 7.0.0-beta.36
       '@storybook/preview': 7.0.0-beta.36
       '@storybook/preview-api': 7.0.0-beta.36
@@ -4141,7 +4170,7 @@ packages:
       '@babel/core': 7.20.12
       '@babel/preset-env': 7.20.2_@babel+core@7.20.12
       '@babel/types': 7.20.7
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/csf-tools': 7.0.0-beta.36
       '@storybook/node-logger': 7.0.0-beta.36
       '@storybook/types': 7.0.0-beta.36
@@ -4168,7 +4197,7 @@ packages:
         optional: true
     dependencies:
       '@storybook/client-logger': 7.0.0-beta.36
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/global': 5.0.0
       '@storybook/theming': 7.0.0-beta.36_biqbaboplfbrettd7655fr4n2y
       '@storybook/types': 7.0.0-beta.36
@@ -4231,9 +4260,9 @@ packages:
       '@storybook/builder-manager': 7.0.0-beta.36
       '@storybook/core-common': 7.0.0-beta.36
       '@storybook/core-events': 7.0.0-beta.36
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/csf-tools': 7.0.0-beta.36
-      '@storybook/docs-mdx': 0.0.1-next.6
+      '@storybook/docs-mdx': 0.0.1-next.7
       '@storybook/global': 5.0.0
       '@storybook/node-logger': 7.0.0-beta.36
       '@storybook/preview-api': 7.0.0-beta.36
@@ -4288,7 +4317,7 @@ packages:
     resolution: {integrity: sha512-E64U8zjmbi9zB3ts2qFm9bPMqqxwF4eHfy1swB0rGnAbKY+HjEFS5sEnov5jMudqkU8ECrOpdHIDRdj73eA6iQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@storybook/csf-tools/-/csf-tools-7.0.0-beta.36.tgz}
     dependencies:
       '@babel/types': 7.20.7
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/types': 7.0.0-beta.36
       fs-extra: 11.1.0
       recast: 0.23.1
@@ -4297,14 +4326,14 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/csf/0.0.2-next.10:
-    resolution: {integrity: sha512-m2PFgBP/xRIF85VrDhvesn9ktaD2pN3VUjvMqkAL/cINp/3qXsCyI81uw7N5VEOkQAbWrY2FcydnvEPDEdE8fA==}
+  /@storybook/csf/0.0.2-next.11:
+    resolution: {integrity: sha512-xGt0YSVxZb43sKmEf1GIQD8xEbo+c+S6khDEL7Qu/pYA0gh5z3WUuhOlovnelYj/YJod+XRsfVvk23AaRfUJ4Q==}
     dependencies:
       type-fest: 2.19.0
     dev: true
 
-  /@storybook/docs-mdx/0.0.1-next.6:
-    resolution: {integrity: sha512-DjoSIXADmLJtdroXAjUotFiZlcZ2usWhqrS7aeOtZs0DVR0Ws5WQjnwtpDUXt8gryTSd+OZJ0cNsDcqg4JDEvQ==}
+  /@storybook/docs-mdx/0.0.1-next.7:
+    resolution: {integrity: sha512-JbgBf/EMBtx65iXtB3pOiX3818UeL9jZ+KAY241OAPqJVXjMQ5KaVOdg/57MSmd508HDIGx7CiImOMEmWwQ9/g==}
     dev: true
 
   /@storybook/docs-tools/7.0.0-beta.36:
@@ -4339,7 +4368,7 @@ packages:
       '@storybook/channels': 7.0.0-beta.36
       '@storybook/client-logger': 7.0.0-beta.36
       '@storybook/core-events': 7.0.0-beta.36
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/global': 5.0.0
       '@storybook/router': 7.0.0-beta.36_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 7.0.0-beta.36_biqbaboplfbrettd7655fr4n2y
@@ -4361,8 +4390,8 @@ packages:
     resolution: {integrity: sha512-fNzhk9rq8MNDwXcWl/SYBEv0frBVZ1730hVgXm2cKZWZNMuZrOx86CoORHKzFMmXCyWLMD8I8VnSKsQux1Q8HA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@storybook/manager/-/manager-7.0.0-beta.36.tgz}
     dev: true
 
-  /@storybook/mdx2-csf/1.0.0-next.5:
-    resolution: {integrity: sha512-02w0sgGZaK1agT050yCVhJ+o4rLHANWvLKWjQjeAsYbjneLC5ITt+3GDB4jRiWwJboZ8dHW1fGSK1Vg5fA34aQ==}
+  /@storybook/mdx2-csf/1.0.0-next.8:
+    resolution: {integrity: sha512-t2O5s/HHTH5evZVHgVtCWTZgMZ/CaqDu3xVGgjVbKeTvpPAbi0Waab5SSX8T9PG5jNDei/x+jpAVCcNMOHoWzg==}
     dev: true
 
   /@storybook/node-logger/7.0.0-beta.36:
@@ -4385,7 +4414,7 @@ packages:
       '@storybook/channels': 7.0.0-beta.36
       '@storybook/client-logger': 7.0.0-beta.36
       '@storybook/core-events': 7.0.0-beta.36
-      '@storybook/csf': 0.0.2-next.10
+      '@storybook/csf': 0.0.2-next.11
       '@storybook/global': 5.0.0
       '@storybook/types': 7.0.0-beta.36
       '@types/qs': 6.9.7
@@ -4849,13 +4878,13 @@ packages:
     dev: true
 
   /@types/lodash.debounce/4.0.7:
-    resolution: {integrity: sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@types/lodash.debounce/-/lodash.debounce-4.0.7.tgz}
+    resolution: {integrity: sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==}
     dependencies:
       '@types/lodash': 4.14.191
     dev: true
 
   /@types/lodash/4.14.191:
-    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.191.tgz}
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
     dev: true
 
   /@types/mdx/2.0.3:
@@ -8927,7 +8956,7 @@ packages:
     dev: true
 
   /lodash.debounce/4.0.8:
-    resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz}
+    resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
 
   /lodash.get/4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
@@ -11154,7 +11183,7 @@ packages:
     dev: true
 
   /source-map/0.6.1:
-    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz}
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
     requiresBuild: true
 
