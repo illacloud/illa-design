@@ -8,8 +8,8 @@ import {
   applySizeStyle,
   showRealContentSizeLimitStyle,
   textOverflowStyle,
-  tableTdStyle,
-} from "./style"
+  applyTdStyle
+} from "./style";
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
 import { applyBoxStyle } from "@illa-design/theme"
@@ -59,7 +59,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
     return (
       <td
         css={css(
-          tableTdStyle,
+          applyTdStyle(overflow),
           applyNormalStyle(),
           applySizeStyle(size ?? tableContext?.size ?? "medium"),
           applyBorderStyle(
