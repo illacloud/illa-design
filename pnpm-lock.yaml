@@ -834,6 +834,7 @@ importers:
       '@illa-design/avatar': workspace:*
       '@illa-design/back-top': workspace:*
       '@illa-design/badge': workspace:*
+      '@illa-design/breadcrumb': workspace:*
       '@illa-design/button': workspace:*
       '@illa-design/calendar': workspace:*
       '@illa-design/card': workspace:*
@@ -895,6 +896,7 @@ importers:
       '@illa-design/avatar': link:../avatar
       '@illa-design/back-top': link:../back-top
       '@illa-design/badge': link:../badge
+      '@illa-design/breadcrumb': link:../breadcrumb
       '@illa-design/button': link:../button
       '@illa-design/calendar': link:../calendar
       '@illa-design/card': link:../card

@@ -47,6 +47,7 @@
     "@illa-design/theme": "workspace:*",
     "@illa-design/config-provider": "workspace:*",
     "@illa-design/avatar": "workspace:*",
+    "@illa-design/breadcrumb": "workspace:*",
     "@illa-design/icon": "workspace:*",
     "@illa-design/image": "workspace:*",
     "@illa-design/tag": "workspace:*",
