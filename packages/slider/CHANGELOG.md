@@ -1,5 +1,17 @@
 # @illa-design/slider
 
+## 1.0.18
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@1.0.19
+  - @illa-design/system@1.0.19
+  - @illa-design/theme@1.0.19
+  - @illa-design/trigger@1.0.19
+
 ## 1.0.17
 
 ### Patch Changes
