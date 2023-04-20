@@ -417,7 +417,7 @@ export const pictureItemMask = css`
   line-height: 100px;
   opacity: 0;
   transition: opacity 200ms ease-in-out;
-  background: ${globalColor(`--${illaPrefix}-blackAlpha-02`)};
+  background: ${globalColor(`--${illaPrefix}-blackAlpha-04`)};
   &:hover {
     opacity: 1;
     display: block;
@@ -435,7 +435,7 @@ export const pictureItemUploadingMask = css`
   font-size: 16px;
   line-height: 100px;
   transition: opacity 200ms ease-in-out;
-  background: ${globalColor(`--${illaPrefix}-blackAlpha-02`)};
+  background: ${globalColor(`--${illaPrefix}-blackAlpha-04`)};
   opacity: 1;
   display: block;
   & svg {

@@ -41,7 +41,7 @@ export const applyDrawerMask = css`
   height: 100%;
   top: 0;
   left: 0;
-  background-color: ${globalColor(`--${illaPrefix}-blackAlpha-02`)};
+  background-color: ${globalColor(`--${illaPrefix}-blackAlpha-04`)};
 `
 
 export const applyDrawerHeader = css`
