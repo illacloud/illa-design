@@ -73,14 +73,15 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
       )
     }
     // display dot
-    if (dot && count && count > 0) {
+    if (dot && count && (count as number) > 0) {
       return (
         <span css={applyBadgeDot(colorStyle, hasChildren)} style={dotStyle} />
       )
     }
 
-    let renderCount = count && count > maxCount ? `${maxCount}+` : `${count}`
-    return count && count > 0 ? (
+    let renderCount =
+      count && (count as number) > maxCount ? `${maxCount}+` : `${count}`
+    return count && (count as number) > 0 ? (
       <Count
         count={renderCount}
         hasChildren={hasChildren}
