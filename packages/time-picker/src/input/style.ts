@@ -67,6 +67,7 @@ export const applyInputColorSchemeStyle = (colorScheme: InputColorScheme) => {
 }
 
 export const inputBaseWrapperStyle = css`
+  width: 100%;
   position: relative;
   display: inline-flex;
   align-items: center;
