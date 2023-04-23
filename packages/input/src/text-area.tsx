@@ -124,7 +124,10 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
           placeholder={placeholder}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              onPressEnter?.(e)
+              if (onPressEnter) {
+                onPressEnter?.(e)
+                e.preventDefault()
+              }
             }
           }}
           css={[
