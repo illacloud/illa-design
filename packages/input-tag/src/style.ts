@@ -129,7 +129,6 @@ export function applyInputTagContainerStyle(
     border-radius: ${!hasBefore ? borderList[0] : "0"}
       ${!hasAfter ? borderList[1] : "0"} ${!hasAfter ? borderList[2] : "0"}
       ${!hasBefore ? borderList[3] : "0"};
-    z-index: ${zIndex.input};
     border: 1px solid
       ${error ? getColor("red", "03") : getColor("grayBlue", "08")};
     flex-grow: 1;
