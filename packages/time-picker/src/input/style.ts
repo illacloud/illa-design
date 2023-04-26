@@ -194,6 +194,10 @@ export const clearIconStyle = css`
 
 export const suffixIconStyle = css`
   color: ${getColor("grayBlue", "01")};
+  height: 100%;
+  svg {
+    vertical-align: unset;
+  }
 `
 
 export const realInputActiveBGStyle = css`
