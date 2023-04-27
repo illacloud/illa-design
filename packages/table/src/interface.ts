@@ -68,6 +68,9 @@ export interface TableProps<D extends TableData, TValue>
   multiRowSelection?: boolean
   enableRowSelection?: boolean
   clickOutsideToResetRowSelect?: boolean
+  serverSidePagination?: boolean
+  // useAble when serverSidePagination is true
+  total?: number
   checkAll?: boolean
   download?: boolean
   filter?: boolean

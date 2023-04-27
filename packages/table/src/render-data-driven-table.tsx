@@ -95,6 +95,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     enableColumnResizing,
     multiRowSelection = false,
     enableRowSelection = true,
+    serverSidePagination,
+    total,
     clickOutsideToResetRowSelect,
     checkAll = true,
     download,
@@ -240,7 +242,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    manualPagination: overFlow === "scroll",
+    manualPagination: overFlow === "scroll" || serverSidePagination,
   })
 
   useClickAway(containerRef, () => {
@@ -511,7 +513,11 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
           </div>
           {overFlow === "pagination" ? (
             <Pagination
-              total={Object.keys(table.getRowModel().rowsById).length}
+              total={
+                serverSidePagination && isNumber(total)
+                  ? total
+                  : Object.keys(table.getRowModel().rowsById).length
+              }
               pageSize={pageSize}
               current={pageIndex + 1}
               hideOnSinglePage={false}
