@@ -207,7 +207,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     },
     enableColumnResizing: !!enableColumnResizing,
     columnResizeMode: "onChange",
-    autoResetAll: true,
+    // autoResetAll: true,
     enableMultiRowSelection,
     enableSorting: !disableSortBy,
     globalFilterFn: customGlobalFn,
