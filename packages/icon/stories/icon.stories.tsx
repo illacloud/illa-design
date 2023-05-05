@@ -65,6 +65,7 @@ import {
   PreviousDoubleIcon,
   PreviousIcon,
   ReduceIcon,
+  RefreshIcon,
   ResetIcon,
   SearchIcon,
   SettingIcon,
@@ -278,6 +279,12 @@ export const All: StoryFn<IconProps> = (props: IconProps) => (
         <Space direction="vertical" align="center" w="100%" pd="16px 0">
           <DragPointIcon {...props} />
           <span>DragPoint</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <RefreshIcon {...props} />
+          <span>Refresh</span>
         </Space>
       </Col>
     </Row>
