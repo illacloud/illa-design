@@ -1,5 +1,17 @@
 # @illa-design/calendar
 
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/config-provider@1.0.21
+  - @illa-design/icon@1.0.21
+  - @illa-design/theme@1.0.21
+  - @illa-design/button@1.0.21
+  - @illa-design/select@1.0.21
+  - @illa-design/radio@1.0.21
+
 ## 1.0.20
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @illa-design/list
 
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/theme@1.0.21
+
 ## 1.0.20
 
 ### Patch Changes
