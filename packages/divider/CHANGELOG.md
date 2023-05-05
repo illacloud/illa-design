@@ -1,5 +1,14 @@
 # @illa-design/divider
 
+## 1.0.22
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/theme@1.0.22
+
 ## 1.0.21
 
 ### Patch Changes
