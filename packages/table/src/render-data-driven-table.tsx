@@ -436,6 +436,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                         table.getRowModel().rows.indexOf(row) ===
                         table.getRowModel().rows.length - 1
                       }
+                      css={cell.column.columnDef?.meta?.style}
                     >
                       {flexRender(
                         cell.column.columnDef.cell,

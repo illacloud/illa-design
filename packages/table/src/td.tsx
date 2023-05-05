@@ -30,6 +30,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
       rowIndex,
       lastCol,
       lastRow,
+      className,
       ...otherProps
     } = props
 
@@ -73,6 +74,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
           applyBoxStyle(props),
           applyContentContainer(align ?? tableContext?.align ?? "left"),
         )}
+        className={className}
         ref={ref}
         {...otherProps}
       >
