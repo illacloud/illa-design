@@ -12,7 +12,7 @@ import {
 } from "./style"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import debounce from "lodash.debounce"
 
 export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
@@ -74,7 +74,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
           applyContentContainer(align ?? tableContext?.align ?? "left"),
         )}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         {overflow ? (
           <div

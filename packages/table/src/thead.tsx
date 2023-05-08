@@ -2,7 +2,7 @@ import { forwardRef, useContext } from "react"
 import { THeadProps } from "./interface"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import { applyPinedStyle, applyResizerTableHeaderStyle } from "./style"
 
 export const Thead = forwardRef<HTMLTableSectionElement, THeadProps>(
@@ -18,7 +18,7 @@ export const Thead = forwardRef<HTMLTableSectionElement, THeadProps>(
           applyBoxStyle(props),
         )}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       />
     ) : null
   },

@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from "react"
 import { TrProps } from "./interface"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 import { TableContext } from "./table-context"
 import {
   applyBgHoverStyle,
@@ -21,7 +21,7 @@ export const Tr = forwardRef<HTMLTableRowElement, TrProps>((props, ref) => {
         applyBoxStyle(props),
       ]}
       ref={ref}
-      {...otherProps}
+      {...deleteCssProps(otherProps)}
     />
   )
 })
