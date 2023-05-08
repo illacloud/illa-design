@@ -7,16 +7,26 @@ import { DownIcon } from "@illa-design/icon"
 
 export const BreadcrumbItem = forwardRef<HTMLDivElement, BreadcrumbItemProps>(
   (props, ref) => {
-    const { dropList, dropdownProps, children, last, href, ...restProps } =
-      props
+    const {
+      dropList,
+      dropdownProps,
+      children,
+      last,
+      href,
+      onClick,
+      ...restProps
+    } = props
     return (
       <Dropdown position="bottom-start" dropList={dropList} {...dropdownProps}>
         <a
           css={[
-            last ? itemFinalStyle : applyItemStyle(href),
+            last
+              ? itemFinalStyle
+              : applyItemStyle(href !== undefined || onClick !== undefined),
             applyBoxStyle(props),
           ]}
           href={href}
+          onClick={onClick}
           {...deleteCssProps(restProps)}
         >
           {children}
