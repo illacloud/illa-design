@@ -40,6 +40,7 @@ import {
   applyContainerStyle,
   applyHeaderIconLeft,
   applyPreContainer,
+  applyTableCellBackgroundStyle,
   applyTableStyle,
   headerStyle,
   spinStyle,
@@ -422,28 +423,37 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                     }
                   }}
                 >
-                  {row.getVisibleCells().map((cell) => (
-                    <Td
-                      w={`${cell.column.getSize()}px`}
-                      key={cell.id}
-                      colIndex={row.getVisibleCells().indexOf(cell)}
-                      rowIndex={table.getRowModel().rows.indexOf(row)}
-                      lastCol={
-                        row.getVisibleCells().indexOf(cell) ===
-                        row.getVisibleCells().length - 1
-                      }
-                      lastRow={
-                        table.getRowModel().rows.indexOf(row) ===
-                        table.getRowModel().rows.length - 1
-                      }
-                      css={cell.column.columnDef?.meta?.style}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
+                  {row.getVisibleCells().map((cell) => {
+                    const bgColor =
+                      cell.column.columnDef.meta?.getBackgroundColor?.(
                         cell.getContext(),
-                      )}
-                    </Td>
-                  ))}
+                      )
+                    return (
+                      <Td
+                        w={`${cell.column.getSize()}px`}
+                        key={cell.id}
+                        colIndex={row.getVisibleCells().indexOf(cell)}
+                        rowIndex={table.getRowModel().rows.indexOf(row)}
+                        lastCol={
+                          row.getVisibleCells().indexOf(cell) ===
+                          row.getVisibleCells().length - 1
+                        }
+                        lastRow={
+                          table.getRowModel().rows.indexOf(row) ===
+                          table.getRowModel().rows.length - 1
+                        }
+                        css={[
+                          cell.column.columnDef?.meta?.style,
+                          applyTableCellBackgroundStyle(bgColor),
+                        ]}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </Td>
+                    )
+                  })}
                 </Tr>
               ))}
               {table.getRowModel().rows.length ? null : (

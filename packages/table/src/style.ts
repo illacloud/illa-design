@@ -1,6 +1,6 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { TableAlign, TableLayout, TableSize } from "./interface"
 
 export function applySizeStyle(size: TableSize): SerializedStyles {
@@ -278,7 +278,7 @@ export const spinStyle = css`
   width: 100%;
   overflow: auto;
   flex: 1;
-  
+
   & > div:last-of-type {
     z-index: ${zIndex.table + 1};
   }
@@ -340,3 +340,14 @@ export const tableResizerStyle = css`
     }
   }
 `
+
+export const applyTableCellBackgroundStyle = (
+  color?: string,
+): SerializedStyles => {
+  if (color) {
+    return css`
+      background-color: ${getColor(color, "03")};
+    `
+  }
+  return css``
+}
