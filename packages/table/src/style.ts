@@ -278,7 +278,10 @@ export const spinStyle = css`
   width: 100%;
   overflow: auto;
   flex: 1;
-  z-index: ${zIndex.table};
+  
+  & > div:last-of-type {
+    z-index: ${zIndex.table + 1};
+  }
 `
 
 export const filterStyle = css`
