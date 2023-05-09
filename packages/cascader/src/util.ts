@@ -7,7 +7,7 @@ export function getLabelListFromValueList(
   const returnList: string[] = []
   let currentCascaderList = options
   v.forEach((item) => {
-    let currentCascader = currentCascaderList.find((o) => o.value === item)
+    let currentCascader = currentCascaderList?.find((o) => o.value === item)
     if (currentCascader) {
       returnList.push(currentCascader.label)
       if (currentCascader.children) {

@@ -14,6 +14,7 @@ import {
 import { Checkbox } from "@illa-design/checkbox"
 import { NextIcon } from "@illa-design/icon"
 import { traversalOptions } from "./util"
+import { Empty } from "@illa-design/empty"
 
 function getTreeNumber(cascader: CascaderOptionObject): number {
   if (cascader.children === undefined || cascader.children.length === 0) {
@@ -215,7 +216,15 @@ export const Selector = forwardRef<HTMLDivElement, SelectorProps>(
           </div>
         )
       })
-      return <>{list}</>
+      return (
+        <>
+          {Array.isArray(cascaderList) && cascaderList.flat().length > 0 ? (
+            list
+          ) : (
+            <Empty w="320px" />
+          )}
+        </>
+      )
     }, [cascaderList, currentShowValue, multiple, onChange, value])
 
     return (
