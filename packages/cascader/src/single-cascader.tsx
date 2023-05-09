@@ -51,7 +51,10 @@ export const SingleCascader = forwardRef<HTMLDivElement, CascaderProps>(
         defaultValue === undefined
           ? undefined
           : (defaultValue as string[]).join(" / "),
-      value: value === undefined ? undefined : (value as string[]).join(" / "),
+      value:
+        value === undefined
+          ? undefined
+          : getLabelListFromValueList(value as string[], options ?? []),
     })
 
     const [finalValue, setFinalValue] = useMergeValue([], {
@@ -71,9 +74,7 @@ export const SingleCascader = forwardRef<HTMLDivElement, CascaderProps>(
         filterOption={filterOption}
         onChange={(v) => {
           if (v.length === 1 && options) {
-            const inputValue = getLabelListFromValueList(v[0], options).join(
-              " / ",
-            )
+            const inputValue = getLabelListFromValueList(v[0], options)
             if (value === undefined) {
               setFinalInputValue(inputValue)
               onInputValueChange?.(inputValue)
@@ -117,7 +118,7 @@ export const SingleCascader = forwardRef<HTMLDivElement, CascaderProps>(
                         const inputValue = getLabelListFromValueList(
                           v[0],
                           options,
-                        ).join(" / ")
+                        )
                         setFinalInputValue(inputValue)
                         setFinalValue(v[0])
                         lastChooseRef.current = inputValue

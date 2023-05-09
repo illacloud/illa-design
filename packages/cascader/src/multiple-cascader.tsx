@@ -127,7 +127,7 @@ export const MultipleCascader = forwardRef<HTMLDivElement, CascaderProps>(
           inputTagRef={inputTagRef}
           value={finalValue.map((list) => {
             return {
-              label: getLabelListFromValueList(list, options).join(" / "),
+              label: getLabelListFromValueList(list, options),
               value: list.join(" / "),
               closeable: true,
             } as TagObject
