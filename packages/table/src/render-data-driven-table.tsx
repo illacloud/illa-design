@@ -299,7 +299,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       delimiter: ",",
       fileName: `table.csv`,
     })
-  }, [table, multiRowSelection])
+  }, [table])
 
   const columnsOption = useMemo(() => {
     const res: { value: string; label: string }[] = []
@@ -336,7 +336,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         applyBorderedStyle(bordered),
       ]}
     >
-      <Spin loading={loading} css={spinStyle}>
+      <Spin loading={loading} pos="static" css={spinStyle}>
         <TableContext.Provider value={contextProps}>
           <table
             css={applyTableStyle(tableLayout)}
@@ -514,6 +514,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
           </div>
           {overFlow === "pagination" ? (
             <Pagination
+              {...pagination}
               total={
                 serverSidePagination && isNumber(total)
                   ? total

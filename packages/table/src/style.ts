@@ -34,6 +34,7 @@ export function applyContainerStyle(): SerializedStyles {
     display: flex;
     flex-direction: column;
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    position: relative;
   `
 }
 
@@ -277,6 +278,7 @@ export const spinStyle = css`
   width: 100%;
   overflow: auto;
   flex: 1;
+  z-index: ${zIndex.table};
 `
 
 export const filterStyle = css`
