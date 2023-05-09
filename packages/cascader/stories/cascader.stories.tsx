@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { Cascader, CascaderOptionObject, CascaderProps } from "../src"
+import React from "react"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -62,7 +63,49 @@ const options: CascaderOptionObject[] = [
 
 export const Basic: StoryFn<CascaderProps> = (args) => (
   <div>
-    <Cascader options={options} allowClear={true} {...args} />
+    <Cascader
+      options={[
+        {
+          value: "media_source_1",
+          label: "Media Source 1",
+          children: [
+            {
+              value: "campaign_1-1",
+              label: "campaign 1-1",
+            },
+            {
+              value: "campaign_1-2",
+              label: "campaign 1-2",
+            },
+            {
+              value: "campaign_1-3",
+              label: "campaign 1-3",
+            },
+          ],
+        },
+        {
+          value: "media_source_2",
+          label: "Media Source 2",
+          children: [
+            {
+              value: "campaign_2-1",
+              label: "campaign 2-1",
+            },
+            {
+              value: "campaign_2-2",
+              label: "campaign 2-2",
+            },
+            {
+              value: "campaign_2-3",
+              label: "campaign 2-3",
+            },
+          ],
+        },
+      ]}
+      allowClear={true}
+      {...args}
+      value={undefined}
+    />
     <Cascader
       style={{ marginTop: "20px" }}
       allowClear={true}

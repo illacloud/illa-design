@@ -38,10 +38,6 @@
   "scripts": {
     "build": "vite build"
   },
-  "devDependencies": {
-    "@vitejs/plugin-react-swc": "^3.0.1",
-    "@rollup/plugin-typescript": "^10.0.1"
-  },
   "dependencies": {
     "@illa-design/icon": "workspace:*",
     "@illa-design/spin": "workspace:*",

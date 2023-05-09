@@ -104,7 +104,7 @@ export const Selector = forwardRef<HTMLDivElement, SelectorProps>(
         list.push(newList)
 
         for (let i = 0; i < currentShowValue.length; i++) {
-          const lastSelectSinglePartOption = list[i].find(
+          const lastSelectSinglePartOption = list[i]?.find(
             (item) => item.value === currentShowValue[i],
           )
 
@@ -138,7 +138,6 @@ export const Selector = forwardRef<HTMLDivElement, SelectorProps>(
       }
       return list
     }, [value, currentShowValue, options])
-
     const renderCascaderList = useMemo(() => {
       let list: ReactNode[] = cascaderList.map((item, index) => {
         return (

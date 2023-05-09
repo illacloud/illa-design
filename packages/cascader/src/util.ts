@@ -3,7 +3,7 @@ import { CascaderOptionObject, SelectorOption } from "./interface"
 export function getLabelListFromValueList(
   v: string[],
   options: CascaderOptionObject[],
-): string[] {
+) {
   const returnList: string[] = []
   let currentCascaderList = options
   v.forEach((item) => {
@@ -15,7 +15,10 @@ export function getLabelListFromValueList(
       }
     }
   })
-  return returnList
+  if (returnList.length === 0) {
+    return v.join("/")
+  }
+  return returnList.join("/")
 }
 
 export function traversalOptions(
