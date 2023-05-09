@@ -1639,11 +1639,11 @@ importers:
         specifier: workspace:*
         version: link:../trigger
       '@tanstack/match-sorter-utils':
-        specifier: ^8.8.4
+        specifier: ^8.1.1
         version: 8.8.4
       '@tanstack/react-table':
-        specifier: ^8.9.1
-        version: 8.9.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^8.5.11
+        version: 8.7.0(react-dom@18.2.0)(react@18.2.0)
       chroma-js:
         specifier: ^2.1.2
         version: 2.4.2
@@ -5353,34 +5353,10 @@ packages:
       '@tanstack/table-core': 8.7.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-    dev: true
-
-  /@tanstack/react-table@8.9.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-yHs2m6lk5J5RNcu2dNtsDGux66wNXZjEgzxos6MRCX8gL+nqxeW3ZglqP6eANN0bGElPnjvqiUHGQvdACOr3Cw==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-    dependencies:
-      '@tanstack/table-core': 8.9.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
 
   /@tanstack/table-core@8.7.0:
     resolution: {integrity: sha512-DRiRbOAmDHapzUBd4/C4Yy+FTug4fdGp5sdZWWfCq4wxRoaXQraQgbzmK23a3QcbwLFtLeNezPkZrqbJWuX+VA==}
     engines: {node: '>=12'}
-    dev: true
-
-  /@tanstack/table-core@8.9.1:
-    resolution: {integrity: sha512-2+R83n8vMZND0q3W1lSiF7co9nFbeWbjAErFf27xwbeA9E0wtUu5ZDfgj+TZ6JzdAEQAgfxkk/QNFAKiS8E4MA==}
-    engines: {node: '>=12'}
-    dev: false
 
   /@types/babel__core@7.20.0:
     resolution: {integrity: sha512-+n8dL/9GWblDO0iU6eZAwEIJVr5DWigtle+Q6HLOrh/pdbXOhOtqzq8VPPE2zvNJzSKY4vH/z3iT3tn0A3ypiQ==}
