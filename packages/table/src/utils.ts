@@ -35,11 +35,24 @@ export const downloadDataAsCSV = (props: {
   delimiter: string
   fileName: string
 }) => {
+  const { delimiter, fileName, csvData } = props
+  const escapeValue = (value: unknown) => {
+    if (value === null || value === undefined) {
+      return ""
+    }
+    const stringValue = `${value}`
+    if (stringValue.includes(delimiter) || stringValue.includes("\n")) {
+      return `"${stringValue.replace(/"/g, '""')}"`
+    }
+    return stringValue
+  }
+
   let csvContent = ""
-  props.csvData.forEach((infoArray: Array<any>, index: number) => {
-    const dataString = infoArray.join(props.delimiter)
-    csvContent += index < props.csvData.length ? dataString + "\n" : dataString
+  csvData.forEach((infoArray: Array<any>, index: number) => {
+    const dataString = infoArray.map(escapeValue).join(delimiter)
+    csvContent += index < csvData.length - 1 ? dataString + "\n" : dataString
   })
+
   const anchor = document.createElement("a")
   const mimeType = "application/octet-stream"
   if (URL && "download" in anchor) {
@@ -48,7 +61,7 @@ export const downloadDataAsCSV = (props: {
         type: mimeType,
       }),
     )
-    anchor.setAttribute("download", props.fileName)
+    anchor.setAttribute("download", fileName)
     document.body.appendChild(anchor)
     anchor.click()
     document.body.removeChild(anchor)
