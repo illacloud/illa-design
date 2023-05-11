@@ -31,6 +31,7 @@ import { Checkbox } from "@illa-design/checkbox"
 import {
   customGlobalFn,
   downloadDataAsCSV,
+  transformOriginDataIntoCsvData,
   transformTableIntoCsvData,
 } from "./utils"
 import { isNumber, isString } from "@illa-design/system"
@@ -58,6 +59,7 @@ import {
   SorterDefaultIcon,
   SorterDownIcon,
   SorterUpIcon,
+  RefreshIcon,
 } from "@illa-design/icon"
 import { TBody } from "./tbody"
 import { Td } from "./td"
@@ -100,10 +102,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     total,
     clickOutsideToResetRowSelect,
     checkAll = true,
+    refresh,
     download,
+    downloadOriginData,
     filter,
     rowSelection: selected = {},
     defaultSort = [],
+    onRefresh,
+    onRowClick,
     onSortingChange,
     onPaginationChange,
     onColumnFiltersChange,
@@ -192,7 +198,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     return multiRowSelection && enableRowSelection
   }, [multiRowSelection, enableRowSelection])
 
-  const table = useReactTable({
+  const table = useReactTable<D>({
     data,
     columns: _columns,
     state: {
@@ -300,7 +306,16 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       delimiter: ",",
       fileName: `table.csv`,
     })
-  }, [table])
+  }, [table, multiRowSelection])
+
+  const downloadTableOriginDataAsCsv = useCallback(() => {
+    const csvData = transformOriginDataIntoCsvData(table, multiRowSelection)
+    downloadDataAsCSV({
+      csvData: csvData,
+      delimiter: ",",
+      fileName: `table_raw.csv`,
+    })
+  }, [table, multiRowSelection])
 
   const columnsOption = useMemo(() => {
     const res: { value: string; label: string }[] = []
@@ -327,6 +342,10 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     },
     [onPaginationChange, setPagination, table],
   )
+
+  const handleClickRefresh = useCallback(() => {
+    onRefresh?.(table)
+  }, [onRefresh, table])
 
   return (
     <div
@@ -421,6 +440,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                     if (enableRowSelection) {
                       row.getToggleSelectedHandler()(e)
                     }
+                    onRowClick?.(row, index)
                   }}
                 >
                   {row.getVisibleCells().map((cell) => {
@@ -501,12 +521,28 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       {overFlow === "pagination" || download || filter ? (
         <div css={toolBarStyle}>
           <div css={applyActionButtonStyle(overFlow === "pagination")}>
+            {refresh ? (
+              <Button
+                variant={"text"}
+                colorScheme={"grayBlue"}
+                leftIcon={<RefreshIcon size={"16px"} />}
+                onClick={handleClickRefresh}
+              />
+            ) : null}
             {download ? (
               <Button
                 variant={"text"}
                 colorScheme={"grayBlue"}
                 leftIcon={<DownloadIcon size={"16px"} />}
                 onClick={downloadTableDataAsCsv}
+              />
+            ) : null}
+            {downloadOriginData ? (
+              <Button
+                variant={"text"}
+                colorScheme={"grayBlue"}
+                leftIcon={<DownloadIcon size={"16px"} />}
+                onClick={downloadTableOriginDataAsCsv}
               />
             ) : null}
             {filter ? (

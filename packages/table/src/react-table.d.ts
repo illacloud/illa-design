@@ -4,9 +4,10 @@ import { SerializedStyles } from "@emotion/react"
 
 declare module "@tanstack/react-table" {
   interface ColumnMeta<TData extends RowData, TValue> {
+    custom?: boolean
     style?: SerializedStyles
     getBackgroundColor?: (
-      props: CellContext<unknown, unknown>,
+      props: CellContext<TData, unknown>,
     ) => string | undefined
   }
 }
