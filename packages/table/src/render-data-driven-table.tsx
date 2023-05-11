@@ -43,6 +43,8 @@ import {
   applyPreContainer,
   applyTableCellBackgroundStyle,
   applyTableStyle,
+  downloadRawStyle,
+  downloadTipStyle,
   headerStyle,
   spinStyle,
   tableResizerStyle,
@@ -69,6 +71,7 @@ import { Button } from "@illa-design/button"
 import { Pagination } from "@illa-design/pagination"
 import { TableFilter } from "./table-filter"
 import { useClickAway } from "react-use"
+import { RawTip } from "./raw-tip"
 
 export function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -538,12 +541,20 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
               />
             ) : null}
             {downloadRawData ? (
-              <Button
-                variant={"text"}
-                colorScheme={"grayBlue"}
-                leftIcon={<DownloadIcon size={"16px"} />}
-                onClick={downloadTableRawDataAsCsv}
-              />
+              <div css={downloadRawStyle}>
+                <Button
+                  pos={"relative"}
+                  variant={"text"}
+                  colorScheme={"grayBlue"}
+                  leftIcon={
+                    <div>
+                      <DownloadIcon size={"16px"} />
+                    </div>
+                  }
+                  onClick={downloadTableRawDataAsCsv}
+                />
+                <RawTip css={downloadTipStyle} />
+              </div>
             ) : null}
             {filter ? (
               <TableFilter

@@ -351,3 +351,15 @@ export const applyTableCellBackgroundStyle = (
   }
   return css``
 }
+
+export const downloadRawStyle = css`
+  position: relative;
+  display: inline;
+`
+export const downloadTipStyle = css`
+  position: absolute;
+  top: 2px;
+  left: 18px;
+  width: 21px;
+  height: 10px;
+`

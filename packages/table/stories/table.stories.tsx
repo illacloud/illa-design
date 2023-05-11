@@ -143,7 +143,7 @@ export const CombineHeader: StoryFn<TableProps<DemoData, string>> = (args) => {
         id: 9,
         name: "Elizabeth Franecki",
         company:
-          "Compatible upward-trending system engine fsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgf",
+          "Compatible upward-trending system engine",
         phone: "506-644-1590",
         address: "9316 Manuel Lodge Apt. 678",
         date: "2022-02-03",
@@ -228,7 +228,7 @@ export const CombineHeader: StoryFn<TableProps<DemoData, string>> = (args) => {
   }, [])
   return (
     <div style={{ width: "1000px" }}>
-      <Table data={data} columns={columns} download filter {...args} />
+      <Table data={data} columns={columns} download downloadRawData filter {...args} />
       <button>231</button>
     </div>
   )
