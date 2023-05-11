@@ -9,5 +9,6 @@ declare module "@tanstack/react-table" {
     getBackgroundColor?: (
       props: CellContext<TData, unknown>,
     ) => string | undefined
+    getRenderedValueAsString?: (props: CellContext<TData, unknown>) => string
   }
 }

@@ -23,7 +23,12 @@ export const transformTableIntoCsvData = (
       if (multiRowSelection && index === 0) {
         return
       }
-      rowCellData.push(cell.getContext().getValue())
+      const getRenderedValueAsString =
+        cell.column.columnDef.meta?.getRenderedValueAsString
+      const value = getRenderedValueAsString
+        ? getRenderedValueAsString?.(cell.getContext())
+        : cell.getContext().getValue()
+      rowCellData.push(value)
     })
     csvData.push(rowCellData)
   })
