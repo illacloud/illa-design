@@ -31,7 +31,7 @@ import { Checkbox } from "@illa-design/checkbox"
 import {
   customGlobalFn,
   downloadDataAsCSV,
-  transformOriginDataIntoCsvData,
+  transformRawDataIntoCsvData,
   transformTableIntoCsvData,
 } from "./utils"
 import { isNumber, isString } from "@illa-design/system"
@@ -104,7 +104,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     checkAll = true,
     refresh,
     download,
-    downloadOriginData,
+    downloadRawData,
     filter,
     rowSelection: selected = {},
     defaultSort = [],
@@ -308,8 +308,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     })
   }, [table, multiRowSelection])
 
-  const downloadTableOriginDataAsCsv = useCallback(() => {
-    const csvData = transformOriginDataIntoCsvData(table, multiRowSelection)
+  const downloadTableRawDataAsCsv = useCallback(() => {
+    const csvData = transformRawDataIntoCsvData(table, multiRowSelection)
     downloadDataAsCSV({
       csvData: csvData,
       delimiter: ",",
@@ -537,12 +537,12 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 onClick={downloadTableDataAsCsv}
               />
             ) : null}
-            {downloadOriginData ? (
+            {downloadRawData ? (
               <Button
                 variant={"text"}
                 colorScheme={"grayBlue"}
                 leftIcon={<DownloadIcon size={"16px"} />}
-                onClick={downloadTableOriginDataAsCsv}
+                onClick={downloadTableRawDataAsCsv}
               />
             ) : null}
             {filter ? (

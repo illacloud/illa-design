@@ -30,7 +30,7 @@ export const transformTableIntoCsvData = (
   return csvData
 }
 
-export const transformOriginDataIntoCsvData = (
+export const transformRawDataIntoCsvData = (
   table: Table<any>,
   multiRowSelection?: boolean,
 ) => {

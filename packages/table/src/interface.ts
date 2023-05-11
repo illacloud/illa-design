@@ -74,7 +74,7 @@ export interface TableProps<D extends TableData, TValue>
   total?: number
   checkAll?: boolean
   download?: boolean
-  downloadOriginData?: boolean
+  downloadRawData?: boolean
   refresh?: boolean
   filter?: boolean
   columnSizing?: ColumnSizingState
