@@ -116,6 +116,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     onSortingChange,
     onPaginationChange,
     onColumnFiltersChange,
+    onGlobalFiltersChange,
     onRowSelectionChange,
     onColumnSizingChange,
     ...otherProps
@@ -232,9 +233,6 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     onSortingChange: (columnSort) => {
       setSorting(columnSort)
       onSortingChange?.(columnSort)
-    },
-    onGlobalFilterChange: (globalFilter) => {
-      onColumnFiltersChange?.(globalFilter)
     },
     onColumnFiltersChange: (columnFilter) => {
       setColumnFilters(columnFilter)
@@ -565,6 +563,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 onChange={(filters, operator) => {
                   setColumnFilters(filters)
                   setFilterOperator(operator)
+                  onGlobalFiltersChange?.(filters, operator)
                 }}
               />
             ) : null}

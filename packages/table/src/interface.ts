@@ -83,6 +83,7 @@ export interface TableProps<D extends TableData, TValue>
   onRefresh?: (table: Table<D>) => void
   onRowClick?: (row: Row<D>, index: number) => void
   onSortingChange?: OnChangeFn<SortingState>
+  onGlobalFiltersChange?: (filters: FilterOptions[], operator: FilterOperator) => void
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
   onPaginationChange?: (
     paginationState: PaginationState,
