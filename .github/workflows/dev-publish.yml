@@ -14,8 +14,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16]
-        pnpm-version: [7]
+        node-version: [18]
+        pnpm-version: [8]
 
     steps:
       - uses: actions/checkout@v3
@@ -55,8 +55,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16]
-        pnpm-version: [7]
+        node-version: [18]
+        pnpm-version: [8]
 
     steps:
       - uses: actions/checkout@v3

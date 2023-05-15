@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/table",
-  "version": "1.0.20",
+  "version": "1.0.22",
   "description": "Illa Design Table.",
   "keywords": [
     "table",
@@ -58,10 +58,8 @@
     "react-use": "^17.4.0"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^10.0.1",
     "@types/chroma-js": "^2.1.4",
-    "@types/lodash.debounce": "^4.0.7",
-    "@vitejs/plugin-react-swc": "^3.0.1"
+    "@types/lodash.debounce": "^4.0.7"
   },
   "peerDependencies": {
     "@emotion/react": "^11.10.5",

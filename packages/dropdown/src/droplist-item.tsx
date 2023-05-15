@@ -2,6 +2,7 @@ import { forwardRef, useContext } from "react"
 import { DropListItemProps } from "./interface"
 import { DropListContext } from "./droplist"
 import { applyItemCss } from "./style"
+import { deleteCssProps } from "@illa-design/theme"
 
 export const DropListItem = forwardRef<HTMLDivElement, DropListItemProps>(
   (props, ref) => {
@@ -31,7 +32,7 @@ export const DropListItem = forwardRef<HTMLDivElement, DropListItemProps>(
             onClickItem?.(value, title ? title : children, event)
           }
         }}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         {title ? title : children}
       </div>

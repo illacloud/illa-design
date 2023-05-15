@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/notification",
-  "version": "1.0.20",
+  "version": "1.0.22",
   "description": "Illa Design Notification.",
   "keywords": [
     "notification",
@@ -46,9 +46,7 @@
     "framer-motion": "^7.6.12"
   },
   "devDependencies": {
-    "@types/uuid": "^8.3.4",
-    "@vitejs/plugin-react-swc": "^3.0.1",
-    "@rollup/plugin-typescript": "^10.0.1"
+    "@types/uuid": "^8.3.4"
   },
   "peerDependencies": {
     "react": "^18.2.0",

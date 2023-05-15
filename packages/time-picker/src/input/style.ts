@@ -67,6 +67,7 @@ export const applyInputColorSchemeStyle = (colorScheme: InputColorScheme) => {
 }
 
 export const inputBaseWrapperStyle = css`
+  width: 100%;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -193,6 +194,10 @@ export const clearIconStyle = css`
 
 export const suffixIconStyle = css`
   color: ${getColor("grayBlue", "01")};
+  height: 100%;
+  svg {
+    vertical-align: unset;
+  }
 `
 
 export const realInputActiveBGStyle = css`

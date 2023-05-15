@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/upload",
-  "version": "1.0.20",
+  "version": "1.0.22",
   "description": "Illa Design Upload.",
   "keywords": [
     "upload",
@@ -56,8 +56,6 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/uuid": "^8.3.4",
-    "@vitejs/plugin-react-swc": "^3.0.1",
-    "@rollup/plugin-typescript": "^10.0.1"
+    "@types/uuid": "^8.3.4"
   }
 }

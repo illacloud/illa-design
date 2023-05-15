@@ -20,11 +20,8 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
   const finalCss = spin
     ? css`
         ${rotateAnimation};
-        vertical-align: middle;
       `
-    : css`
-        vertical-align: middle;
-      `
+    : css``
 
   return (
     <svg

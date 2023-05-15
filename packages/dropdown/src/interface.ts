@@ -1,11 +1,4 @@
-import {
-  ForwardRefExoticComponent,
-  HTMLAttributes,
-  MouseEvent,
-  PropsWithChildren,
-  ReactNode,
-  RefAttributes,
-} from "react"
+import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { TriggerColorScheme, TriggerProps } from "@illa-design/trigger"
 import { BoxProps } from "@illa-design/theme"
 
@@ -36,7 +29,8 @@ export interface DropListProps
 }
 
 export interface DropListItemProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "title">,
+    BoxProps {
   value: string | number
   colorScheme?: TriggerColorScheme
   selected?: boolean

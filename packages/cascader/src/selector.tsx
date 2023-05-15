@@ -14,6 +14,7 @@ import {
 import { Checkbox } from "@illa-design/checkbox"
 import { NextIcon } from "@illa-design/icon"
 import { traversalOptions } from "./util"
+import { Empty } from "@illa-design/empty"
 
 function getTreeNumber(cascader: CascaderOptionObject): number {
   if (cascader.children === undefined || cascader.children.length === 0) {
@@ -104,7 +105,7 @@ export const Selector = forwardRef<HTMLDivElement, SelectorProps>(
         list.push(newList)
 
         for (let i = 0; i < currentShowValue.length; i++) {
-          const lastSelectSinglePartOption = list[i].find(
+          const lastSelectSinglePartOption = list[i]?.find(
             (item) => item.value === currentShowValue[i],
           )
 
@@ -138,7 +139,6 @@ export const Selector = forwardRef<HTMLDivElement, SelectorProps>(
       }
       return list
     }, [value, currentShowValue, options])
-
     const renderCascaderList = useMemo(() => {
       let list: ReactNode[] = cascaderList.map((item, index) => {
         return (
@@ -216,7 +216,15 @@ export const Selector = forwardRef<HTMLDivElement, SelectorProps>(
           </div>
         )
       })
-      return <>{list}</>
+      return (
+        <>
+          {Array.isArray(cascaderList) && cascaderList.flat().length > 0 ? (
+            list
+          ) : (
+            <Empty w="320px" />
+          )}
+        </>
+      )
     }, [cascaderList, currentShowValue, multiple, onChange, value])
 
     return (

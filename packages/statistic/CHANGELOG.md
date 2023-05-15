@@ -1,5 +1,25 @@
 # @illa-design/statistic
 
+## 1.0.22
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@1.0.22
+  - @illa-design/skeleton@1.0.22
+  - @illa-design/theme@1.0.22
+
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/icon@1.0.21
+  - @illa-design/theme@1.0.21
+  - @illa-design/skeleton@1.0.21
+
 ## 1.0.20
 
 ### Patch Changes
