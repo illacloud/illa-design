@@ -13,6 +13,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useImperativeHandle,
 } from "react"
 import {
   ColumnDef,
@@ -73,10 +74,13 @@ import { TableFilter } from "./table-filter"
 import { useClickAway } from "react-use"
 import { RawTip } from "./raw-tip"
 
+const DEFAULT_TABLE_FILTER = [{ id: "", value: "" }]
+
 export function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
 ): ReactElement {
   const {
+    tableRef,
     size = "medium",
     tableLayout = "auto",
     overFlow = "scroll",
@@ -135,11 +139,10 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   const containerRef = useRef<HTMLDivElement>(null)
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>()
   const [filterOperator, setFilterOperator] = useState<FilterOperator>("and")
-  const [filterOption, setFilterOption] = useState<FilterOptionsState>([
-    { id: "", value: "" },
-  ])
+  const [filterOption, setFilterOption] =
+    useState<FilterOptionsState>(DEFAULT_TABLE_FILTER)
   const [rowSelection, setRowSelection] = useState(selected)
   const [currentColumns, setColumns] = useState<ColumnDef<D, TValue>[]>(columns)
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
@@ -234,10 +237,6 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       setSorting(columnSort)
       onSortingChange?.(columnSort)
     },
-    onColumnFiltersChange: (columnFilter) => {
-      setColumnFilters(columnFilter)
-      onColumnFiltersChange?.(columnFilter)
-    },
     onRowSelectionChange: (rowSelection) => {
       new Promise((resolve) => {
         setRowSelection(rowSelection)
@@ -252,6 +251,28 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     getPaginationRowModel: getPaginationRowModel(),
     manualPagination: overFlow === "scroll" || serverSidePagination,
   })
+
+  useImperativeHandle(tableRef, () => ({
+    table: table,
+    selectPage: (pageIndex) => {
+      setPagination((prevState) => {
+        return {
+          ...prevState,
+          pageIndex,
+        }
+      })
+    },
+    selectRow: (rowSelection) => {
+      setRowSelection(rowSelection)
+      onRowSelectionChange?.(rowSelection)
+    },
+    setGlobalFilters: (filters, operator) => {
+      setFilterOption(filters.length ? filters : DEFAULT_TABLE_FILTER)
+      setColumnFilters(filters)
+      setFilterOperator(operator)
+      onGlobalFiltersChange?.(filters, operator)
+    },
+  }))
 
   useClickAway(containerRef, () => {
     // when multiRowSelection is false, click outside the table, reset the row selection
@@ -297,8 +318,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize: isNumber(_pageSize) ? _pageSize : pageSize,
       })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pagination])
+  }, [pagination?.pageSize, pagination?.current])
 
   const downloadTableDataAsCsv = useCallback(() => {
     const csvData = transformTableIntoCsvData(table, multiRowSelection)
@@ -556,11 +576,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
             ) : null}
             {filter ? (
               <TableFilter
+                key={columnFilters?.length}
                 colorScheme={colorScheme}
                 filterOperator={filterOperator}
                 filterOption={filterOption}
                 columnsOption={columnsOption}
                 onChange={(filters, operator) => {
+                  setFilterOption(filters)
                   setColumnFilters(filters)
                   setFilterOperator(operator)
                   onGlobalFiltersChange?.(filters, operator)

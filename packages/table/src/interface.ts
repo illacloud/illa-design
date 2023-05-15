@@ -1,4 +1,4 @@
-import { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react"
+import { ForwardedRef, HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react";
 import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
 import {
@@ -52,6 +52,7 @@ export interface TableProps<D extends TableData, TValue>
   extends HTMLAttributes<HTMLDivElement>,
     TableContextProps,
     BoxProps {
+  tableRef?: ForwardedRef<TableHandler<D>>
   colorScheme?: TableColorScheme
   columns?: ColumnDef<D, TValue>[]
   data?: D[]
@@ -91,6 +92,13 @@ export interface TableProps<D extends TableData, TValue>
   ) => void
   onRowSelectionChange?: (rowSelection?: RowSelectionState) => void
   onColumnSizingChange?: (columnSizing?: ColumnSizingState) => void
+}
+
+export interface TableHandler<D extends TableData> {
+  table: Table<D>
+  selectPage: (pageIndex: number) => void
+  selectRow: (rowSelection: RowSelectionState) => void
+  setGlobalFilters: (filters: FilterOptions[], operator: FilterOperator) => void
 }
 
 export interface RowSelectionProps<D = any> {
@@ -184,7 +192,7 @@ export type FilterOptionsState = FilterOptions[]
 
 export type FilterOperator = "and" | "or"
 
-export interface TableFilterProps {
+export interface TableFilterProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   onChange: (filters: FilterOptions[], operator: FilterOperator) => void
   colorScheme?: TableColorScheme
   filterOperator: FilterOperator

@@ -2,6 +2,7 @@ import { Meta, StoryFn } from "@storybook/react"
 import {
   Table,
   TableData,
+  TableHandler,
   TableProps,
   TBody,
   Td,
@@ -10,7 +11,7 @@ import {
   Thead,
   Tr,
 } from "../src"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import {
   CellContext,
   ColumnDef,
@@ -142,8 +143,7 @@ export const CombineHeader: StoryFn<TableProps<DemoData, string>> = (args) => {
       {
         id: 9,
         name: "Elizabeth Franecki",
-        company:
-          "Compatible upward-trending system engine",
+        company: "Compatible upward-trending system engine",
         phone: "506-644-1590",
         address: "9316 Manuel Lodge Apt. 678",
         date: "2022-02-03",
@@ -226,10 +226,34 @@ export const CombineHeader: StoryFn<TableProps<DemoData, string>> = (args) => {
     ]
     return c
   }, [])
+
+  const tableRef = useRef<TableHandler<DemoData>>()
   return (
     <div style={{ width: "1000px" }}>
-      <Table data={data} columns={columns} download downloadRawData filter {...args} />
+      <Table
+        tableRef={tableRef}
+        data={data}
+        columns={columns}
+        download
+        downloadRawData
+        filter
+        {...args}
+      />
       <button>231</button>
+      <button
+        onClick={() => {
+          tableRef.current?.table.resetRowSelection()
+        }}
+      >
+        clearSelection
+      </button>
+      <button
+        onClick={() => {
+          tableRef.current?.setGlobalFilters([], "and")
+        }}
+      >
+        clearFilters
+      </button>
     </div>
   )
 }
