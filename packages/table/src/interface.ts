@@ -17,6 +17,7 @@ import {
 } from "@tanstack/react-table";
 import { EmptyProps } from "@illa-design/empty"
 import { PaginationProps } from "@illa-design/pagination"
+import { b } from "@storybook/theming/dist/create-c2b2ce6d";
 
 export type TableSize = "small" | "medium" | "large"
 
@@ -69,6 +70,7 @@ export interface TableProps<D extends TableData, TValue>
   pagination?: PaginationProps
   multiRowSelection?: boolean
   enableRowSelection?: boolean
+  enableSingleCellSelection?: boolean
   clickOutsideToResetRowSelect?: boolean
   serverSidePagination?: boolean
   // useAble when serverSidePagination is true
@@ -91,6 +93,7 @@ export interface TableProps<D extends TableData, TValue>
     table: Table<D>,
   ) => void
   onRowSelectionChange?: (rowSelection?: RowSelectionState) => void
+  onCellSelectionChange?: (cellId?: string) => void
   onColumnSizingChange?: (columnSizing?: ColumnSizingState) => void
 }
 
@@ -133,6 +136,7 @@ export interface TdProps
   rowIndex?: number
   lastCol?: boolean
   lastRow?: boolean
+  selected?: boolean
 }
 
 export interface TFootProps

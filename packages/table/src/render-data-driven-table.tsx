@@ -105,6 +105,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     enableColumnResizing,
     multiRowSelection = false,
     enableRowSelection = true,
+    enableSingleCellSelection,
     serverSidePagination,
     total,
     clickOutsideToResetRowSelect,
@@ -122,6 +123,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     onColumnFiltersChange,
     onGlobalFiltersChange,
     onRowSelectionChange,
+    onCellSelectionChange,
     onColumnSizingChange,
     ...otherProps
   } = props
@@ -151,6 +153,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   })
   const [columnSizing, setColumnSizing] =
     useState<ColumnSizingState>(_columnSizing)
+
+  const [selectedCell, setSelectedCell] = useState<string>()
 
   const _columns = useMemo(() => {
     const current = currentColumns?.filter((item) => {
@@ -487,6 +491,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                           cell.column.columnDef?.meta?.style,
                           applyTableCellBackgroundStyle(bgColor),
                         ]}
+                        selected={selectedCell === cell.id}
+                        onClick={() => {
+                          if (enableSingleCellSelection) {
+                            setSelectedCell(cell.id)
+                            onCellSelectionChange?.(cell.id)
+                          }
+                        }}
                       >
                         {flexRender(
                           cell.column.columnDef.cell,

@@ -75,6 +75,14 @@ export function applyBorderStyle(
   return css(borderStyle, stripedStyle)
 }
 
+export function applyTdSelectedStyle(selected?: boolean) {
+  if (!selected) return css``
+
+  return css`
+    box-shadow: inset 0 0 0 1px ${globalColor(`--${illaPrefix}-blue-03`)};
+  `
+}
+
 export function applyThStyle(): SerializedStyles {
   return css`
     display: flex;
@@ -176,7 +184,7 @@ export const applyOverflowContentStyle = (
     position: absolute;
     left: 0;
     ${lastCol ? "right" : "left"}: 0;
-    ${lastRow ? "bottom" : "top"}: 0;
+    ${lastRow ? "bottom" : "top"}: 0px;
     background-color: white;
     border: solid 1px ${globalColor(`--${illaPrefix}-blue-03`)};
     box-sizing: border-box;
