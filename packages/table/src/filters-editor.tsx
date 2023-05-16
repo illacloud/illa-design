@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react"
-import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Button } from "@illa-design/button"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { Select } from "@illa-design/select"
@@ -39,9 +39,6 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
                 ) : index === 1 ? (
                   <Select
                     w="86px"
-                    dropdownProps={{
-                      triggerProps: { zIndex: zIndex.table + 1 },
-                    }}
                     colorScheme={colorScheme}
                     value={filterOperator}
                     options={FilterOperatorOptions}
@@ -56,9 +53,6 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
               <Select
                 w="200px"
                 mg="8px 4px"
-                dropdownProps={{
-                  triggerProps: { zIndex: zIndex.table + 1 },
-                }}
                 colorScheme={colorScheme}
                 value={id}
                 options={columnsOption}
@@ -69,9 +63,6 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
               <Select
                 w="200px"
                 mg="8px 4px"
-                dropdownProps={{
-                  triggerProps: { zIndex: zIndex.table + 1 },
-                }}
                 colorScheme={colorScheme}
                 value={filterFn as string}
                 options={FilterOptions}
