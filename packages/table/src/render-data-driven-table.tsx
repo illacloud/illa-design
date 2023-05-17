@@ -75,6 +75,7 @@ import { useClickAway } from "react-use"
 import { RawTip } from "./raw-tip"
 
 const DEFAULT_TABLE_FILTER = [{ id: "", value: "" }]
+const MULTI_ROW_SELECTION_CHECKBOX_ID = "select"
 
 export function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
@@ -164,7 +165,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     if (multiRowSelection && enableRowSelection) {
       const rowSelectionColumn: ColumnDef<D, TValue>[] = [
         {
-          accessorKey: "select",
+          accessorKey: MULTI_ROW_SELECTION_CHECKBOX_ID,
           enableSorting: false,
           enableResizing: false,
           size: 50,
@@ -284,6 +285,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       table.resetRowSelection()
     }
   })
+
+  useEffect(() => {
+    // when enableSingleCellSelection is false, reset the cell selection
+    if (!enableSingleCellSelection) {
+      setSelectedCell(undefined)
+    }
+  }, [enableSingleCellSelection])
 
   useEffect(() => {
     if ("defaultSort" in props && defaultSort) {
@@ -461,9 +469,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                   key={row.id}
                   hoverable
                   selected={enableRowSelection ? row.getIsSelected() : false}
-                  onClick={(e) => {
-                    if (enableRowSelection) {
-                      row.getToggleSelectedHandler()(e)
+                  onClick={() => {
+                    if (enableRowSelection && !multiRowSelection) {
+                      row.toggleSelected(true)
                     }
                     onRowClick?.(row, index)
                   }}
@@ -492,7 +500,13 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                           applyTableCellBackgroundStyle(bgColor),
                         ]}
                         selected={selectedCell === cell.id}
-                        onClick={() => {
+                        onClick={(e) => {
+                          if (
+                            multiRowSelection &&
+                            cell.column.id === MULTI_ROW_SELECTION_CHECKBOX_ID
+                          ) {
+                            row.getToggleSelectedHandler()(e)
+                          }
                           if (enableSingleCellSelection) {
                             setSelectedCell(cell.id)
                             onCellSelectionChange?.(cell.id)
