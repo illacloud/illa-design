@@ -2,6 +2,7 @@
 import { Children, forwardRef, ReactElement } from "react"
 import { Icon } from "./icon"
 import { IconProps } from "./interface"
+import { iconContainerStyle } from "./style"
 
 interface CreateIconOptions {
   /**
@@ -44,13 +45,21 @@ export function createIcon(options: CreateIconOptions) {
   } = options
   // eslint-disable-next-line react/display-name
   return forwardRef<SVGSVGElement, IconProps>((props, ref) => (
-    <Icon ref={ref} viewBox={viewBox} fill={fill} {...defaultProps} {...props}>
-      <title>{title}</title>
-      {path ? (
-        Children.toArray(path)
-      ) : (
-        <path fill="currentColor" d={pathDefinition} />
-      )}
-    </Icon>
+    <span css={iconContainerStyle}>
+      <Icon
+        ref={ref}
+        viewBox={viewBox}
+        fill={fill}
+        {...defaultProps}
+        {...props}
+      >
+        <title>{title}</title>
+        {path ? (
+          Children.toArray(path)
+        ) : (
+          <path fill="currentColor" d={pathDefinition} />
+        )}
+      </Icon>
+    </span>
   ))
 }
