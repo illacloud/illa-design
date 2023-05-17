@@ -509,7 +509,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                           }
                           if (enableSingleCellSelection) {
                             setSelectedCell(cell.id)
-                            onCellSelectionChange?.(cell.id)
+                            onCellSelectionChange?.(cell)
                           }
                         }}
                       >

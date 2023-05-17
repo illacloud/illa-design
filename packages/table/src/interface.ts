@@ -6,6 +6,7 @@ import {
   ColumnFiltersState,
   ColumnSizingState,
   ColumnSort,
+  Cell,
   FilterFnOption,
   OnChangeFn,
   PaginationState,
@@ -93,7 +94,7 @@ export interface TableProps<D extends TableData, TValue>
     table: Table<D>,
   ) => void
   onRowSelectionChange?: (rowSelection?: RowSelectionState) => void
-  onCellSelectionChange?: (cellId?: string) => void
+  onCellSelectionChange?: (cell: Cell<D, TValue>) => void
   onColumnSizingChange?: (columnSizing?: ColumnSizingState) => void
 }
 
