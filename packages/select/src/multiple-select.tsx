@@ -34,7 +34,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
       showSearch,
       value,
       readOnly,
-      filterOption,
+      filterOption = true,
       onChange,
       onClear,
       onInputValueChange,

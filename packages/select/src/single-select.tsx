@@ -46,7 +46,7 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
       options,
       showSearch,
       value,
-      filterOption,
+      filterOption = true,
       readOnly,
       variant,
       onChange,
