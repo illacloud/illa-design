@@ -18,7 +18,6 @@ import {
 } from "@tanstack/react-table";
 import { EmptyProps } from "@illa-design/empty"
 import { PaginationProps } from "@illa-design/pagination"
-import { b } from "@storybook/theming/dist/create-c2b2ce6d";
 
 export type TableSize = "small" | "medium" | "large"
 

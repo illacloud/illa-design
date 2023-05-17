@@ -7,8 +7,8 @@ declare module "@tanstack/react-table" {
     custom?: boolean
     style?: SerializedStyles
     getBackgroundColor?: (
-      props: CellContext<TData, unknown>,
+      props: CellContext<TData, TValue>,
     ) => string | undefined
-    getRenderedValueAsString?: (props: CellContext<TData, unknown>) => string
+    getRenderedValueAsString?: (props: CellContext<TData, TValue>) => string
   }
 }
