@@ -1,5 +1,18 @@
 # @illa-design/drawer
 
+## 1.0.24
+
+### Patch Changes
+
+- fix icons bug
+
+- Updated dependencies []:
+  - @illa-design/button@1.0.24
+  - @illa-design/config-provider@1.0.24
+  - @illa-design/icon@1.0.24
+  - @illa-design/system@1.0.22
+  - @illa-design/theme@1.0.24
+
 ## 1.0.23
 
 ### Patch Changes

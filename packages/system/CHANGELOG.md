@@ -1,5 +1,11 @@
 # @illa-design/system
 
+## 1.0.22
+
+### Patch Changes
+
+- fix icons bug
+
 ## 1.0.21
 
 ### Patch Changes
