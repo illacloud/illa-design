@@ -280,9 +280,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   }))
 
   useClickAway(containerRef, () => {
-    // when multiRowSelection is false, click outside the table, reset the row selection
-    if (clickOutsideToResetRowSelect && !multiRowSelection) {
-      table.resetRowSelection()
+    if (clickOutsideToResetRowSelect) {
+      // when multiRowSelection is false, click outside the table, reset the row selection
+      if (!multiRowSelection) {
+        table.resetRowSelection()
+      }
+      if (enableSingleCellSelection) {
+        setSelectedCell(undefined)
+      }
     }
   })
 
