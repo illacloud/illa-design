@@ -46,7 +46,7 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
       options,
       showSearch,
       value,
-      filterOption = true,
+      filterOption,
       readOnly,
       variant,
       onChange,
@@ -164,7 +164,7 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
         }
       }
       if (
-        filterOption &&
+        (filterOption || showSearch) &&
         finalInputValue &&
         finalInputValue !== "" &&
         (typeof finalInputValue === "string" ||
