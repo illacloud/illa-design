@@ -303,7 +303,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   useEffect(() => {
     // when enableSingleCellSelection is false, reset the cell selection
     if (!enableSingleCellSelection) {
-      restCellSelection()
+      setSelectedCell(undefined)
     }
   }, [enableSingleCellSelection])
 

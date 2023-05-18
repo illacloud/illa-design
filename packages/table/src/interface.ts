@@ -1,4 +1,9 @@
-import { ForwardedRef, HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react";
+import {
+  ForwardedRef,
+  HTMLAttributes,
+  TdHTMLAttributes,
+  ThHTMLAttributes,
+} from "react"
 import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
 import {
@@ -15,7 +20,7 @@ import {
   VisibilityState,
   Table,
   Row,
-} from "@tanstack/react-table";
+} from "@tanstack/react-table"
 import { EmptyProps } from "@illa-design/empty"
 import { PaginationProps } from "@illa-design/pagination"
 
@@ -86,7 +91,10 @@ export interface TableProps<D extends TableData, TValue>
   onRefresh?: (table: Table<D>) => void
   onRowClick?: (row: Row<D>, index: number) => void
   onSortingChange?: OnChangeFn<SortingState>
-  onGlobalFiltersChange?: (filters: FilterOptions[], operator: FilterOperator) => void
+  onGlobalFiltersChange?: (
+    filters: FilterOptions[],
+    operator: FilterOperator,
+  ) => void
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
   onPaginationChange?: (
     paginationState: PaginationState,
@@ -102,6 +110,7 @@ export interface TableHandler<D extends TableData> {
   selectPage: (pageIndex: number) => void
   selectRow: (rowSelection: RowSelectionState) => void
   setGlobalFilters: (filters: FilterOptions[], operator: FilterOperator) => void
+  clearSelection: () => void
 }
 
 export interface RowSelectionProps<D = any> {
@@ -196,7 +205,8 @@ export type FilterOptionsState = FilterOptions[]
 
 export type FilterOperator = "and" | "or"
 
-export interface TableFilterProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface TableFilterProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   onChange: (filters: FilterOptions[], operator: FilterOperator) => void
   colorScheme?: TableColorScheme
   filterOperator: FilterOperator
