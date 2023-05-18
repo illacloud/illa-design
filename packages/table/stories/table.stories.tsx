@@ -2,6 +2,7 @@ import { Meta, StoryFn } from "@storybook/react"
 import {
   Table,
   TableData,
+  TableHandler,
   TableProps,
   TBody,
   Td,
@@ -10,8 +11,13 @@ import {
   Thead,
   Tr,
 } from "../src"
-import { useMemo } from "react"
-import { CellContext, ColumnDef, filterFns } from "@tanstack/react-table"
+import { useEffect, useMemo, useRef, useState } from "react"
+import {
+  CellContext,
+  ColumnDef,
+  filterFns,
+  PaginationState,
+} from "@tanstack/react-table"
 import { isNumber } from "@illa-design/react"
 
 export default {
@@ -137,8 +143,7 @@ export const CombineHeader: StoryFn<TableProps<DemoData, string>> = (args) => {
       {
         id: 9,
         name: "Elizabeth Franecki",
-        company:
-          "Compatible upward-trending system engine fsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgffsdfafsdfgwarfgdsfghrsdghdfhgjfhjgf",
+        company: "Compatible upward-trending system engine",
         phone: "506-644-1590",
         address: "9316 Manuel Lodge Apt. 678",
         date: "2022-02-03",
@@ -221,9 +226,120 @@ export const CombineHeader: StoryFn<TableProps<DemoData, string>> = (args) => {
     ]
     return c
   }, [])
+
+  const tableRef = useRef<TableHandler<DemoData>>()
   return (
     <div style={{ width: "1000px" }}>
-      <Table data={data} columns={columns} download filter {...args} />
+      <Table
+        tableRef={tableRef}
+        data={data}
+        columns={columns}
+        download
+        downloadRawData
+        filter
+        {...args}
+      />
+      <button>231</button>
+      <button
+        onClick={() => {
+          tableRef.current?.table.resetRowSelection()
+        }}
+      >
+        clearSelection
+      </button>
+      <button
+        onClick={() => {
+          tableRef.current?.setGlobalFilters([], "and")
+        }}
+      >
+        clearFilters
+      </button>
+    </div>
+  )
+}
+
+export const ControlTable: StoryFn<TableProps<DemoData, string>> = (args) => {
+  const columns = [
+    {
+      header: "Passenger name",
+      accessorKey: "name",
+    },
+    {
+      header: "Total trips",
+      accessorKey: "trips",
+    },
+    {
+      header: "Current flight",
+      accessorKey: "flightName",
+    },
+  ]
+
+  const formatRowData = (rawData) =>
+    rawData.map((info) => ({
+      name: info.name,
+      trips: info.trips,
+      flightName: info?.airline?.[0]?.name,
+    }))
+
+  const getData = async (pagination: PaginationState) => {
+    const { pageSize, pageIndex } = pagination
+    const response = await fetch(
+      `https://api.instantwebtools.net/v1/passenger?page=${pageIndex}&size=${pageSize}`,
+    )
+    return await response.json()
+  }
+
+  const [pageData, setPageData] = useState({
+    rowData: [],
+    isLoading: false,
+    totalPages: 0,
+    totalPassengers: 0,
+  })
+  const [currentPage, setCurrentPage] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 5,
+  })
+
+  const onPageChange = (paginationState: PaginationState) => {
+    const { pageSize, pageIndex } = paginationState
+    if (pageIndex === currentPage?.pageIndex) return
+    setCurrentPage(paginationState)
+  }
+
+  const getCurrentData = (pagination: PaginationState) => {
+    setPageData((prevState) => ({
+      ...prevState,
+      rowData: [],
+      isLoading: true,
+    }))
+    getData(pagination).then((info) => {
+      const { totalPages, totalPassengers, data } = info
+      setPageData({
+        isLoading: false,
+        rowData: formatRowData(data),
+        totalPages,
+        totalPassengers,
+      })
+    })
+  }
+
+  useEffect(() => {
+    getCurrentData(currentPage)
+  }, [currentPage?.pageIndex])
+
+  return (
+    <div style={{ width: "1000px" }}>
+      <Table
+        serverSidePagination
+        overFlow={"pagination"}
+        data={pageData.rowData}
+        loading={pageData.isLoading}
+        total={pageData.totalPassengers ?? 10}
+        columns={columns}
+        pagination={currentPage}
+        {...args}
+        onPaginationChange={onPageChange}
+      />
       <button>231</button>
     </div>
   )

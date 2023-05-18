@@ -1,4 +1,9 @@
-import { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react"
+import {
+  ForwardedRef,
+  HTMLAttributes,
+  TdHTMLAttributes,
+  ThHTMLAttributes,
+} from "react"
 import { TableData } from "./table-data"
 import { BoxProps } from "@illa-design/theme"
 import {
@@ -6,6 +11,7 @@ import {
   ColumnFiltersState,
   ColumnSizingState,
   ColumnSort,
+  Cell,
   FilterFnOption,
   OnChangeFn,
   PaginationState,
@@ -13,6 +19,7 @@ import {
   SortingState,
   VisibilityState,
   Table,
+  Row,
 } from "@tanstack/react-table"
 import { EmptyProps } from "@illa-design/empty"
 import { PaginationProps } from "@illa-design/pagination"
@@ -51,6 +58,7 @@ export interface TableProps<D extends TableData, TValue>
   extends HTMLAttributes<HTMLDivElement>,
     TableContextProps,
     BoxProps {
+  tableRef?: ForwardedRef<TableHandler<D>>
   colorScheme?: TableColorScheme
   columns?: ColumnDef<D, TValue>[]
   data?: D[]
@@ -67,21 +75,42 @@ export interface TableProps<D extends TableData, TValue>
   pagination?: PaginationProps
   multiRowSelection?: boolean
   enableRowSelection?: boolean
+  enableSingleCellSelection?: boolean
   clickOutsideToResetRowSelect?: boolean
+  serverSidePagination?: boolean
+  // useAble when serverSidePagination is true
+  total?: number
   checkAll?: boolean
   download?: boolean
+  downloadRawData?: boolean
+  refresh?: boolean
   filter?: boolean
   columnSizing?: ColumnSizingState
   rowSelection?: RowSelectionState
   columnVisibility?: VisibilityState
-  onSortingChange?: OnChangeFn<SortingState>
+  onRefresh?: (table: Table<D>) => void
+  onRowClick?: (row: Row<D>, index: number) => void
+  onSortingChange?: (sort: SortingState) => void
+  onGlobalFiltersChange?: (
+    filters: FilterOptions[],
+    operator: FilterOperator,
+  ) => void
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
   onPaginationChange?: (
     paginationState: PaginationState,
     table: Table<D>,
   ) => void
   onRowSelectionChange?: (rowSelection?: RowSelectionState) => void
+  onCellSelectionChange?: (cell?: Cell<D, TValue>) => void
   onColumnSizingChange?: (columnSizing?: ColumnSizingState) => void
+}
+
+export interface TableHandler<D extends TableData> {
+  table: Table<D>
+  selectPage: (pageIndex: number) => void
+  selectRow: (rowSelection: RowSelectionState) => void
+  setGlobalFilters: (filters: FilterOptions[], operator: FilterOperator) => void
+  clearSelection: () => void
 }
 
 export interface RowSelectionProps<D = any> {
@@ -116,6 +145,7 @@ export interface TdProps
   rowIndex?: number
   lastCol?: boolean
   lastRow?: boolean
+  selected?: boolean
 }
 
 export interface TFootProps
@@ -175,7 +205,8 @@ export type FilterOptionsState = FilterOptions[]
 
 export type FilterOperator = "and" | "or"
 
-export interface TableFilterProps {
+export interface TableFilterProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   onChange: (filters: FilterOptions[], operator: FilterOperator) => void
   colorScheme?: TableColorScheme
   filterOperator: FilterOperator
