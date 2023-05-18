@@ -411,7 +411,12 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         applyBorderedStyle(bordered),
       ]}
     >
-      <Spin loading={loading} pos="static" css={spinStyle}>
+      <Spin
+        loading={loading}
+        pos="static"
+        colorScheme={colorScheme}
+        css={spinStyle}
+      >
         <TableContext.Provider value={contextProps}>
           <table
             css={applyTableStyle(tableLayout)}
@@ -547,7 +552,10 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
               {table.getRowModel().rows.length ? null : (
                 <tr>
                   <td colSpan={99} style={{ textAlign: "center" }}>
-                    <Empty {...emptyProps} />
+                    <Empty
+                      opac={serverSidePagination && loading ? 0 : undefined}
+                      {...emptyProps}
+                    />
                   </td>
                 </tr>
               )}
