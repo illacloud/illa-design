@@ -240,7 +240,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     },
     onSortingChange: (columnSort) => {
       setSorting(columnSort)
-      onSortingChange?.(columnSort)
+      onSortingChange?.(table.getState().sorting)
     },
     onRowSelectionChange: (rowSelection) => {
       new Promise((resolve) => {

@@ -90,7 +90,7 @@ export interface TableProps<D extends TableData, TValue>
   columnVisibility?: VisibilityState
   onRefresh?: (table: Table<D>) => void
   onRowClick?: (row: Row<D>, index: number) => void
-  onSortingChange?: OnChangeFn<SortingState>
+  onSortingChange?: (sort: SortingState) => void
   onGlobalFiltersChange?: (
     filters: FilterOptions[],
     operator: FilterOperator,
