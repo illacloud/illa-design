@@ -93,7 +93,7 @@ export interface TableProps<D extends TableData, TValue>
     table: Table<D>,
   ) => void
   onRowSelectionChange?: (rowSelection?: RowSelectionState) => void
-  onCellSelectionChange?: (cell: Cell<D, TValue>) => void
+  onCellSelectionChange?: (cell?: Cell<D, TValue>) => void
   onColumnSizingChange?: (columnSizing?: ColumnSizingState) => void
 }
 

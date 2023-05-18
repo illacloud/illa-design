@@ -257,6 +257,11 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     manualPagination: overFlow === "scroll" || serverSidePagination,
   })
 
+  const restCellSelection = useCallback(() => {
+    setSelectedCell(undefined)
+    onCellSelectionChange?.(undefined)
+  }, [onCellSelectionChange])
+
   useImperativeHandle(tableRef, () => ({
     table: table,
     selectPage: (pageIndex) => {
@@ -277,6 +282,10 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       setFilterOperator(operator)
       onGlobalFiltersChange?.(filters, operator)
     },
+    clearSelection: () => {
+      table.resetRowSelection()
+      restCellSelection()
+    },
   }))
 
   useClickAway(containerRef, () => {
@@ -286,7 +295,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         table.resetRowSelection()
       }
       if (enableSingleCellSelection) {
-        setSelectedCell(undefined)
+        restCellSelection()
       }
     }
   })
@@ -294,7 +303,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   useEffect(() => {
     // when enableSingleCellSelection is false, reset the cell selection
     if (!enableSingleCellSelection) {
-      setSelectedCell(undefined)
+      restCellSelection()
     }
   }, [enableSingleCellSelection])
 
