@@ -253,7 +253,7 @@ export const FilterOptions = [
   { label: "after", value: "after" },
 ]
 
-const FilterOptionsMap = {
+export const FilterOptionsMap = {
   equalTo,
   notEqualTo,
   contains,
