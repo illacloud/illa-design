@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { Cascader, CascaderOptionObject, CascaderProps } from "../src"
+import React from "react"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -62,7 +63,12 @@ const options: CascaderOptionObject[] = [
 
 export const Basic: StoryFn<CascaderProps> = (args) => (
   <div>
-    <Cascader options={options} allowClear={true} {...args} />
+    <Cascader
+      options={undefined}
+      allowClear={true}
+      {...args}
+      value={["a", "1"]}
+    />
     <Cascader
       style={{ marginTop: "20px" }}
       allowClear={true}

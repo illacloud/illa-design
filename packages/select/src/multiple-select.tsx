@@ -79,7 +79,11 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
           newOptions = options as SelectOptionObject[]
         }
       }
-      if (filterOption && finalInputValue && finalInputValue !== "") {
+      if (
+        (filterOption || showSearch) &&
+        finalInputValue &&
+        finalInputValue !== ""
+      ) {
         newOptions = newOptions.filter((option) => {
           if (typeof filterOption === "function") {
             return filterOption(finalInputValue)

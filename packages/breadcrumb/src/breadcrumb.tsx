@@ -62,16 +62,18 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
           )
         })
       } else {
-        return Children.map(children, (child, index) => {
-          return (
-            <Fragment key={index}>
-              {index !== Children.count(children) - 1
-                ? child
-                : cloneElement(child as ReactElement, { last: true })}
-              {index !== Children.count(children) - 1 && separatorNode}
-            </Fragment>
-          )
-        })
+        return Children.toArray(children)
+          .filter((child) => child !== undefined && child !== null)
+          .map((child, index, array) => {
+            return (
+              <Fragment key={index}>
+                {index !== array.length - 1
+                  ? child
+                  : cloneElement(child as ReactElement, { last: true })}
+                {index !== array.length - 1 && separatorNode}
+              </Fragment>
+            )
+          })
       }
     }, [children, routes, separatorNode])
 

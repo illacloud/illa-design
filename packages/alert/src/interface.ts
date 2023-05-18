@@ -4,7 +4,7 @@ import { BoxProps } from "@illa-design/theme"
 export type AlertType = "info" | "success" | "warning" | "error"
 
 export interface AlertProps
-  extends Omit<HTMLAttributes<HTMLElement>, "title">,
+  extends Omit<HTMLAttributes<HTMLElement>, "title" | "content">,
     BoxProps {
   action?: ReactNode
   closable?: boolean

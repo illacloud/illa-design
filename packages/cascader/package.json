@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/cascader",
-  "version": "1.0.20",
+  "version": "1.0.24",
   "description": "Illa Design Cascader.",
   "keywords": [
     "cascader",
@@ -39,10 +39,6 @@
     "build": "vite build",
     "e2e:ci": "npx cypress run-ct --browser chrome",
     "e2e": "npx cypress open-ct --browser chrome"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react-swc": "^3.0.1",
-    "@rollup/plugin-typescript": "^10.0.1"
   },
   "dependencies": {
     "@illa-design/icon": "workspace:*",

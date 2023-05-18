@@ -1,5 +1,57 @@
 # @illa-design/popover
 
+## 1.0.24
+
+### Patch Changes
+
+- fix icons bug
+
+- Updated dependencies []:
+  - @illa-design/config-provider@1.0.24
+  - @illa-design/link@1.0.24
+  - @illa-design/system@1.0.22
+  - @illa-design/theme@1.0.24
+  - @illa-design/trigger@1.0.24
+  - @illa-design/typography@1.0.24
+
+## 1.0.23
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/config-provider@1.0.23
+  - @illa-design/link@1.0.23
+  - @illa-design/system@1.0.21
+  - @illa-design/theme@1.0.23
+  - @illa-design/trigger@1.0.23
+  - @illa-design/typography@1.0.23
+
+## 1.0.22
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/config-provider@1.0.22
+  - @illa-design/link@1.0.22
+  - @illa-design/theme@1.0.22
+  - @illa-design/trigger@1.0.22
+  - @illa-design/typography@1.0.22
+
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/config-provider@1.0.21
+  - @illa-design/theme@1.0.21
+  - @illa-design/trigger@1.0.21
+  - @illa-design/typography@1.0.21
+  - @illa-design/link@1.0.21
+
 ## 1.0.20
 
 ### Patch Changes

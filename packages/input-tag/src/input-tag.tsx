@@ -127,7 +127,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 }
                 visible={true}
                 size={size}
-                colorScheme="blackAlpha"
+                colorScheme="grayBlue"
                 variant="light"
                 closable={closeable}
                 onClose={(e) => {

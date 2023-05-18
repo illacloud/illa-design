@@ -1,5 +1,269 @@
 # @illa-design/react
 
+## 1.0.24
+
+### Patch Changes
+
+- fix icons bug
+
+- Updated dependencies []:
+  - @illa-design/affix@1.0.24
+  - @illa-design/alert@1.0.24
+  - @illa-design/avatar@1.0.24
+  - @illa-design/back-top@1.0.24
+  - @illa-design/badge@1.0.24
+  - @illa-design/breadcrumb@1.0.24
+  - @illa-design/button@1.0.24
+  - @illa-design/calendar@1.0.24
+  - @illa-design/card@1.0.24
+  - @illa-design/cascader@1.0.24
+  - @illa-design/checkbox@1.0.24
+  - @illa-design/collapse@1.0.24
+  - @illa-design/comment@1.0.24
+  - @illa-design/config-provider@1.0.24
+  - @illa-design/date-picker@1.0.24
+  - @illa-design/description@1.0.24
+  - @illa-design/divider@1.0.24
+  - @illa-design/drawer@1.0.24
+  - @illa-design/dropdown@1.0.24
+  - @illa-design/empty@1.0.24
+  - @illa-design/grid@1.0.24
+  - @illa-design/icon@1.0.24
+  - @illa-design/image@1.0.24
+  - @illa-design/input@1.0.24
+  - @illa-design/input-number@1.0.24
+  - @illa-design/input-tag@1.0.24
+  - @illa-design/link@1.0.24
+  - @illa-design/list@1.0.24
+  - @illa-design/loading@1.0.24
+  - @illa-design/menu@1.0.24
+  - @illa-design/message@1.0.24
+  - @illa-design/modal@1.0.24
+  - @illa-design/notification@1.0.24
+  - @illa-design/page-header@1.0.24
+  - @illa-design/pagination@1.0.24
+  - @illa-design/popconfirm@1.0.24
+  - @illa-design/popover@1.0.24
+  - @illa-design/progress@1.0.24
+  - @illa-design/radio@1.0.24
+  - @illa-design/rate@1.0.24
+  - @illa-design/result@1.0.24
+  - @illa-design/select@1.0.24
+  - @illa-design/skeleton@1.0.24
+  - @illa-design/slider@1.0.23
+  - @illa-design/space@1.0.24
+  - @illa-design/spin@1.0.24
+  - @illa-design/statistic@1.0.24
+  - @illa-design/steps@1.0.24
+  - @illa-design/switch@1.0.24
+  - @illa-design/system@1.0.22
+  - @illa-design/table@1.0.24
+  - @illa-design/tabs@1.0.24
+  - @illa-design/tag@1.0.24
+  - @illa-design/theme@1.0.24
+  - @illa-design/time-picker@1.0.24
+  - @illa-design/timeline@1.0.24
+  - @illa-design/trigger@1.0.24
+  - @illa-design/typography@1.0.24
+  - @illa-design/upload@1.0.24
+
+## 1.0.23
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/affix@1.0.23
+  - @illa-design/alert@1.0.23
+  - @illa-design/avatar@1.0.23
+  - @illa-design/back-top@1.0.23
+  - @illa-design/badge@1.0.23
+  - @illa-design/breadcrumb@1.0.23
+  - @illa-design/button@1.0.23
+  - @illa-design/calendar@1.0.23
+  - @illa-design/card@1.0.23
+  - @illa-design/cascader@1.0.23
+  - @illa-design/checkbox@1.0.23
+  - @illa-design/collapse@1.0.23
+  - @illa-design/comment@1.0.23
+  - @illa-design/config-provider@1.0.23
+  - @illa-design/date-picker@1.0.23
+  - @illa-design/description@1.0.23
+  - @illa-design/divider@1.0.23
+  - @illa-design/drawer@1.0.23
+  - @illa-design/dropdown@1.0.23
+  - @illa-design/empty@1.0.23
+  - @illa-design/grid@1.0.23
+  - @illa-design/icon@1.0.23
+  - @illa-design/image@1.0.23
+  - @illa-design/input@1.0.23
+  - @illa-design/input-number@1.0.23
+  - @illa-design/input-tag@1.0.23
+  - @illa-design/link@1.0.23
+  - @illa-design/list@1.0.23
+  - @illa-design/loading@1.0.23
+  - @illa-design/menu@1.0.23
+  - @illa-design/message@1.0.23
+  - @illa-design/modal@1.0.23
+  - @illa-design/notification@1.0.23
+  - @illa-design/page-header@1.0.23
+  - @illa-design/pagination@1.0.23
+  - @illa-design/popconfirm@1.0.23
+  - @illa-design/popover@1.0.23
+  - @illa-design/progress@1.0.23
+  - @illa-design/radio@1.0.23
+  - @illa-design/rate@1.0.23
+  - @illa-design/result@1.0.23
+  - @illa-design/select@1.0.23
+  - @illa-design/skeleton@1.0.23
+  - @illa-design/slider@1.0.22
+  - @illa-design/space@1.0.23
+  - @illa-design/spin@1.0.23
+  - @illa-design/statistic@1.0.23
+  - @illa-design/steps@1.0.23
+  - @illa-design/switch@1.0.23
+  - @illa-design/system@1.0.21
+  - @illa-design/table@1.0.23
+  - @illa-design/tabs@1.0.23
+  - @illa-design/tag@1.0.23
+  - @illa-design/theme@1.0.23
+  - @illa-design/time-picker@1.0.23
+  - @illa-design/timeline@1.0.23
+  - @illa-design/trigger@1.0.23
+  - @illa-design/typography@1.0.23
+  - @illa-design/upload@1.0.23
+
+## 1.0.22
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/affix@1.0.22
+  - @illa-design/alert@1.0.22
+  - @illa-design/avatar@1.0.22
+  - @illa-design/back-top@1.0.22
+  - @illa-design/badge@1.0.22
+  - @illa-design/breadcrumb@1.0.22
+  - @illa-design/button@1.0.22
+  - @illa-design/calendar@1.0.22
+  - @illa-design/card@1.0.22
+  - @illa-design/cascader@1.0.22
+  - @illa-design/checkbox@1.0.22
+  - @illa-design/collapse@1.0.22
+  - @illa-design/comment@1.0.22
+  - @illa-design/config-provider@1.0.22
+  - @illa-design/date-picker@1.0.22
+  - @illa-design/description@1.0.22
+  - @illa-design/divider@1.0.22
+  - @illa-design/drawer@1.0.22
+  - @illa-design/dropdown@1.0.22
+  - @illa-design/empty@1.0.22
+  - @illa-design/grid@1.0.22
+  - @illa-design/icon@1.0.22
+  - @illa-design/image@1.0.22
+  - @illa-design/input@1.0.22
+  - @illa-design/input-number@1.0.22
+  - @illa-design/input-tag@1.0.22
+  - @illa-design/link@1.0.22
+  - @illa-design/list@1.0.22
+  - @illa-design/loading@1.0.22
+  - @illa-design/menu@1.0.22
+  - @illa-design/message@1.0.22
+  - @illa-design/modal@1.0.22
+  - @illa-design/notification@1.0.22
+  - @illa-design/page-header@1.0.22
+  - @illa-design/pagination@1.0.22
+  - @illa-design/popconfirm@1.0.22
+  - @illa-design/popover@1.0.22
+  - @illa-design/progress@1.0.22
+  - @illa-design/radio@1.0.22
+  - @illa-design/rate@1.0.22
+  - @illa-design/result@1.0.22
+  - @illa-design/select@1.0.22
+  - @illa-design/skeleton@1.0.22
+  - @illa-design/slider@1.0.21
+  - @illa-design/space@1.0.22
+  - @illa-design/spin@1.0.22
+  - @illa-design/statistic@1.0.22
+  - @illa-design/steps@1.0.22
+  - @illa-design/switch@1.0.22
+  - @illa-design/table@1.0.22
+  - @illa-design/tabs@1.0.22
+  - @illa-design/tag@1.0.22
+  - @illa-design/theme@1.0.22
+  - @illa-design/time-picker@1.0.22
+  - @illa-design/timeline@1.0.22
+  - @illa-design/trigger@1.0.22
+  - @illa-design/typography@1.0.22
+  - @illa-design/upload@1.0.22
+
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/badge@1.0.21
+  - @illa-design/config-provider@1.0.21
+  - @illa-design/date-picker@1.0.21
+  - @illa-design/drawer@1.0.21
+  - @illa-design/icon@1.0.21
+  - @illa-design/input@1.0.21
+  - @illa-design/input-tag@1.0.21
+  - @illa-design/modal@1.0.21
+  - @illa-design/table@1.0.21
+  - @illa-design/theme@1.0.21
+  - @illa-design/time-picker@1.0.21
+  - @illa-design/upload@1.0.21
+  - @illa-design/calendar@1.0.21
+  - @illa-design/empty@1.0.21
+  - @illa-design/pagination@1.0.21
+  - @illa-design/popconfirm@1.0.21
+  - @illa-design/popover@1.0.21
+  - @illa-design/trigger@1.0.21
+  - @illa-design/typography@1.0.21
+  - @illa-design/alert@1.0.21
+  - @illa-design/avatar@1.0.21
+  - @illa-design/back-top@1.0.21
+  - @illa-design/breadcrumb@1.0.21
+  - @illa-design/button@1.0.21
+  - @illa-design/card@1.0.21
+  - @illa-design/cascader@1.0.21
+  - @illa-design/checkbox@1.0.21
+  - @illa-design/collapse@1.0.21
+  - @illa-design/description@1.0.21
+  - @illa-design/image@1.0.21
+  - @illa-design/input-number@1.0.21
+  - @illa-design/link@1.0.21
+  - @illa-design/loading@1.0.21
+  - @illa-design/menu@1.0.21
+  - @illa-design/message@1.0.21
+  - @illa-design/notification@1.0.21
+  - @illa-design/page-header@1.0.21
+  - @illa-design/progress@1.0.21
+  - @illa-design/rate@1.0.21
+  - @illa-design/result@1.0.21
+  - @illa-design/select@1.0.21
+  - @illa-design/slider@1.0.20
+  - @illa-design/spin@1.0.21
+  - @illa-design/statistic@1.0.21
+  - @illa-design/steps@1.0.21
+  - @illa-design/switch@1.0.21
+  - @illa-design/tabs@1.0.21
+  - @illa-design/tag@1.0.21
+  - @illa-design/timeline@1.0.21
+  - @illa-design/affix@1.0.21
+  - @illa-design/comment@1.0.21
+  - @illa-design/divider@1.0.21
+  - @illa-design/dropdown@1.0.21
+  - @illa-design/grid@1.0.21
+  - @illa-design/list@1.0.21
+  - @illa-design/radio@1.0.21
+  - @illa-design/skeleton@1.0.21
+  - @illa-design/space@1.0.21
+
 ## 1.0.20
 
 ### Patch Changes

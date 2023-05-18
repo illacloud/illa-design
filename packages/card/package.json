@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/card",
-  "version": "1.0.20",
+  "version": "1.0.24",
   "description": "Illa Design Card.",
   "keywords": [
     "card",
@@ -37,10 +37,6 @@
   },
   "scripts": {
     "build": "vite build"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react-swc": "^3.0.1",
-    "@rollup/plugin-typescript": "^10.0.1"
   },
   "dependencies": {
     "@illa-design/icon": "workspace:*",

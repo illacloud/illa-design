@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { Collapse, CollapseItem, CollapseProps } from "../src"
-import { LikeFillIcon, ShareIcon, Space } from "@illa-design/react"
+import { LikeFillIcon } from "@illa-design/react"
 
 export default {
   title: "DATA DISPLAY/Collapse",

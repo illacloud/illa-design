@@ -1,7 +1,9 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
 
-export interface CommentProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
+export interface CommentProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "content">,
+    BoxProps {
   actions?: ReactNode
   author?: ReactNode | string
   avatar?: ReactNode

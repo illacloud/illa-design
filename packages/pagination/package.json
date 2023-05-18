@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/pagination",
-  "version": "1.0.20",
+  "version": "1.0.24",
   "description": "Illa Design Pagination.",
   "keywords": [
     "pagination",
@@ -46,9 +46,7 @@
     "@illa-design/config-provider": "workspace:*"
   },
   "devDependencies": {
-    "@tanstack/react-table": "^8.5.11",
-    "@vitejs/plugin-react-swc": "^3.0.1",
-    "@rollup/plugin-typescript": "^10.0.1"
+    "@tanstack/react-table": "^8.5.11"
   },
   "peerDependencies": {
     "react": "^18.2.0",

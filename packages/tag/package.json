@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/tag",
-  "version": "1.0.20",
+  "version": "1.0.24",
   "description": "This component displays as a tag with an optional link and/or button to remove the given tag.",
   "keywords": [
     "tag",
@@ -38,10 +38,6 @@
   },
   "scripts": {
     "build": "vite build"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react-swc": "^3.0.1",
-    "@rollup/plugin-typescript": "^10.0.1"
   },
   "dependencies": {
     "@illa-design/icon": "workspace:*",
