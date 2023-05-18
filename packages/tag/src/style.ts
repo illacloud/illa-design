@@ -148,11 +148,19 @@ export function tagFillPrepare(color: TagColorScheme): SerializedStyles {
 }
 
 export function tagLightPrepare(color: TagColorScheme): SerializedStyles {
-  return css`
-    border-radius: 4px;
-    background-color: ${globalColor(`--${illaPrefix}-${color}-09`)};
-    color: ${globalColor(`--${illaPrefix}-${color}-02`)};
-  `
+  if (color == "grayBlue") {
+    return css`
+      border-radius: 4px;
+      background-color: ${globalColor(`--${illaPrefix}-${color}-09`)};
+      color: ${globalColor(`--${illaPrefix}-${color}-02`)};
+    `
+  } else {
+    return css`
+      border-radius: 4px;
+      background-color: ${globalColor(`--${illaPrefix}-${color}-07`)};
+      color: ${globalColor(`--${illaPrefix}-${color}-01`)};
+    `
+  }
 }
 
 export function tagFillNormal(
