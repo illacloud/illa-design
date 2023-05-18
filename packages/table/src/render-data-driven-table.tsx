@@ -239,8 +239,12 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       onPaginationChange?.(table.getState().pagination, table)
     },
     onSortingChange: (columnSort) => {
-      setSorting(columnSort)
-      onSortingChange?.(table.getState().sorting)
+      new Promise((resolve) => {
+        setSorting(columnSort)
+        resolve(true)
+      }).then(() => {
+        onSortingChange?.(table.getState().sorting)
+      })
     },
     onRowSelectionChange: (rowSelection) => {
       new Promise((resolve) => {
@@ -386,8 +390,12 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       const paginationUpdate = { pageIndex: pageNumber - 1, pageSize }
       setPagination(paginationUpdate)
       onPaginationChange?.(paginationUpdate, table)
+      if (serverSidePagination) {
+        table.resetRowSelection()
+        restCellSelection()
+      }
     },
-    [onPaginationChange, setPagination, table],
+    [onPaginationChange, table, serverSidePagination, restCellSelection],
   )
 
   const handleClickRefresh = useCallback(() => {
