@@ -8,7 +8,7 @@ import {
   statisticStyle,
   statisticTitleStyle,
 } from "./style"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
   (props, ref) => {
@@ -69,7 +69,7 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
       <div
         ref={ref}
         css={[statisticStyle, applyBoxStyle(props)]}
-        {...restProps}
+        {...deleteCssProps(restProps)}
       >
         {title && <div css={statisticTitleStyle}>{title}</div>}
         <div css={statisticContentStyle} style={valueStyle}>

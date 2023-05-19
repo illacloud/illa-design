@@ -35,7 +35,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLElement>, BoxProps {
   children?: ReactNode
 }
 
-export interface CountProps extends HTMLAttributes<HTMLElement> {
+export interface CountProps extends HTMLAttributes<HTMLElement>, BoxProps {
   count?: string | number
   color?: string
   hasChildren?: boolean

@@ -1,6 +1,6 @@
 import usePrevious from "./usePrevious"
 import { CountProps } from "./interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { deleteCssProps, globalColor, illaPrefix } from "@illa-design/theme"
 import { applyBadgeNumberOrText, applyBadgeScale } from "./style"
 import { Key } from "react"
 
@@ -17,7 +17,7 @@ export function Count(props: CountProps) {
         hasChildren ?? false,
         (count as string).length,
       )}
-      {...restProps}
+      {...deleteCssProps(restProps)}
     >
       <span key={count as Key} css={applyBadgeScale(isChanged)}>
         {count}
