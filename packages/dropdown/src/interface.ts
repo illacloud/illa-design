@@ -1,8 +1,10 @@
-import { HTMLAttributes, MouseEvent, ReactNode } from "react"
+import { HTMLAttributes, MouseEvent, ReactNode, SyntheticEvent } from "react"
 import { TriggerColorScheme, TriggerProps } from "@illa-design/trigger"
 import { BoxProps } from "@illa-design/theme"
 
 export interface DropdownProps {
+  onBlur?: (e: SyntheticEvent) => void
+  onFocus?: (e: SyntheticEvent) => void
   children?: ReactNode
   colorScheme?: TriggerColorScheme
   dropList?: ReactNode
