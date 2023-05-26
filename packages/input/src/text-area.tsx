@@ -99,6 +99,7 @@ export const TextArea = forwardRef<HTMLDivElement, TextAreaProps>(
         {...deleteCssProps(otherProps)}
       >
         <textarea
+          disabled={disabled}
           ref={mergeRefs(internalTextAreaRef, textAreaRef)}
           value={finalValue}
           style={textAreaStyle}
