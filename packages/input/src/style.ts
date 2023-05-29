@@ -357,10 +357,12 @@ export const searchIconContainer = css`
 
 export const textareaStyle = css`
   resize: vertical;
+  color: ${getColor("grayBlue", "02")};
   outline: none;
   font-family: unset;
   background: none;
   width: 100%;
+  font-size: 14px;
   min-height: 32px;
 `
 

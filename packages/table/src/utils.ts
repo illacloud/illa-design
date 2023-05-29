@@ -23,6 +23,41 @@ export const transformTableIntoCsvData = (
       if (multiRowSelection && index === 0) {
         return
       }
+      const getRenderedValueAsString =
+        cell.column.columnDef.meta?.getRenderedValueAsString
+      const value = getRenderedValueAsString
+        ? getRenderedValueAsString?.(cell.getContext())
+        : cell.getContext().getValue()
+      rowCellData.push(value)
+    })
+    csvData.push(rowCellData)
+  })
+  return csvData
+}
+
+export const transformRawDataIntoCsvData = (
+  table: Table<any>,
+  multiRowSelection?: boolean,
+) => {
+  const csvData: Array<Array<any>> = []
+  table.getHeaderGroups().map((headerGroup) => {
+    const headerData: unknown[] = []
+    headerGroup.headers.map((header, index) => {
+      if (multiRowSelection && index === 0) {
+        return
+      }
+      if (header.column.columnDef.meta?.custom) return
+      headerData.push(header.column.columnDef.header)
+    })
+    csvData.push(headerData)
+  })
+  table.getCoreRowModel().rows.map((row) => {
+    const rowCellData: unknown[] = []
+    row.getVisibleCells().map((cell, index) => {
+      if (multiRowSelection && index === 0) {
+        return
+      }
+      if (cell.column.columnDef.meta?.custom) return
       rowCellData.push(cell.getContext().getValue())
     })
     csvData.push(rowCellData)
@@ -35,11 +70,24 @@ export const downloadDataAsCSV = (props: {
   delimiter: string
   fileName: string
 }) => {
+  const { delimiter, fileName, csvData } = props
+  const escapeValue = (value: unknown) => {
+    if (value === null || value === undefined) {
+      return ""
+    }
+    const stringValue = `${value}`
+    if (stringValue.includes(delimiter) || stringValue.includes("\n")) {
+      return `"${stringValue.replace(/"/g, '""')}"`
+    }
+    return stringValue
+  }
+
   let csvContent = ""
-  props.csvData.forEach((infoArray: Array<any>, index: number) => {
-    const dataString = infoArray.join(props.delimiter)
-    csvContent += index < props.csvData.length ? dataString + "\n" : dataString
+  csvData.forEach((infoArray: Array<any>, index: number) => {
+    const dataString = infoArray.map(escapeValue).join(delimiter)
+    csvContent += index < csvData.length - 1 ? dataString + "\n" : dataString
   })
+
   const anchor = document.createElement("a")
   const mimeType = "application/octet-stream"
   if (URL && "download" in anchor) {
@@ -48,7 +96,7 @@ export const downloadDataAsCSV = (props: {
         type: mimeType,
       }),
     )
-    anchor.setAttribute("download", props.fileName)
+    anchor.setAttribute("download", fileName)
     document.body.appendChild(anchor)
     anchor.click()
     document.body.removeChild(anchor)
@@ -205,7 +253,7 @@ export const FilterOptions = [
   { label: "after", value: "after" },
 ]
 
-const FilterOptionsMap = {
+export const FilterOptionsMap = {
   equalTo,
   notEqualTo,
   contains,

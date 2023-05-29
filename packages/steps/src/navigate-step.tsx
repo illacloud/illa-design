@@ -2,7 +2,7 @@ import React, { forwardRef, ReactNode, useMemo } from "react"
 import { StepProps } from "./interface"
 import { applyIndexStyle, stepIconStyle } from "./style"
 import { ErrorIcon, NextIcon, SuccessIcon } from "@illa-design/icon"
-import { getColor } from "@illa-design/theme"
+import { deleteCssProps, getColor } from "@illa-design/theme"
 import {
   applyHorizontalNavigationContainerStyle,
   applyHorizontalNavigationLineStyle,
@@ -62,7 +62,7 @@ export const NavigateStep = forwardRef<HTMLDivElement, StepProps>(
       <div
         css={applyHorizontalNavigationContainerStyle(direction, last)}
         ref={ref}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <div css={horizontalNavigationContentStyle}>
           {statusElement}

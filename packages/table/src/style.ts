@@ -1,6 +1,6 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix, zIndex } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { TableAlign, TableLayout, TableSize } from "./interface"
 
 export function applySizeStyle(size: TableSize): SerializedStyles {
@@ -34,6 +34,7 @@ export function applyContainerStyle(): SerializedStyles {
     display: flex;
     flex-direction: column;
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    position: relative;
   `
 }
 
@@ -72,6 +73,14 @@ export function applyBorderStyle(
     `
   }
   return css(borderStyle, stripedStyle)
+}
+
+export function applyTdSelectedStyle(selected?: boolean) {
+  if (!selected) return css``
+
+  return css`
+    box-shadow: inset 0 0 0 1px ${globalColor(`--${illaPrefix}-blue-03`)};
+  `
 }
 
 export function applyThStyle(): SerializedStyles {
@@ -175,7 +184,7 @@ export const applyOverflowContentStyle = (
     position: absolute;
     left: 0;
     ${lastCol ? "right" : "left"}: 0;
-    ${lastRow ? "bottom" : "top"}: 0;
+    ${lastRow ? "bottom" : "top"}: 0px;
     background-color: white;
     border: solid 1px ${globalColor(`--${illaPrefix}-blue-03`)};
     box-sizing: border-box;
@@ -277,6 +286,10 @@ export const spinStyle = css`
   width: 100%;
   overflow: auto;
   flex: 1;
+
+  & > div:last-of-type {
+    z-index: ${zIndex.table + 1};
+  }
 `
 
 export const filterStyle = css`
@@ -334,4 +347,27 @@ export const tableResizerStyle = css`
       width: 1px;
     }
   }
+`
+
+export const applyTableCellBackgroundStyle = (
+  color?: string,
+): SerializedStyles => {
+  if (color) {
+    return css`
+      background-color: ${getColor(color, "03")};
+    `
+  }
+  return css``
+}
+
+export const downloadRawStyle = css`
+  position: relative;
+  display: inline;
+`
+export const downloadTipStyle = css`
+  position: absolute;
+  top: 2px;
+  left: 18px;
+  width: 21px;
+  height: 10px;
 `

@@ -18,7 +18,7 @@ import { applyContainerCss } from "./style"
 import { TabCommonHeader } from "./headers/tab-common-header"
 import { TabLineHeader } from "./headers/tab-line-header"
 import { isObject } from "@illa-design/system"
-import { applyBoxStyle } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
 
 export type TabChildren = {
   headers: TabHeaderChildProps[]
@@ -203,7 +203,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       css={[applyContainerCss(tabPosition), applyBoxStyle(props)]}
       placeholder={placeholder}
       ref={ref}
-      {...rest}
+      {...deleteCssProps(rest)}
     >
       {_variant === "line" && <TabLineHeader {...headerProps} />}
       {_variant != "line" && <TabCommonHeader {...headerProps} />}

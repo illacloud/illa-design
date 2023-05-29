@@ -45,7 +45,7 @@ export function createIcon(options: CreateIconOptions) {
   } = options
   // eslint-disable-next-line react/display-name
   return forwardRef<SVGSVGElement, IconProps>((props, ref) => (
-    <span css={iconContainerStyle}>
+    <span css={[iconContainerStyle, props.containerStyle]}>
       <Icon
         ref={ref}
         viewBox={viewBox}

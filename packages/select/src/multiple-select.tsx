@@ -49,6 +49,9 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
       ...otherProps
     } = props
 
+    const focusNum = useRef<number>(0)
+    const lastFocusState = useRef(false)
+
     const inputTagRef = useRef<InputTagRefHandler | undefined>()
 
     const [finalPopupVisible, setFinalPopupVisible] = useMergeValue(false, {
@@ -79,7 +82,11 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
           newOptions = options as SelectOptionObject[]
         }
       }
-      if (filterOption && finalInputValue && finalInputValue !== "") {
+      if (
+        (filterOption || showSearch) &&
+        finalInputValue &&
+        finalInputValue !== ""
+      ) {
         newOptions = newOptions.filter((option) => {
           if (typeof filterOption === "function") {
             return filterOption(finalInputValue)
@@ -91,7 +98,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
         })
       }
       return newOptions
-    }, [filterOption, finalInputValue, options])
+    }, [filterOption, finalInputValue, options, showSearch])
 
     const finalTagValue: TagObject[] = useMemo(() => {
       if (options && options.length > 0) {
@@ -130,6 +137,24 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
 
     return (
       <Dropdown
+        onFocus={(e) => {
+          focusNum.current = focusNum.current + 1
+          setTimeout(() => {
+            if (focusNum.current === 1 && !lastFocusState.current) {
+              lastFocusState.current = true
+              onFocus?.(e)
+            }
+          })
+        }}
+        onBlur={(e) => {
+          focusNum.current = focusNum.current - 1
+          setTimeout(() => {
+            if (focusNum.current === 0) {
+              lastFocusState.current = false
+              onBlur?.(e)
+            }
+          })
+        }}
         colorScheme="white"
         autoAlignPopupWidth={autoAlignPopupWidth}
         trigger={trigger}
@@ -257,6 +282,24 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
           addAfter={addAfter}
           addBefore={addBefore}
           error={error}
+          onFocus={(e) => {
+            focusNum.current = focusNum.current + 1
+            setTimeout(() => {
+              if (focusNum.current === 1 && !lastFocusState.current) {
+                lastFocusState.current = true
+                onFocus?.(e)
+              }
+            })
+          }}
+          onBlur={(e) => {
+            focusNum.current = focusNum.current - 1
+            setTimeout(() => {
+              if (focusNum.current === 0) {
+                lastFocusState.current = false
+                onBlur?.(e)
+              }
+            })
+          }}
           onKeyDown={onKeyDown}
           disabled={disabled}
           colorScheme={colorScheme}
@@ -265,8 +308,6 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
           prefix={prefix}
           placeholder={placeholder}
           inputTagRef={inputTagRef}
-          onFocus={onFocus}
-          onBlur={onBlur}
           onInputChange={(v) => {
             onInputValueChange?.(v)
             setFinalInputValue(v)

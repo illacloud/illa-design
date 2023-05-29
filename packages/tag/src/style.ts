@@ -148,7 +148,7 @@ export function tagFillPrepare(color: TagColorScheme): SerializedStyles {
 }
 
 export function tagLightPrepare(color: TagColorScheme): SerializedStyles {
-  if (color == "gray") {
+  if (color == "grayBlue") {
     return css`
       border-radius: 4px;
       background-color: ${globalColor(`--${illaPrefix}-${color}-09`)};

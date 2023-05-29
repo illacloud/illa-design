@@ -660,6 +660,12 @@ export const All: StoryFn<IconProps> = (props: IconProps) => (
           <span>Sorter Down</span>
         </Space>
       </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <RefreshIcon {...props} />
+          <span>Refresh</span>
+        </Space>
+      </Col>
     </Row>
     <Row>
       <Col span={2}>

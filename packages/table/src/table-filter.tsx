@@ -50,7 +50,7 @@ export const TableFilter: FC<TableFilterProps> = (props) => {
         return filters
       })
     },
-    [setFilters],
+    [],
   )
 
   const onVisibleChange = useCallback(

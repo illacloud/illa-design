@@ -5,6 +5,8 @@ import { useMergeValue } from "@illa-design/system"
 
 export const Dropdown: FC<DropdownProps> = (props) => {
   const {
+    onFocus,
+    onBlur,
     children,
     colorScheme = "white",
     dropList,
@@ -33,6 +35,8 @@ export const Dropdown: FC<DropdownProps> = (props) => {
 
   return (
     <Trigger
+      onFocus={onFocus}
+      onBlur={onBlur}
       trigger={trigger}
       colorScheme={colorScheme}
       autoAlignPopupWidth={autoAlignPopupWidth}

@@ -41,6 +41,7 @@ import {
   cloneElement,
   FC,
   ReactElement,
+  SyntheticEvent,
   useContext,
   useEffect,
   useImperativeHandle,
@@ -51,6 +52,8 @@ import {
 
 export const Trigger: FC<TriggerProps> = (props) => {
   const {
+    onBlur,
+    onFocus,
     triggerRef,
     children,
     closeWhenScroll = true,
@@ -198,7 +201,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
             <TriangleTop
               w="8px"
               h="4px"
-              css={applyTriangleStyle(colorScheme, placement)}
+              containerStyle={applyTriangleStyle(colorScheme, placement)}
             />
           )}
         </div>
@@ -213,7 +216,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
             <TriangleBottom
               w="8px"
               h="4px"
-              css={applyTriangleStyle(colorScheme, placement)}
+              containerStyle={applyTriangleStyle(colorScheme, placement)}
             />
           )}
           <div
@@ -240,7 +243,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
             <TriangleRight
               w="4px"
               h="8px"
-              css={applyTriangleStyle(colorScheme, placement)}
+              containerStyle={applyTriangleStyle(colorScheme, placement)}
             />
           )}
           <div
@@ -279,7 +282,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
             <TriangleLeft
               w="4px"
               h="8px"
-              css={applyTriangleStyle(colorScheme, placement)}
+              containerStyle={applyTriangleStyle(colorScheme, placement)}
             />
           )}
         </div>
@@ -403,6 +406,8 @@ export const Trigger: FC<TriggerProps> = (props) => {
           <AnimatePresence>
             {finalVisible && (
               <div
+                onFocus={onFocus}
+                onBlur={onBlur}
                 css={[
                   css`
                     display: inline-flex;

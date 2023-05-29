@@ -8,7 +8,7 @@ import {
   horizontalTitleStyle,
 } from "./style/dot-line-horizontal-style"
 import { ErrorIcon, SuccessIcon } from "@illa-design/icon"
-import { getColor } from "@illa-design/theme"
+import { deleteCssProps, getColor } from "@illa-design/theme"
 import { applyIndexStyle, applyStepDotStyle, stepIconStyle } from "./style"
 import {
   applyVerticalDescriptionStyle,
@@ -77,7 +77,7 @@ export const DotStep = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
       <div
         ref={ref}
         css={applyHorizontalStepContainerStyle(canClick, disabled, last)}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <div css={horizontalStatusContainerStyle}>
           {statusElement}
@@ -96,7 +96,7 @@ export const DotStep = forwardRef<HTMLDivElement, StepProps>((props, ref) => {
       <div
         ref={ref}
         css={applyVerticalStepContainerStyle(canClick, disabled, last)}
-        {...otherProps}
+        {...deleteCssProps(otherProps)}
       >
         <div css={verticalStatusContainerStyle}>
           {statusElement}

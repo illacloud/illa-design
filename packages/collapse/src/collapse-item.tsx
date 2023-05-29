@@ -12,7 +12,7 @@ import {
   expandIconStyle,
 } from "./style"
 import { CaretLeftIcon, CaretRightIcon } from "@illa-design/icon"
-import { getColor } from "@illa-design/theme"
+import { deleteCssProps, getColor } from "@illa-design/theme"
 import { forwardRef, MouseEvent, useCallback, useContext, useMemo } from "react"
 import { Transition } from "react-transition-group"
 
@@ -94,7 +94,7 @@ export const CollapseItem = forwardRef<HTMLDivElement, CollapseItemProps>(
     )
 
     return (
-      <div css={collapseStyle} ref={ref} {...otherProps}>
+      <div css={collapseStyle} ref={ref} {...deleteCssProps(otherProps)}>
         <div
           css={applyCollapseTitleContainerStyle(disabled)}
           onClick={(e) => {

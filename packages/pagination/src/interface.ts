@@ -14,6 +14,7 @@ export interface PaginationProps
   showJumper?: boolean
   showMore?: boolean
   simple?: boolean
+  disableSimplePageJump?: boolean
   sizeCanChange?: boolean
   bufferSize?: number
   current?: number

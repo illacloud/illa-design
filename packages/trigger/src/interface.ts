@@ -1,5 +1,5 @@
 import { BoxProps } from "@illa-design/theme"
-import { MutableRefObject, ReactNode, RefObject } from "react"
+import { MutableRefObject, ReactNode, RefObject, SyntheticEvent } from "react"
 
 export type TriggerColorScheme =
   | string
@@ -44,6 +44,8 @@ export interface TriggerRefHandler {
 }
 
 export interface TriggerProps extends BoxProps, TriggerContext {
+  onBlur?: (e: SyntheticEvent) => void
+  onFocus?: (e: SyntheticEvent) => void
   triggerRef?: MutableRefObject<TriggerRefHandler | undefined>
   children?: ReactNode
   colorScheme?: TriggerColorScheme

@@ -39,6 +39,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       showJumper,
       showMore,
       simple,
+      disableSimplePageJump,
       sizeCanChange,
       bufferSize = 0,
       current,
@@ -199,27 +200,33 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       if (simple) {
         middleComponent = (
           <div css={selectorContainerStyle}>
-            <input
-              css={applySelectorInputStyle(size)}
-              type="number"
-              min={1}
-              max={totalPageSize}
-              value={simpleValue}
-              disabled={disabled}
-              onChange={(e) => {
-                setSimpleValue(e.currentTarget.value)
-              }}
-              onBlur={(e) => {
-                if (e.currentTarget.value != "") {
-                  changeCurrent(Number(e.currentTarget.value))
-                }
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && e.currentTarget.value != "") {
-                  changeCurrent(Number(e.currentTarget.value))
-                }
-              }}
-            />
+            {disableSimplePageJump ? (
+              <span css={applySimpleTextStyle(css``, disabled)}>
+                {simpleValue}
+              </span>
+            ) : (
+              <input
+                css={applySelectorInputStyle(size)}
+                type="number"
+                min={1}
+                max={totalPageSize}
+                value={simpleValue}
+                disabled={disabled}
+                onChange={(e) => {
+                  setSimpleValue(e.currentTarget.value)
+                }}
+                onBlur={(e) => {
+                  if (e.currentTarget.value != "") {
+                    changeCurrent(Number(e.currentTarget.value))
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && e.currentTarget.value != "") {
+                    changeCurrent(Number(e.currentTarget.value))
+                  }
+                }}
+              />
+            )}
             <span
               css={applySimpleTextStyle(
                 css`
@@ -381,6 +388,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       showMore,
       simple,
       simpleValue,
+      disableSimplePageJump,
       size,
       total,
       totalPageSize,

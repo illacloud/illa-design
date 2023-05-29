@@ -9,6 +9,7 @@ import {
   showRealContentSizeLimitStyle,
   textOverflowStyle,
   applyTdStyle,
+  applyTdSelectedStyle,
 } from "./style"
 import { css } from "@emotion/react"
 import { TableContext } from "./table-context"
@@ -30,6 +31,8 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
       rowIndex,
       lastCol,
       lastRow,
+      selected,
+      className,
       ...otherProps
     } = props
 
@@ -70,9 +73,11 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
             lastCol,
             lastRow,
           ),
+          applyTdSelectedStyle(selected),
           applyBoxStyle(props),
           applyContentContainer(align ?? tableContext?.align ?? "left"),
         )}
+        className={className}
         ref={ref}
         {...deleteCssProps(otherProps)}
       >

@@ -1,6 +1,7 @@
 import { forwardRef, HTMLAttributes } from "react"
 import { createPortal } from "react-dom"
 import { css, SerializedStyles } from "@emotion/react"
+import { BoxProps, deleteCssProps } from "@illa-design/theme"
 
 function applyPopupContainer(
   top: string,
@@ -19,7 +20,7 @@ function applyPopupContainer(
   `
 }
 
-export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
+export interface PopupProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   top: string
   left: string
   zIndex: number | "auto"
@@ -35,7 +36,7 @@ export const Popup = forwardRef<HTMLDivElement, PopupProps>((props, ref) => {
         <div
           ref={ref}
           css={applyPopupContainer(top, left, zIndex, isInViewport)}
-          {...otherProps}
+          {...deleteCssProps(otherProps)}
         >
           {children}
         </div>,

@@ -13,6 +13,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useImperativeHandle,
 } from "react"
 import {
   ColumnDef,
@@ -31,6 +32,7 @@ import { Checkbox } from "@illa-design/checkbox"
 import {
   customGlobalFn,
   downloadDataAsCSV,
+  transformRawDataIntoCsvData,
   transformTableIntoCsvData,
 } from "./utils"
 import { isNumber, isString } from "@illa-design/system"
@@ -40,7 +42,10 @@ import {
   applyContainerStyle,
   applyHeaderIconLeft,
   applyPreContainer,
+  applyTableCellBackgroundStyle,
   applyTableStyle,
+  downloadRawStyle,
+  downloadTipStyle,
   headerStyle,
   spinStyle,
   tableResizerStyle,
@@ -57,6 +62,7 @@ import {
   SorterDefaultIcon,
   SorterDownIcon,
   SorterUpIcon,
+  RefreshIcon,
 } from "@illa-design/icon"
 import { TBody } from "./tbody"
 import { Td } from "./td"
@@ -66,11 +72,16 @@ import { Button } from "@illa-design/button"
 import { Pagination } from "@illa-design/pagination"
 import { TableFilter } from "./table-filter"
 import { useClickAway } from "react-use"
+import { RawTip } from "./raw-tip"
+
+const DEFAULT_TABLE_FILTER = [{ id: "", value: "" }]
+const MULTI_ROW_SELECTION_CHECKBOX_ID = "select"
 
 export function RenderDataDrivenTable<D extends TableData, TValue>(
   props: TableProps<D, TValue>,
 ): ReactElement {
   const {
+    tableRef,
     size = "medium",
     tableLayout = "auto",
     overFlow = "scroll",
@@ -95,16 +106,25 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     enableColumnResizing,
     multiRowSelection = false,
     enableRowSelection = true,
+    enableSingleCellSelection,
+    serverSidePagination,
+    total,
     clickOutsideToResetRowSelect,
     checkAll = true,
+    refresh,
     download,
+    downloadRawData,
     filter,
     rowSelection: selected = {},
     defaultSort = [],
+    onRefresh,
+    onRowClick,
     onSortingChange,
     onPaginationChange,
     onColumnFiltersChange,
+    onGlobalFiltersChange,
     onRowSelectionChange,
+    onCellSelectionChange,
     onColumnSizingChange,
     ...otherProps
   } = props
@@ -122,11 +142,10 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
 
   const containerRef = useRef<HTMLDivElement>(null)
   const [sorting, setSorting] = useState<SortingState>(defaultSort)
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>()
   const [filterOperator, setFilterOperator] = useState<FilterOperator>("and")
-  const [filterOption, setFilterOption] = useState<FilterOptionsState>([
-    { id: "", value: "" },
-  ])
+  const [filterOption, setFilterOption] =
+    useState<FilterOptionsState>(DEFAULT_TABLE_FILTER)
   const [rowSelection, setRowSelection] = useState(selected)
   const [currentColumns, setColumns] = useState<ColumnDef<D, TValue>[]>(columns)
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
@@ -136,6 +155,8 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   const [columnSizing, setColumnSizing] =
     useState<ColumnSizingState>(_columnSizing)
 
+  const [selectedCell, setSelectedCell] = useState<string>()
+
   const _columns = useMemo(() => {
     const current = currentColumns?.filter((item) => {
       // @ts-ignore accessorKey is not in the interface
@@ -144,7 +165,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     if (multiRowSelection && enableRowSelection) {
       const rowSelectionColumn: ColumnDef<D, TValue>[] = [
         {
-          accessorKey: "select",
+          accessorKey: MULTI_ROW_SELECTION_CHECKBOX_ID,
           enableSorting: false,
           enableResizing: false,
           size: 50,
@@ -189,7 +210,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     return multiRowSelection && enableRowSelection
   }, [multiRowSelection, enableRowSelection])
 
-  const table = useReactTable({
+  const table = useReactTable<D>({
     data,
     columns: _columns,
     state: {
@@ -205,7 +226,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     },
     enableColumnResizing: !!enableColumnResizing,
     columnResizeMode: "onChange",
-    autoResetAll: true,
+    // autoResetAll: true,
     enableMultiRowSelection,
     enableSorting: !disableSortBy,
     globalFilterFn: customGlobalFn,
@@ -218,15 +239,12 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       onPaginationChange?.(table.getState().pagination, table)
     },
     onSortingChange: (columnSort) => {
-      setSorting(columnSort)
-      onSortingChange?.(columnSort)
-    },
-    onGlobalFilterChange: (globalFilter) => {
-      onColumnFiltersChange?.(globalFilter)
-    },
-    onColumnFiltersChange: (columnFilter) => {
-      setColumnFilters(columnFilter)
-      onColumnFiltersChange?.(columnFilter)
+      new Promise((resolve) => {
+        setSorting(columnSort)
+        resolve(true)
+      }).then(() => {
+        onSortingChange?.(table.getState().sorting)
+      })
     },
     onRowSelectionChange: (rowSelection) => {
       new Promise((resolve) => {
@@ -240,15 +258,58 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    manualPagination: overFlow === "scroll",
+    manualPagination: overFlow === "scroll" || serverSidePagination,
   })
 
-  useClickAway(containerRef, () => {
-    // when multiRowSelection is false, click outside the table, reset the row selection
-    if (clickOutsideToResetRowSelect && !multiRowSelection) {
+  const restCellSelection = useCallback(() => {
+    setSelectedCell(undefined)
+    onCellSelectionChange?.(undefined)
+  }, [onCellSelectionChange])
+
+  useImperativeHandle(tableRef, () => ({
+    table: table,
+    selectPage: (pageIndex) => {
+      setPagination((prevState) => {
+        return {
+          ...prevState,
+          pageIndex,
+        }
+      })
+    },
+    selectRow: (rowSelection) => {
+      setRowSelection(rowSelection)
+      onRowSelectionChange?.(rowSelection)
+    },
+    setGlobalFilters: (filters, operator) => {
+      setFilterOption(filters.length ? filters : DEFAULT_TABLE_FILTER)
+      setColumnFilters(filters)
+      setFilterOperator(operator)
+      onGlobalFiltersChange?.(filters, operator)
+    },
+    clearSelection: () => {
       table.resetRowSelection()
+      restCellSelection()
+    },
+  }))
+
+  useClickAway(containerRef, () => {
+    if (clickOutsideToResetRowSelect) {
+      // when multiRowSelection is false, click outside the table, reset the row selection
+      if (!multiRowSelection) {
+        table.resetRowSelection()
+      }
+      if (enableSingleCellSelection) {
+        restCellSelection()
+      }
     }
   })
+
+  useEffect(() => {
+    // when enableSingleCellSelection is false, reset the cell selection
+    if (!enableSingleCellSelection) {
+      setSelectedCell(undefined)
+    }
+  }, [enableSingleCellSelection])
 
   useEffect(() => {
     if ("defaultSort" in props && defaultSort) {
@@ -287,8 +348,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         pageSize: isNumber(_pageSize) ? _pageSize : pageSize,
       })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pagination])
+  }, [pagination?.pageSize, pagination?.current])
 
   const downloadTableDataAsCsv = useCallback(() => {
     const csvData = transformTableIntoCsvData(table, multiRowSelection)
@@ -296,6 +356,15 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       csvData: csvData,
       delimiter: ",",
       fileName: `table.csv`,
+    })
+  }, [table, multiRowSelection])
+
+  const downloadTableRawDataAsCsv = useCallback(() => {
+    const csvData = transformRawDataIntoCsvData(table, multiRowSelection)
+    downloadDataAsCSV({
+      csvData: csvData,
+      delimiter: ",",
+      fileName: `table_raw.csv`,
     })
   }, [table, multiRowSelection])
 
@@ -321,9 +390,17 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       const paginationUpdate = { pageIndex: pageNumber - 1, pageSize }
       setPagination(paginationUpdate)
       onPaginationChange?.(paginationUpdate, table)
+      if (serverSidePagination) {
+        table.resetRowSelection()
+        restCellSelection()
+      }
     },
-    [onPaginationChange, setPagination, table],
+    [onPaginationChange, table, serverSidePagination, restCellSelection],
   )
+
+  const handleClickRefresh = useCallback(() => {
+    onRefresh?.(table)
+  }, [onRefresh, table])
 
   return (
     <div
@@ -334,7 +411,12 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         applyBorderedStyle(bordered),
       ]}
     >
-      <Spin loading={loading} css={spinStyle}>
+      <Spin
+        loading={loading}
+        pos="static"
+        colorScheme={colorScheme}
+        css={spinStyle}
+      >
         <TableContext.Provider value={contextProps}>
           <table
             css={applyTableStyle(tableLayout)}
@@ -414,39 +496,66 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                   key={row.id}
                   hoverable
                   selected={enableRowSelection ? row.getIsSelected() : false}
-                  onClick={(e) => {
-                    if (enableRowSelection) {
-                      row.getToggleSelectedHandler()(e)
+                  onClick={() => {
+                    if (enableRowSelection && !multiRowSelection) {
+                      row.toggleSelected(true)
                     }
+                    onRowClick?.(row, index)
                   }}
                 >
-                  {row.getVisibleCells().map((cell) => (
-                    <Td
-                      w={`${cell.column.getSize()}px`}
-                      key={cell.id}
-                      colIndex={row.getVisibleCells().indexOf(cell)}
-                      rowIndex={table.getRowModel().rows.indexOf(row)}
-                      lastCol={
-                        row.getVisibleCells().indexOf(cell) ===
-                        row.getVisibleCells().length - 1
-                      }
-                      lastRow={
-                        table.getRowModel().rows.indexOf(row) ===
-                        table.getRowModel().rows.length - 1
-                      }
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
+                  {row.getVisibleCells().map((cell) => {
+                    const bgColor =
+                      cell.column.columnDef.meta?.getBackgroundColor?.(
                         cell.getContext(),
-                      )}
-                    </Td>
-                  ))}
+                      )
+                    return (
+                      <Td
+                        w={`${cell.column.getSize()}px`}
+                        key={cell.id}
+                        colIndex={row.getVisibleCells().indexOf(cell)}
+                        rowIndex={table.getRowModel().rows.indexOf(row)}
+                        lastCol={
+                          row.getVisibleCells().indexOf(cell) ===
+                          row.getVisibleCells().length - 1
+                        }
+                        lastRow={
+                          table.getRowModel().rows.indexOf(row) ===
+                          table.getRowModel().rows.length - 1
+                        }
+                        css={[
+                          cell.column.columnDef?.meta?.style,
+                          applyTableCellBackgroundStyle(bgColor),
+                        ]}
+                        selected={selectedCell === cell.id}
+                        onClick={(e) => {
+                          if (
+                            multiRowSelection &&
+                            cell.column.id === MULTI_ROW_SELECTION_CHECKBOX_ID
+                          ) {
+                            row.getToggleSelectedHandler()(e)
+                          }
+                          if (enableSingleCellSelection) {
+                            setSelectedCell(cell.id)
+                            onCellSelectionChange?.(cell)
+                          }
+                        }}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </Td>
+                    )
+                  })}
                 </Tr>
               ))}
               {table.getRowModel().rows.length ? null : (
                 <tr>
                   <td colSpan={99} style={{ textAlign: "center" }}>
-                    <Empty {...emptyProps} />
+                    <Empty
+                      opac={serverSidePagination && loading ? 0 : undefined}
+                      {...emptyProps}
+                    />
                   </td>
                 </tr>
               )}
@@ -488,6 +597,14 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
       {overFlow === "pagination" || download || filter ? (
         <div css={toolBarStyle}>
           <div css={applyActionButtonStyle(overFlow === "pagination")}>
+            {refresh ? (
+              <Button
+                variant={"text"}
+                colorScheme={"grayBlue"}
+                leftIcon={<RefreshIcon size={"16px"} />}
+                onClick={handleClickRefresh}
+              />
+            ) : null}
             {download ? (
               <Button
                 variant={"text"}
@@ -496,22 +613,46 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                 onClick={downloadTableDataAsCsv}
               />
             ) : null}
+            {downloadRawData ? (
+              <div css={downloadRawStyle}>
+                <Button
+                  pos={"relative"}
+                  variant={"text"}
+                  colorScheme={"grayBlue"}
+                  leftIcon={
+                    <div>
+                      <DownloadIcon size={"16px"} />
+                    </div>
+                  }
+                  onClick={downloadTableRawDataAsCsv}
+                />
+                <RawTip css={downloadTipStyle} />
+              </div>
+            ) : null}
             {filter ? (
               <TableFilter
+                key={columnFilters?.length}
                 colorScheme={colorScheme}
                 filterOperator={filterOperator}
                 filterOption={filterOption}
                 columnsOption={columnsOption}
                 onChange={(filters, operator) => {
+                  setFilterOption(filters)
                   setColumnFilters(filters)
                   setFilterOperator(operator)
+                  onGlobalFiltersChange?.(filters, operator)
                 }}
               />
             ) : null}
           </div>
           {overFlow === "pagination" ? (
             <Pagination
-              total={Object.keys(table.getRowModel().rowsById).length}
+              {...pagination}
+              total={
+                serverSidePagination && isNumber(total)
+                  ? total
+                  : Object.keys(table.getRowModel().rowsById).length
+              }
               pageSize={pageSize}
               current={pageIndex + 1}
               hideOnSinglePage={false}
