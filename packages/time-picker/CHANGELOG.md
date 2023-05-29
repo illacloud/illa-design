@@ -1,5 +1,19 @@
 # @illa-design/time-picker
 
+## 1.0.25
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/button@1.0.25
+  - @illa-design/config-provider@1.0.25
+  - @illa-design/icon@1.0.25
+  - @illa-design/system@1.0.23
+  - @illa-design/theme@1.0.25
+  - @illa-design/trigger@1.0.25
+
 ## 1.0.24
 
 ### Patch Changes
