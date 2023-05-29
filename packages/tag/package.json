@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/tag",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "This component displays as a tag with an optional link and/or button to remove the given tag.",
   "keywords": [
     "tag",
