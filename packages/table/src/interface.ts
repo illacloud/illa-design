@@ -66,6 +66,7 @@ export interface TableProps<D extends TableData, TValue>
   tableLayout?: TableLayout
   bordered?: boolean
   hoverable?: boolean
+  customCellPadding?: string
   defaultSort?: ColumnSort[]
   disableSortBy?: boolean
   enableColumnResizing?: boolean
@@ -122,6 +123,7 @@ export interface TableContextProps {
   striped?: boolean
   showHeader?: boolean
   showFooter?: boolean
+  customCellPadding?: string
   size?: TableSize
   align?: TableAlign
   hoverable?: boolean
