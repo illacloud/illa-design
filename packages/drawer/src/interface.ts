@@ -1,5 +1,6 @@
 import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
+import { SerializedStyles } from "@emotion/react"
 
 export type DrawerPlacement = "top" | "bottom" | "left" | "right"
 
@@ -12,6 +13,7 @@ export interface DrawerProps
   cancelText?: string
   placement?: DrawerPlacement
   mask?: boolean
+  maskStyle?: SerializedStyles
   maskClosable?: boolean
   visible?: boolean
   closable?: boolean
