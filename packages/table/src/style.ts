@@ -3,7 +3,10 @@ import { css, SerializedStyles } from "@emotion/react"
 import { getColor, globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { TableAlign, TableLayout, TableSize } from "./interface"
 
-export function applySizeStyle(size: TableSize): SerializedStyles {
+export function applySizeStyle(
+  size: TableSize,
+  customCellPadding?: string,
+): SerializedStyles {
   let paddingStyle
   switch (size) {
     case "small":
@@ -26,6 +29,11 @@ export function applySizeStyle(size: TableSize): SerializedStyles {
     box-sizing: border-box;
     min-height: 50px;
     ${paddingStyle};
+    ${customCellPadding
+      ? css`
+          padding: ${customCellPadding};
+        `
+      : css``}
   `
 }
 

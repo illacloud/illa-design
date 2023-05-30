@@ -31,6 +31,7 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
       rowIndex,
       lastCol,
       lastRow,
+      customCellPadding,
       selected,
       className,
       ...otherProps
@@ -64,7 +65,10 @@ export const Td = forwardRef<HTMLTableDataCellElement, TdProps>(
         css={css(
           applyTdStyle(overflow),
           applyNormalStyle(),
-          applySizeStyle(size ?? tableContext?.size ?? "medium"),
+          applySizeStyle(
+            size ?? tableContext?.size ?? "medium",
+            customCellPadding ?? tableContext?.customCellPadding,
+          ),
           applyBorderStyle(
             borderedCell ?? tableContext?.borderedCell,
             striped ?? tableContext?.striped,

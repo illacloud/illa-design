@@ -100,6 +100,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     hoverable,
     showHeader = true,
     emptyProps,
+    customCellPadding,
     columnVisibility,
     pagination,
     columnSizing: _columnSizing = {},
@@ -137,6 +138,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
     hoverable,
     showHeader,
     showFooter,
+    customCellPadding,
     enableColumnResizing,
   } as TableContextProps
 
@@ -410,6 +412,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         applyBoxStyle(props),
         applyBorderedStyle(bordered),
       ]}
+      style={{padding: ''}}
     >
       <Spin
         loading={loading}
@@ -450,6 +453,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                             table.getHeaderGroups().indexOf(headerGroup) ===
                             table.getHeaderGroups().length - 1
                           }
+                          customCellPadding={customCellPadding}
                         >
                           <div
                             css={applyPreContainer(align)}
@@ -522,6 +526,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                           table.getRowModel().rows.indexOf(row) ===
                           table.getRowModel().rows.length - 1
                         }
+                        customCellPadding={customCellPadding}
                         css={[
                           cell.column.columnDef?.meta?.style,
                           applyTableCellBackgroundStyle(bgColor),
@@ -578,6 +583,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
                           table.getHeaderGroups().indexOf(footerGroup) ===
                           table.getHeaderGroups().length - 1
                         }
+                        customCellPadding={customCellPadding}
                       >
                         {header.isPlaceholder
                           ? null
