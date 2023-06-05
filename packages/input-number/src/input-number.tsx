@@ -102,11 +102,13 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         ref={ref}
         css={hoverControlStyle}
         size={size}
-        type="number"
         value={formatter ? formatter(finalValue) : finalValue}
         onChange={(v) => {
+          if (isNaN(Number(v))) {
+            return
+          }
           if (value === undefined) {
-            if (v === "" || v === "undefined") {
+            if (v === "") {
               setFinalValue("")
             } else if (precision && precision >= step) {
               setFinalValue(Number(Number(v).toFixed(precision)))
@@ -114,7 +116,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
               setFinalValue(Number(v))
             }
           }
-          if (v === "" || v === "undefined") {
+          if (v === "") {
             onChange?.(undefined)
           } else if (precision && precision >= step) {
             onChange?.(Number(Number(v).toFixed(precision)))
