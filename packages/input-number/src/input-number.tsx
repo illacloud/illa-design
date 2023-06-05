@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { forwardRef, useCallback } from "react"
 import { InputNumberProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { DownIcon, MinusIcon, PlusIcon, UpIcon } from "@illa-design/icon"
@@ -29,7 +29,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       prefix,
       suffix,
       defaultValue,
-      value = "",
+      value,
       icons,
       formatter,
       onChange,
@@ -41,7 +41,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       value: value,
     })
 
-    const plusStep = (): void => {
+    const plusStep = useCallback((): void => {
       if (finalValue === "") {
         if (0 <= max && 0 >= min) {
           if (value === undefined) {
@@ -57,8 +57,8 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
           onChange?.(finalValue + step)
         }
       }
-    }
-    const minusStep = (): void => {
+    }, [finalValue, max, min, onChange, setFinalValue, step, value])
+    const minusStep = useCallback((): void => {
       if (finalValue === "") {
         if (0 <= max && 0 >= min) {
           if (value === undefined) {
@@ -74,7 +74,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
           onChange?.(finalValue - step)
         }
       }
-    }
+    }, [finalValue, max, min, onChange, setFinalValue, step, value])
 
     const control = (
       <div className="control" css={controlContainerStyle}>
@@ -101,18 +101,22 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       <Input
         ref={ref}
         css={hoverControlStyle}
-        type="number"
         size={size}
-        value={formatter ? formatter(finalValue) : finalValue.toString()}
+        type="number"
+        value={formatter ? formatter(finalValue) : finalValue}
         onChange={(v) => {
           if (value === undefined) {
-            if (precision && precision >= step) {
+            if (v === "" || v === "undefined") {
+              setFinalValue("")
+            } else if (precision && precision >= step) {
               setFinalValue(Number(Number(v).toFixed(precision)))
             } else {
               setFinalValue(Number(v))
             }
           }
-          if (precision && precision >= step) {
+          if (v === "" || v === "undefined") {
+            onChange?.(undefined)
+          } else if (precision && precision >= step) {
             onChange?.(Number(Number(v).toFixed(precision)))
           } else {
             onChange?.(Number(v))

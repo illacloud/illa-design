@@ -47,7 +47,7 @@ export interface InputNumberProps
     plus?: ReactNode
     minus?: ReactNode
   }
-  onChange?: (value: number) => void
+  onChange?: (value: number | undefined) => void
   onKeyDown?: (e: SyntheticEvent) => void
   formatter?: (value: number | string) => string
 }
