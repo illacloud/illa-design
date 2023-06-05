@@ -27,6 +27,7 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
       rowIndex,
       lastCol,
       lastRow,
+      customCellPadding,
       ...otherProps
     } = props
 
@@ -36,7 +37,10 @@ export const Th = forwardRef<HTMLTableHeaderCellElement, ThProps>(
       <th
         css={css(
           applyThStyle(),
-          applySizeStyle(size ?? tableContext?.size ?? "medium"),
+          applySizeStyle(
+            size ?? tableContext?.size ?? "medium",
+            customCellPadding ?? tableContext?.customCellPadding,
+          ),
           applyBorderStyle(
             borderedCell ?? tableContext?.borderedCell,
             striped ?? tableContext?.striped,

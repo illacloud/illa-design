@@ -1,5 +1,139 @@
 # @illa-design/react
 
+## 1.0.26
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/affix@1.0.26
+  - @illa-design/alert@1.0.26
+  - @illa-design/avatar@1.0.26
+  - @illa-design/back-top@1.0.26
+  - @illa-design/badge@1.0.26
+  - @illa-design/breadcrumb@1.0.26
+  - @illa-design/button@1.0.26
+  - @illa-design/calendar@1.0.26
+  - @illa-design/card@1.0.26
+  - @illa-design/cascader@1.0.26
+  - @illa-design/checkbox@1.0.26
+  - @illa-design/collapse@1.0.26
+  - @illa-design/comment@1.0.26
+  - @illa-design/config-provider@1.0.26
+  - @illa-design/date-picker@1.0.26
+  - @illa-design/description@1.0.26
+  - @illa-design/divider@1.0.26
+  - @illa-design/drawer@1.0.26
+  - @illa-design/dropdown@1.0.26
+  - @illa-design/empty@1.0.26
+  - @illa-design/grid@1.0.26
+  - @illa-design/icon@1.0.26
+  - @illa-design/image@1.0.26
+  - @illa-design/input@1.0.26
+  - @illa-design/input-number@1.0.26
+  - @illa-design/input-tag@1.0.26
+  - @illa-design/link@1.0.26
+  - @illa-design/list@1.0.26
+  - @illa-design/loading@1.0.26
+  - @illa-design/menu@1.0.26
+  - @illa-design/message@1.0.26
+  - @illa-design/modal@1.0.26
+  - @illa-design/notification@1.0.26
+  - @illa-design/page-header@1.0.26
+  - @illa-design/pagination@1.0.26
+  - @illa-design/popconfirm@1.0.26
+  - @illa-design/popover@1.0.26
+  - @illa-design/progress@1.0.26
+  - @illa-design/radio@1.0.26
+  - @illa-design/rate@1.0.26
+  - @illa-design/result@1.0.26
+  - @illa-design/select@1.0.26
+  - @illa-design/skeleton@1.0.26
+  - @illa-design/slider@1.0.25
+  - @illa-design/space@1.0.26
+  - @illa-design/spin@1.0.26
+  - @illa-design/statistic@1.0.26
+  - @illa-design/steps@1.0.26
+  - @illa-design/switch@1.0.26
+  - @illa-design/system@1.0.24
+  - @illa-design/table@1.0.26
+  - @illa-design/tabs@1.0.26
+  - @illa-design/tag@1.0.26
+  - @illa-design/theme@1.0.26
+  - @illa-design/time-picker@1.0.26
+  - @illa-design/timeline@1.0.26
+  - @illa-design/trigger@1.0.26
+  - @illa-design/typography@1.0.26
+  - @illa-design/upload@1.0.26
+
+## 1.0.25
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/affix@1.0.25
+  - @illa-design/alert@1.0.25
+  - @illa-design/avatar@1.0.25
+  - @illa-design/back-top@1.0.25
+  - @illa-design/badge@1.0.25
+  - @illa-design/breadcrumb@1.0.25
+  - @illa-design/button@1.0.25
+  - @illa-design/calendar@1.0.25
+  - @illa-design/card@1.0.25
+  - @illa-design/cascader@1.0.25
+  - @illa-design/checkbox@1.0.25
+  - @illa-design/collapse@1.0.25
+  - @illa-design/comment@1.0.25
+  - @illa-design/config-provider@1.0.25
+  - @illa-design/date-picker@1.0.25
+  - @illa-design/description@1.0.25
+  - @illa-design/divider@1.0.25
+  - @illa-design/drawer@1.0.25
+  - @illa-design/dropdown@1.0.25
+  - @illa-design/empty@1.0.25
+  - @illa-design/grid@1.0.25
+  - @illa-design/icon@1.0.25
+  - @illa-design/image@1.0.25
+  - @illa-design/input@1.0.25
+  - @illa-design/input-number@1.0.25
+  - @illa-design/input-tag@1.0.25
+  - @illa-design/link@1.0.25
+  - @illa-design/list@1.0.25
+  - @illa-design/loading@1.0.25
+  - @illa-design/menu@1.0.25
+  - @illa-design/message@1.0.25
+  - @illa-design/modal@1.0.25
+  - @illa-design/notification@1.0.25
+  - @illa-design/page-header@1.0.25
+  - @illa-design/pagination@1.0.25
+  - @illa-design/popconfirm@1.0.25
+  - @illa-design/popover@1.0.25
+  - @illa-design/progress@1.0.25
+  - @illa-design/radio@1.0.25
+  - @illa-design/rate@1.0.25
+  - @illa-design/result@1.0.25
+  - @illa-design/select@1.0.25
+  - @illa-design/skeleton@1.0.25
+  - @illa-design/slider@1.0.24
+  - @illa-design/space@1.0.25
+  - @illa-design/spin@1.0.25
+  - @illa-design/statistic@1.0.25
+  - @illa-design/steps@1.0.25
+  - @illa-design/switch@1.0.25
+  - @illa-design/system@1.0.23
+  - @illa-design/table@1.0.25
+  - @illa-design/tabs@1.0.25
+  - @illa-design/tag@1.0.25
+  - @illa-design/theme@1.0.25
+  - @illa-design/time-picker@1.0.25
+  - @illa-design/timeline@1.0.25
+  - @illa-design/trigger@1.0.25
+  - @illa-design/typography@1.0.25
+  - @illa-design/upload@1.0.25
+
 ## 1.0.24
 
 ### Patch Changes

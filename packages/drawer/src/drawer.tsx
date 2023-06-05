@@ -37,6 +37,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
     visible,
     mask = true,
     maskClosable = true,
+    maskStyle,
     closable = true,
     okText,
     cancelText,
@@ -110,7 +111,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>((props, ref) => {
                   exit="exit"
                   initial="initial"
                   transition={{ duration: 0.3 }}
-                  css={applyDrawerMask}
+                  css={[applyDrawerMask, maskStyle]}
                   onClick={(e) => {
                     maskClosable && onCancel && onCancel(e)
                   }}

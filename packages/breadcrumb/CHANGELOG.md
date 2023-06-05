@@ -1,5 +1,29 @@
 # @illa-design/breadcrumb
 
+## 1.0.26
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/dropdown@1.0.26
+  - @illa-design/icon@1.0.26
+  - @illa-design/system@1.0.24
+  - @illa-design/theme@1.0.26
+
+## 1.0.25
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/dropdown@1.0.25
+  - @illa-design/icon@1.0.25
+  - @illa-design/system@1.0.23
+  - @illa-design/theme@1.0.25
+
 ## 1.0.24
 
 ### Patch Changes
