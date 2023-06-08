@@ -940,8 +940,8 @@ importers:
         specifier: ^2.8.1
         version: 2.9.2(@types/react@18.2.5)(react@18.2.0)
       react-hotkeys-hook:
-        specifier: ^3.4.6
-        version: 3.4.7(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^4.4.0
+        version: 4.4.0(react-dom@18.2.0)(react@18.2.0)
       uuid:
         specifier: ^8.3.2
         version: 8.3.2
@@ -8584,10 +8584,6 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
-  /hotkeys-js@3.9.4:
-    resolution: {integrity: sha512-2zuLt85Ta+gIyvs4N88pCYskNrxf1TFv3LR9t5mdAZIX8BcgQQ48F2opUptvHa6m8zsy5v/a0i9mWzTrlNWU0Q==}
-    dev: false
-
   /html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
     dev: true
@@ -10776,8 +10772,8 @@ packages:
       use-sidecar: 1.1.2(@types/react@18.2.5)(react@18.2.0)
     dev: false
 
-  /react-hotkeys-hook@3.4.7(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-+bbPmhPAl6ns9VkXkNNyxlmCAIyDAcWbB76O4I0ntr3uWCRuIQf/aRLartUahe9chVMPj+OEzzfk3CQSjclUEQ==}
+  /react-hotkeys-hook@4.4.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-wOaCWLwgT/f895CMJrR9hmzVf+gfL8IpjWDXWXKngBp9i6Xqzf0tvLv4VI8l3Vlsg/cc4C/Iik3Ck76L/Hj0tw==}
     peerDependencies:
       react: '>=16.8.1'
       react-dom: '>=16.8.1'
@@ -10787,7 +10783,6 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      hotkeys-js: 3.9.4
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false

@@ -85,7 +85,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       }
     },
     {
-      enableOnTags: ["INPUT"],
+      enableOnFormTags: ["INPUT"],
     },
     [visible],
   )
