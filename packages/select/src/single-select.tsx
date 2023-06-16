@@ -78,7 +78,8 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
           | SelectOptionObject[]
           | string[]
           | number
-          | number[],
+          | number[]
+          | ReactNode,
       ) => {
         let dV: number | string | ReactNode | undefined = undefined
         if (dealValue === undefined) {
@@ -114,6 +115,9 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
                 }
               }
             }
+          }
+          if (dV === undefined) {
+            dV = dealValue as ReactNode
           }
         }
         return dV
