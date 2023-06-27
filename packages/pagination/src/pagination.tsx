@@ -52,6 +52,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       onChange,
       onPageSizeChange,
       showTotal,
+      inputBorderColorScheme,
+      activeColorScheme,
       ...otherProps
     } = props
 
@@ -130,7 +132,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
             <div css={jumperContainerStyle}>
               <span css={applyJumperStyle(disabled)}>{locale.go}</span>
               <input
-                css={applySelectorInputStyle(size)}
+                css={applySelectorInputStyle(size, inputBorderColorScheme)}
                 value={jumperValue}
                 type="number"
                 min={1}
@@ -159,6 +161,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     }, [
       changeCurrent,
       disabled,
+      inputBorderColorScheme,
       jumperValue,
       locale.go,
       showJumper,
@@ -251,6 +254,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
                   `,
                   size,
                   disabled,
+                  activeColorScheme,
                   active,
                 )}
                 onClick={() => {
@@ -419,6 +423,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
                 label: finalPageSize + "/" + locale.page,
                 value: finalPageSize.toString(),
               }}
+              colorScheme={inputBorderColorScheme}
               onChange={(value) => {
                 if (value !== null) {
                   let v = Number(value)
@@ -443,6 +448,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       disabled,
       finalCurrent,
       finalPageSize,
+      inputBorderColorScheme,
       locale.page,
       onPageSizeChange,
       pageSize,

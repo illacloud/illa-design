@@ -66,21 +66,32 @@ export function applyDirectorIconStyle(
   marginStyle?: SerializedStyles,
   size?: PaginationSize,
   disabled?: boolean,
+  activeColorScheme?: string | undefined,
   active?: boolean,
 ): SerializedStyles {
   let textColor = css`
-    color: ${active ? getColor("blue", "01") : getColor("grayBlue", "02")};
+    color: ${active
+      ? getColor(activeColorScheme ?? "blue", "01")
+      : getColor("grayBlue", "02")};
   `
   let bgColor = css`
-    background-color: ${active ? getColor("blue", "07") : "unset"};
+    background-color: ${active
+      ? getColor(activeColorScheme ?? "blue", "07")
+      : "unset"};
   `
 
   if (disabled) {
     textColor = css`
-      color: ${active ? getColor("blue", "05") : getColor("grayBlue", "07")};
+      color: ${active
+        ? getColor(activeColorScheme ?? "blue", "05")
+        : getColor("grayBlue", "07")};
     `
     bgColor = css`
-      background-color: ${active ? getColor("grayBlue", "09") : "unset"};
+      background-color: ${active
+        ? activeColorScheme
+          ? getColor(activeColorScheme, "07")
+          : getColor("grayBlue", "09")
+        : "unset"};
     `
   }
 
@@ -126,6 +137,7 @@ export function applyDirectorIconStyle(
 
 export function applySelectorInputStyle(
   size: PaginationSize,
+  inputBorderColorScheme?: string,
 ): SerializedStyles {
   let s = "32px"
 
@@ -161,7 +173,10 @@ export function applySelectorInputStyle(
     &:focus-within {
       outline: none;
       background: none;
-      border: 1px solid ${getColor("blue", "03")};
+      border: 1px solid
+        ${inputBorderColorScheme
+          ? getColor(inputBorderColorScheme, "01")
+          : getColor("blue", "01")};
       box-shadow: 0 0 8px 0 ${getColorShadow("blue", "01")};
     }
 
