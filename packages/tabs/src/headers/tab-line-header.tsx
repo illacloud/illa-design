@@ -150,7 +150,6 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         childRef.current,
       )?.reduce((a, b) => a + b, 0)
       const offsetSize = getOffsetSize(_isHorizontalLayout, scrollRef)
-
       setNeedScroll(childrenSize > offsetSize)
     }, [_isHorizontalLayout, width, height, tabHeaderChild?.length])
 
@@ -161,7 +160,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       )
     }, [_isHorizontalLayout, selectedIndex])
 
-    const dividerSize = () => {
+    const dividerSize = useMemo(() => {
       const sizeArr = getChildrenSize(_isHorizontalLayout, childRef.current)
       let size = 0
       const len = sizeArr?.length
@@ -171,7 +170,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       return size > getOffsetSize(_isHorizontalLayout, scrollRef)
         ? size
         : getOffsetSize(_isHorizontalLayout, scrollRef)
-    }
+    },[_isHorizontalLayout])
 
     let [
       headerContainer,
@@ -232,7 +231,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
           >
             <div css={headerContainer} ref={ref}>
               {!_isAhead && (
-                <div css={applyLineCss(childRef && dividerSize())}>
+                <div css={applyLineCss(childRef && dividerSize)}>
                   <div
                     css={applyBlueLineCss(
                       blueLineWidth,
@@ -264,7 +263,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                   })}
               </div>
               {isAhead(tabPosition) && (
-                <div css={applyLineCss(childRef && dividerSize())}>
+                <div css={applyLineCss(childRef && dividerSize)}>
                   <div
                     css={applyBlueLineCss(
                       blueLineWidth,
