@@ -12,7 +12,7 @@ function getPaddingStyle(size: InputSize): SerializedStyles {
       break
     case "medium":
       pdStyle = css`
-        padding: 3px 16px;
+        padding: 5px 16px;
       `
       break
     case "large":
@@ -160,7 +160,6 @@ export function applyInputStyle(
     ${getPaddingStyle(size)};
     ${bdLeftStyle};
     ${bdRightStyle};
-    z-index: ${zIndex.input};
 
     &:hover {
       border-color: ${variant === "outline"
@@ -237,7 +236,6 @@ export function applyInputDisabledStyle(
           ? getColor("red", "03")
           : getColor("grayBlue", "08")
         : "transparent"};
-    z-index: ${zIndex.input};
     ${getPaddingStyle(size)};
     ${bdLeftStyle};
     ${bdRightStyle};

@@ -7,7 +7,7 @@ import { getColor } from "@illa-design/theme"
 import { Empty } from "@illa-design/empty"
 import { InputTag, TagObject } from "@illa-design/input-tag"
 import { Checkbox } from "@illa-design/checkbox"
-import { dropListItemStyle } from "./style"
+import { dropListItemStyle, dropLabelStyle } from "./style"
 import { InputTagRefHandler } from "@illa-design/input-tag/src"
 
 export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
@@ -245,6 +245,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
                   <div css={dropListItemStyle}>
                     <Checkbox
                       colorScheme={colorScheme}
+                      flex="none"
                       mr="8px"
                       checked={
                         labelInValue
@@ -256,7 +257,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
                             ) !== undefined
                       }
                     />
-                    {option.label}
+                    <span css={dropLabelStyle}>{option.label}</span>
                   </div>
                 </DropListItem>
               )

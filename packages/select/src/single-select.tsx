@@ -23,6 +23,7 @@ import { useMergeValue } from "@illa-design/system"
 import { DownIcon, LoadingIcon, UpIcon } from "@illa-design/icon"
 import { getColor } from "@illa-design/theme"
 import { Empty } from "@illa-design/empty"
+import { dropLabelStyle, dropListItemStyle } from "./style"
 
 export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
   (props, ref) => {
@@ -78,7 +79,8 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
           | SelectOptionObject[]
           | string[]
           | number
-          | number[],
+          | number[]
+          | ReactNode,
       ) => {
         let dV: number | string | ReactNode | undefined = undefined
         if (dealValue === undefined) {
@@ -114,6 +116,9 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
                 }
               }
             }
+          }
+          if (dV === undefined) {
+            dV = dealValue as ReactNode
           }
         }
         return dV
@@ -255,11 +260,13 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
                     <DropListItem
                       key={option.value.toString()}
                       value={option.value}
+                      css={dropListItemStyle}
                       colorScheme={colorScheme}
-                      title={option.label}
                       selected={option.value === finalSelectValue}
                       disabled={option.disabled}
-                    />
+                    >
+                      <span css={dropLabelStyle}>{option.label}</span>
+                    </DropListItem>
                   )
                 })
               : Children.map(children, (child) => {

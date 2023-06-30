@@ -32,4 +32,6 @@ export interface PaginationProps
   onChange?: (pageNumber: number, pageSize: number) => void
   onPageSizeChange?: (size: number, current: number) => void
   showTotal?: boolean | ((total: number, range: number[]) => ReactNode)
+  inputBorderColorScheme?: string
+  activeColorScheme?: string
 }
