@@ -1,5 +1,16 @@
 # @illa-design/link
 
+## 1.0.27
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/icon@1.0.27
+  - @illa-design/system@1.0.25
+  - @illa-design/theme@1.0.27
+
 ## 1.0.26
 
 ### Patch Changes

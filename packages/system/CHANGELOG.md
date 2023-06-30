@@ -1,5 +1,11 @@
 # @illa-design/system
 
+## 1.0.25
+
+### Patch Changes
+
+- fix bugs
+
 ## 1.0.24
 
 ### Patch Changes

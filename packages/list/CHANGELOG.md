@@ -1,5 +1,18 @@
 # @illa-design/list
 
+## 1.0.27
+
+### Patch Changes
+
+- fix bugs
+
+- Updated dependencies []:
+  - @illa-design/avatar@1.0.27
+  - @illa-design/divider@1.0.27
+  - @illa-design/system@1.0.25
+  - @illa-design/theme@1.0.27
+  - @illa-design/typography@1.0.27
+
 ## 1.0.26
 
 ### Patch Changes
