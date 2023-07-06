@@ -19,6 +19,7 @@ import {
   CommentIcon,
   CopyIcon,
   DeleteIcon,
+  DeleteOutlineIcon,
   DependencyIcon,
   DownIcon,
   DownloadIcon,
@@ -168,6 +169,12 @@ export const All: StoryFn<IconProps> = (props: IconProps) => (
         <Space direction="vertical" align="center" w="100%" pd="16px 0">
           <DeleteIcon {...props} />
           <span>Delete</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <DeleteOutlineIcon {...props} />
+          <span>DeleteOutline</span>
         </Space>
       </Col>
       <Col span={2}>

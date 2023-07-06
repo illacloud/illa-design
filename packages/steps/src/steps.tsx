@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react"
+import React, { forwardRef, useCallback } from "react"
 import { StepsProps, StepsStatus } from "./interface"
 import { applyStepsContainerStyle } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
@@ -22,6 +22,16 @@ export const Steps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
     value: current,
     defaultValue: 0,
   })
+
+  const handleClick = useCallback((index: number, disabled?: boolean) => {
+    if (disabled) {
+      return
+    }
+    if (current === undefined) {
+      setFinalCurrent(index)
+    }
+    onChange?.(index)
+  }, [current, onChange, setFinalCurrent])
 
   return (
     <div
@@ -65,10 +75,7 @@ export const Steps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
                   title={item.title}
                   index={index}
                   onClick={() => {
-                    if (current === undefined) {
-                      setFinalCurrent(index)
-                    }
-                    onChange?.(index)
+                    handleClick(index, item.disabled)
                   }}
                 />
               )
@@ -91,10 +98,7 @@ export const Steps = forwardRef<HTMLDivElement, StepsProps>((props, ref) => {
                   title={item.title}
                   index={index}
                   onClick={() => {
-                    if (current === undefined) {
-                      setFinalCurrent(index)
-                    }
-                    onChange?.(index)
+                    handleClick(index, item.disabled)
                   }}
                 />
               )

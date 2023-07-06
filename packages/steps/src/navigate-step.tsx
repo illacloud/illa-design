@@ -60,7 +60,7 @@ export const NavigateStep = forwardRef<HTMLDivElement, StepProps>(
 
     return (
       <div
-        css={applyHorizontalNavigationContainerStyle(direction, last)}
+        css={applyHorizontalNavigationContainerStyle(direction, last, disabled)}
         ref={ref}
         {...deleteCssProps(otherProps)}
       >

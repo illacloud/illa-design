@@ -5,6 +5,7 @@ import { StepsDirection, StepsStatus } from "../interface"
 export function applyHorizontalNavigationContainerStyle(
   direction?: StepsDirection,
   last?: boolean,
+  disabled?: boolean,
 ): SerializedStyles {
   let m = css``
   if (direction === "vertical" && !last) {
@@ -22,6 +23,7 @@ export function applyHorizontalNavigationContainerStyle(
     flex-direction: column;
     flex: 1;
     ${m};
+    cursor: ${disabled ? "not-allowed" : "auto"};
   `
 }
 
