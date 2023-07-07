@@ -2,13 +2,11 @@ import { createIcon } from "../create-icon"
 
 export const PenIcon = createIcon({
   title: "PenIcon",
-  viewBox: "0 0 14 14",
+  viewBox: "0 0 16 16",
   path: (
     <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="m9.295 1.75 2.79 2.79-7.545 7.545H1.75v-2.79L9.295 1.75zM3.063 9.838v.934h.934l4.37-4.37-.934-.934-4.37 4.37zM8.36 4.54l.934.933.933-.933-.933-.934-.934.934z"
-      fill="currentColor"
+      d="M10.7794 7.58492L6.12155 12.2434H4L4 10.1224L8.65843 5.46396M10.7794 7.58492L12.7432 5.62079L10.6224 3.5L8.65843 5.46396M10.7794 7.58492L8.65843 5.46396"
+      stroke="currentColor"
     />
   ),
 })
