@@ -247,7 +247,7 @@ export function applyLabelDomElementStyle(size: InputSize): SerializedStyles {
     flex-shrink: 1;
     width: 100%;
     flex-grow: 1;
-    min-height: ${size === "small" ? "22px" : "24px"};
+    min-height: ${size === "small" ? "20px" : "22px"};
     display: flex;
     align-items: center;
     color: ${getColor("grayBlue", "02")};
@@ -259,7 +259,7 @@ export function applyInputElementStyle(size: InputSize): SerializedStyles {
     font-size: inherit;
     color: ${getColor("grayBlue", "02")};
     outline: none;
-    line-height: ${size === "small" ? "22px" : "24px"};
+    line-height: ${size === "small" ? "20px" : "22px"};
     border: none;
     flex-shrink: 1;
     width: 100%;
