@@ -1,8 +1,8 @@
 import { css, SerializedStyles, keyframes } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SkeletonImageProps, ImageShape, ImageSize } from "./interface"
 
-const backgroundColor = globalColor(`--${illaPrefix}-grayBlue-08`)
+const lightBGColor = "#F9FAFC"
+const darkBGColor = "#F2F3F5"
 
 export const skeletonStyle = css`
   display: flex;
@@ -16,8 +16,8 @@ export const skeletonImageStyle = css`
   margin-right: 16px;
 `
 
-export function applyAnimation(animation?: boolean): SerializedStyles {
-  if (!animation) {
+export function applyAnimation(animatin?: boolean): SerializedStyles {
+  if (!animatin) {
     return css``
   }
 
@@ -30,8 +30,8 @@ export function applyAnimation(animation?: boolean): SerializedStyles {
     background-position: 0 50%
   }
   `
-  const gray = globalColor(`--${illaPrefix}-grayBlue-08`)
-  const darkGray = globalColor(`--${illaPrefix}-grayBlue-06`)
+  const gray = lightBGColor
+  const darkGray = darkBGColor
 
   return css({
     background: `linear-gradient(90deg, ${gray} 20%, ${darkGray} 35%, ${gray} 65%)`,
@@ -41,18 +41,14 @@ export function applyAnimation(animation?: boolean): SerializedStyles {
 }
 
 export function applyLineStyle(width?: number | string): SerializedStyles {
-  return css([
-    css`
-      &:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    `,
-    {
-      width,
-      height: 16,
-      backgroundColor,
-    },
-  ])
+  return css`
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+    width: ${width}px;
+    height: 16px;
+    background-color: ${lightBGColor}px;
+  `
 }
 
 export const textContainerStyle = css({
@@ -66,9 +62,9 @@ export function applyImageStyle({
   size = "medium",
 }: SkeletonImageProps): SerializedStyles {
   return css([
-    css({
-      backgroundColor,
-    }),
+    css`
+      background-color: ${lightBGColor};
+    `,
     applyImageSize(size),
     applyImageShape(shape),
   ])
@@ -89,7 +85,10 @@ function applyImageSize(size: ImageSize): SerializedStyles {
     width = sizeMap[size]
   }
 
-  return css({ width, height: width })
+  return css`
+    width: ${width}px;
+    height: ${width}px;
+  `
 }
 
 function applyImageShape(shape: ImageShape): SerializedStyles {
