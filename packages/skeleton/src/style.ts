@@ -1,8 +1,8 @@
 import { css, SerializedStyles, keyframes } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SkeletonImageProps, ImageShape, ImageSize } from "./interface"
 
-const backgroundColor = globalColor(`--${illaPrefix}-grayBlue-08`)
+const lightBGColor = "#F9FAFC"
+const darkBGColor = "#F2F3F5"
 
 export const skeletonStyle = css`
   display: flex;
@@ -16,8 +16,8 @@ export const skeletonImageStyle = css`
   margin-right: 16px;
 `
 
-export function applyAnimation(animation?: boolean): SerializedStyles {
-  if (!animation) {
+export function applyAnimation(animatin?: boolean): SerializedStyles {
+  if (!animatin) {
     return css``
   }
 
@@ -30,8 +30,8 @@ export function applyAnimation(animation?: boolean): SerializedStyles {
     background-position: 0 50%
   }
   `
-  const gray = globalColor(`--${illaPrefix}-grayBlue-08`)
-  const darkGray = globalColor(`--${illaPrefix}-grayBlue-06`)
+  const gray = lightBGColor
+  const darkGray = darkBGColor
 
   return css({
     background: `linear-gradient(90deg, ${gray} 20%, ${darkGray} 35%, ${gray} 65%)`,
@@ -50,7 +50,7 @@ export function applyLineStyle(width?: number | string): SerializedStyles {
     {
       width,
       height: 16,
-      backgroundColor,
+      lightBGColor,
     },
   ])
 }
@@ -67,7 +67,7 @@ export function applyImageStyle({
 }: SkeletonImageProps): SerializedStyles {
   return css([
     css({
-      backgroundColor,
+      lightBGColor,
     }),
     applyImageSize(size),
     applyImageShape(shape),
