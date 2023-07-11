@@ -16,8 +16,8 @@ export const skeletonImageStyle = css`
   margin-right: 16px;
 `
 
-export function applyAnimation(animatin?: boolean): SerializedStyles {
-  if (!animatin) {
+export function applyAnimation(animation?: boolean): SerializedStyles {
+  if (!animation) {
     return css``
   }
 
