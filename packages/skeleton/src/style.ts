@@ -41,18 +41,14 @@ export function applyAnimation(animatin?: boolean): SerializedStyles {
 }
 
 export function applyLineStyle(width?: number | string): SerializedStyles {
-  return css([
-    css`
-      &:not(:last-child) {
-        margin-bottom: 16px;
-      }
-    `,
-    {
-      width,
-      height: 16,
-      lightBGColor,
-    },
-  ])
+  return css`
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+    width: ${width}px;
+    height: 16px;
+    background-color: ${lightBGColor}px;
+  `
 }
 
 export const textContainerStyle = css({
@@ -66,9 +62,9 @@ export function applyImageStyle({
   size = "medium",
 }: SkeletonImageProps): SerializedStyles {
   return css([
-    css({
-      lightBGColor,
-    }),
+    css`
+      background-color: ${lightBGColor};
+    `,
     applyImageSize(size),
     applyImageShape(shape),
   ])
@@ -89,7 +85,10 @@ function applyImageSize(size: ImageSize): SerializedStyles {
     width = sizeMap[size]
   }
 
-  return css({ width, height: width })
+  return css`
+    width: ${width}px;
+    height: ${width}px;
+  `
 }
 
 function applyImageShape(shape: ImageShape): SerializedStyles {
