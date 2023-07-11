@@ -32,6 +32,8 @@ export const applyRateInner = css`
   align-items: center;
   font-size: 24px;
   min-height: 32px;
+  flex-wrap: wrap;
+  gap: 7px;
 `
 
 export function applyRateCharacter(
@@ -51,9 +53,6 @@ export function applyRateCharacter(
     color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${cursor};
     ${animation};
-    &:not(:last-of-type) {
-      margin-right: 7px;
-    }
     &:hover {
       transform: ${readonly ? "" : `scale(1.33)`};
     }

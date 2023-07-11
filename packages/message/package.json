@@ -43,7 +43,7 @@
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "uuid": "^8.3.2",
-    "framer-motion": "^7.6.12"
+    "framer-motion": "^10.12.18"
   },
   "devDependencies": {
     "@types/uuid": "^8.3.4"
@@ -51,6 +51,6 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5"
+    "@emotion/react": "^11.11.1"
   }
 }
