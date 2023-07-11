@@ -22,8 +22,6 @@
   },
   "exclude": [
     "node_modules",
-    "packages/**/tests/*.e2e.tsx",
     "plop-templates",
-    "cypress"
   ]
 }
