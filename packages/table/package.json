@@ -62,7 +62,7 @@
     "@types/lodash.debounce": "^4.0.7"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.10.5",
+    "@emotion/react": "^11.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

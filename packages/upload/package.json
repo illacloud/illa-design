@@ -47,11 +47,11 @@
     "@illa-design/progress": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "framer-motion": "^7.6.12",
+    "framer-motion": "^10.12.18",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.10.5",
+    "@emotion/react": "^11.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -44,11 +44,11 @@
     "@illa-design/theme": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@floating-ui/react": "^0.19.1",
-    "framer-motion": "^7.6.12"
+    "framer-motion": "^10.12.18"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5"
+    "@emotion/react": "^11.11.1"
   }
 }
