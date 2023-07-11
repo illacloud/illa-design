@@ -529,20 +529,20 @@ export function applyPaddingStyle(
     case "small":
       return css`
         padding: ${variant == "outline" || variant == "dashed"
-          ? "0px 7px"
-          : "1px 8px"};
+          ? "1px 7px"
+          : "2px 8px"};
       `
     case "medium":
       return css`
         padding: ${variant == "outline" || variant == "dashed"
-          ? "3px 15px"
-          : "4px 16px"};
+          ? "4px 15px"
+          : "5px 16px"};
       `
     case "large":
       return css`
         padding: ${variant == "outline" || variant == "dashed"
-          ? "7px 15px"
-          : "8px 16px"};
+          ? "8px 15px"
+          : "9px 16px"};
       `
   }
 }
