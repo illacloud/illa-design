@@ -46,11 +46,11 @@
     "@illa-design/theme": "workspace:*",
     "react-remove-scroll": "^2.5.4",
     "react-focus-lock": "^2.8.1",
-    "framer-motion": "^7.6.12"
+    "framer-motion": "^10.12.18"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5"
+    "@emotion/react": "^11.11.1"
   }
 }

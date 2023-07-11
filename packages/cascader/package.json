@@ -53,6 +53,6 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.5"
+    "@emotion/react": "^11.11.1"
   }
 }
