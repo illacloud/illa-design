@@ -68,9 +68,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       return tabLineHeaderContainerCss
     }, [variant])
 
-    const isHorizontal = useMemo(() => {
-      return isHorizontalLayout(tabPosition)
-    }, [tabPosition])
+    const isHorizontal = isHorizontalLayout(tabPosition)
 
     const scrollRef = useRef<HTMLDivElement | null>(null)
     const childRef = useRef<HTMLDivElement | null>(null)
@@ -99,7 +97,9 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     )
 
     const checkPreAndNextDisable = useCallback(() => {
-      if (!scrollRef.current) return
+      if (!scrollRef.current) {
+        return
+      }
       setPreDisable(getScrollDist(isHorizontal, scrollRef) === 0)
       setNextDisable(
         Math.abs(
@@ -117,7 +117,9 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     }, [scrolling, needScroll, checkPreAndNextDisable])
 
     useEffect(() => {
-      if (!scrollRef?.current) return
+      if (!scrollRef?.current) {
+        return
+      }
       const childrenSize = getChildrenSize(
         isHorizontal,
         childRef.current,
@@ -137,6 +139,42 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         ]
       }
     }, [isHorizontal])
+
+    const tabHeaderChildren = useMemo(() => {
+      return (
+        tabHeaderChild &&
+        tabHeaderChild?.map((item, index) => {
+          const childProps: TabHeaderChildProps = {
+            handleSelectTab: (key) => _handleSelectTab(key, index),
+            title: item.title,
+            tabKey: item.tabKey,
+            isSelected: index == selectedIndex,
+            disabled: item.disabled,
+            size: size,
+            variant: variant,
+            closable: variant === "card" && editable,
+            deleteIcon: deleteIcon,
+            handleDeleteTab: handleDeleteTab,
+            tabBarSpacing: tabBarSpacing,
+            colorScheme: colorScheme,
+            tabPosition,
+          }
+          return <TabHeaderChild key={item.tabKey} {...childProps} />
+        })
+      )
+    }, [
+      _handleSelectTab,
+      colorScheme,
+      deleteIcon,
+      editable,
+      handleDeleteTab,
+      selectedIndex,
+      size,
+      tabBarSpacing,
+      tabHeaderChild,
+      tabPosition,
+      variant,
+    ])
 
     return (
       <div css={applyHeaderContainerCss(variant, tabPosition, align)} ref={ref}>
@@ -170,25 +208,7 @@ export const TabCommonHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
                 ref={childRef}
                 css={applyTabHeaderContainerCss(variant, tabPosition)}
               >
-                {tabHeaderChild &&
-                  tabHeaderChild?.map((item, index) => {
-                    const childProps: TabHeaderChildProps = {
-                      handleSelectTab: (key) => _handleSelectTab(key, index),
-                      title: item.title,
-                      tabKey: item.tabKey,
-                      isSelected: index == selectedIndex,
-                      disabled: item.disabled,
-                      size: size,
-                      variant: variant,
-                      closable: variant === "card" && editable,
-                      deleteIcon: deleteIcon,
-                      handleDeleteTab: handleDeleteTab,
-                      tabBarSpacing: tabBarSpacing,
-                      colorScheme: colorScheme,
-                      tabPosition,
-                    }
-                    return <TabHeaderChild key={item.tabKey} {...childProps} />
-                  })}
+                {tabHeaderChildren}
                 {variant === "card" && editable && (
                   <span
                     css={addButtonCss}

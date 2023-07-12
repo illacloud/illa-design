@@ -93,7 +93,9 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         () =>
           getChildrenSize(_isHorizontalLayout, childRef.current)[selectedIndex],
       )
-      if (!scrollRef?.current) return
+      if (!scrollRef?.current) {
+        return
+      }
       const sizeArr = getChildrenSize(_isHorizontalLayout, childRef.current)
       let target = 0
       for (let i = 0; i < selectedIndex; i++) {
@@ -144,7 +146,9 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     }, [scrolling, needScroll, checkPreAndNextDisable])
 
     useEffect(() => {
-      if (!scrollRef?.current) return
+      if (!scrollRef?.current) {
+        return
+      }
       const childrenSize = getChildrenSize(
         _isHorizontalLayout,
         childRef.current,
@@ -170,7 +174,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
       return size > getOffsetSize(_isHorizontalLayout, scrollRef)
         ? size
         : getOffsetSize(_isHorizontalLayout, scrollRef)
-    },[_isHorizontalLayout])
+    }, [_isHorizontalLayout])
 
     let [
       headerContainer,

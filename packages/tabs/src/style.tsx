@@ -545,10 +545,11 @@ export function applyTabContentWrapperCss(
   animated?: boolean,
 ): SerializedStyles {
   const transitionCss =
-    animated === true &&
-    css`
-      transition: right 200ms;
-    `
+    animated === true
+      ? css`
+          transition: right 200ms;
+        `
+      : css``
   const diff = showPaneIndex * 100
   return css`
     width: 100%;
@@ -679,7 +680,7 @@ export function applyCommonIconLineCss(isTop: boolean): SerializedStyles {
     position: absolute;
     ${positionCss};
     left: 0;
-    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)}; ;
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 }
 

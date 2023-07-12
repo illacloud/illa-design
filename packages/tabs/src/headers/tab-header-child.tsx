@@ -26,24 +26,26 @@ export const TabHeaderChild: FC<TabHeaderChildProps> = (props) => {
     colorScheme,
   } = props
 
-  const [applyChildCss] = useMemo(() => {
+  const childStyle = useMemo(() => {
     let _childCss
     if (variant === "card") {
-      _childCss = applyCardHeaderChildCss
+      _childCss = applyCardHeaderChildCss(isSelected, disabled, tabPosition)
     } else if (variant === "capsule") {
-      _childCss = applyCapsuleHeaderChildCss
+      _childCss = applyCapsuleHeaderChildCss(isSelected, disabled)
     } else {
-      _childCss = applyCommonHeaderChildCss
+      _childCss = applyCommonHeaderChildCss()
     }
-    return [_childCss]
-  }, [variant])
+    return _childCss
+  }, [disabled, isSelected, tabPosition, variant])
 
   return (
     <span
-      css={applyChildCss(isSelected, disabled, tabPosition)}
+      css={childStyle}
       key={tabKey}
       onClick={() => {
-        if (disabled) return
+        if (disabled) {
+          return
+        }
         handleSelectTab(tabKey)
       }}
     >
