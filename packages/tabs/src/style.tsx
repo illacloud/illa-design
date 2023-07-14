@@ -414,6 +414,7 @@ export function applyTextCss(
     ${applyTextColorCss(colorScheme, disabled, isSelected, variant)};
     ${applyPaddingSizeCss(size)};
     white-space: nowrap;
+    font-weight: ${isSelected ? 500 : 400};
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 14px;
@@ -545,10 +546,11 @@ export function applyTabContentWrapperCss(
   animated?: boolean,
 ): SerializedStyles {
   const transitionCss =
-    animated === true &&
-    css`
-      transition: right 200ms;
-    `
+    animated === true
+      ? css`
+          transition: right 200ms;
+        `
+      : css``
   const diff = showPaneIndex * 100
   return css`
     width: 100%;
@@ -679,7 +681,7 @@ export function applyCommonIconLineCss(isTop: boolean): SerializedStyles {
     position: absolute;
     ${positionCss};
     left: 0;
-    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)}; ;
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 }
 
