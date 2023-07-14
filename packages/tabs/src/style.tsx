@@ -414,6 +414,7 @@ export function applyTextCss(
     ${applyTextColorCss(colorScheme, disabled, isSelected, variant)};
     ${applyPaddingSizeCss(size)};
     white-space: nowrap;
+    font-weight: ${isSelected ? 500 : 400};
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 14px;
