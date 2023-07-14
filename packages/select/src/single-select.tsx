@@ -84,9 +84,6 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
           | ReactNode,
       ) => {
         let dV: number | string | ReactNode | undefined = undefined
-        if (typeof dealValue === "object" && !isValidElement(dealValue)) {
-          dV = JSON.stringify(dealValue)
-        }
         if (dealValue === undefined) {
           dV = undefined
         } else {
