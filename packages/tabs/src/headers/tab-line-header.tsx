@@ -78,7 +78,7 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     const [resizeRef, { width, height }] = useMeasure({
       polyfill: ResizeObserver,
     })
-    const [preDisable, setPreDisable] = useState(true)
+    const [preDisable, setPreDisable] = useState(false)
     const [nextDisable, setNextDisable] = useState(false)
     const [needScroll, setNeedScroll] = useState(false)
     const [blueLineWidth, setBlueLineWidth] = useState(0)
@@ -128,14 +128,16 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     )
 
     const checkPreAndNextDisable = useCallback(() => {
-      if (!scrollRef.current) return
+      if (!scrollRef.current) {
+        return
+      }
       setPreDisable(getScrollDist(_isHorizontalLayout, scrollRef) === 0)
       setNextDisable(
         Math.abs(
           getScrollDist(_isHorizontalLayout, scrollRef) +
             getOffsetSize(_isHorizontalLayout, scrollRef) -
             getScrollSize(_isHorizontalLayout, scrollRef),
-        ) < 1,
+        ) === 0,
       )
     }, [_isHorizontalLayout])
 
@@ -146,6 +148,13 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
     }, [scrolling, needScroll, checkPreAndNextDisable])
 
     useEffect(() => {
+      setBlueLineWidth(
+        () =>
+          getChildrenSize(_isHorizontalLayout, childRef.current)[selectedIndex],
+      )
+    }, [_isHorizontalLayout, selectedIndex])
+
+    useEffect(() => {
       if (!scrollRef?.current) {
         return
       }
@@ -154,15 +163,9 @@ export const TabLineHeader = forwardRef<HTMLDivElement, TabHeaderProps>(
         childRef.current,
       )?.reduce((a, b) => a + b, 0)
       const offsetSize = getOffsetSize(_isHorizontalLayout, scrollRef)
-      setNeedScroll(childrenSize > offsetSize)
+      // because of the browser will balpark every child width, so > 1 is the best way to check
+      setNeedScroll(childrenSize - offsetSize > 1)
     }, [_isHorizontalLayout, width, height, tabHeaderChild?.length])
-
-    useEffect(() => {
-      setBlueLineWidth(
-        () =>
-          getChildrenSize(_isHorizontalLayout, childRef.current)[selectedIndex],
-      )
-    }, [_isHorizontalLayout, selectedIndex])
 
     const dividerSize = useMemo(() => {
       const sizeArr = getChildrenSize(_isHorizontalLayout, childRef.current)
