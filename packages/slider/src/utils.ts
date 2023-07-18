@@ -1,7 +1,6 @@
 import { BarLocation } from "./content"
 
 export const formatValue = (val: string | number) => {
-  if (typeof val !== "number" && !val) return 0
   if (typeof val === "number") return val
   return Array.from(val.split(","), (v) => parseInt(v))
 }
