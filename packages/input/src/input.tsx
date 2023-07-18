@@ -103,8 +103,8 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
                 variant,
                 colorScheme,
                 finalError,
-                addBefore !== undefined,
-                addAfter !== undefined,
+                !!addBefore,
+                !!addAfter,
                 borderList,
               )
             : applyInputStyle(
@@ -112,8 +112,8 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
                 variant,
                 colorScheme,
                 finalError,
-                addBefore !== undefined,
-                addAfter !== undefined,
+                !!addBefore,
+                !!addAfter,
                 borderList,
               )
         }
