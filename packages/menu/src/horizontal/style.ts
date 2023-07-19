@@ -158,14 +158,18 @@ export function applyHorizontalLine(
   `
 }
 
-export const horizontalSubMenuIcon = css`
+export function applyHorizontalSubMenuIcon(
+  onlyShowIcon?: boolean,
+): SerializedStyles {
+  return css`
   font-size: 14px;
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
   justify-content: center;
-  margin-right: 8px;
+  margin-right: ${onlyShowIcon ? "0" : "8px"}};
 `
+}
 
 export const horizontalSubMenuLabel = css`
   overflow-wrap: break-word;

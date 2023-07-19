@@ -26,6 +26,7 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
       onClickMenuItem,
       items,
       onMenuSelect,
+      onlyShowIcon,
       ...otherProps
     } = props
 
@@ -199,6 +200,7 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
         value={{
           colorScheme,
           hoverColorScheme,
+          onlyShowIcon,
         }}
       >
         <div

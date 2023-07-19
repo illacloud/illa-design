@@ -4,7 +4,7 @@ import { MenuContext } from "../menu-context"
 import {
   applyHorizontalLine,
   applyHorizontalSubMenuContainer,
-  horizontalSubMenuIcon,
+  applyHorizontalSubMenuIcon,
   horizontalSubMenuLabel,
 } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
@@ -16,6 +16,7 @@ export const HorizontalMenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
 
     const menuContext = useContext(MenuContext)
     const colorScheme = menuContext?.colorScheme ?? "blue"
+    const onlyShowIcon = menuContext?.onlyShowIcon ?? false
 
     if (hidden) {
       return null
@@ -30,8 +31,12 @@ export const HorizontalMenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
         ref={ref}
         {...deleteCssProps(otherProps)}
       >
-        {icon && <span css={horizontalSubMenuIcon}>{icon}</span>}
-        {label && <span css={horizontalSubMenuLabel}>{label}</span>}
+        {icon && (
+          <span css={applyHorizontalSubMenuIcon(onlyShowIcon)}>{icon}</span>
+        )}
+        {!onlyShowIcon && label && (
+          <span css={horizontalSubMenuLabel}>{label}</span>
+        )}
         <div
           css={applyHorizontalLine(colorScheme, selected, disabled)}
           className="horizontalLine"

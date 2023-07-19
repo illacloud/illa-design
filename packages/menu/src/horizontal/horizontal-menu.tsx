@@ -10,9 +10,9 @@ import { MenuProps, SubMenuProps } from "../interface"
 import {
   applyActionContainerStyle,
   applyHorizontalMenuListContainerStyle,
+  applyHorizontalSubMenuIcon,
   applyHorizontalSubMenuItemContainer,
   horizontalMenuContainerStyle,
-  horizontalSubMenuIcon,
   horizontalSubMenuLabel,
 } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
@@ -39,6 +39,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
       horizontalAlign = "flex-start",
       items,
       onMenuSelect,
+      onlyShowIcon,
       ...otherProps
     } = props
 
@@ -122,7 +123,9 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
                   )}
                 >
                   {subItem.icon && (
-                    <span css={horizontalSubMenuIcon}>{subItem.icon}</span>
+                    <span css={applyHorizontalSubMenuIcon(onlyShowIcon)}>
+                      {subItem.icon}
+                    </span>
                   )}
                   {subItem.label && (
                     <span css={horizontalSubMenuLabel}>{subItem.label}</span>
@@ -244,6 +247,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
         value={{
           colorScheme,
           hoverColorScheme,
+          onlyShowIcon,
         }}
       >
         <div
