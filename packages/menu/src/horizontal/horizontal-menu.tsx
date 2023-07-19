@@ -37,6 +37,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
       onClickMenuItem,
       horizontalAlign = "flex-start",
       items,
+      onMenuSelect,
       ...otherProps
     } = props
 
@@ -186,11 +187,18 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
                   [item.value, value as string],
                   event,
                 )
-                if (selectedValues === undefined) {
-                  if (!finalSelectedValues.includes(value as string)) {
+                if (!finalSelectedValues.includes(value as string)) {
+                  if (selectedValues === undefined) {
                     setFinalSelectedValues([value as string])
                   }
-                  if (!finalSelectedSubMenu.includes(item.value)) {
+                  onMenuSelect?.(
+                    value as string,
+                    [subMenu.value, value as string],
+                    [value as string],
+                  )
+                }
+                if (!finalSelectedSubMenu.includes(item.value)) {
+                  if (selectedValues === undefined) {
                     setFinalSelectedSubMenu([item.value])
                   }
                 }
@@ -216,11 +224,12 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
             onClick={(e) => {
               if (item.disabled) return
               onClickMenuItem?.(item.value, [item.value], e)
-              if (selectedValues === undefined) {
-                if (!finalSelectedValues.includes(item.value)) {
+              if (!finalSelectedValues.includes(item.value)) {
+                if (selectedValues === undefined) {
                   setFinalSelectedValues([item.value])
                   setFinalSelectedSubMenu([])
                 }
+                onMenuSelect?.(item.value, [item.value], [item.value])
               }
             }}
           />
