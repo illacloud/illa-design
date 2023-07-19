@@ -31,7 +31,7 @@ export interface MenuProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   defaultOpenedSubMenuValues?: string[]
   defaultSelectedValues?: string[]
   openedSubMenuValues?: string[]
-  selectedValues?: string[]
+  selectedValues?: any[]
   onClickMenuItem?: (
     value: string,
     valuePath: string[],
@@ -41,6 +41,11 @@ export interface MenuProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
     value: string,
     openSubMenuValues: string[],
     valuePath: string[],
+  ) => void
+  onMenuSelect?: (
+    value: string,
+    valuePath: string[],
+    selectedValues: string[],
   ) => void
 }
 

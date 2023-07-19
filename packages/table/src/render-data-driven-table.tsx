@@ -309,8 +309,9 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
   useEffect(() => {
     // when enableSingleCellSelection is false, reset the cell selection
     if (!enableSingleCellSelection) {
-      setSelectedCell(undefined)
+      restCellSelection()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enableSingleCellSelection])
 
   useEffect(() => {
@@ -412,7 +413,7 @@ export function RenderDataDrivenTable<D extends TableData, TValue>(
         applyBoxStyle(props),
         applyBorderedStyle(bordered),
       ]}
-      style={{padding: ''}}
+      style={{ padding: "" }}
     >
       <Spin
         loading={loading}

@@ -24,6 +24,7 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
       onClickSubMenu,
       onClickMenuItem,
       items,
+      onMenuSelect,
       ...otherProps
     } = props
 
@@ -83,11 +84,18 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
                   [subMenu.value, subItem.value],
                   e,
                 )
-                if (selectedValues === undefined) {
-                  if (!finalSelectedValues.includes(subItem.value)) {
+                if (!finalSelectedValues.includes(subItem.value)) {
+                  if (selectedValues === undefined) {
                     setFinalSelectedValues([subItem.value])
                   }
-                  if (!finalSelectedSubMenu.includes(subMenu.value)) {
+                  onMenuSelect?.(
+                    subItem.value,
+                    [subMenu.value, subItem.value],
+                    [subItem.value],
+                  )
+                }
+                if (!finalSelectedSubMenu.includes(subMenu.value)) {
+                  if (selectedValues === undefined) {
                     setFinalSelectedSubMenu([subMenu.value])
                   }
                 }
@@ -171,11 +179,13 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
             onClick={(e) => {
               if (item.disabled) return
               onClickMenuItem?.(item.value, [item.value], e)
-              if (selectedValues === undefined) {
-                if (!finalSelectedValues.includes(item.value)) {
+
+              if (!finalSelectedValues.includes(item.value)) {
+                if (selectedValues === undefined) {
                   setFinalSelectedValues([item.value])
                   setFinalSelectedSubMenu([])
                 }
+                onMenuSelect?.(item.value, [item.value], [item.value])
               }
             }}
           />
