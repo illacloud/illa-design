@@ -3,6 +3,7 @@ import { Children, forwardRef, ReactElement } from "react"
 import { Icon } from "./icon"
 import { IconProps } from "./interface"
 import { iconContainerStyle } from "./style"
+import { deleteCssProps } from "@illa-design/theme"
 
 interface CreateIconOptions {
   /**
@@ -44,22 +45,26 @@ export function createIcon(options: CreateIconOptions) {
     defaultProps = {},
   } = options
   // eslint-disable-next-line react/display-name
-  return forwardRef<SVGSVGElement, IconProps>((props, ref) => (
-    <span css={[iconContainerStyle, props.containerStyle]}>
-      <Icon
-        ref={ref}
-        viewBox={viewBox}
-        fill={fill}
-        {...defaultProps}
-        {...props}
-      >
-        <title>{title}</title>
-        {path ? (
-          Children.toArray(path)
-        ) : (
-          <path fill="currentColor" d={pathDefinition} />
-        )}
-      </Icon>
-    </span>
-  ))
+  return forwardRef<SVGSVGElement, IconProps>((props, ref) => {
+    const { containerStyle, ...rest } = props
+
+    return (
+      <span css={[iconContainerStyle, containerStyle]}>
+        <Icon
+          ref={ref}
+          viewBox={viewBox}
+          fill={fill}
+          {...defaultProps}
+          {...rest}
+        >
+          <title>{title}</title>
+          {path ? (
+            Children.toArray(path)
+          ) : (
+            <path fill="currentColor" d={pathDefinition} />
+          )}
+        </Icon>
+      </span>
+    )
+  })
 }

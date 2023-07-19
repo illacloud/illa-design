@@ -13,6 +13,7 @@ export function applyVerticalListContainer(): SerializedStyles {
 
 export function applyVerticalSubMenuContentContainer(
   colorScheme: MenuColorScheme,
+  hoverColorScheme: MenuColorScheme,
   selected?: boolean,
   disabled?: boolean,
 ): SerializedStyles {
@@ -26,14 +27,14 @@ export function applyVerticalSubMenuContentContainer(
         font-weight: 500;
 
         &:hover {
-          background-color: ${getColor("grayBlue", "09")};
+          background-color: ${getColor(hoverColorScheme, "09")};
         }
       `
     : css`
         color: ${getColor("grayBlue", "02")};
 
         &:hover {
-          background-color: ${getColor("grayBlue", "09")};
+          background-color: ${getColor(hoverColorScheme, "09")};
         }
       `
 
@@ -52,6 +53,7 @@ export function applyVerticalSubMenuContentContainer(
 
 export function applyVerticalMenuItemContainer(
   colorScheme: MenuColorScheme,
+  hoverColorScheme: MenuColorScheme,
   selected?: boolean,
   disabled?: boolean,
   sub?: boolean,
@@ -66,14 +68,14 @@ export function applyVerticalMenuItemContainer(
         font-weight: 500;
 
         &:hover {
-          background-color: ${getColor("grayBlue", "09")};
+          background-color: ${getColor(hoverColorScheme, "09")};
         }
       `
     : css`
         color: ${getColor("grayBlue", "02")};
 
         &:hover {
-          background-color: ${getColor("grayBlue", "09")};
+          background-color: ${getColor(hoverColorScheme, "09")};
         }
       `
 
@@ -125,7 +127,7 @@ export const verticalSubMenuLabel = css`
 export const verticalMenuContainerStyle = css`
   display: flex;
   padding: 8px 0;
-  overflow-y: auto;
+  overflow-y: hidden;
   border-radius: 2px;
   width: 200px;
   flex-direction: column;

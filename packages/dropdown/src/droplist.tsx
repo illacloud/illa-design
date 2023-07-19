@@ -10,11 +10,17 @@ export const DropListContext = createContext<{
     clickedNode: ReactNode,
     event: MouseEvent,
   ) => void
+  hoverColorScheme?: TriggerColorScheme
 }>({})
 
 export const DropList = forwardRef<HTMLDivElement, DropListProps>(
   (props, ref) => {
-    const { children, onClickItem, ...otherProps } = props
+    const {
+      children,
+      onClickItem,
+      hoverColorScheme = "grayBlue",
+      ...otherProps
+    } = props
 
     return (
       <div
@@ -25,6 +31,7 @@ export const DropList = forwardRef<HTMLDivElement, DropListProps>(
         <DropListContext.Provider
           value={{
             onClickItem,
+            hoverColorScheme,
           }}
         >
           {children}

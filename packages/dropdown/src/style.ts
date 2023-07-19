@@ -14,6 +14,7 @@ export function applyListCss(): SerializedStyles {
 
 export function applyItemCss(
   colorScheme: TriggerColorScheme,
+  hoverColorScheme: TriggerColorScheme,
   isDisabled?: boolean,
   selected?: boolean,
   deleted?: boolean,
@@ -25,7 +26,7 @@ export function applyItemCss(
       cursor: pointer;
       background-color: ${deleted
         ? getColor("red", "07")
-        : getColor("grayBlue", "09")};
+        : getColor(hoverColorScheme, "09")};
     }
   `
 

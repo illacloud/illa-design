@@ -23,6 +23,7 @@ export interface DropListProps
   extends HTMLAttributes<HTMLDivElement>,
     BoxProps {
   disabled?: boolean
+  hoverColorScheme?: TriggerColorScheme
   onClickItem?: (
     key: string | number,
     clickedNode: ReactNode,
@@ -35,6 +36,7 @@ export interface DropListItemProps
     BoxProps {
   value: string | number
   colorScheme?: TriggerColorScheme
+  hoverColorScheme?: TriggerColorScheme
   selected?: boolean
   deleted?: boolean
   isSelectOption?: boolean

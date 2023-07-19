@@ -17,6 +17,7 @@ export const VerticalMenuItem = forwardRef<
 
   const menuContext = useContext(MenuContext)
   const colorScheme = menuContext?.colorScheme ?? "blue"
+  const hoverColorScheme = menuContext?.hoverColorScheme ?? "grayBlue"
 
   if (hidden) {
     return null
@@ -25,7 +26,13 @@ export const VerticalMenuItem = forwardRef<
   return (
     <div
       css={[
-        applyVerticalMenuItemContainer(colorScheme, selected, disabled, sub),
+        applyVerticalMenuItemContainer(
+          colorScheme,
+          hoverColorScheme,
+          selected,
+          disabled,
+          sub,
+        ),
         applyBoxStyle(otherProps),
       ]}
       ref={ref}

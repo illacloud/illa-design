@@ -109,7 +109,7 @@ const transRule: Record<string, number> = {
 export const getColor = (color: string, step: string) => {
   let colorStyle
   if (color === "transparent") {
-    return "transparent"
+    return "#00000000"
   }
   if (!hasGlobalColor(`--${illaPrefix}-${color}-${step}`)) {
     const formatStep = transRule[step]
@@ -117,7 +117,7 @@ export const getColor = (color: string, step: string) => {
     try {
       colorStyle = colorPalette(color, formatNum, "hsl")
     } catch (e) {
-      colorStyle = "transparent"
+      colorStyle = "#00000000"
     }
   } else {
     colorStyle = globalColor(`--${illaPrefix}-${color}-${step}`)

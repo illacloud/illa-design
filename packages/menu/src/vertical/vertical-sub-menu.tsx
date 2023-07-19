@@ -28,6 +28,7 @@ export const VerticalSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
 
     const menuContext = useContext(MenuContext)
     const colorScheme = menuContext?.colorScheme ?? "blue"
+    const hoverColorScheme = menuContext?.hoverColorScheme ?? "grayBlue"
 
     if (hidden) {
       return null
@@ -38,6 +39,7 @@ export const VerticalSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
         <div
           css={applyVerticalSubMenuContentContainer(
             colorScheme,
+            hoverColorScheme,
             selected,
             disabled,
           )}

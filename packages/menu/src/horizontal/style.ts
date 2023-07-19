@@ -7,7 +7,6 @@ export const horizontalMenuContainerStyle = css`
   position: relative;
   width: 100%;
   overflow-x: hidden;
-  border-bottom: 1px solid ${getColor("grayBlue", "08")};
 `
 
 export function applyHorizontalMenuListContainerStyle(

@@ -33,6 +33,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
       openedSubMenuValues,
       selectedValues,
       colorScheme = "blue",
+      hoverColorScheme = "grayBlue",
       onClickSubMenu,
       onClickMenuItem,
       horizontalAlign = "flex-start",
@@ -108,6 +109,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
             <DropListItem
               value={subItem.value}
               key={subItem.value}
+              hoverColorScheme={hoverColorScheme}
               disabled={subItem.disabled}
               hidden={subItem.hidden}
               title={
@@ -241,6 +243,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
       <MenuContext.Provider
         value={{
           colorScheme,
+          hoverColorScheme,
         }}
       >
         <div

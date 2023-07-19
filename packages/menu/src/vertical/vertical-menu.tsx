@@ -17,6 +17,7 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
     const {
       defaultOpenedSubMenuValues,
       defaultSelectedValues,
+      hoverColorScheme = "grayBlue",
       openedSubMenuValues,
       selectedValues,
       horizontalAlign,
@@ -197,6 +198,7 @@ export const VerticalMenu = forwardRef<HTMLDivElement, MenuProps>(
       <MenuContext.Provider
         value={{
           colorScheme,
+          hoverColorScheme,
         }}
       >
         <div

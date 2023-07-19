@@ -27,6 +27,7 @@ export const HorizontalSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
 
     const menuContext = useContext(MenuContext)
     const colorScheme = menuContext?.colorScheme ?? "blue"
+    const hoverColorScheme = menuContext?.hoverColorScheme ?? "grayBlue"
 
     if (hidden) {
       return null

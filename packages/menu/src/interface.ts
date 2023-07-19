@@ -26,6 +26,8 @@ export type MenuHorizontalAlign = "flex-start" | "center" | "flex-end"
 export interface MenuProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
   horizontalAlign?: MenuHorizontalAlign
   colorScheme?: MenuColorScheme
+  hoverColorScheme?: MenuColorScheme
+  onlyShowIcon?: boolean
   items?: MenuItemType[]
   mode?: MenuMode
   defaultOpenedSubMenuValues?: string[]
@@ -79,4 +81,6 @@ export interface VerticalMenuItemProps extends MenuItemProps {
 
 export interface MenuContextProps {
   colorScheme?: MenuColorScheme
+  hoverColorScheme?: MenuColorScheme
+  onlyShowIcon?: boolean
 }

@@ -12,6 +12,7 @@ export const DropListItem = forwardRef<HTMLDivElement, DropListItemProps>(
       disabled,
       onClick,
       colorScheme = "blue",
+      hoverColorScheme,
       deleted,
       selected,
       value,
@@ -19,12 +20,22 @@ export const DropListItem = forwardRef<HTMLDivElement, DropListItemProps>(
       ...otherProps
     } = props
 
-    const { onClickItem } = useContext(DropListContext)
+    const {
+      onClickItem,
+      hoverColorScheme: contextHoverColorScheme = "grayBlue",
+    } = useContext(DropListContext)
+    const finalHoverColorScheme = hoverColorScheme ?? contextHoverColorScheme
 
     return (
       <div
         ref={ref}
-        css={applyItemCss(colorScheme, disabled, selected, deleted)}
+        css={applyItemCss(
+          colorScheme,
+          finalHoverColorScheme,
+          disabled,
+          selected,
+          deleted,
+        )}
         onClick={(event) => {
           if (disabled) return
           onClick?.(event)
