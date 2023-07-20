@@ -18,7 +18,7 @@ export interface BreadcrumbProps
   routes?: RouteProps[]
   blockRouterChange?: boolean
   maxCount?: number
-  onClickPath?: (path: string) => void
+  onClickPath?: (path: string, last: boolean) => void
 }
 
 export interface BreadcrumbItemProps
@@ -26,6 +26,7 @@ export interface BreadcrumbItemProps
     BoxProps {
   last?: boolean
   href?: string
+  blockRouterChange?: boolean
   dropList?: ReactNode
   dropdownProps?: DropdownProps
 }
