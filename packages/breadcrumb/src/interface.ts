@@ -16,7 +16,9 @@ export interface BreadcrumbProps
     BoxProps {
   separator?: string | ReactNode
   routes?: RouteProps[]
+  blockRouterChange?: boolean
   maxCount?: number
+  onClickPath?: (path: string) => void
 }
 
 export interface BreadcrumbItemProps
