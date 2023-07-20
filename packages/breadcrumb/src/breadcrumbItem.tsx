@@ -15,10 +15,13 @@ export const BreadcrumbItem = forwardRef<HTMLDivElement, BreadcrumbItemProps>(
       last,
       href,
       onClick,
+      blockRouterChange,
       ...restProps
     } = props
 
     const breadcrumbContext = useContext(BreadcrumbContext)
+    const finalBlockRouterChange =
+      blockRouterChange ?? breadcrumbContext?.blockRouterChange ?? false
 
     return (
       <Dropdown position="bottom-start" dropList={dropList} {...dropdownProps}>
@@ -29,7 +32,7 @@ export const BreadcrumbItem = forwardRef<HTMLDivElement, BreadcrumbItemProps>(
               : applyItemStyle(href !== undefined || onClick !== undefined),
             applyBoxStyle(props),
           ]}
-          href={breadcrumbContext?.blockRouterChange ? undefined : href}
+          href={finalBlockRouterChange ? undefined : href}
           onClick={(event) => {
             onClick?.(event)
             breadcrumbContext?.onClickPath?.(href ?? "", last ?? false)

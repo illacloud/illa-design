@@ -57,7 +57,10 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
                               if (c.path && !blockRouterChange) {
                                 window.location.href = c.path
                               }
-                              onClickPath?.(c.path ?? "")
+                              onClickPath?.(
+                                c.path ?? "",
+                                index === routes.length - 1,
+                              )
                             }}
                           />
                         )
