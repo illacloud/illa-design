@@ -1,5 +1,72 @@
 # @illa-design/react
 
+## 1.0.29
+
+### Patch Changes
+
+- fix version
+
+- Updated dependencies []:
+  - @illa-design/affix@1.0.29
+  - @illa-design/alert@1.0.29
+  - @illa-design/avatar@1.0.29
+  - @illa-design/back-top@1.0.29
+  - @illa-design/badge@1.0.29
+  - @illa-design/breadcrumb@1.0.29
+  - @illa-design/button@1.0.29
+  - @illa-design/calendar@1.0.29
+  - @illa-design/card@1.0.29
+  - @illa-design/cascader@1.0.29
+  - @illa-design/checkbox@1.0.29
+  - @illa-design/collapse@1.0.29
+  - @illa-design/comment@1.0.29
+  - @illa-design/config-provider@1.0.29
+  - @illa-design/date-picker@1.0.29
+  - @illa-design/description@1.0.29
+  - @illa-design/divider@1.0.29
+  - @illa-design/drawer@1.0.29
+  - @illa-design/dropdown@1.0.29
+  - @illa-design/empty@1.0.29
+  - @illa-design/grid@1.0.29
+  - @illa-design/icon@1.0.29
+  - @illa-design/image@1.0.29
+  - @illa-design/input@1.0.29
+  - @illa-design/input-number@1.0.29
+  - @illa-design/input-tag@1.0.29
+  - @illa-design/link@1.0.29
+  - @illa-design/list@1.0.29
+  - @illa-design/loading@1.0.29
+  - @illa-design/menu@1.0.29
+  - @illa-design/message@1.0.29
+  - @illa-design/modal@1.0.29
+  - @illa-design/notification@1.0.29
+  - @illa-design/page-header@1.0.29
+  - @illa-design/pagination@1.0.29
+  - @illa-design/popconfirm@1.0.29
+  - @illa-design/popover@1.0.29
+  - @illa-design/progress@1.0.29
+  - @illa-design/radio@1.0.29
+  - @illa-design/rate@1.0.29
+  - @illa-design/result@1.0.29
+  - @illa-design/select@1.0.29
+  - @illa-design/skeleton@1.0.29
+  - @illa-design/slider@1.0.28
+  - @illa-design/space@1.0.29
+  - @illa-design/spin@1.0.29
+  - @illa-design/statistic@1.0.29
+  - @illa-design/steps@1.0.29
+  - @illa-design/switch@1.0.29
+  - @illa-design/system@1.0.27
+  - @illa-design/table@1.0.29
+  - @illa-design/tabs@1.0.29
+  - @illa-design/tag@1.0.29
+  - @illa-design/theme@1.0.29
+  - @illa-design/time-picker@1.0.29
+  - @illa-design/timeline@1.0.29
+  - @illa-design/trigger@1.0.29
+  - @illa-design/typography@1.0.29
+  - @illa-design/upload@1.0.29
+
 ## 1.0.28
 
 ### Patch Changes

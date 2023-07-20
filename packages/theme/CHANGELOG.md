@@ -1,5 +1,14 @@
 # @illa-design/theme
 
+## 1.0.29
+
+### Patch Changes
+
+- fix version
+
+- Updated dependencies []:
+  - @illa-design/system@1.0.27
+
 ## 1.0.28
 
 ### Patch Changes
