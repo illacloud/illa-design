@@ -12,19 +12,29 @@ import { SlashIcon } from "@illa-design/icon"
 import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 import { BreadcrumbItem } from "./breadcrumbItem"
 import { DropList, DropListItem } from "@illa-design/dropdown"
+import { BreadcrumbContext } from "./breadcrumb-context"
 
 export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
   (props, ref) => {
-    const { separator, routes, maxCount, children, ...otherProps } = props
+    const {
+      separator,
+      routes,
+      maxCount,
+      blockRouterChange,
+      children,
+      onClickPath,
+      ...otherProps
+    } = props
 
-    const separatorNode =
-      typeof separator === "string" ? (
+    const separatorNode = useMemo(() => {
+      return typeof separator === "string" ? (
         <span css={dividerStyle}>{separator}</span>
       ) : (
         separator ?? (
           <SlashIcon ml="12px" mr="12px" fs="8px" c={getColor("gray", "06")} />
         )
       )
+    }, [separator])
 
     const childrenNode = useMemo(() => {
       if (routes) {
@@ -44,9 +54,10 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
                             key={c.path ?? ""}
                             title={c.breadcrumbName}
                             onClick={() => {
-                              if (c.path) {
+                              if (c.path && !blockRouterChange) {
                                 window.location.href = c.path
                               }
+                              onClickPath?.(c.path ?? "")
                             }}
                           />
                         )
@@ -75,7 +86,7 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
             )
           })
       }
-    }, [children, routes, separatorNode])
+    }, [blockRouterChange, children, onClickPath, routes, separatorNode])
 
     const maxChildren = useMemo(() => {
       if (maxCount != undefined && childrenNode) {
@@ -114,7 +125,14 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
         css={[breadcrumbContainerStyle, applyBoxStyle(props)]}
         {...deleteCssProps(otherProps)}
       >
-        {maxChildren}
+        <BreadcrumbContext.Provider
+          value={{
+            onClickPath,
+            blockRouterChange,
+          }}
+        >
+          {maxChildren}
+        </BreadcrumbContext.Provider>
       </div>
     )
   },
