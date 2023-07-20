@@ -20,7 +20,6 @@ export function applyItemStyle(showHover?: boolean): SerializedStyles {
   const hrefStyle = showHover
     ? css`
         &:hover {
-          color: ${getColor("blue", "03")};
           background: ${getColor("gray", "09")};
           border-radius: 4px;
           cursor: pointer;
