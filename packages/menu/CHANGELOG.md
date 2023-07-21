@@ -1,5 +1,14 @@
 # @illa-design/menu
 
+## 1.0.30
+
+### Patch Changes
+
+- change framer-motion version
+
+- Updated dependencies []:
+  - @illa-design/dropdown@1.0.30
+
 ## 1.0.29
 
 ### Patch Changes

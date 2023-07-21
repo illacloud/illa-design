@@ -1,5 +1,14 @@
 # @illa-design/slider
 
+## 1.0.29
+
+### Patch Changes
+
+- change framer-motion version
+
+- Updated dependencies []:
+  - @illa-design/trigger@1.0.30
+
 ## 1.0.28
 
 ### Patch Changes

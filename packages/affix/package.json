@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/affix",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "description": "Illa Design Affix.",
   "keywords": [
     "affix",
@@ -43,7 +43,7 @@
     "@illa-design/system": "workspace:*",
     "react-use-measure": "^2.1.1",
     "react-use": "^17.4.0",
-    "framer-motion": "^10.12.18"
+    "framer-motion": "^7.6.12"
   },
   "peerDependencies": {
     "react": "^18.2.0",

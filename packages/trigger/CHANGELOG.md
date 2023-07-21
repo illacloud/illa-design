@@ -1,5 +1,11 @@
 # @illa-design/triggle
 
+## 1.0.30
+
+### Patch Changes
+
+- change framer-motion version
+
 ## 1.0.29
 
 ### Patch Changes

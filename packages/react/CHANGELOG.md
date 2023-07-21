@@ -1,5 +1,41 @@
 # @illa-design/react
 
+## 1.0.30
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/notification@1.0.30
+  - @illa-design/statistic@1.0.30
+  - @illa-design/message@1.0.30
+  - @illa-design/trigger@1.0.30
+  - @illa-design/drawer@1.0.30
+  - @illa-design/slider@1.0.29
+  - @illa-design/upload@1.0.30
+  - @illa-design/affix@1.0.30
+  - @illa-design/alert@1.0.30
+  - @illa-design/input@1.0.30
+  - @illa-design/modal@1.0.30
+  - @illa-design/menu@1.0.30
+  - @illa-design/cascader@1.0.30
+  - @illa-design/date-picker@1.0.30
+  - @illa-design/dropdown@1.0.30
+  - @illa-design/popconfirm@1.0.30
+  - @illa-design/popover@1.0.30
+  - @illa-design/progress@1.0.30
+  - @illa-design/rate@1.0.30
+  - @illa-design/select@1.0.30
+  - @illa-design/table@1.0.30
+  - @illa-design/time-picker@1.0.30
+  - @illa-design/typography@1.0.30
+  - @illa-design/input-number@1.0.30
+  - @illa-design/input-tag@1.0.30
+  - @illa-design/breadcrumb@1.0.30
+  - @illa-design/calendar@1.0.30
+  - @illa-design/pagination@1.0.30
+  - @illa-design/list@1.0.30
+  - @illa-design/page-header@1.0.30
+
 ## 1.0.29
 
 ### Patch Changes
