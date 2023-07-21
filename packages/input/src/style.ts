@@ -7,12 +7,12 @@ function getPaddingStyle(size: InputSize): SerializedStyles {
   switch (size) {
     case "small":
       pdStyle = css`
-        padding: 2px 12px;
+        padding: 1px 12px;
       `
       break
     case "medium":
       pdStyle = css`
-        padding: 5px 16px;
+        padding: 4px 16px;
       `
       break
     case "large":
