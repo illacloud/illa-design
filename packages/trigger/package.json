@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/trigger",
-  "version": "1.0.27",
+  "version": "1.0.30",
   "description": "Illa Design trigger.",
   "keywords": [
     "trigger",
@@ -44,7 +44,7 @@
     "@illa-design/theme": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@floating-ui/react": "^0.19.1",
-    "framer-motion": "^10.12.18"
+    "framer-motion": "^7.6.12"
   },
   "peerDependencies": {
     "react": "^18.2.0",
