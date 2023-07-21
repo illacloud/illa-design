@@ -25,6 +25,7 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
     hasMore,
     loader,
     endMessage,
+    itemHeight,
     onScroll,
     ...otherProps
   } = props
@@ -58,6 +59,7 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
           itemKey={(item) => {
             return renderKey(item, data.indexOf(item))
           }}
+          itemHeight={itemHeight}
           onScroll={(e) => {
             if (onScroll != undefined) {
               onScroll(e)

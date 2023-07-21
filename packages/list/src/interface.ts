@@ -23,6 +23,7 @@ export interface ListProps<T>
   loader?: ReactNode
   endMessage?: ReactNode
   onScroll?: UIEventHandler<HTMLElement>
+  itemHeight?: number
 }
 
 export interface ListItemProps
