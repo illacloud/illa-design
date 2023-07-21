@@ -21,10 +21,13 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
     renderRaw,
     renderKey,
     bottomOffset = 0,
+    topOffset = 0,
     onReachBottom,
+    onReachTop,
     hasMore,
     loader,
     endMessage,
+    itemHeight,
     onScroll,
     ...otherProps
   } = props
@@ -55,22 +58,29 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
         <VirtualList
           height={height}
           data={data}
+          virtual={height != undefined && itemHeight != undefined}
+          fullHeight={height === undefined}
           itemKey={(item) => {
             return renderKey(item, data.indexOf(item))
           }}
+          itemHeight={itemHeight}
           onScroll={(e) => {
             if (onScroll != undefined) {
               onScroll(e)
             }
-            if (height != undefined) {
-              if (
-                onReachBottom != undefined &&
-                e.currentTarget.scrollHeight -
-                  (e.currentTarget.scrollTop + height) <=
-                  bottomOffset
-              ) {
-                onReachBottom()
-              }
+            if (
+              onReachBottom != undefined &&
+              e.currentTarget.scrollHeight -
+                (e.currentTarget.scrollTop + e.currentTarget.clientHeight) <=
+                bottomOffset
+            ) {
+              onReachBottom()
+            }
+            if (
+              onReachTop != undefined &&
+              e.currentTarget.scrollTop <= topOffset
+            ) {
+              onReachTop()
             }
           }}
         >
@@ -90,7 +100,12 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
               }
             }
             if (renderRaw) {
-              return render(item, data.indexOf(item))
+              return (
+                <>
+                  {render(item, data.indexOf(item))}
+                  {endNode}
+                </>
+              )
             } else {
               return (
                 <>
