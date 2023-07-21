@@ -18,7 +18,9 @@ export interface ListProps<T>
   render?: (data: T, index: number) => ReactNode
   renderKey?: (data: T, index: number) => string
   bottomOffset?: number
+  topOffset?: number
   onReachBottom?: () => void
+  onReachTop?: () => void
   hasMore?: boolean
   loader?: ReactNode
   endMessage?: ReactNode
