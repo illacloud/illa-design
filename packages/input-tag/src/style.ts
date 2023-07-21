@@ -14,11 +14,7 @@ export function applyInputTagInputStyle(
     border: none;
     padding: 0;
     font-family: unset;
-    line-height: ${size === "large"
-      ? "32px"
-      : size === "small"
-      ? "22px"
-      : "24px"};
+    line-height: 22px;
 
     ::placeholder {
       color: ${getColor("grayBlue", "04")};
@@ -69,17 +65,17 @@ function getPaddingStyle(size: InputTagSize): SerializedStyles {
   switch (size) {
     case "small":
       pdStyle = css`
-        padding: 2px 12px;
+        padding: 0 12px;
       `
       break
     case "medium":
       pdStyle = css`
-        padding: 3px 16px;
+        padding: 4px 16px;
       `
       break
     case "large":
       pdStyle = css`
-        padding: 7px 16px;
+        padding: 8px 16px;
       `
       break
   }
