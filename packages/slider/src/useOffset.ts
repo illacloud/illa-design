@@ -81,7 +81,7 @@ export const useOffset = (
       val = tempVal
     }
     onSingleEnd(x, startValue)
-    setBarLength(Math.round(startValue / step) * partLength + val)
+    setBarLength(Math.round((startValue - min) / step) * partLength + val)
   }
 
   const onRangeDragging = (
