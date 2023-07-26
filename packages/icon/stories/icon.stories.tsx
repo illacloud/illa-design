@@ -65,7 +65,7 @@ import {
   NextIcon,
   OpenWindowIcon,
   PenIcon,
-  PeopleIcon,
+  PeopleIcon, PlayFillIcon,
   PlayOutlineIcon,
   PlusIcon,
   PreviousDoubleIcon,
@@ -103,8 +103,8 @@ import {
   WindowBottomIcon,
   WindowLeftIcon,
   WindowMinimizeIcon,
-  WindowRightIcon,
-} from "../src"
+  WindowRightIcon
+} from "../src";
 import { ImageErrorIcon } from "../src/icons/image-error"
 
 //👇 This default export determines where your story goes in the story list
@@ -701,6 +701,12 @@ export const All: StoryFn<IconProps> = (props: IconProps) => (
         <Space direction="vertical" align="center" w="100%" pd="16px 0">
           <ContributeIcon {...props} />
           <span>Contribute</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <PlayFillIcon {...props} />
+          <span>PlayFill</span>
         </Space>
       </Col>
       <Col span={2}>
