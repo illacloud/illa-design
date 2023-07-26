@@ -1,7 +1,12 @@
 import { useState, useCallback, useMemo, useEffect } from "react"
 import { BarLocation } from "./content"
 import { IUseOffsetReturn } from "./interface"
-import { formatValue, verifyRightValue, verifyLeftValue } from "./utils"
+import {
+  formatValue,
+  verifyRightValue,
+  verifyLeftValue,
+  processNumber,
+} from "./utils"
 
 export const useOffset = (
   min: number,
@@ -15,8 +20,8 @@ export const useOffset = (
   const [partLength, setPartLength] = useState<number>(0)
   const [width, setWidth] = useState<number>(0)
   const cacheValue = useMemo(() => {
-    return formatValue(currentValue)
-  }, [currentValue])
+    return formatValue(currentValue, step)
+  }, [currentValue, step])
 
   const getOffsetValueFromState = useCallback(
     (rightVal: number, leftVal?: number) => {
@@ -158,9 +163,10 @@ export const useOffset = (
     } else {
       currentVal = val
     }
-    onAfterChange && onAfterChange(currentVal)
-    onChange && onChange(currentVal)
-    setCurrentValue(currentVal)
+    const formatVal = processNumber(currentVal, step)
+    onAfterChange && onAfterChange(formatVal)
+    onChange && onChange(formatVal)
+    setCurrentValue(formatVal)
     let [_, rightVal] = getOffsetValueFromState(currentVal)
     setRightOffset(rightVal)
   }
@@ -199,9 +205,10 @@ export const useOffset = (
         break
       }
     }
-    onAfterChange && onAfterChange(currentVal)
-    onChange && onChange(currentVal)
-    setCurrentValue(currentVal.join(","))
+    const formatVal = currentVal.map((v) => processNumber(v, step))
+    onAfterChange && onAfterChange(formatVal)
+    onChange && onChange(formatVal)
+    setCurrentValue(formatVal.join(","))
     let [leftVal, rightVal] = getOffsetValueFromState(
       currentVal[1],
       currentVal[0],
@@ -245,8 +252,9 @@ export const useOffset = (
         return offset
       }
     })
-    onAfterChange && onAfterChange(currentRangeVal)
-    setCurrentValue(currentRangeVal.join(","))
+    const formatVal = currentRangeVal.map((v) => processNumber(v, step))
+    onAfterChange && onAfterChange(formatVal)
+    setCurrentValue(formatVal.join(","))
   }
 
   const onClickTick = (v: number) => {

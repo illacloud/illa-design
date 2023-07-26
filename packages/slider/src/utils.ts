@@ -1,9 +1,14 @@
 import { BarLocation } from "./content"
 
-export const formatValue = (val: string | number) => {
+export const formatValue = (val: string | number, step: number) => {
   if (typeof val !== "number" && !val) return 0
   if (typeof val === "number") return val
-  return Array.from(val.split(","), (v) => parseInt(v))
+  return Array.from(val.split(","), (v) => {
+    if (getDecimalDigitsOrZero(step) !== 0) {
+      return processNumber(parseFloat(v), step)
+    }
+    return parseInt(v)
+  })
 }
 
 export const getMarkBound = (
@@ -72,3 +77,20 @@ export const verifyValue = (value: number | number[]) => {
 }
 
 export const getSafeStep = (step: number) => (step && step > 0 ? step : 1)
+
+export const getDecimalDigitsOrZero = (num: number): number => {
+  if (Number.isInteger(num)) {
+    return 0
+  } else {
+    const numStr = num.toString()
+    const decimalIndex = numStr.indexOf(".")
+    return decimalIndex === -1 ? 0 : numStr.length - decimalIndex - 1
+  }
+}
+
+export const processNumber = (num: number, step: number): number => {
+  const decimalDigits = getDecimalDigitsOrZero(step)
+  return decimalDigits === 0
+    ? Math.floor(num)
+    : parseFloat(num.toFixed(decimalDigits))
+}
