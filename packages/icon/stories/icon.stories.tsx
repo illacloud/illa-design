@@ -66,6 +66,7 @@ import {
   OpenWindowIcon,
   PenIcon,
   PeopleIcon,
+  PlayOutlineIcon,
   PlusIcon,
   PreviousDoubleIcon,
   PreviousIcon,
@@ -80,6 +81,7 @@ import {
   SorterUpIcon,
   SortIcon,
   StarFillIcon,
+  StarOutlineIcon,
   StartOutlineIcon,
   StokeWidthIcon,
   SuccessCircleIcon,
@@ -389,6 +391,12 @@ export const All: StoryFn<IconProps> = (props: IconProps) => (
       </Col>
       <Col span={2}>
         <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <StarOutlineIcon {...props} />
+          <span>StarOutline</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
           <LikeOutlineIcon {...props} />
           <span>LikeOutline</span>
         </Space>
@@ -693,6 +701,12 @@ export const All: StoryFn<IconProps> = (props: IconProps) => (
         <Space direction="vertical" align="center" w="100%" pd="16px 0">
           <ContributeIcon {...props} />
           <span>Contribute</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <PlayOutlineIcon {...props} />
+          <span>PlayOutline</span>
         </Space>
       </Col>
     </Row>
