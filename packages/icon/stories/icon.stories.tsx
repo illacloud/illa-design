@@ -44,6 +44,7 @@ import {
   FileWordIcon,
   FilterIcon,
   FolderIcon,
+  ForkIcon,
   FullScreenIcon,
   HomeIcon,
   HorizontalCenterIcon,
@@ -52,6 +53,7 @@ import {
   HorizontalStartIcon,
   IconProps,
   ImageDefaultIcon,
+  ImageErrorIcon,
   InfoCircleIcon,
   InfoIcon,
   LikeFillIcon,
@@ -104,10 +106,8 @@ import {
   WindowBottomIcon,
   WindowLeftIcon,
   WindowMinimizeIcon,
-  WindowRightIcon,
+  WindowRightIcon
 } from "../src"
-import { ImageErrorIcon } from "../src/icons/image-error"
-import { ForkIcon } from "../src/icons/fork"
 
 //👇 This default export determines where your story goes in the story list
 export default {
