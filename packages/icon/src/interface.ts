@@ -1,4 +1,4 @@
-import { SVGAttributes, HTMLAttributes } from "react"
+import { SVGAttributes } from "react"
 import { BoxProps } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/react"
 

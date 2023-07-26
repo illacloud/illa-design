@@ -8,6 +8,7 @@ import {
   AlignRightIcon,
   AlignTopIcon,
   AlignVCenterIcon,
+  AttachmentIcon,
   BugIcon,
   CalendarIcon,
   CameraIcon,
@@ -17,10 +18,12 @@ import {
   ClearIcon,
   CloseIcon,
   CommentIcon,
+  ContributeIcon,
   CopyIcon,
   DeleteIcon,
   DeleteOutlineIcon,
   DependencyIcon,
+  DoubtIcon,
   DownIcon,
   DownloadIcon,
   DragPointIcon,
@@ -97,6 +100,7 @@ import {
   WarningIcon,
   WindowBottomIcon,
   WindowLeftIcon,
+  WindowMinimizeIcon,
   WindowRightIcon,
 } from "../src"
 import { ImageErrorIcon } from "../src/icons/image-error"
@@ -669,8 +673,26 @@ export const All: StoryFn<IconProps> = (props: IconProps) => (
       </Col>
       <Col span={2}>
         <Space direction="vertical" align="center" w="100%" pd="16px 0">
-          <RefreshIcon {...props} />
-          <span>Refresh</span>
+          <DoubtIcon {...props} />
+          <span>Doubt</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <AttachmentIcon {...props} />
+          <span>Attachment</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <WindowMinimizeIcon {...props} />
+          <span>Window Minimize</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <ContributeIcon {...props} />
+          <span>Contribute</span>
         </Space>
       </Col>
     </Row>
