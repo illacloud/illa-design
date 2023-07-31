@@ -157,7 +157,9 @@ const TriggerNode = (props: PropsWithChildren<TriggerNodeProps>) => {
           aria-label={locale.upload}
         >
           <div css={pictureCardContentStyle}>
-            <AddIcon css={pictureCardIconStyle} />
+            <span css={pictureCardIconStyle}>
+              <AddIcon />
+            </span>
             <div css={pictureCardTextStyle}>{text ?? locale.upload}</div>
           </div>
         </div>

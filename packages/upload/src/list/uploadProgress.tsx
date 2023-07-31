@@ -1,7 +1,7 @@
 import { FC, useContext } from "react"
 import { STATUS, UploadProgressProps } from "../interface"
 import { Progress } from "@illa-design/progress"
-import { UploadIcon, SuccessIcon, VideoPlayIcon } from "@illa-design/icon"
+import { UploadIcon, SuccessIcon } from "@illa-design/icon"
 import { isFunction } from "@illa-design/system"
 import {
   ConfigProviderContext,
@@ -12,7 +12,6 @@ import {
   successIconStyle,
   uploadProgressFailStyle,
   uploadProgressStatus,
-  uploadProgressStyle,
 } from "../style"
 import { handleKeyDown } from "../utils"
 import { globalColor, illaPrefix } from "@illa-design/theme"
@@ -34,23 +33,6 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
   const handleFileReupload = () => {
     onReupload && onReupload(file)
   }
-
-  const handleFileUpload = () => {
-    onUpload && onUpload(file)
-  }
-
-  const startIcon = status === STATUS.INIT && props.startIcon !== null && (
-    <span
-      css={uploadProgressStyle}
-      tabIndex={0}
-      role="button"
-      aria-label={locale.start}
-      onClick={handleFileUpload}
-      onKeyDown={(e) => handleKeyDown(e, handleFileUpload)}
-    >
-      {props.startIcon || <VideoPlayIcon />}
-    </span>
-  )
 
   const dom = (
     <>
@@ -87,7 +69,6 @@ const UploadProgress: FC<UploadProgressProps> = (props) => {
             trailColor={globalColor(`--${illaPrefix}-blue-06`)}
             {...progressProps}
           />
-          {startIcon}
         </div>
       )}
     </>
