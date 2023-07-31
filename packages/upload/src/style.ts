@@ -92,7 +92,13 @@ export const textItemImageStyle = css`
   width: 40px;
   height: 40px;
   flex-shrink: 0;
+  display: flex;
   border-radius: 4px;
+  & span {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
   & img,
   & svg {
     width: 100%;
@@ -213,7 +219,9 @@ export const getPictureCardContainerStyle = (disabled: boolean) => {
     width: 100px;
     height: 100px;
     border-radius: 2px;
-    padding: 32px 28px 22px 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
   `
   if (disabled) {
