@@ -23,7 +23,7 @@ export const MiniCircleProgress = forwardRef<HTMLDivElement, ProgressProps>(
       formatText = (percent: number) => {
         return `${percent}%`
       },
-      percent = 10,
+      percent = 0,
       steps,
       ...otherProps
     } = props
