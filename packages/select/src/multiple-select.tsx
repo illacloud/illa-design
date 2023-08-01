@@ -89,7 +89,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
       ) {
         newOptions = newOptions.filter((option) => {
           if (typeof filterOption === "function") {
-            return filterOption(finalInputValue)
+            return filterOption(finalInputValue, option)
           }
           return (
             typeof option.label === "string" &&

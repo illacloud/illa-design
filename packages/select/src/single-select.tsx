@@ -178,17 +178,19 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
       ) {
         newOptions = newOptions.filter((option) => {
           if (typeof filterOption === "function") {
-            return filterOption(finalInputValue)
+            return filterOption(finalInputValue, option)
           }
           return (
             typeof option.label === "string" &&
-            option.label.includes(finalInputValue.toString())
+            option.label
+              .toLowerCase()
+              .includes(finalInputValue.toString().toLowerCase())
           )
         })
       }
 
       return newOptions
-    }, [filterOption, finalInputValue, options])
+    }, [filterOption, finalInputValue, options, showSearch])
 
     return (
       <Dropdown
