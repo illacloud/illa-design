@@ -153,6 +153,7 @@ export const DatePickerPanel: FC<DatePickerPanelProps> = (props) => {
       <MonthPickerPanel
         {...getHeaderOperations?.(panelMode)}
         setPageShowDate={setPageShowDate}
+        pageShowDate={pageShowDate}
         panelMode={panelMode}
         getHeaderOperations={getHeaderOperations as GetHeaderOperationsFun}
         onSelect={onSelectAtMonthPanel}
