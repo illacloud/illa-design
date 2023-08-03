@@ -58,7 +58,9 @@ export interface SelectProps<T extends SelectValue = SelectValue>
   defaultValue?: T
   showSearch?: boolean
   value?: T
-  filterOption?: boolean | ((inputValue: string | number) => boolean)
+  filterOption?:
+    | boolean
+    | ((inputValue: string | number, option: SelectOptionObject) => boolean)
   onChange?: (value?: T) => void
   onClear?: () => void
   readOnly?: boolean

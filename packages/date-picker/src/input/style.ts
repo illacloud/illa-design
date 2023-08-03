@@ -192,8 +192,8 @@ export const clearIconStyle = css`
   cursor: pointer;
 `
 
-export const suffixIconStyle = css`
-  color: ${getColor("grayBlue", "01")};
+export const suffixIconStyle = (disabled?: boolean) => css`
+  color: ${getColor("grayBlue", disabled ? "05" : "01")};
   height: 100%;
   svg {
     vertical-align: unset;

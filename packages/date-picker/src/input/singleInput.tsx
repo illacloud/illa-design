@@ -109,7 +109,7 @@ export const DateInput = forwardRef<DateInputHandler, DateInputProps>(
               <ClearIcon />
             </span>
           )}
-          <span className="suffix-icon" css={suffixIconStyle}>
+          <span className="suffix-icon" css={suffixIconStyle(disabled)}>
             {suffixIcon}
           </span>
         </div>

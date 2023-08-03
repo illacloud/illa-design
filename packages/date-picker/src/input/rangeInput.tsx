@@ -168,7 +168,10 @@ export const RangeDateInput = forwardRef<
             <ClearIcon />
           </span>
         )}
-        <span className="suffix-icon" css={suffixIconStyle}>
+        <span
+          className="suffix-icon"
+          css={suffixIconStyle(disabled1 && disabled2)}
+        >
           {suffixIcon}
         </span>
       </div>
