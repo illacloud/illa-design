@@ -60,14 +60,10 @@ const Template: Story<UploadProps> = (props) => {
               status: "error",
             },
             {
-              uid: "-3",
-              name: "image.png",
-              status: "uploading",
-            },
-            {
               uid: "-1",
               name: "image.png",
               status: "init",
+              percent: 50,
             },
             {
               uid: "-2",
