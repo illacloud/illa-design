@@ -21,7 +21,6 @@ import {
   ContributeIcon,
   CopyIcon,
   DeleteIcon,
-  DeleteOutlineIcon,
   DependencyIcon,
   DoubtIcon,
   DownIcon,
@@ -65,7 +64,8 @@ import {
   NextIcon,
   OpenWindowIcon,
   PenIcon,
-  PeopleIcon, PlayFillIcon,
+  PeopleIcon,
+  PlayFillIcon,
   PlayOutlineIcon,
   PlusIcon,
   PreviousDoubleIcon,
@@ -103,9 +103,10 @@ import {
   WindowBottomIcon,
   WindowLeftIcon,
   WindowMinimizeIcon,
-  WindowRightIcon
-} from "../src";
+  WindowRightIcon,
+} from "../src"
 import { ImageErrorIcon } from "../src/icons/image-error"
+import { ForkIcon } from "../src/icons/fork"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -175,12 +176,6 @@ export const All: StoryFn<IconProps> = (props: IconProps) => (
         <Space direction="vertical" align="center" w="100%" pd="16px 0">
           <DeleteIcon {...props} />
           <span>Delete</span>
-        </Space>
-      </Col>
-      <Col span={2}>
-        <Space direction="vertical" align="center" w="100%" pd="16px 0">
-          <DeleteOutlineIcon {...props} />
-          <span>DeleteOutline</span>
         </Space>
       </Col>
       <Col span={2}>
@@ -713,6 +708,12 @@ export const All: StoryFn<IconProps> = (props: IconProps) => (
         <Space direction="vertical" align="center" w="100%" pd="16px 0">
           <PlayOutlineIcon {...props} />
           <span>PlayOutline</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <ForkIcon {...props} />
+          <span>Fork</span>
         </Space>
       </Col>
     </Row>

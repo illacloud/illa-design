@@ -558,21 +558,21 @@ export function applyWithoutTextSize(
         justify-content: center;
         width: ${fullWidth ? "100%" : "24px"};
         height: ${fullHeight ? "100%" : "24px"};
-        font-size: 12px;
+        font-size: 16px;
       `
     case "medium":
       return css`
         justify-content: center;
         width: ${fullWidth ? "100%" : "32px"};
         height: ${fullHeight ? "100%" : "32px"};
-        font-size: 12px;
+        font-size: 16px;
       `
     case "large":
       return css`
         justify-content: center;
         width: ${fullWidth ? "100%" : "40px"};
         height: ${fullHeight ? "100%" : "40px"};
-        font-size: 12px;
+        font-size: 16px;
       `
   }
 }
@@ -608,7 +608,7 @@ export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        font-size: 12px;
+        font-size: 16px;
         margin-right: 4px;
       `
     case "medium":
@@ -617,7 +617,7 @@ export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        font-size: 12px;
+        font-size: 16px;
         margin-right: 8px;
       `
   }
@@ -644,7 +644,7 @@ export function applyRightIconStyle(size: ButtonSize): SerializedStyles {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        font-size: 12px;
+        font-size: 16px;
         margin-left: 6px;
       `
     case "medium":
@@ -653,7 +653,7 @@ export function applyRightIconStyle(size: ButtonSize): SerializedStyles {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        font-size: 12px;
+        font-size: 16px;
         margin-left: 8px;
       `
   }
