@@ -362,6 +362,9 @@ export const textareaStyle = css`
   width: 100%;
   font-size: 14px;
   min-height: 32px;
+  ::placeholder {
+    color: ${getColor("grayBlue", "04")};
+  }
 `
 
 export const textareaContainerStyle = css`
