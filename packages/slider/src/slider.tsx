@@ -17,7 +17,7 @@ import { Trigger, TriggerRefHandler } from "@illa-design/trigger"
 import { SliderProps, ICustomRef } from "./interface"
 import { DefaultWidth, BarLocation } from "./content"
 import { useOffset } from "./useOffset"
-import { getSafeStep, verifyValue } from "./utils"
+import { getSafeStep, processNumber, verifyValue } from "./utils"
 import { NumTick } from "./NumTick"
 import { useElementSize } from "./useElementSize"
 
@@ -156,7 +156,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
           [...new Array(partNumber - 1)].map((_, i) => (
             <Tick
               key={i}
-              value={(i + 1) * step}
+              value={processNumber((i + 1) * step, step) as number}
               left={(i + 1) * partLength}
               leftValue={leftOffset}
               rightValue={rightOffset}
@@ -173,7 +173,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
               i <= Math.floor((max - min) / step) && (
                 <NumTick
                   key={i}
-                  value={min + i * step}
+                  value={processNumber(min + i * step, step) as number}
                   left={i * partLength}
                   disabled={disabled}
                 />
