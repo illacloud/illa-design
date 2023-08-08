@@ -17,7 +17,7 @@ import { Trigger, TriggerRefHandler } from "@illa-design/trigger"
 import { SliderProps, ICustomRef } from "./interface"
 import { DefaultWidth, BarLocation } from "./content"
 import { useOffset } from "./useOffset"
-import { getSafeStep, verifyValue } from "./utils"
+import { getSafeStep, processNumber, verifyValue } from "./utils"
 import { NumTick } from "./NumTick"
 import { useElementSize } from "./useElementSize"
 
@@ -109,13 +109,13 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     if (target) {
       const { dataset } = target as HTMLElement
       if (dataset && dataset.value !== undefined) {
-        onClickTick(parseInt(dataset.value))
+        onClickTick(parseFloat(dataset.value))
         return
       }
       const { parentElement } = target as HTMLElement
       const parentDataset = parentElement?.dataset
       if (parentElement && parentDataset && parentDataset.value !== undefined) {
-        onClickTick(parseInt(parentDataset.value))
+        onClickTick(parseFloat(parentDataset.value))
       }
     }
   }
@@ -156,7 +156,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
           [...new Array(partNumber - 1)].map((_, i) => (
             <Tick
               key={i}
-              value={(i + 1) * step}
+              value={processNumber((i + 1) * step, step)}
               left={(i + 1) * partLength}
               leftValue={leftOffset}
               rightValue={rightOffset}
@@ -173,7 +173,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
               i <= Math.floor((max - min) / step) && (
                 <NumTick
                   key={i}
-                  value={min + i * step}
+                  value={processNumber(min + i * step, step)}
                   left={i * partLength}
                   disabled={disabled}
                 />
@@ -181,7 +181,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
           )}
         {startMarkShow && (
           <div
-            css={applyBoundBar(false, disabled)}
+            css={applyBoundBar(disabled, false)}
             onClick={() => onClickTick(min)}
           />
         )}
@@ -250,7 +250,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
         </Trigger>
         {endMarkShow && (
           <div
-            css={applyBoundBar(true, disabled)}
+            css={applyBoundBar(disabled, true)}
             onClick={() => onClickTick(max)}
           />
         )}
