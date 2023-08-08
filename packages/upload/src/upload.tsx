@@ -200,7 +200,7 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
     [onChange, props],
   )
 
-  const uploadCompontent = (
+  const uploadComponent = (
     <div css={getUploaderContinerStyle(listType)}>
       <Uploader
         ref={uploaderRef}
@@ -221,7 +221,7 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
 
   return (
     <>
-      {!isPictureCard && uploadCompontent}
+      {!isPictureCard && uploadComponent}
       {showUploadList && (
         <UploadList
           progressProps={progressProps}
@@ -237,7 +237,7 @@ export const Upload = forwardRef<UploadInstance, UploadProps>((props, ref) => {
           onPreview={props.onPreview}
         />
       )}
-      {isPictureCard && uploadCompontent}
+      {isPictureCard && uploadComponent}
     </>
   )
 })

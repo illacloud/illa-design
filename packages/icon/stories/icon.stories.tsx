@@ -8,6 +8,7 @@ import {
   AlignRightIcon,
   AlignTopIcon,
   AlignVCenterIcon,
+  AttachmentIcon,
   BugIcon,
   CalendarIcon,
   CameraIcon,
@@ -17,10 +18,12 @@ import {
   ClearIcon,
   CloseIcon,
   CommentIcon,
+  ContributeIcon,
   CopyIcon,
   DeleteIcon,
   DeleteOutlineIcon,
   DependencyIcon,
+  DoubtIcon,
   DownIcon,
   DownloadIcon,
   DragPointIcon,
@@ -63,6 +66,8 @@ import {
   OpenWindowIcon,
   PenIcon,
   PeopleIcon,
+  PlayFillIcon,
+  PlayOutlineIcon,
   PlusIcon,
   PreviousDoubleIcon,
   PreviousIcon,
@@ -77,6 +82,7 @@ import {
   SorterUpIcon,
   SortIcon,
   StarFillIcon,
+  StarOutlineIcon,
   StartOutlineIcon,
   StokeWidthIcon,
   SuccessCircleIcon,
@@ -97,9 +103,11 @@ import {
   WarningIcon,
   WindowBottomIcon,
   WindowLeftIcon,
+  WindowMinimizeIcon,
   WindowRightIcon,
 } from "../src"
 import { ImageErrorIcon } from "../src/icons/image-error"
+import { ForkIcon } from "../src/icons/fork"
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -381,6 +389,12 @@ export const All: StoryFn<IconProps> = (props: IconProps) => (
         <Space direction="vertical" align="center" w="100%" pd="16px 0">
           <StarFillIcon {...props} />
           <span>StarFill</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <StarOutlineIcon {...props} />
+          <span>StarOutline</span>
         </Space>
       </Col>
       <Col span={2}>
@@ -669,8 +683,44 @@ export const All: StoryFn<IconProps> = (props: IconProps) => (
       </Col>
       <Col span={2}>
         <Space direction="vertical" align="center" w="100%" pd="16px 0">
-          <RefreshIcon {...props} />
-          <span>Refresh</span>
+          <DoubtIcon {...props} />
+          <span>Doubt</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <AttachmentIcon {...props} />
+          <span>Attachment</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <WindowMinimizeIcon {...props} />
+          <span>Window Minimize</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <ContributeIcon {...props} />
+          <span>Contribute</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <PlayFillIcon {...props} />
+          <span>PlayFill</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <PlayOutlineIcon {...props} />
+          <span>PlayOutline</span>
+        </Space>
+      </Col>
+      <Col span={2}>
+        <Space direction="vertical" align="center" w="100%" pd="16px 0">
+          <ForkIcon {...props} />
+          <span>Fork</span>
         </Space>
       </Col>
     </Row>
