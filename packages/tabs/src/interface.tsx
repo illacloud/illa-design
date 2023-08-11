@@ -42,7 +42,6 @@ export interface TabsProps
   prefix?: ReactNode
   suffix?: ReactNode
   tabsItemAfter?: ReactNode
-  tabsItemColorScheme?: string
   withoutContent?: boolean
 }
 
@@ -51,5 +50,7 @@ export interface TabPaneProps
   title: string | ReactNode
   disabled?: boolean
   closable?: boolean
+  tabsItemActiveColorScheme?: string
+  tabsItemColorScheme?: string
   ["data-key"]?: string
 }
