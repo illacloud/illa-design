@@ -8,7 +8,7 @@ export const getPadding = (size: TabsSize, variant: TabVariant) => {
   switch (variant) {
     default:
     case "line":
-      paddingX = "8px"
+      paddingX = "4px"
       break
     case "capsule":
       paddingX = "16px"
@@ -205,7 +205,7 @@ export const panelContainerStyle = (
   switch (variant) {
     default:
     case "line":
-      padding = "0 8px"
+      padding = "0px 12px"
       break
     case "text":
     case "capsule":
@@ -270,6 +270,7 @@ export const panelTitleStyle = (
     ${getPadding(size, variant)};
     flex-direction: ${flexDirection};
     border-radius: 4px;
+    position: relative;
     ${selectCss};
     &:hover {
       ${hoverCss};
