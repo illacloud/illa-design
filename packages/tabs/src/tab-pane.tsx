@@ -14,7 +14,13 @@ import {
 import { CloseIcon } from "@illa-design/icon"
 
 export const TabPane: FC<TabPaneProps> = (props) => {
-  const { title, disabled = false, closable } = props
+  const {
+    title,
+    disabled = false,
+    closable,
+    tabsItemColorScheme,
+    tabsItemActiveColorScheme,
+  } = props
   const {
     selectedKey,
     size = "medium",
@@ -22,7 +28,6 @@ export const TabPane: FC<TabPaneProps> = (props) => {
     variant = "line",
     colorScheme = "blue",
     tabsItemAfter,
-    tabsItemColorScheme,
     handleSelectTab,
     handleDeleteTab,
   } = useContext(TabContext)
@@ -55,6 +60,7 @@ export const TabPane: FC<TabPaneProps> = (props) => {
               isSelectKey,
               colorScheme,
               tabsItemColorScheme,
+              tabsItemActiveColorScheme,
             )}
           >
             {title}
@@ -67,7 +73,7 @@ export const TabPane: FC<TabPaneProps> = (props) => {
               colorScheme,
               tabPosition,
               disabled,
-              tabsItemColorScheme,
+              tabsItemActiveColorScheme,
             )}
             layoutId="underline"
           />

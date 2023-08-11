@@ -294,22 +294,34 @@ export const titleStyle = (
   isSelectKey: boolean,
   colorScheme: string,
   tabsItemColorScheme?: string,
+  tabsItemActiveColorScheme?: string,
 ) => {
   let itemCss
 
-  if (disabled) {
+  if (tabsItemColorScheme) {
+    itemCss = css`
+      background: ${tabsItemColorScheme};
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: ${tabsItemColorScheme ?? getColor(colorScheme ?? "blue", "02")};
+      font-weight: 500;
+      color: transparent;
+    `
+  } else if (disabled) {
     itemCss = css`
       color: ${getColor("grayBlue", "05")};
       cursor: not-allowed;
     `
   } else if (isSelectKey) {
-    if (tabsItemColorScheme) {
+    if (tabsItemActiveColorScheme) {
       itemCss = css`
-        background: ${tabsItemColorScheme};
+        background: ${tabsItemActiveColorScheme};
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        color: ${tabsItemColorScheme ?? getColor(colorScheme ?? "blue", "02")};
+        color: ${tabsItemActiveColorScheme ??
+        getColor(colorScheme ?? "blue", "02")};
         font-weight: 500;
         color: transparent;
       `
