@@ -18,6 +18,7 @@ export const TabPane: FC<TabPaneProps> = (props) => {
     title,
     disabled = false,
     closable,
+    tabsItemAfter,
     tabsItemColorScheme,
     tabsItemActiveColorScheme,
   } = props
@@ -27,7 +28,6 @@ export const TabPane: FC<TabPaneProps> = (props) => {
     tabPosition = "top",
     variant = "line",
     colorScheme = "blue",
-    tabsItemAfter,
     handleSelectTab,
     handleDeleteTab,
   } = useContext(TabContext)
@@ -79,7 +79,9 @@ export const TabPane: FC<TabPaneProps> = (props) => {
           />
         ) : null}
       </div>
-      <div css={tabsItemAfterStyle(tabPosition)}>{tabsItemAfter}</div>
+      {tabsItemAfter && (
+        <div css={tabsItemAfterStyle(tabPosition)}>{tabsItemAfter}</div>
+      )}
     </div>
   )
 }
