@@ -115,7 +115,7 @@ export function applyRadioButtonContainer(
   hasChildren?: ReactNode,
 ): SerializedStyles {
   return css`
-    border-radius: 4px;
+    border-radius: 8px;
     display: ${hasChildren ? "inline-flex" : "none"};
     vertical-align: middle;
     flex-direction: row;
@@ -124,7 +124,7 @@ export function applyRadioButtonContainer(
     font-size: 14px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-    padding: 1px;
+    padding: 2px;
   `
 }
 
@@ -135,19 +135,19 @@ export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
     case "small":
       sizeCss = css`
         padding: 1px 8px;
-        height: 22px;
+        height: 20px;
       `
       break
     case "medium":
       sizeCss = css`
         padding: 5px 12px;
-        height: 30px;
+        height: 28px;
       `
       break
     case "large":
       sizeCss = css`
         padding: 9px 16px;
-        height: 38px;
+        height: 36px;
       `
       break
   }
@@ -169,9 +169,10 @@ export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
   } else if (stateValue?.checked) {
     stateCss = css`
       font-weight: 500;
-      border-radius: 3px;
+      border-radius: 7px;
       color: ${checkedColor};
       background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+      box-shadow: 0px 0px 2px 0px rgba(29, 33, 41, 0.24);
 
       &::before,
       & + label::before {
@@ -181,8 +182,9 @@ export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
   } else {
     stateCss = css`
       &:hover {
-        border-radius: 3px;
+        border-radius: 7px;
         background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+        box-shadow: 0px 0px 2px 0px rgba(29, 33, 41, 0.24);
       }
     `
   }
