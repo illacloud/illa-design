@@ -373,7 +373,7 @@ export const lineStyle = (
       location = css`
         top: 0;
         bottom: 0;
-        right: -8px;
+        right: -12px;
         width: 2px;
       `
       break
@@ -381,7 +381,7 @@ export const lineStyle = (
       location = css`
         top: 0;
         bottom: 0;
-        left: -8px;
+        left: -12px;
         width: 2px;
       `
       break
