@@ -10,7 +10,8 @@ export const applyModalMask = css`
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: ${globalColor(`--${illaPrefix}-blackAlpha-04`)};
+  background-color: ${getColor("white", "05")};
+  backdrop-filter: blur(5px);
 `
 
 export const applyModalContainer = css`
