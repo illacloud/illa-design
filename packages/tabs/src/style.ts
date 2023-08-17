@@ -65,6 +65,7 @@ export const tabsContainerStyle = (
   tabPosition: TabPosition,
   align: TabAlign,
   variant: TabVariant,
+  withoutBorderLine?: boolean,
 ) => {
   let flexCss
   if (isHorizontalLayout(tabPosition)) {
@@ -83,7 +84,7 @@ export const tabsContainerStyle = (
     `
   }
   let borderCss
-  if (variant === "line") {
+  if (variant === "line" && !withoutBorderLine) {
     if (tabPosition === "top") {
       borderCss = css`
         border-bottom: 1px solid ${getColor("grayBlue", "08")};
@@ -109,6 +110,7 @@ export const tabsStyle = (
   tabBarSpacing: number | undefined,
   variant: TabVariant,
   translate: number,
+  withoutBorderLine?: boolean,
 ) => {
   let variantCss
   switch (variant) {
@@ -148,7 +150,7 @@ export const tabsStyle = (
     `
   }
   let borderCss
-  if (variant === "line") {
+  if (variant === "line" && !withoutBorderLine) {
     if (tabPosition === "left") {
       borderCss = css`
         border-right: 1px solid ${getColor("grayBlue", "08")};
