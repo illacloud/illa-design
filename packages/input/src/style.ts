@@ -312,7 +312,7 @@ export function applyPrefixStyle(
     justify-content: center;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     margin-right: ${size === "small" ? "8px" : "12px"};
-    min-height: 24px;
+    min-height: 22px;
   `
 }
 
@@ -328,7 +328,7 @@ export function applySuffixStyle(
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     margin-left: ${size === "small" ? "8px" : "12px"};
     align-self: start;
-    min-height: 24px;
+    min-height: 22px;
   `
 }
 

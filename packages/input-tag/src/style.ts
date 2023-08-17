@@ -165,7 +165,7 @@ export function applyPrefixSuffixStyle(
     justify-content: center;
     flex-shrink: 0;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
-    min-height: 24px;
+    min-height: 22px;
     ${marginStyle};
   `
 }
