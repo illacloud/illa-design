@@ -42,6 +42,7 @@ export interface TabsProps
   prefix?: ReactNode
   suffix?: ReactNode
   withoutContent?: boolean
+  withoutBorderLine?: boolean
 }
 
 export interface TabPaneProps

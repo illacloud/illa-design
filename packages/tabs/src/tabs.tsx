@@ -49,6 +49,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     activeKey,
     prefix,
     suffix,
+    withoutBorderLine,
     onChange,
     onDeleteTab,
     onClickTab,
@@ -143,7 +144,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       handleDeleteTab={handleDeleteTab}
     >
       <div
-        css={tabsContainerStyle(tabPosition, align, variant)}
+        css={tabsContainerStyle(tabPosition, align, variant, withoutBorderLine)}
         ref={containerRef}
       >
         {prefix}
@@ -158,7 +159,13 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
         )}
         <div
           ref={panelRef}
-          css={tabsStyle(tabPosition, tabBarSpacing, variant, translate)}
+          css={tabsStyle(
+            tabPosition,
+            tabBarSpacing,
+            variant,
+            translate,
+            withoutBorderLine,
+          )}
         >
           {curTabItems}
         </div>
