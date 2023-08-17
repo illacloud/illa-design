@@ -287,7 +287,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                   inputRef.current?.focus()
                   onPressEnter?.(e)
                   const checked = await validate?.(finalInputValue, finalValue)
-                  if (checked) {
+                  if (checked || validate === undefined) {
                     saveInputValue()
                   }
                 }

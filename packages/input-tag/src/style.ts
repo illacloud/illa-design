@@ -159,11 +159,13 @@ export function applyPrefixSuffixStyle(
   marginStyle: SerializedStyles,
 ): SerializedStyles {
   return css`
+    align-self: start;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
+    min-height: 24px;
     ${marginStyle};
   `
 }
