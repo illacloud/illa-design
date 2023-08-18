@@ -77,7 +77,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 <span
                   css={
                     hasPropContent
-                      ? applyLeftIconStyle(size)
+                      ? applyLeftIconStyle(size, hasChild)
                       : applyIconWithoutText(size)
                   }
                 >
@@ -93,7 +93,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 <span
                   css={
                     hasPropContent
-                      ? applyRightIconStyle(size)
+                      ? applyRightIconStyle(size, hasChild)
                       : applyIconWithoutText(size)
                   }
                 >

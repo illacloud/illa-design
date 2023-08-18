@@ -8,7 +8,6 @@ export const tagContainer = css`
   white-space: nowrap;
   flex-direction: row;
   align-items: center;
-  box-sizing: border-box;
   padding: 0 7px;
 `
 
@@ -21,7 +20,7 @@ export const tagSizeLargeStyle = css`
 export const tagSizeMediumStyle = css`
   font-size: 14px;
   line-height: 22px;
-  height: 24px;
+  height: 22px;
 `
 
 export const tagSizeSmallStyle = css`

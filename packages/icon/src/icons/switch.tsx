@@ -2,17 +2,17 @@ import { createIcon } from "../create-icon"
 
 export const SwitchIcon = createIcon({
   title: "SwitchIcon",
-  viewBox: "0 0 12 12",
+  viewBox: "0 0 16 16",
   path: (
     <>
       <path
-        d="M3.5 2.5L1.5 4.5H10.5"
+        d="M5.5 4.5L3.5 6.5H12.5"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M8.5 9.5L10.5 7.5H1.5"
+        d="M10.5 11.5L12.5 9.5H3.5"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"

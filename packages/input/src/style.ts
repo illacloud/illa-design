@@ -308,9 +308,11 @@ export function applyPrefixStyle(
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
+    align-self: start;
     justify-content: center;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     margin-right: ${size === "small" ? "8px" : "12px"};
+    min-height: 22px;
   `
 }
 
@@ -325,6 +327,8 @@ export function applySuffixStyle(
     flex-shrink: 0;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     margin-left: ${size === "small" ? "8px" : "12px"};
+    align-self: start;
+    min-height: 22px;
   `
 }
 
@@ -362,6 +366,10 @@ export const textareaStyle = css`
   width: 100%;
   font-size: 14px;
   min-height: 32px;
+
+  ::placeholder {
+    color: ${getColor("grayBlue", "04")};
+  }
 `
 
 export const textareaContainerStyle = css`

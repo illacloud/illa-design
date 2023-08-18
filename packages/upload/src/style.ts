@@ -207,7 +207,6 @@ export const inputContentContainer = css`
 export const listTypeButtonStyle = css`
   width: 100%;
   max-width: 100%;
-  font-family: "SF Pro Text";
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -255,7 +254,7 @@ export const getPictureCardContainerStyle = (disabled: boolean) => {
 export const pictureCardContentStyle = css`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   gap: 8px;
 `
 
@@ -363,7 +362,7 @@ export const uploadProgressStatus = css`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  wdith: 16px;
+  width: 16px;
   height: 16px;
 `
 

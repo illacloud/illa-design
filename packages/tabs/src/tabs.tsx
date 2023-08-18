@@ -5,30 +5,25 @@ import {
   useMemo,
   Children,
   useCallback,
+  useEffect,
 } from "react"
-import {
-  TabHeaderChildProps,
-  TabHeaderProps,
-  TabPaneProps,
-  TabsProps,
-} from "./interface"
+import { TabPaneProps, TabsProps } from "./interface"
 import { TabPane } from "./tab-pane"
-import { TabContent } from "./tab-content"
-import { applyContainerCss } from "./style"
-import { TabCommonHeader } from "./headers/tab-common-header"
-import { TabLineHeader } from "./headers/tab-line-header"
-import { isObject } from "@illa-design/system"
-import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { TabsProvider } from "./context/context"
+import {
+  iconStyle,
+  nextIconStyle,
+  tabsContainerStyle,
+  tabsStyle,
+} from "./style"
+import { UpIcon, DownIcon, PreviousIcon } from "@illa-design/icon"
+import { isHorizontalLayout } from "./utils"
+import useMeasure from "react-use-measure"
+import { SCROLL_ICON_WIDTH } from "./constants"
 
-export type TabChildren = {
-  headers: TabHeaderChildProps[]
-  panes: ReactElement[]
-  firstTabKey?: string
-}
-
-function getTabChildren(children: ReactElement) {
-  const headerChildren: TabHeaderChildProps[] = []
-  const paneChildren: ReactElement[] = []
+const getTabItems = (children: ReactElement | undefined) => {
+  if (!children) return []
+  const tabItems: ReactElement[] = []
   let firstTabKey: string | undefined
   Children.forEach(children, (child: ReactElement, index: number) => {
     if (child && child.type && (child as ReactElement<TabPaneProps>)) {
@@ -36,187 +31,156 @@ function getTabChildren(children: ReactElement) {
         const _props = child.props
         const key = child?.key?.toString() ?? _props.title + index
         if (!firstTabKey) firstTabKey = key
-        headerChildren.push({
-          ..._props,
-          tabKey: key,
-        })
-        paneChildren.push(<TabPane key={key} {..._props} />)
+        tabItems.push(<TabPane key={key} data-key={key} {..._props} />)
       }
     }
   })
-  return {
-    headers: headerChildren,
-    panes: paneChildren,
-    firstTabKey: firstTabKey,
-  }
-}
-
-function removeHeaderAndPane(index: number, tabsArr: TabChildren) {
-  if (index < 0) return tabsArr
-  const newHeaders = [...tabsArr.headers]
-  newHeaders.splice(index, 1)
-  const newPanes = [...tabsArr.panes]
-  newPanes.splice(index, 1)
-  return {
-    headers: newHeaders,
-    panes: newPanes,
-    firstTabKey: newHeaders[0]?.tabKey ?? "",
-  }
-}
-
-function getSelectedIndex(key?: string, headers?: TabHeaderChildProps[]) {
-  if (!headers) return -1
-  return headers.findIndex((item) => key === item.tabKey)
+  return tabItems
 }
 
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const {
     children,
-    placeholder,
     defaultActiveKey,
-    size = "medium",
-    animated,
-    editable,
     variant = "line",
-    addIcon,
-    deleteIcon,
     tabBarSpacing,
     tabPosition = "top",
     align = "flex-start",
     activeKey,
     prefix,
     suffix,
-    colorScheme,
-    withoutContent = false,
+    withoutBorderLine,
     onChange,
-    onAddTab,
     onDeleteTab,
     onClickTab,
-    ...rest
   } = props
 
-  const [activeKeyState, setActiveKeyState] = useState<string | undefined>(
-    defaultActiveKey,
+  const tabItems = useMemo(() => {
+    return getTabItems(children as ReactElement)
+  }, [children])
+
+  const [curTabItems, setCurTabItems] = useState<ReactElement[]>(
+    [...tabItems] ?? [],
   )
-
-  const [_children, setChildren] = useState<TabChildren>({
-    headers: [],
-    panes: [],
-  })
-
-  useMemo(() => {
-    const tabs = getTabChildren(children as ReactElement)
-    setChildren(tabs)
-    if (!defaultActiveKey) setActiveKeyState(tabs.firstTabKey)
-  }, [children, defaultActiveKey])
-
-  const headerAnimated = useMemo(() => {
-    if (typeof animated === "boolean") {
-      return animated
-    } else if (isObject(animated)) {
-      return animated.inkBar ?? true
-    }
-  }, [animated])
-
-  const paneAnimated = useMemo(() => {
-    if (typeof animated === "boolean") {
-      return animated
-    } else if (isObject(animated)) {
-      return animated.tabPane ?? false
-    }
-  }, [animated])
-
-  const _activeKey = useMemo(
-    () => activeKey ?? activeKeyState,
-    [activeKey, activeKeyState],
-  )
-
-  const selectedIndex = useMemo(() => {
-    return getSelectedIndex(_activeKey, _children.headers)
-  }, [_activeKey, _children])
-
-  const handleDeleteTab = useCallback(
-    (key: string) => {
-      const index = _children.headers.findIndex((item) => {
-        return item.tabKey === key
-      })
-      if (index === selectedIndex) {
-        if (index === _children.headers.length - 1) {
-          setActiveKeyState(_children.headers[index - 1].tabKey)
-          onChange && onChange(_children.headers[index - 1].tabKey)
-        } else {
-          setActiveKeyState(_children.headers[index + 1].tabKey)
-          onChange && onChange(_children.headers[index + 1].tabKey)
-        }
-      }
-      const newArr = removeHeaderAndPane(index, _children)
-      setChildren(newArr)
-      onDeleteTab && onDeleteTab(key)
-    },
-    [_children, selectedIndex, onChange, onDeleteTab],
+  const firstTabKey = useMemo(() => {
+    return curTabItems[0]?.key?.toString()
+  }, [curTabItems])
+  const [containerRef, containerInfo] = useMeasure()
+  const [panelRef, panelInfo] = useMeasure()
+  const [showScrollIcon, setShowScrollIcon] = useState(false)
+  const [translate, setTranslate] = useState(0)
+  const [selectedKey, setSelectedKey] = useState(
+    defaultActiveKey ?? firstTabKey,
   )
 
   const handleSelectTab = useCallback(
-    (key: string) => {
+    (key: string | undefined) => {
+      if (!key) return
       onClickTab && onClickTab(key)
-      setActiveKeyState(key)
+      setSelectedKey(key)
       onChange && onChange(key)
     },
     [onChange, onClickTab],
   )
 
-  const headerProps: TabHeaderProps = {
-    selectedIndex,
-    animated: headerAnimated,
-    tabHeaderChild: _children?.headers,
-    handleSelectTab,
-    size,
-    align,
-    variant,
-    editable,
-    addIcon,
-    onAddTab,
-    tabBarSpacing,
-    tabPosition,
-    handleDeleteTab,
-    deleteIcon,
-    suffix,
-    prefix,
-    colorScheme,
+  const handleDeleteTab = useCallback(
+    (key: string | undefined) => {
+      if (!key || !tabItems) return
+      const index = tabItems.findIndex((item) => item.key === key)
+      if (index !== -1) {
+        tabItems.splice(index, 1)
+        setCurTabItems([...tabItems])
+      }
+      onDeleteTab && onDeleteTab(key)
+    },
+    [onDeleteTab, tabItems],
+  )
+
+  const handleGoNext = () => {
+    if (
+      -(translate - containerInfo.width / 2) +
+        containerInfo.width +
+        SCROLL_ICON_WIDTH >=
+      panelInfo.width
+    ) {
+      setTranslate(-(panelInfo.width + SCROLL_ICON_WIDTH - containerInfo.width))
+    } else {
+      setTranslate(translate - containerInfo.width / 2)
+    }
+  }
+  const handleGoPrevious = () => {
+    if (translate + containerInfo.width / 2 >= SCROLL_ICON_WIDTH) {
+      setTranslate(SCROLL_ICON_WIDTH)
+    } else {
+      setTranslate(translate + containerInfo.width / 2)
+    }
   }
 
-  const _variant = useMemo(() => {
-    if (variant === "capsule" && tabPosition !== "top") {
-      return "line"
+  useEffect(() => {
+    if (showScrollIcon) {
+      setTranslate(SCROLL_ICON_WIDTH)
+    } else {
+      setTranslate(0)
     }
-    if (
-      variant === "card" &&
-      (tabPosition === "left" || tabPosition === "right")
-    ) {
-      return "line"
+  }, [showScrollIcon])
+
+  useEffect(() => {
+    if (containerInfo.width - SCROLL_ICON_WIDTH < panelInfo.width) {
+      setShowScrollIcon(true)
+    } else {
+      setShowScrollIcon(false)
     }
-    return variant
-  }, [variant, tabPosition])
+  }, [containerInfo.width, panelInfo.width])
+
+  useEffect(() => {
+    setCurTabItems(tabItems)
+  }, [tabItems])
 
   return (
-    <div
-      css={[applyContainerCss(tabPosition), applyBoxStyle(props)]}
-      placeholder={placeholder}
-      ref={ref}
-      {...deleteCssProps(rest)}
+    <TabsProvider
+      {...props}
+      selectedKey={activeKey || selectedKey}
+      handleSelectTab={handleSelectTab}
+      handleDeleteTab={handleDeleteTab}
     >
-      {_variant === "line" && <TabLineHeader {...headerProps} />}
-      {_variant != "line" && <TabCommonHeader {...headerProps} />}
-      {!withoutContent && (
-        <TabContent
-          animated={paneAnimated}
-          tabPanes={_children?.panes}
-          selectedIndex={selectedIndex}
-          variant={_variant}
-          tabPosition={tabPosition}
-        />
-      )}
-    </div>
+      <div
+        css={tabsContainerStyle(tabPosition, align, variant, withoutBorderLine)}
+        ref={containerRef}
+      >
+        {prefix}
+        {!isHorizontalLayout(tabPosition) && showScrollIcon && (
+          <span css={iconStyle("previous")} onClick={handleGoPrevious}>
+            {isHorizontalLayout(tabPosition) ? (
+              <UpIcon size="12" />
+            ) : (
+              <PreviousIcon size="12" />
+            )}
+          </span>
+        )}
+        <div
+          ref={panelRef}
+          css={tabsStyle(
+            tabPosition,
+            tabBarSpacing,
+            variant,
+            translate,
+            withoutBorderLine,
+          )}
+        >
+          {curTabItems}
+        </div>
+        {!isHorizontalLayout(tabPosition) && showScrollIcon && (
+          <span css={iconStyle("next")} onClick={handleGoNext}>
+            {isHorizontalLayout(tabPosition) ? (
+              <DownIcon size="12" />
+            ) : (
+              <PreviousIcon css={nextIconStyle} size="12" />
+            )}
+          </span>
+        )}
+        {suffix}
+      </div>
+    </TabsProvider>
   )
 })
 
