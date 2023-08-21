@@ -44,8 +44,7 @@
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "framer-motion": "^7.6.12",
-    "react-use": "^17.4.0",
-    "react-use-measure": "^2.1.1"
+    "react-use": "^17.4.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.11.1",
