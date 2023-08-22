@@ -3,35 +3,40 @@ import { css, SerializedStyles } from "@emotion/react"
 import { getColor, globalColor, illaPrefix, zIndex } from "@illa-design/theme"
 import { Variants } from "framer-motion"
 
-export const applyModalMask = css`
-  z-index: ${zIndex.modal};
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: ${getColor("white", "05")};
-  backdrop-filter: blur(5px);
-`
+export function applyModalMask(z?: string | number): SerializedStyles {
+  return css`
+    z-index: ${z ? z : zIndex.modal};
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: ${getColor("white", "05")};
+    backdrop-filter: blur(5px);
+  `
+}
 
-export const applyModalContainer = css`
-  position: fixed;
-  cursor: auto;
-  overflow: auto;
-  text-align: center;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: ${zIndex.modal};
-  &:after {
-    display: inline-block;
-    vertical-align: middle;
-    width: 0;
-    height: 100%;
-    content: "";
-  }
-`
+export function applyModalContainer(z?: string | number): SerializedStyles {
+  return css`
+    position: fixed;
+    cursor: auto;
+    overflow: auto;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: ${z ? z : zIndex.modal};
+
+    &:after {
+      display: inline-block;
+      vertical-align: middle;
+      width: 0;
+      height: 100%;
+      content: "";
+    }
+  `
+}
 
 export function applyModal(): SerializedStyles {
   return css`
