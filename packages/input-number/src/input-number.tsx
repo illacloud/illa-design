@@ -10,7 +10,7 @@ import { InputNumberProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { DownIcon, MinusIcon, PlusIcon, UpIcon } from "@illa-design/icon"
 import { Space } from "@illa-design/space"
-import { isNumber, useMergeValue } from "@illa-design/system"
+import { isNumber } from "@illa-design/system"
 import {
   applyActionIconStyle,
   applyControlBlockStyle,
@@ -31,6 +31,8 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       max = Number.MAX_SAFE_INTEGER,
       min = Number.MIN_SAFE_INTEGER,
       step = 1,
+      onBlur,
+      onFocus,
       placeholder,
       mode = "embed",
       prefix,
@@ -129,6 +131,34 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       </div>
     )
 
+    const dealNumber = () => {
+      if (!isNumber(Number(finalValue))) {
+        if (0 <= max && 0 >= min) {
+          if (value === undefined) {
+            setFinalValue(0)
+          }
+          onChange?.(0)
+        } else {
+          if (value === undefined) {
+            setFinalValue(min)
+          }
+          onChange?.(min)
+        }
+        return
+      }
+      if (precision && precision >= step) {
+        let num = Number(Number(finalValue).toFixed(precision))
+        num = Math.max(num, min)
+        num = Math.min(num, max)
+        onChange?.(num)
+      } else {
+        let num = Number(finalValue)
+        num = Math.max(num, min)
+        num = Math.min(num, max)
+        onChange?.(num)
+      }
+    }
+
     return (
       <Input
         ref={ref}
@@ -139,26 +169,15 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         onChange={(e) => {
           setFinalValue(e)
         }}
-        onBlur={() => {
-          if (!isNumber(Number(finalValue))) {
-            if (0 <= max && 0 >= min) {
-              if (value === undefined) {
-                setFinalValue(0)
-              }
-              onChange?.(0)
-            } else {
-              if (value === undefined) {
-                setFinalValue(min)
-              }
-              onChange?.(min)
-            }
-            return
-          }
-          if (precision && precision >= step) {
-            onChange?.(Number(Number(finalValue).toFixed(precision)))
-          } else {
-            onChange?.(Number(finalValue))
-          }
+        onPressEnter={() => {
+          inputRef.current.blur()
+        }}
+        onBlur={(e) => {
+          dealNumber()
+          onBlur?.(e)
+        }}
+        onFocus={(e) => {
+          onFocus?.(e)
         }}
         readOnly={readOnly}
         placeholder={placeholder}
