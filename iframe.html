@@ -1,5 +1,37 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Webpack App</title><meta name="viewport" content="width=device-width,initial-scale=1"><base target="_parent"><style>/* While we aren't showing the main block yet, but still preparing, we want everything the user
-     has rendered, which may or may not be in #root, to be display none */
+<!DOCTYPE html>
+<!--suppress HtmlUnknownTarget -->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Storybook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="prefetch" href="./sb-common-assets/nunito-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="prefetch" href="./sb-common-assets/nunito-sans-italic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="prefetch" href="./sb-common-assets/nunito-sans-bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="prefetch" href="./sb-common-assets/nunito-sans-bold-italic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="./sb-common-assets/fonts.css" />
+
+  <script>
+    window.CONFIG_TYPE = 'PRODUCTION';
+    window.LOGLEVEL = 'info';
+    window.FRAMEWORK_OPTIONS = {};
+    window.CHANNEL_OPTIONS = {};
+    window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false};
+    window.STORIES = [{"titlePrefix":"","directory":"./packages/affix/stories","files":"affix.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/affix\\/stories\\/affix\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/alert/stories","files":"alert.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/alert\\/stories\\/alert\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/avatar/stories","files":"avatar-group.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/avatar\\/stories\\/avatar-group\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/avatar/stories","files":"avatar.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/avatar\\/stories\\/avatar\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/back-top/stories","files":"back-top.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/back-top\\/stories\\/back-top\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/badge/stories","files":"badge.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/badge\\/stories\\/badge\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/breadcrumb/stories","files":"breadcrumb.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/breadcrumb\\/stories\\/breadcrumb\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/button/stories","files":"button-group.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/button\\/stories\\/button-group\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/button/stories","files":"button.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/button\\/stories\\/button\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/calendar/stories","files":"calendar.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/calendar\\/stories\\/calendar\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/card/stories","files":"card.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/card\\/stories\\/card\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/cascader/stories","files":"cascader.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/cascader\\/stories\\/cascader\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/checkbox/stories","files":"checkbox-group.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/checkbox\\/stories\\/checkbox-group\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/checkbox/stories","files":"checkbox.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/checkbox\\/stories\\/checkbox\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/collapse/stories","files":"collapse.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/collapse\\/stories\\/collapse\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/comment/stories","files":"comment.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/comment\\/stories\\/comment\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/config-provider/stories","files":"config-provider.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/config-provider\\/stories\\/config-provider\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/date-picker/stories","files":"date-picker.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/date-picker\\/stories\\/date-picker\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/date-picker/stories","files":"month-picker.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/date-picker\\/stories\\/month-picker\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/date-picker/stories","files":"quarter-picker.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/date-picker\\/stories\\/quarter-picker\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/date-picker/stories","files":"range-picker.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/date-picker\\/stories\\/range-picker\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/date-picker/stories","files":"week-picker.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/date-picker\\/stories\\/week-picker\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/date-picker/stories","files":"year-picker.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/date-picker\\/stories\\/year-picker\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/description/stories","files":"description.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/description\\/stories\\/description\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/divider/stories","files":"divider.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/divider\\/stories\\/divider\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/drawer/stories","files":"drawer.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/drawer\\/stories\\/drawer\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/dropdown/stories","files":"dropdown.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/dropdown\\/stories\\/dropdown\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/empty/stories","files":"empty.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/empty\\/stories\\/empty\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/grid/stories","files":"grid.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/grid\\/stories\\/grid\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/icon/stories","files":"icon.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/icon\\/stories\\/icon\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/image/stories","files":"image.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/image\\/stories\\/image\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/input/stories","files":"input.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/input\\/stories\\/input\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/input/stories","files":"password.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/input\\/stories\\/password\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/input/stories","files":"search.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/input\\/stories\\/search\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/input/stories","files":"textarea.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/input\\/stories\\/textarea\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/input-number/stories","files":"input-number.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/input-number\\/stories\\/input-number\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/input-tag/stories","files":"input-tag.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/input-tag\\/stories\\/input-tag\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/link/stories","files":"link.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/link\\/stories\\/link\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/list/stories","files":"list.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/list\\/stories\\/list\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/loading/stories","files":"loading.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/loading\\/stories\\/loading\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/menu/stories","files":"menu.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/menu\\/stories\\/menu\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/message/stories","files":"message.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/message\\/stories\\/message\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/modal/stories","files":"modal.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/modal\\/stories\\/modal\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/notification/stories","files":"notification.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/notification\\/stories\\/notification\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/page-header/stories","files":"page-header.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/page-header\\/stories\\/page-header\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/pagination/stories","files":"pagination.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/pagination\\/stories\\/pagination\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/popconfirm/stories","files":"popconfirm.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/popconfirm\\/stories\\/popconfirm\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/popover/stories","files":"popover.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/popover\\/stories\\/popover\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/progress/stories","files":"progress.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/progress\\/stories\\/progress\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/radio/stories","files":"radio-group.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/radio\\/stories\\/radio-group\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/radio/stories","files":"radio.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/radio\\/stories\\/radio\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/rate/stories","files":"rate.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/rate\\/stories\\/rate\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/result/stories","files":"result.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/result\\/stories\\/result\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/select/stories","files":"select.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/select\\/stories\\/select\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/skeleton/stories","files":"skeleton.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/skeleton\\/stories\\/skeleton\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/slider/stories","files":"slider.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/slider\\/stories\\/slider\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/space/stories","files":"space.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/space\\/stories\\/space\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/spin/stories","files":"spin.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/spin\\/stories\\/spin\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/statistic/stories","files":"countdown.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/statistic\\/stories\\/countdown\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/statistic/stories","files":"statistic.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/statistic\\/stories\\/statistic\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/steps/stories","files":"steps.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/steps\\/stories\\/steps\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/switch/stories","files":"switch.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/switch\\/stories\\/switch\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/table/stories","files":"table.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/table\\/stories\\/table\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/tabs/stories","files":"tabs.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/tabs\\/stories\\/tabs\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/tag/stories","files":"tag.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/tag\\/stories\\/tag\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/time-picker/stories","files":"date-picker.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/time-picker\\/stories\\/date-picker\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/time-picker/stories","files":"range-picker.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/time-picker\\/stories\\/range-picker\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/timeline/stories","files":"timeline.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/timeline\\/stories\\/timeline\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/trigger/stories","files":"trigger.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/trigger\\/stories\\/trigger\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/typography/stories","files":"heading.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/typography\\/stories\\/heading\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/typography/stories","files":"paragraph.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/typography\\/stories\\/paragraph\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/typography/stories","files":"text.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/typography\\/stories\\/text\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/typography/stories","files":"typography.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/typography\\/stories\\/typography\\.stories\\.tsx)$"},{"titlePrefix":"","directory":"./packages/upload/stories","files":"upload.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages\\/upload\\/stories\\/upload\\.stories\\.tsx)$"}];
+    window.DOCS_OPTIONS = {"defaultName":"Docs","autodocs":"tag"};
+
+    // We do this so that "module && module.hot" etc. in Storybook source code
+    // doesn't fail (it will simply be disabled)
+    window.module = undefined;
+    window.global = window;
+  </script>
+  <base target="_parent" />
+
+<style>
+  /* While we aren't showing the main block yet, but still preparing, we want everything the user
+     has rendered, which may or may not be in #storybook-root, to be display none */
   .sb-show-preparing-story:not(.sb-show-main) > :not(.sb-preparing-story) {
     display: none;
   }
@@ -23,7 +55,7 @@
     min-height: 100vh;
   }
 
-  .sb-show-main.sb-main-centered #root {
+  .sb-show-main.sb-main-centered #storybook-root {
     box-sizing: border-box;
     margin: auto;
     padding: 1rem;
@@ -234,8 +266,8 @@
   .sb-argstableBlock td:nth-of-type(3) {
     width: 15%;
   }
-  .sb-argstableBlock th:laste-of-type,
-  .sb-argstableBlock td:laste-of-type {
+  .sb-argstableBlock th:last-of-type,
+  .sb-argstableBlock td:last-of-type {
     width: 25%;
     padding-right: 20px;
   }
@@ -307,7 +339,11 @@
     margin-right: 4px;
     margin-bottom: 4px;
     padding: 2px 5px;
-  }</style><script>/* globals window */
+  }
+</style>
+
+<script>
+  /* globals window */
   /* eslint-disable no-underscore-dangle */
   try {
     if (window.top !== window) {
@@ -319,46 +355,104 @@
     // eslint-disable-next-line no-console
     console.warn('unable to connect to top frame for connecting dev tools');
   }
+</script>
 
-  window.onerror = function onerror(message, source, line, column, err) {
-    if (window.CONFIG_TYPE !== 'DEVELOPMENT') return;
-    // eslint-disable-next-line no-var, vars-on-top
-    var xhr = new window.XMLHttpRequest();
-    xhr.open('POST', '/runtime-error');
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.send(
-      JSON.stringify({
-        /* eslint-disable object-shorthand */
-        message: message,
-        source: source,
-        line: line,
-        column: column,
-        error: err && { message: err.message, name: err.name, stack: err.stack },
-        origin: 'preview',
-        /* eslint-enable object-shorthand */
-      })
-    );
-  };</script><style>#root[hidden],
-      #docs-root[hidden] {
-        display: none !important;
-      }</style></head><body><div class="sb-preparing-story sb-wrapper"><div class="sb-loader"></div></div><div class="sb-preparing-docs sb-wrapper"><div class="sb-previewBlock"><div class="sb-previewBlock_header"><div class="sb-previewBlock_icon"></div><div class="sb-previewBlock_icon"></div><div class="sb-previewBlock_icon"></div><div class="sb-previewBlock_icon"></div></div><div class="sb-previewBlock_body"><div class="sb-loader"></div></div></div><table aria-hidden="true" class="sb-argstableBlock"><thead class="sb-argstableBlock-head"><tr><th><span>Name</span></th><th><span>Description</span></th><th><span>Default</span></th><th><span>Control</span></th></tr></thead><tbody class="sb-argstableBlock-body"><tr><td><span>propertyName</span><span title="Required">*</span></td><td><div><span>This is a short description</span></div><div class="sb-argstableBlock-summary"><div><span class="sb-argstableBlock-code">summary</span></div></div></td><td><div><span class="sb-argstableBlock-code">defaultValue</span></div></td><td><button>Set string</button></td></tr><tr><td><span>propertyName</span><span>*</span></td><td><div><span>This is a short description</span></div><div class="sb-argstableBlock-summary"><div><span class="sb-argstableBlock-code">summary</span></div></div></td><td><div><span class="sb-argstableBlock-code">defaultValue</span></div></td><td><button>Set string</button></td></tr><tr><td><span>propertyName</span><span>*</span></td><td><div><span>This is a short description</span></div><div class="sb-argstableBlock-summary"><div><span class="sb-argstableBlock-code">summary</span></div></div></td><td><div><span class="sb-argstableBlock-code">defaultValue</span></div></td><td><button>Set string</button></td></tr></tbody></table></div><div class="sb-nopreview sb-wrapper"><div class="sb-nopreview_main"><h1 class="sb-nopreview_heading sb-heading">No Preview</h1><p>Sorry, but you either have no stories or none are selected somehow.</p><ul><li>Please check the Storybook config.</li><li>Try reloading the page.</li></ul><p>If the problem persists, check the browser console, or the terminal you've run Storybook from.</p></div></div><div class="sb-errordisplay sb-wrapper"><pre id="error-message" class="sb-heading"></pre><pre class="sb-errordisplay_code"><code id="error-stack"></code></pre></div><div id="root"></div><div id="docs-root"></div><script>window['CONFIG_TYPE'] = "PRODUCTION";
-          
-      
-          
-            window['LOGLEVEL'] = "info";
-          
-      
-          
-            window['FRAMEWORK_OPTIONS'] = {"fastRefresh":true,"strictMode":true};
-          
-      
-          
-      
-          
-            window['FEATURES'] = {"postcss":true,"emotionAlias":false,"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":false,"modernInlineRender":false,"breakingChangesV7":false,"interactionsDebugger":false,"babelModeV7":false,"argTypeTargetsV7":false,"previewMdx2":false};
-          
-      
-          
-      
-          
-            window['STORIES'] = [{"titlePrefix":"","directory":"./packages","files":"**/stories/*.stories.tsx","importPathMatcher":"^\\.[\\\\/](?:packages(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)stories\\/(?!\\.)(?=.)[^/]*?\\.stories\\.tsx)$"}];</script><script src="runtime~main.94ba6f10.iframe.bundle.js"></script><script src="vendors~main.020b91d3.iframe.bundle.js"></script><script src="main.9df4dd77.iframe.bundle.js"></script></body></html>
+  <script type="module" crossorigin src="./assets/iframe-113bab5c.js"></script>
+</head>
+
+<body>
+  <div class="sb-preparing-story sb-wrapper">
+  <div class="sb-loader"></div>
+</div>
+
+<div class="sb-preparing-docs sb-wrapper">
+  <div class="sb-previewBlock">
+    <div class="sb-previewBlock_header">
+      <div class="sb-previewBlock_icon"></div>
+      <div class="sb-previewBlock_icon"></div>
+      <div class="sb-previewBlock_icon"></div>
+      <div class="sb-previewBlock_icon"></div>
+    </div>
+    <div class="sb-previewBlock_body">
+      <div class="sb-loader"></div>
+    </div>
+  </div>
+  <table aria-hidden="true" class="sb-argstableBlock">
+    <thead class="sb-argstableBlock-head">
+      <tr>
+        <th><span>Name</span></th>
+        <th><span>Description</span></th>
+        <th><span>Default</span></th>
+        <th><span>Control </span></th>
+      </tr>
+    </thead>
+    <tbody class="sb-argstableBlock-body">
+      <tr>
+        <td><span>propertyName</span><span title="Required">*</span></td>
+        <td>
+          <div><span>This is a short description</span></div>
+          <div class="sb-argstableBlock-summary">
+            <div><span class="sb-argstableBlock-code">summary</span></div>
+          </div>
+        </td>
+        <td>
+          <div><span class="sb-argstableBlock-code">defaultValue</span></div>
+        </td>
+        <td><button>Set string</button></td>
+      </tr>
+      <tr>
+        <td><span>propertyName</span><span>*</span></td>
+        <td>
+          <div><span>This is a short description</span></div>
+          <div class="sb-argstableBlock-summary">
+            <div><span class="sb-argstableBlock-code">summary</span></div>
+          </div>
+        </td>
+        <td>
+          <div><span class="sb-argstableBlock-code">defaultValue</span></div>
+        </td>
+        <td><button>Set string</button></td>
+      </tr>
+      <tr>
+        <td><span>propertyName</span><span>*</span></td>
+        <td>
+          <div><span>This is a short description</span></div>
+          <div class="sb-argstableBlock-summary">
+            <div><span class="sb-argstableBlock-code">summary</span></div>
+          </div>
+        </td>
+        <td>
+          <div><span class="sb-argstableBlock-code">defaultValue</span></div>
+        </td>
+        <td><button>Set string</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sb-nopreview sb-wrapper">
+  <div class="sb-nopreview_main">
+    <h1 class="sb-nopreview_heading sb-heading">No Preview</h1>
+    <p>Sorry, but you either have no stories or none are selected somehow.</p>
+    <ul>
+      <li>Please check the Storybook config.</li>
+      <li>Try reloading the page.</li>
+    </ul>
+    <p>
+      If the problem persists, check the browser console, or the terminal you've run Storybook from.
+    </p>
+  </div>
+</div>
+
+<div class="sb-errordisplay sb-wrapper">
+  <pre id="error-message" class="sb-heading"></pre>
+  <pre class="sb-errordisplay_code"><code id="error-stack"></code></pre>
+</div>
+
+  <div id="storybook-root"></div>
+  <div id="storybook-docs"></div>
+  
+  
+</body>
+
+</html>
