@@ -15,8 +15,6 @@ export function applyLoadingStyle(
   colorScheme: LoadingColorScheme,
   size: LoadingSize,
 ): SerializedStyles {
-  let bgColor
-  bgColor = getColor(colorScheme, "01")
   let sizeCss
   switch (size) {
     case "small":
@@ -38,16 +36,7 @@ export function applyLoadingStyle(
       `
   }
   return css`
-    display: inline-block;
     ${sizeCss};
-    border-radius: 50%;
-    background: conic-gradient(
-      rgba(101, 74, 236, 0) 45deg,
-      rgba(101, 74, 236, 0) 80deg,
-      ${bgColor} 30deg,
-      rgba(101, 74, 236, 0)
-    );
-    mask-image: radial-gradient(closest-side, transparent 75%, black 76%);
-    animation: ${spin} 1s linear infinite reverse;
+    color: ${getColor(colorScheme, "02")};
   `
 }

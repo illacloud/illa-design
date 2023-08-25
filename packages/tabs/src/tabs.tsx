@@ -6,6 +6,7 @@ import {
   Children,
   useCallback,
   useEffect,
+  useRef,
 } from "react"
 import { TabPaneProps, TabsProps } from "./interface"
 import { TabPane } from "./tab-pane"
@@ -18,7 +19,6 @@ import {
 } from "./style"
 import { UpIcon, DownIcon, PreviousIcon } from "@illa-design/icon"
 import { isHorizontalLayout } from "./utils"
-import useMeasure from "react-use-measure"
 import { SCROLL_ICON_WIDTH } from "./constants"
 
 const getTabItems = (children: ReactElement | undefined) => {
@@ -65,8 +65,8 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const firstTabKey = useMemo(() => {
     return curTabItems[0]?.key?.toString()
   }, [curTabItems])
-  const [containerRef, containerInfo] = useMeasure()
-  const [panelRef, panelInfo] = useMeasure()
+  const containerRef = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
   const [showScrollIcon, setShowScrollIcon] = useState(false)
   const [translate, setTranslate] = useState(0)
   const [selectedKey, setSelectedKey] = useState(
@@ -97,22 +97,35 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   )
 
   const handleGoNext = () => {
-    if (
-      -(translate - containerInfo.width / 2) +
-        containerInfo.width +
-        SCROLL_ICON_WIDTH >=
-      panelInfo.width
-    ) {
-      setTranslate(-(panelInfo.width + SCROLL_ICON_WIDTH - containerInfo.width))
-    } else {
-      setTranslate(translate - containerInfo.width / 2)
+    if (containerRef.current && panelRef.current) {
+      if (
+        -(translate - containerRef.current.clientWidth / 2) +
+          containerRef.current.clientWidth +
+          SCROLL_ICON_WIDTH >=
+        panelRef.current.scrollWidth
+      ) {
+        setTranslate(
+          -(
+            panelRef.current.scrollWidth +
+            SCROLL_ICON_WIDTH -
+            containerRef.current.clientWidth
+          ),
+        )
+      } else {
+        setTranslate(translate - containerRef.current.clientWidth / 2)
+      }
     }
   }
   const handleGoPrevious = () => {
-    if (translate + containerInfo.width / 2 >= SCROLL_ICON_WIDTH) {
-      setTranslate(SCROLL_ICON_WIDTH)
-    } else {
-      setTranslate(translate + containerInfo.width / 2)
+    if (containerRef.current && panelRef.current) {
+      if (
+        translate + containerRef.current.clientWidth / 2 >=
+        SCROLL_ICON_WIDTH
+      ) {
+        setTranslate(SCROLL_ICON_WIDTH)
+      } else {
+        setTranslate(translate + containerRef.current.clientWidth / 2)
+      }
     }
   }
 
@@ -124,13 +137,41 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     }
   }, [showScrollIcon])
 
-  useEffect(() => {
-    if (containerInfo.width - SCROLL_ICON_WIDTH < panelInfo.width) {
-      setShowScrollIcon(true)
-    } else {
-      setShowScrollIcon(false)
+  const handleShowScrollIcon = useCallback((width?: number) => {
+    if (containerRef.current && panelRef.current) {
+      if (width) {
+        if (width - SCROLL_ICON_WIDTH < panelRef.current.scrollWidth) {
+          setShowScrollIcon(true)
+        } else {
+          setShowScrollIcon(false)
+        }
+      } else {
+        if (
+          containerRef.current.clientWidth - SCROLL_ICON_WIDTH <
+          panelRef.current.scrollWidth
+        ) {
+          setShowScrollIcon(true)
+        } else {
+          setShowScrollIcon(false)
+        }
+      }
     }
-  }, [containerInfo.width, panelInfo.width])
+  }, [])
+
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      entries.forEach((entry) => {
+        handleShowScrollIcon(entry.contentRect.width)
+      })
+    })
+    if (containerRef.current) {
+      handleShowScrollIcon()
+      observer.observe(containerRef.current)
+    }
+    return () => {
+      observer.disconnect()
+    }
+  }, [handleShowScrollIcon])
 
   useEffect(() => {
     setCurTabItems(tabItems)

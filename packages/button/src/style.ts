@@ -531,18 +531,21 @@ export function applyPaddingStyle(
         padding: ${variant == "outline" || variant == "dashed"
           ? "1px 7px"
           : "2px 8px"};
+        min-height: 24px;
       `
     case "medium":
       return css`
         padding: ${variant == "outline" || variant == "dashed"
           ? "4px 15px"
           : "5px 16px"};
+        min-height: 32px;
       `
     case "large":
       return css`
         padding: ${variant == "outline" || variant == "dashed"
           ? "8px 15px"
           : "9px 16px"};
+        min-height: 40px;
       `
   }
 }
@@ -601,7 +604,10 @@ export function applyFontStyle(size: ButtonSize): SerializedStyles {
   }
 }
 
-export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
+export function applyLeftIconStyle(
+  size: ButtonSize,
+  hasChildren?: boolean,
+): SerializedStyles {
   switch (size) {
     case "small":
       return css`
@@ -609,7 +615,7 @@ export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
         flex-direction: row;
         align-items: center;
         font-size: 16px;
-        margin-right: 4px;
+        margin-right: ${hasChildren ? "4px" : "0"};
       `
     case "medium":
     case "large":
@@ -618,7 +624,7 @@ export function applyLeftIconStyle(size: ButtonSize): SerializedStyles {
         flex-direction: row;
         align-items: center;
         font-size: 16px;
-        margin-right: 8px;
+        margin-right: ${hasChildren ? "8px" : "0"};
       `
   }
 }
@@ -637,7 +643,10 @@ export function applyIconWithoutText(size: ButtonSize): SerializedStyles {
   }
 }
 
-export function applyRightIconStyle(size: ButtonSize): SerializedStyles {
+export function applyRightIconStyle(
+  size: ButtonSize,
+  hasChildren?: boolean,
+): SerializedStyles {
   switch (size) {
     case "small":
       return css`
@@ -645,7 +654,7 @@ export function applyRightIconStyle(size: ButtonSize): SerializedStyles {
         flex-direction: row;
         align-items: center;
         font-size: 16px;
-        margin-left: 6px;
+        margin-left: ${hasChildren ? "6px" : "0"};
       `
     case "medium":
     case "large":
@@ -654,7 +663,7 @@ export function applyRightIconStyle(size: ButtonSize): SerializedStyles {
         flex-direction: row;
         align-items: center;
         font-size: 16px;
-        margin-left: 8px;
+        margin-left: ${hasChildren ? "8px" : "0"};
       `
   }
 }

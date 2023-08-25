@@ -43,7 +43,6 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     withoutLine = true,
     okLoading,
     maskClosable = true,
-    maskStyle,
     hideCancel,
     closable,
     closeElement,
@@ -55,10 +54,13 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     footerAlign = "",
     focusLock = true,
     autoFocus = true,
+    maskStyle,
+    modalContentStyle,
     onCancel,
     onOk,
     afterClose,
     afterOpen,
+    z,
     ...otherProps
   } = props
 
@@ -124,7 +126,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
           <>
             {mask ? (
               <motion.div
-                css={[applyModalMask, maskStyle]}
+                css={[applyModalMask(z), maskStyle]}
                 variants={maskAnimation}
                 animate="animate"
                 exit="exit"
@@ -133,7 +135,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
               />
             ) : null}
             <div
-              css={applyModalContainer}
+              css={[applyModalContainer(z), modalContentStyle]}
               onClick={() => {
                 if (maskClosable) {
                   onCancel?.()
