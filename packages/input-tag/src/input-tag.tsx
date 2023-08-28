@@ -231,7 +231,6 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
           {prefix && (
             <span
               css={applyPrefixSuffixStyle(
-                size,
                 disabled ?? false,
                 css`
                   margin-right: ${size === "small" ? "8px" : "12px"};
@@ -332,7 +331,6 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
           {suffix && (
             <span
               css={applyPrefixSuffixStyle(
-                size,
                 disabled ?? false,
                 css`
                   margin-left: ${size === "small" ? "8px" : "12px"};

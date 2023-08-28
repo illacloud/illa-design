@@ -308,12 +308,11 @@ export function applyPrefixStyle(
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
-    align-self: start;
+    align-self: center;
     justify-content: center;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     margin-right: ${size === "small" ? "8px" : "12px"};
     min-height: 22px;
-    ${getPaddingStyle(size)};
   `
 }
 
@@ -328,9 +327,8 @@ export function applySuffixStyle(
     flex-shrink: 0;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     margin-left: ${size === "small" ? "8px" : "12px"};
-    align-self: start;
+    align-self: center;
     min-height: 22px;
-    ${getPaddingStyle(size)};
   `
 }
 

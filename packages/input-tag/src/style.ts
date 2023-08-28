@@ -154,20 +154,19 @@ export const tagStyle = css`
 `
 
 export function applyPrefixSuffixStyle(
-  size: InputTagSize,
   disabled: boolean,
   marginStyle: SerializedStyles,
 ): SerializedStyles {
   return css`
-    align-self: start;
-    display: inline-flex;
+    align-self: center;
+    height: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     min-height: 22px;
     ${marginStyle};
-    ${getPaddingStyle(size)};
   `
 }
 
