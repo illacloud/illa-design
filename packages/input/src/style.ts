@@ -313,6 +313,7 @@ export function applyPrefixStyle(
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     margin-right: ${size === "small" ? "8px" : "12px"};
     min-height: 22px;
+    ${getPaddingStyle(size)};
   `
 }
 
@@ -329,6 +330,7 @@ export function applySuffixStyle(
     margin-left: ${size === "small" ? "8px" : "12px"};
     align-self: start;
     min-height: 22px;
+    ${getPaddingStyle(size)};
   `
 }
 

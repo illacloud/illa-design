@@ -15,7 +15,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(
     return (
       <Input
         ref={ref}
-        suffix={
+        prefix={
           <span
             css={searchIconContainer}
             onClick={() => {

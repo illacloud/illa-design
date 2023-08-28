@@ -167,6 +167,7 @@ export function applyPrefixSuffixStyle(
     color: ${disabled ? getColor("gray", "05") : getColor("gray", "02")};
     min-height: 22px;
     ${marginStyle};
+    ${getPaddingStyle(size)};
   `
 }
 
