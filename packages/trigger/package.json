@@ -44,7 +44,7 @@
     "@illa-design/config-provider": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "@illa-design/system": "workspace:*",
-    "@floating-ui/react": "^0.19.1",
+    "@floating-ui/react": "^0.25.2",
     "framer-motion": "^7.6.12"
   },
   "peerDependencies": {
