@@ -17,6 +17,7 @@ export interface ModalProps
   mask?: boolean
   okLoading?: boolean
   title?: ReactNode | string
+  modalContentStyle?: SerializedStyles
   maskStyle?: SerializedStyles
   maskClosable?: boolean
   hideCancel?: boolean

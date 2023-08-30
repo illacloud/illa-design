@@ -684,19 +684,11 @@ export function applySpacing(
     return css`
       display: inline-flex;
       margin-left: ${index != 0 ? "-1px" : "0px"};
-
-      &:hover {
-        z-index: ${zIndex.button};
-      }
     `
   } else {
     return css`
       display: inline-flex;
       margin-left: ${index == 0 ? "0px" : spacing};
-
-      &:hover {
-        z-index: ${zIndex.button};
-      }
     `
   }
 }
