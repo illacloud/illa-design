@@ -40,6 +40,7 @@ export function applyModalContainer(z?: string | number): SerializedStyles {
 
 export function applyModal(): SerializedStyles {
   return css`
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
     box-sizing: content-box;
     display: inline-block;
     position: relative;
