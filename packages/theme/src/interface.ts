@@ -7,7 +7,8 @@ export type BoxProps = SizeStyledProps &
   FlexStyledProps &
   CustomStyledProps &
   FontStyledProps &
-  UsersProps
+  UsersProps &
+  DisplayStyledProps
 
 export interface UsersProps {
   cur?: string
@@ -147,6 +148,13 @@ export interface PositionStyledProps {
    * visibility
    */
   v?: string
+}
+
+export interface DisplayStyledProps {
+  l?: string | number
+  t?: string | number
+  r?: string | number
+  b?: string | number
 }
 
 export interface FontStyledProps {
