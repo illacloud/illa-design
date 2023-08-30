@@ -66,6 +66,11 @@ export function applyBoxStyle(props: BoxProps): SerializedStyles {
     // UserProps
     cursor: ${props.cur};
     ${props._css};
+    // DisplayStyledProps
+    left: ${props.l};
+    top: ${props.t};
+    right: ${props.r};
+    bottom: ${props.b};
   `
 }
 
@@ -133,5 +138,10 @@ export function deleteCssProps(obj: object): object {
     //UserProps
     "cur",
     "_css",
+    //DisplayStyledProps
+    "l",
+    "t",
+    "r",
+    "b",
   ])
 }
