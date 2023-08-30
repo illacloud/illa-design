@@ -173,6 +173,7 @@ export interface FontStyledProps {
 }
 
 export interface FlexStyledProps {
+  disp?: string
   alignItems?: string
   alignContent?: string
   justifyItems?: string
