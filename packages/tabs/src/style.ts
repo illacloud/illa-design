@@ -259,10 +259,12 @@ export const panelTitleStyle = (
   } else if (variant === "line" || variant === "text") {
     hoverCss = css`
       background-color: ${getColor("grayBlue", "09")};
+      cursor: pointer;
     `
   } else {
     hoverCss = css`
       background-color: ${getColor("white", "01")};
+      cursor: pointer;
     `
   }
   return css`
