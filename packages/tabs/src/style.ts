@@ -225,7 +225,7 @@ export const panelContainerStyle = (
       font-weight: 400;
       line-height: 22px;
       padding: ${padding};
-      cursor: pointer;
+      /* cursor: pointer; */
     `
   }
 }
@@ -253,14 +253,18 @@ export const panelTitleStyle = (
       cursor: not-allowed;
     `
   } else if (isSelectKey) {
-    hoverCss = css``
+    hoverCss = css`
+      cursor: default;
+    `
   } else if (variant === "line" || variant === "text") {
     hoverCss = css`
       background-color: ${getColor("grayBlue", "09")};
+      cursor: pointer;
     `
   } else {
     hoverCss = css`
       background-color: ${getColor("white", "01")};
+      cursor: pointer;
     `
   }
   return css`

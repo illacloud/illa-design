@@ -33,7 +33,7 @@
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "@emotion/react": "^11.10.8",
-    "@illa-design/react": "^1.0.22",
+    "@illa-design/react": "workspace:*",
     "@rollup/plugin-typescript": "^11.1.2",
     "@storybook/addon-a11y": "^7.2.1",
     "@storybook/addon-essentials": "^7.2.1",

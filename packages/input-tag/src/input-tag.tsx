@@ -231,7 +231,6 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
           {prefix && (
             <span
               css={applyPrefixSuffixStyle(
-                size,
                 disabled ?? false,
                 css`
                   margin-right: ${size === "small" ? "8px" : "12px"};
@@ -260,9 +259,12 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 }
                 onInputChange?.(e.currentTarget.value)
               }}
-              onBlur={(e) => {
+              onBlur={async (e) => {
                 if (saveOnBlur) {
-                  saveInputValue()
+                  const checked = await validate?.(finalInputValue, finalValue)
+                  if (checked || validate === undefined) {
+                    saveInputValue()
+                  }
                 }
                 onBlur?.(e)
                 setFocusInput(false)
@@ -332,7 +334,6 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
           {suffix && (
             <span
               css={applyPrefixSuffixStyle(
-                size,
                 disabled ?? false,
                 css`
                   margin-left: ${size === "small" ? "8px" : "12px"};

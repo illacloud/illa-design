@@ -60,7 +60,7 @@ export interface InputProps
 export interface SearchProps extends Omit<InputProps, "suffix" | "type"> {
   loading?: boolean
   searchButton?: ReactNode
-  onSearch?: () => void
+  onSearch?: (value: string) => void
 }
 
 export interface PasswordProps extends Omit<InputProps, "suffix" | "type"> {

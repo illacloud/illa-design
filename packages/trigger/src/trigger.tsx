@@ -41,7 +41,6 @@ import {
   cloneElement,
   FC,
   ReactElement,
-  SyntheticEvent,
   useContext,
   useEffect,
   useImperativeHandle,
@@ -128,21 +127,20 @@ export const Trigger: FC<TriggerProps> = (props) => {
     return middleware
   }, [autoFitPosition, withoutOffset, autoAlignPopupWidth])
 
-  const { x, y, reference, floating, strategy, placement, context, elements } =
-    useFloating({
-      placement: position,
-      open: finalVisible,
-      onOpenChange: (v) => {
-        if (!disabled && finalVisible !== v) {
-          if (popupVisible === undefined) {
-            setVisible(v)
-          }
-          onVisibleChange?.(v)
+  const { refs, x, y, strategy, placement, context, elements } = useFloating({
+    placement: position,
+    open: finalVisible,
+    onOpenChange: (v) => {
+      if (!disabled && finalVisible !== v) {
+        if (popupVisible === undefined) {
+          setVisible(v)
         }
-      },
-      middleware: middleware,
-      whileElementsMounted: autoUpdate,
-    })
+        onVisibleChange?.(v)
+      }
+    },
+    middleware: middleware,
+    whileElementsMounted: autoUpdate,
+  })
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context, {
@@ -154,7 +152,6 @@ export const Trigger: FC<TriggerProps> = (props) => {
         close: closeDelay,
       },
       handleClose: safePolygon({
-        restMs: 200,
         buffer: 1,
       }),
     }),
@@ -303,7 +300,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
   )
 
   const mergedRef = useMergeRefs([
-    reference,
+    refs.setReference,
     (props.children as any).ref,
     childrenRef,
   ])
@@ -425,7 +422,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
                       }
                     }
                   },
-                  ref: floating,
+                  ref: refs.setFloating,
                   style: {
                     position: strategy,
                     top: y ?? 0,

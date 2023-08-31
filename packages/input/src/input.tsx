@@ -24,6 +24,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     disabled,
     error,
     readOnly,
+    onFocus,
     showWordLimit,
     defaultValue,
     placeholder,
@@ -42,6 +43,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
     onClick,
     onPressEnter,
     variant = "outline",
+    onBlur,
     ...otherProps
   } = props
 
@@ -123,9 +125,11 @@ export const Input = forwardRef<HTMLDivElement, InputProps>((props, ref) => {
         )}
         {typeof finalValue !== "object" && (
           <input
+            onFocus={onFocus}
             ref={inputRef}
             type={type}
             disabled={disabled}
+            onBlur={onBlur}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 onPressEnter?.(e)

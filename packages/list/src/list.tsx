@@ -84,7 +84,7 @@ export const List = forwardRef<HTMLDivElement, ListProps<any>>((props, ref) => {
             }
           }}
         >
-          {(item) => {
+          {(item): ReactNode => {
             let endNode: ReactNode
             if (data.indexOf(item) != data.length - 1) {
               if (split) {
