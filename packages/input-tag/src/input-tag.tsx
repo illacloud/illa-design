@@ -259,9 +259,12 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 }
                 onInputChange?.(e.currentTarget.value)
               }}
-              onBlur={(e) => {
+              onBlur={async (e) => {
                 if (saveOnBlur) {
-                  saveInputValue()
+                  const checked = await validate?.(finalInputValue, finalValue)
+                  if (checked || validate === undefined) {
+                    saveInputValue()
+                  }
                 }
                 onBlur?.(e)
                 setFocusInput(false)
