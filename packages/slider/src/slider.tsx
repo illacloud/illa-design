@@ -69,7 +69,7 @@ export const Slider = forwardRef<ICustomRef, SliderProps>((props, ref) => {
     onClickTick,
     onDragBar,
     onDragBarEnd,
-  } = useOffset(min, max, getSafeStep(step))
+  } = useOffset(min, max, getSafeStep(step), onChange)
 
   const width = useElementSize(currentRef)
 
