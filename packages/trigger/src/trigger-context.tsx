@@ -3,7 +3,7 @@ import { createContext } from "react"
 
 export const TriggerProviderContext = createContext<TriggerContext>({
   renderInBody: true,
-  zIndex: 1,
+  zIndex: 5,
 } as TriggerContext)
 
 TriggerProviderContext.displayName = "TriggerProviderContext"

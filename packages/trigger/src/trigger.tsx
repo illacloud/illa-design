@@ -87,7 +87,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
   const finalVisible = popupVisible === undefined ? visible : popupVisible
   const triggerContext = useContext(TriggerProviderContext)
   const _renderInBody = renderInBody ?? triggerContext.renderInBody ?? true
-  const _zIndex = zIndex ?? triggerContext.zIndex ?? 1
+  const _zIndex = zIndex ?? triggerContext.zIndex ?? 5
 
   let _popupContainer =
     (popupContainer instanceof HTMLElement
