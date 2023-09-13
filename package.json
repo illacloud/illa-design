@@ -9,37 +9,22 @@
     "graceful-fs": "4.2.9"
   },
   "scripts": {
-    "sb": "pnpm build-all-components && pnpm storybook dev -p 6006",
-    "bs": "pnpm build-all-components && pnpm storybook build",
     "build-all-components": "NODE_OPTIONS=--max-old-space-size=10240 turbo run build",
+    "sb": "turbo run dev --filter=storybook",
+    "bs": "turbo run bs --filter=storybook",
     "lint": "eslint packages/**/src/ --ext .ts,.tsx --config .eslintrc.js",
     "format": "prettier --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
     "plop": "plop new",
     "plop-icon": "plop new-icon"
   },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "react",
-        "react-dom"
-      ]
-    }
-  },
   "devDependencies": {
-    "@babel/core": "^7.21.8",
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.1",
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "@emotion/react": "^11.10.8",
-    "@illa-design/react": "workspace:*",
     "@rollup/plugin-typescript": "^11.1.2",
-    "@storybook/addon-a11y": "^7.2.1",
-    "@storybook/addon-essentials": "^7.2.1",
-    "@storybook/react": "^7.2.1",
-    "@storybook/react-vite": "^7.2.1",
-    "@storybook/theming": "^7.2.1",
     "@types/react": "^18.2.5",
     "@types/react-dom": "^18.2.3",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
@@ -59,8 +44,6 @@
     "prettier": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.8.0",
-    "storybook": "^7.2.1",
     "turbo": "1.8.3",
     "typescript": "^5.0.4",
     "vite": "^4.4.2"
