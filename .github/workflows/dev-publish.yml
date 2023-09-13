@@ -2,7 +2,7 @@ name: "Preview Publish"
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, beta]
 
 env:
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -45,7 +45,6 @@ jobs:
       - name: Build
         run: |
           pnpm install --frozen-lockfile
-          pnpm build-all-components
 
   build:
     needs:
@@ -88,10 +87,10 @@ jobs:
       - name: Build storybook
         run: |
           pnpm bs
-          echo "design.illafamily.com" > "storybook-static/CNAME"
+          echo "design.illafamily.com" > "./apps/storybook/storybook-static/CNAME"
 
       - name: Deploy storybook to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+          publish_dir: ./apps/storybook/storybook-static

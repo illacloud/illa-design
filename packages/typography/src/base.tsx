@@ -113,7 +113,6 @@ export const Base: FC<BaseProps> = (props) => {
     mark,
     underline,
     deleted,
-    code,
     copyable,
   } = props
 
@@ -140,7 +139,7 @@ export const Base: FC<BaseProps> = (props) => {
   // apply content
   const contentCss = css`
     ${applyFontColor(colorScheme)};
-    ${applyFontContentStyle(bold, mark, underline, deleted, disabled, code)};
+    ${applyFontContentStyle(bold, mark, underline, deleted, disabled)};
   `
   const content = (
     <span ref={contentRef} css={contentCss}>

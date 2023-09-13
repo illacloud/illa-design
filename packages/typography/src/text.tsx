@@ -33,13 +33,21 @@ export const Text = forwardRef<HTMLDivElement, TextProps>((props, ref) => {
       mark={mark}
       underline={underline}
       deleted={deleted}
-      code={code}
       copyable={copyable}
     >
       {props.children}
     </Base>
   )
-  const text = (
+
+  const text = code ? (
+    <code
+      css={[applyBoxStyle(props)]}
+      ref={ref}
+      {...deleteCssProps(otherProps)}
+    >
+      {base}
+    </code>
+  ) : (
     <div css={[applyBoxStyle(props)]} ref={ref} {...deleteCssProps(otherProps)}>
       {base}
     </div>

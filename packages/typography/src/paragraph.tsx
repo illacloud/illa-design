@@ -17,7 +17,6 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
       mark,
       underline,
       deleted,
-      code,
       copyable,
       fs = "14px",
       indent,
@@ -42,7 +41,6 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
           mark={mark}
           underline={underline}
           deleted={deleted}
-          code={code}
           copyable={copyable}
         >
           {props.children}

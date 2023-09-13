@@ -12,6 +12,7 @@ export const useOffset = (
   min: number,
   max: number,
   step: number,
+  onChange?: (v: number | number[]) => void,
 ): IUseOffsetReturn => {
   const [leftOffset, setLeftOffset] = useState<number>(0)
   const [rightOffset, setRightOffset] = useState<number>(-1)
@@ -48,16 +49,26 @@ export const useOffset = (
         rightVal,
         leftVal,
       )
+      const safeRightValue = verifyRightValue(max, min, step, rightVal, leftVal)
+      const safeLeftValue = verifyLeftValue(max, min, step, rightVal, leftVal)
+      if (safeRightValue !== rightVal || safeLeftValue !== leftVal) {
+        onChange &&
+          onChange(
+            safeLeftValue ? [safeLeftValue, safeRightValue] : safeRightValue,
+          )
+      }
       setLeftOffset(leftValue)
       setBarLength(barLength)
       setRightOffset(rightValue)
       setPartLength(partLength)
       setCurrentValue(
-        leftVal !== undefined ? `${leftVal},${rightVal}` : rightVal,
+        safeLeftValue !== undefined
+          ? `${safeLeftValue},${safeRightValue}`
+          : safeRightValue,
       )
       setWidth(width)
     },
-    [getOffsetValueFromState],
+    [getOffsetValueFromState, max, min, onChange, step],
   )
 
   const onDragging = (

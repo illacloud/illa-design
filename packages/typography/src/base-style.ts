@@ -44,16 +44,8 @@ export function applyFontContentStyle(
   underline?: boolean,
   deleted?: boolean,
   disabled?: boolean,
-  code?: boolean,
 ): SerializedStyles {
   let finalCss = css``
-
-  if (code) {
-    finalCss = css`
-      ${finalCss};
-      background-color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-    `
-  }
 
   if (bold) {
     finalCss = css`

@@ -17,7 +17,6 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
       mark,
       underline,
       deleted,
-      code,
       copyable,
       ...otherProps
     } = props
@@ -35,7 +34,6 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
         mark={mark}
         underline={underline}
         deleted={deleted}
-        code={code}
         copyable={copyable}
       >
         {props.children}
