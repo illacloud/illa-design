@@ -2,7 +2,7 @@ name: "Preview Publish"
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, beta]
 
 env:
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -45,7 +45,6 @@ jobs:
       - name: Build
         run: |
           pnpm install --frozen-lockfile
-          pnpm build-all-components
 
   build:
     needs:

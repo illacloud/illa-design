@@ -6,6 +6,11 @@
       "outputs": ["dist/**"],
       "dependsOn": ["^build"],
       "inputs": ["src/**/*.tsx", "src/**/*.ts"]
+    },
+    "bs": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
     }
   }
 }
