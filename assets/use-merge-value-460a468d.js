@@ -1,2 +1,0 @@
-import{r as u}from"./index-c4905b50.js";import{i as r}from"./is-6e11be7b.js";import{u as l}from"./use-previous-c448b133.js";function v(i,t){const{defaultValue:a,value:e}=t||{},s=u.useRef(!0),o=l(t==null?void 0:t.value),[f,n]=u.useState(r(e)?r(a)?i:a:e);return u.useEffect(()=>{if(s.current){s.current=!1;return}e===void 0&&o!==e&&n(e)},[e]),[r(e)?f:e,n,f]}export{v as u};
-//# sourceMappingURL=use-merge-value-460a468d.js.map
