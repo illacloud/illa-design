@@ -4,6 +4,7 @@ import {
   RadioGroupDirection,
   RadioGroupSpacing,
   RadioGroupType,
+  RadioSize,
   RadioStatus,
 } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
@@ -110,12 +111,27 @@ export const disappear = css`
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `
+const getRadioButtonBorderRadiusBySize = (size: RadioSize) => {
+  switch (size) {
+    case "small": {
+      return css`
+        border-radius: 6px;
+      `
+    }
+    default: {
+      return css`
+        border-radius: 8px;
+      `
+    }
+  }
+}
 
 export function applyRadioButtonContainer(
+  size: RadioSize,
   hasChildren?: ReactNode,
 ): SerializedStyles {
   return css`
-    border-radius: 8px;
+    ${getRadioButtonBorderRadiusBySize(size)};
     display: ${hasChildren ? "inline-flex" : "none"};
     vertical-align: middle;
     flex-direction: row;
@@ -126,6 +142,21 @@ export function applyRadioButtonContainer(
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     padding: 2px;
   `
+}
+
+const getRadioButtonCheckedBorderRadiusBySize = (size: RadioSize) => {
+  switch (size) {
+    case "small": {
+      return css`
+        border-radius: 5px;
+      `
+    }
+    default: {
+      return css`
+        border-radius: 7px;
+      `
+    }
+  }
 }
 
 export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
@@ -168,8 +199,8 @@ export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
     `
   } else if (stateValue?.checked) {
     stateCss = css`
+      ${getRadioButtonCheckedBorderRadiusBySize(stateValue.size ?? "medium")};
       font-weight: 500;
-      border-radius: 7px;
       color: ${checkedColor};
       background-color: ${globalColor(`--${illaPrefix}-white-01`)};
       box-shadow: 0px 0px 2px 0px rgba(29, 33, 41, 0.24);
@@ -251,13 +282,14 @@ export const applyRadioGroupCss = (styleProps: {
   hasChildren: ReactNode
   direction: RadioGroupDirection
   spacing: RadioGroupSpacing
+  size: RadioSize
   type?: RadioGroupType
 }): SerializedStyles => {
-  const { hasChildren, direction, spacing, type } = styleProps
+  const { hasChildren, direction, spacing, type, size } = styleProps
   let radioGroupCss: SerializedStyles
 
   if (type === "button") {
-    radioGroupCss = applyRadioButtonContainer(hasChildren)
+    radioGroupCss = applyRadioButtonContainer(size, hasChildren)
   } else {
     switch (direction) {
       case "vertical":

@@ -56,7 +56,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps<any>>(
       <div
         ref={ref}
         css={[
-          applyRadioGroupCss({ hasChildren, direction, spacing, type }),
+          applyRadioGroupCss({ hasChildren, direction, spacing, type, size }),
           applyBoxStyle(props),
         ]}
         {...deleteCssProps(otherProps)}
