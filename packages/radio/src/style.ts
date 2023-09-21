@@ -171,7 +171,7 @@ export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
       break
     case "medium":
       sizeCss = css`
-        padding: 5px 12px;
+        padding: 5px 8px;
         height: 28px;
       `
       break
@@ -184,7 +184,7 @@ export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
   }
   const checkedColor =
     colorScheme === "gray" || colorScheme === "grayBlue"
-      ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
+      ? getColor(colorScheme, "02")
       : getColor(colorScheme, "03")
 
   if (stateValue?.disabled && stateValue?.checked) {
