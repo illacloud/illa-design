@@ -117,7 +117,6 @@ export const tabsStyle = (
     case "text":
       variantCss = `
         gap: ${tabBarSpacing ?? 8}px;
-        background-color: ${getColor("white", "01")};
       `
       break
     case "capsule":
@@ -130,7 +129,6 @@ export const tabsStyle = (
     default:
     case "line":
       variantCss = css`
-        background-color: ${getColor("white", "01")};
         gap: ${tabBarSpacing ?? 0}px;
       `
       break
