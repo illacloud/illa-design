@@ -195,6 +195,7 @@ export const clearIconStyle = css`
 export const suffixIconStyle = css`
   color: ${getColor("grayBlue", "01")};
   height: 100%;
+  display: inline-flex;
   svg {
     vertical-align: unset;
   }

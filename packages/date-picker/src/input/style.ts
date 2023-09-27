@@ -195,6 +195,7 @@ export const clearIconStyle = css`
 export const suffixIconStyle = (disabled?: boolean) => css`
   color: ${getColor("grayBlue", disabled ? "05" : "01")};
   height: 100%;
+  display: inline-flex;
   svg {
     vertical-align: unset;
   }
