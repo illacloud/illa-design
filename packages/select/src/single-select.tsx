@@ -179,9 +179,6 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
           if (typeof filterOption === "function") {
             return filterOption(finalInputValue, option)
           }
-          if (finalInputValue === undefined || finalInputValue === "") {
-            return true
-          }
           return (
             typeof option.label === "string" &&
             option.label
