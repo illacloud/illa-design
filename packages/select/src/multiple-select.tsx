@@ -5,10 +5,9 @@ import { useMergeValue } from "@illa-design/system"
 import { DownIcon, LoadingIcon, UpIcon } from "@illa-design/icon"
 import { getColor } from "@illa-design/theme"
 import { Empty } from "@illa-design/empty"
-import { InputTag, TagObject } from "@illa-design/input-tag"
+import { InputTag, TagObject, InputTagRefHandler } from "@illa-design/input-tag"
 import { Checkbox } from "@illa-design/checkbox"
 import { dropListItemStyle, dropLabelStyle } from "./style"
-import { InputTagRefHandler } from "@illa-design/input-tag/src"
 
 export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
   (props, ref) => {
@@ -90,6 +89,9 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
         newOptions = newOptions.filter((option) => {
           if (typeof filterOption === "function") {
             return filterOption(finalInputValue, option)
+          }
+          if (finalInputValue === undefined || finalInputValue === "") {
+            return true
           }
           return (
             typeof option.label === "string" &&
