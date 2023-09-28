@@ -2,7 +2,6 @@ import {
   Children,
   cloneElement,
   forwardRef,
-  isValidElement,
   PropsWithChildren,
   ReactElement,
   ReactNode,
@@ -179,6 +178,9 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
         newOptions = newOptions.filter((option) => {
           if (typeof filterOption === "function") {
             return filterOption(finalInputValue, option)
+          }
+          if (finalInputValue === undefined || finalInputValue === "") {
+            return true
           }
           return (
             typeof option.label === "string" &&
