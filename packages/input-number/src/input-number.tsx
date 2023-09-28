@@ -40,6 +40,8 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       defaultValue,
       value,
       icons,
+      formatter,
+      parser,
       onChange,
       ...otherProps
     } = props
@@ -170,9 +172,9 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         inputRef={inputRef}
         _css={hoverControlStyle}
         size={size}
-        value={finalValue}
+        value={formatter ? formatter(finalValue) : finalValue}
         onChange={(e) => {
-          setFinalValue(e)
+          setFinalValue(parser ? parser(e) : e)
         }}
         onPressEnter={() => {
           inputRef.current.blur()

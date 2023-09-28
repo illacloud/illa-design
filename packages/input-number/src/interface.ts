@@ -49,4 +49,6 @@ export interface InputNumberProps
   }
   onChange?: (value: number | undefined) => void
   onKeyDown?: (e: SyntheticEvent) => void
+  parser?: (value: number | string) => string | number
+  formatter?: (value: number | string) => string | number
 }
