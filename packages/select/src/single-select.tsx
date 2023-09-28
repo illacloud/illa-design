@@ -2,7 +2,6 @@ import {
   Children,
   cloneElement,
   forwardRef,
-  isValidElement,
   PropsWithChildren,
   ReactElement,
   ReactNode,

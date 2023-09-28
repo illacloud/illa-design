@@ -6,8 +6,8 @@ export const controlContainerStyle = css`
   transition: all 0.2s ease-in-out;
   display: inline-flex;
   flex-direction: column;
-  visibility: hidden;
   align-items: center;
+  visibility: hidden;
 `
 
 export function applyControlBlockStyle(
