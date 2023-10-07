@@ -39,9 +39,10 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       ...otherProps
     } = props
 
-    const [finalValue, setFinalValue] = useMergeValue<string | number>(
-      value ?? defaultValue ?? "",
-    )
+    const [finalValue, setFinalValue] = useMergeValue<string | number>("", {
+      value,
+      defaultValue,
+    })
 
     const inputRef =
       useRef<HTMLInputElement>() as MutableRefObject<HTMLInputElement>
