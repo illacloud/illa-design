@@ -154,18 +154,14 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
           const rawValue = parser ? parser(e) : e
           if (isNumber(Number(rawValue))) {
             if (value === undefined) {
-              setFinalValue(
-                formatter
-                  ? formatter(dealNumber(rawValue))
-                  : dealNumber(rawValue),
-              )
+              setFinalValue(formatter ? formatter(rawValue) : rawValue)
             }
           } else {
             if (value === undefined) {
               setFinalValue(e)
             }
           }
-          onChange?.(dealNumber(rawValue))
+          onChange?.(rawValue as number)
         }}
         onPressEnter={() => {
           const rawValue = parser
