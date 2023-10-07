@@ -41,6 +41,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       value,
       icons,
       formatter,
+      parser,
       onChange,
       ...otherProps
     } = props
@@ -146,15 +147,21 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         }
         return
       }
-      if (precision && precision >= step) {
+      if (precision !== undefined) {
         let num = Number(Number(finalValue).toFixed(precision))
         num = Math.max(num, min)
         num = Math.min(num, max)
+        if (value === undefined) {
+          setFinalValue(num)
+        }
         onChange?.(num)
       } else {
         let num = Number(finalValue)
         num = Math.max(num, min)
         num = Math.min(num, max)
+        if (value === undefined) {
+          setFinalValue(num)
+        }
         onChange?.(num)
       }
     }
@@ -163,11 +170,11 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       <Input
         ref={ref}
         inputRef={inputRef}
-        css={hoverControlStyle}
+        _css={hoverControlStyle}
         size={size}
         value={formatter ? formatter(finalValue) : finalValue}
         onChange={(e) => {
-          setFinalValue(e)
+          setFinalValue(parser ? parser(e) : e)
         }}
         onPressEnter={() => {
           inputRef.current.blur()
