@@ -13,7 +13,19 @@ export const Basic: StoryFn<InputNumberProps> = (props) => {
 
   return (
     <Space direction="vertical" align="start">
-      <InputNumber w="320px" {...props} mode="button" />
+      <InputNumber
+        w="320px"
+        formatter={(v) => {
+          return v + "%"
+        }}
+        parser={(v) => {
+          return (v as string).replace("%", "")
+        }}
+        min={0}
+        max={100}
+        {...props}
+        mode="button"
+      />
       <InputNumber
         w="320px"
         value={currentValue}
