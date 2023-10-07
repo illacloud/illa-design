@@ -1,16 +1,9 @@
-import {
-  forwardRef,
-  MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import { forwardRef, MutableRefObject, useCallback, useRef } from "react"
 import { InputNumberProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { DownIcon, MinusIcon, PlusIcon, UpIcon } from "@illa-design/icon"
 import { Space } from "@illa-design/space"
-import { isNumber } from "@illa-design/system"
+import { isNumber, useMergeValue } from "@illa-design/system"
 import {
   applyActionIconStyle,
   applyControlBlockStyle,
@@ -46,16 +39,10 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       ...otherProps
     } = props
 
-    const [finalValue, setFinalValue] = useState<string | number>(
-      value ?? defaultValue ?? "",
-    )
-
-    useEffect(() => {
-      if (value === undefined) {
-        return
-      }
-      setFinalValue(value ?? "")
-    }, [value])
+    const [finalValue, setFinalValue] = useMergeValue<string | number>("", {
+      value,
+      defaultValue,
+    })
 
     const inputRef =
       useRef<HTMLInputElement>() as MutableRefObject<HTMLInputElement>
@@ -132,39 +119,29 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       </div>
     )
 
-    const dealNumber = () => {
-      if (!isNumber(Number(finalValue))) {
-        if (0 <= max && 0 >= min) {
-          if (value === undefined) {
-            setFinalValue(0)
+    const dealNumber = useCallback(
+      (num: string | number) => {
+        if (!isNumber(Number(num))) {
+          if (0 <= max && 0 >= min) {
+            return 0
+          } else {
+            return min
           }
-          onChange?.(0)
+        }
+        if (precision !== undefined) {
+          let formatNum = Number(Number(num).toFixed(precision))
+          formatNum = Math.max(formatNum, min)
+          formatNum = Math.min(formatNum, max)
+          return formatNum
         } else {
-          if (value === undefined) {
-            setFinalValue(min)
-          }
-          onChange?.(min)
+          let formatNum = Number(num)
+          formatNum = Math.max(formatNum, min)
+          formatNum = Math.min(formatNum, max)
+          return formatNum
         }
-        return
-      }
-      if (precision !== undefined) {
-        let num = Number(Number(finalValue).toFixed(precision))
-        num = Math.max(num, min)
-        num = Math.min(num, max)
-        if (value === undefined) {
-          setFinalValue(num)
-        }
-        onChange?.(num)
-      } else {
-        let num = Number(finalValue)
-        num = Math.max(num, min)
-        num = Math.min(num, max)
-        if (value === undefined) {
-          setFinalValue(num)
-        }
-        onChange?.(num)
-      }
-    }
+      },
+      [max, min, precision],
+    )
 
     return (
       <Input
@@ -172,15 +149,39 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         inputRef={inputRef}
         _css={hoverControlStyle}
         size={size}
-        value={formatter ? formatter(finalValue) : finalValue}
+        value={finalValue}
         onChange={(e) => {
-          setFinalValue(parser ? parser(e) : e)
+          const rawValue = parser ? parser(e) : e
+          if (isNumber(Number(rawValue))) {
+            if (value === undefined) {
+              setFinalValue(formatter ? formatter(rawValue) : rawValue)
+            }
+          } else {
+            if (value === undefined) {
+              setFinalValue(e)
+            }
+          }
+          onChange?.(rawValue as number)
         }}
         onPressEnter={() => {
-          inputRef.current.blur()
+          const rawValue = parser
+            ? parser(inputRef.current.value)
+            : inputRef.current.value
+
+          const dealNum = dealNumber(rawValue)
+
+          if (value === undefined) {
+            setFinalValue(formatter ? formatter(dealNum) : dealNum)
+          }
+          onChange?.(dealNum)
         }}
         onBlur={(e) => {
-          dealNumber()
+          const rawValue = parser ? parser(e.target.value) : e.target.value
+          const dealNum = dealNumber(rawValue)
+          if (value === undefined) {
+            setFinalValue(formatter ? formatter(dealNum) : dealNum)
+          }
+          onChange?.(dealNum)
           onBlur?.(e)
         }}
         onFocus={(e) => {
