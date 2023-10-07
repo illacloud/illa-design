@@ -161,7 +161,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
               setFinalValue(e)
             }
           }
-          onChange?.(rawValue as number)
+          onChange?.(dealNumber(rawValue))
         }}
         onPressEnter={() => {
           const rawValue = parser
