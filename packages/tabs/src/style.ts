@@ -70,17 +70,17 @@ export const tabsContainerStyle = (
   let flexCss
   if (isHorizontalLayout(tabPosition)) {
     flexCss = css`
-      display: grid;
-      justify-content: ${tabPosition === "left" ? "flex-start" : "flex-end"};
-      grid-template-columns: max-content;
-      grid-auto-rows: minmax(0, max-content);
+      height: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
     `
   } else {
     flexCss = css`
-      display: flex;
+      width: 100%;
       flex-direction: row;
       align-items: center;
-      justify-content: ${align};
+      justify-content: flex-start;
     `
   }
   let borderCss
@@ -96,8 +96,8 @@ export const tabsContainerStyle = (
     }
   }
   return css`
-    width: 100%;
     gap: 4px;
+    display: flex;
     ${flexCss};
     overflow: hidden;
     position: relative;
@@ -110,6 +110,7 @@ export const tabsStyle = (
   tabBarSpacing: number | undefined,
   variant: TabVariant,
   translate: number,
+  align: TabAlign,
   withoutBorderLine?: boolean,
 ) => {
   let variantCss
@@ -136,15 +137,14 @@ export const tabsStyle = (
   let layoutCss
   if (isHorizontalLayout(tabPosition)) {
     layoutCss = css`
-      display: grid;
-      justify-content: center;
-      grid-template-columns: max-content;
-      grid-auto-rows: minmax(0, max-content);
+      height: 100%;
+      flex-direction: column;
+      justify-content: ${align};
     `
   } else {
     layoutCss = css`
-      display: flex;
-      align-items: center;
+      min-width: 100%;
+      justify-content: ${align};
     `
   }
   let borderCss
@@ -160,7 +160,10 @@ export const tabsStyle = (
     }
   }
   return css`
+    box-sizing: border-box;
     border-radius: 4px;
+
+    display: flex;
     flex: none;
     ${variantCss};
     ${layoutCss};
