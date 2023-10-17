@@ -30,9 +30,11 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
     const {
       size = "medium",
       allowClear,
+      onSelect,
       placeholder,
       addAfter,
       labelInValue,
+      inputAsOption,
       colorScheme,
       defaultPopupVisible,
       popupVisible,
@@ -168,6 +170,38 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
           newOptions = options as SelectOptionObject[]
         }
       }
+      if (inputAsOption) {
+        if (finalInputValue && finalInputValue !== "") {
+          const optionIndex = newOptions.findIndex(
+            (option) => option.value === finalInputValue,
+          )
+          if (optionIndex !== -1) {
+            newOptions.splice(optionIndex, 1)
+          }
+          newOptions = [
+            {
+              label: finalInputValue + "",
+              value: JSON.stringify(finalInputValue),
+            },
+            ...newOptions,
+          ]
+        }
+        if (lastChooseRef.current && lastChooseRef.current !== "") {
+          const optionIndex = newOptions.findIndex(
+            (option) => option.value === lastChooseRef.current,
+          )
+          if (optionIndex !== -1) {
+            newOptions.splice(optionIndex, 1)
+          }
+          newOptions = [
+            {
+              label: lastChooseRef.current + "",
+              value: JSON.stringify(lastChooseRef.current),
+            },
+            ...newOptions,
+          ]
+        }
+      }
       if (
         (filterOption || showSearch) &&
         finalInputValue &&
@@ -178,6 +212,8 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
         newOptions = newOptions.filter((option) => {
           if (typeof filterOption === "function") {
             return filterOption(finalInputValue, option)
+          } else if (typeof filterOption === "boolean") {
+            return filterOption
           }
           return (
             typeof option.label === "string" &&
@@ -189,7 +225,7 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
       }
 
       return newOptions
-    }, [filterOption, finalInputValue, options, showSearch])
+    }, [filterOption, finalInputValue, inputAsOption, options, showSearch])
 
     return (
       <Dropdown
@@ -201,25 +237,20 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
           <DropList
             maxH="264px"
             onClickItem={(key, children) => {
-              if (options === undefined) {
-                if (value === undefined) {
-                  lastChooseRef.current = children
-                  setFinalInputValue(lastChooseRef.current ?? "")
-                  setFinalValue(lastChooseRef.current ?? "")
-                  setFinalSelectValue(key)
-                }
-                onChange?.(key)
-              } else {
-                const option = (options as []).find((o) => {
-                  if (typeof o === "object") {
-                    return (o as SelectOptionObject).value === key
-                  } else {
-                    return o === key
+              const option = finalOptions.find(
+                (option) => String(option.value) === key,
+              )
+              if (option !== undefined) {
+                if (labelInValue) {
+                  if (value === undefined) {
+                    lastChooseRef.current = (option as SelectOptionObject).label
+                    setFinalInputValue(lastChooseRef.current ?? "")
+                    setFinalValue(lastChooseRef.current ?? "")
+                    setFinalSelectValue((option as SelectOptionObject).value)
                   }
-                })
-
-                if (option !== undefined) {
-                  if (labelInValue) {
+                  onChange?.(option)
+                } else {
+                  if (typeof option === "object") {
                     if (value === undefined) {
                       lastChooseRef.current = (
                         option as SelectOptionObject
@@ -228,29 +259,15 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
                       setFinalValue(lastChooseRef.current ?? "")
                       setFinalSelectValue((option as SelectOptionObject).value)
                     }
-                    onChange?.(option)
+                    onChange?.((option as SelectOptionObject).value)
                   } else {
-                    if (typeof option === "object") {
-                      if (value === undefined) {
-                        lastChooseRef.current = (
-                          option as SelectOptionObject
-                        ).label
-                        setFinalInputValue(lastChooseRef.current ?? "")
-                        setFinalValue(lastChooseRef.current ?? "")
-                        setFinalSelectValue(
-                          (option as SelectOptionObject).value,
-                        )
-                      }
-                      onChange?.((option as SelectOptionObject).value)
-                    } else {
-                      if (value === undefined) {
-                        lastChooseRef.current = option
-                        setFinalInputValue(lastChooseRef.current ?? "")
-                        setFinalValue(lastChooseRef.current ?? "")
-                        setFinalSelectValue(option)
-                      }
-                      onChange?.(option)
+                    if (value === undefined) {
+                      lastChooseRef.current = option
+                      setFinalInputValue(lastChooseRef.current ?? "")
+                      setFinalValue(lastChooseRef.current ?? "")
+                      setFinalSelectValue(option)
                     }
+                    onChange?.(option)
                   }
                 }
               }

@@ -34,10 +34,11 @@ export type SelectValue =
 export interface SelectProps<T extends SelectValue = SelectValue>
   extends Omit<
       HTMLAttributes<HTMLDivElement>,
-      "defaultValue" | "onChange" | "prefix" | "onFocus" | "onBlur"
+      "defaultValue" | "onChange" | "prefix" | "onFocus" | "onBlur" | "onSelect"
     >,
     BoxProps {
   autoAlignPopupWidth?: boolean
+  inputAsOption?: boolean
   colorScheme?: SelectColorScheme
   allowClear?: boolean
   variant?: SelectVariant
@@ -70,6 +71,7 @@ export interface SelectProps<T extends SelectValue = SelectValue>
   dropdownProps?: DropdownProps
   options?: SelectOptionObject[] | string[] | number[]
   onDeselect?: (value: string | number | SelectOptionObject) => void
+  onSelect?: (value: string | number | SelectOptionObject) => void
   multiple?: boolean
   onBlur?: (e: SyntheticEvent) => void
   onFocus?: (e: SyntheticEvent) => void

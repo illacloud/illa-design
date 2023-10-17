@@ -35,6 +35,7 @@ export interface InputTagProps
   autoFocus?: boolean
   addBefore?: ReactNode
   addAfter?: ReactNode
+  transformValue?: (value: string | TagObject) => string | TagObject
   allowClear?: boolean
   disabled?: boolean
   error?: boolean
@@ -42,6 +43,7 @@ export interface InputTagProps
   saveOnBlur?: boolean
   placeholder?: string
   inputValue?: string
+  spaceInput?: boolean
   size?: InputTagSize
   inputRef?: MutableRefObject<HTMLInputElement>
   prefix?: ReactNode | string
@@ -55,6 +57,7 @@ export interface InputTagProps
   onInputChange?: (inputValue: string, event?: SyntheticEvent) => void
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void
   onPressEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
+  onAdd?: (value: TagObject | string, index: number, e: SyntheticEvent) => void
   onRemove?: (
     value: TagObject | string,
     index: number,

@@ -27,16 +27,16 @@ export function applyInputTagPlaceHolderStyle(
 ): SerializedStyles {
   return css`
     color: ${getColor("grayBlue", "04")};
-    width: 100%;
+    width: unset;
     white-space: nowrap;
     overflow: hidden;
-    position: absolute;
+    margin-left: -12px;
     text-overflow: ellipsis;
     line-height: ${size === "large"
       ? "32px"
       : size === "small"
       ? "22px"
-      : "24px"};
+      : "22px"};
   `
 }
 
@@ -70,12 +70,12 @@ function getPaddingStyle(size: InputTagSize): SerializedStyles {
       break
     case "medium":
       pdStyle = css`
-        padding: 4px 16px;
+        padding: 3px 16px;
       `
       break
     case "large":
       pdStyle = css`
-        padding: 8px 16px;
+        padding: 7px 16px;
       `
       break
   }
@@ -143,7 +143,7 @@ export const tagsListStyle = css`
   flex-shrink: 1;
   overflow: hidden;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 `
 
 export const tagStyle = css`
