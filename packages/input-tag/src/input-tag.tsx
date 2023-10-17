@@ -262,7 +262,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
               ref={inputRef}
               autoFocus={autoFocus}
               readOnly={readOnly}
-              css={applyInputTagInputStyle(size, calcBlockBounds.width + 12)}
+              css={applyInputTagInputStyle(size, calcBlockBounds.width + 1)}
               onChange={(e) => {
                 if (inputValue === undefined) {
                   setFinalInputValue(e.currentTarget.value)
@@ -322,7 +322,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 }
               }}
             />
-            {placeholder && !focusInput && finalInputValue.length === 0 && (
+            {placeholder && finalInputValue.length === 0 && (
               <div css={applyInputTagPlaceHolderStyle(size)}>{placeholder}</div>
             )}
           </div>

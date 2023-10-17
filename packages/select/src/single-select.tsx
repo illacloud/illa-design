@@ -51,6 +51,7 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
       value,
       filterOption,
       readOnly,
+      defaultFilterOption,
       variant,
       onChange,
       onClear,
@@ -222,10 +223,30 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
               .includes(finalInputValue.toString().toLowerCase())
           )
         })
+      } else {
+        if (
+          typeof finalInputValue === "string" ||
+          typeof finalInputValue === "number"
+        ) {
+          newOptions = newOptions.filter((option) => {
+            if (typeof defaultFilterOption === "function") {
+              return defaultFilterOption(finalInputValue, option)
+            } else if (typeof defaultFilterOption === "boolean") {
+              return defaultFilterOption
+            }
+            return true
+          })
+        }
       }
-
       return newOptions
-    }, [filterOption, finalInputValue, inputAsOption, options, showSearch])
+    }, [
+      defaultFilterOption,
+      filterOption,
+      finalInputValue,
+      inputAsOption,
+      options,
+      showSearch,
+    ])
 
     return (
       <Dropdown

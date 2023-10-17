@@ -18,6 +18,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
       labelInValue,
       colorScheme,
       defaultPopupVisible,
+      defaultFilterOption,
       popupVisible,
       children,
       addAfter,
@@ -134,9 +135,19 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
             option.label.includes(finalInputValue.toString())
           )
         })
+      } else {
+        newOptions = newOptions.filter((option) => {
+          if (typeof defaultFilterOption === "function") {
+            return defaultFilterOption(finalInputValue, option)
+          } else if (typeof defaultFilterOption === "boolean") {
+            return defaultFilterOption
+          }
+          return true
+        })
       }
       return newOptions
     }, [
+      defaultFilterOption,
       filterOption,
       finalInputValue,
       finalValue,
@@ -262,6 +273,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
                 }
               }
               setFinalInputValue("")
+              onInputValueChange?.("")
             }}
           >
             {finalOptions?.map((option, i) => {
@@ -357,6 +369,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
               setFinalValue([])
             }
             setFinalInputValue("")
+            onInputValueChange?.("")
             onChange?.(undefined)
           }}
           onRemove={(v) => {

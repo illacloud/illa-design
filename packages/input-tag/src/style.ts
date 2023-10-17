@@ -30,7 +30,6 @@ export function applyInputTagPlaceHolderStyle(
     width: unset;
     white-space: nowrap;
     overflow: hidden;
-    margin-left: -12px;
     text-overflow: ellipsis;
     line-height: ${size === "large"
       ? "32px"
