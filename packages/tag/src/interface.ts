@@ -22,6 +22,7 @@ export type TagVariant = "outline" | "fill" | "light"
 export type TagSize = "small" | "medium" | "large"
 
 export interface TagProps extends HTMLAttributes<HTMLDivElement>, BoxProps {
+  clickable?: boolean
   colorScheme?: TagColorScheme
   size?: TagSize
   variant?: TagVariant

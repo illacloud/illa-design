@@ -1,15 +1,18 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { TagColorScheme, TagVariant, TagSize } from "./interface"
+import { TagColorScheme, TagSize, TagVariant } from "./interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const tagContainer = css`
-  display: inline-flex;
-  vertical-align: middle;
-  white-space: nowrap;
-  flex-direction: row;
-  align-items: center;
-  padding: 0 7px;
-`
+export function applyTagContainerStyle(clickable?: boolean): SerializedStyles {
+  return css`
+    display: inline-flex;
+    vertical-align: middle;
+    white-space: nowrap;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 7px;
+    cursor: ${clickable ? "pointer" : "default"};
+  `
+}
 
 export const tagSizeLargeStyle = css`
   font-size: 14px;
