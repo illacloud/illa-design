@@ -1,7 +1,6 @@
 import { ModalProps } from "./interface"
 import {
   applyModal,
-  applyModalCancelBtn,
   applyModalContainer,
   applyModalContent,
   applyModalFooter,
@@ -200,13 +199,13 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                   )
                 )}
                 {footer && (
-                  <div css={applyModalFooter(footerAlign, withoutLine)}>
+                  <div css={applyModalFooter(withoutLine)}>
                     {!hideCancel && (
                       <Button
-                        css={applyModalCancelBtn}
                         onClick={onCancel}
                         colorScheme="gray"
                         size="medium"
+                        flex="1"
                         {...cancelButtonProps}
                       >
                         {cancelText || locale.cancelText}
@@ -217,6 +216,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                         loading={okLoading}
                         size="medium"
                         onClick={onOk}
+                        flex="1"
                         {...okButtonProps}
                       >
                         {okText || locale.okText}
