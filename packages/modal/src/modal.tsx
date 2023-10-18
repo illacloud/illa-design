@@ -202,6 +202,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                   <div css={applyModalFooter(withoutLine)}>
                     {!hideCancel && (
                       <Button
+                        type="button"
                         onClick={onCancel}
                         colorScheme="gray"
                         size="medium"
