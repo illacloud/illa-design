@@ -24,7 +24,6 @@ import { ClearIcon } from "@illa-design/icon"
 import { applyBoxStyle, deleteCssProps, getColor } from "@illa-design/theme"
 import useMeasure from "react-use-measure"
 import { css } from "@emotion/react"
-import { Space } from "@illa-design/space"
 
 export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
   (props, ref) => {

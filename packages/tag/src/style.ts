@@ -9,6 +9,7 @@ export const tagContainer = css`
   flex-direction: row;
   align-items: center;
   padding: 0 7px;
+  cursor: pointer;
 `
 
 export const tagSizeLargeStyle = css`
