@@ -46,7 +46,7 @@
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
     "@illa-design/trigger": "workspace:*",
-    "react-hotkeys-hook": "^4.4.0",
+    "react-hotkeys-hook": "^4.4.1",
     "react-focus-lock": "^2.8.1",
     "uuid": "^8.3.2",
     "framer-motion": "^10.16.4"
