@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/alert",
-  "version": "1.0.31",
+  "version": "1.1.0",
   "description": "Illa Design Alert.",
   "keywords": [
     "alert",
@@ -43,7 +43,7 @@
     "@illa-design/icon": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "framer-motion": "^7.6.12"
+    "framer-motion": "^10.16.4"
   },
   "peerDependencies": {
     "react": "^18.2.0",

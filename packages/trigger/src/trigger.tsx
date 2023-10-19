@@ -158,10 +158,11 @@ export const Trigger: FC<TriggerProps> = (props) => {
     useClick(context, {
       enabled: trigger === "click",
       toggle: closeOnClick,
+      keyboardHandlers: false,
     }),
     useFocus(context, {
       enabled: trigger === "focus",
-      keyboardOnly: false,
+      visibleOnly: false,
     }),
     useRole(context, { role: "tooltip" }),
     useDismiss(context, {
