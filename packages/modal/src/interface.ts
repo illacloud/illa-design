@@ -2,6 +2,7 @@ import { HTMLAttributes, MouseEvent, ReactNode } from "react"
 import { ButtonProps } from "@illa-design/button"
 import { BoxProps } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/react"
+import { Options } from "react-hotkeys-hook"
 
 export type ModalAlignType = "left" | "center" | "right" | ""
 export type ModalType = "info" | "error" | "success" | "warning"
@@ -31,6 +32,7 @@ export interface ModalProps
   footerAlign?: ModalAlignType
   focusLock?: boolean
   autoFocus?: boolean
+  enableOnFormTags?: Options["enableOnFormTags"]
   onCancel?: () => void
   onOk?: (e?: MouseEvent) => Promise<any> | void
   afterOpen?: () => void
