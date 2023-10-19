@@ -1,5 +1,6 @@
 import {
   forwardRef,
+  SyntheticEvent,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -27,6 +28,8 @@ import { css } from "@emotion/react"
 export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
   (props, ref) => {
     const {
+      onAdd,
+      spaceInput,
       colorScheme = "blue",
       autoFocus,
       allowClear,
@@ -46,6 +49,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       onChange,
       validate,
       onClear,
+      transformValue,
       onInputChange,
       onKeyDown,
       onPressEnter,
@@ -122,7 +126,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 css={tagStyle}
                 key={
                   labelInValue
-                    ? (v as TagObject).label
+                    ? `${i.toString()}:${(v as TagObject).label}`
                     : `${i.toString()}:${value}`
                 }
                 visible={true}
@@ -167,20 +171,28 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
       setFinalValue,
     ])
 
-    const saveInputValue = () => {
+    const saveInputValue = (e: SyntheticEvent) => {
       if (finalInputValue !== "") {
         let newList
         if (labelInValue) {
+          const newTag = {
+            label: finalValue.length.toString(),
+            value: finalInputValue,
+            closeable: true,
+          } as TagObject
           newList = [
             ...(finalValue as TagObject[]),
-            {
-              label: finalValue.length.toString(),
-              value: finalInputValue,
-              closeable: true,
-            },
+            transformValue ? (transformValue(newTag) as TagObject) : newTag,
           ]
+          onAdd?.(newTag, newList.length - 1, e)
         } else {
-          newList = [...(finalValue as string[]), finalInputValue]
+          newList = [
+            ...(finalValue as string[]),
+            (transformValue
+              ? (transformValue(finalInputValue) as string)
+              : finalInputValue) as string,
+          ]
+          onAdd?.(finalInputValue, newList.length - 1, e)
         }
         if (value === undefined) {
           setFinalValue(newList)
@@ -189,6 +201,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
           setFinalInputValue("")
         }
         onChange?.(newList)
+        onInputChange?.("", e)
       }
     }
 
@@ -241,18 +254,14 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
             </span>
           )}
           <div css={tagsListStyle}>
-            {finalValue.length > 0 || focusInput ? (
-              tags
-            ) : (
-              <div css={applyInputTagPlaceHolderStyle(size)}>{placeholder}</div>
-            )}
+            {tags}
             <input
               disabled={disabled}
               key="inputTagInput"
               ref={inputRef}
               autoFocus={autoFocus}
               readOnly={readOnly}
-              css={applyInputTagInputStyle(size, calcBlockBounds.width + 12)}
+              css={applyInputTagInputStyle(size, calcBlockBounds.width + 1)}
               onChange={(e) => {
                 if (inputValue === undefined) {
                   setFinalInputValue(e.currentTarget.value)
@@ -263,7 +272,7 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 if (saveOnBlur) {
                   const checked = await validate?.(finalInputValue, finalValue)
                   if (checked || validate === undefined) {
-                    saveInputValue()
+                    saveInputValue(e)
                   }
                 }
                 onBlur?.(e)
@@ -285,12 +294,12 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                   return
                 }
                 onKeyDown?.(e)
-                if (e.key === "Enter") {
+                if (e.key === "Enter" || (e.key === " " && spaceInput)) {
                   inputRef.current?.focus()
                   onPressEnter?.(e)
                   const checked = await validate?.(finalInputValue, finalValue)
                   if (checked || validate === undefined) {
-                    saveInputValue()
+                    saveInputValue(e)
                   }
                 }
                 if (e.key === "Backspace" && finalInputValue === "") {
@@ -312,6 +321,9 @@ export const InputTag = forwardRef<HTMLDivElement, InputTagProps>(
                 }
               }}
             />
+            {placeholder && finalInputValue.length === 0 && (
+              <div css={applyInputTagPlaceHolderStyle(size)}>{placeholder}</div>
+            )}
           </div>
           {allowClear && !disabled && finalValue.length > 0 && (
             <ClearIcon

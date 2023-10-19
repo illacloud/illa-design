@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/modal",
-  "version": "1.0.31",
+  "version": "1.1.0",
   "description": "Illa Design Modal.",
   "keywords": [
     "modal",
@@ -49,7 +49,7 @@
     "react-hotkeys-hook": "^4.4.0",
     "react-focus-lock": "^2.8.1",
     "uuid": "^8.3.2",
-    "framer-motion": "^7.6.12"
+    "framer-motion": "^10.16.4"
   },
   "devDependencies": {
     "@types/uuid": "^8.3.4"

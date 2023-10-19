@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/slider",
-  "version": "1.0.30",
+  "version": "1.1.0",
   "description": "Illa Design Slider.",
   "keywords": [
     "slider",
@@ -44,7 +44,7 @@
     "@illa-design/theme": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/trigger": "workspace:*",
-    "framer-motion": "^7.6.12",
+    "framer-motion": "^10.16.4",
     "react-use-measure": "^2.1.1"
   },
   "peerDependencies": {

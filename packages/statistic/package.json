@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/statistic",
-  "version": "1.0.31",
+  "version": "1.1.0",
   "description": "Illa Design Statistic.",
   "keywords": [
     "statistic",
@@ -45,7 +45,7 @@
     "@illa-design/system": "workspace:*",
     "@illa-design/skeleton": "workspace:*",
     "dayjs": "^1.11.7",
-    "framer-motion": "^7.6.12"
+    "framer-motion": "^10.16.4"
   },
   "peerDependencies": {
     "react": "^18.2.0",

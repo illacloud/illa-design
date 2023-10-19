@@ -1,6 +1,6 @@
 {
   "name": "@illa-design/menu",
-  "version": "1.0.31",
+  "version": "1.1.0",
   "description": "Illa Design Menu.",
   "keywords": [
     "menu",
@@ -44,7 +44,7 @@
     "@illa-design/dropdown": "workspace:*",
     "@illa-design/system": "workspace:*",
     "@illa-design/theme": "workspace:*",
-    "framer-motion": "^7.6.12",
+    "framer-motion": "^10.16.4",
     "react-use-measure": "^2.1.1"
   },
   "peerDependencies": {
