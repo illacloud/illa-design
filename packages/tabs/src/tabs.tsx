@@ -20,6 +20,8 @@ import {
 import { UpIcon, DownIcon, PreviousIcon } from "@illa-design/icon"
 import { isHorizontalLayout } from "./utils"
 import { SCROLL_ICON_WIDTH } from "./constants"
+import { LayoutGroup } from "framer-motion"
+import { v4 } from "uuid"
 
 const getTabItems = (children: ReactElement | undefined) => {
   if (!children) return []
@@ -72,6 +74,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const [selectedKey, setSelectedKey] = useState(
     defaultActiveKey ?? firstTabKey,
   )
+  const layoutId = v4()
 
   const handleSelectTab = useCallback(
     (key: string | undefined) => {
@@ -140,14 +143,14 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const handleShowScrollIcon = useCallback((width?: number) => {
     if (containerRef.current && panelRef.current) {
       if (width) {
-        if (width - SCROLL_ICON_WIDTH < panelRef.current.scrollWidth) {
+        if (width + SCROLL_ICON_WIDTH < panelRef.current.scrollWidth) {
           setShowScrollIcon(true)
         } else {
           setShowScrollIcon(false)
         }
       } else {
         if (
-          containerRef.current.clientWidth - SCROLL_ICON_WIDTH <
+          containerRef.current.clientWidth + SCROLL_ICON_WIDTH <
           panelRef.current.scrollWidth
         ) {
           setShowScrollIcon(true)
@@ -178,50 +181,58 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   }, [tabItems])
 
   return (
-    <TabsProvider
-      {...props}
-      selectedKey={activeKey || selectedKey}
-      handleSelectTab={handleSelectTab}
-      handleDeleteTab={handleDeleteTab}
-    >
-      <div
-        css={tabsContainerStyle(tabPosition, align, variant, withoutBorderLine)}
-        ref={containerRef}
+    <LayoutGroup id={layoutId}>
+      <TabsProvider
+        {...props}
+        selectedKey={activeKey || selectedKey}
+        handleSelectTab={handleSelectTab}
+        handleDeleteTab={handleDeleteTab}
       >
-        {prefix}
-        {!isHorizontalLayout(tabPosition) && showScrollIcon && (
-          <span css={iconStyle("previous")} onClick={handleGoPrevious}>
-            {isHorizontalLayout(tabPosition) ? (
-              <UpIcon size="12" />
-            ) : (
-              <PreviousIcon size="12" />
-            )}
-          </span>
-        )}
         <div
-          ref={panelRef}
-          css={tabsStyle(
+          css={tabsContainerStyle(
             tabPosition,
-            tabBarSpacing,
+            align,
             variant,
-            translate,
             withoutBorderLine,
           )}
+          ref={containerRef}
         >
-          {curTabItems}
-        </div>
-        {!isHorizontalLayout(tabPosition) && showScrollIcon && (
-          <span css={iconStyle("next")} onClick={handleGoNext}>
-            {isHorizontalLayout(tabPosition) ? (
-              <DownIcon size="12" />
-            ) : (
-              <PreviousIcon css={nextIconStyle} size="12" />
+          {prefix}
+          {!isHorizontalLayout(tabPosition) && showScrollIcon && (
+            <span css={iconStyle("previous")} onClick={handleGoPrevious}>
+              {isHorizontalLayout(tabPosition) ? (
+                <UpIcon size="12" />
+              ) : (
+                <PreviousIcon size="12" />
+              )}
+            </span>
+          )}
+          <div
+            ref={panelRef}
+            css={tabsStyle(
+              tabPosition,
+              tabBarSpacing,
+              variant,
+              translate,
+              align,
+              withoutBorderLine,
             )}
-          </span>
-        )}
-        {suffix}
-      </div>
-    </TabsProvider>
+          >
+            {curTabItems}
+          </div>
+          {!isHorizontalLayout(tabPosition) && showScrollIcon && (
+            <span css={iconStyle("next")} onClick={handleGoNext}>
+              {isHorizontalLayout(tabPosition) ? (
+                <DownIcon size="12" />
+              ) : (
+                <PreviousIcon css={nextIconStyle} size="12" />
+              )}
+            </span>
+          )}
+          {suffix}
+        </div>
+      </TabsProvider>
+    </LayoutGroup>
   )
 })
 

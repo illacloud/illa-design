@@ -2,7 +2,12 @@ import { HTMLAttributes, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
 
 export declare type TabPosition = "left" | "right" | "top" | "bottom"
-export declare type TabAlign = "flex-start" | "center" | "flex-end"
+export declare type TabAlign =
+  | "flex-start"
+  | "center"
+  | "flex-end"
+  | "space-between"
+  | "space-around"
 export declare type TabsSize = "small" | "medium" | "large"
 export declare type TabVariant = "line" | "text" | "capsule"
 export type TabsColorScheme =
