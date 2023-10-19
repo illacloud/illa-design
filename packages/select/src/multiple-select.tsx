@@ -86,8 +86,11 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
       }
 
       if (finalValue && finalValue.length > 0) {
-        const mixVal = finalValue
+        const mixVal = (finalValue as SelectOptionObject[])
           .filter((v) => {
+            if (isObject(v)) {
+              return !newOptions.find((value) => v === value)
+            }
             return !newOptions.find((option) => option.value === v)
           })
           .map((v) => {
