@@ -55,6 +55,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     autoFocus = true,
     maskStyle,
     modalContentStyle,
+    enableOnFormTags,
     onCancel,
     onOk,
     afterClose,
@@ -86,7 +87,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       }
     },
     {
-      enableOnFormTags: ["INPUT"],
+      enableOnFormTags: enableOnFormTags ?? ["INPUT"],
     },
     [visible],
   )
