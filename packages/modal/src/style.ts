@@ -50,8 +50,8 @@ export function applyModal(): SerializedStyles {
     width: 520px;
     margin: 24px auto;
     border-radius: 8px;
-    border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    border: 1px solid ${getColor("grayBlue", "08")};
+    background-color: ${getColor("white", "01")};
   `
 }
 
@@ -104,7 +104,7 @@ export function applyModalContent(withoutPadding?: boolean): SerializedStyles {
     color: ${getColor("grayBlue", "02")};
     font-weight: 400;
     line-height: 22px;
-    padding: 8px 24px;
+    padding: 16px 24px;
     ${paddingCSS}
   `
 }
@@ -124,33 +124,22 @@ export const modalCloseIconStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
 `
 
-export function applyModalFooter(
-  footerAlign?: ModalAlignType,
-  withoutLine?: boolean,
-): SerializedStyles {
-  const textAlignCss = footerAlign
-    ? css`
-        text-align: ${footerAlign};
-      `
-    : ""
+export function applyModalFooter(withoutLine?: boolean): SerializedStyles {
   const line = withoutLine
     ? css``
     : css`
         border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       `
   return css`
-    text-align: right;
+    display: flex;
+    gap: 8px;
+    flex-direction: row;
     width: 100%;
     box-sizing: border-box;
-    padding: 16px 24px;
+    padding: 24px 24px;
     ${line};
-    ${textAlignCss};
   `
 }
-
-export const applyModalCancelBtn = css`
-  margin-right: 8px;
-`
 
 export const maskAnimation: Variants = {
   initial: {

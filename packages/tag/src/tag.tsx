@@ -5,9 +5,9 @@ import { CloseIcon } from "@illa-design/icon"
 import { omit } from "@illa-design/system"
 import {
   applyCloseIcon,
+  applyTagContainerStyle,
   colors,
   leftIcon,
-  tagContainer,
   tagContentStyle,
   tagFillNormal,
   tagFillPrepare,
@@ -19,6 +19,7 @@ import {
   tagSizeSmallStyle,
 } from "./style"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { Simulate } from "react-dom/test-utils"
 
 export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   const {
@@ -26,6 +27,7 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
     colorScheme = "gray",
     size = "medium",
     variant = "light",
+    clickable,
     closable,
     ...rest
   } = props
@@ -84,7 +86,7 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>((props, ref) => {
   }
 
   const finalStyle = css`
-    ${tagContainer};
+    ${applyTagContainerStyle(clickable)};
     ${variantCss};
     ${sizeCss};
   `
