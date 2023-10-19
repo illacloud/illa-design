@@ -151,8 +151,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -181,8 +181,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -587,8 +587,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -722,8 +722,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -881,8 +881,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -908,8 +908,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -948,8 +948,8 @@ importers:
         specifier: workspace:*
         version: link:../trigger
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -985,8 +985,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1488,8 +1488,8 @@ importers:
         specifier: workspace:*
         version: link:../trigger
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1563,8 +1563,8 @@ importers:
         specifier: ^1.11.7
         version: 1.11.9
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1705,8 +1705,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1716,6 +1716,13 @@ importers:
       react-use:
         specifier: ^17.4.0
         version: 17.4.0(react-dom@18.2.0)(react@18.2.0)
+      uuid:
+        specifier: ^8.3.2
+        version: 8.3.2
+    devDependencies:
+      '@types/uuid':
+        specifier: ^8.3.4
+        version: 8.3.4
 
   packages/tag:
     dependencies:
@@ -1836,8 +1843,8 @@ importers:
         specifier: ^11.11.1
         version: 11.11.1(@types/react@18.2.21)(react@18.2.0)
       '@floating-ui/react':
-        specifier: ^0.25.2
-        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.26.1
+        version: 0.26.1(react-dom@18.2.0)(react@18.2.0)
       '@illa-design/config-provider':
         specifier: workspace:*
         version: link:../config-provider
@@ -1851,8 +1858,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1914,8 +1921,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^7.6.12
-        version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3690,8 +3697,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@emotion/babel-plugin': 11.11.0
@@ -3723,9 +3728,6 @@ packages:
     resolution: {integrity: sha512-jT/qyKZ9rzLErtrjGgdkMBn2OP8wl0G3sQlBb3YPryvKHsjvINUhVaPFfP+fpBcOkmrVOVEEHQFJ7nbj2TH2gw==}
     peerDependencies:
       react: '>=16.8.0'
-    peerDependenciesMeta:
-      react:
-        optional: true
     dependencies:
       react: 18.2.0
 
@@ -4005,29 +4007,19 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@floating-ui/dom': 1.5.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  /@floating-ui/react@0.25.4(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-lWRQ/UiTvSIBxohn0/2HFHEmnmOVRjl7j6XcRJuLH0ls6f/9AyHMWVzkAJFuwx0n9gaEeCmg9VccCSCJzbEJig==}
+  /@floating-ui/react@0.26.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-5gyJIJ2tZOPMgmZ/vEcVhdmQiy75b7LPO71sYIiDsxGcZ4hxLuygQWCuT0YXHqppt//Eese+L6t5KnX/gZ3tVA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@floating-ui/react-dom': 2.0.2(react-dom@18.2.0)(react@18.2.0)
-      '@floating-ui/utils': 0.1.2
+      '@floating-ui/utils': 0.1.6
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tabbable: 6.2.0
@@ -4035,6 +4027,10 @@ packages:
 
   /@floating-ui/utils@0.1.2:
     resolution: {integrity: sha512-ou3elfqG/hZsbmF4bxeJhPHIf3G2pm0ujc39hYEZrfVqt7Vk/Zji6CXc3W0pmYM8BW1g40U+akTl9DKZhFhInQ==}
+
+  /@floating-ui/utils@0.1.6:
+    resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
+    dev: false
 
   /@humanwhocodes/config-array@0.11.11:
     resolution: {integrity: sha512-N2brEuAadi0CcdeMXUkhbZB84eskAc8MEX1By6qEchoVywSgXPIjou4rYsl0V3Hj0ZnuGycGCjdNgockbzeWNA==}
@@ -4208,61 +4204,11 @@ packages:
     resolution: {integrity: sha512-zQH//gdOmuu7nt2oJR29vFhDv88oGPmVw6BggmrHeMI+xgEkp1B2dX9/bMBSYtK0dyLX/aOmesKS09g222K1/g==}
     peerDependencies:
       react: '>=16'
-    peerDependenciesMeta:
-      react:
-        optional: true
     dependencies:
       '@types/mdx': 2.0.7
       '@types/react': 18.2.21
       react: 18.2.0
     dev: true
-
-  /@motionone/animation@10.15.1:
-    resolution: {integrity: sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==}
-    dependencies:
-      '@motionone/easing': 10.15.1
-      '@motionone/types': 10.15.1
-      '@motionone/utils': 10.15.1
-      tslib: 2.4.0
-    dev: false
-
-  /@motionone/dom@10.16.2:
-    resolution: {integrity: sha512-bnuHdNbge1FutZXv+k7xub9oPWcF0hsu8y1HTH/qg6av58YI0VufZ3ngfC7p2xhMJMnoh0LXFma2EGTgPeCkeg==}
-    dependencies:
-      '@motionone/animation': 10.15.1
-      '@motionone/generators': 10.15.1
-      '@motionone/types': 10.15.1
-      '@motionone/utils': 10.15.1
-      hey-listen: 1.0.8
-      tslib: 2.4.0
-    dev: false
-
-  /@motionone/easing@10.15.1:
-    resolution: {integrity: sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==}
-    dependencies:
-      '@motionone/utils': 10.15.1
-      tslib: 2.4.0
-    dev: false
-
-  /@motionone/generators@10.15.1:
-    resolution: {integrity: sha512-67HLsvHJbw6cIbLA/o+gsm7h+6D4Sn7AUrB/GPxvujse1cGZ38F5H7DzoH7PhX+sjvtDnt2IhFYF2Zp1QTMKWQ==}
-    dependencies:
-      '@motionone/types': 10.15.1
-      '@motionone/utils': 10.15.1
-      tslib: 2.4.0
-    dev: false
-
-  /@motionone/types@10.15.1:
-    resolution: {integrity: sha512-iIUd/EgUsRZGrvW0jqdst8st7zKTzS9EsKkP+6c6n4MPZoQHwiHuVtTQLD6Kp0bsBLhNzKIBlHXponn/SDT4hA==}
-    dev: false
-
-  /@motionone/utils@10.15.1:
-    resolution: {integrity: sha512-p0YncgU+iklvYr/Dq4NobTRdAPv9PveRDUXabPEeOjBLSO/1FNB2phNTZxOxpi1/GZwYpAoECEa0Wam+nsmhSw==}
-    dependencies:
-      '@motionone/types': 10.15.1
-      hey-listen: 1.0.8
-      tslib: 2.4.0
-    dev: false
 
   /@ndelangen/get-tarball@3.0.9:
     resolution: {integrity: sha512-9JKTEik4vq+yGosHYhZ1tiH/3WpUS0Nh0kej4Agndhox8pAdWhEx5knFVRcb/ya9knCRCs1rPxNrSXTDdfVqpA==}
@@ -4324,10 +4270,6 @@ packages:
         optional: true
       '@types/react-dom':
         optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
@@ -4349,10 +4291,6 @@ packages:
         optional: true
       '@types/react-dom':
         optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.21)(react@18.2.0)
@@ -4373,8 +4311,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@types/react': 18.2.21
@@ -4389,8 +4325,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@types/react': 18.2.21
@@ -4404,8 +4338,6 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
     peerDependenciesMeta:
       '@types/react':
-        optional: true
-      react:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4424,10 +4356,6 @@ packages:
       '@types/react':
         optional: true
       '@types/react-dom':
-        optional: true
-      react:
-        optional: true
-      react-dom:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4450,8 +4378,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@types/react': 18.2.21
@@ -4469,10 +4395,6 @@ packages:
       '@types/react':
         optional: true
       '@types/react-dom':
-        optional: true
-      react:
-        optional: true
-      react-dom:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4493,8 +4415,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.2.21)(react@18.2.0)
@@ -4513,10 +4433,6 @@ packages:
       '@types/react':
         optional: true
       '@types/react-dom':
-        optional: true
-      react:
-        optional: true
-      react-dom:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4548,10 +4464,6 @@ packages:
         optional: true
       '@types/react-dom':
         optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
@@ -4573,10 +4485,6 @@ packages:
         optional: true
       '@types/react-dom':
         optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@radix-ui/react-slot': 1.0.2(@types/react@18.2.21)(react@18.2.0)
@@ -4597,10 +4505,6 @@ packages:
       '@types/react':
         optional: true
       '@types/react-dom':
-        optional: true
-      react:
-        optional: true
-      react-dom:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4630,10 +4534,6 @@ packages:
       '@types/react':
         optional: true
       '@types/react-dom':
-        optional: true
-      react:
-        optional: true
-      react-dom:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4676,10 +4576,6 @@ packages:
         optional: true
       '@types/react-dom':
         optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
@@ -4696,8 +4592,6 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
     peerDependenciesMeta:
       '@types/react':
-        optional: true
-      react:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4717,10 +4611,6 @@ packages:
       '@types/react':
         optional: true
       '@types/react-dom':
-        optional: true
-      react:
-        optional: true
-      react-dom:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4749,10 +4639,6 @@ packages:
         optional: true
       '@types/react-dom':
         optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@radix-ui/primitive': 1.0.1
@@ -4775,10 +4661,6 @@ packages:
       '@types/react':
         optional: true
       '@types/react-dom':
-        optional: true
-      react:
-        optional: true
-      react-dom:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4803,8 +4685,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@types/react': 18.2.21
@@ -4818,8 +4698,6 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
     peerDependenciesMeta:
       '@types/react':
-        optional: true
-      react:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4836,8 +4714,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.21)(react@18.2.0)
@@ -4853,8 +4729,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@types/react': 18.2.21
@@ -4868,8 +4742,6 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
     peerDependenciesMeta:
       '@types/react':
-        optional: true
-      react:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4885,8 +4757,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@radix-ui/rect': 1.0.1
@@ -4901,8 +4771,6 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
     peerDependenciesMeta:
       '@types/react':
-        optional: true
-      react:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -4922,10 +4790,6 @@ packages:
       '@types/react':
         optional: true
       '@types/react-dom':
-        optional: true
-      react:
-        optional: true
-      react-dom:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.15
@@ -5116,11 +4980,6 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@jest/transform': 29.7.0
       '@mdx-js/react': 2.3.0(react@18.2.0)
@@ -5155,11 +5014,6 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@storybook/addon-actions': 7.4.1(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/addon-backgrounds': 7.4.1(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
@@ -5397,11 +5251,6 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@storybook/channels': 7.4.1
       '@storybook/client-logger': 7.4.1
@@ -5595,11 +5444,6 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@radix-ui/react-select': 1.2.2(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-toolbar': 1.0.4(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
@@ -5772,11 +5616,6 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@storybook/channels': 7.4.1
       '@storybook/client-logger': 7.4.1
@@ -5841,11 +5680,6 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -5858,11 +5692,6 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
       vite: ^3.0.0 || ^4.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@joshwooding/vite-plugin-react-docgen-typescript': 0.2.1(typescript@5.2.2)(vite@4.4.9)
       '@rollup/pluginutils': 5.0.4
@@ -5892,10 +5721,6 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
       typescript: '*'
     peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
       typescript:
         optional: true
     dependencies:
@@ -5933,11 +5758,6 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@storybook/client-logger': 7.4.1
       memoizerific: 1.11.3
@@ -5967,11 +5787,6 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@storybook/client-logger': 7.4.1
@@ -6121,11 +5936,6 @@ packages:
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@tanstack/table-core': 8.9.8
       react: 18.2.0
@@ -9213,8 +9023,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /framer-motion@7.10.3(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-k2ccYeZNSpPg//HTaqrU+4pRq9f9ZpaaN7rr0+Rx5zA4wZLbk547wtDzge2db1sB+1mnJ6r59P4xb+aEIi/W+w==}
+  /framer-motion@10.16.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-p9V9nGomS3m6/CALXqv6nFGMuFOxbWsmaOrdmhyQimMIlLl3LC7h7l86wge/Js/8cRu5ktutS/zlzgR7eBOtFA==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -9224,11 +9034,9 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@motionone/dom': 10.16.2
-      hey-listen: 1.0.8
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      tslib: 2.4.0
+      tslib: 2.6.2
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
     dev: false
@@ -9625,10 +9433,6 @@ packages:
       capital-case: 1.0.4
       tslib: 2.6.2
     dev: true
-
-  /hey-listen@1.0.8:
-    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
-    dev: false
 
   /hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
@@ -10796,9 +10600,6 @@ packages:
     engines: {node: '>= 10'}
     peerDependencies:
       react: '>= 0.14.0'
-    peerDependenciesMeta:
-      react:
-        optional: true
     dependencies:
       react: 18.2.0
     dev: true
@@ -11055,11 +10856,6 @@ packages:
     peerDependencies:
       react: '*'
       react-dom: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       css-tree: 1.1.3
       csstype: 3.1.2
@@ -11961,11 +11757,6 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       classnames: 2.3.2
@@ -11980,11 +11771,6 @@ packages:
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       react: 18.2.0
@@ -11998,11 +11784,6 @@ packages:
     peerDependencies:
       react: '*'
       react-dom: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       classnames: 2.3.2
@@ -12026,9 +11807,6 @@ packages:
     resolution: {integrity: sha512-XGGGRQAKY+q25Lz9a/4EPqom7WRjz3z9R2k4jhVKA/puQFH/5Nt27vFZYql4m4NVNdUvX8PS3O7r/Zzm7cjUlg==}
     peerDependencies:
       react: ^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       react: 18.2.0
@@ -12039,11 +11817,6 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -12080,9 +11853,6 @@ packages:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
       react: ^18.2.0
-    peerDependenciesMeta:
-      react:
-        optional: true
     dependencies:
       loose-envify: 1.4.0
       react: 18.2.0
@@ -12093,11 +11863,6 @@ packages:
     peerDependencies:
       react: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0
       react-dom: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@base2/pretty-print-object': 1.0.1
       is-plain-object: 5.0.0
@@ -12118,8 +11883,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       '@types/react': 18.2.21
@@ -12136,11 +11899,6 @@ packages:
     peerDependencies:
       react: '>=16.8.1'
       react-dom: '>=16.8.1'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -12150,9 +11908,6 @@ packages:
     resolution: {integrity: sha512-V+4khzYcE5EBk/BvcuYRq6V/osf11ODUM2J8hg2FDSswRrGvqiYUYPRy4OdrWaQOBj4NcpJfmHZLNaD+VH0TyA==}
     peerDependencies:
       react: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
     dependencies:
       react: 18.2.0
     dev: false
@@ -12161,9 +11916,6 @@ packages:
     resolution: {integrity: sha512-x+b7LxhmHXjHoU/VrFAzw5iutsILRoYyDq97EDYdFpPLcvqtEzk4ZSZSQjnFPbr5T57tLXnHcqFYoN1pI6u8uQ==}
     peerDependencies:
       react: ^16.8.4 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
     dependencies:
       react: 18.2.0
     dev: true
@@ -12194,8 +11946,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@types/react': 18.2.21
       react: 18.2.0
@@ -12210,8 +11960,6 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     peerDependenciesMeta:
       '@types/react':
-        optional: true
-      react:
         optional: true
     dependencies:
       '@types/react': 18.2.21
@@ -12232,8 +11980,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@types/react': 18.2.21
       react: 18.2.0
@@ -12249,11 +11995,6 @@ packages:
     peerDependencies:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       lodash: 4.17.21
       react: 18.2.0
@@ -12269,8 +12010,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@types/react': 18.2.21
       get-nonce: 1.0.1
@@ -12283,11 +12022,6 @@ packages:
     peerDependencies:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.15
       dom-helpers: 5.2.1
@@ -12302,9 +12036,6 @@ packages:
     peerDependencies:
       react: '*'
       tslib: '*'
-    peerDependenciesMeta:
-      react:
-        optional: true
     dependencies:
       react: 18.2.0
       tslib: 2.6.2
@@ -12315,11 +12046,6 @@ packages:
     peerDependencies:
       react: '>=16.13'
       react-dom: '>=16.13'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       debounce: 1.2.1
       react: 18.2.0
@@ -12331,11 +12057,6 @@ packages:
     peerDependencies:
       react: ^16.8.0  || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0  || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@types/js-cookie': 2.2.7
       '@xobotyi/scrollbar-width': 1.9.5
@@ -13568,10 +13289,6 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tslib@2.4.0:
-    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-    dev: false
-
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
@@ -13919,8 +13636,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@types/react': 18.2.21
       react: 18.2.0
@@ -13931,11 +13646,6 @@ packages:
     peerDependencies:
       react: 16.8.0 - 18
       react-dom: 16.8.0 - 18
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
     dependencies:
       '@juggle/resize-observer': 3.4.0
       react: 18.2.0
@@ -13950,8 +13660,6 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     peerDependenciesMeta:
       '@types/react':
-        optional: true
-      react:
         optional: true
     dependencies:
       '@types/react': 18.2.21
