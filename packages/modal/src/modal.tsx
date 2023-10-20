@@ -215,6 +215,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
                     )}
                     {
                       <Button
+                        type="button"
                         loading={okLoading}
                         size="medium"
                         onClick={onOk}
