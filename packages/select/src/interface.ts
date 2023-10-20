@@ -34,7 +34,13 @@ export type SelectValue =
 export interface SelectProps<T extends SelectValue = SelectValue>
   extends Omit<
       HTMLAttributes<HTMLDivElement>,
-      "defaultValue" | "onChange" | "prefix" | "onFocus" | "onBlur" | "onSelect"
+      | "defaultValue"
+      | "onChange"
+      | "prefix"
+      | "onFocus"
+      | "onBlur"
+      | "onSelect"
+      | "children"
     >,
     BoxProps {
   autoAlignPopupWidth?: boolean
