@@ -1,9 +1,5 @@
 import {
-  Children,
-  cloneElement,
   forwardRef,
-  PropsWithChildren,
-  ReactElement,
   ReactNode,
   useCallback,
   useEffect,
@@ -11,12 +7,7 @@ import {
   useRef,
   useState,
 } from "react"
-import {
-  OptionProps,
-  SelectOptionObject,
-  SelectProps,
-  SelectValue,
-} from "./interface"
+import { SelectOptionObject, SelectProps, SelectValue } from "./interface"
 import { Input } from "@illa-design/input"
 import { Dropdown, DropList, DropListItem } from "@illa-design/dropdown"
 import { useMergeValue } from "@illa-design/system"
@@ -43,7 +34,6 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
       loading,
       dropdownProps,
       addBefore,
-      children,
       prefix,
       defaultValue,
       options,
@@ -90,15 +80,7 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
           dV = undefined
         } else {
           if (options === undefined) {
-            Children.forEach(children, (child) => {
-              const item = child as ReactElement<PropsWithChildren<OptionProps>>
-              if (
-                item.props.isSelectOption !== false &&
-                item.props.value === dealValue
-              ) {
-                dV = item.props.children
-              }
-            })
+            dV = undefined
           } else {
             if (labelInValue) {
               dV = (options as SelectOptionObject[]).find(
@@ -126,7 +108,7 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
         }
         return dV
       },
-      [children, labelInValue, options],
+      [labelInValue, options],
     )
 
     const [finalValue, setFinalValue] = useMergeValue<
@@ -294,36 +276,21 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
               }
             }}
           >
-            {children === undefined || children === null
-              ? finalOptions?.map((option, i) => {
-                  return (
-                    <DropListItem
-                      key={option.value.toString()}
-                      value={option.value}
-                      css={dropListItemStyle}
-                      colorScheme={colorScheme}
-                      selected={option.value === finalSelectValue}
-                      disabled={option.disabled}
-                    >
-                      <span css={dropLabelStyle}>{option.label}</span>
-                    </DropListItem>
-                  )
-                })
-              : Children.map(children, (child) => {
-                  const item = child as ReactElement<
-                    PropsWithChildren<OptionProps>
-                  >
-                  if (item.props.isSelectOption === false) {
-                    return child
-                  }
-                  return cloneElement(item, {
-                    selected: item.props.value === finalSelectValue,
-                    colorScheme: colorScheme,
-                  })
-                })}
-            {(!finalOptions || finalOptions.length === 0) && !children && (
-              <Empty />
-            )}
+            {finalOptions?.map((option, i) => {
+              return (
+                <DropListItem
+                  key={option.value.toString()}
+                  value={option.value}
+                  css={dropListItemStyle}
+                  colorScheme={colorScheme}
+                  selected={option.value === finalSelectValue}
+                  disabled={option.disabled}
+                >
+                  <span css={dropLabelStyle}>{option.label}</span>
+                </DropListItem>
+              )
+            })}
+            {(!finalOptions || finalOptions.length === 0) && <Empty />}
           </DropList>
         }
         disabled={disabled || readOnly}
