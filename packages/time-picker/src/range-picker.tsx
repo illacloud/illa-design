@@ -47,6 +47,7 @@ export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
       format = "HH:mm:ss",
       scrollSticky = true,
       order = true,
+      readonly = false,
     } = props
 
     const suffixIcon = (icons && icons.inputSuffix) || <TimeIcon />
@@ -213,7 +214,7 @@ export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
         <Trigger
           trigger="click"
           position={position}
-          disabled={disabled}
+          disabled={disabled || readonly}
           popupVisible={mergedPopupVisible}
           onVisibleChange={onVisibleChange}
           colorScheme="white"
@@ -244,7 +245,7 @@ export const RangePicker = forwardRef<HTMLDivElement, RangePickerProps>(
               onPressEnter={onPressEnter}
               onClear={onClear}
               suffixIcon={suffixIcon}
-              editable={editable}
+              editable={editable || !readonly}
               allowClear={allowClear}
               ref={refInput}
               placeholder={placeholder}

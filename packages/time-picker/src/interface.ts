@@ -31,6 +31,7 @@ export interface PublicTimePickerProps extends BoxProps {
   utcOffset?: number
   timezone?: string
   disabled?: boolean
+  readonly?: boolean
 }
 
 type BaseTimePickerProps = {
