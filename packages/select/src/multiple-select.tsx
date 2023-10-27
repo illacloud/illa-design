@@ -222,9 +222,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
               inputTagRef.current?.focus()
             }}
             onClickItem={(key) => {
-              const option = finalOptions.find(
-                (option) => String(option.value) === key,
-              )
+              const option = finalOptions.find((option) => option.value === key)
               if (option) {
                 if (labelInValue) {
                   let selectedValue = (finalValue as SelectOptionObject[]).find(
