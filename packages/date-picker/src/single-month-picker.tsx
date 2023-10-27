@@ -60,6 +60,7 @@ export const SingleMonthPicker = forwardRef<
     colorScheme = "blue",
     inputSuffix,
     onOk,
+    readonly = false,
   } = props
 
   const refInput = useRef<HTMLInputElement>(null)
@@ -345,7 +346,7 @@ export const SingleMonthPicker = forwardRef<
         }
         trigger="click"
         position={position}
-        disabled={disabled}
+        disabled={disabled || readonly}
         onVisibleChange={visibleChange}
         popupVisible={mergedPopupVisible}
         colorScheme="white"
@@ -370,7 +371,7 @@ export const SingleMonthPicker = forwardRef<
             onPressEnter={onPressEnter}
             onClear={onClear}
             allowClear={allowClear}
-            editable={editable}
+            editable={editable || !readonly}
             suffixIcon={suffixIcon}
           />
         </div>
