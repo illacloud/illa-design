@@ -14,9 +14,8 @@ export const CopyIcon = createIcon({
         stroke="currentColor"
       />
       <path
-        d="M5.5 3.5H11.5C12.0523 3.5 12.5 3.94772 12.5 4.5V10.5"
+        d="M6 3.5H10.5C11.6046 3.5 12.5 4.39543 12.5 5.5V10"
         stroke="currentColor"
-        strokeLinecap="round"
       />
     </>
   ),
