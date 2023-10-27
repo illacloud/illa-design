@@ -2,7 +2,7 @@ import { createIcon } from "../create-icon"
 
 export const DocsIcon = createIcon({
   title: "DocsIcon",
-  viewBox: "0 0 12 12",
+  viewBox: "0 0 16 16",
   path: (
     <path
       fillRule="evenodd"
