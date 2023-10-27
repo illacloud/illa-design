@@ -38,12 +38,12 @@ export function applyLinkContainer(
     transition: background-color 200ms ease-in-out;
     vertical-align: middle;
     border-radius: 4px;
-    display: inline-flex;
-    align-items: center;
-    flex-direction: row;
     padding: 1px 4px;
     font-size: 14px;
     line-height: 22px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     ${hoverCss};
   `
 }

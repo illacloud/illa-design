@@ -240,9 +240,7 @@ export const SingleSelect = forwardRef<HTMLInputElement, SelectProps>(
           <DropList
             maxH="264px"
             onClickItem={(key, children) => {
-              const option = finalOptions.find(
-                (option) => String(option.value) === key,
-              )
+              const option = finalOptions.find((option) => option.value === key)
               if (option !== undefined) {
                 if (labelInValue) {
                   if (value === undefined) {
