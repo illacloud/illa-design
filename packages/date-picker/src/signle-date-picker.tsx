@@ -64,6 +64,7 @@ export const SingleDatePicker = forwardRef<
     showTime,
     showNowBtn = true,
     onOk,
+    readonly = false,
   } = props
 
   const refInput = useRef<HTMLInputElement>(null)
@@ -438,7 +439,7 @@ export const SingleDatePicker = forwardRef<
         }
         trigger="click"
         position={position}
-        disabled={disabled}
+        disabled={disabled || readonly}
         onVisibleChange={visibleChange}
         popupVisible={mergedPopupVisible}
         colorScheme="white"
@@ -463,7 +464,7 @@ export const SingleDatePicker = forwardRef<
             onPressEnter={onPressEnter}
             onClear={onClear}
             allowClear={allowClear}
-            editable={editable}
+            editable={editable || !readonly}
             suffixIcon={suffixIcon}
           />
         </div>
