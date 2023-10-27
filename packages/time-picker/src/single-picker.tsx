@@ -46,6 +46,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
       timezone,
       format = "HH:mm:ss",
       scrollSticky = true,
+      readonly = false,
     } = props
 
     const suffixIcon = (icons && icons.inputSuffix) || <TimeIcon />
@@ -187,7 +188,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
         <Trigger
           trigger="click"
           position={position}
-          disabled={disabled}
+          disabled={disabled || readonly}
           popupVisible={mergedPopupVisible}
           onVisibleChange={onVisibleChange}
           colorScheme="white"
@@ -216,7 +217,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
               onPressEnter={onPressEnter}
               onClear={onClear}
               suffixIcon={suffixIcon}
-              editable={editable}
+              editable={editable || !readonly}
               allowClear={allowClear}
               ref={refInput}
               placeholder={placeholder as string}
