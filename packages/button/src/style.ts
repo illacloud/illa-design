@@ -590,6 +590,9 @@ export function applyFontStyle(size: ButtonSize): SerializedStyles {
         font-style: normal;
         line-height: 20px;
         letter-spacing: normal;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       `
     case "medium":
     case "large":
@@ -600,6 +603,9 @@ export function applyFontStyle(size: ButtonSize): SerializedStyles {
         font-style: normal;
         line-height: 22px;
         letter-spacing: normal;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       `
   }
 }
