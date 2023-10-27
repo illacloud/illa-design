@@ -113,5 +113,6 @@ export function applyTextStyle(
     margin-left: 16px;
     margin-right: 16px;
     font-size: ${fs};
+    white-space: nowrap;
   `
 }
