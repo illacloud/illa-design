@@ -74,6 +74,7 @@ export const RangeDatePicker = forwardRef<HTMLDivElement, RangeDatePickerProps>(
       size = "medium",
       colorScheme = "blue",
       extra,
+      readonly = false,
     } = props
 
     const weekStart = 0
@@ -764,7 +765,7 @@ export const RangeDatePicker = forwardRef<HTMLDivElement, RangeDatePickerProps>(
           }
           trigger="click"
           position={position}
-          disabled={triggerDisabled}
+          disabled={triggerDisabled || readonly}
           onVisibleChange={visibleChange}
           popupVisible={mergedPopupVisible}
           colorScheme="white"
@@ -793,7 +794,7 @@ export const RangeDatePicker = forwardRef<HTMLDivElement, RangeDatePickerProps>(
               onPressEnter={onPressEnter}
               onClear={onClear}
               allowClear={allowClear}
-              editable={editable}
+              editable={editable || !readonly}
               suffixIcon={suffixIcon}
             />
           </div>

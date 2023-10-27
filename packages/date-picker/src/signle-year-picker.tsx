@@ -55,6 +55,7 @@ export const SingleYearPicker = forwardRef<
     size = "medium",
     colorScheme = "blue",
     inputSuffix,
+    readonly = false,
   } = props
 
   const refInput = useRef<HTMLInputElement>(null)
@@ -295,7 +296,7 @@ export const SingleYearPicker = forwardRef<
         }
         trigger="click"
         position={position}
-        disabled={disabled}
+        disabled={disabled || readonly}
         onVisibleChange={visibleChange}
         popupVisible={mergedPopupVisible}
         colorScheme="white"
@@ -320,7 +321,7 @@ export const SingleYearPicker = forwardRef<
             onPressEnter={onPressEnter}
             onClear={onClear}
             allowClear={allowClear}
-            editable={editable}
+            editable={editable || !readonly}
             suffixIcon={suffixIcon}
           />
         </div>
