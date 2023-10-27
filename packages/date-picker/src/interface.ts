@@ -62,6 +62,7 @@ export interface PublicDatePickerProps extends BoxProps {
   utcOffset?: number
   timezone?: string
   inputSuffix?: ReactNode
+  readonly?: boolean
 }
 
 export interface SinglePickerProps extends PublicDatePickerProps {
