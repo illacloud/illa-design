@@ -20,7 +20,6 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
       defaultPopupVisible,
       defaultFilterOption,
       popupVisible,
-      children,
       addAfter,
       disabled,
       error,
