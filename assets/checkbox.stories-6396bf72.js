@@ -1,4 +1,0 @@
-import{a as i}from"./emotion-react-jsx-runtime.browser.esm-1facf72c.js";import{C as s}from"./checkbox-93d4b1ac.js";import"./index-1cdf6ce0.js";import"./emotion-use-insertion-effect-with-fallbacks.browser.esm-d9790902.js";import"./style-3ea54b04.js";import"./color-palette-728b424e.js";import"./index-45a08ae3.js";import"./reduce-2a80ac7e.js";import"./create-icon-907f0980.js";import"./success-eaf0bf13.js";import"./use-merge-value-fcf53e13.js";import"./is-47f46886.js";import"./use-previous-5c929b6e.js";const L={title:"DATA INPUT/Checkbox",component:s},r=m=>i(s,{...m,children:"ILLA"});var o,t,e;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`args => {
-  return <Checkbox {...args}>ILLA</Checkbox>;
-}`,...(e=(t=r.parameters)==null?void 0:t.docs)==null?void 0:e.source}}};const f=["Basic"];export{r as Basic,f as __namedExportsOrder,L as default};
-//# sourceMappingURL=checkbox.stories-6396bf72.js.map
