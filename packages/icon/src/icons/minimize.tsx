@@ -21,4 +21,4 @@ export const MinimizeIcon = createIcon({
   ),
 })
 
-MinimizeIcon.displayName = "AddIcon"
+MinimizeIcon.displayName = "MinimizeIcon"
