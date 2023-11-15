@@ -45,6 +45,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       current,
       defaultCurrent,
       pageSize,
+      pageSizeOptions,
       defaultPageSize,
       total = 0,
       itemRender,
@@ -398,39 +399,49 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       totalPageSize,
     ])
 
+    const finalPageSizeOptions = useMemo(() => {
+      if (!pageSizeOptions || pageSizeOptions.length === 0) {
+        return [
+          {
+            label: `10/${locale.page}`,
+            value: "10",
+          },
+          {
+            label: `20/${locale.page}`,
+            value: "20",
+          },
+          {
+            label: `30/${locale.page}`,
+            value: "30",
+          },
+          {
+            label: `40/${locale.page}`,
+            value: "40",
+          },
+          {
+            label: `50/${locale.page}`,
+            value: "50",
+          },
+        ]
+      } else {
+        return pageSizeOptions.map((v) => {
+          return {
+            label: `${v}/${locale.page}`,
+            value: v.toString(),
+          }
+        })
+      }
+    }, [locale.page, pageSizeOptions])
     const pageSizeComponent = useMemo(() => {
+      console.log("locale", locale, finalPageSize)
       return (
         <>
-          {sizeCanChange && (
+          {!!sizeCanChange && (
             <Select
-              options={[
-                {
-                  label: `10/${locale.page}`,
-                  value: "10",
-                },
-                {
-                  label: `20/${locale.page}`,
-                  value: "20",
-                },
-                {
-                  label: `30/${locale.page}`,
-                  value: "30",
-                },
-                {
-                  label: `40/${locale.page}`,
-                  value: "40",
-                },
-                {
-                  label: `50/${locale.page}`,
-                  value: "50",
-                },
-              ]}
+              options={finalPageSizeOptions}
               disabled={disabled}
               ml="8px"
-              defaultValue={{
-                label: finalPageSize + "/" + locale.page,
-                value: finalPageSize.toString(),
-              }}
+              defaultValue={finalPageSizeOptions[0].toString()}
               colorScheme={inputBorderColorScheme}
               onChange={(value) => {
                 if (value !== null) {
@@ -456,8 +467,9 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       disabled,
       finalCurrent,
       finalPageSize,
+      finalPageSizeOptions,
       inputBorderColorScheme,
-      locale.page,
+      locale,
       onPageSizeChange,
       pageSize,
       pageSizeChangeResetCurrent,
