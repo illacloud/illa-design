@@ -83,7 +83,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     const totalPageSize = Math.ceil(total / finalPageSize)
 
     const changeCurrent = useCallback(
-      (toCurrent: number): number => {
+      (toCurrent: number, pageSize?: number): number => {
         let toC = toCurrent
         if (toCurrent < 1) {
           toC = 1
@@ -96,7 +96,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
         if (current === undefined) {
           setFinalCurrent(toC)
         }
-        onChange?.(toC, finalPageSize)
+        onChange?.(toC, pageSize ?? finalPageSize)
         return toC
       },
       [current, finalPageSize, onChange, setFinalCurrent, total, totalPageSize],
@@ -432,8 +432,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
         })
       }
     }, [locale.page, pageSizeOptions])
+
     const pageSizeComponent = useMemo(() => {
-      console.log("locale", locale, finalPageSize)
       return (
         <>
           {!!sizeCanChange && (
@@ -441,7 +441,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
               options={finalPageSizeOptions}
               disabled={disabled}
               ml="8px"
-              defaultValue={finalPageSizeOptions[0].toString()}
+              defaultValue={finalPageSizeOptions[0].value.toString()}
               colorScheme={inputBorderColorScheme}
               onChange={(value) => {
                 if (value !== null) {
@@ -452,10 +452,8 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
                       : 0
                     : Math.ceil((finalCurrent * finalPageSize) / v)
                   onPageSizeChange?.(v, newCurrent)
-                  changeCurrent(newCurrent)
-                  if (pageSize === undefined) {
-                    setFinalPageSize(v)
-                  }
+                  changeCurrent(newCurrent, v)
+                  setFinalPageSize(v)
                 }
               }}
             />
@@ -469,9 +467,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       finalPageSize,
       finalPageSizeOptions,
       inputBorderColorScheme,
-      locale,
       onPageSizeChange,
-      pageSize,
       pageSizeChangeResetCurrent,
       setFinalPageSize,
       sizeCanChange,
