@@ -1,6 +1,5 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { BoxProps } from "@illa-design/theme"
-import { SelectProps } from "@illa-design/select"
 
 export type PaginationSize = "small" | "medium" | "large"
 export type PaginationItemType = "page" | "more" | "prev" | "next"
@@ -20,6 +19,7 @@ export interface PaginationProps
   current?: number
   defaultCurrent?: number
   pageSize?: number
+  pageSizeOptions?: string[] | number[]
   defaultPageSize?: number
   total?: number
   itemRender?: (
