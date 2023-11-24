@@ -246,7 +246,7 @@ export const TimePickerPopup: FC<TimePickerPopupProps> = (props) => {
     return undefined
   }, [disabledSeconds, selectedHour, selectedMinute])
 
-  const { list } = getColumnsFromFormat("HH:mm:ss")
+  const { list } = getColumnsFromFormat(format)
   const _hideFooter =
     hideFooter ||
     (disableConfirm && isRangePicker) ||
