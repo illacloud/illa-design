@@ -1,4 +1,0 @@
-import{a}from"./emotion-react-jsx-runtime.browser.esm-1facf72c.js";import{B as m}from"./index.esm-52d37734.js";import{b as e}from"./radio-44545117.js";import"./index-1cdf6ce0.js";import"./emotion-use-insertion-effect-with-fallbacks.browser.esm-d9790902.js";import"./iconBase-4112cc44.js";import"./style-3ea54b04.js";import"./color-palette-728b424e.js";import"./index-45a08ae3.js";import"./use-merge-value-fcf53e13.js";import"./is-47f46886.js";import"./use-previous-5c929b6e.js";const k={title:"DATA INPUT/Radio",component:e},p=s=>a(e,{...s,children:"ILLA"}),o=p.bind({icon:a(m,{})});var r,t,i;o.parameters={...o.parameters,docs:{...(r=o.parameters)==null?void 0:r.docs,source:{originalSource:`Template.bind({
-  icon: <BsFacebook />
-})`,...(i=(t=o.parameters)==null?void 0:t.docs)==null?void 0:i.source}}};const F=["Basic"];export{o as Basic,F as __namedExportsOrder,k as default};
-//# sourceMappingURL=radio.stories-ed7c6aac.js.map
