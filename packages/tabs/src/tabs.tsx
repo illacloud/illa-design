@@ -61,9 +61,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     return getTabItems(children as ReactElement)
   }, [children])
 
-  const [curTabItems, setCurTabItems] = useState<ReactElement[]>(
-    [...tabItems] ?? [],
-  )
+  const [curTabItems, setCurTabItems] = useState<ReactElement[]>(tabItems)
   const firstTabKey = useMemo(() => {
     return curTabItems[0]?.key?.toString()
   }, [curTabItems])
