@@ -36,7 +36,7 @@ export function applyRadioSize(
     }
 
     &:checked {
-      border: 4px solid ${getColor(colorScheme, "03")};
+      border: 4px solid ${getColor(colorScheme, "01")};
 
       &:hover {
         border-color: ${getColor(colorScheme, "02")};
