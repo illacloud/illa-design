@@ -10,7 +10,7 @@ export function applyCheckboxSize(
   if (checked) {
     checkedCss = css`
       border-color: transparent;
-      background-color: ${getColor(colorScheme, "01")};
+      background-color: ${getColor(colorScheme, "03")};
 
       &:hover {
         background-color: ${getColor(colorScheme, "02")};
