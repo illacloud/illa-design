@@ -55,7 +55,7 @@ export function getDifferentStatusColor(
           if (colorScheme === "white") {
             return [getColor("white", "01"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "03"), getColor("white", "01")]
+            return [getColor(colorScheme, "01"), getColor("white", "01")]
           } else {
             return [getColor(colorScheme, "09"), getColor(colorScheme, "02")]
           }
@@ -71,7 +71,7 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "01"), getColor("white", "01")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "03"), getColor(colorScheme, "01")]
+            return [getColor(colorScheme, "01"), getColor(colorScheme, "01")]
           } else {
             return [getColor(colorScheme, "08"), getColor(colorScheme, "02")]
           }
