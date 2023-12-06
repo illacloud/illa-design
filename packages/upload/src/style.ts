@@ -243,9 +243,9 @@ export const getPictureCardContainerStyle = (disabled: boolean) => {
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     }
     &:active {
-      background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+      background-color: ${globalColor(`--${illaPrefix}-blue-08`)};
       & svg {
-        color: ${globalColor(`--${illaPrefix}-blue-01`)};
+        color: ${globalColor(`--${illaPrefix}-blue-03`)};
       }
     }
   `
@@ -301,9 +301,9 @@ export const getDragContainerStyle = (disabled: boolean) => {
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     }
     &:active {
-      background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+      background-color: ${globalColor(`--${illaPrefix}-blue-08`)};
       & svg {
-        color: ${globalColor(`--${illaPrefix}-blue-01`)};
+        color: ${globalColor(`--${illaPrefix}-blue-03`)};
       }
     }
   `
@@ -385,7 +385,7 @@ export const uploadProgressFailStyle = css`
   flex: 1;
   ${overflowEllipsisCommonStyle};
   cursor: pointer;
-  color: ${globalColor(`--${illaPrefix}-blue-01`)};
+  color: ${globalColor(`--${illaPrefix}-blue-03`)};
 `
 
 export const pictureItemUploading = css`

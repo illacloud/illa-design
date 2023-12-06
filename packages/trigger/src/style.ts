@@ -27,7 +27,7 @@ export function applyTipsText(
   const bgColor =
     colorScheme == "white"
       ? getColor(colorScheme, "01")
-      : getColor(colorScheme, "02")
+      : getColor(colorScheme, "03")
   const textColor =
     colorScheme == "white"
       ? globalColor(`--${illaPrefix}-grayBlue-02`)
@@ -43,7 +43,7 @@ export function applyTipsText(
   }
 
   let shadow = css`
-    box-shadow: ${getColorShadow("white" ? "blackAlpha" : colorScheme, "01")};
+    box-shadow: ${getColorShadow("white" ? "blackAlpha" : colorScheme, "03")};
   `
   if (withoutShadow) {
     shadow = css``
@@ -74,7 +74,7 @@ export function applyTriangleStyle(
   colorScheme: TriggerColorScheme,
   position: TriggerPosition,
 ): SerializedStyles {
-  const bgColor = getColor(colorScheme, "02")
+  const bgColor = getColor(colorScheme, "03")
   const mainStyle = css`
     color: ${bgColor};
   `

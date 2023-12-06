@@ -119,20 +119,20 @@ export function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {
     return css`
       border-radius: 12px;
       border: solid 1px ${globalColor(`--${illaPrefix}-${color}-08`)};
-      color: ${globalColor(`--${illaPrefix}-${color}-02`)};
+      color: ${globalColor(`--${illaPrefix}-${color}-03`)};
     `
   } else {
     return css`
       border-radius: 12px;
-      border: solid 1px ${globalColor(`--${illaPrefix}-${color}-01`)};
-      color: ${globalColor(`--${illaPrefix}-${color}-01`)};
+      border: solid 1px ${globalColor(`--${illaPrefix}-${color}-03`)};
+      color: ${globalColor(`--${illaPrefix}-${color}-03`)};
     `
   }
 }
 
 export function tagFillPrepare(color: TagColorScheme): SerializedStyles {
   return css`
-    background-color: ${globalColor(`--${illaPrefix}-${color}-01`)};
+    background-color: ${globalColor(`--${illaPrefix}-${color}-03`)};
     color: ${globalColor(`--${illaPrefix}-white-01`)};
     border-radius: 12px;
   `
@@ -148,8 +148,8 @@ export function tagLightPrepare(color: TagColorScheme): SerializedStyles {
   } else {
     return css`
       border-radius: 12px;
-      background-color: ${globalColor(`--${illaPrefix}-${color}-07`)};
-      color: ${globalColor(`--${illaPrefix}-${color}-01`)};
+      background-color: ${globalColor(`--${illaPrefix}-${color}-08`)};
+      color: ${globalColor(`--${illaPrefix}-${color}-03`)};
     `
   }
 }

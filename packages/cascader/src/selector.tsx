@@ -76,6 +76,7 @@ export const Selector = forwardRef<HTMLDivElement, SelectorProps>(
       value = [],
       options = [],
       onChange,
+      colorScheme,
       inputValue = "",
       filterOption,
       onClick,
@@ -167,6 +168,7 @@ export const Selector = forwardRef<HTMLDivElement, SelectorProps>(
                     <Checkbox
                       mr="8px"
                       checked={i.checked}
+                      colorScheme={colorScheme}
                       indeterminate={i.indeterminate}
                       onChange={(checked) => {
                         const currentPath = currentShowValue.splice(0, index)

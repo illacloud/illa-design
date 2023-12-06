@@ -127,7 +127,7 @@ export const FiltersEditor: FC<FiltersEditorProps> = (props) => {
           variant="text"
           onClick={onAdd}
           leftIcon={
-            <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />
+            <AddIcon color={globalColor(`--${illaPrefix}-techPurple-03`)} />
           }
         >
           New

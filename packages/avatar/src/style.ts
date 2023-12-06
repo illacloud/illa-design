@@ -32,7 +32,7 @@ export function applyBgColor(colorScheme: AvatarColorScheme): SerializedStyles {
       `
     } else {
       bgColor = css`
-        background-color: ${globalColor(`--${illaPrefix}-${colorScheme}-01`)};
+        background-color: ${globalColor(`--${illaPrefix}-${colorScheme}-03`)};
       `
     }
   } else {

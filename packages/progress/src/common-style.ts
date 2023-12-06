@@ -57,7 +57,7 @@ export function applyProgressContainerBg(
   if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
     color = getColor(trailColorScheme, "08")
   } else {
-    color = getColor(trailColorScheme, "06")
+    color = getColor(trailColorScheme, "07")
   }
 
   return css`

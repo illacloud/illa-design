@@ -54,10 +54,10 @@ export const applyLeftIcon = css`
 
 export function applyDisable(colorScheme: LinkColorScheme, disabled?: boolean) {
   const textColor = colorSchemes.includes(colorScheme)
-    ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
+    ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
     : colorScheme
   const finalColor = disabled
-    ? globalColor(`--${illaPrefix}-${colorScheme}-05`)
+    ? globalColor(`--${illaPrefix}-${colorScheme}-07`)
     : textColor
   const cursor = disabled ? "not-allowed" : "pointer"
   return css`

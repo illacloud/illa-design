@@ -99,7 +99,7 @@ export function applyInputTagContainerStyle(
       &:hover {
         border-color: ${error
           ? getColor("red", "02")
-          : getColor(colorScheme, "06")};
+          : getColor(colorScheme, "07")};
         z-index: ${zIndex.inputFocus};
 
         .clear {
@@ -110,7 +110,7 @@ export function applyInputTagContainerStyle(
       &:focus-within {
         border-color: ${getColor(error ? "red" : colorScheme, "03")};
         box-shadow: 0 0 8px 0
-          ${getColorShadow(error ? "red" : colorScheme, "01")};
+          ${getColorShadow(error ? "red" : colorScheme, "03")};
         z-index: ${zIndex.inputFocus};
       }
     `

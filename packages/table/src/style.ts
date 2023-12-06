@@ -145,10 +145,10 @@ export function applySelectedStyle(selected?: boolean): SerializedStyles {
   if (!selected) return css``
 
   return css`
-    background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+    background-color: ${globalColor(`--${illaPrefix}-blue-08`)};
 
     &:hover {
-      background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+      background-color: ${globalColor(`--${illaPrefix}-blue-08`)};
     }
   `
 }
