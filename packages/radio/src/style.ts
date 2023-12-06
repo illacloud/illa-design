@@ -26,7 +26,7 @@ export function applyRadioSize(
     transition: 0.15s all linear;
 
     &:hover {
-      border-color: ${getColor(colorScheme, "06")};
+      border-color: ${getColor(colorScheme, "07")};
     }
 
     &:disabled {
@@ -36,14 +36,14 @@ export function applyRadioSize(
     }
 
     &:checked {
-      border: 4px solid ${getColor(colorScheme, "01")};
+      border: 4px solid ${getColor(colorScheme, "03")};
 
       &:hover {
-        border-color: ${getColor(colorScheme, "02")};
+        border-color: ${getColor(colorScheme, "04")};
       }
 
       &:disabled {
-        border-color: ${getColor(colorScheme, "05")};
+        border-color: ${getColor(colorScheme, "07")};
       }
     }
   `
@@ -189,7 +189,7 @@ export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
 
   if (stateValue?.disabled && stateValue?.checked) {
     stateCss = css`
-      color: ${getColor(colorScheme, "06")};
+      color: ${getColor(colorScheme, "07")};
       cursor: not-allowed;
     `
   } else if (stateValue?.disabled) {

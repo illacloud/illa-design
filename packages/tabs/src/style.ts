@@ -312,7 +312,7 @@ export const titleStyle = (
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      color: ${tabsItemColorScheme ?? getColor(colorScheme ?? "blue", "02")};
+      color: ${tabsItemColorScheme ?? getColor(colorScheme ?? "blue", "03")};
       font-weight: 500;
       color: transparent;
     `
@@ -329,13 +329,13 @@ export const titleStyle = (
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         color: ${tabsItemActiveColorScheme ??
-        getColor(colorScheme ?? "blue", "02")};
+        getColor(colorScheme ?? "blue", "03")};
         font-weight: 500;
         color: transparent;
       `
     } else {
       itemCss = css`
-        color: ${getColor(colorScheme ?? "blue", "02")};
+        color: ${getColor(colorScheme ?? "blue", "03")};
         font-weight: 500;
       `
     }
@@ -398,7 +398,7 @@ export const lineStyle = (
     ${location};
     background: ${disabled
       ? getColor("grayBlue", "05")
-      : tabsItemColorScheme ?? getColor(colorScheme ?? "blue", "02")};
+      : tabsItemColorScheme ?? getColor(colorScheme ?? "blue", "03")};
   `
 }
 

@@ -162,13 +162,13 @@ export function applyHorizontalSubMenuIcon(
   onlyShowIcon?: boolean,
 ): SerializedStyles {
   return css`
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  justify-content: center;
-  margin-right: ${onlyShowIcon ? "0" : "8px"}};
-`
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: center;
+    margin-right: ${onlyShowIcon ? "0" : "8px"};
+  `
 }
 
 export const horizontalSubMenuLabel = css`

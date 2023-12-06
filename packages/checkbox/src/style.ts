@@ -10,14 +10,14 @@ export function applyCheckboxSize(
   if (checked) {
     checkedCss = css`
       border-color: transparent;
-      background-color: ${getColor(colorScheme, "01")};
+      background-color: ${getColor(colorScheme, "03")};
 
       &:hover {
-        background-color: ${getColor(colorScheme, "02")};
+        background-color: ${getColor(colorScheme, "04")};
       }
 
       &:disabled {
-        background-color: ${getColor(colorScheme, "06")};
+        background-color: ${getColor(colorScheme, "07")};
       }
     `
   }
@@ -33,7 +33,7 @@ export function applyCheckboxSize(
     transition: 0.15s all linear;
 
     &:hover {
-      border-color: ${getColor(colorScheme, "06")};
+      border-color: ${getColor(colorScheme, "07")};
     }
 
     &:disabled {

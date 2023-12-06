@@ -24,12 +24,12 @@ export const applyInputSizeStyle = (size: "small" | "medium" | "large") => {
 }
 
 export const inputErrorStyle = css`
-  background-color: ${getColor("red", "07")};
+  background-color: ${getColor("red", "08")};
   border: 1px solid ${getColor("red", "03")};
 
   &:hover {
-    border-color: ${getColor("red", "02")};
-    background-color: ${getColor("red", "06")};
+    border-color: ${getColor("red", "03")};
+    background-color: ${getColor("red", "07")};
   }
 `
 
@@ -203,7 +203,7 @@ export const suffixIconStyle = css`
 
 export const realInputActiveBGStyle = css`
   input {
-    background-color: ${getColor("blue", "07")};
+    background-color: ${getColor("blue", "08")};
   }
 `
 

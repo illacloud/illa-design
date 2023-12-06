@@ -3,10 +3,10 @@ import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import { AlertType } from "./interface"
 
 export const colorMap = {
-  info: `${globalColor(`--${illaPrefix}-blue-07`)}`,
-  success: `${globalColor(`--${illaPrefix}-green-07`)}`,
-  warning: `${globalColor(`--${illaPrefix}-orange-07`)}`,
-  error: `${globalColor(`--${illaPrefix}-red-07`)}`,
+  info: `${globalColor(`--${illaPrefix}-blue-08`)}`,
+  success: `${globalColor(`--${illaPrefix}-green-08`)}`,
+  warning: `${globalColor(`--${illaPrefix}-orange-08`)}`,
+  error: `${globalColor(`--${illaPrefix}-red-08`)}`,
 }
 
 export const iconColorMap = {

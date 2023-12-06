@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { MenuColorScheme } from "../interface"
-import { getColor } from "@illa-design/theme"
+import { getColor, hasNineStepColor } from "@illa-design/theme"
 
 export function applyVerticalListContainer(): SerializedStyles {
   return css`
@@ -27,14 +27,20 @@ export function applyVerticalSubMenuContentContainer(
         font-weight: 500;
 
         &:hover {
-          background-color: ${getColor(hoverColorScheme, "09")};
+          background-color: ${getColor(
+            hoverColorScheme,
+            hasNineStepColor(hoverColorScheme) ? "09" : "08",
+          )};
         }
       `
     : css`
         color: ${getColor("grayBlue", "02")};
 
         &:hover {
-          background-color: ${getColor(hoverColorScheme, "09")};
+          background-color: ${getColor(
+            hoverColorScheme,
+            hasNineStepColor(hoverColorScheme) ? "09" : "08",
+          )};
         }
       `
 
@@ -68,14 +74,20 @@ export function applyVerticalMenuItemContainer(
         font-weight: 500;
 
         &:hover {
-          background-color: ${getColor(hoverColorScheme, "09")};
+          background-color: ${getColor(
+            hoverColorScheme,
+            hasNineStepColor(hoverColorScheme) ? "09" : "08",
+          )};
         }
       `
     : css`
         color: ${getColor("grayBlue", "02")};
 
         &:hover {
-          background-color: ${getColor(hoverColorScheme, "09")};
+          background-color: ${getColor(
+            hoverColorScheme,
+            hasNineStepColor(hoverColorScheme) ? "09" : "08",
+          )};
         }
       `
 

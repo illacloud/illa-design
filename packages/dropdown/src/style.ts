@@ -1,5 +1,10 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getColor,
+  globalColor,
+  hasNineStepColor,
+  illaPrefix,
+} from "@illa-design/theme"
 import { TriggerColorScheme } from "@illa-design/trigger"
 
 export function applyListCss(): SerializedStyles {
@@ -20,13 +25,16 @@ export function applyItemCss(
   deleted?: boolean,
 ): SerializedStyles {
   const hoverCss = css`
-    color: ${deleted ? getColor("red", "01") : getColor("grayBlue", "02")};
+    color: ${deleted ? getColor("red", "03") : getColor("grayBlue", "02")};
 
     &:hover {
       cursor: pointer;
       background-color: ${deleted
         ? getColor("red", "07")
-        : getColor(hoverColorScheme, "09")};
+        : getColor(
+            hoverColorScheme,
+            hasNineStepColor(hoverColorScheme) ? "09" : "08",
+          )};
     }
   `
 
@@ -36,8 +44,8 @@ export function applyItemCss(
   `
 
   const selectedStyle = css`
-    color: ${getColor(colorScheme, "01")};
-    background: ${getColor(colorScheme, "07")};
+    color: ${getColor(colorScheme, "03")};
+    background: ${getColor(colorScheme, "08")};
   `
 
   let finalStyle

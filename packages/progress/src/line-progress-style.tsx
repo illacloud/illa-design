@@ -101,7 +101,7 @@ export function applyLineProgressBg(
   if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
   } else {
-    color = getColor(trailColorScheme, "06")
+    color = getColor(trailColorScheme, "07")
   }
   return css`
     position: absolute;
@@ -122,7 +122,7 @@ export function applyLineProgressBgStep(
   if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
     color = globalColor(`--${illaPrefix}-${trailColorScheme}-08`)
   } else {
-    color = getColor(trailColorScheme, "06")
+    color = getColor(trailColorScheme, "07")
   }
 
   return css`

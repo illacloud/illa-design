@@ -37,6 +37,6 @@ export function applyLoadingStyle(
   }
   return css`
     ${sizeCss};
-    color: ${getColor(colorScheme, "02")};
+    color: ${getColor(colorScheme, "03")};
   `
 }

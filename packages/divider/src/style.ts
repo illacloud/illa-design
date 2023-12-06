@@ -105,9 +105,9 @@ export function applyTextStyle(
   fs: string,
 ): SerializedStyles {
   const c =
-    globalColor(`--${illaPrefix}-${color}-02`) === ""
+    globalColor(`--${illaPrefix}-${color}-03`) === ""
       ? color
-      : globalColor(`--${illaPrefix}-${color}-02`)
+      : globalColor(`--${illaPrefix}-${color}-03`)
   return css`
     color: ${c};
     margin-left: 16px;

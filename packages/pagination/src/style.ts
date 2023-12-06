@@ -71,12 +71,12 @@ export function applyDirectorIconStyle(
 ): SerializedStyles {
   let textColor = css`
     color: ${active
-      ? getColor(activeColorScheme ?? "blue", "01")
+      ? getColor(activeColorScheme ?? "blue", "03")
       : getColor("grayBlue", "02")};
   `
   let bgColor = css`
     background-color: ${active
-      ? getColor(activeColorScheme ?? "blue", "07")
+      ? getColor(activeColorScheme ?? "blue", "08")
       : "unset"};
   `
 
@@ -175,9 +175,9 @@ export function applySelectorInputStyle(
       background: none;
       border: 1px solid
         ${inputBorderColorScheme
-          ? getColor(inputBorderColorScheme, "01")
-          : getColor("blue", "01")};
-      box-shadow: 0 0 8px 0 ${getColorShadow("blue", "01")};
+          ? getColor(inputBorderColorScheme, "03")
+          : getColor("blue", "03")};
+      box-shadow: 0 0 8px 0 ${getColorShadow("blue", "03")};
     }
 
     &:disabled {
