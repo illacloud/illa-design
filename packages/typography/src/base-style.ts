@@ -1,6 +1,10 @@
 import { TypographyColorScheme } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, handleSpecialColor, illaPrefix } from "@illa-design/theme"
+import {
+  globalColor,
+  getSpecialThemeColor,
+  illaPrefix,
+} from "@illa-design/theme"
 
 const colorSchemes = [
   "white",
@@ -30,7 +34,7 @@ export function applyFontColor(
   colorScheme: TypographyColorScheme,
 ): SerializedStyles {
   const color = colorSchemes.includes(colorScheme)
-    ? handleSpecialColor(colorScheme, "03")
+    ? getSpecialThemeColor(colorScheme)
     : colorScheme
   return css`
     color: ${color};
