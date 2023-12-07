@@ -15,7 +15,7 @@ export const SingleCascader = forwardRef<HTMLDivElement, CascaderProps>(
       size = "medium",
       allowClear,
       placeholder,
-      colorScheme,
+      colorScheme = "blue",
       defaultPopupVisible,
       popupVisible,
       disabled,
@@ -69,6 +69,7 @@ export const SingleCascader = forwardRef<HTMLDivElement, CascaderProps>(
       <Selector
         options={options}
         multiple={false}
+        colorScheme={colorScheme}
         value={[finalValue]}
         inputValue={finalInputValue}
         filterOption={filterOption}

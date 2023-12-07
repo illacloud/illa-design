@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor } from "@illa-design/theme"
+import { getColor, getSpecialThemeColor } from "@illa-design/theme"
 import { CalendarColorScheme } from "../interface"
 
 export const monthCardContainerStyle = css`
@@ -32,11 +32,13 @@ export function applyMonthBlockStyle(
     border-radius: 12px;
     width: 56px;
     height: 24px;
-    background-color: ${isSelected ? getColor(colorScheme, "03") : "unset"};
+    background-color: ${isSelected
+      ? getSpecialThemeColor(colorScheme)
+      : "unset"};
 
     &:hover {
       background-color: ${isSelected
-        ? getColor(colorScheme, "03")
+        ? getSpecialThemeColor(colorScheme)
         : getColor("grayBlue", "09")};
     }
   `

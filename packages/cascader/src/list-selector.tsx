@@ -23,6 +23,7 @@ export const ListSelector = forwardRef<HTMLDivElement, SelectorProps>(
       onChange,
       inputValue = "",
       filterOption,
+      colorScheme,
       onClick,
     } = props
 
@@ -94,6 +95,7 @@ export const ListSelector = forwardRef<HTMLDivElement, SelectorProps>(
             >
               {multiple && (
                 <Checkbox
+                  colorScheme={colorScheme}
                   mr="8px"
                   checked={item.checked}
                   onChange={(checked) => {

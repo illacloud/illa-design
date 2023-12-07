@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor } from "@illa-design/theme"
+import { getColor, getSpecialThemeColor } from "@illa-design/theme"
 import { CalendarColorScheme } from "../interface"
 
 export function applyYearBigCalendarContainerStyle(): SerializedStyles {
@@ -94,14 +94,16 @@ export function applyMonthBlockDayStyle(
     height: 32px;
     border-radius: 16px;
     box-sizing: border-box;
-    border: ${today ? `1px solid ${getColor(colorScheme, "03")}` : "unset"};
+    border: ${today
+      ? `1px solid ${getSpecialThemeColor(colorScheme)}`
+      : "unset"};
     color: ${isInThisMonth
       ? isSelected
         ? getColor("white", "01")
         : getColor("grayBlue", "02")
       : getColor("grayBlue", "06")};
     background-color: ${isSelected && isInThisMonth
-      ? getColor(colorScheme, "03")
+      ? getSpecialThemeColor(colorScheme)
       : "unset"};
     ${hoverStyle};
   `

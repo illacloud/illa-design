@@ -1,5 +1,5 @@
 import { css, SerializedStyles, keyframes } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { getSpecialThemeColor } from "@illa-design/theme"
 import { LoadingColorScheme, LoadingSize } from "./interface"
 
 export const spin = keyframes`
@@ -37,6 +37,6 @@ export function applyLoadingStyle(
   }
   return css`
     ${sizeCss};
-    color: ${getColor(colorScheme, "02")};
+    color: ${getSpecialThemeColor(colorScheme)};
   `
 }

@@ -1,5 +1,5 @@
 import { css, keyframes, SerializedStyles } from "@emotion/react"
-import { getColor } from "@illa-design/theme"
+import { getColor, getSpecialThemeColor } from "@illa-design/theme"
 import { SpinColorScheme, SpinSize } from "./interface"
 
 export function applyContainerStyle(block?: boolean): SerializedStyles {
@@ -17,7 +17,7 @@ export function applyTipsStyle(
     size: ${size === "small" ? "12px" : "14px"};
     margin-top: 8px;
     line-height: 22px;
-    color: ${getColor(colorScheme, "03")};
+    color: ${getSpecialThemeColor(colorScheme)};
   `
 }
 
@@ -46,7 +46,7 @@ export function applySizeCss(
   const animationCss = loading ? rotateAnimation : null
 
   return css`
-    color: ${getColor(colorScheme, "03")};
+    color: ${getSpecialThemeColor(colorScheme)};
     ${animationCss};
     ${sizeCss};
   `

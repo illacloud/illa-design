@@ -1,4 +1,4 @@
-import { getColor } from "@illa-design/theme"
+import { getColor, getSpecialThemeColor } from "@illa-design/theme"
 import { css, SerializedStyles } from "@emotion/react"
 import { SliderColorScheme } from "./interface"
 
@@ -27,7 +27,7 @@ export function applyBgColor(
   } else if (!colorScheme) {
     return `${getColor("blue", "03")}`
   } else if (innerColor.includes(colorScheme)) {
-    return `${getColor(colorScheme, "03")}`
+    return `${getSpecialThemeColor(colorScheme)}`
   } else {
     return colorScheme
   }

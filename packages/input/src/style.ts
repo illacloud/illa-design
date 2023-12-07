@@ -1,6 +1,11 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { InputColorScheme, InputSize, InputVariant } from "./interface"
-import { getColor, getColorShadow, zIndex } from "@illa-design/theme"
+import {
+  getColor,
+  getColorShadow,
+  getSpecialThemeColor,
+  zIndex,
+} from "@illa-design/theme"
 
 function getPaddingStyle(size: InputSize): SerializedStyles {
   let pdStyle = css``
@@ -165,7 +170,7 @@ export function applyInputStyle(
       border-color: ${variant === "outline"
         ? error
           ? getColor("red", "02")
-          : getColor(colorScheme, "06")
+          : getColor(colorScheme, "07")
         : "transparent"};
       z-index: ${zIndex.inputFocus};
       background-color: ${variant === "fill"
@@ -180,8 +185,8 @@ export function applyInputStyle(
     }
 
     &:focus-within {
-      border-color: ${getColor(error ? "red" : colorScheme, "03")};
-      box-shadow: 0 0 8px 0 ${getColorShadow(error ? "red" : colorScheme, "01")};
+      border-color: ${getSpecialThemeColor(error ? "red" : colorScheme)};
+      box-shadow: 0 0 8px 0 ${getColorShadow(error ? "red" : colorScheme, "03")};
       z-index: ${zIndex.inputFocus};
       background-color: unset;
     }

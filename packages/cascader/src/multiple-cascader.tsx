@@ -16,7 +16,7 @@ export const MultipleCascader = forwardRef<HTMLDivElement, CascaderProps>(
       size = "medium",
       allowClear,
       placeholder,
-      colorScheme,
+      colorScheme = "blue",
       defaultPopupVisible,
       popupVisible,
       disabled,
@@ -63,6 +63,7 @@ export const MultipleCascader = forwardRef<HTMLDivElement, CascaderProps>(
           inputTagRef.current?.focus()
         }}
         options={options}
+        colorScheme={colorScheme}
         multiple={true}
         value={finalValue}
         inputValue={finalInputValue}
@@ -75,7 +76,6 @@ export const MultipleCascader = forwardRef<HTMLDivElement, CascaderProps>(
         }}
       />
     )
-
     return (
       <Trigger
         withoutPadding
@@ -94,6 +94,7 @@ export const MultipleCascader = forwardRef<HTMLDivElement, CascaderProps>(
                 onClick={() => {
                   inputTagRef.current?.focus()
                 }}
+                colorScheme={colorScheme}
                 options={options}
                 multiple={true}
                 inputValue={finalInputValue}

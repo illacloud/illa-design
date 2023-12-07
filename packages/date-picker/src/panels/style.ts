@@ -83,11 +83,11 @@ export const dateCellHiddenStyle = css`
 `
 
 export const dateCellInRangeStyle = css`
-  background-color: ${getColor("blue", "07")};
+  background-color: ${getColor("blue", "08")};
 `
 
 export const dateCellHoverInRangeStyle = css`
-  background-color: ${getColor("blue", "06")};
+  background-color: ${getColor("blue", "07")};
 `
 
 export const dateCellRangeStartStyle = css`

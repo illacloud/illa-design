@@ -68,6 +68,7 @@ export interface SelectorProps {
   inputValue?: string
   filterOption?: boolean | ((inputValue: string) => boolean)
   options?: CascaderOptionObject[]
+  colorScheme?: CascaderColorScheme
   onChange?: (value: string[][]) => void
 
   onClick?: () => void

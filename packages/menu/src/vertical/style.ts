@@ -1,6 +1,10 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { MenuColorScheme } from "../interface"
-import { getColor } from "@illa-design/theme"
+import {
+  getColor,
+  getSpecialThemeColor,
+  hasNineStepColor,
+} from "@illa-design/theme"
 
 export function applyVerticalListContainer(): SerializedStyles {
   return css`
@@ -23,18 +27,24 @@ export function applyVerticalSubMenuContentContainer(
       `
     : selected
     ? css`
-        color: ${getColor(colorScheme, "03")};
+        color: ${getSpecialThemeColor(colorScheme)};
         font-weight: 500;
 
         &:hover {
-          background-color: ${getColor(hoverColorScheme, "09")};
+          background-color: ${getColor(
+            hoverColorScheme,
+            hasNineStepColor(hoverColorScheme) ? "09" : "08",
+          )};
         }
       `
     : css`
         color: ${getColor("grayBlue", "02")};
 
         &:hover {
-          background-color: ${getColor(hoverColorScheme, "09")};
+          background-color: ${getColor(
+            hoverColorScheme,
+            hasNineStepColor(hoverColorScheme) ? "09" : "08",
+          )};
         }
       `
 
@@ -64,18 +74,24 @@ export function applyVerticalMenuItemContainer(
       `
     : selected
     ? css`
-        color: ${getColor(colorScheme, "03")};
+        color: ${getSpecialThemeColor(colorScheme)};
         font-weight: 500;
 
         &:hover {
-          background-color: ${getColor(hoverColorScheme, "09")};
+          background-color: ${getColor(
+            hoverColorScheme,
+            hasNineStepColor(hoverColorScheme) ? "09" : "08",
+          )};
         }
       `
     : css`
         color: ${getColor("grayBlue", "02")};
 
         &:hover {
-          background-color: ${getColor(hoverColorScheme, "09")};
+          background-color: ${getColor(
+            hoverColorScheme,
+            hasNineStepColor(hoverColorScheme) ? "09" : "08",
+          )};
         }
       `
 
@@ -144,7 +160,7 @@ export function applyVerticalSubMenuItemContainer(
       `
     : selected
     ? css`
-        color: ${getColor(colorScheme, "03")};
+        color: ${getSpecialThemeColor(colorScheme)};
         font-weight: 500;
       `
     : css`

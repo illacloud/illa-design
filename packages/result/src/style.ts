@@ -35,27 +35,27 @@ export function applyIconContainer(status?: string): SerializedStyles {
   switch (status) {
     case "success":
       iconColor = css`
-        background-color: ${globalColor(`--${illaPrefix}-green-07`)};
+        background-color: ${globalColor(`--${illaPrefix}-green-08`)};
         color: ${globalColor(`--${illaPrefix}-green-03`)};
         font-size: 14px;
       `
       break
     case "error":
       iconColor = css`
-        background-color: ${globalColor(`--${illaPrefix}-red-07`)};
+        background-color: ${globalColor(`--${illaPrefix}-red-08`)};
         color: ${globalColor(`--${illaPrefix}-red-03`)};
         font-size: 10px;
       `
       break
     case "info":
       iconColor = css`
-        background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+        background-color: ${globalColor(`--${illaPrefix}-blue-08`)};
         color: ${globalColor(`--${illaPrefix}-blue-03`)};
       `
       break
     case "warning":
       iconColor = css`
-        background-color: ${globalColor(`--${illaPrefix}-orange-07`)};
+        background-color: ${globalColor(`--${illaPrefix}-orange-08`)};
         color: ${globalColor(`--${illaPrefix}-orange-03`)};
       `
       break
