@@ -1,4 +1,9 @@
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getColor,
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 import {
   RadioColorScheme,
   RadioGroupDirection,
@@ -36,7 +41,7 @@ export function applyRadioSize(
     }
 
     &:checked {
-      border: 4px solid ${getColor(colorScheme, "03")};
+      border: 4px solid ${getSpecialThemeColor(colorScheme)};
 
       &:hover {
         border-color: ${getColor(colorScheme, "04")};
@@ -182,10 +187,6 @@ export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
       `
       break
   }
-  const checkedColor =
-    colorScheme === "gray" || colorScheme === "grayBlue"
-      ? getColor(colorScheme, "02")
-      : getColor(colorScheme, "03")
 
   if (stateValue?.disabled && stateValue?.checked) {
     stateCss = css`
@@ -201,7 +202,7 @@ export function applyRadioButton(stateValue: RadioStatus): SerializedStyles {
     stateCss = css`
       ${getRadioButtonCheckedBorderRadiusBySize(stateValue.size ?? "medium")};
       font-weight: 500;
-      color: ${checkedColor};
+      color: ${getSpecialThemeColor(colorScheme)};
       background-color: ${globalColor(`--${illaPrefix}-white-01`)};
       box-shadow: 0px 0px 2px 0px rgba(29, 33, 41, 0.24);
 

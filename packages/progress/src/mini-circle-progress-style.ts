@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { ProgressColorScheme } from "./interface"
-import { getColor } from "@illa-design/theme"
+import { getColor, getSpecialThemeColor } from "@illa-design/theme"
 
 export const applyCircleStatus = css`
   display: inline-flex;
@@ -32,16 +32,9 @@ export function applyCircleProgressContainer(
 ): SerializedStyles {
   const perimeter = `calc(${Math.PI} * 2 * ${width} / 2)`
 
-  let color
-  if (colorScheme == "gray" || colorScheme == "grayBlue") {
-    color = getColor(colorScheme, "02")
-  } else {
-    color = getColor(colorScheme, "03")
-  }
-
   return css`
     transition: stroke-dashoffset 200ms;
-    stroke: ${color};
+    stroke: ${getSpecialThemeColor(colorScheme)};
     transform: rotate(-90deg);
     transform-origin: center;
     stroke-dasharray: ${perimeter};

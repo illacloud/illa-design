@@ -5,7 +5,7 @@ import {
   ButtonSize,
   ButtonVariant,
 } from "./interface"
-import { getColor, zIndex } from "@illa-design/theme"
+import { getColor, getSpecialThemeColor, zIndex } from "@illa-design/theme"
 
 // button
 export function applyTagContainer(
@@ -55,7 +55,7 @@ export function getDifferentStatusColor(
           if (colorScheme === "white") {
             return [getColor("white", "01"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "03"), getColor("white", "01")]
+            return [getSpecialThemeColor(colorScheme), getColor("white", "01")]
           } else {
             return [getColor(colorScheme, "09"), getColor(colorScheme, "02")]
           }
@@ -63,7 +63,10 @@ export function getDifferentStatusColor(
           if (colorScheme === "white") {
             return [getColor("white", "01"), getColor("gray", "02")]
           } else {
-            return [getColor(colorScheme, "08"), getColor(colorScheme, "03")]
+            return [
+              getColor(colorScheme, "08"),
+              getSpecialThemeColor(colorScheme),
+            ]
           }
         }
         case "dashed":
@@ -71,7 +74,10 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "01"), getColor("white", "01")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "03"), getColor(colorScheme, "03")]
+            return [
+              getSpecialThemeColor(colorScheme),
+              getSpecialThemeColor(colorScheme),
+            ]
           } else {
             return [getColor(colorScheme, "08"), getColor(colorScheme, "02")]
           }
@@ -79,7 +85,10 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("transparent", "01"), getColor("gray", "02")]
           } else {
-            return [getColor("transparent", "01"), getColor(colorScheme, "03")]
+            return [
+              getColor("transparent", "01"),
+              getSpecialThemeColor(colorScheme),
+            ]
           }
       }
     case State.HOVER:
@@ -96,7 +105,10 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "02"), getColor("gray", "02")]
           } else {
-            return [getColor(colorScheme, "07"), getColor(colorScheme, "03")]
+            return [
+              getColor(colorScheme, "07"),
+              getSpecialThemeColor(colorScheme),
+            ]
           }
         }
         case "dashed":
@@ -129,7 +141,10 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "02"), getColor("gray", "02")]
           } else {
-            return [getColor(colorScheme, "06"), getColor(colorScheme, "03")]
+            return [
+              getColor(colorScheme, "06"),
+              getSpecialThemeColor(colorScheme),
+            ]
           }
         }
         case "dashed":
@@ -145,7 +160,10 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "03"), getColor("gray", "02")]
           } else {
-            return [getColor("grayBlue", "08"), getColor(colorScheme, "03")]
+            return [
+              getColor("grayBlue", "08"),
+              getSpecialThemeColor(colorScheme),
+            ]
           }
       }
     case State.DISABLE:

@@ -1,4 +1,9 @@
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getColor,
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 import { CheckboxColorScheme, CheckboxProps } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
 
@@ -10,7 +15,7 @@ export function applyCheckboxSize(
   if (checked) {
     checkedCss = css`
       border-color: transparent;
-      background-color: ${getColor(colorScheme, "03")};
+      background-color: ${getSpecialThemeColor(colorScheme)};
 
       &:hover {
         background-color: ${getColor(colorScheme, "04")};

@@ -1,5 +1,9 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor, getColorShadow } from "@illa-design/theme"
+import {
+  getColor,
+  getColorShadow,
+  getSpecialThemeColor,
+} from "@illa-design/theme"
 import { PaginationSize } from "./interface"
 
 export const paginationContainer = css`
@@ -71,7 +75,7 @@ export function applyDirectorIconStyle(
 ): SerializedStyles {
   let textColor = css`
     color: ${active
-      ? getColor(activeColorScheme ?? "blue", "03")
+      ? getSpecialThemeColor(activeColorScheme ?? "blue")
       : getColor("grayBlue", "02")};
   `
   let bgColor = css`
@@ -175,7 +179,7 @@ export function applySelectorInputStyle(
       background: none;
       border: 1px solid
         ${inputBorderColorScheme
-          ? getColor(inputBorderColorScheme, "03")
+          ? getSpecialThemeColor(inputBorderColorScheme)
           : getColor("blue", "03")};
       box-shadow: 0 0 8px 0 ${getColorShadow("blue", "03")};
     }

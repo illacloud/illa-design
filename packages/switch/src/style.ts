@@ -1,4 +1,8 @@
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 import { css, SerializedStyles } from "@emotion/react"
 import { SwitchColorScheme, SwitchSize } from "./interface"
 
@@ -28,7 +32,7 @@ export function applySwitch(
   const isInnerColor: boolean = innerColor.indexOf(colorScheme) > -1
   let bgc = checked
     ? isInnerColor
-      ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
+      ? getSpecialThemeColor(colorScheme)
       : colorScheme
     : globalColor(`--${illaPrefix}-grayBlue-06`)
   return css`

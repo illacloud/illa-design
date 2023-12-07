@@ -1,6 +1,10 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { TagColorScheme, TagSize, TagVariant } from "./interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 
 export function applyTagContainerStyle(clickable?: boolean): SerializedStyles {
   return css`
@@ -119,20 +123,20 @@ export function tagOutlinePrepare(color: TagColorScheme): SerializedStyles {
     return css`
       border-radius: 12px;
       border: solid 1px ${globalColor(`--${illaPrefix}-${color}-08`)};
-      color: ${globalColor(`--${illaPrefix}-${color}-03`)};
+      color: ${getSpecialThemeColor(color)};
     `
   } else {
     return css`
       border-radius: 12px;
-      border: solid 1px ${globalColor(`--${illaPrefix}-${color}-03`)};
-      color: ${globalColor(`--${illaPrefix}-${color}-03`)};
+      border: solid 1px ${getSpecialThemeColor(color)};
+      color: ${getSpecialThemeColor(color)};
     `
   }
 }
 
 export function tagFillPrepare(color: TagColorScheme): SerializedStyles {
   return css`
-    background-color: ${globalColor(`--${illaPrefix}-${color}-03`)};
+    background-color: ${getSpecialThemeColor(color)};
     color: ${globalColor(`--${illaPrefix}-white-01`)};
     border-radius: 12px;
   `
@@ -149,7 +153,7 @@ export function tagLightPrepare(color: TagColorScheme): SerializedStyles {
     return css`
       border-radius: 12px;
       background-color: ${globalColor(`--${illaPrefix}-${color}-08`)};
-      color: ${globalColor(`--${illaPrefix}-${color}-03`)};
+      color: ${getSpecialThemeColor(color)};
     `
   }
 }
