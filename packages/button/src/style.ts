@@ -9,6 +9,7 @@ import {
   getColor,
   getSpecialThemeColor,
   hasGlobalColor,
+  illaPrefix,
   zIndex,
 } from "@illa-design/theme"
 
@@ -178,7 +179,12 @@ export function getDifferentStatusColor(
             return [getColor("white", "04"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
             return [
-              getColor(colorScheme, hasGlobalColor(colorScheme) ? "07" : "05"),
+              getColor(
+                colorScheme,
+                hasGlobalColor(`--${illaPrefix}-${colorScheme}-07`)
+                  ? "07"
+                  : "05",
+              ),
               getColor("white", "01"),
             ]
           } else {
