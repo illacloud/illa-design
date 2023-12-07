@@ -130,7 +130,7 @@ export const getColorShadow = (color: string, step: string): string => {
         ${chroma(getColor(color, step)).alpha(0.15).hex()}`
 }
 
-export const handleSpecialColor = (color: string, step: string) => {
+export const getSpecialThemeColor = (color: string) => {
   if (color === "white") {
     return getColor("white", "01")
   } else if (
@@ -140,6 +140,6 @@ export const handleSpecialColor = (color: string, step: string) => {
   ) {
     return getColor(color, "02")
   } else {
-    return getColor(color, step)
+    return getColor(color, "03")
   }
 }
