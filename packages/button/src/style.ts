@@ -5,7 +5,12 @@ import {
   ButtonSize,
   ButtonVariant,
 } from "./interface"
-import { getColor, getSpecialThemeColor, zIndex } from "@illa-design/theme"
+import {
+  getColor,
+  getSpecialThemeColor,
+  hasGlobalColor,
+  zIndex,
+} from "@illa-design/theme"
 
 // button
 export function applyTagContainer(
@@ -172,7 +177,10 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "04"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "07"), getColor("white", "01")]
+            return [
+              getColor(colorScheme, hasGlobalColor(colorScheme) ? "07" : "05"),
+              getColor("white", "01"),
+            ]
           } else {
             return [getColor(colorScheme, "09"), getColor(colorScheme, "05")]
           }
