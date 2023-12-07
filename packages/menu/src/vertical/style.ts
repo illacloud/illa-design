@@ -1,6 +1,10 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { MenuColorScheme } from "../interface"
-import { getColor, hasNineStepColor } from "@illa-design/theme"
+import {
+  getColor,
+  getSpecialThemeColor,
+  hasNineStepColor,
+} from "@illa-design/theme"
 
 export function applyVerticalListContainer(): SerializedStyles {
   return css`
@@ -23,7 +27,7 @@ export function applyVerticalSubMenuContentContainer(
       `
     : selected
     ? css`
-        color: ${getColor(colorScheme, "03")};
+        color: ${getSpecialThemeColor(colorScheme)};
         font-weight: 500;
 
         &:hover {
@@ -70,7 +74,7 @@ export function applyVerticalMenuItemContainer(
       `
     : selected
     ? css`
-        color: ${getColor(colorScheme, "03")};
+        color: ${getSpecialThemeColor(colorScheme)};
         font-weight: 500;
 
         &:hover {
@@ -156,7 +160,7 @@ export function applyVerticalSubMenuItemContainer(
       `
     : selected
     ? css`
-        color: ${getColor(colorScheme, "03")};
+        color: ${getSpecialThemeColor(colorScheme)};
         font-weight: 500;
       `
     : css`

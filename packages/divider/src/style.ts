@@ -4,7 +4,11 @@ import {
   DividerVariant,
 } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 
 export function applyDividerContainerHorizontal(
   color: DividerColorScheme,
@@ -28,9 +32,9 @@ export function applyDividerContainerHorizontal(
 
   const c =
     globalColor(`--${illaPrefix}-${color}-08`) === ""
-      ? globalColor(`--${illaPrefix}-${color}-03`) === ""
+      ? getSpecialThemeColor(color) === ""
         ? color
-        : globalColor(`--${illaPrefix}-${color}-03`)
+        : getSpecialThemeColor(color)
       : globalColor(`--${illaPrefix}-${color}-08`)
   return css`
     vertical-align: middle;
@@ -65,9 +69,9 @@ export function applyDividerContainerVertical(
 
   const c =
     globalColor(`--${illaPrefix}-${color}-08`) === ""
-      ? globalColor(`--${illaPrefix}-${color}-03`) === ""
+      ? getSpecialThemeColor(color) === ""
         ? color
-        : globalColor(`--${illaPrefix}-${color}-03`)
+        : getSpecialThemeColor(color)
       : globalColor(`--${illaPrefix}-${color}-08`)
   return css`
     display: inline-flex;
@@ -105,9 +109,7 @@ export function applyTextStyle(
   fs: string,
 ): SerializedStyles {
   const c =
-    globalColor(`--${illaPrefix}-${color}-03`) === ""
-      ? color
-      : globalColor(`--${illaPrefix}-${color}-03`)
+    getSpecialThemeColor(color) === "" ? color : getSpecialThemeColor(color)
   return css`
     color: ${c};
     margin-left: 16px;

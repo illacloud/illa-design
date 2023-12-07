@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { MenuColorScheme, MenuHorizontalAlign } from "../interface"
-import { getColor } from "@illa-design/theme"
+import { getColor, getSpecialThemeColor } from "@illa-design/theme"
 
 export const horizontalMenuContainerStyle = css`
   height: 48px;
@@ -75,7 +75,7 @@ export function applyHorizontalSubMenuItemContainer(
       `
     : selected
     ? css`
-        color: ${getColor(colorScheme, "03")};
+        color: ${getSpecialThemeColor(colorScheme)};
         font-weight: 500;
       `
     : css`
@@ -102,7 +102,7 @@ export function applyHorizontalSubMenuContainer(
       `
     : selected
     ? css`
-        color: ${getColor(colorScheme, "03")};
+        color: ${getSpecialThemeColor(colorScheme)};
         font-weight: 500;
 
         &:hover {
@@ -153,7 +153,7 @@ export function applyHorizontalLine(
     height: 2px;
     left: 0;
     right: 0;
-    background-color: ${getColor(colorScheme, "03")};
+    background-color: ${getSpecialThemeColor(colorScheme)};
     ${hiddenStyle};
   `
 }

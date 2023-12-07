@@ -1,6 +1,11 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { ProgressColorScheme } from "./interface"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getColor,
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 
 export const applyProgressContainer = css`
   vertical-align: middle;
@@ -46,18 +51,12 @@ export function applyLineProgress(
   stokeWidth: string,
   colorScheme: ProgressColorScheme,
 ): SerializedStyles {
-  let color
-  if (colorScheme == "gray" || colorScheme == "grayBlue") {
-    color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
-  } else {
-    color = getColor(colorScheme, "03")
-  }
   return css`
     transition: width 200ms;
     position: absolute;
     width: ${percent}%;
     border-radius: calc(${stokeWidth} / 2);
-    background-color: ${color};
+    background-color: ${getSpecialThemeColor(colorScheme)};
     height: ${stokeWidth};
   `
 }
@@ -70,13 +69,6 @@ export function applyLineProgressStep(
   steps: number,
   index: number,
 ): SerializedStyles {
-  let color
-  if (colorScheme == "gray" || colorScheme == "grayBlue") {
-    color = globalColor(`--${illaPrefix}-${colorScheme}-02`)
-  } else {
-    color = getColor(colorScheme, "03")
-  }
-
   let finalWidth: string
 
   if ((100 / steps) * (index + 1) > percent) {
@@ -88,7 +80,7 @@ export function applyLineProgressStep(
   return css`
     width: ${finalWidth};
     border-radius: calc(${stokeWidth} / 2);
-    background-color: ${color};
+    background-color: ${getSpecialThemeColor(colorScheme)};
     height: ${stokeWidth};
   `
 }

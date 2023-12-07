@@ -1,6 +1,11 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { InputTagColorScheme, InputTagSize } from "./interface"
-import { getColor, getColorShadow, zIndex } from "@illa-design/theme"
+import {
+  getColor,
+  getColorShadow,
+  getSpecialThemeColor,
+  zIndex,
+} from "@illa-design/theme"
 
 export function applyInputTagInputStyle(
   size: InputTagSize,
@@ -108,7 +113,7 @@ export function applyInputTagContainerStyle(
       }
 
       &:focus-within {
-        border-color: ${getColor(error ? "red" : colorScheme, "03")};
+        border-color: ${getSpecialThemeColor(error ? "red" : colorScheme)};
         box-shadow: 0 0 8px 0
           ${getColorShadow(error ? "red" : colorScheme, "03")};
         z-index: ${zIndex.inputFocus};

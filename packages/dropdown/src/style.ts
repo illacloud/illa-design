@@ -1,6 +1,7 @@
 import { css, SerializedStyles } from "@emotion/react"
 import {
   getColor,
+  getSpecialThemeColor,
   globalColor,
   hasNineStepColor,
   illaPrefix,
@@ -44,7 +45,7 @@ export function applyItemCss(
   `
 
   const selectedStyle = css`
-    color: ${getColor(colorScheme, "03")};
+    color: ${getSpecialThemeColor(colorScheme)};
     background: ${getColor(colorScheme, "08")};
   `
 

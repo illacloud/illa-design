@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { getColor } from "@illa-design/theme"
+import { getColor, getSpecialThemeColor } from "@illa-design/theme"
 import { TabAlign, TabPosition, TabsSize, TabVariant } from "./interface"
 import { isHorizontalLayout } from "./utils"
 
@@ -312,7 +312,8 @@ export const titleStyle = (
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      color: ${tabsItemColorScheme ?? getColor(colorScheme ?? "blue", "03")};
+      color: ${tabsItemColorScheme ??
+      getSpecialThemeColor(colorScheme ?? "blue")};
       font-weight: 500;
       color: transparent;
     `
@@ -329,13 +330,13 @@ export const titleStyle = (
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         color: ${tabsItemActiveColorScheme ??
-        getColor(colorScheme ?? "blue", "03")};
+        getSpecialThemeColor(colorScheme ?? "blue")};
         font-weight: 500;
         color: transparent;
       `
     } else {
       itemCss = css`
-        color: ${getColor(colorScheme ?? "blue", "03")};
+        color: ${getSpecialThemeColor(colorScheme ?? "blue")};
         font-weight: 500;
       `
     }
@@ -398,7 +399,7 @@ export const lineStyle = (
     ${location};
     background: ${disabled
       ? getColor("grayBlue", "05")
-      : tabsItemColorScheme ?? getColor(colorScheme ?? "blue", "03")};
+      : tabsItemColorScheme ?? getSpecialThemeColor(colorScheme ?? "blue")};
   `
 }
 

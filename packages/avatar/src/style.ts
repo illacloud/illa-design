@@ -1,4 +1,8 @@
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 import {
   AvatarColorScheme,
   AvatarProps,
@@ -32,7 +36,7 @@ export function applyBgColor(colorScheme: AvatarColorScheme): SerializedStyles {
       `
     } else {
       bgColor = css`
-        background-color: ${globalColor(`--${illaPrefix}-${colorScheme}-03`)};
+        background-color: ${getSpecialThemeColor(colorScheme)};
       `
     }
   } else {

@@ -1,6 +1,10 @@
 import { css } from "@emotion/react"
 import { LinkColorScheme } from "./interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 
 export const colorSchemes: LinkColorScheme[] = [
   "white",
@@ -54,7 +58,7 @@ export const applyLeftIcon = css`
 
 export function applyDisable(colorScheme: LinkColorScheme, disabled?: boolean) {
   const textColor = colorSchemes.includes(colorScheme)
-    ? globalColor(`--${illaPrefix}-${colorScheme}-03`)
+    ? getSpecialThemeColor(colorScheme)
     : colorScheme
   const finalColor = disabled
     ? globalColor(`--${illaPrefix}-${colorScheme}-07`)

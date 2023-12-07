@@ -1,5 +1,9 @@
 import { css, keyframes, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
 import { isObject } from "@illa-design/system"
 import { BadgeColorScheme, BadgeStatus } from "./interface"
 import { ReactNode } from "react"
@@ -119,7 +123,7 @@ export function getDotColor(
 ): string {
   let colorStyle
   if (colorScheme) {
-    colorStyle = globalColor(`--${illaPrefix}-${colorScheme}-03`)
+    colorStyle = getSpecialThemeColor(colorScheme)
     if (!colorStyle) {
       colorStyle = colorScheme
     }
