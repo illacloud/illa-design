@@ -24,12 +24,17 @@ export const applyInputSizeStyle = (size: "small" | "medium" | "large") => {
 }
 
 export const inputErrorStyle = css`
-  background-color: ${getColor("red", "07")};
+  background-color: ${getColor("red", "08")};
   border: 1px solid ${getColor("red", "03")};
 
   &:hover {
     border-color: ${getColor("red", "02")};
-    background-color: ${getColor("red", "06")};
+    background-color: ${getColor("red", "07")};
+  }
+
+  &:focus-within {
+    border-color: ${getColor("red", "03")};
+    background-color: unset;
   }
 `
 
@@ -60,7 +65,7 @@ export const applyInputColorSchemeStyle = (colorScheme: InputColorScheme) => {
     background-color: transparent;
     border: 1px solid ${getColor("grayBlue", "08")};
     :hover {
-      border-color: ${getColor(colorScheme, "06")};
+      border-color: ${getColor(colorScheme, "07")};
       background-color: transparent;
     }
   `

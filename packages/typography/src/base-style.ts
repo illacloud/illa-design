@@ -1,6 +1,10 @@
 import { TypographyColorScheme } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  globalColor,
+  getSpecialThemeColor,
+  illaPrefix,
+} from "@illa-design/theme"
 
 const colorSchemes = [
   "white",
@@ -30,9 +34,8 @@ export function applyFontColor(
   colorScheme: TypographyColorScheme,
 ): SerializedStyles {
   const color = colorSchemes.includes(colorScheme)
-    ? globalColor(`--${illaPrefix}-${colorScheme}-02`)
+    ? getSpecialThemeColor(colorScheme)
     : colorScheme
-
   return css`
     color: ${color};
   `
@@ -57,12 +60,12 @@ export function applyFontContentStyle(
   if (mark && typeof mark != "string") {
     finalCss = css`
       ${finalCss};
-      background-color: ${globalColor(`--${illaPrefix}-yellow-06`)};
+      background-color: ${globalColor(`--${illaPrefix}-yellow-07`)};
     `
   }
   if (typeof mark == "string") {
     const bgColor = colorSchemes.includes(mark)
-      ? globalColor(`--${illaPrefix}-${mark}-06`)
+      ? globalColor(`--${illaPrefix}-${mark}-07`)
       : mark
     finalCss = css`
       ${finalCss};

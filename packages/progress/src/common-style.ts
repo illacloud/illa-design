@@ -1,6 +1,6 @@
 import { ProgressColorScheme } from "./interface"
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor } from "@illa-design/theme"
+import { getColor, getSpecialThemeColor } from "@illa-design/theme"
 
 export function applySvgContainer(width: string): SerializedStyles {
   return css`
@@ -29,16 +29,9 @@ export function applyProgressContainer(
 ): SerializedStyles {
   const perimeter = `calc(${Math.PI} * 2 * (${width} - ${strokeWidth}) / 2)`
 
-  let color
-  if (colorScheme == "gray" || colorScheme == "grayBlue") {
-    color = getColor(colorScheme, "02")
-  } else {
-    color = getColor(colorScheme, "03")
-  }
-
   return css`
     transition: stroke-dashoffset 200ms;
-    stroke: ${color};
+    stroke: ${getSpecialThemeColor(colorScheme)};
     transform: rotate(-90deg);
     transform-origin: center;
     stroke-dasharray: ${perimeter};
@@ -57,7 +50,7 @@ export function applyProgressContainerBg(
   if (trailColorScheme == "gray" || trailColorScheme == "grayBlue") {
     color = getColor(trailColorScheme, "08")
   } else {
-    color = getColor(trailColorScheme, "06")
+    color = getColor(trailColorScheme, "07")
   }
 
   return css`

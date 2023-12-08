@@ -5,7 +5,13 @@ import {
   ButtonSize,
   ButtonVariant,
 } from "./interface"
-import { getColor, zIndex } from "@illa-design/theme"
+import {
+  getColor,
+  getSpecialThemeColor,
+  hasGlobalColor,
+  illaPrefix,
+  zIndex,
+} from "@illa-design/theme"
 
 // button
 export function applyTagContainer(
@@ -55,7 +61,7 @@ export function getDifferentStatusColor(
           if (colorScheme === "white") {
             return [getColor("white", "01"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "01"), getColor("white", "01")]
+            return [getSpecialThemeColor(colorScheme), getColor("white", "01")]
           } else {
             return [getColor(colorScheme, "09"), getColor(colorScheme, "02")]
           }
@@ -63,7 +69,10 @@ export function getDifferentStatusColor(
           if (colorScheme === "white") {
             return [getColor("white", "01"), getColor("gray", "02")]
           } else {
-            return [getColor(colorScheme, "07"), getColor(colorScheme, "01")]
+            return [
+              getColor(colorScheme, "08"),
+              getSpecialThemeColor(colorScheme),
+            ]
           }
         }
         case "dashed":
@@ -71,7 +80,10 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "01"), getColor("white", "01")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "01"), getColor(colorScheme, "01")]
+            return [
+              getSpecialThemeColor(colorScheme),
+              getSpecialThemeColor(colorScheme),
+            ]
           } else {
             return [getColor(colorScheme, "08"), getColor(colorScheme, "02")]
           }
@@ -79,7 +91,10 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("transparent", "01"), getColor("gray", "02")]
           } else {
-            return [getColor("transparent", "01"), getColor(colorScheme, "01")]
+            return [
+              getColor("transparent", "01"),
+              getSpecialThemeColor(colorScheme),
+            ]
           }
       }
     case State.HOVER:
@@ -88,7 +103,7 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "02"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "02"), getColor("white", "01")]
+            return [getColor(colorScheme, "04"), getColor("white", "01")]
           } else {
             return [getColor(colorScheme, "08"), getColor(colorScheme, "02")]
           }
@@ -96,7 +111,10 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "02"), getColor("gray", "02")]
           } else {
-            return [getColor(colorScheme, "06"), getColor(colorScheme, "01")]
+            return [
+              getColor(colorScheme, "07"),
+              getSpecialThemeColor(colorScheme),
+            ]
           }
         }
         case "dashed":
@@ -104,7 +122,7 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "02"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "02"), getColor(colorScheme, "02")]
+            return [getColor(colorScheme, "04"), getColor(colorScheme, "04")]
           } else {
             return [getColor(colorScheme, "07"), getColor(colorScheme, "02")]
           }
@@ -112,7 +130,7 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "02"), getColor("gray", "02")]
           } else {
-            return [getColor("grayBlue", "09"), getColor(colorScheme, "02")]
+            return [getColor("grayBlue", "09"), getColor(colorScheme, "04")]
           }
       }
     case State.ACTIVE:
@@ -121,7 +139,7 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "03"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "n-01"), getColor("white", "01")]
+            return [getColor(colorScheme, "02"), getColor("white", "01")]
           } else {
             return [getColor(colorScheme, "06"), getColor(colorScheme, "02")]
           }
@@ -129,7 +147,10 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "02"), getColor("gray", "02")]
           } else {
-            return [getColor(colorScheme, "05"), getColor(colorScheme, "01")]
+            return [
+              getColor(colorScheme, "06"),
+              getSpecialThemeColor(colorScheme),
+            ]
           }
         }
         case "dashed":
@@ -137,10 +158,7 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "03"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [
-              getColor(colorScheme, "n-01"),
-              getColor(colorScheme, "n-01"),
-            ]
+            return [getColor(colorScheme, "02"), getColor(colorScheme, "02")]
           } else {
             return [getColor(colorScheme, "05"), getColor(colorScheme, "02")]
           }
@@ -148,7 +166,10 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "03"), getColor("gray", "02")]
           } else {
-            return [getColor("grayBlue", "08"), getColor(colorScheme, "n-01")]
+            return [
+              getColor("grayBlue", "08"),
+              getSpecialThemeColor(colorScheme),
+            ]
           }
       }
     case State.DISABLE:
@@ -157,7 +178,15 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "04"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "05"), getColor("white", "01")]
+            return [
+              getColor(
+                colorScheme,
+                hasGlobalColor(`--${illaPrefix}-${colorScheme}-07`)
+                  ? "07"
+                  : "05",
+              ),
+              getColor("white", "01"),
+            ]
           } else {
             return [getColor(colorScheme, "09"), getColor(colorScheme, "05")]
           }
@@ -165,7 +194,7 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "04"), getColor("gray", "02")]
           } else {
-            return [getColor(colorScheme, "07"), getColor(colorScheme, "05")]
+            return [getColor(colorScheme, "08"), getColor(colorScheme, "05")]
           }
         }
         case "dashed":
@@ -173,7 +202,7 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "04"), getColor("gray", "02")]
           } else if (colorScheme != "gray" && colorScheme != "grayBlue") {
-            return [getColor(colorScheme, "05"), getColor(colorScheme, "05")]
+            return [getColor(colorScheme, "06"), getColor(colorScheme, "06")]
           } else {
             return [getColor(colorScheme, "08"), getColor(colorScheme, "05")]
           }
@@ -181,7 +210,7 @@ export function getDifferentStatusColor(
           if (colorScheme == "white") {
             return [getColor("white", "04"), getColor("gray", "02")]
           } else {
-            return [getColor("transparent", "01"), getColor(colorScheme, "05")]
+            return [getColor("transparent", "01"), getColor(colorScheme, "07")]
           }
       }
   }

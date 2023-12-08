@@ -1,6 +1,12 @@
 import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor, globalColor, illaPrefix, zIndex } from "@illa-design/theme"
+import {
+  getColor,
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+  zIndex,
+} from "@illa-design/theme"
 import { TableAlign, TableLayout, TableSize } from "./interface"
 
 export function applySizeStyle(
@@ -145,10 +151,10 @@ export function applySelectedStyle(selected?: boolean): SerializedStyles {
   if (!selected) return css``
 
   return css`
-    background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+    background-color: ${globalColor(`--${illaPrefix}-blue-08`)};
 
     &:hover {
-      background-color: ${globalColor(`--${illaPrefix}-blue-07`)};
+      background-color: ${globalColor(`--${illaPrefix}-blue-08`)};
     }
   `
 }
@@ -362,7 +368,7 @@ export const applyTableCellBackgroundStyle = (
 ): SerializedStyles => {
   if (color) {
     return css`
-      background-color: ${getColor(color, "03")};
+      background-color: ${getSpecialThemeColor(color ?? "blue")};
     `
   }
   return css``

@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor } from "@illa-design/theme"
+import { getColor, getSpecialThemeColor } from "@illa-design/theme"
 import { CalendarColorScheme } from "../interface"
 
 export function applyMonthBigCalendarStyle(): SerializedStyles {
@@ -68,13 +68,17 @@ export function applyBlockDayStyle(
     justify-content: center;
     height: 32px;
     width: 32px;
-    border: ${today ? `1px solid ${getColor(colorScheme, "03")}` : "unset"};
+    border: ${today
+      ? `1px solid ${getSpecialThemeColor(colorScheme)}`
+      : "unset"};
     border-radius: 16px;
     color: ${isSelected
       ? getColor("white", "01")
       : isInThisMonth
       ? getColor("grayBlue", "02")
       : getColor("grayBlue", "06")};
-    background-color: ${isSelected ? getColor(colorScheme, "03") : "unset"};
+    background-color: ${isSelected
+      ? getSpecialThemeColor(colorScheme)
+      : "unset"};
   `
 }

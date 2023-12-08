@@ -62,13 +62,13 @@ export function applyIndexStyle(status: StepsStatus): SerializedStyles {
     case "finish":
       c = css`
         color: ${getColor("blue", "03")};
-        background-color: ${getColor("blue", "07")};
+        background-color: ${getColor("blue", "08")};
       `
       break
     case "error":
       c = css`
         color: ${getColor("red", "03")};
-        background-color: ${getColor("red", "07")};
+        background-color: ${getColor("red", "08")};
       `
       break
   }

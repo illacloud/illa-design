@@ -3,6 +3,7 @@ import { TriggerColorScheme, TriggerPosition } from "./interface"
 import {
   getColor,
   getColorShadow,
+  getSpecialThemeColor,
   globalColor,
   illaPrefix,
 } from "@illa-design/theme"
@@ -24,10 +25,6 @@ export function applyTipsText(
   withoutShadow?: boolean,
   autoAlignPopupWidth?: boolean,
 ): SerializedStyles {
-  const bgColor =
-    colorScheme == "white"
-      ? getColor(colorScheme, "01")
-      : getColor(colorScheme, "02")
   const textColor =
     colorScheme == "white"
       ? globalColor(`--${illaPrefix}-grayBlue-02`)
@@ -43,7 +40,7 @@ export function applyTipsText(
   }
 
   let shadow = css`
-    box-shadow: ${getColorShadow("white" ? "blackAlpha" : colorScheme, "01")};
+    box-shadow: ${getColorShadow("white" ? "blackAlpha" : colorScheme, "03")};
   `
   if (withoutShadow) {
     shadow = css``
@@ -57,7 +54,7 @@ export function applyTipsText(
   }
 
   return css`
-    background-color: ${bgColor};
+    background-color: ${getSpecialThemeColor(colorScheme)};
     color: ${textColor};
     box-sizing: border-box;
     text-align: left;
@@ -74,7 +71,7 @@ export function applyTriangleStyle(
   colorScheme: TriggerColorScheme,
   position: TriggerPosition,
 ): SerializedStyles {
-  const bgColor = getColor(colorScheme, "02")
+  const bgColor = getSpecialThemeColor(colorScheme)
   const mainStyle = css`
     color: ${bgColor};
   `
