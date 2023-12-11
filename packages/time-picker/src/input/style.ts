@@ -71,7 +71,7 @@ export const inputBaseWrapperStyle = css`
   position: relative;
   display: inline-flex;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 8px;
   box-sizing: border-box;
   transition: 0.2s ease-in-out;
 `
