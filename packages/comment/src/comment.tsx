@@ -39,7 +39,6 @@ export const Comment = forwardRef<HTMLDivElement, CommentProps>(
     }
     return (
       <div
-        placeholder={placeholder}
         css={[commentContainerCss, applyBoxStyle(props)]}
         ref={ref}
         {...deleteCssProps(rest)}
