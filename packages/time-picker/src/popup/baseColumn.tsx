@@ -39,8 +39,15 @@ function scrollTo(element: HTMLElement, to: number, duration: number) {
 }
 
 export const BaseColumn: FC<TimeColumnProps> = (props) => {
-  const { list, value, onHandleSelect, unit, popupVisible, scrollSticky } =
-    props
+  const {
+    list,
+    value,
+    onHandleSelect,
+    unit,
+    popupVisible,
+    scrollSticky,
+    colorScheme,
+  } = props
 
   const valueMapLiElement = useRef(
     new Map<number | string, HTMLLIElement | null>(),
@@ -101,6 +108,8 @@ export const BaseColumn: FC<TimeColumnProps> = (props) => {
     [onHandleSelect],
   )
 
+  console.log("item", list)
+
   return (
     <div
       className="time-list"
@@ -113,7 +122,7 @@ export const BaseColumn: FC<TimeColumnProps> = (props) => {
           return (
             <li
               key={item.value}
-              css={applyCellStyle(item.disabled)}
+              css={applyCellStyle(item.disabled, item.selected)}
               onClick={() =>
                 !item.disabled && onHandleSelect?.(item.value, unit)
               }
@@ -123,7 +132,7 @@ export const BaseColumn: FC<TimeColumnProps> = (props) => {
             >
               <div
                 className="cell-inner"
-                css={applyCellInnerStyle(item.selected)}
+                css={applyCellInnerStyle(colorScheme, item.selected)}
               >
                 {item.label}
               </div>

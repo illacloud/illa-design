@@ -18,6 +18,7 @@ export interface TimeColumnProps {
   unit?: "hour" | "minute" | "second" | "ampm"
   popupVisible?: boolean
   scrollSticky?: boolean
+  colorScheme?: string
 }
 
 export interface BaseColumnProps {
@@ -28,6 +29,7 @@ export interface BaseColumnProps {
   popupVisible?: boolean
   onHandleSelect?: (value?: number | string, unit?: string) => void
   scrollSticky?: boolean
+  colorScheme?: string
 }
 
 export interface AmPmColumnProps

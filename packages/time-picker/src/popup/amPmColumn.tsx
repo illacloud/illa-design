@@ -13,6 +13,7 @@ export const AmPmColumn: FC<AmPmColumnProps> = (props) => {
     selectedValue,
     onHandleSelect,
     scrollSticky,
+    colorScheme,
   } = props
   const isUpperCase = getColumnsFromFormat(format).list.indexOf("A") !== -1
   const ampm = valueShow && valueShow.hour() >= 12 ? "pm" : "am"
@@ -30,6 +31,7 @@ export const AmPmColumn: FC<AmPmColumnProps> = (props) => {
       unit="second"
       popupVisible={popupVisible}
       scrollSticky={scrollSticky}
+      colorScheme={colorScheme}
     />
   )
 }

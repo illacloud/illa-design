@@ -53,6 +53,7 @@ export const TimePickerPopup: FC<TimePickerPopupProps> = (props) => {
     hideFooter,
     showNowBtn = true,
     scrollSticky,
+    colorScheme,
   } = props
 
   const valueShow = getDayjsValue(propsValueShow as Dayjs, format) as Dayjs
@@ -263,6 +264,7 @@ export const TimePickerPopup: FC<TimePickerPopupProps> = (props) => {
             hideDisabledOptions={hideDisabledOptions}
             popupVisible={popupVisible}
             scrollSticky={scrollSticky}
+            colorScheme={colorScheme}
           />
         )}
         {list.indexOf("m") !== -1 && (
@@ -274,6 +276,7 @@ export const TimePickerPopup: FC<TimePickerPopupProps> = (props) => {
             hideDisabledOptions={hideDisabledOptions}
             popupVisible={popupVisible}
             scrollSticky={scrollSticky}
+            colorScheme={colorScheme}
           />
         )}
         {list.indexOf("s") !== -1 && (
@@ -285,6 +288,7 @@ export const TimePickerPopup: FC<TimePickerPopupProps> = (props) => {
             hideDisabledOptions={hideDisabledOptions}
             popupVisible={popupVisible}
             scrollSticky={scrollSticky}
+            colorScheme={colorScheme}
           />
         )}
         {use12Hours && (
@@ -296,6 +300,7 @@ export const TimePickerPopup: FC<TimePickerPopupProps> = (props) => {
             onHandleSelect={onHandleSelect}
             popupVisible={popupVisible}
             scrollSticky={scrollSticky}
+            colorScheme={colorScheme}
           />
         )}
       </div>
@@ -315,6 +320,7 @@ export const TimePickerPopup: FC<TimePickerPopupProps> = (props) => {
               size="small"
               onClick={onConfirmTime}
               disabled={confirmBtnDisabled || !valueShow}
+              colorScheme={colorScheme}
             >
               {locale.ok}
             </Button>
