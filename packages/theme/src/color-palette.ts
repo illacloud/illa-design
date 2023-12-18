@@ -102,8 +102,9 @@ const transRule: Record<string, number> = {
   "03": 6,
   "04": 5,
   "05": 4,
-  "06": 2,
-  "07": 1,
+  "06": 3,
+  "07": 2,
+  "08": 1,
 }
 
 export const getColor = (color: string, step: string) => {
