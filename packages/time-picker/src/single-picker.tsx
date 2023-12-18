@@ -141,7 +141,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(
 
       onHandleChange(newValue)
 
-      if (disableConfirm) {
+      if (!disableConfirm) {
         setOpen(false)
       }
     }

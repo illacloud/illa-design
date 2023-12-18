@@ -39,6 +39,11 @@ export const baseCellStyle = css`
   font-weight: 400;
   cursor: pointer;
 `
+
+export const selectedStyle = (colorScheme: string = "grayBlue") => css`
+  color: red;
+`
+
 export const cellDisabledStyle = css`
   color: ${getColor("gray", "08")};
   cursor: not-allowed;
@@ -50,29 +55,29 @@ export const cellInnerHoverStyle = css`
   }
 `
 
-export const applyCellStyle = (disabled?: boolean, selected?: boolean) => {
-  return css`
-    ${baseCellStyle}
-    ${disabled ? cellDisabledStyle : ""}
-    ${!disabled && !selected ? cellInnerHoverStyle : ""}
-  `
-}
-
+export const applyCellStyle = (disabled?: boolean, selected?: boolean) => css`
+  ${baseCellStyle};
+  ${disabled ? cellDisabledStyle : ""};
+  ${!disabled && !selected ? cellInnerHoverStyle : ""};
+`
 export const baseCellInnerStyle = css`
   height: 24px;
   line-height: 24px;
   font-size: 14px;
 `
 
-export const cellInnerSelectedStyle = css`
+export const cellInnerSelectedStyle = (colorScheme: string) => css`
   background-color: ${getColor("gray", "09")};
-  color: ${getColor("blue", "03")};
+  color: ${getColor(colorScheme, "03")};
 `
 
-export const applyCellInnerStyle = (selected?: boolean) => {
+export const applyCellInnerStyle = (
+  colorScheme: string = "blue",
+  selected?: boolean,
+) => {
   return css`
     ${baseCellInnerStyle}
-    ${selected ? cellInnerSelectedStyle : ""}
+    ${selected ? cellInnerSelectedStyle(colorScheme) : ""}
   `
 }
 

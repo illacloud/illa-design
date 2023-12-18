@@ -10,6 +10,7 @@ export const HoursColumn: FC<BaseColumnProps> = (props) => {
     selectedValue,
     hideDisabledOptions,
     scrollSticky,
+    colorScheme,
     disabledFunc,
     onHandleSelect,
   } = props
@@ -32,6 +33,7 @@ export const HoursColumn: FC<BaseColumnProps> = (props) => {
       unit="hour"
       popupVisible={popupVisible}
       scrollSticky={scrollSticky}
+      colorScheme={colorScheme}
     />
   )
 }
