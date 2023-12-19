@@ -103,6 +103,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         <div
           css={applyControlBlockStyle("up", size)}
           onClick={() => {
+            inputRef.current.focus()
             plusStep()
           }}
         >
@@ -111,6 +112,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         <div
           css={applyControlBlockStyle("bottom", size)}
           onClick={() => {
+            inputRef.current.focus()
             minusStep()
           }}
         >
