@@ -1,10 +1,4 @@
-import {
-  forwardRef,
-  MutableRefObject,
-  useCallback,
-  useImperativeHandle,
-  useRef,
-} from "react"
+import { forwardRef, MutableRefObject, useCallback, useRef } from "react"
 import { InputNumberProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { DownIcon, MinusIcon, PlusIcon, UpIcon } from "@illa-design/icon"
@@ -53,13 +47,6 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
 
     const currentInputRef =
       useRef<HTMLInputElement>() as MutableRefObject<HTMLInputElement>
-
-    // useImperativeHandle(inputRef, () => ({
-    //   ...currentInputRef.current,
-    //   focus: () => {
-    //     currentInputRef.current.focus()
-    //   },
-    // }))
 
     const plusStep = useCallback((): void => {
       const currentNumber = Number(finalValue)
