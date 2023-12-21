@@ -3,7 +3,7 @@ import { InputNumberProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { DownIcon, MinusIcon, PlusIcon, UpIcon } from "@illa-design/icon"
 import { Space } from "@illa-design/space"
-import { isNumber, useMergeValue } from "@illa-design/system"
+import { isNumber, mergeRefs, useMergeValue } from "@illa-design/system"
 import {
   applyActionIconStyle,
   applyControlBlockStyle,
@@ -33,6 +33,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       defaultValue,
       value,
       icons,
+      inputRef,
       formatter,
       parser,
       onChange,
@@ -44,7 +45,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       defaultValue,
     })
 
-    const inputRef =
+    const currentInputRef =
       useRef<HTMLInputElement>() as MutableRefObject<HTMLInputElement>
 
     const plusStep = useCallback((): void => {
@@ -103,7 +104,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         <div
           css={applyControlBlockStyle("up", size)}
           onClick={() => {
-            inputRef.current.focus()
+            currentInputRef.current.focus()
             plusStep()
           }}
         >
@@ -112,7 +113,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         <div
           css={applyControlBlockStyle("bottom", size)}
           onClick={() => {
-            inputRef.current.focus()
+            currentInputRef.current.focus()
             minusStep()
           }}
         >
@@ -148,7 +149,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     return (
       <Input
         ref={ref}
-        inputRef={inputRef}
+        inputRef={mergeRefs(currentInputRef, inputRef)}
         _css={hoverControlStyle}
         size={size}
         value={finalValue}
@@ -167,8 +168,8 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         }}
         onPressEnter={() => {
           const rawValue = parser
-            ? parser(inputRef.current.value)
-            : inputRef.current.value
+            ? parser(currentInputRef.current.value)
+            : currentInputRef.current.value
 
           const dealNum = dealNumber(rawValue)
 

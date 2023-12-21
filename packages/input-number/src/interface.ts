@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, ReactNode, SyntheticEvent } from "react"
+import { InputHTMLAttributes, ReactNode, Ref, SyntheticEvent } from "react"
 import { BoxProps } from "@illa-design/theme"
 
 export type InputNumberSize = "small" | "medium" | "large"
@@ -47,6 +47,7 @@ export interface InputNumberProps
     plus?: ReactNode
     minus?: ReactNode
   }
+  inputRef?: Ref<HTMLInputElement>
   onChange?: (value: number | undefined) => void
   onKeyDown?: (e: SyntheticEvent) => void
   parser?: (value: number | string) => number
