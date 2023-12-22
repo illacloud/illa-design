@@ -173,7 +173,7 @@ export const Trigger: FC<TriggerProps> = (props) => {
 
   const closeContent = <div css={applyDefaultContentSize}>{content}</div>
 
-  const childrenRef = useRef<HTMLElement>(null)
+  const childrenRef = useRef<HTMLElement>((props.children as any).ref)
 
   let centerNode: ReactElement = <></>
 
@@ -397,12 +397,12 @@ export const Trigger: FC<TriggerProps> = (props) => {
           },
         }),
       )}
-      <FloatingPortal
-        root={_popupContainer ?? childrenRef?.current ?? document.body}
-      >
-        {!disabled && (
-          <AnimatePresence>
-            {finalVisible && (
+      {!disabled && (
+        <AnimatePresence>
+          {finalVisible && (
+            <FloatingPortal
+              root={_popupContainer ?? childrenRef?.current ?? document.body}
+            >
               <div
                 onFocus={onFocus}
                 onBlur={onBlur}
@@ -433,10 +433,10 @@ export const Trigger: FC<TriggerProps> = (props) => {
               >
                 {tipsNode}
               </div>
-            )}
-          </AnimatePresence>
-        )}
-      </FloatingPortal>
+            </FloatingPortal>
+          )}
+        </AnimatePresence>
+      )}
     </>
   )
 }
