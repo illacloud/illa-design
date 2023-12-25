@@ -1,12 +1,13 @@
-import { forwardRef, HTMLAttributes } from "react"
+import { forwardRef } from "react"
 import { applyTypoContainer } from "./typograph-style"
-import { deleteCssProps } from "@illa-design/theme"
+import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { TypographyProps } from "./interface"
 
-export const Typography = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(
+export const Typography = forwardRef<HTMLElement, TypographyProps>(
   (props, ref) => {
     return (
       <article
-        css={[applyTypoContainer()]}
+        css={[applyTypoContainer(), applyBoxStyle(props)]}
         ref={ref}
         {...deleteCssProps(props)}
       >

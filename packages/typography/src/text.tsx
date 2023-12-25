@@ -4,6 +4,7 @@ import { Base } from "./base"
 import { Trigger } from "@illa-design/trigger"
 import { mergedToString } from "@illa-design/system"
 import { applyBoxStyle, deleteCssProps } from "@illa-design/theme"
+import { textStyle } from "./text-style"
 
 export const Text = forwardRef<HTMLDivElement, TextProps>((props, ref) => {
   // get props
@@ -41,14 +42,18 @@ export const Text = forwardRef<HTMLDivElement, TextProps>((props, ref) => {
 
   const text = code ? (
     <code
-      css={[applyBoxStyle(props)]}
+      css={[textStyle, applyBoxStyle(props)]}
       ref={ref}
       {...deleteCssProps(otherProps)}
     >
       {base}
     </code>
   ) : (
-    <div css={[applyBoxStyle(props)]} ref={ref} {...deleteCssProps(otherProps)}>
+    <div
+      css={[textStyle, applyBoxStyle(props)]}
+      ref={ref}
+      {...deleteCssProps(otherProps)}
+    >
       {base}
     </div>
   )
