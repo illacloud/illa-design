@@ -44,7 +44,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
 
     let headingNode = (
       <TagWrapper
-        css={applyBoxStyle(props)}
+        css={[applyBoxStyle(props)]}
         ref={ref}
         {...deleteCssProps(otherProps)}
       >

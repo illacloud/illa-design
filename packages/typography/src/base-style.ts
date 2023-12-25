@@ -4,6 +4,7 @@ import {
   globalColor,
   getSpecialThemeColor,
   illaPrefix,
+  getColor,
 } from "@illa-design/theme"
 
 const colorSchemes = [
@@ -82,7 +83,7 @@ export function applyFontContentStyle(
     finalCss = css`
       ${finalCss};
       cursor: not-allowed;
-      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+      color: ${getColor("grayBlue", "05")};
       user-select: none;
     `
   }
@@ -95,7 +96,7 @@ export function applyExpandLabelCss(): SerializedStyles {
     cursor: pointer;
     margin: 0 4px;
     text-decoration: none;
-    color: ${globalColor(`--${illaPrefix}-blue-03`)};
+    color: ${getColor("blue", "03")};
   `
 }
 
@@ -103,7 +104,7 @@ export function applyCopyableContainerSize(): SerializedStyles {
   return css`
     cursor: pointer;
     margin-left: 4px;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    color: ${getColor("grayBlue", "02")};
   `
 }
 
@@ -111,7 +112,7 @@ export const applyCopyableIconSize = css`
   cursor: pointer;
   font-size: 0.75em;
   margin-left: 4px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${getColor("grayBlue", "02")};
   display: inline-flex;
   align-items: center;
 `
