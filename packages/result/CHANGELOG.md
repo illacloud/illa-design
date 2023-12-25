@@ -1,5 +1,33 @@
 # @illa-design/result
 
+## 1.3.0
+
+### Minor Changes
+
+- fix bugs
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/button@1.3.0
+  - @illa-design/system@1.3.0
+  - @illa-design/theme@1.3.0
+  - @illa-design/icon@1.3.0
+
+## 1.2.0
+
+### Minor Changes
+
+- fix bugs
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/button@1.2.0
+  - @illa-design/icon@1.2.0
+  - @illa-design/system@1.2.0
+  - @illa-design/theme@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes

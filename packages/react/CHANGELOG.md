@@ -1,5 +1,143 @@
 # @illa-design/react
 
+## 1.3.0
+
+### Minor Changes
+
+- fix bugs
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/config-provider@1.3.0
+  - @illa-design/input-number@1.3.0
+  - @illa-design/notification@1.3.0
+  - @illa-design/date-picker@1.3.0
+  - @illa-design/description@1.3.0
+  - @illa-design/page-header@1.3.0
+  - @illa-design/time-picker@1.3.0
+  - @illa-design/breadcrumb@1.3.0
+  - @illa-design/pagination@1.3.0
+  - @illa-design/popconfirm@1.3.0
+  - @illa-design/typography@1.3.0
+  - @illa-design/input-tag@1.3.0
+  - @illa-design/statistic@1.3.0
+  - @illa-design/back-top@1.3.0
+  - @illa-design/calendar@1.3.0
+  - @illa-design/cascader@1.3.0
+  - @illa-design/checkbox@1.3.0
+  - @illa-design/collapse@1.3.0
+  - @illa-design/dropdown@1.3.0
+  - @illa-design/progress@1.3.0
+  - @illa-design/skeleton@1.3.0
+  - @illa-design/timeline@1.3.0
+  - @illa-design/comment@1.3.0
+  - @illa-design/divider@1.3.0
+  - @illa-design/loading@1.3.0
+  - @illa-design/message@1.3.0
+  - @illa-design/popover@1.3.0
+  - @illa-design/trigger@1.3.0
+  - @illa-design/avatar@1.3.0
+  - @illa-design/button@1.3.0
+  - @illa-design/drawer@1.3.0
+  - @illa-design/result@1.3.0
+  - @illa-design/select@1.3.0
+  - @illa-design/slider@1.3.0
+  - @illa-design/switch@1.3.0
+  - @illa-design/system@1.3.0
+  - @illa-design/upload@1.3.0
+  - @illa-design/affix@1.3.0
+  - @illa-design/alert@1.3.0
+  - @illa-design/badge@1.3.0
+  - @illa-design/empty@1.3.0
+  - @illa-design/image@1.3.0
+  - @illa-design/input@1.3.0
+  - @illa-design/modal@1.3.0
+  - @illa-design/radio@1.3.0
+  - @illa-design/space@1.3.0
+  - @illa-design/steps@1.3.0
+  - @illa-design/table@1.3.0
+  - @illa-design/theme@1.3.0
+  - @illa-design/card@1.3.0
+  - @illa-design/grid@1.3.0
+  - @illa-design/icon@1.3.0
+  - @illa-design/link@1.3.0
+  - @illa-design/list@1.3.0
+  - @illa-design/menu@1.3.0
+  - @illa-design/rate@1.3.0
+  - @illa-design/spin@1.3.0
+  - @illa-design/tabs@1.3.0
+  - @illa-design/tag@1.3.0
+
+## 1.2.0
+
+### Minor Changes
+
+- fix bugs
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/affix@1.2.0
+  - @illa-design/alert@1.2.0
+  - @illa-design/avatar@1.2.0
+  - @illa-design/back-top@1.2.0
+  - @illa-design/badge@1.2.0
+  - @illa-design/breadcrumb@1.2.0
+  - @illa-design/button@1.2.0
+  - @illa-design/calendar@1.2.0
+  - @illa-design/card@1.2.0
+  - @illa-design/cascader@1.2.0
+  - @illa-design/checkbox@1.2.0
+  - @illa-design/collapse@1.2.0
+  - @illa-design/comment@1.2.0
+  - @illa-design/config-provider@1.2.0
+  - @illa-design/date-picker@1.2.0
+  - @illa-design/description@1.2.0
+  - @illa-design/divider@1.2.0
+  - @illa-design/drawer@1.2.0
+  - @illa-design/dropdown@1.2.0
+  - @illa-design/empty@1.2.0
+  - @illa-design/grid@1.2.0
+  - @illa-design/icon@1.2.0
+  - @illa-design/image@1.2.0
+  - @illa-design/input@1.2.0
+  - @illa-design/input-number@1.2.0
+  - @illa-design/input-tag@1.2.0
+  - @illa-design/link@1.2.0
+  - @illa-design/list@1.2.0
+  - @illa-design/loading@1.2.0
+  - @illa-design/menu@1.2.0
+  - @illa-design/message@1.2.0
+  - @illa-design/modal@1.2.0
+  - @illa-design/notification@1.2.0
+  - @illa-design/page-header@1.2.0
+  - @illa-design/pagination@1.2.0
+  - @illa-design/popconfirm@1.2.0
+  - @illa-design/popover@1.2.0
+  - @illa-design/progress@1.2.0
+  - @illa-design/radio@1.2.0
+  - @illa-design/rate@1.2.0
+  - @illa-design/result@1.2.0
+  - @illa-design/select@1.2.0
+  - @illa-design/skeleton@1.2.0
+  - @illa-design/slider@1.2.0
+  - @illa-design/space@1.2.0
+  - @illa-design/spin@1.2.0
+  - @illa-design/statistic@1.2.0
+  - @illa-design/steps@1.2.0
+  - @illa-design/switch@1.2.0
+  - @illa-design/system@1.2.0
+  - @illa-design/table@1.2.0
+  - @illa-design/tabs@1.2.0
+  - @illa-design/tag@1.2.0
+  - @illa-design/theme@1.2.0
+  - @illa-design/time-picker@1.2.0
+  - @illa-design/timeline@1.2.0
+  - @illa-design/trigger@1.2.0
+  - @illa-design/typography@1.2.0
+  - @illa-design/upload@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes

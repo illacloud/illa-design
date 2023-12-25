@@ -1,5 +1,35 @@
 # @illa-design/list
 
+## 1.3.0
+
+### Minor Changes
+
+- fix bugs
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/typography@1.3.0
+  - @illa-design/divider@1.3.0
+  - @illa-design/avatar@1.3.0
+  - @illa-design/system@1.3.0
+  - @illa-design/theme@1.3.0
+
+## 1.2.0
+
+### Minor Changes
+
+- fix bugs
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @illa-design/avatar@1.2.0
+  - @illa-design/divider@1.2.0
+  - @illa-design/system@1.2.0
+  - @illa-design/theme@1.2.0
+  - @illa-design/typography@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes
