@@ -21,6 +21,10 @@ export type TypographyColorScheme =
 
 export type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 
+export interface TypographyProps
+  extends HTMLAttributes<HTMLElement>,
+    BoxProps {}
+
 export interface TextProps
   extends BaseProps,
     HTMLAttributes<HTMLSpanElement>,
