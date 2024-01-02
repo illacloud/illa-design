@@ -274,7 +274,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
                 <DropListItem
                   key={option.value.toString()}
                   colorScheme={colorScheme}
-                  value={option.value.toString()}
+                  value={option.value}
                   selected={
                     typeof finalValue[0] === "object"
                       ? (finalValue as SelectOptionObject[]).find(
