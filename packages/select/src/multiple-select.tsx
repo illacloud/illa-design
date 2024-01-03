@@ -167,24 +167,17 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
             closeable: !readOnly,
           } as TagObject
         } else {
-          if (!isObject(finalValue[0])) {
-            return {
-              label: (finalValue as []).find((item) => item === v) + "",
-              value: v,
-              closeable: !readOnly,
-            } as TagObject
-          } else {
-            return {
-              label: (finalValue as SelectOptionObject[]).find(
+          return {
+            label:
+              (finalOptions as SelectOptionObject[]).find(
                 (item) => item.value === v,
-              )?.label,
-              value: v,
-              closeable: !readOnly,
-            } as TagObject
-          }
+              )?.label ?? v,
+            value: v,
+            closeable: !readOnly,
+          } as TagObject
         }
       })
-    }, [finalValue, labelInValue, readOnly])
+    }, [finalValue, labelInValue, finalOptions, readOnly])
 
     return (
       <Dropdown
@@ -281,7 +274,7 @@ export const MultipleSelect = forwardRef<HTMLDivElement, SelectProps>(
                 <DropListItem
                   key={option.value.toString()}
                   colorScheme={colorScheme}
-                  value={option.value.toString()}
+                  value={option.value}
                   selected={
                     typeof finalValue[0] === "object"
                       ? (finalValue as SelectOptionObject[]).find(
