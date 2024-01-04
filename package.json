@@ -46,7 +46,7 @@
     "react-dom": "^18.2.0",
     "turbo": "^1.10.15",
     "typescript": "^5.0.4",
-    "vite": "^4.4.12"
+    "vite": "^4.5.0"
   },
   "engines": {
     "pnpm": "^8"
