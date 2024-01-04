@@ -23,7 +23,6 @@ export function getHeadingSize(level: HeadingLevel): string[] {
 export function applyTypoContainer(): SerializedStyles {
   return css`
     word-break: break-all;
-    white-space: pre-wrap;
 
     h1 {
       margin: 0;
