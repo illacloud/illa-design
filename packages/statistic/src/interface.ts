@@ -18,6 +18,7 @@ export interface StatisticProps
   extra?: ReactNode
   prefix?: string | ReactNode
   suffix?: string | ReactNode
+  colorScheme?: string
 }
 
 export interface CountDownProps
@@ -31,4 +32,5 @@ export interface CountDownProps
   onFinish?: () => void
   onChange?: (value: number) => void
   valueStyle?: CSSProperties
+  colorScheme?: string
 }
