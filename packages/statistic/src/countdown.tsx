@@ -21,6 +21,7 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
       now = dayjs(),
       start = true,
       valueStyle,
+      colorScheme = "grayBlue",
       ...restProps
     } = props
 
@@ -71,8 +72,8 @@ export const Countdown = forwardRef<HTMLDivElement, CountDownProps>(
         css={[statisticStyle, applyBoxStyle(props)]}
         {...deleteCssProps(restProps)}
       >
-        {title && <div css={statisticTitleStyle}>{title}</div>}
-        <div css={statisticContentStyle} style={valueStyle}>
+        {title && <div css={statisticTitleStyle(colorScheme)}>{title}</div>}
+        <div css={statisticContentStyle(colorScheme)} style={valueStyle}>
           {getDateString(valueShow, format)}
         </div>
       </div>

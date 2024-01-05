@@ -1,5 +1,24 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getColor,
+  getSpecialThemeColor,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/theme"
+
+const getStatisticColor = (color: string) => {
+  if (color === "white") {
+    return getColor("white", "02")
+  } else if (
+    color === "blackAlpha" ||
+    color === "gray" ||
+    color === "grayBlue"
+  ) {
+    return getColor(color, "04")
+  } else {
+    return getColor(color, "05")
+  }
+}
 
 export const statisticStyle = css`
   display: inline-block;
@@ -8,21 +27,23 @@ export const statisticStyle = css`
   font-weight: 400;
 `
 
-export const statisticTitleStyle = css`
+export const statisticTitleStyle = (colorScheme: string) => css`
   margin-bottom: 4px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  color: ${getStatisticColor(colorScheme)};
 `
 
-export const statisticExtraStyle = css`
+export const statisticExtraStyle = (colorScheme: string) => css`
   font-size: 12px;
   margin-top: 4px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  color: ${getStatisticColor(colorScheme)};
 `
 
-export const statisticContentStyle = css`
+export const statisticContentStyle = (colorScheme: string) => css`
   font-size: 24px;
   font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  display: flex;
+  align-items: baseline;
+  color: ${getSpecialThemeColor(colorScheme)};
 `
 
 export function applyStatisticDecoratorStyle(

@@ -40,6 +40,7 @@ export const Statistic = forwardRef<any, StatisticProps>((props, ref) => {
     countUp,
     countFrom = 0,
     countDuration = 2000,
+    colorScheme = "grayBlue",
     ...restProps
   } = props
 
@@ -108,14 +109,14 @@ export const Statistic = forwardRef<any, StatisticProps>((props, ref) => {
       css={[statisticStyle, applyBoxStyle(props)]}
       {...deleteCssProps(restProps)}
     >
-      {title && <div css={statisticTitleStyle}>{title}</div>}
+      {title && <div css={statisticTitleStyle(colorScheme)}>{title}</div>}
       <div>
         <Skeleton
           animation
           visible={!!loading}
           text={{ rows: 1, width: "100%" }}
         >
-          <div css={statisticContentStyle}>
+          <div css={statisticContentStyle(colorScheme)}>
             {prefix && (
               <span css={applyStatisticDecoratorStyle(true, !isObject(prefix))}>
                 {prefix}
@@ -131,7 +132,7 @@ export const Statistic = forwardRef<any, StatisticProps>((props, ref) => {
             )}
           </div>
         </Skeleton>
-        {extra && <div css={statisticExtraStyle}>{extra}</div>}
+        {extra && <div css={statisticExtraStyle(colorScheme)}>{extra}</div>}
       </div>
     </div>
   )
