@@ -42,7 +42,7 @@ export const statisticContentStyle = (colorScheme: string) => css`
   font-size: 24px;
   font-weight: 500;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   color: ${getSpecialThemeColor(colorScheme)};
 `
 
