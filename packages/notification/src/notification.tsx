@@ -100,7 +100,7 @@ export const Notification = forwardRef<HTMLDivElement, NotificationProps>(
                 <WarningCircleIcon
                   fs="16px"
                   mt="2px"
-                  c={getColor("red", "03")}
+                  c={getColor("orange", "03")}
                 />
               )
             case "normal":
@@ -133,7 +133,7 @@ export const Notification = forwardRef<HTMLDivElement, NotificationProps>(
         }}
       >
         <div css={applyContentWrapperStyle}>
-          {normalIcon}
+          <div className="icon-container">{normalIcon}</div>
           <div css={applyContentStyle(showIcon)}>
             {title && <div css={applyNotificationTitle}>{title}</div>}
             {content && (
