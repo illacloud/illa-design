@@ -8,13 +8,13 @@
 <p align="center">Accelerate your internal tools development.</p>
 
 <div align="center">
-  <p>Create with ❤︎ by <a href="https://github.com/illacloud/illa-design/graphs/contributors">contributors</a></p>
+  <p>Created with ❤︎ by <a href="https://github.com/illacloud/illa-design/graphs/contributors">contributors</a></p>
 </div>
 
 ![cover](./.github/assets/images/design-cover.png)
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
-[![Follow on Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white)](https://twitter.com/illacloudHQ)
+[![Follow on Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=x&logoColor=white)](https://twitter.com/illacloudHQ)
 [![storybook](./.github/assets/images/storybook.svg)](https://design.illafamily.com)
 [![codecov](https://codecov.io/gh/illacloud/illa-design/branch/main/graph/badge.svg?token=GR2SOLBWQN)](https://codecov.io/gh/illacloud/illa-design)
 [![license](https://img.shields.io/github/license/illacloud/illa-design)](./LICENSE)
@@ -23,7 +23,7 @@
 ## ✨ Features
 
 1. 🛠 **Made for React:** Ready-to-use component library for React.
-2. 📝 **TypeScript Friendly:** Come with TypeScript typings out of the box and support with predictable static typings.
+2. 📝 **TypeScript Friendly:** Comes with TypeScript typings out of the box and supports predictable static typings.
 3. 📦 **High Productivity:** Easy and fast, import in 5 seconds.
 4. 🎨 **Vibrant Design:** Beautifully designed components and powerful theming system supports custom themes to match
    your brand, including light and dark mode.
@@ -38,7 +38,7 @@ You can review all components in Storybook.
 
 ## 🖥 Fast Try
 
-You can quickly use ILLA Design on codesandbox.
+You can quickly use ILLA Design on CodeSandbox.
 
 [![Edit illa-design-demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/illa-design-demo-r1qyy2?fontsize=14&hidenavigation=1&theme=dark)
 
@@ -82,7 +82,7 @@ Step 2: Run.
 $ pnpm storybook
 ```
 
-Then your can open storybook in your browser.
+Then your can open Storybook in your browser.
 
 ## 💬 Community
 
@@ -112,4 +112,4 @@ Contact Us: hr@illasoft.com
 
 ## License
 
-This project is [Apache License 2.0](./LICENSE).
+This project is licensed under the [Apache License 2.0](./LICENSE).
