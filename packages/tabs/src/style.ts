@@ -243,7 +243,7 @@ export const panelTitleStyle = (
     flexDirection = "row-reverse"
   }
   let selectCss
-  if (isSelectKey) {
+  if (isSelectKey && variant === "capsule") {
     selectCss = `
     background-color: ${getColor("white", "01")};
     `
