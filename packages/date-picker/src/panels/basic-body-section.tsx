@@ -28,8 +28,6 @@ export const BasicRowsSection: FC<BasicRowProps> = (props) => {
     dateRender,
     isSameTime,
     onSelectDate,
-    onMouseEnterCell,
-    onMouseLeaveCell,
   } = props
 
   return (
@@ -63,8 +61,6 @@ export const BasicRowsSection: FC<BasicRowProps> = (props) => {
                   key={colIndex}
                   css={applyCellStyle(cellStatus)}
                   onClick={onClickHandler}
-                  onMouseEnter={() => onMouseEnterCell?.(col.time!, disabled)}
-                  onMouseLeave={() => onMouseLeaveCell?.(col.time!, disabled)}
                 >
                   {dateRender ? (
                     dateRender(col.time)
@@ -115,8 +111,6 @@ export const BasicBodySection: FC<BasicPanelBodyProps> = (props) => {
     disabledDate,
     onSelectDate,
     dateRender,
-    onMouseEnterCell,
-    onMouseLeaveCell,
     rows,
     showWeekList,
     isSameTime,
@@ -144,9 +138,7 @@ export const BasicBodySection: FC<BasicPanelBodyProps> = (props) => {
           disabledDate={disabledDate}
           dateRender={dateRender}
           isSameTime={isSameTime}
-          onMouseEnterCell={onMouseEnterCell}
           onSelectDate={onSelectDate}
-          onMouseLeaveCell={onMouseLeaveCell}
           format={format}
         />
       </div>

@@ -9,8 +9,6 @@ export interface DatePickerPanelProps
   extends SingleDatePickerProps,
     PrivateCType {
   onTimePickerSelect?: (timeString: string, time: Dayjs) => void
-  onMouseEnterCell?: (time: Dayjs, disabled: boolean) => void
-  onMouseLeaveCell?: (time: Dayjs, disabled: boolean) => void
   pageShowDate?: Dayjs
   isRangePicker?: boolean
   rangeValues?: Dayjs[]
