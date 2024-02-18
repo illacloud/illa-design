@@ -721,6 +721,12 @@ export const RangeDatePicker = forwardRef<HTMLDivElement, RangeDatePickerProps>(
       (showTime && panelModes[0] === "date" && panelModes[1] === "date") ||
       extra
 
+    useEffect(() => {
+      if (!mergedPopupVisible) {
+        setHoverPlaceholderValue(undefined)
+      }
+    }, [mergedPopupVisible])
+
     return (
       <PickerContext.Provider value={{ utcOffset, timezone, weekStart }}>
         <Trigger
