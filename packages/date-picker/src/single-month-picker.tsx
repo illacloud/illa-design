@@ -295,12 +295,6 @@ export const SingleMonthPicker = forwardRef<
   const suffixIcon =
     inputSuffix === null ? null : inputSuffix || <CalendarIcon />
 
-  useEffect(() => {
-    if (!mergedPopupVisible) {
-      setHoverPlaceholderValue(undefined)
-    }
-  }, [mergedPopupVisible])
-
   return (
     <PickerContext.Provider value={{ utcOffset, timezone, weekStart }}>
       <Trigger
