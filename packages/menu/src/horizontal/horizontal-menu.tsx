@@ -138,7 +138,6 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
 
         return (
           <HorizontalSubMenu
-            ml={index !== 0 ? "16px" : "0"}
             key={subMenu.value}
             value={subMenu.value}
             icon={subMenu.icon}
@@ -216,7 +215,6 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
       } else {
         return (
           <HorizontalMenuItem
-            ml={index !== 0 ? "16px" : "0"}
             key={item.value}
             value={item.value}
             icon={item.icon}
@@ -309,7 +307,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
                   }
                 }}
               >
-                <PreviousIcon />
+                <PreviousIcon size="12" />
               </motion.div>
             )}
           </AnimatePresence>
@@ -330,7 +328,7 @@ export const HorizontalMenu = forwardRef<HTMLDivElement, MenuProps>(
                   }
                 }}
               >
-                <NextIcon />
+                <NextIcon size="12" />
               </motion.div>
             )}
           </AnimatePresence>
