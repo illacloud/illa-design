@@ -44,8 +44,6 @@ export const DatePickerPanel: FC<DatePickerPanelProps> = (props) => {
     pageShowDate,
     showTime,
     timepickerProps,
-    onMouseEnterCell,
-    onMouseLeaveCell,
     dateRender,
     disabledDate,
     disabledTime,
@@ -189,8 +187,6 @@ export const DatePickerPanel: FC<DatePickerPanelProps> = (props) => {
           rows={rows}
           isSameTime={innerIsSameTime}
           onSelectDate={onSelect}
-          onMouseEnterCell={onMouseEnterCell}
-          onMouseLeaveCell={onMouseLeaveCell}
           dateRender={dateRender}
           disabledDate={disabledDate}
           mode={isWeek ? "week" : "date"}

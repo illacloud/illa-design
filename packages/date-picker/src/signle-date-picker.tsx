@@ -89,7 +89,6 @@ export const SingleDatePicker = forwardRef<
   const [popupVisible, setPopupVisible] = useState<boolean | undefined>(
     !!props.popupVisible,
   )
-  const [hoverPlaceholderValue, setHoverPlaceholderValue] = useState<string>()
   const mergedPopupVisible =
     "popupVisible" in props ? props.popupVisible : popupVisible
   const mergedValue =
@@ -159,7 +158,6 @@ export const SingleDatePicker = forwardRef<
 
   useEffect(() => {
     setInputValue(undefined)
-    setHoverPlaceholderValue(undefined)
 
     if (mergedPopupVisible) {
       setPageShowDate(defaultPageShowDate)
@@ -220,7 +218,6 @@ export const SingleDatePicker = forwardRef<
 
   function onHandleSelect(_: string | undefined, date?: Dayjs, now?: boolean) {
     setInputValue(undefined)
-    setHoverPlaceholderValue(undefined)
     if (showTime) {
       const newTime = now ? date : getValueWithTime(date as Dayjs, timeValue)
       setValueShow(newTime)
@@ -373,21 +370,6 @@ export const SingleDatePicker = forwardRef<
     onHandleSelect(finalValue, now, true)
   }
 
-  function onMouseEnterCell(value: Dayjs, disabled: boolean) {
-    if (!disabled) {
-      const finalValue =
-        typeof format === "function"
-          ? format(value as Dayjs)
-          : value?.format(format)
-
-      setHoverPlaceholderValue(finalValue)
-    }
-  }
-
-  function onMouseLeaveCell() {
-    setHoverPlaceholderValue(undefined)
-  }
-
   const suffixIcon =
     inputSuffix === null ? null : inputSuffix || <CalendarIcon />
 
@@ -421,8 +403,6 @@ export const SingleDatePicker = forwardRef<
               isTimePanel={false}
               panelMode={panelMode}
               setPanelMode={setPanelMode}
-              onMouseEnterCell={onMouseEnterCell}
-              onMouseLeaveCell={onMouseLeaveCell}
             />
             {shouldShowFooter && (
               <BasicFooterSection
@@ -453,9 +433,8 @@ export const SingleDatePicker = forwardRef<
             placeholder={placeholder as string | undefined}
             popupVisible={mergedPopupVisible}
             value={valueShow || mergedValue}
-            inputValue={hoverPlaceholderValue || inputValue}
+            inputValue={inputValue}
             onChange={onChangeInput}
-            isPlaceholder={!!hoverPlaceholderValue}
             format={realFormat}
             disabled={disabled}
             error={error}
