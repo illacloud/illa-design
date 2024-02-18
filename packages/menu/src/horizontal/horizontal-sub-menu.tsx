@@ -56,7 +56,7 @@ export const HorizontalSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
           {!onlyShowIcon && label && (
             <span css={horizontalSubMenuLabel}>{label}</span>
           )}
-          {children && <DownIcon ml="8px" fs="14px" />}
+          {children && <DownIcon ml="8px" fs="12px" />}
           <div
             css={applyHorizontalLine(colorScheme, selected, disabled)}
             className="horizontalLine"
