@@ -396,6 +396,12 @@ export const SingleDatePicker = forwardRef<
     extra ||
     (!showTime && panelMode === "date" && showNowBtn)
 
+  useEffect(() => {
+    if (!mergedPopupVisible) {
+      setHoverPlaceholderValue(undefined)
+    }
+  }, [mergedPopupVisible])
+
   return (
     <PickerContext.Provider value={{ utcOffset, timezone, weekStart }}>
       <Trigger

@@ -15,6 +15,7 @@ export function applyHorizontalMenuListContainerStyle(
 ): SerializedStyles {
   return css`
     display: flex;
+    gap: 16px;
     flex-direction: row;
     justify-content: ${isScroll ? "flex-start" : horizontalAlign};
     overflow-x: auto;
@@ -45,13 +46,22 @@ export function applyActionContainerStyle(
   const bgStyle =
     action === "left"
       ? css`
-          mask-image: linear-gradient(90deg, #000 0, transparent);
+          background: linear-gradient(
+            270deg,
+            rgba(255, 255, 255, 0) 0%,
+            #fff 100%
+          );
+          padding: 14px 12px 14px 4px;
         `
       : css`
-          mask-image: linear-gradient(-90deg, #000 0, transparent);
+          background: linear-gradient(
+            270deg,
+            #fff 0%,
+            rgba(255, 255, 255, 0) 100%
+          );
+          padding: 14px 4px 14px 12px;
         `
   return css`
-    background: transparent;
     color: ${getColor("grayBlue", "02")};
     position: absolute;
     width: 28px;
@@ -162,7 +172,7 @@ export function applyHorizontalSubMenuIcon(
   onlyShowIcon?: boolean,
 ): SerializedStyles {
   return css`
-    font-size: 14px;
+    font-size: 16px;
     display: inline-flex;
     align-items: center;
     flex-shrink: 0;
