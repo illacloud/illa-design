@@ -108,8 +108,6 @@ export const BaseColumn: FC<TimeColumnProps> = (props) => {
     [onHandleSelect],
   )
 
-  console.log("item", list)
-
   return (
     <div
       className="time-list"

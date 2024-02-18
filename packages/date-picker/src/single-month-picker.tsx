@@ -82,7 +82,6 @@ export const SingleMonthPicker = forwardRef<
   const [popupVisible, setPopupVisible] = useState<boolean | undefined>(
     !!props.popupVisible,
   )
-  const [hoverPlaceholderValue, setHoverPlaceholderValue] = useState<string>()
   const mergedPopupVisible =
     "popupVisible" in props ? props.popupVisible : popupVisible
   const mergedValue =
@@ -140,7 +139,6 @@ export const SingleMonthPicker = forwardRef<
 
   useEffect(() => {
     setInputValue(undefined)
-    setHoverPlaceholderValue(undefined)
 
     if (mergedPopupVisible) {
       setPageShowDate(defaultPageShowDate)
@@ -196,7 +194,6 @@ export const SingleMonthPicker = forwardRef<
 
   function onHandleSelect(_: string | undefined, date?: Dayjs) {
     setInputValue(undefined)
-    setHoverPlaceholderValue(undefined)
     const localTime = getLocaleDayjsValue(
       toLocal(date as Dayjs, utcOffset, timezone).locale("en-us"),
       "en-us",
@@ -295,16 +292,6 @@ export const SingleMonthPicker = forwardRef<
     onHandleSelect(now?.format(format), now)
   }
 
-  function onMouseEnterCell(value: Dayjs, disabled: boolean) {
-    if (!disabled) {
-      setHoverPlaceholderValue(value.format(format))
-    }
-  }
-
-  function onMouseLeaveCell() {
-    setHoverPlaceholderValue(undefined)
-  }
-
   const suffixIcon =
     inputSuffix === null ? null : inputSuffix || <CalendarIcon />
 
@@ -336,8 +323,6 @@ export const SingleMonthPicker = forwardRef<
               }}
               panelMode={panelMode}
               setPanelMode={setPanelMode}
-              onMouseEnterCell={onMouseEnterCell}
-              onMouseLeaveCell={onMouseLeaveCell}
             />
             {!!extra && (
               <BasicFooterSection
@@ -366,9 +351,8 @@ export const SingleMonthPicker = forwardRef<
             placeholder={placeholder as string | undefined}
             popupVisible={mergedPopupVisible}
             value={valueShow || mergedValue}
-            inputValue={hoverPlaceholderValue || inputValue}
+            inputValue={inputValue}
             onChange={onChangeInput}
-            isPlaceholder={!!hoverPlaceholderValue}
             format={realFormat}
             disabled={disabled}
             error={error}

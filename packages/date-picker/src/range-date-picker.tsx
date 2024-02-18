@@ -113,7 +113,6 @@ export const RangeDatePicker = forwardRef<HTMLDivElement, RangeDatePickerProps>(
     const nextFocusedInputIndex = 1 ^ focusedInputIndex
 
     const [inputValue, setInputValue] = useState<string | undefined>()
-    const [hoverPlaceholderValue, setHoverPlaceholderValue] = useState<string>()
     //     isHalfAvailable: boolean,
     //         nextFocusedInputIndex: number,
     //         format: string,
@@ -322,7 +321,6 @@ export const RangeDatePicker = forwardRef<HTMLDivElement, RangeDatePickerProps>(
     }, [mode])
 
     useEffect(() => {
-      setHoverPlaceholderValue(undefined)
       setInputValue(undefined)
 
       if (mergedPopupVisible) {
@@ -568,7 +566,6 @@ export const RangeDatePicker = forwardRef<HTMLDivElement, RangeDatePickerProps>(
       onSelectValueShow(sortedValueShow)
       setFixedPageShowDates(sortedValueShow)
       setInputValue(undefined)
-      setHoverPlaceholderValue(undefined)
 
       const newSelectedLength = getAvailableDayjsLength(newValueShow)
 
@@ -626,34 +623,6 @@ export const RangeDatePicker = forwardRef<HTMLDivElement, RangeDatePickerProps>(
       )
       newValueShow[index] = newTimeValue
       onSelectValueShow(newValueShow)
-    }
-
-    function onMouseEnterCell(date: Dayjs, disabled: boolean) {
-      const newValueShowHover = [...(panelValue || [])]
-      const needShowHover = resetRange
-        ? selectedLength === 1
-        : selectedLength !== 0
-      if (!disabled && needShowHover && !outOfRange(date)) {
-        newValueShowHover[focusedInputIndex] = getValueWithTime(
-          date,
-          timeValues[focusedInputIndex],
-        )
-        setValueShowHover(newValueShowHover)
-        setInputValue(undefined)
-      }
-      if (!disabled) {
-        const placeHolderValue = showTime
-          ? getValueWithTime(date, timeValues[focusedInputIndex])
-          : date
-        setHoverPlaceholderValue(
-          placeHolderValue.locale("en-us").format(format),
-        )
-      }
-    }
-
-    function onMouseLeaveCell() {
-      setValueShowHover(undefined)
-      setHoverPlaceholderValue(undefined)
     }
 
     function changePageShowDates(
@@ -743,8 +712,6 @@ export const RangeDatePicker = forwardRef<HTMLDivElement, RangeDatePickerProps>(
                 value={panelValue}
                 format={format}
                 onSelectPanel={onSelectPanel}
-                onMouseEnterCell={onMouseEnterCell}
-                onMouseLeaveCell={onMouseLeaveCell}
                 disabledDate={(current) => isDisabledDate(current)}
                 disabledTime={disabledTime}
                 mode={mode}
@@ -787,10 +754,9 @@ export const RangeDatePicker = forwardRef<HTMLDivElement, RangeDatePickerProps>(
               popupVisible={mergedPopupVisible}
               value={valueShow || mergedValue}
               onChange={onChangeInput}
-              inputValue={hoverPlaceholderValue || inputValue}
+              inputValue={inputValue}
               changeFocusedInputIndex={changeFocusedInputIndex}
               focusedInputIndex={focusedInputIndex}
-              isPlaceholder={!!hoverPlaceholderValue}
               separator={separator}
               format={format}
               disabled={disabled}
