@@ -13,7 +13,7 @@ export default {
   component: Menu,
 } as Meta
 
-export const Vertical: StoryFn<MenuProps> = (args) => {
+const Vertical: StoryFn<MenuProps> = (args) => {
   return (
     <>
       <Menu
@@ -103,7 +103,7 @@ export const Vertical: StoryFn<MenuProps> = (args) => {
   )
 }
 
-export const Horizontal: StoryFn<MenuProps> = (args) => {
+const Horizontal: StoryFn<MenuProps> = (args) => {
   return (
     <>
       <Menu
@@ -189,6 +189,15 @@ export const Horizontal: StoryFn<MenuProps> = (args) => {
         ]}
         {...args}
       />
+    </>
+  )
+}
+
+export const Basic: StoryFn<MenuProps> = (props) => {
+  return (
+    <>
+      <Vertical {...props} />
+      <Horizontal {...props} />
     </>
   )
 }

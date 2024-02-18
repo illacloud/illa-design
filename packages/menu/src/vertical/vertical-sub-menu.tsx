@@ -50,9 +50,9 @@ export const VerticalSubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
           {label && <span css={verticalSubMenuLabel}>{label}</span>}
           <div css={verticalDivider} />
           {children && opened ? (
-            <UpIcon flexShrink="0" ml="8px" fs="14px" />
+            <UpIcon flexShrink="0" ml="8px" fs="12px" />
           ) : (
-            <DownIcon flexShrink="0" ml="8px" fs="14px" />
+            <DownIcon flexShrink="0" ml="8px" fs="12px" />
           )}
         </div>
         <AnimatePresence>
