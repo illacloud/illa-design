@@ -55,7 +55,7 @@ export function applyVerticalSubMenuContentContainer(
     align-items: center;
     width: 100%;
     height: 48px;
-    padding: 0 24px;
+    padding: 0 16px;
     flex-direction: row;
     ${colorStyle};
   `
@@ -97,10 +97,10 @@ export function applyVerticalMenuItemContainer(
 
   const paddingStyle = sub
     ? css`
-        padding: 0 24px 0 40px;
+        padding: 0 16px 0 32px;
       `
     : css`
-        padding: 0 24px 0 24px;
+        padding: 0 16px;
       `
 
   return css`
@@ -109,7 +109,6 @@ export function applyVerticalMenuItemContainer(
     box-sizing: border-box;
     align-items: center;
     width: 100%;
-    padding: 0 24px 0 40px;
     height: 48px;
     flex-direction: row;
     ${colorStyle};
@@ -122,12 +121,12 @@ export const verticalDivider = css`
 `
 
 export const verticalSubMenuIcon = css`
-  font-size: 14px;
+  font-size: 16px;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: 8px;
+  margin-right: 16px;
 `
 
 export const verticalSubMenuLabel = css`
