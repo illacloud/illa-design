@@ -22,7 +22,7 @@ export type InputNumberColorScheme =
 export interface InputNumberProps
   extends Omit<
       InputHTMLAttributes<HTMLInputElement>,
-      "prefix" | "size" | "onChange" | "value" | "defaultValue"
+      "prefix" | "size" | "onChange" | "value" | "defaultValue" | "onInput"
     >,
     BoxProps {
   size?: InputNumberSize
@@ -49,7 +49,8 @@ export interface InputNumberProps
   }
   inputRef?: Ref<HTMLInputElement>
   onChange?: (value: number | undefined) => void
+  onInput?: (value: string) => void
   onKeyDown?: (e: SyntheticEvent) => void
   parser?: (value: number | string) => number
-  formatter?: (value: number | string) => string | number
+  formatter?: (value: number | string) => string
 }
