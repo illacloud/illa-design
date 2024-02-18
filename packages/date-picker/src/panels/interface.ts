@@ -13,8 +13,6 @@ export interface BasicPanelBodyProps {
   showWeekList?: boolean
   onSelectDate?: (timeString: string, time: Dayjs) => void
   disabledDate?: (current: Dayjs) => boolean
-  onMouseEnterCell?: (date: Dayjs, disabled: boolean) => void
-  onMouseLeaveCell?: (date: Dayjs, disabled: boolean) => void
   dateRender?: (currentDate: Dayjs) => ReactNode
   rows?: RowType[][]
   value?: DatePickerValue
@@ -34,8 +32,6 @@ export interface BasicRowProps
     | "rows"
     | "dateRender"
     | "onSelectDate"
-    | "onMouseEnterCell"
-    | "onMouseLeaveCell"
     | "disabledDate"
     | "originMode"
     | "isSameTime"
