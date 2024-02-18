@@ -27,8 +27,6 @@ const generateRows = (showYear: number) => {
 export const QuarterPickerPanel: FC<QuarterPickerPanelProps> = (props) => {
   const {
     pageShowDate,
-    onMouseEnterCell,
-    onMouseLeaveCell,
     dateRender,
     disabledDate,
     value,
@@ -97,8 +95,6 @@ export const QuarterPickerPanel: FC<QuarterPickerPanelProps> = (props) => {
         rows={rows}
         onSelectDate={onSelect}
         isSameTime={isSameTime}
-        onMouseEnterCell={onMouseEnterCell}
-        onMouseLeaveCell={onMouseLeaveCell}
         dateRender={dateRender}
         disabledDate={disabledDate}
         mode="quarter"

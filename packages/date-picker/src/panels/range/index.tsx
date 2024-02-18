@@ -32,8 +32,6 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
     timeValues,
     locale,
     pageShowDates,
-    onMouseEnterCell,
-    onMouseLeaveCell,
     onTimePickerSelect: onSelectTime,
     onSelectPanel,
     onPrev,
@@ -140,8 +138,6 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           onSuperPrev={onSuperPrev}
           isRangePicker
           rangeValues={value}
-          onMouseEnterCell={onMouseEnterCell}
-          onMouseLeaveCell={onMouseLeaveCell}
           format={format}
           disabledDate={disabledDate}
           onSelect={onSelectPanel}
@@ -172,8 +168,6 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           onSuperNext={onSuperNext}
           isRangePicker
           rangeValues={value}
-          onMouseEnterCell={onMouseEnterCell}
-          onMouseLeaveCell={onMouseLeaveCell}
           format={format}
           disabledDate={disabledDate}
           onSelect={onSelectPanel}
@@ -210,8 +204,6 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           onSuperPrev={onSuperPrev}
           isRangePicker
           rangeValues={value}
-          onMouseEnterCell={onMouseEnterCell}
-          onMouseLeaveCell={onMouseLeaveCell}
           format={format}
           disabledDate={disabledDate}
           onSelect={onSelectPanel}
@@ -229,8 +221,6 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           onSuperPrev={onSuperPrev}
           isRangePicker
           rangeValues={value}
-          onMouseEnterCell={onMouseEnterCell}
-          onMouseLeaveCell={onMouseLeaveCell}
           format={format}
           disabledDate={disabledDate}
           onSelect={onSelectPanel}
@@ -255,8 +245,6 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           onSuperPrev={onSuperPrev}
           isRangePicker
           rangeValues={value}
-          onMouseEnterCell={onMouseEnterCell}
-          onMouseLeaveCell={onMouseLeaveCell}
           format={format}
           disabledDate={disabledDate}
           onSelect={onSelectPanel}
@@ -268,8 +256,6 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           onSuperNext={onSuperNext}
           isRangePicker
           rangeValues={value}
-          onMouseEnterCell={onMouseEnterCell}
-          onMouseLeaveCell={onMouseLeaveCell}
           format={format}
           disabledDate={disabledDate}
           onSelect={onSelectPanel}
@@ -288,8 +274,6 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           onSuperPrev={onSuperPrev}
           isRangePicker
           rangeValues={value}
-          onMouseEnterCell={onMouseEnterCell}
-          onMouseLeaveCell={onMouseLeaveCell}
           format={format}
           disabledDate={disabledDate}
           onSelect={onSelectPanel}
@@ -307,8 +291,6 @@ export const RangePickerPanel: FC<RangePickerPanelProps> = (props) => {
           onSuperNext={onSuperNext}
           isRangePicker
           rangeValues={value}
-          onMouseEnterCell={onMouseEnterCell}
-          onMouseLeaveCell={onMouseLeaveCell}
           format={format}
           disabledDate={disabledDate}
           onSelect={onSelectPanel}
