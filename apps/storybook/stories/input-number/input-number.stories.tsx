@@ -28,9 +28,11 @@ export const Basic: StoryFn<InputNumberProps> = (props) => {
       />
       <InputNumber
         w="320px"
-        value={currentValue}
+        {...props}
         precision={3}
+        value={currentValue}
         onChange={(v) => {
+          console.log("v", v)
           setCurrentValue(v)
         }}
         mode="button"
