@@ -9,8 +9,6 @@ export interface YearPickerPanelProps
   > {
   dateRender?: (currentDate: Dayjs) => ReactNode
   disabledDate?: (current: Dayjs) => boolean
-  onMouseEnterCell?: (time: Dayjs, disabled: boolean) => void
-  onMouseLeaveCell?: (time: Dayjs, disabled: boolean) => void
   pageShowDate?: Dayjs
   isRangePicker?: boolean
   rangeValues?: Dayjs[]

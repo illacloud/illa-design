@@ -10,8 +10,6 @@ export interface MonthPickerPanelProps
   extends SingleMonthPickerProps,
     PrivateCType {
   rangeValues?: Dayjs[]
-  onMouseEnterCell?: (time: Dayjs, disabled: boolean) => void
-  onMouseLeaveCell?: (time: Dayjs, disabled: boolean) => void
   dateRender?: (currentDate: Dayjs) => ReactNode
   pageShowDate?: Dayjs
   isRangePicker?: boolean

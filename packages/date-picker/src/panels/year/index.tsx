@@ -14,8 +14,6 @@ const isSameYear = (current: Dayjs, target: Dayjs) =>
 export const YearPickerPanel: FC<YearPickerPanelProps> = (props) => {
   const {
     pageShowDate,
-    onMouseEnterCell,
-    onMouseLeaveCell,
     dateRender,
     disabledDate,
     value,
@@ -59,8 +57,6 @@ export const YearPickerPanel: FC<YearPickerPanelProps> = (props) => {
         rows={rows}
         onSelectDate={onSelect}
         isSameTime={isSameYear}
-        onMouseEnterCell={onMouseEnterCell}
-        onMouseLeaveCell={onMouseLeaveCell}
         dateRender={dateRender}
         disabledDate={disabledDate}
         mode="year"

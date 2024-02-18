@@ -33,8 +33,6 @@ const MONTHS = [
 export const MonthPickerPanel: FC<MonthPickerPanelProps> = (props) => {
   const {
     pageShowDate,
-    onMouseEnterCell,
-    onMouseLeaveCell,
     dateRender,
     disabledDate,
     value,
@@ -122,8 +120,6 @@ export const MonthPickerPanel: FC<MonthPickerPanelProps> = (props) => {
         isSameTime={(current: Dayjs, target: Dayjs) =>
           current.isSame(target, "month")
         }
-        onMouseEnterCell={onMouseEnterCell}
-        onMouseLeaveCell={onMouseLeaveCell}
         dateRender={dateRender}
         disabledDate={disabledDate}
         mode="month"

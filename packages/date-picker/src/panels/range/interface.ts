@@ -16,8 +16,6 @@ export interface RangePickerPanelProps
     dateString: string | undefined,
     date: Dayjs | undefined,
   ) => void
-  onMouseEnterCell?: (time: Dayjs, disabled: boolean) => void
-  onMouseLeaveCell?: (time: Dayjs, disabled: boolean) => void
   onPrev?: () => void
   onSuperPrev?: () => void
   onNext?: () => void
