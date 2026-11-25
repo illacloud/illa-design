@@ -216,7 +216,9 @@ export const useOffset = (
         break
       }
     }
-    const formatVal = currentVal.map((v) => processNumber(v, step))
+    const formatVal = currentVal.map((v) =>
+      Math.min(max, Math.max(min, processNumber(v, step))),
+    )
     onAfterChange && onAfterChange(formatVal)
     onChange && onChange(formatVal)
     setCurrentValue(formatVal.join(","))
